@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>关卡选择 · 档案侦探</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <div id="app">
+    <div id="levels-container">
+      <h1 style="text-align:center; margin-bottom: 8px; color: #334155; font-size: 24px;">档案侦探 · 笼中密码</h1>
+      <p id="stats-line" style="text-align:center; color: #64748b; font-size: 14px; margin-bottom: 20px;">加载中...</p>
+
+      <!-- 难度筛选 -->
+      <div id="difficulty-filter">
+        <button class="filter-btn active" data-diff="all">全部</button>
+        <button class="filter-btn" data-diff="简单">简单</button>
+        <button class="filter-btn" data-diff="中等">中等</button>
+        <button class="filter-btn" data-diff="困难">困难</button>
+      </div>
+
+      <!-- 关卡列表 -->
+      <div id="levels-list">
+        <div style="text-align:center; padding: 40px; color: #94a3b8;">加载关卡中...</div>
+      </div>
+    </div>
+  </div>
+
+  <script src="utils/storage.js"></script>
+  <script>
+    let allLevels = [];
+    let currentFilter = 'all';
+
+    // 加载关卡列表
+    async function loadLevels() {
+      let levels = [];
+      try {
+        const res = await fetch('/api/levels');
+        const json = await res.json();
+        if (json.code === 0 && json.data) {
+          levels = json.data;
+        }
+      } catch (e) {
+        console.warn('获取关卡列表失败：', e.message);
+        // 降级：本地空列表提示
+        document.getElementById('levels-list').innerHTML =
+          '<div style="text-align:center; padding: 40px; color: #94a3b8;">网络异常，请刷新重试</div>';
+        return;
+      }
+
+      allLevels = levels;
+      renderLevels();
+      renderStats();
+    }
+
+    // 渲染关卡列表
+    function renderLevels() {
+      const list = document.getElementById('levels-list');
+      const completeMap = Storage.getCompleteBatch(allLevels.map(l => l.id));
+
+      const filtered = currentFilter === 'all'
+        ? allLevels
+        : allLevels.filter(l => l.difficulty === currentFilter);
+
+      if (filtered.length === 0) {
+        list.innerHTML = '<div style="text-align:center; padding: 40px; color: #94a3b8;">该难度暂无关卡</div>';
+        return;
+      }
+
+      let html = '';
+      filtered.forEach(level => {
+        const status = completeMap[level.id];
+        const completed = status && status.completed;
+        const bestTime = completed ? formatTime(status.time) : '';
+        const diffColor = getDiffColor(level.difficulty);
+
+        html += `
+          <div class="level-card ${completed ? 'completed' : ''}" data-id="${level.id}">
+            <div class="level-id">${level.id}</div>
+            <div class="level-info">
+              <div class="level-name">${level.name}</div>
+              <div class="level-meta">
+                <span class="diff-tag" style="background:${diffColor};">${level.difficulty}</span>
+                ${completed ? '<span class="complete-tag">✓ 已通关</span>' : ''}
+                ${bestTime ? '<span class="time-tag">最佳 ' + bestTime + '</span>' : ''}
+              </div>
+            </div>
+            <div class="level-arrow">›</div>
+          </div>
+        `;
+      });
+
+      list.innerHTML = html;
+
+      // 绑定点击
+      document.querySelectorAll('.level-card').forEach(card => {
+        card.addEventListener('click', () => {
+          const id = card.dataset.id;
+          window.location.href = 'index.html?id=' + id;
+        });
+      });
+    }
+
+    // 渲染统计
+    function renderStats() {
+      const stats = Storage.getStats();
+      const total = allLevels.length;
+      const line = document.getElementById('stats-line');
+      line.textContent = `已通关 ${stats.totalCompleted} / ${total} 关 · 总用时 ${formatTime(stats.totalTime)}`;
+    }
+
+    // 难度筛选按钮
+    function bindFilter() {
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          currentFilter = btn.dataset.diff;
+          renderLevels();
+        });
+      });
+    }
+
+    // 工具：时间格式化
+    function formatTime(seconds) {
+      const m = Math.floor(seconds / 60);
+      const s = seconds % 60;
+      return m + '分' + String(s).padStart(2, '0') + '秒';
+    }
+
+    // 工具：难度颜色
+    function getDiffColor(diff) {
+      if (diff === '简单') return '#22c55e';
+      if (diff === '中等') return '#f59e0b';
+      if (diff === '困难') return '#ef4444';
+      return '#64748b';
+    }
+
+    // 启动
+    loadLevels();
+    bindFilter();
+  </script>
+</body>
+</html>

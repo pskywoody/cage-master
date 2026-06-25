@@ -1,0 +1,402 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  user-select: none;
+}
+
+body {
+  background-color: #f8fafc;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  touch-action: manipulation;
+  padding: 10px;
+}
+
+#app {
+  max-width: 500px;
+  width: 100%;
+}
+
+#game-container {
+  background: white;
+  border-radius: 24px;
+  padding: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+#game-container h2 {
+  font-size: 22px;
+  font-weight: 600;
+  color: #334155;
+}
+
+#gameCanvas {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background-color: #ffffff;
+  border-radius: 12px;
+  touch-action: none;
+  cursor: pointer;
+}
+
+/* 工具栏 */
+#toolbar {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 16px;
+  gap: 8px;
+}
+
+#toolbar button {
+  flex: 1;
+  padding: 10px 0;
+  border: none;
+  background-color: #f1f5f9;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #334155;
+  transition: background 0.1s, transform 0.1s;
+  touch-action: manipulation;
+  cursor: pointer;
+}
+
+#toolbar button:active {
+  background-color: #cbd5e1;
+  transform: scale(0.95);
+}
+
+/* 数字键盘 */
+#num-pad {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.num-btn {
+  padding: 10px 0;
+  border: none;
+  background: #eff6ff;
+  color: #1d4ed8;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.1s;
+}
+
+.num-btn:active {
+  background: #bfdbfe;
+  transform: scale(0.95);
+}
+
+/* ========== 关卡选择页 ========== */
+#levels-container {
+  background: white;
+  border-radius: 24px;
+  padding: 20px 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+#difficulty-filter {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  padding: 8px 18px;
+  border: none;
+  background: #f1f5f9;
+  color: #64748b;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.filter-btn.active {
+  background: #3b82f6;
+  color: white;
+}
+
+#levels-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 60vh;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.level-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  background: #f8fafc;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all 0.15s;
+  border: 2px solid transparent;
+}
+
+.level-card:active {
+  transform: scale(0.98);
+  background: #e2e8f0;
+}
+
+.level-card.completed {
+  border-color: #22c55e;
+  background: #f0fdf4;
+}
+
+.level-id {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #3b82f6;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+.level-card.completed .level-id {
+  background: #22c55e;
+}
+
+.level-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.level-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: #334155;
+  margin-bottom: 4px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.level-meta {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.diff-tag {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 500;
+  color: white;
+}
+
+.complete-tag {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 500;
+  background: #22c55e;
+  color: white;
+}
+
+.time-tag {
+  display: inline-block;
+  font-size: 12px;
+  color: #64748b;
+}
+
+.level-arrow {
+  font-size: 24px;
+  color: #cbd5e1;
+  font-weight: 300;
+  flex-shrink: 0;
+}
+
+/* ========== 计时与状态栏 ========== */
+#game-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+#game-header h2 {
+  font-size: 18px;
+  margin: 0;
+  text-align: left;
+}
+
+#timer {
+  font-size: 18px;
+  font-weight: 600;
+  color: #334155;
+  font-family: 'SF Mono', Menlo, Consolas, monospace;
+  background: #f1f5f9;
+  padding: 4px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+#timer.paused {
+  color: #ef4444;
+  background: #fef2f2;
+}
+
+#btn-back {
+  padding: 6px 12px;
+  border: none;
+  background: #f1f5f9;
+  border-radius: 8px;
+  font-size: 13px;
+  color: #64748b;
+  cursor: pointer;
+}
+
+#btn-back:active {
+  background: #cbd5e1;
+}
+
+/* ========== 暂停蒙层 ========== */
+#pause-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(15, 23, 42, 0.6);
+  z-index: 100;
+  align-items: center;
+  justify-content: center;
+}
+
+#pause-overlay.active {
+  display: flex;
+}
+
+.pause-card {
+  background: white;
+  border-radius: 20px;
+  padding: 32px 40px;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+}
+
+.pause-card h3 {
+  font-size: 22px;
+  color: #334155;
+  margin-bottom: 8px;
+}
+
+.pause-card p {
+  color: #64748b;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+.pause-card button {
+  padding: 10px 32px;
+  border: none;
+  background: #3b82f6;
+  color: white;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.pause-card button:active {
+  background: #2563eb;
+  transform: scale(0.95);
+}
+
+/* ========== 通关弹窗 ========== */
+#complete-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(15, 23, 42, 0.6);
+  z-index: 100;
+  align-items: center;
+  justify-content: center;
+}
+
+#complete-overlay.active {
+  display: flex;
+}
+
+.complete-card {
+  background: white;
+  border-radius: 20px;
+  padding: 32px 40px;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+  max-width: 320px;
+  width: 90%;
+}
+
+.complete-card .trophy {
+  font-size: 48px;
+  margin-bottom: 8px;
+}
+
+.complete-card h3 {
+  font-size: 22px;
+  color: #334155;
+  margin-bottom: 12px;
+}
+
+.complete-card .complete-time {
+  font-size: 18px;
+  font-weight: 600;
+  color: #3b82f6;
+  margin-bottom: 20px;
+}
+
+.complete-card .btn-row {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.complete-card button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.complete-card .btn-primary {
+  background: #3b82f6;
+  color: white;
+}
+
+.complete-card .btn-secondary {
+  background: #f1f5f9;
+  color: #334155;
+}

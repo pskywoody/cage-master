@@ -1,6 +1,8 @@
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
+const { HumanSimulator } = require('./node-script/human-simulator.js');
+const { KillerSudokuSolver, quickRateDifficulty } = require('./node-script/solver-rater.js');
 
 const app = express();
 const PORT = 3000;
@@ -8,8 +10,15 @@ const PORT = 3000;
 // 中间件：解析JSON请求体
 app.use(express.json());
 
-// 1. 托管前端静态文件
-app.use(express.static(path.join(__dirname, 'game-src')));
+// 1. 托管前端静态文件（禁止缓存，确保修改即时生效）
+app.use(express.static(path.join(__dirname, 'game-src'), {
+  setHeaders(res, filePath) {
+    if (filePath.endsWith('.html') || filePath.endsWith('.js') || filePath.endsWith('.css')) {
+      res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+      res.setHeader('Pragma', 'no-cache');
+    }
+  }
+}));
 
 // 2. 读取题库数据（修正路径：题库实际位于 game-src/data/levels.json）
 function loadLevels() {
@@ -23,11 +32,18 @@ function loadLevels() {
 // ==========================================
 app.get('/api/levels', (req, res) => {
   const levels = loadLevels();
-  const list = levels.map(item => ({
+  let list = levels.map(item => ({
     id: item.id,
     name: item.name,
     difficulty: item.difficulty
   }));
+
+  // 按难度筛选
+  const diff = req.query.difficulty;
+  if (diff) {
+    list = list.filter(item => item.difficulty === diff);
+  }
+
   res.json({ code: 0, data: list, msg: 'ok' });
 });
 
@@ -186,6 +202,178 @@ app.post('/api/check', (req, res) => {
     },
     msg: 'ok'
   });
+});
+
+// ==========================================
+// 接口：获取下一步提示
+// 入参：{ levelId, currentGrid: 9×9 二维数组 }
+// 返回：{ code, data: { r, c, num, technique, techniqueName, description } }
+// ==========================================
+app.post('/api/hint', (req, res) => {
+  const { levelId, currentGrid } = req.body;
+
+  if (!currentGrid || !Array.isArray(currentGrid) || currentGrid.length !== 9) {
+    return res.json({ code: 1, data: null, msg: '盘面格式错误' });
+  }
+
+  // 取出关卡笼子信息
+  let cages = [];
+  if (levelId !== undefined) {
+    const levels = loadLevels();
+    const level = levels.find(item => String(item.id) === String(levelId));
+    if (level) {
+      cages = level.cages || [];
+    }
+  }
+
+  if (cages.length === 0) {
+    return res.json({ code: 1, data: null, msg: '找不到关卡信息' });
+  }
+
+  try {
+    const sim = new HumanSimulator(currentGrid, cages);
+    const result = sim.solve(1); // 只解一步
+
+    if (sim.steps.length > 0) {
+      const step = sim.steps[0];
+      const techniqueNames = {
+        nakedSingle: '显单',
+        hiddenSingle: '隐单',
+        rule45: '45法则'
+      };
+      res.json({
+        code: 0,
+        data: {
+          r: step.row,
+          c: step.col,
+          num: step.num,
+          technique: step.technique,
+          techniqueName: techniqueNames[step.technique] || step.technique,
+          description: buildHintDescription(step)
+        },
+        msg: 'ok'
+      });
+    } else {
+      res.json({ code: 0, data: null, msg: '暂无可用提示' });
+    }
+  } catch (e) {
+    console.error('提示计算异常：', e);
+    res.json({ code: 1, data: null, msg: '提示计算失败' });
+  }
+});
+
+function buildHintDescription(step) {
+  const { technique, scope, num } = step;
+  if (technique === 'nakedSingle') {
+    return '这个格子只有一个可能的数字';
+  }
+  if (technique === 'hiddenSingle') {
+    const scopeNames = { row: '行', col: '列', box: '宫', cage: '笼子' };
+    const scopeName = scopeNames[scope] || scope;
+    return `这个${scopeName}中，数字${num}只能填在这里`;
+  }
+  if (technique === 'rule45') {
+    return `通过45法则推导，这里应该填${num}`;
+  }
+  return `下一步填${num}`;
+}
+
+// ==========================================
+// 接口：评估盘面难度
+// 入参：{ cages } 或 { levelId }
+// 返回：{ code, data: { score, level, techniques, totalSteps, solvable, emptyCells } }
+// ==========================================
+app.post('/api/rate', (req, res) => {
+  const { levelId, cages: cagesParam } = req.body;
+
+  let cages = cagesParam || [];
+  if (levelId !== undefined && cages.length === 0) {
+    const levels = loadLevels();
+    const level = levels.find(item => String(item.id) === String(levelId));
+    if (level) {
+      cages = level.cages || [];
+    }
+  }
+
+  if (!Array.isArray(cages) || cages.length === 0) {
+    return res.json({ code: 1, data: null, msg: '缺少笼子数据' });
+  }
+
+  try {
+    const grid = Array.from({ length: 9 }, () => Array(9).fill(0));
+    const sim = new HumanSimulator(grid, cages);
+    sim.solve();
+    const rating = sim.getDifficultyRating();
+
+    res.json({
+      code: 0,
+      data: rating,
+      msg: 'ok'
+    });
+  } catch (e) {
+    console.error('难度评估异常：', e);
+    res.json({ code: 1, data: null, msg: '难度评估失败' });
+  }
+});
+
+// ==========================================
+// 接口：求解盘面（验证是否有解）
+// 入参：{ cages }
+// 返回：{ code, data: { solvable, solution, solutionsCount } }
+// ==========================================
+app.post('/api/solve', (req, res) => {
+  const { cages } = req.body;
+
+  if (!Array.isArray(cages) || cages.length === 0) {
+    return res.json({ code: 1, data: null, msg: '缺少笼子数据' });
+  }
+
+  try {
+    const grid = Array.from({ length: 9 }, () => Array(9).fill(0));
+    const solver = new KillerSudokuSolver(grid, cages);
+    const solution = solver.solve();
+
+    res.json({
+      code: 0,
+      data: {
+        solvable: !!solution,
+        solution: solution || null
+      },
+      msg: 'ok'
+    });
+  } catch (e) {
+    console.error('求解异常：', e);
+    res.json({ code: 1, data: null, msg: '求解失败' });
+  }
+});
+
+// ==========================================
+// 接口：获取某关的正解
+// ==========================================
+app.get('/api/solve/:id', (req, res) => {
+  const { id } = req.params;
+  const levels = loadLevels();
+  const level = levels.find(item => String(item.id) === String(id));
+
+  if (!level) {
+    return res.json({ code: 1, data: null, msg: '关卡不存在' });
+  }
+
+  try {
+    const grid = level.cells.map(row => [...row]);
+    const solver = new KillerSudokuSolver(grid, level.cages);
+    solver.solve();
+    const solution = solver.solutions.length > 0 ? solver.solutions[0] : null;
+
+    res.json({
+      code: 0,
+      data: solution || null,
+      msg: 'ok'
+    });
+  } catch (e) {
+    console.error('求解异常：', e);
+    res.json({ code: 1, data: null, msg: '求解失败' });
+  }
 });
 
 // ==========================================

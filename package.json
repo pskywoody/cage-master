@@ -8,7 +8,9 @@
   },
   "scripts": {
     "dev": "node server.js",
-    "generate": "node node-script/puzzle-manager.js"
+    "generate": "node node-script/puzzle-manager.js",
+    "pipeline": "node node-script/batch-pipeline.js",
+    "rate": "node node-script/human-simulator.js"
   },
   "keywords": [],
   "author": "",

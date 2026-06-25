@@ -71,6 +71,58 @@ body {
   transform: scale(0.95);
 }
 
+/* 第二行工具栏 */
+#toolbar-row2 {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px;
+}
+.tool-btn2 {
+  flex: 1;
+  padding: 8px 0;
+  border: none;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+.tool-btn2:active {
+  transform: scale(0.95);
+}
+#btn-quick-fill {
+  background: #f0fdf4;
+  color: #16a34a;
+}
+#btn-quick-fill:active { background: #dcfce7; }
+#btn-quick-fill.active {
+  background: #16a34a;
+  color: white;
+}
+#btn-restart {
+  background: #fef2f2;
+  color: #dc2626;
+}
+#btn-restart:active { background: #fecaca; }
+
+/* 快捷填入模式：被选中的数字凹陷 */
+.num-btn.quick-fill-num {
+  background: #16a34a !important;
+  color: white !important;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+  transform: scale(0.92);
+}
+
+/* 移动端工具栏优化 */
+@media (max-width: 480px) {
+  #toolbar button {
+    padding: 12px 0;
+    font-size: 13px;
+  }
+}
+
 /* 数字键盘 */
 #num-pad {
   display: grid;
@@ -89,11 +141,36 @@ body {
   font-weight: 600;
   cursor: pointer;
   transition: all 0.1s;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
 .num-btn:active {
   background: #bfdbfe;
   transform: scale(0.95);
+}
+.num-btn.completed {
+  background: #e2e8f0;
+  color: #94a3b8;
+  cursor: default;
+  pointer-events: none;
+}
+.num-btn.completed:active {
+  transform: none;
+}
+
+/* 移动端：数字键盘改为3×3布局，按钮更大 */
+@media (max-width: 480px) {
+  #num-pad {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+
+  .num-btn {
+    padding: 14px 0;
+    font-size: 20px;
+    border-radius: 12px;
+  }
 }
 
 /* ========== 关卡选择页 ========== */
@@ -223,6 +300,18 @@ body {
   display: inline-block;
   font-size: 12px;
   color: #64748b;
+}
+
+.level-stats {
+  display: flex;
+  gap: 10px;
+  margin-top: 6px;
+  font-size: 11px;
+  color: #94a3b8;
+}
+
+.level-stats span {
+  white-space: nowrap;
 }
 
 .level-arrow {
@@ -399,4 +488,381 @@ body {
 .complete-card .btn-secondary {
   background: #f1f5f9;
   color: #334155;
+}
+
+/* ========== 45法则计算器 ========== */
+#rule45-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(15, 23, 42, 0.6);
+  z-index: 100;
+  align-items: center;
+  justify-content: center;
+}
+
+#rule45-overlay.active {
+  display: flex;
+}
+
+.rule45-card {
+  background: white;
+  border-radius: 20px;
+  padding: 20px 24px;
+  max-width: 360px;
+  width: 90%;
+  max-height: 85vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+}
+
+.rule45-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.rule45-header h3 {
+  font-size: 18px;
+  color: #334155;
+  margin: 0;
+}
+
+.rule45-close {
+  width: 28px;
+  height: 28px;
+  border: none;
+  background: #f1f5f9;
+  border-radius: 50%;
+  font-size: 18px;
+  color: #64748b;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.rule45-close:active {
+  background: #cbd5e1;
+}
+
+.rule45-input-row {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.rule45-input-group {
+  flex: 1;
+}
+
+.rule45-input-group label {
+  display: block;
+  font-size: 12px;
+  color: #64748b;
+  margin-bottom: 4px;
+  font-weight: 500;
+}
+
+.rule45-input-group input[type="number"] {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 15px;
+  color: #334155;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.rule45-input-group input[type="number"]:focus {
+  border-color: #3b82f6;
+}
+
+.rule45-num-picker {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.rule45-num-btn {
+  width: 30px;
+  height: 30px;
+  border: 1.5px solid #e2e8f0;
+  background: white;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.1s;
+}
+
+.rule45-num-btn.active-must {
+  background: #22c55e;
+  border-color: #22c55e;
+  color: white;
+}
+
+.rule45-num-btn.active-exclude {
+  background: #ef4444;
+  border-color: #ef4444;
+  color: white;
+}
+
+.rule45-num-btn:active {
+  transform: scale(0.92);
+}
+
+.rule45-result {
+  margin-top: 16px;
+  border-top: 1px solid #e2e8f0;
+  padding-top: 12px;
+}
+
+.rule45-result-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.rule45-result-header span:first-child {
+  font-size: 13px;
+  font-weight: 600;
+  color: #334155;
+}
+
+.rule45-count {
+  font-size: 12px;
+  color: #3b82f6;
+  font-weight: 600;
+  background: #eff6ff;
+  padding: 2px 8px;
+  border-radius: 10px;
+}
+
+.rule45-combinations {
+  max-height: 180px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.rule45-combo {
+  display: flex;
+  gap: 4px;
+  padding: 6px 8px;
+  background: #f8fafc;
+  border-radius: 6px;
+  align-items: center;
+}
+
+.rule45-combo-num {
+  width: 24px;
+  height: 24px;
+  background: #eff6ff;
+  color: #1d4ed8;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.rule45-combo-sum {
+  margin-left: auto;
+  font-size: 11px;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.rule45-no-result {
+  text-align: center;
+  color: #94a3b8;
+  font-size: 13px;
+  padding: 16px 0;
+}
+
+/* ========== 设置弹窗 ========== */
+#settings-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(15, 23, 42, 0.6);
+  z-index: 100;
+  align-items: center;
+  justify-content: center;
+}
+
+#settings-overlay.active {
+  display: flex;
+}
+
+.settings-card {
+  background: white;
+  border-radius: 20px;
+  padding: 20px 24px;
+  max-width: 360px;
+  width: 90%;
+  max-height: 85vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+}
+
+.settings-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.settings-header h3 {
+  font-size: 18px;
+  color: #334155;
+  margin: 0;
+}
+
+.settings-close {
+  width: 28px;
+  height: 28px;
+  border: none;
+  background: #f1f5f9;
+  border-radius: 50%;
+  font-size: 18px;
+  color: #64748b;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.settings-close:active {
+  background: #cbd5e1;
+}
+
+.settings-section {
+  margin-bottom: 16px;
+}
+
+.settings-section h4 {
+  font-size: 12px;
+  color: #94a3b8;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+}
+
+.setting-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.setting-item:last-child {
+  border-bottom: none;
+}
+
+.setting-info {
+  flex: 1;
+  margin-right: 12px;
+}
+
+.setting-name {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  color: #334155;
+  margin-bottom: 2px;
+}
+
+.setting-desc {
+  display: block;
+  font-size: 11px;
+  color: #94a3b8;
+}
+
+/* 开关按钮 */
+.toggle-switch {
+  position: relative;
+  width: 42px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggle-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #cbd5e1;
+  transition: 0.2s;
+  border-radius: 24px;
+}
+
+.toggle-slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.2s;
+  border-radius: 50%;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+.toggle-switch input:checked + .toggle-slider {
+  background-color: #3b82f6;
+}
+
+.toggle-switch input:checked + .toggle-slider:before {
+  transform: translateX(18px);
+}
+
+/* ========== Toast 提示 ========== */
+.game-toast {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.9);
+  background: rgba(15, 23, 42, 0.9);
+  color: white;
+  padding: 12px 20px;
+  border-radius: 12px;
+  font-size: 14px;
+  z-index: 200;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.2s ease;
+  max-width: 80%;
+  text-align: center;
+}
+
+.game-toast.show {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
 }

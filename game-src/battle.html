@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>AI对战 · 档案侦探</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    /* 对战页面布局 */
+    #battle-app {
+      width: 100%;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 16px;
+      box-sizing: border-box;
+    }
+    .battle-btn.spectate {
+      background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+      color: white;
+    }
+    .battle-btn.spectate:hover {
+      background: linear-gradient(135deg, #a78bfa, #8b5cf6);
+    }
+
+    /* 观战模式：隐藏玩家脚下的控制区 */
+    .spectate-mode .attack-buttons,
+    .spectate-mode .player-controls {
+      display: none !important;
+    }
+    .spectate-mode .battle-arena {
+      margin-bottom: 0;
+    }
+    .spectate-mode .player-label {
+      color: #8b5cf6;
+    }
+
+    .battle-header {
+      text-align: center;
+      margin-bottom: 12px;
+    }
+    .battle-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: #334155;
+      margin-bottom: 2px;
+    }
+    .battle-subtitle {
+      font-size: 12px;
+      color: #64748b;
+    }
+
+    .battle-arena {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      align-items: flex-start;
+      margin-bottom: 12px;
+    }
+
+    .player-side {
+      flex: 1;
+      max-width: 380px;
+      position: relative;
+    }
+
+    .player-label {
+      text-align: center;
+      padding: 6px 10px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 13px;
+      margin-bottom: 6px;
+    }
+    .player-side.player .player-label {
+      background: #dbeafe;
+      color: #1d4ed8;
+    }
+    .player-side.ai .player-label {
+      background: #fee2e2;
+      color: #dc2626;
+    }
+
+    .player-stats {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      color: #64748b;
+      margin-bottom: 4px;
+      padding: 0 2px;
+    }
+
+    /* 进度条 */
+    .progress-bar {
+      height: 5px;
+      background: #e2e8f0;
+      border-radius: 3px;
+      overflow: hidden;
+      margin-bottom: 4px;
+    }
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #22c55e, #16a34a);
+      transition: width 0.3s ease;
+    }
+    .ai .progress-fill {
+      background: linear-gradient(90deg, #ef4444, #dc2626);
+    }
+
+    /* 能量条 */
+    .energy-bar {
+      height: 22px;
+      background: linear-gradient(180deg, #1e293b, #0f172a);
+      border-radius: 11px;
+      overflow: hidden;
+      margin-bottom: 8px;
+      position: relative;
+      border: 2px solid #334155;
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.3);
+    }
+    .energy-fill {
+      height: 100%;
+      background: linear-gradient(180deg, #fcd34d, #f59e0b, #d97706);
+      transition: width 0.25s ease;
+      width: 0%;
+      box-shadow: 0 0 10px rgba(251, 191, 36, 0.6);
+      position: relative;
+    }
+    .energy-fill::after {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      right: 2px;
+      height: 40%;
+      background: linear-gradient(180deg, rgba(255,255,255,0.5), transparent);
+      border-radius: 8px;
+    }
+    .ai .energy-fill {
+      background: linear-gradient(180deg, #c4b5fd, #a78bfa, #7c3aed);
+      box-shadow: 0 0 10px rgba(167, 139, 250, 0.6);
+    }
+    .energy-fill.full {
+      animation: energyPulse 1s ease-in-out infinite;
+    }
+    @keyframes energyPulse {
+      0%, 100% { box-shadow: 0 0 10px rgba(251, 191, 36, 0.6); }
+      50% { box-shadow: 0 0 20px rgba(251, 191, 36, 1), 0 0 30px rgba(251, 191, 36, 0.5); }
+    }
+    .ai .energy-fill.full {
+      animation: energyPulseAi 1s ease-in-out infinite;
+    }
+    @keyframes energyPulseAi {
+      0%, 100% { box-shadow: 0 0 10px rgba(167, 139, 250, 0.6); }
+      50% { box-shadow: 0 0 20px rgba(167, 139, 250, 1), 0 0 30px rgba(167, 139, 250, 0.5); }
+    }
+    .energy-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 12px;
+      font-weight: 700;
+      color: white;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+      z-index: 2;
+      letter-spacing: 0.5px;
+    }
+    .energy-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: #64748b;
+      margin-bottom: 2px;
+      display: flex;
+      justify-content: space-between;
+    }
+    .energy-label span:last-child {
+      color: #f59e0b;
+    }
+    .ai .energy-label span:last-child {
+      color: #8b5cf6;
+    }
+
+    /* 护盾徽章 */
+    .shield-badge {
+      display: none;
+      font-size: 11px;
+      font-weight: 700;
+      color: #8b5cf6;
+      margin-right: 4px;
+      vertical-align: middle;
+    }
+    @keyframes shieldPulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    /* 护盾边框 */
+    .shield-active {
+      box-shadow: 0 0 15px 5px rgba(139, 92, 246, 0.4) inset !important;
+    }
+
+    /* 连击显示 */
+    .combo-display {
+      display: none;
+      position: absolute;
+      top: 50px;
+      right: -10px;
+      font-size: 18px;
+      font-weight: 900;
+      color: #f59e0b;
+      text-shadow: 2px 2px 0 #fef3c7, -1px -1px 0 #fff;
+      z-index: 5;
+      animation: comboPop 0.5s ease-out;
+    }
+    @keyframes comboPop {
+      0% { transform: scale(0.5); opacity: 0; }
+      50% { transform: scale(1.2); opacity: 1; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .battle-canvas-wrap {
+      width: 100%;
+      aspect-ratio: 1;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      overflow: hidden;
+      position: relative;
+      transition: box-shadow 0.15s ease;
+    }
+    .battle-canvas-wrap canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      10%, 30%, 50%, 70%, 90% { transform: translateX(-4px); }
+      20%, 40%, 60%, 80% { transform: translateX(4px); }
+    }
+
+    /* VS 分隔 */
+    .vs-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      font-weight: 900;
+      color: #f59e0b;
+      text-shadow: 2px 2px 0 #fef3c7;
+      padding: 0 4px;
+      min-width: 50px;
+      flex-shrink: 0;
+    }
+
+    /* 攻击特效提示 */
+    .attack-indicator {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 28px;
+      font-weight: 900;
+      color: #ef4444;
+      text-shadow: 2px 2px 0 #fecaca, -2px -2px 0 #fff;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s;
+      z-index: 10;
+      white-space: nowrap;
+    }
+    .attack-indicator.show {
+      animation: attackPop 0.8s ease-out;
+    }
+    @keyframes attackPop {
+      0% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+      30% { opacity: 1; transform: translate(-50%, -50%) scale(1.3); }
+      70% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+      100% { opacity: 0; transform: translate(-50%, -50%) scale(1); }
+    }
+
+    /* 控制面板 */
+    .battle-controls {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .battle-btn {
+      padding: 8px 16px;
+      border: none;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      touch-action: manipulation;
+    }
+    .battle-btn.primary {
+      background: #3b82f6;
+      color: white;
+    }
+    .battle-btn.primary:active { background: #2563eb; transform: scale(0.95); }
+    .battle-btn.secondary {
+      background: #e2e8f0;
+      color: #475569;
+    }
+    .battle-btn.secondary:active { background: #cbd5e1; transform: scale(0.95); }
+
+    .difficulty-select {
+      display: flex;
+      gap: 4px;
+      align-items: center;
+    }
+    .difficulty-select label {
+      font-size: 12px;
+      color: #64748b;
+    }
+    .difficulty-select select {
+      padding: 6px 10px;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      font-size: 13px;
+      background: white;
+      cursor: pointer;
+    }
+
+    /* 攻击按钮区 */
+    .attack-buttons {
+      display: flex;
+      gap: 6px;
+      justify-content: center;
+      margin-bottom: 10px;
+    }
+    .attack-btn {
+      flex: 1;
+      padding: 8px 4px;
+      border: none;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.15s;
+      touch-action: manipulation;
+    }
+    .attack-btn:active:not(:disabled) {
+      transform: scale(0.95);
+    }
+    .attack-btn.normal {
+      background: #3b82f6;
+      color: white;
+    }
+    .attack-btn.heavy {
+      background: #f59e0b;
+      color: white;
+    }
+    .attack-btn.ultimate {
+      background: linear-gradient(135deg, #ef4444, #ec4899);
+      color: white;
+    }
+    .attack-btn .cost {
+      display: block;
+      font-size: 10px;
+      font-weight: 500;
+      opacity: 0.85;
+      margin-top: 2px;
+    }
+
+    /* 玩家控制区 */
+    .player-controls {
+      background: white;
+      border-radius: 12px;
+      padding: 10px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+
+    .control-row {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+
+    #btn-mode-toggle {
+      flex: 1;
+      padding: 8px;
+      border: none;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      background: #f1f5f9;
+      color: #334155;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    #btn-mode-toggle:active { transform: scale(0.95); }
+
+    #btn-erase {
+      flex: 1;
+      padding: 8px;
+      border: none;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      background: #fee2e2;
+      color: #dc2626;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    #btn-erase:active { transform: scale(0.95); background: #fecaca; }
+
+    /* 快捷填入按钮 */
+    #btn-quick-fill {
+      flex: 1;
+      padding: 8px;
+      border: none;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      background: #f0fdf4;
+      color: #16a34a;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    #btn-quick-fill:active { transform: scale(0.95); }
+    #btn-quick-fill.active {
+      background: #16a34a;
+      color: white;
+    }
+
+    /* 重来按钮 */
+    #btn-restart {
+      flex: 1;
+      padding: 8px;
+      border: none;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      background: #fef2f2;
+      color: #dc2626;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    #btn-restart:active { transform: scale(0.95); background: #fecaca; }
+
+    /* 快捷填入模式：被选中的数字凹陷 */
+    .battle-num-btn.quick-fill-num {
+      background: #16a34a;
+      color: white;
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+      transform: scale(0.92);
+    }
+
+    /* 数字键盘 */
+    .battle-num-pad {
+      display: grid;
+      grid-template-columns: repeat(9, 1fr);
+      gap: 4px;
+    }
+
+    .battle-num-btn {
+      padding: 10px 0;
+      border: none;
+      background: #eff6ff;
+      color: #1d4ed8;
+      border-radius: 6px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.1s;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+    }
+    .battle-num-btn:active {
+      background: #bfdbfe;
+      transform: scale(0.92);
+    }
+    .battle-num-btn.completed {
+      background: #e2e8f0;
+      color: #94a3b8;
+      cursor: default;
+      pointer-events: none;
+    }
+    .battle-num-btn.completed:active {
+      transform: none;
+    }
+
+    /* 结果弹窗 */
+    #battle-result {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.5);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+    }
+    #battle-result.show {
+      display: flex;
+    }
+    .result-card {
+      background: white;
+      padding: 28px 24px;
+      border-radius: 16px;
+      text-align: center;
+      max-width: 340px;
+      width: 90%;
+    }
+    .result-title {
+      font-size: 26px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+    .result-title.win { color: #22c55e; }
+    .result-title.lose { color: #ef4444; }
+    .result-stats {
+      font-size: 13px;
+      color: #64748b;
+      margin-bottom: 18px;
+      line-height: 1.8;
+    }
+    .result-buttons {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+    }
+
+    /* 移动端适配 */
+    @media (max-width: 768px) {
+      .battle-arena {
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+      }
+      .vs-divider {
+        padding: 4px 0;
+        font-size: 18px;
+      }
+      .player-side {
+        max-width: 300px;
+        width: 100%;
+      }
+      .battle-num-pad {
+        grid-template-columns: repeat(5, 1fr);
+      }
+      .battle-num-btn {
+        padding: 12px 0;
+        font-size: 17px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .player-side {
+        max-width: 100%;
+      }
+      .attack-btn {
+        font-size: 11px;
+        padding: 6px 2px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="battle-app">
+    <div class="battle-header">
+      <div class="battle-title">⚔️ AI 对战模式</div>
+      <div class="battle-subtitle">填对数字积累能量，释放攻击干扰对手！</div>
+    </div>
+
+    <!-- 控制面板 -->
+    <div class="battle-controls">
+      <div class="difficulty-select">
+        <label>难度：</label>
+        <select id="ai-difficulty">
+          <option value="easy">简单</option>
+          <option value="medium" selected>中等</option>
+          <option value="hard">困难</option>
+        </select>
+      </div>
+      <button class="battle-btn primary" id="btn-start-battle">开始对战</button>
+      <button class="battle-btn spectate" id="btn-spectate">👀 观战</button>
+      <button class="battle-btn secondary" id="btn-back">返回</button>
+    </div>
+
+    <!-- 战斗区域 -->
+    <div class="battle-arena">
+      <!-- 玩家侧 -->
+      <div class="player-side player">
+        <div class="player-label" id="player-label">你</div>
+        <div class="combo-display" id="player-combo"></div>
+        <div class="player-stats">
+          <span id="player-progress-text">0 / 81</span>
+          <span id="player-attack-count">攻击: 0</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" id="player-progress" style="width: 0%"></div>
+        </div>
+        <div class="energy-label">
+          <span>⚡ 能量</span>
+          <span><span class="shield-badge" id="player-shield"></span><span id="player-energy-num">0 / 100</span></span>
+        </div>
+        <div class="energy-bar">
+          <div class="energy-fill" id="player-energy-fill"></div>
+          <span class="energy-text" id="player-energy-text">0%</span>
+        </div>
+        <div class="battle-canvas-wrap" id="player-canvas-wrap">
+          <canvas id="player-canvas"></canvas>
+          <div class="attack-indicator" id="player-attack">ATTACK!</div>
+        </div>
+      </div>
+
+      <div class="vs-divider">VS</div>
+
+      <!-- AI 侧 -->
+      <div class="player-side ai">
+        <div class="player-label" id="ai-label">AI Bot</div>
+        <div class="combo-display" id="ai-combo"></div>
+        <div class="player-stats">
+          <span id="ai-progress-text">0 / 81</span>
+          <span id="ai-attack-count">攻击: 0</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" id="ai-progress" style="width: 0%"></div>
+        </div>
+        <div class="energy-label">
+          <span>⚡ 能量</span>
+          <span><span class="shield-badge" id="ai-shield"></span><span id="ai-energy-num">0 / 100</span></span>
+        </div>
+        <div class="energy-bar">
+          <div class="energy-fill" id="ai-energy-fill"></div>
+          <span class="energy-text" id="ai-energy-text">0%</span>
+        </div>
+        <div class="battle-canvas-wrap" id="ai-canvas-wrap">
+          <canvas id="ai-canvas"></canvas>
+          <div class="attack-indicator" id="ai-attack">ATTACK!</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 攻击按钮 -->
+    <div class="attack-buttons">
+      <button class="attack-btn normal" id="btn-attack-normal" disabled>
+        普攻
+        <span class="cost">30能量</span>
+      </button>
+      <button class="attack-btn heavy" id="btn-attack-heavy" disabled>
+        重击
+        <span class="cost">60能量</span>
+      </button>
+      <button class="attack-btn ultimate" id="btn-attack-ultimate" disabled>
+        必杀
+        <span class="cost">100能量</span>
+      </button>
+    </div>
+
+    <!-- 玩家控制 -->
+    <div class="player-controls">
+      <div class="control-row">
+        <button id="btn-quick-fill">⚡ 连填</button>
+        <button id="btn-mode-toggle">填数模式</button>
+        <button id="btn-erase">擦除</button>
+        <button id="btn-restart">重来</button>
+      </div>
+      <div class="battle-num-pad">
+        <button class="battle-num-btn" id="num-1">1</button>
+        <button class="battle-num-btn" id="num-2">2</button>
+        <button class="battle-num-btn" id="num-3">3</button>
+        <button class="battle-num-btn" id="num-4">4</button>
+        <button class="battle-num-btn" id="num-5">5</button>
+        <button class="battle-num-btn" id="num-6">6</button>
+        <button class="battle-num-btn" id="num-7">7</button>
+        <button class="battle-num-btn" id="num-8">8</button>
+        <button class="battle-num-btn" id="num-9">9</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 结果弹窗 -->
+  <div id="battle-result">
+    <div class="result-card">
+      <div class="result-title" id="result-title">胜利！</div>
+      <div class="result-stats" id="result-stats"></div>
+      <div class="result-buttons">
+        <button class="battle-btn primary" id="btn-rematch">再来一局</button>
+        <button class="battle-btn secondary" id="btn-result-back">返回</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="game.js"></script>
+  <script src="renderer.js"></script>
+  <script src="utils/storage.js"></script>
+  <script src="utils/audio.js"></script>
+  <script src="battle.js"></script>
+</body>
+</html>

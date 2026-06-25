@@ -10,7 +10,22 @@
   <div id="app">
     <div id="levels-container">
       <h1 style="text-align:center; margin-bottom: 8px; color: #334155; font-size: 24px;">档案侦探 · 笼中密码</h1>
-      <p id="stats-line" style="text-align:center; color: #64748b; font-size: 14px; margin-bottom: 20px;">加载中...</p>
+      <p id="stats-line" style="text-align:center; color: #64748b; font-size: 14px; margin-bottom: 16px;">加载中...</p>
+
+      <!-- 对战模式入口 -->
+      <div id="battle-entry" style="margin-bottom: 16px;">
+        <div class="level-card" style="background: linear-gradient(135deg, #fef3c7, #fde68a); cursor: pointer; border: 2px solid #f59e0b;">
+          <div class="level-id" style="background: linear-gradient(135deg, #f59e0b, #d97706);">⚔️</div>
+          <div class="level-info">
+            <div class="level-name" style="color: #92400e;">AI 对战模式</div>
+            <div class="level-meta">
+              <span class="diff-tag" style="background: #f59e0b;">对战</span>
+              <span class="time-tag" id="battle-stats">战绩：0 胜 0 负</span>
+            </div>
+          </div>
+          <div class="level-arrow" style="color: #d97706;">›</div>
+        </div>
+      </div>
 
       <!-- 难度筛选 -->
       <div id="difficulty-filter">
@@ -18,6 +33,7 @@
         <button class="filter-btn" data-diff="简单">简单</button>
         <button class="filter-btn" data-diff="中等">中等</button>
         <button class="filter-btn" data-diff="困难">困难</button>
+        <button class="filter-btn" data-diff="calibrated" id="btn-calibrated" style="display:none;">校准排序</button>
       </div>
 
       <!-- 关卡列表 -->
@@ -52,39 +68,93 @@
       allLevels = levels;
       renderLevels();
       renderStats();
+      renderBattleStats();
+      updateCalibratedButton();
+    }
+
+    // 渲染对战战绩
+    function renderBattleStats() {
+      const stats = Storage.getBattleStats();
+      const el = document.getElementById('battle-stats');
+      if (el) {
+        el.textContent = `战绩：${stats.wins} 胜 ${stats.losses} 负`;
+      }
+      // 绑定点击
+      document.querySelector('#battle-entry .level-card').addEventListener('click', () => {
+        window.location.href = 'battle.html';
+      });
+    }
+
+    // 如果有玩家数据，显示校准排序按钮
+    function updateCalibratedButton() {
+      const analytics = Storage.getAllAnalytics();
+      const hasData = Object.values(analytics).some(a => a.completions > 0);
+      const btn = document.getElementById('btn-calibrated');
+      if (btn) {
+        btn.style.display = hasData ? '' : 'none';
+      }
     }
 
     // 渲染关卡列表
     function renderLevels() {
       const list = document.getElementById('levels-list');
       const completeMap = Storage.getCompleteBatch(allLevels.map(l => l.id));
+      const analytics = Storage.getAllAnalytics();
 
-      const filtered = currentFilter === 'all'
-        ? allLevels
-        : allLevels.filter(l => l.difficulty === currentFilter);
+      let levelsToShow = allLevels;
+      let useCalibrated = false;
 
-      if (filtered.length === 0) {
+      if (currentFilter === 'calibrated') {
+        // 校准排序：用玩家数据重新排
+        levelsToShow = Storage.calibrateDifficulty(allLevels);
+        useCalibrated = true;
+      } else if (currentFilter !== 'all') {
+        levelsToShow = allLevels.filter(l => l.difficulty === currentFilter);
+      }
+
+      if (levelsToShow.length === 0) {
         list.innerHTML = '<div style="text-align:center; padding: 40px; color: #94a3b8;">该难度暂无关卡</div>';
         return;
       }
 
       let html = '';
-      filtered.forEach(level => {
-        const status = completeMap[level.id];
+      levelsToShow.forEach(level => {
+        const id = level.id;
+        const status = completeMap[id];
         const completed = status && status.completed;
         const bestTime = completed ? formatTime(status.time) : '';
-        const diffColor = getDiffColor(level.difficulty);
+        const diffColor = useCalibrated
+          ? getDiffColor(level.calibratedDifficulty)
+          : getDiffColor(level.difficulty);
+        const diffLabel = useCalibrated
+          ? level.calibratedDifficulty + (level.hasPlayerData ? '★' : '')
+          : level.difficulty;
+
+        // 玩家数据
+        const levelData = analytics[id];
+        const hasData = levelData && levelData.completions > 0;
+        let statsHtml = '';
+        if (hasData) {
+          statsHtml = `
+            <div class="level-stats">
+              <span>均时 ${formatTime(levelData.avgTime)}</span>
+              <span>提示 ${levelData.avgHints}次</span>
+              <span>通关 ${levelData.completions}/${levelData.attempts}</span>
+            </div>
+          `;
+        }
 
         html += `
-          <div class="level-card ${completed ? 'completed' : ''}" data-id="${level.id}">
-            <div class="level-id">${level.id}</div>
+          <div class="level-card ${completed ? 'completed' : ''}" data-id="${id}">
+            <div class="level-id">${id}</div>
             <div class="level-info">
               <div class="level-name">${level.name}</div>
               <div class="level-meta">
-                <span class="diff-tag" style="background:${diffColor};">${level.difficulty}</span>
+                <span class="diff-tag" style="background:${diffColor};">${diffLabel}</span>
                 ${completed ? '<span class="complete-tag">✓ 已通关</span>' : ''}
                 ${bestTime ? '<span class="time-tag">最佳 ' + bestTime + '</span>' : ''}
               </div>
+              ${statsHtml}
             </div>
             <div class="level-arrow">›</div>
           </div>

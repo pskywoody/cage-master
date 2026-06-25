@@ -37,14 +37,22 @@ class Renderer {
     this._drawCages(board);
     // 第5层：45法则高亮蒙版
     this._drawHighlightMask(board);
-    // 第6层：同笼整体高亮
+    // 第6层：同行列宫高亮（最浅）
+    this._drawRowColBoxHighlight(board);
+    // 第7层：同笼高亮
     this._drawCageHighlight(board);
-    // 第7层：选中格高亮
+    // 第8层：同数字高亮
+    this._drawSameNumberHighlight(board);
+    // 第9层：选中格高亮（最深）
     this._drawSelectedCell(board);
-    // 第8层：填入数字 & 固定数字
+    // 第10层：提示格子高亮
+    this._drawHintHighlight(board);
+    // 第11层：填入数字 & 固定数字
     this._drawNumbers(board);
-    // 第9层：候选数
+    // 第12层：候选数
     this._drawCandidates(board);
+    // 第13层：提示数字（小角标）
+    this._drawHintNumber(board);
 
     ctx.restore();
   }
@@ -122,9 +130,9 @@ class Renderer {
   _drawCages(board) {
     const { ctx, cellSize } = this;
     const size = board.size;
-    ctx.strokeStyle = '#64748b';
-    ctx.lineWidth = 1.5;
-    ctx.setLineDash([4, 3]);
+    ctx.strokeStyle = '#475569';
+    ctx.lineWidth = 2.5;
+    ctx.setLineDash([5, 3]);
 
     board.cages.forEach(cage => {
       const cellSet = new Set(cage.cells.map(([r, c]) => `${r},${c}`));
@@ -173,12 +181,12 @@ class Renderer {
 
       // 和值绘制在笼子顶部边框外侧（不占用格子内部，彻底避免与候选数重叠）
       ctx.setLineDash([]);
-      ctx.fillStyle = '#64748b';
-      ctx.font = '11px sans-serif';
+      ctx.fillStyle = '#1e293b';
+      ctx.font = 'bold 12px sans-serif';
       ctx.textAlign = 'left';
       ctx.textBaseline = 'bottom';
       ctx.fillText(cage.sum, minC * cellSize + 2, minR * cellSize - 2);
-      ctx.setLineDash([4, 3]);
+      ctx.setLineDash([5, 3]);
     });
 
     ctx.setLineDash([]);
@@ -200,40 +208,78 @@ class Renderer {
     }
   }
 
-  // ---------- 6. 同笼整体高亮 ----------
+  // ---------- 6. 同行列宫高亮 ----------
+  _drawRowColBoxHighlight(board) {
+    const cells = board.getRowColBoxHighlightCells();
+    if (cells.length === 0) return;
+    const { ctx, cellSize } = this;
+
+    ctx.fillStyle = 'rgba(230, 241, 255, 0.5)';
+    for (const { r, c } of cells) {
+      ctx.fillRect(c * cellSize, r * cellSize, cellSize, cellSize);
+    }
+  }
+
+  // ---------- 7. 同笼整体高亮 ----------
   _drawCageHighlight(board) {
-    if (!board.selectedCageId) return;
+    const cells = board.getSameCageHighlightCells();
+    if (cells.length === 0) return;
+    const { ctx, cellSize } = this;
+
+    ctx.fillStyle = 'rgba(34, 197, 94, 0.15)';
+    for (const { r, c } of cells) {
+      ctx.fillRect(c * cellSize, r * cellSize, cellSize, cellSize);
+    }
+  }
+
+  // ---------- 8. 同数字高亮 ----------
+  _drawSameNumberHighlight(board) {
+    const cells = board.getSameNumberHighlightCells();
+    if (cells.length === 0) return;
+    const { ctx, cellSize } = this;
+
+    ctx.fillStyle = 'rgba(59, 130, 246, 0.18)';
+    for (const { r, c } of cells) {
+      ctx.fillRect(c * cellSize, r * cellSize, cellSize, cellSize);
+    }
+  }
+
+  // ---------- 9. 选中格高亮（支持多选框选） ----------
+  _drawSelectedCell(board) {
     const { ctx, cellSize } = this;
     const size = board.size;
+    let hasSelection = false;
 
     for (let r = 0; r < size; r++) {
       for (let c = 0; c < size; c++) {
         const cell = board.cells[r][c];
-        if (cell.cageId === board.selectedCageId) {
-          ctx.fillStyle = 'rgba(59, 130, 246, 0.07)';
+        if (cell.isSelected) {
+          hasSelection = true;
+          // 选中背景
+          ctx.fillStyle = 'rgba(59, 130, 246, 0.15)';
           ctx.fillRect(c * cellSize, r * cellSize, cellSize, cellSize);
+        }
+      }
+    }
+
+    if (!hasSelection) return;
+
+    // 只给选区的外边框描边（更美观）
+    // 简单处理：每个选中格都描边，但如果是多选，内部边框不重复
+    // 先简单实现：每个选中格都描边
+    ctx.strokeStyle = '#3b82f6';
+    ctx.lineWidth = 2;
+    for (let r = 0; r < size; r++) {
+      for (let c = 0; c < size; c++) {
+        const cell = board.cells[r][c];
+        if (cell.isSelected) {
+          ctx.strokeRect(c * cellSize + 1, r * cellSize + 1, cellSize - 2, cellSize - 2);
         }
       }
     }
   }
 
-  // ---------- 7. 选中格高亮 ----------
-  _drawSelectedCell(board) {
-    if (!board.selectedCell) return;
-    const { ctx, cellSize } = this;
-    const { r, c } = board.selectedCell;
-
-    // 选中背景
-    ctx.fillStyle = 'rgba(59, 130, 246, 0.15)';
-    ctx.fillRect(c * cellSize, r * cellSize, cellSize, cellSize);
-
-    // 选中边框
-    ctx.strokeStyle = '#3b82f6';
-    ctx.lineWidth = 2;
-    ctx.strokeRect(c * cellSize + 1, r * cellSize + 1, cellSize - 2, cellSize - 2);
-  }
-
-  // ---------- 8. 数字渲染 ----------
+  // ---------- 10. 数字渲染 ----------
   _drawNumbers(board) {
     const { ctx, cellSize } = this;
     const size = board.size;
@@ -248,7 +294,7 @@ class Renderer {
         if (!num) continue;
 
         ctx.font = cell.fixedNum ? 'bold 26px sans-serif' : '26px sans-serif';
-        if (cell.isError) {
+        if (cell.isError && board.settings.conflictRed) {
           ctx.fillStyle = '#ef4444';
         } else {
           ctx.fillStyle = cell.fixedNum ? '#1e293b' : '#3b82f6';
@@ -258,7 +304,7 @@ class Renderer {
     }
   }
 
-  // ---------- 9. 候选数渲染（3×3九宫格布局）----------
+  // ---------- 12. 候选数渲染（3×3九宫格布局）----------
   _drawCandidates(board) {
     const { ctx, cellSize } = this;
     const size = board.size;
@@ -283,6 +329,52 @@ class Renderer {
           const y = r * cellSize + subR * subSize + subSize / 2;
           ctx.fillText(num, x, y);
         });
+      }
+    }
+  }
+
+  // ---------- 10. 提示格子高亮 ----------
+  _drawHintHighlight(board) {
+    const { ctx, cellSize } = this;
+    const size = board.size;
+
+    for (let r = 0; r < size; r++) {
+      for (let c = 0; c < size; c++) {
+        const cell = board.cells[r][c];
+        if (cell.isHintCell) {
+          // 闪烁的金色高亮边框
+          ctx.strokeStyle = '#f59e0b';
+          ctx.lineWidth = 3;
+          ctx.strokeRect(c * cellSize + 2, r * cellSize + 2, cellSize - 4, cellSize - 4);
+
+          // 半透明金色背景
+          ctx.fillStyle = 'rgba(245, 158, 11, 0.15)';
+          ctx.fillRect(c * cellSize, r * cellSize, cellSize, cellSize);
+        }
+      }
+    }
+  }
+
+  // ---------- 13. 提示数字（右上角小角标）----------
+  _drawHintNumber(board) {
+    const { ctx, cellSize } = this;
+    const size = board.size;
+
+    ctx.textAlign = 'right';
+    ctx.textBaseline = 'top';
+    ctx.font = 'bold 14px sans-serif';
+    ctx.fillStyle = '#f59e0b';
+
+    for (let r = 0; r < size; r++) {
+      for (let c = 0; c < size; c++) {
+        const cell = board.cells[r][c];
+        if (cell.isHintCell && cell.hintNumber !== null) {
+          ctx.fillText(
+            '?' + cell.hintNumber,
+            (c + 1) * cellSize - 3,
+            r * cellSize + 2
+          );
+        }
       }
     }
   }

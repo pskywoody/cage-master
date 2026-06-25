@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
   <title>档案侦探 · 笼中密码</title>
   <link rel="stylesheet" href="assets/css/style.css" />
 </head>
@@ -24,7 +24,12 @@
         <button id="btn-erase">擦除</button>
         <button id="btn-candidate">候选</button>
         <button id="btn-hint">提示</button>
+        <button id="btn-45rule">45</button>
         <button id="btn-setting">设置</button>
+      </div>
+      <div id="toolbar-row2">
+        <button id="btn-quick-fill" class="tool-btn2">⚡ 连填</button>
+        <button id="btn-restart" class="tool-btn2">重来</button>
       </div>
 
       <!-- 数字键盘 -->
@@ -60,6 +65,116 @@
       <div class="btn-row">
         <button class="btn-secondary" id="btn-complete-back">返回关卡</button>
         <button class="btn-primary" id="btn-complete-next">下一关</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 45法则计算器弹窗 -->
+  <div id="rule45-overlay">
+    <div class="rule45-card">
+      <div class="rule45-header">
+        <h3>🧮 45法则计算器</h3>
+        <button id="btn-rule45-close" class="rule45-close">×</button>
+      </div>
+      <div class="rule45-body">
+        <div class="rule45-input-row">
+          <div class="rule45-input-group">
+            <label>格子数</label>
+            <input type="number" id="rule45-cellcount" min="1" max="9" value="2" />
+          </div>
+          <div class="rule45-input-group">
+            <label>目标和</label>
+            <input type="number" id="rule45-targetsum" min="1" max="45" value="10" />
+          </div>
+        </div>
+        <div class="rule45-input-row">
+          <div class="rule45-input-group">
+            <label>必含数字</label>
+            <div class="rule45-num-picker" id="rule45-must"></div>
+          </div>
+        </div>
+        <div class="rule45-input-row">
+          <div class="rule45-input-group">
+            <label>排除数字</label>
+            <div class="rule45-num-picker" id="rule45-exclude"></div>
+          </div>
+        </div>
+        <div class="rule45-result">
+          <div class="rule45-result-header">
+            <span>可能的组合</span>
+            <span id="rule45-count" class="rule45-count">0 种</span>
+          </div>
+          <div id="rule45-combinations" class="rule45-combinations">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 设置弹窗 -->
+  <div id="settings-overlay">
+    <div class="settings-card">
+      <div class="settings-header">
+        <h3>⚙️ 设置</h3>
+        <button id="btn-settings-close" class="settings-close">×</button>
+      </div>
+      <div class="settings-body">
+        <div class="settings-section">
+          <h4>显示</h4>
+          <div class="setting-item">
+            <div class="setting-info">
+              <span class="setting-name">冲突标红</span>
+              <span class="setting-desc">填错数字时标红提示</span>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="setting-conflict-red" checked />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <div class="setting-item">
+            <div class="setting-info">
+              <span class="setting-name">同行列宫高亮</span>
+              <span class="setting-desc">选中格子时高亮整行整列整宫</span>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="setting-highlight-rowcolbox" checked />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <div class="setting-item">
+            <div class="setting-info">
+              <span class="setting-name">同数字高亮</span>
+              <span class="setting-desc">选中数字时高亮所有相同数字</span>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="setting-highlight-samenum" checked />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <div class="setting-item">
+            <div class="setting-info">
+              <span class="setting-name">同笼高亮</span>
+              <span class="setting-desc">选中格子时高亮所属笼子</span>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="setting-highlight-samecage" checked />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+        </div>
+        <div class="settings-section">
+          <h4>操作</h4>
+          <div class="setting-item">
+            <div class="setting-info">
+              <span class="setting-name">自动清除关联候选</span>
+              <span class="setting-desc">填数后自动清除行/列/宫/笼的关联候选</span>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="setting-auto-clear" checked />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+        </div>
       </div>
     </div>
   </div>

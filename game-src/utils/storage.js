@@ -13,6 +13,10 @@ const Storage = (function() {
     return KEY_PREFIX + 'complete_' + levelId;
   }
   const STATS_KEY = KEY_PREFIX + 'stats';
+  const SETTINGS_KEY = KEY_PREFIX + 'settings';
+  const ANALYTICS_KEY = KEY_PREFIX + 'analytics'; // 埋点总数据
+  const SESSION_KEY = KEY_PREFIX + 'session';     // 当前会话的实时埋点
+  const BATTLE_KEY = KEY_PREFIX + 'battle_stats'; // 对战战绩
 
   /**
    * 保存单关进度
@@ -145,6 +149,329 @@ const Storage = (function() {
     return result;
   }
 
+  /**
+   * 保存用户设置
+   * @param {Object} settings
+   */
+  function saveSettings(settings) {
+    try {
+      localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings));
+    } catch (e) {
+      console.warn('保存设置失败：', e.message);
+    }
+  }
+
+  /**
+   * 读取用户设置
+   * @returns {Object|null}
+   */
+  function getSettings() {
+    try {
+      const raw = localStorage.getItem(SETTINGS_KEY);
+      return raw ? JSON.parse(raw) : null;
+    } catch (e) {
+      console.warn('读取设置失败：', e.message);
+      return null;
+    }
+  }
+
+  // ==========================================
+  // 埋点 & 难度校准
+  // ==========================================
+
+  /**
+   * 开始一局的埋点记录
+   * @param {number} levelId
+   */
+  function startSession(levelId) {
+    const session = {
+      levelId,
+      startTime: Date.now(),
+      actions: [],
+      hintCount: 0,
+      undoCount: 0,
+      eraseCount: 0,
+      errorCount: 0,
+      setNumberCount: 0,
+      candidateCount: 0,
+      toolUses: {
+        rule45: 0,
+        clearCandidates: 0,
+        boxSelect: 0
+      }
+    };
+    try {
+      localStorage.setItem(SESSION_KEY, JSON.stringify(session));
+    } catch (e) {
+      console.warn('开始埋点失败：', e.message);
+    }
+    return session;
+  }
+
+  /**
+   * 获取当前会话埋点
+   */
+  function getSession() {
+    try {
+      const raw = localStorage.getItem(SESSION_KEY);
+      return raw ? JSON.parse(raw) : null;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  /**
+   * 记录一个操作
+   * @param {string} type - 操作类型
+   * @param {Object} data - 附加数据
+   */
+  function logAction(type, data = {}) {
+    const session = getSession();
+    if (!session) return;
+
+    const timeOffset = Date.now() - session.startTime;
+    session.actions.push({ type, time: timeOffset, ...data });
+
+    // 计数统计
+    switch (type) {
+      case 'hint':
+        session.hintCount++;
+        break;
+      case 'undo':
+        session.undoCount++;
+        break;
+      case 'erase':
+        session.eraseCount++;
+        break;
+      case 'setNumber':
+        session.setNumberCount++;
+        break;
+      case 'toggleCandidate':
+        session.candidateCount++;
+        break;
+      case 'conflict':
+        session.errorCount++;
+        break;
+      case 'useRule45':
+        session.toolUses.rule45++;
+        break;
+      case 'useClearCandidates':
+        session.toolUses.clearCandidates++;
+        break;
+      case 'useBoxSelect':
+        session.toolUses.boxSelect++;
+        break;
+    }
+
+    try {
+      localStorage.setItem(SESSION_KEY, JSON.stringify(session));
+    } catch (e) {
+      console.warn('记录埋点失败：', e.message);
+    }
+  }
+
+  /**
+   * 结束一局，保存到总埋点数据
+   * @param {boolean} completed - 是否完成
+   */
+  function endSession(completed) {
+    const session = getSession();
+    if (!session) return;
+
+    session.endTime = Date.now();
+    session.totalTime = Math.floor((session.endTime - session.startTime) / 1000);
+    session.completed = completed;
+
+    // 保存到总埋点
+    const analytics = getAllAnalytics();
+    if (!analytics[session.levelId]) {
+      analytics[session.levelId] = {
+        attempts: 0,
+        completions: 0,
+        totalTime: 0,
+        bestTime: null,
+        avgTime: 0,
+        avgHints: 0,
+        avgUndos: 0,
+        totalHints: 0,
+        totalUndos: 0,
+        difficultyScore: 0,
+        history: [] // 最近 N 次记录
+      };
+    }
+
+    const levelData = analytics[session.levelId];
+    levelData.attempts++;
+    if (completed) {
+      levelData.completions++;
+      levelData.totalTime += session.totalTime;
+      levelData.totalHints += session.hintCount;
+      levelData.totalUndos += session.undoCount;
+      levelData.avgTime = Math.round(levelData.totalTime / levelData.completions);
+      levelData.avgHints = +(levelData.totalHints / levelData.completions).toFixed(1);
+      levelData.avgUndos = +(levelData.totalUndos / levelData.completions).toFixed(1);
+      if (levelData.bestTime === null || session.totalTime < levelData.bestTime) {
+        levelData.bestTime = session.totalTime;
+      }
+    }
+
+    // 保留最近 20 次记录
+    levelData.history.unshift({
+      time: session.totalTime,
+      completed,
+      hints: session.hintCount,
+      undos: session.undoCount,
+      date: session.endTime
+    });
+    if (levelData.history.length > 20) {
+      levelData.history = levelData.history.slice(0, 20);
+    }
+
+    // 计算难度分（越高越难）
+    // 公式：平均用时权重 60% + 提示次数权重 25% + 撤销次数权重 15%
+    // 归一化后加权
+    if (levelData.completions > 0) {
+      const timeScore = Math.min(levelData.avgTime / 600, 10); // 10分钟以上满分
+      const hintScore = Math.min(levelData.avgHints / 10, 10);  // 10次提示以上满分
+      const undoScore = Math.min(levelData.avgUndos / 20, 10);  // 20次撤销以上满分
+      levelData.difficultyScore = +(timeScore * 0.6 + hintScore * 0.25 + undoScore * 0.15).toFixed(2);
+    }
+
+    try {
+      localStorage.setItem(ANALYTICS_KEY, JSON.stringify(analytics));
+      localStorage.removeItem(SESSION_KEY);
+    } catch (e) {
+      console.warn('保存埋点失败：', e.message);
+    }
+
+    return session;
+  }
+
+  /**
+   * 获取所有埋点数据
+   */
+  function getAllAnalytics() {
+    try {
+      const raw = localStorage.getItem(ANALYTICS_KEY);
+      return raw ? JSON.parse(raw) : {};
+    } catch (e) {
+      return {};
+    }
+  }
+
+  /**
+   * 获取某关的埋点数据
+   */
+  function getLevelAnalytics(levelId) {
+    const analytics = getAllAnalytics();
+    return analytics[levelId] || null;
+  }
+
+  /**
+   * 根据玩家数据重新校准难度排序
+   * @param {Array} levels - 关卡列表
+   * @returns {Array} 重新排序后的关卡列表，带校准后的难度标签
+   */
+  function calibrateDifficulty(levels) {
+    const analytics = getAllAnalytics();
+
+    // 给每道题打分
+    const scored = levels.map(level => {
+      const data = analytics[level.id];
+      let score = 0;
+      let hasData = false;
+
+      if (data && data.completions > 0) {
+        score = data.difficultyScore;
+        hasData = true;
+      }
+
+      return {
+        ...level,
+        calibratedScore: score,
+        hasPlayerData: hasData
+      };
+    });
+
+    // 按难度分排序（有玩家数据的优先用玩家数据，没有的保持原顺序）
+    scored.sort((a, b) => {
+      // 都有数据 → 按分数排
+      if (a.hasPlayerData && b.hasPlayerData) {
+        return a.calibratedScore - b.calibratedScore;
+      }
+      // 只有一个有数据 → 有数据的排前面（更可靠）
+      if (a.hasPlayerData) return -1;
+      if (b.hasPlayerData) return 1;
+      // 都没数据 → 按原 id 排
+      return a.id - b.id;
+    });
+
+    // 重新分配难度标签（三分法：前1/3简单，中间1/3中等，后1/3困难）
+    const total = scored.length;
+    const simpleEnd = Math.ceil(total / 3);
+    const mediumEnd = Math.ceil(total * 2 / 3);
+
+    return scored.map((level, index) => {
+      let newDifficulty = level.difficulty;
+      if (level.hasPlayerData) {
+        if (index < simpleEnd) newDifficulty = '简单';
+        else if (index < mediumEnd) newDifficulty = '中等';
+        else newDifficulty = '困难';
+      }
+      return {
+        ...level,
+        calibratedDifficulty: newDifficulty
+      };
+    });
+  }
+
+  // ==========================================
+  // 对战战绩
+  // ==========================================
+
+  function getBattleStats() {
+    try {
+      const raw = localStorage.getItem(BATTLE_KEY);
+      return raw ? JSON.parse(raw) : {
+        totalGames: 0,
+        wins: 0,
+        losses: 0,
+        maxCombo: 0,
+        totalAttacks: 0,
+        byDifficulty: {
+          easy: { wins: 0, losses: 0 },
+          medium: { wins: 0, losses: 0 },
+          hard: { wins: 0, losses: 0 }
+        }
+      };
+    } catch (e) {
+      return { totalGames: 0, wins: 0, losses: 0, maxCombo: 0, totalAttacks: 0, byDifficulty: {} };
+    }
+  }
+
+  function recordBattle(result) {
+    try {
+      const stats = getBattleStats();
+      stats.totalGames++;
+      if (result.won) stats.wins++;
+      else stats.losses++;
+      if (result.maxCombo > stats.maxCombo) stats.maxCombo = result.maxCombo;
+      stats.totalAttacks += result.attacks || 0;
+
+      const diff = result.difficulty || 'medium';
+      if (!stats.byDifficulty[diff]) {
+        stats.byDifficulty[diff] = { wins: 0, losses: 0 };
+      }
+      if (result.won) stats.byDifficulty[diff].wins++;
+      else stats.byDifficulty[diff].losses++;
+
+      localStorage.setItem(BATTLE_KEY, JSON.stringify(stats));
+      return stats;
+    } catch (e) {
+      console.warn('保存对战战绩失败：', e.message);
+    }
+  }
+
   return {
     saveProgress,
     loadProgress,
@@ -153,7 +480,18 @@ const Storage = (function() {
     isCompleted,
     getCompleteRecord,
     getStats,
-    getCompleteBatch
+    getCompleteBatch,
+    saveSettings,
+    getSettings,
+    startSession,
+    getSession,
+    logAction,
+    endSession,
+    getAllAnalytics,
+    getLevelAnalytics,
+    calibrateDifficulty,
+    getBattleStats,
+    recordBattle
   };
 })();
 

@@ -70,6 +70,11 @@ let elapsedSeconds = 0;
 let isPaused = false;
 let isCompleted = false;
 
+// 45法则计算器状态
+let rule45MustNums = new Set();
+let rule45ExcludeNums = new Set();
+let rule45Initialized = false;
+
 window.onload = function() {
   console.log('🔍 笼镇档案 - 杀手数独 启动中...');
 
@@ -83,30 +88,44 @@ window.onload = function() {
     currentLevelId = parseInt(idParam) || 1;
   }
 
-  // 3. 从后端加载关卡（带降级容错）
+  // 3. 加载用户设置
+  loadSettings();
+
+  // 4. 从后端加载关卡（带降级容错）
   loadLevel(currentLevelId).then(puzzle => {
     gameBoard.loadLevel(puzzle);
     console.log('✅ 关卡加载完成');
 
-    // 4. 尝试读取本地存档
+    // 5. 开始埋点会话
+    Storage.startSession(currentLevelId);
+
+    // 6. 尝试读取本地存档
     loadSavedProgress(currentLevelId);
 
-    // 5. 首次渲染
+    // 7. 首次渲染
     renderer.render(gameBoard);
     gameBoard.checkConflicts();
     renderer.render(gameBoard);
     console.log('✅ 首次渲染完成');
 
-    // 6. 启动计时器
+    // 8. 启动计时器
     startTimer();
 
-    // 7. 绑定交互
+    // 9. 绑定交互
     bindCanvasClick();
     bindNumPad();
     bindToolbar();
     bindKeyboard();
     bindTimerAndPause();
     bindCompleteOverlay();
+    initSettingsBindings();
+
+    // 页面离开时保存埋点（未完成的情况）
+    window.addEventListener('beforeunload', () => {
+      if (!isCompleted) {
+        Storage.endSession(false);
+      }
+    });
   });
 };
 
@@ -251,10 +270,41 @@ function bindTimerAndPause() {
 
 // ---------- 统一的操作后刷新（检测冲突 + 重绘 + 保存 + 检查通关）----------
 function refreshBoard() {
+  // 操作后清除提示状态
+  if (hintStep > 0) {
+    gameBoard.clearHints();
+    hintStep = 0;
+    currentHint = null;
+  }
   gameBoard.checkConflicts();
   renderer.render(gameBoard);
   saveProgress();
+  updateNumberButtons();
   checkComplete();
+}
+
+// 更新底部数字按钮状态：填满 9 个的数字变灰不可点
+function updateNumberButtons() {
+  const board = gameBoard;
+  if (!board) return;
+  
+  const count = Array(10).fill(0);
+  for (let r = 0; r < 9; r++) {
+    for (let c = 0; c < 9; c++) {
+      const val = board.cells[r][c].fixedNum || board.cells[r][c].fillNum;
+      if (val) count[val]++;
+    }
+  }
+  
+  for (let n = 1; n <= 9; n++) {
+    const btn = document.querySelector('.num-btn[data-num="' + n + '"]');
+    if (!btn) continue;
+    if (count[n] >= 9) {
+      btn.classList.add('completed');
+    } else {
+      btn.classList.remove('completed');
+    }
+  }
 }
 
 // ---------- 检查是否通关 ----------
@@ -327,6 +377,8 @@ function markComplete() {
       time: elapsedSeconds,
       difficulty: currentLevelDifficulty
     });
+    // 结束埋点会话（已完成）
+    Storage.endSession(true);
     // 清除进度存档
     Storage.clearProgress(currentLevelId);
   }
@@ -349,25 +401,241 @@ function bindCompleteOverlay() {
   });
 }
 
+// 长按相关状态
+let longPressTimer = null;
+let longPressTriggered = false;
+let longPressStartPos = null;
+const LONG_PRESS_DURATION = 500; // 长按500ms触发
+
 // ---------- 画布点击：选中格子 ----------
 function bindCanvasClick() {
   const canvas = renderer.canvas;
+  let isMouseDown = false;
+  let mouseMoved = false;
+  let mouseStartPos = null;
 
-  canvas.addEventListener('click', function(e) {
+  // 鼠标按下 - 准备框选
+  canvas.addEventListener('mousedown', function(e) {
     if (isPaused) return;
-    const rect = canvas.getBoundingClientRect();
-    const scaleX = canvas.width / rect.width;
-    const scaleY = canvas.height / rect.height;
-
-    const x = (e.clientX - rect.left) * scaleX - renderer.padding;
-    const y = (e.clientY - rect.top) * scaleY - renderer.padding;
-
-    const r = Math.floor(y / renderer.cellSize);
-    const c = Math.floor(x / renderer.cellSize);
-
-    gameBoard.selectCell(r, c);
-    refreshBoard();
+    isMouseDown = true;
+    mouseMoved = false;
+    mouseStartPos = { x: e.clientX, y: e.clientY };
   });
+
+  // 鼠标移动 - 框选
+  canvas.addEventListener('mousemove', function(e) {
+    if (isPaused || !isMouseDown) return;
+
+    const dx = Math.abs(e.clientX - mouseStartPos.x);
+    const dy = Math.abs(e.clientY - mouseStartPos.y);
+
+    // 移动超过5像素才认为是框选（区别于单击）
+    if (dx > 5 || dy > 5) {
+      mouseMoved = true;
+      if (!gameBoard.isBoxSelecting) {
+        const { r, c } = getCellFromPos(mouseStartPos.x, mouseStartPos.y);
+        gameBoard.startBoxSelect(r, c);
+      }
+      const { r, c } = getCellFromPos(e.clientX, e.clientY);
+      gameBoard.updateBoxSelect(r, c);
+      refreshBoard();
+    }
+  });
+
+  // 鼠标释放
+  canvas.addEventListener('mouseup', function(e) {
+    if (isPaused) return;
+    isMouseDown = false;
+
+    if (mouseMoved && gameBoard.isBoxSelecting) {
+      // 框选结束
+      const count = gameBoard.selectedCells.length;
+      gameBoard.endBoxSelect();
+      Storage.logAction('useBoxSelect', { count });
+      mouseMoved = false;
+      mouseStartPos = null;
+      refreshBoard();
+    } else {
+      // 普通单击
+      handleCanvasTap(e.clientX, e.clientY);
+    }
+  });
+
+  // 鼠标离开canvas
+  canvas.addEventListener('mouseleave', function(e) {
+    if (isMouseDown && gameBoard.isBoxSelecting) {
+      gameBoard.endBoxSelect();
+      refreshBoard();
+    }
+    isMouseDown = false;
+    mouseMoved = false;
+    mouseStartPos = null;
+  });
+
+  // 触摸开始
+  canvas.addEventListener('touchstart', function(e) {
+    if (isPaused) return;
+    e.preventDefault();
+    const touch = e.touches[0];
+    longPressTriggered = false;
+    longPressStartPos = { x: touch.clientX, y: touch.clientY };
+    touchBoxSelectTriggered = false;
+    touchStartPos = { x: touch.clientX, y: touch.clientY };
+
+    // 清除之前的定时器
+    if (longPressTimer) clearTimeout(longPressTimer);
+
+    // 设置长按定时器
+    longPressTimer = setTimeout(() => {
+      longPressTriggered = true;
+      handleLongPress(touch.clientX, touch.clientY);
+    }, LONG_PRESS_DURATION);
+  }, { passive: false });
+
+  // 触摸移动
+  canvas.addEventListener('touchmove', function(e) {
+    if (isPaused) return;
+    e.preventDefault();
+    const touch = e.touches[0];
+
+    if (longPressStartPos) {
+      const dx = Math.abs(touch.clientX - longPressStartPos.x);
+      const dy = Math.abs(touch.clientY - longPressStartPos.y);
+      // 移动超过一定距离取消长按
+      if (dx > 10 || dy > 10) {
+        if (longPressTimer) {
+          clearTimeout(longPressTimer);
+          longPressTimer = null;
+        }
+      }
+    }
+
+    // 触摸移动超过阈值，进入框选模式
+    if (touchStartPos && !longPressTriggered) {
+      const dx = Math.abs(touch.clientX - touchStartPos.x);
+      const dy = Math.abs(touch.clientY - touchStartPos.y);
+      if (dx > 15 || dy > 15) {
+        // 取消长按
+        if (longPressTimer) {
+          clearTimeout(longPressTimer);
+          longPressTimer = null;
+        }
+        // 进入框选
+        if (!gameBoard.isBoxSelecting && !touchBoxSelectTriggered) {
+          touchBoxSelectTriggered = true;
+          const { r, c } = getCellFromPos(touchStartPos.x, touchStartPos.y);
+          gameBoard.startBoxSelect(r, c);
+        }
+        if (gameBoard.isBoxSelecting) {
+          const { r, c } = getCellFromPos(touch.clientX, touch.clientY);
+          gameBoard.updateBoxSelect(r, c);
+          refreshBoard();
+        }
+      }
+    }
+  }, { passive: false });
+
+  // 触摸结束
+  canvas.addEventListener('touchend', function(e) {
+    if (isPaused) return;
+    e.preventDefault();
+
+    // 清除长按定时器
+    if (longPressTimer) {
+      clearTimeout(longPressTimer);
+      longPressTimer = null;
+    }
+
+    // 如果是框选模式，结束框选
+    if (gameBoard.isBoxSelecting) {
+      gameBoard.endBoxSelect();
+      touchBoxSelectTriggered = false;
+      touchStartPos = null;
+      longPressTriggered = false;
+      longPressStartPos = null;
+      refreshBoard();
+      return;
+    }
+
+    // 如果已经触发了长按，不处理点击
+    if (longPressTriggered) {
+      longPressTriggered = false;
+      longPressStartPos = null;
+      touchStartPos = null;
+      return;
+    }
+
+    const touch = e.changedTouches[0];
+    handleCanvasTap(touch.clientX, touch.clientY);
+    longPressStartPos = null;
+    touchStartPos = null;
+  }, { passive: false });
+}
+
+/**
+ * 根据屏幕坐标获取格子行列
+ */
+function getCellFromPos(clientX, clientY) {
+  const rect = renderer.canvas.getBoundingClientRect();
+  const scaleX = renderer.canvas.width / rect.width;
+  const scaleY = renderer.canvas.height / rect.height;
+
+  const x = (clientX - rect.left) * scaleX - renderer.padding;
+  const y = (clientY - rect.top) * scaleY - renderer.padding;
+
+  const r = Math.floor(y / renderer.cellSize);
+  const c = Math.floor(x / renderer.cellSize);
+  return { r, c };
+}
+
+/**
+ * 处理画布点击/轻触
+ */
+function handleCanvasTap(clientX, clientY) {
+  const { r, c } = getCellFromPos(clientX, clientY);
+  gameBoard.selectCell(r, c);
+  // 快捷填入
+  if (quickFillModeSingle && quickFillNumSingle) {
+    const cell = gameBoard.cells[r][c];
+    if (!cell.fixedNum && !cell.fillNum) {
+      tryQuickFillSingle(r, c);
+      return;
+    }
+  }
+  refreshBoard();
+}
+
+/**
+ * 处理长按：切换到候选模式
+ */
+function handleLongPress(clientX, clientY) {
+  // 振动反馈（如果支持）
+  if (navigator.vibrate) {
+    navigator.vibrate(50);
+  }
+
+  // 先选中格子
+  const rect = renderer.canvas.getBoundingClientRect();
+  const scaleX = renderer.canvas.width / rect.width;
+  const scaleY = renderer.canvas.height / rect.height;
+
+  const x = (clientX - rect.left) * scaleX - renderer.padding;
+  const y = (clientY - rect.top) * scaleY - renderer.padding;
+
+  const r = Math.floor(y / renderer.cellSize);
+  const c = Math.floor(x / renderer.cellSize);
+
+  gameBoard.selectCell(r, c);
+
+  // 切换到候选模式
+  const candidateBtn = document.getElementById('btn-candidate');
+  if (gameBoard.inputMode !== 'candidate') {
+    gameBoard.toggleInputMode();
+    candidateBtn.style.backgroundColor = '#3b82f6';
+    candidateBtn.style.color = 'white';
+  }
+
+  refreshBoard();
 }
 
 // ---------- 数字键盘：填数 / 候选 ----------
@@ -376,19 +644,92 @@ function bindNumPad() {
     btn.addEventListener('click', function() {
       if (isPaused) return;
       const num = parseInt(this.dataset.num);
-      handleNumberInput(num);
+      if (quickFillModeSingle) {
+        selectQuickFillNumSingle(num);
+      } else {
+        handleNumberInput(num);
+      }
     });
   });
 }
 
 // ---------- 数字输入处理（兼容正式填数和候选模式）----------
 function handleNumberInput(num) {
-  if (gameBoard.inputMode === 'candidate') {
+  // 多选时，默认批量切换候选数（框选主要用于批量写候选）
+  if (gameBoard.selectedCells.length > 1) {
+    gameBoard.toggleCandidateForSelection(num);
+    Storage.logAction('toggleCandidate', { num, batch: true, count: gameBoard.selectedCells.length });
+  } else if (gameBoard.inputMode === 'candidate') {
+    const { r, c } = gameBoard.selectedCell;
     gameBoard.toggleCandidate(num);
+    Storage.logAction('toggleCandidate', { num, r, c });
   } else {
+    const { r, c } = gameBoard.selectedCell;
     gameBoard.setNumber(num);
+    Storage.logAction('setNumber', { num, r, c });
   }
+  gameBoard.checkConflicts();
   refreshBoard();
+}
+
+// 提示相关状态
+let hintStep = 0; // 0: 无提示, 1: 只显示位置, 2: 显示数字
+let currentHint = null;
+
+/**
+ * 处理提示按钮点击
+ * 第一次点击：高亮提示格子
+ * 第二次点击：显示提示数字
+ * 第三次点击：清除提示
+ */
+function handleHint() {
+  hintStep++;
+
+  if (hintStep === 1) {
+    // 第一次：只显示位置
+    currentHint = gameBoard.showHint(false);
+    if (!currentHint) {
+      hintStep = 0;
+      showToast('暂时没有可用的提示');
+      return;
+    }
+    showToast(`💡 ${currentHint.techniqueName}：${currentHint.description}`);
+  } else if (hintStep === 2) {
+    // 第二次：显示数字
+    currentHint = gameBoard.showHint(true);
+    if (currentHint) {
+      showToast(`答案是 ${currentHint.num}`);
+    }
+  } else {
+    // 第三次：清除提示
+    gameBoard.clearHints();
+    hintStep = 0;
+    currentHint = null;
+  }
+
+  refreshBoard();
+}
+
+/**
+ * 简单的 toast 提示
+ */
+let toastTimer = null;
+function showToast(message) {
+  let toast = document.getElementById('game-toast');
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.id = 'game-toast';
+    toast.className = 'game-toast';
+    document.body.appendChild(toast);
+  }
+
+  toast.textContent = message;
+  toast.classList.add('show');
+
+  if (toastTimer) clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => {
+    toast.classList.remove('show');
+  }, 2500);
 }
 
 // ---------- 工具栏按钮 ----------
@@ -396,12 +737,22 @@ function bindToolbar() {
   document.getElementById('btn-undo').addEventListener('click', () => {
     if (isPaused) return;
     gameBoard.undo();
+    Storage.logAction('undo');
     refreshBoard();
   });
 
   document.getElementById('btn-erase').addEventListener('click', () => {
     if (isPaused) return;
-    gameBoard.eraseNumber();
+    // 多选时批量擦除
+    if (gameBoard.selectedCells.length > 1) {
+      gameBoard.eraseSelection();
+      Storage.logAction('erase', { batch: true, count: gameBoard.selectedCells.length });
+    } else {
+      const { r, c } = gameBoard.selectedCell;
+      gameBoard.eraseNumber();
+      Storage.logAction('erase', { r, c });
+    }
+    gameBoard.checkConflicts();
     refreshBoard();
   });
 
@@ -418,6 +769,113 @@ function bindToolbar() {
       candidateBtn.style.color = '';
     }
   });
+
+  // 提示按钮
+  document.getElementById('btn-hint').addEventListener('click', () => {
+    if (isPaused) return;
+    handleHint();
+    Storage.logAction('hint', { step: hintStep });
+  });
+
+  // 45法则计算器
+  document.getElementById('btn-45rule').addEventListener('click', () => {
+    if (isPaused) return;
+    toggleRule45Calculator();
+    Storage.logAction('useRule45');
+  });
+
+  // 设置按钮
+  document.getElementById('btn-setting').addEventListener('click', () => {
+    if (isPaused) return;
+    toggleSettings();
+  });
+
+  // 快捷填入
+  document.getElementById('btn-quick-fill').addEventListener('click', () => {
+    if (isPaused) return;
+    toggleQuickFill();
+  });
+
+  // 重来
+  document.getElementById('btn-restart').addEventListener('click', () => {
+    if (isPaused) return;
+    confirmRestartSingle();
+  });
+}
+
+// ==========================================
+// 快捷填入模式（单人模式）
+// ==========================================
+let quickFillModeSingle = false;
+let quickFillNumSingle = null;
+
+function toggleQuickFill() {
+  const btn = document.getElementById('btn-quick-fill');
+  quickFillModeSingle = !quickFillModeSingle;
+  if (!quickFillModeSingle) {
+    quickFillNumSingle = null;
+    btn.classList.remove('active');
+    clearQuickFillNumHighlightSingle();
+  } else {
+    btn.classList.add('active');
+  }
+}
+
+function clearQuickFillNumHighlightSingle() {
+  document.querySelectorAll('.num-btn').forEach(btn => {
+    btn.classList.remove('quick-fill-num');
+  });
+}
+
+function selectQuickFillNumSingle(num) {
+  if (isNumberCompleteSingle(num)) return;
+  clearQuickFillNumHighlightSingle();
+  if (quickFillNumSingle === num) {
+    quickFillNumSingle = null;
+  } else {
+    quickFillNumSingle = num;
+    document.querySelector('.num-btn[data-num="' + num + '"]').classList.add('quick-fill-num');
+  }
+}
+
+function isNumberCompleteSingle(num) {
+  if (!gameBoard) return false;
+  let count = 0;
+  for (let r = 0; r < 9; r++) {
+    for (let c = 0; c < 9; c++) {
+      const val = gameBoard.cells[r][c].fixedNum || gameBoard.cells[r][c].fillNum;
+      if (val === num) count++;
+    }
+  }
+  return count >= 9;
+}
+
+function tryQuickFillSingle(r, c) {
+  if (!quickFillModeSingle || !quickFillNumSingle) return false;
+  const cell = gameBoard.cells[r][c];
+  if (cell.fixedNum || cell.fillNum) return false;
+
+  gameBoard.selectCell(r, c);
+  handleNumberInput(quickFillNumSingle);
+
+  if (isNumberCompleteSingle(quickFillNumSingle)) {
+    quickFillNumSingle = null;
+    clearQuickFillNumHighlightSingle();
+    quickFillModeSingle = false;
+    document.getElementById('btn-quick-fill').classList.remove('active');
+  }
+  return true;
+}
+
+// ==========================================
+// 重来（单人模式）
+// ==========================================
+function confirmRestartSingle() {
+  if (!currentLevelId) return;
+  if (!confirm('确定要重来这关吗？所有已填的数字将被清空。')) return;
+  // 清除存档然后刷新页面
+  Storage.clearProgress(currentLevelId);
+  window.location.reload();
 }
 
 // ---------- 物理键盘 ----------
@@ -430,14 +888,25 @@ function bindKeyboard() {
 
     // 数字键 1-9
     if (e.key >= '1' && e.key <= '9') {
-      handleNumberInput(parseInt(e.key));
+      const num = parseInt(e.key);
+      if (quickFillModeSingle) {
+        selectQuickFillNumSingle(num);
+      } else {
+        handleNumberInput(num);
+      }
       e.preventDefault();
       return;
     }
 
     // 退格 / Delete：擦除
     if (e.key === 'Backspace' || e.key === 'Delete') {
-      gameBoard.eraseNumber();
+      // 多选时批量擦除
+      if (gameBoard.selectedCells.length > 1) {
+        gameBoard.eraseSelection();
+      } else {
+        gameBoard.eraseNumber();
+      }
+      gameBoard.checkConflicts();
       refreshBoard();
       e.preventDefault();
       return;
@@ -495,6 +964,36 @@ function bindKeyboard() {
       return;
     }
 
+    // K：一键清空所有候选
+    if (e.key === 'k' || e.key === 'K') {
+      gameBoard.clearAllCandidates();
+      Storage.logAction('useClearCandidates');
+      refreshBoard();
+      e.preventDefault();
+      return;
+    }
+
+    // R：打开/关闭45法则计算器
+    if (e.key === 'r' || e.key === 'R') {
+      toggleRule45Calculator();
+      e.preventDefault();
+      return;
+    }
+
+    // S：打开/关闭设置
+    if (e.key === 's' || e.key === 'S') {
+      toggleSettings();
+      e.preventDefault();
+      return;
+    }
+
+    // H：提示
+    if (e.key === 'h' || e.key === 'H') {
+      handleHint();
+      e.preventDefault();
+      return;
+    }
+
     // ESC / P：暂停
     if (e.key === 'Escape' || e.key === 'p' || e.key === 'P') {
       togglePause();
@@ -502,4 +1001,381 @@ function bindKeyboard() {
       return;
     }
   });
+}
+
+// ==========================================
+// 45法则计算器
+// ==========================================
+
+/**
+ * 打开/关闭45法则计算器
+ */
+function toggleRule45Calculator() {
+  const overlay = document.getElementById('rule45-overlay');
+  if (!overlay) return;
+
+  if (overlay.classList.contains('active')) {
+    overlay.classList.remove('active');
+  } else {
+    if (!rule45Initialized) {
+      initRule45Calculator();
+    }
+    overlay.classList.add('active');
+    calcRule45Combinations();
+  }
+}
+
+/**
+ * 初始化45法则计算器UI
+ */
+function initRule45Calculator() {
+  // 关闭按钮
+  document.getElementById('btn-rule45-close').addEventListener('click', () => {
+    toggleRule45Calculator();
+  });
+
+  // 点击蒙层关闭
+  document.getElementById('rule45-overlay').addEventListener('click', (e) => {
+    if (e.target.id === 'rule45-overlay') {
+      toggleRule45Calculator();
+    }
+  });
+
+  // 数字选择器 - 必含
+  const mustPicker = document.getElementById('rule45-must');
+  const excludePicker = document.getElementById('rule45-exclude');
+
+  for (let i = 1; i <= 9; i++) {
+    // 必含按钮
+    const mustBtn = document.createElement('button');
+    mustBtn.className = 'rule45-num-btn';
+    mustBtn.textContent = i;
+    mustBtn.dataset.num = i;
+    mustBtn.addEventListener('click', () => toggleRule45Num(i, 'must'));
+    mustPicker.appendChild(mustBtn);
+
+    // 排除按钮
+    const exclBtn = document.createElement('button');
+    exclBtn.className = 'rule45-num-btn';
+    exclBtn.textContent = i;
+    exclBtn.dataset.num = i;
+    exclBtn.addEventListener('click', () => toggleRule45Num(i, 'exclude'));
+    excludePicker.appendChild(exclBtn);
+  }
+
+  // 输入框变化
+  document.getElementById('rule45-cellcount').addEventListener('input', calcRule45Combinations);
+  document.getElementById('rule45-targetsum').addEventListener('input', calcRule45Combinations);
+
+  rule45Initialized = true;
+}
+
+/**
+ * 切换必含/排除数字
+ */
+function toggleRule45Num(num, type) {
+  if (type === 'must') {
+    if (rule45MustNums.has(num)) {
+      rule45MustNums.delete(num);
+    } else {
+      rule45MustNums.add(num);
+      rule45ExcludeNums.delete(num); // 必含了就不能排除
+    }
+  } else {
+    if (rule45ExcludeNums.has(num)) {
+      rule45ExcludeNums.delete(num);
+    } else {
+      rule45ExcludeNums.add(num);
+      rule45MustNums.delete(num); // 排除了就不能必含
+    }
+  }
+  updateRule45NumButtons();
+  calcRule45Combinations();
+}
+
+/**
+ * 更新数字按钮的选中状态
+ */
+function updateRule45NumButtons() {
+  const mustPicker = document.getElementById('rule45-must');
+  const excludePicker = document.getElementById('rule45-exclude');
+
+  mustPicker.querySelectorAll('.rule45-num-btn').forEach(btn => {
+    const num = parseInt(btn.dataset.num);
+    if (rule45MustNums.has(num)) {
+      btn.classList.add('active-must');
+    } else {
+      btn.classList.remove('active-must');
+    }
+  });
+
+  excludePicker.querySelectorAll('.rule45-num-btn').forEach(btn => {
+    const num = parseInt(btn.dataset.num);
+    if (rule45ExcludeNums.has(num)) {
+      btn.classList.add('active-exclude');
+    } else {
+      btn.classList.remove('active-exclude');
+    }
+  });
+}
+
+/**
+ * 计算45法则的所有可能组合
+ * 使用回溯法枚举所有 k 个不同数字的组合，和为 targetSum
+ */
+function calcRule45Combinations() {
+  const cellCount = parseInt(document.getElementById('rule45-cellcount').value) || 0;
+  const targetSum = parseInt(document.getElementById('rule45-targetsum').value) || 0;
+
+  const resultEl = document.getElementById('rule45-combinations');
+  const countEl = document.getElementById('rule45-count');
+
+  // 边界检查
+  if (cellCount < 1 || cellCount > 9 || targetSum < 1) {
+    resultEl.innerHTML = '<div class="rule45-no-result">请输入有效的格子数和目标和</div>';
+    countEl.textContent = '0 种';
+    return;
+  }
+
+  // 必含数字数量不能超过格子数
+  if (rule45MustNums.size > cellCount) {
+    resultEl.innerHTML = '<div class="rule45-no-result">必含数字数量不能超过格子数</div>';
+    countEl.textContent = '0 种';
+    return;
+  }
+
+  // 可用数字池：1-9，去掉排除的
+  const availableNums = [];
+  for (let i = 1; i <= 9; i++) {
+    if (!rule45ExcludeNums.has(i)) {
+      availableNums.push(i);
+    }
+  }
+
+  // 必含数字必须都在可用数字中
+  const mustArray = Array.from(rule45MustNums);
+  for (const m of mustArray) {
+    if (!availableNums.includes(m)) {
+      resultEl.innerHTML = '<div class="rule45-no-result">必含数字不能同时被排除</div>';
+      countEl.textContent = '0 种';
+      return;
+    }
+  }
+
+  // 需要从可用数字中选的数量
+  const remainingCount = cellCount - mustArray.length;
+  // 必含数字的和
+  const mustSum = mustArray.reduce((a, b) => a + b, 0);
+  // 剩余需要凑的和
+  const remainingSum = targetSum - mustSum;
+
+  // 从可用数字中去掉必含数字，得到候选池
+  const candidatePool = availableNums.filter(n => !rule45MustNums.has(n));
+
+  // 回溯找组合
+  const combinations = [];
+  findCombinations(candidatePool, remainingCount, remainingSum, 0, [], combinations);
+
+  // 把必含数字加到每个组合前面并排序
+  const fullCombinations = combinations.map(combo => {
+    const full = [...mustArray, ...combo].sort((a, b) => a - b);
+    return full;
+  });
+
+  // 按数字大小排序组合
+  fullCombinations.sort((a, b) => {
+    for (let i = 0; i < a.length; i++) {
+      if (a[i] !== b[i]) return a[i] - b[i];
+    }
+    return 0;
+  });
+
+  // 渲染结果
+  if (fullCombinations.length === 0) {
+    resultEl.innerHTML = '<div class="rule45-no-result">没有符合条件的组合</div>';
+  } else {
+    resultEl.innerHTML = '';
+    fullCombinations.forEach(combo => {
+      const comboEl = document.createElement('div');
+      comboEl.className = 'rule45-combo';
+      combo.forEach(n => {
+        const numEl = document.createElement('span');
+        numEl.className = 'rule45-combo-num';
+        numEl.textContent = n;
+        comboEl.appendChild(numEl);
+      });
+      const sumEl = document.createElement('span');
+      sumEl.className = 'rule45-combo-sum';
+      sumEl.textContent = '= ' + combo.reduce((a, b) => a + b, 0);
+      comboEl.appendChild(sumEl);
+      resultEl.appendChild(comboEl);
+    });
+  }
+
+  countEl.textContent = fullCombinations.length + ' 种';
+}
+
+/**
+ * 回溯法找组合
+ * @param {number[]} pool - 候选数字池（已排序）
+ * @param {number} k - 需要选多少个数字
+ * @param {number} target - 目标和
+ * @param {number} start - 从 pool 的哪个索引开始
+ * @param {number[]} current - 当前已选数字
+ * @param {number[][]} result - 结果数组
+ */
+function findCombinations(pool, k, target, start, current, result) {
+  if (k === 0) {
+    if (target === 0) {
+      result.push([...current]);
+    }
+    return;
+  }
+
+  // 剪枝：剩余数字不够了
+  if (start + k > pool.length) return;
+
+  for (let i = start; i < pool.length; i++) {
+    const num = pool[i];
+    // 剪枝：当前数字已经超过剩余目标和，后面的更大，直接跳过
+    if (num > target) break;
+    // 剪枝：最小可能的和已经超过target
+    const minRemainingSum = num + sumFirstK(pool, i + 1, k - 1);
+    if (minRemainingSum > target) break;
+    // 剪枝：最大可能的和还不够target
+    const maxRemainingSum = num + sumLastK(pool, pool.length - 1, k - 1);
+    if (maxRemainingSum < target) continue;
+
+    current.push(num);
+    findCombinations(pool, k - 1, target - num, i + 1, current, result);
+    current.pop();
+  }
+}
+
+/**
+ * 从 start 开始取 k 个最小的数的和
+ */
+function sumFirstK(pool, start, k) {
+  let sum = 0;
+  for (let i = 0; i < k && start + i < pool.length; i++) {
+    sum += pool[start + i];
+  }
+  return sum;
+}
+
+/**
+ * 从 end 往前取 k 个最大的数的和
+ */
+function sumLastK(pool, end, k) {
+  let sum = 0;
+  for (let i = 0; i < k && end - i >= 0; i++) {
+    sum += pool[end - i];
+  }
+  return sum;
+}
+
+// ==========================================
+// 设置弹窗
+// ==========================================
+
+/**
+ * 打开/关闭设置弹窗
+ */
+function toggleSettings() {
+  const overlay = document.getElementById('settings-overlay');
+  if (!overlay) return;
+
+  if (overlay.classList.contains('active')) {
+    overlay.classList.remove('active');
+  } else {
+    loadSettingsToUI();
+    overlay.classList.add('active');
+  }
+}
+
+/**
+ * 初始化设置UI绑定
+ */
+function initSettingsBindings() {
+  // 关闭按钮
+  document.getElementById('btn-settings-close').addEventListener('click', () => {
+    toggleSettings();
+  });
+
+  // 点击蒙层关闭
+  document.getElementById('settings-overlay').addEventListener('click', (e) => {
+    if (e.target.id === 'settings-overlay') {
+      toggleSettings();
+    }
+  });
+
+  // 各个设置开关
+  document.getElementById('setting-conflict-red').addEventListener('change', (e) => {
+    gameBoard.settings.conflictRed = e.target.checked;
+    saveSettings();
+    refreshBoard();
+  });
+
+  document.getElementById('setting-highlight-rowcolbox').addEventListener('change', (e) => {
+    gameBoard.highlightSettings.sameRowColBox = e.target.checked;
+    saveSettings();
+    refreshBoard();
+  });
+
+  document.getElementById('setting-highlight-samenum').addEventListener('change', (e) => {
+    gameBoard.highlightSettings.sameNumber = e.target.checked;
+    saveSettings();
+    refreshBoard();
+  });
+
+  document.getElementById('setting-highlight-samecage').addEventListener('change', (e) => {
+    gameBoard.highlightSettings.sameCage = e.target.checked;
+    saveSettings();
+    refreshBoard();
+  });
+
+  document.getElementById('setting-auto-clear').addEventListener('change', (e) => {
+    gameBoard.settings.autoClearCandidates = e.target.checked;
+    saveSettings();
+  });
+}
+
+/**
+ * 从本地存储加载设置
+ */
+function loadSettings() {
+  if (typeof Storage === 'undefined') return;
+  const saved = Storage.getSettings();
+  if (!saved) return;
+
+  if (saved.conflictRed !== undefined) gameBoard.settings.conflictRed = saved.conflictRed;
+  if (saved.autoClearCandidates !== undefined) gameBoard.settings.autoClearCandidates = saved.autoClearCandidates;
+  if (saved.highlightRowColBox !== undefined) gameBoard.highlightSettings.sameRowColBox = saved.highlightRowColBox;
+  if (saved.highlightSameNumber !== undefined) gameBoard.highlightSettings.sameNumber = saved.highlightSameNumber;
+  if (saved.highlightSameCage !== undefined) gameBoard.highlightSettings.sameCage = saved.highlightSameCage;
+}
+
+/**
+ * 保存设置到本地存储
+ */
+function saveSettings() {
+  if (typeof Storage === 'undefined') return;
+  Storage.saveSettings({
+    conflictRed: gameBoard.settings.conflictRed,
+    autoClearCandidates: gameBoard.settings.autoClearCandidates,
+    highlightRowColBox: gameBoard.highlightSettings.sameRowColBox,
+    highlightSameNumber: gameBoard.highlightSettings.sameNumber,
+    highlightSameCage: gameBoard.highlightSettings.sameCage
+  });
+}
+
+/**
+ * 把当前设置同步到UI
+ */
+function loadSettingsToUI() {
+  document.getElementById('setting-conflict-red').checked = gameBoard.settings.conflictRed;
+  document.getElementById('setting-highlight-rowcolbox').checked = gameBoard.highlightSettings.sameRowColBox;
+  document.getElementById('setting-highlight-samenum').checked = gameBoard.highlightSettings.sameNumber;
+  document.getElementById('setting-highlight-samecage').checked = gameBoard.highlightSettings.sameCage;
+  document.getElementById('setting-auto-clear').checked = gameBoard.settings.autoClearCandidates;
 }

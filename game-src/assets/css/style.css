@@ -25,6 +25,8 @@ body {
   min-height: 100vh;
   min-height: 100dvh;
   position: relative;
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
 }
 
 /* ========== 游戏页面布局（全屏撑满） ========== */
@@ -372,13 +374,41 @@ body {
   transform: scale(0.92);
 }
 
-#btn-candidate.active {
-  background: #3b82f6;
-  color: white;
+/* 工具栏第二行：连填/重来 */
+#toolbar-row2 {
+  display: flex;
+  justify-content: space-around;
+  gap: 6px;
+  padding: 2px 0 4px;
+  flex-shrink: 0;
+}
+
+.tool-btn2 {
+  flex: 1;
+  padding: 8px 0;
+  border: none;
+  background: #f1f5f9;
+  border-radius: 10px;
+  font-size: 15px;
+  line-height: 1;
+  color: #475569;
+  cursor: pointer;
+  transition: all 0.1s;
+  touch-action: manipulation;
+}
+
+.tool-btn2:active {
+  background: #cbd5e1;
+  transform: scale(0.95);
 }
 
 #btn-quick-fill.active {
   background: #16a34a;
+  color: white;
+}
+
+#btn-candidate.active {
+  background: #3b82f6;
   color: white;
 }
 

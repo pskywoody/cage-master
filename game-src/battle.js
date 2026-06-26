@@ -1898,14 +1898,15 @@ function getCellFromCanvas(canvas, clientX, clientY) {
   const rect = canvas.getBoundingClientRect();
   const scaleX = canvas.width / rect.width;
   const scaleY = canvas.height / rect.height;
+  const dpr = window.devicePixelRatio || 1;
 
-  const cellSize = canvas.width / 9;
-  const padding = cellSize * 0.2;
+  // 使用 playerRenderer 的 cellSize 和 padding（与实际渲染一致）
+  const r = BattleState.playerRenderer;
+  const x = (clientX - rect.left) * scaleX - r.padding * dpr;
+  const y = (clientY - rect.top) * scaleY - r.padding * dpr;
+  const cellSizePx = r.cellSize * dpr;
 
-  const x = (clientX - rect.left) * scaleX - padding;
-  const y = (clientY - rect.top) * scaleY - padding;
-
-  const r = Math.floor(y / cellSize);
-  const c = Math.floor(x / cellSize);
-  return { r, c };
+  const row = Math.floor(y / cellSizePx);
+  const col = Math.floor(x / cellSizePx);
+  return { r: row, c: col };
 }

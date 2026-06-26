@@ -710,9 +710,13 @@ class Board {
     // 笼内重复检测
     for (const cage of this.cages) {
       const seen = {};
+      let filledCount = 0;
+      let currentSum = 0;
       for (const [r, c] of cage.cells) {
         const val = this.cells[r][c].fillNum || this.cells[r][c].fixedNum;
         if (!val) continue;
+        filledCount++;
+        currentSum += val;
         if (seen[val] !== undefined) {
           this.cells[r][c].isError = true;
           // 找到同笼中之前出现该数字的格子也标红
@@ -724,6 +728,19 @@ class Board {
           }
         } else {
           seen[val] = true;
+        }
+      }
+      // 笼和校验：当笼子所有格子都已填满时，检查和值是否正确
+      if (filledCount === cage.cells.length && currentSum !== cage.sum) {
+        for (const [r, c] of cage.cells) {
+          this.cells[r][c].isError = true;
+        }
+      }
+      // 笼和校验：即使未填满，如果当前和已超过目标和，也标记错误
+      if (currentSum > cage.sum) {
+        for (const [r, c] of cage.cells) {
+          const val = this.cells[r][c].fillNum || this.cells[r][c].fixedNum;
+          if (val) this.cells[r][c].isError = true;
         }
       }
     }

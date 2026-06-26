@@ -405,6 +405,8 @@ function bindCompleteOverlay() {
 let longPressTimer = null;
 let longPressTriggered = false;
 let longPressStartPos = null;
+let touchBoxSelectTriggered = false;
+let touchStartPos = null;
 const LONG_PRESS_DURATION = 500; // 长按500ms触发
 
 // ---------- 画布点击：选中格子 ----------
@@ -580,11 +582,13 @@ function getCellFromPos(clientX, clientY) {
   const scaleX = renderer.canvas.width / rect.width;
   const scaleY = renderer.canvas.height / rect.height;
 
-  const x = (clientX - rect.left) * scaleX - renderer.padding;
-  const y = (clientY - rect.top) * scaleY - renderer.padding;
+  const dpr = window.devicePixelRatio || 1;
+  const x = (clientX - rect.left) * scaleX - renderer.padding * dpr;
+  const y = (clientY - rect.top) * scaleY - renderer.padding * dpr;
 
-  const r = Math.floor(y / renderer.cellSize);
-  const c = Math.floor(x / renderer.cellSize);
+  const cellSizePx = renderer.cellSize * dpr;
+  const r = Math.floor(y / cellSizePx);
+  const c = Math.floor(x / cellSizePx);
   return { r, c };
 }
 

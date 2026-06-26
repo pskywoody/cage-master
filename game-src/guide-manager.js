@@ -120,17 +120,18 @@ class FreezeMask {
     }
 
     const rect = canvas.getBoundingClientRect();
-    const scaleX = rect.width / canvas.width;
-    const scaleY = rect.height / canvas.height;
+    // cellSize 和 padding 已经是 CSS 像素，getBoundingClientRect 也返回 CSS 像素，无需额外缩放
+    // 通过 canvas 实际宽高推算盘面大小（支持4x4/6x6/9x9）
+    const boardSize = (rect.width - padding * 2) / cellSize;
 
     let left, top, width, height;
 
     if (targetType === 'cell') {
       // 单个格子
-      const cellX = targetC * cellSize * scaleX + padding * scaleX;
-      const cellY = targetR * cellSize * scaleY + padding * scaleY;
-      const w = cellSize * scaleX;
-      const h = cellSize * scaleY;
+      const cellX = padding + targetC * cellSize;
+      const cellY = padding + targetR * cellSize;
+      const w = cellSize;
+      const h = cellSize;
 
       left = rect.left + cellX + w / 2;
       top = rect.top + cellY + h / 2;
@@ -146,10 +147,10 @@ class FreezeMask {
         if (c < minC) minC = c;
         if (c > maxC) maxC = c;
       }
-      const cellX = minC * cellSize * scaleX + padding * scaleX;
-      const cellY = minR * cellSize * scaleY + padding * scaleY;
-      const w = (maxC - minC + 1) * cellSize * scaleX;
-      const h = (maxR - minR + 1) * cellSize * scaleY;
+      const cellX = padding + minC * cellSize;
+      const cellY = padding + minR * cellSize;
+      const w = (maxC - minC + 1) * cellSize;
+      const h = (maxR - minR + 1) * cellSize;
 
       left = rect.left + cellX + w / 2;
       top = rect.top + cellY + h / 2;
@@ -158,23 +159,26 @@ class FreezeMask {
 
     } else if (targetType === 'row') {
       // 整行
-      const rowW = 9 * cellSize * scaleX;
-      const rowH = cellSize * scaleY;
-      left = rect.left + padding * scaleX + rowW / 2;
-      top = rect.top + padding * scaleY + targetR * cellSize * scaleY + rowH / 2;
+      const rowW = boardSize * cellSize;
+      const rowH = cellSize;
+      left = rect.left + padding + rowW / 2;
+      top = rect.top + padding + targetR * cellSize + rowH / 2;
       width = rowW;
       height = rowH + 4;
 
     } else if (targetType === 'box') {
-      // 某个宫
-      const boxR = Math.floor(targetR / 3) * 3;
-      const boxC = Math.floor(targetC / 3) * 3;
-      const boxW = 3 * cellSize * scaleX;
-      const boxH = 3 * cellSize * scaleY;
-      left = rect.left + padding * scaleX + boxC * cellSize * scaleX + boxW / 2;
-      top = rect.top + padding * scaleY + boxR * cellSize * scaleY + boxH / 2;
-      width = boxW + 4;
-      height = boxH + 4;
+      // 某个宫 - 动态计算宫大小
+      const size = Math.round(boardSize);
+      const boxW = size === 4 ? 2 : size === 6 ? 3 : 3;
+      const boxH = size === 4 ? 2 : size === 6 ? 2 : 3;
+      const boxR = Math.floor(targetR / boxH) * boxH;
+      const boxC = Math.floor(targetC / boxW) * boxW;
+      const bw = boxW * cellSize;
+      const bh = boxH * cellSize;
+      left = rect.left + padding + boxC * cellSize + bw / 2;
+      top = rect.top + padding + boxR * cellSize + bh / 2;
+      width = bw + 4;
+      height = bh + 4;
 
     } else {
       // 全屏无高亮
@@ -319,12 +323,11 @@ class PopupHint {
     }
 
     const rect = canvas.getBoundingClientRect();
-    const scaleX = rect.width / canvas.width;
-    const scaleY = rect.height / canvas.height;
+    // cellSize 和 padding 为 CSS 像素，getBoundingClientRect 返回 CSS 像素，无需缩放
 
     // 目标格子中心坐标（页面坐标）
-    const cellCenterX = rect.left + padding * scaleX + (targetC + 0.5) * cellSize * scaleX;
-    const cellCenterY = rect.top + padding * scaleY + (targetR + 0.5) * cellSize * scaleY;
+    const cellCenterX = rect.left + padding + (targetC + 0.5) * cellSize;
+    const cellCenterY = rect.top + padding + (targetR + 0.5) * cellSize;
 
     const bubbleW = this.el.offsetWidth;
     const bubbleH = this.el.offsetHeight;

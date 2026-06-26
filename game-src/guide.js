@@ -1581,7 +1581,7 @@ function setupQuickFillLongPress() {
 
     btn.addEventListener('pointerdown', () => {
       const num = parseInt(btn.dataset.num);
-      if (guideBoard && guideBoard.inputMode === 'candidate') return;
+      // 长按数字键优先级高于候选模式——即使在候选模式下也能激活连填
       if (isNumberComplete(num)) return;
       
       // 如果这个数字已经是连填状态，直接取消（Toggle）
@@ -1673,7 +1673,7 @@ function isNumberComplete(num) {
 
 function tryQuickFill(r, c) {
   if (!quickFillMode || !quickFillNum) return false;
-  if (guideBoard.inputMode === 'candidate') return false;
+  // 连填优先级高于候选模式——激活连填后点击空格直接填入
   const cell = guideBoard.cells[r][c];
   if (cell.fixedNum || cell.fillNum) return false;
 

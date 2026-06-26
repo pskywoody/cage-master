@@ -10,13 +10,17 @@
     "dev": "node server.js",
     "generate": "node node-script/puzzle-manager.js",
     "pipeline": "node node-script/batch-pipeline.js",
-    "rate": "node node-script/human-simulator.js"
+    "rate": "node node-script/human-simulator.js",
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "devDependencies": {
+    "@capacitor/android": "^6.2.1",
+    "@capacitor/cli": "^6.2.1",
+    "@capacitor/core": "^6.2.1",
     "express": "^5.2.1"
   },
   "dependencies": {
@@ -84,5 +88,13 @@
     "unpipe": "^1.0.0",
     "vary": "^1.1.2",
     "wrappy": "^1.0.2"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pskywoody/cage-master.git"
+  },
+  "bugs": {
+    "url": "https://github.com/pskywoody/cage-master/issues"
+  },
+  "homepage": "https://github.com/pskywoody/cage-master#readme"
 }

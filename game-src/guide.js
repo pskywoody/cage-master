@@ -803,7 +803,7 @@ function bindCanvasClick() {
   let longPressTimer = null;
   let longPressTriggered = false;
   let longPressStartPos = null;
-  const LONG_PRESS_DURATION = 500;
+  const LONG_PRESS_DURATION = 650; // 长按650ms触发（500ms太容易误触）
 
   canvas.addEventListener('touchstart', function(e) {
     if (isPaused) return;
@@ -1005,8 +1005,35 @@ function handleNumberInput(num) {
       guideBoard.toggleCandidateForSelection(num);
     }
   } else if (guideBoard.inputMode === 'candidate' && features.allowDraft) {
-    if (!guideBoard.selectedCell) return;
-    const { r, c } = guideBoard.selectedCell;
+    // 候选模式：也支持 isSelected fallback 查找
+    let selectedCell = guideBoard.selectedCell;
+    if (!selectedCell) {
+      for (let r = 0; r < guideBoard.size; r++) {
+        for (let c = 0; c < guideBoard.size; c++) {
+          if (guideBoard.cells[r][c].isSelected) {
+            selectedCell = { r, c };
+            guideBoard.selectedCell = selectedCell;
+            break;
+          }
+        }
+        if (selectedCell) break;
+      }
+    }
+    if (!selectedCell) {
+      // 候选模式下没有选中格子，提示用户并切回普通模式
+      showGameToast('💡 先点一个空格，再填数字');
+      // 自动切回普通模式，避免用户卡住
+      guideBoard.inputMode = 'normal';
+      const candidateBtn = document.getElementById('btn-candidate');
+      if (candidateBtn) {
+        candidateBtn.style.backgroundColor = '';
+        candidateBtn.style.color = '';
+      }
+      guideBoard.checkConflicts();
+      refreshBoard();
+      return;
+    }
+    const { r, c } = selectedCell;
     guideBoard.toggleCandidate(num);
   } else {
     // 获取当前选中的格子（支持 direct 引用 + isSelected 双重查找）

@@ -5,6 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
   <title>档案侦探 · 笼中密码</title>
   <link rel="stylesheet" href="assets/css/style.css" />
+  <script>
+    // APK/Capacitor环境下自动进入章节选择页面
+    (function() {
+      // 检测是否在Capacitor/WebView环境（无后端服务器）
+      const isCapacitor = window.Capacitor || 
+        (window.isCapacitor !== undefined) ||
+        location.protocol === 'capacitor:' ||
+        location.protocol === 'file:';
+      // 使用URL参数?mode=free可以强制进入自由模式
+      if (isCapacitor && !location.search.includes('mode=free')) {
+        location.replace('chapters.html');
+      }
+    })();
+  </script>
 </head>
 <body>
   <div id="app">

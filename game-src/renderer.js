@@ -63,8 +63,8 @@ class Renderer {
     this._drawInnerGrid(size);
     // 第2层：内部粗宫线
     this._drawInnerBoxLines(size);
-    // 第3层：圆角外边框
-    this._drawRoundOuterBorder(size);
+    // 第3层：圆角外边框（候选模式下为紫色）
+    this._drawRoundOuterBorder(size, board);
     // 第4层：笼子虚线外框 + 外移和值
     this._drawCages(board);
     // 第5层：45法则高亮蒙版
@@ -136,14 +136,16 @@ class Renderer {
   }
 
   // ---------- 3. 圆角外边框 ----------
-  _drawRoundOuterBorder(size) {
+  _drawRoundOuterBorder(size, board) {
     const { ctx, cellSize } = this;
     const w = size * cellSize;
     const h = size * cellSize;
     const radius = 8;
 
-    ctx.strokeStyle = '#334155';
-    ctx.lineWidth = 2;
+    // 候选模式下外边框变紫色，给用户明显的模式提示
+    const isCandidate = board && board.inputMode === 'candidate';
+    ctx.strokeStyle = isCandidate ? '#8b5cf6' : '#334155';
+    ctx.lineWidth = isCandidate ? 3.5 : 2;
     ctx.beginPath();
     ctx.moveTo(radius, 0);
     ctx.lineTo(w - radius, 0);
@@ -156,6 +158,15 @@ class Renderer {
     ctx.quadraticCurveTo(0, 0, radius, 0);
     ctx.closePath();
     ctx.stroke();
+
+    // 候选模式下在左上角画一个小铅笔图标提示
+    if (isCandidate) {
+      ctx.fillStyle = '#8b5cf6';
+      ctx.font = `bold ${Math.max(10, Math.floor(cellSize * 0.22))}px sans-serif`;
+      ctx.textAlign = 'left';
+      ctx.textBaseline = 'top';
+      ctx.fillText('✏️候选', 4, 4);
+    }
   }
 
   // ---------- 4. 笼子渲染（和值外移，不占用格子内部）----------
@@ -317,8 +328,8 @@ class Renderer {
         const cell = board.cells[r][c];
         if (cell.isSelected) {
           hasSelection = true;
-          // 选中背景
-          ctx.fillStyle = 'rgba(59, 130, 246, 0.15)';
+          // 选中背景：更深的蓝色，确保可见
+          ctx.fillStyle = 'rgba(59, 130, 246, 0.28)';
           ctx.fillRect(c * cellSize, r * cellSize, cellSize, cellSize);
         }
       }
@@ -326,16 +337,15 @@ class Renderer {
 
     if (!hasSelection) return;
 
-    // 只给选区的外边框描边（更美观）
-    // 简单处理：每个选中格都描边，但如果是多选，内部边框不重复
-    // 先简单实现：每个选中格都描边
-    ctx.strokeStyle = '#3b82f6';
+    // 蓝色粗边框，确保选中格醒目
+    ctx.strokeStyle = '#2563eb';
     ctx.lineWidth = 3;
+    ctx.lineJoin = 'round';
     for (let r = 0; r < size; r++) {
       for (let c = 0; c < size; c++) {
         const cell = board.cells[r][c];
         if (cell.isSelected) {
-          ctx.strokeRect(c * cellSize + 1, r * cellSize + 1, cellSize - 2, cellSize - 2);
+          ctx.strokeRect(c * cellSize + 1.5, r * cellSize + 1.5, cellSize - 3, cellSize - 3);
         }
       }
     }

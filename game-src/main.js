@@ -407,7 +407,7 @@ let longPressTriggered = false;
 let longPressStartPos = null;
 let touchBoxSelectTriggered = false;
 let touchStartPos = null;
-const LONG_PRESS_DURATION = 500; // 长按500ms触发
+const LONG_PRESS_DURATION = 650; // 长按650ms触发（500ms太容易误触候选模式）
 
 // ---------- 画布点击：选中格子 ----------
 function bindCanvasClick() {
@@ -657,6 +657,25 @@ function bindNumPad() {
   });
 }
 
+// ---------- 安全获取选中格（支持 direct 引用 + isSelected 双重查找）----------
+function getSelectedCellSafely() {
+  let selectedCell = gameBoard.selectedCell;
+  if (!selectedCell) {
+    // fallback：遍历棋盘找 isSelected 的格子
+    for (let r = 0; r < gameBoard.size; r++) {
+      for (let c = 0; c < gameBoard.size; c++) {
+        if (gameBoard.cells[r][c].isSelected) {
+          selectedCell = { r, c };
+          gameBoard.selectedCell = selectedCell;
+          break;
+        }
+      }
+      if (selectedCell) break;
+    }
+  }
+  return selectedCell;
+}
+
 // ---------- 数字输入处理（兼容正式填数和候选模式）----------
 function handleNumberInput(num) {
   // 多选时，默认批量切换候选数（框选主要用于批量写候选）
@@ -664,11 +683,27 @@ function handleNumberInput(num) {
     gameBoard.toggleCandidateForSelection(num);
     Storage.logAction('toggleCandidate', { num, batch: true, count: gameBoard.selectedCells.length });
   } else if (gameBoard.inputMode === 'candidate') {
-    const { r, c } = gameBoard.selectedCell;
+    const selectedCell = getSelectedCellSafely();
+    if (!selectedCell) return;
+    const { r, c } = selectedCell;
     gameBoard.toggleCandidate(num);
     Storage.logAction('toggleCandidate', { num, r, c });
   } else {
-    const { r, c } = gameBoard.selectedCell;
+    const selectedCell = getSelectedCellSafely();
+    if (!selectedCell) {
+      // 没有选中格子时，如果数字未完成，自动开启连填
+      if (!isNumberCompleteSingle(num)) {
+        quickFillModeSingle = true;
+        quickFillNumSingle = num;
+        document.getElementById('btn-quick-fill').classList.add('active');
+        clearQuickFillNumHighlightSingle();
+        const btn = document.querySelector('.num-btn[data-num="' + num + '"]');
+        if (btn) btn.classList.add('quick-fill-num');
+        showToast(`已开启连填模式，点击空格自动填入 ${num}`);
+      }
+      return;
+    }
+    const { r, c } = selectedCell;
     gameBoard.setNumber(num);
     Storage.logAction('setNumber', { num, r, c });
   }
@@ -752,7 +787,9 @@ function bindToolbar() {
       gameBoard.eraseSelection();
       Storage.logAction('erase', { batch: true, count: gameBoard.selectedCells.length });
     } else {
-      const { r, c } = gameBoard.selectedCell;
+      const selectedCell = getSelectedCellSafely();
+      if (!selectedCell) return;
+      const { r, c } = selectedCell;
       gameBoard.eraseNumber();
       Storage.logAction('erase', { r, c });
     }

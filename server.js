@@ -27,6 +27,26 @@ function loadLevels() {
   return JSON.parse(raw);
 }
 
+// 2.1 读取章节数据（教学模式）
+function loadChapters() {
+  const filePath = path.join(__dirname, 'game-src', 'data', 'chapters.json');
+  const raw = fs.readFileSync(filePath, 'utf-8');
+  return JSON.parse(raw);
+}
+
+// 2.2 查找教学关卡
+function findTeachingLevel(levelId) {
+  const chapters = loadChapters();
+  for (const chapter of chapters) {
+    for (const level of chapter.levels) {
+      if (String(level.levelId) === String(levelId)) {
+        return { chapter, level };
+      }
+    }
+  }
+  return null;
+}
+
 // ==========================================
 // 接口：获取所有关卡列表
 // ==========================================
@@ -67,6 +87,95 @@ app.get('/api/level/:id', (req, res) => {
       difficulty: level.difficulty,
       cells: level.cells,
       cages: level.cages
+    },
+    msg: 'ok'
+  });
+});
+
+// ==========================================
+// 接口：教学模式 - 获取所有章节列表
+// ==========================================
+app.get('/api/chapters', (req, res) => {
+  const chapters = loadChapters();
+  const list = chapters.map(ch => ({
+    chapterId: ch.chapterId,
+    title: ch.title,
+    subtitle: ch.subtitle,
+    icon: ch.icon,
+    color: ch.color,
+    description: ch.description,
+    badgeId: ch.badgeId,
+    badgeName: ch.badgeName,
+    unlockRequirement: ch.unlockRequirement,
+    levelCount: ch.levels.length
+  }));
+  res.json({ code: 0, data: list, msg: 'ok' });
+});
+
+// ==========================================
+// 接口：教学模式 - 获取单个章节详情（含关卡列表）
+// ==========================================
+app.get('/api/chapter/:id', (req, res) => {
+  const { id } = req.params;
+  const chapters = loadChapters();
+  const chapter = chapters.find(ch => String(ch.chapterId) === String(id));
+
+  if (!chapter) {
+    return res.json({ code: 1, data: null, msg: '章节不存在' });
+  }
+
+  const levels = chapter.levels.map(lv => ({
+    levelId: lv.levelId,
+    title: lv.title,
+    gridSize: lv.gridSize,
+    difficulty: lv.difficulty,
+    teachingGoal: lv.teachingGoal
+  }));
+
+  res.json({
+    code: 0,
+    data: {
+      chapterId: chapter.chapterId,
+      title: chapter.title,
+      subtitle: chapter.subtitle,
+      icon: chapter.icon,
+      color: chapter.color,
+      description: chapter.description,
+      badgeId: chapter.badgeId,
+      badgeName: chapter.badgeName,
+      levels
+    },
+    msg: 'ok'
+  });
+});
+
+// ==========================================
+// 接口：教学模式 - 获取教学关卡详情
+// ==========================================
+app.get('/api/teaching-level/:id', (req, res) => {
+  const { id } = req.params;
+  const result = findTeachingLevel(id);
+
+  if (!result) {
+    return res.json({ code: 1, data: null, msg: '关卡不存在' });
+  }
+
+  const { chapter, level } = result;
+  res.json({
+    code: 0,
+    data: {
+      id: level.levelId,
+      name: level.title,
+      difficulty: level.difficulty,
+      gridSize: level.gridSize,
+      cells: level.boardData,
+      cages: level.cages,
+      features: level.features,
+      triggers: level.triggers,
+      solution: level.solution,
+      chapterId: chapter.chapterId,
+      chapterTitle: chapter.title,
+      teachingGoal: level.teachingGoal
     },
     msg: 'ok'
   });
@@ -389,9 +498,26 @@ app.use((req, res) => {
   res.status(404).json({ code: 1, data: null, msg: '接口不存在' });
 });
 
+const os = require('os');
+
+// 获取本机局域网IP
+function getLocalIP() {
+  const interfaces = os.networkInterfaces();
+  for (const name of Object.keys(interfaces)) {
+    for (const iface of interfaces[name]) {
+      if (iface.family === 'IPv4' && !iface.internal) {
+        return iface.address;
+      }
+    }
+  }
+  return 'localhost';
+}
+
 // 启动服务
-app.listen(PORT, () => {
+const localIP = getLocalIP();
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`✅ 后端服务已启动`);
-  console.log(`📍 游戏地址: http://localhost:${PORT}`);
+  console.log(`📍 本地访问: http://localhost:${PORT}`);
+  console.log(`📱 手机访问: http://${localIP}:${PORT} （手机需连同一WiFi）`);
   console.log(`🔌 接口地址: http://localhost:${PORT}/api/levels`);
 });

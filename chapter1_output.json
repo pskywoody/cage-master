@@ -1,0 +1,1724 @@
+{
+  "chapterId": 1,
+  "title": "初识笼中密码",
+  "subtitle": "入门篇 · 4×4迷你盘面",
+  "icon": "📁",
+  "color": "#22c55e",
+  "description": "推开档案馆大门，从4×4迷你盘面开始，学习数独基础规则和笼子和值机制。",
+  "badgeId": "badge_c1_beginner",
+  "badgeName": "新手侦探",
+  "unlockRequirement": 0,
+  "badge": {
+    "id": "badge_c1_beginner",
+    "name": "新手侦探",
+    "icon": "🔍",
+    "description": "完成第一章「初识笼中密码」，正式成为档案侦探。"
+  },
+  "introStory": [
+    {
+      "type": "title",
+      "text": "第一章",
+      "subtitle": "初识笼中密码"
+    },
+    {
+      "character": "旁白",
+      "icon": "🏛️",
+      "text": "你推开尘封三十年的档案馆大门，空气中弥漫着旧纸张的气息。"
+    },
+    {
+      "character": "旁白",
+      "icon": "🏛️",
+      "text": "前台静静躺着第一份卷宗，封面上写着——「给新人侦探的入门指南」。"
+    },
+    {
+      "character": "大师手记",
+      "icon": "📜",
+      "text": "「欢迎来到数字档案馆。我是三十年前驻守在这里的推理大师。」"
+    },
+    {
+      "character": "大师手记",
+      "icon": "📜",
+      "text": "「这份卷宗里，藏着数字推理最基础的钥匙——数独。」"
+    },
+    {
+      "character": "大师手记",
+      "icon": "📜",
+      "text": "「从4×4的迷你盘面开始吧。记住三条铁律：每行、每列、每个2×2小宫格里，数字1到4都只能出现一次。」"
+    },
+    {
+      "character": "大师手记",
+      "icon": "📜",
+      "text": "「准备好了吗？解开第一题，卷宗会为你翻开下一页。」"
+    }
+  ],
+  "endingStory": [
+    {
+      "character": "大师手记",
+      "icon": "📜",
+      "text": "「不错，新人侦探。你已经掌握了杀手数独最基础的三件武器——规则、笼子、和值。」"
+    },
+    {
+      "character": "大师手记",
+      "icon": "📜",
+      "text": "「记住一个小秘密：4×4盘面里，每行每列每宫的总和永远是10。」"
+    },
+    {
+      "character": "大师手记",
+      "icon": "📜",
+      "text": "「1+2+3+4=10。这个简单的事实，到了9×9盘面会变成45——那是打开复杂谜题的金钥匙。」"
+    },
+    {
+      "character": "大师手记",
+      "icon": "📜",
+      "text": "「下一卷档案，我们将进入更大的盘面。去领取你的徽章吧，你已经是一名正式的档案侦探了。」"
+    }
+  ],
+  "levels": [
+    {
+      "levelId": 101,
+      "title": "第1关：初入档案馆",
+      "gridSize": 4,
+      "difficulty": "入门",
+      "teachingGoal": "认识行规则：每行数字1-4不重复",
+      "features": {
+        "allowDraft": false,
+        "assistant45": false,
+        "showHints": true,
+        "perspectiveMode": false,
+        "highlightRow": true,
+        "highlightCol": false,
+        "highlightBox": false,
+        "highlightNumber": false,
+        "highlightCage": false
+      },
+      "triggers": [
+        {
+          "id": "t101_start",
+          "condition": "onLevelStart",
+          "type": "freeze_mask",
+          "targetCell": [
+            0,
+            0
+          ],
+          "targetType": "row",
+          "text": "欢迎来到第一题！看这一行——灰色数字是已经填好的提示。同一行里，1到4每个数字只能出现一次哦。",
+          "once": true
+        },
+        {
+          "id": "t101_first_fill",
+          "condition": "onFirstNumberFilled",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "真棒！你填对了第一个数字～",
+          "once": true
+        },
+        {
+          "id": "t101_conflict",
+          "condition": "onConflict",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "哎呀，这一行里已经有这个数字啦，换一个试试？",
+          "once": false
+        }
+      ],
+      "boardData": [
+        [
+          1,
+          2,
+          3,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "cages": [],
+      "solution": [
+        [
+          1,
+          2,
+          3,
+          4
+        ],
+        [
+          3,
+          4,
+          1,
+          2
+        ],
+        [
+          2,
+          1,
+          4,
+          3
+        ],
+        [
+          4,
+          3,
+          2,
+          1
+        ]
+      ]
+    },
+    {
+      "levelId": 102,
+      "title": "第2关：列的秘密",
+      "gridSize": 4,
+      "difficulty": "入门",
+      "teachingGoal": "认识列规则：每列数字1-4不重复",
+      "features": {
+        "allowDraft": false,
+        "assistant45": false,
+        "showHints": true,
+        "perspectiveMode": false,
+        "highlightRow": true,
+        "highlightCol": true,
+        "highlightBox": false,
+        "highlightNumber": false,
+        "highlightCage": false
+      },
+      "triggers": [
+        {
+          "id": "t102_start",
+          "condition": "onLevelStart",
+          "type": "freeze_mask",
+          "targetCell": [
+            0,
+            0
+          ],
+          "targetType": "cell",
+          "text": "除了行，列也一样哦——每一列里，1到4也只能出现一次。点一下第一列这个空格试试看！",
+          "once": true
+        },
+        {
+          "id": "t102_first_correct",
+          "condition": "onFirstNumberFilled",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "对啦！竖着看也不能重复～",
+          "once": true
+        },
+        {
+          "id": "t102_conflict",
+          "condition": "onConflict",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "这一列里已经有这个数字啦，再想想～",
+          "once": false
+        }
+      ],
+      "boardData": [
+        [
+          1,
+          0,
+          0,
+          0
+        ],
+        [
+          3,
+          0,
+          0,
+          0
+        ],
+        [
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "cages": [],
+      "solution": [
+        [
+          1,
+          2,
+          3,
+          4
+        ],
+        [
+          3,
+          4,
+          1,
+          2
+        ],
+        [
+          2,
+          1,
+          4,
+          3
+        ],
+        [
+          4,
+          3,
+          2,
+          1
+        ]
+      ]
+    },
+    {
+      "levelId": 103,
+      "title": "第3关：宫中天地",
+      "gridSize": 4,
+      "difficulty": "入门",
+      "teachingGoal": "认识宫规则：每个2x2宫格数字1-4不重复",
+      "features": {
+        "allowDraft": false,
+        "assistant45": false,
+        "showHints": true,
+        "perspectiveMode": true,
+        "highlightRow": true,
+        "highlightCol": true,
+        "highlightBox": true,
+        "highlightNumber": false,
+        "highlightCage": false
+      },
+      "triggers": [
+        {
+          "id": "t103_start",
+          "condition": "onLevelStart",
+          "type": "freeze_mask",
+          "targetCell": [
+            0,
+            0
+          ],
+          "targetType": "box",
+          "text": "还有第三条规则！粗线围起来的2×2小方块叫「宫」，每个宫里1到4也只能出现一次哦。",
+          "once": true
+        },
+        {
+          "id": "t103_box_last_correct",
+          "condition": "onBoxLastCellCorrect",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "厉害！这个宫只剩一个数字，你精准地找到了它～",
+          "once": true
+        },
+        {
+          "id": "t103_conflict",
+          "condition": "onConflict",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "这个宫里已经有这个数字啦，换一个试试？",
+          "once": false
+        }
+      ],
+      "boardData": [
+        [
+          1,
+          2,
+          0,
+          0
+        ],
+        [
+          3,
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "cages": [],
+      "solution": [
+        [
+          1,
+          2,
+          3,
+          4
+        ],
+        [
+          3,
+          4,
+          1,
+          2
+        ],
+        [
+          2,
+          1,
+          4,
+          3
+        ],
+        [
+          4,
+          3,
+          2,
+          1
+        ]
+      ]
+    },
+    {
+      "levelId": 104,
+      "title": "第4关：笼中密码",
+      "gridSize": 4,
+      "difficulty": "入门",
+      "teachingGoal": "认识笼子：虚线框起来的区域，左上角是数字和",
+      "features": {
+        "allowDraft": false,
+        "assistant45": false,
+        "showHints": true,
+        "perspectiveMode": true,
+        "highlightRow": true,
+        "highlightCol": true,
+        "highlightBox": true,
+        "highlightNumber": false,
+        "highlightCage": true
+      },
+      "triggers": [
+        {
+          "id": "t104_start",
+          "condition": "onLevelStart",
+          "type": "freeze_mask",
+          "targetCell": [
+            0,
+            0
+          ],
+          "targetType": "cage",
+          "targetCells": [
+            [
+              0,
+              0
+            ]
+          ],
+          "text": "格子被锁进虚线框起来的笼子里了！左上角的数字，就是这个笼子里所有数字的和哦。点一下这个格子试试看～",
+          "once": true
+        },
+        {
+          "id": "t104_first_fill",
+          "condition": "onFirstNumberFilled",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "答对啦！这个笼子只有1格，所以和就是它自己～",
+          "once": true
+        },
+        {
+          "id": "t104_conflict",
+          "condition": "onConflict",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "这个数字在行列里已经有啦！而且笼子的和也不对哦，再想想～",
+          "once": false
+        }
+      ],
+      "boardData": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "cages": [
+        {
+          "id": 1,
+          "sum": 1,
+          "cells": [
+            [
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "id": 2,
+          "sum": 2,
+          "cells": [
+            [
+              0,
+              1
+            ]
+          ]
+        },
+        {
+          "id": 3,
+          "sum": 3,
+          "cells": [
+            [
+              0,
+              2
+            ]
+          ]
+        },
+        {
+          "id": 4,
+          "sum": 4,
+          "cells": [
+            [
+              0,
+              3
+            ]
+          ]
+        },
+        {
+          "id": 5,
+          "sum": 3,
+          "cells": [
+            [
+              1,
+              0
+            ]
+          ]
+        },
+        {
+          "id": 6,
+          "sum": 4,
+          "cells": [
+            [
+              1,
+              1
+            ]
+          ]
+        },
+        {
+          "id": 7,
+          "sum": 1,
+          "cells": [
+            [
+              1,
+              2
+            ]
+          ]
+        },
+        {
+          "id": 8,
+          "sum": 2,
+          "cells": [
+            [
+              1,
+              3
+            ]
+          ]
+        },
+        {
+          "id": 9,
+          "sum": 2,
+          "cells": [
+            [
+              2,
+              0
+            ]
+          ]
+        },
+        {
+          "id": 10,
+          "sum": 1,
+          "cells": [
+            [
+              2,
+              1
+            ]
+          ]
+        },
+        {
+          "id": 11,
+          "sum": 4,
+          "cells": [
+            [
+              2,
+              2
+            ]
+          ]
+        },
+        {
+          "id": 12,
+          "sum": 3,
+          "cells": [
+            [
+              2,
+              3
+            ]
+          ]
+        },
+        {
+          "id": 13,
+          "sum": 4,
+          "cells": [
+            [
+              3,
+              0
+            ]
+          ]
+        },
+        {
+          "id": 14,
+          "sum": 3,
+          "cells": [
+            [
+              3,
+              1
+            ]
+          ]
+        },
+        {
+          "id": 15,
+          "sum": 2,
+          "cells": [
+            [
+              3,
+              2
+            ]
+          ]
+        },
+        {
+          "id": 16,
+          "sum": 1,
+          "cells": [
+            [
+              3,
+              3
+            ]
+          ]
+        }
+      ],
+      "solution": [
+        [
+          1,
+          2,
+          3,
+          4
+        ],
+        [
+          3,
+          4,
+          1,
+          2
+        ],
+        [
+          2,
+          1,
+          4,
+          3
+        ],
+        [
+          4,
+          3,
+          2,
+          1
+        ]
+      ]
+    },
+    {
+      "levelId": 105,
+      "title": "第5关：双格密码锁",
+      "gridSize": 4,
+      "difficulty": "入门",
+      "teachingGoal": "双格笼子：两个格子加起来等于和值",
+      "features": {
+        "allowDraft": false,
+        "assistant45": false,
+        "showHints": true,
+        "perspectiveMode": true,
+        "highlightRow": true,
+        "highlightCol": true,
+        "highlightBox": true,
+        "highlightNumber": false,
+        "highlightCage": true
+      },
+      "triggers": [
+        {
+          "id": "t105_start",
+          "condition": "onLevelStart",
+          "type": "freeze_mask",
+          "targetCell": [
+            0,
+            0
+          ],
+          "targetType": "cage",
+          "targetCells": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "text": "这次笼子变大了！两个格子被锁在一起，它们的数字加起来等于左上角的和。比如和为3，就可能是1+2哦～",
+          "once": true
+        },
+        {
+          "id": "t105_cage_select",
+          "condition": "onCageSelect",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "选中一个格子时，整个笼子都会高亮，方便你一起思考～",
+          "once": true
+        },
+        {
+          "id": "t105_first_fill",
+          "condition": "onFirstNumberFilled",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "没错！和为3的双格笼，只能是1和2的组合～",
+          "once": true
+        }
+      ],
+      "boardData": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "cages": [
+        {
+          "id": 1,
+          "sum": 3,
+          "cells": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              1
+            ]
+          ]
+        },
+        {
+          "id": 2,
+          "sum": 7,
+          "cells": [
+            [
+              0,
+              2
+            ],
+            [
+              0,
+              3
+            ]
+          ]
+        },
+        {
+          "id": 3,
+          "sum": 7,
+          "cells": [
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              1
+            ]
+          ]
+        },
+        {
+          "id": 4,
+          "sum": 3,
+          "cells": [
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              3
+            ]
+          ]
+        },
+        {
+          "id": 5,
+          "sum": 3,
+          "cells": [
+            [
+              2,
+              0
+            ],
+            [
+              2,
+              1
+            ]
+          ]
+        },
+        {
+          "id": 6,
+          "sum": 7,
+          "cells": [
+            [
+              2,
+              2
+            ],
+            [
+              2,
+              3
+            ]
+          ]
+        },
+        {
+          "id": 7,
+          "sum": 7,
+          "cells": [
+            [
+              3,
+              0
+            ],
+            [
+              3,
+              1
+            ]
+          ]
+        },
+        {
+          "id": 8,
+          "sum": 3,
+          "cells": [
+            [
+              3,
+              2
+            ],
+            [
+              3,
+              3
+            ]
+          ]
+        }
+      ],
+      "solution": [
+        [
+          1,
+          2,
+          3,
+          4
+        ],
+        [
+          3,
+          4,
+          1,
+          2
+        ],
+        [
+          2,
+          1,
+          4,
+          3
+        ],
+        [
+          4,
+          3,
+          2,
+          1
+        ]
+      ]
+    },
+    {
+      "levelId": 106,
+      "title": "第6关：交错之笼",
+      "gridSize": 4,
+      "difficulty": "入门",
+      "teachingGoal": "综合运用：行列宫规则 + 笼子和值",
+      "features": {
+        "allowDraft": false,
+        "assistant45": false,
+        "showHints": true,
+        "perspectiveMode": true,
+        "highlightRow": true,
+        "highlightCol": true,
+        "highlightBox": true,
+        "highlightNumber": true,
+        "highlightCage": true
+      },
+      "triggers": [
+        {
+          "id": "t106_start",
+          "condition": "onLevelStart",
+          "type": "freeze_mask",
+          "targetCell": [
+            0,
+            0
+          ],
+          "targetType": "full",
+          "text": "笼子开始交错了！结合行、列、宫的规则和笼子的和，一起推理吧。遇到困难就开「透视镜」看看～",
+          "once": true
+        },
+        {
+          "id": "t106_stuck",
+          "condition": "onStuckForSeconds",
+          "seconds": 30,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "卡住了吗？试试用透视镜看看选中格子能看到哪些数字，也许就能找到答案了～",
+          "once": true
+        }
+      ],
+      "boardData": [
+        [
+          1,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          4,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ]
+      ],
+      "cages": [
+        {
+          "id": 1,
+          "sum": 1,
+          "cells": [
+            [
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "id": 2,
+          "sum": 5,
+          "cells": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              2
+            ]
+          ]
+        },
+        {
+          "id": 3,
+          "sum": 4,
+          "cells": [
+            [
+              0,
+              3
+            ]
+          ]
+        },
+        {
+          "id": 4,
+          "sum": 3,
+          "cells": [
+            [
+              1,
+              0
+            ]
+          ]
+        },
+        {
+          "id": 5,
+          "sum": 4,
+          "cells": [
+            [
+              1,
+              1
+            ]
+          ]
+        },
+        {
+          "id": 6,
+          "sum": 3,
+          "cells": [
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              3
+            ]
+          ]
+        },
+        {
+          "id": 7,
+          "sum": 3,
+          "cells": [
+            [
+              2,
+              0
+            ],
+            [
+              2,
+              1
+            ]
+          ]
+        },
+        {
+          "id": 8,
+          "sum": 4,
+          "cells": [
+            [
+              2,
+              2
+            ]
+          ]
+        },
+        {
+          "id": 9,
+          "sum": 3,
+          "cells": [
+            [
+              2,
+              3
+            ]
+          ]
+        },
+        {
+          "id": 10,
+          "sum": 4,
+          "cells": [
+            [
+              3,
+              0
+            ]
+          ]
+        },
+        {
+          "id": 11,
+          "sum": 3,
+          "cells": [
+            [
+              3,
+              1
+            ]
+          ]
+        },
+        {
+          "id": 12,
+          "sum": 2,
+          "cells": [
+            [
+              3,
+              2
+            ]
+          ]
+        },
+        {
+          "id": 13,
+          "sum": 1,
+          "cells": [
+            [
+              3,
+              3
+            ]
+          ]
+        }
+      ],
+      "solution": [
+        [
+          1,
+          2,
+          3,
+          4
+        ],
+        [
+          3,
+          4,
+          1,
+          2
+        ],
+        [
+          2,
+          1,
+          4,
+          3
+        ],
+        [
+          4,
+          3,
+          2,
+          1
+        ]
+      ]
+    },
+    {
+      "levelId": 107,
+      "title": "第7关：侦探笔记",
+      "gridSize": 4,
+      "difficulty": "入门",
+      "teachingGoal": "学会用候选草稿记录可能性",
+      "features": {
+        "allowDraft": true,
+        "assistant45": false,
+        "showHints": true,
+        "perspectiveMode": true,
+        "highlightRow": true,
+        "highlightCol": true,
+        "highlightBox": true,
+        "highlightNumber": true,
+        "highlightCage": true
+      },
+      "triggers": [
+        {
+          "id": "t107_start",
+          "condition": "onLevelStart",
+          "type": "freeze_mask",
+          "targetCell": [
+            0,
+            0
+          ],
+          "targetType": "full",
+          "text": "侦探破案离不开笔记！点击工具栏的「候选」按钮，切换到草稿模式，把可能的数字都记下来吧。",
+          "once": true
+        },
+        {
+          "id": "t107_draft",
+          "condition": "onFirstCandidateToggled",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "好样的！先记候选，再逐步排除，这就是侦探的思考方式～",
+          "once": true
+        }
+      ],
+      "boardData": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "cages": [
+        {
+          "id": 1,
+          "sum": 4,
+          "cells": [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              0
+            ]
+          ]
+        },
+        {
+          "id": 2,
+          "sum": 6,
+          "cells": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              1
+            ]
+          ]
+        },
+        {
+          "id": 3,
+          "sum": 4,
+          "cells": [
+            [
+              0,
+              2
+            ],
+            [
+              1,
+              2
+            ]
+          ]
+        },
+        {
+          "id": 4,
+          "sum": 6,
+          "cells": [
+            [
+              0,
+              3
+            ],
+            [
+              1,
+              3
+            ]
+          ]
+        },
+        {
+          "id": 5,
+          "sum": 6,
+          "cells": [
+            [
+              2,
+              0
+            ],
+            [
+              3,
+              0
+            ]
+          ]
+        },
+        {
+          "id": 6,
+          "sum": 4,
+          "cells": [
+            [
+              2,
+              1
+            ],
+            [
+              3,
+              1
+            ]
+          ]
+        },
+        {
+          "id": 7,
+          "sum": 6,
+          "cells": [
+            [
+              2,
+              2
+            ],
+            [
+              3,
+              2
+            ]
+          ]
+        },
+        {
+          "id": 8,
+          "sum": 4,
+          "cells": [
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              3
+            ]
+          ]
+        }
+      ],
+      "solution": [
+        [
+          1,
+          2,
+          3,
+          4
+        ],
+        [
+          3,
+          4,
+          1,
+          2
+        ],
+        [
+          2,
+          1,
+          4,
+          3
+        ],
+        [
+          4,
+          3,
+          2,
+          1
+        ]
+      ]
+    },
+    {
+      "levelId": 108,
+      "title": "第8关：完整挑战",
+      "gridSize": 4,
+      "difficulty": "简单",
+      "teachingGoal": "综合运用所有技巧，完整解开一道题",
+      "features": {
+        "allowDraft": true,
+        "assistant45": false,
+        "showHints": true,
+        "perspectiveMode": true,
+        "highlightRow": true,
+        "highlightCol": true,
+        "highlightBox": true,
+        "highlightNumber": true,
+        "highlightCage": true
+      },
+      "triggers": [
+        {
+          "id": "t108_start",
+          "condition": "onLevelStart",
+          "type": "freeze_mask",
+          "targetCell": [
+            0,
+            0
+          ],
+          "targetType": "full",
+          "text": "综合挑战来了！把你学到的所有技巧都用上，完整解开这道题吧。",
+          "once": true
+        },
+        {
+          "id": "t108_half",
+          "condition": "onFillCountReached",
+          "count": 8,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "已经填了一半了，继续加油！",
+          "once": true
+        }
+      ],
+      "boardData": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "cages": [
+        {
+          "id": 1,
+          "sum": 3,
+          "cells": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              1
+            ]
+          ]
+        },
+        {
+          "id": 2,
+          "sum": 7,
+          "cells": [
+            [
+              0,
+              2
+            ],
+            [
+              0,
+              3
+            ]
+          ]
+        },
+        {
+          "id": 3,
+          "sum": 5,
+          "cells": [
+            [
+              1,
+              0
+            ],
+            [
+              2,
+              0
+            ]
+          ]
+        },
+        {
+          "id": 4,
+          "sum": 5,
+          "cells": [
+            [
+              1,
+              1
+            ],
+            [
+              2,
+              1
+            ]
+          ]
+        },
+        {
+          "id": 5,
+          "sum": 5,
+          "cells": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              2
+            ]
+          ]
+        },
+        {
+          "id": 6,
+          "sum": 5,
+          "cells": [
+            [
+              1,
+              3
+            ],
+            [
+              2,
+              3
+            ]
+          ]
+        },
+        {
+          "id": 7,
+          "sum": 7,
+          "cells": [
+            [
+              3,
+              0
+            ],
+            [
+              3,
+              1
+            ]
+          ]
+        },
+        {
+          "id": 8,
+          "sum": 3,
+          "cells": [
+            [
+              3,
+              2
+            ],
+            [
+              3,
+              3
+            ]
+          ]
+        }
+      ],
+      "solution": [
+        [
+          1,
+          2,
+          3,
+          4
+        ],
+        [
+          3,
+          4,
+          1,
+          2
+        ],
+        [
+          2,
+          1,
+          4,
+          3
+        ],
+        [
+          4,
+          3,
+          2,
+          1
+        ]
+      ]
+    },
+    {
+      "levelId": 109,
+      "title": "第9关：结业考核",
+      "gridSize": 4,
+      "difficulty": "简单",
+      "teachingGoal": "第一章毕业测试，检验你的学习成果",
+      "features": {
+        "allowDraft": true,
+        "assistant45": false,
+        "showHints": true,
+        "perspectiveMode": true,
+        "highlightRow": true,
+        "highlightCol": true,
+        "highlightBox": true,
+        "highlightNumber": true,
+        "highlightCage": true
+      },
+      "triggers": [
+        {
+          "id": "t109_start",
+          "condition": "onLevelStart",
+          "type": "freeze_mask",
+          "targetCell": [
+            0,
+            0
+          ],
+          "targetType": "full",
+          "text": "第一章的结业考核来了！这道题融合了所有入门技巧。加油，新人侦探！",
+          "once": true
+        },
+        {
+          "id": "t109_stuck",
+          "condition": "onStuckForSeconds",
+          "seconds": 60,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "别着急，侦探破案需要耐心。试试从和值最小的笼子开始推理～",
+          "once": true
+        }
+      ],
+      "boardData": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "cages": [
+        {
+          "id": 1,
+          "sum": 6,
+          "cells": [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              2,
+              0
+            ]
+          ]
+        },
+        {
+          "id": 2,
+          "sum": 5,
+          "cells": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              2
+            ]
+          ]
+        },
+        {
+          "id": 3,
+          "sum": 6,
+          "cells": [
+            [
+              0,
+              3
+            ],
+            [
+              1,
+              3
+            ]
+          ]
+        },
+        {
+          "id": 4,
+          "sum": 5,
+          "cells": [
+            [
+              1,
+              1
+            ],
+            [
+              1,
+              2
+            ]
+          ]
+        },
+        {
+          "id": 5,
+          "sum": 5,
+          "cells": [
+            [
+              2,
+              1
+            ],
+            [
+              2,
+              2
+            ]
+          ]
+        },
+        {
+          "id": 6,
+          "sum": 9,
+          "cells": [
+            [
+              3,
+              0
+            ],
+            [
+              3,
+              1
+            ],
+            [
+              3,
+              2
+            ]
+          ]
+        },
+        {
+          "id": 7,
+          "sum": 4,
+          "cells": [
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              3
+            ]
+          ]
+        }
+      ],
+      "solution": [
+        [
+          1,
+          2,
+          3,
+          4
+        ],
+        [
+          3,
+          4,
+          1,
+          2
+        ],
+        [
+          2,
+          1,
+          4,
+          3
+        ],
+        [
+          4,
+          3,
+          2,
+          1
+        ]
+      ]
+    }
+  ]
+}

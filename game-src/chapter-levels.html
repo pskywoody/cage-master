@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>章节关卡 · 教学模式</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    /* 章节关卡列表页样式 */
+    #chapter-levels-container {
+      background: white;
+      border-radius: 24px;
+      padding: 20px 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    }
+
+    #back-link {
+      display: inline-block;
+      margin-bottom: 12px;
+      padding: 6px 14px;
+      background: #f1f5f9;
+      border-radius: 8px;
+      font-size: 13px;
+      color: #64748b;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    #back-link:active {
+      background: #e2e8f0;
+    }
+
+    .chapter-header-info {
+      text-align: center;
+      margin-bottom: 16px;
+    }
+
+    .chapter-header-icon {
+      font-size: 40px;
+      margin-bottom: 8px;
+    }
+
+    .chapter-header-title {
+      font-size: 20px;
+      font-weight: 600;
+      color: #1e293b;
+      margin-bottom: 4px;
+    }
+
+    .chapter-header-subtitle {
+      font-size: 13px;
+      color: #64748b;
+      margin-bottom: 8px;
+    }
+
+    .chapter-header-desc {
+      font-size: 13px;
+      color: #94a3b8;
+      line-height: 1.5;
+      padding: 0 10px;
+    }
+
+    .chapter-progress-line {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin: 12px 0 16px;
+      padding: 8px 16px;
+      background: #f8fafc;
+      border-radius: 10px;
+    }
+
+    .chapter-progress-text {
+      font-size: 13px;
+      color: #475569;
+      font-weight: 500;
+    }
+
+    .chapter-progress-bar {
+      flex: 1;
+      max-width: 150px;
+      height: 8px;
+      background: #e2e8f0;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .chapter-progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #22c55e, #16a34a);
+      border-radius: 4px;
+      transition: width 0.3s;
+    }
+
+    /* 关卡网格 */
+    #levels-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+      max-height: 55vh;
+      overflow-y: auto;
+      padding: 4px;
+    }
+
+    @media (max-width: 400px) {
+      #levels-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    .level-cell {
+      aspect-ratio: 1 / 1;
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.15s;
+      position: relative;
+      font-weight: 600;
+    }
+
+    .level-cell:active {
+      transform: scale(0.92);
+    }
+
+    .level-cell.unlocked {
+      background: #eff6ff;
+      color: #1d4ed8;
+      border: 2px solid #bfdbfe;
+    }
+
+    .level-cell.unlocked:hover {
+      border-color: #3b82f6;
+    }
+
+    .level-cell.completed {
+      background: #f0fdf4;
+      color: #15803d;
+      border: 2px solid #86efac;
+    }
+
+    .level-cell.locked {
+      background: #f1f5f9;
+      color: #94a3b8;
+      border: 2px solid #e2e8f0;
+      cursor: not-allowed;
+    }
+
+    .level-cell-number {
+      font-size: 18px;
+      line-height: 1;
+    }
+
+    .level-cell-stars {
+      font-size: 10px;
+      margin-top: 2px;
+      letter-spacing: -1px;
+    }
+
+    .level-cell-lock {
+      font-size: 16px;
+    }
+
+    .level-cell.current {
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+    }
+
+    /* 关卡列表模式（备选） */
+    #levels-list-view {
+      display: none;
+      flex-direction: column;
+      gap: 8px;
+      max-height: 55vh;
+      overflow-y: auto;
+      padding-right: 4px;
+    }
+
+    .level-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .level-row:active {
+      transform: scale(0.98);
+    }
+
+    .level-row.unlocked {
+      background: #f8fafc;
+    }
+
+    .level-row.completed {
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+    }
+
+    .level-row.locked {
+      background: #f1f5f9;
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+
+    .level-row-num {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+
+    .level-row.unlocked .level-row-num {
+      background: #dbeafe;
+      color: #1d4ed8;
+    }
+
+    .level-row.completed .level-row-num {
+      background: #bbf7d0;
+      color: #15803d;
+    }
+
+    .level-row.locked .level-row-num {
+      background: #e2e8f0;
+      color: #94a3b8;
+    }
+
+    .level-row-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .level-row-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #334155;
+      margin-bottom: 2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .level-row-meta {
+      font-size: 12px;
+      color: #94a3b8;
+      display: flex;
+      gap: 8px;
+    }
+
+    .level-row-stars {
+      font-size: 12px;
+      color: #f59e0b;
+    }
+
+    .level-row-arrow {
+      font-size: 20px;
+      color: #cbd5e1;
+      font-weight: 300;
+      flex-shrink: 0;
+    }
+
+    /* 视图切换 */
+    .view-toggle {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 10px;
+      gap: 4px;
+    }
+
+    .view-toggle button {
+      padding: 4px 10px;
+      border: none;
+      background: #f1f5f9;
+      color: #64748b;
+      border-radius: 6px;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    .view-toggle button.active {
+      background: #3b82f6;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <div id="chapter-levels-container">
+      <a href="chapters.html" id="back-link">← 章节列表</a>
+
+      <div class="chapter-header-info">
+        <div class="chapter-header-icon" id="chapter-icon">📚</div>
+        <div class="chapter-header-title" id="chapter-title">加载中...</div>
+        <div class="chapter-header-subtitle" id="chapter-subtitle"></div>
+        <div class="chapter-header-desc" id="chapter-desc"></div>
+      </div>
+
+      <div class="chapter-progress-line">
+        <span class="chapter-progress-text">进度</span>
+        <div class="chapter-progress-bar">
+          <div class="chapter-progress-bar-fill" id="chapter-progress-fill" style="width: 0%"></div>
+        </div>
+        <span class="chapter-progress-text" id="chapter-progress-text">0/0</span>
+      </div>
+
+      <div class="view-toggle">
+        <button id="btn-view-grid" class="active">网格</button>
+        <button id="btn-view-list">列表</button>
+      </div>
+
+      <div id="levels-grid">
+        <div style="grid-column: 1 / -1; text-align:center; padding: 40px; color: #94a3b8;">加载关卡中...</div>
+      </div>
+
+      <div id="levels-list-view"></div>
+    </div>
+  </div>
+
+  <script src="utils/storage.js"></script>
+  <script>
+    let chapterId = 1;
+    let chapterData = null;
+    let allLevels = [];
+    let currentView = 'grid';
+
+    // 从 URL 读取章节 ID
+    function init() {
+      const params = new URLSearchParams(window.location.search);
+      const idParam = params.get('id');
+      if (idParam) {
+        chapterId = parseInt(idParam) || 1;
+      }
+      loadChapterData();
+      bindViewToggle();
+    }
+
+    // 加载章节数据
+    async function loadChapterData() {
+      try {
+        const res = await fetch('/api/chapter/' + chapterId);
+        const json = await res.json();
+        if (json.code === 0 && json.data) {
+          chapterData = json.data;
+          allLevels = chapterData.levels || [];
+        }
+      } catch (e) {
+        console.warn('获取章节数据失败：', e.message);
+        // 降级：加载本地数据
+        await loadLocalChapterData();
+      }
+
+      if (!chapterData) {
+        chapterData = getFallbackChapterData();
+        allLevels = chapterData.levels || [];
+      }
+
+      renderChapterHeader();
+      renderLevels();
+    }
+
+    // 降级加载本地章节数据
+    async function loadLocalChapterData() {
+      try {
+        // 先尝试从 chapters.json 找章节信息
+        const res1 = await fetch('data/chapters.json');
+        const chapters = await res1.json();
+        const chapterInfo = chapters.find(c => c.chapterId === chapterId);
+        if (chapterInfo) {
+          chapterData = {
+            id: chapterInfo.chapterId,
+            title: chapterInfo.title,
+            subtitle: chapterInfo.subtitle,
+            icon: chapterInfo.icon,
+            color: chapterInfo.color,
+            description: chapterInfo.description,
+            levels: chapterInfo.levels || []
+          };
+          allLevels = chapterData.levels;
+        }
+
+        // 再尝试加载单独的章节文件
+        try {
+          const res2 = await fetch(`data/chapters/chapter_${chapterId}.json`);
+          const chapterDetail = await res2.json();
+          if (chapterDetail && chapterDetail.lessons) {
+            // 把课程转成关卡格式
+            const levelsFromLessons = chapterDetail.lessons
+              .filter(l => l.type !== 'intro' && l.type !== 'rules' && l.type !== 'cage-intro')
+              .map((l, idx) => ({
+                levelId: chapterId * 100 + idx + 1,
+                title: l.title,
+                gridSize: chapterDetail.boardSize || (chapterId <= 1 ? 4 : chapterId <= 3 ? 6 : 9),
+                difficulty: '入门',
+                teachingGoal: l.type || 'practice',
+                features: { allowDraft: true, assistant45: true, showHints: true }
+              }));
+            if (levelsFromLessons.length > 0) {
+              allLevels = levelsFromLessons;
+            }
+          }
+          if (chapterDetail) {
+            chapterData = {
+              ...chapterData,
+              id: chapterDetail.id || chapterId,
+              title: chapterDetail.title || chapterData.title,
+              subtitle: chapterDetail.subtitle || chapterData.subtitle,
+              icon: chapterDetail.icon || chapterData.icon,
+              description: chapterDetail.description || chapterData.description
+            };
+          }
+        } catch (e2) {
+          console.warn('章节详情加载失败：', e2.message);
+        }
+      } catch (e) {
+        console.warn('本地章节数据加载失败：', e.message);
+      }
+    }
+
+    // 最终降级数据
+    function getFallbackChapterData() {
+      const sizes = [4, 4, 6, 6, 9, 9];
+      const titles = ['加密来信', '双重线索', '谜案追踪', '密码破译', '终极考验', '大师之路'];
+      const subtitles = ['入门篇 · 4x4', '进阶篇 · 4x4', '提高篇 · 6x6', '进阶篇 · 9x9', '挑战篇 · 9x9', '大师篇 · 9x9'];
+      const icons = ['✉️', '🔍', '🕵️', '📜', '🏆', '👑'];
+      const colors = ['#22c55e', '#3b82f6', '#8b5cf6', '#f59e0b', '#ef4444', '#ec4899'];
+      const idx = Math.min(chapterId - 1, 5);
+      const size = sizes[idx];
+
+      // 生成 10 个示例关卡
+      const levels = [];
+      for (let i = 1; i <= 10; i++) {
+        levels.push({
+          levelId: chapterId * 100 + i,
+          title: `第${i}关`,
+          gridSize: size,
+          difficulty: '入门',
+          teachingGoal: `教学目标 ${i}`,
+          features: { allowDraft: i > 2, assistant45: i > 5, showHints: true }
+        });
+      }
+
+      return {
+        id: chapterId,
+        title: titles[idx],
+        subtitle: subtitles[idx],
+        icon: icons[idx],
+        color: colors[idx],
+        description: `第${chapterId}章的教学内容，带你逐步掌握杀手数独的核心技巧。`,
+        levels: levels
+      };
+    }
+
+    // 渲染章节头部
+    function renderChapterHeader() {
+      document.getElementById('chapter-icon').textContent = chapterData.icon || '📚';
+      document.getElementById('chapter-title').textContent =
+        `第${chapterId}章：${chapterData.title || '未知章节'}`;
+      document.getElementById('chapter-subtitle').textContent = chapterData.subtitle || '';
+      document.getElementById('chapter-desc').textContent = chapterData.description || '';
+
+      // 更新进度
+      const total = allLevels.length;
+      let completed = 0;
+      allLevels.forEach(level => {
+        if (Storage.isTeachingLevelCompleted(level.levelId)) {
+          completed++;
+        }
+      });
+
+      const percent = total > 0 ? Math.round((completed / total) * 100) : 0;
+      document.getElementById('chapter-progress-fill').style.width = percent + '%';
+      document.getElementById('chapter-progress-text').textContent = `${completed}/${total}`;
+
+      // 保存章节进度
+      Storage.saveChapterProgress(chapterId, {
+        completedLevels: completed,
+        totalLevels: total
+      });
+    }
+
+    // 渲染关卡
+    function renderLevels() {
+      renderGridView();
+      renderListView();
+    }
+
+    // 渲染网格视图
+    function renderGridView() {
+      const grid = document.getElementById('levels-grid');
+      if (allLevels.length === 0) {
+        grid.innerHTML = '<div style="grid-column: 1 / -1; text-align:center; padding: 40px; color: #94a3b8;">暂无关卡</div>';
+        return;
+      }
+
+      const levelIds = allLevels.map(l => String(l.levelId));
+      let html = '';
+
+      allLevels.forEach((level, index) => {
+        const id = level.levelId;
+        const unlocked = Storage.isTeachingLevelUnlocked(id, levelIds);
+        const completed = Storage.isTeachingLevelCompleted(id);
+        const record = Storage.getTeachingCompleteRecord(id);
+        const stars = record ? (record.stars || 3) : 0;
+
+        let cellClass = 'level-cell ';
+        if (!unlocked) cellClass += 'locked';
+        else if (completed) cellClass += 'completed';
+        else cellClass += 'unlocked';
+
+        // 找到第一个未通关的已解锁关卡，标记为 current
+        const isCurrent = unlocked && !completed &&
+          allLevels.slice(0, index).every(l => Storage.isTeachingLevelCompleted(l.levelId));
+        if (isCurrent) cellClass += ' current';
+
+        const displayNum = index + 1;
+
+        if (!unlocked) {
+          html += `
+            <div class="${cellClass}" data-id="${id}" data-unlocked="false">
+              <div class="level-cell-lock">🔒</div>
+            </div>
+          `;
+        } else {
+          html += `
+            <div class="${cellClass}" data-id="${id}" data-unlocked="true">
+              <div class="level-cell-number">${displayNum}</div>
+              ${completed ? `<div class="level-cell-stars">${'★'.repeat(stars)}${'☆'.repeat(3 - stars)}</div>` : ''}
+            </div>
+          `;
+        }
+      });
+
+      grid.innerHTML = html;
+
+      // 绑定点击
+      grid.querySelectorAll('.level-cell').forEach(cell => {
+        cell.addEventListener('click', () => {
+          if (cell.dataset.unlocked === 'false') return;
+          const id = cell.dataset.id;
+          window.location.href = 'guide.html?levelId=' + id;
+        });
+      });
+    }
+
+    // 渲染列表视图
+    function renderListView() {
+      const list = document.getElementById('levels-list-view');
+      if (allLevels.length === 0) {
+        list.innerHTML = '<div style="text-align:center; padding: 40px; color: #94a3b8;">暂无关卡</div>';
+        return;
+      }
+
+      const levelIds = allLevels.map(l => String(l.levelId));
+      let html = '';
+
+      allLevels.forEach((level, index) => {
+        const id = level.levelId;
+        const unlocked = Storage.isTeachingLevelUnlocked(id, levelIds);
+        const completed = Storage.isTeachingLevelCompleted(id);
+        const record = Storage.getTeachingCompleteRecord(id);
+        const stars = record ? (record.stars || 3) : 0;
+
+        let rowClass = 'level-row ';
+        if (!unlocked) rowClass += 'locked';
+        else if (completed) rowClass += 'completed';
+        else rowClass += 'unlocked';
+
+        const displayNum = index + 1;
+        const timeStr = record && record.time ? formatTime(record.time) : '';
+        const gridSize = level.gridSize || 9;
+
+        html += `
+          <div class="${rowClass}" data-id="${id}" data-unlocked="${unlocked}">
+            <div class="level-row-num">${unlocked ? displayNum : '🔒'}</div>
+            <div class="level-row-info">
+              <div class="level-row-title">${level.title || `第${displayNum}关`}</div>
+              <div class="level-row-meta">
+                <span>${gridSize}x${gridSize}</span>
+                <span>${level.difficulty || ''}</span>
+                ${timeStr ? `<span>最佳 ${timeStr}</span>` : ''}
+              </div>
+            </div>
+            ${completed ? `<div class="level-row-stars">${'★'.repeat(stars)}${'☆'.repeat(3 - stars)}</div>` : ''}
+            ${unlocked ? '<div class="level-row-arrow">›</div>' : ''}
+          </div>
+        `;
+      });
+
+      list.innerHTML = html;
+
+      // 绑定点击
+      list.querySelectorAll('.level-row').forEach(row => {
+        row.addEventListener('click', () => {
+          if (row.dataset.unlocked === 'false') return;
+          const id = row.dataset.id;
+          window.location.href = 'guide.html?levelId=' + id;
+        });
+      });
+    }
+
+    // 视图切换
+    function bindViewToggle() {
+      document.getElementById('btn-view-grid').addEventListener('click', () => {
+        currentView = 'grid';
+        document.getElementById('btn-view-grid').classList.add('active');
+        document.getElementById('btn-view-list').classList.remove('active');
+        document.getElementById('levels-grid').style.display = 'grid';
+        document.getElementById('levels-list-view').style.display = 'none';
+      });
+
+      document.getElementById('btn-view-list').addEventListener('click', () => {
+        currentView = 'list';
+        document.getElementById('btn-view-grid').classList.remove('active');
+        document.getElementById('btn-view-list').classList.add('active');
+        document.getElementById('levels-grid').style.display = 'none';
+        document.getElementById('levels-list-view').style.display = 'flex';
+      });
+    }
+
+    // 工具：时间格式化
+    function formatTime(seconds) {
+      const m = Math.floor(seconds / 60);
+      const s = seconds % 60;
+      if (m > 0) return m + '分' + String(s).padStart(2, '0') + '秒';
+      return s + '秒';
+    }
+
+    // 启动
+    init();
+  </script>
+</body>
+</html>

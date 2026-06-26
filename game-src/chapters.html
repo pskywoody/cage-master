@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>教学模式 · 章节选择</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    /* 章节选择页样式 */
+    #chapters-container {
+      background: white;
+      border-radius: 24px;
+      padding: 20px 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    }
+
+    #chapters-container h1 {
+      text-align: center;
+      margin-bottom: 6px;
+      color: #334155;
+      font-size: 24px;
+    }
+
+    #chapters-subtitle {
+      text-align: center;
+      color: #64748b;
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    #chapters-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-height: 65vh;
+      overflow-y: auto;
+      padding-right: 4px;
+    }
+
+    /* 章节卡片 */
+    .chapter-card {
+      position: relative;
+      border-radius: 16px;
+      padding: 16px;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: 2px solid transparent;
+      overflow: hidden;
+    }
+
+    .chapter-card:active {
+      transform: scale(0.98);
+    }
+
+    .chapter-card.unlocked {
+      background: #f8fafc;
+    }
+
+    .chapter-card.unlocked:hover {
+      border-color: #cbd5e1;
+    }
+
+    .chapter-card.locked {
+      background: #f1f5f9;
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+
+    .chapter-card.completed {
+      border-color: #22c55e;
+      background: #f0fdf4;
+    }
+
+    .chapter-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+
+    .chapter-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      flex-shrink: 0;
+    }
+
+    .chapter-titles {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .chapter-title {
+      font-size: 17px;
+      font-weight: 600;
+      color: #1e293b;
+      margin-bottom: 2px;
+    }
+
+    .chapter-subtitle {
+      font-size: 13px;
+      color: #64748b;
+    }
+
+    .chapter-lock {
+      font-size: 20px;
+      color: #94a3b8;
+    }
+
+    .chapter-description {
+      font-size: 13px;
+      color: #64748b;
+      line-height: 1.5;
+      margin-bottom: 10px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .chapter-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .chapter-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 500;
+      background: rgba(0,0,0,0.06);
+      color: #475569;
+    }
+
+    .chapter-badge.earned {
+      background: #fef3c7;
+      color: #92400e;
+    }
+
+    .chapter-progress {
+      font-size: 12px;
+      color: #64748b;
+    }
+
+    .progress-bar {
+      width: 80px;
+      height: 6px;
+      background: #e2e8f0;
+      border-radius: 3px;
+      overflow: hidden;
+      display: inline-block;
+      margin-right: 6px;
+      vertical-align: middle;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background: #22c55e;
+      border-radius: 3px;
+      transition: width 0.3s;
+    }
+
+    .chapter-card.locked .progress-bar-fill {
+      background: #94a3b8;
+    }
+
+    /* 返回按钮 */
+    #back-link {
+      display: inline-block;
+      margin-bottom: 12px;
+      padding: 6px 14px;
+      background: #f1f5f9;
+      border-radius: 8px;
+      font-size: 13px;
+      color: #64748b;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    #back-link:active {
+      background: #e2e8f0;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <div id="chapters-container">
+      <a href="levels.html" id="back-link">← 返回</a>
+      <h1>教学模式</h1>
+      <p id="chapters-subtitle">从零开始学习杀手数独</p>
+
+      <div id="chapters-list">
+        <div style="text-align:center; padding: 40px; color: #94a3b8;">加载章节中...</div>
+      </div>
+    </div>
+  </div>
+
+  <script src="utils/storage.js"></script>
+  <script>
+    let allChapters = [];
+
+    // 加载章节列表
+    async function loadChapters() {
+      let chapters = [];
+      try {
+        const res = await fetch('/api/chapters');
+        const json = await res.json();
+        if (json.code === 0 && json.data) {
+          chapters = json.data;
+        }
+      } catch (e) {
+        console.warn('获取章节列表失败：', e.message);
+        // 降级：加载本地数据
+        chapters = await loadLocalChapters();
+      }
+
+      if (!chapters || chapters.length === 0) {
+        document.getElementById('chapters-list').innerHTML =
+          '<div style="text-align:center; padding: 40px; color: #94a3b8;">暂无章节数据</div>';
+        return;
+      }
+
+      allChapters = chapters;
+      renderChapters();
+    }
+
+    // 降级加载本地章节数据
+    async function loadLocalChapters() {
+      try {
+        const res = await fetch('data/chapters.json');
+        const data = await res.json();
+        if (Array.isArray(data)) return data;
+        // 如果是对象包裹的数组
+        if (data && data.chapters) return data.chapters;
+        return [];
+      } catch (e) {
+        console.warn('本地章节数据加载失败：', e.message);
+        return getFallbackChapters();
+      }
+    }
+
+    // 最终降级数据
+    function getFallbackChapters() {
+      return [
+        { chapterId: 1, title: '加密来信', subtitle: '入门篇 · 4x4', icon: '✉️', color: '#22c55e',
+          description: '认识杀手数独的基本规则，从最小的4x4盘面开始你的侦探之旅。',
+          badgeId: 'badge_c1_letter', badgeName: '新手侦探', unlockRequirement: 0, levels: [] },
+        { chapterId: 2, title: '双重线索', subtitle: '进阶篇 · 6x6', icon: '🔍', color: '#3b82f6',
+          description: '学习更多解题技巧，挑战6x6盘面，提升你的推理能力。',
+          badgeId: 'badge_c2_clue', badgeName: '初级侦探', unlockRequirement: 1, levels: [] },
+        { chapterId: 3, title: '谜案追踪', subtitle: '提高篇 · 6x6', icon: '🕵️', color: '#8b5cf6',
+          description: '掌握45法则等高级技巧，破解更复杂的谜题。',
+          badgeId: 'badge_c3_trace', badgeName: '中级侦探', unlockRequirement: 1, levels: [] },
+        { chapterId: 4, title: '密码破译', subtitle: '进阶篇 · 9x9', icon: '📜', color: '#f59e0b',
+          description: '正式挑战9x9盘面，体验完整的杀手数独魅力。',
+          badgeId: 'badge_c4_cipher', badgeName: '高级侦探', unlockRequirement: 1, levels: [] },
+        { chapterId: 5, title: '终极考验', subtitle: '挑战篇 · 9x9', icon: '🏆', color: '#ef4444',
+          description: '高难度9x9谜题，考验你所有学到的技巧。',
+          badgeId: 'badge_c5_ultimate', badgeName: '精英侦探', unlockRequirement: 1, levels: [] },
+        { chapterId: 6, title: '大师之路', subtitle: '大师篇 · 9x9', icon: '👑', color: '#ec4899',
+          description: '传说级难度，只有真正的侦探大师才能通关。',
+          badgeId: 'badge_c6_master', badgeName: '大师侦探', unlockRequirement: 1, levels: [] }
+      ];
+    }
+
+    // 渲染章节列表
+    function renderChapters() {
+      const list = document.getElementById('chapters-list');
+      let html = '';
+
+      allChapters.forEach(chapter => {
+        const id = chapter.chapterId;
+        const unlocked = checkChapterUnlocked(chapter);
+        const progress = getChapterProgressInfo(chapter);
+        const badgeEarned = Storage.hasBadge(chapter.badgeId);
+        const completed = progress.completed === progress.total && progress.total > 0;
+
+        let cardClass = 'chapter-card ';
+        if (!unlocked) cardClass += 'locked';
+        else if (completed) cardClass += 'completed';
+        else cardClass += 'unlocked';
+
+        const progressPercent = progress.total > 0
+          ? Math.round((progress.completed / progress.total) * 100)
+          : 0;
+
+        html += `
+          <div class="${cardClass}" data-id="${id}" data-unlocked="${unlocked}">
+            <div class="chapter-header">
+              <div class="chapter-icon" style="background: ${chapter.color}20; color: ${chapter.color};">
+                ${unlocked ? chapter.icon : '🔒'}
+              </div>
+              <div class="chapter-titles">
+                <div class="chapter-title">第${id}章：${chapter.title}</div>
+                <div class="chapter-subtitle">${chapter.subtitle || ''}</div>
+              </div>
+              ${!unlocked ? '<div class="chapter-lock">🔒</div>' : ''}
+            </div>
+            <div class="chapter-description">${chapter.description || ''}</div>
+            <div class="chapter-footer">
+              <span class="chapter-badge ${badgeEarned ? 'earned' : ''}">
+                ${badgeEarned ? '🏅' : '🎖️'} ${chapter.badgeName || '徽章'}
+              </span>
+              <span class="chapter-progress">
+                <span class="progress-bar">
+                  <span class="progress-bar-fill" style="width: ${progressPercent}%"></span>
+                </span>
+                ${progress.completed}/${progress.total}
+              </span>
+            </div>
+          </div>
+        `;
+      });
+
+      list.innerHTML = html;
+
+      // 绑定点击
+      document.querySelectorAll('.chapter-card').forEach(card => {
+        card.addEventListener('click', () => {
+          if (card.dataset.unlocked === 'false') {
+            return;
+          }
+          const id = card.dataset.id;
+          window.location.href = 'chapter-levels.html?id=' + id;
+        });
+      });
+    }
+
+    // 检查章节是否解锁
+    function checkChapterUnlocked(chapter) {
+      const id = chapter.chapterId;
+      const unlockReq = chapter.unlockRequirement || 0;
+
+      // 第一章默认解锁
+      if (id === 1) return true;
+      if (unlockReq === 0) return true;
+
+      // 检查前一章节通关数
+      const prevId = id - 1;
+      const prevChapter = allChapters.find(c => c.chapterId === prevId);
+      if (!prevChapter) return false;
+
+      const prevProgress = getChapterProgressInfo(prevChapter);
+      return prevProgress.completed >= unlockReq;
+    }
+
+    // 获取章节进度信息
+    function getChapterProgressInfo(chapter) {
+      const levels = chapter.levels || [];
+      const total = levels.length;
+      let completed = 0;
+
+      levels.forEach(level => {
+        if (Storage.isTeachingLevelCompleted(level.levelId)) {
+          completed++;
+        }
+      });
+
+      // 如果没有关卡数据，从本地存储的章节进度读取
+      if (total === 0) {
+        const saved = Storage.getChapterProgress(chapter.chapterId);
+        if (saved) {
+          return {
+            completed: saved.completedLevels || 0,
+            total: saved.totalLevels || 0
+          };
+        }
+        return { completed: 0, total: 0 };
+      }
+
+      return { completed, total };
+    }
+
+    // 启动
+    loadChapters();
+  </script>
+</body>
+</html>

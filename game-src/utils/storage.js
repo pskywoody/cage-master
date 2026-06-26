@@ -472,6 +472,265 @@ const Storage = (function() {
     }
   }
 
+  // ==========================================
+  // 教学模式相关存储
+  // ==========================================
+
+  const TEACHING_COMPLETE_KEY = KEY_PREFIX + 'teaching_complete';   // 教学关卡通关记录
+  const TEACHING_PROGRESS_KEY = KEY_PREFIX + 'teaching_progress';   // 教学关卡进度
+  const TEACHING_BADGES_KEY = KEY_PREFIX + 'teaching_badges';       // 徽章获得状态
+  const TEACHING_CHAPTERS_KEY = KEY_PREFIX + 'teaching_chapters';   // 章节通关进度
+
+  /**
+   * 获取所有教学关卡通关记录
+   * @returns {Object} { [levelId]: { completed, time, stars } }
+   */
+  function getTeachingCompleteAll() {
+    try {
+      const raw = localStorage.getItem(TEACHING_COMPLETE_KEY);
+      return raw ? JSON.parse(raw) : {};
+    } catch (e) {
+      return {};
+    }
+  }
+
+  /**
+   * 检查某教学关卡是否通关
+   * @param {number|string} levelId
+   * @returns {boolean}
+   */
+  function isTeachingLevelCompleted(levelId) {
+    const all = getTeachingCompleteAll();
+    return !!all[levelId];
+  }
+
+  /**
+   * 获取某教学关卡通关记录
+   * @param {number|string} levelId
+   * @returns {Object|null}
+   */
+  function getTeachingCompleteRecord(levelId) {
+    const all = getTeachingCompleteAll();
+    return all[levelId] || null;
+  }
+
+  /**
+   * 标记教学关卡通关
+   * @param {number|string} levelId
+   * @param {Object} data { time: seconds, stars?: number }
+   */
+  function markTeachingComplete(levelId, data) {
+    try {
+      const all = getTeachingCompleteAll();
+      const existing = all[levelId];
+      // 只在首次通关或更快通关时更新
+      if (existing && data.time >= existing.time) {
+        // 已有更快记录，但仍需更新星星数（如果更高）
+        if (data.stars && (!existing.stars || data.stars > existing.stars)) {
+          existing.stars = data.stars;
+          all[levelId] = existing;
+          localStorage.setItem(TEACHING_COMPLETE_KEY, JSON.stringify(all));
+        }
+        return;
+      }
+      all[levelId] = {
+        completed: true,
+        time: data.time,
+        stars: data.stars || 3
+      };
+      localStorage.setItem(TEACHING_COMPLETE_KEY, JSON.stringify(all));
+    } catch (e) {
+      console.warn('保存教学通关记录失败：', e.message);
+    }
+  }
+
+  /**
+   * 批量获取教学关卡通关状态
+   * @param {Array} levelIds
+   * @returns {Object} { [levelId]: { completed, time, stars } }
+   */
+  function getTeachingCompleteBatch(levelIds) {
+    const all = getTeachingCompleteAll();
+    const result = {};
+    levelIds.forEach(id => {
+      result[id] = all[id] || { completed: false, time: 0, stars: 0 };
+    });
+    return result;
+  }
+
+  /**
+   * 保存教学关卡进度
+   * @param {number|string} levelId
+   * @param {Object} data { fillNums, candidates, time }
+   */
+  function saveTeachingProgress(levelId, data) {
+    try {
+      const all = getTeachingProgressAll();
+      all[levelId] = data;
+      localStorage.setItem(TEACHING_PROGRESS_KEY, JSON.stringify(all));
+    } catch (e) {
+      console.warn('保存教学进度失败：', e.message);
+    }
+  }
+
+  /**
+   * 读取教学关卡进度
+   * @param {number|string} levelId
+   * @returns {Object|null}
+   */
+  function loadTeachingProgress(levelId) {
+    const all = getTeachingProgressAll();
+    return all[levelId] || null;
+  }
+
+  /**
+   * 清除教学关卡进度
+   * @param {number|string} levelId
+   */
+  function clearTeachingProgress(levelId) {
+    try {
+      const all = getTeachingProgressAll();
+      delete all[levelId];
+      localStorage.setItem(TEACHING_PROGRESS_KEY, JSON.stringify(all));
+    } catch (e) {
+      console.warn('清除教学进度失败：', e.message);
+    }
+  }
+
+  /**
+   * 获取所有教学关卡进度
+   */
+  function getTeachingProgressAll() {
+    try {
+      const raw = localStorage.getItem(TEACHING_PROGRESS_KEY);
+      return raw ? JSON.parse(raw) : {};
+    } catch (e) {
+      return {};
+    }
+  }
+
+  /**
+   * 获取所有获得的徽章
+   * @returns {Object} { [badgeId]: { earned, earnedAt, name } }
+   */
+  function getTeachingBadgesAll() {
+    try {
+      const raw = localStorage.getItem(TEACHING_BADGES_KEY);
+      return raw ? JSON.parse(raw) : {};
+    } catch (e) {
+      return {};
+    }
+  }
+
+  /**
+   * 检查某徽章是否已获得
+   * @param {string} badgeId
+   * @returns {boolean}
+   */
+  function hasBadge(badgeId) {
+    const all = getTeachingBadgesAll();
+    return !!all[badgeId] && all[badgeId].earned;
+  }
+
+  /**
+   * 解锁徽章
+   * @param {string} badgeId
+   * @param {Object} data { name?: string }
+   */
+  function unlockBadge(badgeId, data = {}) {
+    try {
+      const all = getTeachingBadgesAll();
+      if (all[badgeId] && all[badgeId].earned) return; // 已获得
+      all[badgeId] = {
+        earned: true,
+        earnedAt: Date.now(),
+        name: data.name || badgeId
+      };
+      localStorage.setItem(TEACHING_BADGES_KEY, JSON.stringify(all));
+    } catch (e) {
+      console.warn('解锁徽章失败：', e.message);
+    }
+  }
+
+  /**
+   * 获取章节通关进度
+   * @returns {Object} { [chapterId]: { completedLevels: number, totalLevels: number, unlocked: boolean } }
+   */
+  function getChapterProgressAll() {
+    try {
+      const raw = localStorage.getItem(TEACHING_CHAPTERS_KEY);
+      return raw ? JSON.parse(raw) : {};
+    } catch (e) {
+      return {};
+    }
+  }
+
+  /**
+   * 获取某章节进度
+   * @param {number|string} chapterId
+   * @returns {Object|null}
+   */
+  function getChapterProgress(chapterId) {
+    const all = getChapterProgressAll();
+    return all[chapterId] || null;
+  }
+
+  /**
+   * 保存章节进度
+   * @param {number|string} chapterId
+   * @param {Object} data
+   */
+  function saveChapterProgress(chapterId, data) {
+    try {
+      const all = getChapterProgressAll();
+      all[chapterId] = { ...all[chapterId], ...data };
+      localStorage.setItem(TEACHING_CHAPTERS_KEY, JSON.stringify(all));
+    } catch (e) {
+      console.warn('保存章节进度失败：', e.message);
+    }
+  }
+
+  /**
+   * 检查某章节是否解锁
+   * @param {number|string} chapterId
+   * @param {number} unlockRequirement - 解锁需要的前置章节通关数
+   * @returns {boolean}
+   */
+  function isChapterUnlocked(chapterId, unlockRequirement = 0) {
+    // 第一章默认解锁
+    if (chapterId === 1 || chapterId === '1') return true;
+    if (unlockRequirement === 0) return true;
+
+    // 检查前一章节是否通关
+    const prevChapterId = typeof chapterId === 'number' ? chapterId - 1 : (parseInt(chapterId) - 1);
+    const progress = getChapterProgress(prevChapterId);
+    if (!progress) return false;
+    return progress.completedLevels >= unlockRequirement;
+  }
+
+  /**
+   * 检查某教学关卡是否解锁
+   * 第一关默认解锁，后续关卡需要前一关通关
+   * @param {number|string} levelId
+   * @param {Array} levelIdsInChapter - 该章节的所有关卡ID数组（按顺序）
+   * @returns {boolean}
+   */
+  function isTeachingLevelUnlocked(levelId, levelIdsInChapter) {
+    const idx = levelIdsInChapter.indexOf(String(levelId));
+    if (idx === -1) {
+      // 也尝试数字比较
+      const numId = parseInt(levelId);
+      const numIdx = levelIdsInChapter.findIndex(id => parseInt(id) === numId);
+      if (numIdx === -1) return false;
+      if (numIdx === 0) return true;
+      const prevId = levelIdsInChapter[numIdx - 1];
+      return isTeachingLevelCompleted(prevId);
+    }
+    if (idx === 0) return true; // 第一关默认解锁
+    const prevId = levelIdsInChapter[idx - 1];
+    return isTeachingLevelCompleted(prevId);
+  }
+
   return {
     saveProgress,
     loadProgress,
@@ -491,7 +750,24 @@ const Storage = (function() {
     getLevelAnalytics,
     calibrateDifficulty,
     getBattleStats,
-    recordBattle
+    recordBattle,
+    // 教学模式
+    getTeachingCompleteAll,
+    isTeachingLevelCompleted,
+    getTeachingCompleteRecord,
+    markTeachingComplete,
+    getTeachingCompleteBatch,
+    saveTeachingProgress,
+    loadTeachingProgress,
+    clearTeachingProgress,
+    getTeachingBadgesAll,
+    hasBadge,
+    unlockBadge,
+    getChapterProgressAll,
+    getChapterProgress,
+    saveChapterProgress,
+    isChapterUnlocked,
+    isTeachingLevelUnlocked
   };
 })();
 

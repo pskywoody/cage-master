@@ -11,15 +11,47 @@ class Renderer {
   }
 
   /**
+   * 根据棋盘尺寸和容器宽度计算合适的 cellSize
+   */
+  recalcCellSize(board) {
+    // 以 canvas 的 CSS 宽度为基准计算
+    const cssWidth = this.canvas.clientWidth || 400;
+    const size = board.size;
+    // 减去 padding 的比例（padding 在两侧，所以 * 2）
+    // cellSize = (可用宽度 - 2 * padding) / size
+    const availableWidth = cssWidth - this.padding * 2;
+    this.cellSize = Math.floor(availableWidth / size);
+    // 最小 cellSize 保证可读性
+    if (this.cellSize < 30) this.cellSize = 30;
+  }
+
+  /**
+   * 获取宫的尺寸
+   */
+  getBoxSize(size) {
+    if (size === 4) return { boxW: 2, boxH: 2 };
+    if (size === 6) return { boxW: 3, boxH: 2 };
+    return { boxW: 3, boxH: 3 }; // 9x9 默认
+  }
+
+  /**
    * 主渲染入口：按层从下到上绘制
    */
   render(board) {
+    // 动态计算 cellSize
+    this.recalcCellSize(board);
+
     const { ctx, cellSize, padding } = this;
     const size = board.size;
     const canvasSize = size * cellSize + padding * 2;
 
-    this.canvas.width = canvasSize;
-    this.canvas.height = canvasSize;
+    // 用 devicePixelRatio 提升清晰度
+    const dpr = window.devicePixelRatio || 1;
+    this.canvas.width = canvasSize * dpr;
+    this.canvas.height = canvasSize * dpr;
+    this.canvas.style.width = canvasSize + 'px';
+    this.canvas.style.height = canvasSize + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
     ctx.clearRect(0, 0, canvasSize, canvasSize);
 
@@ -179,13 +211,43 @@ class Renderer {
         }
       });
 
-      // 和值绘制在笼子顶部边框外侧（不占用格子内部，彻底避免与候选数重叠）
+      // 和值绘制：统一画在笼子内部左上角
+      // 用蓝色小徽章样式，和格子数字明显区分
       ctx.setLineDash([]);
-      ctx.fillStyle = '#1e293b';
-      ctx.font = 'bold 12px sans-serif';
-      ctx.textAlign = 'left';
-      ctx.textBaseline = 'bottom';
-      ctx.fillText(cage.sum, minC * cellSize + 2, minR * cellSize - 2);
+      const sumFontSize = Math.max(8, Math.floor(cellSize * 0.16));
+      ctx.font = `bold ${sumFontSize}px sans-serif`;
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+
+      const sumText = String(cage.sum);
+      const textWidth = ctx.measureText(sumText).width;
+      const badgePadding = Math.max(3, Math.floor(cellSize * 0.04));
+      const badgeW = textWidth + badgePadding * 2;
+      const badgeH = sumFontSize + badgePadding * 2 - 2;
+      const badgeX = minC * cellSize + 2;
+      const badgeY = minR * cellSize + 2;
+      const badgeR = Math.min(badgeH / 2, 4);
+
+      // 画蓝色圆角徽章背景
+      ctx.fillStyle = '#3b82f6';
+      ctx.beginPath();
+      const bx = badgeX;
+      const by = badgeY;
+      ctx.moveTo(bx + badgeR, by);
+      ctx.lineTo(bx + badgeW - badgeR, by);
+      ctx.quadraticCurveTo(bx + badgeW, by, bx + badgeW, by + badgeR);
+      ctx.lineTo(bx + badgeW, by + badgeH - badgeR);
+      ctx.quadraticCurveTo(bx + badgeW, by + badgeH, bx + badgeW - badgeR, by + badgeH);
+      ctx.lineTo(bx + badgeR, by + badgeH);
+      ctx.quadraticCurveTo(bx, by + badgeH, bx, by + badgeH - badgeR);
+      ctx.lineTo(bx, by + badgeR);
+      ctx.quadraticCurveTo(bx, by, bx + badgeR, by);
+      ctx.closePath();
+      ctx.fill();
+
+      // 画白色文字
+      ctx.fillStyle = '#ffffff';
+      ctx.fillText(sumText, badgeX + badgeW / 2, badgeY + badgeH / 2 + 1);
       ctx.setLineDash([5, 3]);
     });
 
@@ -268,7 +330,7 @@ class Renderer {
     // 简单处理：每个选中格都描边，但如果是多选，内部边框不重复
     // 先简单实现：每个选中格都描边
     ctx.strokeStyle = '#3b82f6';
-    ctx.lineWidth = 2;
+    ctx.lineWidth = 3;
     for (let r = 0; r < size; r++) {
       for (let c = 0; c < size; c++) {
         const cell = board.cells[r][c];
@@ -284,6 +346,8 @@ class Renderer {
     const { ctx, cellSize } = this;
     const size = board.size;
 
+    // 字体大小根据 cellSize 动态调整
+    const fontSize = Math.floor(cellSize * 0.45);
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
 
@@ -293,26 +357,34 @@ class Renderer {
         const num = cell.fixedNum || cell.fillNum;
         if (!num) continue;
 
-        ctx.font = cell.fixedNum ? 'bold 26px sans-serif' : '26px sans-serif';
+        ctx.font = cell.fixedNum ? `${fontSize}px sans-serif` : `${fontSize}px sans-serif`;
         if (cell.isError && board.settings.conflictRed) {
           ctx.fillStyle = '#ef4444';
+        } else if (cell.fixedNum) {
+          ctx.fillStyle = '#94a3b8';  // 给定数字用浅灰色，和玩家填的蓝色区分
         } else {
-          ctx.fillStyle = cell.fixedNum ? '#1e293b' : '#3b82f6';
+          ctx.fillStyle = '#3b82f6';
         }
         ctx.fillText(num, c * cellSize + cellSize / 2, r * cellSize + cellSize / 2);
       }
     }
   }
 
-  // ---------- 12. 候选数渲染（3×3九宫格布局）----------
+  // ---------- 12. 候选数渲染（根据gridSize动态布局）----------
   _drawCandidates(board) {
     const { ctx, cellSize } = this;
     const size = board.size;
-    const subSize = cellSize / 3;
+    const { boxW, boxH } = this.getBoxSize(size);
 
+    // 候选数用宫的尺寸来排列子格（4x4用2x2，6x6用3x2，9x9用3x3）
+    const subW = cellSize / boxW;
+    const subH = cellSize / boxH;
+
+    // 字体大小根据 cellSize 动态调整
+    const fontSize = Math.max(8, Math.floor(cellSize * 0.18));
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
-    ctx.font = '11px sans-serif';
+    ctx.font = fontSize + 'px sans-serif';
     ctx.fillStyle = '#94a3b8';
 
     for (let r = 0; r < size; r++) {
@@ -323,10 +395,10 @@ class Renderer {
         if (cell.candidates.size === 0) continue;
 
         cell.candidates.forEach(num => {
-          const subR = Math.floor((num - 1) / 3);
-          const subC = (num - 1) % 3;
-          const x = c * cellSize + subC * subSize + subSize / 2;
-          const y = r * cellSize + subR * subSize + subSize / 2;
+          const subR = Math.floor((num - 1) / boxW);
+          const subC = (num - 1) % boxW;
+          const x = c * cellSize + subC * subW + subW / 2;
+          const y = r * cellSize + subR * subH + subH / 2;
           ctx.fillText(num, x, y);
         });
       }

@@ -6,171 +6,136 @@
 }
 
 body {
-  background-color: #f8fafc;
+  background-color: #f0f2f5;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
   touch-action: manipulation;
-  padding: 10px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  min-height: 100vh;
+  min-height: 100dvh;
 }
 
 #app {
-  max-width: 500px;
   width: 100%;
-}
-
-#game-container {
+  max-width: 500px;
+  margin: 0 auto;
   background: white;
-  border-radius: 24px;
-  padding: 16px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100dvh;
+  position: relative;
 }
 
-#game-container h2 {
-  font-size: 22px;
+/* ========== 游戏页面布局（全屏撑满） ========== */
+#game-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 0 8px;
+  min-height: 0;
+  /* 无圆角、无阴影、无外边距 */
+}
+
+/* ========== 顶部状态栏 ========== */
+#game-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 4px 4px;
+  flex-shrink: 0;
+}
+
+#game-header h2 {
+  font-size: 16px;
+  margin: 0;
+  text-align: left;
+}
+
+#timer {
+  font-size: 15px;
   font-weight: 600;
   color: #334155;
+  font-family: 'SF Mono', Menlo, Consolas, monospace;
+  background: #f1f5f9;
+  padding: 3px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+#timer.paused {
+  color: #ef4444;
+  background: #fef2f2;
+}
+
+#btn-back {
+  padding: 4px 10px;
+  border: none;
+  background: transparent;
+  border-radius: 6px;
+  font-size: 14px;
+  color: #64748b;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+#btn-back:active {
+  background: #f1f5f9;
+}
+
+.header-icon-btn {
+  padding: 4px 8px;
+  border: none;
+  background: transparent;
+  border-radius: 6px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.header-icon-btn:active {
+  background: #f1f5f9;
+}
+
+/* ========== 关卡标题（极简） ========== */
+#level-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #475569;
+  text-align: center;
+  margin: 0 0 2px 0;
+  flex-shrink: 0;
+}
+
+#level-goal {
+  font-size: 11px;
+  color: #94a3b8;
+  text-align: center;
+  margin: 0 0 4px 0;
+  flex-shrink: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ========== 盘面区域（flex:1 撑满剩余空间） ========== */
+#board-area {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+  padding: 0 4px;
 }
 
 #gameCanvas {
   display: block;
   width: 100%;
+  max-width: 100%;
+  max-height: 100%;
   aspect-ratio: 1 / 1;
   background-color: #ffffff;
-  border-radius: 12px;
   touch-action: none;
   cursor: pointer;
-}
-
-/* 工具栏 */
-#toolbar {
-  display: flex;
-  justify-content: space-around;
-  margin-top: 16px;
-  gap: 8px;
-}
-
-#toolbar button {
-  flex: 1;
-  padding: 10px 0;
-  border: none;
-  background-color: #f1f5f9;
-  border-radius: 12px;
-  font-size: 15px;
-  font-weight: 500;
-  color: #334155;
-  transition: background 0.1s, transform 0.1s;
-  touch-action: manipulation;
-  cursor: pointer;
-}
-
-#toolbar button:active {
-  background-color: #cbd5e1;
-  transform: scale(0.95);
-}
-
-/* 第二行工具栏 */
-#toolbar-row2 {
-  display: flex;
-  gap: 6px;
-  margin-top: 8px;
-}
-.tool-btn2 {
-  flex: 1;
-  padding: 8px 0;
-  border: none;
-  border-radius: 10px;
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.15s;
-  touch-action: manipulation;
-  -webkit-tap-highlight-color: transparent;
-}
-.tool-btn2:active {
-  transform: scale(0.95);
-}
-#btn-quick-fill {
-  background: #f0fdf4;
-  color: #16a34a;
-}
-#btn-quick-fill:active { background: #dcfce7; }
-#btn-quick-fill.active {
-  background: #16a34a;
-  color: white;
-}
-#btn-restart {
-  background: #fef2f2;
-  color: #dc2626;
-}
-#btn-restart:active { background: #fecaca; }
-
-/* 快捷填入模式：被选中的数字凹陷 */
-.num-btn.quick-fill-num {
-  background: #16a34a !important;
-  color: white !important;
-  box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
-  transform: scale(0.92);
-}
-
-/* 移动端工具栏优化 */
-@media (max-width: 480px) {
-  #toolbar button {
-    padding: 12px 0;
-    font-size: 13px;
-  }
-}
-
-/* 数字键盘 */
-#num-pad {
-  display: grid;
-  grid-template-columns: repeat(9, 1fr);
-  gap: 6px;
-  margin-top: 12px;
-}
-
-.num-btn {
-  padding: 10px 0;
-  border: none;
-  background: #eff6ff;
-  color: #1d4ed8;
-  border-radius: 8px;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.1s;
-  -webkit-tap-highlight-color: transparent;
-  touch-action: manipulation;
-}
-
-.num-btn:active {
-  background: #bfdbfe;
-  transform: scale(0.95);
-}
-.num-btn.completed {
-  background: #e2e8f0;
-  color: #94a3b8;
-  cursor: default;
-  pointer-events: none;
-}
-.num-btn.completed:active {
-  transform: none;
-}
-
-/* 移动端：数字键盘改为3×3布局，按钮更大 */
-@media (max-width: 480px) {
-  #num-pad {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 8px;
-  }
-
-  .num-btn {
-    padding: 14px 0;
-    font-size: 20px;
-    border-radius: 12px;
-  }
 }
 
 /* ========== 关卡选择页 ========== */
@@ -363,6 +328,154 @@ body {
 
 #btn-back:active {
   background: #cbd5e1;
+}
+
+.header-icon-btn {
+  padding: 6px 10px;
+  border: none;
+  background: #f1f5f9;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.1s;
+}
+
+.header-icon-btn:active {
+  background: #cbd5e1;
+}
+
+/* ========== 工具栏（紧凑图标式） ========== */
+#toolbar {
+  display: flex;
+  justify-content: space-around;
+  gap: 4px;
+  padding: 4px 0;
+  flex-shrink: 0;
+}
+
+#toolbar button {
+  flex: 1;
+  padding: 8px 0;
+  border: none;
+  background: #f1f5f9;
+  border-radius: 10px;
+  font-size: 18px;
+  line-height: 1;
+  color: #475569;
+  cursor: pointer;
+  transition: all 0.1s;
+  touch-action: manipulation;
+}
+
+#toolbar button:active {
+  background: #cbd5e1;
+  transform: scale(0.92);
+}
+
+#btn-candidate.active {
+  background: #3b82f6;
+  color: white;
+}
+
+#btn-quick-fill.active {
+  background: #16a34a;
+  color: white;
+}
+
+/* 快捷填入模式：被选中的数字凹陷 */
+.num-btn.quick-fill-num {
+  background: #16a34a !important;
+  color: white !important;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+  transform: scale(0.92);
+}
+
+/* 连填功能提示文字 */
+.quick-fill-hint {
+  text-align: center;
+  font-size: 11px;
+  color: #94a3b8;
+  margin: 4px 0 0;
+  padding: 2px 0;
+  transition: opacity 0.5s ease;
+}
+.quick-fill-hint.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ========== 数字键盘（固定底部，按钮最大化） ========== */
+#num-pad {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  padding: 6px 0 10px;
+  flex-shrink: 0;
+}
+
+.num-btn {
+  position: relative;
+  padding: 12px 0;
+  border: none;
+  background: #eff6ff;
+  color: #1d4ed8;
+  border-radius: 12px;
+  font-size: 20px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.1s;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.num-btn:active {
+  background: #bfdbfe;
+  transform: scale(0.95);
+}
+
+.num-btn.completed {
+  background: #e2e8f0;
+  color: #94a3b8;
+  cursor: default;
+  pointer-events: none;
+}
+
+.num-btn.completed:active {
+  transform: none;
+}
+
+/* ========== 数字键长按进度反馈 ========== */
+/* 按下时：浅绿底，底部绿色粗条从0→100%变宽 */
+.num-btn.long-pressing {
+  position: relative;
+  overflow: hidden;
+  background: #dcfce7 !important;
+  color: #166534 !important;
+  font-weight: 700 !important;
+  transition: none;
+}
+
+.num-btn.long-pressing::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 5px;
+  background: #22c55e;
+  border-radius: 2px;
+  animation: press-progress 0.5s ease-out forwards;
+  z-index: 1;
+}
+
+/* 进度文字：让用户看到剩余时间 */
+.num-btn.long-pressing .press-label {
+  display: none;
+}
+
+@keyframes press-progress {
+  0%   { width: 0%; }
+  100% { width: 100%; }
 }
 
 /* ========== 暂停蒙层 ========== */
@@ -865,4 +978,366 @@ body {
 .game-toast.show {
   opacity: 1;
   transform: translate(-50%, -50%) scale(1);
+}
+
+/* ========== 引导系统 - 冷冻遮罩 ========== */
+.guide-freeze-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 500;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  pointer-events: auto;
+  /* 背景透明，实际遮罩由 spotlight 的 box-shadow 扩散产生挖空效果 */
+  background: transparent;
+}
+
+.guide-freeze-mask.active {
+  opacity: 1;
+}
+
+/* 高亮挖空区域：box-shadow 向外扩散填满整个屏幕，中心透明形成"挖空"效果 */
+.guide-freeze-spotlight {
+  position: fixed;
+  background: transparent;
+  /* 巨大的扩散半径 + 70% 黑色 = 全屏遮罩，中心透明 = 挖空 */
+  box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.7);
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  animation: guide-spotlight-pulse 2s ease-in-out infinite;
+}
+
+@keyframes guide-spotlight-pulse {
+  0%, 100% {
+    box-shadow:
+      0 0 0 2px rgba(255, 255, 255, 0.6),
+      0 0 0 9999px rgba(0, 0, 0, 0.7);
+  }
+  50% {
+    box-shadow:
+      0 0 0 4px rgba(255, 255, 255, 0.9),
+      0 0 15px 5px rgba(255, 255, 255, 0.3),
+      0 0 0 9999px rgba(0, 0, 0, 0.7);
+  }
+}
+
+/* 底部引导文字 */
+.guide-freeze-text-wrap {
+  position: absolute;
+  bottom: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  width: 80%;
+  max-width: 400px;
+}
+
+.guide-freeze-text {
+  color: white;
+  font-size: 17px;
+  line-height: 1.6;
+  font-weight: 500;
+  margin-bottom: 20px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.guide-freeze-btn {
+  padding: 10px 36px;
+  border: none;
+  background: #3b82f6;
+  color: white;
+  border-radius: 24px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+}
+
+.guide-freeze-btn:active {
+  transform: scale(0.95);
+  background: #2563eb;
+}
+
+/* ========== 引导系统 - 气泡提示 ========== */
+.guide-popup-hint {
+  position: fixed;
+  background: white;
+  border-radius: 12px;
+  padding: 12px 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  z-index: 400;
+  max-width: 260px;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none; /* 不打断玩家操作 */
+}
+
+.guide-popup-hint.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.guide-popup-text {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #334155;
+  font-weight: 500;
+}
+
+/* 气泡小尾巴 */
+.guide-popup-tail {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-style: solid;
+}
+
+/* 尾巴在底部（气泡在目标上方） */
+.guide-popup-hint.tail-top .guide-popup-tail {
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 8px 8px 0 8px;
+  border-color: white transparent transparent transparent;
+}
+
+/* 尾巴在顶部（气泡在目标下方） */
+.guide-popup-hint.tail-bottom .guide-popup-tail {
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 0 8px 8px 8px;
+  border-color: transparent transparent white transparent;
+}
+
+/* 尾巴在右侧（气泡在目标左侧） */
+.guide-popup-hint.tail-left .guide-popup-tail {
+  right: -8px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-width: 8px 0 8px 8px;
+  border-color: transparent transparent transparent white;
+}
+
+/* 尾巴在左侧（气泡在目标右侧） */
+.guide-popup-hint.tail-right .guide-popup-tail {
+  left: -8px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-width: 8px 8px 8px 0;
+  border-color: transparent white transparent transparent;
+}
+
+/* ========== 剧情系统 - 对话框 ========== */
+.story-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 600;
+  display: none;
+  align-items: flex-end;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.story-modal.active {
+  opacity: 1;
+}
+
+.story-modal-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.95));
+}
+
+.story-modal-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: flex-end;
+  gap: 20px;
+  width: 100%;
+  max-width: 520px;
+  padding: 20px 20px 60px;
+  box-sizing: border-box;
+}
+
+.story-character {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  border: 3px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  flex-shrink: 0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.story-dialog-box {
+  flex: 1;
+  min-width: 0;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 16px;
+  padding: 16px 18px;
+  position: relative;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.story-dialog-box::before {
+  content: '';
+  position: absolute;
+  left: -10px;
+  bottom: 24px;
+  border-width: 10px 12px 10px 0;
+  border-style: solid;
+  border-color: transparent rgba(255, 255, 255, 0.95) transparent transparent;
+}
+
+/* 无尾巴模式（标题卡） */
+.story-modal.no-tail .story-dialog-box::before {
+  display: none;
+}
+
+.story-modal.no-tail .story-dialog-box {
+  text-align: center;
+}
+
+.story-character-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: #3b82f6;
+  margin-bottom: 6px;
+}
+
+.story-dialogue {
+  font-size: 16px;
+  line-height: 1.7;
+  color: #1e293b;
+  min-height: 54px;
+}
+
+.story-continue-hint {
+  text-align: right;
+  font-size: 12px;
+  color: #94a3b8;
+  margin-top: 8px;
+  animation: story-bounce 1.2s ease-in-out infinite;
+}
+
+@keyframes story-bounce {
+  0%, 100% { transform: translateY(0); opacity: 0.6; }
+  50% { transform: translateY(3px); opacity: 1; }
+}
+
+/* ========== 剧情系统 - 徽章奖励 ========== */
+.badge-award-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 700;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.badge-award-modal.active {
+  opacity: 1;
+}
+
+.badge-award-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.badge-award-card {
+  position: relative;
+  z-index: 1;
+  background: linear-gradient(145deg, #fef3c7, #fde68a);
+  border-radius: 24px;
+  padding: 30px 36px;
+  text-align: center;
+  width: 85%;
+  max-width: 320px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  animation: badge-pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes badge-pop {
+  0% { transform: scale(0.5); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.badge-award-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #92400e;
+  margin-bottom: 16px;
+}
+
+.badge-award-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 16px;
+  background: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 44px;
+  box-shadow: 0 4px 16px rgba(146, 64, 14, 0.2);
+}
+
+.badge-award-name {
+  font-size: 20px;
+  font-weight: 700;
+  color: #78350f;
+  margin-bottom: 8px;
+}
+
+.badge-award-desc {
+  font-size: 13px;
+  color: #a16207;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.badge-award-btn {
+  width: 100%;
+  padding: 12px 24px;
+  border: none;
+  background: #f59e0b;
+  color: white;
+  border-radius: 24px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4);
+}
+
+.badge-award-btn:active {
+  transform: scale(0.96);
+  background: #d97706;
 }

@@ -1,0 +1,576 @@
+[
+  {
+    "chapterId": 1,
+    "title": "加密来信",
+    "levels": [
+      {
+        "levelId": 101,
+        "title": "第1关：数独初体验",
+        "gridSize": 4,
+        "difficulty": "入门",
+        "teachingGoal": "认识数独的基本规则",
+        "triggers": [
+          {
+            "id": "t101_start",
+            "condition": "onLevelStart",
+            "type": "freeze_mask",
+            "once": true,
+            "text": "灰色数字是提示。点一下这个空格，再从底部数字键里选一个填进去。",
+            "targetCell": [
+              0,
+              2
+            ]
+          },
+          {
+            "id": "t101_fill",
+            "condition": "onFirstNumberFilled",
+            "type": "popup_hint",
+            "once": true,
+            "text": "太棒了！每行、每列、每个2x2方块里，数字1-4都不能重复哦～",
+            "position": "top"
+          },
+          {
+            "id": "t101_conflict",
+            "condition": "onConflict",
+            "type": "popup_hint",
+            "once": false,
+            "text": "这一行/列/宫里已经有这个数字了！用擦除按钮清掉，换个数字试试。",
+            "position": "top"
+          },
+          {
+            "id": "t101_half",
+            "condition": "onFillCountReached",
+            "type": "popup_hint",
+            "once": true,
+            "text": "一半完成啦！用同样的方法填完剩下的格子～",
+            "position": "top",
+            "count": 4
+          }
+        ]
+      },
+      {
+        "levelId": 102,
+        "title": "第2关：行列探索",
+        "gridSize": 4,
+        "difficulty": "入门",
+        "teachingGoal": "学会用行列排除法",
+        "triggers": [
+          {
+            "id": "t102_row",
+            "condition": "onRowFillProgress",
+            "type": "popup_hint",
+            "once": true,
+            "text": "这一行只剩一个格子了！1-4里缺哪个就是答案～",
+            "row": 0,
+            "filledCount": 3
+          },
+          {
+            "id": "t102_conflict",
+            "condition": "onConflict",
+            "type": "popup_hint",
+            "once": false,
+            "text": "这个数字在这一行或列已经有啦！换个数字试试～",
+            "position": "top"
+          }
+        ]
+      },
+      {
+        "levelId": 103,
+        "title": "第3关：宫的奥秘",
+        "gridSize": 4,
+        "difficulty": "入门",
+        "teachingGoal": "理解2x2小方块的宫规则",
+        "triggers": [
+          {
+            "id": "t103_box",
+            "condition": "onBoxFillProgress",
+            "type": "popup_hint",
+            "once": true,
+            "text": "2x2的小方块叫「宫」，这里的数字也不能重复哦！",
+            "filledCount": 3,
+            "box": 0
+          },
+          {
+            "id": "t103_conflict",
+            "condition": "onConflict",
+            "type": "popup_hint",
+            "once": false,
+            "text": "同一宫/行/列不能有相同数字！用擦除按钮清掉再试～",
+            "position": "top"
+          }
+        ]
+      },
+      {
+        "levelId": 104,
+        "title": "第4关：数字密码锁",
+        "gridSize": 4,
+        "difficulty": "入门",
+        "teachingGoal": "第一次遇见笼子",
+        "triggers": [
+          {
+            "id": "t104_intro",
+            "condition": "onFirstNumberFilled",
+            "type": "freeze_mask",
+            "once": true,
+            "text": "格子被锁进「笼子」了！左上角的数字就是这格要填的答案～",
+            "highlightCage": true
+          }
+        ]
+      },
+      {
+        "levelId": 105,
+        "title": "第5关：双格密码锁",
+        "gridSize": 4,
+        "difficulty": "入门",
+        "teachingGoal": "理解笼子和值的概念",
+        "triggers": [
+          {
+            "id": "t102_first_cage",
+            "condition": "onCageSelect",
+            "type": "freeze_mask",
+            "once": true,
+            "text": "虚线框叫「笼子」，里面的数字加起来要等于左上角的小数字哦！",
+            "highlightCage": true,
+            "cageSize": 2
+          }
+        ]
+      },
+      {
+        "levelId": 106,
+        "title": "第6关：笼中推理",
+        "gridSize": 4,
+        "difficulty": "入门",
+        "teachingGoal": "学会用行列排除推断笼内数字",
+        "triggers": [
+          {
+            "id": "t103_row_rule",
+            "condition": "onRowFillProgress",
+            "type": "popup_hint",
+            "once": true,
+            "text": "这一行只剩一个格子了！1-4里缺哪个就是答案～",
+            "row": 0,
+            "filledCount": 3
+          }
+        ]
+      },
+      {
+        "levelId": 107,
+        "title": "第7关：综合训练",
+        "gridSize": 4,
+        "difficulty": "简单",
+        "teachingGoal": "综合运用已有知识",
+        "triggers": []
+      },
+      {
+        "levelId": 108,
+        "title": "第8关：更大的挑战",
+        "gridSize": 6,
+        "difficulty": "简单",
+        "teachingGoal": "过渡到6x6盘面",
+        "triggers": [
+          {
+            "id": "t105_welcome_6x6",
+            "condition": "onLevelStart",
+            "type": "freeze_mask",
+            "once": true,
+            "text": "盘面变大到6x6啦！别担心，规则和4x4一样，只是数字变成了1-6～",
+            "targetCell": [
+              0,
+              0
+            ]
+          }
+        ]
+      },
+      {
+        "levelId": 109,
+        "title": "第9关：小综合测试",
+        "gridSize": 6,
+        "difficulty": "简单",
+        "teachingGoal": "第一章综合测试",
+        "triggers": []
+      }
+    ]
+  },
+  {
+    "chapterId": 2,
+    "title": "分层档案",
+    "levels": [
+      {
+        "levelId": 201,
+        "title": "第1关：21法则初现",
+        "gridSize": 6,
+        "difficulty": "简单",
+        "teachingGoal": "认识21法则（6x6版45法则）",
+        "triggers": [
+          {
+            "id": "t201_21rule",
+            "condition": "onRowSelect",
+            "type": "calc_panel",
+            "once": true,
+            "text": "每一行的数字加起来一定是21哦！看看右边的计算器～",
+            "row": 0
+          }
+        ]
+      },
+      {
+        "levelId": 202,
+        "title": "第2关：两数组合",
+        "gridSize": 6,
+        "difficulty": "简单",
+        "teachingGoal": "学习两格笼的数字组合",
+        "triggers": [
+          {
+            "id": "t202_combo",
+            "condition": "onCageSelect",
+            "type": "popup_hint",
+            "once": true,
+            "text": "和为3的两个不同数字，只能是1+2！这叫「唯一组合」。",
+            "cageSize": 2
+          }
+        ]
+      },
+      {
+        "levelId": 203,
+        "title": "第3关：组合排除",
+        "gridSize": 6,
+        "difficulty": "简单",
+        "teachingGoal": "用行列宫排除组合选项",
+        "triggers": []
+      },
+      {
+        "levelId": 204,
+        "title": "第4关：草稿本",
+        "gridSize": 6,
+        "difficulty": "简单",
+        "teachingGoal": "学习使用候选数（草稿）模式",
+        "triggers": [
+          {
+            "id": "t204_draft_intro",
+            "condition": "onStuckForSeconds",
+            "type": "freeze_mask",
+            "once": true,
+            "text": "拿不准的数字，可以长按格子记「草稿」哦！试试候选模式～"
+          }
+        ]
+      },
+      {
+        "levelId": 205,
+        "title": "第5关：三格密码笼",
+        "gridSize": 6,
+        "difficulty": "中等",
+        "teachingGoal": "认识三格笼的组合",
+        "triggers": [
+          {
+            "id": "t205_3cell",
+            "condition": "onCageSelect",
+            "type": "popup_hint",
+            "once": true,
+            "text": "3个格子和为6，只能是1+2+3！可以把它们标成草稿～",
+            "cageSize": 3
+          }
+        ]
+      },
+      {
+        "levelId": 206,
+        "title": "第6关：多笼推理",
+        "gridSize": 6,
+        "difficulty": "中等",
+        "teachingGoal": "结合多个笼子的信息推理",
+        "triggers": []
+      },
+      {
+        "levelId": 207,
+        "title": "第7关：章节测试",
+        "gridSize": 6,
+        "difficulty": "中等",
+        "teachingGoal": "第二章综合测试",
+        "triggers": []
+      }
+    ]
+  },
+  {
+    "chapterId": 3,
+    "title": "密码进阶",
+    "levels": [
+      {
+        "levelId": 301,
+        "title": "第1关：双行合璧",
+        "gridSize": 6,
+        "difficulty": "中等",
+        "teachingGoal": "学习两行联合的21法则（21×2=42）",
+        "triggers": [
+          {
+            "id": "t301_multirow",
+            "condition": "onLevelStart",
+            "type": "popup_hint",
+            "once": true,
+            "text": "试试把两行加起来看？21×2=42，有时候能发现突破口！"
+          }
+        ]
+      },
+      {
+        "levelId": 302,
+        "title": "第2关：组合交叉",
+        "gridSize": 6,
+        "difficulty": "中等",
+        "teachingGoal": "相邻笼子组合的交叉验证",
+        "triggers": []
+      },
+      {
+        "levelId": 303,
+        "title": "第3关：区块初探",
+        "gridSize": 6,
+        "difficulty": "中等",
+        "teachingGoal": "认识区块排除法",
+        "triggers": []
+      },
+      {
+        "levelId": 304,
+        "title": "第4关：进军9x9",
+        "gridSize": 9,
+        "difficulty": "简单",
+        "teachingGoal": "首次体验9x9标准盘面",
+        "triggers": [
+          {
+            "id": "t304_welcome_9x9",
+            "condition": "onLevelStart",
+            "type": "freeze_mask",
+            "once": true,
+            "text": "欢迎来到9x9的世界！数字变成1-9了，但所有技巧都通用哦～",
+            "targetCell": [
+              0,
+              0
+            ]
+          }
+        ]
+      },
+      {
+        "levelId": 305,
+        "title": "第5关：9x9热身一",
+        "gridSize": 9,
+        "difficulty": "简单",
+        "teachingGoal": "9x9基础练习",
+        "triggers": []
+      },
+      {
+        "levelId": 306,
+        "title": "第6关：9x9热身二",
+        "gridSize": 9,
+        "difficulty": "简单",
+        "teachingGoal": "9x9基础练习",
+        "triggers": []
+      },
+      {
+        "levelId": 307,
+        "title": "第7关：章节测试",
+        "gridSize": 9,
+        "difficulty": "简单",
+        "teachingGoal": "第三章综合测试",
+        "triggers": []
+      }
+    ]
+  },
+  {
+    "chapterId": 4,
+    "title": "45号机关",
+    "levels": [
+      {
+        "levelId": 401,
+        "title": "第1关：45法则入门",
+        "gridSize": 9,
+        "difficulty": "简单",
+        "teachingGoal": "理解45法则的基本原理",
+        "triggers": [
+          {
+            "id": "t401_45intro",
+            "condition": "onRowSelect",
+            "type": "calc_panel",
+            "once": true,
+            "text": "9x9的每一行加起来一定是45！用笼子和减去45，多出来的就是「伸出去」的数～",
+            "row": 0
+          }
+        ]
+      },
+      {
+        "levelId": 402,
+        "title": "第2关：单列45",
+        "gridSize": 9,
+        "difficulty": "简单",
+        "teachingGoal": "单列的45法则应用",
+        "triggers": []
+      },
+      {
+        "levelId": 403,
+        "title": "第3关：内外差",
+        "gridSize": 9,
+        "difficulty": "简单",
+        "teachingGoal": "理解伸进伸出的差值计算",
+        "triggers": []
+      },
+      {
+        "levelId": 404,
+        "title": "第4关：组合计算器",
+        "gridSize": 9,
+        "difficulty": "简单",
+        "teachingGoal": "学会使用45法则计算器工具",
+        "triggers": [
+          {
+            "id": "t404_calc_tool",
+            "condition": "onStuckForSeconds",
+            "type": "freeze_mask",
+            "once": true,
+            "text": "工具栏的「45」按钮是组合计算器，不确定组合时可以用它！"
+          }
+        ]
+      },
+      {
+        "levelId": 405,
+        "title": "第5关：多区域45",
+        "gridSize": 9,
+        "difficulty": "中等",
+        "teachingGoal": "多行/多列/多宫的45法则",
+        "triggers": []
+      },
+      {
+        "levelId": 406,
+        "title": "第6关：组合+45",
+        "gridSize": 9,
+        "difficulty": "中等",
+        "teachingGoal": "45法则与组合枚举的结合",
+        "triggers": []
+      },
+      {
+        "levelId": 407,
+        "title": "第7关：章节测试",
+        "gridSize": 9,
+        "difficulty": "中等",
+        "teachingGoal": "第四章综合测试",
+        "triggers": []
+      }
+    ]
+  },
+  {
+    "chapterId": 5,
+    "title": "候选迷宫",
+    "levels": [
+      {
+        "levelId": 501,
+        "title": "第1关：候选数系统",
+        "gridSize": 9,
+        "difficulty": "中等",
+        "teachingGoal": "系统标记候选数的方法",
+        "triggers": []
+      },
+      {
+        "levelId": 502,
+        "title": "第2关：数对法",
+        "gridSize": 9,
+        "difficulty": "中等",
+        "teachingGoal": "认识显性数对和隐性数对",
+        "triggers": []
+      },
+      {
+        "levelId": 503,
+        "title": "第3关：区块排除",
+        "gridSize": 9,
+        "difficulty": "中等",
+        "teachingGoal": "区块排除法进阶",
+        "triggers": []
+      },
+      {
+        "levelId": 504,
+        "title": "第4关：隐单寻踪",
+        "gridSize": 9,
+        "difficulty": "中等",
+        "teachingGoal": "用候选数快速找隐单",
+        "triggers": []
+      },
+      {
+        "levelId": 505,
+        "title": "第5关：三链数",
+        "gridSize": 9,
+        "difficulty": "中等偏难",
+        "teachingGoal": "认识三链数（XYZ-Wing雏形）",
+        "triggers": []
+      },
+      {
+        "levelId": 506,
+        "title": "第6关：组合+候选",
+        "gridSize": 9,
+        "difficulty": "中等偏难",
+        "teachingGoal": "笼子组合与候选数的联动",
+        "triggers": []
+      },
+      {
+        "levelId": 507,
+        "title": "第7关：章节测试",
+        "gridSize": 9,
+        "difficulty": "中等偏难",
+        "teachingGoal": "第五章综合测试",
+        "triggers": []
+      }
+    ]
+  },
+  {
+    "chapterId": 6,
+    "title": "最终档案",
+    "levels": [
+      {
+        "levelId": 601,
+        "title": "第1关：综合热身一",
+        "gridSize": 9,
+        "difficulty": "中等",
+        "teachingGoal": "全技巧综合应用",
+        "triggers": []
+      },
+      {
+        "levelId": 602,
+        "title": "第2关：综合热身二",
+        "gridSize": 9,
+        "difficulty": "中等",
+        "teachingGoal": "全技巧综合应用",
+        "triggers": []
+      },
+      {
+        "levelId": 603,
+        "title": "第3关：进阶挑战",
+        "gridSize": 9,
+        "difficulty": "中等偏难",
+        "teachingGoal": "需要45法则+组合的题",
+        "triggers": []
+      },
+      {
+        "levelId": 604,
+        "title": "第4关：高手挑战",
+        "gridSize": 9,
+        "difficulty": "困难",
+        "teachingGoal": "较难的综合题",
+        "triggers": []
+      },
+      {
+        "levelId": 605,
+        "title": "第5关：准大师",
+        "gridSize": 9,
+        "difficulty": "困难",
+        "teachingGoal": "准大师级挑战",
+        "triggers": []
+      },
+      {
+        "levelId": 606,
+        "title": "最终关：毕业挑战",
+        "gridSize": 9,
+        "difficulty": "困难",
+        "teachingGoal": "最终毕业挑战",
+        "triggers": [
+          {
+            "id": "t606_final",
+            "condition": "onLevelComplete",
+            "type": "badge_award",
+            "once": true,
+            "text": "🎉 恭喜毕业！你已成为真正的杀手数独大师！"
+          }
+        ]
+      }
+    ]
+  }
+]

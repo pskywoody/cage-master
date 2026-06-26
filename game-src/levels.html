@@ -12,6 +12,21 @@
       <h1 style="text-align:center; margin-bottom: 8px; color: #334155; font-size: 24px;">档案侦探 · 笼中密码</h1>
       <p id="stats-line" style="text-align:center; color: #64748b; font-size: 14px; margin-bottom: 16px;">加载中...</p>
 
+      <!-- 教学模式入口 -->
+      <div id="teaching-entry" style="margin-bottom: 12px;">
+        <div class="level-card" style="background: linear-gradient(135deg, #dbeafe, #bfdbfe); cursor: pointer; border: 2px solid #3b82f6;">
+          <div class="level-id" style="background: linear-gradient(135deg, #3b82f6, #2563eb);">📚</div>
+          <div class="level-info">
+            <div class="level-name" style="color: #1e40af;">教学模式</div>
+            <div class="level-meta">
+              <span class="diff-tag" style="background: #3b82f6;">入门</span>
+              <span class="time-tag" id="teaching-stats">从零开始学杀手数独</span>
+            </div>
+          </div>
+          <div class="level-arrow" style="color: #2563eb;">›</div>
+        </div>
+      </div>
+
       <!-- 对战模式入口 -->
       <div id="battle-entry" style="margin-bottom: 16px;">
         <div class="level-card" style="background: linear-gradient(135deg, #fef3c7, #fde68a); cursor: pointer; border: 2px solid #f59e0b;">
@@ -83,6 +98,28 @@
       document.querySelector('#battle-entry .level-card').addEventListener('click', () => {
         window.location.href = 'battle.html';
       });
+
+      // 绑定教学模式入口点击
+      const teachingEntry = document.querySelector('#teaching-entry .level-card');
+      if (teachingEntry) {
+        teachingEntry.addEventListener('click', () => {
+          window.location.href = 'chapters.html';
+        });
+      }
+
+      // 更新教学模式进度显示
+      updateTeachingStats();
+    }
+
+    // 更新教学模式进度
+    function updateTeachingStats() {
+      const el = document.getElementById('teaching-stats');
+      if (!el) return;
+      const allComplete = Storage.getTeachingCompleteAll();
+      const count = Object.values(allComplete).filter(c => c.completed).length;
+      if (count > 0) {
+        el.textContent = `已通关 ${count} 个教学关卡`;
+      }
     }
 
     // 如果有玩家数据，显示校准排序按钮

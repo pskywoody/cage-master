@@ -56,7 +56,9 @@ class Board {
 
     // 高亮设置（可通过设置页开关）
     this.highlightSettings = {
-      sameRowColBox: true,   // 同行列宫高亮
+      sameRow: true,         // 同行高亮
+      sameCol: true,         // 同列高亮
+      sameBox: true,         // 同宫高亮
       sameNumber: true,      // 同数字高亮
       sameCage: true         // 同笼高亮（原已有）
     };
@@ -283,36 +285,55 @@ class Board {
   }
 
   /**
+   * 获取宫的尺寸（宽、高）
+   */
+  getBoxSize() {
+    if (this.size === 4) return { boxW: 2, boxH: 2 };
+    if (this.size === 6) return { boxW: 3, boxH: 2 };
+    return { boxW: 3, boxH: 3 }; // 9x9 默认
+  }
+
+  /**
    * 获取同行列宫高亮的格子坐标数组（不含选中格本身）
    */
   getRowColBoxHighlightCells() {
-    if (!this.selectedCell || !this.highlightSettings.sameRowColBox) return [];
+    if (!this.selectedCell) return [];
     const { r, c } = this.selectedCell;
-    const boxR = Math.floor(r / 3) * 3;
-    const boxC = Math.floor(c / 3) * 3;
+    const hs = this.highlightSettings;
+    if (!hs.sameRow && !hs.sameCol && !hs.sameBox) return [];
+
+    const { boxW, boxH } = this.getBoxSize();
+    const boxR = Math.floor(r / boxH) * boxH;
+    const boxC = Math.floor(c / boxW) * boxW;
     const result = [];
     const seen = new Set();
 
     // 行
-    for (let i = 0; i < 9; i++) {
-      if (i !== c) {
-        const key = `${r},${i}`;
-        if (!seen.has(key)) { seen.add(key); result.push({ r, c: i }); }
+    if (hs.sameRow) {
+      for (let i = 0; i < this.size; i++) {
+        if (i !== c) {
+          const key = `${r},${i}`;
+          if (!seen.has(key)) { seen.add(key); result.push({ r, c: i }); }
+        }
       }
     }
     // 列
-    for (let i = 0; i < 9; i++) {
-      if (i !== r) {
-        const key = `${i},${c}`;
-        if (!seen.has(key)) { seen.add(key); result.push({ r: i, c }); }
+    if (hs.sameCol) {
+      for (let i = 0; i < this.size; i++) {
+        if (i !== r) {
+          const key = `${i},${c}`;
+          if (!seen.has(key)) { seen.add(key); result.push({ r: i, c }); }
+        }
       }
     }
     // 宫
-    for (let i = boxR; i < boxR + 3; i++) {
-      for (let j = boxC; j < boxC + 3; j++) {
-        if (i !== r || j !== c) {
-          const key = `${i},${j}`;
-          if (!seen.has(key)) { seen.add(key); result.push({ r: i, c: j }); }
+    if (hs.sameBox) {
+      for (let i = boxR; i < boxR + boxH; i++) {
+        for (let j = boxC; j < boxC + boxW; j++) {
+          if (i !== r || j !== c) {
+            const key = `${i},${j}`;
+            if (!seen.has(key)) { seen.add(key); result.push({ r: i, c: j }); }
+          }
         }
       }
     }
@@ -322,18 +343,36 @@ class Board {
   /**
    * 获取同数字高亮的格子坐标数组
    * 选中格有数字时，所有相同数字的格子高亮
+   * 连填激活时，高亮连填数字的所有格子
    */
   getSameNumberHighlightCells() {
-    if (!this.selectedCell || !this.highlightSettings.sameNumber) return [];
-    const { r, c } = this.selectedCell;
-    const cell = this.cells[r][c];
-    const num = cell.fixedNum || cell.fillNum;
+    let num = null;
+    let skipSelf = false;
+    let centerR, centerC;
+
+    // 优先：连填模式高亮
+    if (this._quickFillHighlightNum) {
+      num = this._quickFillHighlightNum;
+      skipSelf = false;
+    }
+    // 其次：选中格高亮
+    else if (this.selectedCell && this.highlightSettings.sameNumber) {
+      const { r, c } = this.selectedCell;
+      const cell = this.cells[r][c];
+      num = cell.fixedNum || cell.fillNum;
+      centerR = r;
+      centerC = c;
+      skipSelf = true;
+    }
+
     if (!num) return [];
 
     const result = [];
     for (let i = 0; i < this.size; i++) {
       for (let j = 0; j < this.size; j++) {
-        if ((i !== r || j !== c) && (this.cells[i][j].fixedNum === num || this.cells[i][j].fillNum === num)) {
+        const val = this.cells[i][j].fixedNum || this.cells[i][j].fillNum;
+        if (val === num) {
+          if (skipSelf && i === centerR && j === centerC) continue;
           result.push({ r: i, c: j });
         }
       }
@@ -349,6 +388,60 @@ class Board {
     if (!this.cageIdToCells || !this.cageIdToCells[this.selectedCageId]) return [];
     const cells = this.cageIdToCells[this.selectedCageId];
     return cells.map(([r, c]) => ({ r, c }));
+  }
+
+  /**
+   * 获取指定格子"看到"的所有数字（同行、同列、同宫的已填数字）
+   * 返回 { row: Set, col: Set, box: Set, all: Set }
+   */
+  getSeenNumbers(r, c) {
+    const rowNums = new Set();
+    const colNums = new Set();
+    const boxNums = new Set();
+    const allNums = new Set();
+
+    // 行
+    for (let i = 0; i < this.size; i++) {
+      if (i !== c) {
+        const cell = this.cells[r][i];
+        const num = cell.fixedNum || cell.fillNum;
+        if (num) {
+          rowNums.add(num);
+          allNums.add(num);
+        }
+      }
+    }
+
+    // 列
+    for (let i = 0; i < this.size; i++) {
+      if (i !== r) {
+        const cell = this.cells[i][c];
+        const num = cell.fixedNum || cell.fillNum;
+        if (num) {
+          colNums.add(num);
+          allNums.add(num);
+        }
+      }
+    }
+
+    // 宫
+    const { boxW, boxH } = this.getBoxSize();
+    const boxR = Math.floor(r / boxH) * boxH;
+    const boxC = Math.floor(c / boxW) * boxW;
+    for (let i = boxR; i < boxR + boxH; i++) {
+      for (let j = boxC; j < boxC + boxW; j++) {
+        if (i !== r || j !== c) {
+          const cell = this.cells[i][j];
+          const num = cell.fixedNum || cell.fillNum;
+          if (num) {
+            boxNums.add(num);
+            allNums.add(num);
+          }
+        }
+      }
+    }
+
+    return { row: rowNums, col: colNums, box: boxNums, all: allNums };
   }
 
   /**
@@ -374,25 +467,26 @@ class Board {
 
     // 自动清除行/列/宫/笼中关联格子的该候选数（受设置控制）
     if (this.settings.autoClearCandidates) {
+      const { boxW, boxH } = this.getBoxSize();
       // 行
-      for (let i = 0; i < 9; i++) {
+      for (let i = 0; i < this.size; i++) {
         if (i !== c && this.cells[r][i].fillNum === null && this.cells[r][i].candidates.has(num)) {
           this.cells[r][i].candidates.delete(num);
           historyEntry.relatedCandidates.push({ r, c: i, num });
         }
       }
       // 列
-      for (let i = 0; i < 9; i++) {
+      for (let i = 0; i < this.size; i++) {
         if (i !== r && this.cells[i][c].fillNum === null && this.cells[i][c].candidates.has(num)) {
           this.cells[i][c].candidates.delete(num);
           historyEntry.relatedCandidates.push({ r: i, c, num });
         }
       }
       // 宫
-      const boxR = Math.floor(r / 3) * 3;
-      const boxC = Math.floor(c / 3) * 3;
-      for (let i = boxR; i < boxR + 3; i++) {
-        for (let j = boxC; j < boxC + 3; j++) {
+      const boxR = Math.floor(r / boxH) * boxH;
+      const boxC = Math.floor(c / boxW) * boxW;
+      for (let i = boxR; i < boxR + boxH; i++) {
+        for (let j = boxC; j < boxC + boxW; j++) {
           if ((i !== r || j !== c) && this.cells[i][j].fillNum === null && this.cells[i][j].candidates.has(num)) {
             this.cells[i][j].candidates.delete(num);
             historyEntry.relatedCandidates.push({ r: i, c: j, num });
@@ -591,12 +685,15 @@ class Board {
       }
     }
 
-    // 3×3宫冲突
-    for (let boxR = 0; boxR < 3; boxR++) {
-      for (let boxC = 0; boxC < 3; boxC++) {
+    // 宫冲突
+    const { boxW, boxH } = this.getBoxSize();
+    const boxRows = Math.ceil(this.size / boxH);
+    const boxCols = Math.ceil(this.size / boxW);
+    for (let boxR = 0; boxR < boxRows; boxR++) {
+      for (let boxC = 0; boxC < boxCols; boxC++) {
         const seen = {};
-        for (let r = boxR * 3; r < boxR * 3 + 3; r++) {
-          for (let c = boxC * 3; c < boxC * 3 + 3; c++) {
+        for (let r = boxR * boxH; r < boxR * boxH + boxH; r++) {
+          for (let c = boxC * boxW; c < boxC * boxW + boxW; c++) {
             const val = this.cells[r][c].fillNum || this.cells[r][c].fixedNum;
             if (!val) continue;
             if (seen[val]) {
@@ -675,9 +772,9 @@ class Board {
   getNextHint() {
     // 先构建当前盘面状态
     const grid = [];
-    for (let r = 0; r < 9; r++) {
+    for (let r = 0; r < this.size; r++) {
       grid[r] = [];
-      for (let c = 0; c < 9; c++) {
+      for (let c = 0; c < this.size; c++) {
         grid[r][c] = this.cells[r][c].fixedNum || this.cells[r][c].fillNum || 0;
       }
     }
@@ -700,8 +797,8 @@ class Board {
    * 显单提示：计算所有格子的候选数，找只有1个候选的
    */
   _findNakedSingleHint(grid) {
-    for (let r = 0; r < 9; r++) {
-      for (let c = 0; c < 9; c++) {
+    for (let r = 0; r < this.size; r++) {
+      for (let c = 0; c < this.size; c++) {
         if (grid[r][c] !== 0) continue;
         const candidates = this._getCellCandidates(grid, r, c);
         if (candidates.length === 1) {
@@ -723,9 +820,9 @@ class Board {
    */
   _findHiddenSingleHint(grid) {
     // 行检查
-    for (let r = 0; r < 9; r++) {
+    for (let r = 0; r < this.size; r++) {
       const posMap = new Map();
-      for (let c = 0; c < 9; c++) {
+      for (let c = 0; c < this.size; c++) {
         if (grid[r][c] !== 0) continue;
         const cands = this._getCellCandidates(grid, r, c);
         for (const num of cands) {
@@ -747,9 +844,9 @@ class Board {
     }
 
     // 列检查
-    for (let c = 0; c < 9; c++) {
+    for (let c = 0; c < this.size; c++) {
       const posMap = new Map();
-      for (let r = 0; r < 9; r++) {
+      for (let r = 0; r < this.size; r++) {
         if (grid[r][c] !== 0) continue;
         const cands = this._getCellCandidates(grid, r, c);
         for (const num of cands) {
@@ -771,11 +868,14 @@ class Board {
     }
 
     // 宫检查
-    for (let br = 0; br < 3; br++) {
-      for (let bc = 0; bc < 3; bc++) {
+    const { boxW, boxH } = this.getBoxSize();
+    const boxRows = Math.ceil(this.size / boxH);
+    const boxCols = Math.ceil(this.size / boxW);
+    for (let br = 0; br < boxRows; br++) {
+      for (let bc = 0; bc < boxCols; bc++) {
         const posMap = new Map();
-        for (let r = br * 3; r < br * 3 + 3; r++) {
-          for (let c = bc * 3; c < bc * 3 + 3; c++) {
+        for (let r = br * boxH; r < br * boxH + boxH; r++) {
+          for (let c = bc * boxW; c < bc * boxW + boxW; c++) {
             if (grid[r][c] !== 0) continue;
             const cands = this._getCellCandidates(grid, r, c);
             for (const num of cands) {
@@ -791,7 +891,7 @@ class Board {
               num,
               technique: 'hiddenSingle',
               techniqueName: '隐单',
-              description: `第${br * 3 + bc + 1}宫中，数字${num}只能填在这里`
+              description: `第${br * boxCols + bc + 1}宫中，数字${num}只能填在这里`
             };
           }
         }
@@ -830,20 +930,21 @@ class Board {
    */
   _getCellCandidates(grid, r, c) {
     const used = new Set();
+    const { boxW, boxH } = this.getBoxSize();
 
     // 行
-    for (let i = 0; i < 9; i++) {
+    for (let i = 0; i < this.size; i++) {
       if (grid[r][i] !== 0) used.add(grid[r][i]);
     }
     // 列
-    for (let i = 0; i < 9; i++) {
+    for (let i = 0; i < this.size; i++) {
       if (grid[i][c] !== 0) used.add(grid[i][c]);
     }
     // 宫
-    const boxR = Math.floor(r / 3) * 3;
-    const boxC = Math.floor(c / 3) * 3;
-    for (let i = boxR; i < boxR + 3; i++) {
-      for (let j = boxC; j < boxC + 3; j++) {
+    const boxR = Math.floor(r / boxH) * boxH;
+    const boxC = Math.floor(c / boxW) * boxW;
+    for (let i = boxR; i < boxR + boxH; i++) {
+      for (let j = boxC; j < boxC + boxW; j++) {
         if (grid[i][j] !== 0) used.add(grid[i][j]);
       }
     }
@@ -856,7 +957,7 @@ class Board {
     }
 
     const candidates = [];
-    for (let num = 1; num <= 9; num++) {
+    for (let num = 1; num <= this.size; num++) {
       if (!used.has(num)) candidates.push(num);
     }
     return candidates;

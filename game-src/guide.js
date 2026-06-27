@@ -1020,7 +1020,7 @@ function _showBattleRules(bossConfig) {
           <div class="rule-icon">🌫️</div>
           <div class="rule-text">
             <div class="rule-name">迷雾遮笼</div>
-            <div class="rule-desc">数字始终可见（远处变暗），但笼子的虚线边框和蓝色和值徽章在雾中会被隐藏。只有靠近才能看到笼子的形状和和值！</div>
+            <div class="rule-desc">所有数字始终清晰可见！但笼子的虚线边框和蓝色和值徽章在雾中被隐藏，需要靠近才能看到笼子的形状和和值。用可见数字推理，填对数字扩展视野揭开笼子线索！</div>
           </div>
         </div>
         <div class="rule-item">

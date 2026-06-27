@@ -396,24 +396,16 @@ class Renderer {
         const num = cell.fixedNum || cell.fillNum;
         if (!num) continue;
 
-        // Boss战中：根据迷雾等级调整数字透明度（远处数字变暗但始终可读）
-        let numAlpha = 1;
-        if (battle && battle.active && battle.fogLevel && battle.fogLevel[r]) {
-          const fogL = battle.fogLevel[r][c];
-          if (fogL >= 0.7) numAlpha = 0.3;       // 浓雾：很暗
-          else if (fogL >= 0.5) numAlpha = 0.5;  // 雾中：偏暗
-          else if (fogL >= 0.25) numAlpha = 0.75;// 边缘：稍暗
-          else numAlpha = 1;                     // 清晰：正常
-        }
-
-        ctx.font = cell.fixedNum ? `${fontSize}px sans-serif` : `${fontSize}px sans-serif`;
-        ctx.globalAlpha = numAlpha;
+        // Boss战中：数字始终100%不透明——玩家必须看清所有数字才能推理
+        // 迷雾只遮笼子信息（虚线边框+和值徽章），不遮数字本身
+        ctx.font = cell.fixedNum ? `bold ${fontSize}px sans-serif` : `${fontSize}px sans-serif`;
+        ctx.globalAlpha = 1;
         if (cell.isError && board.settings.conflictRed) {
           ctx.fillStyle = '#ef4444';
         } else if (cell.fixedNum) {
-          ctx.fillStyle = '#94a3b8';  // 给定数字用浅灰色，和玩家填的蓝色区分
+          ctx.fillStyle = '#475569';  // 预填数字用深灰色（加粗），确保雾区也清晰可读
         } else {
-          ctx.fillStyle = '#3b82f6';
+          ctx.fillStyle = '#2563eb';  // 玩家填的数字用深蓝色
         }
         ctx.fillText(num, c * cellSize + cellSize / 2, r * cellSize + cellSize / 2);
         ctx.globalAlpha = 1;

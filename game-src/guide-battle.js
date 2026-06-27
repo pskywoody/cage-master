@@ -205,8 +205,8 @@ const GuideBattle = {
     // 提示1：开赛后2秒，指引玩家注意笼子信息才是关键
     this._scheduleTip('start', 2000, {
       icon: '🔦',
-      title: '靠近才能看到笼子',
-      text: '远处的数字能看到但很暗，笼子的虚线和和值被迷雾遮住了。填对数字让迷雾散开，才能看到笼子线索！'
+      title: '探索笼子线索',
+      text: '所有数字都清晰可见！但笼子的虚线边框和蓝色和值徽章被迷雾遮住了。填对数字扩展视野，才能看到笼子线索来解题！'
     });
     // 提示2：开赛后7秒，提醒AI幽灵格
     this._scheduleTip('ghost', 7000, {
@@ -433,9 +433,9 @@ const GuideBattle = {
         } else if (minDist === this.visionRange + 1) {
           this.fogLevel[r][c] = 0.25;   // 边缘：笼子边框隐约可见，和值隐藏
         } else if (minDist <= this.visionRange + 3) {
-          this.fogLevel[r][c] = 0.5;    // 雾中：笼子隐藏，数字偏暗
+          this.fogLevel[r][c] = 0.5;    // 雾中：笼子隐藏，空格被迷雾覆盖
         } else {
-          this.fogLevel[r][c] = 0.7;    // 浓雾：笼子隐藏，数字很暗但可读
+          this.fogLevel[r][c] = 0.7;    // 浓雾：笼子隐藏，空格被浓雾覆盖
         }
       }
     }
@@ -713,16 +713,10 @@ const GuideBattle = {
         const fog = this.fogOpacity[r][c];
         const flick = this.ghostFlicker;
 
-        // === 固定数字处理 ===
+        // === 固定数字（预填数）处理 ===
         if (this.fixedMask[r][c]) {
-          // 固定数字：迷雾按fogLevel适度覆盖（远处暗但可读）
-          const fogL = (this.fogLevel && this.fogLevel[r]) ? this.fogLevel[r][c] : fog;
-          if (fogL > 0.01) {
-            // 迷雾alpha = fogLevel本身（0.25/0.5/0.7），再乘动画进度
-            const alpha = Math.min(0.75, fogL * fog * 1.1);
-            ctx.fillStyle = `rgba(15, 23, 42, ${alpha})`;
-            ctx.fillRect(x, y, cs, cs);
-          }
+          // 预填数字：不画任何深色迷雾覆盖！数字必须100%清晰可读
+          // 迷雾效果只体现在笼子信息隐藏上（虚线边框+和值徽章在雾中不显示）
           continue;
         }
 
@@ -731,54 +725,27 @@ const GuideBattle = {
         const pulse = this.aiPulse[r][c];
         const cellFogL = (this.fogLevel && this.fogLevel[r]) ? this.fogLevel[r][c] : fog;
 
-        // 1. 幽灵格：AI填的格子
-        if (isAi && !isPlayerOwned) {
-          // 1a. 浓雾中也能看到极淡的幽灵轮廓（始终让玩家感知AI存在）
-          if (cellFogL >= 0.5) {
-            const ghostAlpha = 0.08 + flick * 0.06;
-            ctx.strokeStyle = this.opponent.color + Math.round(ghostAlpha * 255).toString(16).padStart(2, '0');
-            ctx.lineWidth = 1;
-            ctx.setLineDash([3, 3]);
-            this._roundRect(ctx, x + 3, y + 3, cs - 6, cs - 6, 3);
-            ctx.stroke();
-            ctx.setLineDash([]);
-          }
-
-          // 1b. 视野内/边缘/雾中：明显的幽灵格
-          if (cellFogL < 0.7) {
-            const ghostAlpha = 1 - cellFogL; // 越清晰越明显
-
-            // 幽灵格底色（对手色半透明）
-            ctx.fillStyle = this.opponent.color + Math.round(0.25 * ghostAlpha * 255).toString(16).padStart(2, '0');
-            this._roundRect(ctx, x + 2, y + 2, cs - 4, cs - 4, 4);
-            ctx.fill();
-
-            // 幽灵格边框（呼吸效果）
-            const borderAlpha = 0.4 + flick * 0.2;
-            ctx.strokeStyle = this.opponent.color + Math.round(borderAlpha * ghostAlpha * 255).toString(16).padStart(2, '0');
-            ctx.lineWidth = 1.5;
-            this._roundRect(ctx, x + 2, y + 2, cs - 4, cs - 4, 4);
-            ctx.stroke();
-
-            // 幽灵格中心圆点（呼吸放大缩小）
-            const dotR = cs * (0.1 + flick * 0.04);
-            ctx.fillStyle = this.opponent.color + Math.round(0.7 * ghostAlpha * 255).toString(16).padStart(2, '0');
-            ctx.beginPath();
-            ctx.arc(x + cs / 2, y + cs / 2, dotR, 0, Math.PI * 2);
-            ctx.fill();
-          }
-
-          // 1c. AI填格脉冲动画（刚填时的扩散波）
-          if (pulse > 0) {
-            const expand = (1 - pulse) * cs * 0.5;
-            ctx.strokeStyle = this.opponent.color + Math.round(pulse * 200).toString(16).padStart(2, '0');
-            ctx.lineWidth = 2 + pulse * 2;
-            this._roundRect(ctx, x + 2 - expand, y + 2 - expand, cs - 4 + expand * 2, cs - 4 + expand * 2, 6);
+        // 玩家已填正确的格子：玩家领地，不画迷雾覆盖（保持清晰）
+        if (isPlayerOwned) {
+          // 玩家格子清晰可见，只处理抢格子闪光
+          const flash = this.stealFlash[r][c];
+          if (flash > 0) {
+            ctx.fillStyle = `rgba(34, 197, 94, ${flash * 0.4})`;
+            ctx.fillRect(x, y, cs, cs);
+            ctx.strokeStyle = `rgba(34, 197, 94, ${flash})`;
+            ctx.lineWidth = 2 + flash * 3;
+            ctx.strokeRect(x + 1, y + 1, cs - 2, cs - 2);
+            const expand = (1 - flash) * cs * 0.6;
+            ctx.strokeStyle = `rgba(34, 197, 94, ${flash * 0.6})`;
+            ctx.lineWidth = 2;
+            this._roundRect(ctx, x + 1 - expand, y + 1 - expand, cs - 2 + expand * 2, cs - 2 + expand * 2, 8);
             ctx.stroke();
           }
+          continue;
         }
 
-        // 2. 迷雾层：按fogLevel控制深度——笼子信息完全隐藏，数字通过renderer的alpha控制
+        // 1. 迷雾层：先画深色迷雾底色（隐藏笼子边框和和值，营造雾感）
+        //    注意：预填数和玩家已填格子已经在前面continue了，这里只处理空格和AI格
         let isSelectedCell = false;
         if (cellFogL > 0.01) {
           // 检查是否是当前选中格（雾中选中有特殊窥视效果）
@@ -787,17 +754,17 @@ const GuideBattle = {
             isSelectedCell = cell && (cell.isSelected || (guideBoard.selectedCell && guideBoard.selectedCell.r === r && guideBoard.selectedCell.c === c));
           }
 
-          // 空格子的迷雾alpha：边缘区薄，雾中/浓雾区厚（隐藏笼子边框）
+          // 迷雾alpha：边缘区薄，雾中/浓雾区厚
           let fogAlpha = cellFogL * fog;
-          if (isSelectedCell) fogAlpha *= 0.6; // 选中格迷雾变浅
-          fogAlpha = Math.min(0.85, fogAlpha);
+          if (isSelectedCell) fogAlpha *= 0.5; // 选中格迷雾更浅，方便操作
+          fogAlpha = Math.min(0.88, fogAlpha);
           ctx.fillStyle = `rgba(15, 23, 42, ${fogAlpha})`;
           ctx.fillRect(x, y, cs, cs);
 
-          // 迷雾纹理：雾气流动效果
+          // 迷雾纹理：雾气流动效果（只在雾中以上区域）
           if (cellFogL > 0.3) {
             const t = Date.now() / 2000;
-            const texAlpha = cellFogL * fog * 0.15;
+            const texAlpha = cellFogL * fog * 0.12;
             ctx.fillStyle = `rgba(100, 116, 139, ${texAlpha})`;
             ctx.beginPath();
             ctx.moveTo(x, y + cs * (0.3 + Math.sin(t + r + c) * 0.1));
@@ -807,34 +774,63 @@ const GuideBattle = {
             ctx.closePath();
             ctx.fill();
           }
+        }
 
-          // 雾中选中格：显示一个淡蓝色虚线边框，提示"你选中了这个位置"
-          if (isSelectedCell && cellFogL > 0.3) {
-            ctx.strokeStyle = `rgba(59, 130, 246, ${0.5 + flick * 0.2})`;
-            ctx.lineWidth = 2;
-            ctx.setLineDash([4, 3]);
-            this._roundRect(ctx, x + 3, y + 3, cs - 6, cs - 6, 4);
+        // 2. AI幽灵格：画在迷雾层之上，确保在雾中也能看到
+        if (isAi && !isPlayerOwned) {
+          // 2a. 浓雾中也能看到极淡的幽灵轮廓（始终让玩家感知AI存在）
+          if (cellFogL >= 0.5) {
+            const ghostAlpha = 0.15 + flick * 0.1;
+            ctx.strokeStyle = this.opponent.color + Math.round(ghostAlpha * 255).toString(16).padStart(2, '0');
+            ctx.lineWidth = 1.5;
+            ctx.setLineDash([3, 3]);
+            this._roundRect(ctx, x + 3, y + 3, cs - 6, cs - 6, 3);
             ctx.stroke();
             ctx.setLineDash([]);
           }
+
+          // 2b. 视野内/边缘/雾中：更明显的幽灵格
+          if (cellFogL < 0.7) {
+            const ghostAlpha = 1 - cellFogL * 0.6; // 越清晰越明显，雾中也保留一定可见度
+
+            // 幽灵格底色（对手色半透明）
+            ctx.fillStyle = this.opponent.color + Math.round(0.3 * ghostAlpha * 255).toString(16).padStart(2, '0');
+            this._roundRect(ctx, x + 2, y + 2, cs - 4, cs - 4, 4);
+            ctx.fill();
+
+            // 幽灵格边框（呼吸效果）
+            const borderAlpha = 0.5 + flick * 0.25;
+            ctx.strokeStyle = this.opponent.color + Math.round(borderAlpha * ghostAlpha * 255).toString(16).padStart(2, '0');
+            ctx.lineWidth = 2;
+            this._roundRect(ctx, x + 2, y + 2, cs - 4, cs - 4, 4);
+            ctx.stroke();
+
+            // 幽灵格中心圆点（呼吸放大缩小）
+            const dotR = cs * (0.12 + flick * 0.05);
+            ctx.fillStyle = this.opponent.color + Math.round(0.8 * ghostAlpha * 255).toString(16).padStart(2, '0');
+            ctx.beginPath();
+            ctx.arc(x + cs / 2, y + cs / 2, dotR, 0, Math.PI * 2);
+            ctx.fill();
+          }
+
+          // 2c. AI填格脉冲动画（刚填时的扩散波）
+          if (pulse > 0) {
+            const expand = (1 - pulse) * cs * 0.5;
+            ctx.strokeStyle = this.opponent.color + Math.round(pulse * 200).toString(16).padStart(2, '0');
+            ctx.lineWidth = 2 + pulse * 2;
+            this._roundRect(ctx, x + 2 - expand, y + 2 - expand, cs - 4 + expand * 2, cs - 4 + expand * 2, 6);
+            ctx.stroke();
+          }
         }
 
-        // 3. 抢格子闪光（增强：绿色波环扩散）
-        const flash = this.stealFlash[r][c];
-        if (flash > 0) {
-          // 底色闪光
-          ctx.fillStyle = `rgba(34, 197, 94, ${flash * 0.4})`;
-          ctx.fillRect(x, y, cs, cs);
-          // 边框加粗
-          ctx.strokeStyle = `rgba(34, 197, 94, ${flash})`;
-          ctx.lineWidth = 2 + flash * 3;
-          ctx.strokeRect(x + 1, y + 1, cs - 2, cs - 2);
-          // 扩散波环
-          const expand = (1 - flash) * cs * 0.6;
-          ctx.strokeStyle = `rgba(34, 197, 94, ${flash * 0.6})`;
-          ctx.lineWidth = 2;
-          this._roundRect(ctx, x + 1 - expand, y + 1 - expand, cs - 2 + expand * 2, cs - 2 + expand * 2, 8);
+        // 3. 雾中选中格：淡蓝色虚线边框（画在最上层，确保可见）
+        if (isSelectedCell && cellFogL > 0.2) {
+          ctx.strokeStyle = `rgba(59, 130, 246, ${0.6 + flick * 0.2})`;
+          ctx.lineWidth = 2.5;
+          ctx.setLineDash([5, 3]);
+          this._roundRect(ctx, x + 3, y + 3, cs - 6, cs - 6, 4);
           ctx.stroke();
+          ctx.setLineDash([]);
         }
       }
     }

@@ -447,6 +447,10 @@ function bindCanvasClick() {
   // 鼠标释放
   canvas.addEventListener('mouseup', function(e) {
     if (isPaused) return;
+    // 只在mousedown之后才处理mouseup（防止移动端touch事件后的合成mouse事件）
+    if (!isMouseDown) {
+      return;
+    }
     isMouseDown = false;
 
     if (mouseMoved && gameBoard.isBoxSelecting) {
@@ -579,16 +583,25 @@ function bindCanvasClick() {
  */
 function getCellFromPos(clientX, clientY) {
   const rect = renderer.canvas.getBoundingClientRect();
-  const scaleX = renderer.canvas.width / rect.width;
-  const scaleY = renderer.canvas.height / rect.height;
-
-  const dpr = window.devicePixelRatio || 1;
-  const x = (clientX - rect.left) * scaleX - renderer.padding * dpr;
-  const y = (clientY - rect.top) * scaleY - renderer.padding * dpr;
-
-  const cellSizePx = renderer.cellSize * dpr;
-  const r = Math.floor(y / cellSizePx);
-  const c = Math.floor(x / cellSizePx);
+  const size = gameBoard.size;
+  const pad = renderer.padding;
+  
+  // 使用canvas实际显示尺寸计算（不依赖DPR手动缩放）
+  const boardDisplayW = rect.width - pad * 2;
+  const boardDisplayH = rect.height - pad * 2;
+  const cellW = boardDisplayW / size;
+  const cellH = boardDisplayH / size;
+  
+  let x = clientX - rect.left - pad;
+  let y = clientY - rect.top - pad;
+  
+  let c = Math.floor(x / cellW);
+  let r = Math.floor(y / cellH);
+  
+  // 边界clamp
+  r = Math.max(0, Math.min(size - 1, r));
+  c = Math.max(0, Math.min(size - 1, c));
+  
   return { r, c };
 }
 
@@ -618,16 +631,8 @@ function handleLongPress(clientX, clientY) {
     navigator.vibrate(50);
   }
 
-  // 先选中格子
-  const rect = renderer.canvas.getBoundingClientRect();
-  const scaleX = renderer.canvas.width / rect.width;
-  const scaleY = renderer.canvas.height / rect.height;
-
-  const x = (clientX - rect.left) * scaleX - renderer.padding;
-  const y = (clientY - rect.top) * scaleY - renderer.padding;
-
-  const r = Math.floor(y / renderer.cellSize);
-  const c = Math.floor(x / renderer.cellSize);
+  // 先选中格子，统一使用普通点击的坐标换算逻辑，避免高分屏下偏移
+  const { r, c } = getCellFromPos(clientX, clientY);
 
   gameBoard.selectCell(r, c);
 
@@ -648,7 +653,7 @@ function bindNumPad() {
     btn.addEventListener('click', function() {
       if (isPaused) return;
       const num = parseInt(this.dataset.num);
-      if (quickFillModeSingle) {
+      if (quickFillModeSingle && !gameBoard.getActiveCell()) {
         selectQuickFillNumSingle(num);
       } else {
         handleNumberInput(num);
@@ -683,27 +688,18 @@ function handleNumberInput(num) {
     gameBoard.toggleCandidateForSelection(num);
     Storage.logAction('toggleCandidate', { num, batch: true, count: gameBoard.selectedCells.length });
   } else if (gameBoard.inputMode === 'candidate') {
-    const selectedCell = getSelectedCellSafely();
-    if (!selectedCell) return;
-    const { r, c } = selectedCell;
+    const activeCell = gameBoard.getActiveCell();
+    if (!activeCell) return;
+    const { r, c } = activeCell;
     gameBoard.toggleCandidate(num);
     Storage.logAction('toggleCandidate', { num, r, c });
   } else {
-    const selectedCell = getSelectedCellSafely();
-    if (!selectedCell) {
-      // 没有选中格子时，如果数字未完成，自动开启连填
-      if (!isNumberCompleteSingle(num)) {
-        quickFillModeSingle = true;
-        quickFillNumSingle = num;
-        document.getElementById('btn-quick-fill').classList.add('active');
-        clearQuickFillNumHighlightSingle();
-        const btn = document.querySelector('.num-btn[data-num="' + num + '"]');
-        if (btn) btn.classList.add('quick-fill-num');
-        showToast(`已开启连填模式，点击空格自动填入 ${num}`);
-      }
+    const activeCell = gameBoard.getActiveCell();
+    if (!activeCell) {
+      showToast('请先选中一个格子，或点击“⚡ 连填”后选择数字');
       return;
     }
-    const { r, c } = selectedCell;
+    const { r, c } = activeCell;
     gameBoard.setNumber(num);
     Storage.logAction('setNumber', { num, r, c });
   }
@@ -930,7 +926,7 @@ function bindKeyboard() {
     // 数字键 1-9
     if (e.key >= '1' && e.key <= '9') {
       const num = parseInt(e.key);
-      if (quickFillModeSingle) {
+      if (quickFillModeSingle && !getSelectedCellSafely()) {
         selectQuickFillNumSingle(num);
       } else {
         handleNumberInput(num);
@@ -1358,7 +1354,9 @@ function initSettingsBindings() {
   });
 
   document.getElementById('setting-highlight-rowcolbox').addEventListener('change', (e) => {
-    gameBoard.highlightSettings.sameRowColBox = e.target.checked;
+    gameBoard.highlightSettings.sameRow = e.target.checked;
+    gameBoard.highlightSettings.sameCol = e.target.checked;
+    gameBoard.highlightSettings.sameBox = e.target.checked;
     saveSettings();
     refreshBoard();
   });
@@ -1391,7 +1389,14 @@ function loadSettings() {
 
   if (saved.conflictRed !== undefined) gameBoard.settings.conflictRed = saved.conflictRed;
   if (saved.autoClearCandidates !== undefined) gameBoard.settings.autoClearCandidates = saved.autoClearCandidates;
-  if (saved.highlightRowColBox !== undefined) gameBoard.highlightSettings.sameRowColBox = saved.highlightRowColBox;
+  if (saved.highlightRowColBox !== undefined) {
+    gameBoard.highlightSettings.sameRow = saved.highlightRowColBox;
+    gameBoard.highlightSettings.sameCol = saved.highlightRowColBox;
+    gameBoard.highlightSettings.sameBox = saved.highlightRowColBox;
+  }
+  if (saved.highlightRow !== undefined) gameBoard.highlightSettings.sameRow = saved.highlightRow;
+  if (saved.highlightCol !== undefined) gameBoard.highlightSettings.sameCol = saved.highlightCol;
+  if (saved.highlightBox !== undefined) gameBoard.highlightSettings.sameBox = saved.highlightBox;
   if (saved.highlightSameNumber !== undefined) gameBoard.highlightSettings.sameNumber = saved.highlightSameNumber;
   if (saved.highlightSameCage !== undefined) gameBoard.highlightSettings.sameCage = saved.highlightSameCage;
 }
@@ -1404,7 +1409,10 @@ function saveSettings() {
   Storage.saveSettings({
     conflictRed: gameBoard.settings.conflictRed,
     autoClearCandidates: gameBoard.settings.autoClearCandidates,
-    highlightRowColBox: gameBoard.highlightSettings.sameRowColBox,
+    highlightRowColBox: gameBoard.highlightSettings.sameRow && gameBoard.highlightSettings.sameCol && gameBoard.highlightSettings.sameBox,
+    highlightRow: gameBoard.highlightSettings.sameRow,
+    highlightCol: gameBoard.highlightSettings.sameCol,
+    highlightBox: gameBoard.highlightSettings.sameBox,
     highlightSameNumber: gameBoard.highlightSettings.sameNumber,
     highlightSameCage: gameBoard.highlightSettings.sameCage
   });
@@ -1415,7 +1423,8 @@ function saveSettings() {
  */
 function loadSettingsToUI() {
   document.getElementById('setting-conflict-red').checked = gameBoard.settings.conflictRed;
-  document.getElementById('setting-highlight-rowcolbox').checked = gameBoard.highlightSettings.sameRowColBox;
+  document.getElementById('setting-highlight-rowcolbox').checked =
+    gameBoard.highlightSettings.sameRow && gameBoard.highlightSettings.sameCol && gameBoard.highlightSettings.sameBox;
   document.getElementById('setting-highlight-samenum').checked = gameBoard.highlightSettings.sameNumber;
   document.getElementById('setting-highlight-samecage').checked = gameBoard.highlightSettings.sameCage;
   document.getElementById('setting-auto-clear').checked = gameBoard.settings.autoClearCandidates;

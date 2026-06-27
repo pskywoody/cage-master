@@ -303,10 +303,10 @@ function bindPlayerInput() {
       mouseMoved = true;
       const board = BattleState.playerBoard;
       if (!board.isBoxSelecting) {
-        const { r, c } = getCellFromCanvas(canvas, mouseStartPos.x, mouseStartPos.y);
+        const { r, c } = getCellFromCanvas(canvas, mouseStartPos.x, mouseStartPos.y, BattleState.playerRenderer, board.size);
         board.startBoxSelect(r, c);
       }
-      const { r, c } = getCellFromCanvas(canvas, e.clientX, e.clientY);
+      const { r, c } = getCellFromCanvas(canvas, e.clientX, e.clientY, BattleState.playerRenderer, board.size);
       board.updateBoxSelect(r, c);
       BattleState.playerRenderer.render(board);
     }
@@ -314,6 +314,10 @@ function bindPlayerInput() {
 
   canvas.addEventListener('mouseup', function(e) {
     if (!BattleState.running) return;
+    // 只在mousedown之后才处理mouseup（防止移动端touch事件后的合成mouse事件）
+    if (!isMouseDown) {
+      return;
+    }
     isMouseDown = false;
 
     const board = BattleState.playerBoard;
@@ -327,8 +331,8 @@ function bindPlayerInput() {
       }
     } else {
       // 普通单击
-      const { r, c } = getCellFromCanvas(canvas, e.clientX, e.clientY);
-      if (r >= 0 && r < 9 && c >= 0 && c < 9) {
+      const { r, c } = getCellFromCanvas(canvas, e.clientX, e.clientY, BattleState.playerRenderer, board.size);
+      if (r >= 0 && r < board.size && c >= 0 && c < board.size) {
         board.selectCell(r, c);
         BattleState.playerRenderer.render(board);
         AudioManager.playClick();
@@ -374,10 +378,10 @@ function bindPlayerInput() {
       touchMoved = true;
       const board = BattleState.playerBoard;
       if (!board.isBoxSelecting) {
-        const { r, c } = getCellFromCanvas(canvas, touchStartPos.x, touchStartPos.y);
+        const { r, c } = getCellFromCanvas(canvas, touchStartPos.x, touchStartPos.y, BattleState.playerRenderer, board.size);
         board.startBoxSelect(r, c);
       }
-      const { r, c } = getCellFromCanvas(canvas, touch.clientX, touch.clientY);
+      const { r, c } = getCellFromCanvas(canvas, touch.clientX, touch.clientY, BattleState.playerRenderer, board.size);
       board.updateBoxSelect(r, c);
       BattleState.playerRenderer.render(board);
     }
@@ -385,6 +389,7 @@ function bindPlayerInput() {
 
   canvas.addEventListener('touchend', function(e) {
     if (!BattleState.running) return;
+    e.preventDefault();
     const board = BattleState.playerBoard;
 
     if (touchMoved && board.isBoxSelecting) {
@@ -394,8 +399,8 @@ function bindPlayerInput() {
         toggleInputMode();
       }
     } else if (touchStartPos) {
-      const { r, c } = getCellFromCanvas(canvas, touchStartPos.x, touchStartPos.y);
-      if (r >= 0 && r < 9 && c >= 0 && c < 9) {
+      const { r, c } = getCellFromCanvas(canvas, touchStartPos.x, touchStartPos.y, BattleState.playerRenderer, board.size);
+      if (r >= 0 && r < board.size && c >= 0 && c < board.size) {
         board.selectCell(r, c);
         BattleState.playerRenderer.render(board);
         AudioManager.playClick();
@@ -516,9 +521,10 @@ function playerSetNumber(num) {
     return;
   }
 
-  // 单格模式
-  if (!board.selectedCell) return;
-  const { r, c } = board.selectedCell;
+  // 单格模式 - 使用getActiveCell()可靠获取选中格
+  const activeCell = board.getActiveCell();
+  if (!activeCell) return;
+  const { r, c } = activeCell;
   const cell = board.cells[r][c];
   if (cell.fixedNum) return;
 
@@ -584,9 +590,10 @@ function playerErase() {
     return;
   }
 
-  // 单格模式
-  if (!board.selectedCell) return;
-  const { r, c } = board.selectedCell;
+  // 单格模式 - 使用getActiveCell()可靠获取选中格
+  const activeCell = board.getActiveCell();
+  if (!activeCell) return;
+  const { r, c } = activeCell;
   const cell = board.cells[r][c];
   if (cell.fixedNum) return;
 
@@ -1894,19 +1901,26 @@ function endBattle(winner) {
 // ==========================================
 // 工具函数
 // ==========================================
-function getCellFromCanvas(canvas, clientX, clientY) {
+function getCellFromCanvas(canvas, clientX, clientY, renderer, boardSize) {
   const rect = canvas.getBoundingClientRect();
-  const scaleX = canvas.width / rect.width;
-  const scaleY = canvas.height / rect.height;
-  const dpr = window.devicePixelRatio || 1;
-
-  // 使用 playerRenderer 的 cellSize 和 padding（与实际渲染一致）
-  const r = BattleState.playerRenderer;
-  const x = (clientX - rect.left) * scaleX - r.padding * dpr;
-  const y = (clientY - rect.top) * scaleY - r.padding * dpr;
-  const cellSizePx = r.cellSize * dpr;
-
-  const row = Math.floor(y / cellSizePx);
-  const col = Math.floor(x / cellSizePx);
-  return { r: row, c: col };
+  const size = boardSize || 9;
+  const pad = renderer.padding;
+  
+  // 使用canvas实际显示尺寸计算（不依赖DPR手动缩放）
+  const boardDisplayW = rect.width - pad * 2;
+  const boardDisplayH = rect.height - pad * 2;
+  const cellW = boardDisplayW / size;
+  const cellH = boardDisplayH / size;
+  
+  let x = clientX - rect.left - pad;
+  let y = clientY - rect.top - pad;
+  
+  let c = Math.floor(x / cellW);
+  let r = Math.floor(y / cellH);
+  
+  // 边界clamp
+  r = Math.max(0, Math.min(size - 1, r));
+  c = Math.max(0, Math.min(size - 1, c));
+  
+  return { r, c };
 }

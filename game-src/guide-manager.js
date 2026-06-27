@@ -22,6 +22,7 @@ class FreezeMask {
     this.spotlightEl = null;
     this.textEl = null;
     this.onCloseCallback = null;
+    this._closeTimer = null;
     this._build();
   }
 
@@ -96,6 +97,15 @@ class FreezeMask {
 
     this.onCloseCallback = onClose;
     this.textEl.textContent = text;
+
+    // 取消待处理的关闭timer，防止竞态
+    if (this._closeTimer) {
+      clearTimeout(this._closeTimer);
+      this._closeTimer = null;
+    }
+
+    // 恢复pointer-events
+    this.el.style.pointerEvents = '';
 
     // 计算高亮位置和大小
     this._positionSpotlight({
@@ -204,11 +214,18 @@ class FreezeMask {
   }
 
   /**
-   * 关闭遮罩
+   * 关闭冷冻遮罩
    */
   close() {
+    // 立即禁用pointer-events，防止淡出期间拦截用户操作
+    this.el.style.pointerEvents = 'none';
     this.el.classList.remove('active');
-    setTimeout(() => {
+
+    if (this._closeTimer) {
+      clearTimeout(this._closeTimer);
+    }
+    this._closeTimer = setTimeout(() => {
+      this._closeTimer = null;
       this.el.style.display = 'none';
       if (this.onCloseCallback) {
         const cb = this.onCloseCallback;

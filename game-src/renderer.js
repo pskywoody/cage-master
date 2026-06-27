@@ -55,6 +55,10 @@ class Renderer {
 
     ctx.clearRect(0, 0, canvasSize, canvasSize);
 
+    // 填充白色背景（防止透明像素导致半透明高亮色看起来很淡）
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(0, 0, canvasSize, canvasSize);
+
     // 坐标系整体偏移，所有绘制自动加上内边距
     ctx.save();
     ctx.translate(padding, padding);
@@ -328,8 +332,8 @@ class Renderer {
         const cell = board.cells[r][c];
         if (cell.isSelected) {
           hasSelection = true;
-          // 选中背景：更深的蓝色，确保可见
-          ctx.fillStyle = 'rgba(59, 130, 246, 0.28)';
+          // 选中背景：更鲜明的蓝色，提高不透明度确保空白格也清晰可见
+          ctx.fillStyle = 'rgba(59, 130, 246, 0.32)';
           ctx.fillRect(c * cellSize, r * cellSize, cellSize, cellSize);
         }
       }
@@ -337,15 +341,15 @@ class Renderer {
 
     if (!hasSelection) return;
 
-    // 蓝色粗边框，确保选中格醒目
+    // 蓝色粗边框，确保选中格醒目（使用更粗的线宽）
     ctx.strokeStyle = '#2563eb';
-    ctx.lineWidth = 3;
+    ctx.lineWidth = 4;
     ctx.lineJoin = 'round';
     for (let r = 0; r < size; r++) {
       for (let c = 0; c < size; c++) {
         const cell = board.cells[r][c];
         if (cell.isSelected) {
-          ctx.strokeRect(c * cellSize + 1.5, r * cellSize + 1.5, cellSize - 3, cellSize - 3);
+          ctx.strokeRect(c * cellSize + 2, r * cellSize + 2, cellSize - 4, cellSize - 4);
         }
       }
     }

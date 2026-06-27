@@ -387,27 +387,12 @@
           allLevels = chapterData.levels;
         }
 
-        // 再尝试加载单独的章节文件
+        // 再尝试加载单独的章节文件（仅用于补充章节元信息，不覆盖关卡列表）
         try {
           const res2 = await fetch(`data/chapters/chapter_${chapterId}.json`);
           const chapterDetail = await res2.json();
-          if (chapterDetail && chapterDetail.lessons) {
-            // 把课程转成关卡格式
-            const levelsFromLessons = chapterDetail.lessons
-              .filter(l => l.type !== 'intro' && l.type !== 'rules' && l.type !== 'cage-intro')
-              .map((l, idx) => ({
-                levelId: chapterId * 100 + idx + 1,
-                title: l.title,
-                gridSize: chapterDetail.boardSize || (chapterId <= 1 ? 4 : chapterId <= 3 ? 6 : 9),
-                difficulty: '入门',
-                teachingGoal: l.type || 'practice',
-                features: { allowDraft: true, assistant45: true, showHints: true }
-              }));
-            if (levelsFromLessons.length > 0) {
-              allLevels = levelsFromLessons;
-            }
-          }
           if (chapterDetail) {
+            // 只更新章节元信息，不覆盖从 chapters.json 加载的真实关卡数据
             chapterData = {
               ...chapterData,
               id: chapterDetail.id || chapterId,
@@ -416,9 +401,34 @@
               icon: chapterDetail.icon || chapterData.icon,
               description: chapterDetail.description || chapterData.description
             };
+            // 注意：不再用 lessons 覆盖 allLevels！
+            // chapters.json 中的 levels 才是包含 boardData/cages 的真实可玩关卡
           }
         } catch (e2) {
           console.warn('章节详情加载失败：', e2.message);
+        }
+
+        // 如果从 chapters.json 没拿到关卡，才尝试用 lessons 生成
+        if (!allLevels || allLevels.length === 0) {
+          try {
+            const res3 = await fetch(`data/chapters/chapter_${chapterId}.json`);
+            const chapterDetail3 = await res3.json();
+            if (chapterDetail3 && chapterDetail3.lessons) {
+              const practiceLessons = chapterDetail3.lessons.filter(
+                l => l.type !== 'intro' && l.type !== 'rules' && l.type !== 'cage-intro'
+              );
+              allLevels = practiceLessons.map((l, idx) => ({
+                levelId: chapterId * 100 + idx + 1,
+                title: l.title,
+                gridSize: l.boardSize || chapterDetail3.boardSize || (chapterId <= 1 ? 4 : chapterId <= 3 ? 6 : 9),
+                difficulty: '入门',
+                teachingGoal: l.type || 'practice',
+                features: { allowDraft: true, assistant45: true, showHints: true }
+              }));
+            }
+          } catch (e3) {
+            console.warn('从课程文件生关卡失败：', e3.message);
+          }
         }
       } catch (e) {
         console.warn('本地章节数据加载失败：', e.message);
@@ -427,17 +437,19 @@
 
     // 最终降级数据
     function getFallbackChapterData() {
-      const sizes = [4, 4, 6, 6, 9, 9];
-      const titles = ['加密来信', '双重线索', '谜案追踪', '密码破译', '终极考验', '大师之路'];
-      const subtitles = ['入门篇 · 4x4', '进阶篇 · 4x4', '提高篇 · 6x6', '进阶篇 · 9x9', '挑战篇 · 9x9', '大师篇 · 9x9'];
-      const icons = ['✉️', '🔍', '🕵️', '📜', '🏆', '👑'];
+      const sizes = [4, 6, 9, 9, 9, 9]; // 第1章4x4，第2章降级用6x6，第3-6章全9x9
+      const levelCounts = [9, 8, 7, 6, 6, 6]; // 各章实际关卡数
+      const titles = ['初识笼中密码', '四十五星衡', '谜案追踪', '密码破译', '终极考验', '大师之路'];
+      const subtitles = ['入门篇 · 4x4', '基础篇 · 6x6/9x9', '进阶篇 · 9x9', '提高篇 · 9x9', '挑战篇 · 9x9', '大师篇 · 9x9'];
+      const icons = ['📁', '⭐', '🕵️', '📜', '🏆', '👑'];
       const colors = ['#22c55e', '#3b82f6', '#8b5cf6', '#f59e0b', '#ef4444', '#ec4899'];
       const idx = Math.min(chapterId - 1, 5);
       const size = sizes[idx];
+      const count = levelCounts[idx];
 
-      // 生成 10 个示例关卡
+      // 生成正确数量的降级关卡
       const levels = [];
-      for (let i = 1; i <= 10; i++) {
+      for (let i = 1; i <= count; i++) {
         levels.push({
           levelId: chapterId * 100 + i,
           title: `第${i}关`,

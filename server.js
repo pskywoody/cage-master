@@ -175,7 +175,11 @@ app.get('/api/teaching-level/:id', (req, res) => {
       solution: level.solution,
       chapterId: chapter.chapterId,
       chapterTitle: chapter.title,
-      teachingGoal: level.teachingGoal
+      teachingGoal: level.teachingGoal,
+      preDialog: level.preDialog,
+      clearDialog: level.clearDialog,
+      introStory: chapter.introStory,
+      endingStory: chapter.endingStory
     },
     msg: 'ok'
   });

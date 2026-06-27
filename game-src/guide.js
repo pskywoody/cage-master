@@ -162,13 +162,17 @@ window.onload = function() {
       if (shouldPlay) {
         console.log('📖 播放章节开场剧情');
         storyManager.playChapterIntro(currentChapterData, () => {
-          // 剧情播完再启动引导
-          initGuideManager();
+          // 章节开场播完，播放关卡前置对话
+          playLevelPreDialog(() => {
+            onPreDialogComplete();
+          });
         });
       } else {
         console.log('📖 跳过开场剧情');
-        // 不需要播剧情，直接启动引导
-        initGuideManager();
+        // 播放关卡前置对话
+        playLevelPreDialog(() => {
+          onPreDialogComplete();
+        });
       }
     }).catch(err => {
       console.error('❌ 加载章节数据失败:', err);
@@ -292,16 +296,25 @@ async function loadLocalTeachingLevel(levelId) {
   return null;
 }
 
-// 生成降级用的教学关卡
+// 生成降级用的教学关卡（最后手段：当所有数据源都失败时使用）
 function getFallbackTeachingLevel(levelId) {
   const numId = parseInt(levelId) || 101;
   const chapterId = Math.floor(numId / 100);
   const levelNum = numId % 100;
 
-  // 根据章节确定盘面大小
+  // 根据章节和关卡号确定盘面大小（更精确的启发式）
   let size = 9;
-  if (chapterId <= 1) size = 4;
-  else if (chapterId <= 3) size = 6;
+  if (chapterId <= 1) {
+    size = 4;
+  } else if (chapterId === 2) {
+    // 第2章：前3关6x6，后5关9x9
+    size = levelNum <= 3 ? 6 : 9;
+  } else {
+    // 第3-6章全是9x9
+    size = 9;
+  }
+
+  console.warn(`⚠️ 使用降级关卡 ${levelId}（${size}x${size}），所有数据源均加载失败`);
 
   // 生成一个简单的棋盘
   const cells = [];
@@ -334,7 +347,7 @@ function getFallbackTeachingLevel(levelId) {
     gridSize: size,
     size: size,
     difficulty: '入门',
-    teachingGoal: `完成${size}x${size}教学练习`,
+    teachingGoal: `完成${size}x${size}教学练习（降级数据，请检查数据源）`,
     features: {
       allowDraft: levelNum > 2,
       assistant45: levelNum > 5,
@@ -545,6 +558,12 @@ function refreshBoard() {
   }
   guideBoard.checkConflicts();
   guideRenderer.render(guideBoard);
+
+  // Boss战：渲染AI幽灵数字
+  if (typeof GuideBattle !== 'undefined' && GuideBattle.active) {
+    GuideBattle.renderGhostNumbers(guideRenderer.ctx, guideRenderer.cellSize, guideRenderer.padding);
+  }
+
   checkAndNotifyConflict();
   saveProgress();
   updateNumberButtons();
@@ -603,6 +622,12 @@ function updateNumberButtons() {
 function checkComplete() {
   if (isCompleted) return;
 
+  // Boss战进行中或刚结束（结果弹窗显示中）时，不自动触发通关
+  // 由Boss战系统的"继续"按钮触发通关流程
+  if (typeof GuideBattle !== 'undefined' && (GuideBattle.active || GuideBattle.ended)) {
+    return;
+  }
+
   const size = currentGridSize;
   let allFilled = true;
   let hasError = false;
@@ -623,6 +648,207 @@ function checkComplete() {
     // 教学关卡前端直判通关（4x4/6x6 无需后端校验）
     console.log('🎉 检测到通关！');
     markComplete();
+  }
+}
+
+// ---------- 关卡剧情对话系统 ----------
+
+/**
+ * 将用户剧情格式（{speaker, text}）转换为 StoryModal 格式（{character, avatar, color, text}）
+ * 支持两种格式混用
+ */
+function normalizeDialogues(dialogues) {
+  if (!dialogues || !Array.isArray(dialogues)) return [];
+  const chars = window.CHARACTERS || {};
+  return dialogues.map(d => {
+    if (!d || typeof d !== 'object') return d;
+    // 如果是标题卡，直接返回
+    if (d.type === 'title') return d;
+    // 已经是标准格式（有character/avatar/color），直接返回
+    if (d.character || d.avatar || d.color) return d;
+    // 用户格式：{speaker, text} -> 映射到角色预设
+    const speaker = d.speaker || '';
+    let preset = null;
+    if (speaker === '守笼人') preset = chars.keeper;
+    else if (speaker === '阿岩') preset = chars.ayan;
+    else if (speaker === '设局人') preset = chars.setter;
+    else if (speaker === '旁白') preset = chars.narrator;
+    if (preset) {
+      return { ...preset, text: d.text || '' };
+    }
+    // 未知角色，用emoji作为fallback
+    return {
+      character: speaker,
+      icon: '👤',
+      color: '#64748b',
+      text: d.text || ''
+    };
+  });
+}
+
+/**
+ * preDialog播放完成后的处理：检查是否为Boss关卡，是则启动Boss战
+ */
+function onPreDialogComplete() {
+  // 检查是否为Boss关卡
+  const bossConfig = (typeof BOSS_CONFIGS !== 'undefined') ? BOSS_CONFIGS[currentLevelId] : null;
+  if (bossConfig) {
+    startBossBattle(bossConfig);
+  } else {
+    initGuideManager();
+  }
+}
+
+/**
+ * 启动Boss战
+ */
+function startBossBattle(bossConfig) {
+  if (!storyManager || !storyManager.modal) {
+    // StoryModal不可用，直接开始
+    _initBattleAndStart(bossConfig);
+    return;
+  }
+
+  // 播放Boss战前对话
+  const preBattleDialog = bossConfig.preDialog || [
+    { speaker: bossConfig.name, text: '来吧，和我一决高下！' }
+  ];
+
+  storyManager.modal.play(preBattleDialog, () => {
+    _initBattleAndStart(bossConfig);
+  });
+}
+
+/**
+ * 初始化并启动Boss战
+ */
+function _initBattleAndStart(bossConfig) {
+  // 确保有正解数据
+  if (!currentLevelData.solution) {
+    console.warn('⚠️ Boss关卡缺少solution数据，跳过对战');
+    initGuideManager();
+    return;
+  }
+
+  // 标记Boss战激活
+  document.body.classList.add('boss-battle-active');
+
+  GuideBattle.start({
+    solution: currentLevelData.solution,
+    initialBoard: currentLevelData.cells || currentLevelData.boardData || currentLevelData.puzzle,
+    size: currentGridSize,
+    opponent: bossConfig,
+    onEnd: (result) => {
+      _onBossBattleEnd(result, bossConfig);
+    }
+  });
+
+  // 统计玩家已填入的正确数字（从存档恢复的情况）
+  const solution = currentLevelData.solution;
+  for (let r = 0; r < currentGridSize; r++) {
+    for (let c = 0; c < currentGridSize; c++) {
+      const cell = guideBoard.cells[r][c];
+      if (!cell.fixedNum && cell.fillNum && solution[r] && solution[r][c] === cell.fillNum) {
+        GuideBattle.playerFilledCount++;
+      }
+    }
+  }
+
+  // Boss战期间不初始化GuideManager（引导弹窗会遮挡操作）
+  // Boss战前对话已经替代了引导提示
+  // initGuideManager();  // 跳过，Boss战结束后再处理
+
+  // 更新UI显示初始进度
+  if (GuideBattle._updateUI) GuideBattle._updateUI();
+
+  // 显示"准备开始"提示
+  _showBattleCountdown();
+}
+
+/**
+ * 显示Boss战倒计时提示
+ */
+function _showBattleCountdown() {
+  const overlay = document.createElement('div');
+  overlay.id = 'boss-countdown-overlay';
+  overlay.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);z-index:600;display:flex;align-items:center;justify-content:center;flex-direction:column;';
+  overlay.innerHTML = `
+    <div style="font-size:48px;margin-bottom:16px;" id="countdown-num">3</div>
+    <div style="font-size:18px;color:#ccc;">准备好...</div>
+  `;
+  document.body.appendChild(overlay);
+
+  let count = 3;
+  const numEl = overlay.querySelector('#countdown-num');
+  const interval = setInterval(() => {
+    count--;
+    if (count > 0) {
+      numEl.textContent = count;
+    } else if (count === 0) {
+      numEl.textContent = '开始！';
+      numEl.style.color = '#22c55e';
+    } else {
+      clearInterval(interval);
+      overlay.style.transition = 'opacity 0.3s';
+      overlay.style.opacity = '0';
+      setTimeout(() => overlay.remove(), 300);
+      // 倒计时结束，正式开始比赛（AI开始填数）
+      if (GuideBattle && GuideBattle.active) {
+        GuideBattle.beginRace();
+      }
+    }
+  }, 1000);
+}
+
+/**
+ * Boss战结束处理
+ */
+function _onBossBattleEnd(result, bossConfig) {
+  // 先停止Boss战，移除进度条等UI
+  if (GuideBattle && GuideBattle.active) {
+    GuideBattle.stop();
+  }
+  document.body.classList.remove('boss-battle-active');
+
+  if (result === 'win') {
+    // 胜利：播放胜利对话，然后进入正常通关流程
+    const winDialog = bossConfig.winDialog || [
+      { speaker: '阿岩', text: '赢了！' }
+    ];
+    if (storyManager && storyManager.modal) {
+      storyManager.modal.play(winDialog, () => {
+        // 继续到markComplete
+        // 此时isCompleted检查会通过，因为玩家已经填满了
+        markComplete();
+      });
+    } else {
+      markComplete();
+    }
+  }
+  // 败北：GuideBattle内部处理重试逻辑，不走到这里
+}
+
+/**
+ * 播放关卡前置对话（preDialog）
+ * 首次进入关卡时播放，重进不重复播（URL加?story=1可强制重播）
+ */
+function playLevelPreDialog(onComplete) {
+  const preDialog = currentLevelData && (currentLevelData.preDialog || currentLevelData.preStory);
+  if (!preDialog || !Array.isArray(preDialog) || preDialog.length === 0) {
+    if (onComplete) onComplete();
+    return;
+  }
+  const preDialogKey = `killersudoku_level_dialog_pre_${currentLevelId}`;
+  if (!forcePlayStory && localStorage.getItem(preDialogKey)) {
+    if (onComplete) onComplete();
+    return;
+  }
+  localStorage.setItem(preDialogKey, '1');
+  const dialogues = normalizeDialogues(preDialog);
+  if (storyManager && storyManager.modal) {
+    storyManager.modal.play(dialogues, onComplete);
+  } else {
+    if (onComplete) onComplete();
   }
 }
 
@@ -660,17 +886,45 @@ function markComplete() {
 
   // 检查是否需要播放章末剧情
   const shouldPlayEnding = forcePlayStory || storyManager.shouldPlayEnding(currentChapterData, currentLevelId);
-  if (storyManager && currentChapterData && shouldPlayEnding) {
-    // 延迟一下再播章末剧情，让玩家先看到通关画面
-    setTimeout(() => {
-      if (overlay) overlay.classList.remove('active');
-      storyManager.playChapterEnding(currentChapterData, () => {
-        // 剧情播完再显示通关弹窗
-        if (overlay) overlay.classList.add('active');
-      });
-    }, 800);
-  } else {
+
+  // 检查是否有关卡通关对话
+  const clearDialog = currentLevelData && (currentLevelData.clearDialog || currentLevelData.clearStory);
+  const clearDialogKey = `killersudoku_level_dialog_clear_${currentLevelId}`;
+  const shouldPlayClear = clearDialog && clearDialog.length > 0 &&
+    (forcePlayStory || !localStorage.getItem(clearDialogKey));
+
+  // 播放流程：关卡通关对话 → 章末剧情 → 通关弹窗
+  const showOverlay = () => { if (overlay) overlay.classList.add('active'); };
+
+  const playEndingThenOverlay = () => {
+    if (storyManager && currentChapterData && shouldPlayEnding) {
+      setTimeout(() => {
+        if (overlay) overlay.classList.remove('active');
+        storyManager.playChapterEnding(currentChapterData, showOverlay);
+      }, 600);
+    } else {
+      showOverlay();
+    }
+  };
+
+  const playClearThenEnding = () => {
+    if (shouldPlayClear) {
+      localStorage.setItem(clearDialogKey, '1');
+      setTimeout(() => {
+        if (overlay) overlay.classList.remove('active');
+        const dialogues = normalizeDialogues(clearDialog);
+        storyManager.modal.play(dialogues, playEndingThenOverlay);
+      }, 600);
+    } else {
+      playEndingThenOverlay();
+    }
+  };
+
+  if (shouldPlayClear || shouldPlayEnding) {
     if (overlay) overlay.classList.add('active');
+    setTimeout(playClearThenEnding, 800);
+  } else {
+    showOverlay();
   }
 }
 
@@ -732,15 +986,15 @@ function checkNextLevelExists(levelId) {
       return currentChapterData.levels.some(l => String(l.levelId) === String(levelId));
     }
     // 降级：根据章节ID推算最大关卡数
-    // 章节1有9关（101-109），章节2有8关（201-208），以此类推
     const chapterId = Math.floor(levelId / 100);
     const levelNum = levelId % 100;
-    // 默认最大关卡数是9，如果超出则视为不存在
-    if (levelNum > 9) return false;
-    return true;
+    // 各章实际关卡数：第1章9关，第2章8关，第3章7关，第4-6章各6关
+    const maxLevels = { 1: 9, 2: 8, 3: 7, 4: 6, 5: 6, 6: 6 };
+    const max = maxLevels[chapterId] || 9;
+    return levelNum >= 1 && levelNum <= max;
   } catch (e) {
-    // 出错时保守处理：超过9就认为不存在
-    return (levelId % 100) <= 9;
+    // 出错时保守处理
+    return false;
   }
 }
 
@@ -776,6 +1030,10 @@ function bindCanvasClick() {
 
   canvas.addEventListener('mouseup', function(e) {
     if (isPaused) return;
+    // 只在mousedown之后才处理mouseup（防止移动端touch事件后的合成mouse事件）
+    if (!isMouseDown) {
+      return;
+    }
     isMouseDown = false;
     if (mouseMoved && guideBoard.isBoxSelecting) {
       guideBoard.endBoxSelect();
@@ -894,16 +1152,25 @@ function bindCanvasClick() {
 
 function getCellFromPos(clientX, clientY) {
   const rect = guideRenderer.canvas.getBoundingClientRect();
-  const scaleX = guideRenderer.canvas.width / rect.width;
-  const scaleY = guideRenderer.canvas.height / rect.height;
-
-  const dpr = window.devicePixelRatio || 1;
-  const x = (clientX - rect.left) * scaleX - guideRenderer.padding * dpr;
-  const y = (clientY - rect.top) * scaleY - guideRenderer.padding * dpr;
-
-  const cellSizePx = guideRenderer.cellSize * dpr;
-  const r = Math.floor(y / cellSizePx);
-  const c = Math.floor(x / cellSizePx);
+  const size = guideBoard.size;
+  const pad = guideRenderer.padding;
+  
+  // 使用canvas实际显示尺寸计算（不依赖DPR手动缩放）
+  const boardDisplayW = rect.width - pad * 2;
+  const boardDisplayH = rect.height - pad * 2;
+  const cellW = boardDisplayW / size;
+  const cellH = boardDisplayH / size;
+  
+  let x = clientX - rect.left - pad;
+  let y = clientY - rect.top - pad;
+  
+  let c = Math.floor(x / cellW);
+  let r = Math.floor(y / cellH);
+  
+  // 边界clamp
+  r = Math.max(0, Math.min(size - 1, r));
+  c = Math.max(0, Math.min(size - 1, c));
+  
   return { r, c };
 }
 
@@ -916,7 +1183,11 @@ function handleCanvasTap(clientX, clientY) {
   }
   
   guideBoard.selectCell(r, c);
-  guide_onCellSelect(r, c);
+  // 验证选中是否成功，使用getActiveCell()双重检查
+  const active = guideBoard.getActiveCell();
+  if (active) {
+    guide_onCellSelect(active.r, active.c);
+  }
   refreshBoard();
 }
 
@@ -927,17 +1198,8 @@ function handleLongPress(clientX, clientY) {
     navigator.vibrate(50);
   }
 
-  const rect = guideRenderer.canvas.getBoundingClientRect();
-  const scaleX = guideRenderer.canvas.width / rect.width;
-  const scaleY = guideRenderer.canvas.height / rect.height;
-  const dpr = window.devicePixelRatio || 1;
-
-  const x = (clientX - rect.left) * scaleX - guideRenderer.padding * dpr;
-  const y = (clientY - rect.top) * scaleY - guideRenderer.padding * dpr;
-  const cellSizePx = guideRenderer.cellSize * dpr;
-
-  const r = Math.floor(y / cellSizePx);
-  const c = Math.floor(x / cellSizePx);
+  // 使用和getCellFromPos一致的坐标计算
+  const { r, c } = getCellFromPos(clientX, clientY);
 
   guideBoard.selectCell(r, c);
 
@@ -972,8 +1234,9 @@ function bindNumPad() {
     // 连填模式激活时
     if (quickFillMode && quickFillNum) {
       // 如果已经选中了空白格子 → 直接填数（优先于切换连填）
-      if (guideBoard.selectedCell) {
-        const { r, c } = guideBoard.selectedCell;
+      const activeCell = guideBoard.getActiveCell();
+      if (activeCell) {
+        const { r, c } = activeCell;
         const cell = guideBoard.cells[r][c];
         if (!cell.fixedNum && !cell.fillNum) {
           handleNumberInput(num);
@@ -1005,24 +1268,11 @@ function handleNumberInput(num) {
       guideBoard.toggleCandidateForSelection(num);
     }
   } else if (guideBoard.inputMode === 'candidate' && features.allowDraft) {
-    // 候选模式：也支持 isSelected fallback 查找
-    let selectedCell = guideBoard.selectedCell;
-    if (!selectedCell) {
-      for (let r = 0; r < guideBoard.size; r++) {
-        for (let c = 0; c < guideBoard.size; c++) {
-          if (guideBoard.cells[r][c].isSelected) {
-            selectedCell = { r, c };
-            guideBoard.selectedCell = selectedCell;
-            break;
-          }
-        }
-        if (selectedCell) break;
-      }
-    }
+    // 候选模式：使用getActiveCell()可靠获取选中格
+    const selectedCell = guideBoard.getActiveCell();
     if (!selectedCell) {
       // 候选模式下没有选中格子，提示用户并切回普通模式
       showGameToast('💡 先点一个空格，再填数字');
-      // 自动切回普通模式，避免用户卡住
       guideBoard.inputMode = 'normal';
       const candidateBtn = document.getElementById('btn-candidate');
       if (candidateBtn) {
@@ -1036,21 +1286,8 @@ function handleNumberInput(num) {
     const { r, c } = selectedCell;
     guideBoard.toggleCandidate(num);
   } else {
-    // 获取当前选中的格子（支持 direct 引用 + isSelected 双重查找）
-    let selectedCell = guideBoard.selectedCell;
-    if (!selectedCell) {
-      // fallback：遍历棋盘找 isSelected 的格子
-      for (let r = 0; r < guideBoard.size; r++) {
-        for (let c = 0; c < guideBoard.size; c++) {
-          if (guideBoard.cells[r][c].isSelected) {
-            selectedCell = { r, c };
-            guideBoard.selectedCell = selectedCell;
-            break;
-          }
-        }
-        if (selectedCell) break;
-      }
-    }
+    // 普通模式：使用getActiveCell()可靠获取选中格
+    const selectedCell = guideBoard.getActiveCell();
     
     if (!selectedCell) {
       // 没有选中格子 → 自动开启连填模式
@@ -1074,6 +1311,13 @@ function handleNumberInput(num) {
     // 只有真正填入了新数字才触发
     if (newVal && newVal !== oldVal) {
       guide_onNumberFilled(r, c, newVal);
+
+      // Boss战：追踪玩家填数进度
+      if (typeof GuideBattle !== 'undefined' && GuideBattle.active && !GuideBattle.ended) {
+        const solution = currentLevelData && currentLevelData.solution;
+        const isCorrect = solution && solution[r] && solution[r][c] === newVal;
+        GuideBattle.onPlayerFill(r, c, newVal, !!isCorrect);
+      }
 
       // 检查"最后一格"引导
       checkLastCellGuidance(r, c, newVal, beforeState);
@@ -1627,7 +1871,7 @@ function setupQuickFillLongPress() {
         if (navigator.vibrate) navigator.vibrate(50);
         _skipNextClick = true;
         longPressTimer = null;
-      }, 500);
+      }, 650);
     });
 
     btn.addEventListener('pointerup', () => {
@@ -1875,14 +2119,20 @@ function updatePerspectivePanel(r, c) {
   };
 
   const size = guideBoard.size;
-  document.getElementById('persp-row-nums').innerHTML = formatNums(seen.row, size);
-  document.getElementById('persp-col-nums').innerHTML = formatNums(seen.col, size);
-  document.getElementById('persp-box-nums').innerHTML = formatNums(seen.box, size);
+  const rowNums = document.getElementById('persp-row-nums');
+  const colNums = document.getElementById('persp-col-nums');
+  const boxNums = document.getElementById('persp-box-nums');
+  if (rowNums) rowNums.innerHTML = formatNums(seen.row, size);
+  if (colNums) colNums.innerHTML = formatNums(seen.col, size);
+  if (boxNums) boxNums.innerHTML = formatNums(seen.box, size);
 
-  // 根据高亮设置显示/隐藏对应分组
-  document.getElementById('persp-row').style.display = guideBoard.highlightSettings.sameRow ? '' : 'none';
-  document.getElementById('persp-col').style.display = guideBoard.highlightSettings.sameCol ? '' : 'none';
-  document.getElementById('persp-box').style.display = guideBoard.highlightSettings.sameBox ? '' : 'none';
+  // 根据高亮设置显示/隐藏对应分组（null安全检查）
+  const rowEl = document.getElementById('persp-row');
+  const colEl = document.getElementById('persp-col');
+  const boxEl = document.getElementById('persp-box');
+  if (rowEl) rowEl.style.display = guideBoard.highlightSettings.sameRow ? '' : 'none';
+  if (colEl) colEl.style.display = guideBoard.highlightSettings.sameCol ? '' : 'none';
+  if (boxEl) boxEl.style.display = guideBoard.highlightSettings.sameBox ? '' : 'none';
 }
 
 // ---------- 事件回调：通关 ----------

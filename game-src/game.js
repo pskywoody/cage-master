@@ -151,6 +151,32 @@ class Board {
   }
 
   /**
+   * 可靠获取当前选中的格子（支持 selectedCell 引用 + isSelected 遍历双重查找）
+   * 防止selectedCell引用丢失但isSelected标记仍在的情况
+   */
+  getActiveCell() {
+    // 先尝试直接引用
+    if (this.selectedCell) {
+      const { r, c } = this.selectedCell;
+      if (r >= 0 && r < this.size && c >= 0 && c < this.size && this.cells[r][c].isSelected) {
+        return this.selectedCell;
+      }
+    }
+    // Fallback: 遍历找isSelected的格子
+    for (let r = 0; r < this.size; r++) {
+      for (let c = 0; c < this.size; c++) {
+        if (this.cells[r][c].isSelected) {
+          this.selectedCell = { r, c };
+          return this.selectedCell;
+        }
+      }
+    }
+    // 没有选中格子
+    this.selectedCell = null;
+    return null;
+  }
+
+  /**
    * 清除所有多选状态
    */
   clearBoxSelection() {
@@ -449,8 +475,9 @@ class Board {
    * 自动清除行/列/宫/笼中所有关联格子的该候选数（可设置开关）
    */
   setNumber(num) {
-    if (!this.selectedCell) return;
-    const { r, c } = this.selectedCell;
+    const selected = this.getActiveCell();
+    if (!selected) return;
+    const { r, c } = selected;
     const cell = this.cells[r][c];
     if (cell.fixedNum) return; // 固定数字不能改
 
@@ -512,8 +539,9 @@ class Board {
    * 擦除选中格
    */
   eraseNumber() {
-    if (!this.selectedCell) return;
-    const { r, c } = this.selectedCell;
+    const selected = this.getActiveCell();
+    if (!selected) return;
+    const { r, c } = selected;
     const cell = this.cells[r][c];
     if (cell.fixedNum) return;
 
@@ -624,8 +652,9 @@ class Board {
    * 给选中格写入/移除候选数
    */
   toggleCandidate(num) {
-    if (!this.selectedCell) return;
-    const { r, c } = this.selectedCell;
+    const selected = this.getActiveCell();
+    if (!selected) return;
+    const { r, c } = selected;
     const cell = this.cells[r][c];
     if (cell.fixedNum) return;
     if (cell.fillNum) return; // 已有正式数字时不能写候选
@@ -750,11 +779,12 @@ class Board {
    * 移动选中格（方向键用）
    */
   moveSelection(dr, dc) {
-    if (!this.selectedCell) {
+    const current = this.getActiveCell();
+    if (!current) {
       this.selectCell(0, 0);
       return;
     }
-    const { r, c } = this.selectedCell;
+    const { r, c } = current;
     const nr = Math.max(0, Math.min(this.size - 1, r + dr));
     const nc = Math.max(0, Math.min(this.size - 1, c + dc));
     this.selectCell(nr, nc);

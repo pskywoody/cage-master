@@ -494,7 +494,7 @@ body {
   height: 5px;
   background: #22c55e;
   border-radius: 2px;
-  animation: press-progress 0.5s ease-out forwards;
+  animation: press-progress 0.65s ease-out forwards;
   z-index: 1;
 }
 
@@ -1020,13 +1020,14 @@ body {
   z-index: 500;
   opacity: 0;
   transition: opacity 0.25s ease;
-  pointer-events: auto;
+  pointer-events: none;  /* 非激活状态不拦截点击 */
   /* 背景透明，实际遮罩由 spotlight 的 box-shadow 扩散产生挖空效果 */
   background: transparent;
 }
 
 .guide-freeze-mask.active {
   opacity: 1;
+  pointer-events: auto;  /* 激活时才拦截点击 */
 }
 
 /* 高亮挖空区域：box-shadow 向外扩散填满整个屏幕，中心透明形成"挖空"效果 */
@@ -1215,6 +1216,7 @@ body {
   font-size: 40px;
   flex-shrink: 0;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
 }
 
 .story-dialog-box {
@@ -1370,4 +1372,267 @@ body {
 .badge-award-btn:active {
   transform: scale(0.96);
   background: #d97706;
+}
+
+/* ========== Boss战样式 ========== */
+
+/* Boss对战状态条 */
+#boss-battle-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 400;
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.97) 0%, rgba(30, 41, 59, 0.95) 100%);
+  backdrop-filter: blur(8px);
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  border-bottom: 2px solid rgba(99, 102, 241, 0.3);
+  animation: bossBarSlideDown 0.4s ease-out;
+}
+
+@keyframes bossBarSlideDown {
+  from { transform: translateY(-100%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+#boss-battle-bar.boss-leading {
+  border-bottom-color: rgba(239, 68, 68, 0.6);
+  animation: bossAlert 0.6s ease-in-out infinite alternate;
+}
+
+@keyframes bossAlert {
+  from { box-shadow: 0 2px 10px rgba(239, 68, 68, 0.2); }
+  to { box-shadow: 0 2px 20px rgba(239, 68, 68, 0.5); }
+}
+
+.boss-info, .player-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  min-width: 0;
+}
+
+.player-info {
+  flex-direction: row-reverse;
+}
+
+.boss-avatar, .player-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+  overflow: hidden;
+  border: 2px solid rgba(255,255,255,0.2);
+}
+
+.boss-avatar {
+  background: linear-gradient(135deg, #7f1d1d, #450a0a);
+  box-shadow: 0 0 10px rgba(239, 68, 68, 0.4);
+}
+
+.player-avatar {
+  background: linear-gradient(135deg, #1e3a5f, #0f172a);
+  border-color: rgba(34, 197, 94, 0.4);
+}
+
+.boss-detail, .player-detail {
+  flex: 1;
+  min-width: 0;
+}
+
+.player-detail {
+  text-align: right;
+}
+
+.boss-name, .player-name {
+  font-size: 12px;
+  font-weight: 700;
+  color: #e2e8f0;
+  margin-bottom: 3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.player-name {
+  color: #4ade80;
+}
+
+/* 进度条共用样式 */
+.boss-progress-bar, .player-progress-bar {
+  height: 10px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 5px;
+  position: relative;
+  overflow: hidden;
+}
+
+.boss-progress-fill, .player-progress-fill {
+  height: 100%;
+  border-radius: 5px;
+  transition: width 0.3s ease-out;
+  min-width: 0;
+}
+
+.boss-progress-fill {
+  background: linear-gradient(90deg, #ef4444, #dc2626);
+  box-shadow: 0 0 8px rgba(239, 68, 68, 0.5);
+}
+
+.player-progress-fill {
+  background: linear-gradient(90deg, #22c55e, #16a34a);
+  box-shadow: 0 0 8px rgba(34, 197, 94, 0.5);
+}
+
+.boss-progress-text, .player-progress-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 9px;
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+  line-height: 1;
+}
+
+/* 对战模式下给顶部留出空间 */
+body.boss-battle-active {
+  padding-top: 56px;
+}
+
+/* Boss战结果弹窗 */
+#boss-result-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: bossResultFadeIn 0.3s ease-out;
+}
+
+@keyframes bossResultFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.boss-result-content {
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  border-radius: 20px;
+  padding: 32px 28px;
+  text-align: center;
+  max-width: 320px;
+  width: 90%;
+  border: 2px solid rgba(99, 102, 241, 0.3);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  animation: bossResultPop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes bossResultPop {
+  from { transform: scale(0.7); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.boss-result-content.win {
+  border-color: rgba(34, 197, 94, 0.5);
+}
+.boss-result-content.win .boss-result-icon {
+  filter: drop-shadow(0 0 20px rgba(34, 197, 94, 0.6));
+}
+
+.boss-result-content.lose {
+  border-color: rgba(239, 68, 68, 0.5);
+}
+.boss-result-content.lose .boss-result-icon {
+  filter: drop-shadow(0 0 20px rgba(239, 68, 68, 0.6));
+}
+
+.boss-result-icon {
+  font-size: 64px;
+  margin-bottom: 12px;
+  animation: bossResultBounce 0.6s ease-out 0.2s both;
+}
+
+@keyframes bossResultBounce {
+  0% { transform: scale(0); }
+  60% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+.boss-result-title {
+  font-size: 28px;
+  font-weight: 900;
+  margin-bottom: 8px;
+  letter-spacing: 4px;
+}
+
+.boss-result-content.win .boss-result-title {
+  color: #4ade80;
+}
+.boss-result-content.lose .boss-result-title {
+  color: #f87171;
+}
+
+.boss-result-sub {
+  font-size: 14px;
+  color: #94a3b8;
+  margin-bottom: 20px;
+}
+
+.boss-result-stats {
+  background: rgba(255,255,255,0.05);
+  border-radius: 12px;
+  padding: 12px 16px;
+  margin-bottom: 20px;
+}
+
+.stat-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  color: #cbd5e1;
+  padding: 4px 0;
+}
+
+.stat-row span:last-child {
+  font-weight: 700;
+  color: #f1f5f9;
+}
+
+.boss-result-btn {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.15s;
+  background: linear-gradient(135deg, #6366f1, #4f46e5);
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+}
+
+.boss-result-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.5);
+}
+
+.boss-result-btn:active {
+  transform: scale(0.97);
 }

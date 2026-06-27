@@ -28,6 +28,7 @@ class StoryModal {
     this._dialogues = [];
     this._currentIndex = 0;
     this._onComplete = null;
+    this._finishTimer = null;
     this._build();
   }
 
@@ -47,6 +48,25 @@ class StoryModal {
     // 角色立绘区（左侧大图标）
     this.characterEl = document.createElement('div');
     this.characterEl.className = 'story-character';
+
+    // 预先创建emoji文本元素和图片元素，避免切换时DOM被清空
+    this.characterEmoji = document.createElement('span');
+    this.characterEmoji.className = 'story-character-emoji';
+    this.characterEmoji.style.display = 'flex';
+    this.characterEmoji.style.alignItems = 'center';
+    this.characterEmoji.style.justifyContent = 'center';
+    this.characterEmoji.style.width = '100%';
+    this.characterEmoji.style.height = '100%';
+    this.characterEl.appendChild(this.characterEmoji);
+
+    this.characterImg = document.createElement('img');
+    this.characterImg.className = 'story-character-img';
+    this.characterImg.style.width = '100%';
+    this.characterImg.style.height = '100%';
+    this.characterImg.style.objectFit = 'cover';
+    this.characterImg.style.borderRadius = '50%';
+    this.characterImg.style.display = 'none';
+    this.characterEl.appendChild(this.characterImg);
 
     // 对话框（右侧）
     const dialogBox = document.createElement('div');
@@ -107,6 +127,14 @@ class StoryModal {
       if (onComplete) onComplete();
       return;
     }
+
+    // 如果有未执行的finish回调（上一个play的），清除它防止干扰
+    if (this._finishTimer) {
+      clearTimeout(this._finishTimer);
+      this._finishTimer = null;
+      this._onComplete = null;
+    }
+
     this._dialogues = dialogues;
     this._currentIndex = 0;
     this._onComplete = onComplete;
@@ -145,8 +173,39 @@ class StoryModal {
     // 普通对话显示尾巴
     this.el.classList.remove('no-tail');
 
-    this.characterEl.textContent = dlg.icon || '📁';
-    this.nameEl.textContent = dlg.character || '档案侦探';
+    // 自动从角色预设中补充头像和颜色（如果dialogue只有speaker字段）
+    const speakerName = dlg.character || dlg.speaker || '';
+    const chars = window.CHARACTERS || {};
+    let preset = null;
+    if (!dlg.avatar && !dlg.icon && speakerName) {
+      if (speakerName === '守笼人') preset = chars.keeper;
+      else if (speakerName === '阿岩') preset = chars.ayan;
+      else if (speakerName === '设局人') preset = chars.setter;
+      else if (speakerName === '旁白') preset = chars.narrator;
+    }
+
+    // 设置角色头像（支持图片或emoji）
+    const avatar = dlg.avatar || (preset && preset.avatar) || dlg.icon || (preset && preset.icon) || '📁';
+    const isImage = avatar && (avatar.endsWith('.png') || avatar.endsWith('.jpg') || avatar.endsWith('.jpeg') || avatar.endsWith('.webp') || avatar.startsWith('data:') || avatar.startsWith('/') || avatar.startsWith('assets/'));
+
+    if (isImage) {
+      // 图片头像：显示img，隐藏emoji
+      this.characterEmoji.style.display = 'none';
+      this.characterImg.src = avatar;
+      this.characterImg.style.display = 'block';
+      this.characterEl.style.background = 'rgba(255,255,255,0.15)';
+    } else {
+      // Emoji头像：显示emoji，隐藏img
+      this.characterImg.style.display = 'none';
+      this.characterEmoji.textContent = avatar;
+      this.characterEmoji.style.display = 'flex';
+      this.characterEl.style.background = 'rgba(255,255,255,0.1)';
+    }
+
+    // 设置角色名和颜色
+    const charName = speakerName || '档案侦探';
+    this.nameEl.textContent = charName;
+    this.nameEl.style.color = dlg.color || (preset && preset.color) || '#3b82f6';
 
     // 打字机效果
     this._currentText = dlg.text || '';
@@ -200,17 +259,23 @@ class StoryModal {
   }
 
   _finish() {
+    // 如果已经在finish过程中，不重复执行
+    if (this._finishTimer) return;
+
     this.el.classList.remove('active');
-    setTimeout(() => {
+    // 立即保存回调，防止200ms内被新的play()覆盖
+    const cb = this._onComplete;
+    this._onComplete = null;
+    this._finishTimer = setTimeout(() => {
+      this._finishTimer = null;
       this.el.style.display = 'none';
-      const cb = this._onComplete;
-      this._onComplete = null;
       if (cb) cb();
     }, 200);
   }
 
   destroy() {
     if (this._typewriterTimer) clearTimeout(this._typewriterTimer);
+    if (this._finishTimer) clearTimeout(this._finishTimer);
     document.removeEventListener('keydown', this._keyHandler);
     if (this.el && this.el.parentNode) {
       this.el.parentNode.removeChild(this.el);
@@ -411,3 +476,44 @@ class StoryManager {
 window.StoryModal = StoryModal;
 window.BadgeAward = BadgeAward;
 window.StoryManager = StoryManager;
+
+// ==========================================
+// 角色预设：统一管理三个主角的头像和颜色
+// ==========================================
+const CHARACTERS = {
+  keeper: {
+    character: '守笼人',
+    avatar: 'assets/images/keeper-avatar.png',
+    color: '#6366f1' // 靛蓝色，对应深蓝紫袍
+  },
+  ayan: {
+    character: '阿岩',
+    avatar: 'assets/images/ayan-avatar.png',
+    color: '#22c55e' // 绿色，对应黄绿外套
+  },
+  setter: {
+    character: '设局人',
+    avatar: 'assets/images/setter-avatar.png',
+    color: '#ef4444' // 暗红色，对应红眼黑兜帽
+  },
+  narrator: {
+    character: '旁白',
+    icon: '🏛️',
+    color: '#94a3b8' // 灰色
+  }
+};
+
+window.CHARACTERS = CHARACTERS;
+
+/**
+ * 便捷函数：用角色预设快速构建对话条目
+ * @param {string} role - 'keeper'|'ayan'|'setter'|'narrator'
+ * @param {string} text - 台词
+ * @returns {Object} 对话条目
+ */
+function dlg(role, text) {
+  const preset = CHARACTERS[role] || CHARACTERS.narrator;
+  return { ...preset, text };
+}
+
+window.dlg = dlg;

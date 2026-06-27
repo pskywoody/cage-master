@@ -39,12 +39,14 @@ const GuideBattle = {
   aiOrder: [],
   aiIndex: 0,
   aiTimer: null,
-  aiStartDelay: 500,
+  aiStartDelay: 1500,   // 开赛1.5秒后AI开始（给玩家抢先起步的窗口）
 
   // 迷雾系统
-  visionRange: 2,     // 视野范围（曼哈顿距离）
+  visionRange: 2,     // 视野范围（曼哈顿距离），启动时根据盘面大小自适应
   visible: null,      // 2D boolean: 该格子是否在玩家视野内
   fogOpacity: null,   // 2D float: 迷雾透明度（动画用，0=清晰，1=全雾）
+  aiPulse: null,      // 2D float: AI填格脉冲动画（0→1衰减）
+  ghostFlicker: 0,    // 幽灵格呼吸动画时间
 
   // 抢格子动画
   stealFlash: null,   // 2D float: 抢格子闪光动画进度（0=无，1=最亮）
@@ -93,6 +95,14 @@ const GuideBattle = {
     this.solution = config.solution;
     this.initialBoard = config.initialBoard;
     this.size = config.size || 9;
+
+    // 根据盘面大小自适应视野范围（4x4用1格避免全图可见，6x6/9x9用2格）
+    if (this.size <= 4) {
+      this.visionRange = 1;
+    } else {
+      this.visionRange = 2;
+    }
+
     this.opponent = Object.assign({
       name: '神秘对手',
       avatar: '👤',
@@ -111,11 +121,13 @@ const GuideBattle = {
     this.aiOwned = Array(this.size).fill().map(() => Array(this.size).fill(0));
     this.playerOwned = Array(this.size).fill().map(() => Array(this.size).fill(0));
     this.visible = Array(this.size).fill().map(() => Array(this.size).fill(false));
-    this.fogOpacity = Array(this.size).fill().map(() => Array(this.size).fill(1)); // 初始全雾
+    this.fogOpacity = Array(this.size).fill().map(() => Array(this.size).fill(1)); // 初始全雾（开场有迷雾涌入/退散动画）
     this.stealFlash = Array(this.size).fill().map(() => Array(this.size).fill(0));
+    this.aiPulse = Array(this.size).fill().map(() => Array(this.size).fill(0)); // AI填格脉冲
     this.aiCount = 0;
     this.playerCount = 0;
     this.totalEmpty = 0;
+    this.ghostFlicker = 0;
 
     for (let r = 0; r < this.size; r++) {
       for (let c = 0; c < this.size; c++) {
@@ -139,10 +151,10 @@ const GuideBattle = {
 
     // 初始视野（固定数字为锚点）
     this._updateVisibility();
-    // 迷雾动画初始化：视野内立即清晰，视野外保持迷雾
+    // 迷雾初始全雾，由_fogAnimationLoop负责动画散开（开场仪式感）
     for (let r = 0; r < this.size; r++) {
       for (let c = 0; c < this.size; c++) {
-        this.fogOpacity[r][c] = this.visible[r][c] ? 0 : 1;
+        this.fogOpacity[r][c] = 1;
       }
     }
 
@@ -164,6 +176,12 @@ const GuideBattle = {
   beginRace() {
     if (!this.active || this.ended || this.raceStarted) return;
     this.raceStarted = true;
+
+    // 触发开赛事件（全屏闪+音效+震动）
+    if (this.onEvent) {
+      this.onEvent('raceStart', {});
+    }
+
     this.aiTimer = setTimeout(() => this._aiStep(), this.aiStartDelay);
     console.log('🏁 幽灵迷雾对战开始！');
   },
@@ -249,6 +267,7 @@ const GuideBattle = {
 
   /**
    * 更新视野可见性：收集所有玩家锚点，计算每个空格到最近锚点的曼哈顿距离
+   * 返回三级可见度：0=完全可见，0.5=半雾边缘，1=全雾
    */
   _updateVisibility() {
     // 收集锚点：固定数字 + 玩家已填正确格子（抢来的也算）
@@ -268,8 +287,18 @@ const GuideBattle = {
           this.visible[r][c] = false;
         }
       }
+      // 初始化fogLevel
+      if (!this.fogLevel) this.fogLevel = Array(this.size).fill().map(() => Array(this.size).fill(1));
+      for (let r = 0; r < this.size; r++) {
+        for (let c = 0; c < this.size; c++) {
+          this.fogLevel[r][c] = 1;
+        }
+      }
       return;
     }
+
+    // 初始化fogLevel数组
+    if (!this.fogLevel) this.fogLevel = Array(this.size).fill().map(() => Array(this.size).fill(1));
 
     // 对每个格子计算最近锚点距离
     for (let r = 0; r < this.size; r++) {
@@ -280,6 +309,14 @@ const GuideBattle = {
           if (d < minDist) minDist = d;
         }
         this.visible[r][c] = (minDist <= this.visionRange);
+        // 三级迷雾：距离内=清晰(0)，距离+1=半雾(0.5)，更远=全雾(0.92)
+        if (minDist <= this.visionRange) {
+          this.fogLevel[r][c] = 0;
+        } else if (minDist === this.visionRange + 1) {
+          this.fogLevel[r][c] = 0.5;
+        } else {
+          this.fogLevel[r][c] = 0.92;
+        }
       }
     }
   },
@@ -288,15 +325,24 @@ const GuideBattle = {
    * 迷雾动画：每帧渐变fogOpacity向目标值靠近
    */
   _startFogAnimation() {
-    const animate = () => {
+    // 开场延迟：等0.5秒后迷雾才开始散开（仪式感）
+    let animStartTime = performance.now() + 500;
+
+    const animate = (now) => {
       if (!this.active) return;
       let needsRender = false;
+
+      // 幽灵呼吸动画（每帧更新）
+      this.ghostFlicker = (Math.sin(now / 800) + 1) / 2; // 0~1呼吸
+
       for (let r = 0; r < this.size; r++) {
         for (let c = 0; c < this.size; c++) {
-          const target = this.visible[r][c] ? 0 : 0.75; // 迷雾透明度75%
+          // 使用三级迷雾目标值
+          const target = (this.fogLevel && this.fogLevel[r]) ? this.fogLevel[r][c] : (this.visible[r][c] ? 0 : 0.92);
           const cur = this.fogOpacity[r][c];
+          const rate = now < animStartTime ? 0.02 : 0.08; // 开场前慢散开，之后正常
           if (Math.abs(cur - target) > 0.01) {
-            this.fogOpacity[r][c] = cur + (target - cur) * 0.12; // 渐变速率
+            this.fogOpacity[r][c] = cur + (target - cur) * rate;
             needsRender = true;
           } else {
             this.fogOpacity[r][c] = target;
@@ -306,6 +352,13 @@ const GuideBattle = {
           if (this.stealFlash[r][c] > 0) {
             this.stealFlash[r][c] -= 16 / this.stealFlashTime;
             if (this.stealFlash[r][c] < 0) this.stealFlash[r][c] = 0;
+            needsRender = true;
+          }
+
+          // AI填格脉冲衰减
+          if (this.aiPulse[r][c] > 0) {
+            this.aiPulse[r][c] -= 16 / 600; // 600ms脉冲
+            if (this.aiPulse[r][c] < 0) this.aiPulse[r][c] = 0;
             needsRender = true;
           }
         }
@@ -515,60 +568,119 @@ const GuideBattle = {
 
     for (let r = 0; r < this.size; r++) {
       for (let c = 0; c < this.size; c++) {
-        if (this.fixedMask[r][c]) continue;
+        if (this.fixedMask[r][c]) {
+          // 固定数字上也盖迷雾（如果不在视野内），但稍浅
+          const fog = this.fogOpacity[r][c];
+          if (fog > 0.01) {
+            ctx.fillStyle = `rgba(15, 23, 42, ${fog * 0.85})`;
+            ctx.fillRect(c * cs, r * cs, cs, cs);
+          }
+          continue;
+        }
 
         const x = c * cs;
         const y = r * cs;
         const isAi = this.aiOwned[r][c] > 0;
         const isPlayerOwned = this.playerOwned[r][c] > 0;
         const fog = this.fogOpacity[r][c];
+        const pulse = this.aiPulse[r][c];
+        const flick = this.ghostFlicker;
 
-        // 1. 幽灵格：视野内的AI格子 → 淡色色块+圆点（不显示数字）
-        if (isAi && !isPlayerOwned && fog < 0.5) {
-          // 幽灵格底色（对手色半透明）
-          ctx.fillStyle = this.opponent.color + '33';
-          this._roundRect(ctx, x + 2, y + 2, cs - 4, cs - 4, 4);
-          ctx.fill();
+        // 1. 幽灵格：AI填的格子
+        if (isAi && !isPlayerOwned) {
+          // 1a. 迷雾中也能看到极淡的幽灵轮廓（神秘感+知道AI存在）
+          if (fog >= 0.5) {
+            // 迷雾中：极淡的呼吸边框，暗示AI存在
+            const ghostAlpha = 0.12 + flick * 0.08;
+            ctx.strokeStyle = this.opponent.color + Math.round(ghostAlpha * 255).toString(16).padStart(2, '0');
+            ctx.lineWidth = 1;
+            ctx.setLineDash([3, 3]);
+            this._roundRect(ctx, x + 3, y + 3, cs - 6, cs - 6, 3);
+            ctx.stroke();
+            ctx.setLineDash([]);
+          }
 
-          // 幽灵格边框
-          ctx.strokeStyle = this.opponent.color + '66';
-          ctx.lineWidth = 1.5;
-          this._roundRect(ctx, x + 2, y + 2, cs - 4, cs - 4, 4);
-          ctx.stroke();
+          // 1b. 视野内（或半雾中）：明显的幽灵格
+          if (fog < 0.7) {
+            const ghostAlpha = 1 - fog; // 越清晰越明显
 
-          // 幽灵格中心圆点标记（表示AI占据）
-          ctx.fillStyle = this.opponent.color + 'aa';
-          ctx.beginPath();
-          ctx.arc(x + cs / 2, y + cs / 2, cs * 0.1, 0, Math.PI * 2);
-          ctx.fill();
+            // 幽灵格底色（对手色半透明，更饱和）
+            ctx.fillStyle = this.opponent.color + Math.round(0.28 * ghostAlpha * 255).toString(16).padStart(2, '0');
+            this._roundRect(ctx, x + 2, y + 2, cs - 4, cs - 4, 4);
+            ctx.fill();
+
+            // 幽灵格边框（呼吸效果）
+            const borderAlpha = 0.5 + flick * 0.2;
+            ctx.strokeStyle = this.opponent.color + Math.round(borderAlpha * ghostAlpha * 255).toString(16).padStart(2, '0');
+            ctx.lineWidth = 1.5;
+            this._roundRect(ctx, x + 2, y + 2, cs - 4, cs - 4, 4);
+            ctx.stroke();
+
+            // 幽灵格中心圆点（呼吸放大缩小）
+            const dotR = cs * (0.12 + flick * 0.04);
+            ctx.fillStyle = this.opponent.color + Math.round(0.8 * ghostAlpha * 255).toString(16).padStart(2, '0');
+            ctx.beginPath();
+            ctx.arc(x + cs / 2, y + cs / 2, dotR, 0, Math.PI * 2);
+            ctx.fill();
+
+            // 幽灵格问号（半雾中显示?提示有东西但看不清数字）
+            if (fog > 0.2 && fog < 0.7) {
+              ctx.fillStyle = this.opponent.color + '88';
+              ctx.font = `bold ${Math.round(cs * 0.35)}px sans-serif`;
+              ctx.textAlign = 'center';
+              ctx.textBaseline = 'middle';
+              ctx.fillText('?', x + cs / 2, y + cs / 2);
+            }
+          }
+
+          // 1c. AI填格脉冲动画（刚填时的扩散波）
+          if (pulse > 0) {
+            const expand = (1 - pulse) * cs * 0.5;
+            ctx.strokeStyle = this.opponent.color + Math.round(pulse * 200).toString(16).padStart(2, '0');
+            ctx.lineWidth = 2 + pulse * 2;
+            this._roundRect(ctx, x + 2 - expand, y + 2 - expand, cs - 4 + expand * 2, cs - 4 + expand * 2, 6);
+            ctx.stroke();
+          }
         }
 
-        // 2. 迷雾层：覆盖在格子上的暗色蒙版
+        // 2. 迷雾层：真正遮住数字的暗色蒙版
         if (fog > 0.01) {
-          ctx.fillStyle = `rgba(15, 23, 42, ${fog * 0.7})`;
+          // 迷雾主色——深色蒙版，alpha高以真正遮住数字
+          ctx.fillStyle = `rgba(15, 23, 42, ${Math.min(0.95, fog * 0.95)})`;
           ctx.fillRect(x, y, cs, cs);
 
-          // 迷雾纹理：淡淡的噪点效果
+          // 迷雾纹理：雾气流动效果（使用正弦波模拟）
           if (fog > 0.3) {
-            ctx.fillStyle = `rgba(100, 116, 139, ${fog * 0.08})`;
+            const t = Date.now() / 2000;
+            const fogAlpha = fog * 0.12;
+            ctx.fillStyle = `rgba(100, 116, 139, ${fogAlpha})`;
+            // 两层交错三角形模拟雾气
             ctx.beginPath();
-            ctx.moveTo(x, y + cs * 0.3);
-            ctx.lineTo(x + cs * 0.3, y);
-            ctx.lineTo(x + cs, y + cs * 0.7);
-            ctx.lineTo(x + cs * 0.7, y + cs);
+            ctx.moveTo(x, y + cs * (0.3 + Math.sin(t + r + c) * 0.1));
+            ctx.lineTo(x + cs * (0.3 + Math.cos(t + r) * 0.1), y);
+            ctx.lineTo(x + cs, y + cs * (0.7 + Math.sin(t + c) * 0.1));
+            ctx.lineTo(x + cs * (0.7 + Math.cos(t + c) * 0.1), y + cs);
             ctx.closePath();
             ctx.fill();
           }
         }
 
-        // 3. 抢格子闪光
+        // 3. 抢格子闪光（增强：绿色波环扩散）
         const flash = this.stealFlash[r][c];
         if (flash > 0) {
-          ctx.fillStyle = `rgba(34, 197, 94, ${flash * 0.5})`;
+          // 底色闪光
+          ctx.fillStyle = `rgba(34, 197, 94, ${flash * 0.4})`;
           ctx.fillRect(x, y, cs, cs);
+          // 边框加粗
           ctx.strokeStyle = `rgba(34, 197, 94, ${flash})`;
           ctx.lineWidth = 2 + flash * 3;
           ctx.strokeRect(x + 1, y + 1, cs - 2, cs - 2);
+          // 扩散波环
+          const expand = (1 - flash) * cs * 0.6;
+          ctx.strokeStyle = `rgba(34, 197, 94, ${flash * 0.6})`;
+          ctx.lineWidth = 2;
+          this._roundRect(ctx, x + 1 - expand, y + 1 - expand, cs - 2 + expand * 2, cs - 2 + expand * 2, 8);
+          ctx.stroke();
         }
       }
     }
@@ -681,6 +793,14 @@ const GuideBattle = {
       this.aiOwned[r][c] = num;
       this.aiCount++;
 
+      // AI填格脉冲动画（幽灵浮现效果）
+      this.aiPulse[r][c] = 1;
+
+      // 触发AI填格事件（音效+轻微震动）
+      if (this.onEvent) {
+        this.onEvent('aiFill', { r, c });
+      }
+
       // 检测遭遇事件
       this._checkEncounters();
 
@@ -766,8 +886,13 @@ const GuideBattle = {
     const playerFill = document.getElementById('player-progress-fill');
     const playerText = document.getElementById('player-progress-text');
 
-    if (aiFill) aiFill.style.width = Math.min(100, aiPct) + '%';
-    if (aiFill) aiFill.style.background = `linear-gradient(90deg, ${this.opponent.color}, ${this.opponent.color}cc)`;
+    if (aiFill) {
+      aiFill.style.width = Math.min(100, aiPct) + '%';
+      aiFill.style.background = `linear-gradient(90deg, ${this.opponent.color}, ${this.opponent.color}cc)`;
+      // AI进度条脉冲动画
+      aiFill.parentElement?.classList.add('ai-step');
+      setTimeout(() => aiFill.parentElement?.classList.remove('ai-step'), 500);
+    }
     if (aiText) aiText.textContent = Math.floor(this.aiCount / this.totalEmpty * 100) + '%';
     if (playerFill) playerFill.style.width = Math.min(100, playerPct) + '%';
     if (playerText) playerText.textContent = Math.floor(this.playerCount / this.totalEmpty * 100) + '%';
@@ -872,6 +997,7 @@ const GuideBattle = {
     this.visible = Array(this.size).fill().map(() => Array(this.size).fill(false));
     this.fogOpacity = Array(this.size).fill().map(() => Array(this.size).fill(1));
     this.stealFlash = Array(this.size).fill().map(() => Array(this.size).fill(0));
+    this.aiPulse = Array(this.size).fill().map(() => Array(this.size).fill(0));
     this.aiCount = 0;
     this.playerCount = 0;
     this.aiIndex = 0;
@@ -880,7 +1006,7 @@ const GuideBattle = {
     this._updateVisibility();
     for (let r = 0; r < this.size; r++) {
       for (let c = 0; c < this.size; c++) {
-        this.fogOpacity[r][c] = this.visible[r][c] ? 0 : 1;
+        this.fogOpacity[r][c] = 1; // 重试也是全雾开始
       }
     }
     this._updateUI();
@@ -892,8 +1018,10 @@ const GuideBattle = {
 
     this._startFogAnimation();
 
-    // 2秒后AI开始
-    setTimeout(() => this.beginRace(), 2000);
+    // 通知guide.js显示倒计时（而非直接开赛）
+    if (this.onEvent) {
+      this.onEvent('restart', {});
+    }
   },
 
   _removeUI() {

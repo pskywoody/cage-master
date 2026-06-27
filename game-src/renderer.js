@@ -455,7 +455,7 @@ class Renderer {
       for (let c = 0; c < size; c++) {
         if (battle.fixedMask && battle.fixedMask[r][c]) continue;
         if (battle.playerOwned && battle.playerOwned[r][c] > 0) {
-          ctx.fillStyle = 'rgba(37, 99, 235, 0.15)';
+          ctx.fillStyle = 'rgba(37, 99, 235, 0.22)';
           ctx.fillRect(c * cellSize, r * cellSize, cellSize, cellSize);
         }
       }

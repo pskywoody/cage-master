@@ -805,6 +805,22 @@ function _initBattleAndStart(bossConfig) {
  */
 function _handleBattleEvent(type, data, bossConfig) {
   switch (type) {
+    case 'raceStart':
+      // 开赛！全屏闪白+强震动+音效
+      _showRaceStartFlash();
+      _vibrate([100, 50, 100, 50, 200]);
+      if (typeof AudioManager !== 'undefined' && AudioManager.playBattleStart) {
+        AudioManager.playBattleStart();
+      }
+      break;
+    case 'aiFill':
+      // AI填了一格——极轻微震动（感知对手在动）+ 进度条跳变
+      _vibrate(10);
+      break;
+    case 'restart':
+      // 重试：显示倒计时
+      setTimeout(() => _showBattleCountdown(), 300);
+      break;
     case 'encounter':
       _showEncounterToast(data, bossConfig);
       _vibrate(data.level === 'strong' ? [80, 40, 80] : data.level === 'mid' ? [40] : [15]);
@@ -826,6 +842,36 @@ function _handleBattleEvent(type, data, bossConfig) {
     case 'wrong':
       _vibrate([50, 30, 50]);
       break;
+  }
+}
+
+/**
+ * 开赛全屏闪白效果
+ */
+function _showRaceStartFlash() {
+  const flash = document.createElement('div');
+  flash.style.cssText = `
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: white; z-index: 10000; pointer-events: none;
+    opacity: 0; transition: opacity 0.15s ease-out;
+  `;
+  document.body.appendChild(flash);
+  requestAnimationFrame(() => {
+    flash.style.opacity = '0.6';
+    requestAnimationFrame(() => {
+      flash.style.transition = 'opacity 0.4s ease-out';
+      flash.style.opacity = '0';
+      setTimeout(() => flash.remove(), 500);
+    });
+  });
+
+  // 棋盘短暂震动
+  const canvas = document.getElementById('gameCanvas');
+  if (canvas) {
+    canvas.style.transition = 'transform 0.1s';
+    canvas.style.transform = 'scale(0.98)';
+    setTimeout(() => { canvas.style.transform = 'scale(1)'; }, 100);
+    setTimeout(() => { canvas.style.transition = ''; }, 300);
   }
 }
 
@@ -905,32 +951,67 @@ function _vibrate(pattern) {
 }
 
 /**
+ * 获取当前Boss配置
+ */
+function _getCurrentBossConfig() {
+  return (typeof BOSS_CONFIGS !== 'undefined') ? BOSS_CONFIGS[currentLevelId] : null;
+}
+
+/**
  * 显示Boss战倒计时提示
  */
 function _showBattleCountdown() {
+  const bossConfig = _getCurrentBossConfig();
   const overlay = document.createElement('div');
   overlay.id = 'boss-countdown-overlay';
-  overlay.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);z-index:600;display:flex;align-items:center;justify-content:center;flex-direction:column;';
   overlay.innerHTML = `
-    <div style="font-size:48px;margin-bottom:16px;" id="countdown-num">3</div>
-    <div style="font-size:18px;color:#ccc;">准备好...</div>
+    <div class="countdown-vs">
+      <div class="countdown-side countdown-player">
+        <div class="countdown-avatar">🔍</div>
+        <div class="countdown-name">你</div>
+      </div>
+      <div class="countdown-vs-text">VS</div>
+      <div class="countdown-side countdown-boss">
+        <div class="countdown-avatar">${bossConfig ? bossConfig.avatar : '👤'}</div>
+        <div class="countdown-name">${bossConfig ? bossConfig.name : '对手'}</div>
+      </div>
+    </div>
+    <div class="countdown-number" id="countdown-num">3</div>
+    <div class="countdown-hint">在迷雾中竞速，先填到75%者胜</div>
   `;
   document.body.appendChild(overlay);
 
+  // 入场动画
+  requestAnimationFrame(() => {
+    overlay.classList.add('show');
+  });
+
   let count = 3;
   const numEl = overlay.querySelector('#countdown-num');
+
+  // 每个数字的弹跳动画
+  const pulseNumber = () => {
+    numEl.classList.remove('pulse');
+    void numEl.offsetWidth; // 强制reflow
+    numEl.classList.add('pulse');
+    _vibrate(20);
+  };
+  pulseNumber();
+
   const interval = setInterval(() => {
     count--;
     if (count > 0) {
       numEl.textContent = count;
+      pulseNumber();
     } else if (count === 0) {
       numEl.textContent = '开始！';
-      numEl.style.color = '#22c55e';
+      numEl.classList.add('go');
+      numEl.classList.remove('pulse');
+      _vibrate([50, 30, 100]);
     } else {
       clearInterval(interval);
-      overlay.style.transition = 'opacity 0.3s';
-      overlay.style.opacity = '0';
-      setTimeout(() => overlay.remove(), 300);
+      overlay.classList.add('hide');
+      setTimeout(() => overlay.remove(), 400);
       // 倒计时结束，正式开始比赛（AI开始填数）
       if (GuideBattle && GuideBattle.active) {
         GuideBattle.beginRace();

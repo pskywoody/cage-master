@@ -325,27 +325,47 @@ const GuideBattle = {
    * 迷雾动画：每帧渐变fogOpacity向目标值靠近
    */
   _startFogAnimation() {
-    // 开场延迟：等0.5秒后迷雾才开始散开（仪式感）
-    let animStartTime = performance.now() + 500;
+    // 迷雾在开赛之后才开始散开（倒计时期间保持全雾）
+    let fogRevealDelay = 800; // 开赛后800ms迷雾开始散开
+    let fogRevealStart = 0;
 
     const animate = (now) => {
       if (!this.active) return;
       let needsRender = false;
 
-      // 幽灵呼吸动画（每帧更新）
+      // 幽灵呼吸动画（每帧更新，倒计时期间也动，增加氛围）
       this.ghostFlicker = (Math.sin(now / 800) + 1) / 2; // 0~1呼吸
+
+      // 确定是否应该开始散开迷雾
+      if (this.raceStarted && fogRevealStart === 0) {
+        fogRevealStart = now + fogRevealDelay;
+      }
+
+      // 倒计时期间：所有格子保持全雾（fogOpacity=1），只做幽灵呼吸不扩散
+      const fogClearing = this.raceStarted && now >= fogRevealStart && fogRevealStart > 0;
 
       for (let r = 0; r < this.size; r++) {
         for (let c = 0; c < this.size; c++) {
-          // 使用三级迷雾目标值
-          const target = (this.fogLevel && this.fogLevel[r]) ? this.fogLevel[r][c] : (this.visible[r][c] ? 0 : 0.92);
           const cur = this.fogOpacity[r][c];
-          const rate = now < animStartTime ? 0.02 : 0.08; // 开场前慢散开，之后正常
-          if (Math.abs(cur - target) > 0.01) {
-            this.fogOpacity[r][c] = cur + (target - cur) * rate;
-            needsRender = true;
-          } else {
-            this.fogOpacity[r][c] = target;
+
+          if (fogClearing) {
+            // 使用三级迷雾目标值
+            const target = (this.fogLevel && this.fogLevel[r]) ? this.fogLevel[r][c] : (this.visible[r][c] ? 0 : 0.92);
+            const rate = 0.06;
+            if (Math.abs(cur - target) > 0.01) {
+              this.fogOpacity[r][c] = cur + (target - cur) * rate;
+              needsRender = true;
+            } else {
+              this.fogOpacity[r][c] = target;
+            }
+          } else if (!this.raceStarted) {
+            // 倒计时期间：保持全雾
+            if (cur < 0.99) {
+              this.fogOpacity[r][c] = Math.min(1, cur + 0.05);
+              needsRender = true;
+            } else {
+              this.fogOpacity[r][c] = 1;
+            }
           }
 
           // 抢格子闪光衰减
@@ -821,7 +841,10 @@ const GuideBattle = {
       let speedMul = 1;
       if (progress < 0.25) speedMul = 1.3;     // 开局慢（delay变大）
       else if (progress > 0.75) speedMul = 0.8; // 后期快（delay变小）
-      this.aiTimer = setTimeout(() => this._aiStep(), baseDelay * speedMul);
+      // 棋盘大小自适应：小棋盘格子少，AI需要更快才能形成竞速压力
+      // 4x4: 0.38x（约2.3-4.2秒/格），6x6: 0.65x（约3.9-7.2秒/格），9x9: 1x
+      const sizeMul = this.size <= 4 ? 0.38 : (this.size <= 6 ? 0.65 : 1.0);
+      this.aiTimer = setTimeout(() => this._aiStep(), baseDelay * speedMul * sizeMul);
     }
   },
 

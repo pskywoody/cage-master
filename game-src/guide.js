@@ -52,6 +52,11 @@ let forcePlayStory = false;
 window.onload = function() {
   console.log('📚 教学模式启动中...');
 
+  // 初始化音频
+  if (typeof AudioManager !== 'undefined') {
+    AudioManager.init();
+  }
+
   // 1. 从 URL 读取关卡 ID
   const params = new URLSearchParams(window.location.search);
   const levelIdParam = params.get('levelId');
@@ -804,18 +809,22 @@ function _initBattleAndStart(bossConfig) {
  * 处理Boss战事件（遭遇、预警、抢格子等）
  */
 function _handleBattleEvent(type, data, bossConfig) {
+  const hasAudio = typeof AudioManager !== 'undefined';
   switch (type) {
     case 'raceStart':
       // 开赛！全屏闪白+强震动+音效
       _showRaceStartFlash();
       _vibrate([100, 50, 100, 50, 200]);
-      if (typeof AudioManager !== 'undefined' && AudioManager.playBattleStart) {
+      if (hasAudio && AudioManager.playBattleStart) {
         AudioManager.playBattleStart();
       }
       break;
     case 'aiFill':
-      // AI填了一格——极轻微震动（感知对手在动）+ 进度条跳变
+      // AI填了一格——极轻微震动+幽灵音效（感知对手在动）
       _vibrate(10);
+      if (hasAudio && AudioManager.playAiFill) {
+        AudioManager.playAiFill();
+      }
       break;
     case 'restart':
       // 重试：显示倒计时
@@ -824,6 +833,9 @@ function _handleBattleEvent(type, data, bossConfig) {
     case 'discover':
       // 保留事件兼容性，不再显示提示
       _vibrate(15);
+      if (hasAudio && AudioManager.playFogReveal) {
+        AudioManager.playFogReveal();
+      }
       break;
     case 'tip':
       // 引导提示气泡
@@ -831,7 +843,10 @@ function _handleBattleEvent(type, data, bossConfig) {
       break;
     case 'encounter':
       _showEncounterToast(data, bossConfig);
-      _vibrate(data.level === 'strong' ? [80, 40, 80] : data.level === 'mid' ? [40] : [15]);
+      _vibrate(data.level === 'near' ? [80, 40, 80] : data.level === 'mid' ? [40] : [15]);
+      if (hasAudio && AudioManager.playEncounter) {
+        AudioManager.playEncounter(data.level);
+      }
       break;
     case 'warning':
       if (data.who === 'ai') {
@@ -839,6 +854,9 @@ function _handleBattleEvent(type, data, bossConfig) {
         const line = lines[Math.floor(Math.random() * lines.length)];
         _showBattleToast(line, 'strong', 2500);
         _vibrate([100, 50, 100, 50, 100]);
+        if (hasAudio && AudioManager.playWarning) {
+          AudioManager.playWarning();
+        }
       } else {
         _showBattleToast('你快赢了，加油！', 'medium', 2000);
       }
@@ -846,9 +864,15 @@ function _handleBattleEvent(type, data, bossConfig) {
     case 'steal':
       _showBattleToast('抢到一格！', 'light', 1000);
       _vibrate([30, 20, 30]);
+      if (hasAudio && AudioManager.playSteal) {
+        AudioManager.playSteal();
+      }
       break;
     case 'wrong':
       _vibrate([50, 30, 50]);
+      if (hasAudio && AudioManager.playWrong) {
+        AudioManager.playWrong();
+      }
       break;
   }
 }

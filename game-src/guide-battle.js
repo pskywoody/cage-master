@@ -354,6 +354,8 @@ const GuideBattle = {
           title: '迷雾散开了！',
           text: '填对数字后附近笼子的虚线和和值显露出来了。继续填数，揭开更多笼子线索来解题！'
         });
+        // 触发迷雾散开音效
+        if (this.onEvent) this.onEvent('discover', { r, c, first: true });
       }
 
       // 检测遭遇事件
@@ -1203,7 +1205,7 @@ const BOSS_CONFIGS = {
   // ===== 第1章：阿岩（活泼冒失的学弟侦探）=====
   109: {
     name: '阿岩',
-    avatar: '👦',
+    avatar: 'assets/images/ayan-avatar.png',
     color: '#22c55e',
     speedMin: 6000,
     speedMax: 11000,
@@ -1241,7 +1243,7 @@ const BOSS_CONFIGS = {
   // ===== 第2章：守笼人（沉稳古风的档案馆守护者）=====
   208: {
     name: '守笼人',
-    avatar: '🧙',
+    avatar: 'assets/images/keeper-avatar.png',
     color: '#6366f1',
     speedMin: 3500,
     speedMax: 6000,
@@ -1279,7 +1281,7 @@ const BOSS_CONFIGS = {
   // ===== 第3章：设局人残影（阴森冷酷的幻影）=====
   307: {
     name: '设局人残影',
-    avatar: '👤',
+    avatar: 'assets/images/shadow-avatar.jpg',
     color: '#ef4444',
     speedMin: 2500,
     speedMax: 4500,
@@ -1317,7 +1319,7 @@ const BOSS_CONFIGS = {
   // ===== 第4章：残局守护者（哀伤追忆的笔记残魂）=====
   406: {
     name: '残局守护者',
-    avatar: '📜',
+    avatar: 'assets/images/guardian-avatar.jpg',
     color: '#f97316',
     speedMin: 2000,
     speedMax: 3800,
@@ -1355,7 +1357,7 @@ const BOSS_CONFIGS = {
   // ===== 第5章：星辰梭（冰冷机械的推演机器）=====
   506: {
     name: '星辰梭',
-    avatar: '⚙️',
+    avatar: 'assets/images/starshuttle-avatar.jpg',
     color: '#a855f7',
     speedMin: 1500,
     speedMax: 2800,
@@ -1394,7 +1396,7 @@ const BOSS_CONFIGS = {
   // ===== 第6章：设局人本体（终局之敌，深不可测）=====
   606: {
     name: '设局人',
-    avatar: '🎭',
+    avatar: 'assets/images/setter-avatar.png',
     color: '#dc2626',
     speedMin: 1000,
     speedMax: 2000,

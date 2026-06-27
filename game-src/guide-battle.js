@@ -704,6 +704,25 @@ const GuideBattle = {
   renderFogAndGhosts(ctx, cellSize, padding) {
     if (!this.active) return;
 
+    // 获取当前章节主题（如果可用）
+    let fogBase = 'rgba(15, 23, 42, ';
+    let fogTex = 'rgba(100, 116, 139, ';
+    let stealColor = 'rgba(34, 197, 94, ';
+    if (typeof guideRenderer !== 'undefined' && guideRenderer && guideRenderer.theme) {
+      const t = guideRenderer.theme;
+      fogBase = t.fogColor || fogBase;
+      fogTex = t.fogTexColor || fogTex;
+      // 抢格子闪光用accent色
+      stealColor = t.accent ? t.accent + '' : stealColor;
+      // 将hex转rgba前缀
+      if (stealColor.startsWith('#')) {
+        const r = parseInt(stealColor.slice(1,3),16);
+        const g = parseInt(stealColor.slice(3,5),16);
+        const b = parseInt(stealColor.slice(5,7),16);
+        stealColor = `rgba(${r}, ${g}, ${b}, `;
+      }
+    }
+
     const cs = cellSize;
     ctx.save();
     ctx.translate(padding, padding);
@@ -732,13 +751,13 @@ const GuideBattle = {
           // 玩家格子清晰可见，只处理抢格子闪光
           const flash = this.stealFlash[r][c];
           if (flash > 0) {
-            ctx.fillStyle = `rgba(34, 197, 94, ${flash * 0.4})`;
+            ctx.fillStyle = stealColor + (flash * 0.4) + ')';
             ctx.fillRect(x, y, cs, cs);
-            ctx.strokeStyle = `rgba(34, 197, 94, ${flash})`;
+            ctx.strokeStyle = stealColor + flash + ')';
             ctx.lineWidth = 2 + flash * 3;
             ctx.strokeRect(x + 1, y + 1, cs - 2, cs - 2);
             const expand = (1 - flash) * cs * 0.6;
-            ctx.strokeStyle = `rgba(34, 197, 94, ${flash * 0.6})`;
+            ctx.strokeStyle = stealColor + (flash * 0.6) + ')';
             ctx.lineWidth = 2;
             this._roundRect(ctx, x + 1 - expand, y + 1 - expand, cs - 2 + expand * 2, cs - 2 + expand * 2, 8);
             ctx.stroke();
@@ -760,14 +779,14 @@ const GuideBattle = {
           let fogAlpha = cellFogL * fog;
           if (isSelectedCell) fogAlpha *= 0.5; // 选中格迷雾更浅，方便操作
           fogAlpha = Math.min(0.88, fogAlpha);
-          ctx.fillStyle = `rgba(15, 23, 42, ${fogAlpha})`;
+          ctx.fillStyle = fogBase + fogAlpha + ')';
           ctx.fillRect(x, y, cs, cs);
 
           // 迷雾纹理：雾气流动效果（只在雾中以上区域）
           if (cellFogL > 0.3) {
             const t = Date.now() / 2000;
             const texAlpha = cellFogL * fog * 0.12;
-            ctx.fillStyle = `rgba(100, 116, 139, ${texAlpha})`;
+            ctx.fillStyle = fogTex + texAlpha + ')';
             ctx.beginPath();
             ctx.moveTo(x, y + cs * (0.3 + Math.sin(t + r + c) * 0.1));
             ctx.lineTo(x + cs * (0.3 + Math.cos(t + r) * 0.1), y);
@@ -825,9 +844,21 @@ const GuideBattle = {
           }
         }
 
-        // 3. 雾中选中格：淡蓝色虚线边框（画在最上层，确保可见）
+        // 3. 雾中选中格：主题色虚线边框（画在最上层，确保可见）
         if (isSelectedCell && cellFogL > 0.2) {
-          ctx.strokeStyle = `rgba(59, 130, 246, ${0.6 + flick * 0.2})`;
+          // 使用主题accent色
+          let selBorderColor = `rgba(59, 130, 246, ${0.6 + flick * 0.2})`;
+          if (typeof guideRenderer !== 'undefined' && guideRenderer && guideRenderer.theme) {
+            const tc = guideRenderer.theme.selectedBorder;
+            if (tc) {
+              // hex转rgba
+              const r = parseInt(tc.slice(1,3),16);
+              const g = parseInt(tc.slice(3,5),16);
+              const b = parseInt(tc.slice(5,7),16);
+              selBorderColor = `rgba(${r}, ${g}, ${b}, ${0.7 + flick * 0.2})`;
+            }
+          }
+          ctx.strokeStyle = selBorderColor;
           ctx.lineWidth = 2.5;
           ctx.setLineDash([5, 3]);
           this._roundRect(ctx, x + 3, y + 3, cs - 6, cs - 6, 4);

@@ -87,6 +87,8 @@ window.onload = function() {
     // 4. 初始化渲染器
     guideRenderer = new Renderer('gameCanvas');
     window.guideRenderer = guideRenderer;
+    // 设置章节主题（盘面+UI跟随章节变色）
+    guideRenderer.setTheme(currentChapterId);
 
     // 5. 先加载用户设置（作为默认值）
     loadSettings();
@@ -1093,6 +1095,15 @@ function _showBattleRules(bossConfig) {
  */
 function _showBattleCountdown() {
   const bossConfig = _getCurrentBossConfig();
+  // 处理Boss头像：图片路径 vs emoji
+  let bossAvatarHtml = '👤';
+  if (bossConfig && bossConfig.avatar) {
+    if (bossConfig.avatar.endsWith('.png') || bossConfig.avatar.endsWith('.jpg') || bossConfig.avatar.endsWith('.webp')) {
+      bossAvatarHtml = `<img src="${bossConfig.avatar}" style="width:56px;height:56px;object-fit:cover;border-radius:50%;border:2px solid ${bossConfig.color || '#ef4444'}80;">`;
+    } else {
+      bossAvatarHtml = bossConfig.avatar;
+    }
+  }
   const overlay = document.createElement('div');
   overlay.id = 'boss-countdown-overlay';
   overlay.innerHTML = `
@@ -1103,8 +1114,8 @@ function _showBattleCountdown() {
       </div>
       <div class="countdown-vs-text">VS</div>
       <div class="countdown-side countdown-boss">
-        <div class="countdown-avatar">${bossConfig ? bossConfig.avatar : '👤'}</div>
-        <div class="countdown-name">${bossConfig ? bossConfig.name : '对手'}</div>
+        <div class="countdown-avatar">${bossAvatarHtml}</div>
+        <div class="countdown-name" style="color:${bossConfig ? bossConfig.color : '#ef4444'}">${bossConfig ? bossConfig.name : '对手'}</div>
       </div>
     </div>
     <div class="countdown-number" id="countdown-num">3</div>

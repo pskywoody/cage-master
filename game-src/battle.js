@@ -106,6 +106,8 @@ window.addEventListener('DOMContentLoaded', function() {
 
   BattleState.playerRenderer = new Renderer('player-canvas');
   BattleState.aiRenderer = new Renderer('ai-canvas');
+  BattleState.playerRenderer.setTheme(1);
+  BattleState.aiRenderer.setTheme(1);
 
   // 绑定按钮
   document.getElementById('btn-start-battle').addEventListener('click', () => {

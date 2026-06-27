@@ -5,21 +5,43 @@
   user-select: none;
 }
 
+/* ===== 章节主题CSS变量（默认=第1章 温暖侦探风）===== */
+:root {
+  --theme-accent: #22c55e;
+  --theme-accent-dark: #15803d;
+  --theme-accent-light: #bbf7d0;
+  --theme-bg: #f5f0e6;
+  --theme-board-bg: #fdfaf3;
+  --theme-num-pad-bg: #ecfdf5;
+  --theme-num-pad-text: #15803d;
+  --theme-num-pad-done-bg: #e8dcc8;
+  --theme-num-pad-done-text: #a09070;
+  --theme-num-pad-active: #bbf7d0;
+  --theme-toolbar-bg: #fef9f0;
+  --theme-toolbar-text: #8b6f47;
+  --theme-candidate: #16a34a;
+  --theme-player-num: #15803d;
+  --theme-fixed-num: #5c4a2a;
+  --theme-header-text: #5c4a2a;
+  --theme-header-bg: #fef9f0;
+}
+
 body {
-  background-color: #f0f2f5;
+  background-color: var(--theme-bg);
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   touch-action: manipulation;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   min-height: 100vh;
   min-height: 100dvh;
+  transition: background-color 0.4s ease;
 }
 
 #app {
   width: 100%;
   max-width: 500px;
   margin: 0 auto;
-  background: white;
+  background: var(--theme-board-bg);
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -27,6 +49,7 @@ body {
   position: relative;
   padding-top: env(safe-area-inset-top);
   padding-bottom: env(safe-area-inset-bottom);
+  transition: background-color 0.4s ease;
 }
 
 /* ========== 游戏页面布局（全屏撑满） ========== */
@@ -57,9 +80,9 @@ body {
 #timer {
   font-size: 15px;
   font-weight: 600;
-  color: #334155;
+  color: var(--theme-header-text);
   font-family: 'SF Mono', Menlo, Consolas, monospace;
-  background: #f1f5f9;
+  background: var(--theme-header-bg);
   padding: 3px 10px;
   border-radius: 6px;
   cursor: pointer;
@@ -76,13 +99,13 @@ body {
   background: transparent;
   border-radius: 6px;
   font-size: 14px;
-  color: #64748b;
+  color: var(--theme-toolbar-text);
   cursor: pointer;
   font-weight: 500;
 }
 
 #btn-back:active {
-  background: #f1f5f9;
+  background: var(--theme-header-bg);
 }
 
 .header-icon-btn {
@@ -95,14 +118,14 @@ body {
 }
 
 .header-icon-btn:active {
-  background: #f1f5f9;
+  background: var(--theme-header-bg);
 }
 
 /* ========== 关卡标题（极简） ========== */
 #level-title {
   font-size: 14px;
   font-weight: 600;
-  color: #475569;
+  color: var(--theme-header-text);
   text-align: center;
   margin: 0 0 2px 0;
   flex-shrink: 0;
@@ -110,7 +133,8 @@ body {
 
 #level-goal {
   font-size: 11px;
-  color: #94a3b8;
+  color: var(--theme-candidate);
+  opacity: 0.7;
   text-align: center;
   margin: 0 0 4px 0;
   flex-shrink: 0;
@@ -135,7 +159,7 @@ body {
   max-width: 100%;
   max-height: 100%;
   aspect-ratio: 1 / 1;
-  background-color: #ffffff;
+  background-color: var(--theme-board-bg);
   touch-action: none;
   cursor: pointer;
 }
@@ -359,18 +383,18 @@ body {
   flex: 1;
   padding: 8px 0;
   border: none;
-  background: #f1f5f9;
+  background: var(--theme-toolbar-bg);
   border-radius: 10px;
   font-size: 18px;
   line-height: 1;
-  color: #475569;
+  color: var(--theme-toolbar-text);
   cursor: pointer;
   transition: all 0.1s;
   touch-action: manipulation;
 }
 
 #toolbar button:active {
-  background: #cbd5e1;
+  background: var(--theme-num-pad-active);
   transform: scale(0.92);
 }
 
@@ -387,18 +411,18 @@ body {
   flex: 1;
   padding: 8px 0;
   border: none;
-  background: #f1f5f9;
+  background: var(--theme-toolbar-bg);
   border-radius: 10px;
   font-size: 15px;
   line-height: 1;
-  color: #475569;
+  color: var(--theme-toolbar-text);
   cursor: pointer;
   transition: all 0.1s;
   touch-action: manipulation;
 }
 
 .tool-btn2:active {
-  background: #cbd5e1;
+  background: var(--theme-num-pad-active);
   transform: scale(0.95);
 }
 
@@ -447,8 +471,8 @@ body {
   position: relative;
   padding: 12px 0;
   border: none;
-  background: #eff6ff;
-  color: #1d4ed8;
+  background: var(--theme-num-pad-bg);
+  color: var(--theme-num-pad-text);
   border-radius: 12px;
   font-size: 20px;
   font-weight: 700;
@@ -459,13 +483,13 @@ body {
 }
 
 .num-btn:active {
-  background: #bfdbfe;
+  background: var(--theme-num-pad-active);
   transform: scale(0.95);
 }
 
 .num-btn.completed {
-  background: #e2e8f0;
-  color: #94a3b8;
+  background: var(--theme-num-pad-done-bg);
+  color: var(--theme-num-pad-done-text);
   cursor: default;
   pointer-events: none;
 }

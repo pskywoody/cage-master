@@ -78,11 +78,17 @@ let rule45Initialized = false;
 window.onload = function() {
   console.log('🔍 笼镇档案 - 杀手数独 启动中...');
 
-  // 1. 初始化渲染器
+  // 1. 初始化渲染器（默认主题1：温暖侦探风，后续可通过?skin=N切换皮肤）
   window.renderer = new Renderer('gameCanvas');
+  const params = new URLSearchParams(window.location.search);
+  const skinParam = params.get('skin');
+  if (skinParam) {
+    window.renderer.setTheme(parseInt(skinParam) || 1);
+  } else {
+    window.renderer.setTheme(1);
+  }
 
   // 2. 从 URL 读取关卡 ID
-  const params = new URLSearchParams(window.location.search);
   const idParam = params.get('id');
   if (idParam) {
     currentLevelId = parseInt(idParam) || 1;

@@ -496,6 +496,21 @@ const CHARACTERS = {
     avatar: 'assets/images/setter-avatar.png',
     color: '#ef4444' // 暗红色，对应红眼黑兜帽
   },
+  shadow: {
+    character: '设局人残影',
+    avatar: 'assets/images/shadow-avatar.jpg',
+    color: '#ef4444' // 血红色
+  },
+  guardian: {
+    character: '残局守护者',
+    avatar: 'assets/images/guardian-avatar.jpg',
+    color: '#f97316' // 琥珀橙
+  },
+  starshuttle: {
+    character: '星辰梭',
+    avatar: 'assets/images/starshuttle-avatar.jpg',
+    color: '#a855f7' // 紫晶色
+  },
   narrator: {
     character: '旁白',
     icon: '🏛️',

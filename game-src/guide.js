@@ -825,6 +825,10 @@ function _handleBattleEvent(type, data, bossConfig) {
       // 发现新线索（预填数字）：轻震+金光闪
       _vibrate(25);
       break;
+    case 'tip':
+      // 引导提示气泡
+      _showBattleTip(data);
+      break;
     case 'encounter':
       _showEncounterToast(data, bossConfig);
       _vibrate(data.level === 'strong' ? [80, 40, 80] : data.level === 'mid' ? [40] : [15]);
@@ -877,6 +881,46 @@ function _showRaceStartFlash() {
     setTimeout(() => { canvas.style.transform = 'scale(1)'; }, 100);
     setTimeout(() => { canvas.style.transition = ''; }, 300);
   }
+}
+
+/**
+ * 显示对战引导提示气泡
+ */
+function _showBattleTip(data) {
+  // 移除已有的提示气泡（最多同时显示1个）
+  const existing = document.querySelector('.battle-tip-bubble');
+  if (existing) existing.remove();
+
+  const bubble = document.createElement('div');
+  bubble.className = 'battle-tip-bubble';
+  bubble.innerHTML = `
+    <div class="tip-icon">${data.icon || '💡'}</div>
+    <div class="tip-content">
+      <div class="tip-title">${data.title || '提示'}</div>
+      <div class="tip-text">${data.text || ''}</div>
+    </div>
+    <button class="tip-close">×</button>
+  `;
+  document.body.appendChild(bubble);
+
+  // 入场动画
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      bubble.classList.add('show');
+    });
+  });
+
+  // 点击关闭
+  const close = () => {
+    bubble.classList.remove('show');
+    bubble.classList.add('hide');
+    setTimeout(() => bubble.remove(), 300);
+  };
+  bubble.querySelector('.tip-close').addEventListener('click', close);
+
+  // 自动关闭（不同提示时长不同）
+  const duration = data.duration || 5000;
+  setTimeout(close, duration);
 }
 
 /**

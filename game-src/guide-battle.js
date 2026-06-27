@@ -48,6 +48,10 @@ const GuideBattle = {
   aiPulse: null,      // 2D float: AI填格脉冲动画（0→1衰减）
   ghostFlicker: 0,    // 幽灵格呼吸动画时间
 
+  // 引导提示系统
+  shownTips: null,    // Set: 已显示过的提示id
+  tipTimers: null,    // 提示定时器列表
+
   // 抢格子动画
   stealFlash: null,   // 2D float: 抢格子闪光动画进度（0=无，1=最亮）
   stealFlashTime: 400, // ms
@@ -131,6 +135,8 @@ const GuideBattle = {
     this.totalEmpty = 0;
     this.ghostFlicker = 0;
     this.initialAiPreFilled = false; // AI开局预填标记
+    this.shownTips = new Set();
+    this.tipTimers = [];
 
     for (let r = 0; r < this.size; r++) {
       for (let c = 0; c < this.size; c++) {
@@ -196,6 +202,50 @@ const GuideBattle = {
 
     this.aiTimer = setTimeout(() => this._aiStep(), this.aiStartDelay);
     console.log('🏁 幽灵迷雾对战开始！');
+
+    // ===== 引导提示（按时间顺序触发）=====
+    // 提示1：开赛后2秒，指引玩家从可见区域开始
+    this._scheduleTip('start', 2000, {
+      icon: '🔦',
+      title: '从光亮处开始',
+      text: '你只能看到一小片区域。点击可见的空格，填入正确数字来揭开迷雾！'
+    });
+    // 提示2：开赛后7秒，提醒AI幽灵格
+    this._scheduleTip('ghost', 7000, {
+      icon: '👻',
+      title: '注意对手！',
+      text: '看到边缘闪烁的幽灵格了吗？那是' + this.opponent.name + '填的。填对同一格就能抢过来！'
+    });
+  },
+
+  /**
+   * 安排一个延迟提示
+   */
+  _scheduleTip(id, delay, content) {
+    if (this.shownTips.has(id)) return;
+    const timer = setTimeout(() => {
+      if (!this.active || this.ended) return;
+      // 如果玩家已经填了3格以上，说明已经理解玩法了，跳过基础提示
+      if (id === 'start' && this.playerCount >= 2) return;
+      if (id === 'ghost' && this.playerCount >= 4) return;
+      this.shownTips.add(id);
+      if (this.onEvent) {
+        this.onEvent('tip', { id, ...content });
+      }
+    }, delay);
+    this.tipTimers.push(timer);
+  },
+
+  /**
+   * 立即显示一个提示（事件触发型）
+   */
+  _showTipNow(id, content) {
+    if (this.shownTips.has(id)) return;
+    if (!this.raceStarted) return; // 开赛前不显示提示
+    this.shownTips.add(id);
+    if (this.onEvent) {
+      this.onEvent('tip', { id, ...content });
+    }
   },
 
   /**
@@ -255,8 +305,16 @@ const GuideBattle = {
     this.raceStarted = false;
     if (this.aiTimer) { clearTimeout(this.aiTimer); this.aiTimer = null; }
     if (this._fogAnimFrame) { cancelAnimationFrame(this._fogAnimFrame); this._fogAnimFrame = null; }
+    // 清理所有提示定时器
+    if (this.tipTimers) {
+      this.tipTimers.forEach(t => clearTimeout(t));
+      this.tipTimers = [];
+    }
     this._removeWarningEdge();
     this._removeUI();
+    // 清除所有提示气泡
+    const tips = document.querySelectorAll('.battle-tip-bubble');
+    tips.forEach(t => t.remove());
   },
 
   // ========== 玩家操作回调 ==========
@@ -277,6 +335,12 @@ const GuideBattle = {
         this.aiCount--;
         this.stealFlash[r][c] = 1; // 触发抢格子闪光
         if (this.onEvent) this.onEvent('steal', { r, c });
+        // 第一次抢格提示
+        this._showTipNow('steal', {
+          icon: '⚡',
+          title: '抢过来了！',
+          text: '干得漂亮！你抢先填对了这格，从' + this.opponent.name + '手中抢了过来。继续抢占更多格子！'
+        });
       }
 
       this.playerOwned[r][c] = num;
@@ -284,6 +348,15 @@ const GuideBattle = {
 
       // 更新视野（新填的格子也是视野锚点）
       this._updateVisibility();
+
+      // 第一次填对数字提示
+      if (this.playerCount === 1) {
+        this._showTipNow('firstFill', {
+          icon: '💡',
+          title: '迷雾散开了！',
+          text: '填对数字后周围迷雾散开了。注意雾中的金色光点——那是隐藏的预填数字，靠近就能发现！'
+        });
+      }
 
       // 检测遭遇事件
       this._checkEncounters();
@@ -396,6 +469,12 @@ const GuideBattle = {
       if (this.onEvent) {
         this.onEvent('discover', { cells: newDiscovered });
       }
+      // 第一次发现预填数时，提示"发现了新线索"
+      this._showTipNow('discover', {
+        icon: '✨',
+        title: '发现了新线索！',
+        text: '金光闪烁的格子是预填的提示数字，它们会帮你推理。继续填数来揭开更多区域！'
+      });
       // 递归更新视野（新锚点可能揭开更多区域和更多预填数字）
       this._updateVisibility();
     }
@@ -1213,6 +1292,14 @@ const GuideBattle = {
     this.aiPulse = Array(this.size).fill().map(() => Array(this.size).fill(0));
     this.discoverFlash = Array(this.size).fill().map(() => Array(this.size).fill(0));
     this.revealedFixed = Array(this.size).fill().map(() => Array(this.size).fill(false));
+    // 清理旧的提示定时器并重置
+    if (this.tipTimers) {
+      this.tipTimers.forEach(t => clearTimeout(t));
+    }
+    this.tipTimers = [];
+    this.shownTips = new Set();
+    // 清除残留提示气泡
+    document.querySelectorAll('.battle-tip-bubble').forEach(t => t.remove());
     this.aiCount = 0;
     this.playerCount = 0;
     this.aiIndex = 0;

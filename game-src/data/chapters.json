@@ -6281,7 +6281,13 @@
         "features": {
           "allowDraft": true,
           "assistant45": true,
-          "showHints": true
+          "showHints": true,
+          "perspectiveMode": true,
+          "highlightRow": true,
+          "highlightCol": true,
+          "highlightBox": true,
+          "highlightNumber": true,
+          "highlightCage": true
         },
         "triggers": [
           {
@@ -7058,7 +7064,13 @@
         "features": {
           "allowDraft": true,
           "assistant45": false,
-          "showHints": true
+          "showHints": true,
+          "perspectiveMode": true,
+          "highlightRow": true,
+          "highlightCol": true,
+          "highlightBox": true,
+          "highlightNumber": true,
+          "highlightCage": true
         },
         "triggers": [],
         "boardData": [
@@ -7817,7 +7829,13 @@
         "features": {
           "allowDraft": true,
           "assistant45": false,
-          "showHints": true
+          "showHints": true,
+          "perspectiveMode": true,
+          "highlightRow": true,
+          "highlightCol": true,
+          "highlightBox": true,
+          "highlightNumber": true,
+          "highlightCage": true
         },
         "triggers": [],
         "boardData": [
@@ -8568,7 +8586,13 @@
         "features": {
           "allowDraft": true,
           "assistant45": false,
-          "showHints": true
+          "showHints": true,
+          "perspectiveMode": true,
+          "highlightRow": true,
+          "highlightCol": true,
+          "highlightBox": true,
+          "highlightNumber": true,
+          "highlightCage": true
         },
         "triggers": [
           {
@@ -9339,7 +9363,13 @@
         "features": {
           "allowDraft": true,
           "assistant45": false,
-          "showHints": true
+          "showHints": true,
+          "perspectiveMode": true,
+          "highlightRow": true,
+          "highlightCol": true,
+          "highlightBox": true,
+          "highlightNumber": true,
+          "highlightCage": true
         },
         "triggers": [],
         "boardData": [
@@ -10094,7 +10124,13 @@
         "features": {
           "allowDraft": true,
           "assistant45": false,
-          "showHints": true
+          "showHints": true,
+          "perspectiveMode": true,
+          "highlightRow": true,
+          "highlightCol": true,
+          "highlightBox": true,
+          "highlightNumber": true,
+          "highlightCage": true
         },
         "triggers": [],
         "boardData": [
@@ -10847,7 +10883,13 @@
         "features": {
           "allowDraft": true,
           "assistant45": true,
-          "showHints": true
+          "showHints": true,
+          "perspectiveMode": true,
+          "highlightRow": true,
+          "highlightCol": true,
+          "highlightBox": true,
+          "highlightNumber": true,
+          "highlightCage": true
         },
         "triggers": [],
         "boardData": [
@@ -11579,6 +11621,24 @@
             "speaker": "阿岩",
             "text": "提示数少了这么多，感觉整个盘面空荡荡的……加油，把这关过了就能知道更多当年的事了！"
           }
+        ],
+        "clearDialog": [
+          {
+            "speaker": "守笼人",
+            "text": "残影消散了。区块排除法你已经融会贯通。"
+          },
+          {
+            "speaker": "阿岩",
+            "text": "刚才那个残影……真的是设局人留下的吗？感觉好冷。"
+          },
+          {
+            "speaker": "守笼人",
+            "text": "那只是他三十年前布下的一缕笼气。真正的设局人，比残影可怕百倍。"
+          },
+          {
+            "speaker": "守笼人",
+            "text": "第四章，我会带你逆推当年那场对决的最后残局。做好准备。"
+          }
         ]
       }
     ],
@@ -11656,7 +11716,13 @@
         "features": {
           "allowDraft": true,
           "assistant45": true,
-          "showHints": true
+          "showHints": true,
+          "perspectiveMode": true,
+          "highlightRow": true,
+          "highlightCol": true,
+          "highlightBox": true,
+          "highlightNumber": true,
+          "highlightCage": true
         },
         "triggers": [
           {
@@ -12442,7 +12508,13 @@
         "features": {
           "allowDraft": true,
           "assistant45": true,
-          "showHints": true
+          "showHints": true,
+          "perspectiveMode": true,
+          "highlightRow": true,
+          "highlightCol": true,
+          "highlightBox": true,
+          "highlightNumber": true,
+          "highlightCage": true
         },
         "triggers": [],
         "boardData": [
@@ -13195,7 +13267,13 @@
         "features": {
           "allowDraft": true,
           "assistant45": true,
-          "showHints": true
+          "showHints": true,
+          "perspectiveMode": true,
+          "highlightRow": true,
+          "highlightCol": true,
+          "highlightBox": true,
+          "highlightNumber": true,
+          "highlightCage": true
         },
         "triggers": [],
         "boardData": [
@@ -13960,7 +14038,13 @@
         "features": {
           "allowDraft": true,
           "assistant45": false,
-          "showHints": true
+          "showHints": true,
+          "perspectiveMode": true,
+          "highlightRow": true,
+          "highlightCol": true,
+          "highlightBox": true,
+          "highlightNumber": true,
+          "highlightCage": true
         },
         "triggers": [
           {
@@ -14711,7 +14795,13 @@
         "features": {
           "allowDraft": true,
           "assistant45": true,
-          "showHints": true
+          "showHints": true,
+          "perspectiveMode": true,
+          "highlightRow": true,
+          "highlightCol": true,
+          "highlightBox": true,
+          "highlightNumber": true,
+          "highlightCage": true
         },
         "triggers": [],
         "boardData": [
@@ -15442,7 +15532,13 @@
         "features": {
           "allowDraft": true,
           "assistant45": true,
-          "showHints": true
+          "showHints": true,
+          "perspectiveMode": true,
+          "highlightRow": true,
+          "highlightCol": true,
+          "highlightBox": true,
+          "highlightNumber": true,
+          "highlightCage": true
         },
         "triggers": [],
         "boardData": [
@@ -16186,6 +16282,28 @@
             "speaker": "阿岩",
             "text": "终于要到结局了吗……我有点紧张。"
           }
+        ],
+        "clearDialog": [
+          {
+            "speaker": "阿岩",
+            "text": "笔记上的光……完全消失了。"
+          },
+          {
+            "speaker": "守笼人",
+            "text": "他等了三十年，终于有人解完了这道残局。他可以安息了。"
+          },
+          {
+            "speaker": "阿岩",
+            "text": "当年那个人……是输了吗？"
+          },
+          {
+            "speaker": "守笼人",
+            "text": "他没有输。只是笼局太复杂，他没能在迷雾散去之前找到答案。你替他完成了。"
+          },
+          {
+            "speaker": "守笼人",
+            "text": "第五章，星辰梭的核心。那是设局人造出的自动推演机器——你将面对一个不会疲倦、不会失误的对手。"
+          }
         ]
       }
     ],
@@ -16251,7 +16369,13 @@
         "features": {
           "allowDraft": true,
           "assistant45": true,
-          "showHints": true
+          "showHints": true,
+          "perspectiveMode": true,
+          "highlightRow": true,
+          "highlightCol": true,
+          "highlightBox": true,
+          "highlightNumber": true,
+          "highlightCage": true
         },
         "triggers": [],
         "boardData": [
@@ -16988,7 +17112,13 @@
         "features": {
           "allowDraft": true,
           "assistant45": false,
-          "showHints": true
+          "showHints": true,
+          "perspectiveMode": true,
+          "highlightRow": true,
+          "highlightCol": true,
+          "highlightBox": true,
+          "highlightNumber": true,
+          "highlightCage": true
         },
         "triggers": [],
         "boardData": [
@@ -17747,7 +17877,13 @@
         "features": {
           "allowDraft": true,
           "assistant45": false,
-          "showHints": true
+          "showHints": true,
+          "perspectiveMode": true,
+          "highlightRow": true,
+          "highlightCol": true,
+          "highlightBox": true,
+          "highlightNumber": true,
+          "highlightCage": true
         },
         "triggers": [],
         "boardData": [
@@ -18498,7 +18634,13 @@
         "features": {
           "allowDraft": true,
           "assistant45": false,
-          "showHints": true
+          "showHints": true,
+          "perspectiveMode": true,
+          "highlightRow": true,
+          "highlightCol": true,
+          "highlightBox": true,
+          "highlightNumber": true,
+          "highlightCage": true
         },
         "triggers": [],
         "boardData": [
@@ -19245,7 +19387,13 @@
         "features": {
           "allowDraft": true,
           "assistant45": false,
-          "showHints": true
+          "showHints": true,
+          "perspectiveMode": true,
+          "highlightRow": true,
+          "highlightCol": true,
+          "highlightBox": true,
+          "highlightNumber": true,
+          "highlightCage": true
         },
         "triggers": [],
         "boardData": [
@@ -20022,7 +20170,13 @@
         "features": {
           "allowDraft": true,
           "assistant45": true,
-          "showHints": true
+          "showHints": true,
+          "perspectiveMode": true,
+          "highlightRow": true,
+          "highlightCol": true,
+          "highlightBox": true,
+          "highlightNumber": true,
+          "highlightCage": true
         },
         "triggers": [],
         "boardData": [
@@ -20736,6 +20890,28 @@
             "speaker": "阿岩",
             "text": "二十五个数……这是目前为止最少的一次了！感觉解完这关，我也能当笼局大师了！"
           }
+        ],
+        "clearDialog": [
+          {
+            "speaker": "设局人",
+            "text": "星辰梭……停了。"
+          },
+          {
+            "speaker": "阿岩",
+            "text": "它停下来了？我们赢了？"
+          },
+          {
+            "speaker": "守笼人",
+            "text": "不。是它认可了你。星辰梭只会在遇到比自己更强的推演者时才会停止运转。"
+          },
+          {
+            "speaker": "设局人",
+            "text": "有意思。你比我预想中走得更远。终局笼局在第六章等你——那是我亲手布下的最后一道笼。"
+          },
+          {
+            "speaker": "设局人",
+            "text": "三十年前我没能赢过守笼人。三十年后，看看你能不能赢我。"
+          }
         ]
       }
     ],
@@ -20797,7 +20973,13 @@
         "features": {
           "allowDraft": true,
           "assistant45": true,
-          "showHints": true
+          "showHints": true,
+          "perspectiveMode": true,
+          "highlightRow": true,
+          "highlightCol": true,
+          "highlightBox": true,
+          "highlightNumber": true,
+          "highlightCage": true
         },
         "triggers": [],
         "boardData": [
@@ -21546,7 +21728,13 @@
         "features": {
           "allowDraft": true,
           "assistant45": true,
-          "showHints": true
+          "showHints": true,
+          "perspectiveMode": true,
+          "highlightRow": true,
+          "highlightCol": true,
+          "highlightBox": true,
+          "highlightNumber": true,
+          "highlightCage": true
         },
         "triggers": [],
         "boardData": [
@@ -22299,7 +22487,13 @@
         "features": {
           "allowDraft": true,
           "assistant45": true,
-          "showHints": true
+          "showHints": true,
+          "perspectiveMode": true,
+          "highlightRow": true,
+          "highlightCol": true,
+          "highlightBox": true,
+          "highlightNumber": true,
+          "highlightCage": true
         },
         "triggers": [],
         "boardData": [
@@ -23060,7 +23254,13 @@
         "features": {
           "allowDraft": true,
           "assistant45": true,
-          "showHints": true
+          "showHints": true,
+          "perspectiveMode": true,
+          "highlightRow": true,
+          "highlightCol": true,
+          "highlightBox": true,
+          "highlightNumber": true,
+          "highlightCage": true
         },
         "triggers": [],
         "boardData": [
@@ -23829,7 +24029,13 @@
         "features": {
           "allowDraft": true,
           "assistant45": false,
-          "showHints": true
+          "showHints": true,
+          "perspectiveMode": true,
+          "highlightRow": true,
+          "highlightCol": true,
+          "highlightBox": true,
+          "highlightNumber": true,
+          "highlightCage": true
         },
         "triggers": [],
         "boardData": [
@@ -24610,7 +24816,13 @@
         "features": {
           "allowDraft": true,
           "assistant45": false,
-          "showHints": true
+          "showHints": true,
+          "perspectiveMode": true,
+          "highlightRow": true,
+          "highlightCol": true,
+          "highlightBox": true,
+          "highlightNumber": true,
+          "highlightCage": true
         },
         "triggers": [
           {
@@ -25354,6 +25566,28 @@
           {
             "speaker": "设局人",
             "text": "能不能解出来，不重要。重要的是，你在解题的过程中，学到了什么。"
+          }
+        ],
+        "clearDialog": [
+          {
+            "speaker": "阿岩",
+            "text": "……真的结束了。"
+          },
+          {
+            "speaker": "守笼人",
+            "text": "档案侦探，从今以后，你可以自由进出这座档案馆的每一个角落。"
+          },
+          {
+            "speaker": "设局人",
+            "text": "笼中密码已解。但数独的世界没有终点——每一道新谜题，都是一扇新的笼门。"
+          },
+          {
+            "speaker": "阿岩",
+            "text": "那我们……以后还能一起解题吗？"
+          },
+          {
+            "speaker": "设局人",
+            "text": "当然。我在档案馆等你。"
           }
         ]
       }

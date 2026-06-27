@@ -577,10 +577,9 @@ function refreshBoard() {
 
   guideBoard.checkConflicts();
 
-  // Boss战：在数字下层绘制玩家归属底色
-  if (typeof GuideBattle !== 'undefined' && GuideBattle.active) {
-    GuideBattle.renderPlayerOwned(guideRenderer.ctx, guideRenderer.cellSize, guideRenderer.padding);
-  }
+  // 告知renderer是否在Boss战中（render内部在高亮层之后、数字之前绘制玩家归属底色）
+  guideRenderer._battleActive = (typeof GuideBattle !== 'undefined' && GuideBattle.active);
+  guideRenderer._battleCtx = (typeof GuideBattle !== 'undefined') ? GuideBattle : null;
 
   guideRenderer.render(guideBoard);
 
@@ -837,7 +836,10 @@ function _showEncounterToast(data, bossConfig) {
   const lines = bossConfig.encounterLines;
   if (!lines || !lines[data.level]) return;
 
-  const line = lines[data.level];
+  // 支持数组（随机选一条）或单条对象
+  const raw = lines[data.level];
+  const line = Array.isArray(raw) ? raw[Math.floor(Math.random() * raw.length)] : raw;
+  if (!line) return;
   const toast = document.createElement('div');
   toast.className = `battle-encounter-toast ${data.level}`;
 
@@ -941,8 +943,8 @@ function _showBattleCountdown() {
  * Boss战结束处理
  */
 function _onBossBattleEnd(result, bossConfig) {
-  // 先停止Boss战，移除进度条等UI
-  if (GuideBattle && GuideBattle.active) {
+  // 先停止Boss战，移除进度条等UI（无论active状态，ended状态也清理）
+  if (GuideBattle && (GuideBattle.active || GuideBattle.ended)) {
     GuideBattle.stop();
   }
   document.body.classList.remove('boss-battle-active');

@@ -833,7 +833,8 @@ const GuideBattle = {
     if (this.ended) return;
     this.ended = true;
     this.result = result;
-    this.active = false;
+    // 注意：不在这里设置active=false，让onEnd回调先执行stop()清理UI
+    // active会在stop()中设为false
     if (this.aiTimer) { clearTimeout(this.aiTimer); this.aiTimer = null; }
     if (this._fogAnimFrame) { cancelAnimationFrame(this._fogAnimFrame); this._fogAnimFrame = null; }
     this._showResult(result);
@@ -906,7 +907,7 @@ const GuideBattle = {
 
 // ========== Boss配置表 ==========
 const BOSS_CONFIGS = {
-  // 第1章：阿岩（新手，跳着填，偶尔失误）
+  // ===== 第1章：阿岩（活泼冒失的学弟侦探）=====
   109: {
     name: '阿岩',
     avatar: '👦',
@@ -915,26 +916,36 @@ const BOSS_CONFIGS = {
     speedMax: 11000,
     mistakeChance: 0.15,
     fillStyle: 'random',
-    personality: '新手侦探，东一榔头西一棒子',
+    personality: '新手侦探，东一榔头西一棒子，冒失但不服输',
     preDialog: [
       { speaker: '阿岩', text: '等等！这关学完你就要离开第一章了，先和我比一场再说！' },
-      { speaker: '阿岩', text: '规则很简单——我们解同一道题，谁先填到75%谁赢！迷雾中你只能看到自己周围哦，小心我偷偷超车！' }
+      { speaker: '阿岩', text: '规则很简单——我们解同一道题，谁先填到75%谁赢！迷雾里你只能看到自己周围哦，小心我偷偷超车！' }
     ],
     winDialog: [
-      { speaker: '阿岩', text: '哇！你好快！我还有好多格子没填呢……' },
+      { speaker: '阿岩', text: '哇！你好快！我还有好多格子没填呢……可恶，下次一定赢你！' },
       { speaker: '守笼人', text: '基本功扎实，速度也不错。你已经准备好进入第二章了。' }
     ],
     warningLines: [
       '他快赢了！加油啊！',
-      '不好，阿岩要超了！'
+      '不好，阿岩要超了！冲！'
     ],
     encounterLines: {
-      far:  { text: '嗯？那边好像有动静……', intensity: 'light' },
-      mid:  { text: '那边发现阿岩的踪迹！', intensity: 'medium' },
-      near: { text: '糟了，脸贴脸了！', intensity: 'strong' }
+      far:  [
+        { text: '（阿岩在远处哼着歌）啦啦啦~这个简单！', intensity: 'light' },
+        { text: '嗯？好像听到阿岩在念叨什么……', intensity: 'light' }
+      ],
+      mid:  [
+        { text: '阿岩：嘿！被你发现了！看招！', intensity: 'medium' },
+        { text: '阿岩：嘿嘿，这边这边~', intensity: 'medium' }
+      ],
+      near: [
+        { text: '阿岩：哇靠！脸贴脸了！这个我先填！', intensity: 'strong' },
+        { text: '阿岩：别抢别抢！这格是我的！', intensity: 'strong' }
+      ]
     }
   },
-  // 第2章：守笼人（稳扎稳打，从左到右）
+
+  // ===== 第2章：守笼人（沉稳古风的档案馆守护者）=====
   208: {
     name: '守笼人',
     avatar: '🧙',
@@ -943,25 +954,36 @@ const BOSS_CONFIGS = {
     speedMax: 6000,
     mistakeChance: 0.05,
     fillStyle: 'normal',
-    personality: '档案馆守护者，稳扎稳打',
+    personality: '沉稳从容的导师，古风措辞，不疾不徐',
     preDialog: [
       { speaker: '守笼人', text: '星衡法已全部教完。按照传统，结业需与守笼人对弈一局。' },
       { speaker: '阿岩', text: '加油！守笼人平时看起来慢吞吞的，其实解题可快了！注意迷雾里他的动向！' }
     ],
     winDialog: [
-      { speaker: '守笼人', text: '……不错。你的星衡法已超越我预期。' },
+      { speaker: '守笼人', text: '……不错。你的星衡法已超越我预期。档案之道，你已入门。' },
       { speaker: '设局人', text: '哼，这就满足了？真正的挑战还在档案室深层等着你。' }
     ],
     warningLines: [
-      '守笼人推进很快，集中注意力！'
+      '守笼人推进很快，集中注意力！',
+      '守笼人的星衡推演不可小觑！'
     ],
     encounterLines: {
-      far:  { text: '……有股熟悉的气息。', intensity: 'light' },
-      mid:  { text: '守笼人来了，做好准备。', intensity: 'medium' },
-      near: { text: '他就在眼前！', intensity: 'strong' }
+      far:  [
+        { text: '（远处传来翻书声）……第四行，和为二十一。', intensity: 'light' },
+        { text: '守笼人（低语）：此宫尚缺一子……', intensity: 'light' }
+      ],
+      mid:  [
+        { text: '守笼人：你来了。不错，视野拓展得挺快。', intensity: 'medium' },
+        { text: '守笼人：星衡之法，切记静观其变。', intensity: 'medium' }
+      ],
+      near: [
+        { text: '守笼人：近在咫尺了。这一子，你我同争。', intensity: 'strong' },
+        { text: '守笼人：好。最后几格，各凭本事。', intensity: 'strong' }
+      ]
     }
   },
-  // 第3章：设局人残影（从四周包抄）
+
+  // ===== 第3章：设局人残影（阴森冷酷的幻影）=====
   307: {
     name: '设局人残影',
     avatar: '👤',
@@ -970,25 +992,36 @@ const BOSS_CONFIGS = {
     speedMax: 4500,
     mistakeChance: 0.03,
     fillStyle: 'surround',
-    personality: '冷酷精准的残影，从四周包抄',
+    personality: '冷酷阴森的残影，从四面包抄，语气嘲讽',
     preDialog: [
       { speaker: '设局人', text: '区块排除学得不错嘛。但在迷雾中，你还能找到方向吗？' },
       { speaker: '设局人', text: '让我看看——你到底是真的懂了，还是只是在照猫画虎。' }
     ],
     winDialog: [
-      { speaker: '设局人', text: '……你的区块逻辑，确实比我预想的要纯熟。' },
+      { speaker: '设局人', text: '……你的区块逻辑，确实比我预想的要纯熟。但残影只是残影。' },
       { speaker: '守笼人', text: '不要得意。第四章的残局逆向推导，才是真正的考验。' }
     ],
     warningLines: [
-      '残影推进极快，不能再犹豫了！'
+      '残影从四面逼近，不能再犹豫了！',
+      '包围圈在缩小！快！'
     ],
     encounterLines: {
-      far:  { text: '有什么东西……在雾里移动。', intensity: 'light' },
-      mid:  { text: '残影包围过来了！', intensity: 'medium' },
-      near: { text: '小心！他就在旁边！', intensity: 'strong' }
+      far:  [
+        { text: '（阴冷的笑声）呵……找到我了？', intensity: 'light' },
+        { text: '设局人：你以为那是迷雾？不，那是我的笼。', intensity: 'light' }
+      ],
+      mid:  [
+        { text: '设局人：左……右……你猜我在哪边？', intensity: 'medium' },
+        { text: '设局人：区块排除？在我面前，你什么都排除不了。', intensity: 'medium' }
+      ],
+      near: [
+        { text: '设局人：太晚了。这一片，已经是我的了。', intensity: 'strong' },
+        { text: '设局人：看着你的视野被吞噬吧……', intensity: 'strong' }
+      ]
     }
   },
-  // 第4章：残局守护者
+
+  // ===== 第4章：残局守护者（哀伤追忆的笔记残魂）=====
   406: {
     name: '残局守护者',
     avatar: '📜',
@@ -997,7 +1030,7 @@ const BOSS_CONFIGS = {
     speedMax: 3800,
     mistakeChance: 0.02,
     fillStyle: 'normal',
-    personality: '旧笔记残留意念',
+    personality: '旧笔记中沉睡的残留意念，哀伤、追忆、不属于这个时代',
     preDialog: [
       { speaker: '阿岩', text: '笔记上的字迹在发光……这是怎么回事？！' },
       { speaker: '守笼人', text: '这是当年对决的残留意念。在迷雾中它不会手下留情。' }
@@ -1007,15 +1040,26 @@ const BOSS_CONFIGS = {
       { speaker: '守笼人', text: '你看到了当年的真相。但星辰梭的秘密，还在更深的地方。' }
     ],
     warningLines: [
-      '守护者的速度越来越快了！'
+      '笔记上的字迹越来越亮，它在加速！',
+      '守护者的执念太深了，快阻止它！'
     ],
     encounterLines: {
-      far:  { text: '笔记上的字……在颤动。', intensity: 'light' },
-      mid:  { text: '守护者逼近了！', intensity: 'medium' },
-      near: { text: '它来了！', intensity: 'strong' }
+      far:  [
+        { text: '（泛黄的纸页沙沙声）……三十年前……也是这样的雾……', intensity: 'light' },
+        { text: '守护者：残局……尚未终了……', intensity: 'light' }
+      ],
+      mid:  [
+        { text: '守护者：你也来解这残局吗……和当年那个人一样……', intensity: 'medium' },
+        { text: '守护者：逆向……推导……回到原点……', intensity: 'medium' }
+      ],
+      near: [
+        { text: '守护者：这一格……是他当年填错的地方……你呢？', intensity: 'strong' },
+        { text: '守护者：不要重蹈覆辙……不要像他一样……', intensity: 'strong' }
+      ]
     }
   },
-  // 第5章：星辰梭（冰冷推演机器，从四周包抄）
+
+  // ===== 第5章：星辰梭（冰冷机械的推演机器）=====
   506: {
     name: '星辰梭',
     avatar: '⚙️',
@@ -1024,7 +1068,7 @@ const BOSS_CONFIGS = {
     speedMax: 2800,
     mistakeChance: 0.01,
     fillStyle: 'surround',
-    personality: '冰冷的推演机器',
+    personality: '冰冷的自动推演机器，无感情，机械运转，数据化措辞',
     preDialog: [
       { speaker: '设局人', text: '你走到了星辰梭的核心。它会自动迎击任何入侵者。' },
       { speaker: '阿岩', text: '它……它不是人？那它解题岂不是——' },
@@ -1035,15 +1079,26 @@ const BOSS_CONFIGS = {
       { speaker: '守笼人', text: '最后一章，终局笼局。设局人在那里等你。' }
     ],
     warningLines: [
-      '星辰梭推演速度惊人，快！'
+      '警告：推演进度80%，建议立即加速。',
+      '星辰梭推演速度飙升，快！'
     ],
     encounterLines: {
-      far:  { text: '……机械运转声。', intensity: 'light' },
-      mid:  { text: '星辰梭锁定了你的方向！', intensity: 'medium' },
-      near: { text: '推演已到眼前！', intensity: 'strong' }
+      far:  [
+        { text: '【机械运转声】咔嗒……咔嗒……推演中……', intensity: 'light' },
+        { text: '星辰梭：检测到入侵者。启动笼局推演协议。', intensity: 'light' }
+      ],
+      mid:  [
+        { text: '星辰梭：区块扫描完成。目标方向锁定。', intensity: 'medium' },
+        { text: '星辰梭：当前推演效率：人类的4.7倍。', intensity: 'medium' }
+      ],
+      near: [
+        { text: '星辰梭：接触。交集格判定中……此方归属：争夺。', intensity: 'strong' },
+        { text: '星辰梭：警告——入侵者速度超出预期阈值。', intensity: 'strong' }
+      ]
     }
   },
-  // 第6章：设局人本体（终局之敌，四面包抄）
+
+  // ===== 第6章：设局人本体（终局之敌，深不可测）=====
   606: {
     name: '设局人',
     avatar: '🎭',
@@ -1052,21 +1107,37 @@ const BOSS_CONFIGS = {
     speedMax: 2000,
     mistakeChance: 0.005,
     fillStyle: 'surround',
-    personality: '终局之敌，笼局已布下',
+    personality: '终局之敌，深不可测，从容优雅，一切尽在掌握的压迫感',
     preDialog: [
       { speaker: '设局人', text: '你来了。三十年来，你是第一个走到这里的人。' },
       { speaker: '守笼人', text: '……' },
       { speaker: '阿岩', text: '最后一战了吧？来吧！' },
       { speaker: '设局人', text: '终局笼局，二十三提示数。迷雾中你什么也看不清——让我看看，你到底值不值得我等这三十年。' }
     ],
-    winDialog: null,
+    winDialog: [
+      { speaker: '设局人', text: '……哈。哈哈哈。' },
+      { speaker: '设局人', text: '三十年了。终于有人，亲手破了我的笼局。' },
+      { speaker: '守笼人', text: '老家伙……你等的不就是这一天吗。' },
+      { speaker: '阿岩', text: '所以……一切都结束了？' },
+      { speaker: '设局人', text: '档案侦探，恭喜你——笼中密码，已被你解开。' }
+    ],
     warningLines: [
+      '「笼局即将闭合——你，还剩几格？」',
       '设局人已经快到终局了！拼了！'
     ],
     encounterLines: {
-      far:  { text: '「笼局已成。」', intensity: 'light' },
-      mid:  { text: '「你逃不掉的。」', intensity: 'medium' },
-      near: { text: '「来，做个了断吧。」', intensity: 'strong' }
+      far:  [
+        { text: '设局人：我布下的迷雾，好看吗？', intensity: 'light' },
+        { text: '设局人：三十年布局，一子未落错。你呢？', intensity: 'light' }
+      ],
+      mid:  [
+        { text: '设局人：你比我想象中走得更远。但也仅此而已。', intensity: 'medium' },
+        { text: '设局人：四面都是我的笼，你往哪里逃？', intensity: 'medium' }
+      ],
+      near: [
+        { text: '设局人：来。最后几格，让我看看你三十年等待的价值。', intensity: 'strong' },
+        { text: '设局人：终局面前，你我平等。填吧。', intensity: 'strong' }
+      ]
     }
   }
 };

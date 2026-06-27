@@ -83,6 +83,8 @@ class Renderer {
     this._drawSelectedCell(board);
     // 第10层：提示格子高亮
     this._drawHintHighlight(board);
+    // 第10.5层：Boss战玩家归属底色（深蓝色，在数字下层）
+    this._drawBattlePlayerOwned(board);
     // 第11层：填入数字 & 固定数字
     this._drawNumbers(board);
     // 第12层：候选数
@@ -435,6 +437,25 @@ class Renderer {
 
           // 半透明金色背景
           ctx.fillStyle = 'rgba(245, 158, 11, 0.15)';
+          ctx.fillRect(c * cellSize, r * cellSize, cellSize, cellSize);
+        }
+      }
+    }
+  }
+
+  // ---------- 10.5 Boss战：玩家归属底色（深蓝色，在数字下层）----------
+  _drawBattlePlayerOwned(board) {
+    if (!this._battleActive || !this._battleCtx) return;
+    const battle = this._battleCtx;
+    // 直接复用battle的renderPlayerOwned，但此时已经在translate(padding, padding)坐标系中
+    const { ctx, cellSize } = this;
+    const size = board.size;
+
+    for (let r = 0; r < size; r++) {
+      for (let c = 0; c < size; c++) {
+        if (battle.fixedMask && battle.fixedMask[r][c]) continue;
+        if (battle.playerOwned && battle.playerOwned[r][c] > 0) {
+          ctx.fillStyle = 'rgba(37, 99, 235, 0.15)';
           ctx.fillRect(c * cellSize, r * cellSize, cellSize, cellSize);
         }
       }

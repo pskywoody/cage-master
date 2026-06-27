@@ -556,12 +556,37 @@ function refreshBoard() {
     hintStep = 0;
     currentHint = null;
   }
+
+  // Boss战：同步擦除状态（玩家撤销/擦除了已填格子）
+  if (typeof GuideBattle !== 'undefined' && GuideBattle.active && !GuideBattle.ended) {
+    const solution = currentLevelData && currentLevelData.solution;
+    if (solution) {
+      for (let r = 0; r < GuideBattle.size; r++) {
+        for (let c = 0; c < GuideBattle.size; c++) {
+          if (GuideBattle.playerOwned[r][c] > 0) {
+            const cell = guideBoard.cells[r][c];
+            const stillCorrect = cell.fillNum && solution[r][c] === cell.fillNum;
+            if (!stillCorrect) {
+              GuideBattle.onPlayerErase(r, c);
+            }
+          }
+        }
+      }
+    }
+  }
+
   guideBoard.checkConflicts();
+
+  // Boss战：在数字下层绘制玩家归属底色
+  if (typeof GuideBattle !== 'undefined' && GuideBattle.active) {
+    GuideBattle.renderPlayerOwned(guideRenderer.ctx, guideRenderer.cellSize, guideRenderer.padding);
+  }
+
   guideRenderer.render(guideBoard);
 
-  // Boss战：渲染AI幽灵数字
+  // Boss战：渲染迷雾+幽灵格+抢格子闪光（在棋盘之上绘制）
   if (typeof GuideBattle !== 'undefined' && GuideBattle.active) {
-    GuideBattle.renderGhostNumbers(guideRenderer.ctx, guideRenderer.cellSize, guideRenderer.padding);
+    GuideBattle.renderFogAndGhosts(guideRenderer.ctx, guideRenderer.cellSize, guideRenderer.padding);
   }
 
   checkAndNotifyConflict();
@@ -740,6 +765,9 @@ function _initBattleAndStart(bossConfig) {
     opponent: bossConfig,
     onEnd: (result) => {
       _onBossBattleEnd(result, bossConfig);
+    },
+    onEvent: (type, data) => {
+      _handleBattleEvent(type, data, bossConfig);
     }
   });
 
@@ -749,8 +777,16 @@ function _initBattleAndStart(bossConfig) {
     for (let c = 0; c < currentGridSize; c++) {
       const cell = guideBoard.cells[r][c];
       if (!cell.fixedNum && cell.fillNum && solution[r] && solution[r][c] === cell.fillNum) {
-        GuideBattle.playerFilledCount++;
+        GuideBattle.playerOwned[r][c] = cell.fillNum;
+        GuideBattle.playerCount++;
       }
+    }
+  }
+  // 恢复后重新计算视野
+  GuideBattle._updateVisibility();
+  for (let r = 0; r < GuideBattle.size; r++) {
+    for (let c = 0; c < GuideBattle.size; c++) {
+      GuideBattle.fogOpacity[r][c] = GuideBattle.visible[r][c] ? 0 : 1;
     }
   }
 
@@ -763,6 +799,107 @@ function _initBattleAndStart(bossConfig) {
 
   // 显示"准备开始"提示
   _showBattleCountdown();
+}
+
+/**
+ * 处理Boss战事件（遭遇、预警、抢格子等）
+ */
+function _handleBattleEvent(type, data, bossConfig) {
+  switch (type) {
+    case 'encounter':
+      _showEncounterToast(data, bossConfig);
+      _vibrate(data.level === 'strong' ? [80, 40, 80] : data.level === 'mid' ? [40] : [15]);
+      break;
+    case 'warning':
+      if (data.who === 'ai') {
+        const lines = bossConfig.warningLines || ['对手快赢了！'];
+        const line = lines[Math.floor(Math.random() * lines.length)];
+        _showBattleToast(line, 'strong', 2500);
+        _vibrate([100, 50, 100, 50, 100]);
+      } else {
+        _showBattleToast('你快赢了，加油！', 'medium', 2000);
+      }
+      break;
+    case 'steal':
+      _showBattleToast('抢到一格！', 'light', 1000);
+      _vibrate([30, 20, 30]);
+      break;
+    case 'wrong':
+      _vibrate([50, 30, 50]);
+      break;
+  }
+}
+
+/**
+ * 显示遭遇事件台词气泡
+ */
+function _showEncounterToast(data, bossConfig) {
+  const lines = bossConfig.encounterLines;
+  if (!lines || !lines[data.level]) return;
+
+  const line = lines[data.level];
+  const toast = document.createElement('div');
+  toast.className = `battle-encounter-toast ${data.level}`;
+
+  // 根据方向决定位置
+  let topPos, vertClass;
+  switch (data.direction) {
+    case 'up':    topPos = '70px'; break;
+    case 'down':  topPos = 'auto'; toast.style.bottom = '120px'; break;
+    case 'left':  topPos = '50%'; toast.style.left = '20px'; toast.style.right = 'auto'; toast.style.transform = 'translateY(-50%)'; break;
+    case 'right': topPos = '50%'; toast.style.right = '20px'; toast.style.left = 'auto'; toast.style.transform = 'translateY(-50%)'; break;
+    default:      topPos = '100px';
+  }
+  if (topPos && data.direction !== 'down' && data.direction !== 'left' && data.direction !== 'right') {
+    toast.style.top = topPos;
+  }
+
+  toast.textContent = line.text;
+  document.body.appendChild(toast);
+
+  // 动画显示
+  requestAnimationFrame(() => {
+    toast.classList.add('show');
+  });
+
+  // 自动消失
+  const duration = data.level === 'strong' ? 2200 : data.level === 'mid' ? 1800 : 1400;
+  setTimeout(() => {
+    toast.classList.remove('show');
+    setTimeout(() => toast.remove(), 300);
+  }, duration);
+}
+
+/**
+ * 显示通用战斗提示
+ */
+function _showBattleToast(text, intensity, duration) {
+  const toast = document.createElement('div');
+  toast.className = `battle-encounter-toast ${intensity || 'light'}`;
+  toast.style.top = '50%';
+  toast.style.left = '50%';
+  toast.style.transform = 'translate(-50%, -50%) scale(0.9)';
+  toast.textContent = text;
+  document.body.appendChild(toast);
+
+  requestAnimationFrame(() => {
+    toast.classList.add('show');
+    toast.style.transform = 'translate(-50%, -50%) scale(1)';
+  });
+
+  setTimeout(() => {
+    toast.classList.remove('show');
+    setTimeout(() => toast.remove(), 300);
+  }, duration || 1500);
+}
+
+/**
+ * 设备震动（如果支持）
+ */
+function _vibrate(pattern) {
+  if (navigator.vibrate) {
+    try { navigator.vibrate(pattern); } catch (e) {}
+  }
 }
 
 /**

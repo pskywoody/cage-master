@@ -376,6 +376,7 @@ class Renderer {
   _drawNumbers(board) {
     const { ctx, cellSize } = this;
     const size = board.size;
+    const battle = this._battleActive ? this._battleCtx : null;
 
     // 字体大小根据 cellSize 动态调整
     const fontSize = Math.floor(cellSize * 0.45);
@@ -387,6 +388,11 @@ class Renderer {
         const cell = board.cells[r][c];
         const num = cell.fixedNum || cell.fillNum;
         if (!num) continue;
+
+        // Boss战中：未发现的固定数字不绘制（迷雾遮盖+不泄露信息）
+        if (battle && battle.active && cell.fixedNum && battle.revealedFixed && battle.revealedFixed[r] && !battle.revealedFixed[r][c]) {
+          continue;
+        }
 
         ctx.font = cell.fixedNum ? `${fontSize}px sans-serif` : `${fontSize}px sans-serif`;
         if (cell.isError && board.settings.conflictRed) {

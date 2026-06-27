@@ -821,6 +821,10 @@ function _handleBattleEvent(type, data, bossConfig) {
       // 重试：显示倒计时
       setTimeout(() => _showBattleCountdown(), 300);
       break;
+    case 'discover':
+      // 发现新线索（预填数字）：轻震+金光闪
+      _vibrate(25);
+      break;
     case 'encounter':
       _showEncounterToast(data, bossConfig);
       _vibrate(data.level === 'strong' ? [80, 40, 80] : data.level === 'mid' ? [40] : [15]);
@@ -972,21 +976,21 @@ function _showBattleRules(bossConfig) {
           <div class="rule-icon">🌫️</div>
           <div class="rule-text">
             <div class="rule-name">迷雾遮眼</div>
-            <div class="rule-desc">棋盘被战雾笼罩。你只能看到预填数字和自己填对的数字附近的区域。雾中看不见笼子和值和数字！</div>
+            <div class="rule-desc">棋盘被战雾笼罩！开局只能看到角落一小片区域。雾中笼子和值、数字都被遮住，只能看到淡点暗示"这里有线索"。</div>
           </div>
         </div>
         <div class="rule-item">
           <div class="rule-icon">🔦</div>
           <div class="rule-text">
             <div class="rule-name">探索揭雾</div>
-            <div class="rule-desc">每填对一个数字，该格周围的迷雾会散开，露出新的笼子线索。步步为营，逐步推进！</div>
+            <div class="rule-desc">每填对一个数字，周围迷雾散开，可能发现新的预填线索（金光闪烁！）。步步为营，逐步拓荒推进！</div>
           </div>
         </div>
         <div class="rule-item">
-          <div class="rule-icon">🏁</div>
+          <div class="rule-icon">👻</div>
           <div class="rule-text">
-            <div class="rule-name">竞速抢格</div>
-            <div class="rule-desc">${bossConfig.name}也在从对面填数！先填满棋盘75%者获胜。你可以抢TA填过的格子（填对即归你）。</div>
+            <div class="rule-name">幽灵对手</div>
+            <div class="rule-desc">${bossConfig.name}就在视野边缘的雾中！你会看到幽灵格在闪烁——TA正在和你抢地盘，先到75%者胜！</div>
           </div>
         </div>
         <div class="rule-item">

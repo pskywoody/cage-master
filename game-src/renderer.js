@@ -195,10 +195,11 @@ class Renderer {
       });
 
       // 判断每个格子是否可见（Boss战迷雾中，雾格的边框不画）
+      // 直接用fogOpacity判断：雾薄于0.7就画，雾厚于0.7就隐藏
       const isVisible = (r, c) => {
         if (!battle || !battle.active) return true; // 非Boss战全可见
-        if (!battle.visible[r] || !battle.visible[r][c]) return false;
-        return battle.fogOpacity[r][c] < 0.7; // 半雾以上才算可见
+        if (!battle.fogOpacity[r] || battle.fogOpacity[r][c] == null) return true;
+        return battle.fogOpacity[r][c] < 0.7;
       };
 
       // 笼子至少有一个格子可见，才显示可见部分的边框

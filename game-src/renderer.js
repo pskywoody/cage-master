@@ -195,11 +195,18 @@ class Renderer {
       });
 
       // 判断每个格子是否可见（Boss战迷雾中，雾格的边框不画）
-      // 直接用fogOpacity判断：雾薄于0.7就画，雾厚于0.7就隐藏
+      // 笼子在清晰区和边缘区可见(fogLevel < 0.4)，雾中和浓雾中隐藏
       const isVisible = (r, c) => {
         if (!battle || !battle.active) return true; // 非Boss战全可见
-        if (!battle.fogOpacity[r] || battle.fogOpacity[r][c] == null) return true;
-        return battle.fogOpacity[r][c] < 0.7;
+        if (!battle.fogLevel || !battle.fogLevel[r] || battle.fogLevel[r][c] == null) return true;
+        return battle.fogLevel[r][c] < 0.4;
+      };
+
+      // 和值徽章只在清晰区(fogLevel=0)显示
+      const isSumVisible = (r, c) => {
+        if (!battle || !battle.active) return true;
+        if (!battle.fogLevel || !battle.fogLevel[r] || battle.fogLevel[r][c] == null) return true;
+        return battle.fogLevel[r][c] < 0.1;
       };
 
       // 笼子至少有一个格子可见，才显示可见部分的边框
@@ -242,8 +249,8 @@ class Renderer {
         }
       });
 
-      // 和值绘制：只有当左上角格子可见时才画和值徽章
-      if (isVisible(minR, minC)) {
+      // 和值绘制：只有在清晰区(fogLevel=0)才显示和值徽章
+      if (isSumVisible(minR, minC)) {
         ctx.setLineDash([]);
         const sumFontSize = Math.max(8, Math.floor(cellSize * 0.16));
         ctx.font = `bold ${sumFontSize}px sans-serif`;
@@ -389,12 +396,18 @@ class Renderer {
         const num = cell.fixedNum || cell.fillNum;
         if (!num) continue;
 
-        // Boss战中：未发现的固定数字不绘制（迷雾遮盖+不泄露信息）
-        if (battle && battle.active && cell.fixedNum && battle.revealedFixed && battle.revealedFixed[r] && !battle.revealedFixed[r][c]) {
-          continue;
+        // Boss战中：根据迷雾等级调整数字透明度（远处数字变暗但始终可读）
+        let numAlpha = 1;
+        if (battle && battle.active && battle.fogLevel && battle.fogLevel[r]) {
+          const fogL = battle.fogLevel[r][c];
+          if (fogL >= 0.7) numAlpha = 0.3;       // 浓雾：很暗
+          else if (fogL >= 0.5) numAlpha = 0.5;  // 雾中：偏暗
+          else if (fogL >= 0.25) numAlpha = 0.75;// 边缘：稍暗
+          else numAlpha = 1;                     // 清晰：正常
         }
 
         ctx.font = cell.fixedNum ? `${fontSize}px sans-serif` : `${fontSize}px sans-serif`;
+        ctx.globalAlpha = numAlpha;
         if (cell.isError && board.settings.conflictRed) {
           ctx.fillStyle = '#ef4444';
         } else if (cell.fixedNum) {
@@ -403,6 +416,7 @@ class Renderer {
           ctx.fillStyle = '#3b82f6';
         }
         ctx.fillText(num, c * cellSize + cellSize / 2, r * cellSize + cellSize / 2);
+        ctx.globalAlpha = 1;
       }
     }
   }

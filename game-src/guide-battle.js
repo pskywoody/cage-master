@@ -161,10 +161,8 @@ const GuideBattle = {
     // 视野范围：所有大小统一为1格（锚点+上下左右相邻）
     this.visionRange = 1;
 
-    // 选择初始起点：找一个角落的预填数字集群作为唯一初始锚点
-    this._chooseStartAnchors();
-
-    // 初始视野（只有起点锚点可见）
+    // 初始视野：所有预填数字都是锚点（能看到数字，可以推理）
+    // 但笼子信息（边框+和值）只有靠近才能看到——这才是探索的核心
     this._updateVisibility();
     // 迷雾初始全雾，由_fogAnimationLoop负责动画散开（开场仪式感）
     for (let r = 0; r < this.size; r++) {
@@ -204,17 +202,17 @@ const GuideBattle = {
     console.log('🏁 幽灵迷雾对战开始！');
 
     // ===== 引导提示（按时间顺序触发）=====
-    // 提示1：开赛后2秒，指引玩家从可见区域开始
+    // 提示1：开赛后2秒，指引玩家注意笼子信息才是关键
     this._scheduleTip('start', 2000, {
       icon: '🔦',
-      title: '从光亮处开始',
-      text: '你只能看到一小片区域。点击可见的空格，填入正确数字来揭开迷雾！'
+      title: '靠近才能看到笼子',
+      text: '远处的数字能看到但很暗，笼子的虚线和和值被迷雾遮住了。填对数字让迷雾散开，才能看到笼子线索！'
     });
     // 提示2：开赛后7秒，提醒AI幽灵格
     this._scheduleTip('ghost', 7000, {
       icon: '👻',
       title: '注意对手！',
-      text: '看到边缘闪烁的幽灵格了吗？那是' + this.opponent.name + '填的。填对同一格就能抢过来！'
+      text: '看到闪烁的红色方块了吗？那是' + this.opponent.name + '填的幽灵格。填对同一格就能抢过来！'
     });
   },
 
@@ -249,8 +247,8 @@ const GuideBattle = {
   },
 
   /**
-   * AI开局预填：在初始可见区域边界附近放1-2个幽灵格
-   * 选半雾区域(fogLevel=0.5)中最靠近左上角(AI方向)的空格子
+   * AI开局预填：在视野边缘（fogLevel=0.25区域）放1-2个幽灵格
+   * 选最靠近盘中心的空格，让玩家开局就能看到对手
    */
   _preFillAiEdgeGhosts() {
     const size = this.size;
@@ -260,16 +258,16 @@ const GuideBattle = {
       for (let c = 0; c < size; c++) {
         if (this.fixedMask[r][c]) continue;
         if (this.playerOwned[r][c] > 0) continue;
-        // 选半雾区域（视野边缘）
-        if (this.fogLevel && this.fogLevel[r] && this.fogLevel[r][c] === 0.5) {
-          // 评分：越靠近左上角（AI方向）分数越高，越靠近可见区边缘越好
-          const score = (size - r) * size + (size - c);
-          candidates.push({ r, c, score });
+        // 选边缘区域（距离锚点1格），这样幽灵格更显眼
+        if (this.fogLevel && this.fogLevel[r] && this.fogLevel[r][c] === 0.25) {
+          // 评分：靠近盘中心的格子优先（让玩家注意到）
+          const centerDist = Math.abs(r - (size-1)/2) + Math.abs(c - (size-1)/2);
+          candidates.push({ r, c, score: -centerDist });
         }
       }
     }
 
-    // 按分数排序（AI从左上方向逼近）
+    // 按分数排序（中心优先）
     candidates.sort((a, b) => b.score - a.score);
 
     // 预填1-2个（4x4填1个，6x6/9x9填2个）
@@ -354,7 +352,7 @@ const GuideBattle = {
         this._showTipNow('firstFill', {
           icon: '💡',
           title: '迷雾散开了！',
-          text: '填对数字后周围迷雾散开了。注意雾中的金色光点——那是隐藏的预填数字，靠近就能发现！'
+          text: '填对数字后附近笼子的虚线和和值显露出来了。继续填数，揭开更多笼子线索来解题！'
         });
       }
 
@@ -398,41 +396,28 @@ const GuideBattle = {
   // ========== 迷雾视野系统 ==========
 
   /**
-   * 更新视野可见性：收集所有玩家锚点，计算每个空格到最近锚点的曼哈顿距离
-   * 返回三级可见度：0=完全可见，0.5=半雾边缘，1=全雾
+   * 更新视野可见性：收集所有玩家锚点，计算每个格子到最近锚点的曼哈顿距离
+   * 设计原则：
+   * - 预填数字始终是锚点（数字始终可读，保证推理可能）
+   * - 玩家填对的格子也是锚点（扩展视野）
+   * - 迷雾只影响"笼子信息"的可见度和视觉氛围，不隐藏数字本身
+   * - 四级迷雾：清晰(0)→边缘(0.25)→雾中(0.5)→浓雾(0.7)
    */
   _updateVisibility() {
-    // 收集锚点：已发现的固定数字 + 玩家已填正确格子（抢来的也算）
-    // 注意：未发现的固定数字不作为锚点！玩家必须探索到它们附近才能"发现"
+    // 所有预填数字 + 玩家已填正确格子都是锚点
     const anchors = [];
     for (let r = 0; r < this.size; r++) {
       for (let c = 0; c < this.size; c++) {
-        if ((this.fixedMask[r][c] && this.revealedFixed[r][c]) || this.playerOwned[r][c] > 0) {
+        if (this.fixedMask[r][c] || this.playerOwned[r][c] > 0) {
           anchors.push({ r, c });
         }
       }
     }
 
-    // 没有锚点（极端情况）时全雾
-    if (anchors.length === 0) {
-      for (let r = 0; r < this.size; r++) {
-        for (let c = 0; c < this.size; c++) {
-          this.visible[r][c] = false;
-        }
-      }
-      if (!this.fogLevel) this.fogLevel = Array(this.size).fill().map(() => Array(this.size).fill(1));
-      for (let r = 0; r < this.size; r++) {
-        for (let c = 0; c < this.size; c++) {
-          this.fogLevel[r][c] = 1;
-        }
-      }
-      return;
-    }
-
     if (!this.fogLevel) this.fogLevel = Array(this.size).fill().map(() => Array(this.size).fill(1));
 
-    // 对每个格子计算最近锚点距离
-    const newDiscovered = [];
+    // visionRange=0：只有锚点格子本身是"清晰"区
+    // 相邻格是"边缘"，距离2-3是"雾中"，更远是"浓雾"
     for (let r = 0; r < this.size; r++) {
       for (let c = 0; c < this.size; c++) {
         let minDist = Infinity;
@@ -440,90 +425,20 @@ const GuideBattle = {
           const d = Math.abs(r - a.r) + Math.abs(c - a.c);
           if (d < minDist) minDist = d;
         }
+
         this.visible[r][c] = (minDist <= this.visionRange);
-        // 三级迷雾：距离内=清晰(0)，距离+1=半雾(0.5)，更远=全雾(0.92)
+        // 四级迷雾
         if (minDist <= this.visionRange) {
-          this.fogLevel[r][c] = 0;
+          this.fogLevel[r][c] = 0;      // 清晰：笼子完全可见
         } else if (minDist === this.visionRange + 1) {
-          this.fogLevel[r][c] = 0.5;
+          this.fogLevel[r][c] = 0.25;   // 边缘：笼子边框隐约可见，和值隐藏
+        } else if (minDist <= this.visionRange + 3) {
+          this.fogLevel[r][c] = 0.5;    // 雾中：笼子隐藏，数字偏暗
         } else {
-          this.fogLevel[r][c] = 0.92;
-        }
-
-        // 自动发现：只有当视野真正扩展到预填数字位置（距离≤visionRange，清晰可见区）时才"发现"它
-        // 半雾区（visionRange+1）只能看到淡点暗示，必须再填一格才能看清数字
-        if (this.fixedMask[r][c] && !this.revealedFixed[r][c] && minDist <= this.visionRange) {
-          this.revealedFixed[r][c] = true;
-          newDiscovered.push({ r, c });
+          this.fogLevel[r][c] = 0.7;    // 浓雾：笼子隐藏，数字很暗但可读
         }
       }
     }
-
-    // 如果发现了新的预填数字，它们成为新锚点，需要重新计算视野（连锁发现）
-    if (newDiscovered.length > 0) {
-      // 给新发现的格子加闪光效果
-      for (const { r, c } of newDiscovered) {
-        this.discoverFlash[r][c] = 1;
-      }
-      // 触发发现事件
-      if (this.onEvent) {
-        this.onEvent('discover', { cells: newDiscovered });
-      }
-      // 第一次发现预填数时，提示"发现了新线索"
-      this._showTipNow('discover', {
-        icon: '✨',
-        title: '发现了新线索！',
-        text: '金光闪烁的格子是预填的提示数字，它们会帮你推理。继续填数来揭开更多区域！'
-      });
-      // 递归更新视野（新锚点可能揭开更多区域和更多预填数字）
-      this._updateVisibility();
-    }
-  },
-
-  /**
-   * 选择初始起点锚点：找右下角附近预填数字最密集的小区域
-   * 这样玩家从角落开始，向AI方向（左上角）推进
-   */
-  _chooseStartAnchors() {
-    const size = this.size;
-    // 收集所有预填数字位置
-    const fixedCells = [];
-    for (let r = 0; r < size; r++) {
-      for (let c = 0; c < size; c++) {
-        if (this.fixedMask[r][c]) {
-          fixedCells.push({ r, c });
-        }
-      }
-    }
-    if (fixedCells.length === 0) return;
-
-    // 策略：选择右下角区域的预填数字（玩家从右下出发，AI从左上方向推进）
-    // 找到右下角（r+c最大）的预填数字作为起点
-    let startCell = fixedCells[0];
-    let maxScore = -1;
-    for (const cell of fixedCells) {
-      // 评分：越靠近右下角分数越高（r*size + c 越大越好）
-      const score = cell.r * size + cell.c;
-      if (score > maxScore) {
-        maxScore = score;
-        startCell = cell;
-      }
-    }
-
-    // 标记起点及其紧邻的1个预填数字（形成最小启动区域，刚好能看到1-2个笼子线索）
-    this.revealedFixed[startCell.r][startCell.c] = true;
-
-    // 找一个紧邻的预填数字（曼哈顿距离=1），一起揭开，形成最小可解区域
-    for (const cell of fixedCells) {
-      if (cell.r === startCell.r && cell.c === startCell.c) continue;
-      const d = Math.abs(cell.r - startCell.r) + Math.abs(cell.c - startCell.c);
-      if (d <= 1) {
-        this.revealedFixed[cell.r][cell.c] = true;
-        break; // 只多揭一个
-      }
-    }
-
-    console.log(`🎯 初始起点: (${startCell.r},${startCell.c}), 已发现锚点数: ${this.revealedFixed.flat().filter(Boolean).length}`);
   },
 
   /**
@@ -584,13 +499,6 @@ const GuideBattle = {
           if (this.aiPulse[r][c] > 0) {
             this.aiPulse[r][c] -= 16 / 600; // 600ms脉冲
             if (this.aiPulse[r][c] < 0) this.aiPulse[r][c] = 0;
-            needsRender = true;
-          }
-
-          // 发现预填数闪光衰减
-          if (this.discoverFlash[r][c] > 0) {
-            this.discoverFlash[r][c] -= 16 / 800; // 800ms
-            if (this.discoverFlash[r][c] < 0) this.discoverFlash[r][c] = 0;
             needsRender = true;
           }
         }
@@ -807,42 +715,13 @@ const GuideBattle = {
 
         // === 固定数字处理 ===
         if (this.fixedMask[r][c]) {
-          const isRevealed = this.revealedFixed[r][c];
-          const dFlash = this.discoverFlash[r][c];
-
-          if (isRevealed) {
-            // 已发现的预填数字：迷雾正常覆盖（数字由renderer绘制）
-            if (fog > 0.01) {
-              ctx.fillStyle = `rgba(15, 23, 42, ${Math.min(0.95, fog * 0.95)})`;
-              ctx.fillRect(x, y, cs, cs);
-            }
-            // 发现闪光动画
-            if (dFlash > 0) {
-              const expand = (1 - dFlash) * cs * 0.8;
-              ctx.strokeStyle = `rgba(251, 191, 36, ${dFlash * 0.8})`;
-              ctx.lineWidth = 2 + dFlash * 2;
-              this._roundRect(ctx, x + 2 - expand, y + 2 - expand, cs - 4 + expand * 2, cs - 4 + expand * 2, 6);
-              ctx.stroke();
-              // 金色填充闪光
-              ctx.fillStyle = `rgba(251, 191, 36, ${dFlash * 0.2})`;
-              ctx.fillRect(x, y, cs, cs);
-            }
-          } else {
-            // 未发现的预填数字：完全遮盖数字，只在半雾区显示淡点暗示"这里有线索"
-            // 始终用厚迷雾遮盖（不管fog值多少，未发现就不显示数字）
-            ctx.fillStyle = 'rgba(15, 23, 42, 0.95)';
+          // 固定数字：迷雾按fogLevel适度覆盖（远处暗但可读）
+          const fogL = (this.fogLevel && this.fogLevel[r]) ? this.fogLevel[r][c] : fog;
+          if (fogL > 0.01) {
+            // 迷雾alpha = fogLevel本身（0.25/0.5/0.7），再乘动画进度
+            const alpha = Math.min(0.75, fogL * fog * 1.1);
+            ctx.fillStyle = `rgba(15, 23, 42, ${alpha})`;
             ctx.fillRect(x, y, cs, cs);
-
-            // 在半雾区（离已发现区域不远）显示淡金色圆点，暗示"这里有线索"
-            const fogLevel = (this.fogLevel && this.fogLevel[r]) ? this.fogLevel[r][c] : 0.92;
-            if (fogLevel < 0.9) {
-              const dotAlpha = (0.92 - fogLevel) * 0.6; // 越近越亮
-              const dotR = cs * (0.08 + flick * 0.02);
-              ctx.fillStyle = `rgba(251, 191, 36, ${dotAlpha})`;
-              ctx.beginPath();
-              ctx.arc(x + cs / 2, y + cs / 2, dotR, 0, Math.PI * 2);
-              ctx.fill();
-            }
           }
           continue;
         }
@@ -850,13 +729,13 @@ const GuideBattle = {
         const isAi = this.aiOwned[r][c] > 0;
         const isPlayerOwned = this.playerOwned[r][c] > 0;
         const pulse = this.aiPulse[r][c];
+        const cellFogL = (this.fogLevel && this.fogLevel[r]) ? this.fogLevel[r][c] : fog;
 
         // 1. 幽灵格：AI填的格子
         if (isAi && !isPlayerOwned) {
-          // 1a. 迷雾中也能看到极淡的幽灵轮廓（神秘感+知道AI存在）
-          if (fog >= 0.5) {
-            // 迷雾中：极淡的呼吸边框，暗示AI存在
-            const ghostAlpha = 0.12 + flick * 0.08;
+          // 1a. 浓雾中也能看到极淡的幽灵轮廓（始终让玩家感知AI存在）
+          if (cellFogL >= 0.5) {
+            const ghostAlpha = 0.08 + flick * 0.06;
             ctx.strokeStyle = this.opponent.color + Math.round(ghostAlpha * 255).toString(16).padStart(2, '0');
             ctx.lineWidth = 1;
             ctx.setLineDash([3, 3]);
@@ -865,37 +744,28 @@ const GuideBattle = {
             ctx.setLineDash([]);
           }
 
-          // 1b. 视野内（或半雾中）：明显的幽灵格
-          if (fog < 0.7) {
-            const ghostAlpha = 1 - fog; // 越清晰越明显
+          // 1b. 视野内/边缘/雾中：明显的幽灵格
+          if (cellFogL < 0.7) {
+            const ghostAlpha = 1 - cellFogL; // 越清晰越明显
 
-            // 幽灵格底色（对手色半透明，更饱和）
-            ctx.fillStyle = this.opponent.color + Math.round(0.28 * ghostAlpha * 255).toString(16).padStart(2, '0');
+            // 幽灵格底色（对手色半透明）
+            ctx.fillStyle = this.opponent.color + Math.round(0.25 * ghostAlpha * 255).toString(16).padStart(2, '0');
             this._roundRect(ctx, x + 2, y + 2, cs - 4, cs - 4, 4);
             ctx.fill();
 
             // 幽灵格边框（呼吸效果）
-            const borderAlpha = 0.5 + flick * 0.2;
+            const borderAlpha = 0.4 + flick * 0.2;
             ctx.strokeStyle = this.opponent.color + Math.round(borderAlpha * ghostAlpha * 255).toString(16).padStart(2, '0');
             ctx.lineWidth = 1.5;
             this._roundRect(ctx, x + 2, y + 2, cs - 4, cs - 4, 4);
             ctx.stroke();
 
             // 幽灵格中心圆点（呼吸放大缩小）
-            const dotR = cs * (0.12 + flick * 0.04);
-            ctx.fillStyle = this.opponent.color + Math.round(0.8 * ghostAlpha * 255).toString(16).padStart(2, '0');
+            const dotR = cs * (0.1 + flick * 0.04);
+            ctx.fillStyle = this.opponent.color + Math.round(0.7 * ghostAlpha * 255).toString(16).padStart(2, '0');
             ctx.beginPath();
             ctx.arc(x + cs / 2, y + cs / 2, dotR, 0, Math.PI * 2);
             ctx.fill();
-
-            // 幽灵格问号（半雾中显示?提示有东西但看不清数字）
-            if (fog > 0.2 && fog < 0.7) {
-              ctx.fillStyle = this.opponent.color + '88';
-              ctx.font = `bold ${Math.round(cs * 0.35)}px sans-serif`;
-              ctx.textAlign = 'center';
-              ctx.textBaseline = 'middle';
-              ctx.fillText('?', x + cs / 2, y + cs / 2);
-            }
           }
 
           // 1c. AI填格脉冲动画（刚填时的扩散波）
@@ -908,26 +778,27 @@ const GuideBattle = {
           }
         }
 
-        // 2. 迷雾层：真正遮住数字的暗色蒙版
+        // 2. 迷雾层：按fogLevel控制深度——笼子信息完全隐藏，数字通过renderer的alpha控制
         let isSelectedCell = false;
-        if (fog > 0.01) {
+        if (cellFogL > 0.01) {
           // 检查是否是当前选中格（雾中选中有特殊窥视效果）
           if (typeof guideBoard !== 'undefined' && guideBoard) {
             const cell = guideBoard.cells[r] && guideBoard.cells[r][c];
             isSelectedCell = cell && (cell.isSelected || (guideBoard.selectedCell && guideBoard.selectedCell.r === r && guideBoard.selectedCell.c === c));
           }
 
-          // 迷雾主色——深色蒙版。选中格的迷雾稍浅，让玩家知道选中了
-          const fogAlpha = isSelectedCell ? Math.min(0.95, fog * 0.65) : Math.min(0.95, fog * 0.95);
+          // 空格子的迷雾alpha：边缘区薄，雾中/浓雾区厚（隐藏笼子边框）
+          let fogAlpha = cellFogL * fog;
+          if (isSelectedCell) fogAlpha *= 0.6; // 选中格迷雾变浅
+          fogAlpha = Math.min(0.85, fogAlpha);
           ctx.fillStyle = `rgba(15, 23, 42, ${fogAlpha})`;
           ctx.fillRect(x, y, cs, cs);
 
-          // 迷雾纹理：雾气流动效果（使用正弦波模拟）
-          if (fog > 0.3) {
+          // 迷雾纹理：雾气流动效果
+          if (cellFogL > 0.3) {
             const t = Date.now() / 2000;
-            const fogAlpha2 = fog * 0.12;
-            ctx.fillStyle = `rgba(100, 116, 139, ${fogAlpha2})`;
-            // 两层交错三角形模拟雾气
+            const texAlpha = cellFogL * fog * 0.15;
+            ctx.fillStyle = `rgba(100, 116, 139, ${texAlpha})`;
             ctx.beginPath();
             ctx.moveTo(x, y + cs * (0.3 + Math.sin(t + r + c) * 0.1));
             ctx.lineTo(x + cs * (0.3 + Math.cos(t + r) * 0.1), y);
@@ -937,20 +808,14 @@ const GuideBattle = {
             ctx.fill();
           }
 
-          // 雾中选中格：显示一个淡蓝色边框+问号，提示"你选中了这个位置"
-          if (isSelectedCell && fog > 0.3) {
+          // 雾中选中格：显示一个淡蓝色虚线边框，提示"你选中了这个位置"
+          if (isSelectedCell && cellFogL > 0.3) {
             ctx.strokeStyle = `rgba(59, 130, 246, ${0.5 + flick * 0.2})`;
             ctx.lineWidth = 2;
             ctx.setLineDash([4, 3]);
             this._roundRect(ctx, x + 3, y + 3, cs - 6, cs - 6, 4);
             ctx.stroke();
             ctx.setLineDash([]);
-            // 问号提示
-            ctx.fillStyle = 'rgba(147, 197, 253, 0.7)';
-            ctx.font = `bold ${Math.round(cs * 0.32)}px sans-serif`;
-            ctx.textAlign = 'center';
-            ctx.textBaseline = 'middle';
-            ctx.fillText('?', x + cs / 2, y + cs / 2);
           }
         }
 

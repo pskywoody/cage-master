@@ -1870,3 +1870,101 @@ body.boss-battle-active {
   z-index: 499;
   box-shadow: inset 0 0 100px rgba(239,68,68,0.3);
 }
+
+/* ========== 对战规则弹窗 ========== */
+#boss-rules-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.75);
+  z-index: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+#boss-rules-overlay.show { opacity: 1; }
+#boss-rules-overlay.hide { opacity: 0; }
+
+.battle-rules-card {
+  background: linear-gradient(160deg, #1e293b 0%, #0f172a 100%);
+  border-radius: 20px;
+  padding: 28px 24px;
+  max-width: 380px;
+  width: 100%;
+  max-height: 85vh;
+  overflow-y: auto;
+  border: 1px solid rgba(148,163,184,0.15);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  transform: scale(0.9) translateY(20px);
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+#boss-rules-overlay.show .battle-rules-card {
+  transform: scale(1) translateY(0);
+}
+.rules-title {
+  font-size: 24px;
+  font-weight: 900;
+  color: #f8fafc;
+  text-align: center;
+  margin-bottom: 4px;
+}
+.rules-subtitle {
+  font-size: 14px;
+  color: #94a3b8;
+  text-align: center;
+  margin-bottom: 24px;
+}
+.rules-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.rule-item {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+.rule-icon {
+  font-size: 28px;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.06);
+  border-radius: 10px;
+}
+.rule-text { flex: 1; }
+.rule-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: #e2e8f0;
+  margin-bottom: 4px;
+}
+.rule-desc {
+  font-size: 12px;
+  color: #94a3b8;
+  line-height: 1.6;
+}
+.rules-start-btn {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  color: white;
+  font-size: 18px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 20px rgba(34,197,94,0.3);
+}
+.rules-start-btn:active {
+  transform: scale(0.97);
+  box-shadow: 0 2px 10px rgba(34,197,94,0.2);
+}

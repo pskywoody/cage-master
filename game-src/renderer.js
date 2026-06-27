@@ -179,6 +179,7 @@ class Renderer {
   _drawCages(board) {
     const { ctx, cellSize } = this;
     const size = board.size;
+    const battle = this._battleActive ? this._battleCtx : null;
     ctx.strokeStyle = '#475569';
     ctx.lineWidth = 2.5;
     ctx.setLineDash([5, 3]);
@@ -193,12 +194,24 @@ class Renderer {
         else if (r === minR && c < minC) { minC = c; }
       });
 
-      // 绘制笼子外轮廓虚线（最外圈不画，统一用黑色外边框）
+      // 判断每个格子是否可见（Boss战迷雾中，雾格的边框不画）
+      const isVisible = (r, c) => {
+        if (!battle || !battle.active) return true; // 非Boss战全可见
+        if (!battle.visible[r] || !battle.visible[r][c]) return false;
+        return battle.fogOpacity[r][c] < 0.7; // 半雾以上才算可见
+      };
+
+      // 笼子至少有一个格子可见，才显示可见部分的边框
+      const anyVisible = cage.cells.some(([r, c]) => isVisible(r, c));
+      if (!anyVisible) return; // 整个笼子都在雾中，完全不画
+
+      // 绘制笼子外轮廓虚线：只画两个端点都在可见区域的边
       cage.cells.forEach(([r, c]) => {
+        if (!isVisible(r, c)) return; // 雾中的格子不画其边框
         const x = c * cellSize;
         const y = r * cellSize;
 
-        // 上边
+        // 上边：如果上方格子不可见或不在同一笼中，画上边
         if (!cellSet.has(`${r - 1},${c}`) && r !== 0) {
           ctx.beginPath();
           ctx.moveTo(x, y);
@@ -228,44 +241,45 @@ class Renderer {
         }
       });
 
-      // 和值绘制：统一画在笼子内部左上角
-      // 用蓝色小徽章样式，和格子数字明显区分
-      ctx.setLineDash([]);
-      const sumFontSize = Math.max(8, Math.floor(cellSize * 0.16));
-      ctx.font = `bold ${sumFontSize}px sans-serif`;
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
+      // 和值绘制：只有当左上角格子可见时才画和值徽章
+      if (isVisible(minR, minC)) {
+        ctx.setLineDash([]);
+        const sumFontSize = Math.max(8, Math.floor(cellSize * 0.16));
+        ctx.font = `bold ${sumFontSize}px sans-serif`;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
 
-      const sumText = String(cage.sum);
-      const textWidth = ctx.measureText(sumText).width;
-      const badgePadding = Math.max(3, Math.floor(cellSize * 0.04));
-      const badgeW = textWidth + badgePadding * 2;
-      const badgeH = sumFontSize + badgePadding * 2 - 2;
-      const badgeX = minC * cellSize + 2;
-      const badgeY = minR * cellSize + 2;
-      const badgeR = Math.min(badgeH / 2, 4);
+        const sumText = String(cage.sum);
+        const textWidth = ctx.measureText(sumText).width;
+        const badgePadding = Math.max(3, Math.floor(cellSize * 0.04));
+        const badgeW = textWidth + badgePadding * 2;
+        const badgeH = sumFontSize + badgePadding * 2 - 2;
+        const badgeX = minC * cellSize + 2;
+        const badgeY = minR * cellSize + 2;
+        const badgeR = Math.min(badgeH / 2, 4);
 
-      // 画蓝色圆角徽章背景
-      ctx.fillStyle = '#3b82f6';
-      ctx.beginPath();
-      const bx = badgeX;
-      const by = badgeY;
-      ctx.moveTo(bx + badgeR, by);
-      ctx.lineTo(bx + badgeW - badgeR, by);
-      ctx.quadraticCurveTo(bx + badgeW, by, bx + badgeW, by + badgeR);
-      ctx.lineTo(bx + badgeW, by + badgeH - badgeR);
-      ctx.quadraticCurveTo(bx + badgeW, by + badgeH, bx + badgeW - badgeR, by + badgeH);
-      ctx.lineTo(bx + badgeR, by + badgeH);
-      ctx.quadraticCurveTo(bx, by + badgeH, bx, by + badgeH - badgeR);
-      ctx.lineTo(bx, by + badgeR);
-      ctx.quadraticCurveTo(bx, by, bx + badgeR, by);
-      ctx.closePath();
-      ctx.fill();
+        // 画蓝色圆角徽章背景
+        ctx.fillStyle = '#3b82f6';
+        ctx.beginPath();
+        const bx = badgeX;
+        const by = badgeY;
+        ctx.moveTo(bx + badgeR, by);
+        ctx.lineTo(bx + badgeW - badgeR, by);
+        ctx.quadraticCurveTo(bx + badgeW, by, bx + badgeW, by + badgeR);
+        ctx.lineTo(bx + badgeW, by + badgeH - badgeR);
+        ctx.quadraticCurveTo(bx + badgeW, by + badgeH, bx + badgeW - badgeR, by + badgeH);
+        ctx.lineTo(bx + badgeR, by + badgeH);
+        ctx.quadraticCurveTo(bx, by + badgeH, bx, by + badgeH - badgeR);
+        ctx.lineTo(bx, by + badgeR);
+        ctx.quadraticCurveTo(bx, by, bx + badgeR, by);
+        ctx.closePath();
+        ctx.fill();
 
-      // 画白色文字
-      ctx.fillStyle = '#ffffff';
-      ctx.fillText(sumText, badgeX + badgeW / 2, badgeY + badgeH / 2 + 1);
-      ctx.setLineDash([5, 3]);
+        // 画白色文字
+        ctx.fillStyle = '#ffffff';
+        ctx.fillText(sumText, badgeX + badgeW / 2, badgeY + badgeH / 2 + 1);
+        ctx.setLineDash([5, 3]);
+      }
     });
 
     ctx.setLineDash([]);

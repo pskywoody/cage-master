@@ -796,8 +796,8 @@ function _initBattleAndStart(bossConfig) {
   // 更新UI显示初始进度
   if (GuideBattle._updateUI) GuideBattle._updateUI();
 
-  // 显示"准备开始"提示
-  _showBattleCountdown();
+  // 首次开局显示规则弹窗，之后显示倒计时
+  _showBattleRules(bossConfig);
 }
 
 /**
@@ -955,6 +955,65 @@ function _vibrate(pattern) {
  */
 function _getCurrentBossConfig() {
   return (typeof BOSS_CONFIGS !== 'undefined') ? BOSS_CONFIGS[currentLevelId] : null;
+}
+
+/**
+ * 显示对战规则弹窗（首次开局前）
+ */
+function _showBattleRules(bossConfig) {
+  const overlay = document.createElement('div');
+  overlay.id = 'boss-rules-overlay';
+  overlay.innerHTML = `
+    <div class="battle-rules-card">
+      <div class="rules-title">⚔️ 迷雾对战规则</div>
+      <div class="rules-subtitle">vs ${bossConfig.avatar} ${bossConfig.name}</div>
+      <div class="rules-list">
+        <div class="rule-item">
+          <div class="rule-icon">🌫️</div>
+          <div class="rule-text">
+            <div class="rule-name">迷雾遮眼</div>
+            <div class="rule-desc">棋盘被战雾笼罩。你只能看到预填数字和自己填对的数字附近的区域。雾中看不见笼子和值和数字！</div>
+          </div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-icon">🔦</div>
+          <div class="rule-text">
+            <div class="rule-name">探索揭雾</div>
+            <div class="rule-desc">每填对一个数字，该格周围的迷雾会散开，露出新的笼子线索。步步为营，逐步推进！</div>
+          </div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-icon">🏁</div>
+          <div class="rule-text">
+            <div class="rule-name">竞速抢格</div>
+            <div class="rule-desc">${bossConfig.name}也在从对面填数！先填满棋盘75%者获胜。你可以抢TA填过的格子（填对即归你）。</div>
+          </div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-icon">⚠️</div>
+          <div class="rule-text">
+            <div class="rule-name">60%预警</div>
+            <div class="rule-desc">当对方进度达到60%时，屏幕边缘会闪红警告——这是你最后的追赶机会！</div>
+          </div>
+        </div>
+      </div>
+      <button class="rules-start-btn" id="rules-start-btn">开始对战</button>
+    </div>
+  `;
+  document.body.appendChild(overlay);
+
+  // 入场动画
+  requestAnimationFrame(() => {
+    overlay.classList.add('show');
+  });
+
+  const startBtn = overlay.querySelector('#rules-start-btn');
+  const dismiss = () => {
+    overlay.classList.add('hide');
+    setTimeout(() => overlay.remove(), 400);
+    _showBattleCountdown();
+  };
+  startBtn.addEventListener('click', dismiss);
 }
 
 /**

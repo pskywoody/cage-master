@@ -42,7 +42,7 @@ const GuideBattle = {
   aiStartDelay: 1500,   // 开赛1.5秒后AI开始（给玩家抢先起步的窗口）
 
   // 迷雾系统
-  visionRange: 2,     // 视野范围（曼哈顿距离），启动时根据盘面大小自适应
+  visionRange: 1,     // 视野范围（曼哈顿距离），启动时根据盘面大小自适应
   visible: null,      // 2D boolean: 该格子是否在玩家视野内
   fogOpacity: null,   // 2D float: 迷雾透明度（动画用，0=清晰，1=全雾）
   aiPulse: null,      // 2D float: AI填格脉冲动画（0→1衰减）
@@ -148,6 +148,12 @@ const GuideBattle = {
     // 计算AI填数顺序（根据AI风格）
     this._computeFillOrder();
     this.aiIndex = 0;
+
+    // 视野范围按盘面大小自适应：越小的盘面视野越窄，探索感越强
+    // 4x4: 0格（只看到锚点本身，填一格扩一格）
+    // 6x6: 1格（锚点+上下左右）
+    // 9x9: 1格（锚点+上下左右）
+    this.visionRange = this.size <= 4 ? 0 : 1;
 
     // 初始视野（固定数字为锚点）
     this._updateVisibility();
@@ -589,10 +595,10 @@ const GuideBattle = {
     for (let r = 0; r < this.size; r++) {
       for (let c = 0; c < this.size; c++) {
         if (this.fixedMask[r][c]) {
-          // 固定数字上也盖迷雾（如果不在视野内），但稍浅
+          // 固定数字上也盖迷雾——倒计时期间完全遮住，开赛后随视野散开
           const fog = this.fogOpacity[r][c];
           if (fog > 0.01) {
-            ctx.fillStyle = `rgba(15, 23, 42, ${fog * 0.85})`;
+            ctx.fillStyle = `rgba(15, 23, 42, ${Math.min(0.95, fog * 0.95)})`;
             ctx.fillRect(c * cs, r * cs, cs, cs);
           }
           continue;
@@ -664,16 +670,24 @@ const GuideBattle = {
         }
 
         // 2. 迷雾层：真正遮住数字的暗色蒙版
+        let isSelectedCell = false;
         if (fog > 0.01) {
-          // 迷雾主色——深色蒙版，alpha高以真正遮住数字
-          ctx.fillStyle = `rgba(15, 23, 42, ${Math.min(0.95, fog * 0.95)})`;
+          // 检查是否是当前选中格（雾中选中有特殊窥视效果）
+          if (typeof guideBoard !== 'undefined' && guideBoard) {
+            const cell = guideBoard.cells[r] && guideBoard.cells[r][c];
+            isSelectedCell = cell && (cell.isSelected || (guideBoard.selectedCell && guideBoard.selectedCell.r === r && guideBoard.selectedCell.c === c));
+          }
+
+          // 迷雾主色——深色蒙版。选中格的迷雾稍浅，让玩家知道选中了
+          const fogAlpha = isSelectedCell ? Math.min(0.95, fog * 0.65) : Math.min(0.95, fog * 0.95);
+          ctx.fillStyle = `rgba(15, 23, 42, ${fogAlpha})`;
           ctx.fillRect(x, y, cs, cs);
 
           // 迷雾纹理：雾气流动效果（使用正弦波模拟）
           if (fog > 0.3) {
             const t = Date.now() / 2000;
-            const fogAlpha = fog * 0.12;
-            ctx.fillStyle = `rgba(100, 116, 139, ${fogAlpha})`;
+            const fogAlpha2 = fog * 0.12;
+            ctx.fillStyle = `rgba(100, 116, 139, ${fogAlpha2})`;
             // 两层交错三角形模拟雾气
             ctx.beginPath();
             ctx.moveTo(x, y + cs * (0.3 + Math.sin(t + r + c) * 0.1));
@@ -682,6 +696,22 @@ const GuideBattle = {
             ctx.lineTo(x + cs * (0.7 + Math.cos(t + c) * 0.1), y + cs);
             ctx.closePath();
             ctx.fill();
+          }
+
+          // 雾中选中格：显示一个淡蓝色边框+问号，提示"你选中了这个位置"
+          if (isSelectedCell && fog > 0.3) {
+            ctx.strokeStyle = `rgba(59, 130, 246, ${0.5 + flick * 0.2})`;
+            ctx.lineWidth = 2;
+            ctx.setLineDash([4, 3]);
+            this._roundRect(ctx, x + 3, y + 3, cs - 6, cs - 6, 4);
+            ctx.stroke();
+            ctx.setLineDash([]);
+            // 问号提示
+            ctx.fillStyle = 'rgba(147, 197, 253, 0.7)';
+            ctx.font = `bold ${Math.round(cs * 0.32)}px sans-serif`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('?', x + cs / 2, y + cs / 2);
           }
         }
 

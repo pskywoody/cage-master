@@ -1,0 +1,5187 @@
+{
+  "source": "lmd-sudokupad",
+  "type": "killer-sudoku",
+  "count": 13,
+  "crawledAt": "2026-06-28T23:25:11.469Z",
+  "puzzles": [
+    {
+      "id": "lmd_000TI5",
+      "source": "lmd-sudokupad",
+      "format": "scl",
+      "title": "Cage Jumping",
+      "author": "wuc",
+      "difficulty": 1,
+      "lmdId": "000TI5",
+      "sudokuPadId": "udl8m83mqt",
+      "gridSize": 9,
+      "boardData": [
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "solution": [
+        [
+          4,
+          8,
+          6,
+          7,
+          3,
+          2,
+          5,
+          1,
+          9
+        ],
+        [
+          5,
+          1,
+          3,
+          6,
+          9,
+          8,
+          4,
+          2,
+          7
+        ],
+        [
+          9,
+          2,
+          7,
+          1,
+          5,
+          4,
+          6,
+          8,
+          3
+        ],
+        [
+          3,
+          5,
+          4,
+          9,
+          8,
+          7,
+          2,
+          6,
+          1
+        ],
+        [
+          7,
+          9,
+          1,
+          2,
+          6,
+          5,
+          8,
+          3,
+          4
+        ],
+        [
+          2,
+          6,
+          8,
+          3,
+          4,
+          1,
+          9,
+          7,
+          5
+        ],
+        [
+          8,
+          4,
+          2,
+          5,
+          1,
+          3,
+          7,
+          9,
+          6
+        ],
+        [
+          6,
+          3,
+          5,
+          8,
+          7,
+          9,
+          1,
+          4,
+          2
+        ],
+        [
+          1,
+          7,
+          9,
+          4,
+          2,
+          6,
+          3,
+          5,
+          8
+        ]
+      ],
+      "cages": [
+        {
+          "id": 1,
+          "sum": 9,
+          "cells": [
+            [
+              6,
+              1
+            ],
+            [
+              6,
+              2
+            ],
+            [
+              7,
+              1
+            ]
+          ],
+          "unique": true
+        },
+        {
+          "id": 2,
+          "sum": 8,
+          "cells": [
+            [
+              1,
+              1
+            ],
+            [
+              2,
+              1
+            ],
+            [
+              3,
+              1
+            ]
+          ],
+          "unique": true
+        },
+        {
+          "id": 3,
+          "sum": 16,
+          "cells": [
+            [
+              5,
+              6
+            ],
+            [
+              5,
+              7
+            ]
+          ],
+          "unique": true
+        },
+        {
+          "id": 4,
+          "sum": 9,
+          "cells": [
+            [
+              4,
+              2
+            ],
+            [
+              4,
+              3
+            ],
+            [
+              4,
+              4
+            ]
+          ],
+          "unique": true
+        },
+        {
+          "id": 5,
+          "sum": 8,
+          "cells": [
+            [
+              2,
+              8
+            ],
+            [
+              3,
+              8
+            ],
+            [
+              4,
+              8
+            ]
+          ],
+          "unique": true
+        },
+        {
+          "id": 6,
+          "sum": 21,
+          "cells": [
+            [
+              1,
+              4
+            ],
+            [
+              1,
+              5
+            ],
+            [
+              1,
+              6
+            ]
+          ],
+          "unique": true
+        },
+        {
+          "id": 7,
+          "sum": 24,
+          "cells": [
+            [
+              7,
+              4
+            ],
+            [
+              7,
+              5
+            ],
+            [
+              8,
+              4
+            ],
+            [
+              8,
+              5
+            ]
+          ],
+          "unique": true
+        },
+        {
+          "id": 8,
+          "sum": 10,
+          "cells": [
+            [
+              7,
+              8
+            ],
+            [
+              8,
+              8
+            ]
+          ],
+          "unique": true
+        },
+        {
+          "id": 9,
+          "sum": 14,
+          "cells": [
+            [
+              7,
+              0
+            ],
+            [
+              8,
+              0
+            ],
+            [
+              8,
+              1
+            ]
+          ],
+          "unique": true
+        }
+      ],
+      "givenCount": 0,
+      "cageCount": 9,
+      "ruleset": "Standard sudoku rules apply.\nCells separated by an X must sum to 10.\nDigits in cages cannot repeat and must sum to the value shown in the upper left corner of the cage."
+    },
+    {
+      "id": "lmd_000THP",
+      "source": "lmd-sudokupad",
+      "format": "scl",
+      "title": "Sums by edge",
+      "author": "gwai77",
+      "difficulty": 1,
+      "lmdId": "000THP",
+      "sudokuPadId": "tf2wk77enk",
+      "gridSize": 9,
+      "boardData": [
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "cages": [
+        {
+          "id": 1,
+          "sum": 13,
+          "cells": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "unique": true
+        },
+        {
+          "id": 2,
+          "sum": 13,
+          "cells": [
+            [
+              2,
+              0
+            ],
+            [
+              2,
+              1
+            ]
+          ],
+          "unique": true
+        },
+        {
+          "id": 3,
+          "sum": 13,
+          "cells": [
+            [
+              4,
+              0
+            ],
+            [
+              4,
+              1
+            ]
+          ],
+          "unique": true
+        },
+        {
+          "id": 4,
+          "sum": 13,
+          "cells": [
+            [
+              6,
+              0
+            ],
+            [
+              6,
+              1
+            ]
+          ],
+          "unique": true
+        },
+        {
+          "id": 5,
+          "sum": 6,
+          "cells": [
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              1
+            ]
+          ],
+          "unique": true
+        },
+        {
+          "id": 6,
+          "sum": 8,
+          "cells": [
+            [
+              3,
+              0
+            ],
+            [
+              3,
+              1
+            ]
+          ],
+          "unique": true
+        },
+        {
+          "id": 7,
+          "sum": 3,
+          "cells": [
+            [
+              5,
+              0
+            ],
+            [
+              5,
+              1
+            ]
+          ],
+          "unique": true
+        },
+        {
+          "id": 8,
+          "sum": 11,
+          "cells": [
+            [
+              7,
+              0
+            ],
+            [
+              7,
+              1
+            ]
+          ],
+          "unique": true
+        },
+        {
+          "id": 9,
+          "sum": 10,
+          "cells": [
+            [
+              8,
+              0
+            ],
+            [
+              8,
+              1
+            ]
+          ],
+          "unique": true
+        },
+        {
+          "id": 10,
+          "sum": 10,
+          "cells": [
+            [
+              0,
+              7
+            ],
+            [
+              0,
+              8
+            ]
+          ],
+          "unique": true
+        },
+        {
+          "id": 11,
+          "sum": 14,
+          "cells": [
+            [
+              1,
+              7
+            ],
+            [
+              1,
+              8
+            ]
+          ],
+          "unique": true
+        },
+        {
+          "id": 12,
+          "sum": 10,
+          "cells": [
+            [
+              2,
+              7
+            ],
+            [
+              2,
+              8
+            ]
+          ],
+          "unique": true
+        },
+        {
+          "id": 13,
+          "sum": 14,
+          "cells": [
+            [
+              3,
+              7
+            ],
+            [
+              3,
+              8
+            ]
+          ],
+          "unique": true
+        },
+        {
+          "id": 14,
+          "sum": 4,
+          "cells": [
+            [
+              4,
+              7
+            ],
+            [
+              4,
+              8
+            ]
+          ],
+          "unique": true
+        },
+        {
+          "id": 15,
+          "sum": 12,
+          "cells": [
+            [
+              5,
+              7
+            ],
+            [
+              5,
+              8
+            ]
+          ],
+          "unique": true
+        },
+        {
+          "id": 16,
+          "sum": 6,
+          "cells": [
+            [
+              6,
+              7
+            ],
+            [
+              6,
+              8
+            ]
+          ],
+          "unique": true
+        },
+        {
+          "id": 17,
+          "sum": 10,
+          "cells": [
+            [
+              7,
+              7
+            ],
+            [
+              7,
+              8
+            ]
+          ],
+          "unique": true
+        },
+        {
+          "id": 18,
+          "sum": 10,
+          "cells": [
+            [
+              8,
+              7
+            ],
+            [
+              8,
+              8
+            ]
+          ],
+          "unique": true
+        }
+      ],
+      "givenCount": 0,
+      "cageCount": 18,
+      "ruleset": "Fill all cells with digits between 1 and 9 so that each digit is exactly once in each row, column and block.\nCells a knight's move away must not contain the same digit.\nWithin a cage, the digits must add up to the sum shown in the top left-hand corner of the cage. Digits must not repeat within a cage."
+    },
+    {
+      "id": "lmd_000TH6",
+      "source": "lmd-sudokupad",
+      "format": "scl",
+      "title": "spot on the dot",
+      "author": "99%Sneaky",
+      "difficulty": 2,
+      "lmdId": "000TH6",
+      "sudokuPadId": "vleb7el1fw",
+      "gridSize": 9,
+      "boardData": [
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "solution": [
+        [
+          9,
+          8,
+          7,
+          2,
+          3,
+          1,
+          6,
+          4,
+          5
+        ],
+        [
+          4,
+          1,
+          3,
+          8,
+          6,
+          5,
+          7,
+          2,
+          9
+        ],
+        [
+          2,
+          6,
+          5,
+          7,
+          9,
+          4,
+          3,
+          1,
+          8
+        ],
+        [
+          8,
+          3,
+          9,
+          4,
+          7,
+          6,
+          2,
+          5,
+          1
+        ],
+        [
+          7,
+          2,
+          1,
+          9,
+          5,
+          3,
+          4,
+          8,
+          6
+        ],
+        [
+          6,
+          5,
+          4,
+          1,
+          2,
+          8,
+          9,
+          7,
+          3
+        ],
+        [
+          5,
+          9,
+          8,
+          3,
+          4,
+          7,
+          1,
+          6,
+          2
+        ],
+        [
+          1,
+          4,
+          2,
+          6,
+          8,
+          9,
+          5,
+          3,
+          7
+        ],
+        [
+          3,
+          7,
+          6,
+          5,
+          1,
+          2,
+          8,
+          9,
+          4
+        ]
+      ],
+      "cages": [
+        {
+          "id": 1,
+          "sum": 15,
+          "cells": [
+            [
+              1,
+              1
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              1
+            ],
+            [
+              2,
+              2
+            ]
+          ],
+          "unique": true
+        },
+        {
+          "id": 2,
+          "sum": 25,
+          "cells": [
+            [
+              3,
+              3
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              3
+            ],
+            [
+              4,
+              4
+            ]
+          ],
+          "unique": true
+        },
+        {
+          "id": 3,
+          "sum": 8,
+          "cells": [
+            [
+              8,
+              3
+            ],
+            [
+              8,
+              4
+            ],
+            [
+              8,
+              5
+            ]
+          ],
+          "unique": true
+        },
+        {
+          "id": 4,
+          "sum": 15,
+          "cells": [
+            [
+              1,
+              4
+            ],
+            [
+              2,
+              4
+            ]
+          ],
+          "unique": true
+        }
+      ],
+      "givenCount": 0,
+      "cageCount": 4,
+      "ruleset": "Normal sudoku rules apply. Digits in cages sum to the small number printed in the top left corner. Digits along arrows sum to the digit in the attached circle. Digits along hollow purple lines form a consecutive set, in any order. Adjacent digits on solid green lines must differ by 5 or more. Digits separated by a white dot are consecutive. For pairs of digits separated by a black dot, one must be double the other."
+    },
+    {
+      "id": "lmd_000TH2",
+      "source": "lmd-sudokupad",
+      "format": "scl",
+      "title": "Little House on the Gridrie",
+      "author": "Chris Napolitano",
+      "difficulty": 3,
+      "lmdId": "000TH2",
+      "sudokuPadId": "wu6knbomoq",
+      "gridSize": 9,
+      "boardData": [
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          4
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          7
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "solution": [
+        [
+          1,
+          8,
+          4,
+          9,
+          5,
+          7,
+          6,
+          2,
+          3
+        ],
+        [
+          3,
+          7,
+          9,
+          2,
+          8,
+          6,
+          1,
+          5,
+          4
+        ],
+        [
+          2,
+          6,
+          5,
+          3,
+          4,
+          1,
+          9,
+          7,
+          8
+        ],
+        [
+          6,
+          5,
+          8,
+          4,
+          3,
+          2,
+          7,
+          9,
+          1
+        ],
+        [
+          9,
+          3,
+          1,
+          7,
+          6,
+          8,
+          2,
+          4,
+          5
+        ],
+        [
+          4,
+          2,
+          7,
+          1,
+          9,
+          5,
+          8,
+          3,
+          6
+        ],
+        [
+          5,
+          4,
+          2,
+          8,
+          1,
+          9,
+          3,
+          6,
+          7
+        ],
+        [
+          8,
+          9,
+          6,
+          5,
+          7,
+          3,
+          4,
+          1,
+          2
+        ],
+        [
+          7,
+          1,
+          3,
+          6,
+          2,
+          4,
+          5,
+          8,
+          9
+        ]
+      ],
+      "cages": [
+        {
+          "id": 1,
+          "sum": 15,
+          "cells": [
+            [
+              4,
+              4
+            ],
+            [
+              5,
+              4
+            ]
+          ],
+          "unique": true
+        }
+      ],
+      "givenCount": 2,
+      "cageCount": 1,
+      "ruleset": "Normal sudoku rules apply. Digits along green lines must differ by at least 5. Digits separated by white dots are consecutive. The digit in the grey square is even. The two digits in the killer cage sum to 15. Antiknight: Digits cannot be a knight's move away from themselves."
+    },
+    {
+      "id": "lmd_000TGZ",
+      "source": "lmd-sudokupad",
+      "format": "scl",
+      "title": "Killer Sudoku",
+      "author": "Kutsumi Hane",
+      "difficulty": 2,
+      "lmdId": "000TGZ",
+      "sudokuPadId": "soynij0h56",
+      "gridSize": 9,
+      "boardData": [
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "solution": [
+        [
+          4,
+          2,
+          8,
+          9,
+          1,
+          5,
+          3,
+          7,
+          6
+        ],
+        [
+          3,
+          9,
+          1,
+          6,
+          8,
+          7,
+          4,
+          2,
+          5
+        ],
+        [
+          7,
+          5,
+          6,
+          4,
+          3,
+          2,
+          9,
+          8,
+          1
+        ],
+        [
+          9,
+          8,
+          4,
+          7,
+          5,
+          6,
+          2,
+          1,
+          3
+        ],
+        [
+          2,
+          6,
+          3,
+          8,
+          4,
+          1,
+          5,
+          9,
+          7
+        ],
+        [
+          1,
+          7,
+          5,
+          3,
+          2,
+          9,
+          6,
+          4,
+          8
+        ],
+        [
+          6,
+          1,
+          9,
+          5,
+          7,
+          4,
+          8,
+          3,
+          2
+        ],
+        [
+          8,
+          4,
+          7,
+          2,
+          6,
+          3,
+          1,
+          5,
+          9
+        ],
+        [
+          5,
+          3,
+          2,
+          1,
+          9,
+          8,
+          7,
+          6,
+          4
+        ]
+      ],
+      "cages": [
+        {
+          "id": 1,
+          "sum": 9,
+          "cells": [
+            [
+              0,
+              4
+            ],
+            [
+              0,
+              5
+            ],
+            [
+              0,
+              6
+            ]
+          ],
+          "unique": true
+        },
+        {
+          "id": 2,
+          "sum": 13,
+          "cells": [
+            [
+              0,
+              7
+            ],
+            [
+              0,
+              8
+            ]
+          ],
+          "unique": true
+        },
+        {
+          "id": 3,
+          "sum": 13,
+          "cells": [
+            [
+              7,
+              0
+            ],
+            [
+              8,
+              0
+            ]
+          ],
+          "unique": true
+        },
+        {
+          "id": 4,
+          "sum": 15,
+          "cells": [
+            [
+              1,
+              5
+            ],
+            [
+              2,
+              5
+            ],
+            [
+              3,
+              5
+            ]
+          ],
+          "unique": true
+        },
+        {
+          "id": 5,
+          "sum": 15,
+          "cells": [
+            [
+              1,
+              6
+            ],
+            [
+              2,
+              6
+            ],
+            [
+              3,
+              6
+            ]
+          ],
+          "unique": true
+        },
+        {
+          "id": 6,
+          "sum": 15,
+          "cells": [
+            [
+              5,
+              1
+            ],
+            [
+              5,
+              2
+            ],
+            [
+              5,
+              3
+            ]
+          ],
+          "unique": true
+        },
+        {
+          "id": 7,
+          "sum": 9,
+          "cells": [
+            [
+              4,
+              0
+            ],
+            [
+              5,
+              0
+            ],
+            [
+              6,
+              0
+            ]
+          ],
+          "unique": true
+        },
+        {
+          "id": 8,
+          "sum": 15,
+          "cells": [
+            [
+              6,
+              1
+            ],
+            [
+              6,
+              2
+            ],
+            [
+              6,
+              3
+            ]
+          ],
+          "unique": true
+        },
+        {
+          "id": 9,
+          "sum": 23,
+          "cells": [
+            [
+              0,
+              3
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              1,
+              4
+            ]
+          ],
+          "unique": true
+        },
+        {
+          "id": 10,
+          "sum": 23,
+          "cells": [
+            [
+              3,
+              0
+            ],
+            [
+              3,
+              1
+            ],
+            [
+              4,
+              1
+            ]
+          ],
+          "unique": true
+        },
+        {
+          "id": 11,
+          "sum": 7,
+          "cells": [
+            [
+              2,
+              3
+            ],
+            [
+              2,
+              4
+            ]
+          ],
+          "unique": true
+        },
+        {
+          "id": 12,
+          "sum": 7,
+          "cells": [
+            [
+              3,
+              2
+            ],
+            [
+              4,
+              2
+            ]
+          ],
+          "unique": true
+        },
+        {
+          "id": 13,
+          "sum": 24,
+          "cells": [
+            [
+              3,
+              3
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              3
+            ],
+            [
+              4,
+              4
+            ]
+          ],
+          "unique": true
+        },
+        {
+          "id": 14,
+          "sum": 12,
+          "cells": [
+            [
+              4,
+              5
+            ],
+            [
+              5,
+              4
+            ],
+            [
+              5,
+              5
+            ]
+          ],
+          "unique": true
+        },
+        {
+          "id": 15,
+          "sum": 18,
+          "cells": [
+            [
+              5,
+              6
+            ],
+            [
+              6,
+              5
+            ],
+            [
+              6,
+              6
+            ]
+          ],
+          "unique": true
+        },
+        {
+          "id": 16,
+          "sum": 16,
+          "cells": [
+            [
+              7,
+              1
+            ],
+            [
+              7,
+              2
+            ],
+            [
+              8,
+              1
+            ],
+            [
+              8,
+              2
+            ]
+          ],
+          "unique": true
+        },
+        {
+          "id": 17,
+          "sum": 24,
+          "cells": [
+            [
+              7,
+              7
+            ],
+            [
+              7,
+              8
+            ],
+            [
+              8,
+              7
+            ],
+            [
+              8,
+              8
+            ]
+          ],
+          "unique": true
+        },
+        {
+          "id": 18,
+          "sum": 18,
+          "cells": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              1
+            ]
+          ],
+          "unique": true
+        },
+        {
+          "id": 19,
+          "sum": 27,
+          "cells": [
+            [
+              0,
+              2
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              0
+            ],
+            [
+              2,
+              1
+            ],
+            [
+              2,
+              2
+            ]
+          ],
+          "unique": true
+        },
+        {
+          "id": 20,
+          "sum": 15,
+          "cells": [
+            [
+              3,
+              7
+            ],
+            [
+              4,
+              6
+            ],
+            [
+              4,
+              7
+            ]
+          ],
+          "unique": true
+        },
+        {
+          "id": 21,
+          "sum": 15,
+          "cells": [
+            [
+              6,
+              4
+            ],
+            [
+              7,
+              3
+            ],
+            [
+              7,
+              4
+            ]
+          ],
+          "unique": true
+        },
+        {
+          "id": 22,
+          "sum": 9,
+          "cells": [
+            [
+              5,
+              7
+            ],
+            [
+              6,
+              7
+            ],
+            [
+              6,
+              8
+            ]
+          ],
+          "unique": true
+        },
+        {
+          "id": 23,
+          "sum": 11,
+          "cells": [
+            [
+              7,
+              5
+            ],
+            [
+              7,
+              6
+            ],
+            [
+              8,
+              6
+            ]
+          ],
+          "unique": true
+        },
+        {
+          "id": 24,
+          "sum": 18,
+          "cells": [
+            [
+              3,
+              8
+            ],
+            [
+              4,
+              8
+            ],
+            [
+              5,
+              8
+            ]
+          ],
+          "unique": true
+        },
+        {
+          "id": 25,
+          "sum": 18,
+          "cells": [
+            [
+              8,
+              3
+            ],
+            [
+              8,
+              4
+            ],
+            [
+              8,
+              5
+            ]
+          ],
+          "unique": true
+        },
+        {
+          "id": 26,
+          "sum": 16,
+          "cells": [
+            [
+              1,
+              7
+            ],
+            [
+              1,
+              8
+            ],
+            [
+              2,
+              7
+            ],
+            [
+              2,
+              8
+            ]
+          ],
+          "unique": true
+        }
+      ],
+      "givenCount": 0,
+      "cageCount": 26,
+      "ruleset": "Normal Sudoku rules apply, i.e., each row, column, and 3x3 box must contain the digits 1-9 exactly once.\nAdditionally:\n\nKiller cages: Digits in cages must sum to the number in the top-left corner and cannot repeat."
+    },
+    {
+      "id": "lmd_000TEE",
+      "source": "lmd-sudokupad",
+      "format": "scl",
+      "title": "Lucky Sevens",
+      "author": "addie",
+      "difficulty": 2,
+      "lmdId": "000TEE",
+      "sudokuPadId": "yab4hh5lrt",
+      "gridSize": 9,
+      "boardData": [
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          7
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          7,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "solution": [
+        [
+          3,
+          9,
+          6,
+          8,
+          5,
+          2,
+          4,
+          1,
+          7
+        ],
+        [
+          8,
+          5,
+          2,
+          4,
+          1,
+          7,
+          9,
+          6,
+          3
+        ],
+        [
+          4,
+          1,
+          7,
+          9,
+          6,
+          3,
+          5,
+          2,
+          8
+        ],
+        [
+          9,
+          6,
+          3,
+          5,
+          2,
+          8,
+          1,
+          7,
+          4
+        ],
+        [
+          5,
+          2,
+          8,
+          1,
+          7,
+          4,
+          6,
+          3,
+          9
+        ],
+        [
+          1,
+          7,
+          4,
+          6,
+          3,
+          9,
+          2,
+          8,
+          5
+        ],
+        [
+          6,
+          3,
+          9,
+          2,
+          8,
+          5,
+          7,
+          4,
+          1
+        ],
+        [
+          2,
+          8,
+          5,
+          7,
+          4,
+          1,
+          3,
+          9,
+          6
+        ],
+        [
+          7,
+          4,
+          1,
+          3,
+          9,
+          6,
+          8,
+          5,
+          2
+        ]
+      ],
+      "cages": [
+        {
+          "id": 1,
+          "sum": 7,
+          "cells": [
+            [
+              4,
+              0
+            ],
+            [
+              4,
+              1
+            ]
+          ],
+          "unique": true
+        },
+        {
+          "id": 2,
+          "sum": 7,
+          "cells": [
+            [
+              5,
+              0
+            ],
+            [
+              6,
+              0
+            ]
+          ],
+          "unique": true
+        }
+      ],
+      "givenCount": 2,
+      "cageCount": 2,
+      "ruleset": "Standard 9x9 sudoku rules apply.\nAntiknight and Antiking: Any two cells separated by a knight's or king’s move in chess cannot contain the same digit.\nNonconsecutive: Any two orthogonally adjacent cells cannot contain consecutive digits.\nKiller Cages: Digits in a cage may not repeat and must sum to the number in the top left corner of that cage."
+    },
+    {
+      "id": "lmd_000TFB",
+      "source": "lmd-sudokupad",
+      "format": "scl",
+      "title": "Stishovite",
+      "author": "bellsita and Wisteria Fall (supervised by XeonRisq)",
+      "difficulty": 5,
+      "lmdId": "000TFB",
+      "sudokuPadId": "hqq5d71lcb",
+      "gridSize": 9,
+      "boardData": [
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "solution": [
+        [
+          3,
+          6,
+          5,
+          9,
+          2,
+          1,
+          8,
+          7,
+          4
+        ],
+        [
+          8,
+          1,
+          4,
+          6,
+          5,
+          7,
+          3,
+          2,
+          9
+        ],
+        [
+          7,
+          9,
+          2,
+          3,
+          8,
+          4,
+          6,
+          5,
+          1
+        ],
+        [
+          4,
+          8,
+          1,
+          5,
+          7,
+          3,
+          2,
+          9,
+          6
+        ],
+        [
+          2,
+          3,
+          7,
+          1,
+          6,
+          9,
+          5,
+          4,
+          8
+        ],
+        [
+          9,
+          5,
+          6,
+          2,
+          4,
+          8,
+          1,
+          3,
+          7
+        ],
+        [
+          1,
+          2,
+          9,
+          4,
+          3,
+          6,
+          7,
+          8,
+          5
+        ],
+        [
+          5,
+          4,
+          8,
+          7,
+          1,
+          2,
+          9,
+          6,
+          3
+        ],
+        [
+          6,
+          7,
+          3,
+          8,
+          9,
+          5,
+          4,
+          1,
+          2
+        ]
+      ],
+      "cages": [
+        {
+          "id": 1,
+          "sum": 15,
+          "cells": [
+            [
+              7,
+              5
+            ],
+            [
+              7,
+              6
+            ],
+            [
+              8,
+              6
+            ]
+          ],
+          "unique": true
+        },
+        {
+          "id": 2,
+          "sum": 14,
+          "cells": [
+            [
+              5,
+              6
+            ],
+            [
+              6,
+              5
+            ],
+            [
+              6,
+              6
+            ]
+          ],
+          "unique": true
+        },
+        {
+          "id": 3,
+          "sum": 16,
+          "cells": [
+            [
+              5,
+              7
+            ],
+            [
+              6,
+              7
+            ],
+            [
+              6,
+              8
+            ]
+          ],
+          "unique": true
+        }
+      ],
+      "givenCount": 0,
+      "cageCount": 3,
+      "ruleset": "Normal sudoku rules apply. Each row, column, and region indicated by thick borders in the grid must contain the digits 1 to 9 once each.\n\n*** Additionally, no digit may appear more than once on a particular clue type. ***\n\n• German whispers: Adjacent digits on a green line differ by 5 or more.\n• Renban: Purple lines must contain a set of consecutive non-repeating digits in any order.\n• Modular lines: Any sequence of 3 adjacent digits along a teal line must contain a complete set of residuals modulo 3, i.e: one from (1,4,7), one from (2,5,8) and one from (3,6,9).\n• Parity Lines: Digits along a red line must alternate between odd and even.\n• Killer Cages: Digits in a cage sum to the number in the top left if given (basically they are cages).\n• Odd/Even: The gray circles contain odd digits. The gray squares contain even digits.\n• Black Kropki: Cells separated by a black dot have a 1:2 ratio.\n• White Kropki: Cells separated by a white dot must be consecutive.\n\nThere are no negative constraints of any kind."
+    },
+    {
+      "id": "lmd_000TEO",
+      "source": "lmd-sudokupad",
+      "format": "scl",
+      "title": "Ranked Japanese Sum Cages",
+      "author": "Justalilguy",
+      "difficulty": 5,
+      "lmdId": "000TEO",
+      "sudokuPadId": "2kyuzdqxgw",
+      "gridSize": 9,
+      "boardData": [
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "cages": [
+        {
+          "id": 1,
+          "sum": 0,
+          "cells": [
+            [
+              7,
+              0
+            ]
+          ],
+          "unique": false
+        },
+        {
+          "id": 2,
+          "sum": 0,
+          "cells": [
+            [
+              7,
+              1
+            ]
+          ],
+          "unique": false
+        },
+        {
+          "id": 3,
+          "sum": 0,
+          "cells": [
+            [
+              7,
+              2
+            ]
+          ],
+          "unique": false
+        },
+        {
+          "id": 4,
+          "sum": 0,
+          "cells": [
+            [
+              7,
+              3
+            ],
+            [
+              7,
+              4
+            ],
+            [
+              7,
+              5
+            ]
+          ],
+          "unique": false
+        },
+        {
+          "id": 5,
+          "sum": 0,
+          "cells": [
+            [
+              6,
+              3
+            ]
+          ],
+          "unique": false
+        },
+        {
+          "id": 6,
+          "sum": 0,
+          "cells": [
+            [
+              9,
+              1
+            ],
+            [
+              10,
+              1
+            ],
+            [
+              11,
+              1
+            ]
+          ],
+          "unique": false
+        },
+        {
+          "id": 7,
+          "sum": 0,
+          "cells": [
+            [
+              9,
+              2
+            ],
+            [
+              10,
+              2
+            ],
+            [
+              11,
+              2
+            ]
+          ],
+          "unique": false
+        },
+        {
+          "id": 8,
+          "sum": 0,
+          "cells": [
+            [
+              9,
+              3
+            ],
+            [
+              10,
+              3
+            ],
+            [
+              11,
+              3
+            ]
+          ],
+          "unique": false
+        },
+        {
+          "id": 9,
+          "sum": 0,
+          "cells": [
+            [
+              13,
+              0
+            ]
+          ],
+          "unique": false
+        },
+        {
+          "id": 10,
+          "sum": 0,
+          "cells": [
+            [
+              13,
+              1
+            ]
+          ],
+          "unique": false
+        },
+        {
+          "id": 11,
+          "sum": 0,
+          "cells": [
+            [
+              13,
+              2
+            ]
+          ],
+          "unique": false
+        },
+        {
+          "id": 12,
+          "sum": 0,
+          "cells": [
+            [
+              13,
+              3
+            ],
+            [
+              13,
+              4
+            ]
+          ],
+          "unique": false
+        },
+        {
+          "id": 13,
+          "sum": 0,
+          "cells": [
+            [
+              14,
+              3
+            ]
+          ],
+          "unique": false
+        },
+        {
+          "id": 14,
+          "sum": 0,
+          "cells": [
+            [
+              14,
+              4
+            ],
+            [
+              14,
+              5
+            ],
+            [
+              14,
+              9
+            ],
+            [
+              15,
+              4
+            ],
+            [
+              15,
+              5
+            ],
+            [
+              15,
+              6
+            ],
+            [
+              15,
+              7
+            ],
+            [
+              15,
+              8
+            ],
+            [
+              15,
+              9
+            ],
+            [
+              15,
+              10
+            ],
+            [
+              15,
+              11
+            ]
+          ],
+          "unique": false
+        },
+        {
+          "id": 15,
+          "sum": 0,
+          "cells": [
+            [
+              7,
+              6
+            ],
+            [
+              7,
+              7
+            ],
+            [
+              7,
+              8
+            ],
+            [
+              8,
+              6
+            ],
+            [
+              9,
+              6
+            ],
+            [
+              10,
+              6
+            ],
+            [
+              11,
+              6
+            ],
+            [
+              12,
+              6
+            ],
+            [
+              13,
+              6
+            ],
+            [
+              13,
+              7
+            ]
+          ],
+          "unique": false
+        },
+        {
+          "id": 16,
+          "sum": 0,
+          "cells": [
+            [
+              7,
+              10
+            ],
+            [
+              7,
+              11
+            ],
+            [
+              7,
+              12
+            ],
+            [
+              8,
+              12
+            ],
+            [
+              9,
+              12
+            ],
+            [
+              10,
+              12
+            ],
+            [
+              11,
+              12
+            ],
+            [
+              12,
+              12
+            ],
+            [
+              13,
+              8
+            ],
+            [
+              13,
+              9
+            ],
+            [
+              13,
+              10
+            ],
+            [
+              13,
+              11
+            ],
+            [
+              13,
+              12
+            ]
+          ],
+          "unique": false
+        },
+        {
+          "id": 17,
+          "sum": 0,
+          "cells": [
+            [
+              13,
+              14
+            ],
+            [
+              14,
+              13
+            ],
+            [
+              14,
+              14
+            ],
+            [
+              15,
+              12
+            ],
+            [
+              15,
+              13
+            ]
+          ],
+          "unique": false
+        },
+        {
+          "id": 18,
+          "sum": 0,
+          "cells": [
+            [
+              9,
+              7
+            ],
+            [
+              9,
+              8
+            ],
+            [
+              9,
+              9
+            ],
+            [
+              9,
+              10
+            ],
+            [
+              9,
+              11
+            ],
+            [
+              10,
+              7
+            ],
+            [
+              10,
+              8
+            ],
+            [
+              10,
+              9
+            ],
+            [
+              10,
+              10
+            ],
+            [
+              10,
+              11
+            ],
+            [
+              11,
+              7
+            ],
+            [
+              11,
+              8
+            ],
+            [
+              11,
+              9
+            ],
+            [
+              11,
+              10
+            ],
+            [
+              11,
+              11
+            ]
+          ],
+          "unique": false
+        },
+        {
+          "id": 19,
+          "sum": 0,
+          "cells": [
+            [
+              4,
+              9
+            ],
+            [
+              4,
+              10
+            ],
+            [
+              5,
+              10
+            ],
+            [
+              6,
+              10
+            ],
+            [
+              6,
+              11
+            ],
+            [
+              6,
+              12
+            ],
+            [
+              6,
+              13
+            ],
+            [
+              6,
+              14
+            ],
+            [
+              7,
+              14
+            ]
+          ],
+          "unique": false
+        },
+        {
+          "id": 20,
+          "sum": 0,
+          "cells": [
+            [
+              1,
+              10
+            ],
+            [
+              2,
+              9
+            ],
+            [
+              2,
+              10
+            ],
+            [
+              3,
+              10
+            ]
+          ],
+          "unique": false
+        },
+        {
+          "id": 21,
+          "sum": 0,
+          "cells": [
+            [
+              4,
+              11
+            ]
+          ],
+          "unique": false
+        },
+        {
+          "id": 22,
+          "sum": 0,
+          "cells": [
+            [
+              0,
+              12
+            ],
+            [
+              1,
+              12
+            ],
+            [
+              2,
+              12
+            ],
+            [
+              3,
+              12
+            ],
+            [
+              4,
+              12
+            ]
+          ],
+          "unique": false
+        },
+        {
+          "id": 23,
+          "sum": 0,
+          "cells": [
+            [
+              3,
+              14
+            ],
+            [
+              4,
+              13
+            ],
+            [
+              4,
+              14
+            ]
+          ],
+          "unique": false
+        },
+        {
+          "id": 24,
+          "sum": 0,
+          "cells": [
+            [
+              3,
+              8
+            ]
+          ],
+          "unique": false
+        },
+        {
+          "id": 25,
+          "sum": 0,
+          "cells": [
+            [
+              2,
+              7
+            ],
+            [
+              3,
+              7
+            ],
+            [
+              4,
+              7
+            ],
+            [
+              5,
+              7
+            ],
+            [
+              6,
+              7
+            ]
+          ],
+          "unique": false
+        },
+        {
+          "id": 26,
+          "sum": 0,
+          "cells": [
+            [
+              1,
+              6
+            ],
+            [
+              2,
+              6
+            ],
+            [
+              3,
+              6
+            ],
+            [
+              4,
+              6
+            ]
+          ],
+          "unique": false
+        },
+        {
+          "id": 27,
+          "sum": 0,
+          "cells": [
+            [
+              3,
+              4
+            ],
+            [
+              3,
+              5
+            ],
+            [
+              4,
+              4
+            ],
+            [
+              4,
+              5
+            ]
+          ],
+          "unique": false
+        },
+        {
+          "id": 28,
+          "sum": 0,
+          "cells": [
+            [
+              5,
+              8
+            ],
+            [
+              5,
+              9
+            ],
+            [
+              6,
+              8
+            ]
+          ],
+          "unique": false
+        }
+      ],
+      "givenCount": 0,
+      "cageCount": 28,
+      "ruleset": "Japanese Sums: \nShade some cells in the grid. Fill the unshaded cells with digits from 1-9 such that there are no repeats in any row or column. A Clue outside shows the sum of the digits in a single group of unshaded cells in that row/column. These groups of unshaded cells appear in the order of the clues shown, with at least one shaded cell separating any two groups.\n\nOnly the outlined cells outside the grid contain a Japanese Sums clue, and an outlined cell always contains a non-zero clue. All such cells are given. A ? can be any digit from 0-9. A leading ? cannot be 0.\n\nRanked Cages: Numbers cannot repeat in a cage and no two cage sums are the same. Cage sums are ranked from 1 to 28 with 1 being the lowest cage sum and 28 being the highest. A shaded cell contributes zero to a cage sum.\n\nAn inequality sign points to the lower of the two numbers it connects."
+    },
+    {
+      "id": "lmd_000TDU",
+      "source": "lmd-sudokupad",
+      "format": "scl",
+      "title": "Sweet sweet symmetry ",
+      "author": "Pig_",
+      "difficulty": 3,
+      "lmdId": "000TDU",
+      "sudokuPadId": "bg4272vqth",
+      "gridSize": 9,
+      "boardData": [
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "solution": [
+        [
+          4,
+          6,
+          7,
+          9,
+          1,
+          5,
+          2,
+          8,
+          3
+        ],
+        [
+          5,
+          3,
+          2,
+          7,
+          6,
+          8,
+          1,
+          9,
+          4
+        ],
+        [
+          8,
+          1,
+          9,
+          3,
+          4,
+          2,
+          7,
+          6,
+          5
+        ],
+        [
+          3,
+          2,
+          6,
+          8,
+          5,
+          9,
+          4,
+          1,
+          7
+        ],
+        [
+          9,
+          8,
+          1,
+          2,
+          7,
+          4,
+          5,
+          3,
+          6
+        ],
+        [
+          7,
+          4,
+          5,
+          1,
+          3,
+          6,
+          9,
+          2,
+          8
+        ],
+        [
+          2,
+          9,
+          3,
+          4,
+          8,
+          7,
+          6,
+          5,
+          1
+        ],
+        [
+          1,
+          5,
+          4,
+          6,
+          9,
+          3,
+          8,
+          7,
+          2
+        ],
+        [
+          6,
+          7,
+          8,
+          5,
+          2,
+          1,
+          3,
+          4,
+          9
+        ]
+      ],
+      "cages": [
+        {
+          "id": 1,
+          "sum": 13,
+          "cells": [
+            [
+              1,
+              1
+            ],
+            [
+              2,
+              1
+            ],
+            [
+              2,
+              2
+            ]
+          ],
+          "unique": true
+        },
+        {
+          "id": 2,
+          "sum": 22,
+          "cells": [
+            [
+              1,
+              7
+            ],
+            [
+              2,
+              6
+            ],
+            [
+              2,
+              7
+            ]
+          ],
+          "unique": true
+        },
+        {
+          "id": 3,
+          "sum": 12,
+          "cells": [
+            [
+              6,
+              0
+            ],
+            [
+              6,
+              1
+            ],
+            [
+              7,
+              0
+            ]
+          ],
+          "unique": true
+        },
+        {
+          "id": 4,
+          "sum": 8,
+          "cells": [
+            [
+              6,
+              7
+            ],
+            [
+              6,
+              8
+            ],
+            [
+              7,
+              8
+            ]
+          ],
+          "unique": true
+        },
+        {
+          "id": 5,
+          "sum": 17,
+          "cells": [
+            [
+              7,
+              3
+            ],
+            [
+              7,
+              5
+            ],
+            [
+              8,
+              3
+            ],
+            [
+              8,
+              4
+            ],
+            [
+              8,
+              5
+            ]
+          ],
+          "unique": true
+        },
+        {
+          "id": 6,
+          "sum": 21,
+          "cells": [
+            [
+              0,
+              3
+            ],
+            [
+              0,
+              4
+            ],
+            [
+              0,
+              5
+            ],
+            [
+              1,
+              4
+            ]
+          ],
+          "unique": true
+        },
+        {
+          "id": 7,
+          "sum": 20,
+          "cells": [
+            [
+              5,
+              4
+            ],
+            [
+              6,
+              4
+            ],
+            [
+              7,
+              4
+            ]
+          ],
+          "unique": true
+        }
+      ],
+      "givenCount": 0,
+      "cageCount": 7,
+      "ruleset": "Normal Sudoku rules apply and all variants are standard.\n\nPlace the digits 1-9 once each in every row, column and box.\n\nKiller: Digits in a cage cannot repeat and add up to the number in the top-left corner.\n\nThermo: Along thermometres digits must increase from the bulb.\n\nArrows: Digits along an arrow sum to the number in the connected circle. Digits may repeat along an arrow if allowed by other rules.\n\nKropki: Digits seperated by a white dot must be consecutive. Not all white dots are necessarily given. \n\nX Sums: Digits seperated by an X sum to 10. Not all X's are necessarily given."
+    },
+    {
+      "id": "lmd_000TDQ",
+      "source": "lmd-sudokupad",
+      "format": "scl",
+      "title": "Milk and Cookies",
+      "author": "99%Sneaky",
+      "difficulty": 2,
+      "lmdId": "000TDQ",
+      "sudokuPadId": "pmn4txt1gn",
+      "gridSize": 9,
+      "boardData": [
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "solution": [
+        [
+          8,
+          3,
+          5,
+          1,
+          2,
+          9,
+          4,
+          6,
+          7
+        ],
+        [
+          4,
+          7,
+          1,
+          6,
+          8,
+          3,
+          9,
+          2,
+          5
+        ],
+        [
+          2,
+          9,
+          6,
+          4,
+          7,
+          5,
+          3,
+          1,
+          8
+        ],
+        [
+          1,
+          6,
+          8,
+          2,
+          4,
+          7,
+          5,
+          9,
+          3
+        ],
+        [
+          5,
+          4,
+          9,
+          3,
+          1,
+          8,
+          2,
+          7,
+          6
+        ],
+        [
+          7,
+          2,
+          3,
+          9,
+          5,
+          6,
+          8,
+          4,
+          1
+        ],
+        [
+          6,
+          5,
+          7,
+          8,
+          9,
+          4,
+          1,
+          3,
+          2
+        ],
+        [
+          3,
+          1,
+          4,
+          5,
+          6,
+          2,
+          7,
+          8,
+          9
+        ],
+        [
+          9,
+          8,
+          2,
+          7,
+          3,
+          1,
+          6,
+          5,
+          4
+        ]
+      ],
+      "cages": [
+        {
+          "id": 1,
+          "sum": 8,
+          "cells": [
+            [
+              2,
+              0
+            ],
+            [
+              3,
+              0
+            ],
+            [
+              4,
+              0
+            ]
+          ],
+          "unique": true
+        },
+        {
+          "id": 2,
+          "sum": 8,
+          "cells": [
+            [
+              0,
+              2
+            ],
+            [
+              0,
+              3
+            ],
+            [
+              0,
+              4
+            ]
+          ],
+          "unique": true
+        },
+        {
+          "id": 3,
+          "sum": 10,
+          "cells": [
+            [
+              6,
+              0
+            ],
+            [
+              7,
+              0
+            ],
+            [
+              7,
+              1
+            ]
+          ],
+          "unique": true
+        },
+        {
+          "id": 4,
+          "sum": 15,
+          "cells": [
+            [
+              0,
+              6
+            ],
+            [
+              1,
+              6
+            ],
+            [
+              1,
+              7
+            ]
+          ],
+          "unique": true
+        },
+        {
+          "id": 5,
+          "sum": 12,
+          "cells": [
+            [
+              8,
+              2
+            ],
+            [
+              8,
+              3
+            ],
+            [
+              8,
+              4
+            ]
+          ],
+          "unique": true
+        },
+        {
+          "id": 6,
+          "sum": 10,
+          "cells": [
+            [
+              3,
+              8
+            ],
+            [
+              4,
+              8
+            ],
+            [
+              5,
+              8
+            ]
+          ],
+          "unique": true
+        },
+        {
+          "id": 7,
+          "sum": 17,
+          "cells": [
+            [
+              6,
+              4
+            ],
+            [
+              6,
+              5
+            ],
+            [
+              6,
+              6
+            ],
+            [
+              6,
+              7
+            ]
+          ],
+          "unique": true
+        },
+        {
+          "id": 8,
+          "sum": 11,
+          "cells": [
+            [
+              4,
+              4
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              4,
+              6
+            ]
+          ],
+          "unique": true
+        }
+      ],
+      "givenCount": 0,
+      "cageCount": 8,
+      "ruleset": "Normal sudoku rules apply.\nDigits in cages sum to the small number in the top left corner.\nAdjacent digits along dashed green lines must differ by 5 or more.\nDigits along solid purple lines form a consecutive set, in any order.\nEach set of three consecutive digits along a hollow peach line will contain one low digit (1,2,3), one medium digit (4,5,6) and one high digit (7,8,9)."
+    },
+    {
+      "id": "lmd_000RLY",
+      "source": "lmd-sudokupad",
+      "format": "scl",
+      "title": "Parity Fun 34",
+      "author": "galium_odoratum",
+      "difficulty": 2,
+      "lmdId": "000RLY",
+      "sudokuPadId": "4addscv8up",
+      "gridSize": 9,
+      "boardData": [
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "solution": [
+        [
+          6,
+          8,
+          2,
+          9,
+          4,
+          3,
+          1,
+          7,
+          5
+        ],
+        [
+          7,
+          5,
+          1,
+          8,
+          6,
+          2,
+          3,
+          9,
+          4
+        ],
+        [
+          9,
+          4,
+          3,
+          5,
+          1,
+          7,
+          2,
+          6,
+          8
+        ],
+        [
+          2,
+          3,
+          9,
+          4,
+          8,
+          6,
+          7,
+          5,
+          1
+        ],
+        [
+          5,
+          1,
+          7,
+          3,
+          2,
+          9,
+          8,
+          4,
+          6
+        ],
+        [
+          4,
+          6,
+          8,
+          1,
+          7,
+          5,
+          9,
+          2,
+          3
+        ],
+        [
+          1,
+          9,
+          6,
+          7,
+          3,
+          4,
+          5,
+          8,
+          2
+        ],
+        [
+          3,
+          7,
+          4,
+          2,
+          5,
+          8,
+          6,
+          1,
+          9
+        ],
+        [
+          8,
+          2,
+          5,
+          6,
+          9,
+          1,
+          4,
+          3,
+          7
+        ]
+      ],
+      "cages": [
+        {
+          "id": 1,
+          "sum": 31,
+          "cells": [
+            [
+              0,
+              6
+            ],
+            [
+              0,
+              7
+            ],
+            [
+              0,
+              8
+            ],
+            [
+              1,
+              8
+            ],
+            [
+              2,
+              7
+            ],
+            [
+              2,
+              8
+            ]
+          ],
+          "unique": true
+        },
+        {
+          "id": 2,
+          "sum": 12,
+          "cells": [
+            [
+              1,
+              6
+            ],
+            [
+              1,
+              7
+            ]
+          ],
+          "unique": true
+        },
+        {
+          "id": 3,
+          "sum": 9,
+          "cells": [
+            [
+              2,
+              6
+            ],
+            [
+              3,
+              6
+            ]
+          ],
+          "unique": true
+        },
+        {
+          "id": 4,
+          "sum": 17,
+          "cells": [
+            [
+              4,
+              6
+            ],
+            [
+              5,
+              6
+            ]
+          ],
+          "unique": true
+        },
+        {
+          "id": 5,
+          "sum": 5,
+          "cells": [
+            [
+              5,
+              7
+            ],
+            [
+              5,
+              8
+            ]
+          ],
+          "unique": true
+        },
+        {
+          "id": 6,
+          "sum": 10,
+          "cells": [
+            [
+              4,
+              7
+            ],
+            [
+              4,
+              8
+            ]
+          ],
+          "unique": true
+        },
+        {
+          "id": 7,
+          "sum": 5,
+          "cells": [
+            [
+              3,
+              0
+            ],
+            [
+              3,
+              1
+            ]
+          ],
+          "unique": true
+        },
+        {
+          "id": 8,
+          "sum": 13,
+          "cells": [
+            [
+              3,
+              2
+            ],
+            [
+              3,
+              3
+            ]
+          ],
+          "unique": true
+        },
+        {
+          "id": 9,
+          "sum": 16,
+          "cells": [
+            [
+              3,
+              4
+            ],
+            [
+              3,
+              5
+            ],
+            [
+              4,
+              4
+            ]
+          ],
+          "unique": true
+        },
+        {
+          "id": 10,
+          "sum": 11,
+          "cells": [
+            [
+              4,
+              3
+            ],
+            [
+              5,
+              3
+            ],
+            [
+              5,
+              4
+            ]
+          ],
+          "unique": true
+        },
+        {
+          "id": 11,
+          "sum": 6,
+          "cells": [
+            [
+              4,
+              0
+            ],
+            [
+              4,
+              1
+            ]
+          ],
+          "unique": true
+        },
+        {
+          "id": 12,
+          "sum": 14,
+          "cells": [
+            [
+              7,
+              4
+            ],
+            [
+              8,
+              4
+            ]
+          ],
+          "unique": true
+        },
+        {
+          "id": 13,
+          "sum": 17,
+          "cells": [
+            [
+              6,
+              5
+            ],
+            [
+              6,
+              6
+            ],
+            [
+              7,
+              5
+            ]
+          ],
+          "unique": true
+        },
+        {
+          "id": 14,
+          "sum": 17,
+          "cells": [
+            [
+              6,
+              2
+            ],
+            [
+              6,
+              3
+            ],
+            [
+              7,
+              2
+            ]
+          ],
+          "unique": true
+        },
+        {
+          "id": 15,
+          "sum": 12,
+          "cells": [
+            [
+              2,
+              1
+            ],
+            [
+              2,
+              2
+            ],
+            [
+              2,
+              3
+            ]
+          ],
+          "unique": true
+        },
+        {
+          "id": 16,
+          "sum": 23,
+          "cells": [
+            [
+              0,
+              3
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              3
+            ]
+          ],
+          "unique": true
+        },
+        {
+          "id": 17,
+          "sum": 11,
+          "cells": [
+            [
+              0,
+              4
+            ],
+            [
+              1,
+              4
+            ],
+            [
+              2,
+              4
+            ]
+          ],
+          "unique": false
+        },
+        {
+          "id": 18,
+          "sum": 5,
+          "cells": [
+            [
+              8,
+              5
+            ],
+            [
+              8,
+              6
+            ]
+          ],
+          "unique": false
+        },
+        {
+          "id": 19,
+          "sum": 4,
+          "cells": [
+            [
+              7,
+              7
+            ],
+            [
+              8,
+              7
+            ]
+          ],
+          "unique": false
+        },
+        {
+          "id": 20,
+          "sum": 19,
+          "cells": [
+            [
+              6,
+              7
+            ],
+            [
+              6,
+              8
+            ],
+            [
+              7,
+              8
+            ]
+          ],
+          "unique": false
+        },
+        {
+          "id": 21,
+          "sum": 13,
+          "cells": [
+            [
+              7,
+              0
+            ],
+            [
+              8,
+              0
+            ],
+            [
+              8,
+              1
+            ]
+          ],
+          "unique": false
+        },
+        {
+          "id": 22,
+          "sum": 10,
+          "cells": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              2
+            ]
+          ],
+          "unique": false
+        }
+      ],
+      "givenCount": 0,
+      "cageCount": 22,
+      "ruleset": "Parity Cages: Each cage is either an odd cage or an even cage. In an odd cage, the sum of all odd digits equals the total given in the top-left corner. In an even cage, the sum of all even digits equals the total given in the top-left corner. It is up to the solver to determine the type of each cage."
+    },
+    {
+      "id": "lmd_000TD4",
+      "source": "lmd-sudokupad",
+      "format": "fpuz",
+      "title": "Stitched Lines",
+      "author": "Will Power",
+      "difficulty": 3,
+      "lmdId": "000TD4",
+      "sudokuPadId": "falhq6bz4v",
+      "gridSize": 9,
+      "boardData": [
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "solution": [
+        [
+          7,
+          8,
+          9,
+          5,
+          4,
+          1,
+          2,
+          3,
+          6
+        ],
+        [
+          3,
+          2,
+          4,
+          6,
+          7,
+          8,
+          9,
+          1,
+          5
+        ],
+        [
+          6,
+          1,
+          5,
+          3,
+          9,
+          2,
+          7,
+          4,
+          8
+        ],
+        [
+          8,
+          4,
+          6,
+          7,
+          2,
+          9,
+          3,
+          5,
+          1
+        ],
+        [
+          1,
+          3,
+          2,
+          4,
+          5,
+          6,
+          8,
+          7,
+          9
+        ],
+        [
+          9,
+          5,
+          7,
+          1,
+          8,
+          3,
+          4,
+          6,
+          2
+        ],
+        [
+          2,
+          6,
+          3,
+          8,
+          1,
+          7,
+          5,
+          9,
+          4
+        ],
+        [
+          5,
+          9,
+          1,
+          2,
+          3,
+          4,
+          6,
+          8,
+          7
+        ],
+        [
+          4,
+          7,
+          8,
+          9,
+          6,
+          5,
+          1,
+          2,
+          3
+        ]
+      ],
+      "cages": [
+        {
+          "id": 1,
+          "sum": 5,
+          "cells": [
+            [
+              8,
+              7
+            ],
+            [
+              8,
+              8
+            ]
+          ]
+        }
+      ],
+      "givenCount": 0,
+      "cageCount": 1,
+      "ruleset": "Thanks to NicoD's puzzle \"Serpentine\" as the inspiration for the line pattern.\nNormal Sudoku rules apply.\nROTATIONAL SYMMETRY- Cells 180 degrees apart in the puzzle sum to 10.\nKILLER CAGE- Numbers in the cage sum to the number in the top left corner of the cage.\nGERMAN WHISPERS LINES- Numbers on green lines are at least 5 apart from their neighbors on the line.\nRENBAN(+)- Numbers on purple lines are each a set of non-repeating, consecutive numbers, in any order. Also, each RENBAN line contains either a 1 or 9.\nKROPKI PAIRS- Numbers with a white dot between them are consecutive. Numbers with a black dot between them are in a ratio of 2:1. Not all possible dots are shown."
+    },
+    {
+      "id": "lmd_000SS0",
+      "source": "lmd-sudokupad",
+      "format": "scl",
+      "title": "Five Consecutive Knights Straight",
+      "author": "AaronH",
+      "difficulty": 2,
+      "lmdId": "000SS0",
+      "sudokuPadId": "oqxu4ojt4d",
+      "gridSize": 9,
+      "boardData": [
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "solution": [
+        [
+          5,
+          9,
+          8,
+          3,
+          6,
+          1,
+          7,
+          2,
+          4
+        ],
+        [
+          3,
+          6,
+          7,
+          4,
+          2,
+          8,
+          1,
+          9,
+          5
+        ],
+        [
+          4,
+          2,
+          1,
+          7,
+          9,
+          5,
+          8,
+          6,
+          3
+        ],
+        [
+          2,
+          4,
+          3,
+          6,
+          7,
+          9,
+          5,
+          8,
+          1
+        ],
+        [
+          1,
+          8,
+          6,
+          5,
+          4,
+          3,
+          9,
+          7,
+          2
+        ],
+        [
+          9,
+          7,
+          5,
+          1,
+          8,
+          2,
+          3,
+          4,
+          6
+        ],
+        [
+          6,
+          5,
+          2,
+          9,
+          1,
+          7,
+          4,
+          3,
+          8
+        ],
+        [
+          8,
+          1,
+          9,
+          2,
+          3,
+          4,
+          6,
+          5,
+          7
+        ],
+        [
+          7,
+          3,
+          4,
+          8,
+          5,
+          6,
+          2,
+          1,
+          9
+        ]
+      ],
+      "cages": [
+        {
+          "id": 1,
+          "sum": 10,
+          "cells": [
+            [
+              6,
+              4
+            ],
+            [
+              7,
+              3
+            ],
+            [
+              7,
+              4
+            ],
+            [
+              7,
+              5
+            ]
+          ],
+          "unique": true
+        },
+        {
+          "id": 2,
+          "sum": 9,
+          "cells": [
+            [
+              3,
+              8
+            ],
+            [
+              4,
+              8
+            ],
+            [
+              5,
+              8
+            ]
+          ],
+          "unique": true
+        },
+        {
+          "id": 3,
+          "sum": 14,
+          "cells": [
+            [
+              4,
+              3
+            ],
+            [
+              4,
+              4
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              5,
+              5
+            ]
+          ],
+          "unique": true
+        }
+      ],
+      "givenCount": 0,
+      "cageCount": 3,
+      "ruleset": "Normal sudoku rules apply. All variant rules are standard.\n- Anti-knight: Cells separated by a knights move in chess cannot contain the same digit. The Anti-knight icon is a reminder for this rule and has no special meaning for the cell it is located in.\n- White Kropki: Digits must be consecutive in cells separated by a white dot. Not all dots are given.\n- Killer cages: Digits in cages must sum to the value shown in the top corner\n- Arrows: Digits along an arrow must sum to the number in the bulb\n- Renban: Along pink lines, digits form a consecutive sequence in any order."
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "name": "cage-master-seeds",
+  "version": "1.0.0",
+  "description": "手工构造的高级技巧示范种子题",
+  "seeds": {
+    "xwing": {
+      "name": "X-Wing示范题",
+      "technique": "X-Wing（X翼构型）",
+      "description": "一道精心构造的杀手数独，解题关键是在第2行和第8行发现数字4的X-Wing构型，从而排除其他位置的4"
+    },
+    "naked_pair": {
+      "name": "显性数对示范题",
+      "technique": "Naked Pair（显性数对）",
+      "description": "同一区域内两个格子恰好只能是相同的两个数字，排除其他格子中这两个数字"
+    },
+    "hidden_pair": {
+      "name": "隐性数对示范题",
+      "technique": "Hidden Pair（隐性数对）",
+      "description": "两个数字在同一区域内只能出现在相同的两个格子中，排除这两个格子的其他候选"
+    },
+    "naked_triple": {
+      "name": "三链数示范题",
+      "technique": "Naked Triple（显性三链数）",
+      "description": "同一区域内三个格子恰好只包含3个不同数字的组合"
+    },
+    "swordfish": {
+      "name": "剑鱼构型示范题",
+      "technique": "Swordfish（剑鱼构型）",
+      "description": "X-Wing的三行三列推广"
+    },
+    "xy_wing": {
+      "name": "XY-Wing示范题",
+      "technique": "XY-Wing",
+      "description": "三个双值格形成Y型链，排除共同影响格中的公共数字"
+    },
+    "killer_innie_outie": {
+      "name": "内外笼差值进阶",
+      "technique": "Innies & Outies（内外笼差值法）",
+      "description": "利用45法则在多行/多宫联合区域计算差值"
+    },
+    "killer_45_multi": {
+      "name": "多区域45法则",
+      "technique": "Multi-Unit 45 Rule（多区域45法则）",
+      "description": "同时对行+列+宫三个方向应用45法则"
+    }
+  }
+}

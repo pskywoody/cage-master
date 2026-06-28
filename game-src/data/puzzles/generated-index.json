@@ -1,0 +1,71 @@
+{
+  "version": "1.1.0",
+  "generatedAt": "2026-06-28T23:27:15.814Z",
+  "totalSeeds": 13,
+  "totalVariants": 185,
+  "sources": [
+    {
+      "source": "lmd-sudokupad",
+      "type": "killer-sudoku",
+      "seedCount": 5,
+      "variantCount": 125,
+      "file": "lmd-killer-sudoku"
+    },
+    {
+      "source": "handcrafted",
+      "type": "classic-sudoku",
+      "technique": "hidden-pair",
+      "seedCount": 1,
+      "variantCount": 0,
+      "file": "classic-hidden-pair"
+    },
+    {
+      "source": "handcrafted",
+      "type": "classic-sudoku",
+      "technique": "naked-pair",
+      "seedCount": 2,
+      "variantCount": 30,
+      "file": "classic-naked-pair"
+    },
+    {
+      "source": "handcrafted",
+      "type": "classic-sudoku",
+      "technique": "naked-single",
+      "seedCount": 1,
+      "variantCount": 15,
+      "file": "classic-naked-single"
+    },
+    {
+      "source": "handcrafted",
+      "type": "classic-sudoku",
+      "technique": "naked-triple",
+      "seedCount": 1,
+      "variantCount": 0,
+      "file": "classic-naked-triple"
+    },
+    {
+      "source": "handcrafted",
+      "type": "classic-sudoku",
+      "technique": "swordfish",
+      "seedCount": 1,
+      "variantCount": 0,
+      "file": "classic-swordfish"
+    },
+    {
+      "source": "handcrafted",
+      "type": "classic-sudoku",
+      "technique": "x-wing",
+      "seedCount": 1,
+      "variantCount": 15,
+      "file": "classic-x-wing"
+    },
+    {
+      "source": "handcrafted",
+      "type": "classic-sudoku",
+      "technique": "y-wing",
+      "seedCount": 1,
+      "variantCount": 0,
+      "file": "classic-y-wing"
+    }
+  ]
+}

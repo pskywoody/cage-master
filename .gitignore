@@ -6,3 +6,5 @@ node_modules/
 *.bak701
 test-*.json
 test-*.html
+crawlers/debug-*
+crawlers/.uploads/

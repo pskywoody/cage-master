@@ -249,11 +249,21 @@ killersudoku/
 │   │   └── images/              # 角色头像等图片资源
 │   └── data/
 │       ├── chapters.json        # 教学关卡数据（7章43+关）
-│       └── levels.json          # 自由模式题库（300关）
+│       ├── levels.json          # 自由模式题库（300关）
+│       └── puzzles/             # 🆕 爬虫获取的种子题+变体
+│           ├── seeds/           # 原始种子题（LMD/手工构造）
+│           └── generated/       # PuzzleTransformer生成的变体
 ├── tools/                       # 🆕 开发工具
 │   ├── puzzle-validator.js      # 教学关卡验证器
 │   ├── build-701v5.js           # 关卡701生成脚本
 │   └── level701-final.json      # 关卡701最终数据
+├── crawlers/                    # 🆕 谜题爬虫与变体生成管线
+│   ├── lib.js                   # 爬虫工具库（HTTP/解码/验证）
+│   ├── lmd-crawler.js           # LMD+SudokuPad杀手数独爬虫
+│   ├── sudoku-coach.js          # Sudoku Coach教学题爬虫
+│   ├── puzzle-transformer-node.js # Node.js版谜题魔术师
+│   ├── handcrafted-seeds.js     # 手工精选教学种子题
+│   └── generate-pipeline.js     # 变体批量生成管线
 ├── node-script/
 │   ├── solver-rater.js          # 杀手数独求解器 + 难度评级
 │   └── human-simulator.js       # 人类解题模拟器
@@ -414,6 +424,33 @@ killersudoku/
 - 前端模块通过全局对象通信
 - CSS类名使用 kebab-case，JS变量使用 camelCase
 - 中文注释
+
+### 谜题爬虫与变体生成
+
+项目包含一套完整的谜题获取与生成管线：
+
+**种子题来源：**
+- **LMD (Logic Masters Deutschland)**：全球最大的变型数独谜题库，通过SudokuPad API获取大师级杀手数独
+- **手工构造**：针对特定教学技巧（如Naked Pair）精确设计的示范题
+
+**运行爬虫：**
+```bash
+# 爬取LMD杀手数独种子
+node crawlers/lmd-crawler.js
+
+# 爬取Sudoku Coach教学题
+node crawlers/sudoku-coach.js
+
+# 批量生成变体（数字映射+行列互换+旋转+镜像）
+node crawlers/generate-pipeline.js
+```
+
+**PuzzleTransformer数学置换：**
+- 数字映射（Digit Mapping）：1-9乱序替换，保持所有数独规则和cage和
+- 宫内行列互换（Block Swapping）：同宫内行列互换，宫间band/stack互换
+- 旋转（0°/90°/180°/270°）
+- 镜像（水平/垂直/对角线翻转）
+- 一道种子题可生成数百种完全不同的变体，逻辑链完全等价
 
 ---
 

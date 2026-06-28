@@ -5,14 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
   <title>教学模式 · 档案侦探</title>
   <link rel="icon" type="image/jpeg" href="assets/images/favicon.jpg" />
-  <link rel="stylesheet" href="assets/css/style.css?v=22" />
+  <link rel="stylesheet" href="assets/css/style.css?v=31" />
 </head>
 <body>
   <div id="app">
     <div id="game-container">
       <!-- 顶部状态栏 -->
       <div id="game-header">
-        <button id="btn-back">← 返回</button>
+        <button id="btn-back">← 章节</button>
         <div id="timer">00:00</div>
         <button id="btn-setting" class="header-icon-btn">⚙️</button>
       </div>
@@ -30,6 +30,7 @@
         <button id="btn-undo" title="撤销">↶</button>
         <button id="btn-erase" title="擦除">⌫</button>
         <button id="btn-candidate" title="候选">✏️</button>
+        <button id="btn-auto-cands" title="自动填候选">🔢</button>
         <button id="btn-hint" title="提示">💡</button>
         <button id="btn-45rule" title="算珠">🧮</button>
         <button id="btn-restart" title="重来">🔄</button>
@@ -240,13 +241,14 @@
     </div>
   </div>
 
-  <script src="utils/storage.js?v=22"></script>
-  <script src="utils/audio.js?v=22"></script>
-  <script src="game.js?v=22"></script>
-  <script src="renderer.js?v=22"></script>
-  <script src="story.js?v=22"></script>
-  <script src="guide-manager.js?v=22"></script>
-  <script src="guide-battle.js?v=22"></script>
-  <script src="guide.js?v=22"></script>
+  <script src="utils/storage.js?v=33"></script>
+  <script src="utils/audio.js?v=33"></script>
+  <script src="utils/technique-tutorial.js?v=33"></script>
+  <script src="game.js?v=33"></script>
+  <script src="renderer.js?v=33"></script>
+  <script src="story.js?v=33"></script>
+  <script src="guide-manager.js?v=35"></script>
+  <script src="guide-battle.js?v=33"></script>
+  <script src="guide.js?v=35"></script>
 </body>
 </html>

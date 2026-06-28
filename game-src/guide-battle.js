@@ -198,6 +198,21 @@ const GuideBattle = {
       this.onEvent('raceStart', {});
     }
 
+    // ===== 角色表演：开赛 =====
+    setTimeout(() => {
+      this._setEmotion('boss', 'menacing', 'bounce');
+      this._say('boss', this._pickLine(this._bossLines.raceStart));
+      setTimeout(() => {
+        this._say('system', this._pickLine(this._systemLines.raceStart));
+      }, 600);
+      setTimeout(() => {
+        this._setEmotion('player', 'determined', 'determined');
+        this._say('player', this._pickLine(this._playerLines.raceStart));
+        // Boss保持威胁表情
+        setTimeout(() => this._setEmotion('boss', 'menacing', 'menacing'), 500);
+      }, 1400);
+    }, 400);
+
     this.aiTimer = setTimeout(() => this._aiStep(), this.aiStartDelay);
     console.log('🏁 幽灵迷雾对战开始！');
 
@@ -339,6 +354,58 @@ const GuideBattle = {
           title: '抢过来了！',
           text: '干得漂亮！你抢先填对了这格，从' + this.opponent.name + '手中抢了过来。继续抢占更多格子！'
         });
+
+        // ===== 角色表演：抢格成功 =====
+        this._charState.aiComboCount = 0;
+        this._setEmotion('player', 'happy', 'attack');
+        this._say('player', this._pickLine(this._playerLines.steal));
+        setTimeout(() => {
+          this._setEmotion('boss', 'angry', 'hurt');
+          this._say('boss', this._pickLine(this._bossLines.stolen));
+        }, 500);
+        this._charState.comboCount++;
+      } else {
+        // ===== 角色表演：普通填对 =====
+        this._charState.comboCount++;
+        this._charState.aiComboCount = 0;
+        const combo = this._charState.comboCount;
+
+        // 玩家表情
+        if (combo >= 5) {
+          this._setEmotion('player', 'happy', 'bounce');
+          this._say('player', this._pickLine(this._playerLines.combo5));
+        } else if (combo >= 3) {
+          this._setEmotion('player', 'happy', 'bounce');
+          this._say('player', this._pickLine(this._playerLines.combo3));
+        } else if (combo >= 2) {
+          if (Math.random() < 0.5) {
+            this._setEmotion('player', 'happy');
+            this._say('player', this._pickLine(this._playerLines.combo2));
+          }
+        } else {
+          if (Math.random() < 0.35) {
+            this._setEmotion('player', 'happy');
+            this._say('player', this._pickLine(this._playerLines.correct));
+          }
+        }
+
+        // Boss反应
+        setTimeout(() => {
+          const playerPct = this.playerCount / this.totalEmpty;
+          const aiPct = this.aiCount / this.totalEmpty;
+          if (playerPct > aiPct + 0.15) {
+            // 玩家大幅领先，Boss紧张
+            this._setEmotion('boss', 'scared', 'shake');
+            if (Math.random() < 0.5) this._say('boss', this._pickLine(this._bossLines.playerWarning));
+          } else if (combo >= 3) {
+            // Boss对玩家连击感到惊讶
+            this._setEmotion('boss', 'surprised', 'shake');
+            if (combo >= 5) this._say('boss', this._pickLine(this._bossLines.playerWarning));
+          } else if (Math.random() < 0.25) {
+            this._setEmotion('boss', 'hurt');
+            this._say('boss', this._pickLine(this._bossLines.wrong));
+          }
+        }, 400);
       }
 
       this.playerOwned[r][c] = num;
@@ -374,6 +441,16 @@ const GuideBattle = {
     } else if (!isCorrect && num > 0) {
       // 填错闪红（由renderer处理，这里只触发事件）
       if (this.onEvent) this.onEvent('wrong', { r, c });
+
+      // ===== 角色表演：填错 =====
+      this._charState.comboCount = 0;
+      this._setEmotion('player', 'hurt', 'shake');
+      if (Math.random() < 0.5) this._say('player', this._pickLine(this._playerLines.wrong));
+      setTimeout(() => {
+        this._setEmotion('boss', 'taunt', 'bounce');
+        if (Math.random() < 0.4) this._say('boss', this._pickLine(this._bossLines.wrong));
+        setTimeout(() => this._setEmotion('boss', 'confident', 'thinking'), 800);
+      }, 400);
     }
     // 填错不散雾、不计入
     return false;
@@ -623,6 +700,25 @@ const GuideBattle = {
           distance: closestDist,
           cell: closestCell
         });
+
+        // ===== 角色表演：遭遇 =====
+        if (level === 'near') {
+          this._setEmotion('boss', 'taunt', 'attack');
+          this._say('boss', this._pickLine(this._bossLines.encounterNear));
+          setTimeout(() => {
+            this._setEmotion('player', 'scared', 'shake');
+            this._say('player', this._pickLine(this._playerLines.encounter));
+            this._say('system', this._pickLine(this._systemLines.encounter));
+          }, 400);
+        } else if (level === 'mid') {
+          this._setEmotion('boss', 'menacing', 'menacing');
+          if (Math.random() < 0.6) this._say('boss', this._pickLine(this._bossLines.encounterMid));
+          setTimeout(() => {
+            this._setEmotion('player', 'surprised');
+          }, 300);
+        } else if (level === 'far') {
+          if (Math.random() < 0.4) this._say('boss', this._pickLine(this._bossLines.encounterFar));
+        }
       }
     }
   },
@@ -636,11 +732,41 @@ const GuideBattle = {
       this.warning60Shown.ai = true;
       this._flashWarningEdge();
       if (this.onEvent) this.onEvent('warning', { who: 'ai', pct: aiPct });
+
+      // ===== 角色表演：AI 60%预警 =====
+      this._setEmotion('boss', 'confident', 'bounce');
+      this._say('boss', this._pickLine(this._bossLines.aiWarning));
+      this._say('system', '⚠️ 对手已占据60%！');
+      setTimeout(() => {
+        this._setEmotion('player', 'scared', 'scared');
+        this._say('player', this._pickLine(this._playerLines.aiWarning));
+      }, 600);
     }
     if (playerPct >= 0.6 && !this.warning60Shown.player) {
       this.warning60Shown.player = true;
       // 玩家到60%时不震自己，但可以有正向提示
       if (this.onEvent) this.onEvent('warning', { who: 'player', pct: playerPct });
+
+      // ===== 角色表演：玩家60% =====
+      this._setEmotion('player', 'determined', 'determined');
+      this._say('player', this._pickLine(this._playerLines.playerWarning));
+      this._say('system', '🔥 你已掌握60%！最后冲刺！');
+      setTimeout(() => {
+        this._setEmotion('boss', 'scared', 'shake');
+        this._say('boss', this._pickLine(this._bossLines.playerWarning));
+      }, 600);
+    }
+
+    // 终局冲刺（双方都超过60%）
+    if (aiPct >= 0.6 && playerPct >= 0.6 && !this._charState.finalStretchShown) {
+      this._charState.finalStretchShown = true;
+      this._say('system', this._pickLine(this._systemLines.finalStretch));
+    }
+
+    // 势均力敌提示（差距<10%且双方都>30%）
+    if (!this._charState.closeShown && aiPct > 0.3 && playerPct > 0.3 && Math.abs(aiPct - playerPct) < 0.1) {
+      this._charState.closeShown = true;
+      if (Math.random() < 0.5) this._say('system', this._pickLine(this._systemLines.close));
     }
   },
 
@@ -979,9 +1105,44 @@ const GuideBattle = {
       // AI填格脉冲动画（幽灵浮现效果）
       this.aiPulse[r][c] = 1;
 
+      // ===== 角色表演：AI填格 =====
+      this._charState.aiComboCount = (this._charState.aiComboCount || 0) + 1;
+      this._charState.comboCount = 0;
+      const aiCombo = this._charState.aiComboCount;
+      const aiPct = this.aiCount / this.totalEmpty;
+      const playerPctNow = this.playerCount / this.totalEmpty;
+
+      if (aiCombo >= 4) {
+        this._setEmotion('boss', 'confident', 'bounce');
+        if (Math.random() < 0.6) this._say('boss', this._pickLine(this._bossLines.combo3 || this._bossLines.combo2));
+      } else if (aiCombo >= 2) {
+        this._setEmotion('boss', 'thinking', 'thinking');
+        if (Math.random() < 0.35) this._say('boss', this._pickLine(this._bossLines.combo2));
+      } else {
+        this._setEmotion('boss', 'thinking', 'thinking');
+        if (Math.random() < 0.2) this._say('boss', this._pickLine(this._bossLines.correct));
+      }
+
+      // 玩家对AI填格的反应
+      setTimeout(() => {
+        if (aiPct > playerPctNow + 0.15) {
+          // AI大幅领先，玩家紧张
+          this._setEmotion('player', 'scared', 'scared');
+        } else if (aiCombo >= 3) {
+          this._setEmotion('player', 'surprised', 'shake');
+        }
+      }, 300);
+
       // 触发AI填格事件（音效+轻微震动）
       if (this.onEvent) {
         this.onEvent('aiFill', { r, c });
+      }
+
+      // AI进度条脉冲
+      const aiFillEl = document.getElementById('boss-progress-fill');
+      if (aiFillEl && aiFillEl.parentElement) {
+        aiFillEl.parentElement.classList.add('ai-step');
+        setTimeout(() => aiFillEl.parentElement.classList.remove('ai-step'), 500);
       }
 
       // 检测遭遇事件
@@ -1018,25 +1179,31 @@ const GuideBattle = {
     bar.id = 'boss-battle-bar';
     bar.innerHTML = `
       <div class="boss-info">
-        <div class="boss-avatar" id="boss-avatar"></div>
+        <div class="q-avatar-wrap" id="boss-avatar-wrap">
+          <div class="boss-avatar" id="boss-avatar"></div>
+          <div class="q-emotion" id="boss-emotion"></div>
+        </div>
         <div class="boss-detail">
           <div class="boss-name" id="boss-name"></div>
           <div class="boss-progress-bar">
             <div class="boss-progress-fill" id="boss-progress-fill"></div>
+            <span class="boss-progress-text" id="boss-progress-text">0%</span>
           </div>
         </div>
-        <span class="boss-progress-text" id="boss-progress-text">0%</span>
       </div>
-      <div class="vs-divider">VS</div>
+      <div class="boss-dialogue-zone" id="boss-dialogue-zone"></div>
       <div class="player-info">
-        <span class="player-progress-text" id="player-progress-text">0%</span>
         <div class="player-detail">
-          <div class="player-name">你</div>
+          <div class="player-name">侦探</div>
           <div class="player-progress-bar">
             <div class="player-progress-fill" id="player-progress-fill"></div>
+            <span class="player-progress-text" id="player-progress-text">0%</span>
           </div>
         </div>
-        <div class="player-avatar">🔍</div>
+        <div class="q-avatar-wrap" id="player-avatar-wrap">
+          <div class="player-avatar" id="player-avatar">🕵️</div>
+          <div class="q-emotion" id="player-emotion"></div>
+        </div>
       </div>
     `;
 
@@ -1061,11 +1228,241 @@ const GuideBattle = {
       nameEl.textContent = this.opponent.name;
       nameEl.style.color = this.opponent.color;
     }
+
+    // 初始化角色表演系统
+    this._initCharSystem();
+  },
+
+  /**
+   * 角色表演系统：Q版头像表情 + 台词飘过
+   */
+  _initCharSystem() {
+    this._charState = {
+      boss: 'idle',
+      player: 'focus',
+      lastDialogueTime: 0,
+      comboCount: 0,
+      lastPlayerCorrect: 0,
+      lastAiCorrect: 0,
+    };
+
+    // Boss表情映射：状态→emoji
+    this._bossExpressions = {
+      idle: '',
+      menacing: '😈',
+      thinking: '💭',
+      confident: '😏',
+      surprised: '😲',
+      angry: '💢',
+      hurt: '💫',
+      taunt: '👻',
+      scared: '😰',
+      victory: '👑',
+      defeated: '💀',
+    };
+
+    // 玩家表情映射
+    this._playerExpressions = {
+      idle: '',
+      focus: '',
+      thinking: '🤔',
+      happy: '✨',
+      surprised: '❗',
+      determined: '💪',
+      hurt: '😣',
+      scared: '😱',
+      victory: '🎉',
+      defeated: '😵',
+    };
+
+    // Boss台词库（根据对手性格定制）
+    const bossLines = this._getBossDialogueLines();
+    this._bossLines = bossLines;
+    this._playerLines = {
+      correct: ['找到了！', '这里！', '真相浮出水面！', '就是这个数！', '好，推进一格！', '证据确凿！'],
+      combo2: ['手感来了！', '节奏不错！', '继续推进！'],
+      combo3: ['乘胜追击！', '一气呵成！', '看我连破数关！'],
+      combo5: ['无人能挡！', '这就是侦探的直觉！', '真相只有一个！'],
+      wrong: ['唔...不对', '糟糕，判断失误', '这个数有问题...', '可恶，看错了'],
+      encounter: ['什么动静？！', '谁在那里？', '有什么东西...'],
+      steal: ['抢回来了！', '休想抢走我的线索！', '这格是我的！'],
+      stolen: ['我的线索！', '被抢先了！', '可恶！'],
+      aiWarning: ['糟糕，它要赢了！', '必须加快速度！', '不能输在这里！', '加油啊！'],
+      playerWarning: ['还差一点！', '坚持住！', '最后冲刺！'],
+      raceStart: ['开始了！集中精神！', '迷雾中的对决，我不会输！', '真相一定由我揭开！'],
+      win: ['我赢了！迷雾散去！', '真相大白！', '档案解封！'],
+      lose: ['可恶...再来一次！', '就差一点...', '不能在这里放弃！'],
+      near: ['有东西靠近了...', '感觉到了...', '小心...'],
+      far: ['...那里有动静', '它在那里...'],
+    };
+    this._systemLines = {
+      encounter: ['【警告：幽灵逼近！】', '【迷雾中传来声响...】', '【对手正在窥视你的线索！】'],
+      raceStart: ['⚡ 竞赛开始！填满75%盘面者获胜！', '🔍 迷雾中的追逐战打响了！', '👻 小心！幽灵正在窃取线索！'],
+      playerLead: ['🔥 侦探取得领先！', '💨 节奏在你手中！'],
+      bossLead: ['⚠️ 幽灵占了上风！', '😱 它在吞噬盘面！'],
+      close: ['⚔️ 势均力敌！激战正酣！'],
+      finalStretch: ['🏁 终局冲刺！谁将揭开真相？'],
+    };
+  },
+
+  /**
+   * 根据Boss配置获取台词库
+   */
+  _getBossDialogueLines() {
+    const bossName = this.opponent.name || '';
+    // 根据Boss名字/特征定制性格
+    if (bossName.includes('影') || bossName.includes('黑影')) {
+      return {
+        start: ['哼哼哼...又一个不自量力的侦探...', '迷雾之中，你什么也看不见...', '你的线索，都是我的~', '在黑暗中挣扎吧...'],
+        correct: ['又一格...', '黑暗在扩张...', '嘻嘻...', '你的棋盘在消失...'],
+        combo2: ['你追不上我的~', '太慢了太慢了', '迷雾会吞噬一切'],
+        combo3: ['绝望吧...', '没有人能赢过黑暗', '呵呵呵...'],
+        combo5: ['游戏结束了，侦探~', '你已经输了！', '沉入迷雾吧！'],
+        wrong: ['切...', '无聊的抵抗', '挣扎是没用的'],
+        steal: ['这格我收下了~', '你的线索，归我了', '嘻嘻，抢来的线索最香了'],
+        stolen: ['！', '你...', '别得意...'],
+        aiWarning: ['我马上就要赢了~', '放弃吧，侦探！', '你赢不了黑暗的！', '哈哈哈！'],
+        playerWarning: ['别、别过来！', '可恶...怎么会...', '你怎么还在追？'],
+        encounterNear: ['我就在你身后哦~', '找到你了...侦探', 'Boo! 吓到了吗？'],
+        encounterMid: ['感受到我的存在了吗？', '我在看着你呢...'],
+        encounterFar: ['...', '......'],
+        win: ['哼哼哼...我说过的，你赢不了', '沉入永恒的迷雾吧~', '又一个倒下的侦探...'],
+        lose: ['不可能...黑暗怎么会被驱散...', '可恶的侦探...我还会回来的...', '光...竟然这么刺眼...'],
+        raceStart: ['来吧，在迷雾中捉迷藏吧~'],
+      };
+    }
+    if (bossName.includes('算') || bossName.includes('数') || bossName.includes('教授')) {
+      return {
+        start: ['愚蠢的凡人，你以为能胜过计算？', '概率上你胜率不足3%', '让我教教你什么是杀手数独', '你的每一步都在我的预料之中'],
+        correct: ['正确。', '符合预期。', '概率+1。', '最优解。'],
+        combo2: ['你的失败已被计算', '误差收敛中...', '效率低下'],
+        combo3: ['QED，证明完毕', '你没有胜算', '这就是数学的力量'],
+        combo5: ['结论：你必败无疑。', '数据不会说谎。'],
+        wrong: ['错误。', '概率0%。', '不合逻辑。', '重新计算吧。'],
+        steal: ['这格在我的最优路径上。', '逻辑上属于我。', '推导正确。'],
+        stolen: ['异常值。', '...计算偏差', '需要修正参数'],
+        aiWarning: ['98%胜率。', '收敛完成。', '你已经无力回天。'],
+        playerWarning: ['不可能...概率低于0.1%', '变量异常！', '哪里出错了？'],
+        encounterNear: ['我算到你会在这里。', '你逃不出我的公式。', '纳什均衡，你必输。'],
+        encounterMid: ['你的位置可计算。', '我已经预测了你的行动。'],
+        encounterFar: ['处理中...', '...'],
+        win: ['结果和计算完全一致。', '数学证明：你输了。', '在逻辑面前，凡人毫无机会。'],
+        lose: ['计算错误...不可能...', '我的模型...有缺陷？', '数据异常...需要重写算法...'],
+        raceStart: ['开始计算最优解。'],
+      };
+    }
+    if (bossName.includes('小丑') || bossName.includes('Joker') || bossName.includes('笑')) {
+      return {
+        start: ['哇哈哈哈哈！欢迎来到我的游戏！', '侦探先生，来玩个游戏吧~', '规则很简单：你输，我赢！', 'Let the game begin! 🎭'],
+        correct: [' Bingo! ', ' 答对了~（虽然没用）', ' 啦啦啦~', ' 🎪'],
+        combo2: ['嘿！你还挺会玩的嘛！', '有趣有趣！', '🎯 中中中！'],
+        combo3: ['游戏越来越好玩了！', '哈哈哈！刺激！', '这才像话！'],
+        combo5: ['SURPRISE! 你完了！', '🎉 游戏结束倒计时！', '好戏才刚刚开始~'],
+        wrong: ['哎呀呀~错啦错啦！', 'Boom! 答错了！', '哈哈哈！你真菜！'],
+        steal: ['不好意思~这格归我啦！', '嘿嘿，手快有手慢无~', 'Mine! 🃏'],
+        stolen: ['哎？！', '你作弊！', '哼！'],
+        aiWarning: ['HAHAHA! 我要赢了我要赢了！', '认输吧笨蛋侦探！', '🎊 胜利在向我招手！'],
+        playerWarning: ['Wait wait wait!', '你你你你开挂了吧！', '不要啊！'],
+        encounterNear: ['🎭 Peek-a-boo!', '猜猜我在哪里？~', '我就在你身边哦！😈'],
+        encounterMid: ['感觉到了吗？我的视线~', '找呀找呀找朋友~'],
+        encounterFar: ['嘻嘻嘻...', '...'],
+        win: ['WAHAHAHA! 我就说我会赢！', '游戏结束！你输了！🎉', '谢谢参与~下次再来玩哦！'],
+        lose: ['呜哇！你竟然赢了！', '不公平不公平！', '下次...下次一定赢你！😭'],
+        raceStart: ['Let\'s play! 🎪'],
+      };
+    }
+    // 默认Boss台词
+    return {
+      start: ['来吧，侦探...', '你不可能赢的...', '迷雾中的对决...', '试试揭开真相？'],
+      correct: ['...', '一格。', '推进。', '...对了'],
+      combo2: ['你太慢了', '我领先了', '差距在拉大'],
+      combo3: ['放弃吧', '你追不上的', '胜负已分'],
+      combo5: ['结束了。', '你输了。'],
+      wrong: ['...', '无聊', '没用的'],
+      steal: ['这格是我的。', '抢下。', '归我。'],
+      stolen: ['！', '可恶', '...'],
+      aiWarning: ['我马上就赢了！', '认输吧！', '你已经没有机会了！'],
+      playerWarning: ['怎么可能...', '不...', '等等！'],
+      encounterNear: ['我在你旁边...', '找到了你...', '来面对我吧！'],
+      encounterMid: ['...越来越近了', '感受到了吗？'],
+      encounterFar: ['...', '......'],
+      win: ['我说过的，你赢不了', '真相永远被迷雾笼罩...', '...你输了'],
+      lose: ['不可能...迷雾被驱散了...', '你...赢了...', '下次...我不会输...'],
+      raceStart: ['开始吧。'],
+    };
+  },
+
+  /**
+   * 设置头像情绪状态
+   * @param {string} who 'boss' | 'player'
+   * @param {string} emotion 情绪状态id
+   * @param {string} anim 可选动画class: bounce/shake/attack/hurt/thinking/menacing/scared/victory/defeated/determined
+   */
+  _setEmotion(who, emotion, anim) {
+    const wrap = document.getElementById(who === 'boss' ? 'boss-avatar-wrap' : 'player-avatar-wrap');
+    const emoEl = document.getElementById(who === 'boss' ? 'boss-emotion' : 'player-emotion');
+    if (!wrap || !emoEl) return;
+
+    const expr = who === 'boss' ? this._bossExpressions[emotion] : this._playerExpressions[emotion];
+    emoEl.textContent = expr || '';
+    emoEl.style.animation = 'none';
+    requestAnimationFrame(() => {
+      emoEl.style.animation = '';
+    });
+
+    // 清除旧动画class
+    wrap.classList.remove('bounce', 'shake', 'attack', 'hurt', 'thinking', 'menacing', 'scared', 'victory', 'defeated', 'determined');
+    if (anim) {
+      wrap.classList.add(anim);
+      // 一次性动画结束后移除
+      if (['bounce', 'shake', 'attack', 'hurt', 'victory', 'defeated', 'determined'].includes(anim)) {
+        setTimeout(() => wrap.classList.remove(anim), 700);
+      }
+    }
+
+    this._charState[who] = emotion;
+  },
+
+  /**
+   * 显示台词气泡
+   * @param {string} who 'boss' | 'player' | 'system'
+   * @param {string} text
+   */
+  _say(who, text) {
+    const zone = document.getElementById('boss-dialogue-zone');
+    if (!zone) return;
+
+    const now = Date.now();
+    if (now - this._charState.lastDialogueTime < 500) return; // 防刷屏
+    this._charState.lastDialogueTime = now;
+
+    const bubble = document.createElement('div');
+    bubble.className = 'boss-dialogue-bubble ' + (who === 'boss' ? 'boss-line' : who === 'player' ? 'player-line' : 'system-line');
+    bubble.textContent = text;
+
+    // 随机垂直位置偏移
+    const vOffset = Math.random() * 20 - 10;
+    bubble.style.marginTop = vOffset + 'px';
+
+    zone.appendChild(bubble);
+
+    // 动画结束后移除
+    setTimeout(() => {
+      if (bubble.parentNode) bubble.parentNode.removeChild(bubble);
+    }, 2800);
+  },
+
+  /**
+   * 随机选择一条台词
+   */
+  _pickLine(arr) {
+    if (!arr || arr.length === 0) return '';
+    return arr[Math.floor(Math.random() * arr.length)];
   },
 
   _updateUI() {
-    const aiPct = Math.min(100, Math.floor((this.aiCount / this.winTarget) * 100));
-    const playerPct = Math.min(100, Math.floor((this.playerCount / this.winTarget) * 100));
+    const aiPct = Math.floor((this.aiCount / this.totalEmpty) * 100);
+    const playerPct = Math.floor((this.playerCount / this.totalEmpty) * 100);
 
     const aiFill = document.getElementById('boss-progress-fill');
     const aiText = document.getElementById('boss-progress-text');
@@ -1075,13 +1472,18 @@ const GuideBattle = {
     if (aiFill) {
       aiFill.style.width = Math.min(100, aiPct) + '%';
       aiFill.style.background = `linear-gradient(90deg, ${this.opponent.color}, ${this.opponent.color}cc)`;
-      // AI进度条脉冲动画
-      aiFill.parentElement?.classList.add('ai-step');
-      setTimeout(() => aiFill.parentElement?.classList.remove('ai-step'), 500);
     }
-    if (aiText) aiText.textContent = Math.floor(this.aiCount / this.totalEmpty * 100) + '%';
-    if (playerFill) playerFill.style.width = Math.min(100, playerPct) + '%';
-    if (playerText) playerText.textContent = Math.floor(this.playerCount / this.totalEmpty * 100) + '%';
+    if (aiText) aiText.textContent = aiPct + '%';
+    if (playerFill) {
+      playerFill.style.width = Math.min(100, playerPct) + '%';
+      // 玩家进度条脉冲动画（通过_lastUiUpdatePlayerCount判断是否刚更新）
+      if (this._charState && this._charState.lastPlayerCount !== this.playerCount) {
+        playerFill.parentElement?.classList.add('player-step');
+        setTimeout(() => playerFill.parentElement?.classList.remove('player-step'), 500);
+      }
+    }
+    if (this._charState) this._charState.lastPlayerCount = this.playerCount;
+    if (playerText) playerText.textContent = playerPct + '%';
 
     const bar = document.getElementById('boss-battle-bar');
     if (bar) {
@@ -1090,6 +1492,22 @@ const GuideBattle = {
       } else {
         bar.classList.remove('boss-leading');
       }
+    }
+
+    // 领先变化提示
+    if (this._charState && this.raceStarted) {
+      const wasPlayerLead = this._charState.playerLeading;
+      const isPlayerLead = playerPct > aiPct;
+      if (wasPlayerLead !== undefined && wasPlayerLead !== isPlayerLead && playerPct > 10 && aiPct > 10) {
+        if (isPlayerLead && !this._charState.leadAnnounced) {
+          this._charState.leadAnnounced = true;
+          this._say('system', this._pickLine(this._systemLines.playerLead));
+        } else if (!isPlayerLead && !this._charState.leadAnnouncedBoss) {
+          this._charState.leadAnnouncedBoss = true;
+          this._say('system', this._pickLine(this._systemLines.bossLead));
+        }
+      }
+      this._charState.playerLeading = isPlayerLead;
     }
   },
 
@@ -1148,6 +1566,24 @@ const GuideBattle = {
     // active会在stop()中设为false
     if (this.aiTimer) { clearTimeout(this.aiTimer); this.aiTimer = null; }
     if (this._fogAnimFrame) { cancelAnimationFrame(this._fogAnimFrame); this._fogAnimFrame = null; }
+
+    // ===== 角色表演：胜负 =====
+    if (result === 'win') {
+      this._setEmotion('player', 'victory', 'victory');
+      this._say('player', this._pickLine(this._playerLines.win));
+      setTimeout(() => {
+        this._setEmotion('boss', 'defeated', 'defeated');
+        this._say('boss', this._pickLine(this._bossLines.lose));
+      }, 500);
+    } else {
+      this._setEmotion('boss', 'victory', 'victory');
+      this._say('boss', this._pickLine(this._bossLines.win));
+      setTimeout(() => {
+        this._setEmotion('player', 'defeated', 'defeated');
+        this._say('player', this._pickLine(this._playerLines.lose));
+      }, 500);
+    }
+
     this._showResult(result);
   },
 
@@ -1463,6 +1899,52 @@ const BOSS_CONFIGS = {
       near: [
         { text: '设局人：来。最后几格，让我看看你三十年等待的价值。', intensity: 'strong' },
         { text: '设局人：终局面前，你我平等。填吧。', intensity: 'strong' }
+      ]
+    }
+  },
+
+  // 第706关：秘术大师 - 设局人完全体
+  706: {
+    name: '设局人·秘术',
+    avatar: 'assets/images/setter-avatar.png',
+    color: '#a855f7',
+    speedMin: 800,
+    speedMax: 1600,
+    mistakeChance: 0.003,
+    fillStyle: 'surround',
+    personality: '秘术全开的设局人，运用X-Wing、剑鱼等高级技巧，速度极快但仍保持大师的优雅',
+    preDialog: [
+      { speaker: '设局人（秘术）', text: '看来你已经读过了全部六卷秘术。' },
+      { speaker: '阿岩', text: '他的气场变了……比终局时还要强！' },
+      { speaker: '设局人（秘术）', text: '这一次，我不会留手。数对、三链数、X翼、剑鱼——我会全部用出来。' },
+      { speaker: '守笼人', text: '小心！这是他真正的实力！' },
+      { speaker: '设局人（秘术）', text: '秘术迷雾，展开。让我看看——你是否真的理解了星辰梭的奥义。' }
+    ],
+    winDialog: [
+      { speaker: '设局人（秘术）', text: '……' },
+      { speaker: '设局人（秘术）', text: '好。好！你不仅学会了秘术——你已经能在实战中运用它们了。' },
+      { speaker: '阿岩', text: '我们……赢了？我们真的赢了设局人完全体？！' },
+      { speaker: '设局人（秘术）', text: '从今天起，「秘术大师」的称号属于你。星辰梭的传承，正式交到你手中。' },
+      { speaker: '守笼人', text: '（微微点头）恭喜你，真正的大师。' }
+    ],
+    warningLines: [
+      '设局人秘术全开了！X-Wing和剑鱼接连出手，快追！',
+      '他在使用剑鱼构型！不能让他完成！'
+    ],
+    encounterLines: {
+      far:  [
+        { text: '设局人：看到那个数对了吗？我看到了。', intensity: 'light' },
+        { text: '设局人：三链数……你还没发现吗？', intensity: 'light' },
+        { text: '设局人：我用X-Wing删去了你的可能性。', intensity: 'light' }
+      ],
+      mid:  [
+        { text: '设局人：剑鱼已经布下，你逃不掉了。', intensity: 'medium' },
+        { text: '设局人：你的每一步，都在我的计算之中。', intensity: 'medium' },
+        { text: '设局人：秘术推演……比你想象得更快。', intensity: 'medium' }
+      ],
+      near: [
+        { text: '设局人：这就是……秘术的尽头。来吧，最后几格！', intensity: 'strong' },
+        { text: '设局人：你让我想起了年轻时的自己。不要让我失望。', intensity: 'strong' }
       ]
     }
   }

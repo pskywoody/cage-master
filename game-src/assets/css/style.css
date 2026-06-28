@@ -1400,7 +1400,7 @@ body {
 
 /* ========== Boss战样式 ========== */
 
-/* Boss对战状态条 */
+/* Boss对战状态条 - 升级版Q版头像表演区 */
 #boss-battle-bar {
   position: fixed;
   top: 0;
@@ -1408,14 +1408,15 @@ body {
   right: 0;
   z-index: 400;
   background: linear-gradient(180deg, rgba(15, 23, 42, 0.97) 0%, rgba(30, 41, 59, 0.95) 100%);
-  backdrop-filter: blur(8px);
-  padding: 8px 12px;
+  backdrop-filter: blur(10px);
+  padding: 6px 10px 6px 10px;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
-  gap: 8px;
+  gap: 6px;
   border-bottom: 2px solid rgba(99, 102, 241, 0.3);
-  animation: bossBarSlideDown 0.4s ease-out;
+  animation: bossBarSlideDown 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  min-height: 72px;
 }
 
 @keyframes bossBarSlideDown {
@@ -1433,39 +1434,241 @@ body {
   to { box-shadow: 0 2px 20px rgba(239, 68, 68, 0.5); }
 }
 
-.boss-info, .player-info {
+/* 台词飘过区域 */
+.boss-dialogue-zone {
+  flex: 1;
+  position: relative;
+  height: 60px;
+  min-width: 0;
+  overflow: hidden;
   display: flex;
   align-items: center;
-  gap: 8px;
-  flex: 1;
+  justify-content: center;
+}
+.boss-dialogue-bubble {
+  position: absolute;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  max-width: 180px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  animation: dialogueFloat 2.8s ease-out forwards;
+  pointer-events: none;
+  z-index: 10;
+  line-height: 1.4;
+}
+.boss-dialogue-bubble.boss-line {
+  background: linear-gradient(135deg, #dc2626, #991b1b);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(220, 38, 38, 0.5);
+  left: 10%;
+  transform-origin: left center;
+}
+.boss-dialogue-bubble.player-line {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.5);
+  right: 10%;
+  transform-origin: right center;
+}
+.boss-dialogue-bubble.system-line {
+  background: linear-gradient(135deg, #7c3aed, #5b21b6);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(124, 58, 237, 0.5);
+  left: 50%;
+  transform: translateX(-50%);
+}
+@keyframes dialogueFloat {
+  0% { opacity: 0; transform: translateY(10px) scale(0.6); }
+  12% { opacity: 1; transform: translateY(-2px) scale(1.08); }
+  20% { transform: translateY(0) scale(1); }
+  75% { opacity: 1; transform: translateY(-4px) scale(1); }
+  100% { opacity: 0; transform: translateY(-14px) scale(0.9); }
+}
+.boss-dialogue-bubble.boss-line { animation-name: dialogueFloatBoss; }
+.boss-dialogue-bubble.player-line { animation-name: dialogueFloatPlayer; }
+@keyframes dialogueFloatBoss {
+  0% { opacity: 0; transform: translateY(10px) translateX(-10px) scale(0.6); }
+  12% { opacity: 1; transform: translateY(-2px) translateX(0) scale(1.08); }
+  20% { transform: translateY(0) translateX(0) scale(1); }
+  75% { opacity: 1; transform: translateY(-4px) translateX(6px) scale(1); }
+  100% { opacity: 0; transform: translateY(-14px) translateX(12px) scale(0.9); }
+}
+@keyframes dialogueFloatPlayer {
+  0% { opacity: 0; transform: translateY(10px) translateX(10px) scale(0.6); }
+  12% { opacity: 1; transform: translateY(-2px) translateX(0) scale(1.08); }
+  20% { transform: translateY(0) translateX(0) scale(1); }
+  75% { opacity: 1; transform: translateY(-4px) translateX(-6px) scale(1); }
+  100% { opacity: 0; transform: translateY(-14px) translateX(-12px) scale(0.9); }
+}
+
+.boss-info, .player-info {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  flex: 0 0 auto;
   min-width: 0;
+  max-width: 130px;
 }
 
 .player-info {
-  flex-direction: row-reverse;
+  flex-direction: row;
+}
+
+/* Q版头像容器 */
+.q-avatar-wrap {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
 }
 
 .boss-avatar, .player-avatar {
-  width: 38px;
-  height: 38px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 20px;
+  font-size: 28px;
   flex-shrink: 0;
-  overflow: hidden;
-  border: 2px solid rgba(255,255,255,0.2);
+  border: 3px solid rgba(255,255,255,0.3);
+  transition: transform 0.2s ease;
+  position: relative;
 }
 
 .boss-avatar {
   background: linear-gradient(135deg, #7f1d1d, #450a0a);
-  box-shadow: 0 0 10px rgba(239, 68, 68, 0.4);
+  box-shadow: 0 0 14px rgba(239, 68, 68, 0.5), inset 0 -2px 6px rgba(0,0,0,0.3);
 }
 
 .player-avatar {
-  background: linear-gradient(135deg, #1e3a5f, #0f172a);
-  border-color: rgba(34, 197, 94, 0.4);
+  background: linear-gradient(135deg, #1e3a8a, #1e40af);
+  border-color: rgba(96, 165, 250, 0.6);
+  box-shadow: 0 0 14px rgba(59, 130, 246, 0.5), inset 0 -2px 6px rgba(0,0,0,0.3);
+}
+
+/* 情绪图标 - 飘在头像右上角 */
+.q-emotion {
+  position: absolute;
+  top: -6px;
+  right: -8px;
+  font-size: 18px;
+  z-index: 5;
+  animation: emotionPop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  filter: drop-shadow(0 1px 3px rgba(0,0,0,0.5));
+}
+@keyframes emotionPop {
+  0% { transform: scale(0) rotate(-20deg); }
+  70% { transform: scale(1.3) rotate(5deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+
+/* 头像动画状态 */
+.q-avatar-wrap.bounce .boss-avatar,
+.q-avatar-wrap.bounce .player-avatar {
+  animation: avatarBounce 0.5s ease;
+}
+@keyframes avatarBounce {
+  0%, 100% { transform: translateY(0); }
+  30% { transform: translateY(-8px) scale(1.1); }
+  60% { transform: translateY(2px) scale(0.95); }
+}
+
+.q-avatar-wrap.shake .boss-avatar,
+.q-avatar-wrap.shake .player-avatar {
+  animation: avatarShake 0.5s ease;
+}
+@keyframes avatarShake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-5px) rotate(-8deg); }
+  40% { transform: translateX(5px) rotate(8deg); }
+  60% { transform: translateX(-4px) rotate(-5deg); }
+  80% { transform: translateX(4px) rotate(5deg); }
+}
+
+.q-avatar-wrap.attack .boss-avatar,
+.q-avatar-wrap.attack .player-avatar {
+  animation: avatarAttack 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+@keyframes avatarAttack {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.25); filter: brightness(1.5); }
+  100% { transform: scale(1); }
+}
+
+.q-avatar-wrap.hurt .boss-avatar,
+.q-avatar-wrap.hurt .player-avatar {
+  animation: avatarHurt 0.5s ease;
+  filter: brightness(0.7) saturate(0.5);
+}
+@keyframes avatarHurt {
+  0%, 100% { transform: translateX(0); filter: brightness(0.7) saturate(0.5); }
+  20% { transform: translateX(-6px) rotate(-10deg); }
+  40% { transform: translateX(6px) rotate(10deg); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(4px); }
+}
+
+.q-avatar-wrap.thinking .boss-avatar,
+.q-avatar-wrap.thinking .player-avatar {
+  animation: avatarThinking 2s ease-in-out infinite;
+}
+@keyframes avatarThinking {
+  0%, 100% { transform: rotate(-3deg); }
+  50% { transform: rotate(3deg); }
+}
+
+.q-avatar-wrap.menacing .boss-avatar {
+  animation: avatarMenace 1.2s ease-in-out infinite;
+  box-shadow: 0 0 20px rgba(239, 68, 68, 0.8), inset 0 -2px 6px rgba(0,0,0,0.3);
+}
+@keyframes avatarMenace {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+}
+
+.q-avatar-wrap.scared .boss-avatar,
+.q-avatar-wrap.scared .player-avatar {
+  animation: avatarScared 0.3s ease-in-out infinite;
+}
+@keyframes avatarScared {
+  0%, 100% { transform: translateX(0) scale(0.95); }
+  50% { transform: translateX(2px) scale(1); }
+}
+
+.q-avatar-wrap.victory .boss-avatar,
+.q-avatar-wrap.victory .player-avatar {
+  animation: avatarVictory 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+@keyframes avatarVictory {
+  0% { transform: scale(1) rotate(0); }
+  50% { transform: scale(1.3) rotate(-10deg); }
+  100% { transform: scale(1.15) rotate(5deg); }
+}
+
+.q-avatar-wrap.defeated .boss-avatar,
+.q-avatar-wrap.defeated .player-avatar {
+  animation: avatarDefeated 0.8s ease forwards;
+  filter: grayscale(0.7) brightness(0.6);
+  transform: rotate(15deg);
+}
+@keyframes avatarDefeated {
+  0% { transform: rotate(0) scale(1); filter: grayscale(0) brightness(1); }
+  100% { transform: rotate(15deg) scale(0.85); filter: grayscale(0.7) brightness(0.6); }
+}
+
+.q-avatar-wrap.determined .player-avatar {
+  animation: avatarDetermined 0.6s ease;
+  box-shadow: 0 0 20px rgba(34, 197, 94, 0.7), inset 0 -2px 6px rgba(0,0,0,0.3);
+}
+@keyframes avatarDetermined {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.15); box-shadow: 0 0 30px rgba(34, 197, 94, 1); }
+  100% { transform: scale(1); }
 }
 
 .boss-detail, .player-detail {
@@ -1531,7 +1734,7 @@ body {
 
 /* 对战模式下给顶部留出空间 */
 body.boss-battle-active {
-  padding-top: 56px;
+  padding-top: 78px;
 }
 
 /* Boss战结果弹窗 */
@@ -1852,16 +2055,6 @@ body.boss-battle-active {
 }
 
 /* ========== 进度条增强 ========== */
-#boss-battle-bar {
-  backdrop-filter: blur(10px);
-  background: rgba(15, 23, 42, 0.9) !important;
-}
-.boss-avatar {
-  box-shadow: 0 0 12px rgba(239,68,68,0.4);
-}
-.player-info .boss-avatar {
-  box-shadow: 0 0 12px rgba(37,99,235,0.4);
-}
 .boss-progress-fill {
   transition: width 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
@@ -1876,6 +2069,29 @@ body.boss-battle-active {
 }
 .boss-progress-bar.ai-step .boss-progress-fill {
   animation: progressPulse 0.5s ease-out;
+}
+/* 玩家填格时进度条闪光 */
+@keyframes playerProgressPulse {
+  0% { box-shadow: 0 0 0 0 rgba(59,130,246,0.6); }
+  100% { box-shadow: 0 0 0 8px rgba(59,130,246,0); }
+}
+.boss-progress-bar.player-step .player-progress-fill {
+  animation: playerProgressPulse 0.5s ease-out;
+}
+
+/* Boss名字区域微调 */
+.boss-detail, .player-detail {
+  flex: 1;
+  min-width: 0;
+  padding-top: 2px;
+}
+.boss-name {
+  color: #fca5a5;
+  text-shadow: 0 0 6px rgba(239,68,68,0.5);
+}
+.player-name {
+  color: #93c5fd;
+  text-shadow: 0 0 6px rgba(59,130,246,0.5);
 }
 
 /* 60%预警增强 */
@@ -2071,4 +2287,76 @@ body.boss-battle-active {
 .tip-close:hover {
   background: rgba(255,255,255,0.2);
   color: #fff;
+}
+/* ========== 三阶段状态视觉反馈 ========== */
+/* 破局阶段：四周暗化聚焦 */
+.phase-vignette {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 50;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+  background: radial-gradient(ellipse at center, transparent 30%, rgba(0,0,0,0.55) 80%);
+}
+.phase-vignette.active {
+  opacity: 1;
+}
+/* 破局阶段：棋盘脉冲呼吸 */
+@keyframes breakthrough-pulse {
+  0%, 100% { filter: drop-shadow(0 0 8px rgba(251,191,36,0.3)); }
+  50% { filter: drop-shadow(0 0 20px rgba(251,191,36,0.7)); }
+}
+.phase-breakthrough #gameCanvas {
+  animation: breakthrough-pulse 2.5s ease-in-out infinite;
+}
+/* 收官阶段：粒子光效 */
+@keyframes finishing-glow {
+  0% { box-shadow: 0 0 0 0 rgba(34,197,94,0); }
+  50% { box-shadow: 0 0 30px 10px rgba(34,197,94,0.3); }
+  100% { box-shadow: 0 0 0 0 rgba(34,197,94,0); }
+}
+.phase-finishing #gameCanvas {
+  animation: finishing-glow 3s ease-in-out infinite;
+}
+/* 阶段指示器 */
+.phase-indicator {
+  position: fixed;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-40px);
+  background: rgba(15,23,42,0.85);
+  color: #fbbf24;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  z-index: 100;
+  transition: transform 0.5s cubic-bezier(0.34,1.56,0.64,1), opacity 0.3s;
+  opacity: 0;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(251,191,36,0.3);
+}
+.phase-indicator.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+.phase-indicator.finishing {
+  color: #4ade80;
+  border-color: rgba(74,222,128,0.3);
+}
+/* 收官撒花粒子 */
+.finish-sparkle {
+  position: fixed;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 200;
+  animation: sparkle-fall 1.5s ease-out forwards;
+}
+@keyframes sparkle-fall {
+  0% { opacity: 1; transform: translateY(0) scale(1); }
+  100% { opacity: 0; transform: translateY(120px) scale(0); }
 }

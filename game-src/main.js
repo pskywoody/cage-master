@@ -88,10 +88,15 @@ window.onload = function() {
     window.renderer.setTheme(1);
   }
 
-  // 2. 从 URL 读取关卡 ID
-  const idParam = params.get('id');
+  // 2. 从 URL 读取关卡 ID（兼容 ?id= 和 ?levelId= 两种参数）
+  const idParam = params.get('id') || params.get('levelId');
   if (idParam) {
     currentLevelId = parseInt(idParam) || 1;
+  }
+  const diffParam = params.get('difficulty');
+  if (diffParam) {
+    const diffMap = { easy: '简单', medium: '中等', hard: '困难' };
+    currentLevelDifficulty = diffMap[diffParam] || diffParam;
   }
 
   // 3. 加载用户设置
@@ -267,10 +272,19 @@ function bindTimerAndPause() {
   document.getElementById('timer').addEventListener('click', togglePause);
   // 暂停蒙层的继续按钮
   document.getElementById('btn-resume').addEventListener('click', togglePause);
-  // 返回关卡按钮
+  // 返回按钮
   document.getElementById('btn-back').addEventListener('click', () => {
     saveProgress();
-    window.location.href = 'levels.html';
+    // 根据来源决定返回位置
+    const params = new URLSearchParams(window.location.search);
+    const fromMode = params.get('from') || params.get('difficulty');
+    if (fromMode) {
+      // 从自由模式选关页来，返回自由模式
+      window.location.href = 'free-play.html';
+    } else {
+      // 默认返回主菜单
+      window.location.href = 'menu.html';
+    }
   });
 }
 
@@ -399,11 +413,22 @@ function markComplete() {
 // ---------- 通关弹窗按钮绑定 ----------
 function bindCompleteOverlay() {
   document.getElementById('btn-complete-back').addEventListener('click', () => {
-    window.location.href = 'levels.html';
+    const params = new URLSearchParams(window.location.search);
+    const fromMode = params.get('from') || params.get('difficulty');
+    if (fromMode) {
+      window.location.href = 'free-play.html';
+    } else {
+      window.location.href = 'menu.html';
+    }
   });
 
   document.getElementById('btn-complete-next').addEventListener('click', () => {
-    window.location.href = 'index.html?id=' + (currentLevelId + 1);
+    const params = new URLSearchParams(window.location.search);
+    const diff = params.get('difficulty');
+    const nextId = parseInt(currentLevelId) + 1;
+    let url = 'index.html?id=' + nextId;
+    if (diff) url += '&difficulty=' + diff;
+    window.location.href = url;
   });
 }
 
@@ -714,53 +739,98 @@ function handleNumberInput(num) {
 }
 
 // 提示相关状态
-let hintStep = 0; // 0: 无提示, 1: 只显示位置, 2: 显示数字
+let hintStep = 0;
 let currentHint = null;
 
 /**
- * 处理提示按钮点击
- * 第一次点击：高亮提示格子
- * 第二次点击：显示提示数字
- * 第三次点击：清除提示
+ * 处理提示按钮点击（三层递进式）
+ * 第1次：仅高亮目标格
+ * 第2次：技巧名称+关联区域高亮+详细说明
+ * 第3次：显示答案数字
+ * 第4次：清除提示
  */
 function handleHint() {
   hintStep++;
 
   if (hintStep === 1) {
-    // 第一次：只显示位置
-    currentHint = gameBoard.showHint(false);
+    currentHint = gameBoard.showHint(1);
     if (!currentHint) {
       hintStep = 0;
-      showToast('暂时没有可用的提示');
+      showToast('🔍 当前盘面没有明显的可推进步骤，试试其他方法，或者用45法则计算器');
       return;
     }
-    showToast(`💡 ${currentHint.techniqueName}：${currentHint.description}`);
+    showToast('💡 第一层提示：仔细看看这个格子（绿框标记），它有什么特别之处？');
   } else if (hintStep === 2) {
-    // 第二次：显示数字
-    currentHint = gameBoard.showHint(true);
+    currentHint = gameBoard.showHint(2);
     if (currentHint) {
-      showToast(`答案是 ${currentHint.num}`);
+      const techMsg = buildTechniqueMessage(currentHint);
+      showToast(techMsg, 4000);
+    }
+  } else if (hintStep === 3) {
+    currentHint = gameBoard.showHint(3);
+    if (currentHint) {
+      if (currentHint.num !== null && currentHint.num !== undefined) {
+        showToast(`🎯 答案是 ${currentHint.num}，填入后会自动排除相关候选数`);
+      } else {
+        showToast(`📖 这一步需要用到「${currentHint.techniqueName}」技巧，仔细观察高亮区域中的紫色标记格`, 4000);
+      }
     }
   } else {
-    // 第三次：清除提示
     gameBoard.clearHints();
     hintStep = 0;
     currentHint = null;
   }
 
-  refreshBoard();
+  _renderBoardForHint();
+}
+
+/** 提示系统专用的轻量渲染（不触发refreshBoard的自动清提示逻辑） */
+function _renderBoardForHint() {
+  gameBoard.checkConflicts();
+  renderer.render(gameBoard);
+  updateNumberButtons();
+}
+
+/**
+ * 根据hint对象构建第二层技巧说明消息
+ */
+function buildTechniqueMessage(hint) {
+  const tech = hint.technique;
+  const num = hint.num;
+  const labels = 'ABCDEFGHI';
+  const cellName = `${labels[hint.r]}${hint.c + 1}`;
+
+  switch (tech) {
+    case 'nakedSingle':
+      return `📘 第二层：【显性唯一（裸单）】\n${cellName}格所在的行、列、宫、笼里已经出现了其他所有数字，只有 ${num} 没出现过，所以只能填 ${num}。\n👉 看金色高亮区域：里面已有的数字凑齐了，只剩这一个数。`;
+    case 'hiddenSingle':
+      return `📘 第二层：【隐性唯一（隐单）】\n${hint.description}。仔细看相关区域，你会发现数字${num}只能放在${cellName}。`;
+    case 'nakedPair':
+      if (hint.pairCells && hint.pairNums) {
+        const [p1, p2] = hint.pairCells;
+        const p1Name = `${labels[p1[0]]}${p1[1]+1}`;
+        const p2Name = `${labels[p2[0]]}${p2[1]+1}`;
+        let msg = `📘 第二层：【显性数对】\n${p1Name}和${p2Name}都只能填 ${hint.pairNums[0]} 或 ${hint.pairNums[1]}（紫色标记）。这两个数被"锁定"了，可以排除同区域其他格子的这两个数字。`;
+        if (num) msg += `\n排除后，${cellName}就只剩 ${num}！`;
+        return msg;
+      }
+      return `📘 ${hint.techniqueName}：${hint.description}`;
+    default:
+      return `📘 ${hint.techniqueName}：${hint.description}`;
+  }
 }
 
 /**
  * 简单的 toast 提示
  */
 let toastTimer = null;
-function showToast(message) {
+function showToast(message, duration = 2500) {
   let toast = document.getElementById('game-toast');
   if (!toast) {
     toast = document.createElement('div');
     toast.id = 'game-toast';
     toast.className = 'game-toast';
+    toast.style.whiteSpace = 'pre-line';
     document.body.appendChild(toast);
   }
 
@@ -770,7 +840,7 @@ function showToast(message) {
   if (toastTimer) clearTimeout(toastTimer);
   toastTimer = setTimeout(() => {
     toast.classList.remove('show');
-  }, 2500);
+  }, duration);
 }
 
 // ---------- 工具栏按钮 ----------
@@ -812,6 +882,31 @@ function bindToolbar() {
       candidateBtn.style.color = '';
     }
   });
+
+  // 自动填充候选数（新手辅助）
+  const autoCandsBtn = document.getElementById('btn-auto-cands');
+  if (autoCandsBtn) {
+    autoCandsBtn.addEventListener('click', () => {
+      if (isPaused) return;
+      const count = gameBoard.autoFillCandidates();
+      if (count > 0) {
+        showToast(`🔢 已自动为 ${count} 个空格填入理论候选数`);
+        // 确保切换到候选模式显示候选数
+        if (gameBoard.inputMode !== 'candidate') {
+          gameBoard.inputMode = 'candidate';
+          if (candidateBtn) {
+            candidateBtn.style.backgroundColor = '#3b82f6';
+            candidateBtn.style.color = 'white';
+          }
+        }
+        gameBoard.checkConflicts();
+        refreshBoard();
+        Storage.logAction('autoFillCandidates', { count });
+      } else {
+        showToast('🔢 没有需要填充候选的空格');
+      }
+    });
+  }
 
   // 提示按钮
   document.getElementById('btn-hint').addEventListener('click', () => {

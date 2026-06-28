@@ -506,6 +506,10 @@ class GuideManager {
       if (!result.config) {
         result.config = {};
       }
+      // enter_phase 类型：把 phase 参数移入 config
+      if (result.type === 'enter_phase' && result.phase) {
+        result.config.phase = result.phase;
+      }
       // targetCell -> targetR/targetC
       if (result.targetCell && Array.isArray(result.targetCell)) {
         result.config.targetR = result.targetCell[0];
@@ -841,6 +845,11 @@ class GuideManager {
           this._showBadgeAward(trigger, config, eventData);
           break;
 
+        case 'enter_phase':
+          // 进入指定阶段（breakthrough/finishing）
+          this._triggerEnterPhase(trigger, config, eventData);
+          break;
+
         default:
           console.warn('GuideManager: 未知触发器类型', type);
       }
@@ -950,6 +959,34 @@ class GuideManager {
     console.log('[GuideManager] badge_award 触发器触发（待实现）', trigger.id, config);
   }
 
+  /**
+   * 触发器：进入指定阶段
+   * config.phase = 'breakthrough' | 'finishing'
+   */
+  _triggerEnterPhase(trigger, config, eventData) {
+    const phase = config.phase;
+    console.log(`[GuideManager] enter_phase 触发: ${phase}`, trigger.id);
+    // 通过全局回调调用guide.js中的阶段切换函数
+    if (phase === 'breakthrough' && typeof window.enterBreakthrough === 'function') {
+      window.enterBreakthrough({ auto: false, reason: 'scripted', triggerId: trigger.id });
+    } else if (phase === 'finishing' && typeof window.enterFinishing === 'function') {
+      window.enterFinishing();
+    }
+  }
+
+  /**
+   * 阶段变化回调（由guide.js调用）
+   */
+  onPhaseChange(phase, opts) {
+    try {
+      if (this._eventListeners && this._eventListeners[phase]) {
+        this._eventListeners[phase].forEach(cb => cb({ phase, ...opts }));
+      }
+    } catch (e) {
+      console.warn('[GuideManager] phaseChange event error:', e);
+    }
+  }
+
   // ---------- 外部 API ----------
 
   /**
@@ -966,12 +1003,18 @@ class GuideManager {
    * @param {number} r - 行
    * @param {number} c - 列
    * @param {number} num - 填入的数字
+   * @param {boolean} isCorrect - 是否填对（与solution对比）
    */
-  onNumberFilled(r, c, num) {
-    this._numberFillCount++;
-    this._stuckTimer = 0;
-    console.log(`[GuideManager] onNumberFilled ${r},${c}=${num}  (第${this._numberFillCount}次填数)`);
-    this._checkTriggers('numberFilled', { r, c, num });
+  onNumberFilled(r, c, num, isCorrect) {
+    // 只有正确填数才计入进度、重置卡壳计时器
+    if (isCorrect) {
+      this._numberFillCount++;
+      this._stuckTimer = 0;
+      console.log(`[GuideManager] onNumberFilled ${r},${c}=${num} ✓正确 (第${this._numberFillCount}次正确填数)`);
+    } else {
+      console.log(`[GuideManager] onNumberFilled ${r},${c}=${num} ✗错误 (不计入进度)`);
+    }
+    this._checkTriggers('numberFilled', { r, c, num, isCorrect: !!isCorrect });
   }
 
   /**
@@ -1004,8 +1047,8 @@ class GuideManager {
    * 玩家出现冲突时调用（填错数字）
    */
   onConflict() {
-    this._stuckTimer = 0;
-    console.log('⚠️ [GuideManager] onConflict 触发');
+    // 填错数字不重置卡壳计时器——冲突本身就是卡壳的信号
+    console.log('⚠️ [GuideManager] onConflict 触发 (卡壳计时器继续)');
     this._checkTriggers('conflict');
   }
 
@@ -1052,12 +1095,20 @@ class GuideManager {
   update(deltaTime) {
     if (!this._isActive) return;
 
-    this._stuckTimer += deltaTime;
+    // 只有在玩家至少填过一个数字后才开始累计卡壳时间
+    // （开局观察阶段不算卡壳）
+    if (this._numberFillCount > 0) {
+      this._stuckTimer += deltaTime;
+    }
 
     // 检查卡壳触发器
     for (const trigger of this.triggers) {
       if (!trigger.condition || trigger.condition.type !== 'onStuckForSeconds') continue;
       if (trigger.once && trigger.id && this._hasTriggered(trigger.id)) continue;
+
+      // 如果触发器有minFillCount要求，检查是否满足
+      const minFill = trigger.condition.minFillCount || 0;
+      if (this._numberFillCount < minFill) continue;
 
       const seconds = trigger.condition.seconds || 30;
       if (this._stuckTimer >= seconds) {

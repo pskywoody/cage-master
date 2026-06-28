@@ -59,8 +59,11 @@
     </div>
   </div>
 
+  <script src="utils/audio.js?v=25"></script>
   <script src="utils/storage.js"></script>
   <script>
+    // 初始化音频
+    if (typeof AudioManager !== 'undefined') { AudioManager.init(); }
     let allLevels = [];
     let currentFilter = 'all';
 

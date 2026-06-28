@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>教学模式 · 章节选择</title>
+  <title>故事模式 · 章节选择</title>
   <link rel="icon" type="image/jpeg" href="assets/images/favicon.jpg" />
   <link rel="stylesheet" href="assets/css/style.css" />
   <style>
@@ -194,9 +194,9 @@
 <body>
   <div id="app">
     <div id="chapters-container">
-      <a href="levels.html" id="back-link">← 返回</a>
-      <h1>教学模式</h1>
-      <p id="chapters-subtitle">从零开始学习杀手数独</p>
+      <a href="menu.html" id="back-link">← 返回主菜单</a>
+      <h1>📖 故事模式</h1>
+      <p id="chapters-subtitle">跟随守笼人与阿岩，破解杀手数独的秘术档案</p>
 
       <div id="chapters-list">
         <div style="text-align:center; padding: 40px; color: #94a3b8;">加载章节中...</div>
@@ -204,8 +204,11 @@
     </div>
   </div>
 
+  <script src="utils/audio.js?v=25"></script>
   <script src="utils/storage.js"></script>
   <script>
+    // 初始化音频
+    if (typeof AudioManager !== 'undefined') { AudioManager.init(); }
     let allChapters = [];
 
     // 加载章节列表
@@ -268,7 +271,10 @@
           badgeId: 'badge_c5_ultimate', badgeName: '精英侦探', unlockRequirement: 1, levels: [] },
         { chapterId: 6, title: '大师之路', subtitle: '大师篇 · 9x9', icon: '👑', color: '#ec4899',
           description: '传说级难度，只有真正的侦探大师才能通关。',
-          badgeId: 'badge_c6_master', badgeName: '大师侦探', unlockRequirement: 1, levels: [] }
+          badgeId: 'badge_c6_master', badgeName: '大师侦探', unlockRequirement: 1, levels: [] },
+        { chapterId: 7, title: '秘术档案', subtitle: '大师篇 · 高级技巧', icon: '🔮', color: '#a855f7',
+          description: '守笼人发现了设局人留下的六卷秘术手稿，记载着数对、X-Wing、剑鱼构型等高级推演术。',
+          badgeId: 'badge_c7_master', badgeName: '秘术大师', unlockRequirement: 6, levels: [] }
       ];
     }
 

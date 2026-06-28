@@ -20,7 +20,9 @@ class Cell {
     this.highlightOpacity = 0;
 
     // 提示状态
-    this.isHintCell = false;   // 是否是提示格子
+    this.isHintCell = false;   // 是否是提示格子（绿框目标格）
+    this.isHintRegion = false; // 是否是提示关联区域（行/列/宫/笼半透明高亮）
+    this.isHintPair = false;   // 是否是数对/链的关键格（需要特殊高亮）
     this.hintNumber = null;    // 提示的数字（null表示只提示位置，不提示数字）
 
     // 选中状态
@@ -614,6 +616,17 @@ class Board {
       return;
     }
 
+    // 自动填充候选的撤销
+    if (last.type === 'autoFillCandidates') {
+      for (const { r, c, oldCandidates } of last.cells) {
+        const cell = this.cells[r][c];
+        if (cell.fillNum === null && cell.fixedNum === null) {
+          cell.candidates = new Set(oldCandidates);
+        }
+      }
+      return;
+    }
+
     // 批量擦除的撤销
     if (last.type === 'batchErase') {
       for (const { r, c, oldFill, oldCandidates } of last.cells) {
@@ -670,6 +683,60 @@ class Board {
     } else {
       cell.candidates.add(num);
     }
+  }
+
+  /**
+   * 自动填充所有空格的理论候选数（新手辅助功能）
+   * 基于行/列/宫/笼的已填数字做基础排除，不使用高级技巧
+   * @returns {number} 填充的格子数量
+   */
+  autoFillCandidates() {
+    // 先构建当前grid状态
+    const grid = [];
+    for (let r = 0; r < this.size; r++) {
+      grid[r] = [];
+      for (let c = 0; c < this.size; c++) {
+        const cell = this.cells[r][c];
+        grid[r][c] = cell.fixedNum || cell.fillNum || 0;
+      }
+    }
+
+    let filledCount = 0;
+    const historyEntry = {
+      type: 'autoFillCandidates',
+      cells: []
+    };
+
+    for (let r = 0; r < this.size; r++) {
+      for (let c = 0; c < this.size; c++) {
+        const cell = this.cells[r][c];
+        if (cell.fixedNum || cell.fillNum) continue; // 已有数字的格子跳过
+
+        const oldCands = new Set(cell.candidates);
+        const cands = this._getCellCandidates(grid, r, c);
+
+        // 保存历史
+        historyEntry.cells.push({
+          r, c,
+          oldFill: cell.fillNum,
+          oldCandidates: oldCands
+        });
+
+        // 设置候选数（合并已有，不是替换——保留玩家手动标的额外候选）
+        // 但对于自动填充，我们直接设置为理论候选，这样最准确
+        cell.candidates.clear();
+        for (const n of cands) {
+          cell.candidates.add(n);
+        }
+        filledCount++;
+      }
+    }
+
+    if (historyEntry.cells.length > 0) {
+      this.history.push(historyEntry);
+    }
+
+    return filledCount;
   }
 
   /**
@@ -837,7 +904,11 @@ class Board {
     const hidden = this._findHiddenSingleHint(grid);
     if (hidden) return hidden;
 
-    return null; // 暂时只支持基础提示，45法则提示后续再加
+    // 3. 显性数对（Naked Pair）：同行/列/宫两个格子恰有相同两个候选
+    const nakedPair = this._findNakedPairHint(grid);
+    if (nakedPair) return nakedPair;
+
+    return null; // 45法则提示后续再加
   }
 
   /**
@@ -849,12 +920,46 @@ class Board {
         if (grid[r][c] !== 0) continue;
         const candidates = this._getCellCandidates(grid, r, c);
         if (candidates.length === 1) {
+          // 裸单：高亮同行+同列+同宫，让玩家看到"其他格子已经占满了所有数字"
+          const highlightSet = new Set();
+          const addCell = (rr, cc) => {
+            if (rr >= 0 && rr < this.size && cc >= 0 && cc < this.size) {
+              highlightSet.add(`${rr},${cc}`);
+            }
+          };
+          // 同行
+          for (let cc = 0; cc < this.size; cc++) addCell(r, cc);
+          // 同列
+          for (let rr = 0; rr < this.size; rr++) addCell(rr, c);
+          // 同宫
+          const { boxW, boxH } = this.getBoxSize();
+          const br = Math.floor(r / boxH) * boxH;
+          const bc = Math.floor(c / boxW) * boxW;
+          for (let dr = 0; dr < boxH; dr++)
+            for (let dc = 0; dc < boxW; dc++)
+              addCell(br + dr, bc + dc);
+          // 同笼
+          const cell = this.cells[r][c];
+          if (cell.cageId !== null) {
+            for (let rr = 0; rr < this.size; rr++) {
+              for (let cc = 0; cc < this.size; cc++) {
+                if (this.cells[rr][cc].cageId === cell.cageId) addCell(rr, cc);
+              }
+            }
+          }
+          const highlightCells = [];
+          for (const key of highlightSet) {
+            const [rr, cc] = key.split(',').map(Number);
+            highlightCells.push([rr, cc]);
+          }
           return {
             r, c,
             num: candidates[0],
             technique: 'nakedSingle',
-            techniqueName: '显单',
-            description: '这个格子只有一个可能的数字'
+            techniqueName: '显性唯一（裸单）',
+            description: '这个格子的同行、同列、同宫、同笼已经出现了其他所有数字，只剩一个候选',
+            regionType: 'all',
+            highlightCells
           };
         }
       }
@@ -866,6 +971,9 @@ class Board {
    * 隐单提示：检查行/列/宫/笼中，某个数字只出现在一个格子
    */
   _findHiddenSingleHint(grid) {
+    const { boxW, boxH } = this.getBoxSize();
+    const labels = 'ABCDEFGHI';
+
     // 行检查
     for (let r = 0; r < this.size; r++) {
       const posMap = new Map();
@@ -883,8 +991,11 @@ class Board {
             r, c: cols[0],
             num,
             technique: 'hiddenSingle',
-            techniqueName: '隐单',
-            description: `第${r + 1}行中，数字${num}只能填在这里`
+            techniqueName: '隐性唯一（隐单）',
+            description: `${labels[r]}行中，数字${num}只能填在这个格子`,
+            regionType: 'row',
+            regionIndex: r,
+            highlightCells: this._getRowCells(r)
           };
         }
       }
@@ -907,15 +1018,17 @@ class Board {
             r: rows[0], c,
             num,
             technique: 'hiddenSingle',
-            techniqueName: '隐单',
-            description: `第${c + 1}列中，数字${num}只能填在这里`
+            techniqueName: '隐性唯一（隐单）',
+            description: `第${c + 1}列中，数字${num}只能填在这个格子`,
+            regionType: 'col',
+            regionIndex: c,
+            highlightCells: this._getColCells(c)
           };
         }
       }
     }
 
     // 宫检查
-    const { boxW, boxH } = this.getBoxSize();
     const boxRows = Math.ceil(this.size / boxH);
     const boxCols = Math.ceil(this.size / boxW);
     for (let br = 0; br < boxRows; br++) {
@@ -933,12 +1046,16 @@ class Board {
         }
         for (const [num, positions] of posMap) {
           if (positions.length === 1) {
+            const boxNum = br * boxCols + bc + 1;
             return {
               r: positions[0][0], c: positions[0][1],
               num,
               technique: 'hiddenSingle',
-              techniqueName: '隐单',
-              description: `第${br * boxCols + bc + 1}宫中，数字${num}只能填在这里`
+              techniqueName: '隐性唯一（隐单）',
+              description: `第${boxNum}宫中，数字${num}只能填在这个格子`,
+              regionType: 'box',
+              regionIndex: br * boxCols + bc,
+              highlightCells: this._getBoxCells(br, bc, boxH, boxW)
             };
           }
         }
@@ -962,14 +1079,141 @@ class Board {
             r: positions[0][0], c: positions[0][1],
             num,
             technique: 'hiddenSingle',
-            techniqueName: '隐单',
-            description: `这个笼子中，数字${num}只能填在这里`
+            techniqueName: '隐性唯一（隐单）',
+            description: `和为${cage.sum}的笼子中，数字${num}只能填在这里`,
+            regionType: 'cage',
+            regionIndex: cage.id,
+            highlightCells: cage.cells.slice()
           };
         }
       }
     }
 
     return null;
+  }
+
+  /**
+   * 显性数对提示：在同一行/列/宫中，两个格子恰好有相同的两个候选数
+   * 找到后，模拟排除，返回被排除后能确定的那个格子
+   */
+  _findNakedPairHint(grid) {
+    const { boxW, boxH } = this.getBoxSize();
+    const labels = 'ABCDEFGHI';
+
+    // 检查一个单元（行/列/宫/笼）内是否有显性数对
+    const checkUnit = (cells, unitType, unitIndex) => {
+      // 获取该单元内所有空格及其候选数
+      const emptyCells = [];
+      for (const [r, c] of cells) {
+        if (grid[r][c] !== 0) continue;
+        const cands = this._getCellCandidates(grid, r, c);
+        if (cands.length === 2) {
+          emptyCells.push({ r, c, cands });
+        }
+      }
+      // 找两个候选完全相同的格子
+      for (let i = 0; i < emptyCells.length; i++) {
+        for (let j = i + 1; j < emptyCells.length; j++) {
+          const a = emptyCells[i], b = emptyCells[j];
+          if (a.cands[0] === b.cands[0] && a.cands[1] === b.cands[1]) {
+            // 找到显性数对！模拟排除后看能否确定某个格子
+            const pairNums = a.cands;
+            // 检查单元内其他格子，排除pairNums后是否出现裸单
+            for (const [r, c] of cells) {
+              if (grid[r][c] !== 0) continue;
+              if ((r === a.r && c === a.c) || (r === b.r && c === b.c)) continue;
+              let cands = this._getCellCandidates(grid, r, c);
+              const filtered = cands.filter(n => n !== pairNums[0] && n !== pairNums[1]);
+              if (filtered.length === 1 && cands.length > 1) {
+                // 排除后只剩一个候选！这就是要填的格子
+                const highlightSet = new Set();
+                for (const [rr, cc] of cells) highlightSet.add(`${rr},${cc}`);
+                const highlightCells = [];
+                for (const key of highlightSet) {
+                  const [rr, cc] = key.split(',').map(Number);
+                  highlightCells.push([rr, cc]);
+                }
+                const regionNames = { row: '行', col: '列', box: '宫', cage: '笼' };
+                return {
+                  r, c,
+                  num: filtered[0],
+                  technique: 'nakedPair',
+                  techniqueName: '显性数对',
+                  description: `${labels[a.r]}${a.c+1}和${labels[b.r]}${b.c+1}构成数对{${pairNums[0]},${pairNums[1]}}，排除该${regionNames[unitType]}其他格子的这两个数字后，${labels[r]}${c+1}只剩${filtered[0]}`,
+                  regionType: unitType,
+                  regionIndex: unitIndex,
+                  pairCells: [[a.r, a.c], [b.r, b.c]],
+                  pairNums,
+                  highlightCells
+                };
+              }
+            }
+            // 没有直接产生裸单，但数对本身值得提示（返回数对中的一个格子作为教学目标）
+            const highlightSet = new Set();
+            for (const [rr, cc] of cells) highlightSet.add(`${rr},${cc}`);
+            const highlightCells = [];
+            for (const key of highlightSet) {
+              const [rr, cc] = key.split(',').map(Number);
+              highlightCells.push([rr, cc]);
+            }
+            const regionNames = { row: '行', col: '列', box: '宫', cage: '笼' };
+            return {
+              r: a.r, c: a.c,
+              num: null, // 不直接给数字，需要看教程
+              technique: 'nakedPair',
+              techniqueName: '显性数对',
+              description: `${labels[a.r]}${a.c+1}和${labels[b.r]}${b.c+1}在同一${regionNames[unitType]}形成数对{${pairNums[0]},${pairNums[1]}}，这两个数字可以从该${regionNames[unitType]}其他格子中排除`,
+              regionType: unitType,
+              regionIndex: unitIndex,
+              pairCells: [[a.r, a.c], [b.r, b.c]],
+              pairNums,
+              highlightCells
+            };
+          }
+        }
+      }
+      return null;
+    };
+
+    // 检查所有行
+    for (let r = 0; r < this.size; r++) {
+      const result = checkUnit(this._getRowCells(r), 'row', r);
+      if (result) return result;
+    }
+    // 检查所有列
+    for (let c = 0; c < this.size; c++) {
+      const result = checkUnit(this._getColCells(c), 'col', c);
+      if (result) return result;
+    }
+    // 检查所有宫
+    for (let br = 0; br < this.size / boxH; br++) {
+      for (let bc = 0; bc < this.size / boxW; bc++) {
+        const result = checkUnit(this._getBoxCells(br, bc, boxH, boxW), 'box', br * Math.floor(this.size / boxW) + bc);
+        if (result) return result;
+      }
+    }
+    return null;
+  }
+
+  /** 获取某行所有格子坐标 */
+  _getRowCells(r) {
+    const cells = [];
+    for (let c = 0; c < this.size; c++) cells.push([r, c]);
+    return cells;
+  }
+  /** 获取某列所有格子坐标 */
+  _getColCells(c) {
+    const cells = [];
+    for (let r = 0; r < this.size; r++) cells.push([r, c]);
+    return cells;
+  }
+  /** 获取某宫所有格子坐标 */
+  _getBoxCells(br, bc, boxH, boxW) {
+    const cells = [];
+    for (let r = br * boxH; r < br * boxH + boxH; r++)
+      for (let c = bc * boxW; c < bc * boxW + boxW; c++)
+        cells.push([r, c]);
+    return cells;
   }
 
   /**
@@ -1011,33 +1255,57 @@ class Board {
   }
 
   /**
-   * 显示提示（设置提示格子状态）
-   * @param {boolean} showNumber 是否显示数字
+   * 显示提示（三层递进式）
+   * @param {number|boolean} level - 1=仅位置, 2=技巧+区域高亮, 3=显示数字; 兼容旧的boolean(true=显示数字)
    * @returns {Object|null} 提示信息
    */
-  showHint(showNumber = false) {
-    // 先清除所有提示
+  showHint(level = 1) {
+    // 兼容旧API：true等价于3，false等价于1
+    if (level === true) level = 3;
+    if (level === false) level = 1;
+
+    // 先清除所有提示状态
     this.clearHints();
 
     const hint = this.getNextHint();
     if (!hint) return null;
 
+    // 标记目标格
     const cell = this.cells[hint.r][hint.c];
     cell.isHintCell = true;
-    if (showNumber) {
+
+    // 第2层及以上：高亮关联区域（行/列/宫/笼）
+    if (level >= 2 && hint.highlightCells) {
+      for (const [r, c] of hint.highlightCells) {
+        const rc = this.cells[r][c];
+        if (r === hint.r && c === hint.c) continue; // 目标格本身用isHintCell样式
+        // 数对格用pair样式，其他用region样式
+        if (hint.pairCells && hint.pairCells.some(([pr, pc]) => pr === r && pc === c)) {
+          rc.isHintPair = true;
+        } else {
+          rc.isHintRegion = true;
+        }
+      }
+    }
+
+    // 第3层：显示答案数字（如果有）
+    if (level >= 3 && hint.num !== null && hint.num !== undefined) {
       cell.hintNumber = hint.num;
     }
 
+    hint.level = level;
     return hint;
   }
 
   /**
-   * 清除所有提示状态
+   * 清除所有提示状态（目标格+区域高亮+提示数字）
    */
   clearHints() {
     for (let r = 0; r < this.size; r++) {
       for (let c = 0; c < this.size; c++) {
         this.cells[r][c].isHintCell = false;
+        this.cells[r][c].isHintRegion = false;
+        this.cells[r][c].isHintPair = false;
         this.cells[r][c].hintNumber = null;
       }
     }

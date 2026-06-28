@@ -2,7 +2,7 @@
 // Canvas 渲染器 - 章节主题系统
 // ==========================================
 
-// ===== 6章主题配色 =====
+// ===== 章节主题配色 =====
 const CHAPTER_THEMES = {
   // 第1章 加密来信 · 阿岩 - 温暖侦探事务所风格：米白底+暖棕线+翠绿强调
   1: {
@@ -245,6 +245,46 @@ const CHAPTER_THEMES = {
     fogColor: 'rgba(30,5,5,',
     fogTexColor: 'rgba(100,20,20,',
   },
+
+  // ===== 第7章 秘术档案 · 设局人秘术 — 星辰秘术风格：深紫黑底+秘银紫+幻彩强调 =====
+  7: {
+    name: '秘术档案',
+    bgColor: '#0f0a1a',           // 深紫黑底
+    gridLine: '#2a1f4a',          // 暗紫细线
+    boxLine: '#7c3aed',           // 紫色宫线
+    outerBorder: '#a855f7',       // 亮紫边框
+    cageDash: '#8b5cf6',          // 紫色笼虚线
+    cageBadgeBg: '#a855f7',       // 紫晶和值徽章
+    cageBadgeText: '#ffffff',
+    selectedBg: 'rgba(168,85,247,0.28)',
+    selectedBorder: '#c084fc',
+    rowColHighlight: 'rgba(147,51,234,0.2)',
+    cageHighlight: 'rgba(168,85,247,0.12)',
+    sameNumHighlight: 'rgba(192,132,252,0.18)',
+    fixedNum: '#d8b4fe',          // 淡紫预填
+    playerNum: '#e9d5ff',         // 亮紫玩家数
+    errorNum: '#fbbf24',          // 金色错误
+    candidateNum: '#6b5b8a',
+    hintBorder: '#22d3ee',
+    hintBg: 'rgba(34,211,238,0.12)',
+    candidateBorder: '#a855f7',
+    candidateText: '#c084fc',
+    playerOwned: 'rgba(168,85,247,0.25)',
+    highlight45: 'rgba(192,132,252,0.25)',
+    hintNumColor: '#22d3ee',
+    accent: '#a855f7',
+    accentDark: '#7e22ce',
+    accentLight: '#e9d5ff',
+    bgPage: '#0a0615',
+    numPadBg: '#1f1035',
+    numPadText: '#e9d5ff',
+    numPadDoneBg: '#2a1f4a',
+    numPadDoneText: '#6b5b8a',
+    toolBarBg: '#150d25',
+    toolBarText: '#d8b4fe',
+    fogColor: 'rgba(20,5,35,',    // 秘术紫雾
+    fogTexColor: 'rgba(90,40,140,',
+  },
 };
 
 // 默认主题（第1章）
@@ -348,6 +388,8 @@ class Renderer {
     this._drawHighlightMask(board);
     this._drawRowColBoxHighlight(board);
     this._drawCageHighlight(board);
+    this._drawHintRegion(board);
+    this._drawHintPair(board);
     this._drawSameNumberHighlight(board);
     this._drawSelectedCell(board);
     this._drawHintHighlight(board);
@@ -587,6 +629,41 @@ class Renderer {
     }
   }
 
+  // ---------- 7.5 提示关联区域高亮（第二层提示） ----------
+  _drawHintRegion(board) {
+    const { ctx, cellSize, theme } = this;
+    const size = board.size;
+    let has = false;
+    for (let r = 0; r < size; r++) {
+      for (let c = 0; c < size; c++) {
+        if (board.cells[r][c].isHintRegion) {
+          ctx.fillStyle = theme.hintBg;
+          ctx.fillRect(c * cellSize, r * cellSize, cellSize, cellSize);
+          has = true;
+        }
+      }
+    }
+    return has;
+  }
+
+  // ---------- 7.7 数对关键格高亮（第二层提示 - 数对格特殊颜色） ----------
+  _drawHintPair(board) {
+    const { ctx, cellSize, theme } = this;
+    const size = board.size;
+    const pairColor = '#a78bfa'; // 紫色表示数对格
+    for (let r = 0; r < size; r++) {
+      for (let c = 0; c < size; c++) {
+        if (board.cells[r][c].isHintPair) {
+          ctx.fillStyle = 'rgba(167,139,250,0.2)';
+          ctx.fillRect(c * cellSize, r * cellSize, cellSize, cellSize);
+          ctx.strokeStyle = pairColor;
+          ctx.lineWidth = 3;
+          ctx.strokeRect(c * cellSize + 3, r * cellSize + 3, cellSize - 6, cellSize - 6);
+        }
+      }
+    }
+  }
+
   // ---------- 8. 同数字高亮 ----------
   _drawSameNumberHighlight(board) {
     const cells = board.getSameNumberHighlightCells();
@@ -736,22 +813,26 @@ class Renderer {
     const { ctx, cellSize, theme } = this;
     const size = board.size;
 
-    ctx.textAlign = 'right';
-    ctx.textBaseline = 'top';
-    ctx.font = 'bold 14px sans-serif';
+    const fontSize = Math.floor(cellSize * 0.5);
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.font = `bold ${fontSize}px sans-serif`;
     ctx.fillStyle = theme.hintNumColor;
+    ctx.shadowColor = theme.hintNumColor;
+    ctx.shadowBlur = 8;
 
     for (let r = 0; r < size; r++) {
       for (let c = 0; c < size; c++) {
         const cell = board.cells[r][c];
         if (cell.isHintCell && cell.hintNumber !== null) {
           ctx.fillText(
-            '?' + cell.hintNumber,
-            (c + 1) * cellSize - 3,
-            r * cellSize + 2
+            String(cell.hintNumber),
+            c * cellSize + cellSize / 2,
+            r * cellSize + cellSize / 2 + 2
           );
         }
       }
     }
+    ctx.shadowBlur = 0;
   }
 }

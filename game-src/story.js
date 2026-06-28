@@ -511,6 +511,11 @@ const CHARACTERS = {
     avatar: 'assets/images/starshuttle-avatar.jpg',
     color: '#a855f7' // 紫晶色
   },
+  setterSecret: {
+    character: '设局人（秘术）',
+    avatar: 'assets/images/setter-avatar.png',
+    color: '#a855f7' // 秘术紫
+  },
   narrator: {
     character: '旁白',
     icon: '🏛️',

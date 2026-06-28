@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>数独谜题 · 自由模式</title>
+  <link rel="icon" type="image/jpeg" href="assets/images/favicon.jpg" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #0c4a6e 0%, #0f172a 50%, #1e293b 100%);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: #f1f5f9;
+    }
+
+    .page-container {
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 16px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* 顶部栏 */
+    .top-bar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 8px 14px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      color: #94a3b8;
+      text-decoration: none;
+      font-size: 13px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .back-btn:active {
+      background: rgba(255,255,255,0.15);
+      transform: scale(0.97);
+    }
+
+    .page-title {
+      flex: 1;
+      font-size: 22px;
+      font-weight: 700;
+    }
+
+    .page-title span {
+      font-size: 13px;
+      font-weight: 400;
+      color: #94a3b8;
+      display: block;
+      margin-top: 2px;
+    }
+
+    /* 难度选择卡 */
+    .difficulty-tabs {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .diff-tab {
+      flex: 1;
+      padding: 14px 10px;
+      border: 2px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      background: rgba(255,255,255,0.04);
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.25s;
+    }
+
+    .diff-tab:active {
+      transform: scale(0.97);
+    }
+
+    .diff-tab.active {
+      border-color: var(--diff-color, #22c55e);
+      background: var(--diff-bg, rgba(34,197,94,0.15));
+    }
+
+    .diff-tab .diff-icon {
+      font-size: 28px;
+      margin-bottom: 4px;
+    }
+
+    .diff-tab .diff-name {
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .diff-tab .diff-count {
+      font-size: 11px;
+      color: #94a3b8;
+      margin-top: 2px;
+    }
+
+    .diff-tab.active .diff-count {
+      color: var(--diff-color, #22c55e);
+    }
+
+    .diff-tab[data-diff="easy"] { --diff-color: #22c55e; --diff-bg: rgba(34,197,94,0.15); }
+    .diff-tab[data-diff="medium"] { --diff-color: #f59e0b; --diff-bg: rgba(245,158,11,0.15); }
+    .diff-tab[data-diff="hard"] { --diff-color: #ef4444; --diff-bg: rgba(239,68,68,0.15); }
+
+    /* 统计信息 */
+    .diff-stats {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 16px;
+      padding: 12px 16px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 14px;
+    }
+
+    .diff-stat {
+      flex: 1;
+      text-align: center;
+    }
+
+    .diff-stat-val {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--diff-color, #22c55e);
+    }
+
+    .diff-stat-label {
+      font-size: 11px;
+      color: #64748b;
+      margin-top: 2px;
+    }
+
+    /* 关卡网格 */
+    .levels-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+      flex: 1;
+      overflow-y: auto;
+      padding-bottom: 20px;
+      max-height: 60vh;
+    }
+
+    .level-cell {
+      aspect-ratio: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.06);
+      border: 2px solid rgba(255,255,255,0.08);
+      cursor: pointer;
+      transition: all 0.2s;
+      position: relative;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .level-cell:active {
+      transform: scale(0.93);
+    }
+
+    .level-cell:hover {
+      border-color: rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.1);
+    }
+
+    .level-cell.completed {
+      background: rgba(34,197,94,0.1);
+      border-color: rgba(34,197,94,0.3);
+    }
+
+    .level-cell .level-num {
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .level-cell.completed .level-num {
+      color: #22c55e;
+    }
+
+    .level-cell .level-best {
+      font-size: 9px;
+      color: #64748b;
+      margin-top: 2px;
+    }
+
+    .level-cell.completed .level-best {
+      color: rgba(34,197,94,0.8);
+    }
+
+    .level-cell .check-mark {
+      position: absolute;
+      top: 3px;
+      right: 5px;
+      font-size: 10px;
+      color: #22c55e;
+    }
+
+    /* 滚动条样式 */
+    .levels-grid::-webkit-scrollbar { width: 4px; }
+    .levels-grid::-webkit-scrollbar-track { background: transparent; }
+    .levels-grid::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 2px; }
+  </style>
+</head>
+<body>
+  <div class="page-container">
+    <!-- 顶部栏 -->
+    <div class="top-bar">
+      <a href="menu.html" class="back-btn">← 返回</a>
+      <div class="page-title">
+        🧩 数独谜题
+        <span>自由挑战，精选300题</span>
+      </div>
+    </div>
+
+    <!-- 难度选择 -->
+    <div class="difficulty-tabs">
+      <div class="diff-tab active" data-diff="easy" onclick="switchDifficulty('easy')">
+        <div class="diff-icon">🌱</div>
+        <div class="diff-name">简单</div>
+        <div class="diff-count">1-100</div>
+      </div>
+      <div class="diff-tab" data-diff="medium" onclick="switchDifficulty('medium')">
+        <div class="diff-icon">🔥</div>
+        <div class="diff-name">中等</div>
+        <div class="diff-count">101-200</div>
+      </div>
+      <div class="diff-tab" data-diff="hard" onclick="switchDifficulty('hard')">
+        <div class="diff-icon">💀</div>
+        <div class="diff-name">困难</div>
+        <div class="diff-count">201-300</div>
+      </div>
+    </div>
+
+    <!-- 难度统计 -->
+    <div class="diff-stats" id="diffStats">
+      <div class="diff-stat">
+        <div class="diff-stat-val" id="statCompleted">0</div>
+        <div class="diff-stat-label">已通关</div>
+      </div>
+      <div class="diff-stat">
+        <div class="diff-stat-val" id="statBestTime">--</div>
+        <div class="diff-stat-label">最佳用时</div>
+      </div>
+      <div class="diff-stat">
+        <div class="diff-stat-val" id="statAvgTime">--</div>
+        <div class="diff-stat-label">平均用时</div>
+      </div>
+    </div>
+
+    <!-- 关卡网格 -->
+    <div class="levels-grid" id="levelsGrid">
+      <!-- 由JS生成 -->
+    </div>
+  </div>
+
+  <script src="utils/audio.js?v=32"></script>
+  <script>if (typeof AudioManager !== 'undefined') { AudioManager.init(); }</script>
+  <script src="utils/storage.js"></script>
+  <script>
+    const DIFFICULTIES = {
+      easy:   { name: '简单', start: 1,   end: 100, color: '#22c55e', idBase: 0 },
+      medium: { name: '中等', start: 101, end: 200, color: '#f59e0b', idBase: 0 },
+      hard:   { name: '困难', start: 201, end: 300, color: '#ef4444', idBase: 0 }
+    };
+
+    let currentDifficulty = 'easy';
+
+    function switchDifficulty(diff) {
+      currentDifficulty = diff;
+      document.querySelectorAll('.diff-tab').forEach(t => {
+        t.classList.toggle('active', t.dataset.diff === diff);
+      });
+      document.documentElement.style.setProperty('--diff-color', DIFFICULTIES[diff].color);
+      renderLevels();
+    }
+
+    function formatTime(seconds) {
+      if (!seconds || seconds < 0) return '--';
+      const m = Math.floor(seconds / 60);
+      const s = seconds % 60;
+      if (m >= 60) {
+        const h = Math.floor(m / 60);
+        return `${h}h${m%60}m`;
+      }
+      return `${m}:${s.toString().padStart(2,'0')}`;
+    }
+
+    function getLevelId(diff, num) {
+      return num;
+    }
+
+    function renderLevels() {
+      const diff = DIFFICULTIES[currentDifficulty];
+      const grid = document.getElementById('levelsGrid');
+      const analytics = Storage.getAllAnalytics();
+      const completeData = Storage.getCompleteBatch(
+        Array.from({length: 100}, (_, i) => getLevelId(currentDifficulty, diff.start + i))
+      );
+
+      let completed = 0;
+      let bestTime = Infinity;
+      let totalTime = 0;
+      let completedWithTime = 0;
+
+      let html = '';
+      for (let i = 0; i < 100; i++) {
+        const num = diff.start + i;
+        const levelId = getLevelId(currentDifficulty, num);
+        const record = completeData[levelId];
+        const isCompleted = record && record.completed;
+        const levelAnalytic = analytics[levelId];
+
+        if (isCompleted) {
+          completed++;
+          if (record.time && record.time < bestTime) bestTime = record.time;
+          if (record.time) { totalTime += record.time; completedWithTime++; }
+        }
+
+        const bestTimeStr = isCompleted && record.time ? formatTime(record.time) : '';
+
+        html += `
+          <a href="index.html?id=${levelId}&difficulty=${currentDifficulty}" class="level-cell ${isCompleted ? 'completed' : ''}">
+            ${isCompleted ? '<div class="check-mark">✓</div>' : ''}
+            <div class="level-num">${num}</div>
+            ${bestTimeStr ? `<div class="level-best">${bestTimeStr}</div>` : ''}
+          </a>
+        `;
+      }
+
+      grid.innerHTML = html;
+
+      // 更新统计
+      document.getElementById('statCompleted').textContent = `${completed}/100`;
+      document.getElementById('statBestTime').textContent = bestTime === Infinity ? '--' : formatTime(bestTime);
+      document.getElementById('statAvgTime').textContent = completedWithTime > 0
+        ? formatTime(Math.round(totalTime / completedWithTime))
+        : '--';
+
+      // 更新颜色
+      document.querySelectorAll('.diff-stat-val').forEach(el => {
+        el.style.color = diff.color;
+      });
+    }
+
+    // 初始化
+    renderLevels();
+
+    // 按钮音效
+    document.querySelectorAll('.back-btn, .diff-tab, .level-cell').forEach(el => {
+      el.addEventListener('click', () => {
+        if (typeof AudioManager !== 'undefined') AudioManager.playClick();
+      });
+    });
+  </script>
+</body>
+</html>

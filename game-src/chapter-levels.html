@@ -326,8 +326,11 @@
     </div>
   </div>
 
+  <script src="utils/audio.js?v=25"></script>
   <script src="utils/storage.js"></script>
   <script>
+    // 初始化音频
+    if (typeof AudioManager !== 'undefined') { AudioManager.init(); }
     let chapterId = 1;
     let chapterData = null;
     let allLevels = [];
@@ -438,13 +441,13 @@
 
     // 最终降级数据
     function getFallbackChapterData() {
-      const sizes = [4, 6, 9, 9, 9, 9]; // 第1章4x4，第2章降级用6x6，第3-6章全9x9
-      const levelCounts = [9, 8, 7, 6, 6, 6]; // 各章实际关卡数
-      const titles = ['初识笼中密码', '四十五星衡', '谜案追踪', '密码破译', '终极考验', '大师之路'];
-      const subtitles = ['入门篇 · 4x4', '基础篇 · 6x6/9x9', '进阶篇 · 9x9', '提高篇 · 9x9', '挑战篇 · 9x9', '大师篇 · 9x9'];
-      const icons = ['📁', '⭐', '🕵️', '📜', '🏆', '👑'];
-      const colors = ['#22c55e', '#3b82f6', '#8b5cf6', '#f59e0b', '#ef4444', '#ec4899'];
-      const idx = Math.min(chapterId - 1, 5);
+      const sizes = [4, 6, 9, 9, 9, 9, 9]; // 第1章4x4，第2章降级用6x6，第3-7章全9x9
+      const levelCounts = [9, 8, 7, 6, 6, 6, 6]; // 各章实际关卡数
+      const titles = ['初识笼中密码', '四十五星衡', '档案室深层', '尘封旧案', '星辰梭核心', '终局笼局', '秘术档案'];
+      const subtitles = ['入门篇 · 4x4', '基础篇 · 6x6/9x9', '进阶篇 · 9x9', '提高篇 · 9x9', '挑战篇 · 9x9', '大师篇 · 9x9', '大师篇 · 高级技巧'];
+      const icons = ['📁', '⭐', '🕵️', '📜', '🏆', '👑', '🔮'];
+      const colors = ['#22c55e', '#3b82f6', '#8b5cf6', '#f59e0b', '#ef4444', '#ec4899', '#a855f7'];
+      const idx = Math.min(chapterId - 1, 6);
       const size = sizes[idx];
       const count = levelCounts[idx];
 

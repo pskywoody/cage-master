@@ -2,3 +2,7 @@ node_modules/
 *.log
 .DS_Store
 *.tmp
+*.bak
+*.bak701
+test-*.json
+test-*.html

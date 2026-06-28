@@ -5,10 +5,15 @@ const { HumanSimulator } = require('./node-script/human-simulator.js');
 const { KillerSudokuSolver, quickRateDifficulty } = require('./node-script/solver-rater.js');
 
 const app = express();
-const PORT = 3000;
+const PORT = 3001;
 
 // 中间件：解析JSON请求体
 app.use(express.json());
+
+// 根路径重定向到主菜单
+app.get('/', (req, res) => {
+  res.redirect('/menu.html');
+});
 
 // 1. 托管前端静态文件（禁止缓存，确保修改即时生效）
 app.use(express.static(path.join(__dirname, 'game-src'), {
@@ -107,7 +112,14 @@ app.get('/api/chapters', (req, res) => {
     badgeId: ch.badgeId,
     badgeName: ch.badgeName,
     unlockRequirement: ch.unlockRequirement,
-    levelCount: ch.levels.length
+    levelCount: ch.levels.length,
+    // 返回精简的levels数组用于前端计算进度
+    levels: ch.levels.map(lv => ({
+      levelId: lv.levelId,
+      title: lv.title,
+      difficulty: lv.difficulty,
+      isBoss: lv.isBoss === true
+    }))
   }));
   res.json({ code: 0, data: list, msg: 'ok' });
 });
@@ -179,7 +191,8 @@ app.get('/api/teaching-level/:id', (req, res) => {
       preDialog: level.preDialog,
       clearDialog: level.clearDialog,
       introStory: chapter.introStory,
-      endingStory: chapter.endingStory
+      endingStory: chapter.endingStory,
+      isBoss: level.isBoss === true
     },
     msg: 'ok'
   });

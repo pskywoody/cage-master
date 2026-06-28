@@ -32,8 +32,301 @@ const BattleState = {
   startTime: 0,
   currentLevelId: null,   // 当前关卡 ID（用于重来）
   currentLevelData: null, // 当前关卡原始数据（用于重来）
-  spectateMode: false
+  spectateMode: false,
+  aiPersonality: null     // 当前AI角色性格
 };
+
+// ==========================================
+// 角色系统：Q版头像 + 表情 + 搞笑台词
+// ==========================================
+const AI_PERSONALITIES = {
+  easy: {
+    name: '小萌新',
+    avatar: '🐣',
+    color: '#22c55e',
+    emotions: {
+      idle: '', thinking: '🤔', happy: '😄', sad: '😢', 
+      angry: '😤', surprised: '😲', win: '🎉', lose: '😭',
+      attack: '💢', hurt: '😵'
+    },
+    lines: {
+      start: ['嘿嘿~我是新手，请多指教！', '第一次玩，好紧张啊...', '让我看看...这题怎么解来着？'],
+      correct: ['填对啦！', '哇哦，我好棒！', '耶！', '嘿嘿，蒙对了~'],
+      combo: ['连击！我好厉害！', '哇塞我连对了！', '这就是天才吗？'],
+      wrong: ['啊？填错了...', '呜呜，不对吗？', '哎呀手滑了'],
+      attack: ['看招！', '嘿！', '吃我一击！'],
+      attacked: ['哇！干嘛打我！', '呜呜好疼~', '坏人！欺负新人！'],
+      energyFull: ['能量满啦！要放大招了！', '我的必杀技准备好了！', '嘿嘿嘿...接招吧！'],
+      playerAttack: ['不要啊！', '等等等等！', '我投降我投降！'],
+      winning: ['我要赢了？真的吗？', '哇！我居然领先了！', '难道我是天才？'],
+      losing: ['呜呜要输了...', '等等我！', '不要抛弃我！'],
+      win: ['耶！我赢啦！哈哈！', '第一次赢！好开心！', '我果然是天才！'],
+      lose: ['呜呜呜...我输了...', '恭喜你赢了...', '下次我一定会赢的！']
+    }
+  },
+  medium: {
+    name: '数独达人',
+    avatar: '🦊',
+    color: '#f59e0b',
+    emotions: {
+      idle: '', thinking: '🧐', happy: '😏', sad: '😔',
+      angry: '😠', surprised: '😮', win: '🏆', lose: '😤',
+      attack: '⚔️', hurt: '💫'
+    },
+    lines: {
+      start: ['哼，来战个痛快！', '准备好了吗？我可不会让着你。', '中等难度，正好热身。'],
+      correct: ['不错。', '嗯，这格很简单。', '基本操作。', '理所当然。'],
+      combo: ['连击，节奏不错。', '渐入佳境。', '手感来了。'],
+      wrong: ['...失误。', '可恶，看走眼了。', '嗯？不对吗？'],
+      attack: ['吃我这招！', '嘿！', '接招！'],
+      attacked: ['不错嘛...', '有点意思。', '居然打中我了？'],
+      energyFull: ['满了。该结束了。', '我的回合，必杀！', '让你看看真正的实力。'],
+      playerAttack: ['切...', '护盾！', '别太得意！'],
+      winning: ['胜负已分。', '差距明显啊。', '你还差得远呢。'],
+      losing: ['居然落后了...', '不可能...', '有意思，认真起来了。'],
+      win: ['承让了。', '实力差距，没办法。', '下次再努力吧。'],
+      lose: ['...是我大意了。', '不错的对局。', '下次不会输了。']
+    }
+  },
+  hard: {
+    name: '数独魔王',
+    avatar: '👹',
+    color: '#dc2626',
+    emotions: {
+      idle: '', thinking: '😈', happy: '😈', sad: '💢',
+      angry: '👿', surprised: '😒', win: '👑', lose: '😡',
+      attack: '🔥', hurt: '⚡'
+    },
+    lines: {
+      start: ['哼...人类，你敢挑战我？', '三分钟解决你。', '让你见识什么叫真正的数独。'],
+      correct: ['...无聊。', '太慢了。', '这种题也需要想？', '呵。'],
+      combo: ['蝼蚁的挣扎罢了。', '就这？', '不够看。'],
+      wrong: ['......（不可能）', '哼，bug。', '...系统错误。'],
+      attack: ['毁灭吧！', '湮灭！', '给我消失！'],
+      attacked: ['哦？伤到我了？', '有趣...你成功激怒我了。', '蝼蚁之力，也敢挑衅？'],
+      energyFull: ['游戏结束。', '必杀·笼中炼狱！', '让你彻底绝望。'],
+      playerAttack: ['没用的。', '就这？', '刮痧呢？'],
+      winning: ['看到了吗？这就是神与人的差距。', '结束了。', '绝望吧。'],
+      losing: ['......不可能！', '人类...怎么可能！', '我居然...在落后？'],
+      win: ['哼，理所当然的结果。', '记住这个差距。', '弱者没有资格挑战我。'],
+      lose: ['不可能！！我怎么会输！！', '这...这不可能！！', '人类...你等着！我会回来的！']
+    }
+  },
+  spectate: {
+    name: '围观群众',
+    avatar: '👀'
+  }
+};
+
+// 玩家（你）的台词
+const PLAYER_LINES = {
+  start: ['来吧！', '我准备好了！', '今天一定要赢！', '看我的！'],
+  correct: ['好！', '对了！', '漂亮！', '耶！'],
+  combo: ['爽！连击！', '手感来了！', '停不下来！', '无敌是多么寂寞~'],
+  wrong: ['啊...错了', '我去...', '手滑手滑', '尴尬...'],
+  attack: ['吃我一击！', '看招！', '嘿呀！', '接招！'],
+  attacked: ['我去！', '靠！被阴了！', '卧槽！', '什么鬼！'],
+  energyFull: ['能量满了！必杀准备！', '我的大宝剑已经饥渴难耐了！', '是时候表演真正的技术了！'],
+  winning: ['稳了稳了', '这把我carry', '胜利就在眼前！'],
+  losing: ['糟糕...要输了', '等等等等！', '别别别！我还有机会！'],
+  win: ['赢啦！！！', '还有谁！！', '哈哈哈哈哈！', '我就是数独之王！'],
+  lose: ['啊...输了', '可恶...', '下次一定！', '这AI开挂了吧！']
+};
+
+// 旁白/解说搞笑台词
+const NARRATOR_LINES = {
+  start: ['【比赛开始！双方剑拔弩张！】', '【战斗打响！谁能率先解出谜题？】', '【今日对决：人类 VS AI！】'],
+  combo3: ['【三连击！玩家手感火热！】', '【三连胜！AI开始慌了！】'],
+  combo5: ['【五连击！这是要封神的节奏！】', '【五连绝世！AI被打懵了！】'],
+  aiLead: ['【AI暂时领先！玩家要加油了！】', '【AI抢占先机！局势紧张！】'],
+  playerLead: ['【玩家领先！AI感受到了压力！】', '【人类反击！AI要小心了！】'],
+  close: ['【势均力敌！战况胶着！】', '【你来我往！这才是真正的对决！】'],
+  energyFull: ['【能量爆满！必杀技蓄势待发！】', '【究极能量充盈！终极一击即将降临！】'],
+  finalSprint: ['【终局冲刺！双方都拼了！】', '【最后阶段！谁能笑到最后？】']
+};
+
+// 角色系统状态
+const CharSystem = {
+  playerEmotion: 'idle',
+  aiEmotion: 'idle',
+  lastDialogueTime: 0,
+  dialogueCooldown: 1500, // 台词最小间隔
+  aiThinkTimer: null,
+  comboCountP: 0,
+  comboCountA: 0,
+  narrated: new Set() // 已触发过的旁白，避免重复
+};
+
+// 显示台词气泡
+function showDialogue(speaker, text, type) {
+  const container = document.getElementById('dialogue-container');
+  if (!container) return;
+  
+  const now = Date.now();
+  if (now - CharSystem.lastDialogueTime < 600) return; // 避免台词太密集
+  CharSystem.lastDialogueTime = now;
+  
+  const bubble = document.createElement('div');
+  bubble.className = 'dialogue-bubble ' + (speaker === 'player' ? 'player-line' : speaker === 'ai' ? 'ai-line' : 'narrator-line');
+  bubble.textContent = text;
+  
+  // 随机垂直位置
+  const vPos = Math.random() * 30;
+  bubble.style.top = vPos + '%';
+  
+  container.appendChild(bubble);
+  
+  // 动画结束后移除
+  setTimeout(() => {
+    if (bubble.parentNode) bubble.parentNode.removeChild(bubble);
+  }, 3000);
+  
+  // 限制同时显示的气泡数量
+  const bubbles = container.querySelectorAll('.dialogue-bubble');
+  if (bubbles.length > 4) {
+    bubbles[0].remove();
+  }
+}
+
+// 设置角色表情
+function setEmotion(side, emotion, showEmoji) {
+  const emotionEl = document.getElementById(side + '-emotion');
+  const avatarEl = document.getElementById(side + '-avatar');
+  if (!emotionEl || !avatarEl) return;
+  
+  const personality = side === 'player' ? null : BattleState.aiPersonality;
+  let emotionEmoji = '';
+  
+  if (side === 'player') {
+    const playerEmojis = {
+      thinking: '🤔', happy: '😄', sad: '😢', angry: '😤',
+      surprised: '😲', win: '🎉', lose: '😭', attack: '💪', hurt: '😵'
+    };
+    emotionEmoji = playerEmojis[emotion] || '';
+  } else if (personality) {
+    emotionEmoji = personality.emotions[emotion] || '';
+  }
+  
+  if (showEmoji !== false && emotionEmoji) {
+    emotionEl.textContent = emotionEmoji;
+    emotionEl.style.animation = 'none';
+    void emotionEl.offsetWidth;
+    emotionEl.style.animation = 'emotionPop 0.4s ease-out';
+  }
+  
+  CharSystem[side + 'Emotion'] = emotion;
+}
+
+// 播放头像动画
+function playAvatarAnim(side, animClass) {
+  const avatarEl = document.getElementById(side + '-avatar');
+  if (!avatarEl) return;
+  
+  avatarEl.classList.remove('bounce', 'shake', 'attack-anim', 'hurt-anim', 'win-anim', 'thinking-anim');
+  void avatarEl.offsetWidth;
+  avatarEl.classList.add(animClass);
+  
+  setTimeout(() => {
+    avatarEl.classList.remove(animClass);
+  }, 800);
+}
+
+// AI角色说话
+function aiSays(category) {
+  if (!BattleState.aiPersonality || !BattleState.running) return;
+  const lines = BattleState.aiPersonality.lines[category];
+  if (!lines || lines.length === 0) return;
+  const line = lines[Math.floor(Math.random() * lines.length)];
+  showDialogue('ai', line);
+}
+
+// 玩家说话
+function playerSays(category) {
+  if (!BattleState.running) return;
+  const lines = PLAYER_LINES[category];
+  if (!lines || lines.length === 0) return;
+  const line = lines[Math.floor(Math.random() * lines.length)];
+  showDialogue('player', line);
+}
+
+// 旁白
+function narratorSays(category) {
+  const lines = NARRATOR_LINES[category];
+  if (!lines || lines.length === 0) return;
+  // 旁白有冷却（5秒）
+  const key = 'narr_' + category;
+  if (CharSystem.narrated.has(key) && category !== 'start' && category !== 'finalSprint') return;
+  CharSystem.narrated.add(key);
+  const line = lines[Math.floor(Math.random() * lines.length)];
+  showDialogue('narrator', line);
+}
+
+// 初始化角色系统
+function initCharSystem() {
+  const diff = BattleState.spectateMode ? 'spectate' : BattleState.aiDifficulty;
+  BattleState.aiPersonality = AI_PERSONALITIES[diff] || AI_PERSONALITIES.medium;
+  
+  // 设置AI头像和名字
+  const aiAvatar = document.getElementById('ai-avatar');
+  const aiName = document.getElementById('ai-char-name');
+  const aiLabel = document.getElementById('ai-label');
+  
+  if (BattleState.spectateMode) {
+    // 观战模式：两边都是Bot
+    document.getElementById('player-avatar').textContent = '🤖';
+    document.getElementById('player-char-name').textContent = 'Bot 1';
+    aiAvatar.textContent = '🤖';
+    aiName.textContent = 'Bot 2';
+    aiLabel.textContent = 'Bot 2';
+    document.getElementById('player-label').textContent = 'Bot 1';
+  } else {
+    document.getElementById('player-avatar').textContent = '🧑‍💻';
+    document.getElementById('player-char-name').textContent = '你';
+    aiAvatar.textContent = BattleState.aiPersonality.avatar;
+    aiName.textContent = BattleState.aiPersonality.name;
+    aiLabel.textContent = BattleState.aiPersonality.name;
+  }
+  
+  setEmotion('player', 'idle');
+  setEmotion('ai', 'idle');
+  CharSystem.comboCountP = 0;
+  CharSystem.comboCountA = 0;
+  CharSystem.narrated.clear();
+  
+  // 绑定音乐控制按钮
+  const musicBtn = document.getElementById('btn-music-toggle');
+  const sfxBtn = document.getElementById('btn-sfx-toggle');
+  if (musicBtn) {
+    musicBtn.addEventListener('click', () => {
+      const enabled = AudioManager.toggleBGM();
+      musicBtn.textContent = enabled ? '🎵' : '🔇';
+      musicBtn.classList.toggle('muted', !enabled);
+    });
+  }
+  if (sfxBtn) {
+    sfxBtn.addEventListener('click', () => {
+      const enabled = AudioManager.toggleSfx();
+      sfxBtn.textContent = enabled ? '🔊' : '🔈';
+      sfxBtn.classList.toggle('muted', !enabled);
+    });
+  }
+  
+  // AI思考动画（定时微动）
+  if (CharSystem.aiThinkTimer) clearInterval(CharSystem.aiThinkTimer);
+  CharSystem.aiThinkTimer = setInterval(() => {
+    if (!BattleState.running || BattleState.winner) return;
+    if (Math.random() < 0.3) {
+      const avatar = document.getElementById('ai-avatar');
+      if (avatar) {
+        avatar.classList.add('thinking-anim');
+        setTimeout(() => avatar.classList.remove('thinking-anim'), 1500);
+      }
+      if (Math.random() < 0.15) {
+        setEmotion('ai', 'thinking');
+      }
+    }
+  }, 4000);
+}
 
 // 快捷填入状态
 let quickFillMode = false;
@@ -119,14 +412,14 @@ window.addEventListener('DOMContentLoaded', function() {
     startSpectate();
   });
   document.getElementById('btn-back').addEventListener('click', () => {
-    window.location.href = 'levels.html';
+    window.location.href = 'menu.html';
   });
   document.getElementById('btn-rematch').addEventListener('click', () => {
     document.getElementById('battle-result').classList.remove('show');
     startBattle();
   });
   document.getElementById('btn-result-back').addEventListener('click', () => {
-    window.location.href = 'levels.html';
+    window.location.href = 'menu.html';
   });
 
   // 攻击按钮
@@ -267,6 +560,23 @@ async function startBattle() {
     updateAttackButtons();
 
     startAI();
+
+    // 初始化角色系统
+    initCharSystem();
+    
+    // 开场表演
+    setTimeout(() => {
+      narratorSays('start');
+    }, 500);
+    setTimeout(() => {
+      playerSays('start');
+      playAvatarAnim('player', 'bounce');
+    }, 1200);
+    setTimeout(() => {
+      aiSays('start');
+      setEmotion('ai', 'thinking');
+      playAvatarAnim('ai', 'bounce');
+    }, 2200);
 
     // 播放开始音效 + 背景音乐
     AudioManager.playBattleStart();
@@ -550,6 +860,12 @@ function playerSetNumber(num) {
       BattleState.playerCombo = 0;
       updateCombo();
       AudioManager.playWrong();
+      // 角色反应：懊恼
+      setEmotion('player', 'sad');
+      playAvatarAnim('player', 'shake');
+      if (Math.random() < 0.3) playerSays('wrong');
+      // AI偷笑
+      setEmotion('ai', 'happy');
     } else {
       AudioManager.playClick();
     }
@@ -638,6 +954,21 @@ function onPlayerCorrectFill() {
 
   updateCombo();
   updateAttackButtons();
+  
+  // 角色反应
+  setEmotion('player', 'happy');
+  playAvatarAnim('player', 'bounce');
+  if (BattleState.playerCombo === 1) {
+    if (Math.random() < 0.4) playerSays('correct');
+  }
+  if (BattleState.playerCombo >= 3) {
+    playerSays('combo');
+    setEmotion('player', 'happy');
+    if (BattleState.playerCombo === 3) narratorSays('combo3');
+    if (BattleState.playerCombo === 5) narratorSays('combo5');
+    // AI惊讶
+    setEmotion('ai', 'surprised');
+  }
 }
 
 // ==========================================
@@ -666,6 +997,17 @@ function tryPlayerAttack(type) {
   if (type === 'normal') AudioManager.playAttackNormal();
   else if (type === 'heavy') AudioManager.playAttackHeavy();
   else AudioManager.playAttackUltimate();
+  
+  // 角色表演
+  setEmotion('player', 'attack');
+  playAvatarAnim('player', 'attack-anim');
+  playerSays('attack');
+  // AI受击
+  setTimeout(() => {
+    setEmotion('ai', 'hurt');
+    playAvatarAnim('ai', 'hurt-anim');
+    aiSays('playerAttack');
+  }, 300);
 
   BattleState.aiRenderer.render(BattleState.aiBoard);
   updateEnergy();
@@ -903,6 +1245,16 @@ function addEnergyToSide(side, amount) {
   // 满能量提示
   if (oldEnergy < 100 && newEnergy >= 100 && amount > 0) {
     AudioManager.playEnergyFull();
+    // 角色反应：能量满！
+    narratorSays('energyFull');
+    if (side === 'player') {
+      setEmotion('player', 'attack');
+      playerSays('energyFull');
+    } else {
+      setEmotion('ai', 'angry');
+      aiSays('energyFull');
+      setEmotion('player', 'surprised');
+    }
   }
   
   // 护盾UI更新
@@ -1177,6 +1529,21 @@ async function startSpectate() {
     startAI();
     startLeftAI();
 
+    // 初始化角色系统
+    initCharSystem();
+    
+    // 开场表演
+    setTimeout(() => narratorSays('start'), 500);
+    setTimeout(() => {
+      showDialogue('player', '我是Bot 1，看我的！');
+      playAvatarAnim('player', 'bounce');
+    }, 1200);
+    setTimeout(() => {
+      showDialogue('ai', '哼，机械效率决定一切。');
+      setEmotion('ai', 'thinking');
+      playAvatarAnim('ai', 'bounce');
+    }, 2200);
+
     AudioManager.playBattleStart();
     setTimeout(() => AudioManager.startBGM(), 1000);
 
@@ -1294,6 +1661,14 @@ function onLeftCorrectFill() {
   updateCombo();
   updateAttackButtons();
   leftAiTryAttack();
+  
+  // 观战模式Bot反应
+  setEmotion('player', 'happy');
+  playAvatarAnim('player', 'bounce');
+  if (Math.random() < 0.2) {
+    if (BattleState.playerCombo >= 2) showDialogue('player', '连击！我的推演更快！');
+    else showDialogue('player', '正确。');
+  }
 }
 
 function leftAiTryAttack() {
@@ -1452,6 +1827,19 @@ function onAICorrectFill() {
 
   updateCombo();
   aiTryAttack();
+  
+  // 角色反应
+  setEmotion('ai', 'happy');
+  playAvatarAnim('ai', 'bounce');
+  // AI填对时偶尔说话
+  if (Math.random() < 0.2) {
+    if (BattleState.aiCombo >= 2) aiSays('combo');
+    else aiSays('correct');
+  }
+  // 玩家紧张
+  if (BattleState.aiCombo >= 3) {
+    setEmotion('player', 'surprised');
+  }
 }
 
 function aiTryAttack() {
@@ -1494,6 +1882,17 @@ function aiAttack(type) {
   else if (type === 'heavy') AudioManager.playAttackHeavy();
   else AudioManager.playAttackUltimate();
   AudioManager.playHit();
+  
+  // 角色表演
+  setEmotion('ai', 'attack');
+  playAvatarAnim('ai', 'attack-anim');
+  aiSays('attack');
+  // 玩家受击
+  setTimeout(() => {
+    setEmotion('player', 'hurt');
+    playAvatarAnim('player', 'hurt-anim');
+    playerSays('attacked');
+  }, 300);
 
   BattleState.playerRenderer.render(BattleState.playerBoard);
   updateEnergy();
@@ -1515,6 +1914,39 @@ function updateProgress() {
   document.getElementById('player-progress-text').textContent = playerFilled + ' / 81';
   document.getElementById('ai-progress-text').textContent = aiFilled + ' / 81';
   updateNumberButtons();
+  
+  // 进度对比旁白（有冷却，不要太频繁）
+  if (BattleState.running && !BattleState.winner) {
+    const diff = playerFilled - aiFilled;
+    const totalFilled = playerFilled + aiFilled;
+    
+    // 终局冲刺（超过70%进度）
+    if (playerPct >= 70 || aiPct >= 70) {
+      if (!CharSystem.narrated.has('final')) {
+        CharSystem.narrated.add('final');
+        narratorSays('finalSprint');
+        if (playerPct > aiPct) playerSays('winning');
+        else if (aiPct > playerPct) playerSays('losing');
+      }
+    }
+    // 领先/落后/胶着（填了15格以上才判断）
+    else if (totalFilled > 30) {
+      const stateKey = 'p_' + Math.floor(playerPct/20) + '_' + (diff > 5 ? 'lead' : diff < -5 ? 'behind' : 'close');
+      if (!CharSystem.narrated.has(stateKey)) {
+        CharSystem.narrated.add(stateKey);
+        if (diff >= 6) {
+          narratorSays('playerLead');
+          if (Math.random() < 0.4) playerSays('winning');
+        } else if (diff <= -6) {
+          narratorSays('aiLead');
+          if (Math.random() < 0.4) playerSays('losing');
+          if (Math.random() < 0.3) aiSays('winning');
+        } else if (Math.abs(diff) <= 2) {
+          if (Math.random() < 0.3) narratorSays('close');
+        }
+      }
+    }
+  }
 }
 
 // 更新底部数字按钮状态：填满 9 个的数字变灰不可点
@@ -1861,10 +2293,28 @@ function endBattle(winner) {
       titleEl.textContent = '🎉 胜利！';
       titleEl.className = 'result-title win';
       AudioManager.playWin();
+      // 角色庆祝
+      setEmotion('player', 'win');
+      playAvatarAnim('player', 'win-anim');
+      setTimeout(() => playerSays('win'), 500);
+      setTimeout(() => {
+        setEmotion('ai', 'lose');
+        playAvatarAnim('ai', 'shake');
+        aiSays('lose');
+      }, 1200);
     } else {
       titleEl.textContent = '😢 失败...';
       titleEl.className = 'result-title lose';
       AudioManager.playLose();
+      // 角色失落
+      setEmotion('player', 'lose');
+      playAvatarAnim('player', 'shake');
+      setTimeout(() => playerSays('lose'), 500);
+      setTimeout(() => {
+        setEmotion('ai', 'win');
+        playAvatarAnim('ai', 'win-anim');
+        aiSays('win');
+      }, 1200);
     }
   }
 

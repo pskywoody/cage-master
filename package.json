@@ -1,21 +1,21 @@
 {
   "name": "killersudoku",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "version": "1.1.0",
+  "description": "档案侦探·笼中密码 - 教学型杀手数独游戏",
+  "main": "server.js",
   "directories": {
     "doc": "docs"
   },
   "scripts": {
     "dev": "node server.js",
+    "start": "node server.js",
     "generate": "node node-script/puzzle-manager.js",
     "pipeline": "node node-script/batch-pipeline.js",
-    "rate": "node node-script/human-simulator.js",
-    "start": "node server.js"
+    "rate": "node node-script/human-simulator.js"
   },
-  "keywords": [],
+  "keywords": ["killer-sudoku", "sudoku", "puzzle", "educational", "game"],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "type": "commonjs",
   "devDependencies": {
     "@capacitor/android": "^6.2.1",
@@ -32,7 +32,7 @@
     "content-disposition": "^1.1.0",
     "content-type": "^1.0.5",
     "cookie": "^0.7.2",
-    "cookie-signature": "^1.2.2",
+    "cookie-signature": "^1.2.0",
     "debug": "^4.4.3",
     "depd": "^2.0.0",
     "dunder-proto": "^1.0.1",

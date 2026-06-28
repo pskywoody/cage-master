@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>设置 · 笼中密码</title>
+  <link rel="icon" type="image/jpeg" href="assets/images/favicon.jpg" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: #f1f5f9;
+    }
+
+    .page-container {
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 16px;
+      min-height: 100vh;
+    }
+
+    /* 顶部栏 */
+    .top-bar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 8px 14px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      color: #94a3b8;
+      text-decoration: none;
+      font-size: 13px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .back-btn:active {
+      background: rgba(255,255,255,0.15);
+      transform: scale(0.97);
+    }
+
+    .page-title {
+      flex: 1;
+      font-size: 22px;
+      font-weight: 700;
+    }
+
+    /* 设置分组 */
+    .settings-group {
+      margin-bottom: 24px;
+    }
+
+    .group-title {
+      font-size: 13px;
+      color: #64748b;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+      padding-left: 4px;
+    }
+
+    .settings-card {
+      background: rgba(30,41,59,0.8);
+      border: 1px solid rgba(148,163,184,0.1);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .setting-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 18px;
+      border-bottom: 1px solid rgba(148,163,184,0.08);
+    }
+
+    .setting-item:last-child {
+      border-bottom: none;
+    }
+
+    .setting-info {
+      flex: 1;
+      padding-right: 16px;
+    }
+
+    .setting-name {
+      font-size: 15px;
+      font-weight: 500;
+      color: #f1f5f9;
+      margin-bottom: 2px;
+    }
+
+    .setting-desc {
+      font-size: 12px;
+      color: #64748b;
+      line-height: 1.4;
+    }
+
+    /* 开关 */
+    .toggle-switch {
+      position: relative;
+      width: 48px;
+      height: 28px;
+      flex-shrink: 0;
+    }
+
+    .toggle-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .toggle-slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: #334155;
+      border-radius: 28px;
+      transition: 0.3s;
+    }
+
+    .toggle-slider:before {
+      content: "";
+      position: absolute;
+      height: 22px;
+      width: 22px;
+      left: 3px;
+      bottom: 3px;
+      background: white;
+      border-radius: 50%;
+      transition: 0.3s;
+    }
+
+    .toggle-switch input:checked + .toggle-slider {
+      background: #7c3aed;
+    }
+
+    .toggle-switch input:checked + .toggle-slider:before {
+      transform: translateX(20px);
+    }
+
+    /* 操作按钮 */
+    .action-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 14px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-bottom: 10px;
+    }
+
+    .action-btn:active {
+      transform: scale(0.98);
+    }
+
+    .btn-danger {
+      background: rgba(239,68,68,0.15);
+      color: #fca5a5;
+      border: 1px solid rgba(239,68,68,0.2);
+    }
+
+    .btn-danger:active {
+      background: rgba(239,68,68,0.25);
+    }
+
+    .btn-secondary {
+      background: rgba(148,163,184,0.1);
+      color: #94a3b8;
+      border: 1px solid rgba(148,163,184,0.15);
+    }
+
+    /* 统计卡片 */
+    .stats-card {
+      background: rgba(30,41,59,0.8);
+      border: 1px solid rgba(148,163,184,0.1);
+      border-radius: 16px;
+      padding: 18px;
+      margin-bottom: 24px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .stat-box {
+      text-align: center;
+    }
+
+    .stat-num {
+      font-size: 24px;
+      font-weight: 700;
+      color: #a78bfa;
+    }
+
+    .stat-label {
+      font-size: 11px;
+      color: #64748b;
+      margin-top: 4px;
+    }
+
+    /* 关于 */
+    .about-card {
+      background: rgba(30,41,59,0.8);
+      border: 1px solid rgba(148,163,184,0.1);
+      border-radius: 16px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .about-logo {
+      font-size: 48px;
+      margin-bottom: 8px;
+    }
+
+    .about-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .about-version {
+      font-size: 12px;
+      color: #64748b;
+      margin-bottom: 12px;
+    }
+
+    .about-desc {
+      font-size: 13px;
+      color: #94a3b8;
+      line-height: 1.6;
+    }
+
+    /* 确认弹窗 */
+    .confirm-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.7);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: 20px;
+    }
+
+    .confirm-overlay.show {
+      display: flex;
+    }
+
+    .confirm-card {
+      background: #1e293b;
+      border: 1px solid rgba(148,163,184,0.2);
+      border-radius: 20px;
+      padding: 24px;
+      max-width: 340px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .confirm-icon {
+      font-size: 48px;
+      margin-bottom: 12px;
+    }
+
+    .confirm-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .confirm-msg {
+      font-size: 13px;
+      color: #94a3b8;
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    .confirm-btns {
+      display: flex;
+      gap: 10px;
+    }
+
+    .confirm-btns button {
+      flex: 1;
+      padding: 12px;
+      border: none;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .confirm-cancel {
+      background: rgba(148,163,184,0.15);
+      color: #94a3b8;
+    }
+
+    .confirm-ok {
+      background: #ef4444;
+      color: white;
+    }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%) translateY(-100px);
+      background: rgba(34,197,94,0.9);
+      color: white;
+      padding: 10px 24px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 500;
+      z-index: 2000;
+      transition: transform 0.3s;
+    }
+
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+    }
+  </style>
+</head>
+<body>
+  <div class="page-container">
+    <!-- 顶部栏 -->
+    <div class="top-bar">
+      <a href="menu.html" class="back-btn">← 返回</a>
+      <div class="page-title">⚙️ 设置</div>
+    </div>
+
+    <!-- 游戏统计 -->
+    <div class="stats-card">
+      <div class="stats-grid" id="statsGrid">
+        <div class="stat-box">
+          <div class="stat-num" id="statTotal">0</div>
+          <div class="stat-label">总通关</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num" id="statHours">0h</div>
+          <div class="stat-label">总游戏时间</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num" id="statBadges">0</div>
+          <div class="stat-label">徽章</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 音频设置 -->
+    <div class="settings-group">
+      <div class="group-title">音频</div>
+      <div class="settings-card">
+        <div class="setting-item">
+          <div class="setting-info">
+            <div class="setting-name">背景音乐</div>
+            <div class="setting-desc">游戏过程中的背景音乐</div>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" id="toggleBgm" checked />
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+        <div class="setting-item">
+          <div class="setting-info">
+            <div class="setting-name">音效</div>
+            <div class="setting-desc">点击、填数等操作音效</div>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" id="toggleSfx" checked />
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- 游戏设置 -->
+    <div class="settings-group">
+      <div class="group-title">游戏</div>
+      <div class="settings-card">
+        <div class="setting-item">
+          <div class="setting-info">
+            <div class="setting-name">冲突标红</div>
+            <div class="setting-desc">填错数字时标红提示</div>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" id="toggleConflict" checked />
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+        <div class="setting-item">
+          <div class="setting-info">
+            <div class="setting-name">行列宫高亮</div>
+            <div class="setting-desc">选中格子时高亮同行列宫</div>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" id="toggleHighlight" checked />
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+        <div class="setting-item">
+          <div class="setting-info">
+            <div class="setting-name">自动清除候选</div>
+            <div class="setting-desc">填数后自动清除关联候选数</div>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" id="toggleAutoClear" checked />
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- 数据管理 -->
+    <div class="settings-group">
+      <div class="group-title">数据管理</div>
+      <div class="settings-card" style="padding: 14px;">
+        <button class="action-btn btn-secondary" onclick="exportData()">
+          📤 导出存档
+        </button>
+        <button class="action-btn btn-danger" onclick="showResetConfirm()">
+          🗑️ 重置所有进度
+        </button>
+      </div>
+    </div>
+
+    <!-- 关于 -->
+    <div class="settings-group">
+      <div class="about-card">
+        <div class="about-logo">🔐</div>
+        <div class="about-title">档案侦探 · 笼中密码</div>
+        <div class="about-version">版本 1.0.0</div>
+        <div class="about-desc">
+          一款沉浸式杀手数独剧情解谜游戏<br/>
+          跟随守笼人与阿岩，破解设局人留下的秘术档案
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 确认弹窗 -->
+  <div class="confirm-overlay" id="confirmOverlay">
+    <div class="confirm-card">
+      <div class="confirm-icon">⚠️</div>
+      <div class="confirm-title">确认重置？</div>
+      <div class="confirm-msg">此操作将清除所有通关记录、进度、徽章和设置，且无法恢复。</div>
+      <div class="confirm-btns">
+        <button class="confirm-cancel" onclick="hideConfirm()">取消</button>
+        <button class="confirm-ok" onclick="resetAllData()">确认重置</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+
+  <script src="utils/audio.js?v=32"></script>
+  <script>if (typeof AudioManager !== 'undefined') { AudioManager.init(); }</script>
+  <script src="utils/storage.js"></script>
+  <script>
+    // 默认设置
+    const DEFAULT_SETTINGS = {
+      bgm: true,
+      sfx: true,
+      conflictRed: true,
+      highlightRowColBox: true,
+      autoClearCandidates: true
+    };
+
+    // 加载设置
+    function loadSettings() {
+      const saved = Storage.getSettings() || {};
+      const s = { ...DEFAULT_SETTINGS, ...saved };
+
+      document.getElementById('toggleBgm').checked = s.bgm;
+      document.getElementById('toggleSfx').checked = s.sfx;
+      document.getElementById('toggleConflict').checked = s.conflictRed;
+      document.getElementById('toggleHighlight').checked = s.highlightRowColBox;
+      document.getElementById('toggleAutoClear').checked = s.autoClearCandidates;
+    }
+
+    // 保存设置
+    function saveCurrentSettings() {
+      const s = {
+        bgm: document.getElementById('toggleBgm').checked,
+        sfx: document.getElementById('toggleSfx').checked,
+        conflictRed: document.getElementById('toggleConflict').checked,
+        highlightRowColBox: document.getElementById('toggleHighlight').checked,
+        autoClearCandidates: document.getElementById('toggleAutoClear').checked
+      };
+      Storage.saveSettings(s);
+
+      // 应用音频设置
+      if (typeof AudioManager !== 'undefined') {
+        if (s.bgm) AudioManager.resumeBGM();
+        else AudioManager.pauseBGM();
+        AudioManager.setSfxEnabled(s.sfx);
+      }
+    }
+
+    // 绑定开关事件
+    document.querySelectorAll('.toggle-switch input').forEach(toggle => {
+      toggle.addEventListener('change', saveCurrentSettings);
+    });
+
+    // 加载统计
+    function loadStats() {
+      try {
+        const stats = Storage.getStats();
+        const badges = Storage.getTeachingBadgesAll();
+        const teachingComplete = Storage.getTeachingCompleteAll();
+
+        const total = (stats.totalCompleted || 0) + Object.keys(teachingComplete).length;
+        const totalSec = stats.totalTime || 0;
+        const hours = Math.floor(totalSec / 3600);
+        const mins = Math.floor((totalSec % 3600) / 60);
+        const badgeCount = Object.values(badges).filter(b => b && b.earned).length;
+
+        document.getElementById('statTotal').textContent = total;
+        document.getElementById('statHours').textContent = hours > 0 ? `${hours}h${mins}m` : `${mins}m`;
+        document.getElementById('statBadges').textContent = badgeCount;
+      } catch(e) {
+        console.warn('加载统计失败:', e);
+      }
+    }
+
+    // 显示确认弹窗
+    function showResetConfirm() {
+      document.getElementById('confirmOverlay').classList.add('show');
+    }
+
+    function hideConfirm() {
+      document.getElementById('confirmOverlay').classList.remove('show');
+    }
+
+    // 重置所有数据
+    function resetAllData() {
+      try {
+        // 清除localStorage中所有killersudoku_开头的key
+        const keys = [];
+        for (let i = 0; i < localStorage.length; i++) {
+          const key = localStorage.key(i);
+          if (key && key.startsWith('killersudoku_')) {
+            keys.push(key);
+          }
+        }
+        keys.forEach(k => localStorage.removeItem(k));
+
+        hideConfirm();
+        showToast('进度已重置');
+
+        // 恢复默认设置
+        loadSettings();
+        loadStats();
+      } catch(e) {
+        console.error('重置失败:', e);
+        showToast('重置失败');
+      }
+    }
+
+    // 导出存档
+    function exportData() {
+      try {
+        const data = {};
+        for (let i = 0; i < localStorage.length; i++) {
+          const key = localStorage.key(i);
+          if (key && key.startsWith('killersudoku_')) {
+            data[key] = localStorage.getItem(key);
+          }
+        }
+        const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `killersudoku-save-${new Date().toISOString().slice(0,10)}.json`;
+        a.click();
+        URL.revokeObjectURL(url);
+        showToast('存档已导出');
+      } catch(e) {
+        console.error('导出失败:', e);
+        showToast('导出失败');
+      }
+    }
+
+    // Toast提示
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 2000);
+    }
+
+    // 初始化
+    loadSettings();
+    loadStats();
+  </script>
+</body>
+</html>

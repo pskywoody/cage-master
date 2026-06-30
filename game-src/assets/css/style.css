@@ -458,28 +458,31 @@ body {
   pointer-events: none;
 }
 
-/* ========== 数字键盘（固定底部，按钮最大化） ========== */
+/* ========== 数字键盘（单行横向排列，最大化盘面空间） ========== */
 #num-pad {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 6px;
-  padding: 6px 0 10px;
+  /* 默认9列（9×9盘面），guide.js会根据盘面大小动态设置为4/6/9列 */
+  grid-template-columns: repeat(9, 1fr);
+  gap: 4px;
+  padding: 4px 0 8px;
   flex-shrink: 0;
+  width: 100%;
 }
 
 .num-btn {
   position: relative;
-  padding: 12px 0;
+  padding: 10px 0;
   border: none;
   background: var(--theme-num-pad-bg);
   color: var(--theme-num-pad-text);
-  border-radius: 12px;
-  font-size: 20px;
+  border-radius: 10px;
+  font-size: 18px;
   font-weight: 700;
   cursor: pointer;
   transition: all 0.1s;
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
+  min-width: 0; /* 防止grid溢出 */
 }
 
 .num-btn:active {
@@ -2311,6 +2314,14 @@ body.boss-battle-active {
 .phase-breakthrough #gameCanvas {
   animation: breakthrough-pulse 2.5s ease-in-out infinite;
 }
+/* 破局阶段错误震动 */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-6px); }
+  40% { transform: translateX(6px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(4px); }
+}
 /* 收官阶段：粒子光效 */
 @keyframes finishing-glow {
   0% { box-shadow: 0 0 0 0 rgba(34,197,94,0); }
@@ -2360,3 +2371,120 @@ body.boss-battle-active {
   0% { opacity: 1; transform: translateY(0) scale(1); }
   100% { opacity: 0; transform: translateY(120px) scale(0); }
 }
+
+/* ===== 特效系统动画 ===== */
+@keyframes fx-shake {
+  0%, 100% { transform: translate(0, 0); }
+  10% { transform: translate(calc(var(--dx, 5px) * -1), calc(var(--dy, 5px) * -1)); }
+  20% { transform: translate(var(--dx, 5px), calc(var(--dy, 5px) * -1)); }
+  30% { transform: translate(calc(var(--dx, 5px) * -1), var(--dy, 5px)); }
+  40% { transform: translate(var(--dx, 5px), var(--dy, 5px)); }
+  50% { transform: translate(calc(var(--dx, 5px) * -1), calc(var(--dy, 5px) * -1)); }
+  60% { transform: translate(var(--dx, 5px), calc(var(--dy, 5px) * -1)); }
+  70% { transform: translate(calc(var(--dx, 5px) * -1), var(--dy, 5px)); }
+  80% { transform: translate(var(--dx, 5px), var(--dy, 5px)); }
+  90% { transform: translate(calc(var(--dx, 3px) * -1), calc(var(--dy, 3px) * -1)); }
+}
+.shaking { animation: fx-shake var(--shake-duration, 200ms) ease-in-out; }
+
+@keyframes fx-flash {
+  0% { opacity: 0; }
+  30% { opacity: var(--flash-opacity, 0.3); }
+  100% { opacity: 0; }
+}
+#fx-flash {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  pointer-events: none; z-index: 99998; opacity: 0;
+}
+#fx-flash.flashing { animation: fx-flash var(--flash-duration, 300ms) ease-out; }
+
+@keyframes fx-pulse-border {
+  0% { opacity: 0; box-shadow: 0 0 0 0 var(--pulse-color, #c9b037); }
+  50% { opacity: 1; box-shadow: 0 0 30px 8px var(--pulse-color, #c9b037); }
+  100% { opacity: 0; box-shadow: 0 0 0 0 var(--pulse-color, #c9b037); }
+}
+#fx-pulse-border {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  pointer-events: none; z-index: 99997; border-radius: 0; opacity: 0;
+}
+#fx-pulse-border.pulsing { animation: fx-pulse-border var(--pulse-duration, 1500ms) ease-out; }
+
+@keyframes fx-vignette {
+  from { opacity: 0; }
+  to { opacity: var(--vignette-level, 0.5); }
+}
+#fx-vignette {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  pointer-events: none; z-index: 99996;
+  background: radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.85) 100%);
+  opacity: 0; transition: opacity var(--vignette-duration, 500ms);
+}
+
+@keyframes fx-golden {
+  0% { opacity: 0; }
+  10% { opacity: 0.9; }
+  40% { opacity: 0.3; }
+  70% { opacity: 0.7; }
+  100% { opacity: 0; }
+}
+#fx-golden-flash {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  pointer-events: none; z-index: 99999;
+  background: radial-gradient(ellipse at center, #fff8dc 0%, #ffd700 30%, #ffaa00 60%, transparent 100%);
+  opacity: 0;
+}
+#fx-golden-flash.golden-flashing {
+  animation: fx-golden var(--golden-duration, 800ms) ease-out;
+}
+
+@keyframes fx-side-flash {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 0.6; }
+}
+.fx-side-flash {
+  position: fixed; top: 0; width: 15%; height: 100%;
+  pointer-events: none; z-index: 99995; opacity: 0;
+}
+.fx-side-flash.left { left: 0; background: linear-gradient(to right, var(--side-color, #ef4444), transparent); }
+.fx-side-flash.right { right: 0; background: linear-gradient(to left, var(--side-color, #ef4444), transparent); }
+.fx-side-flash.flashing { animation: fx-side-flash var(--side-duration, 500ms) ease-in-out; }
+
+@keyframes fx-boss-enter {
+  0% { transform: translateX(-100%) scale(0.5); opacity: 0; }
+  50% { transform: translateX(0) scale(1.1); opacity: 1; }
+  100% { transform: translateX(0) scale(1); opacity: 1; }
+}
+@keyframes fx-boss-enter-right {
+  0% { transform: translateX(100%) scale(0.5); opacity: 0; }
+  50% { transform: translateX(0) scale(1.1); opacity: 1; }
+  100% { transform: translateX(0) scale(1); opacity: 1; }
+}
+@keyframes fx-victory {
+  0% { opacity: 0; transform: scale(0.5); }
+  50% { opacity: 1; transform: scale(1.2); }
+  100% { opacity: 0; transform: scale(3); }
+}
+#fx-victory {
+  position: fixed; top: 50%; left: 50%; width: 200px; height: 200px;
+  margin: -100px 0 0 -100px; border-radius: 50%;
+  background: radial-gradient(circle, #fff 0%, #ffd700 40%, transparent 70%);
+  pointer-events: none; z-index: 99994; opacity: 0;
+}
+#fx-victory.active { animation: fx-victory 1000ms ease-out; }
+
+/* ===== 剧情立绘（样式由JS设置inline，此处仅补充）===== */
+#story-portrait img { width: 100%; height: 100%; object-fit: contain; }
+
+/* ===== 对话气泡 ===== */
+#dialogue-bubble { user-select: text; }
+
+/* ===== 画面撕裂效果（残影专用）===== */
+@keyframes fx-tear {
+  0% { transform: skewX(0deg); filter: none; }
+  20% { transform: skewX(-3deg); filter: hue-rotate(30deg) blur(1px); }
+  40% { transform: skewX(3deg); filter: hue-rotate(-30deg) blur(2px); }
+  60% { transform: skewX(-2deg); filter: hue-rotate(60deg) blur(1px); }
+  80% { transform: skewX(1deg); filter: hue-rotate(-15deg); }
+  100% { transform: skewX(0deg); filter: none; }
+}
+.fx-tear { animation: fx-tear 600ms ease-in-out; }

@@ -46,6 +46,12 @@ let phaseIndicator = null; // 阶段指示器DOM
 let _stuckTimer = null;    // 停滞检测计时器
 let _lastProgressTime = 0; // 上次有效填数时间
 let _emptyAtPhaseStart = 0;// 阶段开始时的空格数
+let _breakthroughWrongCount = 0; // 破局阶段连续猜错次数（用于防猜）
+
+// ========== 残局教学关模式 ==========
+let isEndgameMode = false;   // 是否为残局教学关
+let endgameKeyCells = [];    // 关键格坐标 [[r,c],...]
+let endgameKeyCellsFilled = 0; // 已正确填入的关键格数量
 
 /**
  * 计算当前空格数（非初始数字且未填的格子）
@@ -111,6 +117,7 @@ function enterBreakthrough(opts = {}) {
   if (gamePhase === 'breakthrough' || gamePhase === 'finishing') return;
   gamePhase = 'breakthrough';
   _emptyAtPhaseStart = getEmptyCount();
+  _breakthroughWrongCount = 0; // 重置防猜计数
   console.log(`⚡ 进入破局阶段 (原因: ${opts.reason || '未知'})`);
 
   _ensurePhaseUI();
@@ -120,7 +127,7 @@ function enterBreakthrough(opts = {}) {
   document.body.classList.add('phase-breakthrough');
 
   // 阶段指示器
-  phaseIndicator.textContent = '⚡ 破 局 时 刻';
+  phaseIndicator.textContent = t('story.phases.breakthrough');
   phaseIndicator.classList.remove('finishing');
   phaseIndicator.classList.add('show');
   setTimeout(() => phaseIndicator.classList.remove('show'), 3000);
@@ -153,7 +160,7 @@ function enterFinishing() {
   document.body.classList.add('phase-finishing');
 
   // 阶段指示器
-  phaseIndicator.textContent = '✨ 收 官';
+  phaseIndicator.textContent = t('story.phases.finishing');
   phaseIndicator.classList.add('finishing', 'show');
   setTimeout(() => phaseIndicator.classList.remove('show'), 3000);
 
@@ -180,10 +187,78 @@ function resetPhase() {
   gamePhase = 'opening';
   _lastProgressTime = Date.now();
   _emptyAtPhaseStart = 0;
+  _breakthroughWrongCount = 0;
+  isEndgameMode = false;
+  endgameKeyCells = [];
+  endgameKeyCellsFilled = 0;
   if (phaseOverlay) phaseOverlay.classList.remove('active');
   if (phaseIndicator) phaseIndicator.classList.remove('show', 'finishing');
   document.body.classList.remove('phase-breakthrough', 'phase-finishing');
   if (_stuckTimer) { clearTimeout(_stuckTimer); _stuckTimer = null; }
+}
+
+/**
+ * 初始化残局教学关模式
+ * - 标记非关键格为锁定（不可点击）
+ * - 残局关直接进入破局阶段
+ */
+function initEndgameMode(levelData) {
+  isEndgameMode = false;
+  endgameKeyCells = [];
+  endgameKeyCellsFilled = 0;
+
+  if (!levelData) return;
+  const mode = levelData.mode || 'full';
+  if (mode !== 'endgame') return;
+
+  const keyCells = levelData.keyCells;
+  if (!keyCells || !Array.isArray(keyCells) || keyCells.length === 0) {
+    console.warn('⚠️ 残局教学关缺少keyCells配置');
+    return;
+  }
+
+  isEndgameMode = true;
+  endgameKeyCells = keyCells.map(([r, c]) => ({ r, c }));
+  endgameKeyCellsFilled = 0;
+
+  const size = currentGridSize;
+  const keySet = new Set(keyCells.map(([r, c]) => `${r},${c}`));
+
+  // 锁定非关键格（已填的固定数字和非keyCell的空格）
+  for (let r = 0; r < size; r++) {
+    for (let c = 0; c < size; c++) {
+      const cell = guideBoard.cells[r][c];
+      if (!keySet.has(`${r},${c}`)) {
+        cell.isLocked = true;
+      } else {
+        cell.isLocked = false;
+        // 关键格确保是空的
+        if (cell.fixedNum) {
+          console.warn(`⚠️ 关键格(${r},${c})是预填数字，已移除fixedNum`);
+          cell.fixedNum = null;
+        }
+      }
+    }
+  }
+
+  console.log(`🎯 残局教学关初始化: ${keyCells.length}个关键格`, keyCells);
+}
+
+/**
+ * 残局关：检测关键格完成度
+ */
+function checkEndgameProgress() {
+  if (!isEndgameMode || !guideBoard) return { filled: 0, total: endgameKeyCells.length, complete: false };
+  const solution = currentLevelData && currentLevelData.solution;
+  if (!solution) return { filled: 0, total: endgameKeyCells.length, complete: false };
+
+  let filled = 0;
+  for (const {r, c} of endgameKeyCells) {
+    const cell = guideBoard.cells[r][c];
+    if (cell.fillNum === solution[r][c]) filled++;
+  }
+  endgameKeyCellsFilled = filled;
+  return { filled, total: endgameKeyCells.length, complete: filled === endgameKeyCells.length };
 }
 
 /**
@@ -268,8 +343,148 @@ let currentChapterData = null;
 // 是否强制播放剧情（URL参数 story=1）
 let forcePlayStory = false;
 
-window.onload = function() {
+window.onload = async function() {
   console.log('📚 教学模式启动中...');
+
+  // 初始化i18n多语言系统
+  if (typeof I18N !== 'undefined') {
+    await I18N.init();
+    // 绑定语言切换按钮
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const locale = btn.dataset.locale;
+        await I18N.setLocale(locale);
+        updateLangButtons();
+        // 更新动态文本
+        updateDynamicI18N();
+      });
+    });
+    updateLangButtons();
+  }
+
+  /**
+   * 更新语言按钮激活状态
+   */
+  function updateLangButtons() {
+    const current = I18N ? I18N.getLocale() : 'zh-CN';
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.locale === current);
+    });
+    const langNames = { 'zh-CN': '简体中文', 'ja': '日本語', 'ko': '한국어', 'en': 'English' };
+    const cur = document.getElementById('language-current');
+    if (cur) cur.textContent = langNames[current] || current;
+  }
+
+  /**
+   * 更新动态生成的i18n文本（JS中设置的textContent/innerHTML）
+   */
+  function updateDynamicI18N() {
+    // 更新45法则标题（根据盘面大小动态变化）
+    const rule45Title = document.getElementById('rule45-title');
+    if (rule45Title && typeof getRule45Name === 'function') {
+      rule45Title.textContent = t('ui.rule45.title', { ruleName: getRule45Name() });
+    }
+    // 更新通关时间
+    const timeEl = document.getElementById('complete-time');
+    if (timeEl && typeof formatTime !== 'undefined') {
+      timeEl.textContent = t('ui.complete.timeUsed', { time: formatTime(elapsedSeconds || 0) });
+    }
+    // 更新候选模式按钮文字
+    const candBtn = document.getElementById('btn-candidate');
+    if (candBtn) {
+      const isCand = candBtn.classList.contains('active');
+      candBtn.title = isCand ? t('ui.toolbar.candidateMode') : t('ui.toolbar.candidate');
+    }
+    // 更新返回按钮
+    const backBtn = document.getElementById('btn-back');
+    if (backBtn) backBtn.textContent = t('ui.common.backToChapter');
+    // 更新暂停/通关弹窗
+    const resumeBtn = document.getElementById('btn-resume');
+    if (resumeBtn) resumeBtn.textContent = t('ui.common.resume');
+    const compBack = document.getElementById('btn-complete-back');
+    if (compBack) compBack.textContent = t('ui.common.returnToLevels');
+    const compNext = document.getElementById('btn-complete-next');
+    if (compNext) compNext.textContent = t('ui.common.nextLevel');
+    const compTitle = document.querySelector('#complete-overlay h3');
+    if (compTitle) compTitle.textContent = t('ui.complete.title');
+    const pauseTitle = document.querySelector('#pause-overlay h3');
+    if (pauseTitle) pauseTitle.textContent = t('ui.pause.title');
+    const pauseDesc = document.querySelector('#pause-overlay p');
+    if (pauseDesc) pauseDesc.textContent = t('ui.pause.desc');
+    // 更新工具栏title
+    const titles = {
+      'btn-undo': 'ui.toolbar.undo', 'btn-erase': 'ui.toolbar.erase',
+      'btn-candidate': 'ui.toolbar.candidate', 'btn-auto-cands': 'ui.toolbar.autoCands',
+      'btn-hint': 'ui.toolbar.hint', 'btn-restart': 'ui.common.restart'
+    };
+    for (const [id, key] of Object.entries(titles)) {
+      const el = document.getElementById(id);
+      if (el) el.title = t(key);
+    }
+    // 更新设置面板中的关闭按钮
+    document.querySelectorAll('.settings-close, .rule45-close').forEach(btn => {
+      btn.textContent = t('ui.common.close');
+    });
+    // 更新45计算器标签
+    const rule45Labels = {
+      '格子数': 'ui.rule45.cellCount', '目标和': 'ui.rule45.targetSum',
+      '必含数字': 'ui.rule45.mustInclude', '排除数字': 'ui.rule45.exclude',
+      '可能的组合': 'ui.rule45.possibleCombinations'
+    };
+    document.querySelectorAll('.rule45-input-group label, .rule45-result-header span:first-child').forEach(el => {
+      const key = rule45Labels[el.textContent.trim()];
+      if (key) el.textContent = t(key);
+    });
+    // 更新设置面板各section标题和选项
+    updateSettingsI18N();
+    // 更新连填提示
+    const qfHint = document.getElementById('quick-fill-hint');
+    if (qfHint) qfHint.textContent = t('ui.canvas.quickFillHint');
+    // 更新透视面板标签
+    const perspRow = document.getElementById('persp-row');
+    const perspCol = document.getElementById('persp-col');
+    const perspBox = document.getElementById('persp-box');
+    if (perspRow) perspRow.firstChild.textContent = t('ui.perspective.row');
+    if (perspCol) perspCol.firstChild.textContent = t('ui.perspective.col');
+    if (perspBox) perspBox.firstChild.textContent = t('ui.perspective.box');
+  }
+
+  /**
+   * 更新设置面板的i18n文本
+   */
+  function updateSettingsI18N() {
+    const settingsMap = {
+      '🔊 音频': 'ui.settings.audioSection',
+      '🔇 一键静音': 'ui.settings.muteAll',
+      '关闭所有声音（BGM+音效）': 'ui.settings.muteAllDesc',
+      '🎵 背景音乐': 'ui.settings.bgm',
+      '游戏过程中的背景音乐': 'ui.settings.bgmDesc',
+      '🔊 音效': 'ui.settings.sfx',
+      '点击、填数等操作音效': 'ui.settings.sfxDesc',
+      '显示': 'ui.settings.displaySection',
+      '冲突标红': 'ui.settings.conflictRed',
+      '填错数字时标红提示': 'ui.settings.conflictRedDesc',
+      '同行高亮': 'ui.settings.highlightRow',
+      '选中格子时高亮整行': 'ui.settings.highlightRowDesc',
+      '同列高亮': 'ui.settings.highlightCol',
+      '选中格子时高亮整列': 'ui.settings.highlightColDesc',
+      '同宫高亮': 'ui.settings.highlightBox',
+      '选中格子时高亮整宫': 'ui.settings.highlightBoxDesc',
+      '同数字高亮': 'ui.settings.highlightSameNum',
+      '选中数字时高亮所有相同数字': 'ui.settings.highlightSameNumDesc',
+      '同笼高亮': 'ui.settings.highlightSameCage',
+      '选中格子时高亮所属笼子': 'ui.settings.highlightSameCageDesc',
+      '操作': 'ui.settings.operationSection',
+      '自动清除关联候选': 'ui.settings.autoClearCands',
+      '填数后自动清除行/列/宫/笼的关联候选': 'ui.settings.autoClearCandsDesc',
+      '⚙️ 设置': 'ui.settings.title'
+    };
+    document.querySelectorAll('.settings-section h4, .setting-name, .setting-desc, .settings-header h3').forEach(el => {
+      const text = el.textContent.trim();
+      const key = settingsMap[text];
+      if (key) el.textContent = t(key);
+    });
+  }
 
   // 初始化音频
   if (typeof AudioManager !== 'undefined') {
@@ -295,7 +510,7 @@ window.onload = function() {
   // 2. 加载关卡数据
   loadTeachingLevel(currentLevelId).then(levelData => {
     if (!levelData) {
-      alert('关卡加载失败，请返回重试');
+      alert(t('error.levelLoadFailed'));
       return;
     }
 
@@ -363,6 +578,9 @@ window.onload = function() {
     // 8.5 重置三阶段状态
     resetPhase();
 
+    // 8.6 残局教学关初始化：锁定非关键格
+    initEndgameMode(levelData);
+
     // 10. 动态生成数字键盘
     generateNumPad(currentGridSize);
     setupQuickFillLongPress();
@@ -375,6 +593,35 @@ window.onload = function() {
     guideBoard.checkConflicts();
     guideRenderer.render(guideBoard);
     console.log(`✅ 教学关卡加载完成，尺寸: ${currentGridSize}x${currentGridSize}`);
+
+    // 12.05 初始化喜剧系统
+    if (typeof ComedySystem !== 'undefined') {
+      const isBoss = levelData.isBoss === true || (typeof BOSS_CONFIGS !== 'undefined' && BOSS_CONFIGS[currentLevelId]);
+      ComedySystem.init({
+        levelId: currentLevelId,
+        mode: 'guide',
+        isBoss: isBoss
+      });
+      // 暴露boss/ayan对话接口给guide-battle使用
+      window._bossSay = function(text) {
+        // guide-battle自己的对话系统已在boss-dialogue-zone中处理
+        if (typeof window._guideBossSay === 'function') {
+          window._guideBossSay(text);
+        } else {
+          ComedySystem._showBubble('设局人', text, 'linear-gradient(135deg,#dc2626,#991b1b)', '🎭');
+        }
+      };
+      window._ayanSay = function(text) {
+        if (typeof window._guideAyanSay === 'function') {
+          window._guideAyanSay(text);
+        } else {
+          ComedySystem._showBubble('阿岩', text, 'linear-gradient(135deg,#22c55e,#15803d)', '🍃');
+        }
+      };
+    }
+
+    // 12.1 应用i18n动态文本
+    updateDynamicI18N();
 
     // 12.3 加载章节数据（含剧情）
     console.log('📖 开始加载章节数据...');
@@ -622,7 +869,7 @@ function applyFeatureConfig() {
   }
 }
 
-// ---------- 动态生成数字键盘 ----------
+// ---------- 动态生成数字键盘（单行横向排列，最大化盘面空间） ----------
 function generateNumPad(size) {
   const numPad = document.getElementById('num-pad');
   if (!numPad) return;
@@ -637,15 +884,8 @@ function generateNumPad(size) {
     numPad.appendChild(btn);
   }
 
-  // 调整网格布局
-  if (size <= 4) {
-    numPad.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
-  } else if (size <= 6) {
-    numPad.style.gridTemplateColumns = 'repeat(3, 1fr)';
-  } else {
-    // 9个数字用默认的3x3布局（移动端）
-    numPad.style.gridTemplateColumns = '';
-  }
+  // 单行布局：4/6/9列，给盘面留出最大空间
+  numPad.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
 }
 
 // ---------- 读取本地存档 ----------
@@ -891,6 +1131,23 @@ function checkComplete() {
     return;
   }
 
+  // 残局教学关：关键格全部正确填入即通关
+  if (isEndgameMode) {
+    const prog = checkEndgameProgress();
+    if (prog.complete) {
+      // 检查关键格是否有错误
+      let hasError = false;
+      for (const {r, c} of endgameKeyCells) {
+        if (guideBoard.cells[r][c].isError) hasError = true;
+      }
+      if (!hasError) {
+        console.log(`🎉 残局教学关通关！关键格${prog.filled}/${prog.total}全部正确`);
+        markComplete();
+      }
+    }
+    return;
+  }
+
   const size = currentGridSize;
   let allFilled = true;
   let hasError = false;
@@ -978,6 +1235,22 @@ function onPreDialogComplete() {
       }
     });
   } else {
+    // 第104关：唯一组合口诀教学 - 触发小抄卷轴剧情
+    const numId = parseInt(currentLevelId);
+    if (numId === 104 && typeof ComedySystem !== 'undefined') {
+      const cheatSeenKey = 'killersudoku_cheatsheet_104_seen';
+      const hasSeenCheat = localStorage.getItem(cheatSeenKey) === '1';
+      if (!hasSeenCheat) {
+        localStorage.setItem(cheatSeenKey, '1');
+        ComedySystem.showCheatSheetStory(() => {
+          initGuideManager();
+        });
+        return;
+      }
+      // 已看过剧情，直接显示小抄
+      ComedySystem.showCheatSheet();
+    }
+
     // 检查是否为高级技巧教学关卡
     const tutorialKey = _getTutorialKey(currentLevelId);
     const tutorialSeenKey = `killersudoku_tutorial_seen_${currentLevelId}`;
@@ -1519,16 +1792,36 @@ function markComplete() {
   // 计算星星数（根据用时）
   const stars = calculateStars(elapsedSeconds, currentGridSize);
 
+  // 喜剧系统：评分
+  let gradeInfo = { stars, grade: stars === 3 ? 'A' : stars === 2 ? 'B' : 'C' };
+  if (typeof ComedySystem !== 'undefined') {
+    const baseTime = currentGridSize === 4 ? 60 : currentGridSize === 6 ? 180 : 360;
+    const mistakes = ComedySystem.state.totalWrong;
+    const ratio = elapsedSeconds / baseTime;
+    if (ratio < 0.4 && mistakes === 0) gradeInfo = { stars: 3, grade: 'SSS', mistakes };
+    else if (ratio < 0.7 && mistakes <= 3) gradeInfo = { stars: 3, grade: 'S', mistakes };
+    else if (ratio <= 1.0 && mistakes <= 5) gradeInfo = { stars: 3, grade: 'A', mistakes };
+    else if (ratio <= 1.5 || mistakes <= 8) gradeInfo = { stars: 2, grade: 'B', mistakes };
+    else gradeInfo = { stars: 1, grade: 'C', mistakes };
+
+    const isBoss = currentLevelData && (currentLevelData.isBoss || (typeof BOSS_CONFIGS !== 'undefined' && BOSS_CONFIGS[currentLevelId]));
+    ComedySystem.onComplete({
+      expectedSec: currentGridSize === 4 ? 60 : currentGridSize === 6 ? 180 : 420
+    });
+    // S级连关彩蛋
+    if (typeof ComedySystem.onSGradeStreak === 'function') {
+      ComedySystem.onSGradeStreak(gradeInfo.grade);
+    }
+    // Boss战吐槽由guide-battle.js在战⽃结束回调中处理（时机更准）
+  }
+
   // 保存通关记录
   if (typeof Storage !== 'undefined') {
     Storage.markTeachingComplete(currentLevelId, {
       time: elapsedSeconds,
       stars: stars
     });
-    // 清除进度存档
     Storage.clearTeachingProgress(currentLevelId);
-
-    // 更新章节进度
     updateChapterProgress();
   }
 
@@ -1536,9 +1829,47 @@ function markComplete() {
   const overlay = document.getElementById('complete-overlay');
   const timeEl = document.getElementById('complete-time');
   const starsEl = document.getElementById('complete-stars');
+  const gradeEl = document.getElementById('complete-grade');
 
-  if (timeEl) timeEl.textContent = '用时 ' + formatTime(elapsedSeconds);
-  if (starsEl) starsEl.textContent = '★'.repeat(stars) + '☆'.repeat(3 - stars);
+  if (timeEl) timeEl.textContent = t('ui.complete.timeUsed', { time: formatTime(elapsedSeconds) });
+  if (starsEl) {
+    starsEl.innerHTML = '';
+    for (let i = 0; i < 3; i++) {
+      const s = document.createElement('span');
+      s.className = i < gradeInfo.stars ? 'star-on' : 'star-off';
+      s.textContent = '★';
+      starsEl.appendChild(s);
+    }
+  }
+  if (gradeEl) {
+    gradeEl.textContent = gradeInfo.grade;
+    gradeEl.className = 'complete-grade-badge grade-' + gradeInfo.grade;
+  }
+
+  // 守笼人评语
+  const commentEl = document.getElementById('complete-comment');
+  const commentText = document.getElementById('complete-comment-text');
+  if (commentEl && commentText && typeof ComedySystem !== 'undefined') {
+    setTimeout(() => {
+      const baseTime = currentGridSize === 4 ? 60 : currentGridSize === 6 ? 180 : 360;
+      const mistakes = (gradeInfo.mistakes != null) ? gradeInfo.mistakes : (ComedySystem.state ? ComedySystem.state.totalWrong : 0);
+      const ratio = elapsedSeconds / baseTime;
+      let commentKey = 'comedy.keeper.grade' + gradeInfo.grade;
+      if (ratio < 0.3 && mistakes === 0) commentKey = 'comedy.keeper.tooFast';
+      else if (mistakes === 0 && gradeInfo.grade !== 'SSS') commentKey = 'comedy.keeper.perfectClear';
+      const isBoss = currentLevelData && (currentLevelData.isBoss || (typeof BOSS_CONFIGS !== 'undefined' && BOSS_CONFIGS[currentLevelId]));
+      if (isBoss && gradeInfo.grade !== 'SSS' && gradeInfo.grade !== 'S') commentKey = 'comedy.keeper.bossDefeated';
+      let lines = null;
+      if (typeof I18N !== 'undefined' && I18N.getRaw) lines = I18N.getRaw(commentKey);
+      else if (typeof t === 'function') lines = t(commentKey);
+      if (Array.isArray(lines) && lines.length > 0) {
+        commentText.textContent = lines[Math.floor(Math.random() * lines.length)];
+      } else {
+        commentText.textContent = '中规中矩，算你过关。';
+      }
+      commentEl.style.display = 'block';
+    }, 1000);
+  }
 
   // 检查是否需要播放章末剧情
   const shouldPlayEnding = forcePlayStory || storyManager.shouldPlayEnding(currentChapterData, currentLevelId);
@@ -1980,6 +2311,20 @@ function handleNumberInput(num) {
     }
   }
   guideBoard.checkConflicts();
+
+  // 喜剧系统：检测填对/填错
+  if (typeof ComedySystem !== 'undefined') {
+    const selectedCell = guideBoard.getActiveCell();
+    if (selectedCell) {
+      const cell = guideBoard.cells[selectedCell.r][selectedCell.c];
+      if (cell.isError) {
+        ComedySystem.onWrong(selectedCell.r, selectedCell.c, num);
+      } else if (cell.fillNum === num) {
+        ComedySystem.onCorrect(selectedCell.r, selectedCell.c, num);
+      }
+    }
+  }
+
   refreshBoard();
 }
 
@@ -2082,6 +2427,7 @@ function bindToolbar() {
         guideBoard.eraseNumber();
       }
       guideBoard.checkConflicts();
+      if (typeof ComedySystem !== 'undefined') ComedySystem.onErase();
       refreshBoard();
     });
   }
@@ -2163,6 +2509,7 @@ function bindToolbar() {
   if (restartBtn) {
     restartBtn.addEventListener('click', () => {
       if (isPaused) return;
+      if (typeof ComedySystem !== 'undefined') ComedySystem.onReset();
       confirmRestart();
     });
   }
@@ -2176,6 +2523,7 @@ function bindToolbar() {
 function handleHint() {
   hintStep++;
   _isHintShowing = true;
+  if (typeof ComedySystem !== 'undefined') ComedySystem.onHint(hintStep);
 
   if (hintStep === 1) {
     // 第一层：位置提示
@@ -2183,10 +2531,10 @@ function handleHint() {
     if (!currentHint) {
       hintStep = 0;
       _isHintShowing = false;
-      showToast('🔍 当前盘面没有明显的可推进步骤，试试其他方法，或者用45法则计算器');
+      showToast(t('hint.noHint'));
       return;
     }
-    showToast('💡 第一层提示：仔细看看这个格子（绿框标记），它有什么特别之处？');
+    showToast(t('hint.level1'));
   } else if (hintStep === 2) {
     // 第二层：技巧名称 + 区域高亮
     currentHint = guideBoard.showHint(2);
@@ -2219,9 +2567,9 @@ function handleHint() {
       }
       // 基础技巧或无教程：直接显示答案
       if (currentHint.num !== null && currentHint.num !== undefined) {
-        showToast(`🎯 答案是 ${currentHint.num}，填入后会自动排除相关候选数`);
+        showToast(t('hint.level3_answer', { num: currentHint.num }));
       } else {
-        showToast(`📖 这一步需要用到「${currentHint.techniqueName}」技巧，仔细观察金色高亮区域中的紫色标记格`);
+        showToast(t('hint.level3_technique', { technique: currentHint.techniqueName }));
       }
     }
   } else {
@@ -2258,23 +2606,24 @@ function buildTechniqueMessage(hint) {
 
   switch (tech) {
     case 'nakedSingle':
-      return `📘 第二层：【显性唯一（裸单）】\n${cellName}格所在的行、列、宫、笼里已经出现了其他所有数字（1-${guideBoard.size}），只有 ${num} 没出现过，所以只能填 ${num}。\n👉 看金色高亮区域：里面已有的数字凑齐了，只剩这一个数。`;
+      return t('hint.nakedSingle.desc_level2', { cellName, num });
     case 'hiddenSingle':
-      return `📘 第二层：【隐性唯一（隐单）】\n${hint.description}。仔细看${getRegionName(hint)}，你会发现数字${num}只能放在${cellName}。`;
+      return t('hint.hiddenSingle.desc_level2', { description: hint.description, num, cellName });
     case 'nakedPair':
       if (hint.pairCells && hint.pairNums) {
-        const labels = 'ABCDEFGHI';
         const [p1, p2] = hint.pairCells;
-        const p1Name = `${labels[p1[0]]}${p1[1]+1}`;
-        const p2Name = `${labels[p2[0]]}${p2[1]+1}`;
-        let msg = `📘 第二层：【显性数对】\n${p1Name}和${p2Name}两个格子都只能填 ${hint.pairNums[0]} 或 ${hint.pairNums[1]}（紫色标记）。这意味着这两个数字已经被它们"锁定"了！\n👉 在同一${getRegionName(hint)}中，其他格子可以排除掉 ${hint.pairNums[0]} 和 ${hint.pairNums[1]}。`;
-        if (num) msg += `\n排除后，${cellName}就只剩 ${num} 了！`;
-        else msg += `\n再点一次提示，我会一步步演示给你看。`;
+        const cell1 = `${labels[p1[0]]}${p1[1]+1}`;
+        const cell2 = `${labels[p2[0]]}${p2[1]+1}`;
+        const num1 = hint.pairNums[0];
+        const num2 = hint.pairNums[1];
+        let msg = t('hint.nakedPair.desc_level2', { cell1, cell2, num1, num2 });
+        if (num) msg += '\n' + t('hint.nakedPair.desc_level2_withNum', { cellName, num });
+        else msg += '\n' + t('hint.nakedPair.desc_level2_noNum');
         return msg;
       }
-      return `📘 ${hint.techniqueName}：${hint.description}`;
+      return t('hint.level3_technique', { technique: hint.techniqueName });
     default:
-      return `📘 ${hint.techniqueName}：${hint.description}`;
+      return t('hint.level3_technique', { technique: hint.techniqueName });
   }
 }
 
@@ -2794,8 +3143,26 @@ function initGuideManager() {
   }
 
   const triggers = (currentLevelData && currentLevelData.triggers) || [];
-  if (triggers.length === 0) {
+
+  // 残局教学关：自动注入"直接进入破局"触发器
+  let effectiveTriggers = triggers;
+  if (isEndgameMode) {
+    const hasEnterBreakthrough = triggers.some(t =>
+      t.type === 'enter_phase' && t.phase === 'breakthrough' &&
+      (t.condition === 'onLevelStart' || (t.condition && t.condition.type === 'onLevelStart'))
+    );
+    if (!hasEnterBreakthrough) {
+      effectiveTriggers = [
+        { condition: 'onLevelStart', type: 'enter_phase', phase: 'breakthrough', once: true },
+        ...triggers
+      ];
+    }
+  }
+
+  if (effectiveTriggers.length === 0) {
     console.log('📚 本关无引导配置');
+    // 残局关即使没有触发器也要启动卡壳计时器
+    if (isEndgameMode) startStuckTimer();
     return;
   }
 
@@ -2806,7 +3173,7 @@ function initGuideManager() {
   } catch (e) { /* ignore */ }
 
   guideManager = new GuideManager({
-    triggers: triggers,
+    triggers: effectiveTriggers,
     levelId: currentLevelId,
     board: guideBoard,
     renderer: guideRenderer,
@@ -2860,6 +3227,55 @@ function guide_onNumberFilled(r, c, num) {
   // 判断填数是否正确（与solution对比）
   const solution = currentLevelData && currentLevelData.solution;
   const isCorrect = !!(solution && solution[r] && solution[r][c] === num);
+
+  // ====== 防猜机制（破局阶段）======
+  // 在破局阶段，填错数字立即闪红并清除，不给"猜"留空间
+  if (!isCorrect && gamePhase === 'breakthrough') {
+    _breakthroughWrongCount++;
+    console.log(`🚫 破局阶段填错! 位置(${r},${c})填${num}，正确应为${solution[r][c]}，连续错误${_breakthroughWrongCount}次`);
+    
+    // 标记错误格
+    const cell = guideBoard.cells[r][c];
+    cell.isError = true;
+    refreshBoard();
+    
+    // 播放错误音效
+    if (typeof AudioManager !== 'undefined') {
+      AudioManager.playWrong();
+    }
+    
+    // 错误震动反馈
+    const canvas = document.getElementById('gameCanvas');
+    if (canvas) {
+      canvas.style.animation = 'none';
+      canvas.offsetHeight; // 触发reflow
+      canvas.style.animation = 'shake 0.4s ease-out';
+    }
+    
+    // 延迟清除错误数字
+    setTimeout(() => {
+      if (guideBoard && guideBoard.cells[r][c]) {
+        guideBoard.cells[r][c].fillNum = null;
+        guideBoard.cells[r][c].isError = false;
+        guideBoard.checkConflicts();
+        refreshBoard();
+      }
+    }, 600);
+    
+    // 连续猜错3次，自动弹出提示
+    if (_breakthroughWrongCount >= 3) {
+      _breakthroughWrongCount = 0;
+      setTimeout(() => {
+        showGameToast(t('hint.breakthroughNoGuess'), 4000);
+      }, 800);
+    } else {
+      const hints = ['再想想...', '这个不对哦', '仔细观察候选数', '试试排除法'];
+      showGameToast('❌ ' + hints[Math.min(_breakthroughWrongCount-1, hints.length-1)], 1500);
+    }
+    
+    // 不计入进度，不重置卡壳计时器
+    return;
+  }
 
   console.log(`🔢 guide_onNumberFilled(r=${r}, c=${c}, num=${num}) correct=${isCorrect} → guideManager.onNumberFilled`);
   guideManager.onNumberFilled(r, c, num, isCorrect);
@@ -3152,6 +3568,63 @@ function initSettingsBindings() {
       saveSettings();
     });
   }
+
+  // 音频设置：一键静音
+  const muteAll = document.getElementById('setting-mute-all');
+  if (muteAll) {
+    muteAll.addEventListener('change', (e) => {
+      const muted = e.target.checked;
+      guideBoard.settings.muteAll = muted;
+      if (typeof AudioManager !== 'undefined') {
+        if (muted) {
+          AudioManager.setBgmEnabled(false);
+          AudioManager.setSfxEnabled(false);
+        } else {
+          const bgmOn = document.getElementById('setting-bgm');
+          const sfxOn = document.getElementById('setting-sfx');
+          AudioManager.setBgmEnabled(bgmOn ? bgmOn.checked : true);
+          AudioManager.setSfxEnabled(sfxOn ? sfxOn.checked : true);
+        }
+      }
+      saveSettings();
+      // 刷新UI（禁用/启用子开关）
+      loadSettingsToUI();
+    });
+  }
+
+  // 音频设置：BGM开关
+  const bgmToggle = document.getElementById('setting-bgm');
+  if (bgmToggle) {
+    bgmToggle.addEventListener('change', (e) => {
+      const bgmOn = e.target.checked;
+      guideBoard.settings.bgm = bgmOn;
+      if (typeof AudioManager !== 'undefined') {
+        if (guideBoard.settings.muteAll) {
+          AudioManager.setBgmEnabled(false);
+        } else {
+          AudioManager.setBgmEnabled(bgmOn);
+        }
+      }
+      saveSettings();
+    });
+  }
+
+  // 音频设置：音效开关
+  const sfxToggle = document.getElementById('setting-sfx');
+  if (sfxToggle) {
+    sfxToggle.addEventListener('change', (e) => {
+      const sfxOn = e.target.checked;
+      guideBoard.settings.sfx = sfxOn;
+      if (typeof AudioManager !== 'undefined') {
+        if (guideBoard.settings.muteAll) {
+          AudioManager.setSfxEnabled(false);
+        } else {
+          AudioManager.setSfxEnabled(sfxOn);
+        }
+      }
+      saveSettings();
+    });
+  }
 }
 
 function loadSettings() {
@@ -3166,6 +3639,25 @@ function loadSettings() {
   if (saved.highlightBox !== undefined) guideBoard.highlightSettings.sameBox = saved.highlightBox;
   if (saved.highlightSameNumber !== undefined) guideBoard.highlightSettings.sameNumber = saved.highlightSameNumber;
   if (saved.highlightSameCage !== undefined) guideBoard.highlightSettings.sameCage = saved.highlightSameCage;
+  // 音频设置
+  if (saved.muteAll !== undefined) guideBoard.settings.muteAll = saved.muteAll;
+  if (saved.bgm !== undefined) guideBoard.settings.bgm = saved.bgm;
+  if (saved.sfx !== undefined) guideBoard.settings.sfx = saved.sfx;
+  
+  // 应用音频设置
+  applyAudioSettings();
+}
+
+function applyAudioSettings() {
+  if (typeof AudioManager === 'undefined') return;
+  const s = guideBoard.settings;
+  if (s.muteAll) {
+    AudioManager.setBgmEnabled(false);
+    AudioManager.setSfxEnabled(false);
+  } else {
+    AudioManager.setBgmEnabled(s.bgm !== false);
+    AudioManager.setSfxEnabled(s.sfx !== false);
+  }
 }
 
 function saveSettings() {
@@ -3177,7 +3669,10 @@ function saveSettings() {
     highlightCol: guideBoard.highlightSettings.sameCol,
     highlightBox: guideBoard.highlightSettings.sameBox,
     highlightSameNumber: guideBoard.highlightSettings.sameNumber,
-    highlightSameCage: guideBoard.highlightSettings.sameCage
+    highlightSameCage: guideBoard.highlightSettings.sameCage,
+    muteAll: guideBoard.settings.muteAll,
+    bgm: guideBoard.settings.bgm,
+    sfx: guideBoard.settings.sfx
   });
 }
 
@@ -3202,4 +3697,21 @@ function loadSettingsToUI() {
 
   const autoClear = document.getElementById('setting-auto-clear');
   if (autoClear) autoClear.checked = guideBoard.settings.autoClearCandidates;
+
+  // 音频设置UI
+  const muteAll = document.getElementById('setting-mute-all');
+  const bgmToggle = document.getElementById('setting-bgm');
+  const sfxToggle = document.getElementById('setting-sfx');
+  const isMuted = guideBoard.settings.muteAll;
+  if (muteAll) muteAll.checked = isMuted;
+  if (bgmToggle) {
+    bgmToggle.checked = guideBoard.settings.bgm !== false;
+    bgmToggle.disabled = isMuted;
+    bgmToggle.parentElement.style.opacity = isMuted ? '0.5' : '1';
+  }
+  if (sfxToggle) {
+    sfxToggle.checked = guideBoard.settings.sfx !== false;
+    sfxToggle.disabled = isMuted;
+    sfxToggle.parentElement.style.opacity = isMuted ? '0.5' : '1';
+  }
 }

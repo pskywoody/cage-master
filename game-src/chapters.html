@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>故事模式 · 章节选择</title>
+  <title data-i18n="ui.titles.chaptersPage">故事模式 · 章节选择</title>
   <link rel="icon" type="image/jpeg" href="assets/images/favicon.jpg" />
   <link rel="stylesheet" href="assets/css/style.css" />
   <style>
@@ -194,18 +194,19 @@
 <body>
   <div id="app">
     <div id="chapters-container">
-      <a href="menu.html" id="back-link">← 返回主菜单</a>
-      <h1>📖 故事模式</h1>
-      <p id="chapters-subtitle">跟随守笼人与阿岩，破解杀手数独的秘术档案</p>
+      <a href="menu.html" id="back-link" data-i18n="ui.chapters.backToMenu">← 返回主菜单</a>
+      <h1 data-i18n="ui.chapters.title">📖 故事模式</h1>
+      <p id="chapters-subtitle" data-i18n="ui.chapters.subtitle">跟随守笼人与阿岩，破解杀手数独的秘术档案</p>
 
       <div id="chapters-list">
-        <div style="text-align:center; padding: 40px; color: #94a3b8;">加载章节中...</div>
+        <div style="text-align:center; padding: 40px; color: #94a3b8;" data-i18n="ui.chapters.loading">加载章节中...</div>
       </div>
     </div>
   </div>
 
-  <script src="utils/audio.js?v=25"></script>
-  <script src="utils/storage.js"></script>
+  <script src="utils/audio.js?v=38"></script>
+  <script src="utils/storage.js?v=38"></script>
+  <script src="utils/i18n.js?v=38"></script>
   <script>
     // 初始化音频
     if (typeof AudioManager !== 'undefined') { AudioManager.init(); }
@@ -228,7 +229,7 @@
 
       if (!chapters || chapters.length === 0) {
         document.getElementById('chapters-list').innerHTML =
-          '<div style="text-align:center; padding: 40px; color: #94a3b8;">暂无章节数据</div>';
+          '<div style="text-align:center; padding: 40px; color: #94a3b8;">' + t('ui.chapters.noData') + '</div>';
         return;
       }
 
@@ -254,27 +255,27 @@
     // 最终降级数据
     function getFallbackChapters() {
       return [
-        { chapterId: 1, title: '加密来信', subtitle: '入门篇 · 4x4', icon: '✉️', color: '#22c55e',
-          description: '认识杀手数独的基本规则，从最小的4x4盘面开始你的侦探之旅。',
-          badgeId: 'badge_c1_letter', badgeName: '新手侦探', unlockRequirement: 0, levels: [] },
-        { chapterId: 2, title: '双重线索', subtitle: '进阶篇 · 6x6', icon: '🔍', color: '#3b82f6',
-          description: '学习更多解题技巧，挑战6x6盘面，提升你的推理能力。',
-          badgeId: 'badge_c2_clue', badgeName: '初级侦探', unlockRequirement: 1, levels: [] },
-        { chapterId: 3, title: '谜案追踪', subtitle: '提高篇 · 6x6', icon: '🕵️', color: '#8b5cf6',
-          description: '掌握45法则等高级技巧，破解更复杂的谜题。',
-          badgeId: 'badge_c3_trace', badgeName: '中级侦探', unlockRequirement: 1, levels: [] },
-        { chapterId: 4, title: '密码破译', subtitle: '进阶篇 · 9x9', icon: '📜', color: '#f59e0b',
-          description: '正式挑战9x9盘面，体验完整的杀手数独魅力。',
-          badgeId: 'badge_c4_cipher', badgeName: '高级侦探', unlockRequirement: 1, levels: [] },
-        { chapterId: 5, title: '终极考验', subtitle: '挑战篇 · 9x9', icon: '🏆', color: '#ef4444',
-          description: '高难度9x9谜题，考验你所有学到的技巧。',
-          badgeId: 'badge_c5_ultimate', badgeName: '精英侦探', unlockRequirement: 1, levels: [] },
-        { chapterId: 6, title: '大师之路', subtitle: '大师篇 · 9x9', icon: '👑', color: '#ec4899',
-          description: '传说级难度，只有真正的侦探大师才能通关。',
-          badgeId: 'badge_c6_master', badgeName: '大师侦探', unlockRequirement: 1, levels: [] },
-        { chapterId: 7, title: '秘术档案', subtitle: '大师篇 · 高级技巧', icon: '🔮', color: '#a855f7',
-          description: '守笼人发现了设局人留下的六卷秘术手稿，记载着数对、X-Wing、剑鱼构型等高级推演术。',
-          badgeId: 'badge_c7_master', badgeName: '秘术大师', unlockRequirement: 6, levels: [] }
+        { chapterId: 1, title: t('ui.chapters.fallbackCh1.title'), subtitle: t('ui.chapters.fallbackCh1.subtitle'), icon: '✉️', color: '#22c55e',
+          description: t('ui.chapters.fallbackCh1.desc'),
+          badgeId: 'badge_c1_letter', badgeName: t('ui.chapters.fallbackCh1.badgeName'), unlockRequirement: 0, levels: [] },
+        { chapterId: 2, title: t('ui.chapters.fallbackCh2.title'), subtitle: t('ui.chapters.fallbackCh2.subtitle'), icon: '🔍', color: '#3b82f6',
+          description: t('ui.chapters.fallbackCh2.desc'),
+          badgeId: 'badge_c2_clue', badgeName: t('ui.chapters.fallbackCh2.badgeName'), unlockRequirement: 1, levels: [] },
+        { chapterId: 3, title: t('ui.chapters.fallbackCh3.title'), subtitle: t('ui.chapters.fallbackCh3.subtitle'), icon: '🕵️', color: '#8b5cf6',
+          description: t('ui.chapters.fallbackCh3.desc'),
+          badgeId: 'badge_c3_trace', badgeName: t('ui.chapters.fallbackCh3.badgeName'), unlockRequirement: 1, levels: [] },
+        { chapterId: 4, title: t('ui.chapters.fallbackCh4.title'), subtitle: t('ui.chapters.fallbackCh4.subtitle'), icon: '📜', color: '#f59e0b',
+          description: t('ui.chapters.fallbackCh4.desc'),
+          badgeId: 'badge_c4_cipher', badgeName: t('ui.chapters.fallbackCh4.badgeName'), unlockRequirement: 1, levels: [] },
+        { chapterId: 5, title: t('ui.chapters.fallbackCh5.title'), subtitle: t('ui.chapters.fallbackCh5.subtitle'), icon: '🏆', color: '#ef4444',
+          description: t('ui.chapters.fallbackCh5.desc'),
+          badgeId: 'badge_c5_ultimate', badgeName: t('ui.chapters.fallbackCh5.badgeName'), unlockRequirement: 1, levels: [] },
+        { chapterId: 6, title: t('ui.chapters.fallbackCh6.title'), subtitle: t('ui.chapters.fallbackCh6.subtitle'), icon: '👑', color: '#ec4899',
+          description: t('ui.chapters.fallbackCh6.desc'),
+          badgeId: 'badge_c6_master', badgeName: t('ui.chapters.fallbackCh6.badgeName'), unlockRequirement: 1, levels: [] },
+        { chapterId: 7, title: t('ui.chapters.fallbackCh7.title'), subtitle: t('ui.chapters.fallbackCh7.subtitle'), icon: '🔮', color: '#a855f7',
+          description: t('ui.chapters.fallbackCh7.desc'),
+          badgeId: 'badge_c7_master', badgeName: t('ui.chapters.fallbackCh7.badgeName'), unlockRequirement: 6, levels: [] }
       ];
     }
 
@@ -299,28 +300,33 @@
           ? Math.round((progress.completed / progress.total) * 100)
           : 0;
 
+        const lockIcon = t('ui.chapters.lockedIcon');
+        const badgeLabel = chapter.badgeName || t('ui.chapters.badge');
+        const progressText = I18N.formatProgress(progress.completed, progress.total);
+        const chapterPrefix = t('ui.chapters.chapterPrefix', { id });
+
         html += `
           <div class="${cardClass}" data-id="${id}" data-unlocked="${unlocked}">
             <div class="chapter-header">
               <div class="chapter-icon" style="background: ${chapter.color}20; color: ${chapter.color};">
-                ${unlocked ? chapter.icon : '🔒'}
+                ${unlocked ? chapter.icon : lockIcon}
               </div>
               <div class="chapter-titles">
-                <div class="chapter-title">第${id}章：${chapter.title}</div>
+                <div class="chapter-title">${chapterPrefix}${chapter.title}</div>
                 <div class="chapter-subtitle">${chapter.subtitle || ''}</div>
               </div>
-              ${!unlocked ? '<div class="chapter-lock">🔒</div>' : ''}
+              ${!unlocked ? '<div class="chapter-lock">' + lockIcon + '</div>' : ''}
             </div>
             <div class="chapter-description">${chapter.description || ''}</div>
             <div class="chapter-footer">
               <span class="chapter-badge ${badgeEarned ? 'earned' : ''}">
-                ${badgeEarned ? '🏅' : '🎖️'} ${chapter.badgeName || '徽章'}
+                ${badgeEarned ? '🏅' : '🎖️'} ${badgeLabel}
               </span>
               <span class="chapter-progress">
                 <span class="progress-bar">
                   <span class="progress-bar-fill" style="width: ${progressPercent}%"></span>
                 </span>
-                ${progress.completed}/${progress.total}
+                ${progressText}
               </span>
             </div>
           </div>
@@ -387,7 +393,10 @@
     }
 
     // 启动
-    loadChapters();
+    (async function() {
+      await I18N.init();
+      loadChapters();
+    })();
   </script>
 </body>
 </html>

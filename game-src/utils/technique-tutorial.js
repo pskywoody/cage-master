@@ -42,9 +42,9 @@ class TechniqueTutorial {
           </div>
         </div>
         <div class="tt-controls">
-          <button class="tt-btn tt-prev" id="tt-prev">◀ 上一步</button>
-          <div class="tt-hint" id="tt-hint">点击"开始学习"跟着演示</div>
-          <button class="tt-btn tt-next" id="tt-next">开始学习 ▶</button>
+          <button class="tt-btn tt-prev" id="tt-prev"></button>
+          <div class="tt-hint" id="tt-hint"></div>
+          <button class="tt-btn tt-next" id="tt-next"></button>
         </div>
       </div>
     `;
@@ -111,7 +111,7 @@ class TechniqueTutorial {
     this.steps = tutorial.steps || [];
     this.currentStep = 0;
     this.onCompleteCallback = onComplete;
-    this.overlay.querySelector('#tt-title').textContent = tutorial.title || '技巧教学';
+    this.overlay.querySelector('#tt-title').textContent = tutorial.title || (typeof t !== 'undefined' ? t('technique.tutorial.title') : '技巧教学');
     this.overlay.querySelector('#tt-badge').textContent = tutorial.badge || '🔮';
     this._renderProgress();
     this.overlay.style.display = 'flex';
@@ -135,15 +135,30 @@ class TechniqueTutorial {
   _showStep() {
     const step = this.steps[this.currentStep];
     if (!step) return;
-    this.overlay.querySelector('#tt-speaker').textContent = step.speaker || '守笼人';
+    const defaultSpeaker = typeof t !== 'undefined' ? t('technique.tutorial.speaker_default') : '守笼人';
+    this.overlay.querySelector('#tt-speaker').textContent = step.speaker || defaultSpeaker;
     this.overlay.querySelector('#tt-text').innerHTML = step.text || '';
     const prev = this.overlay.querySelector('#tt-prev');
     const next = this.overlay.querySelector('#tt-next');
     const hint = this.overlay.querySelector('#tt-hint');
-    prev.disabled = this.currentStep === 0;
-    next.textContent = this.currentStep === this.steps.length - 1 ? '✓ 我学会了，开始做题！' :
-                        this.currentStep === 0 ? '开始学习 ▶' : '下一步 ▶';
-    hint.textContent = step.hint || (this.currentStep < this.steps.length - 1 ? '点击"下一步"继续' : '准备好了就开始做题吧！');
+    const isLast = this.currentStep === this.steps.length - 1;
+    const isFirst = this.currentStep === 0;
+    prev.disabled = isFirst;
+    const prevText = typeof t !== 'undefined' ? t('technique.tutorial.prevButton') : '◀ 上一步';
+    prev.textContent = prevText;
+    if (isLast) {
+      next.textContent = typeof t !== 'undefined' ? t('technique.tutorial.nextStep_last') : '✓ 我学会了，开始做题！';
+    } else if (isFirst) {
+      next.textContent = typeof t !== 'undefined' ? t('technique.tutorial.startButton') : '开始学习 ▶';
+    } else {
+      next.textContent = typeof t !== 'undefined' ? t('technique.tutorial.nextStep_mid') : '下一步 ▶';
+    }
+    const defaultHint = isLast
+      ? (typeof t !== 'undefined' ? t('technique.tutorial.finalHint') : '准备好了就开始做题吧！')
+      : (isFirst
+          ? (typeof t !== 'undefined' ? t('technique.tutorial.startHint') : '点击"开始学习"跟着演示')
+          : (typeof t !== 'undefined' ? t('technique.tutorial.stepHint_default') : '点击"下一步"继续'));
+    hint.textContent = step.hint || defaultHint;
     this._renderProgress();
     this._drawGrid(step);
   }
@@ -1296,3 +1311,110 @@ window.TECHNIQUE_TUTORIALS = {
     })()
   }
 };
+
+/**
+ * 将i18n翻译文本合并到TECHNIQUE_TUTORIALS中
+ * 保留硬编码的视觉数据（gridState/highlights/marks/arrows等），
+ * 用i18n文本覆盖title/speaker/text/hint
+ */
+(function mergeI18NTutorialText() {
+  // key映射: TECHNIQUE_TUTORIALS key → i18n key
+  const KEY_MAP = {
+    'naked_pair':  'nakedPair',
+    'hidden_pair': 'hiddenPair',
+    'triple':      'nakedTriple',
+    'xwing':       'xwing',
+    'swordfish':   'swordfish'
+  };
+
+  function apply() {
+    if (typeof I18N === 'undefined' || typeof I18N.getRaw !== 'function') return;
+    try {
+      for (const [jsKey, i18nKey] of Object.entries(KEY_MAP)) {
+        const tut = TECHNIQUE_TUTORIALS[jsKey];
+        if (!tut) continue;
+        const i18nTut = I18N.getRaw('technique.tutorial.' + i18nKey);
+        if (!i18nTut || typeof i18nTut !== 'object') continue;
+
+        // 覆盖标题
+        if (i18nTut.title) tut.title = i18nTut.title;
+
+        // 覆盖每个步骤的文本
+        const i18nSteps = i18nTut.steps;
+        if (Array.isArray(i18nSteps) && Array.isArray(tut.steps)) {
+          const len = Math.min(tut.steps.length, i18nSteps.length);
+          for (let i = 0; i < len; i++) {
+            const jsStep = tut.steps[i];
+            const i18nStep = i18nSteps[i];
+            if (!i18nStep || !jsStep) continue;
+            if (i18nStep.title) {
+              // title在当前JS中未单独使用，作为text的标题前缀
+              jsStep._i18nTitle = i18nStep.title;
+            }
+            if (i18nStep.speaker) jsStep.speaker = i18nStep.speaker;
+            if (i18nStep.text) {
+              // 将i18n纯文本转为带样式的HTML（换行转<br>，保留基本加粗效果）
+              jsStep.text = formatTutorialText(i18nStep.text, i18nStep.title);
+            }
+            if (i18nStep.hint) jsStep.hint = i18nStep.hint;
+          }
+        }
+      }
+    } catch(e) {
+      console.warn('⚠️ 合并i18n教程文本失败:', e.message);
+    }
+  }
+
+  /**
+   * 将i18n纯文本格式化为带样式的HTML
+   * 支持简单标记：💡/👉/🔒/❌/✨/🔐/👁️/🔱/✈️/🐟 开头的行会加look样式
+   * 支持**加粗**语法
+   */
+  function formatTutorialText(text, title) {
+    if (!text) return '';
+    let html = '';
+    if (title) {
+      html = `<span class="look">${escapeHtml(title)}</span><br><br>`;
+    }
+    // 处理换行
+    const lines = text.split('\n');
+    for (const line of lines) {
+      if (!line.trim()) {
+        html += '<br>';
+        continue;
+      }
+      let formatted = escapeHtml(line);
+      // **加粗**
+      formatted = formatted.replace(/\*\*(.+?)\*\*/g, '<b>$1</b>');
+      // emoji开头的行加look样式
+      if (/^[📖👉🔒❌✨🔐👁🔱✈🐟🔍🧹✈️🐟🔱🔐👁️📘💡⚠️🔄]/.test(line.trim())) {
+        // 检查是否是tip行（💡开头）
+        if (/^💡/.test(line.trim())) {
+          html += `<span class="tip">${formatted}</span><br>`;
+        } else {
+          html += `<span class="look">${formatted}</span><br>`;
+        }
+      } else {
+        html += formatted + '<br>';
+      }
+    }
+    return html;
+  }
+
+  function escapeHtml(s) {
+    const d = document.createElement('div');
+    d.textContent = s;
+    return d.innerHTML;
+  }
+
+  // DOMContentLoaded后尝试合并，也在localechanged时重新合并
+  function tryApply() {
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', apply, { once: true });
+    } else {
+      apply();
+    }
+  }
+  tryApply();
+  window.addEventListener('localechanged', tryApply);
+})();

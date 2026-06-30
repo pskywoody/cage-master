@@ -3,18 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
-  <title>教学模式 · 档案侦探</title>
+  <title data-i18n="ui.titles.guideMode">教学模式 · 档案侦探</title>
   <link rel="icon" type="image/jpeg" href="assets/images/favicon.jpg" />
-  <link rel="stylesheet" href="assets/css/style.css?v=31" />
+  <link rel="stylesheet" href="assets/css/style.css?v=37" />
 </head>
 <body>
   <div id="app">
     <div id="game-container">
       <!-- 顶部状态栏 -->
       <div id="game-header">
-        <button id="btn-back">← 章节</button>
+        <button id="btn-back" data-i18n="ui.common.backToChapter">← 章节</button>
         <div id="timer">00:00</div>
-        <button id="btn-setting" class="header-icon-btn">⚙️</button>
+        <button id="btn-setting" class="header-icon-btn" data-i18n-title="ui.toolbar.setting">⚙️</button>
       </div>
 
       <h2 id="level-title">教学关卡</h2>
@@ -27,13 +27,13 @@
 
       <!-- 工具栏 -->
       <div id="toolbar">
-        <button id="btn-undo" title="撤销">↶</button>
-        <button id="btn-erase" title="擦除">⌫</button>
-        <button id="btn-candidate" title="候选">✏️</button>
-        <button id="btn-auto-cands" title="自动填候选">🔢</button>
-        <button id="btn-hint" title="提示">💡</button>
-        <button id="btn-45rule" title="算珠">🧮</button>
-        <button id="btn-restart" title="重来">🔄</button>
+        <button id="btn-undo" data-i18n-title="ui.toolbar.undo" title="撤销">↶</button>
+        <button id="btn-erase" data-i18n-title="ui.toolbar.erase" title="擦除">⌫</button>
+        <button id="btn-candidate" data-i18n-title="ui.toolbar.candidate" title="候选">✏️</button>
+        <button id="btn-auto-cands" data-i18n-title="ui.toolbar.autoCands" title="自动填候选">🔢</button>
+        <button id="btn-hint" data-i18n-title="ui.toolbar.hint" title="提示">💡</button>
+        <button id="btn-45rule" data-i18n-title="ui.rule45.title" title="算珠">🧮</button>
+        <button id="btn-restart" data-i18n-title="ui.common.restart" title="重来">🔄</button>
       </div>
 
       <!-- 透视面板（随导航切换） -->
@@ -48,24 +48,24 @@
       <!-- 数字键盘（动态生成） -->
       <div id="num-pad"></div>
       <!-- 连填提示（第一次使用后自动隐藏） -->
-      <p id="quick-fill-hint" class="quick-fill-hint">💡 不选格子→点数字→再点空格，快速填入</p>
+      <p id="quick-fill-hint" class="quick-fill-hint" data-i18n="ui.canvas.quickFillHint">💡 不选格子→点数字→再点空格，快速填入</p>
     </div>
   </div>
 
   <!-- 暂停蒙层 -->
   <div id="pause-overlay">
     <div class="pause-card">
-      <h3>⏸ 游戏暂停</h3>
-      <p>点击下方按钮继续游戏</p>
-      <button id="btn-resume">继续游戏</button>
+      <h3 data-i18n="ui.pause.title">⏸ 游戏暂停</h3>
+      <p data-i18n="ui.pause.desc">点击下方按钮继续游戏</p>
+      <button id="btn-resume" data-i18n="ui.common.resume">继续游戏</button>
     </div>
   </div>
 
   <!-- 调试面板 -->
   <div id="debug-panel" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; z-index:9999; background:rgba(0,0,0,0.85); padding:20px; overflow-y:auto; font-family:monospace; font-size:12px; color:#0f0;">
     <div style="display:flex; justify-content:space-between; margin-bottom:10px;">
-      <span style="color:#fff; font-size:16px;">🛠 诊断面板</span>
-      <button id="btn-debug-close" style="background:#ef4444; color:#fff; border:none; padding:4px 12px; border-radius:4px; cursor:pointer;">✕</button>
+      <span style="color:#fff; font-size:16px;" data-i18n="ui.debug.title">🛠 诊断面板</span>
+      <button id="btn-debug-close" style="background:#ef4444; color:#fff; border:none; padding:4px 12px; border-radius:4px; cursor:pointer;" data-i18n="ui.debug.close">✕</button>
     </div>
     <div id="debug-log" style="white-space:pre-wrap; line-height:1.6;"></div>
   </div>
@@ -100,13 +100,18 @@
   <!-- 通关弹窗 -->
   <div id="complete-overlay">
     <div class="complete-card">
-      <div class="trophy">🏆</div>
-      <h3>恭喜通关！</h3>
-      <div id="complete-stars" style="font-size: 28px; margin: 10px 0; color: #f59e0b;">★★★</div>
-      <div id="complete-time" class="complete-time">用时 00:00</div>
+      <div class="trophy" data-i18n="ui.complete.trophy">🏆</div>
+      <h3 data-i18n="ui.complete.title">恭喜通关！</h3>
+      <div id="complete-grade" class="complete-grade-badge grade-A">A</div>
+      <div id="complete-stars" class="complete-stars"></div>
+      <div id="complete-time" class="complete-time" data-i18n="ui.complete.timeUsed">用时 00:00</div>
+      <div id="complete-comment" class="complete-comment" style="display:none;">
+        <div class="complete-comment-speaker">🧙 守笼人</div>
+        <div class="complete-comment-text" id="complete-comment-text"></div>
+      </div>
       <div class="btn-row">
-        <button class="btn-secondary" id="btn-complete-back">返回关卡</button>
-        <button class="btn-primary" id="btn-complete-next">下一关</button>
+        <button class="btn-secondary" id="btn-complete-back" data-i18n="ui.common.returnToLevels">返回关卡</button>
+        <button class="btn-primary" id="btn-complete-next" data-i18n="ui.common.nextLevel">下一关</button>
       </div>
     </div>
   </div>
@@ -115,35 +120,35 @@
   <div id="rule45-overlay">
     <div class="rule45-card">
       <div class="rule45-header">
-        <h3>🧮 45法则计算器</h3>
-        <button id="btn-rule45-close" class="rule45-close">×</button>
+        <h3 id="rule45-title">🧮 45法则计算器</h3>
+        <button id="btn-rule45-close" class="rule45-close" data-i18n="ui.common.close">×</button>
       </div>
       <div class="rule45-body">
         <div class="rule45-input-row">
           <div class="rule45-input-group">
-            <label>格子数</label>
+            <label data-i18n="ui.rule45.cellCount">格子数</label>
             <input type="number" id="rule45-cellcount" min="1" max="9" value="2" />
           </div>
           <div class="rule45-input-group">
-            <label>目标和</label>
+            <label data-i18n="ui.rule45.targetSum">目标和</label>
             <input type="number" id="rule45-targetsum" min="1" max="45" value="10" />
           </div>
         </div>
         <div class="rule45-input-row">
           <div class="rule45-input-group">
-            <label>必含数字</label>
+            <label data-i18n="ui.rule45.mustInclude">必含数字</label>
             <div class="rule45-num-picker" id="rule45-must"></div>
           </div>
         </div>
         <div class="rule45-input-row">
           <div class="rule45-input-group">
-            <label>排除数字</label>
+            <label data-i18n="ui.rule45.exclude">排除数字</label>
             <div class="rule45-num-picker" id="rule45-exclude"></div>
           </div>
         </div>
         <div class="rule45-result">
           <div class="rule45-result-header">
-            <span>可能的组合</span>
+            <span data-i18n="ui.rule45.possibleCombinations">可能的组合</span>
             <span id="rule45-count" class="rule45-count">0 种</span>
           </div>
           <div id="rule45-combinations" class="rule45-combinations">
@@ -157,16 +162,49 @@
   <div id="settings-overlay">
     <div class="settings-card">
       <div class="settings-header">
-        <h3>⚙️ 设置</h3>
-        <button id="btn-settings-close" class="settings-close">×</button>
+        <h3 data-i18n="ui.settings.title">⚙️ 设置</h3>
+        <button id="btn-settings-close" class="settings-close" data-i18n="ui.common.close">×</button>
       </div>
       <div class="settings-body">
         <div class="settings-section">
-          <h4>显示</h4>
+          <h4 data-i18n="ui.settings.audioSection">🔊 音频</h4>
           <div class="setting-item">
             <div class="setting-info">
-              <span class="setting-name">冲突标红</span>
-              <span class="setting-desc">填错数字时标红提示</span>
+              <span class="setting-name" data-i18n="ui.settings.muteAll">🔇 一键静音</span>
+              <span class="setting-desc" data-i18n="ui.settings.muteAllDesc">关闭所有声音（BGM+音效）</span>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="setting-mute-all" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <div class="setting-item">
+            <div class="setting-info">
+              <span class="setting-name" data-i18n="ui.settings.bgm">🎵 背景音乐</span>
+              <span class="setting-desc" data-i18n="ui.settings.bgmDesc">游戏过程中的背景音乐</span>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="setting-bgm" checked />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <div class="setting-item">
+            <div class="setting-info">
+              <span class="setting-name" data-i18n="ui.settings.sfx">🔊 音效</span>
+              <span class="setting-desc" data-i18n="ui.settings.sfxDesc">点击、填数等操作音效</span>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="setting-sfx" checked />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+        </div>
+        <div class="settings-section">
+          <h4 data-i18n="ui.settings.displaySection">显示</h4>
+          <div class="setting-item">
+            <div class="setting-info">
+              <span class="setting-name" data-i18n="ui.settings.conflictRed">冲突标红</span>
+              <span class="setting-desc" data-i18n="ui.settings.conflictRedDesc">填错数字时标红提示</span>
             </div>
             <label class="toggle-switch">
               <input type="checkbox" id="setting-conflict-red" checked />
@@ -175,8 +213,8 @@
           </div>
           <div class="setting-item">
             <div class="setting-info">
-              <span class="setting-name">同行高亮</span>
-              <span class="setting-desc">选中格子时高亮整行</span>
+              <span class="setting-name" data-i18n="ui.settings.highlightRow">同行高亮</span>
+              <span class="setting-desc" data-i18n="ui.settings.highlightRowDesc">选中格子时高亮整行</span>
             </div>
             <label class="toggle-switch">
               <input type="checkbox" id="setting-highlight-row" checked />
@@ -185,8 +223,8 @@
           </div>
           <div class="setting-item">
             <div class="setting-info">
-              <span class="setting-name">同列高亮</span>
-              <span class="setting-desc">选中格子时高亮整列</span>
+              <span class="setting-name" data-i18n="ui.settings.highlightCol">同列高亮</span>
+              <span class="setting-desc" data-i18n="ui.settings.highlightColDesc">选中格子时高亮整列</span>
             </div>
             <label class="toggle-switch">
               <input type="checkbox" id="setting-highlight-col" checked />
@@ -195,8 +233,8 @@
           </div>
           <div class="setting-item">
             <div class="setting-info">
-              <span class="setting-name">同宫高亮</span>
-              <span class="setting-desc">选中格子时高亮整宫</span>
+              <span class="setting-name" data-i18n="ui.settings.highlightBox">同宫高亮</span>
+              <span class="setting-desc" data-i18n="ui.settings.highlightBoxDesc">选中格子时高亮整宫</span>
             </div>
             <label class="toggle-switch">
               <input type="checkbox" id="setting-highlight-box" checked />
@@ -205,8 +243,8 @@
           </div>
           <div class="setting-item">
             <div class="setting-info">
-              <span class="setting-name">同数字高亮</span>
-              <span class="setting-desc">选中数字时高亮所有相同数字</span>
+              <span class="setting-name" data-i18n="ui.settings.highlightSameNum">同数字高亮</span>
+              <span class="setting-desc" data-i18n="ui.settings.highlightSameNumDesc">选中数字时高亮所有相同数字</span>
             </div>
             <label class="toggle-switch">
               <input type="checkbox" id="setting-highlight-samenum" checked />
@@ -215,8 +253,8 @@
           </div>
           <div class="setting-item">
             <div class="setting-info">
-              <span class="setting-name">同笼高亮</span>
-              <span class="setting-desc">选中格子时高亮所属笼子</span>
+              <span class="setting-name" data-i18n="ui.settings.highlightSameCage">同笼高亮</span>
+              <span class="setting-desc" data-i18n="ui.settings.highlightSameCageDesc">选中格子时高亮所属笼子</span>
             </div>
             <label class="toggle-switch">
               <input type="checkbox" id="setting-highlight-samecage" checked />
@@ -225,11 +263,11 @@
           </div>
         </div>
         <div class="settings-section">
-          <h4>操作</h4>
+          <h4 data-i18n="ui.settings.operationSection">操作</h4>
           <div class="setting-item">
             <div class="setting-info">
-              <span class="setting-name">自动清除关联候选</span>
-              <span class="setting-desc">填数后自动清除行/列/宫/笼的关联候选</span>
+              <span class="setting-name" data-i18n="ui.settings.autoClearCands">自动清除关联候选</span>
+              <span class="setting-desc" data-i18n="ui.settings.autoClearCandsDesc">填数后自动清除行/列/宫/笼的关联候选</span>
             </div>
             <label class="toggle-switch">
               <input type="checkbox" id="setting-auto-clear" checked />
@@ -237,18 +275,57 @@
             </label>
           </div>
         </div>
+        <div class="settings-section">
+          <h4>🌐 Language</h4>
+          <div class="setting-item">
+            <div class="setting-info">
+              <span class="setting-name" id="language-current">简体中文</span>
+            </div>
+            <div style="display:flex;gap:6px;flex-wrap:wrap;">
+              <button class="lang-btn" data-locale="zh-CN">中文</button>
+              <button class="lang-btn" data-locale="ja">日本語</button>
+              <button class="lang-btn" data-locale="ko">한국어</button>
+              <button class="lang-btn" data-locale="en">English</button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
-  <script src="utils/storage.js?v=33"></script>
-  <script src="utils/audio.js?v=33"></script>
-  <script src="utils/technique-tutorial.js?v=33"></script>
-  <script src="game.js?v=33"></script>
-  <script src="renderer.js?v=33"></script>
-  <script src="story.js?v=33"></script>
-  <script src="guide-manager.js?v=35"></script>
-  <script src="guide-battle.js?v=33"></script>
-  <script src="guide.js?v=35"></script>
+  <script src="utils/storage.js?v=38"></script>
+  <script src="utils/i18n.js?v=39"></script>
+  <script src="utils/audio.js?v=38"></script>
+  <script>if (typeof AudioManager !== 'undefined') { AudioManager.init(); }</script>
+  <script src="utils/comedy.js?v=3"></script>
+  <script src="utils/technique-tutorial.js?v=38"></script>
+  <script src="game.js?v=38"></script>
+  <script src="renderer.js?v=38"></script>
+  <script src="config/chapter-styles.js?v=1"></script>
+  <script src="data/dialogues.js?v=1"></script>
+  <script src="scripts/effects.js?v=1"></script>
+  <script src="story.js?v=38"></script>
+  <script src="scripts/story.js?v=1"></script>
+  <script src="guide-manager.js?v=38"></script>
+  <script src="guide-battle.js?v=38"></script>
+  <script src="guide.js?v=41"></script>
+  <style>
+    .lang-btn {
+      padding: 6px 12px;
+      border: 1px solid var(--theme-border, #d1d5db);
+      background: var(--theme-bg, #fff);
+      color: var(--theme-text, #333);
+      border-radius: 8px;
+      font-size: 13px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .lang-btn:hover { background: var(--theme-hover, #f3f4f6); }
+    .lang-btn.active {
+      background: #3b82f6;
+      color: #fff;
+      border-color: #3b82f6;
+    }
+  </style>
 </body>
 </html>

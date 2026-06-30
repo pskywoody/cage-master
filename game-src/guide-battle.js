@@ -181,6 +181,18 @@ const GuideBattle = {
 
     this._updateUI();
     this._startFogAnimation();
+
+    // 喜剧系统：暴露boss/ayan对话接口
+    const self = this;
+    window._guideBossSay = function(text) { self._say('boss', text); self._setEmotion('boss', 'taunt', 'bounce'); };
+    window._guideAyanSay = function(text) { self._say('player', text); };
+    this._bossStartTime = Date.now();
+
+    // 喜剧系统：Boss开场凡尔赛台词
+    if (typeof ComedySystem !== 'undefined') {
+      const isHard = this.level >= 6; // 高章节Boss视为高难
+      ComedySystem.onBossStart(isHard);
+    }
   },
 
   /**
@@ -1574,6 +1586,26 @@ const GuideBattle = {
       setTimeout(() => {
         this._setEmotion('boss', 'defeated', 'defeated');
         this._say('boss', this._pickLine(this._bossLines.lose));
+        // 喜剧系统：Boss战打脸吐槽
+        if (typeof ComedySystem !== 'undefined' && this._bossStartTime) {
+          const elapsed = (Date.now() - this._bossStartTime) / 1000;
+          const mistakes = ComedySystem.state ? ComedySystem.state.totalWrong : 0;
+          const perfect = mistakes === 0;
+          const fast = elapsed < 60;
+          const slow = elapsed > 300;
+          setTimeout(() => {
+            if (perfect) {
+              ComedySystem.setterSays('perfectClear');
+            } else if (fast) {
+              ComedySystem.setterSays('fastClear', { systemMsg: ComedySystem._t('comedy.system.bossRetractFail') });
+            } else if (slow) {
+              ComedySystem.setterSays('slowClear', { systemMsg: ComedySystem._t('comedy.system.bossLearned') });
+            } else {
+              ComedySystem.setterSays('fastClear');
+            }
+            setTimeout(() => ComedySystem.ayanSays(fast ? 'bossSpeedrun' : 'bossWin'), 3500);
+          }, 1500);
+        }
       }, 500);
     } else {
       this._setEmotion('boss', 'victory', 'victory');

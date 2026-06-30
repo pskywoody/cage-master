@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
-  <title>档案侦探 · 笼中密码</title>
+  <title data-i18n="ui.titles.menuPage">档案侦探 · 笼中密码</title>
   <link rel="icon" type="image/jpeg" href="assets/images/favicon.jpg" />
-  <link rel="stylesheet" href="assets/css/style.css?v=32" />
+  <link rel="stylesheet" href="assets/css/style.css?v=38" />
   <style>
     /* 主菜单页面样式 */
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -278,26 +278,26 @@
   <div class="menu-container">
     <!-- Logo 区域 -->
     <div class="game-logo">
-      <div class="logo-icon">🔐</div>
-      <h1>笼中密码</h1>
-      <div class="subtitle">档案侦探 · KILLER SUDOKU</div>
+      <div class="logo-icon" data-i18n="ui.menu.logo">🔐</div>
+      <h1 data-i18n="ui.menu.gameTitle">笼中密码</h1>
+      <div class="subtitle" data-i18n="ui.menu.subtitle">档案侦探 · KILLER SUDOKU</div>
     </div>
 
     <!-- 统计条 -->
     <div class="stats-bar" id="statsBar">
       <div class="stat-item">
         <div class="stat-value" id="statCompleted">0</div>
-        <div class="stat-label">已通关</div>
+        <div class="stat-label" data-i18n="ui.menu.statsCompleted">已通关</div>
       </div>
       <div class="stat-divider"></div>
       <div class="stat-item">
         <div class="stat-value" id="statBadges">0</div>
-        <div class="stat-label">徽章</div>
+        <div class="stat-label" data-i18n="ui.menu.statsBadges">徽章</div>
       </div>
       <div class="stat-divider"></div>
       <div class="stat-item">
         <div class="stat-value" id="statTime">0m</div>
-        <div class="stat-label">总用时</div>
+        <div class="stat-label" data-i18n="ui.menu.statsTotalTime">总用时</div>
       </div>
     </div>
 
@@ -307,8 +307,8 @@
       <a href="chapters.html" class="menu-btn btn-story">
         <div class="btn-icon">📖</div>
         <div class="btn-text">
-          <div class="btn-title">故事模式</div>
-          <div class="btn-desc">跟随剧情，学习杀手数独技巧</div>
+          <div class="btn-title" data-i18n="ui.menu.storyMode">故事模式</div>
+          <div class="btn-desc" data-i18n="ui.menu.storyModeDesc">跟随剧情，学习杀手数独技巧</div>
         </div>
         <div class="btn-arrow">›</div>
       </a>
@@ -317,8 +317,8 @@
       <a href="free-play.html" class="menu-btn btn-free">
         <div class="btn-icon">🧩</div>
         <div class="btn-text">
-          <div class="btn-title">数独谜题</div>
-          <div class="btn-desc">300道精选谜题，三种难度</div>
+          <div class="btn-title" data-i18n="ui.menu.freeMode">数独谜题</div>
+          <div class="btn-desc" data-i18n="ui.menu.freeModeDesc">300道精选谜题，三种难度</div>
         </div>
         <div class="btn-arrow">›</div>
       </a>
@@ -327,8 +327,8 @@
       <a href="battle.html" class="menu-btn btn-battle">
         <div class="btn-icon">⚔️</div>
         <div class="btn-text">
-          <div class="btn-title">迷雾对战 <span class="new-hint">BETA</span></div>
-          <div class="btn-desc">与设局人AI展开脑力对决</div>
+          <div class="btn-title"><span data-i18n="ui.menu.battleMode">迷雾对战</span> <span class="new-hint" data-i18n="ui.menu.battleModeBeta">BETA</span></div>
+          <div class="btn-desc" data-i18n="ui.menu.battleModeDesc">与设局人AI展开脑力对决</div>
         </div>
         <div class="btn-arrow">›</div>
       </a>
@@ -337,20 +337,26 @@
       <a href="options.html" class="menu-btn btn-settings">
         <div class="btn-icon">⚙️</div>
         <div class="btn-text">
-          <div class="btn-title">设置</div>
-          <div class="btn-desc">音乐、音效、进度管理</div>
+          <div class="btn-title" data-i18n="ui.menu.settings">设置</div>
+          <div class="btn-desc" data-i18n="ui.menu.settingsDesc">音乐、音效、进度管理</div>
         </div>
         <div class="btn-arrow">›</div>
       </a>
     </div>
   </div>
 
-  <div class="version-info">v1.0.0</div>
+  <div class="version-info" data-i18n="ui.menu.version">v1.0.0</div>
 
-  <script src="utils/audio.js?v=32"></script>
+  <script src="utils/audio.js?v=38"></script>
   <script>if (typeof AudioManager !== 'undefined') { AudioManager.init(); }</script>
-  <script src="utils/storage.js"></script>
+  <script src="utils/storage.js?v=38"></script>
+  <script src="utils/i18n.js?v=38"></script>
   <script>
+    // 初始化i18n
+    (async function() {
+      await I18N.init();
+    })();
+
     // 加载统计数据
     function loadStats() {
       try {

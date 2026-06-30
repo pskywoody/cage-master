@@ -290,6 +290,28 @@ const CHAPTER_THEMES = {
 // 默认主题（第1章）
 const DEFAULT_THEME = CHAPTER_THEMES[1];
 
+// 章节背景图映射
+const CHAPTER_BG_IMAGES = {
+  1: 'assets/images/bg/bg_chapter_1.jpg',
+  2: 'assets/images/bg/bg_chapter_2.jpg',
+  3: 'assets/images/bg/bg_chapter_3.jpg',
+  4: 'assets/images/bg/bg_chapter_4.jpg',
+  5: 'assets/images/bg/bg_chapter_5.jpg',
+  6: 'assets/images/bg/bg_chapter_6.jpg',
+  7: 'assets/images/bg/bg_chapter_7.jpg',
+};
+
+// 预加载背景图
+const bgImageCache = {};
+function preloadBgImages() {
+  Object.entries(CHAPTER_BG_IMAGES).forEach(([ch, src]) => {
+    const img = new Image();
+    img.src = src;
+    bgImageCache[ch] = img;
+  });
+}
+preloadBgImages();
+
 class Renderer {
   constructor(canvasId) {
     this.canvas = document.getElementById(canvasId);
@@ -307,8 +329,26 @@ class Renderer {
     const id = parseInt(chapterId) || 1;
     this.themeId = id;
     this.theme = CHAPTER_THEMES[id] || DEFAULT_THEME;
+    // 自动判断是否暗色主题
+    if (this.theme.isDark === undefined) {
+      const hex = this.theme.bgColor.replace('#', '');
+      const r = parseInt(hex.substr(0,2),16), g = parseInt(hex.substr(2,2),16), b = parseInt(hex.substr(4,2),16);
+      this.theme.isDark = (r*0.299 + g*0.587 + b*0.114) < 128;
+    }
     // 同时更新CSS变量
     this._applyThemeCSS();
+    // 设置页面背景图
+    this._applyPageBg(id);
+  }
+
+  _applyPageBg(chapterId) {
+    const bgSrc = CHAPTER_BG_IMAGES[chapterId];
+    if (bgSrc) {
+      document.body.style.backgroundImage = `url('${bgSrc}')`;
+      document.body.style.backgroundSize = 'cover';
+      document.body.style.backgroundPosition = 'center';
+      document.body.style.backgroundAttachment = 'fixed';
+    }
   }
 
   /**
@@ -374,9 +414,39 @@ class Renderer {
 
     ctx.clearRect(0, 0, canvasSize, canvasSize);
 
-    // 主题背景色
-    ctx.fillStyle = theme.bgColor;
-    ctx.fillRect(0, 0, canvasSize, canvasSize);
+    // 章节背景图（如果已加载）
+    const bgImg = bgImageCache[this.themeId];
+    if (bgImg && bgImg.complete && bgImg.naturalWidth > 0) {
+      ctx.save();
+      // 绘制背景图（cover模式，居中裁剪）
+      const imgRatio = bgImg.naturalWidth / bgImg.naturalHeight;
+      const canvasRatio = canvasSize / canvasSize;
+      let sx, sy, sw, sh;
+      if (imgRatio > canvasRatio) {
+        sh = bgImg.naturalHeight;
+        sw = sh * canvasRatio;
+        sx = (bgImg.naturalWidth - sw) / 2;
+        sy = 0;
+      } else {
+        sw = bgImg.naturalWidth;
+        sh = sw / canvasRatio;
+        sx = 0;
+        sy = (bgImg.naturalHeight - sh) / 2;
+      }
+      ctx.globalAlpha = theme.isDark ? 0.35 : 0.5;
+      ctx.drawImage(bgImg, sx, sy, sw, sh, 0, 0, canvasSize, canvasSize);
+      ctx.globalAlpha = 1;
+      // 叠加半透明底色保证可读性
+      ctx.fillStyle = theme.bgColor;
+      ctx.globalAlpha = theme.isDark ? 0.7 : 0.55;
+      ctx.fillRect(0, 0, canvasSize, canvasSize);
+      ctx.globalAlpha = 1;
+      ctx.restore();
+    } else {
+      // 主题背景色
+      ctx.fillStyle = theme.bgColor;
+      ctx.fillRect(0, 0, canvasSize, canvasSize);
+    }
 
     ctx.save();
     ctx.translate(padding, padding);
@@ -395,6 +465,7 @@ class Renderer {
     this._drawHintHighlight(board);
     this._drawBattlePlayerOwned(board);
     this._drawNumbers(board);
+    this._drawLockMask(board);
     this._drawCandidates(board);
     this._drawHintNumber(board);
 
@@ -600,6 +671,28 @@ class Renderer {
           }
           ctx.fillRect(c * cellSize, r * cellSize, cellSize, cellSize);
           ctx.globalAlpha = 1;
+        }
+      }
+    }
+  }
+
+  // ---------- 5.5 残局教学关锁定格遮罩 ----------
+  _drawLockMask(board) {
+    const { ctx, cellSize } = this;
+    const size = board.size;
+    let hasLocked = false;
+    for (let r = 0; r < size; r++)
+      for (let c = 0; c < size; c++)
+        if (board.cells[r][c].isLocked) { hasLocked = true; break; }
+    if (!hasLocked) return;
+
+    for (let r = 0; r < size; r++) {
+      for (let c = 0; c < size; c++) {
+        const cell = board.cells[r][c];
+        if (cell.isLocked) {
+          // 半透明灰色遮罩，让已填数字变暗
+          ctx.fillStyle = 'rgba(0,0,0,0.12)';
+          ctx.fillRect(c * cellSize + 1, r * cellSize + 1, cellSize - 2, cellSize - 2);
         }
       }
     }

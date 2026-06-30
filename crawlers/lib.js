@@ -14,17 +14,42 @@ const path = require('path');
 const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36';
 
 /**
- * 发送HTTP/HTTPS GET请求，返回文本内容
+ * 发送HTTP/HTTPS GET请求，返回文本内容（带自动重试）
+ * @param {string} url - 请求URL
+ * @param {object} options - 选项
+ * @param {number} options.retries - 重试次数（默认3次）
+ * @param {object} options.headers - 额外请求头
+ * @param {string} options.referer - Referer头
+ * @param {number} options.timeout - 超时毫秒
  */
 function fetch(url, options = {}) {
+  const retries = options.retries ?? 3;
+  return _fetchOnce(url, options).catch(err => {
+    // 对5xx和网络错误进行重试
+    const is5xx = err.message && err.message.includes('HTTP 5');
+    const isTimeout = err.message === 'Timeout';
+    const isNetwork = err.code === 'ECONNRESET' || err.code === 'ECONNREFUSED' || err.code === 'ETIMEDOUT';
+    if (retries > 0 && (is5xx || isTimeout || isNetwork)) {
+      const delay = 1000 + Math.random() * 2000;
+      return sleep(delay).then(() => fetch(url, { ...options, retries: retries - 1 }));
+    }
+    throw err;
+  });
+}
+
+function _fetchOnce(url, options = {}) {
   return new Promise((resolve, reject) => {
     const mod = url.startsWith('https') ? https : http;
+    const urlObj = new URL(url);
     const req = mod.get(url, {
       headers: {
         'User-Agent': UA,
-        'Accept': options.accept || 'text/html,application/json,*/*',
+        'Accept': options.accept || 'text/html,application/json,application/text,*/*;q=0.8',
         'Accept-Language': 'en-US,en;q=0.9',
         'Accept-Encoding': 'gzip, deflate',
+        'Cache-Control': 'no-cache',
+        'Pragma': 'no-cache',
+        ...(options.referer ? { 'Referer': options.referer } : {}),
         ...options.headers
       },
       timeout: options.timeout || 15000
@@ -32,11 +57,18 @@ function fetch(url, options = {}) {
       // 处理重定向
       if (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location) {
         const redirectUrl = new URL(res.headers.location, url).toString();
-        return fetch(redirectUrl, options).then(resolve, reject);
+        return _fetchOnce(redirectUrl, options).then(resolve, reject);
       }
 
       if (res.statusCode !== 200) {
-        return reject(new Error(`HTTP ${res.statusCode} for ${url}`));
+        // 读取错误体后reject
+        const chunks = [];
+        res.on('data', c => chunks.push(c));
+        res.on('end', () => {
+          const body = Buffer.concat(chunks).toString('utf-8').substring(0, 200);
+          reject(new Error(`HTTP ${res.statusCode} for ${url}: ${body}`));
+        });
+        return;
       }
 
       const chunks = [];

@@ -119,6 +119,43 @@ window.onload = function() {
     renderer.render(gameBoard);
     console.log('✅ 首次渲染完成');
 
+    // 7.5 初始化喜剧系统
+    if (typeof ComedySystem !== 'undefined') {
+      ComedySystem.init({
+        levelId: currentLevelId,
+        mode: 'free',
+        isBoss: false
+      });
+    }
+
+    // 7.6 初始化剧情引擎和特效系统
+    if (typeof StoryEngine !== 'undefined') {
+      StoryEngine.init();
+    }
+    if (typeof Effects !== 'undefined') {
+      Effects.init();
+    }
+
+    // 7.7 根据章节触发开场剧情
+    triggerChapterIntro(currentLevelId);
+
+    // 7.8 初始化BGM（等用户首次交互后播放）
+    if (typeof MidiBGM !== 'undefined') {
+      const chId = _detectChapter(currentLevelId);
+      MidiBGM.load(chId);
+      // 首次点击/触摸时开始播放BGM
+      const startBGM = () => {
+        MidiBGM.setVolume(0.08);
+        MidiBGM.play();
+        document.removeEventListener('click', startBGM);
+        document.removeEventListener('touchstart', startBGM);
+        document.removeEventListener('keydown', startBGM);
+      };
+      document.addEventListener('click', startBGM);
+      document.addEventListener('touchstart', startBGM);
+      document.addEventListener('keydown', startBGM);
+    }
+
     // 8. 启动计时器
     startTimer();
 
@@ -140,8 +177,17 @@ window.onload = function() {
   });
 };
 
-// ---------- 加载关卡：优先从后端接口获取，失败则降级 ----------
+// ---------- 加载关卡：优先后端API → 本地data/levels.json → 本地data/levels-killer.json → 降级关卡 ----------
+let _localLevelsCache = null;
+let _localKillerCache = null;
+let _gameMode = 'classic'; // 'classic' | 'killer'
+
 async function loadLevel(id) {
+  const params = new URLSearchParams(window.location.search);
+  const mode = params.get('mode');
+  _gameMode = (mode === 'killer') ? 'killer' : 'classic';
+
+  // 1. 优先从后端接口获取
   try {
     const res = await fetch('/api/level/' + id);
     const json = await res.json();
@@ -153,10 +199,60 @@ async function loadLevel(id) {
       currentLevelDifficulty = json.data.difficulty || '简单';
       return { cells: json.data.cells, cages: json.data.cages };
     }
-    console.warn('⚠️ 接口返回异常，使用降级关卡');
+    console.warn('⚠️ 接口返回异常，尝试本地数据');
   } catch (e) {
-    console.warn('⚠️ 网络异常，使用降级关卡：', e.message);
+    console.warn('⚠️ 网络异常，尝试本地数据：', e.message);
   }
+
+  // 2. 根据模式加载本地题库
+  try {
+    let cache, dataFile;
+    if (_gameMode === 'killer') {
+      // 杀手数独模式：从 levels-killer.json 加载
+      if (!_localKillerCache) {
+        const res = await fetch('data/levels-killer.json?v=1');
+        if (res.ok) {
+          _localKillerCache = await res.json();
+        }
+      }
+      cache = _localKillerCache;
+      dataFile = 'levels-killer.json';
+    } else {
+      // 经典数独模式：从 levels.json 加载
+      if (!_localLevelsCache) {
+        const res = await fetch('data/levels.json?v=39');
+        if (res.ok) {
+          _localLevelsCache = await res.json();
+        }
+      }
+      cache = _localLevelsCache;
+      dataFile = 'levels.json';
+    }
+
+    if (cache && Array.isArray(cache)) {
+      const puzzle = cache.find(p => p.id === id);
+      if (puzzle) {
+        const titleEl = document.getElementById('level-title');
+        if (titleEl && puzzle.name) {
+          titleEl.textContent = puzzle.name;
+        }
+        currentLevelDifficulty = puzzle.difficulty || '简单';
+        // 确保cages有id字段（向后兼容）
+        let cages = puzzle.cages || [];
+        if (cages.length > 0 && cages[0].id === undefined) {
+          cages = cages.map((c, i) => ({ id: i + 1, ...c }));
+        }
+        console.log(`✅ 从本地${dataFile}加载关卡 #${id} (${_gameMode}模式, cages=${cages.length})`);
+        return { cells: puzzle.cells, cages: cages };
+      }
+      console.warn(`⚠️ 本地${dataFile}中未找到关卡 #${id}`);
+    }
+  } catch (e) {
+    console.warn('⚠️ 本地题库加载失败：', e.message);
+  }
+
+  // 3. 最终降级
+  console.warn('⚠️ 使用降级关卡（全空白）');
   return fallbackPuzzle;
 }
 
@@ -386,10 +482,180 @@ async function verifyWithServer() {
   }
 }
 
+// ---------- 检测当前章节ID ----------
+// 支持数字和字符串类型的levelId，每15关为一章
+function _detectChapter(levelId) {
+  const skinParam = new URLSearchParams(window.location.search).get('skin');
+  if (skinParam) return parseInt(skinParam) || 1;
+  // 字符串类型（如 "ch3_01"）
+  if (typeof levelId === 'string') {
+    const m = levelId.match(/ch(\d+)/i);
+    if (m) return parseInt(m[1]);
+  }
+  // 数字类型（1-15=ch1, 16-30=ch2, ..., 91+=ch7）
+  const num = parseInt(levelId);
+  if (!isNaN(num) && num > 0) {
+    return Math.min(7, Math.ceil(num / 15));
+  }
+  return 1;
+}
+
+// ---------- 章节开场剧情 ----------
+function triggerChapterIntro(levelId) {
+  if (typeof StoryEngine === 'undefined') return;
+  const chapterId = _detectChapter(levelId);
+  // 设置章节主题
+  if (window.renderer) {
+    window.renderer.setTheme(chapterId);
+    refreshBoard();
+  }
+  // 延迟播放开场对话
+  setTimeout(() => {
+    const sceneMap = {
+      1: 'ch1_opening',
+      2: 'ch2_opening',
+      3: 'ch3_boss',
+      4: 'ch4_boss',
+      5: 'ch5_boss',
+      6: 'ch6_boss',
+      7: 'ch7_final',
+    };
+    const scene = sceneMap[chapterId];
+    if (scene) {
+      // Boss章节：bossEnter内部会触发特效+延迟600ms播放对应场景
+      // 非Boss章节：直接playScene
+      const bossPortraitMap = { 3: 'ray', 4: 'remnant', 5: 'weaver', 6: 'plotter', 7: 'plotter' };
+      const bossId = bossPortraitMap[chapterId];
+      if (bossId && chapterId >= 3) {
+        // Boss登场：先触发特效，再由bossEnter负责播放剧情场景
+        if (typeof Effects !== 'undefined') {
+          Effects.triggerLevel(3, { portrait: bossId });
+        }
+        // 切换到Boss战BGM
+        if (typeof MidiBGM !== 'undefined') {
+          MidiBGM.setPhase('breakthrough');
+        }
+        if (typeof StoryEngine !== 'undefined') {
+          // 播放对应角色主题
+          MidiBGM.playTheme(bossId);
+          StoryEngine.bossEnter(bossId);
+        }
+      } else {
+        // 普通章节：直接播放开场
+        StoryEngine.playScene(scene);
+      }
+    }
+  }, 800);
+}
+
+// ---------- 连击计数（用于3连击特效）+ 剧情触发 ----------
+let _comboCount = 0;
+let _lastCorrectTime = 0;
+let _storyState = { firstCorrect: false, breakthrough: false, errors: 0, correctCount: 0, bossReactions: 0 };
+function onCorrectPlacement(r, c, num) {
+  const now = Date.now();
+  if (now - _lastCorrectTime < 5000) {
+    _comboCount++;
+  } else {
+    _comboCount = 1;
+  }
+  _lastCorrectTime = now;
+  _storyState.correctCount++;
+
+  // 首次正确放置
+  if (!_storyState.firstCorrect) {
+    _storyState.firstCorrect = true;
+    if (typeof StoryEngine !== 'undefined' && !StoryEngine.isPlaying) {
+      StoryEngine.playScene('first_correct');
+    }
+  }
+
+  // 3连击：轻反馈特效
+  if (_comboCount >= 3) {
+    if (typeof Effects !== 'undefined') Effects.triggerLevel(1);
+    _comboCount = 0;
+  }
+
+  // 5连击或填对10个数字：突破时刻！切换BGM到breakthrough阶段
+  if (!_storyState.breakthrough && (_comboCount >= 5 || _storyState.correctCount >= 15)) {
+    _storyState.breakthrough = true;
+    if (typeof Effects !== 'undefined') Effects.triggerLevel(2);
+    if (typeof MidiBGM !== 'undefined') MidiBGM.setPhase('breakthrough');
+    if (typeof StoryEngine !== 'undefined' && !StoryEngine.isPlaying) {
+      const chId = _detectChapter(currentLevelId);
+      const breakScenes = {
+        1: 'breakthrough', 2: 'advanced_tech',
+        3: 'ray_break', 4: 'remnant_break',
+        5: 'weaver_seen', 6: 'plotter_broken'
+      };
+      const scene = breakScenes[chId];
+      if (scene) StoryEngine.playScene(scene);
+    }
+  }
+
+  // Boss战中进度触发对手反应
+  const chId = _detectChapter(currentLevelId);
+  if (chId >= 3 && typeof StoryEngine !== 'undefined' && !StoryEngine.isPlaying) {
+    const filledCount = _countFilledCells();
+    if (filledCount >= 50 && _storyState.bossReactions === 0) {
+      _storyState.bossReactions = 1;
+      const scenes = { 3: 'ray_tied', 4: 'remnant_reject', 5: 'weaver_cornered', 6: 'plotter_broken2' };
+      if (scenes[chId]) StoryEngine.playScene(scenes[chId]);
+    }
+  }
+}
+
+// 统计已填格子数
+function _countFilledCells() {
+  let count = 0;
+  if (!gameBoard || !gameBoard.cells) return 0;
+  for (let r = 0; r < 9; r++) {
+    for (let c = 0; c < 9; c++) {
+      if (gameBoard.cells[r][c].fixedNum || gameBoard.cells[r][c].fillNum) count++;
+    }
+  }
+  return count;
+}
+
 // ---------- 标记通关 ----------
 function markComplete() {
   isCompleted = true;
   clearInterval(timerInterval);
+
+  // 通关特效
+  const chapterId = _detectChapter(currentLevelId);
+  // BGM切换到收官阶段
+  if (typeof MidiBGM !== 'undefined') {
+    MidiBGM.setPhase('finishing');
+  }
+  // 清除暗角效果
+  if (typeof Effects !== 'undefined') {
+    if (chapterId === 7) {
+      Effects.goldenFlash(1200);
+    } else {
+      Effects.victoryFlash();
+    }
+    // 清除Boss登场时的暗角
+    Effects.vignette(0, 800);
+  }
+  if (typeof StoryEngine !== 'undefined') {
+    if (chapterId === 7) {
+      // 终章：finalVictory内部已经处理特效和对话
+      StoryEngine.finalVictory();
+    } else {
+      // 非终章：先播放Boss击败剧情，完成后再显示clear_level
+      const bossMap = { 3: 'ray', 4: 'remnant', 5: 'weaver', 6: 'plotter' };
+      const bossId = bossMap[chapterId];
+      if (bossId) {
+        // bossDefeat内部会播放击败场景，完成后再回调clear_level
+        StoryEngine.bossDefeat(bossId, () => {
+          setTimeout(() => StoryEngine.playScene('clear_level'), 300);
+        });
+      } else {
+        StoryEngine.playScene('clear_level');
+      }
+    }
+  }
 
   // 保存通关记录
   if (typeof Storage !== 'undefined') {
@@ -397,16 +663,68 @@ function markComplete() {
       time: elapsedSeconds,
       difficulty: currentLevelDifficulty
     });
-    // 结束埋点会话（已完成）
     Storage.endSession(true);
-    // 清除进度存档
     Storage.clearProgress(currentLevelId);
+  }
+
+  // 喜剧系统：计算评分
+  let gradeInfo = { stars: 1, grade: 'C', mistakes: 0 };
+  if (typeof ComedySystem !== 'undefined') {
+    gradeInfo = ComedySystem.onComplete({ expectedSec: 360 });
+    // S级连关彩蛋
+    if (typeof ComedySystem.onSGradeStreak === 'function') {
+      ComedySystem.onSGradeStreak(gradeInfo.grade);
+    }
   }
 
   // 显示通关弹窗
   const overlay = document.getElementById('complete-overlay');
   const timeEl = document.getElementById('complete-time');
   timeEl.textContent = '用时 ' + formatTime(elapsedSeconds);
+
+  // 星级
+  const starsEl = document.getElementById('complete-stars');
+  if (starsEl) {
+    starsEl.innerHTML = '';
+    for (let i = 0; i < 3; i++) {
+      const s = document.createElement('span');
+      s.className = i < gradeInfo.stars ? 'star-on' : 'star-off';
+      s.textContent = '★';
+      starsEl.appendChild(s);
+    }
+  }
+
+  // 等级徽章
+  const gradeEl = document.getElementById('complete-grade');
+  if (gradeEl) {
+    gradeEl.textContent = gradeInfo.grade;
+    gradeEl.className = 'complete-grade-badge grade-' + gradeInfo.grade;
+  }
+
+  // 守笼人评语（延迟显示，配合动画）
+  const commentEl = document.getElementById('complete-comment');
+  const commentText = document.getElementById('complete-comment-text');
+  if (commentEl && commentText && typeof ComedySystem !== 'undefined') {
+    setTimeout(() => {
+      // 确定评语key（特殊评语优先于星级评语）
+      const elapsed = elapsedSeconds;
+      const mistakes = gradeInfo.mistakes || 0;
+      const ratio = elapsed / 360;
+      let commentKey = 'comedy.keeper.grade' + gradeInfo.grade;
+      if (ratio < 0.3 && mistakes === 0) commentKey = 'comedy.keeper.tooFast';
+      else if (mistakes === 0 && gradeInfo.grade !== 'SSS') commentKey = 'comedy.keeper.perfectClear';
+      let lines = null;
+      if (typeof I18N !== 'undefined' && I18N.getRaw) lines = I18N.getRaw(commentKey);
+      else if (typeof t === 'function') lines = t(commentKey);
+      if (Array.isArray(lines) && lines.length > 0) {
+        commentText.textContent = lines[Math.floor(Math.random() * lines.length)];
+      } else {
+        commentText.textContent = '中规中矩，算你过关。';
+      }
+      commentEl.style.display = 'block';
+    }, 800);
+  }
+
   overlay.classList.add('active');
 }
 
@@ -735,6 +1053,19 @@ function handleNumberInput(num) {
     Storage.logAction('setNumber', { num, r, c });
   }
   gameBoard.checkConflicts();
+  // 喜剧系统：检测填对/填错
+  if (typeof ComedySystem !== 'undefined') {
+    const active = gameBoard.getActiveCell();
+    if (active) {
+      const cell = gameBoard.cells[active.r][active.c];
+      if (cell.isError) {
+        ComedySystem.onWrong(active.r, active.c, num);
+      } else if (cell.fillNum === num) {
+        ComedySystem.onCorrect(active.r, active.c, num);
+        onCorrectPlacement(active.r, active.c, num);
+      }
+    }
+  }
   refreshBoard();
 }
 
@@ -752,14 +1083,16 @@ let currentHint = null;
 function handleHint() {
   hintStep++;
 
+  if (typeof ComedySystem !== 'undefined') ComedySystem.onHint(hintStep);
+
   if (hintStep === 1) {
     currentHint = gameBoard.showHint(1);
     if (!currentHint) {
       hintStep = 0;
-      showToast('🔍 当前盘面没有明显的可推进步骤，试试其他方法，或者用45法则计算器');
+      showToast(t('hint.noHint'));
       return;
     }
-    showToast('💡 第一层提示：仔细看看这个格子（绿框标记），它有什么特别之处？');
+    showToast(t('hint.level1'));
   } else if (hintStep === 2) {
     currentHint = gameBoard.showHint(2);
     if (currentHint) {
@@ -770,9 +1103,9 @@ function handleHint() {
     currentHint = gameBoard.showHint(3);
     if (currentHint) {
       if (currentHint.num !== null && currentHint.num !== undefined) {
-        showToast(`🎯 答案是 ${currentHint.num}，填入后会自动排除相关候选数`);
+        showToast(t('hint.level3_answer', { num: currentHint.num }));
       } else {
-        showToast(`📖 这一步需要用到「${currentHint.techniqueName}」技巧，仔细观察高亮区域中的紫色标记格`, 4000);
+        showToast(t('hint.level3_technique', { technique: currentHint.techniqueName }), 4000);
       }
     }
   } else {
@@ -802,21 +1135,24 @@ function buildTechniqueMessage(hint) {
 
   switch (tech) {
     case 'nakedSingle':
-      return `📘 第二层：【显性唯一（裸单）】\n${cellName}格所在的行、列、宫、笼里已经出现了其他所有数字，只有 ${num} 没出现过，所以只能填 ${num}。\n👉 看金色高亮区域：里面已有的数字凑齐了，只剩这一个数。`;
+      return t('hint.nakedSingle.desc_level2', { cellName, num });
     case 'hiddenSingle':
-      return `📘 第二层：【隐性唯一（隐单）】\n${hint.description}。仔细看相关区域，你会发现数字${num}只能放在${cellName}。`;
+      return t('hint.hiddenSingle.desc_level2', { description: hint.description, num, cellName });
     case 'nakedPair':
       if (hint.pairCells && hint.pairNums) {
         const [p1, p2] = hint.pairCells;
-        const p1Name = `${labels[p1[0]]}${p1[1]+1}`;
-        const p2Name = `${labels[p2[0]]}${p2[1]+1}`;
-        let msg = `📘 第二层：【显性数对】\n${p1Name}和${p2Name}都只能填 ${hint.pairNums[0]} 或 ${hint.pairNums[1]}（紫色标记）。这两个数被"锁定"了，可以排除同区域其他格子的这两个数字。`;
-        if (num) msg += `\n排除后，${cellName}就只剩 ${num}！`;
+        const cell1 = `${labels[p1[0]]}${p1[1]+1}`;
+        const cell2 = `${labels[p2[0]]}${p2[1]+1}`;
+        const num1 = hint.pairNums[0];
+        const num2 = hint.pairNums[1];
+        let msg = t('hint.nakedPair.desc_level2', { cell1, cell2, num1, num2 });
+        if (num) msg += '\n' + t('hint.nakedPair.desc_level2_withNum', { cellName, num });
+        else msg += '\n' + t('hint.nakedPair.desc_level2_noNum');
         return msg;
       }
-      return `📘 ${hint.techniqueName}：${hint.description}`;
+      return t('hint.level3_technique', { technique: hint.techniqueName });
     default:
-      return `📘 ${hint.techniqueName}：${hint.description}`;
+      return t('hint.level3_technique', { technique: hint.techniqueName });
   }
 }
 
@@ -866,8 +1202,17 @@ function bindToolbar() {
       Storage.logAction('erase', { r, c });
     }
     gameBoard.checkConflicts();
+    if (typeof ComedySystem !== 'undefined') ComedySystem.onErase();
     refreshBoard();
   });
+
+  // 重置按钮
+  const resetBtn = document.getElementById('btn-reset');
+  if (resetBtn) {
+    resetBtn.addEventListener('click', () => {
+      if (typeof ComedySystem !== 'undefined') ComedySystem.onReset();
+    });
+  }
 
   // 候选模式切换按钮
   const candidateBtn = document.getElementById('btn-candidate');

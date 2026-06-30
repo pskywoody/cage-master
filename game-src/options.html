@@ -373,7 +373,17 @@
       <div class="settings-card">
         <div class="setting-item">
           <div class="setting-info">
-            <div class="setting-name">背景音乐</div>
+            <div class="setting-name">🔇 一键静音</div>
+            <div class="setting-desc">关闭所有声音（BGM+音效）</div>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" id="toggleMuteAll" />
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+        <div class="setting-item">
+          <div class="setting-info">
+            <div class="setting-name">🎵 背景音乐</div>
             <div class="setting-desc">游戏过程中的背景音乐</div>
           </div>
           <label class="toggle-switch">
@@ -383,7 +393,7 @@
         </div>
         <div class="setting-item">
           <div class="setting-info">
-            <div class="setting-name">音效</div>
+            <div class="setting-name">🔊 音效</div>
             <div class="setting-desc">点击、填数等操作音效</div>
           </div>
           <label class="toggle-switch">
@@ -480,6 +490,7 @@
   <script>
     // 默认设置
     const DEFAULT_SETTINGS = {
+      muteAll: false,
       bgm: true,
       sfx: true,
       conflictRed: true,
@@ -492,16 +503,32 @@
       const saved = Storage.getSettings() || {};
       const s = { ...DEFAULT_SETTINGS, ...saved };
 
+      document.getElementById('toggleMuteAll').checked = s.muteAll;
       document.getElementById('toggleBgm').checked = s.bgm;
       document.getElementById('toggleSfx').checked = s.sfx;
       document.getElementById('toggleConflict').checked = s.conflictRed;
       document.getElementById('toggleHighlight').checked = s.highlightRowColBox;
       document.getElementById('toggleAutoClear').checked = s.autoClearCandidates;
+
+      // 应用静音状态
+      applyMuteState(s);
+    }
+
+    function applyMuteState(s) {
+      if (typeof AudioManager === 'undefined') return;
+      if (s.muteAll) {
+        AudioManager.setBgmEnabled(false);
+        AudioManager.setSfxEnabled(false);
+      } else {
+        AudioManager.setBgmEnabled(s.bgm);
+        AudioManager.setSfxEnabled(s.sfx);
+      }
     }
 
     // 保存设置
     function saveCurrentSettings() {
       const s = {
+        muteAll: document.getElementById('toggleMuteAll').checked,
         bgm: document.getElementById('toggleBgm').checked,
         sfx: document.getElementById('toggleSfx').checked,
         conflictRed: document.getElementById('toggleConflict').checked,
@@ -509,13 +536,7 @@
         autoClearCandidates: document.getElementById('toggleAutoClear').checked
       };
       Storage.saveSettings(s);
-
-      // 应用音频设置
-      if (typeof AudioManager !== 'undefined') {
-        if (s.bgm) AudioManager.resumeBGM();
-        else AudioManager.pauseBGM();
-        AudioManager.setSfxEnabled(s.sfx);
-      }
+      applyMuteState(s);
     }
 
     // 绑定开关事件

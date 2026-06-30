@@ -33,6 +33,9 @@ class Cell {
     this.fillNum = null;
     this.candidates = new Set();
     this.isError = false;
+
+    // 残局教学关：非关键格锁定（不可点击、不可操作）
+    this.isLocked = false;
   }
 }
 
@@ -68,7 +71,10 @@ class Board {
     // 全局设置
     this.settings = {
       conflictRed: true,     // 冲突标红
-      autoClearCandidates: true  // 自动清除关联候选
+      autoClearCandidates: true,  // 自动清除关联候选
+      muteAll: false,        // 一键静音
+      bgm: true,             // 背景音乐
+      sfx: true              // 音效
     };
 
     // 输入模式：normal 正式填数 / candidate 候选标记
@@ -141,11 +147,14 @@ class Board {
   selectCell(r, c) {
     if (r < 0 || r >= this.size || c < 0 || c >= this.size) return;
 
+    // 残局教学关：锁定格子不可选中
+    const cell = this.cells[r][c];
+    if (cell.isLocked) return;
+
     // 清除之前的多选
     this.clearBoxSelection();
 
     // 设置新选中
-    const cell = this.cells[r][c];
     cell.isSelected = true;
     this.selectedCell = { r, c };
     // 同步记录所属笼子
@@ -482,6 +491,7 @@ class Board {
     const { r, c } = selected;
     const cell = this.cells[r][c];
     if (cell.fixedNum) return; // 固定数字不能改
+    if (cell.isLocked) return; // 残局教学关：锁定格不能填
 
     // 保存历史用于撤销
     const historyEntry = {

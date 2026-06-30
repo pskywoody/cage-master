@@ -458,6 +458,29 @@ window.addEventListener('DOMContentLoaded', function() {
 });
 
 // ==========================================
+// 本地关卡加载（静态部署fallback）
+// ==========================================
+let _localBattleLevelsCache = null;
+async function loadLocalBattleLevel(difficulty) {
+  try {
+    if (!_localBattleLevelsCache) {
+      const res = await fetch('data/levels.json?v=39');
+      if (res.ok) _localBattleLevelsCache = await res.json();
+    }
+    if (_localBattleLevelsCache && Array.isArray(_localBattleLevelsCache)) {
+      const diffMap = { easy: '简单', medium: '中等', hard: '困难', '简单': '简单', '中等': '中等', '困难': '困难' };
+      const targetDiff = diffMap[difficulty] || '中等';
+      let pool = _localBattleLevelsCache.filter(p => p.difficulty === targetDiff);
+      if (pool.length === 0) pool = _localBattleLevelsCache;
+      return pool[Math.floor(Math.random() * pool.length)];
+    }
+  } catch(e) {
+    console.warn('本地关卡加载失败:', e.message);
+  }
+  return null;
+}
+
+// ==========================================
 // 开始对战
 // ==========================================
 async function startBattle() {
@@ -491,102 +514,101 @@ async function startBattle() {
 
   BattleState.aiDifficulty = document.getElementById('ai-difficulty').value;
 
+  let level = null;
+  let solution = null;
+
   try {
-    // 获取中等难度关卡列表
-    const res = await fetch('/api/levels?difficulty=中等');
+    // 尝试从后端API获取关卡
+    const diffParam = BattleState.aiDifficulty === 'easy' ? '简单' : BattleState.aiDifficulty === 'hard' ? '困难' : '中等';
+    const res = await fetch('/api/levels?difficulty=' + encodeURIComponent(diffParam));
     const json = await res.json();
-    if (json.code !== 0 || !json.data || json.data.length === 0) {
-      alert('加载关卡失败，请刷新重试');
-      return;
-    }
-
-    const levels = json.data;
-    const levelInfo = levels[Math.floor(Math.random() * levels.length)];
-
-    // 获取关卡详情（含正解）
-    const detailRes = await fetch('/api/level/' + levelInfo.id + '?with_solution=1');
-    const detailJson = await detailRes.json();
-
-    let level;
-    let solution = null;
-
-    if (detailJson.code === 0 && detailJson.data) {
-      level = detailJson.data;
-      solution = detailJson.data.solution || null;
-    } else {
-      // 降级：不带正解
-      const detailRes2 = await fetch('/api/level/' + levelInfo.id);
-      const detailJson2 = await detailRes2.json();
-      if (detailJson2.code !== 0 || !detailJson2.data) {
-        alert('加载关卡失败，请刷新重试');
-        return;
+    if (json.code === 0 && json.data && json.data.length > 0) {
+      const levels = json.data;
+      const levelInfo = levels[Math.floor(Math.random() * levels.length)];
+      const detailRes = await fetch('/api/level/' + levelInfo.id + '?with_solution=1');
+      const detailJson = await detailRes.json();
+      if (detailJson.code === 0 && detailJson.data) {
+        level = detailJson.data;
+        solution = detailJson.data.solution || null;
       }
-      level = detailJson2.data;
     }
-
-    BattleState.currentLevel = level;
-    BattleState.solution = solution;
-    BattleState.currentLevelId = level.id;
-    // 深拷贝保存关卡数据，用于重来
-    BattleState.currentLevelData = JSON.parse(JSON.stringify(level));
-
-    // 重置快捷填入
-    if (quickFillMode) toggleQuickFill();
-    quickFillNum = null;
-
-    // 加载到两个棋盘
-    BattleState.playerBoard.loadLevel(level);
-    BattleState.aiBoard.loadLevel(level);
-
-    // 如果没有正解，后端计算一下（异步获取）
-    if (!solution) {
-      fetch('/api/solve/' + levelInfo.id)
-        .then(r => r.json())
-        .then(data => {
-          if (data.code === 0 && data.data) {
-            BattleState.solution = data.data;
-          }
-        })
-        .catch(() => {});
-    }
-
-    // 初始渲染
-    BattleState.playerRenderer.render(BattleState.playerBoard);
-    BattleState.aiRenderer.render(BattleState.aiBoard);
-
-    updateProgress();
-    updateEnergy();
-    updateCombo();
-    updateAttackButtons();
-
-    startAI();
-
-    // 初始化角色系统
-    initCharSystem();
-    
-    // 开场表演
-    setTimeout(() => {
-      narratorSays('start');
-    }, 500);
-    setTimeout(() => {
-      playerSays('start');
-      playAvatarAnim('player', 'bounce');
-    }, 1200);
-    setTimeout(() => {
-      aiSays('start');
-      setEmotion('ai', 'thinking');
-      playAvatarAnim('ai', 'bounce');
-    }, 2200);
-
-    // 播放开始音效 + 背景音乐
-    AudioManager.playBattleStart();
-    setTimeout(() => AudioManager.startBGM(), 1000);
-
-    console.log('⚔️ 对战开始！关卡:', level.name);
-  } catch (e) {
-    console.warn('加载关卡失败：', e.message);
-    alert('加载关卡失败，请刷新重试');
+  } catch(e) {
+    console.log('API不可用，使用本地关卡数据');
   }
+
+  // 本地fallback
+  if (!level) {
+    level = await loadLocalBattleLevel(BattleState.aiDifficulty);
+    if (level) {
+      // 本地levels.json没有solution字段，需要用solver求解
+      // 这里先加载cells和cages，solution异步获取
+    }
+  }
+
+  if (!level) {
+    alert('加载关卡失败，请刷新重试');
+    return;
+  }
+
+  BattleState.currentLevel = level;
+  BattleState.solution = solution;
+  BattleState.currentLevelId = level.id;
+  // 深拷贝保存关卡数据，用于重来
+  BattleState.currentLevelData = JSON.parse(JSON.stringify(level));
+
+  // 重置快捷填入
+  if (quickFillMode) toggleQuickFill();
+  quickFillNum = null;
+
+  // 加载到两个棋盘
+  BattleState.playerBoard.loadLevel(level);
+  BattleState.aiBoard.loadLevel(level);
+
+  // 如果没有正解，尝试后端求解（异步获取）
+  if (!solution) {
+    fetch('/api/solve/' + level.id)
+      .then(r => r.json())
+      .then(data => {
+        if (data.code === 0 && data.data) {
+          BattleState.solution = data.data;
+        }
+      })
+      .catch(() => {});
+  }
+
+  // 初始渲染
+  BattleState.playerRenderer.render(BattleState.playerBoard);
+  BattleState.aiRenderer.render(BattleState.aiBoard);
+
+  updateProgress();
+  updateEnergy();
+  updateCombo();
+  updateAttackButtons();
+
+  startAI();
+
+  // 初始化角色系统
+  initCharSystem();
+  
+  // 开场表演
+  setTimeout(() => {
+    narratorSays('start');
+  }, 500);
+  setTimeout(() => {
+    playerSays('start');
+    playAvatarAnim('player', 'bounce');
+  }, 1200);
+  setTimeout(() => {
+    aiSays('start');
+    setEmotion('ai', 'thinking');
+    playAvatarAnim('ai', 'bounce');
+  }, 2200);
+
+  // 播放开始音效 + 背景音乐
+  AudioManager.playBattleStart();
+  setTimeout(() => AudioManager.startBGM(), 1000);
+
+  console.log('⚔️ 对战开始！关卡:', level.name);
 }
 
 // ==========================================
@@ -1490,50 +1512,57 @@ async function startSpectate() {
 
    BattleState.aiDifficulty = document.getElementById('ai-difficulty').value;
 
+  let level = null;
+  let solution = null;
+
   try {
-    const res = await fetch('/api/levels?difficulty=中等');
+    const diffParam = BattleState.aiDifficulty === 'easy' ? '简单' : BattleState.aiDifficulty === 'hard' ? '困难' : '中等';
+    const res = await fetch('/api/levels?difficulty=' + encodeURIComponent(diffParam));
     const json = await res.json();
     const levels = json.data || [];
-    if (levels.length === 0) { alert('加载关卡失败'); return; }
-
-    const levelInfo = levels[Math.floor(Math.random() * levels.length)];
-    const detailRes = await fetch('/api/level/' + levelInfo.id + '?with_solution=1');
-    const detailJson = await detailRes.json();
-    const level = detailJson.data;
-
-    if (!level) { alert('加载关卡失败'); return; }
-
-    BattleState.currentLevel = level;
-    let solution = level.solution;
-    if (!solution) {
-      const solveRes = await fetch('/api/solve/' + levelInfo.id);
-      const solveJson = await solveRes.json();
-      solution = solveJson.data;
+    if (levels.length > 0) {
+      const levelInfo = levels[Math.floor(Math.random() * levels.length)];
+      const detailRes = await fetch('/api/level/' + levelInfo.id + '?with_solution=1');
+      const detailJson = await detailRes.json();
+      level = detailJson.data;
+      if (level) solution = level.solution;
     }
-    BattleState.solution = solution;
+  } catch(e) {
+    console.log('API不可用，使用本地关卡数据');
+  }
 
-    // 加载到两个棋盘
-    BattleState.playerBoard.loadLevel(level);
-    BattleState.aiBoard.loadLevel(level);
+  if (!level) {
+    level = await loadLocalBattleLevel(BattleState.aiDifficulty);
+  }
 
-    // 初始渲染
-    BattleState.playerRenderer.render(BattleState.playerBoard);
-    BattleState.aiRenderer.render(BattleState.aiBoard);
+  if (!level) { alert('加载关卡失败'); return; }
 
-    updateProgress();
-    updateEnergy();
-    updateCombo();
-    updateAttackButtons();
+  BattleState.currentLevel = level;
+  if (!solution) solution = level.solution || null;
+  BattleState.solution = solution;
 
-    // 启动两个 AI
-    startAI();
-    startLeftAI();
+  // 加载到两个棋盘
+  BattleState.playerBoard.loadLevel(level);
+  BattleState.aiBoard.loadLevel(level);
 
-    // 初始化角色系统
-    initCharSystem();
-    
-    // 开场表演
-    setTimeout(() => narratorSays('start'), 500);
+  // 初始渲染
+  BattleState.playerRenderer.render(BattleState.playerBoard);
+  BattleState.aiRenderer.render(BattleState.aiBoard);
+
+  updateProgress();
+  updateEnergy();
+  updateCombo();
+  updateAttackButtons();
+
+  // 启动两个 AI
+  startAI();
+  startLeftAI();
+
+  // 初始化角色系统
+  initCharSystem();
+  
+  // 开场表演
+  setTimeout(() => narratorSays('start'), 500);
     setTimeout(() => {
       showDialogue('player', '我是Bot 1，看我的！');
       playAvatarAnim('player', 'bounce');
@@ -1548,10 +1577,6 @@ async function startSpectate() {
     setTimeout(() => AudioManager.startBGM(), 1000);
 
     console.log('👀 观战模式开始！关卡:', level.name);
-  } catch (e) {
-    console.warn('加载关卡失败：', e.message);
-    alert('加载关卡失败，请刷新重试');
-  }
 }
 
 // 左侧 AI（Bot 1，使用 player 棋盘）

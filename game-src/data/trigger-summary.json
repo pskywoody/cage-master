@@ -4,7 +4,7 @@
     "title": "加密来信",
     "levels": [
       {
-        "levelId": 101,
+        "levelId": 102,
         "title": "第1关：数独初体验",
         "gridSize": 4,
         "difficulty": "入门",
@@ -49,7 +49,7 @@
         ]
       },
       {
-        "levelId": 102,
+        "levelId": 103,
         "title": "第2关：行列探索",
         "gridSize": 4,
         "difficulty": "入门",
@@ -75,7 +75,7 @@
         ]
       },
       {
-        "levelId": 103,
+        "levelId": 104,
         "title": "第3关：宫的奥秘",
         "gridSize": 4,
         "difficulty": "入门",
@@ -101,7 +101,7 @@
         ]
       },
       {
-        "levelId": 104,
+        "levelId": 105,
         "title": "第4关：数字密码锁",
         "gridSize": 4,
         "difficulty": "入门",
@@ -118,7 +118,7 @@
         ]
       },
       {
-        "levelId": 105,
+        "levelId": 106,
         "title": "第5关：双格密码锁",
         "gridSize": 4,
         "difficulty": "入门",
@@ -136,7 +136,7 @@
         ]
       },
       {
-        "levelId": 106,
+        "levelId": 107,
         "title": "第6关：笼中推理",
         "gridSize": 4,
         "difficulty": "入门",
@@ -154,7 +154,7 @@
         ]
       },
       {
-        "levelId": 107,
+        "levelId": 108,
         "title": "第7关：综合训练",
         "gridSize": 4,
         "difficulty": "简单",
@@ -162,7 +162,7 @@
         "triggers": []
       },
       {
-        "levelId": 108,
+        "levelId": 109,
         "title": "第8关：更大的挑战",
         "gridSize": 6,
         "difficulty": "简单",
@@ -182,7 +182,7 @@
         ]
       },
       {
-        "levelId": 109,
+        "levelId": 110,
         "title": "第9关：小综合测试",
         "gridSize": 6,
         "difficulty": "简单",

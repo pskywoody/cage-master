@@ -151,6 +151,11 @@ const AudioManager = {
     }
   },
 
+  // 检测是否有其他BGM系统在运行（MidiBGM / BGMEngine）
+  _hasMidiBGM() {
+    return typeof MidiBGM !== 'undefined' || typeof BGMEngine !== 'undefined';
+  },
+
   // 首次用户交互时自动启动BGM
   _autoStarted: false,
   _setupAutoStart() {
@@ -159,9 +164,11 @@ const AudioManager = {
       if (this._autoStarted) return;
       this._autoStarted = true;
       this.resume();
-      // 延迟一点启动普通BGM（不要在Boss战页面启动普通BGM）
-      if (!this.bossBgmMode && this.bgmEnabled && !this.bgmPlaying) {
-        setTimeout(() => this.startBGM(), 500);
+      // 如果MIDI系统可用，不启动旧的古典BGM
+      if (!this._hasMidiBGM()) {
+        if (!this.bossBgmMode && this.bgmEnabled && !this.bgmPlaying) {
+          setTimeout(() => this.startBGM(), 500);
+        }
       }
       document.removeEventListener('click', startOnInteract);
       document.removeEventListener('touchstart', startOnInteract);
@@ -796,8 +803,9 @@ const AudioManager = {
     this._playBGMNote(freq, dur, 'dark_bell', volume * (0.5 + Math.random() * 0.5));
   },
 
-  // 改进的BGM：循环播放古典名曲
+  // 改进的BGM：循环播放古典名曲（MIDI系统存在时不播放）
   startBGM() {
+    if (this._hasMidiBGM()) return;
     if (!this.enabled || !this.ctx || this.bgmPlaying || !this.bgmEnabled) return;
     this.resume();
     this.bgmPlaying = true;
@@ -901,8 +909,10 @@ const AudioManager = {
 
   /**
    * 开始Boss战BGM（暗黑恐怖悬疑风格）
+   * MIDI系统存在时不播放
    */
   startBossBGM() {
+    if (this._hasMidiBGM()) return;
     if (!this.enabled || !this.ctx || !this.bgmEnabled) return;
     this.resume();
     // 如果正在播放普通BGM，先停止
@@ -1053,9 +1063,10 @@ const AudioManager = {
 
   // ========== 阶段BGM ==========
   /**
-   * 破局阶段BGM：紧张悬疑感（不切歌，通过添加低频脉冲+提高bass intensity来营造紧张感）
+   * 破局阶段BGM：紧张悬疑感（MIDI系统存在时不操作）
    */
   startBreakthroughBGM() {
+    if (this._hasMidiBGM()) return;
     if (!this.enabled || !this.ctx || !this.bgmEnabled) return;
     this.resume();
     this._phase = 'breakthrough';
@@ -1072,9 +1083,10 @@ const AudioManager = {
   },
 
   /**
-   * 收官阶段BGM：胜利感，上行琶音+高频bell
+   * 收官阶段BGM：胜利感（MIDI系统存在时不操作）
    */
   startFinishingBGM() {
+    if (this._hasMidiBGM()) return;
     if (!this.enabled || !this.ctx || !this.bgmEnabled) return;
     this.resume();
     this._phase = 'finishing';

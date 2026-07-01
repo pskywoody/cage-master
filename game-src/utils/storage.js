@@ -494,6 +494,39 @@ const Storage = (function() {
     }
   }
 
+  // ========== 关卡ID迁移（v1.2.1 → v1.3.0：第1章100-109 → 101-110） ==========
+  const LEVEL_ID_MIGRATION = { '100': '101', '101': '102', '102': '103', '103': '104', '104': '105', '105': '106', '106': '107', '107': '108', '108': '109', '109': '110' };
+
+  function _migrateLevelIds() {
+    try {
+      // 迁移通关记录
+      const complete = getTeachingCompleteAll();
+      let changed = false;
+      Object.keys(LEVEL_ID_MIGRATION).forEach(oldId => {
+        if (complete[oldId]) {
+          complete[LEVEL_ID_MIGRATION[oldId]] = complete[oldId];
+          delete complete[oldId];
+          changed = true;
+        }
+      });
+      if (changed) localStorage.setItem(TEACHING_COMPLETE_KEY, JSON.stringify(complete));
+
+      // 迁移存档进度
+      const progress = getTeachingProgressAll();
+      changed = false;
+      Object.keys(LEVEL_ID_MIGRATION).forEach(oldId => {
+        if (progress[oldId]) {
+          progress[LEVEL_ID_MIGRATION[oldId]] = progress[oldId];
+          delete progress[oldId];
+          changed = true;
+        }
+      });
+      if (changed) localStorage.setItem(TEACHING_PROGRESS_KEY, JSON.stringify(progress));
+    } catch(e) {
+      console.warn('[Storage] 关卡ID迁移失败:', e.message);
+    }
+  }
+
   /**
    * 检查某教学关卡是否通关
    * @param {number|string} levelId
@@ -734,6 +767,9 @@ const Storage = (function() {
     const prevId = levelIdsInChapter[idx - 1];
     return isTeachingLevelCompleted(prevId);
   }
+
+  // 执行关卡ID迁移（旧存档100-109→101-110）
+  _migrateLevelIds();
 
   return {
     saveProgress,

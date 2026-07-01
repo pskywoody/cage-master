@@ -697,7 +697,7 @@ window.onload = async function() {
       // 第一章第一关使用全新的StoryEngine开场演出
       const numId = parseInt(currentLevelId);
       const isFirstLevelOfChapter = currentChapterData && currentChapterData.levels && currentChapterData.levels[0] && currentChapterData.levels[0].levelId === numId;
-      const useNewStoryEngine = (numId === 100 || numId === 101) && typeof StoryEngine !== 'undefined';
+      const useNewStoryEngine = (numId === 101) && typeof StoryEngine !== 'undefined';
 
       if (useNewStoryEngine) {
         // 新StoryEngine开场：完整剧情（带立绘+打字机音效+配音）
@@ -844,9 +844,9 @@ function getFallbackTeachingLevel(levelId) {
   const levelNum = numId % 100;
 
   // 验证关卡ID是否在有效范围内
-  // 各章实际关卡数：第1章10关(100-109)，第2章8关(201-208)，第3章7关(301-307)，第4-7章各6关
-  const maxLevels = { 1: 9, 2: 8, 3: 7, 4: 6, 5: 6, 6: 6, 7: 6 };
-  const minLevel = chapterId === 1 ? 0 : 1;
+  // 各章实际关卡数：第1章10关(101-110)，第2章8关(201-208)，第3章7关(301-307)，第4-7章各6关
+  const maxLevels = { 1: 10, 2: 8, 3: 7, 4: 6, 5: 6, 6: 6, 7: 6 };
+  const minLevel = 1;
   const max = maxLevels[chapterId] || 9;
   if (levelNum < minLevel || levelNum > max) {
     console.warn(`⚠️ 关卡 ${levelId} 不存在，重定向到章节选择`);
@@ -1253,8 +1253,8 @@ function _getBossIdForChapter(chId) {
 function _isBossLevel(levelId) {
   const id = parseInt(levelId);
   const chId = _detectStoryChapter(id);
-  // Boss关为每章最后一关（109→守笼人测试关，307→阿岩，406→残局守护者，506→星辰梭，606→设局人，706→终章设局人）
-  const bossLevels = { 1: 109, 2: 208, 3: 307, 4: 406, 5: 506, 6: 606, 7: 706 };
+  // Boss关为每章最后一关（110→守笼人测试关，307→阿岩，406→残局守护者，506→星辰梭，606→设局人，706→终章设局人）
+  const bossLevels = { 1: 110, 2: 208, 3: 307, 4: 406, 5: 506, 6: 606, 7: 706 };
   return bossLevels[chId] === id || (currentLevelData && currentLevelData.isBoss === true);
 }
 

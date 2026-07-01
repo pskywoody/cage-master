@@ -1,6 +1,6 @@
 [
   {
-    "levelId": 101,
+    "levelId": 102,
     "title": "第1关：初入档案馆",
     "mode": "full",
     "gridSize": 4,
@@ -135,7 +135,7 @@
     ]
   },
   {
-    "levelId": 102,
+    "levelId": 103,
     "title": "第2关：初识笼格",
     "mode": "full",
     "gridSize": 4,
@@ -282,7 +282,7 @@
     ]
   },
   {
-    "levelId": 103,
+    "levelId": 104,
     "title": "第3关：裸单专项训练",
     "mode": "endgame",
     "gridSize": 4,
@@ -413,7 +413,7 @@
     ]
   },
   {
-    "levelId": 104,
+    "levelId": 105,
     "title": "第4关：唯一组合",
     "mode": "full",
     "gridSize": 4,

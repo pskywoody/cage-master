@@ -1,6 +1,6 @@
 {
   "name": "killersudoku",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "档案侦探·笼中密码 - 教学型杀手数独游戏",
   "main": "server.js",
   "directories": {

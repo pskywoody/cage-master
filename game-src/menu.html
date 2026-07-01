@@ -337,10 +337,13 @@
 
   <div class="version-info" data-i18n="ui.menu.version">v1.0.0</div>
 
-  <script src="utils/audio.js?v=38"></script>
+  <script src="utils/audio.js?v=39"></script>
   <script>if (typeof AudioManager !== 'undefined') { AudioManager.init(); }</script>
-  <script src="utils/storage.js?v=38"></script>
-  <script src="utils/i18n.js?v=38"></script>
+  <script src="utils/storage.js?v=39"></script>
+  <script src="utils/i18n.js?v=39"></script>
+  <script src="scripts/midi-bgm.js?v=4"></script>
+  <script src="utils/bgm-bridge.js?v=1"></script>
+  <script>if (typeof BGMEngine !== 'undefined') BGMEngine.init();</script>
   <script>
     // 初始化i18n
     (async function() {
@@ -382,6 +385,21 @@
         }
       });
     });
+
+    // 启动菜单BGM
+    (function startMenuBGM() {
+      const startBGM = () => {
+        if (typeof BGMEngine !== 'undefined') {
+          BGMEngine.playMenu();
+        }
+        document.removeEventListener('click', startBGM);
+        document.removeEventListener('touchstart', startBGM);
+        document.removeEventListener('keydown', startBGM);
+      };
+      document.addEventListener('click', startBGM, { once: true });
+      document.addEventListener('touchstart', startBGM, { once: true });
+      document.addEventListener('keydown', startBGM, { once: true });
+    })();
   </script>
 </body>
 </html>

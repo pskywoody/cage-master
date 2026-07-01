@@ -107,6 +107,21 @@ window.onload = function() {
     gameBoard.loadLevel(puzzle);
     console.log('✅ 关卡加载完成');
 
+    // 4.5 启动速度谜题BGM
+    (function startPuzzleBGM() {
+      const startBGM = () => {
+        if (typeof BGMEngine !== 'undefined' && _gameMode === 'killer') {
+          BGMEngine.playPuzzle();
+        }
+        document.removeEventListener('click', startBGM);
+        document.removeEventListener('touchstart', startBGM);
+        document.removeEventListener('keydown', startBGM);
+      };
+      document.addEventListener('click', startBGM, { once: true });
+      document.addEventListener('touchstart', startBGM, { once: true });
+      document.addEventListener('keydown', startBGM, { once: true });
+    })();
+
     // 5. 开始埋点会话
     Storage.startSession(currentLevelId);
 

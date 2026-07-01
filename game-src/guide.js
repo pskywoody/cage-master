@@ -164,7 +164,9 @@ function enterBreakthrough(opts = {}) {
   }
 
   // BGM切换为紧张模式
-  if (typeof MidiBGM !== 'undefined') {
+  if (typeof BGMEngine !== 'undefined') {
+    BGMEngine.setPhase('breakthrough');
+  } else if (typeof MidiBGM !== 'undefined') {
     MidiBGM.setPhase('breakthrough');
   } else if (typeof AudioManager !== 'undefined' && AudioManager.bgmEnabled) {
     AudioManager.startBreakthroughBGM();
@@ -203,7 +205,9 @@ function enterFinishing() {
   }
 
   // BGM切换为胜利感
-  if (typeof MidiBGM !== 'undefined') {
+  if (typeof BGMEngine !== 'undefined') {
+    BGMEngine.setPhase('finishing');
+  } else if (typeof MidiBGM !== 'undefined') {
     MidiBGM.setPhase('finishing');
   } else if (typeof AudioManager !== 'undefined' && AudioManager.bgmEnabled) {
     AudioManager.startFinishingBGM();
@@ -1270,9 +1274,11 @@ function _initStoryPerformance() {
     StoryEngine.preloadAll();
   }
 
-  // 初始化MIDI BGM
+  // 初始化章节BGM
   const chIdForBGM = _detectStoryChapter(currentLevelId);
-  if (typeof MidiBGM !== 'undefined') {
+  if (typeof BGMEngine !== 'undefined') {
+    BGMEngine.playChapter(chIdForBGM);
+  } else if (typeof MidiBGM !== 'undefined') {
     MidiBGM.load(chIdForBGM);
     const startBGM = () => {
       MidiBGM.setVolume(0.35);
@@ -1531,8 +1537,10 @@ function _initBattleAndStart(bossConfig) {
   // 标记Boss战激活
   document.body.classList.add('boss-battle-active');
 
-  // 切换到Boss战悬疑BGM
-  if (typeof AudioManager !== 'undefined' && AudioManager.startBossBGM) {
+  // 切换到Boss战悬疑BGM（优先使用MidiBGM引擎）
+  if (typeof BGMEngine !== 'undefined') {
+    BGMEngine.playBossBattle();
+  } else if (typeof AudioManager !== 'undefined' && AudioManager.startBossBGM) {
     AudioManager.stopBGM();
     setTimeout(() => AudioManager.startBossBGM(), 300);
   }
@@ -1945,8 +1953,13 @@ function _onBossBattleEnd(result, bossConfig) {
   }
   document.body.classList.remove('boss-battle-active');
 
-  // 停止Boss战BGM，恢复普通BGM
-  if (typeof AudioManager !== 'undefined' && AudioManager.stopBossBGM) {
+  // 停止Boss战BGM，恢复章节BGM
+  if (typeof BGMEngine !== 'undefined') {
+    BGMEngine.stop();
+    if (result === 'win') {
+      setTimeout(() => BGMEngine.playVictory(), 500);
+    }
+  } else if (typeof AudioManager !== 'undefined' && AudioManager.stopBossBGM) {
     AudioManager.stopBossBGM();
   }
 

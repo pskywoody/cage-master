@@ -523,6 +523,8 @@
         AudioManager.setBgmEnabled(s.bgm);
         AudioManager.setSfxEnabled(s.sfx);
       }
+      // 同步 BGMEngine（通知菜单页静音）
+      document.dispatchEvent(new CustomEvent('bgm-toggle', { detail: s.muteAll ? false : s.bgm }));
     }
 
     // 保存设置

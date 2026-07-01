@@ -21,7 +21,7 @@ const BGMEngine = {
       try {
         const s = typeof Storage !== 'undefined' && Storage.loadSettings ? Storage.loadSettings() : null;
         if (s) {
-          this._muted = s.bgm === false;
+          this._muted = s.muteAll === true || s.bgm === false;
           this._volume = s.bgmVolume || 0.35;
         }
       } catch(e) {}

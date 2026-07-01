@@ -1217,6 +1217,10 @@ function normalizeDialogues(dialogues) {
     if (speaker === '守笼人') preset = chars.keeper;
     else if (speaker === '阿岩') preset = chars.ayan;
     else if (speaker === '设局人') preset = chars.setter;
+    else if (speaker === '设局人残影') preset = chars.shadow;
+    else if (speaker === '设局人（秘术）') preset = chars.setterSecret;
+    else if (speaker === '星辰梭' || speaker === '织网者') preset = chars.starshuttle;
+    else if (speaker === '残局守护者' || speaker === '残局') preset = chars.guardian;
     else if (speaker === '旁白') preset = chars.narrator;
     if (preset) {
       return { ...preset, text: d.text || '' };
@@ -3891,6 +3895,8 @@ function initSettingsBindings() {
           AudioManager.setSfxEnabled(sfxOn ? sfxOn.checked : true);
         }
       }
+      // 同步 BGMEngine（通知菜单页静音）
+      document.dispatchEvent(new CustomEvent('bgm-toggle', { detail: !muted }));
       saveSettings();
       // 刷新UI（禁用/启用子开关）
       loadSettingsToUI();
@@ -3963,6 +3969,8 @@ function applyAudioSettings() {
     AudioManager.setBgmEnabled(s.bgm !== false);
     AudioManager.setSfxEnabled(s.sfx !== false);
   }
+  // 同步 BGMEngine（通知菜单页静音）
+  document.dispatchEvent(new CustomEvent('bgm-toggle', { detail: s.muteAll ? false : (s.bgm !== false) }));
 }
 
 function saveSettings() {

@@ -82,7 +82,7 @@ const ComedySystem = {
     if (!emos) return { img: null, emoji: '👤' };
     const emoKey = emotion && emos[emotion] ? emotion : 'default';
     const file = emos[emoKey] || emos['default'];
-    const img = file ? `assets/images/portraits/${file}.png` : null;
+    const img = file ? `assets/images/portraits/${file}.jpg` : null;
     return { img, emotion: emoKey };
   },
 

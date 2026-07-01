@@ -307,9 +307,13 @@
     </div>
   </div>
 
-  <script src="utils/storage.js?v=39"></script>
-  <script src="utils/i18n.js?v=39"></script>
-  <script src="utils/audio.js?v=41"></script>
+  <script src="config.js?v=1"></script>
+  <script src="platform.js?v=1"></script>
+  <script src="resource-manager.js?v=1"></script>
+  <script>if (typeof ResourceManager !== 'undefined' && window.CONFIG && CONFIG.debug) console.log('[ResourceManager] ready');</script>
+  <script src="utils/storage.js?v=40"></script>
+  <script src="utils/i18n.js?v=40"></script>
+  <script src="utils/audio.js?v=42"></script>
   <script>if (typeof AudioManager !== 'undefined') { AudioManager.init(); }</script>
   <script src="data/dialogues.js?v=6"></script>
   <script src="utils/comedy.js?v=7"></script>

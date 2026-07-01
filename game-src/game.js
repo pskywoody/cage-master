@@ -713,15 +713,8 @@ class Board {
    * @returns {number} 填充的格子数量
    */
   autoFillCandidates() {
-    // 先构建当前grid状态
-    const grid = [];
-    for (let r = 0; r < this.size; r++) {
-      grid[r] = [];
-      for (let c = 0; c < this.size; c++) {
-        const cell = this.cells[r][c];
-        grid[r][c] = cell.fixedNum || cell.fillNum || 0;
-      }
-    }
+    // 构建当前grid状态（复用_buildGrid）
+    const grid = this._buildGrid();
 
     let filledCount = 0;
     const historyEntry = {
@@ -1240,7 +1233,98 @@ class Board {
 
   /**
    * 获取某格的候选数（基于已填数字的基础排除）
+   * @param {number} r - 行
+   * @param {number} c - 列
+   * @param {boolean} useCache - 是否使用已有的candidates缓存（默认true）
+   * @returns {number[]} 候选数字数组
    */
+  getCandidates(r, c, useCache = true) {
+    if (useCache && this.cells[r] && this.cells[r][c]) {
+      const cell = this.cells[r][c];
+      if (cell.candidates && cell.candidates.size > 0) {
+        return [...cell.candidates];
+      }
+    }
+    // 构建当前grid状态
+    const grid = this._buildGrid();
+    return this._getCellCandidates(grid, r, c);
+  }
+
+  /**
+   * 更新候选数（单格或全局）
+   * @param {Object} options
+   * @param {number} [options.r] - 行（不传则更新全部）
+   * @param {number} [options.c] - 列
+   * @param {number} [options.num] - 排除的数字（填数时自动排除）
+   */
+  updateCandidates(options = {}) {
+    const { r, c, num } = options;
+    const grid = this._buildGrid();
+
+    if (r !== undefined && c !== undefined) {
+      // 单格更新
+      const cell = this.cells[r][c];
+      if (cell.fixedNum || cell.fillNum) return;
+      const cands = this._getCellCandidates(grid, r, c);
+      cell.candidates.clear();
+      for (const n of cands) cell.candidates.add(n);
+    } else if (num !== undefined) {
+      // 排除某个数字（填入数字后自动清理关联候选）
+      for (let i = 0; i < this.size; i++) {
+        for (let j = 0; j < this.size; j++) {
+          const cell = this.cells[i][j];
+          if (!cell.fixedNum && !cell.fillNum) {
+            cell.candidates.delete(num);
+          }
+        }
+      }
+    } else {
+      // 全盘更新
+      for (let i = 0; i < this.size; i++) {
+        for (let j = 0; j < this.size; j++) {
+          const cell = this.cells[i][j];
+          if (cell.fixedNum || cell.fillNum) continue;
+          const cands = this._getCellCandidates(grid, i, j);
+          cell.candidates.clear();
+          for (const n of cands) cell.candidates.add(n);
+        }
+      }
+    }
+  }
+
+  /**
+   * 清除候选数（单格或全局）
+   * @param {Object} [options]
+   * @param {number} [options.r] - 行
+   * @param {number} [options.c] - 列
+   */
+  clearCandidates(options) {
+    if (options && options.r !== undefined && options.c !== undefined) {
+      // 单格清除
+      const { r, c } = options;
+      if (this.cells[r] && this.cells[r][c]) {
+        this.cells[r][c].candidates.clear();
+      }
+    } else {
+      // 全局清除（调用现有的 clearAllCandidates）
+      this.clearAllCandidates();
+    }
+  }
+
+  /**
+   * 构建当前盘面数字矩阵
+   */
+  _buildGrid() {
+    const grid = [];
+    for (let r = 0; r < this.size; r++) {
+      grid[r] = [];
+      for (let c = 0; c < this.size; c++) {
+        const cell = this.cells[r][c];
+        grid[r][c] = cell.fixedNum || cell.fillNum || 0;
+      }
+    }
+    return grid;
+  }
   _getCellCandidates(grid, r, c) {
     const used = new Set();
     const { boxW, boxH } = this.getBoxSize();

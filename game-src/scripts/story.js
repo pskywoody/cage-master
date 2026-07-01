@@ -302,7 +302,7 @@ const StoryEngine = (function() {
     const file = char.portraits[emotion] || char.portraits.default;
     if (!file) return;
     const img = new Image();
-    img.src = `assets/images/portraits/${file.replace(/\.(png|jpg)$/, '')}.png`;
+    img.src = `assets/images/portraits/${file.replace(/\.(png|jpg)$/, '')}.jpg`;
   }
 
   // ---- 显示立绘（带砸入动画）----
@@ -317,7 +317,7 @@ const StoryEngine = (function() {
     const file = char.portraits[emotion] || char.portraits.default;
     if (!file) { hidePortrait(); return; }
 
-    const src = `assets/images/portraits/${file.replace(/\.(png|jpg)$/, '')}.png`;
+    const src = `assets/images/portraits/${file.replace(/\.(png|jpg)$/, '')}.jpg`;
     const sameChar = currentPortrait && currentPortrait.charId === charId;
     const sameEmotion = sameChar && currentPortrait.emotion === emotion;
     if (sameEmotion) return;
@@ -797,7 +797,7 @@ const StoryEngine = (function() {
       const emo = emotion || 'default';
       const file = char.portraits[emo] || char.portraits.default;
       if (file) {
-        const src = `assets/images/portraits/${file.replace(/\.(png|jpg)$/, '')}.png`;
+        const src = `assets/images/portraits/${file.replace(/\.(png|jpg)$/, '')}.jpg`;
         portraitEl.style.backgroundImage = `url('${src}')`;
         let filter = 'drop-shadow(0 12px 32px rgba(0,0,0,0.7))';
         if (charId === 'setterSecret') filter += ' hue-rotate(270deg) saturate(1.5) brightness(0.9) contrast(1.3) drop-shadow(0 0 20px rgba(147,51,234,0.6))';
@@ -1148,7 +1148,7 @@ const StoryEngine = (function() {
       if (c.portraits) {
         Object.values(c.portraits).forEach(f => {
           const img = new Image();
-          img.src = `assets/images/portraits/${f.replace(/\.(png|jpg)$/, '')}.png`;
+          img.src = `assets/images/portraits/${f.replace(/\.(png|jpg)$/, '')}.jpg`;
         });
       }
     });

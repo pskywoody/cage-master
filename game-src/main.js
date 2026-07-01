@@ -356,11 +356,18 @@ function togglePause() {
 // ---------- 计时与暂停绑定 ----------
 function bindTimerAndPause() {
   // 点击计时器切换暂停
-  document.getElementById('timer').addEventListener('click', togglePause);
+  document.getElementById('timer').addEventListener('click', () => {
+    if (typeof AudioManager !== 'undefined') AudioManager.playClick();
+    togglePause();
+  });
   // 暂停蒙层的继续按钮
-  document.getElementById('btn-resume').addEventListener('click', togglePause);
+  document.getElementById('btn-resume').addEventListener('click', () => {
+    if (typeof AudioManager !== 'undefined') AudioManager.playClick();
+    togglePause();
+  });
   // 返回按钮
   document.getElementById('btn-back').addEventListener('click', () => {
+    if (typeof AudioManager !== 'undefined') AudioManager.playClick();
     saveProgress();
     // 根据来源决定返回位置
     const params = new URLSearchParams(window.location.search);
@@ -616,6 +623,7 @@ function markComplete() {
 // ---------- 通关弹窗按钮绑定 ----------
 function bindCompleteOverlay() {
   document.getElementById('btn-complete-back').addEventListener('click', () => {
+    if (typeof AudioManager !== 'undefined') AudioManager.playClick();
     const params = new URLSearchParams(window.location.search);
     const fromMode = params.get('from') || params.get('difficulty');
     if (fromMode) {
@@ -626,6 +634,7 @@ function bindCompleteOverlay() {
   });
 
   document.getElementById('btn-complete-next').addEventListener('click', () => {
+    if (typeof AudioManager !== 'undefined') AudioManager.playClick();
     const params = new URLSearchParams(window.location.search);
     const diff = params.get('difficulty');
     const nextId = parseInt(currentLevelId) + 1;
@@ -1068,6 +1077,7 @@ function showToast(message, duration = 2500) {
 function bindToolbar() {
   document.getElementById('btn-undo').addEventListener('click', () => {
     if (isPaused) return;
+    if (typeof AudioManager !== 'undefined') AudioManager.playClick();
     gameBoard.undo();
     Storage.logAction('undo');
     refreshBoard();
@@ -1095,6 +1105,7 @@ function bindToolbar() {
   const resetBtn = document.getElementById('btn-reset');
   if (resetBtn) {
     resetBtn.addEventListener('click', () => {
+      if (typeof AudioManager !== 'undefined') AudioManager.playClick();
       if (typeof ComedySystem !== 'undefined') ComedySystem.onReset();
     });
   }
@@ -1118,6 +1129,7 @@ function bindToolbar() {
   if (autoCandsBtn) {
     autoCandsBtn.addEventListener('click', () => {
       if (isPaused) return;
+      if (typeof AudioManager !== 'undefined') AudioManager.playClick();
       const count = gameBoard.autoFillCandidates();
       if (count > 0) {
         showToast(`🔢 已自动为 ${count} 个空格填入理论候选数`);
@@ -1148,6 +1160,7 @@ function bindToolbar() {
   // 45法则计算器
   document.getElementById('btn-45rule').addEventListener('click', () => {
     if (isPaused) return;
+    if (typeof AudioManager !== 'undefined') AudioManager.playClick();
     toggleRule45Calculator();
     Storage.logAction('useRule45');
   });
@@ -1167,6 +1180,7 @@ function bindToolbar() {
   // 重来
   document.getElementById('btn-restart').addEventListener('click', () => {
     if (isPaused) return;
+    if (typeof AudioManager !== 'undefined') AudioManager.playClick();
     confirmRestartSingle();
   });
 }
@@ -1399,6 +1413,7 @@ function toggleRule45Calculator() {
 function initRule45Calculator() {
   // 关闭按钮
   document.getElementById('btn-rule45-close').addEventListener('click', () => {
+    if (typeof AudioManager !== 'undefined') AudioManager.playClick();
     toggleRule45Calculator();
   });
 
@@ -1667,6 +1682,7 @@ function toggleSettings() {
 function initSettingsBindings() {
   // 关闭按钮
   document.getElementById('btn-settings-close').addEventListener('click', () => {
+    if (typeof AudioManager !== 'undefined') AudioManager.playClick();
     toggleSettings();
   });
 

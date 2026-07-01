@@ -1028,19 +1028,26 @@ function bindTimerAndPause() {
   // 点击计时器切换暂停
   const timerEl = document.getElementById('timer');
   if (timerEl) {
-    timerEl.addEventListener('click', togglePause);
+    timerEl.addEventListener('click', () => {
+      if (typeof AudioManager !== 'undefined') AudioManager.playClick();
+      togglePause();
+    });
   }
 
   // 暂停蒙层的继续按钮
   const resumeBtn = document.getElementById('btn-resume');
   if (resumeBtn) {
-    resumeBtn.addEventListener('click', togglePause);
+    resumeBtn.addEventListener('click', () => {
+      if (typeof AudioManager !== 'undefined') AudioManager.playClick();
+      togglePause();
+    });
   }
 
   // 返回关卡按钮
   const backBtn = document.getElementById('btn-back');
   if (backBtn) {
     backBtn.addEventListener('click', () => {
+      if (typeof AudioManager !== 'undefined') AudioManager.playClick();
       saveProgress();
       // 返回到对应章节的关卡列表
       window.location.href = 'chapter-levels.html?id=' + currentChapterId;
@@ -2229,6 +2236,7 @@ function bindCompleteOverlay() {
   const backBtn = document.getElementById('btn-complete-back');
   if (backBtn) {
     backBtn.addEventListener('click', () => {
+      if (typeof AudioManager !== 'undefined') AudioManager.playClick();
       window.location.href = 'chapter-levels.html?id=' + currentChapterId;
     });
   }
@@ -2243,10 +2251,12 @@ function bindCompleteOverlay() {
       // 最后一关：改为"返回章节"
       nextBtn.textContent = '🏁 返回章节';
       nextBtn.addEventListener('click', () => {
+        if (typeof AudioManager !== 'undefined') AudioManager.playClick();
         window.location.href = 'chapter-levels.html?id=' + currentChapterId;
       });
     } else {
       nextBtn.addEventListener('click', () => {
+        if (typeof AudioManager !== 'undefined') AudioManager.playClick();
         window.location.href = 'guide.html?levelId=' + nextId;
       });
     }
@@ -2498,6 +2508,7 @@ function bindNumPad() {
     if (!btn) return;
     if (isPaused) return;
     if (btn.classList.contains('completed')) return;
+    if (typeof AudioManager !== 'undefined') AudioManager.playClick();
 
     const num = parseInt(btn.dataset.num);
     
@@ -2700,6 +2711,7 @@ function bindToolbar() {
   if (undoBtn) {
     undoBtn.addEventListener('click', () => {
       if (isPaused) return;
+      if (typeof AudioManager !== 'undefined') AudioManager.playClick();
       guideBoard.undo();
       refreshBoard();
     });
@@ -2710,6 +2722,7 @@ function bindToolbar() {
   if (eraseBtn) {
     eraseBtn.addEventListener('click', () => {
       if (isPaused) return;
+      if (typeof AudioManager !== 'undefined') AudioManager.playClick();
       if (guideBoard.selectedCells.length > 1) {
         guideBoard.eraseSelection();
       } else if (guideBoard.selectedCell) {
@@ -2726,6 +2739,7 @@ function bindToolbar() {
   if (candidateBtn) {
     candidateBtn.addEventListener('click', () => {
       if (isPaused) return;
+      if (typeof AudioManager !== 'undefined') AudioManager.playClick();
       if (!features.allowDraft) return;
       const mode = guideBoard.toggleInputMode();
       if (mode === 'candidate') {
@@ -2743,6 +2757,7 @@ function bindToolbar() {
   if (autoCandsBtn) {
     autoCandsBtn.addEventListener('click', () => {
       if (isPaused) return;
+      if (typeof AudioManager !== 'undefined') AudioManager.playClick();
       if (!features.allowDraft) return;
       const count = guideBoard.autoFillCandidates();
       if (count > 0) {
@@ -2769,6 +2784,7 @@ function bindToolbar() {
   if (hintBtn) {
     hintBtn.addEventListener('click', () => {
       if (isPaused) return;
+      if (typeof AudioManager !== 'undefined') AudioManager.playClick();
       if (!features.showHints) return;
       handleHint();
     });
@@ -2779,6 +2795,7 @@ function bindToolbar() {
   if (rule45Btn) {
     rule45Btn.addEventListener('click', () => {
       if (isPaused) return;
+      if (typeof AudioManager !== 'undefined') AudioManager.playClick();
       if (!features.assistant45) return;
       toggleRule45Calculator();
     });
@@ -2789,6 +2806,7 @@ function bindToolbar() {
   if (settingBtn) {
     settingBtn.addEventListener('click', () => {
       if (isPaused) return;
+      if (typeof AudioManager !== 'undefined') AudioManager.playClick();
       toggleSettings();
     });
   }
@@ -2798,6 +2816,7 @@ function bindToolbar() {
   if (restartBtn) {
     restartBtn.addEventListener('click', () => {
       if (isPaused) return;
+      if (typeof AudioManager !== 'undefined') AudioManager.playClick();
       if (typeof ComedySystem !== 'undefined') ComedySystem.onReset();
       confirmRestart();
     });

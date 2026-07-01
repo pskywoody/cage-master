@@ -184,10 +184,16 @@
       color: #64748b;
       text-decoration: none;
       cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    #back-link:hover {
+      background: #cbd5e1;
     }
 
     #back-link:active {
-      background: #e2e8f0;
+      background: #94a3b8;
+      transform: scale(0.95);
     }
   </style>
 </head>
@@ -341,6 +347,7 @@
           if (card.dataset.unlocked === 'false') {
             return;
           }
+          if (typeof AudioManager !== 'undefined') AudioManager.playClick();
           const id = card.dataset.id;
           window.location.href = 'chapter-levels.html?id=' + id;
         });

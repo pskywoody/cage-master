@@ -25,10 +25,16 @@
       color: #64748b;
       text-decoration: none;
       cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    #back-link:hover {
+      background: #cbd5e1;
     }
 
     #back-link:active {
-      background: #e2e8f0;
+      background: #94a3b8;
+      transform: scale(0.95);
     }
 
     .chapter-header-info {
@@ -143,6 +149,10 @@
       border: 2px solid #86efac;
     }
 
+    .level-cell.completed:hover {
+      border-color: #22c55e;
+    }
+
     .level-cell.locked {
       background: #f1f5f9;
       color: #94a3b8;
@@ -187,6 +197,10 @@
       border-radius: 12px;
       cursor: pointer;
       transition: all 0.15s;
+    }
+
+    .level-row:hover {
+      background: #e2e8f0;
     }
 
     .level-row:active {
@@ -285,6 +299,15 @@
       border-radius: 6px;
       font-size: 12px;
       cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .view-toggle button:hover {
+      background: #cbd5e1;
+    }
+
+    .view-toggle button:active {
+      transform: scale(0.92);
     }
 
     .view-toggle button.active {
@@ -561,6 +584,7 @@
       grid.querySelectorAll('.level-cell').forEach(cell => {
         cell.addEventListener('click', () => {
           if (cell.dataset.unlocked === 'false') return;
+          if (typeof AudioManager !== 'undefined') AudioManager.playClick();
           const id = cell.dataset.id;
           window.location.href = 'guide.html?levelId=' + id;
         });
@@ -617,6 +641,7 @@
       list.querySelectorAll('.level-row').forEach(row => {
         row.addEventListener('click', () => {
           if (row.dataset.unlocked === 'false') return;
+          if (typeof AudioManager !== 'undefined') AudioManager.playClick();
           const id = row.dataset.id;
           window.location.href = 'guide.html?levelId=' + id;
         });
@@ -626,6 +651,7 @@
     // 视图切换
     function bindViewToggle() {
       document.getElementById('btn-view-grid').addEventListener('click', () => {
+        if (typeof AudioManager !== 'undefined') AudioManager.playClick();
         currentView = 'grid';
         document.getElementById('btn-view-grid').classList.add('active');
         document.getElementById('btn-view-list').classList.remove('active');
@@ -634,6 +660,7 @@
       });
 
       document.getElementById('btn-view-list').addEventListener('click', () => {
+        if (typeof AudioManager !== 'undefined') AudioManager.playClick();
         currentView = 'list';
         document.getElementById('btn-view-grid').classList.remove('active');
         document.getElementById('btn-view-list').classList.add('active');

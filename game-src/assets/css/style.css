@@ -102,10 +102,16 @@ body {
   color: var(--theme-toolbar-text);
   cursor: pointer;
   font-weight: 500;
+  transition: all 0.15s;
+}
+
+#btn-back:hover {
+  background: var(--theme-header-bg);
 }
 
 #btn-back:active {
-  background: var(--theme-header-bg);
+  background: var(--theme-num-pad-active);
+  transform: scale(0.95);
 }
 
 .header-icon-btn {
@@ -115,10 +121,16 @@ body {
   border-radius: 6px;
   font-size: 18px;
   cursor: pointer;
+  transition: all 0.15s;
+}
+
+.header-icon-btn:hover {
+  background: var(--theme-header-bg);
 }
 
 .header-icon-btn:active {
-  background: var(--theme-header-bg);
+  background: var(--theme-num-pad-active);
+  transform: scale(0.92);
 }
 
 /* ========== 关卡标题（极简） ========== */
@@ -350,10 +362,16 @@ body {
   font-size: 13px;
   color: #64748b;
   cursor: pointer;
+  transition: all 0.15s;
+}
+
+#btn-back:hover {
+  background: #cbd5e1;
 }
 
 #btn-back:active {
-  background: #cbd5e1;
+  background: #94a3b8;
+  transform: scale(0.95);
 }
 
 .header-icon-btn {
@@ -363,11 +381,16 @@ body {
   border-radius: 8px;
   font-size: 16px;
   cursor: pointer;
-  transition: background 0.1s;
+  transition: all 0.15s;
+}
+
+.header-icon-btn:hover {
+  background: #cbd5e1;
 }
 
 .header-icon-btn:active {
-  background: #cbd5e1;
+  background: #94a3b8;
+  transform: scale(0.92);
 }
 
 /* ========== 工具栏（紧凑图标式） ========== */
@@ -391,6 +414,11 @@ body {
   cursor: pointer;
   transition: all 0.1s;
   touch-action: manipulation;
+}
+
+#toolbar button:hover {
+  background: var(--theme-num-pad-active);
+  transform: scale(1.05);
 }
 
 #toolbar button:active {
@@ -419,6 +447,11 @@ body {
   cursor: pointer;
   transition: all 0.1s;
   touch-action: manipulation;
+}
+
+.tool-btn2:hover {
+  background: var(--theme-num-pad-active);
+  transform: scale(1.05);
 }
 
 .tool-btn2:active {

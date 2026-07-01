@@ -1433,6 +1433,8 @@ const MidiPlayer = (function() {
   let _schedulerTimer = null;
   let _trackStates = [];
   let _activeNotes = [];
+  let _loopMode = false;
+  let _onEndCallback = null;
 
   // ---- 轻量级MIDI文件解析器 ----
   function _parseMIDI(data) {
@@ -1727,6 +1729,20 @@ const MidiPlayer = (function() {
         }
       });
 
+      // 循环检测
+      if (_loopMode && _trackStates.every(ts => ts.idx >= ts.notes.length)) {
+        _trackStates.forEach(ts => {
+          ts.idx = 0;
+        });
+        startTime = _ctx.currentTime + 0.1;
+        _trackStates.forEach(ts => { ts.currentTime = startTime; });
+        if (_onEndCallback) {
+          const cb = _onEndCallback;
+          _onEndCallback = null;
+          setTimeout(cb, 500);
+        }
+      }
+
       _schedulerTimer = setTimeout(tick, lookahead);
     }
     tick();
@@ -1837,8 +1853,17 @@ const MidiPlayer = (function() {
     if (typeof MidiBGM !== 'undefined') MidiBGM.setInstrument(instr);
   }
 
+  function setLoop(shouldLoop) {
+    _loopMode = !!shouldLoop;
+  }
+
+  function setOnEnd(callback) {
+    _onEndCallback = typeof callback === 'function' ? callback : null;
+  }
+
   return {
     load, play, setVariation, stop, setVolume, setTempo, setTranspose, setInstrument,
+    setLoop, setOnEnd,
     get isPlaying() { return _isPlaying; },
     get variation() { return _variation; },
     get loadedFile() { return _currentFile; },

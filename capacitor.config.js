@@ -4,7 +4,8 @@ const config = {
   appName: '笼中密码',
   webDir: 'game-src',
   server: {
-    androidScheme: 'https'
+    androidScheme: 'https',
+    startPath: '/menu.html'
   },
   android: {
     allowMixedContent: true

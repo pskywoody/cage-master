@@ -694,14 +694,13 @@ window.onload = async function() {
       }
 
       // 12.7 检查是否需要播放章节开场剧情
-      // 第101关使用全新的StoryEngine（逆转裁判式立绘+打字机音效+配音）
-      // 完全跳过旧StoryModal的chapterIntro和preDialog
+      // 第一章第一关使用全新的StoryEngine开场演出
       const numId = parseInt(currentLevelId);
-      const isFirstChapter = numId === 101;
-      const useNewStoryEngine = isFirstChapter && typeof StoryEngine !== 'undefined';
+      const isFirstLevelOfChapter = currentChapterData && currentChapterData.levels && currentChapterData.levels[0] && currentChapterData.levels[0].levelId === numId;
+      const useNewStoryEngine = (numId === 100 || numId === 101) && typeof StoryEngine !== 'undefined';
 
       if (useNewStoryEngine) {
-        // 新StoryEngine开场：第一章完整剧情（带立绘+打字机音效+配音）
+        // 新StoryEngine开场：完整剧情（带立绘+打字机音效+配音）
         try {
           if (storyManager && storyManager.modal) {
             storyManager.modal.el.style.display = 'none';

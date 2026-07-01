@@ -1,29 +1,32 @@
 // ==========================================
-// BGM桥接器 - 统一管理MidiBGM + AudioManager
-// 自动选择可用引擎，提供统一API
+// BGM桥接器 v2 — 使用 MidiPlayer 播放 .mid 文件
+// 优先播放 assets/audio/midi/ 中的交响配乐 .mid 文件
+// 回退到 AudioManager 程序化BGM
 // ==========================================
 const BGMEngine = {
   _ready: false,
   _currentChapter: null,
-  _currentMode: null, // 'story' | 'menu' | 'puzzle'
+  _currentMode: null,
   _volume: 0.35,
   _muted: false,
+  _midiBase: 'assets/audio/midi/',
+  _stopLoopCheck: null,
 
-  /** 初始化：注册首次交互自动启动 */
+  /** 初始化 */
   init() {
     if (this._ready) return;
     this._ready = true;
 
-    // 恢复音量设置
     if (typeof AudioManager !== 'undefined') {
-      const s = Storage.loadSettings();
-      if (s) {
-        this._muted = s.bgm === false;
-        this._volume = s.bgmVolume || 0.35;
-      }
+      try {
+        const s = typeof Storage !== 'undefined' && Storage.loadSettings ? Storage.loadSettings() : null;
+        if (s) {
+          this._muted = s.bgm === false;
+          this._volume = s.bgmVolume || 0.35;
+        }
+      } catch(e) {}
     }
 
-    // 首次交互自动恢复上下文
     const autoResume = () => {
       if (typeof AudioManager !== 'undefined') AudioManager.resume();
       document.removeEventListener('click', autoResume);
@@ -34,7 +37,6 @@ const BGMEngine = {
     document.addEventListener('touchstart', autoResume, { once: true });
     document.addEventListener('keydown', autoResume, { once: true });
 
-    // 监听设置变化
     document.addEventListener('bgm-toggle', (e) => {
       this._muted = !e.detail;
       if (this._muted) this.stop();
@@ -43,135 +45,94 @@ const BGMEngine = {
     console.log('[BGMEngine] 初始化完成');
   },
 
-  /** 播放章节BGM（故事模式） */
+  /** 播放.mid文件（内部方法） */
+  _playMidi(path, loop) {
+    if (typeof MidiPlayer === 'undefined') {
+      // 回退到AudioManager
+      if (typeof AudioManager !== 'undefined') AudioManager.startBGM();
+      return;
+    }
+    this.stop();
+    MidiPlayer.setVolume(this._volume);
+    MidiPlayer.setLoop(!!loop);
+    MidiPlayer.load(path).then(() => {
+      if (this._muted) return;
+      MidiPlayer.play();
+    });
+  },
+
+  /** 播放章节BGM */
   playChapter(chapterId) {
     if (this._muted) return;
     this._currentMode = 'story';
     this._currentChapter = chapterId;
-    this.stop();
-
-    if (typeof MidiBGM !== 'undefined') {
-      MidiBGM.load(chapterId);
-      MidiBGM.setVolume(this._volume);
-      MidiBGM.play();
-      return;
-    }
-    if (typeof AudioManager !== 'undefined') {
-      AudioManager.startBGM();
-    }
+    this._playMidi(this._midiBase + 'chapter_' + chapterId + '.mid', true);
   },
 
-  /** 主菜单BGM */
+  /** 主菜单BGM（第1章主题） */
   playMenu() {
     if (this._muted) return;
     this._currentMode = 'menu';
-    this.stop();
-
-    if (typeof MidiBGM !== 'undefined') {
-      // 用第1章温暖主题作为菜单BGM
-      MidiBGM.load(1);
-      MidiBGM.setVolume(this._volume * 0.8);
-      MidiBGM.play();
-      return;
-    }
-    if (typeof AudioManager !== 'undefined') {
-      AudioManager.startBGM();
-    }
+    this._playMidi(this._midiBase + 'chapter_1.mid', true);
   },
 
-  /** 速度谜题BGM */
+  /** 速度谜题BGM（第5章星辰核心） */
   playPuzzle() {
     if (this._muted) return;
     this._currentMode = 'puzzle';
-    this.stop();
-
-    if (typeof MidiBGM !== 'undefined') {
-      // 速度谜题用第4章（冷静推理）或第5章（星辰核心）
-      MidiBGM.load(5);
-      MidiBGM.setVolume(this._volume * 0.85);
-      MidiBGM.play();
-      return;
-    }
-    if (typeof AudioManager !== 'undefined') {
-      AudioManager.startBGM();
-    }
+    this._playMidi(this._midiBase + 'chapter_5.mid', true);
   },
 
   /** Boss战BGM */
   playBossBattle() {
     if (this._muted) return;
-    if (typeof MidiBGM !== 'undefined') {
-      this.stop();
-      // 使用MidiBGM的Boss战BGM
-      MidiBGM.setVolume(this._volume * 1.1);
-      MidiBGM.playSpecial('boss_battle');
-      return;
-    }
-    if (typeof AudioManager !== 'undefined' && AudioManager.startBossBGM) {
-      AudioManager.stopBGM();
-      AudioManager.startBossBGM();
-    }
+    this._playMidi(this._midiBase + 'boss_battle.mid', true);
   },
 
   /** 播放角色主题曲 */
   playCharacterTheme(charId) {
     if (this._muted) return;
-    if (typeof MidiBGM !== 'undefined') {
-      // 角色ID映射到MidiBGM主题
-      const themeMap = {
-        'ray': 'ray',
-        'cagekeeper': 'cagekeeper',
-        'plotter': 'plotter',
-        'plotterShadow': 'plotter',
-        'remnant': 'cagekeeper',
-        'weaver': 'weaver',
-        'setterSecret': 'weaver'
-      };
-      const theme = themeMap[charId];
-      if (theme) {
-        MidiBGM.playTheme(theme);
-      }
+    const fileMap = {
+      'ray': 'theme_ray.mid',
+      'cagekeeper': 'theme_cagekeeper.mid',
+      'plotter': 'theme_plotter.mid',
+      'plotterShadow': 'theme_plotter.mid',
+      'remnant': 'theme_cagekeeper.mid',
+      'weaver': 'theme_weaver.mid',
+      'setterSecret': 'theme_weaver.mid'
+    };
+    const file = fileMap[charId];
+    if (file) {
+      this._playMidi(this._midiBase + file, false);
     }
   },
 
   /** 胜利BGM */
   playVictory() {
     if (this._muted) return;
-    if (typeof MidiBGM !== 'undefined') {
-      MidiBGM.playSpecial('victory');
-      return;
-    }
-    if (typeof AudioManager !== 'undefined') {
-      AudioManager.playWin();
-    }
+    this._playMidi(this._midiBase + 'victory.mid', false);
   },
 
   /** 破局号角 */
   playBreakthrough() {
     if (this._muted) return;
-    if (typeof MidiBGM !== 'undefined') {
-      MidiBGM.playSpecial('breakthrough_fanfare');
-    }
+    this._playMidi(this._midiBase + 'breakthrough_fanfare.mid', false);
   },
 
   /** 设置阶段 */
   setPhase(phase) {
-    if (typeof MidiBGM !== 'undefined') {
-      MidiBGM.setPhase(phase);
+    if (typeof MidiPlayer !== 'undefined') {
+      MidiPlayer.setVariation(phase);
     }
-    if (phase === 'breakthrough' && typeof AudioManager !== 'undefined') {
-      AudioManager.startBreakthroughBGM();
-    }
-    if (phase === 'finishing' && typeof AudioManager !== 'undefined') {
-      AudioManager.startFinishingBGM();
+    if (phase === 'finishing') {
+      // 收官阶段播放胜利号角
+      this.playVictory();
     }
   },
 
   /** 停止BGM */
   stop() {
-    if (typeof MidiBGM !== 'undefined') {
-      MidiBGM.stop();
-    }
+    if (typeof MidiPlayer !== 'undefined') MidiPlayer.stop();
     if (typeof AudioManager !== 'undefined') {
       AudioManager.stopBGM();
       AudioManager.stopBossBGM();
@@ -180,7 +141,7 @@ const BGMEngine = {
 
   /** 暂停 */
   pause() {
-    if (typeof MidiBGM !== 'undefined') MidiBGM.pause();
+    if (typeof MidiPlayer !== 'undefined') MidiPlayer.stop();
     if (typeof AudioManager !== 'undefined') AudioManager.pauseBGM();
   },
 
@@ -189,7 +150,7 @@ const BGMEngine = {
     if (typeof AudioManager === 'undefined') return;
     if (this._muted) return;
     AudioManager.resume();
-    if (typeof MidiBGM !== 'undefined' && !MidiBGM.isPlaying) {
+    if (typeof MidiPlayer !== 'undefined') {
       if (this._currentMode === 'menu') this.playMenu();
       else if (this._currentMode === 'puzzle') this.playPuzzle();
       else if (this._currentChapter) this.playChapter(this._currentChapter);
@@ -199,7 +160,7 @@ const BGMEngine = {
   /** 设置音量 */
   setVolume(v) {
     this._volume = Math.max(0, Math.min(0.7, v));
-    if (typeof MidiBGM !== 'undefined') MidiBGM.setVolume(this._volume);
+    if (typeof MidiPlayer !== 'undefined') MidiPlayer.setVolume(this._volume);
     if (typeof AudioManager !== 'undefined') AudioManager.setBgmVolume(this._volume);
   },
 
@@ -215,16 +176,11 @@ const BGMEngine = {
   },
 
   get isPlaying() {
-    if (typeof MidiBGM !== 'undefined' && MidiBGM.isPlaying) return true;
+    if (typeof MidiPlayer !== 'undefined' && MidiPlayer.isPlaying) return true;
     if (typeof AudioManager !== 'undefined') return AudioManager.bgmPlaying;
     return false;
   }
 };
 
-// 导出到全局
-if (typeof window !== 'undefined') {
-  window.BGMEngine = BGMEngine;
-}
-if (typeof module !== 'undefined' && module.exports) {
-  module.exports = BGMEngine;
-}
+if (typeof window !== 'undefined') window.BGMEngine = BGMEngine;
+if (typeof module !== 'undefined' && module.exports) module.exports = BGMEngine;

@@ -248,9 +248,9 @@ const Effects = (function() {
     } else {
       // 角色ID → 从CHARACTERS查找default立绘
       const char = (typeof CHARACTERS !== 'undefined') ? CHARACTERS[portraitFile] : null;
-      const file = char?.portraits?.default || (portraitFile + '_default.jpg');
+      const file = char?.portraits?.default || (portraitFile + '_default.png');
       const base = file.replace(/\.(png|jpg)$/, '');
-      path = `assets/images/portraits/${base}.jpg`;
+      path = `assets/images/portraits/${base}.png`;
     }
     portraitZoomEl.style.backgroundImage = `url('${path}')`;
     portraitZoomEl.classList.remove('portrait-out');

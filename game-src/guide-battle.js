@@ -1788,11 +1788,11 @@ const BOSS_CONFIGS = {
     fillStyle: 'surround',
     personality: '冷酷阴森的残影，从四面包抄，语气嘲讽',
     preDialog: [
-      { speaker: '设局人', text: '区块排除学得不错嘛。但在迷雾中，你还能找到方向吗？' },
-      { speaker: '设局人', text: '让我看看——你到底是真的懂了，还是只是在照猫画虎。' }
+      { speaker: '设局人残影', text: '区块排除学得不错嘛。但在迷雾中，你还能找到方向吗？' },
+      { speaker: '设局人残影', text: '让我看看——你到底是真的懂了，还是只是在照猫画虎。' }
     ],
     winDialog: [
-      { speaker: '设局人', text: '……你的区块逻辑，确实比我预想的要纯熟。但残影只是残影。' },
+      { speaker: '设局人残影', text: '……你的区块逻辑，确实比我预想的要纯熟。但残影只是残影。' },
       { speaker: '守笼人', text: '不要得意。第四章的残局逆向推导，才是真正的考验。' }
     ],
     warningLines: [

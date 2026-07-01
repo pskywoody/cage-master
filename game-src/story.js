@@ -478,52 +478,80 @@ window.BadgeAward = BadgeAward;
 window.StoryManager = StoryManager;
 
 // ==========================================
-// 角色预设：统一管理三个主角的头像和颜色
+// 角色预设：统一管理角色的头像和颜色
+// 注意：如果 data/dialogues.js 已加载（新版CHARACTERS，含portraits），
+// 则在其基础上添加旧ID别名（keeper/ayan/setter等），保持StoryModal兼容
 // ==========================================
-const CHARACTERS = {
-  keeper: {
-    character: '守笼人',
-    avatar: 'assets/images/keeper-avatar.png',
-    color: '#6366f1' // 靛蓝色，对应深蓝紫袍
-  },
-  ayan: {
-    character: '阿岩',
-    avatar: 'assets/images/ayan-avatar.png',
-    color: '#22c55e' // 绿色，对应黄绿外套
-  },
-  setter: {
-    character: '设局人',
-    avatar: 'assets/images/setter-avatar.png',
-    color: '#ef4444' // 暗红色，对应红眼黑兜帽
-  },
-  shadow: {
-    character: '设局人残影',
-    avatar: 'assets/images/shadow-avatar.jpg',
-    color: '#ef4444' // 血红色
-  },
-  guardian: {
-    character: '残局守护者',
-    avatar: 'assets/images/guardian-avatar.jpg',
-    color: '#f97316' // 琥珀橙
-  },
-  starshuttle: {
-    character: '星辰梭',
-    avatar: 'assets/images/starshuttle-avatar.jpg',
-    color: '#a855f7' // 紫晶色
-  },
-  setterSecret: {
-    character: '设局人（秘术）',
-    avatar: 'assets/images/setter-avatar.png',
-    color: '#a855f7' // 秘术紫
-  },
-  narrator: {
-    character: '旁白',
-    icon: '🏛️',
-    color: '#94a3b8' // 灰色
-  }
-};
+(function() {
+  // 旧ID到新ID的映射（供StoryModal中文名匹配使用）
+  const _legacyPresets = {
+    keeper: {
+      character: '守笼人',
+      avatar: 'assets/images/keeper-avatar.png',
+      color: '#6366f1'
+    },
+    ayan: {
+      character: '阿岩',
+      avatar: 'assets/images/ayan-avatar.png',
+      color: '#22c55e'
+    },
+    setter: {
+      character: '设局人',
+      avatar: 'assets/images/setter-avatar.png',
+      color: '#ef4444'
+    },
+    shadow: {
+      character: '设局人残影',
+      avatar: 'assets/images/shadow-avatar.jpg',
+      color: '#ef4444'
+    },
+    guardian: {
+      character: '残局守护者',
+      avatar: 'assets/images/guardian-avatar.jpg',
+      color: '#f97316'
+    },
+    starshuttle: {
+      character: '星辰梭',
+      avatar: 'assets/images/starshuttle-avatar.jpg',
+      color: '#a855f7'
+    },
+    setterSecret: {
+      character: '设局人（秘术）',
+      avatar: 'assets/images/setter-avatar.png',
+      color: '#a855f7'
+    },
+    narrator: {
+      character: '旁白',
+      icon: '🏛️',
+      color: '#94a3b8'
+    }
+  };
 
-window.CHARACTERS = CHARACTERS;
+  if (typeof window !== 'undefined' && window.CHARACTERS) {
+    // data/dialogues.js 已加载，添加旧ID别名
+    const C = window.CHARACTERS;
+    // 新ID → 旧ID 映射（cagekeeper→keeper等）
+    const aliasMap = {
+      cagekeeper: 'keeper',
+      ray: 'ayan',
+      plotter: 'setter',
+      remnant: 'guardian',
+      weaver: 'starshuttle'
+    };
+    Object.entries(aliasMap).forEach(([newId, oldId]) => {
+      if (C[newId] && !C[oldId]) {
+        C[oldId] = _legacyPresets[oldId];
+      }
+    });
+    // 补充narrator
+    if (!C.narrator) C.narrator = _legacyPresets.narrator;
+    if (!C.shadow) C.shadow = _legacyPresets.shadow;
+    if (!C.setterSecret) C.setterSecret = _legacyPresets.setterSecret;
+  } else {
+    // 独立加载（无dialogues.js），使用旧预设
+    window.CHARACTERS = _legacyPresets;
+  }
+})();
 
 /**
  * 便捷函数：用角色预设快速构建对话条目
@@ -532,7 +560,8 @@ window.CHARACTERS = CHARACTERS;
  * @returns {Object} 对话条目
  */
 function dlg(role, text) {
-  const preset = CHARACTERS[role] || CHARACTERS.narrator;
+  const C = (typeof window !== 'undefined' && window.CHARACTERS) ? window.CHARACTERS : {};
+  const preset = C[role] || C.narrator || { character: role, color: '#94a3b8' };
   return { ...preset, text };
 }
 

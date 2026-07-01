@@ -173,8 +173,8 @@
 
     <!-- 模式切换 -->
     <div class="mode-switch">
-      <a href="free-play.html" class="mode-btn" id="modeClassic">经典数独</a>
-      <a href="free-play.html?mode=killer" class="mode-btn active" id="modeKiller">杀手数独</a>
+      <a href="free-play.html?mode=classic" class="mode-btn active" id="modeClassic">经典数独</a>
+      <a href="free-play.html?mode=killer" class="mode-btn" id="modeKiller">杀手数独</a>
     </div>
 
     <!-- 难度选择 -->
@@ -291,8 +291,8 @@
       } else {
         let html = '';
         for (const level of levels) {
-          const record = Storage.getProgress(level.id);
-          const isCompleted = record && record.completed;
+          const isCompleted = Storage.isCompleted(level.id);
+          const record = Storage.getCompleteRecord(level.id);
           const lvlAnalytic = analytics[level.id];
 
           if (isCompleted) {

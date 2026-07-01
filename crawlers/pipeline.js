@@ -120,7 +120,7 @@ function toGameFormat(p, index) {
     sum: c.sum,
     cells: c.cells.map(([r, c]) => [r, c])
   }));
-  const givens = p.givens || Array.from({length:9},()=>Array(9).fill(0));
+  const givens = p.boardData || p.givens || Array.from({length:9},()=>Array(9).fill(0));
   return {
     id: index + 1,
     name: `残局 #${String(index + 1).padStart(3,'0')} · ${DIFF_NAMES[p.difficulty] || '中等'}`,

@@ -1,0 +1,1028 @@
+{
+  "ui": {
+    "common": {
+      "back": "返回",
+      "backToMenu": "← 菜单",
+      "backToChapter": "← 章节",
+      "backToChapters": "← 章节列表",
+      "backToMainMenu": "← 返回主菜单",
+      "confirm": "确认",
+      "cancel": "取消",
+      "close": "×",
+      "ok": "知道了",
+      "next": "下一步 ▶",
+      "prev": "◀ 上一步",
+      "start": "开始学习 ▶",
+      "startGame": "开始游戏",
+      "resume": "继续游戏",
+      "restart": "重来",
+      "loading": "加载中...",
+      "loadingLevels": "加载关卡中...",
+      "loadingChapters": "加载章节中...",
+      "noData": "暂无章节数据",
+      "noLevels": "暂无关卡",
+      "noLevelsInDifficulty": "该难度暂无关卡",
+      "returnToLevels": "返回关卡",
+      "nextLevel": "下一关",
+      "returnToChapter": "🏁 返回章节",
+      "gridView": "网格",
+      "listView": "列表",
+      "progress": "进度",
+      "versus": "VS",
+      "go": "开始！",
+      "yes": "是",
+      "no": "否",
+      "save": "保存",
+      "reset": "重置",
+      "retry": "重试",
+      "continue": "继续"
+    },
+    "titles": {
+      "appName": "档案侦探 · 笼中密码",
+      "guideMode": "教学模式",
+      "menuPage": "档案侦探 · 笼中密码",
+      "chaptersPage": "故事模式 · 章节选择",
+      "levelsPage": "关卡选择",
+      "chapterLevelsPage": "章节关卡",
+      "freePlayPage": "数独谜题 · 自由模式",
+      "battlePage": "AI对战",
+      "optionsPage": "设置",
+      "gamePage": "游戏",
+      "guidePage": "教学关卡"
+    },
+    "menu": {
+      "logo": "🔐",
+      "gameTitle": "笼中密码",
+      "subtitle": "档案侦探 · KILLER SUDOKU",
+      "storyMode": "故事模式",
+      "storyModeDesc": "跟随剧情，学习杀手数独技巧",
+      "freeMode": "数独谜题",
+      "freeModeDesc": "300道精选谜题，三种难度",
+      "battleMode": "迷雾对战",
+      "battleModeDesc": "与设局人AI展开脑力对决",
+      "battleModeBeta": "BETA",
+      "settings": "设置",
+      "settingsDesc": "音乐、音效、进度管理",
+      "version": "v1.0.0",
+      "statsCompleted": "已通关",
+      "statsBadges": "徽章",
+      "statsTotalTime": "总用时"
+    },
+    "toolbar": {
+      "undo": "撤销",
+      "erase": "擦除",
+      "candidate": "候选",
+      "candidateMode": "候选模式",
+      "fillMode": "填数模式",
+      "autoCands": "自动填候选",
+      "hint": "提示",
+      "rule45": "45",
+      "setting": "设置",
+      "quickFill": "⚡ 连填"
+    },
+    "timer": {
+      "timeUsed": "用时",
+      "timeFormat_min_sec": "{m}分{s}秒",
+      "timeFormat_sec": "{s}秒",
+      "timeFormat_h_m": "{h}h{m}m",
+      "timeFormat_clock": "{m}:{s}"
+    },
+    "pause": {
+      "title": "⏸ 游戏暂停",
+      "desc": "点击下方按钮继续游戏"
+    },
+    "complete": {
+      "trophy": "🏆",
+      "title": "恭喜通关！",
+      "timeUsed": "用时 {time}",
+      "rematch": "再来一局"
+    },
+    "settings": {
+      "title": "⚙️ 设置",
+      "audioSection": "音频",
+      "gameSection": "游戏",
+      "displaySection": "显示",
+      "operationSection": "操作",
+      "dataSection": "数据管理",
+      "muteAll": "🔇 一键静音",
+      "muteAllDesc": "关闭所有声音（BGM+音效）",
+      "bgm": "🎵 背景音乐",
+      "bgmDesc": "游戏过程中的背景音乐",
+      "sfx": "🔊 音效",
+      "sfxDesc": "点击、填数等操作音效",
+      "conflictRed": "冲突标红",
+      "conflictRedDesc": "填错数字时标红提示",
+      "highlightRow": "同行高亮",
+      "highlightRowDesc": "选中格子时高亮整行",
+      "highlightCol": "同列高亮",
+      "highlightColDesc": "选中格子时高亮整列",
+      "highlightBox": "同宫高亮",
+      "highlightBoxDesc": "选中格子时高亮整宫",
+      "highlightRowColBox": "行列宫高亮",
+      "highlightRowColBoxDesc": "选中格子时高亮同行列宫",
+      "highlightSameNum": "同数字高亮",
+      "highlightSameNumDesc": "选中数字时高亮所有相同数字",
+      "highlightSameCage": "同笼高亮",
+      "highlightSameCageDesc": "选中格子时高亮所属笼子",
+      "autoClearCands": "自动清除关联候选",
+      "autoClearCandsDesc": "填数后自动清除行/列/宫/笼的关联候选",
+      "autoClearCandidates": "自动清除候选",
+      "autoClearCandidatesDesc": "填数后自动清除关联候选数",
+      "exportData": "📤 导出存档",
+      "resetAll": "🗑️ 重置所有进度",
+      "aboutTitle": "档案侦探 · 笼中密码",
+      "aboutVersion": "版本 1.0.0",
+      "aboutDesc": "一款沉浸式杀手数独剧情解谜游戏\n跟随守笼人与阿岩，破解设局人留下的秘术档案",
+      "confirmResetTitle": "确认重置？",
+      "confirmResetMsg": "此操作将清除所有通关记录、进度、徽章和设置，且无法恢复。",
+      "confirmResetDetail": "此操作不可撤销，请谨慎操作。",
+      "confirmOk": "确认重置",
+      "toastReset": "进度已重置",
+      "toastExported": "存档已导出",
+      "toastResetFailed": "重置失败",
+      "toastExportFailed": "导出失败",
+      "back": "← 返回",
+      "statTotalCompleted": "总通关",
+      "statTotalTime": "总游戏时间",
+      "statBadges": "徽章",
+      "toggleBgm": "切换背景音乐",
+      "toggleSfx": "切换音效"
+    },
+    "rule45": {
+      "title": "🧮 45法则计算器",
+      "cellCount": "格子数",
+      "targetSum": "目标和",
+      "mustInclude": "必含数字",
+      "exclude": "排除数字",
+      "possibleCombinations": "可能的组合",
+      "combinationsCount": "{count} 种",
+      "errorInvalidInput": "请输入有效的格子数和目标和",
+      "errorMustExceedCells": "必含数字数量不能超过格子数",
+      "errorMustExcluded": "必含数字不能同时被排除",
+      "errorNoResult": "没有符合条件的组合",
+      "rule10": "10法则（4x4）",
+      "rule21": "21法则（6x6）",
+      "rule45": "45法则（9x9）",
+      "ruleName": "45法则"
+    },
+    "chapters": {
+      "title": "📖 故事模式",
+      "subtitle": "跟随守笼人与阿岩，破解杀手数独的秘术档案",
+      "chapterPrefix": "第{id}章：",
+      "badge": "徽章",
+      "lockedIcon": "🔒",
+      "loading": "加载章节中...",
+      "noData": "暂无章节数据",
+      "backToMenu": "← 返回主菜单",
+      "progress": "进度",
+      "fallbackCh1": {
+        "title": "加密来信",
+        "subtitle": "入门篇 · 4x4",
+        "desc": "认识杀手数独的基本规则，从最小的4x4盘面开始你的侦探之旅。",
+        "badgeName": "新手侦探"
+      },
+      "fallbackCh2": {
+        "title": "双重线索",
+        "subtitle": "进阶篇 · 6x6",
+        "desc": "学习更多解题技巧，挑战6x6盘面，提升你的推理能力。",
+        "badgeName": "初级侦探"
+      },
+      "fallbackCh3": {
+        "title": "谜案追踪",
+        "subtitle": "提高篇 · 6x6",
+        "desc": "掌握45法则等高级技巧，破解更复杂的谜题。",
+        "badgeName": "中级侦探"
+      },
+      "fallbackCh4": {
+        "title": "密码破译",
+        "subtitle": "进阶篇 · 9x9",
+        "desc": "正式挑战9x9盘面，体验完整的杀手数独魅力。",
+        "badgeName": "高级侦探"
+      },
+      "fallbackCh5": {
+        "title": "终极考验",
+        "subtitle": "挑战篇 · 9x9",
+        "desc": "高难度9x9谜题，考验你所有学到的技巧。",
+        "badgeName": "精英侦探"
+      },
+      "fallbackCh6": {
+        "title": "大师之路",
+        "subtitle": "大师篇 · 9x9",
+        "desc": "传说级难度，只有真正的侦探大师才能通关。",
+        "badgeName": "大师侦探"
+      },
+      "fallbackCh7": {
+        "title": "秘术档案",
+        "subtitle": "大师篇 · 高级技巧",
+        "desc": "守笼人发现了设局人留下的六卷秘术手稿，记载着并蒂锁、二连纵横阵、三才游鱼阵等高级推演术。",
+        "badgeName": "秘术大师"
+      }
+    },
+    "chapterLevels": {
+      "levelNum": "第{num}关",
+      "fallbackDesc": "第{chapterId}章的教学内容，带你逐步掌握杀手数独的核心技巧。",
+      "teachingGoal_default": "完成这道题",
+      "bestTime": "最佳 {time}",
+      "completed": "已通关",
+      "backToChapters": "← 章节列表",
+      "progress": "进度",
+      "gridView": "网格",
+      "listView": "列表",
+      "loading": "加载关卡中...",
+      "noLevels": "暂无关卡",
+      "unknownChapter": "未知章节"
+    },
+    "levels": {
+      "title": "档案侦探 · 笼中密码",
+      "teachingEntry": "教学模式",
+      "teachingDesc": "从零开始学杀手数独",
+      "battleEntry": "AI 对战模式",
+      "battleDesc": "对战",
+      "battleStats": "战绩：{wins} 胜 {losses} 负",
+      "teachingProgress": "已通关 {count} 个教学关卡",
+      "filterAll": "全部",
+      "filterEasy": "简单",
+      "filterMedium": "中等",
+      "filterHard": "困难",
+      "filterCalibrated": "校准排序",
+      "statsLine": "已通关 {completed} / {total} 关 · 总用时 {time}",
+      "bestTimeTag": "最佳 {time}",
+      "avgTimeTag": "均时 {time}",
+      "hintsTag": "提示 {count}次",
+      "completionsTag": "通关 {completions}/{attempts}",
+      "completedTag": "✓ 已通关",
+      "loading": "加载关卡中...",
+      "networkError": "网络异常，请刷新重试",
+      "noLevelsForDiff": "该难度暂无关卡",
+      "entryLevel": "入门"
+    },
+    "freePlay": {
+      "title": "🧩 数独谜题",
+      "subtitle": "自由挑战，精选300题",
+      "back": "← 返回",
+      "easy": { "name": "简单", "icon": "🌱", "range": "1-100" },
+      "medium": { "name": "中等", "icon": "🔥", "range": "101-200" },
+      "hard": { "name": "困难", "icon": "💀", "range": "201-300" },
+      "completed": "已通关",
+      "bestTimeLabel": "最佳用时",
+      "avgTimeLabel": "平均用时"
+    },
+    "badge": {
+      "title": "🏅 获得徽章",
+      "newBadge": "新徽章",
+      "accept": "收下"
+    },
+    "story": {
+      "continueHint": "▼ 点击继续",
+      "defaultSpeaker": "档案侦探"
+    },
+    "canvas": {
+      "candidateMode_label": "✏️候选",
+      "row": "行",
+      "col": "列",
+      "box": "宫",
+      "cage": "笼",
+      "quickFillHint": "💡 不选格子→点数字→再点空格，快速填入",
+      "quickFillActivated": "⚡ 连填{num}：直接点空格快速填入",
+      "quickFillComplete": "✅ {num} 已填满，连填自动关闭"
+    },
+    "perspective": {
+      "row": "行 ",
+      "col": "列 ",
+      "box": "宫 ",
+      "rowPrefix": "第{n}行",
+      "colPrefix": "第{n}列",
+      "boxPrefix": "第{n}宫"
+    },
+    "debug": {
+      "title": "🛠 诊断面板",
+      "close": "✕"
+    },
+    "progress": {
+      "format": "{current} / {total}"
+    }
+  },
+  "battle": {
+    "title": "⚔️ AI 对战模式",
+    "subtitle": "填对数字积累能量，释放攻击干扰对手！",
+    "you": "你",
+    "aiBot": "AI Bot",
+    "spectateBot1": "Bot 1",
+    "spectateBot2": "Bot 2",
+    "difficulty": {
+      "label": "难度：",
+      "easy": "简单",
+      "medium": "中等",
+      "hard": "困难"
+    },
+    "startBattle": "开始对战",
+    "spectate": "👀 观战",
+    "back": "返回",
+    "energy": "⚡ 能量",
+    "energyFormat": "{current} / {max}",
+    "progress": "{filled} / {total}",
+    "attackCount": "攻击: {count}",
+    "combo": "{count} 连击!",
+    "attacks": {
+      "normal": { "name": "普攻", "cost": "30能量", "costNum": 30 },
+      "heavy": { "name": "重击", "cost": "60能量", "costNum": 60 },
+      "ultimate": { "name": "必杀", "cost": "100能量", "costNum": 100 }
+    },
+    "controls": {
+      "quickFill": "⚡ 连填",
+      "modeToggle": "填数模式",
+      "candidateMode": "候选模式",
+      "erase": "擦除",
+      "restart": "重来"
+    },
+    "attackText": "ATTACK!",
+    "result": {
+      "win": "🎉 胜利！",
+      "lose": "😢 失败...",
+      "bot1Win": "🏆 Bot 1 胜利！",
+      "bot2Win": "🏆 Bot 2 胜利！",
+      "continueStory": "继续剧情",
+      "retry": "重试",
+      "rematch": "再来一局",
+      "back": "返回",
+      "timeUsed": "用时：{m}分{s}秒",
+      "yourProgress": "{label}进度：{filled} / 81（{pct}%）",
+      "aiProgress": "AI进度：{filled} / 81（{pct}%）",
+      "maxCombo": "最高连击：{count}",
+      "playerAttacks": "{label}攻击：{count} 次",
+      "aiAttacks": "AI攻击：{count} 次",
+      "aiDifficulty": "AI 难度：{diff}"
+    },
+    "countdown": {
+      "vs": "VS",
+      "start": "开始！",
+      "hint": "在迷雾中竞速，先填到75%者胜",
+      "opponent": "对手"
+    },
+    "bosses": {
+      "boss1": {
+        "name": "小萌新",
+        "avatar": "🐣",
+        "preDialog": ["嘿嘿~我是新手，请多指教！", "第一次玩，好紧张啊..."],
+        "winDialog": ["呜呜呜...我输了...", "恭喜你赢了..."],
+        "warningLines": ["对手快要完成了！"],
+        "encounter": {
+          "far": [{ "text": "咦？你在哪？", "intensity": "light" }],
+          "mid": [{ "text": "你不错。", "intensity": "medium" }],
+          "near": [{ "text": "最后一步了。", "intensity": "strong" }]
+        }
+      },
+      "boss2": {
+        "name": "数独达人",
+        "avatar": "🦊",
+        "preDialog": ["哼，来战个痛快！", "准备好了吗？我可不会让着你。"],
+        "winDialog": ["...是我大意了。", "不错的对局。"],
+        "warningLines": ["对手快赢了！"],
+        "encounter": {
+          "far": [{ "text": "哦？有点意思。", "intensity": "light" }],
+          "mid": [{ "text": "看来你不是泛泛之辈。", "intensity": "medium" }],
+          "near": [{ "text": "认真了！", "intensity": "strong" }]
+        }
+      },
+      "boss3": {
+        "name": "数独魔王",
+        "avatar": "👹",
+        "preDialog": ["哼...人类，你敢挑战我？", "三分钟解决你。"],
+        "winDialog": ["不可能！！我怎么会输！！", "人类...你等着！"],
+        "warningLines": ["对手快要完成了！"],
+        "encounter": {
+          "far": [{ "text": "蝼蚁之力。", "intensity": "light" }],
+          "mid": [{ "text": "你成功激怒我了。", "intensity": "medium" }],
+          "near": [{ "text": "游戏结束！", "intensity": "strong" }]
+        }
+      },
+      "boss4": {
+        "name": "设局人残影",
+        "avatar": "👤",
+        "preDialog": ["你以为你能追上我吗？", "迷雾中的真相，你永远看不到。"],
+        "winDialog": ["不可能...你怎么可能看穿迷雾！", "这只是开始..."],
+        "warningLines": ["残影快要消散前完成了！快追！"],
+        "encounter": {
+          "far": [{ "text": "你看不到我...", "intensity": "light" }],
+          "mid": [{ "text": "迷雾会保护我。", "intensity": "medium" }],
+          "near": [{ "text": "你居然找到了我！", "intensity": "strong" }]
+        }
+      },
+      "boss5": {
+        "name": "残局守护者",
+        "avatar": "🛡️",
+        "preDialog": ["想要通过这关，先过我这关！", "这些残局是我守护的秘密。"],
+        "winDialog": ["你...你破解了这些残局...", "守护者的使命...完成了..."],
+        "warningLines": ["守护者快要封锁所有线索了！"],
+        "encounter": {
+          "far": [{ "text": "来者何人？", "intensity": "light" }],
+          "mid": [{ "text": "休想再前进一步！", "intensity": "medium" }],
+          "near": [{ "text": "最后防线！", "intensity": "strong" }]
+        }
+      },
+      "boss6": {
+        "name": "设局人（秘术）",
+        "avatar": "🔮",
+        "preDialog": ["你居然走到了这里...", "就让你见识秘术的真正力量吧！"],
+        "winDialog": ["秘术...被破解了？", "不可能...这是究极的推演术..."],
+        "warningLines": ["秘术即将完成！快阻止他！"],
+        "encounter": {
+          "far": [{ "text": "秘术的力量...你不懂。", "intensity": "light" }],
+          "mid": [{ "text": "你逼我使出真本事了。", "intensity": "medium" }],
+          "near": [{ "text": "秘术·笼中炼狱！", "intensity": "strong" }]
+        }
+      },
+      "mysteriousOpponent": {
+        "name": "神秘对手",
+        "preDialog": ["来吧。"],
+        "winDialog": ["你赢了。"],
+        "warningLines": ["对手快赢了！"],
+        "encounter": {
+          "mid": [{ "text": "你不错。", "intensity": "medium" }],
+          "near": [{ "text": "最后一步了。", "intensity": "strong" }]
+        }
+      }
+    },
+    "toast": {
+      "stolen": "抢到一格！",
+      "almostWin": "你快赢了，加油！",
+      "fogCleared": "迷雾散开了！",
+      "cageRevealed": "笼子线索显露了！",
+      "bewareOpponent": "注意对手！",
+      "stolenCell": "抢过来了！",
+      "opponent60": "⚠️ 对手已占据60%！",
+      "player60": "🔥 你已掌握60%！最后冲刺！"
+    },
+    "tips": {
+      "bewareOpponent": "注意对手！",
+      "bewareOpponentText": "看到闪烁的红色方块了吗？那是{name}填的幽灵格。填对同一格就能抢过来！",
+      "fogCleared": "迷雾散开了！",
+      "fogClearedText": "填对数字后附近笼子的虚线和和值显露出来了。继续填数，揭开更多笼子线索来解题！",
+      "stolen": "抢过来了！",
+      "stolenText": "干得漂亮！你抢先填对了这格，从{name}手中抢了过来。继续抢占更多格子！",
+      "exploreCages": "探索笼子线索",
+      "exploreCagesText": "所有数字都清晰可见！但笼子的虚线边框和蓝色和值徽章被迷雾遮住了。填对数字扩展视野，才能看到笼子线索来解题！",
+      "rulesTitle": "⚔️ 迷雾对战规则",
+      "ruleFog": "迷雾遮笼",
+      "ruleFogDesc": "所有数字始终清晰可见！但笼子的虚线边框和蓝色和值徽章在雾中被隐藏，需要靠近才能看到笼子的形状和和值。用可见数字推理，填对数字扩展视野揭开笼子线索！",
+      "ruleReveal": "拓荒揭笼",
+      "ruleRevealDesc": "每填对一个数字，周围迷雾散开，露出附近笼子的边框和和值。填对越多，可见线索越多！",
+      "ruleGhost": "幽灵对手",
+      "ruleGhostDesc": "{name}在雾中和你抢填！雾中闪烁的红色方块是TA的幽灵格，填对同一格就能抢过来。先填到75%者胜！",
+      "ruleWarning": "60%预警",
+      "ruleWarningDesc": "当对方进度达到60%时，屏幕边缘会闪红警告——这是你最后的追赶机会！",
+      "startBattle": "开始对战"
+    },
+    "confirmRestart": "确定要重来这关吗？所有已填的数字将被清空。",
+    "loadFailed": "加载关卡失败，请刷新重试",
+    "playerLines": {
+      "start": ["来吧！", "我准备好了！", "今天一定要赢！", "看我的！"],
+      "correct": ["好！", "对了！", "漂亮！", "耶！"],
+      "combo": ["爽！连击！", "手感来了！", "停不下来！", "无敌是多么寂寞~"],
+      "wrong": ["啊...错了", "我去...", "手滑手滑", "尴尬..."],
+      "attack": ["吃我一击！", "看招！", "嘿呀！", "接招！"],
+      "attacked": ["我去！", "靠！被阴了！", "什么鬼！"],
+      "energyFull": ["能量满了！必杀准备！", "是时候表演真正的技术了！"],
+      "winning": ["稳了稳了", "胜利就在眼前！"],
+      "losing": ["糟糕...要输了", "等等等等！", "别别别！我还有机会！"],
+      "win": ["赢啦！！！", "还有谁！！", "我就是数独之王！"],
+      "lose": ["啊...输了", "可恶...", "下次一定！"]
+    },
+    "narratorLines": {
+      "start": ["【比赛开始！双方剑拔弩张！】", "【战斗打响！谁能率先解出谜题？】", "【今日对决：人类 VS AI！】"],
+      "combo3": ["【三连击！玩家手感火热！】", "【三连胜！AI开始慌了！】"],
+      "combo5": ["【五连击！这是要封神的节奏！】", "【五连绝世！AI被打懵了！】"],
+      "aiLead": ["【AI暂时领先！玩家要加油了！】", "【AI抢占先机！局势紧张！】"],
+      "playerLead": ["【玩家领先！AI感受到了压力！】", "【人类反击！AI要小心了！】"],
+      "close": ["【势均力敌！战况胶着！】", "【你来我往！这才是真正的对决！】"],
+      "energyFull": ["【能量爆满！必杀技蓄势待发！】", "【究极能量充盈！终极一击即将降临！】"],
+      "finalSprint": ["【终局冲刺！双方都拼了！】", "【最后阶段！谁能笑到最后？】"]
+    },
+    "aiPersonalities": {
+      "easy": {
+        "name": "小萌新",
+        "start": ["嘿嘿~我是新手，请多指教！", "第一次玩，好紧张啊...", "让我看看...这题怎么解来着？"],
+        "correct": ["填对啦！", "哇哦，我好棒！", "耶！", "嘿嘿，蒙对了~"],
+        "combo": ["连击！我好厉害！", "哇塞我连对了！", "这就是天才吗？"],
+        "wrong": ["啊？填错了...", "呜呜，不对吗？", "哎呀手滑了"],
+        "attack": ["看招！", "嘿！", "吃我一击！"],
+        "attacked": ["哇！干嘛打我！", "呜呜好疼~", "坏人！欺负新人！"],
+        "energyFull": ["能量满啦！要放大招了！", "我的必杀技准备好了！", "嘿嘿嘿...接招吧！"],
+        "playerAttack": ["不要啊！", "等等等等！", "我投降我投降！"],
+        "winning": ["我要赢了？真的吗？", "哇！我居然领先了！", "难道我是天才？"],
+        "losing": ["呜呜要输了...", "等等我！", "不要抛弃我！"],
+        "win": ["耶！我赢啦！哈哈！", "第一次赢！好开心！", "我果然是天才！"],
+        "lose": ["呜呜呜...我输了...", "恭喜你赢了...", "下次我一定会赢的！"]
+      },
+      "medium": {
+        "name": "数独达人",
+        "start": ["哼，来战个痛快！", "准备好了吗？我可不会让着你。", "中等难度，正好热身。"],
+        "correct": ["不错。", "嗯，这格很简单。", "基本操作。", "理所当然。"],
+        "combo": ["连击，节奏不错。", "渐入佳境。", "手感来了。"],
+        "wrong": ["...失误。", "可恶，看走眼了。", "嗯？不对吗？"],
+        "attack": ["吃我这招！", "嘿！", "接招！"],
+        "attacked": ["不错嘛...", "有点意思。", "居然打中我了？"],
+        "energyFull": ["满了。该结束了。", "我的回合，必杀！", "让你看看真正的实力。"],
+        "playerAttack": ["切...", "护盾！", "别太得意！"],
+        "winning": ["胜负已分。", "差距明显啊。", "你还差得远呢。"],
+        "losing": ["居然落后了...", "不可能...", "有意思，认真起来了。"],
+        "win": ["承让了。", "实力差距，没办法。", "下次再努力吧。"],
+        "lose": ["...是我大意了。", "不错的对局。", "下次不会输了。"]
+      },
+      "hard": {
+        "name": "数独魔王",
+        "start": ["哼...人类，你敢挑战我？", "三分钟解决你。", "让你见识什么叫真正的数独。"],
+        "correct": ["...无聊。", "太慢了。", "这种题也需要想？", "呵。"],
+        "combo": ["蝼蚁的挣扎罢了。", "就这？", "不够看。"],
+        "wrong": ["......（不可能）", "哼，bug。", "...系统错误。"],
+        "attack": ["毁灭吧！", "湮灭！", "给我消失！"],
+        "attacked": ["哦？伤到我了？", "有趣...你成功激怒我了。", "蝼蚁之力，也敢挑衅？"],
+        "energyFull": ["游戏结束。", "必杀·笼中炼狱！", "让你彻底绝望。"],
+        "playerAttack": ["没用的。", "就这？", "刮痧呢？"],
+        "winning": ["看到了吗？这就是神与人的差距。", "结束了。", "绝望吧。"],
+        "losing": ["......不可能！", "人类...怎么可能！", "我居然...在落后？"],
+        "win": ["哼，理所当然的结果。", "记住这个差距。", "弱者没有资格挑战我。"],
+        "lose": ["不可能！！我怎么会输！！", "这...这不可能！！", "人类...你等着！我会回来的！"]
+      }
+    },
+    "spectateBotLines": {
+      "bot1Start": "我是Bot 1，看我的！",
+      "bot2Start": "哼，机械效率决定一切。",
+      "bot1Combo": "连击！我的推演更快！",
+      "bot1Correct": "正确。"
+    }
+  },
+  "hint": {
+    "level1": "💡 第一层提示：仔细看看这个格子（绿框标记），它有什么特别之处？",
+    "level3_answer": "🎯 答案是 {num}，填入后会自动排除相关候选数",
+    "level3_technique": "📖 这一步需要用到「{technique}」技巧，仔细观察高亮区域中的紫色标记格",
+    "noHint": "🔍 当前盘面没有明显的可推进步骤，试试其他方法，或者用45法则计算器",
+    "nakedSingle": {
+      "name": "孤星",
+      "desc_level2": "📘 第二层：【孤星】\n{cellName}格所在的行、列、宫、笼里已经出现了其他所有数字，只有 {num} 没出现过，所以只能填 {num}。\n👉 看金色高亮区域：里面已有的数字凑齐了，只剩这一个数。"
+    },
+    "hiddenSingle": {
+      "name": "隐曜",
+      "desc_level2": "📘 第二层：【隐曜】\n{description}。仔细看相关区域，你会发现数字{num}只能放在{cellName}。",
+      "rowLabel": "行",
+      "colLabel": "列",
+      "boxLabel": "宫",
+      "cageLabel": "笼"
+    },
+    "nakedPair": {
+      "name": "并蒂锁",
+      "desc_level2": "📘 第二层：【并蒂锁】\n{cell1}和{cell2}都只能填 {num1} 或 {num2}（紫色标记）。这两个数被\"锁定\"了，可以排除同区域其他格子的这两个数字。",
+      "desc_level3": "📘 第三层：【并蒂锁】\n{cell1}和{cell2}都只能填 {num1} 或 {num2}（紫色标记）。这两个数被\"锁定\"了，可以排除同区域其他格子的这两个数字。\n排除后，{cellName}就只剩 {num}！",
+      "desc_level2_withNum": "排除后，{cellName}就只剩 {num}！",
+      "desc_level2_noNum": "排除后候选数变少，继续推理就能出数。",
+      "regionRow": "同行",
+      "regionCol": "同列",
+      "regionBox": "同宫",
+      "regionCage": "同笼"
+    },
+    "noCandidatesToFill": "🔢 没有需要填充候选的空格",
+    "autoFilledCandidates": "🔢 已自动为 {count} 个空格填入理论候选数",
+    "selectCellFirst": "💡 先点一个空格，再填数字",
+    "quickFillActivated": "⚡ 连填模式已激活，选择一个数字",
+    "quickFillComplete": "✅ {num} 已填满，连填自动关闭",
+    "breakthroughNoGuess": "💡 别猜了，试试点\"提示\"按钮看看技巧演示？",
+    "wrongGuess": [
+      "再想想...这个数字好像不对",
+      "不对哦，看看行/列/宫/笼里有没有冲突",
+      "这个格子不能填这个数，再仔细看看",
+      "填错啦，注意笼子的和值约束",
+      "不是这个数字，试试用排除法",
+      "嗯...不对，换个思路"
+    ]
+  },
+  "technique": {
+    "names": {
+      "nakedSingle": "孤星",
+      "hiddenSingle": "隐曜",
+      "nakedPair": "并蒂锁",
+      "hiddenPair": "双曜",
+      "nakedTriple": "三子法",
+      "xwing": "二连纵横阵",
+      "swordfish": "三才游鱼阵"
+    },
+    "descriptions": {
+      "nakedSingle": "某格子所在的行、列、宫、笼已包含其他所有数字，只剩一个可能的数字——如天网落寞，唯余孤星。",
+      "hiddenSingle": "某数字在某行/列/宫/笼中只能放在唯一一个格子里——群曜遮目，一光独隐。",
+      "nakedPair": "同一区域内两个格子恰好只能填相同的两个候选数，这两个数被锁定，可排除同区域其他格子的候选——双星并蒂，闭户成局。",
+      "hiddenPair": "某两个数字在同一区域内恰好只能放在相同的两个格子里，可排除这两个格子中多余的候选——双曜暗悬，玄机已定。",
+      "nakedTriple": "同一区域内三个格子的候选数总共只涉及三个不同数字，这三个数被锁定，可排除同区域其他格子的候选——三子连阵，锁数成局。",
+      "xwing": "某数字在两行中各只有两个可能位置，且恰好位于相同两列，形成矩形，可排除该两列其他位置的该数字——两纵两横，四角绞绳。",
+      "swordfish": "X-Wing的3行3列升级版：某数字在三行中的可能位置恰好落在相同三列上，可排除该三列其他位置的该数字——三才合围，网断鱼飞。"
+    },
+    "tutorial": {
+      "title": "技巧教学",
+      "speaker_default": "守笼人",
+      "startHint": "点击\"开始学习\"跟着演示",
+      "stepHint_default": "点击\"下一步\"继续",
+      "finalHint": "准备好了就开始做题吧！",
+      "nextStep_last": "✓ 我学会了，开始做题！",
+      "nextStep_mid": "下一步 ▶",
+      "startButton": "开始学习 ▶",
+      "prevButton": "◀ 上一步",
+      "nakedPair": {
+        "title": "并蒂锁",
+        "steps": [
+          {
+            "title": "认识候选数",
+            "speaker": "守笼人",
+            "text": "📖 今天学第一个秘术：并蒂锁\n\n格子里的小数字叫「候选数」——就是这个格子可能填什么。\n\n比如某个格子里写着3和7，意思是：\"这里要么填3，要么填7，不可能是别的\"。\n💡 小数字 = 候选数 = 可能的答案",
+            "hint": "先认识候选数：小数字表示\"可能填什么\""
+          },
+          {
+            "title": "找到第一个特殊格子",
+            "speaker": "守笼人",
+            "text": "第一步：找到第一个特殊格子\n\n👉 看这里！（绿色大圈圈住的格子）\n\n它的候选数只有两个：3 和 7！\n没有别的可能了，要么是3，要么是7。",
+            "hint": "绿圈里就是第一个格子！只有两个候选数：3和7"
+          },
+          {
+            "title": "找到它的搭档",
+            "speaker": "守笼人",
+            "text": "第二步：找到它的搭档！\n\n👉 再看旁边的格子（第二个绿圈）\n\n它的候选数也是只有两个：3 和 7！\n\n两个格子候选数完全一样！",
+            "hint": "第二个格子也是{3,7}！这两个就是\"数对\"！"
+          },
+          {
+            "title": "并蒂锁的\"锁\"效果",
+            "speaker": "守笼人",
+            "text": "第三步：这两个格子把3和7\"锁\"住了！\n\n行里，3要出现一次，7也要出现一次。\n\n但能填3和7的地方，只有这两个格子！\n\n🔒 所以：这两个格子一个是3，另一个就是7——跑不掉了！\n💡 就像两个座位，两个人已经坐定了，其他人不能再来坐了",
+            "hint": "3和7被两个格子包圆了！其他格子不能有3和7！"
+          },
+          {
+            "title": "排除其他格子的3",
+            "speaker": "守笼人",
+            "text": "第四步：排除同行其他格子里的3！\n\n👉 看红色箭头指的格子\n\n它的候选数有3，但3已经被锁住了，同行其他地方不可能再有3！\n\n划掉这个格子里的3！",
+            "hint": "红色箭头指向的格子，先划掉3！"
+          },
+          {
+            "title": "排除其他格子的7",
+            "speaker": "守笼人",
+            "text": "第五步：再划掉7！\n\n7也被锁住了！\n\n这个格子的候选数现在是：4和9（3和7都划掉了）。",
+            "hint": "7也被锁住了，划掉！剩下4和9"
+          },
+          {
+            "title": "同宫也能排除",
+            "speaker": "阿岩",
+            "text": "第六步：别忘了同宫也能排除！\n\n这两个格子不仅在同一行，还在同一个宫（紫色框）里！\n\n👉 看同宫的其他格子——它们候选里的3也要划掉！",
+            "hint": "数对不仅锁同行，还锁同宫！"
+          },
+          {
+            "title": "出结果了",
+            "speaker": "守笼人",
+            "text": "✨ 哇！直接出数了！\n\n排除3和7后，剩下的候选数继续推理就能确定——关键是你学会了：并蒂锁可以排除其他格子的数字！",
+            "hint": "排除后候选数变少，继续推理就能出数"
+          },
+          {
+            "title": "并蒂锁口诀",
+            "speaker": "守笼人",
+            "text": "🔐 并蒂锁口诀\n\n🔍 找：同一行/列/宫里，两个格子候选数完全相同（就是{a,b}）\n🔒 锁：这两个格子一定是a和b，跑不掉\n❌ 删：该行/列/宫其他格子里的a和b全部划掉\n✨ 填：划到某个格子只剩一个数→直接填入！\n\n一个并蒂锁往往能解开一片区域！现在去题里找找看！",
+            "hint": "记住四步：找→锁→删→填！"
+          }
+        ]
+      },
+      "hiddenPair": {
+        "title": "双曜",
+        "steps": [
+          {
+            "title": "什么是双曜",
+            "speaker": "守笼人",
+            "text": "👁️ 第二个秘术：双曜\n\n并蒂锁是：\"两个格子只能填a和b\"。\n\n双曜要反过来看：\n\"数字a和数字b，只能填在某两个格子里\"。\n💡 一个看格子，一个看数字——方向相反！",
+            "hint": "双曜是\"反着看\"的"
+          },
+          {
+            "title": "聚焦一个宫",
+            "speaker": "守笼人",
+            "text": "第一步：聚焦一个宫\n\n👉 看紫色框的宫\n\n这个宫已经填了几个数字，还缺4个数字。",
+            "hint": "先看这个宫缺什么数字"
+          },
+          {
+            "title": "数字3能去哪",
+            "speaker": "守笼人",
+            "text": "第二步：数字3能去哪？\n\n反过来看：数字3在这个宫里能放在哪些格子？\n\n排除同行同列已有3的格子，3只能去两个格子！",
+            "hint": "排除法：3只能去两个格子！"
+          },
+          {
+            "title": "数字7也只能去那",
+            "speaker": "阿岩",
+            "text": "第三步：数字7也只能去那！\n\n同样看数字7：排除同行同列已有7的格子，7也只能去同样那两个格子！",
+            "hint": "7也只能去那两个格子！这就是双曜！"
+          },
+          {
+            "title": "双曜找到了",
+            "speaker": "守笼人",
+            "text": "第四步：双曜找到了！\n\n3和7都只能去这两个格子！\n\n虽然这两个格子看起来候选数更多，但其他数字不可能在这里——因为3和7已经把位置\"占\"了！",
+            "hint": "3和7\"藏\"在这两个格子里"
+          },
+          {
+            "title": "清理多余候选数",
+            "speaker": "守笼人",
+            "text": "第五步：清理多余候选数\n\n把这两个格子里除了3和7之外的数字全部删掉！\n\n双曜被\"挖\"出来后，就变成了并蒂锁 {3,7}！",
+            "hint": "删掉多余数字，双曜变并蒂锁！"
+          },
+          {
+            "title": "剩下的格子出数",
+            "speaker": "阿岩",
+            "text": "✨ 剩下的格子直接出数！\n\n现在这两个格子是{3,7}并蒂锁，宫里剩下的格子要填其他数字，直接就能推出来！",
+            "hint": "清理后直接出数！"
+          },
+          {
+            "title": "双曜口诀",
+            "speaker": "守笼人",
+            "text": "👁️ 双曜口诀\n\n👁️ 反着看：不看「格子能填什么」，看「数字能去哪里」\n🔍 找挤压：a和b都只能去同样两个格子→双曜\n🧹 清理：这两个格子里其他候选数全部删除\n\n双曜虽然难找，但一旦找到，清理效果很强！",
+            "hint": "记住：反着看数字能去哪！"
+          }
+        ]
+      },
+      "triple": {
+        "title": "三子法",
+        "steps": [
+          {
+            "title": "三子法概念",
+            "speaker": "守笼人",
+            "text": "🔱 第三个秘术：三子法\n\n理解了并蒂锁（2个格子锁2个数），三子法就是自然延伸——\n三个格子锁住三个数字！",
+            "hint": "并蒂锁的升级版：三格锁三数"
+          },
+          {
+            "title": "找到三个格子",
+            "speaker": "守笼人",
+            "text": "第一步：找到三个格子\n\n👉 看三个橙色格子：\n三个格子候选数加起来，一共只有2、4、9三个数字！\n💡 不要求每个格子都有三个数！加起来是三个就行",
+            "hint": "三个格子候选加起来只有三个数！"
+          },
+          {
+            "title": "三个数字被锁住",
+            "speaker": "阿岩",
+            "text": "第二步：三个数字被锁住了！\n\n2、4、9这三个数字被这三个格子包圆了！\n\n不管怎么分配，这三个格子一定是2,4,9的某种排列。\n\n🔒 其他格子不能再有2、4、9了！",
+            "hint": "三个数字被三个格子锁住！"
+          },
+          {
+            "title": "排除同行其他格子",
+            "speaker": "守笼人",
+            "text": "第三步：排除同行其他格子！\n\n同行其他格子里的2、4、9全部划掉！",
+            "hint": "同行其他格子的2、4、9全部划掉！"
+          },
+          {
+            "title": "三子法要点",
+            "speaker": "守笼人",
+            "text": "🔱 三子法要点\n\n🔱 条件：三个格子候选数总共只涉及3个数字\n🔒 锁住：这3个数字一定在这3个格子里\n❌ 删除：其他格子中的这3个候选数全排除\n\n⚠️ 每个格子不需要都有全部3个候选！同理还有\"四子法\"（四格锁四数）。",
+            "hint": "三子法：三格锁三数！"
+          }
+        ]
+      },
+      "xwing": {
+        "title": "二连纵横阵",
+        "steps": [
+          {
+            "title": "二连纵横阵概念",
+            "speaker": "守笼人",
+            "text": "✈️ 第四个秘术：二连纵横阵\n\n名字来自星辰梭的丝线绞杀——形状像个X。\n\n二连纵横阵看的不是\"格子能填什么\"，而是某个数字能去哪里。\n\n以数字7为例。",
+            "hint": "二连纵横阵看单个数字的矩形分布"
+          },
+          {
+            "title": "找两行中数字的位置",
+            "speaker": "守笼人",
+            "text": "第一步：找两行中数字7的位置\n\n👉 看D行和F行（两条橙色行带）。\n\nD行其他格子都填满了，数字7只能放在两个位置！\nF行也一样——7只能放在两个位置！",
+            "hint": "两行中，7各只有两个位置！"
+          },
+          {
+            "title": "四个格子形成矩形",
+            "speaker": "守笼人",
+            "text": "第二步：四个格子形成矩形！\n\n四个格子正好形成矩形！\n\n只有两种可能：\n✈️ 左上=7 → 右下=7（左上到右下对角线）\n✈️ 右上=7 → 左下=7（右上到左下对角线）\n\n红色X就是这两种可能——7一定在其中一条对角线上！",
+            "hint": "X形对角线——7一定在其中一条上！"
+          },
+          {
+            "title": "排除两列其他位置",
+            "speaker": "阿岩",
+            "text": "第三步：排除两列其他位置的7！\n\n不管走哪条对角线，两列都一定会有7！\n\n所以这两列其他格子都不能是7——划掉！",
+            "hint": "两列其他格子都不能是7了！"
+          },
+          {
+            "title": "二连纵横阵口诀",
+            "speaker": "守笼人",
+            "text": "✈️ 二连纵横阵口诀\n\n✈️ 找矩形：某数字在两行各只有2个位置，恰好在相同两列\n❌ 删列：该两列其他格子的此数字全排除\n🔄 双向：两列×两行也成立→删两行\n\n二连纵横阵是\"鱼形\"技巧基础，三才游鱼阵就是3×3升级版！",
+            "hint": "二连纵横阵：矩形→对角线→排除列（或行）"
+          }
+        ]
+      },
+      "swordfish": {
+        "title": "三才游鱼阵",
+        "steps": [
+          {
+            "title": "三才游鱼阵概念",
+            "speaker": "守笼人",
+            "text": "🐟 第五个秘术：三才游鱼阵\n\n理解了二连纵横阵（2×2矩形），三才游鱼阵就是升级版——3行×3列的\"天罗地网\"。\n\n原理一模一样，只是从2行2列变成了3行3列！",
+            "hint": "三才游鱼阵是二连纵横阵的3×3升级版"
+          },
+          {
+            "title": "找三行中数字的位置",
+            "speaker": "守笼人",
+            "text": "第一步：找三行中数字5的位置\n\n以数字5为例。👉 看三行（橙色行带）：\n每行5只能去2个位置，全都落在同样三列中！",
+            "hint": "三行中的5都只出现在同样三列里！"
+          },
+          {
+            "title": "3x3的渔网形成",
+            "speaker": "守笼人",
+            "text": "第二步：3×3的渔网形成了！\n\n这些格子形成了一个3×3的渔网！\n\n虽然组合比二连纵横阵多，但不管5怎么分配，这三列每列都一定会有一个5。\n\n🐟 5被这张三列的网\"兜住\"了！",
+            "hint": "3×3的网罩住了三列！"
+          },
+          {
+            "title": "排除三列其他位置",
+            "speaker": "阿岩",
+            "text": "第三步：排除三列其他位置的5！\n\n这三列的其他所有格子都不能是5！\n\n👉 红叉标记的格子，5全部划掉！",
+            "hint": "三列其他格子的5全部排除！"
+          },
+          {
+            "title": "三才游鱼阵口诀",
+            "speaker": "守笼人",
+            "text": "🐟 三才游鱼阵口诀\n\n🐟 找网：某数字在三行各只有2-3个位置，恰好落在相同三列\n❌ 删列：该三列其他格子的此数字全排除\n🔄 双向：三列×三行也成立→删三行\n\n三才游鱼阵虽然复杂，但排除效果极强，是破解高难度谜局的利器！",
+            "hint": "三才游鱼阵：3×3渔网→排除列（或行）"
+          }
+        ]
+      },
+      "demo": {
+        "title_default": "技巧演示",
+        "startPractice": "✓ 开始练习",
+        "nextStep": "下一步 ▶",
+        "gotIt": "我知道了"
+      }
+    }
+  },
+  "story": {
+    "characters": {
+      "keeper": "守笼人",
+      "ayan": "阿岩",
+      "setter": "设局人",
+      "setterShadow": "设局人残影",
+      "guardian": "残局守护者",
+      "starshuttle": "星辰梭",
+      "setterSecret": "设局人（秘术）",
+      "narrator": "旁白",
+      "mysteriousOpponent": "神秘对手"
+    },
+    "chapterThemes": {
+      "ch1": "加密来信",
+      "ch2": "双重线索",
+      "ch3": "谜案追踪",
+      "ch4": "密码破译",
+      "ch5": "终极考验",
+      "ch6": "大师之路",
+      "ch7": "秘术档案"
+    },
+    "phases": {
+      "breakthrough": "破局",
+      "finishing": "收官"
+    },
+    "bossDefault": {
+      "comeAtMe": "来吧。",
+      "youWin": "你赢了。",
+      "warningNear": "对手快要完成了！"
+    }
+  },
+  "error": {
+    "levelLoadFailed": "关卡加载失败，请返回重试",
+    "bossNoSolution": "⚠️ Boss关卡缺少solution数据，跳过对战",
+    "endgameNoKeyCells": "⚠️ 残局教学关缺少keyCells配置",
+    "webAudioNotSupported": "Web Audio API 不支持",
+    "guideManagerNotLoaded": "⚠️ GuideManager 未加载",
+    "bossAlreadyActive": "⚠️ Boss战已在进行中",
+    "bossStartFailed": "❌ Boss战启动失败：缺少solution或initialBoard",
+    "storageSaveFailed": "存档失败：{msg}",
+    "storageLoadFailed": "读档失败：{msg}",
+    "storageClearFailed": "清除存档失败：{msg}",
+    "storageCompleteFailed": "保存通关记录失败：{msg}",
+    "storageSettingsSaveFailed": "保存设置失败：{msg}",
+    "storageSettingsLoadFailed": "读取设置失败：{msg}",
+    "storageAnalyticsFailed": "保存埋点失败：{msg}",
+    "storageBattleFailed": "保存对战战绩失败：{msg}",
+    "storageTeachingCompleteFailed": "保存教学通关记录失败：{msg}",
+    "storageTeachingProgressFailed": "保存教学进度失败：{msg}",
+    "storageTeachingClearFailed": "清除教学进度失败：{msg}",
+    "storageBadgeFailed": "解锁徽章失败：{msg}",
+    "storageChapterFailed": "保存章节进度失败：{msg}",
+    "apiChaptersFailed": "获取章节列表失败：{msg}",
+    "apiChapterDataFailed": "获取章节数据失败：{msg}",
+    "apiLevelsFailed": "获取关卡列表失败：{msg}",
+    "localChapterLoadFailed": "本地章节数据加载失败：{msg}",
+    "localChapterDetailFailed": "章节详情加载失败：{msg}",
+    "lessonGenerateFailed": "从课程文件生关卡失败：{msg}",
+    "statsLoadFailed": "加载统计失败: {msg}",
+    "finalFallbackLevel": "⚠️ 使用最终降级关卡",
+    "apiAbnormal": "⚠️ 教学关卡接口返回异常",
+    "networkAbnormal": "⚠️ 网络异常，尝试本地数据：{msg}",
+    "backendCheckFailed": "⚠️ 后端校验失败，以前端检测为准",
+    "fixedNumInKeyCell": "⚠️ 关键格({r},{c})是预填数字，已移除fixedNum",
+    "keyCellPreset": "🎯 残局教学关初始化: {n}个关键格"
+  },
+  "time": {
+    "seconds": "秒",
+    "minutes": "分",
+    "hours": "小时",
+    "format": {
+      "ms": "{m}分{s}秒",
+      "s": "{s}秒",
+      "min_sec": "{m}分{s}秒",
+      "hm": "{h}h{m}m",
+      "clock": "{m}:{s}"
+    },
+    "elapsedLoading": "📂 教学存档已读取，用时 {time}",
+    "elapsedFreePlay": "📂 已读取存档，用时 {time}"
+  },
+  "audio": {
+    "bgm": {
+      "furElise": { "name": "致爱丽丝", "composer": "贝多芬" },
+      "airOnG": { "name": "G弦上的咏叹调", "composer": "巴赫" },
+      "serenade": { "name": "小夜曲", "composer": "莫扎特" },
+      "odeToJoy": { "name": "欢乐颂", "composer": "贝多芬" },
+      "shadowWhisper": { "name": "暗影低语" },
+      "ghostChase": { "name": "幽灵追逐" },
+      "deathKnell": { "name": "丧钟回响" }
+    }
+  },
+  "comedy": {
+    "keeper": {
+      "mistake3": ["施主，这一手落得漂亮——老夫的'笼子'没破，倒是你的思路先塌了。"],
+      "mistake5": ["施主，收手吧。你这落子风范，颇有当年'火烧连营'的气势——杀敌为零，自损一万。"],
+      "mistake7": ["老夫活了三百多年，头一回见到有人能把'孤星'填成'黑洞'的。你也是个人才。"],
+      "selfDestruct": ["啧啧啧，这不是传说中的'自爆阵'么？杀敌为零，自损一万。多谢啊，老夫的笼子更结实了。"],
+      "deleteOnlySolution": ["你刚才那一手，叫'绝户手'。把唯一的生路给自己堵死了——狠人，对自己都这么狠。"],
+      "loneStarWrong": ["这明明是'孤星'——整片星盘就剩这一颗了，你还能填错？！你瞎啊？"],
+      "nakedPairWrong": ["'并蒂锁'——两个格子锁两个数，你倒好，一掌劈开。这是锁，不是让你拆家的。"],
+      "hintUsedThenWrong": ["老夫都给你把答案画出来了，你还能填错？你是故意来气我的是不是？"],
+      "xwingWrong": ["你管这叫'二连纵横阵'？老夫纵横数独界三百年，头一回见到有人能把这座阵摆成……一坨麻绳。高，实在是高。"],
+      "swordfishWrong": ["施主，你这一手下去，'天罗地网'被你戳成了'破渔网'。老夫这条鱼……死不瞑目啊。"],
+      "idle30": ["……破了吗？破了吗？没破？那你盯着它看了半天是在跟它谈心？"],
+      "idle60": ["老夫在此布下'三才游鱼阵'，困住你三日三夜……你竟去喝水？！你尊重过这条鱼吗？！"],
+      "idle90": ["（突然惊醒）嗯？！破解了？……没破？！那老夫刚才打盹的功夫，你是一步都没动？！"],
+      "idle120": ["老夫现在严重怀疑——你到底是来破阵的，还是来给老夫当门神的？"],
+      "idle180": ["……行，你慢慢看。老夫去把隔壁那局'二连纵横阵'解了，顺便吃个饭、洗个澡。回见。"],
+      "idle300": ["（对空气说话）……她走了吗？没走？那她到底在干嘛？……哦，还在看。行了，老夫已经不知道说什么了。就这样吧。"],
+      "gradeSSS": ["……你绝对是偷看答案了。老夫不信！这'因果连环锁'连当朝太守都困了三天，你一炷香功夫就解了？退钱！这局不算！"],
+      "gradeS": ["哼，运气好罢了。你要是再来一局，老夫赌你连'孤星'都找不到。"],
+      "gradeA": ["中规中矩。算你过关，但别得意——这笼子里埋的坑，你一个都没踩到，算你命大。"],
+      "gradeB": ["……你是用脚填的吗？老夫在旁边睡了一觉，醒来你还在填'三取一二'？隔壁王大娘家的猪都比你快。"],
+      "gradeC": ["施主，收手吧。这笼局和你八字不合。再填下去，老夫怕你走火入魔。"],
+      "firstClear": ["哦？居然过了？不错，老夫没看走眼。虽然笨了点，但胜在……老实。"],
+      "perfectClear": ["……（沉默）你走吧。老夫需要静静。顺便把'因果连环锁'的密码改了。"],
+      "tooFast": ["太快了。老夫还没开始计时，你已经解完了。你……是人是鬼？"],
+      "allHintsUsed": ["你……你是把老夫的提示当饭吃了吗？全用了？一个不剩？你赢了，但我不服。"],
+      "bossDefeated": ["你居然真的赢了设局人……老夫收回之前说你笨的话。你……是块料。"],
+      "cheatSheetComplaint": ["现在的年轻人，连'三取一二'都懒得背了，世风日下，世风日下啊……"],
+      "cheatSheetAgain": ["你……你又看小抄？！老夫严重怀疑你的侦探徽章是街上买的。"],
+      "cheatSheetClosed": ["哦？居然关了？有骨气！——老夫赌你三分钟内会再打开。"],
+      "tooHardForPlanner": ["（喊话策划）喂！这局是不是太难了？！她/他已经五分钟没动了！……哦，策划说我话多。行吧。"],
+      "tripleWrong": ["等等……你把'孤星'填错了，把'隐曜'也填错了，还把'并蒂锁'劈了。你是来破阵的还是来拆庙的？"],
+      "bgmLover": ["老夫现在正式怀疑——你根本不是来解题的。你是来蹭老夫的背景音乐的。"],
+      "solveThenReset": ["？？？你解出来了，然后你重置了？！你到底是来玩游戏的，还是来折磨老夫的？！"],
+      "nakedPairHate": ["你……你是不是和'并蒂锁'有仇？它惹你了？"],
+      "cheatSheetGive": ["……给你。"],
+      "cheatSheetGood": ["嗯，不错，至少没把'三取一二'念成'三二一'。"],
+      "cheatSheetBad": ["……刚夸完你。行，收回刚才那句话。"],
+      "cheatSheetStreak5": ["等等……你该不会是设局人派来的卧底吧？这也太顺了。不合理。"],
+      "cheatSheetComplete": ["……你居然真的学会了。老夫有点感动。也有点害怕——设局人怕是要哭了。"],
+      "memorizeMnemonic": ["这四句口诀，乃老夫毕生心血所聚，你要铭记于心——三取一二，四取一三，六取二四，七取三四。"],
+      "mnemonicTooLong": ["怎么？没记住？"]
+    },
+    "setter": {
+      "bossIntroNormal": ["哼，这一关我可是用了'二连纵横阵'加'斜飞阵'的混合双打。哪怕是一头猪来填，也得填上三天三夜。"],
+      "bossIntroHard": ["你知道这个局叫什么吗？'因果连环锁·终局版'。三十年来，没有人能活着走出去。你……准备好遗言了吗？"],
+      "fastClear": ["你……你是不是在逗我？！我花了三天三夜布的局，你三分钟就破了？！我不要面子的吗？！"],
+      "slowClear": ["……你终于解开了。我都等得开始思考人生的意义了。你赢了，但赢得不太光彩——太磨叽了。"],
+      "usedHint": ["你……你叫外援？！这不算！我申请重赛！"],
+      "perfectClear": ["……零失误。你是个怪物。我认了。但你别得意——我还有个压箱底的局，比这个难十倍。"],
+      "disappear": ["……等等。你刚才是不是用'孤星'破的？那可是我十七岁发明的阵——你居然用它来破我的新阵？（沉默）青出于蓝……罢了。"],
+      "loneStarUsed": ["等等……你用的是'孤星'？那是我十七岁发明的阵！你……你故意的吧？！"],
+      "streak5S": ["（从档案深处传来）……你到底是谁？这不可能。除非……你是当年那个人的弟子。"]
+    },
+    "ayan": {
+      "bossWin": ["哇！你赢了！你看他那个表情，像不像吃了一整颗柠檬？"],
+      "bossGone": ["他走了……但我总觉得他还会回来的。反派不都这样吗？放完狠话，然后下一章又出现了。"],
+      "bossSpeedrun": ["？？？完了？这就完了？我还没准备好加油呢！"]
+    },
+    "system": {
+      "bossRetractFail": "【系统提示】Boss试图撤回这次对局，但因权限不足而失败（体力耗尽）。",
+      "bossLearned": "【系统提示】设局人在等待期间学会了'三才游鱼阵'——但没机会用了。",
+      "cheatSheetGet": "【系统提示】获得道具【作弊小抄·卷轴】——效果：口诀永久显示在UI左上角。"
+    },
+    "grade": {
+      "sss": "SSS",
+      "s": "S",
+      "a": "A",
+      "b": "B",
+      "c": "C"
+    },
+    "cheatSheet": {
+      "title": "📜 作弊小抄",
+      "clickToExpand": "点击展开",
+      "formula": "三取一二　四取一三\n六取二四　七取三四",
+      "autoCollapse": "（5秒后自动收起）"
+    }
+  },
+  "i18n": {
+    "languageName_zhCN": "简体中文",
+    "languageName_ja": "日本語",
+    "languageName_ko": "한국어",
+    "languageName_en": "English"
+  }
+}

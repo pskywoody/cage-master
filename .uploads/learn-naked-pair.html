@@ -1,0 +1,209 @@
+﻿<h2>Description</h2>
+<p>The <b>Naked Pair</b> technique extends the <b>Naked Single</b> technique, just like the <b>Hidden Pair</b> technique extends the <b>Hidden Single</b> technique.</p>
+<hr class="jXd"/>
+<div style="clear: both; margin-bottom: 20px;"></div>
+
+<div class="jX7 jX9 jXb jXa jX3l"
+	data-suco-init="SCv2_0a30b1230a6b4060a6b7890a30b_yyyyy0Ac80d0_0Ac80d0_0Ac80d0___0a30b1110a6b1110a6b1110a30b_">
+</div>
+<p>To recap: this is a <b>Naked Single</b>.</p>
+<p>The only valid cell for a <b>5</b> is the one in the center within the center box.</p>
+<hr class="jXd"/>
+<div style="clear: both; margin-bottom: 20px;"></div>
+
+
+<div class="jX7 jX9 jXb jXa jX3l"
+	data-suco-init="SCv2_0a30b1230a6b40a8b7890a30b_yyyyy0Ac80d0_0Ac80d0_0Ac80d0___0a30b1110a6b1110a6b1110a30b_">
+</div>
+<p>This is what a <b>Naked Pair</b> would look like.</p>
+<p>Since the two empty cells see all numbers <b><i>but</i></b> <b>5</b> and <b>6</b>, <b>5</b> and <b>6</b> can only be in those two cells.</p>
+<hr class="jXd"/>
+<div style="clear: both; margin-bottom: 20px;"></div>
+
+
+<div class="jX7 jX9 jXb jXa jXc"
+	data-suco-init="SCv2_0a30b1230a6b40a8b7890a30b_yyyyy0Ac40d96A96A0c39d_0Ac80d0_0Ac80d0___0a30b1110a6b1110a6b1110a30b_">
+</div>
+<p>We do <b>not know</b>, though, in what <b><i>exact</i> cells</b> those two numbers are each.</p>
+<p>All we can do here is notate the candidates.</p>
+<p style="float: left; margin-right: 10px;" class="material-icons-outlined" role="img" aria-label="info">&#xe88e;</p>
+<p>That is <b>always the case</b> for non-basic techniques. With them, we never get a solution directly but <b>only</b> information on <b>what candidates can be eliminated</b>. In this case we can eliminate all candidates <b>5</b> and <b>6</b> from all regions that these cells share. (see next section)</p>
+<hr class="jXd"/>
+<div style="clear: both; margin-bottom: 20px;"></div>
+
+<p>Some later clue will eventually give us the info, which one of those two outcomes it will be. (But for now, we do not know.)</p>
+<div class="jX7 jX9 jXb jXa jX3l"
+	data-suco-init="SCv2_0a30b1230a6b40a8b7890a30b_yyy0a40b560a39b_y0Ac80d0_0Ac80d0_0Ac80d0___y">
+</div>
+<div class="jX7 jX9 jXb jXa jX3l"
+	data-suco-init="SCv2_0a30b1230a6b40a8b7890a30b_yyy0a40b650a39b_y0Ac80d0_0Ac80d0_0Ac80d0___y">
+</div>
+<hr class="jXd"/>
+<div style="clear: both; margin-bottom: 20px;"></div>
+
+
+<h2>How does finding a Naked Pair help us?</h2>
+<div class="jX7 jX9 jXb jXa jXc"
+	data-suco-init="SCv2_0a30b1230a6b40a8b7890a30b_yyyy0a30b3330a6b3330a6b3330a30b_0Ac40d96A96A0c39d_0Ac80d0_0Ac80d0___y">
+</div>
+<p>The Naked Pair tells us something about the regions that it is in.</p>
+<p>This pair is in two regions.</p>
+<p>Both the cells of the pair are in the box (which does not help us, because there are no candidates that we can eliminate)...</p>
+<hr class="jXd"/>
+<div style="clear: both; margin-bottom: 20px;"></div>
+
+
+<div class="jX7 jX9 jXb jXa jXc"
+	data-suco-init="SCv2_0a30b1230a6b40a8b7890a30b_yyyy0a36b3a9b0a36b_0Ac40d96A96A0c39d_0Ac80d0_0Ac80d0___y">
+</div>
+<p>... but they are also both in this row.</p>
+<hr class="jXd"/>
+<div style="clear: both; margin-bottom: 20px;"></div>
+
+
+<div class="jX7 jX9 jXb jXa jXc"
+	data-suco-init="SCv2_0a30b1230a6b40a8b7890a30b_yyyyy0Ac36d1006A1006A1006A0A96A96A1006A1006A1006A0c36d_0Ac36d96A96A96A0c3dA96A96A96A0c36d_0Ac80d0_36B5c2dA36Bc2d5A37B5c2dA37B6B5A38B5c2dA38B6B5A42B5c2dA42B6B5A43B5c2dA43B6B5A44B5c2dA44B6B5__y">
+</div>
+<p>In the row we can now eliminate all candidates of that pair in all the other cells.</p>
+<p><b>This candidate elimination is the actual result of the Naked Pair technique.</b></p>
+<hr class="jXd"/>
+<div style="clear: both; margin-bottom: 20px;"></div>
+
+
+<p style="float: left; margin-right: 10px;" class="material-icons-outlined" role="img" aria-label="info">&#xe88e;</p>
+<p>Keep in mind, that there is almost <b>no difference</b> between Hidden Pairs and Naked Pairs. They are both just pairs. <b>"Naked"</b> and <b>"Hidden"</b> only refers to how those pairs are <b>found</b>. A Naked Pair is used to eliminate candidates in all other cells of that region. A Hidden Pair is made into a Naked Pair, by eliminating candidates in the pair's cells.</p>
+<p style="float: left; margin-right: 10px;" class="material-icons-outlined" role="img" aria-label="info">&#xe88e;</p>
+<p>Pairs are simply <a href="/en/learn/groups">Groups</a>, which are explained on the next page.</p>
+<hr class="jXd"/>
+<div style="clear: both; margin-bottom: 20px;"></div>
+
+
+<h2>Combination of regions</h2>
+<div class="jX7 jX9 jXb jXa jXc"
+	data-suco-init="SCv2_000010a8b20a8b30a7b7080a12b4560a33b_yyyy000030a8b30a8b30a8b30a8b30000777757777000030a8b30a8b30000_0Ac49d512A0c31d_0Ac80d0_0Ac80d0___0a30b1110a6b1110a6b1110a30b_">
+</div>
+<p>Finding Naked Pairs could, of course, also need a combination of regions (rows, columns, boxes).</p>
+<p>With Naked <b>Singles</b> we can always use a combination of one box, one row <b>and</b> one column.</p>
+<p>See how the intersection of the column, row and box is <b>exactly one cell</b>? That one cell sees all numbers except <b>9</b>, so it must be a <b>9</b></p>
+<hr class="jXd"/>
+<div style="clear: both; margin-bottom: 20px;"></div>
+
+
+<div class="jX7 jX9 jXb jXa jXc"
+	data-suco-init="SCv2_000010a8b20a8b30a7b540a7b60a8b70a32b_yyyy000030a8b30a8b30a8b30a8b50a8b50a8b30a8b30a8b30000_0Ac40d768A0c8dA768A0c31d_0Ac80d0_0Ac80d0___0a30b1110a6b1110a6b1110a30b_">
+</div>
+<p>For Naked <b>Pairs</b> it is still possible that all cells of that pair see all the same cells, like in this <b>example</b>.</p>
+<p>Notice how we can only have an intersection between <b>box</b> and column here, because the intersection of a <b>row</b> and a column is only one cell (which is not enough to hold a pair).</p>
+<hr class="jXd"/>
+<div style="clear: both; margin-bottom: 20px;"></div>
+
+
+<div class="jX7 jX9 jXb jXa jXc"
+	data-suco-init="SCv2_000010a8b20a5b430a19b50a14b30a10b460a8b70000_0a22b50a17b30a8b30a8b50a22b_yyy000030a8b30a5b77750a8b30a8b30a8b30a5b77750a7b730a8b30000_0Ac22d768A0c35dA768A0c22d_0Ac80d0_0Ac80d0___0a19b11110a32b11110a7b10a14b_">
+</div>
+<p>It is <b>not necessary</b>, though, that each cell of the pair sees the <b>exact same cells</b>.</p>
+<p>All that matters is that they see the same <b>numbers</b>, regardless of where those numbers are.</p>
+<p>So this example also reveals a <b>Naked Pair.</b></p>
+<p>Both red cells see the numbers <b>1</b>, <b>2</b>, <b>3</b>, <b>4</b>, <b>5</b>, <b>6</b> and <b>7</b>. That leaves only the numbers <b>8</b> and <b>9</b> for the two red cells.</p>
+<hr class="jXd"/>
+<div style="clear: both; margin-bottom: 20px;"></div>
+
+
+<div class="jX7 jX9 jXb jXa jXc"
+	data-suco-init="SCv2_000010a8b20a5b430a19b50a14b30a10b460a8b70000_0a22b50a17b30a8b30a8b50a22b_yyy000030a8b30a5b77750a8b30a8b30a8b30a5b77750a7b730a8b30000_0Ac22d768A0c8dA792A0c17dA792A0c8dA768A0c22d_0Ac31d768A0c17dA768A0c31d_0Ac80d0_31B8B5A31B9B5A49B8B5A49Bc2d5__0a19b11110a32b11110a7b10a14b_">
+</div>
+<p>The <b>result of that Naked Pair</b> is, again, that we can eliminate the Naked Pair's candidates from all other cells in that region...</p>
+<hr class="jXd"/>
+<div style="clear: both; margin-bottom: 20px;"></div>
+
+
+<div class="jX7 jX9 jXb jXa jXc"
+	data-suco-init="SCv2_000010a8b20a5b430a19b50a14b30a10b460a8b70000_0a22b50a17b30a8b30a8b50a22b_yyy000030a8b30a5b77750a8b60a8b30a8b60a5b77750a7b730a8b30000_0Ac22d768A0c8dA24A0c17dA24A0c8dA768A0c22d_0Ac80d0_0Ac80d0___0a19b11110a32b11110a7b10a14b_">
+</div>
+<p>... resulting in another Pair: (3,4).</p>
+<p style="float: left; margin-right: 10px;" class="material-icons-outlined" role="img" aria-label="info">&#xe88e;</p>
+<p>By the way, that <b>(3,4)-Pair</b> is a <b>Hidden</b> Pair.</p>
+<hr class="jXd"/>
+<div style="clear: both; margin-bottom: 20px;"></div>
+
+
+<h2>When and how to look for Naked Pairs</h2>
+<p>We look for Naked Pairs after we cannot find any singles. We can, of course, also look for them <i>while</i> looking for singles.</p>
+<p>Spotting Naked Pairs is not that difficult, because they are so clearly visible when notating cell candidates (which we do anyway, or at least should do).</p>
+<p>If you see two cells in the same region with the same two candidates, you have spotted a Naked Pair.</p>
+<hr class="jXd"/>
+<div style="clear: both; margin-bottom: 20px;"></div>
+
+
+<div class="jX7 jX9 jXb jXa jXc"
+	data-suco-init="SCv2_06002710009080320a5b40003020906007080a6b950a5b4020140a9b3009000080200006_yyy30a8b40a6b670a5b60a14b400260a29b90a8b_y0Ac80d0_0Ac80d0_0Ac80d0___y">
+</div>
+<p>Here is an example.</p>
+<p>At this point we unfortunately don't see any more singles.</p>
+<hr class="jXd"/>
+<div style="clear: both; margin-bottom: 20px;"></div>
+
+
+<div class="jX7 jX9 jXb jXa jXc"
+	data-suco-init="SCv2_06002710009080320a5b40003020906007080a6b950a5b4020140a9b3009000080200006_yyy30a8b40a6b670a5b60a14b400260a29b90a8b_0a11b30c2d00040a13b700006066000040a13b700040a13b7000_0Ac11d34A0A34A0c4dA160Ac14d290Ac5d138A0A138A138A0c4dA224A0c13dA288A0c3dA224A0c13dA34A0c3d_0Ac80d0_0Ac80d0___y">
+</div>
+<p>So after realizing that there are no singles left, we start to notate cell candidates. We can, of course, also do this <b>while</b> looking for singles.</p>
+<p>As always, we look at the most restricted regions to try to spot something.</p>
+<p>In this example, we find:</p>
+<ul>
+	<li>two columns with three empty cells each</li>
+	<li>one row with only two empty cells</li>
+	<li>one row with three empty cells</li>
+	<li>one box with three empty cells (at the top, not colored)</li>
+</ul>
+<hr class="jXd"/>
+<div style="clear: both; margin-bottom: 20px;"></div>
+
+
+<div class="jX7 jX9 jXb jXa jXc"
+	data-suco-init="SCv2_06002710009080320a5b40003020906007080a6b950a5b4020140a9b3009000080200006_yyy30a8b40a6b670a5b60a14b400260a29b90a8b_0030a23b30a24b30a9b30a12b30a6b_0Ac2d288A544A0c7dA34A0A34A0c4dA160Ac4d546A0c3dA768A0c5dA290Ac5d138A0A138A138A0c4dA224A0c5dA264A0c7dA288A0A288A0A224A0c10dA160Ac3d34A0c3d_0Ac80d0_0Ac80d0___y">
+</div>
+<p>Of course, all those Naked Groups are not useful, because the rest of each region is already completely filled with fixed numbers.</p>
+<p>What we have now, though, is a good starting point for finding further Naked Pairs.</p>
+<p>Since there is nothing immediately visible, we look further for cells that have only very few candidates.</p>
+<p>And voilà, there are some that we still have not notated.</p>
+<p>There is now a Naked Pair in the grid. Can you spot it?</p>
+<hr class="jXd"/>
+<div style="clear: both; margin-bottom: 20px;"></div>
+
+
+<div class="jX7 jX9 jXb jXa jXc"
+	data-suco-init="SCv2_06002710009080320a5b40003020906007080a6b950a5b4020140a9b3009000080200006_yyy30a8b40a6b670a5b60a14b400260a29b90a8b_0a59b30c2d0a18b_0Ac2d288A544A0c7dA34A0A34A0c4dA160Ac4d546A0c3dA768A0c5dA290Ac5d138A0A138A138A0c4dA224A0c5dA264A0c7dA288A0A288A0A224A0c10dA160Ac3d34A0c3d_0Ac80d0_0Ac80d0___y">
+</div>
+<p>It is this one.</p>
+<hr class="jXd"/>
+<div style="clear: both; margin-bottom: 20px;"></div>
+
+
+<div class="jX7 jX9 jXb jXa jXc"
+	data-suco-init="SCv2_06002710009080320a5b40003020906007080a6b950a5b4020140a9b3009000080200006_yyy30a8b40a6b670a5b60a14b400260a29b90a8b_0a59b30c2d0a18b_0Ac2d288A544A0c7dA34A0A34A0c4dA160Ac4d546A0c3dA768A0c5dA290Ac5d138A0A138A138A0c4dA224A0c5dA264A0c4dA228A232A424A288A936A288A780A224A0c10dA160Ac3d34A0c3d_0Ac56d288A288A288A0A288A0A288A0c18d_0Ac80d0_56B5c2dA56B8B5A57B5c2dA57B8B5A58B5c2dA58Bc2d5A60B5c2dA60B8B5A62B5c2dA62B8B5__0a54b1a9b0a18b_">
+</div>
+<p>Since we know that these <b>two numbers</b> (<b>5</b> and <b>6</b>) <i>must</i> be in these two cells, we know that all the other cells in that row cannot be those two numbers.</p>
+<hr class="jXd"/>
+<div style="clear: both; margin-bottom: 20px;"></div>
+
+
+<div class="jX7 jX9 jXb jXa jXc"
+	data-suco-init="SCv2_06002710009080320a5b40003020906007080a6b950a5b4020140a9b3009000080200006_yyy30a8b40a6b670a5b60a14b400260a29b90a8b_0a59b30c2d0a18b_0Ac2d288A544A0c7dA34A0A34A0c4dA160Ac4d546A0c3dA768A0c5dA290Ac5d138A0A138A138A0c4dA224A0c5dA264A0c4dA196A200A136A288A648A288A524A224A0c10dA160Ac3d34A0c3d_0Ac80d0_0Ac80d0___y">
+</div>
+<p>After finding the Naked Pair, our grid now looks like this.</p>
+<hr class="jXd"/>
+<div style="clear: both; margin-bottom: 20px;"></div>
+
+
+<h2>Why easy?</h2>
+<p>Earlier I said that it is easy to find Naked Pairs, and yet here we are having half the board filled with cell candidates...</p>
+<p>While it is true that it can be <b>cumbersome</b> to find Naked Pairs, there is really nothing very complicated going on here. All we do is</p>
+<ul>
+	<li>check the regions with few empty cells,</li>
+	<li>notate their cells' candidates,</li>
+	<li>look for pairs. Those pairs are very obvious, if you don't overdo it with pencil marks. A good rule of thumb is to only pencil mark those cells that do have <b>two or three candidates</b>.</li>
+</ul>
+<p>Sure, in the process of this example we notate far too much. But those notations don't hurt, either. They will most probably be helpful down the road.</p>
+
+

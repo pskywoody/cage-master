@@ -71,8 +71,23 @@ const ComedySystem = {
     document.body.appendChild(container);
   },
 
-  // ---------- 轻量气泡显示（类似battle模式的showDialogue） ----------
-  _showBubble(speaker, text, color, emoji) {
+  // ---------- 角色头像映射 ----------
+  _charPortrait(speaker, emotion) {
+    const emotions = {
+      '守笼人': { default: 'cagekeeper_default', smile: 'cagekeeper_smile', serious: 'cagekeeper_serious', surprised: 'cagekeeper_surprised', angry: 'cagekeeper_serious', think: 'cagekeeper_think', sad: 'cagekeeper_sad' },
+      '设局人': { default: 'plotter_default', smile: 'plotter_smirk', smirk: 'plotter_smirk', angry: 'plotter_angry', surprised: 'plotter_surprised', confident: 'plotter_confident' },
+      '阿岩':   { default: 'ray_default', smile: 'ray_smile', angry: 'ray_angry', surprised: 'ray_surprised', lose: 'ray_lose' },
+    };
+    const emos = emotions[speaker];
+    if (!emos) return { img: null, emoji: '👤' };
+    const emoKey = emotion && emos[emotion] ? emotion : 'default';
+    const file = emos[emoKey] || emos['default'];
+    const img = file ? `assets/images/portraits/${file}.png` : null;
+    return { img, emotion: emoKey };
+  },
+
+  // ---------- 轻量气泡显示（使用角色立绘头像+打字机效果） ----------
+  _showBubble(speaker, text, color, emoji, emotion) {
     // 防刷屏：同一句话3秒内不重复
     const now = Date.now();
     if (now - this.state.lastKeeperLineTime < 2500) return;
@@ -82,6 +97,12 @@ const ComedySystem = {
 
     this._ensureBubbleContainer();
     const container = document.getElementById('comedy-bubble-container');
+
+    const portrait = this._charPortrait(speaker, emotion);
+    const avatarHtml = portrait.img
+      ? `<img src="${portrait.img}" style="width:42px;height:42px;border-radius:50%;object-fit:cover;flex-shrink:0;border:2px solid rgba(255,255,255,0.3);box-shadow:0 2px 8px rgba(0,0,0,0.3);" onerror="this.style.display='none';this.nextElementSibling.style.display='inline';">`
+      : `<span style="display:none;"></span>`;
+    const emojiFallback = emoji || '👤';
 
     const bubble = document.createElement('div');
     bubble.className = 'comedy-bubble';
@@ -96,17 +117,29 @@ const ComedySystem = {
     ].join(';');
 
     bubble.innerHTML = `
-      <div style="display:flex;align-items:flex-start;gap:8px;">
-        <span style="font-size:24px;flex-shrink:0;line-height:1;">${emoji}</span>
-        <div>
+      <div style="display:flex;align-items:flex-start;gap:10px;">
+        ${avatarHtml}
+        <span style="font-size:28px;flex-shrink:0;line-height:1;display:${portrait.img ? 'none' : 'inline'};">${emojiFallback}</span>
+        <div style="flex:1;">
           <div style="font-weight:bold;font-size:12px;opacity:0.85;margin-bottom:3px;">${speaker}</div>
-          <div>${text}</div>
+          <div class="comedy-bubble-text"></div>
         </div>
       </div>
     `;
 
-    // 点击立即消失
-    bubble.addEventListener('click', () => this._removeBubble(bubble));
+    // 点击立即消失/补全文字
+    let typeTimer = null;
+    let typed = false;
+    const textDiv = bubble.querySelector('.comedy-bubble-text');
+    const finishTyping = () => {
+      if (typeTimer) { clearTimeout(typeTimer); typeTimer = null; }
+      textDiv.textContent = text;
+      typed = true;
+    };
+    bubble.addEventListener('click', () => {
+      if (!typed) { finishTyping(); return; }
+      this._removeBubble(bubble);
+    });
 
     container.appendChild(bubble);
 
@@ -115,9 +148,38 @@ const ComedySystem = {
       container.removeChild(container.firstChild);
     }
 
-    // 自动移除
-    const duration = text.length > 40 ? 6000 : 4500;
-    setTimeout(() => this._removeBubble(bubble), duration);
+    // 打字机效果
+    let idx = 0;
+    const typeSpeed = 40;
+    function typeChar() {
+      if (idx >= text.length) {
+        typed = true;
+        typeTimer = null;
+        return;
+      }
+      textDiv.textContent += text[idx];
+      idx++;
+      // 打字机音效
+      if (text[idx - 1] !== ' ' && text[idx - 1] !== '　' && idx % 3 === 0) {
+        try {
+          if (typeof AudioManager !== 'undefined' && AudioManager.playTypewriterKey) {
+            AudioManager.resume && AudioManager.resume();
+            AudioManager.playTypewriterKey();
+          }
+        } catch(e) {}
+      }
+      typeTimer = setTimeout(typeChar, typeSpeed + (Math.random() * 15 - 7));
+    }
+    typeChar();
+
+    // 自动移除（等待打字完成后再计时）
+    const typeDuration = text.length * typeSpeed + 500;
+    const displayDuration = text.length > 40 ? 5000 : 3500;
+    const totalDuration = typeDuration + displayDuration;
+    setTimeout(() => {
+      if (typeTimer) { clearTimeout(typeTimer); typeTimer = null; }
+      this._removeBubble(bubble);
+    }, totalDuration);
   },
 
   _removeBubble(bubble) {
@@ -131,7 +193,12 @@ const ComedySystem = {
     const lines = this._t('comedy.keeper.' + key);
     if (!lines || !lines.length) return;
     const line = Array.isArray(lines) ? lines[Math.floor(Math.random() * lines.length)] : lines;
-    this._showBubble('守笼人', line, 'linear-gradient(135deg,#6366f1,#4f46e5)', '🧙');
+    // 优先使用StoryEngine环境台词（立绘+打字机）
+    if (typeof window.StoryEngine !== 'undefined' && window.StoryEngine.sayAmbient) {
+      window.StoryEngine.sayAmbient('cagekeeper', 'default', line);
+    } else {
+      this._showBubble('守笼人', line, 'linear-gradient(135deg,#6366f1,#4f46e5)', '🧙');
+    }
   },
 
   // ---------- 设局人说话（Boss战打脸） ----------
@@ -139,9 +206,11 @@ const ComedySystem = {
     const lines = this._t('comedy.setter.' + key);
     if (!lines || !lines.length) return;
     const line = Array.isArray(lines) ? lines[Math.floor(Math.random() * lines.length)] : lines;
-    // 如果是guide-battle环境，使用boss对话系统；否则用通用气泡
+    // 如果是guide-battle环境，使用boss对话系统
     if (typeof window._bossSay === 'function') {
       window._bossSay(line);
+    } else if (typeof window.StoryEngine !== 'undefined' && window.StoryEngine.sayAmbient) {
+      window.StoryEngine.sayAmbient('plotter', 'smirk', line);
     } else {
       this._showBubble('设局人', line, 'linear-gradient(135deg,#dc2626,#991b1b)', '🎭');
     }
@@ -158,6 +227,8 @@ const ComedySystem = {
     const line = Array.isArray(lines) ? lines[Math.floor(Math.random() * lines.length)] : lines;
     if (typeof window._ayanSay === 'function') {
       window._ayanSay(line);
+    } else if (typeof window.StoryEngine !== 'undefined' && window.StoryEngine.sayAmbient) {
+      window.StoryEngine.sayAmbient('ray', 'smile', line);
     } else {
       this._showBubble('阿岩', line, 'linear-gradient(135deg,#22c55e,#15803d)', '🍃');
     }
@@ -182,9 +253,17 @@ const ComedySystem = {
     }, 5000);
   },
 
-  // ---------- StoryModal 大段对话（重要剧情用） ----------
+  // ---------- StoryModal 大段对话（重要剧情用）----------
   _storyDialogue(dialogues, onDone) {
-    if (typeof window.StoryModal !== 'undefined' && window.StoryModal) {
+    // 优先使用新StoryEngine（立绘+打字机效果）
+    if (typeof window.StoryEngine !== 'undefined' && window.StoryEngine) {
+      const lines = dialogues.map(d => ({
+        speaker: d.character,
+        text: d.text,
+        emotion: d.emotion || null
+      }));
+      window.StoryEngine.sayLines(lines, onDone);
+    } else if (typeof window.StoryModal !== 'undefined' && window.StoryModal) {
       window.StoryModal.show(dialogues, onDone);
     } else {
       // fallback: 依次弹气泡

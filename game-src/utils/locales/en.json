@@ -1,0 +1,914 @@
+{
+  "ui": {
+    "common": {
+      "back": "Back",
+      "backToMenu": "← Menu",
+      "confirm": "Confirm",
+      "cancel": "Cancel",
+      "close": "Close",
+      "ok": "OK",
+      "next": "Next",
+      "prev": "Back",
+      "start": "Start",
+      "startGame": "Start Game",
+      "resume": "Resume",
+      "restart": "Restart",
+      "loading": "Loading...",
+      "returnToLevels": "Back to Levels",
+      "nextLevel": "Next Level",
+      "returnToChapter": "🏁 Back to Chapter",
+      "yes": "Yes",
+      "no": "No",
+      "save": "Save",
+      "reset": "Reset",
+      "retry": "Retry",
+      "continue": "Continue"
+    },
+    "titles": {
+      "appName": "Archive Detective: Caged Cipher",
+      "guideMode": "Tutorial Mode",
+      "menuPage": "Archive Detective: Caged Cipher",
+      "chaptersPage": "Story Mode - Chapter Select",
+      "levelsPage": "Level Select",
+      "chapterLevelsPage": "Chapter Levels",
+      "freePlayPage": "Sudoku Puzzles - Free Play",
+      "battlePage": "AI Battle",
+      "optionsPage": "Settings",
+      "gamePage": "Game",
+      "guidePage": "Tutorial Levels"
+    },
+    "menu": {
+      "logo": "🔐",
+      "gameTitle": "Caged Cipher",
+      "subtitle": "Archive Detective · KILLER SUDOKU",
+      "storyMode": "Story Mode",
+      "storyModeDesc": "Follow the story and master Killer Sudoku techniques",
+      "freeMode": "Sudoku Puzzles",
+      "freeModeDesc": "300 curated puzzles across three difficulties",
+      "battleMode": "Fog Battle",
+      "battleModeDesc": "Battle wits against the Setter's AI",
+      "battleModeBeta": "BETA",
+      "settings": "Settings",
+      "settingsDesc": "Music, SFX, and save management",
+      "version": "v1.0.0",
+      "statsCompleted": "Cleared",
+      "statsBadges": "Badges",
+      "statsTotalTime": "Total Time"
+    },
+    "toolbar": {
+      "undo": "Undo",
+      "erase": "Erase",
+      "candidate": "Cands",
+      "candidateMode": "Candidate Mode",
+      "fillMode": "Fill Mode",
+      "autoCands": "Auto-fill Cands",
+      "hint": "Hint",
+      "rule45": "45",
+      "setting": "Settings",
+      "quickFill": "⚡ Quick Fill"
+    },
+    "timer": {
+      "timeUsed": "Time",
+      "timeFormat_min_sec": "{m}m{s}s",
+      "timeFormat_sec": "{s}s",
+      "timeFormat_h_m": "{h}h{m}m",
+      "timeFormat_clock": "{m}:{s}"
+    },
+    "pause": {
+      "title": "⏸ Paused",
+      "desc": "Tap the button below to resume"
+    },
+    "complete": {
+      "trophy": "🏆",
+      "title": "Puzzle Cleared!",
+      "timeUsed": "Time {time}",
+      "rematch": "Play Again"
+    },
+    "settings": {
+      "title": "⚙️ Settings",
+      "audioSection": "Audio",
+      "gameSection": "Game",
+      "displaySection": "Display",
+      "operationSection": "Controls",
+      "dataSection": "Data Management",
+      "muteAll": "🔇 Mute All",
+      "muteAllDesc": "Mute all sounds (BGM + SFX)",
+      "bgm": "🎵 Background Music",
+      "bgmDesc": "Background music during gameplay",
+      "sfx": "🔊 Sound Effects",
+      "sfxDesc": "Click, placement, and action sounds",
+      "conflictRed": "Highlight Conflicts",
+      "conflictRedDesc": "Mark incorrect numbers in red",
+      "highlightRowColBox": "Highlight Row/Col/Box",
+      "highlightRowColBoxDesc": "Highlight the row, column, and box of the selected cell",
+      "highlightSameNum": "Highlight Same Number",
+      "highlightSameNumDesc": "Highlight all cells with the same number",
+      "highlightSameCage": "Highlight Same Cage",
+      "highlightSameCageDesc": "Highlight the cage of the selected cell",
+      "autoClearCandidates": "Auto-clear Candidates",
+      "autoClearCandidatesDesc": "Automatically remove related candidates after placing a number",
+      "exportData": "📤 Export Save",
+      "resetAll": "🗑️ Reset All Progress",
+      "aboutTitle": "Archive Detective: Caged Cipher",
+      "aboutVersion": "Version 1.0.0",
+      "aboutDesc": "An immersive Killer Sudoku story puzzle game\nFollow The Keeper and Ayan as they decipher the Setter's arcane archives",
+      "confirmResetTitle": "Reset All Progress?",
+      "confirmResetMsg": "This will erase all clears, progress, badges, and settings. This cannot be undone.",
+      "confirmResetDetail": "This action is irreversible. Proceed with caution.",
+      "confirmOk": "Reset Everything",
+      "toastReset": "Progress reset",
+      "toastExported": "Save exported",
+      "toastResetFailed": "Reset failed",
+      "toastExportFailed": "Export failed",
+      "back": "← Back",
+      "statTotalCompleted": "Total Cleared",
+      "statTotalTime": "Total Play Time",
+      "statBadges": "Badges",
+      "toggleBgm": "Toggle BGM",
+      "toggleSfx": "Toggle SFX"
+    },
+    "rule45": {
+      "title": "🧮 Rule of 45 Calculator",
+      "cellCount": "Cells",
+      "targetSum": "Target Sum",
+      "mustInclude": "Must Include",
+      "exclude": "Exclude",
+      "possibleCombinations": "Possible Combinations",
+      "combinationsCount": "{count} combinations",
+      "errorInvalidInput": "Please enter a valid cell count and target sum",
+      "errorMustExceedCells": "Must-include numbers cannot exceed cell count",
+      "errorMustExcluded": "A number cannot be both included and excluded",
+      "errorNoResult": "No valid combinations found",
+      "rule10": "Rule of 10 (4x4)",
+      "rule21": "Rule of 21 (6x6)",
+      "rule45": "Rule of 45 (9x9)",
+      "ruleName": "Rule of 45"
+    },
+    "chapters": {
+      "title": "📖 Story Mode",
+      "subtitle": "Follow The Keeper and Ayan as they unravel the Setter's Killer Sudoku archives",
+      "chapterPrefix": "Chapter {id}: ",
+      "badge": "Badge",
+      "lockedIcon": "🔒",
+      "loading": "Loading chapters...",
+      "noData": "No chapter data available",
+      "backToMenu": "← Back to Main Menu",
+      "progress": "Progress",
+      "fallbackCh1": {
+        "title": "The Encrypted Letter",
+        "subtitle": "Beginner · 4x4",
+        "desc": "Learn the basic rules of Killer Sudoku. Start your detective journey on the smallest 4x4 grid.",
+        "badgeName": "Rookie Detective"
+      },
+      "fallbackCh2": {
+        "title": "Double Clues",
+        "subtitle": "Intermediate · 6x6",
+        "desc": "Learn more solving techniques and take on 6x6 grids to sharpen your reasoning.",
+        "badgeName": "Junior Detective"
+      },
+      "fallbackCh3": {
+        "title": "On the Trail",
+        "subtitle": "Advanced · 6x6",
+        "desc": "Master advanced techniques like the Rule of 45 to crack more complex puzzles.",
+        "badgeName": "Intermediate Detective"
+      },
+      "fallbackCh4": {
+        "title": "Codebreaker",
+        "subtitle": "Advanced · 9x9",
+        "desc": "Take on the full 9x9 grid and experience the complete thrill of Killer Sudoku.",
+        "badgeName": "Senior Detective"
+      },
+      "fallbackCh5": {
+        "title": "Ultimate Trial",
+        "subtitle": "Challenge · 9x9",
+        "desc": "High-difficulty 9x9 puzzles that test every technique you've learned.",
+        "badgeName": "Elite Detective"
+      },
+      "fallbackCh6": {
+        "title": "Road to Master",
+        "subtitle": "Master · 9x9",
+        "desc": "Legendary difficulty. Only true master detectives can clear these.",
+        "badgeName": "Master Detective"
+      },
+      "fallbackCh7": {
+        "title": "Arcane Archives",
+        "subtitle": "Master · Advanced Techniques",
+        "desc": "The Keeper discovers six arcane scrolls left by the Setter, detailing advanced deduction arts: Pairs, X-Wing, Swordfish, and more.",
+        "badgeName": "Arcane Master"
+      }
+    },
+    "chapterLevels": {
+      "levelNum": "Level {num}",
+      "fallbackDesc": "Chapter {chapterId} tutorials guide you step by step through core Killer Sudoku techniques.",
+      "teachingGoal_default": "Solve this puzzle",
+      "bestTime": "Best {time}",
+      "completed": "Cleared",
+      "backToChapters": "← Chapter List",
+      "progress": "Progress",
+      "gridView": "Grid",
+      "listView": "List",
+      "loading": "Loading levels...",
+      "noLevels": "No levels available",
+      "unknownChapter": "Unknown Chapter"
+    },
+    "levels": {
+      "title": "Archive Detective: Caged Cipher",
+      "teachingEntry": "Tutorial Mode",
+      "teachingDesc": "Learn Killer Sudoku from scratch",
+      "battleEntry": "AI Battle Mode",
+      "battleDesc": "Battle",
+      "battleStats": "Record: {wins}W {losses}L",
+      "teachingProgress": "{count} tutorial levels cleared",
+      "filterAll": "All",
+      "filterEasy": "Easy",
+      "filterMedium": "Medium",
+      "filterHard": "Hard",
+      "filterCalibrated": "Calibrated Sort",
+      "statsLine": "Cleared {completed} / {total} · Total time {time}",
+      "bestTimeTag": "Best {time}",
+      "avgTimeTag": "Avg {time}",
+      "hintsTag": "Hints: {count}",
+      "completionsTag": "Cleared {completions}/{attempts}",
+      "completedTag": "✓ Cleared",
+      "loading": "Loading levels...",
+      "networkError": "Network error, please refresh and retry",
+      "noLevelsForDiff": "No levels available for this difficulty",
+      "entryLevel": "Beginner"
+    },
+    "freePlay": {
+      "title": "🧩 Sudoku Puzzles",
+      "subtitle": "Free play - 300 curated puzzles",
+      "back": "← Back",
+      "easy": {
+        "name": "Easy",
+        "icon": "🌱",
+        "range": "1-100"
+      },
+      "medium": {
+        "name": "Medium",
+        "icon": "🔥",
+        "range": "101-200"
+      },
+      "hard": {
+        "name": "Hard",
+        "icon": "💀",
+        "range": "201-300"
+      },
+      "completed": "Cleared",
+      "bestTimeLabel": "Best Time",
+      "avgTimeLabel": "Average Time"
+    },
+    "badge": {
+      "title": "🏅 Badge Earned",
+      "newBadge": "New Badge",
+      "accept": "Claim"
+    },
+    "story": {
+      "continueHint": "▼ Tap to continue",
+      "defaultSpeaker": "Archive Detective"
+    },
+    "canvas": {
+      "candidateMode_label": "✏️Cands",
+      "row": "Row",
+      "col": "Col",
+      "box": "Box",
+      "cage": "Cage",
+      "quickFillHint": "⚡ Quick Fill {num}: Tap empty cells to place quickly",
+      "quickFillActivated": "⚡ Quick Fill active. Select a number, then tap empty cells to place it",
+      "quickFillComplete": "✅ {num} is full. Quick Fill deactivated"
+    },
+    "perspective": {
+      "rowPrefix": "Row {n}",
+      "colPrefix": "Col {n}",
+      "boxPrefix": "Box {n}"
+    },
+    "progress": {
+      "format": "{current} / {total}"
+    }
+  },
+  "battle": {
+    "title": "⚔️ AI Battle Mode",
+    "subtitle": "Fill correctly to build energy, then unleash attacks to disrupt your opponent!",
+    "you": "You",
+    "aiBot": "AI Bot",
+    "spectateBot1": "Bot 1",
+    "spectateBot2": "Bot 2",
+    "difficulty": {
+      "label": "Difficulty: ",
+      "easy": "Easy",
+      "medium": "Medium",
+      "hard": "Hard"
+    },
+    "startBattle": "Start Battle",
+    "spectate": "👀 Spectate",
+    "back": "Back",
+    "energy": "⚡ Energy",
+    "energyFormat": "{current} / {max}",
+    "progress": "{filled} / {total}",
+    "attackCount": "Attacks: {count}",
+    "combo": "{count} Combo!",
+    "attacks": {
+      "normal": {
+        "name": "Strike",
+        "cost": "30 Energy",
+        "costNum": 30
+      },
+      "heavy": {
+        "name": "Heavy",
+        "cost": "60 Energy",
+        "costNum": 60
+      },
+      "ultimate": {
+        "name": "Ultimate",
+        "cost": "100 Energy",
+        "costNum": 100
+      }
+    },
+    "controls": {
+      "quickFill": "⚡ Quick Fill",
+      "modeToggle": "Fill Mode",
+      "candidateMode": "Cand Mode",
+      "erase": "Erase",
+      "restart": "Restart"
+    },
+    "attackText": "ATTACK!",
+    "result": {
+      "win": "🎉 Victory!",
+      "lose": "😢 Defeat...",
+      "bot1Win": "🏆 Bot 1 Wins!",
+      "bot2Win": "🏆 Bot 2 Wins!",
+      "continueStory": "Continue Story",
+      "retry": "Retry",
+      "rematch": "Rematch",
+      "back": "Back",
+      "timeUsed": "Time: {m}m{s}s",
+      "yourProgress": "{label} Progress: {filled} / 81 ({pct}%)",
+      "aiProgress": "AI Progress: {filled} / 81 ({pct}%)",
+      "maxCombo": "Max Combo: {count}",
+      "playerAttacks": "{label} Attacks: {count}",
+      "aiAttacks": "AI Attacks: {count}",
+      "aiDifficulty": "AI Difficulty: {diff}"
+    },
+    "countdown": {
+      "vs": "VS",
+      "start": "START!",
+      "hint": "Race through the fog - first to 75% wins!",
+      "opponent": "Opponent"
+    },
+    "bosses": {
+      "boss1": {
+        "name": "Newbie",
+        "avatar": "🐣",
+        "preDialog": ["Heehee~ I'm new here, please go easy on me!", "First time playing, I'm so nervous..."],
+        "winDialog": ["Boohoo... I lost...", "Congrats on winning..."],
+        "warningLines": ["Your opponent is almost done!"],
+        "encounter": {
+          "far": [{ "text": "Huh? Where are you?", "intensity": "light" }],
+          "mid": [{ "text": "You're pretty good.", "intensity": "medium" }],
+          "near": [{ "text": "The final step...", "intensity": "strong" }]
+        }
+      },
+      "boss2": {
+        "name": "Sudoku Pro",
+        "avatar": "🦊",
+        "preDialog": ["Hmph, let's have a good fight!", "Ready? I won't go easy on you."],
+        "winDialog": ["...I let my guard down.", "A fine match."],
+        "warningLines": ["Your opponent is about to win!"],
+        "encounter": {
+          "far": [{ "text": "Oh? Interesting.", "intensity": "light" }],
+          "mid": [{ "text": "Seems you're no amateur.", "intensity": "medium" }],
+          "near": [{ "text": "Getting serious!", "intensity": "strong" }]
+        }
+      },
+      "boss3": {
+        "name": "Sudoku Demon",
+        "avatar": "👹",
+        "preDialog": ["Hmph... Human, you dare challenge me?", "I'll finish you in three minutes."],
+        "winDialog": ["Impossible!! How could I lose!!", "Human... you'll regret this!"],
+        "warningLines": ["Your opponent is almost done!"],
+        "encounter": {
+          "far": [{ "text": "The struggles of an ant.", "intensity": "light" }],
+          "mid": [{ "text": "You've managed to anger me.", "intensity": "medium" }],
+          "near": [{ "text": "Game over!", "intensity": "strong" }]
+        }
+      },
+      "boss4": {
+        "name": "The Setter's Shade",
+        "avatar": "👤",
+        "preDialog": ["You think you can catch up to me?", "The truth in the fog... you'll never see it."],
+        "winDialog": ["Impossible... how can you see through the fog!", "This is only the beginning..."],
+        "warningLines": ["The Shade is about to finish before dissipating! Catch up!"],
+        "encounter": {
+          "far": [{ "text": "You can't see me...", "intensity": "light" }],
+          "mid": [{ "text": "The fog protects me.", "intensity": "medium" }],
+          "near": [{ "text": "You actually found me!", "intensity": "strong" }]
+        }
+      },
+      "boss5": {
+        "name": "The Guardian",
+        "avatar": "🛡️",
+        "preDialog": ["To pass this level, you must get through me first!", "These endgame puzzles are the secrets I guard."],
+        "winDialog": ["You... you cracked these endgames...", "The Guardian's duty... is fulfilled..."],
+        "warningLines": ["The Guardian is about to seal all clues!"],
+        "encounter": {
+          "far": [{ "text": "Who goes there?", "intensity": "light" }],
+          "mid": [{ "text": "Not one step further!", "intensity": "medium" }],
+          "near": [{ "text": "Last line of defense!", "intensity": "strong" }]
+        }
+      },
+      "boss6": {
+        "name": "The Setter (Arcane)",
+        "avatar": "🔮",
+        "preDialog": ["You've actually made it this far...", "Then witness the true power of the arcane arts!"],
+        "winDialog": ["The arcane arts... broken?", "Impossible... this is the ultimate deduction..."],
+        "warningLines": ["The arcane ritual is nearly complete! Stop him!"],
+        "encounter": {
+          "far": [{ "text": "You don't understand... the power of the arcane.", "intensity": "light" }],
+          "mid": [{ "text": "You've forced me to show my real strength.", "intensity": "medium" }],
+          "near": [{ "text": "Arcane Art: Caged Inferno!", "intensity": "strong" }]
+        }
+      },
+      "mysteriousOpponent": {
+        "name": "Mysterious Opponent",
+        "preDialog": ["Come."],
+        "winDialog": ["You win."],
+        "warningLines": ["Your opponent is about to win!"],
+        "encounter": {
+          "mid": [{ "text": "You're pretty good.", "intensity": "medium" }],
+          "near": [{ "text": "The final step...", "intensity": "strong" }]
+        }
+      }
+    },
+    "toast": {
+      "stolen": "Stole a cell!",
+      "almostWin": "You're almost there, keep going!",
+      "fogCleared": "Fog lifted!",
+      "cageRevealed": "Cage clues revealed!",
+      "bewareOpponent": "Watch your opponent!",
+      "stolenCell": "Snatched it!",
+      "opponent60": "⚠️ Opponent has reached 60%!",
+      "player60": "🔥 You're at 60%! Final push!"
+    },
+    "tips": {
+      "bewareOpponent": "Watch your opponent!",
+      "bewareOpponentText": "See those flashing red squares? Those are ghost cells placed by {name}. Fill the same cell correctly to steal it back!",
+      "fogCleared": "Fog lifted!",
+      "fogClearedText": "After placing correctly, the dashed outlines and sum badges of nearby cages are revealed. Keep placing numbers to uncover more cage clues and solve the puzzle!",
+      "stolen": "Snatched it!",
+      "stolenText": "Nice! You placed correctly first and stole this cell from {name}. Keep snatching more cells!",
+      "exploreCages": "Explore Cage Clues",
+      "exploreCagesText": "All numbers are always visible! But the dashed cage outlines and blue sum badges are hidden in fog. Place correctly to expand your vision and reveal cage clues for solving!",
+      "rulesTitle": "⚔️ Fog Battle Rules",
+      "ruleFog": "Fog Shrouds Cages",
+      "ruleFogDesc": "All numbers are always visible! But cage outlines and blue sum badges are hidden in fog - you need to get close to see cage shapes and sums. Use visible numbers to deduce, and place correctly to expand vision and reveal cage clues!",
+      "ruleReveal": "Expand and Reveal",
+      "ruleRevealDesc": "Each correct placement clears nearby fog, revealing cage outlines and sums. The more you place, the more clues you see!",
+      "ruleGhost": "Ghost Opponent",
+      "ruleGhostDesc": "{name} is racing you through the fog! Flashing red squares are TA's ghost cells - place the same cell correctly to steal it. First to 75% wins!",
+      "ruleWarning": "60% Warning",
+      "ruleWarningDesc": "When either side reaches 60%, the screen edges flash red - your last chance to catch up!",
+      "startBattle": "Start Battle"
+    },
+    "confirmRestart": "Are you sure you want to restart? All placed numbers will be cleared.",
+    "loadFailed": "Failed to load level, please refresh and retry",
+    "playerLines": {
+      "start": ["Let's go!", "I'm ready!", "I'm winning today!", "Watch this!"],
+      "correct": ["Yes!", "Got it!", "Nice!", "Yeah!"],
+      "combo": ["Combo! On fire!", "I'm in the zone!", "Can't stop!", "Invincible!"],
+      "wrong": ["Ah... wrong", "Oops...", "Slipped!", "Awkward..."],
+      "attack": ["Take this!", "Eat this!", "Hiyah!", "Here we go!"],
+      "attacked": ["Hey!", "Cheap shot!", "What the?!"],
+      "energyFull": ["Energy full! Ultimate ready!", "Time to show my real skills!"],
+      "winning": ["Got this in the bag", "Victory is mine!"],
+      "losing": ["Oh no... I'm losing", "Wait wait wait!", "No no no! I still have a chance!"],
+      "win": ["I WON!!!", "Who's next!!", "I am the Sudoku King!"],
+      "lose": ["Ah... I lost", "Damn...", "Next time for sure!"]
+    },
+    "narratorLines": {
+      "start": ["【The battle begins! Both sides are ready!】", "【Fight! Who will solve it first?】", "【Today's match: Human VS AI!】"],
+      "combo3": ["【Three in a row! The player is on fire!】", "【Three-hit combo! The AI is panicking!】"],
+      "combo5": ["【Five combo! That's legendary!】", "【Five-hit rampage! The AI is stunned!】"],
+      "aiLead": ["【AI takes the lead! The player needs to step up!】", "【AI strikes first! Tensions are high!】"],
+      "playerLead": ["【Player leads! The AI is feeling the pressure!】", "【Humanity fights back! AI, watch out!】"],
+      "close": ["【Neck and neck! A dead heat!】", "【Back and forth! This is what a real battle looks like!】"],
+      "energyFull": ["【Energy maxed! Ultimate is ready!】", "【Ultimate energy charged! The finishing blow is coming!】"],
+      "finalSprint": ["【Final sprint! Both sides are going all out!】", "【Endgame! Who will have the last laugh?】"]
+    },
+    "aiPersonalities": {
+      "easy": {
+        "name": "Newbie",
+        "start": ["Heehee~ I'm new here, please go easy on me!", "First time playing, I'm so nervous...", "Let me see... how do you solve this again?"],
+        "correct": ["I got it right!", "Wow, I'm so good!", "Yay!", "Heehee, lucky guess~"],
+        "combo": ["Combo! I'm amazing!", "Whoa, I got them in a row!", "Am I a genius or what?"],
+        "wrong": ["Huh? That was wrong...", "Boohoo, that's not right?", "Oops, my finger slipped"],
+        "attack": ["Take this!", "Hey!", "Eat this!"],
+        "attacked": ["Wah! Why are you hitting me!", "Boohoo that hurts~", "Bully! Picking on the new kid!"],
+        "energyFull": ["Energy full! Gonna use my big move!", "My ultimate is ready!", "Heeheehee... take this!"],
+        "playerAttack": ["Nooo!", "Wait wait wait!", "I surrender I surrender!"],
+        "winning": ["Am I gonna win? Really?", "Wow! I'm actually ahead!", "Am I a genius?"],
+        "losing": ["Boohoo I'm gonna lose...", "Wait for me!", "Don't leave me behind!"],
+        "win": ["Yay! I won! Haha!", "First time winning! So happy!", "I knew I was a genius!"],
+        "lose": ["Boohoohoo... I lost...", "Congrats on winning...", "I'll definitely win next time!"]
+      },
+      "medium": {
+        "name": "Sudoku Pro",
+        "start": ["Hmph, let's have a good fight!", "Ready? I won't go easy on you.", "Medium difficulty - perfect warmup."],
+        "correct": ["Not bad.", "Easy cell.", "Routine.", "As expected."],
+        "combo": ["Combo, good rhythm.", "Getting warmed up.", "In the zone."],
+        "wrong": ["...Mistake.", "Tch, misread that.", "Hm? That's wrong?"],
+        "attack": ["Take this!", "Hup!", "Here we go!"],
+        "attacked": ["Not bad...", "Interesting.", "Actually hit me?"],
+        "energyFull": ["Full. Time to finish this.", "My turn - Ultimate!", "Let me show you real skill."],
+        "playerAttack": ["Tch...", "Shield!", "Don't get cocky!"],
+        "winning": ["It's over.", "The gap is clear.", "You're not there yet."],
+        "losing": ["I'm behind...?", "Impossible...", "Interesting. Time to get serious."],
+        "win": ["Good game.", "Skill gap, nothing to do.", "Better luck next time."],
+        "lose": ["...I let my guard down.", "A fine match.", "I won't lose next time."]
+      },
+      "hard": {
+        "name": "Sudoku Demon",
+        "start": ["Hmph... Human, you dare challenge me?", "I'll finish you in three minutes.", "Witness true Sudoku mastery."],
+        "correct": ["...Boring.", "Too slow.", "This requires thought?", "Hmph."],
+        "combo": ["An ant's struggle.", "That's it?", "Pathetic."],
+        "wrong": ["......(Impossible)", "Hmph, bug.", "...System error."],
+        "attack": ["Annihilate!", "Oblivion!", "Disappear!"],
+        "attacked": ["Oh? You wounded me?", "Amusing... you've angered me.", "An ant dares to strike?"],
+        "energyFull": ["Game over.", "Ultimate Art: Caged Inferno!", "Despair."],
+        "playerAttack": ["Useless.", "That's it?", "Tickling me?"],
+        "winning": ["See? The gap between god and mortal.", "It's over.", "Despair."],
+        "losing": ["......Impossible!", "A human... how?!", "I'm... actually behind?"],
+        "win": ["Hmph, the natural outcome.", "Remember this gap.", "The weak have no right to challenge me."],
+        "lose": ["Impossible!! How could I lose!!", "T-this can't be!!", "Human... you'll pay for this! I'll return!"]
+      }
+    },
+    "spectateBotLines": {
+      "bot1Start": "I'm Bot 1, watch me!",
+      "bot2Start": "Hmph, mechanical efficiency decides all.",
+      "bot1Combo": "Combo! My deduction is faster!",
+      "bot1Correct": "Correct."
+    }
+  },
+  "hint": {
+    "level1": "💡 First hint: Look carefully at this cell (marked by the green frame). What's special about it?",
+    "level3_answer": "🎯 The answer is {num}. Placing it will automatically eliminate related candidates",
+    "level3_technique": "📖 This step requires the 「{technique}」 technique. Observe the purple-marked cells in the highlighted area",
+    "noHint": "🔍 No obvious next step found on the current board. Try other approaches, or use the Rule of 45 calculator",
+    "nakedSingle": {
+      "name": "Naked Single",
+      "desc_level2": "📘 Level 2: 【Naked Single】\nEvery other number already appears in {cellName}'s row, column, box, and cage. Only {num} remains, so it must be {num}.\n👉 Look at the gold highlighted area: all other numbers are already present, leaving just this one number."
+    },
+    "hiddenSingle": {
+      "name": "Hidden Single",
+      "desc_level2": "📘 Level 2: 【Hidden Single】\n{description}. Look closely at the related area and you'll find that {num} can only go in {cellName}.",
+      "rowLabel": "Row",
+      "colLabel": "Col",
+      "boxLabel": "Box",
+      "cageLabel": "Cage"
+    },
+    "nakedPair": {
+      "name": "Naked Pair",
+      "desc_level2": "📘 Level 2: 【Naked Pair】\nBoth {cell1} and {cell2} can only contain {num1} or {num2} (marked in purple). These two numbers are 「locked」 in, so you can eliminate them from other cells in the same region.",
+      "desc_level3": "📘 Level 2: 【Naked Pair】\nBoth {cell1} and {cell2} can only contain {num1} or {num2} (marked in purple). These two numbers are 「locked」 in, so you can eliminate them from other cells in the same region.\nAfter elimination, {cellName} has only {num} left!",
+      "desc_level2_withNum": "After elimination, {cellName} has only {num} left!",
+      "desc_level2_noNum": "After elimination, candidates are reduced. Keep deducing to find the next number.",
+      "regionRow": "same row",
+      "regionCol": "same col",
+      "regionBox": "same box",
+      "regionCage": "same cage"
+    },
+    "noCandidatesToFill": "🔢 No empty cells need candidates filled",
+    "autoFilledCandidates": "🔢 Auto-filled theoretical candidates for {count} empty cells",
+    "selectCellFirst": "💡 Select an empty cell first, then enter a number",
+    "quickFillActivated": "⚡ Quick Fill mode active, select a number",
+    "quickFillComplete": "✅ {num} is full. Quick Fill deactivated",
+    "breakthroughNoGuess": "💡 Don't guess! Try tapping the Hint button to see a technique demonstration?",
+    "wrongGuess": [
+      "Think again... that number doesn't look right",
+      "Not quite. Check for conflicts in the row/column/box/cage",
+      "That number can't go here. Look more carefully",
+      "Wrong! Pay attention to the cage sum constraint",
+      "That's not the right number. Try using elimination",
+      "Hmm... nope. Try a different approach"
+    ]
+  },
+  "technique": {
+    "names": {
+      "nakedSingle": "Naked Single",
+      "hiddenSingle": "Hidden Single",
+      "nakedPair": "Naked Pair",
+      "hiddenPair": "Hidden Pair",
+      "nakedTriple": "Naked Triple",
+      "xwing": "X-Wing",
+      "swordfish": "Swordfish"
+    },
+    "descriptions": {
+      "nakedSingle": "A cell whose row, column, box, and cage already contain every other number, leaving only one possible digit.",
+      "hiddenSingle": "A digit that can only be placed in one cell within a given row, column, box, or cage.",
+      "nakedPair": "Two cells in the same region share exactly the same two candidates; those digits are locked to those cells and can be eliminated from other cells in the region.",
+      "hiddenPair": "Two digits in the same region can only go in exactly two cells (even if those cells have other candidates); extra candidates in those two cells can be removed.",
+      "nakedTriple": "Three cells in the same region contain candidates drawn from exactly three distinct digits combined; those digits are locked and can be eliminated from other cells in the region.",
+      "xwing": "A digit has exactly two possible positions in two different rows, and those positions fall in the same two columns, forming a rectangle; the digit can be eliminated from other cells in those two columns.",
+      "swordfish": "The 3x3 extension of X-Wing: a digit's possible positions in three rows fall within exactly three columns; the digit can be eliminated from other cells in those three columns."
+    },
+    "tutorial": {
+      "title": "Technique Tutorial",
+      "speaker_default": "The Keeper",
+      "startHint": "Tap \"Start Learning\" to follow the demo",
+      "stepHint_default": "Tap \"Next\" to continue",
+      "finalHint": "When you're ready, start solving!",
+      "nextStep_last": "✓ Got it, start solving!",
+      "nextStep_mid": "Next ▶",
+      "startButton": "Start Learning ▶",
+      "prevButton": "◀ Back",
+      "nakedPair": {
+        "title": "Naked Pair",
+        "steps": [
+          {
+            "title": "Understanding Candidates",
+            "speaker": "The Keeper",
+            "text": "📖 Today's first arcane art: Naked Pair\n\nThe small numbers in cells are called 「candidates」 (or pencil marks) - they show what a cell might contain.\n\nFor example, if a cell shows 3 and 7, it means: \"This cell is either 3 or 7, nothing else.\"\n💡 Small numbers = Candidates = Possible answers",
+            "hint": "First, understand candidates: small numbers show what a cell could be"
+          },
+          {
+            "title": "Find the First Special Cell",
+            "speaker": "The Keeper",
+            "text": "Step 1: Find the first special cell\n\n👉 Look here! (The cell circled in green)\n\nIt has exactly two candidates: 3 and 7!\nNothing else is possible - it's either 3 or 7.",
+            "hint": "The first cell is in the green circle! Only two candidates: 3 and 7"
+          },
+          {
+            "title": "Find Its Partner",
+            "speaker": "The Keeper",
+            "text": "Step 2: Find its partner!\n\n👉 Now look at the adjacent cell (the second green circle)\n\nIt also has exactly two candidates: 3 and 7!\n\nBoth cells have the exact same two candidates!",
+            "hint": "The second cell is also {3,7}! These two form a 「Pair」!"
+          },
+          {
+            "title": "The Pair's 「Lock」 Effect",
+            "speaker": "The Keeper",
+            "text": "Step 3: These two cells have 「locked」 3 and 7 in place!\n\nIn this row, 3 must appear once and 7 must appear once.\n\nBut the only cells that can hold 3 and 7 are these two!\n\n🔒 So: one cell is 3 and the other is 7 - there's no escape!\n💡 Think of it like two seats with two people already sitting in them - nobody else can sit down",
+            "hint": "3 and 7 are locked between these two cells! No other cell in the row can have 3 or 7!"
+          },
+          {
+            "title": "Eliminate 3 from Other Cells",
+            "speaker": "The Keeper",
+            "text": "Step 4: Eliminate 3 from other cells in the row!\n\n👉 Look at the cell the red arrow points to\n\nIt has 3 as a candidate, but 3 is already locked - there can't be another 3 elsewhere in the row!\n\nCross out the 3 in that cell!",
+            "hint": "Cross out 3 in the cell pointed to by the red arrow!"
+          },
+          {
+            "title": "Eliminate 7 from Other Cells",
+            "speaker": "The Keeper",
+            "text": "Step 5: Now cross out 7!\n\n7 is also locked in!\n\nThat cell's candidates are now: 4 and 9 (3 and 7 are both crossed out).",
+            "hint": "7 is locked too, cross it out! Now only 4 and 9 remain"
+          },
+          {
+            "title": "Box Elimination Works Too",
+            "speaker": "Ayan",
+            "text": "Step 6: Don't forget the box also lets you eliminate!\n\nThese two cells aren't just in the same row - they're also in the same box (purple frame)!\n\n👉 Look at other cells in the same box - their candidate 3 must also be crossed out!",
+            "hint": "A pair locks both the row AND the box!"
+          },
+          {
+            "title": "Results Appear",
+            "speaker": "The Keeper",
+            "text": "✨ Wow! A number falls right out!\n\nAfter eliminating 3 and 7, the remaining candidates let you deduce the answer directly - the key lesson is: pairs let you eliminate numbers from other cells!",
+            "hint": "After elimination, fewer candidates remain - keep deducing and numbers appear"
+          },
+          {
+            "title": "Naked Pair Mnemonic",
+            "speaker": "The Keeper",
+            "text": "🔐 Naked Pair Mnemonic\n\n🔍 FIND: In the same row/col/box, two cells with identical candidates (just {a,b})\n🔒 LOCK: Those two cells must be a and b - no escape\n❌ DELETE: Cross out a and b from every other cell in that row/col/box\n✨ FILL: When a cell is down to one number → place it!\n\nOne pair often unlocks a whole region! Now go find pairs in your puzzles and crack them!",
+            "hint": "Remember four steps: Find → Lock → Delete → Fill!"
+          }
+        ]
+      },
+      "hiddenPair": {
+        "title": "Hidden Pair",
+        "steps": [
+          {
+            "title": "What is a Hidden Pair?",
+            "speaker": "The Keeper",
+            "text": "👁️ The second arcane art: Hidden Pair\n\nA Naked Pair says: \"Two cells can only be a and b.\"\n\nA Hidden Pair looks at it from the opposite direction:\n\"Digits a and b can only go in two specific cells.\"\n💡 One looks at cells, the other looks at digits - opposite perspectives!",
+            "hint": "Hidden Pair is about looking from the opposite angle"
+          },
+          {
+            "title": "Focus on a Box",
+            "speaker": "The Keeper",
+            "text": "Step 1: Focus on one box\n\n👉 Look at the purple-framed box\n\nThis box already has several numbers filled in, with 4 digits still missing.",
+            "hint": "First, see what digits are missing from this box"
+          },
+          {
+            "title": "Where Can Digit 3 Go?",
+            "speaker": "The Keeper",
+            "text": "Step 2: Where can digit 3 go?\n\nLooking from the opposite angle: which cells in this box can hold 3?\n\nEliminate cells where 3 is already blocked by the same row or column - 3 can only go in two cells!",
+            "hint": "Process of elimination: 3 can only go in two cells!"
+          },
+          {
+            "title": "Digit 7 Can Only Go There Too",
+            "speaker": "Ayan",
+            "text": "Step 3: Digit 7 can only go in those same two cells!\n\nNow look at digit 7 the same way: eliminate cells blocked by rows and columns, and 7 also can only go in those exact same two cells!",
+            "hint": "7 can also only go in those two cells! That's a Hidden Pair!"
+          },
+          {
+            "title": "The Hidden Pair is Found",
+            "speaker": "The Keeper",
+            "text": "Step 4: The Hidden Pair is found!\n\nBoth 3 and 7 can only go in these two cells!\n\nEven though these cells appear to have more candidates, no other digit can actually go here - because 3 and 7 have already 「claimed」 those spots!",
+            "hint": "3 and 7 are 「hiding」 in these two cells"
+          },
+          {
+            "title": "Clean Up Extra Candidates",
+            "speaker": "The Keeper",
+            "text": "Step 5: Clean up extra candidates\n\nDelete every candidate in these two cells except 3 and 7!\n\nOnce a Hidden Pair is 「dug out」, it becomes a Naked Pair {3,7}!",
+            "hint": "Delete the extra digits - hidden becomes naked!"
+          },
+          {
+            "title": "Remaining Cells Yield Numbers",
+            "speaker": "Ayan",
+            "text": "✨ The remaining cells produce numbers directly!\n\nNow that these two cells form the {3,7} pair, the remaining cells in the box must hold other digits, which can be deduced immediately!",
+            "hint": "After cleanup, numbers fall right out!"
+          },
+          {
+            "title": "Hidden Pair Mnemonic",
+            "speaker": "The Keeper",
+            "text": "👁️ Hidden Pair Mnemonic\n\n👁️ REVERSE VIEW: Don't look at 「what cells can hold」 - look at 「where digits can go」\n🔍 FIND THE SQUEEZE: a and b can both only go in the same two cells → Hidden Pair\n🧹 CLEAN UP: Delete all other candidates from those two cells\n\nHidden Pairs are harder to spot, but when found, they clean up powerfully!",
+            "hint": "Remember: reverse your perspective - look where digits can go!"
+          }
+        ]
+      },
+      "triple": {
+        "title": "Naked Triple",
+        "steps": [
+          {
+            "title": "Naked Triple Concept",
+            "speaker": "The Keeper",
+            "text": "🔱 The third arcane art: Naked Triple\n\nOnce you understand Pairs (2 cells locking 2 digits), the Triple is a natural extension -\nthree cells locking three digits!",
+            "hint": "The Pair's big sibling: 3 cells lock 3 digits"
+          },
+          {
+            "title": "Find Three Cells",
+            "speaker": "The Keeper",
+            "text": "Step 1: Find three cells\n\n👉 Look at the three orange cells:\nAcross all three cells, the only candidates that appear are 2, 4, and 9!\n💡 Not every cell needs all three digits! Combined, they cover exactly three digits",
+            "hint": "Three cells whose candidates combined are only three digits!"
+          },
+          {
+            "title": "Three Digits Are Locked",
+            "speaker": "Ayan",
+            "text": "Step 2: Three digits are locked!\n\nThe digits 2, 4, and 9 are completely claimed by these three cells!\n\nNo matter how they're arranged, these three cells must be a permutation of 2, 4, and 9.\n\n🔒 No other cell in the region can contain 2, 4, or 9!",
+            "hint": "Three digits are locked to three cells!"
+          },
+          {
+            "title": "Eliminate from Other Cells in the Row",
+            "speaker": "The Keeper",
+            "text": "Step 3: Eliminate from other cells in the row!\n\nCross out 2, 4, and 9 from every other cell in the same row!",
+            "hint": "Cross out 2, 4, 9 from all other cells in the row!"
+          },
+          {
+            "title": "Naked Triple Key Points",
+            "speaker": "The Keeper",
+            "text": "🔱 Naked Triple Key Points\n\n🔱 CONDITION: Three cells whose combined candidates cover exactly 3 distinct digits\n🔒 LOCK: Those 3 digits must occupy those 3 cells\n❌ DELETE: Eliminate those 3 candidates from all other cells in the region\n\n⚠️ Not every cell needs all three candidates! The same logic extends to 「Quads」 (4 cells locking 4 digits).",
+            "hint": "Naked Triple: 3 cells lock 3 digits!"
+          }
+        ]
+      },
+      "xwing": {
+        "title": "X-Wing",
+        "steps": [
+          {
+            "title": "X-Wing Concept",
+            "speaker": "The Keeper",
+            "text": "✈️ The fourth arcane art: X-Wing\n\nNamed after the X-wing starfighter from Star Wars - it forms an X shape.\n\nX-Wing doesn't look at 「what cells can hold」 - it looks at where a single digit can go.\n\nLet's use digit 7 as an example.",
+            "hint": "X-Wing looks at the rectangular pattern of a single digit"
+          },
+          {
+            "title": "Find the Digit's Positions in Two Rows",
+            "speaker": "The Keeper",
+            "text": "Step 1: Find where digit 7 sits in two rows\n\n👉 Look at rows D and F (the two orange row bands).\n\nAll other cells in row D are filled - 7 can only go in two positions!\nSame for row F - 7 can only go in two positions!",
+            "hint": "In each of the two rows, 7 has exactly two possible positions!"
+          },
+          {
+            "title": "Four Cells Form a Rectangle",
+            "speaker": "The Keeper",
+            "text": "Step 2: Four cells form a rectangle!\n\nThe four cells form a perfect rectangle!\n\nThere are only two possibilities:\n✈️ Top-left = 7 → Bottom-right = 7 (top-left to bottom-right diagonal)\n✈️ Top-right = 7 → Bottom-left = 7 (top-right to bottom-left diagonal)\n\nThe red X shows both possibilities - 7 must lie on one of the two diagonals!",
+            "hint": "An X-shaped diagonal - 7 is on one of the two diagonals!"
+          },
+          {
+            "title": "Eliminate from Other Cells in the Two Columns",
+            "speaker": "Ayan",
+            "text": "Step 3: Eliminate 7 from other cells in those two columns!\n\nWhichever diagonal is correct, both columns will contain a 7!\n\nSo no other cell in those columns can be 7 - cross them out!",
+            "hint": "No other cells in those two columns can be 7!"
+          },
+          {
+            "title": "X-Wing Mnemonic",
+            "speaker": "The Keeper",
+            "text": "✈️ X-Wing Mnemonic\n\n✈️ FIND THE RECTANGLE: A digit has exactly 2 positions in 2 rows, sharing the same 2 columns\n❌ DELETE COLUMNS: Eliminate that digit from all other cells in those columns\n🔄 BIDIRECTIONAL: 2 columns × 2 rows also works → eliminate from the rows instead\n\nX-Wing is the foundation of 「fish」 patterns. Swordfish is the 3×3 upgrade!",
+            "hint": "X-Wing: Rectangle → Diagonal → Eliminate columns (or rows)"
+          }
+        ]
+      },
+      "swordfish": {
+        "title": "Swordfish",
+        "steps": [
+          {
+            "title": "Swordfish Concept",
+            "speaker": "The Keeper",
+            "text": "🐟 The fifth arcane art: Swordfish\n\nOnce you understand X-Wing (2×2 rectangle), Swordfish is the upgrade - a 3-row × 3-column 「fishing net.」\n\nThe principle is identical, just scaled up from 2×2 to 3×3!",
+            "hint": "Swordfish is X-Wing's 3×3 big sibling"
+          },
+          {
+            "title": "Find the Digit's Positions in Three Rows",
+            "speaker": "The Keeper",
+            "text": "Step 1: Find where digit 5 sits in three rows\n\nLet's use digit 5. 👉 Look at the three rows (orange bands):\nIn each row, 5 can only go in 2 or 3 positions, and all of them fall within the same three columns!",
+            "hint": "In all three rows, 5 only appears in the same three columns!"
+          },
+          {
+            "title": "A 3×3 Fishing Net Forms",
+            "speaker": "The Keeper",
+            "text": "Step 2: A 3×3 fishing net forms!\n\nThese cells form a 3×3 net!\n\nThere are more combinations than with X-Wing, but no matter how 5 is arranged, each of the three columns will contain exactly one 5.\n\n🐟 5 is 「caught」 in this three-column net!",
+            "hint": "A 3×3 net covers all three columns!"
+          },
+          {
+            "title": "Eliminate from Other Cells in the Three Columns",
+            "speaker": "Ayan",
+            "text": "Step 3: Eliminate 5 from other cells in the three columns!\n\nNo other cell in these three columns can be 5!\n\n👉 Cross out 5 in every cell marked with a red X!",
+            "hint": "Eliminate 5 from all other cells in the three columns!"
+          },
+          {
+            "title": "Swordfish Mnemonic",
+            "speaker": "The Keeper",
+            "text": "🐟 Swordfish Mnemonic\n\n🐟 FIND THE NET: A digit has only 2-3 positions per row across 3 rows, all falling in the same 3 columns\n❌ DELETE COLUMNS: Eliminate that digit from all other cells in those columns\n🔄 BIDIRECTIONAL: 3 columns × 3 rows also works → eliminate from the rows instead\n\nSwordfish is complex, but its eliminations are devastating - a key weapon for cracking hard puzzles!",
+            "hint": "Swordfish: 3×3 net → eliminate columns (or rows)"
+          }
+        ]
+      }
+    }
+  },
+  "story": {
+    "characters": {
+      "keeper": "The Keeper",
+      "ayan": "Ayan",
+      "setter": "The Setter",
+      "setterShadow": "The Setter's Shade",
+      "guardian": "The Guardian",
+      "starshuttle": "Star Shuttle",
+      "setterSecret": "The Setter (Arcane)",
+      "narrator": "Narrator"
+    },
+    "chapterThemes": {
+      "ch1": "The Encrypted Letter",
+      "ch2": "Double Clues",
+      "ch3": "On the Trail",
+      "ch4": "Codebreaker",
+      "ch5": "Ultimate Trial",
+      "ch6": "Road to Master",
+      "ch7": "Arcane Archives"
+    },
+    "phases": {
+      "breakthrough": "Breakthrough",
+      "finishing": "Endgame"
+    },
+    "bossDefaultStart": "Come, let us settle this!",
+    "ayanWin": "We won!"
+  },
+  "error": {
+    "loadFailed": "Load failed, please retry",
+    "levelLoadFailed": "Failed to load level, please go back and retry",
+    "networkError": "Network error, please refresh and retry",
+    "noLevelData": "No chapter data available",
+    "invalidInput": "Invalid input",
+    "saveFailed": "Save failed",
+    "loadSaveFailed": "Failed to load save",
+    "exportFailed": "Export failed",
+    "resetFailed": "Reset failed",
+    "bossNoSolution": "Boss level is missing solution data",
+    "apiError": "API request failed",
+    "localDataFailed": "Failed to load local data",
+    "fallbackLevel": "Using fallback level (all data sources failed to load)"
+  },
+  "time": {
+    "seconds": "s",
+    "minutes": "m",
+    "hours": "h",
+    "format": {
+      "ms": "{s}s",
+      "s": "{s}s",
+      "min_sec": "{m}m{s}s",
+      "hm": "{h}h{m}m",
+      "clock": "{m}:{s}"
+    },
+    "elapsedLoading": "Load time {time}",
+    "elapsedFreePlay": "Free Play time {time}"
+  },
+  "audio": {
+    "bgm": {
+      "menu": "Main Menu",
+      "game": "Game BGM",
+      "boss": "Boss Battle",
+      "tension": "Tension",
+      "victory": "Victory",
+      "darkAmbient": "Dark Ambient"
+    }
+  },
+  "i18n": {
+    "zh-CN": "Simplified Chinese",
+    "ja": "Japanese",
+    "ko": "Korean",
+    "en": "English"
+  }
+}

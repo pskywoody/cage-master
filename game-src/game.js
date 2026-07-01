@@ -129,14 +129,26 @@ class Board {
       }
     }
 
-    // 加载笼子
+    // 加载笼子（兼容多种坐标格式：数组[r,c]或字符串"r c"）
     this.cages = cages;
     // 构建 cageId -> cells 索引，加速查找
     this.cageIdToCells = {};
     cages.forEach(cage => {
-      this.cageIdToCells[cage.id] = cage.cells;
-      cage.cells.forEach(([r, c]) => {
-        this.cells[r][c].cageId = cage.id;
+      // 标准化坐标格式：支持 [r,c] 数组和 "r c" 字符串两种格式
+      const normalizedCells = cage.cells.map(cell => {
+        if (Array.isArray(cell)) return [cell[0]|0, cell[1]|0];
+        if (typeof cell === 'string') {
+          const parts = cell.split(/[ ,]+/).filter(Boolean).map(Number);
+          return [parts[0]|0, parts[1]|0];
+        }
+        return [cell[0]|0, cell[1]|0];
+      });
+      cage.cells = normalizedCells;
+      this.cageIdToCells[cage.id] = normalizedCells;
+      normalizedCells.forEach(([r, c]) => {
+        if (r >= 0 && r < this.size && c >= 0 && c < this.size && this.cells[r] && this.cells[r][c]) {
+          this.cells[r][c].cageId = cage.id;
+        }
       });
     });
   }

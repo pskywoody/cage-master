@@ -1,0 +1,147 @@
+﻿<h2>Description</h2>
+<p>The Naked Single technique is (beside the Hidden Single technique) one of the first things you will come up with when solving your first Sudokus.</p>
+<p>A <b>Naked Single</b> is a single (a solution) that results from all other cells in it's regions (row, column, box) being already taken by other numbers.</p>
+<hr class="jXd"/>
+<div style="clear: both; margin-bottom: 20px;"></div>
+
+<div class="jX7 jX9 jXb jXa jX3l"
+	data-suco-init="SCv2_0a18b123456780a55b_0a18b3a9b0a54b_yyyy0Ac80d0_0Ac80d0_0Ac80d0___y">
+</div>
+<p>Here is the easiest <b>example</b>.</p>
+<p>All cells in that row already have a single number in them, so the only empty cell in that row must be the last missing number, in this case it is the <b>9</b>.</p>
+<hr class="jXd"/>
+<div style="clear: both; margin-bottom: 20px;"></div>
+
+
+<p>This, of course, also applies to other regions, namely rows and boxes, in the same way:</p>
+<div class="jX7 jX9 jXb jXa jX3l"
+	data-suco-init="SCv2_00010a8b20a8b30a8b40a8b50a8b60a8b70a8b80a14b_00030a8b30a8b30a8b30a8b30a8b30a8b30a8b30a8b30a5b_yy0a75b90a5b_y0Ac80d0_0Ac80d0_0Ac80d0___y">
+</div>
+<div class="jX7 jX9 jXb jXa jX3l"
+	data-suco-init="SCv2_0a27b1230a6b4560a6b780a34b_yyy0a47b90a33b_0a27b3330a6b3330a6b3330a33b_0Ac80d0_0Ac80d0_0Ac80d0___y">
+</div>
+
+<hr class="jXd"/>
+<div style="clear: both; margin-bottom: 20px;"></div>
+
+<p>So far, it looks exactly like a <a href="/en/learn/last-digit">Last Digit</a>. So where is the difference? The difference here is that we don't just necessarily look at <b>one</b> region. We will see what this means in the following paragraph.</p>
+<hr class="jXd"/>
+<div style="clear: both; margin-bottom: 20px;"></div>
+
+
+<h2>Easier than Hidden Singles?!</h2>
+<p>You now might think to yourself: "Wow, those are really easy to spot", and you might be right about <i>this</i> example, but there are many Naked Singles that are quite tough to spot.</p>
+<div class="jX7 jX9 jXb jXa jX3l"
+	data-suco-init="SCv2_0a27b2849030a7b70a17b50a17b10000_yyyy0a31b60a49b_0Ac80d0_0Ac80d0_0Ac80d0___y">
+</div>
+<p>This example is a bit harder, wouldn't you agree?</p>
+<p>(Here, the cell in the middle sees all numbers except a <b>6</b>. So it must be a <b>6</b>.)</p>
+<hr class="jXd"/>
+<div style="clear: both; margin-bottom: 20px;"></div>
+
+<div class="jX7 jX9 jXb jXa jX3l"
+	data-suco-init="SCv2_0a27b2809030a7b70a7b40a9b50a17b10000_yyyyy0Ac80d0_0Ac80d0_0Ac80d0___y">
+</div>
+<p>... and yet a bit harder...</p>
+<p>(It is still the same <b>6</b> that is the Naked Single. Only the <b>4</b> changed its position, so it is not seen via row, but via box.)</p>
+<hr class="jXd"/>
+<div style="clear: both; margin-bottom: 20px;"></div>
+
+
+<div class="jX7 jX9 jXb jXa jX3l"
+	data-suco-init="SCv2_0030a5b20007040a8b5300280903005000070201900400008006059000020a5b60050010400_yyyyy0Ac80d0_0Ac80d0_0Ac80d0___y">
+</div>
+<p>And finally, how it might look in a real game. Still easy to spot?</p>
+<hr class="jXd"/>
+<div style="clear: both; margin-bottom: 20px;"></div>
+
+
+
+<h2>When and how to look for Naked Singles</h2>
+<p>Oftentimes it is easier to spot Hidden Singles than Naked Singles, so I generally look for Naked Singles <i>after</i> I've looked for Hidden Singles, unless the Hidden Singles are very obvious.</p>
+
+
+<div class="jX7 jX9 jXb jXa jX3l"
+	data-suco-init="SCv2_0030a5b20007040a8b5300280903005000070201900400008006059000020a5b60050010400_yyyy0a17b30a13b30a5b30a24b30a5b30a8b3003_0Ac80d0_0Ac80d0_0Ac80d0___y">
+</div>
+<p>As with Hidden Singles, it is more efficient, to <b>start</b> looking for Naked Singles in <i>those</i> cells that <b>see many other fixed numbers</b>.</p>
+<p>For example these cells.</p>
+<hr class="jXd"/>
+<div style="clear: both; margin-bottom: 20px;"></div>
+
+
+<div class="jX7 jX9 jXb jXa jX3l"
+	data-suco-init="SCv2_0030a5b20007040a8b5300280903005000070201900400008006059000020a5b60050010400_yyyy0a27b440434004000040a7b40a9b40a17b40000_0Ac80d0_0Ac80d0_0Ac80d0___y">
+</div>
+<p>Take the <b>6</b> from before for example.</p>
+<p>This cells sees nine other cells with fixed numbers in them. Two of these numbers are the same, but there are still <b>eight distinct numbers</b> that this cell sees. The ninth number must therefore be in that one cell.</p>
+<hr class="jXd"/>
+<div style="clear: both; margin-bottom: 20px;"></div>
+
+
+<div class="jX7 jX9 jXb jXa jX3l"
+	data-suco-init="SCv2_0030a5b20007040a8b5300280903005000070201900400008006059000020a5b60050010400_yyy0a31b60a49b_0a24b4004404443040a6b40c2d0a7b40a24b400_0Ac80d0_0Ac80d0_0Ac80d0___y">
+</div>
+<p>After finding the <b>6</b> we should now first think of how this <b>6</b> affects our grid.</p>
+<p>We find that there is another cell which is interesting (because it sees many fixed numbers).</p>
+<p>That one sees eleven numbers. Some are doubled, yet still there are eight distinct ones. The missing number is, again, the Naked Single (<b>7</b>).</p>
+<div style="clear: both; margin-bottom: 20px;"></div>
+<hr class="jXd"/>
+<p>If we are keen on finding more Naked Singles, we continue like this.</p>
+<div style="clear: both; margin-bottom: 20px;"></div>
+
+<h2>Off by one or two</h2>
+<div class="jX7 jX9 jXb jXa jX3l"
+	data-suco-init="SCv2_0030a5b20007040a8b5300280903005000070201900400008006059000020a5b60050010400_yyy0a31b6070a47b_0a8b40a26b40a8b40a8b40040440030a7b40a7b400_0Ac80d0_0Ac80d0_0Ac80d0___y">
+</div>
+<p>Oftentimes your search for a Naked Single will be off by one or two numbers, like with this cell.</p>
+<p>Here, our cell sees nine other cells, but unfortunately two numbers (<b>5</b> and <b>6</b>) are occurring twice, so the cell <b>only sees seven <i>distinct</i> numbers</b>.</p>
+<p>Seven is one too few, so we know that we have reduced the possible candidates to two numbers: <b>3</b> and <b>7</b>.</p>
+<hr class="jXd"/>
+<div style="clear: both; margin-bottom: 20px;"></div>
+
+
+<div class="jX7 jX9 jXb jXa jXc"
+	data-suco-init="SCv2_0030a5b20007040a8b5300280903005000070201900400008006059000020a5b60050010400_yyy0a31b6070a47b_0a8b40a26b40a8b40a8b40040440030a7b40a7b400_0Ac62d136A0c18d_0Ac80d0_0Ac80d0___y">
+</div>
+<p>We could now be sad and look at another cell, <i>or</i> we could notate our findings, so that we do not forget that we have almost found out this cell's solution.</p>
+<p>For this cell, there can only be two numbers: <b>3</b> and <b>7</b>. Those are the <b>cell candidates</b>.</p>
+<p>In <a href="/en/learn/standard-notation">Standard Notation</a> the cell candidates are put in their respective place within the cell.</p>
+<hr class="jXd"/>
+<div style="clear: both; margin-bottom: 20px;"></div>
+
+
+<div class="jX7 jX9 jXad jXa jXc"
+	data-suco-init="SCv2_0030a5b20007040a8b5300280903005000070201900400008006059000020a5b60050010400_yyy0a31b6070a47b_0a8b40a26b40a8b40a8b40040440030a7b40a7b400_0Ac62d136A0c18d_0Ac80d0_0Ac80d0___y">
+</div>
+<p>In <a href="/en/learn/cell-box-notation">Cell&Box Notation</a> we will place the cell candidates in the center of the cell.</p>
+<hr class="jXd"/>
+<div style="clear: both; margin-bottom: 20px;"></div>
+
+
+<div class="jX7 jX9 jXb jXa jXc"
+	data-suco-init="SCv2_0030a5b20007040a8b5300280903005000070201900400008006059000020a5b60050010400_yyy0a31b6070a21b30a25b_0a55b45a7b0a18b_0Ac62d136A0c18d_0Ac62d8A0c18d_0Ac80d0_62B3B5__y">
+</div>
+<p>Either way, we now do not need to remember that there are only two candidates left for that cell.</p>
+<p>As soon as we, e.g. find out, that there is a <b>3</b> in the bottom left, we (as always) check how that newly found <b>3</b> influences our grid. We follow along the row and see that there is a cell with only two candidates, one of which is a <b>3</b>.</p>
+<p>We can eliminate that candidate, and the only candidate remaining is the <b>7</b>, which is therefore that cell's solution.</p>
+<hr class="jXd"/>
+<div style="clear: both; margin-bottom: 20px;"></div>
+
+
+
+
+<h2>When viewed from cell candidates' perspective</h2>
+<p>The connection of Naked Singles to cell candidates is very straight forward.</p>
+<p>Every time there is only one cell candidate left for a cell, <i>that</i> is a Naked Single.</p>
+<p>They can be easily spotted, once you notate cell candidates (and keep them updated).</p>
+<p>Here are two examples:</p>
+<div class="jX7 jX9 jXb jXa jXc"
+	data-suco-init="SCv2_600004029007000806000800403009380a7b700200030402070010a7b720010000450a6b2_yyyyy0A256A298A34A168A0A162A0c2dA558A528A0A550A556A554A0A34A0A550A512A38A0A740A738A0A34A0A38A208A0c3dA98A98A114A50A290A336A370Ac2d608A610Ac2d890A306A290Ac2d354A0A608A0A610Ac2d290A776A0A328A612A764A1000A744A888A432A0c2dA328A608A0A872A616A888A304A0c2dA328A576A712A968A714A842A0_0A256A0c17dA512A0c61d_0Ac80d0_1B8B6A19Bc2d6__y">
+</div>
+<div class="jX7 jX9 jXb jXa jXc"
+	data-suco-init="SCv2_0090050007020a5b1130000570a5b10690a10b2006080040a6b705310900040a5b80029_yyyyy336A336A0A414A220Ac2d284A328A332A0A368A0A280A600A600A792A328A0c3dA336A276A596A596A0c2dA324A304A432A440A188A0A156A0c2dA396A880A1008A506A188A700A668A270A298A396A0A672A170Ac2d680Ac2d10A42A0A848A852A336A30A92A94A0A330Ac4d480Ac2d228A196A256A0A320A112A240A240A186A0A218A10Ac2d0_0Ac69d256A0c11d_0Ac80d0_69B8B6__y">
+</div>
+<hr class="jXd"/>
+<div style="clear: both; margin-bottom: 20px;"></div>
+

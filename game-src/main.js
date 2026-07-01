@@ -128,33 +128,9 @@ window.onload = function() {
       });
     }
 
-    // 7.6 初始化剧情引擎和特效系统
-    if (typeof StoryEngine !== 'undefined') {
-      StoryEngine.init();
-    }
-    if (typeof Effects !== 'undefined') {
-      Effects.init();
-    }
-
-    // 7.7 根据章节触发开场剧情
-    triggerChapterIntro(currentLevelId);
-
-    // 7.8 初始化BGM（等用户首次交互后播放）
-    if (typeof MidiBGM !== 'undefined') {
-      const chId = _detectChapter(currentLevelId);
-      MidiBGM.load(chId);
-      // 首次点击/触摸时开始播放BGM
-      const startBGM = () => {
-        MidiBGM.setVolume(0.08);
-        MidiBGM.play();
-        document.removeEventListener('click', startBGM);
-        document.removeEventListener('touchstart', startBGM);
-        document.removeEventListener('keydown', startBGM);
-      };
-      document.addEventListener('click', startBGM);
-      document.addEventListener('touchstart', startBGM);
-      document.addEventListener('keydown', startBGM);
-    }
+    // 7.6 自由模式：不使用逆转裁判式演出（立绘/配音/BGM切换）
+    // 演出系统仅在故事模式（guide.html）中启用
+    // 喜剧系统（文字吐槽）已在上方初始化，保留轻量反馈
 
     // 8. 启动计时器
     startTimer();
@@ -210,7 +186,7 @@ async function loadLevel(id) {
     if (_gameMode === 'killer') {
       // 杀手数独模式：从 levels-killer.json 加载
       if (!_localKillerCache) {
-        const res = await fetch('data/levels-killer.json?v=1');
+        const res = await fetch('data/levels-killer.json?v=2');
         if (res.ok) {
           _localKillerCache = await res.json();
         }
@@ -500,59 +476,22 @@ function _detectChapter(levelId) {
   return 1;
 }
 
-// ---------- 章节开场剧情 ----------
+// ---------- 章节开场剧情（自由模式已禁用，仅故事模式使用）----------
 function triggerChapterIntro(levelId) {
-  if (typeof StoryEngine === 'undefined') return;
-  const chapterId = _detectChapter(levelId);
-  // 设置章节主题
+  // 自由模式不使用逆转裁判式开场演出
+  // 故事模式的开场剧情在 guide.js 的 _initStoryPerformance 中处理
   if (window.renderer) {
+    const chapterId = _detectChapter(levelId);
     window.renderer.setTheme(chapterId);
     refreshBoard();
   }
-  // 延迟播放开场对话
-  setTimeout(() => {
-    const sceneMap = {
-      1: 'ch1_opening',
-      2: 'ch2_opening',
-      3: 'ch3_boss',
-      4: 'ch4_boss',
-      5: 'ch5_boss',
-      6: 'ch6_boss',
-      7: 'ch7_final',
-    };
-    const scene = sceneMap[chapterId];
-    if (scene) {
-      // Boss章节：bossEnter内部会触发特效+延迟600ms播放对应场景
-      // 非Boss章节：直接playScene
-      const bossPortraitMap = { 3: 'ray', 4: 'remnant', 5: 'weaver', 6: 'plotter', 7: 'plotter' };
-      const bossId = bossPortraitMap[chapterId];
-      if (bossId && chapterId >= 3) {
-        // Boss登场：先触发特效，再由bossEnter负责播放剧情场景
-        if (typeof Effects !== 'undefined') {
-          Effects.triggerLevel(3, { portrait: bossId });
-        }
-        // 切换到Boss战BGM
-        if (typeof MidiBGM !== 'undefined') {
-          MidiBGM.setPhase('breakthrough');
-        }
-        if (typeof StoryEngine !== 'undefined') {
-          // 播放对应角色主题
-          MidiBGM.playTheme(bossId);
-          StoryEngine.bossEnter(bossId);
-        }
-      } else {
-        // 普通章节：直接播放开场
-        StoryEngine.playScene(scene);
-      }
-    }
-  }, 800);
 }
 
-// ---------- 连击计数（用于3连击特效）+ 剧情触发 ----------
+// ---------- 连击计数（轻量反馈，无逆转裁判式演出）----------
 let _comboCount = 0;
 let _lastCorrectTime = 0;
-let _storyState = { firstCorrect: false, breakthrough: false, errors: 0, correctCount: 0, bossReactions: 0 };
 function onCorrectPlacement(r, c, num) {
+  // 自由模式：仅保留连击计数（供喜剧系统使用），不触发立绘/配音/破局特效
   const now = Date.now();
   if (now - _lastCorrectTime < 5000) {
     _comboCount++;
@@ -560,48 +499,9 @@ function onCorrectPlacement(r, c, num) {
     _comboCount = 1;
   }
   _lastCorrectTime = now;
-  _storyState.correctCount++;
-
-  // 首次正确放置
-  if (!_storyState.firstCorrect) {
-    _storyState.firstCorrect = true;
-    if (typeof StoryEngine !== 'undefined' && !StoryEngine.isPlaying) {
-      StoryEngine.playScene('first_correct');
-    }
-  }
-
-  // 3连击：轻反馈特效
+  // 连击重置由喜剧系统负责反馈
   if (_comboCount >= 3) {
-    if (typeof Effects !== 'undefined') Effects.triggerLevel(1);
     _comboCount = 0;
-  }
-
-  // 5连击或填对10个数字：突破时刻！切换BGM到breakthrough阶段
-  if (!_storyState.breakthrough && (_comboCount >= 5 || _storyState.correctCount >= 15)) {
-    _storyState.breakthrough = true;
-    if (typeof Effects !== 'undefined') Effects.triggerLevel(2);
-    if (typeof MidiBGM !== 'undefined') MidiBGM.setPhase('breakthrough');
-    if (typeof StoryEngine !== 'undefined' && !StoryEngine.isPlaying) {
-      const chId = _detectChapter(currentLevelId);
-      const breakScenes = {
-        1: 'breakthrough', 2: 'advanced_tech',
-        3: 'ray_break', 4: 'remnant_break',
-        5: 'weaver_seen', 6: 'plotter_broken'
-      };
-      const scene = breakScenes[chId];
-      if (scene) StoryEngine.playScene(scene);
-    }
-  }
-
-  // Boss战中进度触发对手反应
-  const chId = _detectChapter(currentLevelId);
-  if (chId >= 3 && typeof StoryEngine !== 'undefined' && !StoryEngine.isPlaying) {
-    const filledCount = _countFilledCells();
-    if (filledCount >= 50 && _storyState.bossReactions === 0) {
-      _storyState.bossReactions = 1;
-      const scenes = { 3: 'ray_tied', 4: 'remnant_reject', 5: 'weaver_cornered', 6: 'plotter_broken2' };
-      if (scenes[chId]) StoryEngine.playScene(scenes[chId]);
-    }
   }
 }
 
@@ -622,39 +522,9 @@ function markComplete() {
   isCompleted = true;
   clearInterval(timerInterval);
 
-  // 通关特效
-  const chapterId = _detectChapter(currentLevelId);
-  // BGM切换到收官阶段
-  if (typeof MidiBGM !== 'undefined') {
-    MidiBGM.setPhase('finishing');
-  }
-  // 清除暗角效果
-  if (typeof Effects !== 'undefined') {
-    if (chapterId === 7) {
-      Effects.goldenFlash(1200);
-    } else {
-      Effects.victoryFlash();
-    }
-    // 清除Boss登场时的暗角
-    Effects.vignette(0, 800);
-  }
-  if (typeof StoryEngine !== 'undefined') {
-    if (chapterId === 7) {
-      // 终章：finalVictory内部已经处理特效和对话
-      StoryEngine.finalVictory();
-    } else {
-      // 非终章：先播放Boss击败剧情，完成后再显示clear_level
-      const bossMap = { 3: 'ray', 4: 'remnant', 5: 'weaver', 6: 'plotter' };
-      const bossId = bossMap[chapterId];
-      if (bossId) {
-        // bossDefeat内部会播放击败场景，完成后再回调clear_level
-        StoryEngine.bossDefeat(bossId, () => {
-          setTimeout(() => StoryEngine.playScene('clear_level'), 300);
-        });
-      } else {
-        StoryEngine.playScene('clear_level');
-      }
-    }
+  // 自由模式：简单的通关音效
+  if (typeof AudioManager !== 'undefined') {
+    AudioManager.playWin();
   }
 
   // 保存通关记录

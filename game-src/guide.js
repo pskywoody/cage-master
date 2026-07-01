@@ -132,8 +132,41 @@ function enterBreakthrough(opts = {}) {
   phaseIndicator.classList.add('show');
   setTimeout(() => phaseIndicator.classList.remove('show'), 3000);
 
+  // 逆转裁判式破局特效（不播放"什么？！"等惊讶台词，除非是玩家自己突破的）
+  if (!_storyBreakthroughDone) {
+    _storyBreakthroughDone = true;
+    // 只播放金色闪光效果，不显示"异议！"文字
+    if (typeof StoryEngine !== 'undefined') {
+      StoryEngine.breakthrough();
+    } else if (typeof Effects !== 'undefined') {
+      Effects.shake(10, 400);
+      Effects.flash('#ffffff', 300, 0.3);
+      Effects.vignette(0.5, 300);
+    }
+    // 仅在玩家实际操作触发破局时播放惊讶台词（非开局脚本触发）
+    const isScriptedStart = opts.reason === 'scripted' || opts.skipDialogue;
+    if (!isScriptedStart) {
+      // 延迟播放破局台词
+      setTimeout(() => {
+        if (typeof StoryEngine !== 'undefined' && !StoryEngine.isPlaying) {
+          const chId = _detectStoryChapter(currentLevelId);
+          const breakScenes = {
+            1: 'breakthrough', 2: 'advanced_tech',
+            3: 'ray_break', 4: 'remnant_break',
+            5: 'weaver_seen', 6: 'plotter_broken',
+            7: 'setter_broken'
+          };
+          const scene = breakScenes[chId];
+          if (scene) StoryEngine.playScene(scene);
+        }
+      }, 1500);
+    }
+  }
+
   // BGM切换为紧张模式
-  if (typeof AudioManager !== 'undefined' && AudioManager.bgmEnabled) {
+  if (typeof MidiBGM !== 'undefined') {
+    MidiBGM.setPhase('breakthrough');
+  } else if (typeof AudioManager !== 'undefined' && AudioManager.bgmEnabled) {
     AudioManager.startBreakthroughBGM();
   }
 
@@ -170,7 +203,9 @@ function enterFinishing() {
   }
 
   // BGM切换为胜利感
-  if (typeof AudioManager !== 'undefined' && AudioManager.bgmEnabled) {
+  if (typeof MidiBGM !== 'undefined') {
+    MidiBGM.setPhase('finishing');
+  } else if (typeof AudioManager !== 'undefined' && AudioManager.bgmEnabled) {
     AudioManager.startFinishingBGM();
   }
 
@@ -191,10 +226,22 @@ function resetPhase() {
   isEndgameMode = false;
   endgameKeyCells = [];
   endgameKeyCellsFilled = 0;
+  // 重置故事演出状态
+  _storyCorrectCount = 0;
+  _storyComboCount = 0;
+  _storyBreakthroughDone = false;
+  _storyBossDefeatDone = false;
+  _storyInitialized = false;
   if (phaseOverlay) phaseOverlay.classList.remove('active');
   if (phaseIndicator) phaseIndicator.classList.remove('show', 'finishing');
   document.body.classList.remove('phase-breakthrough', 'phase-finishing');
   if (_stuckTimer) { clearTimeout(_stuckTimer); _stuckTimer = null; }
+  // 重置特效
+  if (typeof Effects !== 'undefined') Effects.reset();
+  if (typeof StoryEngine !== 'undefined') {
+    StoryEngine.hideObjection();
+    StoryEngine.interrupt();
+  }
 }
 
 /**
@@ -607,6 +654,8 @@ window.onload = async function() {
         // guide-battle自己的对话系统已在boss-dialogue-zone中处理
         if (typeof window._guideBossSay === 'function') {
           window._guideBossSay(text);
+        } else if (typeof StoryEngine !== 'undefined' && StoryEngine.sayAmbient) {
+          StoryEngine.sayAmbient('plotter', 'smirk', text);
         } else {
           ComedySystem._showBubble('设局人', text, 'linear-gradient(135deg,#dc2626,#991b1b)', '🎭');
         }
@@ -614,6 +663,8 @@ window.onload = async function() {
       window._ayanSay = function(text) {
         if (typeof window._guideAyanSay === 'function') {
           window._guideAyanSay(text);
+        } else if (typeof StoryEngine !== 'undefined' && StoryEngine.sayAmbient) {
+          StoryEngine.sayAmbient('ray', 'smile', text);
         } else {
           ComedySystem._showBubble('阿岩', text, 'linear-gradient(135deg,#22c55e,#15803d)', '🍃');
         }
@@ -639,22 +690,46 @@ window.onload = async function() {
       }
 
       // 12.7 检查是否需要播放章节开场剧情
-      const shouldPlay = storyManager && currentChapterData &&
-        (forcePlayStory || storyManager.shouldPlayIntro(currentChapterData, currentLevelId));
-      if (shouldPlay) {
-        console.log('📖 播放章节开场剧情');
-        storyManager.playChapterIntro(currentChapterData, () => {
-          // 章节开场播完，播放关卡前置对话
+      // 第101关使用全新的StoryEngine（逆转裁判式立绘+打字机音效+配音）
+      // 完全跳过旧StoryModal的chapterIntro和preDialog
+      const numId = parseInt(currentLevelId);
+      const isFirstChapter = numId === 101;
+      const useNewStoryEngine = isFirstChapter && typeof StoryEngine !== 'undefined';
+
+      if (useNewStoryEngine) {
+        // 新StoryEngine开场：第一章完整剧情（带立绘+打字机音效+配音）
+        try {
+          if (storyManager && storyManager.modal) {
+            storyManager.modal.el.style.display = 'none';
+            storyManager.modal.el.classList.remove('active');
+          }
+          StoryEngine.init();
+          StoryEngine.preloadAll();
+          StoryEngine.playScene('ch1_opening_full', () => {
+            onPreDialogComplete();
+          });
+        } catch(e) {
+          console.error('StoryEngine error:', e);
+          onPreDialogComplete();
+        }
+      } else {
+        const shouldPlay = storyManager && currentChapterData &&
+          (forcePlayStory || storyManager.shouldPlayIntro(currentChapterData, currentLevelId));
+        if (shouldPlay) {
+          console.log('📖 播放章节开场剧情');
+          storyManager.playChapterIntro(currentChapterData, () => {
+            // 章节开场播完，播放关卡前置对话
+            playLevelPreDialog(() => {
+              onPreDialogComplete();
+            });
+          });
+        } else {
+          console.log('📖 跳过开场剧情');
+          // 播放关卡前置对话
           playLevelPreDialog(() => {
             onPreDialogComplete();
           });
-        });
-      } else {
-        console.log('📖 跳过开场剧情');
-        // 播放关卡前置对话
-        playLevelPreDialog(() => {
-          onPreDialogComplete();
-        });
+        }
       }
     }).catch(err => {
       console.error('❌ 加载章节数据失败:', err);
@@ -723,58 +798,39 @@ async function loadLocalTeachingLevel(levelId) {
   const numId = parseInt(levelId);
   const chapterId = Math.floor(numId / 100);
 
-  // 尝试从 chapters.json 中找
+  // 优先从 chapters.json 中找（这是唯一正确的数据源）
   try {
     const res = await fetch('data/chapters.json');
     const chapters = await res.json();
     const chapter = chapters.find(c => c.chapterId === chapterId);
     if (chapter && chapter.levels) {
       const level = chapter.levels.find(l => String(l.levelId) === String(levelId));
-      if (level && level.boardData && level.cages) {
-        return {
-          ...level,
-          size: level.gridSize,
-          cells: level.boardData,
-          gridSize: level.gridSize
-        };
+      if (level && level.boardData) {
+        // 确保cages字段存在（即使是空数组）
+        const cages = level.cages || [];
+        // 检查boardData是否有非0数字（防止空白题）
+        const hasNumbers = level.boardData.some(row => row.some(v => v !== 0));
+        if (hasNumbers) {
+          console.log(`✅ 从chapters.json加载关卡 ${levelId}`);
+          return {
+            ...level,
+            size: level.gridSize,
+            cells: level.boardData,
+            cages: cages,
+            gridSize: level.gridSize
+          };
+        } else {
+          console.warn(`⚠️ chapters.json中关卡 ${levelId} 的boardData全0，忽略`);
+        }
       }
     }
   } catch (e) {
     console.warn('本地章节数据加载失败：', e.message);
   }
 
-  // 尝试从教学关卡数据文件加载
-  const dataFiles = [
-    'data/teaching-levels-chapter1.json',
-    'data/teaching-levels-ch2-3.json',
-    'data/teaching-levels-ch4-6.json'
-  ];
-
-  for (const file of dataFiles) {
-    try {
-      const res = await fetch(file);
-      const levels = await res.json();
-      if (Array.isArray(levels)) {
-        const level = levels.find(l => String(l.id) === String(levelId));
-        if (level) {
-          return {
-            ...level,
-            gridSize: level.size,
-            title: level.title || `第${numId % 100}关`,
-            teachingGoal: level.teachingGoal || '完成这道题',
-            features: {
-              allowDraft: true,
-              assistant45: true,
-              showHints: true
-            }
-          };
-        }
-      }
-    } catch (e) {
-      // 继续尝试下一个文件
-    }
-  }
-
+  // 不再使用旧的teaching-levels-*.json文件，因为它们是全0的测试数据
+  // 直接返回null，让getFallbackTeachingLevel处理
+  console.warn(`⚠️ 未找到关卡 ${levelId} 的有效数据`);
   return null;
 }
 
@@ -784,60 +840,26 @@ function getFallbackTeachingLevel(levelId) {
   const chapterId = Math.floor(numId / 100);
   const levelNum = numId % 100;
 
-  // 根据章节和关卡号确定盘面大小（更精确的启发式）
-  let size = 9;
-  if (chapterId <= 1) {
-    size = 4;
-  } else if (chapterId === 2) {
-    // 第2章：前3关6x6，后5关9x9
-    size = levelNum <= 3 ? 6 : 9;
-  } else {
-    // 第3-7章全是9x9
-    size = 9;
+  // 验证关卡ID是否在有效范围内
+  // 各章实际关卡数：第1章10关(100-109)，第2章8关(201-208)，第3章7关(301-307)，第4-7章各6关
+  const maxLevels = { 1: 9, 2: 8, 3: 7, 4: 6, 5: 6, 6: 6, 7: 6 };
+  const minLevel = chapterId === 1 ? 0 : 1;
+  const max = maxLevels[chapterId] || 9;
+  if (levelNum < minLevel || levelNum > max) {
+    console.warn(`⚠️ 关卡 ${levelId} 不存在，重定向到章节选择`);
+    setTimeout(() => {
+      window.location.href = 'chapter-levels.html?id=' + chapterId;
+    }, 100);
+    return null;
   }
 
-  console.warn(`⚠️ 使用降级关卡 ${levelId}（${size}x${size}），所有数据源均加载失败`);
-
-  // 生成一个简单的棋盘
-  const cells = [];
-  for (let r = 0; r < size; r++) {
-    cells[r] = [];
-    for (let c = 0; c < size; c++) {
-      cells[r][c] = 0;
-    }
-  }
-
-  // 生成简单的单格笼子（每个格子一个笼子，和值就是该位置的解）
-  const cages = [];
-  let cageId = 1;
-  for (let r = 0; r < size; r++) {
-    for (let c = 0; c < size; c++) {
-      // 用简单的规律生成和值（不是真正的解，只是用于测试）
-      const sum = ((r + c) % size) + 1;
-      cages.push({
-        id: cageId++,
-        sum: sum,
-        cells: [[r, c]]
-      });
-    }
-  }
-
-  return {
-    id: numId,
-    levelId: numId,
-    title: `第${levelNum}关：教学练习`,
-    gridSize: size,
-    size: size,
-    difficulty: '入门',
-    teachingGoal: `完成${size}x${size}教学练习（降级数据，请检查数据源）`,
-    features: {
-      allowDraft: levelNum > 2,
-      assistant45: levelNum > 5,
-      showHints: true
-    },
-    cells: cells,
-    cages: cages
-  };
+  // 所有数据源都失败，直接重定向回章节选择页面
+  console.error(`❌ 关卡 ${levelId} 数据加载失败，返回章节选择`);
+  alert('关卡数据加载失败，请刷新页面重试');
+  setTimeout(() => {
+    window.location.href = 'chapter-levels.html?id=' + chapterId;
+  }, 500);
+  return null;
 }
 
 // 从关卡数据中提取盘面数据
@@ -1206,6 +1228,186 @@ function normalizeDialogues(dialogues) {
   });
 }
 
+// ========== 逆转裁判式演出系统集成 ==========
+let _storyInitialized = false;
+let _storyCorrectCount = 0;
+let _storyComboCount = 0;
+let _storyBreakthroughDone = false;
+let _storyBossDefeatDone = false;
+let _isFinalChapter = false;
+
+function _detectStoryChapter(levelId) {
+  const id = parseInt(levelId);
+  if (id >= 700) return 7;
+  return Math.floor(id / 100);
+}
+
+function _getBossIdForChapter(chId) {
+  const map = { 1: 'ray', 2: 'cagekeeper', 3: 'plotterShadow', 4: 'remnant', 5: 'weaver', 6: 'plotter', 7: 'setterSecret' };
+  return map[chId] || null;
+}
+
+function _isBossLevel(levelId) {
+  const id = parseInt(levelId);
+  const chId = _detectStoryChapter(id);
+  // Boss关为每章最后一关（109→守笼人测试关，307→阿岩，406→残局守护者，506→星辰梭，606→设局人，706→终章设局人）
+  const bossLevels = { 1: 109, 2: 208, 3: 307, 4: 406, 5: 506, 6: 606, 7: 706 };
+  return bossLevels[chId] === id || (currentLevelData && currentLevelData.isBoss === true);
+}
+
+function _initStoryPerformance() {
+  if (_storyInitialized) return;
+  _storyInitialized = true;
+
+  // 初始化特效系统
+  if (typeof Effects !== 'undefined') {
+    Effects.init();
+  }
+
+  // 初始化剧情引擎
+  if (typeof StoryEngine !== 'undefined') {
+    StoryEngine.init();
+    StoryEngine.preloadAll();
+  }
+
+  // 初始化MIDI BGM
+  const chIdForBGM = _detectStoryChapter(currentLevelId);
+  if (typeof MidiBGM !== 'undefined') {
+    MidiBGM.load(chIdForBGM);
+    const startBGM = () => {
+      MidiBGM.setVolume(0.35);
+      MidiBGM.play();
+      document.removeEventListener('click', startBGM);
+      document.removeEventListener('touchstart', startBGM);
+      document.removeEventListener('keydown', startBGM);
+    };
+    document.addEventListener('click', startBGM);
+    document.addEventListener('touchstart', startBGM);
+    document.addEventListener('keydown', startBGM);
+  } else if (typeof AudioManager !== 'undefined') {
+    // 回退到AudioManager BGM
+    const startBGM = () => {
+      if (AudioManager.bgmEnabled && !AudioManager.bgmPlaying) {
+        AudioManager.startBGM();
+      }
+      document.removeEventListener('click', startBGM);
+      document.removeEventListener('touchstart', startBGM);
+      document.removeEventListener('keydown', startBGM);
+    };
+    document.addEventListener('click', startBGM);
+    document.addEventListener('touchstart', startBGM);
+    document.addEventListener('keydown', startBGM);
+  }
+
+  // 绑定配音开关
+  const voiceToggle = document.getElementById('setting-voice');
+  if (voiceToggle && typeof StoryEngine !== 'undefined') {
+    StoryEngine.setVoiceEnabled(voiceToggle.checked);
+    voiceToggle.addEventListener('change', () => {
+      StoryEngine.setVoiceEnabled(voiceToggle.checked);
+    });
+  } else if (typeof StoryEngine !== 'undefined') {
+    StoryEngine.setVoiceEnabled(true);
+  }
+
+  // Boss关开场：砸入演出
+  const chId = _detectStoryChapter(currentLevelId);
+  const bossId = _getBossIdForChapter(chId);
+  if (_isBossLevel(currentLevelId) && bossId && typeof StoryEngine !== 'undefined') {
+    setTimeout(() => {
+      StoryEngine.bossEnter(bossId);
+    }, 800);
+  }
+  // 注意：第101关的开场剧情已在loadChapterData流程中通过ch1_opening_full播放，此处不再重复触发
+}
+
+function _onStoryCorrect() {
+  if (!_storyInitialized) return;
+  _storyCorrectCount++;
+  _storyComboCount++;
+
+  // 5连击或累计15格正确：破局时刻！
+  if (!_storyBreakthroughDone && (_storyComboCount >= 5 || _storyCorrectCount >= 15)) {
+    _storyBreakthroughDone = true;
+    if (typeof StoryEngine !== 'undefined') {
+      StoryEngine.breakthrough();
+    }
+    // 延迟播放破局台词
+    setTimeout(() => {
+      if (typeof StoryEngine !== 'undefined' && !StoryEngine.isPlaying) {
+        const chId = _detectStoryChapter(currentLevelId);
+        const breakScenes = {
+          1: 'breakthrough', 2: 'advanced_tech',
+          3: 'ray_break', 4: 'remnant_break',
+          5: 'weaver_seen', 6: 'plotter_broken',
+          7: 'setter_broken'
+        };
+        const scene = breakScenes[chId];
+        if (scene) StoryEngine.playScene(scene);
+      }
+    }, 1500);
+  }
+
+  // Boss被逼入绝境（累计30格正确时）
+  if (_isBossLevel(currentLevelId) && _storyCorrectCount >= 30 && !_storyBossDefeatDone) {
+    const chId = _detectStoryChapter(currentLevelId);
+    const cornerScenes = {
+      3: 'ray_tied', 4: 'remnant_reject',
+      5: 'weaver_cornered', 6: 'plotter_broken2',
+      7: 'setter_broken2'
+    };
+    const scene = cornerScenes[chId];
+    if (scene && typeof StoryEngine !== 'undefined' && !StoryEngine.isPlaying) {
+      StoryEngine.playScene(scene);
+    }
+  }
+}
+
+function _onStoryWrong() {
+  _storyComboCount = 0;
+}
+
+function _onStoryComplete() {
+  if (_storyBossDefeatDone) return;
+  _storyBossDefeatDone = true;
+
+  const chId = _detectStoryChapter(currentLevelId);
+  const bossId = _getBossIdForChapter(chId);
+  const isBoss = _isBossLevel(currentLevelId);
+
+  if (chId === 7) {
+    // 终章：finalVictory会自己处理结局演出+结局字幕+跳转
+    if (typeof StoryEngine !== 'undefined') {
+      StoryEngine.finalVictory(() => {
+        // 结局演出结束后，颁发终章徽章
+        if (currentChapterData && currentChapterData.badge) {
+          const badgeData = currentChapterData.badge;
+          if (typeof Storage !== 'undefined' && !Storage.hasBadge(badgeData.id)) {
+            Storage.unlockBadge(badgeData.id, { name: badgeData.name });
+            if (storyManager && storyManager.badgeAward) {
+              storyManager.badgeAward.show(badgeData);
+            }
+          }
+        }
+      });
+    }
+    _isFinalChapter = true; // 标记终章，跳过普通弹窗
+  } else if (isBoss && bossId && typeof StoryEngine !== 'undefined') {
+    // Boss击败
+    StoryEngine.bossDefeat(bossId, () => {
+      setTimeout(() => StoryEngine.playScene('clear_level'), 300);
+    });
+  } else {
+    // 普通关通关：只播放通关音效和金色闪光，不播放"恭喜通关"语音
+    if (typeof StoryEngine !== 'undefined') {
+      if (typeof Effects !== 'undefined') {
+        Effects.triggerLevel(4, { type: 'flash' });
+      }
+    }
+    if (typeof AudioManager !== 'undefined') AudioManager.playWin();
+  }
+}
+
 /**
  * preDialog播放完成后的处理：检查是否为Boss关卡或技巧教学关
  */
@@ -1290,20 +1492,29 @@ function _getTutorialKey(levelId) {
  * 启动Boss战
  */
 function startBossBattle(bossConfig) {
-  if (!storyManager || !storyManager.modal) {
-    // StoryModal不可用，直接开始
-    _initBattleAndStart(bossConfig);
-    return;
-  }
-
-  // 播放Boss战前对话
+  // 播放Boss战前对话（使用StoryEngine大立绘演出）
   const preBattleDialog = bossConfig.preDialog || [
     { speaker: bossConfig.name, text: '来吧，和我一决高下！' }
   ];
 
-  storyManager.modal.play(preBattleDialog, () => {
-    _initBattleAndStart(bossConfig);
-  });
+  // 优先使用StoryEngine大立绘
+  if (typeof StoryEngine !== 'undefined' && StoryEngine.sayLines) {
+    StoryEngine.sayLines(preBattleDialog, () => {
+      _initBattleAndStart(bossConfig);
+    });
+    return;
+  }
+
+  // 降级到StoryModal
+  if (storyManager && storyManager.modal) {
+    storyManager.modal.play(preBattleDialog, () => {
+      _initBattleAndStart(bossConfig);
+    });
+    return;
+  }
+
+  // 都不可用，直接开始
+  _initBattleAndStart(bossConfig);
 }
 
 /**
@@ -1744,10 +1955,13 @@ function _onBossBattleEnd(result, bossConfig) {
     const winDialog = bossConfig.winDialog || [
       { speaker: '阿岩', text: '赢了！' }
     ];
-    if (storyManager && storyManager.modal) {
+    // 优先使用StoryEngine大立绘
+    if (typeof StoryEngine !== 'undefined' && StoryEngine.sayLines) {
+      StoryEngine.sayLines(winDialog, () => {
+        markComplete();
+      });
+    } else if (storyManager && storyManager.modal) {
       storyManager.modal.play(winDialog, () => {
-        // 继续到markComplete
-        // 此时isCompleted检查会通过，因为玩家已经填满了
         markComplete();
       });
     } else {
@@ -1773,8 +1987,11 @@ function playLevelPreDialog(onComplete) {
     return;
   }
   localStorage.setItem(preDialogKey, '1');
-  const dialogues = normalizeDialogues(preDialog);
-  if (storyManager && storyManager.modal) {
+  // 使用新StoryEngine播放前置对话（带立绘+打字机效果）
+  if (typeof StoryEngine !== 'undefined') {
+    StoryEngine.sayLines(preDialog, onComplete);
+  } else if (storyManager && storyManager.modal) {
+    const dialogues = normalizeDialogues(preDialog);
     storyManager.modal.play(dialogues, onComplete);
   } else {
     if (onComplete) onComplete();
@@ -1786,6 +2003,12 @@ function markComplete() {
   isCompleted = true;
   clearInterval(timerInterval);
 
+  // 逆转裁判式通关演出（会设置_isFinalChapter标志）
+  _onStoryComplete();
+
+  // 终章标志
+  const isFinal = _isFinalChapter;
+
   // 引导系统：通关触发
   guide_onLevelComplete();
 
@@ -1795,7 +2018,7 @@ function markComplete() {
   // 喜剧系统：评分
   let gradeInfo = { stars, grade: stars === 3 ? 'A' : stars === 2 ? 'B' : 'C' };
   if (typeof ComedySystem !== 'undefined') {
-    const baseTime = currentGridSize === 4 ? 60 : currentGridSize === 6 ? 180 : 360;
+    const baseTime = currentGridSize === 4 ? 120 : currentGridSize === 6 ? 240 : 420;
     const mistakes = ComedySystem.state.totalWrong;
     const ratio = elapsedSeconds / baseTime;
     if (ratio < 0.4 && mistakes === 0) gradeInfo = { stars: 3, grade: 'SSS', mistakes };
@@ -1806,7 +2029,7 @@ function markComplete() {
 
     const isBoss = currentLevelData && (currentLevelData.isBoss || (typeof BOSS_CONFIGS !== 'undefined' && BOSS_CONFIGS[currentLevelId]));
     ComedySystem.onComplete({
-      expectedSec: currentGridSize === 4 ? 60 : currentGridSize === 6 ? 180 : 420
+      expectedSec: currentGridSize === 4 ? 120 : currentGridSize === 6 ? 240 : 420
     });
     // S级连关彩蛋
     if (typeof ComedySystem.onSGradeStreak === 'function') {
@@ -1844,6 +2067,23 @@ function markComplete() {
   if (gradeEl) {
     gradeEl.textContent = gradeInfo.grade;
     gradeEl.className = 'complete-grade-badge grade-' + gradeInfo.grade;
+  }
+
+  // 档案碎片奖励（Boss关和首次通关关键关获得）
+  const fragmentEl = document.getElementById('complete-fragment');
+  const isBoss = currentLevelData && (currentLevelData.isBoss || (typeof BOSS_CONFIGS !== 'undefined' && BOSS_CONFIGS[currentLevelId]));
+  const isKeyLevel = isBoss || (parseInt(currentLevelId) % 100 <= 3); // 每章前3关和Boss关给碎片
+  if (fragmentEl && isKeyLevel) {
+    fragmentEl.style.display = 'flex';
+    // 存储碎片收集进度
+    try {
+      const fragments = JSON.parse(localStorage.getItem('killersudoku_fragments') || '{}');
+      const chKey = 'ch' + _detectStoryChapter(currentLevelId);
+      fragments[chKey] = (fragments[chKey] || 0) + 1;
+      localStorage.setItem('killersudoku_fragments', JSON.stringify(fragments));
+    } catch(e) {}
+  } else if (fragmentEl) {
+    fragmentEl.style.display = 'none';
   }
 
   // 守笼人评语
@@ -1899,13 +2139,32 @@ function markComplete() {
       localStorage.setItem(clearDialogKey, '1');
       setTimeout(() => {
         if (overlay) overlay.classList.remove('active');
-        const dialogues = normalizeDialogues(clearDialog);
-        storyManager.modal.play(dialogues, playEndingThenOverlay);
+        // 使用新StoryEngine播放通关对话（带立绘+打字机效果）
+        if (typeof StoryEngine !== 'undefined') {
+          StoryEngine.sayLines(clearDialog, playEndingThenOverlay);
+        } else {
+          const dialogues = normalizeDialogues(clearDialog);
+          storyManager.modal.play(dialogues, playEndingThenOverlay);
+        }
       }, 600);
     } else {
       playEndingThenOverlay();
     }
   };
+
+  // 终章：finalVictory自己处理结局演出+字幕+跳转，不弹普通通关弹窗
+  if (isFinal) {
+    // 但仍然需要保存通关记录
+    if (typeof Storage !== 'undefined') {
+      Storage.markTeachingComplete(currentLevelId, {
+        time: elapsedSeconds,
+        stars: gradeInfo.stars
+      });
+      Storage.clearTeachingProgress(currentLevelId);
+      updateChapterProgress();
+    }
+    return;
+  }
 
   if (shouldPlayClear || shouldPlayEnding) {
     if (overlay) overlay.classList.add('active');
@@ -1917,10 +2176,11 @@ function markComplete() {
 
 // 计算星星数
 function calculateStars(seconds, size) {
-  // 基准时间：4x4=60秒，6x6=180秒，9x9=360秒
-  const baseTime = size === 4 ? 60 : size === 6 ? 180 : 360;
-  if (seconds <= baseTime) return 3;
-  if (seconds <= baseTime * 2) return 2;
+  // 基准时间与ComedySystem一致：4x4=120秒，6x6=240秒，9x9=420秒
+  const baseTime = size === 4 ? 120 : size === 6 ? 240 : 420;
+  const ratio = seconds / baseTime;
+  if (ratio <= 1.0) return 3;
+  if (ratio <= 1.5) return 2;
   return 1;
 }
 
@@ -1932,8 +2192,20 @@ function updateChapterProgress() {
 
 // 检查并解锁徽章
 function checkAndUnlockBadge() {
-  // 这里可以根据不同条件解锁徽章
-  // 简化：通关第一章所有关卡后解锁对应徽章
+  // 章末徽章由 playChapterEnding 在结局剧情后颁发
+  // 这里做备用检查：如果当前章节的徽章尚未获得且已通关最后一关，则补发
+  if (!currentChapterData || !currentChapterData.badge) return;
+  const badgeData = currentChapterData.badge;
+  if (typeof Storage === 'undefined' || Storage.hasBadge(badgeData.id)) return;
+
+  // 检查是否通关了最后一关
+  const levels = currentChapterData.levels || [];
+  if (levels.length === 0) return;
+  const lastLevel = levels[levels.length - 1];
+  const lastLevelId = String(lastLevel.levelId);
+  if (Storage.isTeachingLevelCompleted(lastLevelId)) {
+    Storage.unlockBadge(badgeData.id, { name: badgeData.name });
+  }
 }
 
 // ---------- 通关弹窗按钮绑定 ----------
@@ -1972,13 +2244,14 @@ function checkNextLevelExists(levelId) {
     if (currentChapterData && currentChapterData.levels) {
       return currentChapterData.levels.some(l => String(l.levelId) === String(levelId));
     }
-    // 降级：根据章节ID推算最大关卡数
+    // 降级：根据章节ID推算最大关卡数（仅在currentChapterData未加载时使用）
     const chapterId = Math.floor(levelId / 100);
     const levelNum = levelId % 100;
-    // 各章实际关卡数：第1章9关，第2章8关，第3章7关，第4-7章各6关
+    // 各章实际关卡数：第1章10关(100-109含教学0关和Boss)，第2章8关(201-208)，第3章7关(301-307)，第4-7章各6关
     const maxLevels = { 1: 9, 2: 8, 3: 7, 4: 6, 5: 6, 6: 6, 7: 6 };
+    const minLevel = chapterId === 1 ? 0 : 1;
     const max = maxLevels[chapterId] || 9;
-    return levelNum >= 1 && levelNum <= max;
+    return levelNum >= minLevel && levelNum <= max;
   } catch (e) {
     // 出错时保守处理
     return false;
@@ -3128,8 +3401,18 @@ function showGameToast(msg) {
 function confirmRestart() {
   if (!currentLevelId) return;
   if (!confirm('确定要重来这关吗？所有已填的数字将被清空。')) return;
-  Storage.clearTeachingProgress(currentLevelId);
-  window.location.reload();
+  // 清除所有相关存档
+  try {
+    Storage.clearTeachingProgress(currentLevelId);
+    Storage.clearTeachingProgress(String(currentLevelId));
+    // 同时清除通用存档key
+    const saveKey = 'killersudoku_save_' + currentLevelId;
+    localStorage.removeItem(saveKey);
+    const saveKey2 = 'killersudoku_save_' + String(currentLevelId);
+    localStorage.removeItem(saveKey2);
+  } catch(e) { console.warn('清除存档失败:', e); }
+  // 强制重新加载，不使用缓存
+  window.location.replace(window.location.pathname + '?levelId=' + currentLevelId + '&reset=1');
 }
 
 // ==========================================
@@ -3137,6 +3420,9 @@ function confirmRestart() {
 // ==========================================
 
 function initGuideManager() {
+  // 初始化逆转裁判式演出系统
+  _initStoryPerformance();
+
   if (!window.GuideManager) {
     console.warn('⚠️ GuideManager 未加载');
     return;
@@ -3227,6 +3513,13 @@ function guide_onNumberFilled(r, c, num) {
   // 判断填数是否正确（与solution对比）
   const solution = currentLevelData && currentLevelData.solution;
   const isCorrect = !!(solution && solution[r] && solution[r][c] === num);
+
+  // 逆转裁判式演出：正确/错误回调
+  if (isCorrect) {
+    _onStoryCorrect();
+  } else {
+    _onStoryWrong();
+  }
 
   // ====== 防猜机制（破局阶段）======
   // 在破局阶段，填错数字立即闪红并清除，不给"猜"留空间

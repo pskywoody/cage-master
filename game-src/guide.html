@@ -104,6 +104,10 @@
       <h3 data-i18n="ui.complete.title">恭喜通关！</h3>
       <div id="complete-grade" class="complete-grade-badge grade-A">A</div>
       <div id="complete-stars" class="complete-stars"></div>
+      <div id="complete-fragment" class="complete-fragment" style="display:none;">
+        <span class="fragment-icon">📜</span>
+        <span class="fragment-text">获得档案碎片</span>
+      </div>
       <div id="complete-time" class="complete-time" data-i18n="ui.complete.timeUsed">用时 00:00</div>
       <div id="complete-comment" class="complete-comment" style="display:none;">
         <div class="complete-comment-speaker">🧙 守笼人</div>
@@ -195,6 +199,16 @@
             </div>
             <label class="toggle-switch">
               <input type="checkbox" id="setting-sfx" checked />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <div class="setting-item">
+            <div class="setting-info">
+              <span class="setting-name">🎙️ 剧情配音</span>
+              <span class="setting-desc">角色对话语音与打字机音效</span>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="setting-voice" checked />
               <span class="toggle-slider"></span>
             </label>
           </div>
@@ -293,22 +307,23 @@
     </div>
   </div>
 
-  <script src="utils/storage.js?v=38"></script>
+  <script src="utils/storage.js?v=39"></script>
   <script src="utils/i18n.js?v=39"></script>
-  <script src="utils/audio.js?v=38"></script>
+  <script src="utils/audio.js?v=41"></script>
   <script>if (typeof AudioManager !== 'undefined') { AudioManager.init(); }</script>
-  <script src="utils/comedy.js?v=3"></script>
+  <script src="data/dialogues.js?v=6"></script>
+  <script src="utils/comedy.js?v=7"></script>
   <script src="utils/technique-tutorial.js?v=38"></script>
-  <script src="game.js?v=38"></script>
-  <script src="renderer.js?v=38"></script>
-  <script src="config/chapter-styles.js?v=1"></script>
-  <script src="data/dialogues.js?v=1"></script>
-  <script src="scripts/effects.js?v=1"></script>
-  <script src="story.js?v=38"></script>
-  <script src="scripts/story.js?v=1"></script>
-  <script src="guide-manager.js?v=38"></script>
-  <script src="guide-battle.js?v=38"></script>
-  <script src="guide.js?v=41"></script>
+  <script src="game.js?v=41"></script>
+  <script src="renderer.js?v=41"></script>
+  <script src="config/chapter-styles.js?v=2"></script>
+  <script src="scripts/effects.js?v=10"></script>
+  <script src="scripts/midi-bgm.js?v=4"></script>
+  <script src="story.js?v=50"></script>
+  <script src="scripts/story.js?v=22"></script>
+  <script src="guide-manager.js?v=44"></script>
+  <script src="guide-battle.js?v=45"></script>
+  <script src="guide.js?v=65"></script>
   <style>
     .lang-btn {
       padding: 6px 12px;

@@ -697,8 +697,8 @@ const Storage = (function() {
    * @returns {boolean}
    */
   function isChapterUnlocked(chapterId, unlockRequirement = 0) {
-    // 开发阶段：所有章节默认解锁，方便测试
-    return true;
+    // 调试模式：URL带?unlock=all时全部解锁
+    if (typeof window !== 'undefined' && window.location.search.includes('unlock=all')) return true;
     // 第一章默认解锁
     if (chapterId === 1 || chapterId === '1') return true;
     if (unlockRequirement === 0) return true;
@@ -718,8 +718,8 @@ const Storage = (function() {
    * @returns {boolean}
    */
   function isTeachingLevelUnlocked(levelId, levelIdsInChapter) {
-    // 开发阶段：所有教学关卡默认解锁，方便测试
-    return true;
+    // 调试模式：URL带?unlock=all时全部解锁
+    if (typeof window !== 'undefined' && window.location.search.includes('unlock=all')) return true;
     const idx = levelIdsInChapter.indexOf(String(levelId));
     if (idx === -1) {
       // 也尝试数字比较

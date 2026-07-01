@@ -1,0 +1,104 @@
+﻿<h2>Description</h2>
+<div class="jX7 jX9 jXb jXa jXc"
+	data-suco-init="SCv2_yyyyy70080a14b80a62b_6A0c2dA10Ac15d12A0c62d_0Ac3d8A0c14dA8A0c62d_0Ac80d0_3Bc2d8A18B3B8__y">
+</div>
+<p>This is a <b>Y-Wing</b>.</p>
+<ul>
+	<li>The <span class="jXz" style="background-color: var(--jX6p)"></span> cell is called <b>pivot cell</b>.</li>
+	<li>The <span class="jXz" style="background-color: var(--jXgs)"></span> cells are called <b>wings</b>. Both <i>must</i> see the pivot cell.</li>
+</ul>
+<p><b>All three cells</b> (pivot + 2 wings) must <b>each</b> have <b>exactly two candidates</b>.</p>
+<p>One of those candidates must be in both wings, but <b><i>not</i></b> in the pivot cell. Here the <b>common candidate</b> is the <span class="jXz" style="background-color: var(--jXgs)">3</span>.</p>
+<hr class="jXd"/>
+<div style="clear: both; margin-bottom: 20px;"></div>
+
+
+<p>For this example, there are <b>two possible outcomes</b>:</p>
+<div class="jX7 jX9 jXb jXa jX3l"
+	data-suco-init="SCv2_yyyy10030a14b20a62b_70080a14b80a62b_0Ac80d0_0Ac80d0_0Ac80d0___y">
+</div>
+<div class="jX7 jX9 jXb jXa jX3l"
+data-suco-init="SCv2_yyyy20010a14b30a62b_70080a14b80a62b_0Ac80d0_0Ac80d0_0Ac80d0___y">
+</div>
+<hr class="jXd"/>
+<div style="clear: both; margin-bottom: 20px;"></div>
+
+
+
+<div class="jX7 jX9 jXb jXa jXc"
+	data-suco-init="SCv2_yyyyy75580a14b8005550a57b_6A8c2dA10Ac15d12A0c2dA8c3dA0c57d_0A8c3dA0c14dA8A0c2dA8c3dA0c57d_0Ac80d0_1B3B5A2B3B5A3Bc2d8A18B3B8A21B3B5A22B3B5A23Bc2d5__y">
+</div>
+<p>Since there must be a <b>3</b> in one of those two cells, we know that all cells that see those two cells cannot hold a <b>3</b>.</p>
+<p>The <span class="jXz" style="background-color: var(--jX43)"></span> cells are seen by both wings, so we can <b>eliminate</b> the <b>common candidate</b> (<b>3</b>) from them.</p>
+<hr class="jXd"/>
+<div style="clear: both; margin-bottom: 20px;"></div>
+
+
+<h2>Another way to look at it</h2>
+<div class="jX7 jX9 jXb jXa jXc"
+	data-suco-init="SCv2_yyyyy75580a14b8005550a57b_6A8c2dA10Ac15d12A0c2dA8c3dA0c57d_0A8c3dA0c14dA8A0c2dA8c3dA0c57d_0Ac80d0_1B3B5A2B3B5A3Bc2d8A18B3B8A21B3B5A22B3B5A23Bc2d5__y">
+</div>
+<p>If any of the <span class="jXz" style="background-color: var(--jX43)">3</span> were true...</p>
+<hr class="jXd"/>
+<div style="clear: both; margin-bottom: 20px;"></div>
+
+
+<div class="jX7 jX9 jXb jXa jXc"
+	data-suco-init="SCv2_yyyyy75580a14b8005550a57b_6A8c2dA2A0c14dA4A0c2dA8c3dA0c57d_0A8c2dA0c18dA8c3dA0c57d_0Ac80d0_1B3B5A2B3B5A21B3B5A22B3B5A23Bc2d5__y">
+</div>
+<p>... then that would leave only one candidate in each wing...</p>
+<hr class="jXd"/>
+<div style="clear: both; margin-bottom: 20px;"></div>
+
+
+<div class="jX7 jX9 jXb jXa jXc"
+	data-suco-init="SCv2_yyyy00010a14b20a62b_75580a14b8005550a57b_6A0c80d_6A0c80d_0Ac80d0_0B1B5A0B2B5__y">
+</div>
+<p>... and the pivot cell would have no candidates left, and therefore no solution.</p>
+<hr class="jXd"/>
+<div style="clear: both; margin-bottom: 20px;"></div>
+
+
+<h2>Spread over four boxes</h2>
+<div class="jX7 jX9 jXb jXa jXc"
+	data-suco-init="SCv2_yyyyy70080a32b80050a41b_6A0c2dA10Ac33d12A0c44d_0Ac3d8A0c32dA8A0c44d_0Ac80d0_3Bc2d8A36B3B8__y">
+</div>
+<p>In case the <b>pivot cell</b> is <b>not in the same box as a wing</b>, the Y-Wing spreads over four boxes.</p>
+<p>In this case, there is only <b>one cell</b> that both wings see. (<span class="jXz" style="background-color: var(--jX43)"></span>)</p>
+<hr class="jXd"/>
+<div style="clear: both; margin-bottom: 20px;"></div>
+
+
+<h2>Y-Wing Examples</h2>
+<div class="jX5k"><span class="jXz" style="background-color: var(--jX6p)"></span><div class="jX5l">the pivot cell</div></div>
+<div class="jX5k"><span class="jXz" style="background-color: var(--jXgs)"></span><div class="jX5l">the wings</div></div>
+<div class="jX5k"><span class="jXz" style="background-color: var(--jX43)"></span><div class="jX5l">the candidates we can eliminate</div></div>
+<div style="clear: both; margin-bottom: 20px;"></div>
+
+<div class="jX7 jX9 jXb jXa jXc"
+	data-suco-init="SCv2_004000080000100900610a6b20a9b849050010031200007000010070000806005700500690_yyy90a5b10030a7b40a6b7002000815090a6b20050a5b800400902308193070420a9b1_000070008000080a67b_0A164A0A192A12A168A0c2dA72A0A420A420Ac2d68A416A0A96A0c3dA288A24A528A816A0A40Ac3d192A192A24A0c3dA24A0c4dA192A0A136A0c2dA72A0c4dA592A528A0A80Ac3d96A96A0c16dA260A260Ac2d24A24A0c3d_0Ac3d64A0A64A0c2dA64A0c4dA64A0c2dA64A0c64d_0Ac80d0_3B6B5A5B6B5A8B6B8A13B6B8A16Bc2d5__y">
+</div>
+<div class="jX7 jX9 jXb jXa jXc"
+	data-suco-init="SCv2_0a5b260a6b4001000538007900081070353090a16b8006020360000508000400030_yyy0030000800006003006000010a18b80a7b30a7b300070a14b8006_0a41b80a26b7080a10b_658A658A0A160A672A0c3dA48A900A900A644A0c2dA672A0c2dA36A0A20Ac5d20Ac3d532A532A596A0c2dA48A0A624A0c3dA210Ac2d196A144A0A80A22A914A914A722A164A228A0A532A624A22A530A562A0A34A0c2dA530Ac5d662A134A644A640Ac2d528A0A646A678A646A0A676A0A514A0c2d_0Ac41d16A0A16A0c26dA16A0c10d_0Ac80d0_41B4B8A43B4B5A70B4B8__y">
+</div>
+<div class="jX7 jX9 jXb jXa jXc"
+	data-suco-init="SCv2_00050008062000040070a6b30a5b10a7b340001090000200903160a10b80445090a5b_yyy34900610a6b31009010490600030a6b80a17b3080004020a5b53090a7b316_0a12b70a10b80a42b80a14b_0Ac4d132A0c3dA132A0c2dA288A384A0c3dA160Ac4d288A0c2dA260Ac3d36A36A0A212A196A0A676A672A240Ac2d292A192A196A0c2dA932A672A224A0A290Ac2d210A448A384A416A0A240Ac8d160Ac2d160A6A192A198A132A0c7dA132A0A388A388A0c3d_0Ac23d4A0c42dA4A0c10dA4A0c3d_0Ac80d0_23B2B8A66B2B8A77B2B5__y">
+</div>
+<div class="jX7 jX9 jXb jXa jXc"
+	data-suco-init="SCv2_00050008062000040070a6b30a5b10a7b340001090000200903160a10b80445090a5b_yyy34900610a6b31009010490600030a6b80a17b3080004020a5b53090a7b316_000080a18b70a53b8000_0Ac4d132A0c3dA132A0c2dA288A384A0c3dA160Ac4d288A0c2dA260Ac3d36A36A0A208A196A0A676A672A240Ac2d292A192A196A0c2dA932A672A224A0A290Ac2d210A448A384A416A0A240Ac8d160Ac2d160A6A192A198A132A0c7dA132A0A388A384A0c3d_0Ac4d128A0c71dA128A128A0c3d_0Ac80d0_4B7B8A76B7B5A77B7B8__y">
+</div>
+<div class="jX7 jX9 jXb jXa jXc"
+	data-suco-init="SCv2_00050008062000040070a6b30a5b10a7b340001090000200903160a10b80445090a5b_yyy34900610a6b31009010490600030a6b80a17b3080004020a5b53090a7b316_0a49b80a24b8070000_0Ac4d132A0c3dA132A0c2dA288A384A0c3dA160Ac4d288A0c2dA260Ac3d36A36A0A208A196A0A676A672A240Ac2d292A192A196A0c2dA932A672A224A0A290Ac2d210A448A384A416A0A112A0c7dA160Ac2d160A6A192A198A132A0c7dA132A0A260A384A0c3d_0Ac47d128A0A128A0c24dA128A0c6d_0Ac80d0_47Bc2d5A49B7B8A74B7B8__y">
+</div>
+<div class="jX7 jX9 jXb jXa jXc"
+	data-suco-init="SCv2_00050008062000040070a6b30a5b10a7b340001090000200903160a10b80445090a5b_yyy34900610a6b31009010490600030a6b80a17b3080004020a5b53090a7b316_000070a18b80a25b80a31b_0Ac4d132A0c3dA132A0c2dA288A384A0c3dA160Ac4d288A0c2dA260Ac3d36A36A0A208A68A0A548A672A240Ac2d292A192A196A0c2dA804A672A224A0A290Ac2d82A320A384A416A0A112A0c7dA160Ac2d160A6A192A198A132A0c7dA132A0A260A384A0c3d_0Ac23d256A0c8dA256A0c8dA256A0c7dA256A256A0c30d_0Ac80d0_23B8c2dA32B8B5A41B8B5A49B8c2dA50B8B5__y">
+</div>
+<div class="jX7 jX9 jXb jXa jXc"
+	data-suco-init="SCv2_00050008062000040070a6b30a5b10a7b340001090000200903160a10b80445090a5b_yyy34900610a6b31009010490600030a6b880a16b3080004020a5b53090a7b316_0a37b870a35b80a6b_0Ac4d132A0c3dA132A0c2dA288A384A0c3dA160Ac4d288A0c2dA260Ac3d36A36A0A208A68A0A544A672A240Ac3d192A196A0c2dA548A672A224A0A34A0A82A320A384A160Ac2d112A0c7dA160Ac2d160A6A192A194A132A0c7dA132A0A260A384A0c3d_0Ac29d128A0c7dA128A128A0c8dA128A0c26dA128A0c6d_0Ac80d0_29B7B5A37Bc2d8A38B7c2dA47Bc2d5A74B7B8__y">
+</div>
+<hr class="jXd"/>
+<div style="clear: both; margin-bottom: 20px;"></div>
+
+
+
+

@@ -10,11 +10,11 @@ const CHARACTERS = {
     voicePrefix: 'VO_CK',
     portraits: {
       default: 'cagekeeper_default.png',
-      smile: 'cagekeeper_smile.png',
+      smile: 'cagekeeper_default.png',
       surprised: 'cagekeeper_surprised.png',
       serious: 'cagekeeper_serious.png',
-      think: 'cagekeeper_think.png',
-      sad: 'cagekeeper_sad.png'
+      think: 'cagekeeper_serious.png',
+      sad: 'cagekeeper_serious.png'
     },
     voice: 'zh-CN-YunxiNeural',
     voiceStyle: 'gentle'
@@ -26,10 +26,10 @@ const CHARACTERS = {
     voicePrefix: 'VO_R',
     portraits: {
       default: 'ray_default.png',
-      smile: 'ray_smile.png',
-      surprised: 'ray_surprised.png',
+      smile: 'ray_default.png',
+      surprised: 'ray_angry.png',
       angry: 'ray_angry.png',
-      lose: 'ray_lose.png'
+      lose: 'ray_default.png'
     },
     voice: 'zh-CN-YunjianNeural',
     voiceStyle: 'cheerful'
@@ -51,6 +51,21 @@ const CHARACTERS = {
     voice: 'zh-CN-YunyeNeural',
     voiceStyle: 'calm'
   },
+  plotterShadow: {
+    id: 'plotterShadow',
+    name: '设局人残影',
+    nameEn: 'Plotter Shadow',
+    voicePrefix: 'VO_PS',
+    portraits: {
+      default: 'plotter_shadow_default.png',
+      smirk: 'plotter_shadow_smirk.png',
+      angry: 'plotter_shadow_default.png',
+      surprised: 'plotter_shadow_default.png',
+      confident: 'plotter_shadow_smirk.png'
+    },
+    voice: 'zh-CN-YunyeNeural',
+    voiceStyle: 'calm'
+  },
   weaver: {
     id: 'weaver',
     name: '星辰梭',
@@ -58,9 +73,9 @@ const CHARACTERS = {
     voicePrefix: 'VO_W',
     portraits: {
       default: 'weaver_default.png',
-      surprised: 'weaver_surprised.png',
-      smirk: 'weaver_smirk.png',
-      angry: 'weaver_angry.png'
+      surprised: 'weaver_default.png',
+      smirk: 'weaver_default.png',
+      angry: 'weaver_default.png'
     },
     voice: 'zh-CN-YunxiNeural',
     voiceStyle: 'proud',
@@ -73,13 +88,30 @@ const CHARACTERS = {
     voicePrefix: 'VO_RE',
     portraits: {
       default: 'remnant_default.png',
-      stern: 'remnant_stern.png',
-      surprised: 'remnant_surprised.png'
+      stern: 'remnant_default.png',
+      surprised: 'remnant_default.png'
     },
     voice: 'zh-CN-YunxiNeural',
     voiceStyle: 'mechanical',
     rate: '-10%',
     pitch: '-5Hz'
+  },
+  setterSecret: {
+    id: 'setterSecret',
+    name: '设局人（秘术）',
+    nameEn: 'Plotter (Secret)',
+    voicePrefix: 'VO_SS',
+    portraits: {
+      default: 'setter_secret_default.png',
+      smirk: 'setter_secret_smirk.png',
+      angry: 'setter_secret_angry.png',
+      surprised: 'setter_secret_surprised.png',
+      confident: 'setter_secret_confident.png'
+    },
+    voice: 'zh-CN-YunyeNeural',
+    voiceStyle: 'calm',
+    rate: '-5%',
+    pitch: '-3Hz'
   },
   system: {
     id: 'system',
@@ -88,6 +120,14 @@ const CHARACTERS = {
     voicePrefix: 'VO_S',
     portraits: {},
     voice: 'zh-CN-XiaoxiaoNeural'
+  },
+  narrator: {
+    id: 'narrator',
+    name: '',
+    nameEn: 'Narrator',
+    voicePrefix: '',
+    portraits: {},
+    voice: ''
   }
 };
 
@@ -107,6 +147,10 @@ const DIALOGUES = {
   VO_CK_09: { char: 'cagekeeper', portrait: 'think', text: '让我想想……', scene: 'before_hint', effect: 0 },
   VO_CK_10: { char: 'cagekeeper', portrait: 'sad', text: '那份档案……的确有些蹊跷。', scene: 'mention_plotter', effect: 0 },
   VO_CK_11: { char: 'cagekeeper', portrait: 'sad', text: '我没想到……他竟然会走到那一步。', scene: 'ch6_eve', effect: 0 },
+  VO_CK_12: { char: 'cagekeeper', portrait: 'serious', text: '看来，是时候考验你真正的实力了。', scene: 'ch2_boss', effect: 3 },
+  VO_CK_13: { char: 'cagekeeper', portrait: 'serious', text: '作为你的导师，我不会手下留情。', scene: 'ch2_boss', effect: 3 },
+  VO_CK_14: { char: 'cagekeeper', portrait: 'surprised', text: '你……竟然做到了这一步。', scene: 'cagekeeper_defeat', effect: 2 },
+  VO_CK_15: { char: 'cagekeeper', portrait: 'default', text: '很好，你已经超越了我。去揭开真相吧。', scene: 'cagekeeper_defeat', effect: 2 },
 
   // ---- 阿岩 (10句) ----
   VO_R_01: { char: 'ray', portrait: 'default', text: '嘿！你就是新来的档案侦探？', scene: 'ray_boss_intro', effect: 3 },
@@ -132,6 +176,36 @@ const DIALOGUES = {
   VO_P_09: { char: 'plotter', portrait: 'surprised', text: '你……你居然……', scene: 'plotter_flaw', effect: 4 },
   VO_P_10: { char: 'plotter', portrait: 'default', text: '……结束了。', scene: 'plotter_defeat', effect: 4 },
 
+  // ---- 设局人·秘术形态（第7章终章，12句）----
+  VO_SS_01: { char: 'setterSecret', portrait: 'confident', text: '三十年前，我设下这七卷秘术，只为等一个人。', scene: 'ch7_final', effect: 4 },
+  VO_SS_02: { char: 'setterSecret', portrait: 'smirk', text: '一个能在混沌中看见秩序，在牢笼中找到钥匙的人。', scene: 'ch7_final', effect: 3 },
+  VO_SS_03: { char: 'setterSecret', portrait: 'confident', text: '数对、三链数、X翼、剑鱼……我会全部用出来。', scene: 'ch7_final', effect: 4 },
+  VO_SS_04: { char: 'setterSecret', portrait: 'default', text: '如果你能赢我，你就是新的设局人。', scene: 'ch7_final', effect: 4 },
+  VO_SS_05: { char: 'setterSecret', portrait: 'smirk', text: '秘术推演，比你想象得更快。', scene: 'setter_pressure', effect: 1 },
+  VO_SS_06: { char: 'setterSecret', portrait: 'smirk', text: '你以为看到了剑鱼？不，那只是我的诱饵。', scene: 'setter_battle', effect: 2 },
+  VO_SS_07: { char: 'setterSecret', portrait: 'surprised', text: '……不可能！', scene: 'setter_broken', effect: 3 },
+  VO_SS_08: { char: 'setterSecret', portrait: 'angry', text: 'X翼构型……被你看穿了？！', scene: 'setter_broken2', effect: 3 },
+  VO_SS_09: { char: 'setterSecret', portrait: 'surprised', text: '你……不仅学会了秘术，还能在实战中运用……', scene: 'setter_defeat', effect: 4 },
+  VO_SS_10: { char: 'setterSecret', portrait: 'default', text: '好。从今天起，「秘术大师」的称号属于你。', scene: 'setter_defeat', effect: 4 },
+  VO_SS_11: { char: 'setterSecret', portrait: 'smirk', text: '星辰梭的传承，正式交到你手中。', scene: 'setter_transfer', effect: 4 },
+  VO_SS_12: { char: 'setterSecret', portrait: 'default', text: '去吧。新的笼局，等你去设。', scene: 'setter_farewell', effect: 4 },
+
+  // ---- 阿岩·终章 (3句) ----
+  VO_R_11: { char: 'ray', portrait: 'surprised', text: '他……他的气场完全变了！比之前强太多了！', scene: 'ch7_final', effect: 2 },
+  VO_R_12: { char: 'ray', portrait: 'smile', text: '我们赢了？！我们真的赢了设局人完全体？！', scene: 'setter_defeat', effect: 2 },
+  VO_R_13: { char: 'ray', portrait: 'smile', text: '太好了！以后你就是大师了，我还当你的助手！', scene: 'true_ending', effect: 1 },
+
+  // ---- 守笼人·终章 (3句) ----
+  VO_CK_16: { char: 'cagekeeper', portrait: 'serious', text: '小心。这是他真正的实力，不要留手。', scene: 'ch7_final', effect: 2 },
+  VO_CK_17: { char: 'cagekeeper', portrait: 'smile', text: '（微微点头）恭喜你，真正的大师。', scene: 'setter_transfer', effect: 2 },
+  VO_CK_18: { char: 'cagekeeper', portrait: 'default', text: '七卷秘术已全部传承。档案之道，薪火不息。', scene: 'true_ending', effect: 3 },
+
+  // ---- 设局人残影 (4句) ----
+  VO_PS_01: { char: 'plotterShadow', portrait: 'smirk', text: '你以为……这就是真相？', scene: 'ch3_boss', effect: 3 },
+  VO_PS_02: { char: 'plotterShadow', portrait: 'default', text: '我留下的残影，只是开始。', scene: 'ch3_boss', effect: 3 },
+  VO_PS_03: { char: 'plotterShadow', portrait: 'surprised', text: '……残影被看穿了？', scene: 'shadow_defeat', effect: 2 },
+  VO_PS_04: { char: 'plotterShadow', portrait: 'default', text: '有意思。继续往前走吧……', scene: 'shadow_defeat', effect: 2 },
+
   // ---- 星辰梭 (9句) ----
   VO_W_01: { char: 'weaver', portrait: 'default', text: '我就是星辰梭。', scene: 'weaver_enter', effect: 3 },
   VO_W_02: { char: 'weaver', portrait: 'default', text: '穿梭于逻辑之间的织网者。', scene: 'weaver_enter', effect: 3 },
@@ -154,7 +228,14 @@ const DIALOGUES = {
   // ---- 系统 (3句) ----
   VO_S_01: { char: 'system', portrait: null, text: '异议あり！', scene: 'objection', effect: 4, lang: 'ja' },
   VO_S_02: { char: 'system', portrait: null, text: '档案碎片已收集。', scene: 'fragment', effect: 1 },
-  VO_S_03: { char: 'system', portrait: null, text: '恭喜通关。', scene: 'clear', effect: 1 }
+  VO_S_03: { char: 'system', portrait: null, text: '恭喜通关。', scene: 'clear', effect: 1 },
+
+  // ---- 第一章开场（无配音部分，使用打字机音效）----
+  CH1_N01: { char: null, portrait: null, text: '第一章', scene: 'ch1_opening_full', effect: 0, isTitle: true, subtitle: '初识笼中密码' },
+  CH1_N02: { char: 'narrator', portrait: null, text: '你推开尘封三十年的档案馆大门，空气中弥漫着旧纸张的气息。', scene: 'ch1_opening_full', effect: 0 },
+  CH1_RAY01: { char: 'ray', portrait: 'smile', text: '哇，你就是新来的档案侦探？我叫阿岩，比你早来几天的实习侦探！', scene: 'ch1_opening_full', effect: 0 },
+  CH1_RAY02: { char: 'ray', portrait: 'smile', text: '别紧张，我会在旁边帮你翻译大师的话——他老人家说话总是文绉绉的！', scene: 'ch1_opening_full', effect: 0 },
+  CH1_CK05: { char: 'cagekeeper', portrait: 'default', text: '从今天起，你们将从最基础的4×4盘面学起。记住三条铁律：每行、每列、每个2×2小宫格里，数字只能出现一次。', scene: 'ch1_opening_full', effect: 0 }
 };
 
 // ==========================================
@@ -163,22 +244,27 @@ const DIALOGUES = {
 const SCENE_TRIGGERS = {
   // 第一章
   ch1_opening: ['VO_CK_01', 'VO_CK_02', 'VO_CK_03', 'VO_CK_04'],
+  ch1_opening_full: ['CH1_N01', 'CH1_N02', 'VO_CK_01', 'VO_CK_02', 'CH1_RAY01', 'VO_CK_03', 'VO_CK_04', 'CH1_RAY02', 'CH1_CK05'],
   before_tutorial: ['VO_CK_03', 'VO_CK_04'],
   first_correct: ['VO_CK_05'],
   level_clear_ch1: ['VO_CK_06'],
   breakthrough: ['VO_CK_07'],
   advanced_tech: ['VO_CK_08'],
   before_hint: ['VO_CK_09'],
+  ch1_boss: ['VO_R_01', 'VO_R_02'],
 
   // 第二章 - 秩序档案馆（守笼人继续引导）
   ch2_opening: ['VO_CK_06', 'VO_CK_08'],
+  ch2_boss: ['VO_CK_12', 'VO_CK_13'],
+  cagekeeper_defeat: ['VO_CK_14', 'VO_CK_15'],
 
   // 各章节Boss开场（triggerChapterIntro使用）
-  ch3_boss: ['VO_R_01', 'VO_R_02'],
+  ch3_boss: ['VO_PS_01', 'VO_PS_02'],
+  shadow_defeat: ['VO_PS_03', 'VO_PS_04'],
   ch4_boss: ['VO_RE_01', 'VO_RE_02'],
   ch5_boss: ['VO_W_01', 'VO_W_02'],
   ch6_boss: ['VO_CK_11', 'VO_P_01', 'VO_P_02'],
-  ch7_final: ['VO_P_05', 'VO_P_06'],
+  ch7_final: ['VO_SS_01', 'VO_SS_02', 'VO_R_11', 'VO_CK_16', 'VO_SS_03', 'VO_SS_04'],
 
   // 阿岩Boss
   ray_boss_intro: ['VO_R_01'],
@@ -217,6 +303,16 @@ const SCENE_TRIGGERS = {
   plotter_broken2: ['VO_P_08'],
   plotter_flaw: ['VO_P_09'],
   plotter_defeat: ['VO_P_10'],
+
+  // 第七章 终章 - 设局人秘术形态
+  setter_pressure: ['VO_SS_05'],
+  setter_battle: ['VO_SS_06'],
+  setter_broken: ['VO_SS_07'],
+  setter_broken2: ['VO_SS_08'],
+  setter_defeat: ['VO_SS_09', 'VO_SS_10', 'VO_R_12'],
+  setter_transfer: ['VO_SS_11', 'VO_CK_17'],
+  setter_farewell: ['VO_SS_12'],
+  true_ending: ['VO_CK_18', 'VO_R_13', 'VO_S_03'],
 
   // 通用
   objection: ['VO_S_01'],

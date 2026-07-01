@@ -1,0 +1,264 @@
+﻿<!DOCTYPE html>
+
+
+<html lang="en">
+
+<head>
+	<link rel='alternate' hreflang='x-default' href='https://sudoku.coach/en/solver' /><link rel='alternate' hreflang='en' href='https://sudoku.coach/en/solver' /><link rel='alternate' hreflang='de' href='https://sudoku.coach/de/solver' /><link rel='alternate' hreflang='fr' href='https://sudoku.coach/fr/solver' /><link rel='alternate' hreflang='zh-cn' href='https://sudoku.coach/zh-cn/solver' /><link rel='alternate' hreflang='pl' href='https://sudoku.coach/pl/solver' /><link rel='alternate' hreflang='pt' href='https://sudoku.coach/pt/solver' /><title>sudoku.coach - Step-By-Step Solving Demonstration</title><meta property="og:title" content="sudoku.coach - Step-By-Step Solving Demonstration" /><meta name="description" content="Enter a Sudoku that you do not know how to solve. The Solver will then show you step by step how it can be done." /><meta property="og:description" content="Enter a Sudoku that you do not know how to solve. The Solver will then show you step by step how it can be done." /><meta property="og:type" content="website" /><meta property='og:url' content='https://sudoku.coach/' /><meta property="og:image" content="https://sudoku.coach/img/other/sudokuCoachOpenGraph-1200x630.png" /><meta property="og:image:type" content="image/png" /><meta property="og:image:width" content="1200" /><meta property="og:image:height" content="630" /><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ------------------- Base ------------------------------------ -->
+<!--<base href="http://localhost/sudoku/dev/" />-->
+
+
+<!-- ------------------- Manifest -------------------------------- -->
+<link rel="manifest" href="/manifest.json">
+
+<!-- ------------------- Favicon --------------------------------- -->
+<!-- REMEMBER SERVICE WORKER -->
+
+<!-- <link rel="icon" type="image/svg+xml" href="/img/other/sudokuCoachFavicon.svg" sizes="any" /> -->
+<link rel="apple-touch-icon" sizes="180x180" href="/img/favicons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/img/favicons/favicon-16x16.png">
+<link rel="mask-icon" href="/img/favicons/safari-pinned-tab.svg" color="#1f2c4d">
+<meta name="msapplication-TileColor" content="#1f2c4d">
+<meta name="theme-color" content="#1f2c4d">
+<meta name="darkreader-lock">
+<meta name="darkreader" content="NO-DARKREADER">
+
+
+<!-- ------------------- CSS ------------------------------------- -->
+<!-- REMEMBER SERVICE WORKER -->
+
+<style>
+	:root{
+		--jX81: #2f4275;
+		--jX55: #1f2c4d;
+		--jX2z: #c2d5ff;
+		--jX78: #f5ae3d;
+		--jX44: var(--jX78);
+		--jX68: "Baloo Paaji 2";
+		--jX2k5: brightness(0) saturate(100%) invert(0%) sepia(100%) saturate(0%) hue-rotate(21deg) brightness(97%) contrast(103%) opacity(0.5);
+	}
+
+	html, body{
+		height: 100%;
+	    margin: 0;
+	    padding: 0;
+	    width: 100%;
+	}
+
+	body{
+		position: fixed;
+		background-color: var(--jXi5);
+	}
+
+	#jXfr{
+		position: absolute;
+	    top: 0;
+	    left: 0;
+	    bottom: 0;
+	    right: 0;
+	    touch-action: manipulation;
+	}
+
+	#jXll{
+		display: none;
+	}
+
+	@keyframes jX1v6 {
+		from {
+			transform: rotate(0deg);
+		}
+		to {
+			transform: rotate(359deg);
+		}
+	}
+
+	.jXes{
+		background-image: url(/img/other/sudokuCoachLogo.svg);
+	    background-repeat: no-repeat;
+	    background-position: center;
+	    animation: jX1v6 3s infinite linear;
+	    opacity: 0.5;
+	    filter: var(--jX2k5);
+	}
+</style>
+
+
+
+<link href="/css/jCfXtZm-1776367508519.css" rel="stylesheet" type="text/css" />
+
+
+<!-- ------------------- Fonts ----------------------------------- -->
+<!-- <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> -->
+
+<!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons&text=%EE%AE%8D%EE%A2%8A%EE%A2%8E%EE%80%82%EE%80%80%EE%80%81%EE%A3%BD%EE%A2%AD%EE%85%8B%EE%A1%B6%EE%9D%A9%EE%83%A0%EE%97%8D%EE%97%89%EE%8C%8A%EE%9F%BD%EE%80%B4%EE%8F%89%EE%85%8D%EE%85%8F%EE%A0%8D%EE%9F%AF%EE%9D%A2%EE%BF%AF%EE%A2%95%EE%88%AF%EE%82%BC%EE%8F%80%EE%8E%BF%EE%85%A6%EE%85%9A%EE%83%B0%EE%A1%B2%EE%A4%AB%EE%A4%AE%EE%97%9C%EE%AB%83%EE%90%88%EE%90%89%EE%AB%89%EE%97%9D%EE%85%94%EE%97%95%EE%A1%AC%EE%97%9F%EE%97%8A%EE%97%88%EE%97%84%EE%97%98%EE%97%9B%EE%85%B3%EE%8C%97%EE%A8%BC%EE%AD%83%EE%9D%AE%EE%8C%92%EE%8C%96%EE%8C%93%EE%A2%B8%EE%A2%94%EE%97%92%EE%80%B7%EE%A3%BF%EE%97%90%EE%97%91%EE%95%AB%EE%AC%AD%EF%80%89%EE%8C%A3%EE%97%83%EE%85%93%EE%90%A9%EE%A2%B6%EE%A1%BC%EE%A9%8A%EE%90%A1%EE%97%93%EE%97%94%EE%8F%AA%EE%85%97%EE%A0%B5%EE%A0%B4%EE%A0%B6%EE%A0%B7%EF%87%88%EE%85%8A%EE%A7%B5%EE%A7%B6%EE%90%92%EE%8F%B4%EE%A0%8C%EE%A8%A3%EF%83%AC%EE%A0%BA%EE%A0%B8%EE%A1%BD%EE%A9%B7%EE%A1%93%EE%A1%BB%EE%AE%9B%EE%AC%BA%EE%A8%BF%EE%A9%8B%EE%A6%98%EE%BD%95%EE%99%A6%EE%A1%A6%EE%A1%A5%EE%98%97%EE%A1%AE%EE%90%9D%EE%A6%BA%EE%AC%BD%EE%A1%A3%EE%AE%8B%EE%89%81%EE%89%82%EF%9E%AC%EE%A1%A8%EF%80%A8%EF%99%BB%EF%A3%B7%EE%8B%8C%EE%89%A6%EE%85%85%EE%85%88%EE%85%87%EE%9F%BE%EE%A2%9C%EF%80%95%EE%89%8D%EE%8B%88%EE%85%A1%EE%A3%AF%EE%A1%BA%EE%A6%9B%EF%83%8F%EE%8E%AE%EE%90%8A%EE%AB%B3%EE%8B%87%EE%A1%B3%EE%9D%85%EE%9F%BB%EE%A8%A1%EE%9F%B0%EE%9E%AD%EF%A3%99%EE%BC%BE%EE%A2%85%EE%A0%B9%EF%81%AF%EE%A2%AF%EE%82%B7%EE%83%8B%EE%83%8A%EE%89%AC%EE%82%B9%EE%98%A6%EE%BD%8F%EE%A1%BE%EE%A7%B3%EE%A7%B2%EE%A6%8B%EE%A2%92%EE%A1%91%EF%88%8C%EE%A1%8E%EE%A4%8E%EE%A1%A4%EE%A6%94%EE%A2%91%EE%AE%97%EE%AD%B4%EE%85%98%EE%85%90%EE%A7%AF%EE%8E%B6%EE%8E%AF%EE%8E%BE%EE%8B%81%EF%A3%97%EE%89%A4%EE%BD%82%EE%A2%89%EE%A1%A7%EE%A2%97%EE%A0%8B%EE%A8%8B%EE%81%9E%EE%8B%83%EE%AC%AF%EE%85%A3%EE%85%9E%EE%85%96%EE%85%9D%EF%87%A2%EF%87%A1%EF%87%A5%EF%87%A4%EE%AC%B7%EE%85%A2%EE%BD%92%EE%A3%AC%EE%A3%B0%EF%84%94%EE%AC%B6%EE%AE%BE%EE%A9%9F%EE%89%8A%EE%87%8A%EE%94%BB" rel="stylesheet"/> -->
+<!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined&text=%EE%AE%8D%EE%A2%8A%EE%A2%8E%EE%80%82%EE%80%80%EE%80%81%EE%A3%BD%EE%A2%AD%EE%85%8B%EE%A1%B6%EE%9D%A9%EE%83%A0%EE%97%8D%EE%97%89%EE%8C%8A%EE%9F%BD%EE%80%B4%EE%8F%89%EE%85%8D%EE%85%8F%EE%A0%8D%EE%9F%AF%EE%9D%A2%EE%BF%AF%EE%A2%95%EE%88%AF%EE%82%BC%EE%8F%80%EE%8E%BF%EE%85%A6%EE%85%9A%EE%83%B0%EE%A1%B2%EE%A4%AB%EE%A4%AE%EE%97%9C%EE%AB%83%EE%90%88%EE%90%89%EE%AB%89%EE%97%9D%EE%85%94%EE%97%95%EE%A1%AC%EE%97%9F%EE%97%8A%EE%97%88%EE%97%84%EE%97%98%EE%97%9B%EE%85%B3%EE%8C%97%EE%A8%BC%EE%AD%83%EE%9D%AE%EE%8C%92%EE%8C%96%EE%8C%93%EE%A2%B8%EE%A2%94%EE%97%92%EE%80%B7%EE%A3%BF%EE%97%90%EE%97%91%EE%95%AB%EE%AC%AD%EF%80%89%EE%8C%A3%EE%97%83%EE%85%93%EE%90%A9%EE%A2%B6%EE%A1%BC%EE%A9%8A%EE%90%A1%EE%97%93%EE%97%94%EE%8F%AA%EE%85%97%EE%A0%B5%EE%A0%B4%EE%A0%B6%EE%A0%B7%EF%87%88%EE%85%8A%EE%A7%B5%EE%A7%B6%EE%90%92%EE%8F%B4%EE%A0%8C%EE%A8%A3%EF%83%AC%EE%A0%BA%EE%A0%B8%EE%A1%BD%EE%A9%B7%EE%A1%93%EE%A1%BB%EE%AE%9B%EE%AC%BA%EE%A8%BF%EE%A9%8B%EE%A6%98%EE%BD%95%EE%99%A6%EE%A1%A6%EE%A1%A5%EE%98%97%EE%A1%AE%EE%90%9D%EE%A6%BA%EE%AC%BD%EE%A1%A3%EE%AE%8B%EE%89%81%EE%89%82%EF%9E%AC%EE%A1%A8%EF%80%A8%EF%99%BB%EF%A3%B7%EE%8B%8C%EE%89%A6%EE%85%85%EE%85%88%EE%85%87%EE%9F%BE%EE%A2%9C%EF%80%95%EE%89%8D%EE%8B%88%EE%85%A1%EE%A3%AF%EE%A1%BA%EE%A6%9B%EF%83%8F%EE%8E%AE%EE%90%8A%EE%AB%B3%EE%8B%87%EE%A1%B3%EE%9D%85%EE%9F%BB%EE%A8%A1%EE%9F%B0%EE%9E%AD%EF%A3%99%EE%BC%BE%EE%A2%85%EE%A0%B9%EF%81%AF%EE%A2%AF%EE%82%B7%EE%83%8B%EE%83%8A%EE%89%AC%EE%82%B9%EE%98%A6%EE%BD%8F%EE%A1%BE%EE%A7%B3%EE%A7%B2%EE%A6%8B%EE%A2%92%EE%A1%91%EF%88%8C%EE%A1%8E%EE%A4%8E%EE%A1%A4%EE%A6%94%EE%A2%91%EE%AE%97%EE%AD%B4%EE%85%98%EE%85%90%EE%A7%AF%EE%8E%B6%EE%8E%AF%EE%8E%BE%EE%8B%81%EF%A3%97%EE%89%A4%EE%BD%82%EE%A2%89%EE%A1%A7%EE%A2%97%EE%A0%8B%EE%A8%8B%EE%81%9E%EE%8B%83%EE%AC%AF%EE%85%A3%EE%85%9E%EE%85%96%EE%85%9D%EF%87%A2%EF%87%A1%EF%87%A5%EF%87%A4%EE%AC%B7%EE%85%A2%EE%BD%92%EE%A3%AC%EE%A3%B0%EF%84%94%EE%AC%B6%EE%AE%BE%EE%A9%9F%EE%89%8A%EE%87%8A%EE%94%BB" rel="stylesheet"/> -->
+
+<!-- <link href="https://fonts.googleapis.com/css2?family=Baloo+Paaji+2:wght@400;500;600&display=swap" rel="stylesheet"/> -->
+
+<!-- <link href="https://fonts.googleapis.com/css2?family=Yrsa:wght@300;400;700&display=swap&text=abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789äöüÄÖÜ%40%5E%C2%B0%21%22%C2%A7%24%25%26%2F%28%29%3D%3F%C2%B4%60%2B%2A%7E%27%23%2C.-%3B%3A_%3C%3E%7C" rel="stylesheet"/> -->
+
+<!-- <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap&text=0123456789" rel="stylesheet"/> -->
+
+
+	<!-- <script src="https://cdn.polyfill.io/v3/polyfill.min.js?version=3.110.1" defer></script> -->
+	<script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js" defer></script>
+	<!-- <script src="/js/polyfill.js?" defer></script> -->
+
+<!-- ------------------- JS -------------------------------------- -->
+ <!-- REMEMBER SERVICE WORKER -->
+
+
+
+	<script src="/js/jCfXtZs-1776367508519.js" defer></script>
+	<script src="/js/jCfXtZb-1776367508519.js" defer></script>
+	<script src="/js/jCfXtZbs-1776367508519.js" defer></script>
+	<script src="/js/jCfXtZf-1776367508519.js" defer></script>
+
+
+<script>
+	window.addEventListener("load", () => {
+		if(typeof jX3 !== "object"){
+			let jXjm = document.getElementsByClassName("jXes")[0];
+			let jX3ob = document.getElementsByClassName("jX6et")[0];
+			if(jXjm && jX3ob){
+				jXjm.style.animation = "none";
+				jXjm.style.filter = "invert(75%) sepia(96%) saturate(1813%) hue-rotate(305deg) brightness(99%) contrast(103%)";
+				jX3ob.style.color = "#15162b";
+				jX3ob.innerHTML = "<p style='color: #ff8787;'>An error occurred while trying to load <span style='color: var(--jXbd);'>sudoku.coach</span></p><p><a href='#' onclick='navigation.reload()' style='color: var(--jX78);'>Click here to retry</a></p>";
+			}
+			
+		}
+	});
+</script>
+
+<!-- ------------------- Analytics ------------------------------- -->
+<!-- is being loaded in main.js -->
+<!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-E2E3G93HNP"></script> -->
+<script>
+	//so that analytics are not activated on the test site
+	if(location.origin.indexOf("sudoku.coach") > 0 && location.origin.indexOf("sctest") === -1 /* || location.origin.indexOf("localhost") > 0*/){
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+		gtag('consent', 'default', {
+		ad_storage: 'denied',
+			analytics_storage: 'denied',
+			wait_for_update: 500
+		});
+		gtag('config', 'G-E2E3G93HNP');
+	}
+	else{
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){};
+	}
+</script>
+
+
+<!-- ------------------- Adsense --------------------------------- -->
+<!--type text/plain is changed to text/javascript once user has given permission-->
+<!-- <script id="jX7r3" type="text/plain" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7248774796478506" crossorigin="anonymous"></script> -->
+
+</div><script>let mainInitData = []</script>
+		<script>
+				puzzleHashtags = [{"ID":1,"text":"sudoku"},{"ID":2,"text":"no-boxes"},{"ID":3,"text":"jigsaw"},{"ID":4,"text":"diagonal"},{"ID":5,"text":"anti-knight"},{"ID":6,"text":"anti-king"},{"ID":7,"text":"non-consecutive"},{"ID":8,"text":"entropy"},{"ID":9,"text":"fog"},{"ID":10,"text":"different-digits"},{"ID":11,"text":"extra-region"},{"ID":12,"text":"xv"},{"ID":13,"text":"two-cell-sum"},{"ID":14,"text":"odd"},{"ID":15,"text":"even"},{"ID":16,"text":"thermometer"},{"ID":17,"text":"arrow"},{"ID":18,"text":"pill-arrow"},{"ID":19,"text":"german-whisper"},{"ID":20,"text":"between-line"},{"ID":21,"text":"lockout-line"},{"ID":22,"text":"renban-line"},{"ID":23,"text":"entropic-line"},{"ID":24,"text":"modular-line"},{"ID":25,"text":"palindrome-line"},{"ID":26,"text":"consecutive-line"},{"ID":27,"text":"region-sum-line"},{"ID":28,"text":"difference"},{"ID":29,"text":"ratio"},{"ID":30,"text":"cage"},{"ID":31,"text":"quadruple"},{"ID":32,"text":"greater-less"},{"ID":33,"text":"minimum"},{"ID":34,"text":"maximum"},{"ID":35,"text":"sandwich"},{"ID":36,"text":"little-killer"},{"ID":37,"text":"other"},{"ID":38,"text":"custom"},{"ID":39,"text":"classic"},{"ID":40,"text":"size-1x1"},{"ID":41,"text":"size-2x2"},{"ID":42,"text":"size-3x3"},{"ID":43,"text":"size-4x4"},{"ID":44,"text":"size-5x5"},{"ID":45,"text":"size-6x6"},{"ID":46,"text":"size-7x7"},{"ID":47,"text":"size-8x8"},{"ID":48,"text":"size-9x9"},{"ID":49,"text":"size-12x12"},{"ID":50,"text":"size-16x16"},{"ID":51,"text":"size-other"},{"ID":52,"text":"whisper"},{"ID":53,"text":"dutch-whisper"},{"ID":54,"text":"chinese-whisper"}];
+	</script>
+</head>
+
+
+<body>
+	<div id="jX2ks" style="display: none;">
+		<div id="jX6hv">
+			<div class="jX6hw">Cookie Settings</div>
+			<div class="jX6hx"><p style="margin-top: 0.5em;">This website uses cookies and similar means to provide its basic functionalities, and for analyzing site traffic to improve the site.</p><p>Please see our <a href="/en/privacy">privacy policy</a> for more information and the option to change these settings later. </p></div>
+			<form class="jX6hy" action="">
+				<div class="jX3pf">
+					<div>
+						<div class="jX33j">
+							<input type="checkbox" name="jX516" id="jX516" disabled checked />
+							<label for="jX516">ALLOW BASIC FUNCTIONALITY</label>
+						</div>
+
+						<!-- <div class="jX33j">
+							<input type="checkbox" name="jX517" id="jX517" disabled checked />
+							<label for="jX517">ALLOW GENERIC ADS</label>
+						</div> -->
+						
+						<div class="jX33j">
+							<input type="checkbox" name="jX35m" id="jX35m" checked />
+							<label for="jX35m">ALLOW ANALYTICS</label>
+						</div>
+					</div>
+					<div style="display: flex; gap: 10px;">
+						
+						<input type="button" value="Save" class="jX346" onclick="jX518()"/>
+					</div>
+				</div>
+				
+					
+				
+
+			</form>
+		</div>
+	</div>
+	<div id="jXfr" >
+
+		<noscript>
+	<div class="jX32x">
+		<div class="jX7r4">
+			<span class="material-icons-outlined" role="img" aria-label="error">&#xe001;</span>
+			JavaScript needs to be enabled to run this webpage.		</div>
+	</div>
+</noscript>
+
+<div id="jXll">
+	
+	<a id="jX3oc" href="#" onclick="jX4wc(event)">Skip Navigation</a>
+
+	<div style="display: flex;" style="align-items: center;">
+		<div class="jXet" id="jX26p" style="" tabindex="0" role="button" aria-label="open menu"><div class="jX1g0"><span class="material-icons">&#xe5d2;</span></div></div>
+		<div id="jX2k6" tabindex="0" role="button" style="align-items: center; display: flex;"></div>
+	</div>
+	
+	<div class="jX1my">
+		<span class="jX6eu">
+			
+		</span>
+		<a id="jX3od" class="jX3oe">
+			<span class="jX1mz jX3of"><img src="/img/other/sudokuCoachLogo.svg" fetchpriority="high" alt="sudoku.coach Logo"></img></span>
+			<span class="jX1v7">sudoku.coach</span>
+			<!-- <span class="jX3og">sudoku .coach</span> -->
+		</a>
+	</div>
+
+	<div class="jX4wd" style="display: flex;">
+		<div class="jXet" id="jX4we" style="margin-left: 0px; margin-right: 0px;" tabindex="0" role="button" aria-label="refresh page"><div class="jX1g0"><span class="material-icons">&#xe5d5;</span></div></div>
+		<div class="jXet" id="jX1n0" style="margin-left: 0px; margin-right: 0px;" tabindex="0" role="button" aria-label="activate fullscreen"><div class="jX1g0"><span class="material-icons">&#xe5d0;</span></div></div>
+		<div class="jXet" id="jX3oh" style="" tabindex="0" role="button" aria-label="open settings"><div class="jX1g0"><span class="material-icons">&#xe8b8;</span></div></div>
+	</div>
+	
+</div>
+
+
+		<div class="jX519" style="height: 100%; display: flex; justify-content: center; align-items: center; font-size: 1.5em; color: var(--jX55);">
+			<div style="font-family: var(--jX68), sans-serif; text-align: center;">
+				<div style="height: 100px; position: relative;">
+					<div class="jXes" style="width: 100px; height: 100px; margin-left: auto; margin-right: auto; position: absolute; top: 0; bottom: 0; left: 0; right: 0;"></div>
+					<!-- <div style="position: absolute; top: 0; bottom: 0; left: 0; right: 0; display: flex; align-items: center; justify-content: center;"> -->
+						<!-- <div style="color: var(--jX2z); ">sudoku.coach</div> -->
+					<!-- </div> -->
+				</div>
+				<div class="jX6et" style="margin-top: 10px; height: 30px; ">Loading...</div>
+			</div>
+		</div>
+
+	</div>
+
+	
+</body>
+
+</html>

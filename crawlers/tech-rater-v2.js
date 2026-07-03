@@ -33,7 +33,8 @@ const TECH_PRIORITY = [
   'nakedPair',
   'hiddenPair',
   'pointingClaiming',
-  'nakedTriplet'
+  'nakedTriplet',
+  'xWing'
 ];
 
 class TechRaterSolverV2 {
@@ -217,6 +218,7 @@ class TechRaterSolverV2 {
       case 'hiddenPair':      return this._findHiddenPair();
       case 'pointingClaiming': return this._findPointingClaiming();
       case 'nakedTriplet':    return this._findNakedTriplet();
+      case 'xWing':          return this._findXWing();
       default: return null;
     }
   }
@@ -1071,6 +1073,135 @@ class TechRaterSolverV2 {
                 return result.nakedSingleResult;
               }
             }
+          }
+        }
+      }
+    }
+
+    return null;
+  }
+  
+  // 10. X-Wing
+  // 对于某个数字，如果在两行中该数字都只出现在相同的两个列上，
+  // 则这4个格子构成X-Wing。该数字可以从这两列的其他行中排除（列X-Wing）。
+  // 反之亦然（行X-Wing）。
+  _findXWing() {
+    // 辅助：从一组格子中排除指定数字
+    const eliminateFromCells = (cells, num, excludeKey) => {
+      let nakedSingleResult = null;
+      let anyEliminated = false;
+
+      for (const [r, c] of cells) {
+        if (excludeKey.has(r * SIZE + c)) continue;
+        if (this.grid[r][c] !== 0) continue;
+
+        const cands = this.candidates[r][c];
+        const beforeSize = cands.size;
+
+        if (cands.has(num)) cands.delete(num);
+
+        if (cands.size < beforeSize) {
+          anyEliminated = true;
+          if (cands.size === 1 && !nakedSingleResult) {
+            nakedSingleResult = { row: r, col: c, num: [...cands][0] };
+          }
+        }
+      }
+
+      return { nakedSingleResult, anyEliminated };
+    };
+
+    // === 列X-Wing ===
+    // 数字n在某两行都只出现在相同的两列 → 从这两列的其他行排除n
+    for (let n = 1; n <= 9; n++) {
+      // 每行中n出现在哪些列
+      const rowCols = {};
+      for (let r = 0; r < SIZE; r++) {
+        const cols = [];
+        for (let c = 0; c < SIZE; c++) {
+          if (this.grid[r][c] === 0 && this.candidates[r][c].has(n)) {
+            cols.push(c);
+          }
+        }
+        if (cols.length === 2) {
+          rowCols[r] = cols.sort((a, b) => a - b);
+        }
+      }
+
+      const rowEntries = Object.entries(rowCols);
+      for (let i = 0; i < rowEntries.length; i++) {
+        for (let j = i + 1; j < rowEntries.length; j++) {
+          const r1 = parseInt(rowEntries[i][0]);
+          const cols1 = rowEntries[i][1];
+          const r2 = parseInt(rowEntries[j][0]);
+          const cols2 = rowEntries[j][1];
+
+          // 两行共享完全相同的两列
+          if (cols1[0] === cols2[0] && cols1[1] === cols2[1]) {
+            const [c1, c2] = cols1;
+            // X-Wing的4个格子不参与排除
+            const excludeKey = new Set([
+              r1 * SIZE + c1, r1 * SIZE + c2,
+              r2 * SIZE + c1, r2 * SIZE + c2
+            ]);
+
+            // 从列c1的其他行排除n
+            const col1Cells = Array.from({length: SIZE}, (_, rr) => [rr, c1]);
+            const res1 = eliminateFromCells(col1Cells, n, excludeKey);
+            if (res1.nakedSingleResult) return res1.nakedSingleResult;
+
+            // 从列c2的其他行排除n
+            const col2Cells = Array.from({length: SIZE}, (_, rr) => [rr, c2]);
+            const res2 = eliminateFromCells(col2Cells, n, excludeKey);
+            if (res2.nakedSingleResult) return res2.nakedSingleResult;
+          }
+        }
+      }
+    }
+
+    // === 行X-Wing ===
+    // 数字n在某两列都只出现在相同的两行 → 从这两行的其他列排除n
+    for (let n = 1; n <= 9; n++) {
+      // 每列中n出现在哪些行
+      const colRows = {};
+      for (let c = 0; c < SIZE; c++) {
+        const rows = [];
+        for (let r = 0; r < SIZE; r++) {
+          if (this.grid[r][c] === 0 && this.candidates[r][c].has(n)) {
+            rows.push(r);
+          }
+        }
+        if (rows.length === 2) {
+          colRows[c] = rows.sort((a, b) => a - b);
+        }
+      }
+
+      const colEntries = Object.entries(colRows);
+      for (let i = 0; i < colEntries.length; i++) {
+        for (let j = i + 1; j < colEntries.length; j++) {
+          const c1 = parseInt(colEntries[i][0]);
+          const rows1 = colEntries[i][1];
+          const c2 = parseInt(colEntries[j][0]);
+          const rows2 = colEntries[j][1];
+
+          // 两列共享完全相同的两行
+          if (rows1[0] === rows2[0] && rows1[1] === rows2[1]) {
+            const [r1, r2] = rows1;
+            // X-Wing的4个格子不参与排除
+            const excludeKey = new Set([
+              r1 * SIZE + c1, r2 * SIZE + c1,
+              r1 * SIZE + c2, r2 * SIZE + c2
+            ]);
+
+            // 从行r1的其他列排除n
+            const row1Cells = Array.from({length: SIZE}, (_, cc) => [r1, cc]);
+            const res1 = eliminateFromCells(row1Cells, n, excludeKey);
+            if (res1.nakedSingleResult) return res1.nakedSingleResult;
+
+            // 从行r2的其他列排除n
+            const row2Cells = Array.from({length: SIZE}, (_, cc) => [r2, cc]);
+            const res2 = eliminateFromCells(row2Cells, n, excludeKey);
+            if (res2.nakedSingleResult) return res2.nakedSingleResult;
           }
         }
       }

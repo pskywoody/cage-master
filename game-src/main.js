@@ -966,13 +966,104 @@ function handleNumberInput(num) {
 // 提示相关状态
 let hintStep = 0;
 let currentHint = null;
+let currentEliminationIndex = -1; // -1 表示不在排除展示阶段
+let eliminationTimer = null;      // 自动推进定时器
 
 /**
- * 处理提示按钮点击（三层递进式）
- * 第1次：仅高亮目标格
- * 第2次：技巧名称+关联区域高亮+详细说明
- * 第3次：显示答案数字
- * 第4次：清除提示
+ * 清除所有格子的排除标记
+ */
+function _clearEliminationMarks() {
+  for (let r = 0; r < gameBoard.size; r++) {
+    for (let c = 0; c < gameBoard.size; c++) {
+      const cell = gameBoard.cells[r][c];
+      cell.isHintEliminated = false;
+      cell.hintEliminatedNum = null;
+      cell.hintEliminationReason = '';
+    }
+  }
+}
+
+/**
+ * 显示指定索引范围内的 elimination steps
+ * @param {number} upToIndex - 显示到第几步（含）
+ */
+function _showEliminationSteps(upToIndex) {
+  _clearEliminationMarks();
+  if (!currentHint || !currentHint.eliminationSteps) return;
+  const steps = currentHint.eliminationSteps;
+  for (let i = 0; i <= upToIndex && i < steps.length; i++) {
+    const step = steps[i];
+    const cell = gameBoard.cells[step.r][step.c];
+    cell.isHintEliminated = true;
+    cell.hintEliminatedNum = step.eliminatedNum;
+    cell.hintEliminationReason = step.reason;
+  }
+  _renderBoardForHint();
+}
+
+/**
+ * 启动自动排除展示
+ */
+function _startEliminationAutoPlay() {
+  if (eliminationTimer) {
+    clearTimeout(eliminationTimer);
+    eliminationTimer = null;
+  }
+  if (!currentHint || !currentHint.eliminationSteps || currentHint.eliminationSteps.length === 0) {
+    // 没有排除步骤，直接跳到步骤3
+    hintStep = 2; // 准备让用户下次点击到 step 3
+    _showTechniqueStep();
+    return;
+  }
+
+  currentEliminationIndex = 0;
+  // 显示第一步
+  _showEliminationSteps(0);
+
+  // 逐条自动推进
+  const totalSteps = currentHint.eliminationSteps.length;
+  function advance() {
+    if (currentEliminationIndex + 1 < totalSteps) {
+      currentEliminationIndex++;
+      _showEliminationSteps(currentEliminationIndex);
+      // 显示当前排除的原因
+      const step = currentHint.eliminationSteps[currentEliminationIndex];
+      showToast(`排除 (${step.r+1},${step.c+1}) 的 ${step.eliminatedNum}：${step.reason}`, 1500);
+      eliminationTimer = setTimeout(advance, 1500);
+    } else {
+      // 所有排除步骤展示完毕，自动进入步骤3
+      showToast('✅ 排除完毕，进入技巧总结', 1000);
+      eliminationTimer = setTimeout(() => {
+        eliminationTimer = null;
+        currentEliminationIndex = -1;
+        _clearEliminationMarks();
+        _showTechniqueStep();
+      }, 1200);
+    }
+  }
+  eliminationTimer = setTimeout(advance, 1500);
+}
+
+/**
+ * 显示技巧总结步骤（步骤3）
+ */
+function _showTechniqueStep() {
+  hintStep = 3;
+  currentHint = gameBoard.showHint(2);
+  if (currentHint) {
+    const techMsg = buildTechniqueMessage(currentHint);
+    showToast(techMsg, 5000);
+  }
+  _renderBoardForHint();
+}
+
+/**
+ * 处理提示按钮点击（四层递进式）
+ * 第1次：仅高亮目标格+候选范围展示
+ * 第2次：逐条展示排除过程（每步1500ms间隔，自动推进）
+ * 第3次：技巧名称+关联区域高亮+详细说明
+ * 第4次：显示答案数字
+ * 第5次：清除提示
  */
 function handleHint() {
   hintStep++;
@@ -980,20 +1071,47 @@ function handleHint() {
   if (typeof ComedySystem !== 'undefined') ComedySystem.onHint(hintStep);
 
   if (hintStep === 1) {
+    // 第1步：高亮目标格
     currentHint = gameBoard.showHint(1);
     if (!currentHint) {
       hintStep = 0;
       showToast(t('hint.noHint'));
       return;
     }
-    showToast(t('hint.level1'));
+    let msg = t('hint.level1');
+    if (currentHint.eliminationSteps && currentHint.eliminationSteps.length > 0) {
+      msg += `（${currentHint.eliminationSteps.length}步排除推理）`;
+    }
+    showToast(msg);
   } else if (hintStep === 2) {
-    currentHint = gameBoard.showHint(2);
-    if (currentHint) {
-      const techMsg = buildTechniqueMessage(currentHint);
-      showToast(techMsg, 4000);
+    // 第2步：逐条展示排除过程（自动推进）
+    if (!currentHint) {
+      currentHint = gameBoard.showHint(1);
+    }
+    if (!currentHint) {
+      hintStep = 0;
+      showToast(t('hint.noHint'));
+      return;
+    }
+    if (currentHint.eliminationSteps && currentHint.eliminationSteps.length > 0) {
+      showToast('开始逐条排除推理...', 1000);
+      _startEliminationAutoPlay();
+    } else {
+      // 没有排除步骤，直接跳到技巧总结
+      _showTechniqueStep();
     }
   } else if (hintStep === 3) {
+    // 第3步（由_showTechniqueStep设置）：技巧名称+总结
+    // 如果用户手动点击进入步骤3（而非自动），直接显示技巧
+    if (eliminationTimer) {
+      clearTimeout(eliminationTimer);
+      eliminationTimer = null;
+    }
+    currentEliminationIndex = -1;
+    _clearEliminationMarks();
+    _showTechniqueStep();
+  } else if (hintStep === 4) {
+    // 第4步：显示答案数字
     currentHint = gameBoard.showHint(3);
     if (currentHint) {
       if (currentHint.num !== null && currentHint.num !== undefined) {
@@ -1003,6 +1121,12 @@ function handleHint() {
       }
     }
   } else {
+    // 清除提示
+    if (eliminationTimer) {
+      clearTimeout(eliminationTimer);
+      eliminationTimer = null;
+    }
+    currentEliminationIndex = -1;
     gameBoard.clearHints();
     hintStep = 0;
     currentHint = null;
@@ -1019,7 +1143,7 @@ function _renderBoardForHint() {
 }
 
 /**
- * 根据hint对象构建第二层技巧说明消息
+ * 根据hint对象构建第二层技巧说明消息（详细step-by-step）
  */
 function buildTechniqueMessage(hint) {
   const tech = hint.technique;
@@ -1027,26 +1151,85 @@ function buildTechniqueMessage(hint) {
   const labels = 'ABCDEFGHI';
   const cellName = `${labels[hint.r]}${hint.c + 1}`;
 
+  // 根据排除步骤构建推理链摘要（最多显示前5条）
+  let eliminationSummary = '';
+  if (hint.eliminationSteps && hint.eliminationSteps.length > 0) {
+    const steps = hint.eliminationSteps;
+    const maxShow = Math.min(steps.length, 5);
+    const details = [];
+    for (let i = 0; i < maxShow; i++) {
+      const s = steps[i];
+      details.push(`  ${i+1}. (${s.r+1},${s.c+1})排除${s.eliminatedNum}→${s.reason}`);
+    }
+    eliminationSummary = '\n【推理步骤】\n' + details.join('\n');
+    if (steps.length > maxShow) {
+      eliminationSummary += `\n  ... 共${steps.length}步`;
+    }
+  }
+
   switch (tech) {
-    case 'nakedSingle':
-      return t('hint.nakedSingle.desc_level2', { cellName, num });
-    case 'hiddenSingle':
-      return t('hint.hiddenSingle.desc_level2', { description: hint.description, num, cellName });
-    case 'nakedPair':
+    case 'nakedSingle': {
+      let msg = `🎯 显性唯一（裸单）· ${cellName}=${num}`;
+      msg += `\n该格${cellName}的同行/列/宫中已出现1-9中除了${num}外的所有数字。`;
+      if (eliminationSummary) msg += eliminationSummary;
+      msg += `\n💡 结论：${cellName}只能填${num}`;
+      return msg;
+    }
+    case 'hiddenSingle': {
+      let msg = `🎯 隐性唯一（隐单）· ${cellName}=${num}`;
+      msg += `\n${hint.description}`;
+      if (eliminationSummary) msg += eliminationSummary;
+      msg += `\n💡 结论：${cellName}只能填${num}`;
+      return msg;
+    }
+    case 'nakedPair': {
       if (hint.pairCells && hint.pairNums) {
         const [p1, p2] = hint.pairCells;
         const cell1 = `${labels[p1[0]]}${p1[1]+1}`;
         const cell2 = `${labels[p2[0]]}${p2[1]+1}`;
         const num1 = hint.pairNums[0];
         const num2 = hint.pairNums[1];
-        let msg = t('hint.nakedPair.desc_level2', { cell1, cell2, num1, num2 });
-        if (num) msg += '\n' + t('hint.nakedPair.desc_level2_withNum', { cellName, num });
-        else msg += '\n' + t('hint.nakedPair.desc_level2_noNum');
+        let msg = `🎯 显性数对 · {${num1},${num2}}`;
+        msg += `\n${cell1}和${cell2}构成数对{${num1},${num2}}，该区域内其他格子不能有这两个数字。`;
+        if (num !== null) {
+          msg += `\n排除后${cellName}只剩${num}。`;
+        }
+        if (eliminationSummary) msg += eliminationSummary;
+        if (num !== null) {
+          msg += `\n💡 结论：${cellName}=${num}`;
+        } else {
+          msg += `\n💡 推论：{${num1},${num2}}可从该区域其他格排除`;
+        }
         return msg;
       }
-      return t('hint.level3_technique', { technique: hint.techniqueName });
+      return `🎯 显性数对\n${hint.description}`;
+    }
+    case 'xwing': {
+      let msg = `🎯 X-Wing`;
+      if (hint.xwingInfo) {
+        const { num: xNum, rows, cols } = hint.xwingInfo;
+        msg += ` · 数字${xNum}`;
+        msg += `\n在行${rows[0]+1}和行${rows[1]+1}中，${xNum}仅出现在第${cols[0]+1}列和第${cols[1]+1}列，形成X-Wing结构。`;
+        msg += `\n因此这些列的其他行不能有${xNum}。`;
+      } else {
+        msg += `\n${hint.description}`;
+      }
+      if (eliminationSummary) msg += eliminationSummary;
+      if (num !== null) {
+        msg += `\n💡 结论：${cellName}=${num}`;
+      } else {
+        msg += `\n💡 推论：可排除相关格子的该数字`;
+      }
+      return msg;
+    }
     default:
-      return t('hint.level3_technique', { technique: hint.techniqueName });
+      let msg = `🎯 ${hint.techniqueName}`;
+      msg += `\n${hint.description}`;
+      if (eliminationSummary) msg += eliminationSummary;
+      if (num !== null && num !== undefined) {
+        msg += `\n💡 结论：${cellName}=${num}`;
+      }
+      return msg;
   }
 }
 

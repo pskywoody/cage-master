@@ -694,6 +694,7 @@ class Renderer {
     this._drawRowColBoxHighlight(board);
     this._drawCageHighlight(board);
     this._drawHintRegion(board);
+    this._drawHintEliminations(board);
     this._drawHintPair(board);
     this._drawSameNumberHighlight(board);
     this._drawSelectedCell(board);
@@ -974,6 +975,47 @@ class Renderer {
       }
     }
     return has;
+  }
+
+  // ---------- 7.6 排除过程可视标记（红色斜线+被排除数字） ----------
+  _drawHintEliminations(board) {
+    const { ctx, cellSize, theme } = this;
+    const size = board.size;
+    let hasAny = false;
+
+    for (let r = 0; r < size; r++) {
+      for (let c = 0; c < size; c++) {
+        const cell = board.cells[r][c];
+        if (!cell.isHintEliminated) continue;
+        hasAny = true;
+
+        const x = c * cellSize;
+        const y = r * cellSize;
+
+        // 半透明红底
+        ctx.fillStyle = 'rgba(220, 38, 38, 0.15)';
+        ctx.fillRect(x, y, cellSize, cellSize);
+
+        // 红色斜线（从左上到右下）
+        ctx.strokeStyle = 'rgba(220, 38, 38, 0.7)';
+        ctx.lineWidth = 2.5;
+        ctx.beginPath();
+        ctx.moveTo(x + 4, y + 4);
+        ctx.lineTo(x + cellSize - 4, y + cellSize - 4);
+        ctx.stroke();
+
+        // 被排除的数字（红色小字，右上角
+        if (cell.hintEliminatedNum !== null) {
+          const fontSize = Math.max(10, Math.floor(cellSize * 0.28));
+          ctx.font = `bold ${fontSize}px sans-serif`;
+          ctx.textAlign = 'right';
+          ctx.textBaseline = 'top';
+          ctx.fillStyle = 'rgba(220, 38, 38, 0.9)';
+          ctx.fillText(String(cell.hintEliminatedNum), x + cellSize - 3, y + 2);
+        }
+      }
+    }
+    return hasAny;
   }
 
   // ---------- 7.7 数对关键格高亮（第二层提示 - 数对格特殊颜色） ----------

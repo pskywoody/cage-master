@@ -19,11 +19,16 @@ class Cell {
     this.highlightType = '';
     this.highlightOpacity = 0;
 
-    // 提示状态
+    // 提示数字（null表示只提示位置，不提示数字）
     this.isHintCell = false;   // 是否是提示格子（绿框目标格）
     this.isHintRegion = false; // 是否是提示关联区域（行/列/宫/笼半透明高亮）
     this.isHintPair = false;   // 是否是数对/链的关键格（需要特殊高亮）
     this.hintNumber = null;    // 提示的数字（null表示只提示位置，不提示数字）
+
+    // 排除过程展示状态（用于 hint step 2 中的逐条排除展示）
+    this.isHintEliminated = false;   // 是否标记为排除格（红斜线）
+    this.hintEliminatedNum = null;   // 被排除的数字
+    this.hintEliminationReason = '';  // 排除原因文字
 
     // 选中状态
     this.isSelected = false;
@@ -932,6 +937,10 @@ class Board {
     const nakedPair = this._findNakedPairHint(grid);
     if (nakedPair) return nakedPair;
 
+    // 4. X-Wing检测：某数字在两行中只出现在相同的两列（或反之）
+    const xwing = this._findXWingHint(grid);
+    if (xwing) return xwing;
+
     return null; // 45法则提示后续再加
   }
 
@@ -939,11 +948,13 @@ class Board {
    * 显单提示：计算所有格子的候选数，找只有1个候选的
    */
   _findNakedSingleHint(grid) {
+    const { boxW, boxH } = this.getBoxSize();
     for (let r = 0; r < this.size; r++) {
       for (let c = 0; c < this.size; c++) {
         if (grid[r][c] !== 0) continue;
         const candidates = this._getCellCandidates(grid, r, c);
         if (candidates.length === 1) {
+          const answerNum = candidates[0];
           // 裸单：高亮同行+同列+同宫，让玩家看到"其他格子已经占满了所有数字"
           const highlightSet = new Set();
           const addCell = (rr, cc) => {
@@ -956,7 +967,6 @@ class Board {
           // 同列
           for (let rr = 0; rr < this.size; rr++) addCell(rr, c);
           // 同宫
-          const { boxW, boxH } = this.getBoxSize();
           const br = Math.floor(r / boxH) * boxH;
           const bc = Math.floor(c / boxW) * boxW;
           for (let dr = 0; dr < boxH; dr++)
@@ -976,17 +986,70 @@ class Board {
             const [rr, cc] = key.split(',').map(Number);
             highlightCells.push([rr, cc]);
           }
+
+          // 生成 eliminationSteps：对每个非答案数字，找出它出现在哪里导致被排除
+          const eliminationSteps = [];
+          const boxStartR = Math.floor(r / boxH) * boxH;
+          const boxStartC = Math.floor(c / boxW) * boxW;
+          for (let num = 1; num <= this.size; num++) {
+            if (num === answerNum) continue;
+            // 查行
+            for (let cc = 0; cc < this.size; cc++) {
+              if (cc === c) continue;
+              if (grid[r][cc] === num) {
+                eliminationSteps.push({ r, c: cc, eliminatedNum: num, reason: `同行已有${num}` });
+                break; // 找到一个来源即可
+              }
+            }
+            // 查列
+            for (let rr = 0; rr < this.size; rr++) {
+              if (rr === r) continue;
+              if (grid[rr][c] === num) {
+                eliminationSteps.push({ r: rr, c, eliminatedNum: num, reason: `同列已有${num}` });
+                break;
+              }
+            }
+            // 查宫
+            for (let dr = 0; dr < boxH; dr++) {
+              let found = false;
+              for (let dc = 0; dc < boxW; dc++) {
+                const rr = boxStartR + dr, cc = boxStartC + dc;
+                if (rr === r && cc === c) continue;
+                if (grid[rr][cc] === num) {
+                  eliminationSteps.push({ r: rr, c: cc, eliminatedNum: num, reason: `同宫已有${num}` });
+                  found = true; break;
+                }
+              }
+              if (found) break;
+            }
+            // 查笼
+            if (cell.cageId !== null && this.cageIdToCells && this.cageIdToCells[cell.cageId]) {
+              for (const [cr, cc] of this.cageIdToCells[cell.cageId]) {
+                if (cr === r && cc === c) continue;
+                if (grid[cr][cc] === num) {
+                  // 只加一个，且仅在还没有被行/列/宫覆盖时加（去重）
+                  const alreadyHas = eliminationSteps.some(s => s.eliminatedNum === num);
+                  if (!alreadyHas) {
+                    eliminationSteps.push({ r: cr, c: cc, eliminatedNum: num, reason: `同笼已有${num}` });
+                  }
+                  break;
+                }
+              }
+            }
+          }
+
           const hasCages = this.cages && this.cages.length > 0;
           return {
             r, c,
-            num: candidates[0],
+            num: answerNum,
             technique: 'nakedSingle',
             techniqueName: hasCages ? '显性唯一（裸单）' : '显性唯一',
             description: hasCages 
               ? '这个格子的同行、同列、同宫、同笼已经出现了其他所有数字，只剩一个候选'
               : '这个格子的同行、同列、同宫已经出现了其他所有数字，只剩一个候选',
             regionType: 'all',
-            highlightCells
+            highlightCells,
+            eliminationSteps
           };
         }
       }
@@ -1001,6 +1064,52 @@ class Board {
     const { boxW, boxH } = this.getBoxSize();
     const labels = 'ABCDEFGHI';
 
+    // Helper：生成 hidden single 的 eliminationSteps
+    // 对于隐单，展示该单元中其他空格为什么不能填这个数字
+    const buildHiddenSingleEliminationSteps = (targetR, targetC, num, unitCells) => {
+      const steps = [];
+      for (const [ur, uc] of unitCells) {
+        if (ur === targetR && uc === targetC) continue;
+        if (grid[ur][uc] !== 0) continue;
+        // 检查该格子是否有这个候选
+        const cands = this._getCellCandidates(grid, ur, uc);
+        if (!cands.includes(num)) continue;
+        // 检查为什么 num 不能放在 (ur, uc) —— 看行/列/宫中哪个已有 num
+        let reason = '';
+        // 行检查
+        for (let cc = 0; cc < this.size; cc++) {
+          if (grid[ur][cc] === num) { reason = `第${ur+1}行已有${num}`; break; }
+        }
+        if (!reason) {
+          for (let rr = 0; rr < this.size; rr++) {
+            if (grid[rr][uc] === num) { reason = `第${uc+1}列已有${num}`; break; }
+          }
+        }
+        if (!reason) {
+          const bR = Math.floor(ur / boxH) * boxH, bC = Math.floor(uc / boxW) * boxW;
+          for (let dr = 0; dr < boxH; dr++)
+            for (let dc = 0; dc < boxW; dc++)
+              if (grid[bR + dr][bC + dc] === num) { reason = `第${Math.floor(bR/boxH)*Math.floor(this.size/boxW)+Math.floor(bC/boxW)+1}宫已有${num}`; dr = boxH; break; }
+        }
+        if (!reason) {
+          // 笼子检查
+          const cageIdCell = this.cells[ur][uc].cageId;
+          if (cageIdCell !== null && this.cageIdToCells && this.cageIdToCells[cageIdCell]) {
+            for (const [cr, cc] of this.cageIdToCells[cageIdCell]) {
+              if (grid[cr][cc] === num) { reason = `同笼已有${num}`; break; }
+            }
+          }
+        }
+        if (reason) {
+          steps.push({ r: ur, c: uc, eliminatedNum: num, reason });
+        } else {
+          // 保险：如果找不到具体原因，给出一般的说明
+          steps.push({ r: ur, c: uc, eliminatedNum: num, reason: `受其他约束限制` });
+        }
+      }
+      return steps;
+    };
+
     // 行检查
     for (let r = 0; r < this.size; r++) {
       const posMap = new Map();
@@ -1014,6 +1123,8 @@ class Board {
       }
       for (const [num, cols] of posMap) {
         if (cols.length === 1) {
+          const unitCells = this._getRowCells(r);
+          const eliminationSteps = buildHiddenSingleEliminationSteps(r, cols[0], num, unitCells);
           return {
             r, c: cols[0],
             num,
@@ -1022,7 +1133,8 @@ class Board {
             description: `${labels[r]}行中，数字${num}只能填在这个格子`,
             regionType: 'row',
             regionIndex: r,
-            highlightCells: this._getRowCells(r)
+            highlightCells: this._getRowCells(r),
+            eliminationSteps
           };
         }
       }
@@ -1041,6 +1153,8 @@ class Board {
       }
       for (const [num, rows] of posMap) {
         if (rows.length === 1) {
+          const unitCells = this._getColCells(c);
+          const eliminationSteps = buildHiddenSingleEliminationSteps(rows[0], c, num, unitCells);
           return {
             r: rows[0], c,
             num,
@@ -1049,7 +1163,8 @@ class Board {
             description: `第${c + 1}列中，数字${num}只能填在这个格子`,
             regionType: 'col',
             regionIndex: c,
-            highlightCells: this._getColCells(c)
+            highlightCells: this._getColCells(c),
+            eliminationSteps
           };
         }
       }
@@ -1074,6 +1189,8 @@ class Board {
         for (const [num, positions] of posMap) {
           if (positions.length === 1) {
             const boxNum = br * boxCols + bc + 1;
+            const unitCells = this._getBoxCells(br, bc, boxH, boxW);
+            const eliminationSteps = buildHiddenSingleEliminationSteps(positions[0][0], positions[0][1], num, unitCells);
             return {
               r: positions[0][0], c: positions[0][1],
               num,
@@ -1082,7 +1199,8 @@ class Board {
               description: `第${boxNum}宫中，数字${num}只能填在这个格子`,
               regionType: 'box',
               regionIndex: br * boxCols + bc,
-              highlightCells: this._getBoxCells(br, bc, boxH, boxW)
+              highlightCells: this._getBoxCells(br, bc, boxH, boxW),
+              eliminationSteps
             };
           }
         }
@@ -1102,6 +1220,8 @@ class Board {
       }
       for (const [num, positions] of posMap) {
         if (positions.length === 1) {
+          const unitCells = cage.cells.slice();
+          const eliminationSteps = buildHiddenSingleEliminationSteps(positions[0][0], positions[0][1], num, unitCells);
           return {
             r: positions[0][0], c: positions[0][1],
             num,
@@ -1110,7 +1230,8 @@ class Board {
             description: `和为${cage.sum}的笼子中，数字${num}只能填在这里`,
             regionType: 'cage',
             regionIndex: cage.id,
-            highlightCells: cage.cells.slice()
+            highlightCells: cage.cells.slice(),
+            eliminationSteps
           };
         }
       }
@@ -1161,6 +1282,20 @@ class Board {
                   highlightCells.push([rr, cc]);
                 }
                 const regionNames = { row: '行', col: '列', box: '宫', cage: '笼' };
+                // 生成 eliminationSteps
+                const eliminationSteps = [];
+                // 数对格自身的排除
+                eliminationSteps.push({ r: a.r, c: a.c, eliminatedNum: pairNums[0], reason: `数对格之一{${pairNums[0]},${pairNums[1]}}` });
+                eliminationSteps.push({ r: a.r, c: a.c, eliminatedNum: pairNums[1], reason: `数对格之一{${pairNums[0]},${pairNums[1]}}` });
+                eliminationSteps.push({ r: b.r, c: b.c, eliminatedNum: pairNums[0], reason: `数对格之二{${pairNums[0]},${pairNums[1]}}` });
+                eliminationSteps.push({ r: b.r, c: b.c, eliminatedNum: pairNums[1], reason: `数对格之二{${pairNums[0]},${pairNums[1]}}` });
+                // 目标格中被排除的数对数字
+                if (cands.includes(pairNums[0])) {
+                  eliminationSteps.push({ r, c, eliminatedNum: pairNums[0], reason: `数对排除：${labels[a.r]}${a.c+1}/${labels[b.r]}${b.c+1}占用` });
+                }
+                if (cands.includes(pairNums[1])) {
+                  eliminationSteps.push({ r, c, eliminatedNum: pairNums[1], reason: `数对排除：${labels[a.r]}${a.c+1}/${labels[b.r]}${b.c+1}占用` });
+                }
                 return {
                   r, c,
                   num: filtered[0],
@@ -1171,7 +1306,8 @@ class Board {
                   regionIndex: unitIndex,
                   pairCells: [[a.r, a.c], [b.r, b.c]],
                   pairNums,
-                  highlightCells
+                  highlightCells,
+                  eliminationSteps
                 };
               }
             }
@@ -1184,6 +1320,12 @@ class Board {
               highlightCells.push([rr, cc]);
             }
             const regionNames = { row: '行', col: '列', box: '宫', cage: '笼' };
+            // 生成 eliminationSteps
+            const eliminationSteps = [];
+            eliminationSteps.push({ r: a.r, c: a.c, eliminatedNum: pairNums[0], reason: `数对格之一{${pairNums[0]},${pairNums[1]}}` });
+            eliminationSteps.push({ r: a.r, c: a.c, eliminatedNum: pairNums[1], reason: `数对格之一{${pairNums[0]},${pairNums[1]}}` });
+            eliminationSteps.push({ r: b.r, c: b.c, eliminatedNum: pairNums[0], reason: `数对格之二{${pairNums[0]},${pairNums[1]}}` });
+            eliminationSteps.push({ r: b.r, c: b.c, eliminatedNum: pairNums[1], reason: `数对格之二{${pairNums[0]},${pairNums[1]}}` });
             return {
               r: a.r, c: a.c,
               num: null, // 不直接给数字，需要看教程
@@ -1194,7 +1336,8 @@ class Board {
               regionIndex: unitIndex,
               pairCells: [[a.r, a.c], [b.r, b.c]],
               pairNums,
-              highlightCells
+              highlightCells,
+              eliminationSteps
             };
           }
         }
@@ -1219,6 +1362,195 @@ class Board {
         if (result) return result;
       }
     }
+    return null;
+  }
+
+  /**
+   * X-Wing检测（轻量版）
+   * 对每个数字，检查是否存在两行中该数字只出现在相同的两列，
+   * 则这两列的其他行中该数字可以被排除（反之亦然：两列→两行）。
+   * @returns {Object|null} hint 对象
+   */
+  _findXWingHint(grid) {
+    const { boxW, boxH } = this.getBoxSize();
+
+    // Helper: 获取某格候选数
+    const getCands = (r, c) => {
+      if (grid[r][c] !== 0) return [];
+      return this._getCellCandidates(grid, r, c);
+    };
+
+    for (let num = 1; num <= this.size; num++) {
+      // ---- 按行扫描（行→列 X-Wing）----
+      // 找出每行中 num 出现在哪些列
+      const rowCols = []; // [{row, cols: [c1, c2]}]
+      for (let r = 0; r < this.size; r++) {
+        const cols = [];
+        for (let c = 0; c < this.size; c++) {
+          if (grid[r][c] === num) { cols.push(c); continue; }
+          if (grid[r][c] === 0 && getCands(r, c).includes(num)) {
+            cols.push(c);
+          }
+        }
+        if (cols.length === 2) rowCols.push({ row: r, cols: cols.slice() });
+      }
+
+      // 找两行有相同两列
+      for (let i = 0; i < rowCols.length; i++) {
+        for (let j = i + 1; j < rowCols.length; j++) {
+          const a = rowCols[i], b = rowCols[j];
+          if (a.cols[0] === b.cols[0] && a.cols[1] === b.cols[1]) {
+            const col1 = a.cols[0], col2 = a.cols[1];
+            // 检查是否能从这两列的其他行中排除 num
+            const eliminationSteps = [];
+            let hasElimination = false;
+            for (let r = 0; r < this.size; r++) {
+              if (r === a.row || r === b.row) continue;
+              // 在 col1 中
+              if (getCands(r, col1).includes(num)) {
+                eliminationSteps.push({ r, c: col1, eliminatedNum: num, reason: `X-Wing: 行${a.row+1}与行${b.row+1}的${num}仅在第${col1+1}列和第${col2+1}列` });
+                hasElimination = true;
+              }
+              // 在 col2 中
+              if (getCands(r, col2).includes(num)) {
+                eliminationSteps.push({ r, c: col2, eliminatedNum: num, reason: `X-Wing: 行${a.row+1}与行${b.row+1}的${num}仅在第${col1+1}列和第${col2+1}列` });
+                hasElimination = true;
+              }
+            }
+            if (hasElimination) {
+              const labels = 'ABCDEFGHI';
+              const highlightCells = [];
+              for (let r = 0; r < this.size; r++) {
+                highlightCells.push([r, col1]);
+                highlightCells.push([r, col2]);
+              }
+              // X-Wing也可能直接产生裸单——检查有没有某格排除后只剩一个候选
+              let resultNum = null, resultR = null, resultC = null;
+              for (let r = 0; r < this.size; r++) {
+                if (r === a.row || r === b.row) continue;
+                const candsCol1 = getCands(r, col1);
+                const candsCol2 = getCands(r, col2);
+                const filtered1 = candsCol1.filter(n => n !== num);
+                const filtered2 = candsCol2.filter(n => n !== num);
+                if (filtered1.length === 1 && candsCol1.length > 1) {
+                  resultNum = filtered1[0]; resultR = r; resultC = col1;
+                }
+                if (!resultNum && filtered2.length === 1 && candsCol2.length > 1) {
+                  resultNum = filtered2[0]; resultR = r; resultC = col2;
+                }
+              }
+              if (resultNum) {
+                return {
+                  r: resultR, c: resultC,
+                  num: resultNum,
+                  technique: 'xwing',
+                  techniqueName: 'X-Wing',
+                  description: `数字${num}在行${a.row+1}和行${b.row+1}中只出现在第${col1+1}列和第${col2+1}列，形成X-Wing结构，排除其他行这两列中的${num}后，${labels[resultR]}${resultC+1}只剩${resultNum}`,
+                  regionType: 'all',
+                  highlightCells,
+                  eliminationSteps,
+                  xwingInfo: { num, rows: [a.row, b.row], cols: [col1, col2] }
+                };
+              }
+              return {
+                r: a.row, c: col1,
+                num: null,
+                technique: 'xwing',
+                techniqueName: 'X-Wing',
+                description: `数字${num}在行${a.row+1}和行${b.row+1}中只出现在第${col1+1}列和第${col2+1}列，形成X-Wing结构，可以排除其他行这两列中的${num}`,
+                regionType: 'all',
+                highlightCells,
+                eliminationSteps,
+                xwingInfo: { num, rows: [a.row, b.row], cols: [col1, col2] }
+              };
+            }
+          }
+        }
+      }
+
+      // ---- 按列扫描（列→行 X-Wing）----
+      const colRows = [];
+      for (let c = 0; c < this.size; c++) {
+        const rows = [];
+        for (let r = 0; r < this.size; r++) {
+          if (grid[r][c] === num) { rows.push(r); continue; }
+          if (grid[r][c] === 0 && getCands(r, c).includes(num)) {
+            rows.push(r);
+          }
+        }
+        if (rows.length === 2) colRows.push({ col: c, rows: rows.slice() });
+      }
+
+      for (let i = 0; i < colRows.length; i++) {
+        for (let j = i + 1; j < colRows.length; j++) {
+          const a = colRows[i], b = colRows[j];
+          if (a.rows[0] === b.rows[0] && a.rows[1] === b.rows[1]) {
+            const row1 = a.rows[0], row2 = a.rows[1];
+            const eliminationSteps = [];
+            let hasElimination = false;
+            for (let c = 0; c < this.size; c++) {
+              if (c === a.col || c === b.col) continue;
+              if (getCands(row1, c).includes(num)) {
+                eliminationSteps.push({ r: row1, c, eliminatedNum: num, reason: `X-Wing: 列${a.col+1}与列${b.col+1}的${num}仅在第${row1+1}行和第${row2+1}行` });
+                hasElimination = true;
+              }
+              if (getCands(row2, c).includes(num)) {
+                eliminationSteps.push({ r: row2, c, eliminatedNum: num, reason: `X-Wing: 列${a.col+1}与列${b.col+1}的${num}仅在第${row1+1}行和第${row2+1}行` });
+                hasElimination = true;
+              }
+            }
+            if (hasElimination) {
+              const labels = 'ABCDEFGHI';
+              const highlightCells = [];
+              for (let c = 0; c < this.size; c++) {
+                highlightCells.push([row1, c]);
+                highlightCells.push([row2, c]);
+              }
+              // 检查是否产生裸单
+              let resultNum = null, resultR = null, resultC = null;
+              for (let c = 0; c < this.size; c++) {
+                if (c === a.col || c === b.col) continue;
+                const candsRow1 = getCands(row1, c);
+                const candsRow2 = getCands(row2, c);
+                const filtered1 = candsRow1.filter(n => n !== num);
+                const filtered2 = candsRow2.filter(n => n !== num);
+                if (filtered1.length === 1 && candsRow1.length > 1) {
+                  resultNum = filtered1[0]; resultR = row1; resultC = c;
+                }
+                if (!resultNum && filtered2.length === 1 && candsRow2.length > 1) {
+                  resultNum = filtered2[0]; resultR = row2; resultC = c;
+                }
+              }
+              if (resultNum) {
+                return {
+                  r: resultR, c: resultC,
+                  num: resultNum,
+                  technique: 'xwing',
+                  techniqueName: 'X-Wing',
+                  description: `数字${num}在第${a.col+1}列和第${b.col+1}列中只出现在行${row1+1}和行${row2+1}，形成X-Wing结构，排除其他列这两行中的${num}后，${labels[resultR]}${resultC+1}只剩${resultNum}`,
+                  regionType: 'all',
+                  highlightCells,
+                  eliminationSteps,
+                  xwingInfo: { num, rows: [row1, row2], cols: [a.col, b.col] }
+                };
+              }
+              return {
+                r: row1, c: a.col,
+                num: null,
+                technique: 'xwing',
+                techniqueName: 'X-Wing',
+                description: `数字${num}在第${a.col+1}列和第${b.col+1}列中只出现在行${row1+1}和行${row2+1}，形成X-Wing结构，可以排除其他列这两行中的${num}`,
+                regionType: 'all',
+                highlightCells,
+                eliminationSteps,
+                xwingInfo: { num, rows: [row1, row2], cols: [a.col, b.col] }
+              };
+            }
+          }
+        }
+      }
+    }
+
     return null;
   }
 
@@ -1425,6 +1757,9 @@ class Board {
         this.cells[r][c].isHintRegion = false;
         this.cells[r][c].isHintPair = false;
         this.cells[r][c].hintNumber = null;
+        this.cells[r][c].isHintEliminated = false;
+        this.cells[r][c].hintEliminatedNum = null;
+        this.cells[r][c].hintEliminationReason = '';
       }
     }
   }

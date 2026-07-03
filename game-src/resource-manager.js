@@ -69,7 +69,7 @@ const ResourceManager = (function() {
   async function loadKillerPuzzles(difficulty) {
     if (!difficulty) {
       // 加载全量（fallback）
-      return await _fetchJSON('data/levels-killer.json');
+      return await _fetchJSON('data/levels.json');
     }
     // 按难度从分包加载
     const packUrl = 'data/packs/killer-' + difficulty + '.json';

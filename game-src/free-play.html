@@ -250,15 +250,18 @@
     const urlParams = new URLSearchParams(window.location.search);
     const modeParam = urlParams.get('mode');
     const GAME_MODE = (modeParam === 'classic') ? 'classic' : 'killer';
-    const DATA_FILE = GAME_MODE === 'killer' ? 'data/levels-killer.json?v=1' : 'data/levels.json?v=39';
+    const DATA_FILE = GAME_MODE === 'killer' ? 'data/levels.json?v=39' : 'data/levels-classic.json?v=1';
 
     // 同步模式按钮状态
     document.getElementById('modeClassic').classList.toggle('active', GAME_MODE === 'classic');
     document.getElementById('modeKiller').classList.toggle('active', GAME_MODE === 'killer');
 
+    // 支持从URL中读取 focus 参数，自动跳转到指定难度（用于微练习跳转）
+    const focusParam = urlParams.get('focus');
+
     let allLevels = [];
     let byDifficulty = { 1: [], 2: [], 3: [], 4: [], 5: [] };
-    let currentDifficulty = 1;
+    let currentDifficulty = parseInt(focusParam) || 1;
 
     function formatTime(seconds) {
       if (!seconds || seconds < 0) return '--';

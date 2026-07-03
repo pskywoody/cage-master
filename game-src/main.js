@@ -199,17 +199,7 @@ async function loadLevel(id) {
   try {
     let cache, dataFile;
     if (_gameMode === 'killer') {
-      // 杀手数独模式：从 levels-killer.json 加载
-      if (!_localKillerCache) {
-        const res = await fetch('data/levels-killer.json?v=2');
-        if (res.ok) {
-          _localKillerCache = await res.json();
-        }
-      }
-      cache = _localKillerCache;
-      dataFile = 'levels-killer.json';
-    } else {
-      // 经典数独模式：从 levels.json 加载
+      // 杀手数独模式：从 levels.json 加载（2718道题）
       if (!_localLevelsCache) {
         const res = await fetch('data/levels.json?v=39');
         if (res.ok) {
@@ -218,6 +208,16 @@ async function loadLevel(id) {
       }
       cache = _localLevelsCache;
       dataFile = 'levels.json';
+    } else {
+      // 经典数独模式：从 levels-classic.json 加载（330道，有预填）
+      if (!_localLevelsCache) {
+        const res = await fetch('data/levels-classic.json?v=1');
+        if (res.ok) {
+          _localLevelsCache = await res.json();
+        }
+      }
+      cache = _localLevelsCache;
+      dataFile = 'levels-classic.json';
     }
 
     if (cache && Array.isArray(cache)) {

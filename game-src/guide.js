@@ -2279,6 +2279,18 @@ function bindCompleteOverlay() {
     });
   }
 
+  // 微练习按钮：跳转到自由选关，根据当前章节自动匹配难度
+  const practiceBtn = document.getElementById('btn-complete-practice');
+  if (practiceBtn) {
+    practiceBtn.addEventListener('click', () => {
+      if (typeof AudioManager !== 'undefined') AudioManager.playClick();
+      const diffLevel = currentChapterId || 1;
+      // 第1章→简单, 2-3→中等, 4-5→困难, 6-7→地狱
+      const diffMap = { 1: 1, 2: 2, 3: 2, 4: 3, 5: 3, 6: 4, 7: 4 };
+      window.location.href = `free-play.html?mode=killer&focus=${diffMap[diffLevel] || 1}`;
+    });
+  }
+
   const nextBtn = document.getElementById('btn-complete-next');
   if (nextBtn) {
     // 检查下一关是否存在

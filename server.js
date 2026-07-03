@@ -79,6 +79,27 @@ function ensureLevelsGenerated(outputPath) {
 
 // 2.1 读取章节数据（教学模式）
 function loadChapters() {
+  const chaptersDir = path.join(__dirname, 'game-src', 'data', 'chapters');
+  const indexPath = path.join(chaptersDir, 'index.json');
+
+  // 优先从 chapters/ 目录加载拆分后的文件
+  if (fs.existsSync(indexPath)) {
+    const indexRaw = fs.readFileSync(indexPath, 'utf-8');
+    const index = JSON.parse(indexRaw);
+    const chapters = [];
+    for (const entry of index.chapters) {
+      const filePath = path.join(chaptersDir, entry.file);
+      if (fs.existsSync(filePath)) {
+        const raw = fs.readFileSync(filePath, 'utf-8');
+        chapters.push(JSON.parse(raw));
+      } else {
+        console.warn(`[WARN] 章节文件缺失: ${entry.file}，跳过`);
+      }
+    }
+    return chapters;
+  }
+
+  // fallback: 加载单文件 chapters.json
   const filePath = path.join(__dirname, 'game-src', 'data', 'chapters.json');
   const raw = fs.readFileSync(filePath, 'utf-8');
   return JSON.parse(raw);
@@ -96,6 +117,27 @@ function findTeachingLevel(levelId) {
   }
   return null;
 }
+
+// 2.3 微练习API
+app.get('/api/micro-practice/:group', (req, res) => {
+  const group = req.params.group.toUpperCase();
+  const filePath = path.join(__dirname, 'game-src', 'data', 'micro-practice', `practice-${group.toLowerCase()}.json`);
+  if (!fs.existsSync(filePath)) {
+    return res.json({ code: -1, msg: '微练习组未找到: ' + group });
+  }
+  const raw = fs.readFileSync(filePath, 'utf-8');
+  const data = JSON.parse(raw);
+  res.json({ code: 0, data, msg: 'ok' });
+});
+
+app.get('/api/micro-practice', (req, res) => {
+  const indexPath = path.join(__dirname, 'game-src', 'data', 'micro-practice', 'index.json');
+  if (!fs.existsSync(indexPath)) {
+    return res.json({ code: -1, msg: '微练习题库未生成' });
+  }
+  const raw = fs.readFileSync(indexPath, 'utf-8');
+  res.json({ code: 0, data: JSON.parse(raw), msg: 'ok' });
+});
 
 // ==========================================
 // 接口：获取所有关卡列表

@@ -1,0 +1,1941 @@
+{
+  "chapterId": 1,
+  "title": "初识笼中密码",
+  "subtitle": "入门篇 · 4×4",
+  "icon": "📁",
+  "color": "#22c55e",
+  "description": "你作为新人侦探来到旧档案馆，守笼人是谜题管理员，阿岩是实习侦探。从4×4迷你盘面开始，学习数独三大铁律和杀手数独基础笼格。",
+  "badgeId": "badge_c1_beginner",
+  "badgeName": "新手侦探",
+  "unlockRequirement": 0,
+  "badge": {
+    "id": "badge_c1_beginner",
+    "name": "新手侦探",
+    "icon": "🔍",
+    "description": "完成第一章「初识笼中密码」，正式成为档案侦探。"
+  },
+  "introStory": [
+    {
+      "type": "title",
+      "text": "第一章",
+      "subtitle": "初识笼中密码"
+    },
+    {
+      "speaker": "旁白",
+      "text": "你推开尘封三十年的档案馆大门，空气中弥漫着旧纸张的气息。"
+    },
+    {
+      "speaker": "守笼人",
+      "text": "欢迎来到数字档案馆。我是这里的守笼人，管理着馆内所有笼局档案。"
+    },
+    {
+      "speaker": "阿岩",
+      "text": "哇，你就是守笼人？我叫阿岩，比你早来几天的实习侦探！后面这位是新来的吧？"
+    },
+    {
+      "speaker": "守笼人",
+      "text": "嗯。从今天起，你们将从最基础的4×4盘面学起，逐步掌握杀手数独的全部技巧。"
+    },
+    {
+      "speaker": "阿岩",
+      "text": "别紧张，我会在旁边帮你翻译大师的话——他老人家说话总是文绉绉的！"
+    },
+    {
+      "speaker": "守笼人",
+      "text": "……第一卷卷宗在前台。记住三条铁律：每行、每列、每个2×2小宫格里，数字只能出现一次。准备好了吗？"
+    }
+  ],
+  "endingStory": [
+    {
+      "speaker": "守笼人",
+      "text": "不错。你已掌握杀手数独最基础的三件武器——规则、笼子、和值。"
+    },
+    {
+      "speaker": "阿岩",
+      "text": "太棒了！我当初可是花了两倍时间才通关的！"
+    },
+    {
+      "speaker": "守笼人",
+      "text": "记住一个秘密：4×4盘面每行每列每宫总和永远是10。6×6是21，9×9是45——我们管这叫「星衡」法则。"
+    },
+    {
+      "speaker": "阿岩",
+      "text": "星衡法则？听起来好厉害！"
+    },
+    {
+      "speaker": "守笼人",
+      "text": "这是打开复杂笼局的钥匙。下一卷档案，我们将进入更大的盘面。去领取你的徽章吧。"
+    }
+  ],
+  "levels": [
+    {
+      "levelId": 101,
+      "title": "第0关：规则初探",
+      "mode": "full",
+      "gridSize": 4,
+      "difficulty": "入门",
+      "teachingGoal": "数独三大铁律：每行、每列、每个2×2宫，数字1-4只能出现一次！找唯一能填的数字。",
+      "features": {
+        "allowDraft": true,
+        "assistant45": false,
+        "showHints": true,
+        "highlightRow": true,
+        "highlightCol": true,
+        "highlightBox": true,
+        "highlightNumber": true,
+        "highlightCage": false,
+        "autoFillCandidates": true
+      },
+      "boardData": [
+        [
+          1,
+          0,
+          0,
+          3
+        ],
+        [
+          0,
+          2,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          3,
+          0
+        ],
+        [
+          2,
+          0,
+          0,
+          4
+        ]
+      ],
+      "solution": [
+        [
+          1,
+          4,
+          2,
+          3
+        ],
+        [
+          3,
+          2,
+          4,
+          1
+        ],
+        [
+          4,
+          1,
+          3,
+          2
+        ],
+        [
+          2,
+          3,
+          1,
+          4
+        ]
+      ],
+      "cages": [],
+      "triggers": [
+        {
+          "id": "t100_s",
+          "condition": "onLevelStart",
+          "type": "freeze_mask",
+          "text": "欢迎！数独三大铁律：每行、每列、每个2×2宫，数字1-4不能重复！点一个空格，看看能填什么？",
+          "once": true
+        },
+        {
+          "id": "t100_f1",
+          "condition": "onFirstNumberFilled",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "太棒了！🎉 你刚刚用了「排除法」——看看行、列、宫里已经有哪些数字，剩下的就是答案！",
+          "once": true
+        },
+        {
+          "id": "t100_f2",
+          "condition": "onFillCountReached",
+          "count": 3,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "继续！选中空格时，同行/列/宫会高亮，帮你快速排除重复数字！",
+          "once": true
+        },
+        {
+          "id": "t100_b",
+          "condition": "onFillCountReached",
+          "count": 6,
+          "type": "enter_phase",
+          "phase": "breakthrough",
+          "once": true
+        },
+        {
+          "id": "t100_st",
+          "condition": "onStuckForSeconds",
+          "seconds": 25,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "💡 卡住了？看高亮的行和列——已经出现的数字不能再填！候选数里只剩一个的就是答案！",
+          "once": false
+        },
+        {
+          "id": "t100_fi",
+          "condition": "onFillCountReached",
+          "count": 10,
+          "type": "enter_phase",
+          "phase": "finishing",
+          "once": true
+        }
+      ],
+      "preDialog": [
+        {
+          "speaker": "守笼人",
+          "text": "档案馆第一道档案锁遵循行规则：同一横排数字1-4不可重复。"
+        },
+        {
+          "speaker": "阿岩",
+          "text": "说白了，横着一排里1、2、3、4每个数字只能出现一次，空格里把缺的填上就行，超简单！"
+        }
+      ],
+      "clearDialog": [
+        {
+          "speaker": "守笼人",
+          "text": "能解开基础行锁，你才有资格翻阅馆内的笼局档案。"
+        },
+        {
+          "speaker": "阿岩",
+          "text": "笼局档案？听起来好神秘，后面的谜题都是那种带虚线笼子的吗？"
+        }
+      ]
+    },
+    {
+      "levelId": 102,
+      "title": "第1关：初入档案馆",
+      "mode": "full",
+      "gridSize": 4,
+      "difficulty": "入门",
+      "teachingGoal": "认识数独三规则（行/列/宫不重复），学会找「裸单」",
+      "features": {
+        "allowDraft": true,
+        "assistant45": false,
+        "showHints": true,
+        "highlightRow": true,
+        "highlightCol": true,
+        "highlightBox": true,
+        "highlightNumber": false,
+        "highlightCage": false,
+        "autoFillCandidates": true
+      },
+      "boardData": [
+        [
+          1,
+          2,
+          0,
+          0
+        ],
+        [
+          0,
+          4,
+          1,
+          2
+        ],
+        [
+          2,
+          1,
+          4,
+          3
+        ],
+        [
+          4,
+          3,
+          0,
+          1
+        ]
+      ],
+      "solution": [
+        [
+          1,
+          2,
+          3,
+          4
+        ],
+        [
+          3,
+          4,
+          1,
+          2
+        ],
+        [
+          2,
+          1,
+          4,
+          3
+        ],
+        [
+          4,
+          3,
+          2,
+          1
+        ]
+      ],
+      "cages": [],
+      "triggers": [
+        {
+          "id": "t101_s",
+          "condition": "onLevelStart",
+          "type": "freeze_mask",
+          "text": "欢迎！灰色是提示数字。看空格旁的小数字（候选数），只剩1个的就是「裸单」，直接填！",
+          "once": true
+        },
+        {
+          "id": "t101_f",
+          "condition": "onFirstNumberFilled",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "答对了🎉 每行、每列、每个2×2宫，1-4各出现一次！",
+          "once": true
+        },
+        {
+          "id": "t101_h",
+          "condition": "onFillCountReached",
+          "count": 11,
+          "type": "enter_phase",
+          "phase": "finishing",
+          "once": true
+        },
+        {
+          "id": "t101_c",
+          "condition": "onConflict",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "数字重复啦！检查行、列、小宫～",
+          "once": false
+        }
+      ],
+      "preDialog": [
+        {
+          "speaker": "守笼人",
+          "text": "竖列为档案第二重约束，每一列数字同样不能重复。"
+        },
+        {
+          "speaker": "阿岩",
+          "text": "横看完看竖，横竖都不能有重复数字，双管齐下填空格更快！"
+        }
+      ],
+      "clearDialog": [
+        {
+          "speaker": "守笼人",
+          "text": "基础逻辑掌握得不错。"
+        },
+        {
+          "speaker": "阿岩",
+          "text": "可以啊，比我第一次通关快多了！"
+        }
+      ]
+    },
+    {
+      "levelId": 103,
+      "title": "第2关：初识笼格",
+      "mode": "full",
+      "gridSize": 4,
+      "difficulty": "入门",
+      "teachingGoal": "认识笼子：虚线框是笼子，左上角是和值。单格笼和值=数字！",
+      "allowPartialCages": true,
+      "features": {
+        "allowDraft": true,
+        "assistant45": false,
+        "showHints": true,
+        "highlightRow": true,
+        "highlightCol": true,
+        "highlightBox": true,
+        "highlightNumber": false,
+        "highlightCage": true,
+        "autoFillCandidates": true
+      },
+      "boardData": [
+        [
+          0,
+          3,
+          1,
+          4
+        ],
+        [
+          1,
+          4,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          4,
+          0
+        ],
+        [
+          4,
+          0,
+          0,
+          1
+        ]
+      ],
+      "solution": [
+        [
+          2,
+          3,
+          1,
+          4
+        ],
+        [
+          1,
+          4,
+          2,
+          3
+        ],
+        [
+          3,
+          1,
+          4,
+          2
+        ],
+        [
+          4,
+          2,
+          3,
+          1
+        ]
+      ],
+      "cages": [
+        {
+          "id": 0,
+          "cells": [
+            [
+              0,
+              0
+            ]
+          ],
+          "sum": 2
+        },
+        {
+          "id": 1,
+          "cells": [
+            [
+              3,
+              1
+            ]
+          ],
+          "sum": 2
+        }
+      ],
+      "triggers": [
+        {
+          "id": "t102_s",
+          "condition": "onLevelStart",
+          "type": "freeze_mask",
+          "text": "看虚线框！这是「笼子」，左上角是笼内总和。1格的笼子，和值是几就填几！",
+          "once": true
+        },
+        {
+          "id": "t102_f",
+          "condition": "onFirstNumberFilled",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "对了！单格笼是送分题🎉",
+          "once": true
+        },
+        {
+          "id": "t102_b",
+          "condition": "onFillCountReached",
+          "count": 8,
+          "type": "enter_phase",
+          "phase": "breakthrough",
+          "once": true
+        },
+        {
+          "id": "t102_fi",
+          "condition": "onFillCountReached",
+          "count": 12,
+          "type": "enter_phase",
+          "phase": "finishing",
+          "once": true
+        },
+        {
+          "id": "t102_c",
+          "condition": "onConflict",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "检查笼子和值哦～",
+          "once": false
+        }
+      ],
+      "preDialog": [
+        {
+          "speaker": "守笼人",
+          "text": "行、列、宫是数独推理三大根基，每个2×2小方格内数字也需唯一。"
+        },
+        {
+          "speaker": "阿岩",
+          "text": "横竖加小方框，三重限制一叠加，空白格能填的数字一下就变少了！对了，长按数字可以连填，省不少操作。"
+        }
+      ],
+      "clearDialog": [
+        {
+          "speaker": "守笼人",
+          "text": "行、列、宫三条基础铁律你已吃透，真正的笼锁谜题，很快就要出现。"
+        },
+        {
+          "speaker": "阿岩",
+          "text": "终于要见到传说里的笼格谜题了吗？我之前只在旧档案边角见过潦草的笼型图案。"
+        }
+      ]
+    },
+    {
+      "levelId": 104,
+      "title": "第3关：裸单专项",
+      "mode": "endgame",
+      "gridSize": 4,
+      "difficulty": "入门",
+      "teachingGoal": "巩固裸单：快速识别候选数唯一的格子",
+      "keyCells": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          3,
+          2
+        ]
+      ],
+      "features": {
+        "allowDraft": true,
+        "assistant45": false,
+        "showHints": true,
+        "highlightRow": true,
+        "highlightCol": true,
+        "highlightBox": true,
+        "highlightNumber": false,
+        "highlightCage": false,
+        "autoFillCandidates": true
+      },
+      "boardData": [
+        [
+          0,
+          1,
+          4,
+          0
+        ],
+        [
+          0,
+          2,
+          3,
+          1
+        ],
+        [
+          1,
+          0,
+          2,
+          4
+        ],
+        [
+          2,
+          4,
+          0,
+          3
+        ]
+      ],
+      "solution": [
+        [
+          3,
+          1,
+          4,
+          2
+        ],
+        [
+          4,
+          2,
+          3,
+          1
+        ],
+        [
+          1,
+          3,
+          2,
+          4
+        ],
+        [
+          2,
+          4,
+          1,
+          3
+        ]
+      ],
+      "cages": [],
+      "triggers": [
+        {
+          "id": "t103_s",
+          "condition": "onLevelStart",
+          "type": "enter_phase",
+          "phase": "breakthrough",
+          "once": true
+        },
+        {
+          "id": "t103_h",
+          "condition": "onLevelStart",
+          "type": "freeze_mask",
+          "delay": 800,
+          "text": "专项训练！只剩这几个空格，全是裸单，看候选数填！",
+          "once": true
+        },
+        {
+          "id": "t103_d",
+          "condition": "onKeyCellsFilledCorrectly",
+          "type": "enter_phase",
+          "phase": "finishing",
+          "once": true
+        }
+      ],
+      "preDialog": [
+        {
+          "speaker": "守笼人",
+          "text": "虚线围起的区域便是「笼」，左上角数字代表笼内所有数字相加的总和。"
+        },
+        {
+          "speaker": "阿岩",
+          "text": "虚线框=笼子，左上角数字=笼子里所有数字加起来的结果，而且笼子里数字不能重复，这是杀手数独的核心！"
+        }
+      ],
+      "clearDialog": [
+        {
+          "speaker": "守笼人",
+          "text": "基础逻辑掌握得不错。"
+        },
+        {
+          "speaker": "阿岩",
+          "text": "可以啊，比我第一次通关快多了！"
+        }
+      ]
+    },
+    {
+      "levelId": 105,
+      "title": "第4关：唯一组合",
+      "mode": "full",
+      "gridSize": 4,
+      "difficulty": "入门",
+      "teachingGoal": "2格笼和值3/4/6/7时组合唯一！口诀：3=1+2,4=1+3,6=2+4,7=3+4",
+      "features": {
+        "allowDraft": true,
+        "assistant45": false,
+        "showHints": true,
+        "highlightRow": true,
+        "highlightCol": true,
+        "highlightBox": true,
+        "highlightNumber": true,
+        "highlightCage": true,
+        "autoFillCandidates": true
+      },
+      "boardData": [
+        [
+          0,
+          0,
+          4,
+          0
+        ],
+        [
+          0,
+          2,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          2,
+          4
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "solution": [
+        [
+          3,
+          1,
+          4,
+          2
+        ],
+        [
+          4,
+          2,
+          3,
+          1
+        ],
+        [
+          1,
+          3,
+          2,
+          4
+        ],
+        [
+          2,
+          4,
+          1,
+          3
+        ]
+      ],
+      "cages": [
+        {
+          "id": 0,
+          "cells": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "sum": 4
+        },
+        {
+          "id": 1,
+          "cells": [
+            [
+              0,
+              3
+            ],
+            [
+              1,
+              3
+            ]
+          ],
+          "sum": 3
+        },
+        {
+          "id": 2,
+          "cells": [
+            [
+              2,
+              0
+            ],
+            [
+              3,
+              0
+            ]
+          ],
+          "sum": 3
+        },
+        {
+          "id": 3,
+          "cells": [
+            [
+              3,
+              2
+            ],
+            [
+              3,
+              3
+            ]
+          ],
+          "sum": 4
+        },
+        {
+          "id": 4,
+          "cells": [
+            [
+              0,
+              2
+            ]
+          ],
+          "sum": 4
+        },
+        {
+          "id": 5,
+          "cells": [
+            [
+              1,
+              0
+            ]
+          ],
+          "sum": 4
+        },
+        {
+          "id": 6,
+          "cells": [
+            [
+              1,
+              1
+            ]
+          ],
+          "sum": 2
+        },
+        {
+          "id": 7,
+          "cells": [
+            [
+              1,
+              2
+            ]
+          ],
+          "sum": 3
+        },
+        {
+          "id": 8,
+          "cells": [
+            [
+              2,
+              1
+            ]
+          ],
+          "sum": 3
+        },
+        {
+          "id": 9,
+          "cells": [
+            [
+              2,
+              2
+            ]
+          ],
+          "sum": 2
+        },
+        {
+          "id": 10,
+          "cells": [
+            [
+              2,
+              3
+            ]
+          ],
+          "sum": 4
+        },
+        {
+          "id": 11,
+          "cells": [
+            [
+              3,
+              1
+            ]
+          ],
+          "sum": 4
+        }
+      ],
+      "triggers": [
+        {
+          "id": "t104_s",
+          "condition": "onLevelStart",
+          "type": "freeze_mask",
+          "text": "2格笼和值为3/4/6/7时数字唯一！口诀：3要1+2，4要1+3，6要2+4，7要3+4！",
+          "once": true
+        },
+        {
+          "id": "t104_f",
+          "condition": "onFirstNumberFilled",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "找到唯一组合了！这是杀手数独的第一把钥匙🎉",
+          "once": true
+        },
+        {
+          "id": "t104_b",
+          "condition": "onFillCountReached",
+          "count": 6,
+          "type": "enter_phase",
+          "phase": "breakthrough",
+          "once": true
+        },
+        {
+          "id": "t104_st",
+          "condition": "onStuckForSeconds",
+          "seconds": 20,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "💡 看笼子！和值3=1+2，和值4=1+3，结合行列宫确定位置！",
+          "once": false
+        },
+        {
+          "id": "t104_fi",
+          "condition": "onFillCountReached",
+          "count": 12,
+          "type": "enter_phase",
+          "phase": "finishing",
+          "once": true
+        }
+      ],
+      "preDialog": [
+        {
+          "speaker": "守笼人",
+          "text": "双格笼是最基础的笼型，可直接根据和值锁定仅有的数字组合。"
+        },
+        {
+          "speaker": "阿岩",
+          "text": "两个格子相加等于左上角数字，比如和为3只能是1+2，和为7只能是3+4，不用瞎试！"
+        }
+      ],
+      "clearDialog": [
+        {
+          "speaker": "守笼人",
+          "text": "基础逻辑掌握得不错。"
+        },
+        {
+          "speaker": "阿岩",
+          "text": "可以啊，比我第一次通关快多了！"
+        }
+      ]
+    },
+    {
+      "levelId": 106,
+      "title": "第5关：隐单的秘密",
+      "mode": "full",
+      "gridSize": 4,
+      "difficulty": "入门",
+      "teachingGoal": "认识隐单：裸单不够用时，扫数字！某数字在某行/列/宫只能放一个位置时，就是答案！",
+      "features": {
+        "allowDraft": true,
+        "assistant45": false,
+        "showHints": true,
+        "highlightRow": true,
+        "highlightCol": true,
+        "highlightBox": true,
+        "highlightNumber": true,
+        "highlightCage": true,
+        "autoFillCandidates": true
+      },
+      "boardData": [
+        [
+          0,
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          3,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "solution": [
+        [
+          4,
+          2,
+          1,
+          3
+        ],
+        [
+          1,
+          3,
+          4,
+          2
+        ],
+        [
+          3,
+          4,
+          2,
+          1
+        ],
+        [
+          2,
+          1,
+          3,
+          4
+        ]
+      ],
+      "cages": [
+        {
+          "id": 0,
+          "cells": [
+            [
+              1,
+              1
+            ]
+          ],
+          "sum": 3
+        },
+        {
+          "id": 1,
+          "cells": [
+            [
+              0,
+              2
+            ]
+          ],
+          "sum": 1
+        },
+        {
+          "id": 2,
+          "cells": [
+            [
+              2,
+              3
+            ]
+          ],
+          "sum": 1
+        },
+        {
+          "id": 3,
+          "cells": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "sum": 6
+        },
+        {
+          "id": 4,
+          "cells": [
+            [
+              0,
+              3
+            ],
+            [
+              1,
+              3
+            ]
+          ],
+          "sum": 5
+        },
+        {
+          "id": 5,
+          "cells": [
+            [
+              1,
+              0
+            ],
+            [
+              2,
+              0
+            ]
+          ],
+          "sum": 4
+        },
+        {
+          "id": 6,
+          "cells": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              2
+            ]
+          ],
+          "sum": 6
+        },
+        {
+          "id": 7,
+          "cells": [
+            [
+              2,
+              1
+            ],
+            [
+              3,
+              1
+            ]
+          ],
+          "sum": 5
+        },
+        {
+          "id": 8,
+          "cells": [
+            [
+              3,
+              2
+            ],
+            [
+              3,
+              3
+            ]
+          ],
+          "sum": 7
+        },
+        {
+          "id": 9,
+          "cells": [
+            [
+              3,
+              0
+            ]
+          ],
+          "sum": 2
+        }
+      ],
+      "triggers": [
+        {
+          "id": "t105_s",
+          "condition": "onLevelStart",
+          "type": "freeze_mask",
+          "text": "裸单和唯一组合用完了怎么办？找「隐单」！不要只看格子有几个候选数，要扫数字——比如看数字「3」在第一行还能放哪里？",
+          "once": true
+        },
+        {
+          "id": "t105_b",
+          "condition": "onFillCountReached",
+          "count": 5,
+          "type": "enter_phase",
+          "phase": "breakthrough",
+          "once": true
+        },
+        {
+          "id": "t105_st",
+          "condition": "onStuckForSeconds",
+          "seconds": 25,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "💡 扫数字！找「3」在第一行能放哪里？整行只有一个位置能放3！",
+          "once": false
+        },
+        {
+          "id": "t105_fi",
+          "condition": "onFillCountReached",
+          "count": 13,
+          "type": "enter_phase",
+          "phase": "finishing",
+          "once": true
+        }
+      ],
+      "preDialog": [
+        {
+          "speaker": "守笼人",
+          "text": "多重笼格交错时，需要同时兼顾行、列、宫与笼和四条约束。"
+        },
+        {
+          "speaker": "阿岩",
+          "text": "笼子叠在一起看着乱，其实分开拆解单个笼子，再结合横竖宫排除，思路一下就清晰了。"
+        }
+      ],
+      "clearDialog": [
+        {
+          "speaker": "守笼人",
+          "text": "这种交错笼的排布手法……我只在多年前一批匿名送来的档案中见过。"
+        },
+        {
+          "speaker": "阿岩",
+          "text": "匿名档案？难道这些笼子不是档案馆自己设计的？"
+        }
+      ]
+    },
+    {
+      "levelId": 107,
+      "title": "第6关：组合专项",
+      "mode": "endgame",
+      "gridSize": 4,
+      "difficulty": "入门",
+      "teachingGoal": "巩固唯一组合：熟练运用3/4/6/7的唯一组合",
+      "keyCells": [
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          3,
+          0
+        ]
+      ],
+      "features": {
+        "allowDraft": true,
+        "assistant45": false,
+        "showHints": true,
+        "highlightRow": true,
+        "highlightCol": true,
+        "highlightBox": true,
+        "highlightNumber": true,
+        "highlightCage": true,
+        "autoFillCandidates": true
+      },
+      "boardData": [
+        [
+          4,
+          3,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          4,
+          3
+        ],
+        [
+          3,
+          4,
+          1,
+          2
+        ],
+        [
+          0,
+          2,
+          3,
+          4
+        ]
+      ],
+      "solution": [
+        [
+          4,
+          3,
+          2,
+          1
+        ],
+        [
+          2,
+          1,
+          4,
+          3
+        ],
+        [
+          3,
+          4,
+          1,
+          2
+        ],
+        [
+          1,
+          2,
+          3,
+          4
+        ]
+      ],
+      "cages": [
+        {
+          "id": 0,
+          "cells": [
+            [
+              0,
+              2
+            ],
+            [
+              0,
+              3
+            ]
+          ],
+          "sum": 3
+        },
+        {
+          "id": 1,
+          "cells": [
+            [
+              1,
+              0
+            ],
+            [
+              2,
+              0
+            ],
+            [
+              3,
+              0
+            ]
+          ],
+          "sum": 6
+        },
+        {
+          "id": 2,
+          "cells": [
+            [
+              0,
+              0
+            ]
+          ],
+          "sum": 4
+        },
+        {
+          "id": 3,
+          "cells": [
+            [
+              0,
+              1
+            ]
+          ],
+          "sum": 3
+        },
+        {
+          "id": 4,
+          "cells": [
+            [
+              1,
+              1
+            ]
+          ],
+          "sum": 1
+        },
+        {
+          "id": 5,
+          "cells": [
+            [
+              1,
+              2
+            ]
+          ],
+          "sum": 4
+        },
+        {
+          "id": 6,
+          "cells": [
+            [
+              1,
+              3
+            ]
+          ],
+          "sum": 3
+        },
+        {
+          "id": 7,
+          "cells": [
+            [
+              2,
+              1
+            ]
+          ],
+          "sum": 4
+        },
+        {
+          "id": 8,
+          "cells": [
+            [
+              2,
+              2
+            ]
+          ],
+          "sum": 1
+        },
+        {
+          "id": 9,
+          "cells": [
+            [
+              2,
+              3
+            ]
+          ],
+          "sum": 2
+        },
+        {
+          "id": 10,
+          "cells": [
+            [
+              3,
+              1
+            ]
+          ],
+          "sum": 2
+        },
+        {
+          "id": 11,
+          "cells": [
+            [
+              3,
+              2
+            ]
+          ],
+          "sum": 3
+        },
+        {
+          "id": 12,
+          "cells": [
+            [
+              3,
+              3
+            ]
+          ],
+          "sum": 4
+        }
+      ],
+      "triggers": [
+        {
+          "id": "t106_s",
+          "condition": "onLevelStart",
+          "type": "enter_phase",
+          "phase": "breakthrough",
+          "once": true
+        },
+        {
+          "id": "t106_h",
+          "condition": "onLevelStart",
+          "type": "freeze_mask",
+          "delay": 800,
+          "text": "组合专项！用唯一组合口诀解这些笼子～",
+          "once": true
+        },
+        {
+          "id": "t106_d",
+          "condition": "onKeyCellsFilledCorrectly",
+          "type": "enter_phase",
+          "phase": "finishing",
+          "once": true
+        }
+      ],
+      "preDialog": [
+        {
+          "speaker": "守笼人",
+          "text": "遇到无法直接确定的空格，可使用候选笔记记录数字可能性，这是侦探的解题手记。"
+        },
+        {
+          "speaker": "阿岩",
+          "text": "拿铅笔图标打开笔记模式，把有可能的数字标上去，慢慢排除，再也不用反复试错擦掉重填！"
+        }
+      ],
+      "clearDialog": [
+        {
+          "speaker": "守笼人",
+          "text": "基础逻辑掌握得不错。"
+        },
+        {
+          "speaker": "阿岩",
+          "text": "可以啊，比我第一次通关快多了！"
+        }
+      ]
+    },
+    {
+      "levelId": 108,
+      "title": "第7关：十则秘术",
+      "mode": "full",
+      "gridSize": 4,
+      "difficulty": "入门",
+      "teachingGoal": "认识「10法则」：4×4每行/列/宫总和都是10！",
+      "features": {
+        "allowDraft": true,
+        "assistant45": true,
+        "showHints": true,
+        "highlightRow": true,
+        "highlightCol": true,
+        "highlightBox": true,
+        "highlightNumber": true,
+        "highlightCage": true,
+        "autoFillCandidates": true
+      },
+      "boardData": [
+        [
+          0,
+          0,
+          4,
+          2
+        ],
+        [
+          4,
+          2,
+          0,
+          1
+        ],
+        [
+          1,
+          0,
+          2,
+          4
+        ],
+        [
+          2,
+          4,
+          0,
+          0
+        ]
+      ],
+      "solution": [
+        [
+          3,
+          1,
+          4,
+          2
+        ],
+        [
+          4,
+          2,
+          3,
+          1
+        ],
+        [
+          1,
+          3,
+          2,
+          4
+        ],
+        [
+          2,
+          4,
+          1,
+          3
+        ]
+      ],
+      "cages": [
+        {
+          "id": 0,
+          "cells": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "sum": 4
+        },
+        {
+          "id": 1,
+          "cells": [
+            [
+              3,
+              2
+            ],
+            [
+              3,
+              3
+            ]
+          ],
+          "sum": 4
+        },
+        {
+          "id": 2,
+          "cells": [
+            [
+              0,
+              2
+            ]
+          ],
+          "sum": 4
+        },
+        {
+          "id": 3,
+          "cells": [
+            [
+              0,
+              3
+            ]
+          ],
+          "sum": 2
+        },
+        {
+          "id": 4,
+          "cells": [
+            [
+              1,
+              0
+            ]
+          ],
+          "sum": 4
+        },
+        {
+          "id": 5,
+          "cells": [
+            [
+              1,
+              1
+            ]
+          ],
+          "sum": 2
+        },
+        {
+          "id": 6,
+          "cells": [
+            [
+              1,
+              2
+            ]
+          ],
+          "sum": 3
+        },
+        {
+          "id": 7,
+          "cells": [
+            [
+              1,
+              3
+            ]
+          ],
+          "sum": 1
+        },
+        {
+          "id": 8,
+          "cells": [
+            [
+              2,
+              0
+            ]
+          ],
+          "sum": 1
+        },
+        {
+          "id": 9,
+          "cells": [
+            [
+              2,
+              1
+            ]
+          ],
+          "sum": 3
+        },
+        {
+          "id": 10,
+          "cells": [
+            [
+              2,
+              2
+            ]
+          ],
+          "sum": 2
+        },
+        {
+          "id": 11,
+          "cells": [
+            [
+              2,
+              3
+            ]
+          ],
+          "sum": 4
+        },
+        {
+          "id": 12,
+          "cells": [
+            [
+              3,
+              0
+            ]
+          ],
+          "sum": 2
+        },
+        {
+          "id": 13,
+          "cells": [
+            [
+              3,
+              1
+            ]
+          ],
+          "sum": 4
+        }
+      ],
+      "triggers": [
+        {
+          "id": "t107_s",
+          "condition": "onLevelStart",
+          "type": "freeze_mask",
+          "text": "大招来了！「10法则」：4×4每行/列/宫总和永远是10（1+2+3+4=10）！用10减已知数，就能算出剩下的！",
+          "once": true
+        },
+        {
+          "id": "t107_b",
+          "condition": "onFillCountReached",
+          "count": 6,
+          "type": "enter_phase",
+          "phase": "breakthrough",
+          "once": true
+        },
+        {
+          "id": "t107_st",
+          "condition": "onStuckForSeconds",
+          "seconds": 25,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "💡 看第一行！10-4-2=4，再看笼子和值是4，就知道两个数是1和3！",
+          "once": false
+        },
+        {
+          "id": "t107_fi",
+          "condition": "onFillCountReached",
+          "count": 12,
+          "type": "enter_phase",
+          "phase": "finishing",
+          "once": true
+        }
+      ],
+      "preDialog": [
+        {
+          "speaker": "守笼人",
+          "text": "本题融合前面所有基础规则，试着独立完整推导解开。"
+        },
+        {
+          "speaker": "阿岩",
+          "text": "这一关是结业前的热身，把行、列、宫、笼子、笔记全部用上，别漏任何一条规则！"
+        }
+      ],
+      "clearDialog": [
+        {
+          "speaker": "守笼人",
+          "text": "基础逻辑掌握得不错。"
+        },
+        {
+          "speaker": "阿岩",
+          "text": "可以啊，比我第一次通关快多了！"
+        }
+      ]
+    },
+    {
+      "levelId": 109,
+      "title": "第8关：档案馆初试",
+      "mode": "comprehensive",
+      "gridSize": 4,
+      "difficulty": "入门",
+      "teachingGoal": "综合运用：裸单、唯一组合、隐单、10法则",
+      "features": {
+        "allowDraft": true,
+        "assistant45": true,
+        "showHints": true,
+        "highlightRow": true,
+        "highlightCol": true,
+        "highlightBox": true,
+        "highlightNumber": true,
+        "highlightCage": true,
+        "autoFillCandidates": true
+      },
+      "boardData": [
+        [
+          1,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          2
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          3,
+          0,
+          0
+        ]
+      ],
+      "solution": [
+        [
+          1,
+          2,
+          3,
+          4
+        ],
+        [
+          3,
+          4,
+          1,
+          2
+        ],
+        [
+          2,
+          1,
+          4,
+          3
+        ],
+        [
+          4,
+          3,
+          2,
+          1
+        ]
+      ],
+      "cages": [
+        {
+          "id": 0,
+          "cells": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "sum": 3
+        },
+        {
+          "id": 1,
+          "cells": [
+            [
+              0,
+              2
+            ],
+            [
+              0,
+              3
+            ]
+          ],
+          "sum": 7
+        },
+        {
+          "id": 2,
+          "cells": [
+            [
+              1,
+              0
+            ],
+            [
+              2,
+              0
+            ]
+          ],
+          "sum": 5
+        },
+        {
+          "id": 3,
+          "cells": [
+            [
+              1,
+              1
+            ],
+            [
+              1,
+              2
+            ]
+          ],
+          "sum": 5
+        },
+        {
+          "id": 4,
+          "cells": [
+            [
+              1,
+              3
+            ],
+            [
+              2,
+              3
+            ]
+          ],
+          "sum": 5
+        },
+        {
+          "id": 5,
+          "cells": [
+            [
+              2,
+              1
+            ],
+            [
+              2,
+              2
+            ]
+          ],
+          "sum": 5
+        },
+        {
+          "id": 6,
+          "cells": [
+            [
+              3,
+              0
+            ],
+            [
+              3,
+              1
+            ]
+          ],
+          "sum": 7
+        },
+        {
+          "id": 7,
+          "cells": [
+            [
+              3,
+              2
+            ],
+            [
+              3,
+              3
+            ]
+          ],
+          "sum": 3
+        }
+      ],
+      "triggers": [
+        {
+          "id": "t108_s",
+          "condition": "onLevelStart",
+          "type": "freeze_mask",
+          "text": "第一章综合考验！运用所有技巧——裸单、唯一组合、隐单、10法则！",
+          "once": true
+        },
+        {
+          "id": "t108_b",
+          "condition": "onFillCountReached",
+          "count": 5,
+          "type": "enter_phase",
+          "phase": "breakthrough",
+          "once": true
+        },
+        {
+          "id": "t108_fi",
+          "condition": "onFillCountReached",
+          "count": 12,
+          "type": "enter_phase",
+          "phase": "finishing",
+          "once": true
+        }
+      ],
+      "preDialog": [
+        {
+          "speaker": "守笼人",
+          "text": "本章最终考核，检验你所有基础笼局推理能力。"
+        },
+        {
+          "speaker": "阿岩",
+          "text": "加油！考完这关就能解锁档案馆深处的完整笼局卷宗，我当初卡在这里好久才通关。"
+        }
+      ],
+      "clearDialog": [
+        {
+          "speaker": "守笼人",
+          "text": "基础笼局逻辑你已全部掌握，接下来等待你的，是那人留下的全套谜题。"
+        },
+        {
+          "speaker": "阿岩",
+          "text": "那人？你说的是谁？设计这些笼子的人吗？"
+        },
+        {
+          "speaker": "守笼人",
+          "text": "时机未到。往后解开更多笼局，你自然会知晓。"
+        }
+      ]
+    }
+  ]
+}

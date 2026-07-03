@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>教学引擎深度评估报告 - 档案侦探·笼中密码</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg-primary: #0a0a1a;
+    --bg-secondary: #12122a;
+    --bg-card: #1a1a3e;
+    --bg-card-hover: #222250;
+    --accent-gold: #f0c060;
+    --accent-gold-dim: #c89830;
+    --accent-purple: #9060f0;
+    --accent-purple-dim: #7040c0;
+    --accent-cyan: #60d0f0;
+    --accent-green: #60f090;
+    --accent-red: #f06060;
+    --accent-orange: #f0a030;
+    --text-primary: #e8e0f0;
+    --text-secondary: #a090c0;
+    --text-dim: #605080;
+    --border-color: #2a2a5a;
+    --shadow: 0 4px 24px rgba(0,0,0,0.4);
+    --radius: 12px;
+    --radius-sm: 8px;
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  /* ===== SCROLLBAR ===== */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg-secondary); }
+  ::-webkit-scrollbar-thumb { background: var(--accent-purple-dim); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--accent-purple); }
+
+  /* ===== HEADER ===== */
+  .header {
+    position: relative;
+    padding: 60px 24px 40px;
+    text-align: center;
+    background: linear-gradient(135deg, #0a0a2a 0%, #1a0a40 40%, #0a0a2a 100%);
+    overflow: hidden;
+    border-bottom: 2px solid var(--border-color);
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 20% 50%, rgba(144, 96, 240, 0.12) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 50%, rgba(240, 192, 96, 0.08) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .header-glow {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    filter: blur(100px);
+    opacity: 0.15;
+    pointer-events: none;
+  }
+  .header-glow.g1 { top: -100px; left: 10%; background: var(--accent-purple); }
+  .header-glow.g2 { bottom: -120px; right: 10%; background: var(--accent-gold); }
+  .header-icon { font-size: 48px; margin-bottom: 12px; display: block; }
+  .header h1 {
+    font-size: clamp(28px, 5vw, 44px);
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--accent-gold), #fff0c0, var(--accent-gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    position: relative;
+    letter-spacing: 2px;
+  }
+  .header .subtitle {
+    font-size: clamp(14px, 2vw, 20px);
+    color: var(--text-secondary);
+    margin-top: 8px;
+    position: relative;
+    letter-spacing: 4px;
+  }
+  .header .subtitle span { color: var(--accent-gold); }
+  .header .meta {
+    margin-top: 16px;
+    font-size: 13px;
+    color: var(--text-dim);
+    position: relative;
+  }
+  .header .meta span { display: inline-block; margin: 0 12px; }
+
+  /* ===== NAV ===== */
+  .nav-bar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10,10,26,0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-color);
+    padding: 0 16px;
+    overflow-x: auto;
+    white-space: nowrap;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .nav-bar::-webkit-scrollbar { display: none; }
+  .nav-bar-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    gap: 4px;
+    padding: 8px 0;
+  }
+  .nav-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: all 0.25s;
+    flex-shrink: 0;
+  }
+  .nav-item:hover { color: var(--accent-gold); background: rgba(240,192,96,0.08); }
+  .nav-item .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  /* ===== CONTAINER ===== */
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 32px 20px 80px;
+  }
+
+  /* ===== SUMMARY SCORE ===== */
+  .summary-section {
+    margin-bottom: 40px;
+  }
+  .summary-card {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 32px;
+    background: linear-gradient(135deg, var(--bg-card), var(--bg-secondary));
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    padding: 32px;
+    box-shadow: var(--shadow);
+  }
+  .summary-score {
+    text-align: center;
+    padding: 16px;
+    border-right: 1px solid var(--border-color);
+  }
+  .summary-score .big-number {
+    font-size: 64px;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--accent-gold), #fff0a0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+  }
+  .summary-score .big-label {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-top: 4px;
+    letter-spacing: 2px;
+  }
+  .summary-score .stars {
+    margin-top: 8px;
+    font-size: 24px;
+    color: var(--accent-gold);
+    letter-spacing: 4px;
+  }
+  .summary-dims { display: flex; flex-direction: column; gap: 10px; justify-content: center; }
+  .dim-bar-row { display: flex; align-items: center; gap: 10px; }
+  .dim-bar-row .dim-label {
+    width: 100px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-align: right;
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+  .dim-bar-track {
+    flex: 1;
+    height: 18px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 9px;
+    overflow: hidden;
+    position: relative;
+  }
+  .dim-bar-fill {
+    height: 100%;
+    border-radius: 9px;
+    transition: width 1.2s ease;
+    width: 0;
+    position: relative;
+  }
+  .dim-bar-fill::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2));
+    border-radius: 9px;
+  }
+  .dim-bar-row .dim-score {
+    width: 48px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text-primary);
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  /* ===== CHAPTER ===== */
+  .chapter {
+    margin-bottom: 36px;
+    scroll-margin-top: 60px;
+  }
+  .chapter-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--border-color);
+  }
+  .chapter-number {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 800;
+    flex-shrink: 0;
+  }
+  .chapter-title {
+    font-size: clamp(18px, 2.5vw, 24px);
+    font-weight: 700;
+    flex: 1;
+  }
+  .chapter-rating {
+    font-size: 15px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .chapter-rating .star { color: var(--accent-gold); letter-spacing: 2px; }
+  .chapter-body {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    padding: 28px;
+    box-shadow: var(--shadow);
+    transition: border-color 0.3s;
+  }
+  .chapter-body:hover { border-color: rgba(144,96,240,0.3); }
+
+  .chapter-body h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--accent-gold);
+    margin: 20px 0 10px;
+  }
+  .chapter-body h3:first-child { margin-top: 0; }
+  .chapter-body h4 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin: 14px 0 8px;
+  }
+  .chapter-body p { font-size: 14px; color: var(--text-primary); margin-bottom: 10px; }
+  .chapter-body ul { padding-left: 20px; margin-bottom: 10px; }
+  .chapter-body ul li {
+    font-size: 14px;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+    list-style: none;
+    position: relative;
+    padding-left: 16px;
+  }
+  .chapter-body ul li::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 9px;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent-purple);
+  }
+  .chapter-body ul li.gold::before { background: var(--accent-gold); }
+  .chapter-body ul li.cyan::before { background: var(--accent-cyan); }
+  .chapter-body ul li.green::before { background: var(--accent-green); }
+
+  .tag {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    margin: 2px 3px;
+  }
+  .tag-purple { background: rgba(144,96,240,0.15); color: var(--accent-purple); border: 1px solid rgba(144,96,240,0.25); }
+  .tag-gold { background: rgba(240,192,96,0.15); color: var(--accent-gold); border: 1px solid rgba(240,192,96,0.25); }
+  .tag-cyan { background: rgba(96,208,240,0.12); color: var(--accent-cyan); border: 1px solid rgba(96,208,240,0.2); }
+  .tag-green { background: rgba(96,240,144,0.12); color: var(--accent-green); border: 1px solid rgba(96,240,144,0.2); }
+  .tag-red { background: rgba(240,96,96,0.12); color: var(--accent-red); border: 1px solid rgba(240,96,96,0.2); }
+  .tag-orange { background: rgba(240,160,48,0.12); color: var(--accent-orange); border: 1px solid rgba(240,160,48,0.2); }
+
+  /* ===== TRIGGER GRID ===== */
+  .trigger-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 6px;
+    margin: 10px 0;
+  }
+  .trigger-item {
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+    text-align: center;
+  }
+  .trigger-item.t-on { background: rgba(96,208,240,0.1); border: 1px solid rgba(96,208,240,0.2); color: var(--accent-cyan); }
+  .trigger-item.t-action { background: rgba(240,192,96,0.1); border: 1px solid rgba(240,192,96,0.2); color: var(--accent-gold); }
+  .trigger-item.t-reserve { background: rgba(240,96,96,0.08); border: 1px solid rgba(240,96,96,0.15); color: rgba(240,96,96,0.5); }
+
+  /* ===== TECHNIQUE LIST ===== */
+  .technique-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 8px 0;
+  }
+  .technique-badge {
+    padding: 4px 14px;
+    border-radius: 16px;
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .technique-badge.t-naked-pair { background: rgba(240,192,96,0.15); color: var(--accent-gold); border: 1px solid rgba(240,192,96,0.3); }
+  .technique-badge.t-hidden-pair { background: rgba(144,96,240,0.15); color: var(--accent-purple); border: 1px solid rgba(144,96,240,0.3); }
+  .technique-badge.t-triple { background: rgba(96,208,240,0.12); color: var(--accent-cyan); border: 1px solid rgba(96,208,240,0.25); }
+  .technique-badge.t-xwing { background: rgba(96,240,144,0.12); color: var(--accent-green); border: 1px solid rgba(96,240,144,0.25); }
+  .technique-badge.t-swordfish { background: rgba(240,160,48,0.12); color: var(--accent-orange); border: 1px solid rgba(240,160,48,0.25); }
+
+  /* ===== TABLE ===== */
+  .eval-table-wrap {
+    overflow-x: auto;
+    margin: 20px 0;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-color);
+  }
+  .eval-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    min-width: 640px;
+  }
+  .eval-table thead th {
+    background: rgba(144,96,240,0.12);
+    color: var(--accent-purple);
+    padding: 12px 14px;
+    text-align: left;
+    font-weight: 700;
+    border-bottom: 2px solid var(--border-color);
+    white-space: nowrap;
+  }
+  .eval-table tbody td {
+    padding: 12px 14px;
+    border-bottom: 1px solid rgba(42,42,90,0.5);
+    vertical-align: top;
+  }
+  .eval-table tbody tr:last-child td { border-bottom: none; }
+  .eval-table tbody tr:hover { background: rgba(255,255,255,0.02); }
+  .eval-table .td-score { font-weight: 700; text-align: center; font-size: 15px; }
+  .eval-table .td-star { text-align: center; color: var(--accent-gold); letter-spacing: 2px; white-space: nowrap; }
+  .eval-table .highlight-cell { color: var(--accent-green); }
+  .eval-table .improve-cell { color: var(--accent-orange); }
+
+  /* ===== OVERALL ===== */
+  .overall-section {
+    margin: 40px 0;
+    scroll-margin-top: 60px;
+  }
+  .overall-card {
+    background: linear-gradient(135deg, #1a1040, #0a0a2a, #1a1040);
+    border: 1px solid var(--accent-gold-dim);
+    border-radius: var(--radius);
+    padding: 36px;
+    text-align: center;
+    box-shadow: 0 0 40px rgba(240,192,96,0.08);
+    position: relative;
+    overflow: hidden;
+  }
+  .overall-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 0%, rgba(240,192,96,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .overall-card h2 {
+    font-size: clamp(22px, 3vw, 32px);
+    font-weight: 800;
+    color: var(--accent-gold);
+    margin-bottom: 8px;
+    position: relative;
+  }
+  .overall-card .big-score {
+    font-size: 72px;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--accent-gold), #fff0a0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.2;
+    position: relative;
+  }
+  .overall-card .big-stars {
+    font-size: 32px;
+    color: var(--accent-gold);
+    letter-spacing: 6px;
+    margin: 4px 0 16px;
+    position: relative;
+  }
+  .overall-card .strength-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-top: 20px;
+    text-align: left;
+    position: relative;
+  }
+  .strength-item {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    padding: 16px;
+  }
+  .strength-item .rank {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--accent-gold-dim);
+    margin-bottom: 4px;
+  }
+  .strength-item h4 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--accent-green);
+    margin-bottom: 6px;
+  }
+  .strength-item p {
+    font-size: 13px;
+    color: var(--text-secondary);
+  }
+
+  /* ===== APPENDIX ===== */
+  .appendix-section {
+    margin: 40px 0;
+  }
+  .appendix-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    padding: 28px;
+    box-shadow: var(--shadow);
+  }
+  .appendix-card h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--accent-gold);
+    margin-bottom: 16px;
+  }
+  .code-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px;
+  }
+  .code-stat-item {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    padding: 16px;
+    text-align: center;
+  }
+  .code-stat-item .file-name {
+    font-size: 12px;
+    font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+    color: var(--accent-cyan);
+    margin-bottom: 4px;
+  }
+  .code-stat-item .line-count {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--accent-gold);
+  }
+  .code-stat-item .line-label {
+    font-size: 11px;
+    color: var(--text-dim);
+  }
+
+  /* ===== FOOTER ===== */
+  .footer {
+    text-align: center;
+    padding: 24px;
+    border-top: 1px solid var(--border-color);
+    color: var(--text-dim);
+    font-size: 12px;
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 768px) {
+    .summary-card {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+    .summary-score { border-right: none; border-bottom: 1px solid var(--border-color); padding-bottom: 20px; }
+    .dim-bar-row .dim-label { width: 72px; font-size: 11px; }
+    .chapter-body { padding: 18px; }
+    .overall-card { padding: 24px; }
+    .overall-card .big-score { font-size: 56px; }
+  }
+  @media (max-width: 480px) {
+    .container { padding: 20px 12px; }
+    .summary-section { margin-bottom: 24px; }
+    .dim-bar-row { flex-wrap: wrap; gap: 4px; }
+    .dim-bar-row .dim-label { width: 100%; text-align: left; }
+    .header { padding: 40px 16px 28px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="header">
+  <div class="header-glow g1"></div>
+  <div class="header-glow g2"></div>
+  <span class="header-icon">🗺️</span>
+  <h1>教学引擎深度评估报告</h1>
+  <p class="subtitle">档案侦探 · <span>笼中密码</span></p>
+  <p class="meta">
+    <span>📅 评估日期: 2026-07-03</span>
+    <span>📊 版本: v1.0</span>
+    <span>🎯 评估类型: 教学引擎全面审查</span>
+  </p>
+</header>
+
+<!-- ===== NAV ===== -->
+<nav class="nav-bar">
+  <div class="nav-bar-inner">
+    <a href="#summary" class="nav-item"><span class="dot" style="background:var(--accent-gold)"></span>汇总</a>
+    <a href="#ch1" class="nav-item"><span class="dot" style="background:var(--accent-purple)"></span>GuideManager</a>
+    <a href="#ch2" class="nav-item"><span class="dot" style="background:var(--accent-cyan)"></span>三阶段框架</a>
+    <a href="#ch3" class="nav-item"><span class="dot" style="background:var(--accent-green)"></span>TechniqueTutorial</a>
+    <a href="#ch4" class="nav-item"><span class="dot" style="background:var(--accent-orange)"></span>TechniqueDemo</a>
+    <a href="#ch5" class="nav-item"><span class="dot" style="background:var(--accent-red)"></span>TechniqueFeedback</a>
+    <a href="#ch6" class="nav-item"><span class="dot" style="background:var(--accent-cyan)"></span>提示引擎+关卡数据</a>
+    <a href="#overall" class="nav-item"><span class="dot" style="background:var(--accent-gold)"></span>总评</a>
+    <a href="#appendix" class="nav-item"><span class="dot" style="background:var(--text-dim)"></span>附录</a>
+  </div>
+</nav>
+
+<!-- ===== CONTAINER ===== -->
+<div class="container">
+
+  <!-- ===== SECTION: SUMMARY ===== -->
+  <section id="summary" class="summary-section" style="scroll-margin-top:60px">
+    <div class="summary-card">
+      <div class="summary-score">
+        <div class="big-number">8.6</div>
+        <div class="big-label">综合评分 / 10</div>
+        <div class="stars">★★★★★</div>
+      </div>
+      <div class="summary-dims" id="dimBars">
+        <div class="dim-bar-row">
+          <span class="dim-label">GuideManager</span>
+          <div class="dim-bar-track"><div class="dim-bar-fill" data-pct="95" style="background:linear-gradient(90deg,var(--accent-purple),var(--accent-purple-dim))"></div></div>
+          <span class="dim-score">9.5</span>
+        </div>
+        <div class="dim-bar-row">
+          <span class="dim-label">三阶段框架</span>
+          <div class="dim-bar-track"><div class="dim-bar-fill" data-pct="90" style="background:linear-gradient(90deg,var(--accent-cyan),#4080b0)"></div></div>
+          <span class="dim-score">9.0</span>
+        </div>
+        <div class="dim-bar-row">
+          <span class="dim-label">TechniqueTutorial</span>
+          <div class="dim-bar-track"><div class="dim-bar-fill" data-pct="95" style="background:linear-gradient(90deg,var(--accent-green),#30a060)"></div></div>
+          <span class="dim-score">9.5</span>
+        </div>
+        <div class="dim-bar-row">
+          <span class="dim-label">TechniqueDemo</span>
+          <div class="dim-bar-track"><div class="dim-bar-fill" data-pct="70" style="background:linear-gradient(90deg,var(--accent-orange),#b07020)"></div></div>
+          <span class="dim-score">7.0</span>
+        </div>
+        <div class="dim-bar-row">
+          <span class="dim-label">TechniqueFeedback</span>
+          <div class="dim-bar-track"><div class="dim-bar-fill" data-pct="85" style="background:linear-gradient(90deg,var(--accent-red),#b04040)"></div></div>
+          <span class="dim-score">8.5</span>
+        </div>
+        <div class="dim-bar-row">
+          <span class="dim-label">提示引擎+关卡数据</span>
+          <div class="dim-bar-track"><div class="dim-bar-fill" data-pct="80" style="background:linear-gradient(90deg,var(--accent-cyan),#4080b0)"></div></div>
+          <span class="dim-score">8.0</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CHAPTER 1 ===== -->
+  <section id="ch1" class="chapter">
+    <div class="chapter-header">
+      <div class="chapter-number" style="background:rgba(144,96,240,0.15);color:var(--accent-purple)">1</div>
+      <div class="chapter-title">GuideManager 引导管理器</div>
+      <div class="chapter-rating"><span class="star">★★★★★</span> 9.5/10</div>
+    </div>
+    <div class="chapter-body">
+      <h3>核心组件</h3>
+      <ul>
+        <li><strong>FreezeMask</strong>: 全屏冷冻遮罩 + 挖空高亮 + 引导文字 + 动画</li>
+        <li><strong>PopupHint</strong>: 气泡提示 + 尾巴指向 + 自动淡出 + 边界检测</li>
+        <li><strong>GuideManager</strong>: 触发器引擎 + 条件匹配 + 去重 + 持久化</li>
+      </ul>
+
+      <h3>触发器类型</h3>
+      <div class="trigger-grid">
+        <span class="trigger-item t-on">onLevelStart</span>
+        <span class="trigger-item t-on">onFirstNumberFilled</span>
+        <span class="trigger-item t-on">onFillCountReached</span>
+        <span class="trigger-item t-on">onStuckForSeconds</span>
+        <span class="trigger-item t-on">onConflict</span>
+        <span class="trigger-item t-on">onCageSelect</span>
+        <span class="trigger-item t-on">onRowSelect</span>
+        <span class="trigger-item t-on">onBoxFillProgress</span>
+        <span class="trigger-item t-on">onRowFillProgress</span>
+        <span class="trigger-item t-on">onLevelComplete</span>
+        <span class="trigger-item t-on">onBoxLastCellCorrect</span>
+        <span class="trigger-item t-on">onRowLastCellCorrect</span>
+        <span class="trigger-item t-on">onColLastCellCorrect</span>
+        <span class="trigger-item t-on">onBoxLastCellWrong</span>
+        <span class="trigger-item t-on">onRowLastCellWrong</span>
+        <span class="trigger-item t-on">onColLastCellWrong</span>
+        <span class="trigger-item t-action">freeze_mask</span>
+        <span class="trigger-item t-action">popup_hint</span>
+        <span class="trigger-item t-action">enter_phase</span>
+        <span class="trigger-item t-reserve">calc_panel (预留)</span>
+        <span class="trigger-item t-reserve">badge_award (预留)</span>
+      </div>
+
+      <h3>亮点</h3>
+      <ul>
+        <li class="gold"><strong>once去重</strong>: 同一触发器在同关卡仅执行一次，避免重复打扰</li>
+        <li class="gold"><strong>延迟触发</strong>: 支持 delay 配置毫秒数，灵活编排引导时序</li>
+        <li class="gold"><strong>标准化配置</strong>: trigger 配置格式统一，便于关卡设计师快速添加引导</li>
+        <li class="gold"><strong>localStorage 持久化</strong>: 已触发记录持久保存，跨 session 不重复</li>
+        <li class="gold"><strong>边界检测</strong>: PopupHint 自动检测屏幕边缘并调整气泡位置</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===== CHAPTER 2 ===== -->
+  <section id="ch2" class="chapter">
+    <div class="chapter-header">
+      <div class="chapter-number" style="background:rgba(96,208,240,0.15);color:var(--accent-cyan)">2</div>
+      <div class="chapter-title">guide.js 三阶段教学框架</div>
+      <div class="chapter-rating"><span class="star">★★★★★</span> 9.0/10</div>
+    </div>
+    <div class="chapter-body">
+      <h3>三阶段模型</h3>
+      <p><span class="tag tag-cyan">opening</span> <span class="tag tag-purple">breakthrough</span> <span class="tag tag-gold">finishing</span> <span class="tag tag-green">complete</span></p>
+
+      <h4>阶段切换检测</h4>
+      <ul>
+        <li><strong>自动</strong>: opening&rarr;breakthrough（填 &ge;35% + 无裸单/隐单）</li>
+        <li><strong>自动</strong>: breakthrough&rarr;finishing（破局后填 &ge;2格 + 连锁裸单出现, 或空格 &lt;15%）</li>
+        <li><strong>脚本</strong>: 通过 trigger <span class="tag tag-gold">enter_phase</span> 强制切换</li>
+        <li><strong>手动</strong>: 可调用 enterBreakthrough() / enterFinishing()</li>
+      </ul>
+
+      <h4>阶段特效</h4>
+      <ul>
+        <li class="gold">暗化遮罩 + 阶段指示器（3秒显示）</li>
+        <li class="gold">逆转裁判式金色闪光动画</li>
+        <li class="gold">撒花粒子效果（庆祝氛围）</li>
+        <li class="gold">BGM 切换（阶段性音乐变化）</li>
+      </ul>
+
+      <h4>残局教学关</h4>
+      <ul>
+        <li>锁定非关键格，仅关键格可交互</li>
+        <li>关键格进度追踪（完成度可视化）</li>
+        <li class="cyan">防猜机制: <code>_breakthroughWrongCount</code> 连续错误计数</li>
+      </ul>
+
+      <h3>三层提示系统</h3>
+      <ul>
+        <li><span class="tag tag-green">L1</span> 目标格位置 &rarr; 绿色高亮</li>
+        <li><span class="tag tag-purple">L2</span> 技巧名称 + 关联区域 &rarr; 紫色高亮（关键格）+ 金色区域</li>
+        <li><span class="tag tag-gold">L3</span> 答案/Tutorial &rarr; 基础技巧显示数字，高级技巧启动 TechniqueTutorial</li>
+      </ul>
+      <p>内部状态: <code>hintStep(0&rarr;1&rarr;2&rarr;3)</code>, <code>currentHint</code>, <code>_isHintShowing</code> 防冲突</p>
+    </div>
+  </section>
+
+  <!-- ===== CHAPTER 3 ===== -->
+  <section id="ch3" class="chapter">
+    <div class="chapter-header">
+      <div class="chapter-number" style="background:rgba(96,240,144,0.15);color:var(--accent-green)">3</div>
+      <div class="chapter-title">TechniqueTutorial 高级技巧可视化教程</div>
+      <div class="chapter-rating"><span class="star">★★★★★</span> 9.5/10</div>
+    </div>
+    <div class="chapter-body">
+      <h3>已实现教程</h3>
+      <div class="technique-list">
+        <span class="technique-badge t-naked-pair">Naked Pair 显性数对</span>
+        <span class="technique-badge t-hidden-pair">Hidden Pair 隐性数对</span>
+        <span class="technique-badge t-triple">Triple 三链数</span>
+        <span class="technique-badge t-xwing">X-Wing</span>
+        <span class="technique-badge t-swordfish">Swordfish 剑鱼</span>
+      </div>
+
+      <h3>设计特点</h3>
+      <ul>
+        <li class="green"><strong>极简盘面</strong>: 仅保留关键格子，其余全部填满（零干扰）</li>
+        <li class="green"><strong>分步演示</strong>: 每步只讲一件事，逐步叠加理解</li>
+        <li class="green"><strong>丰富视觉元素</strong>: 大圆圈、大箭头、行/列/宫荧光带、红叉标记、emoji 标记、脉冲动画</li>
+        <li class="green"><strong>颜色编码</strong>: 关键格（绿）、数对（金）、排除格（红）、结果（青）、辅助（蓝）</li>
+        <li class="green"><strong>角色对话</strong>: 守笼人 / 阿岩口语化教学</li>
+        <li class="green"><strong>进度条</strong>: 步骤指示器 + 上一步/下一步/我学会了 按钮</li>
+        <li class="green"><strong>Canvas 渲染</strong>: 9x9 盘面，支持候选数绘制、排除标记、连线、指向箭头</li>
+        <li class="green"><strong>i18n 合并</strong>: 教程文本支持多语言覆盖</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===== CHAPTER 4 ===== -->
+  <section id="ch4" class="chapter">
+    <div class="chapter-header">
+      <div class="chapter-number" style="background:rgba(240,160,48,0.15);color:var(--accent-orange)">4</div>
+      <div class="chapter-title">TechniqueDemo 技巧演示系统</div>
+      <div class="chapter-rating"><span class="star">★★★★☆</span> 7.0/10</div>
+    </div>
+    <div class="chapter-body">
+      <h3>功能概述</h3>
+      <ul>
+        <li>在游戏 Canvas 上方叠加透明图层，绘制教学标注</li>
+        <li>支持多种高亮类型、连线、箭头、标记（emoji / redx / circle / finger / label 等）</li>
+        <li>ResizeObserver 自适应</li>
+      </ul>
+
+      <h3>局限</h3>
+      <ul>
+        <li class="gold">覆盖层不是交互式的，仅作为标注图层使用</li>
+        <li class="gold">功能基础，适合简单标注和提示</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===== CHAPTER 5 ===== -->
+  <section id="ch5" class="chapter">
+    <div class="chapter-header">
+      <div class="chapter-number" style="background:rgba(240,96,96,0.15);color:var(--accent-red)">5</div>
+      <div class="chapter-title">TechniqueFeedback 技巧识别反馈系统</div>
+      <div class="chapter-rating"><span class="star">★★★★★</span> 8.5/10</div>
+    </div>
+    <div class="chapter-body">
+      <h3>检测技巧顺序</h3>
+      <div class="technique-list" style="margin-bottom:12px">
+        <span class="tag tag-green">nakedSingle</span>
+        <span class="tag tag-purple">hiddenSingle</span>
+        <span class="tag tag-cyan">rule45（45法则）</span>
+        <span class="tag tag-gold">nakedPair</span>
+      </div>
+
+      <h3>检测原理</h3>
+      <p>填数前状态快照对比 &rarr; 识别玩家使用的技巧</p>
+
+      <h3>反馈调度</h3>
+      <ul>
+        <li><span class="tag tag-cyan">全局冷却</span> 5 秒（任意 feedback 间最小间隔）</li>
+        <li><span class="tag tag-purple">同类冷却</span> 同一技巧 30 秒内不重复</li>
+        <li><span class="tag tag-green">首次例外</span> 首次使用某技巧强制触发反馈</li>
+        <li><span class="tag tag-gold">连击检测</span> 连续 3 次同一高级技巧触发连击台词</li>
+      </ul>
+
+      <h3>反馈类型</h3>
+      <p><span class="tag tag-green">first</span> 首次使用 &nbsp;|&nbsp; <span class="tag tag-cyan">normal</span> 常规 &nbsp;|&nbsp; <span class="tag tag-gold">combo</span> 连击</p>
+
+      <h3>反馈输出</h3>
+      <p>StoryEngine 环境台词 &rarr; ComedySystem 气泡降级</p>
+      <p>i18n 台词: 从 i18n 读取守笼人台词</p>
+    </div>
+  </section>
+
+  <!-- ===== CHAPTER 6 ===== -->
+  <section id="ch6" class="chapter">
+    <div class="chapter-header">
+      <div class="chapter-number" style="background:rgba(96,208,240,0.15);color:var(--accent-cyan)">6</div>
+      <div class="chapter-title">Game.js 提示引擎 + 关卡数据 (chapters.json)</div>
+      <div class="chapter-rating"><span class="star">★★★★☆</span> 8.0/10</div>
+    </div>
+    <div class="chapter-body">
+      <h3>提示引擎</h3>
+      <p><code>getNextHint()</code> 检测顺序:</p>
+      <div class="technique-list" style="margin-bottom:12px">
+        <span class="tag tag-green">nakedSingle</span>
+        <span class="tag tag-purple">hiddenSingle</span>
+        <span class="tag tag-gold">nakedPair</span>
+        <span class="tag tag-red">null（无可用提示）</span>
+      </div>
+      <p>隐单检测覆盖: 行 / 列 / 宫 / 笼 四维度</p>
+
+      <h3>关卡数据 (chapters.json)</h3>
+      <ul>
+        <li>包含 <strong>7 章</strong> 完整配置：剧情 + 关卡 + 触发器</li>
+        <li>每个关卡配置: <code>boardData</code>, <code>solution</code>, <code>cages</code>, <code>triggers</code>, <code>features</code>（高亮约束）, <code>preDialog</code>, <code>clearDialog</code></li>
+        <li><code>features</code>: 逐关精细控制行高亮 / 列高亮 / 宫高亮 / 同数字高亮 / 同笼高亮 / 候选数显示</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===== EVAL TABLE ===== -->
+  <section style="margin:40px 0">
+    <div class="eval-table-wrap">
+      <table class="eval-table">
+        <thead>
+          <tr>
+            <th style="width:15%">维度</th>
+            <th style="width:12%">评分</th>
+            <th style="width:10%">星级</th>
+            <th style="width:33%">亮点</th>
+            <th style="width:30%">改进点</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>GuideManager</strong></td>
+            <td class="td-score">9.5/10</td>
+            <td class="td-star">★★★★★</td>
+            <td class="highlight-cell">15 种触发条件 + 5 种动作</td>
+            <td class="improve-cell">badge_award / calc_panel 未实现</td>
+          </tr>
+          <tr>
+            <td><strong>三阶段框架</strong></td>
+            <td class="td-score">9.0/10</td>
+            <td class="td-star">★★★★★</td>
+            <td class="highlight-cell">自动检测 + 脚本触发 + 残局模式</td>
+            <td class="improve-cell">阶段切换阈值可调</td>
+          </tr>
+          <tr>
+            <td><strong>TechniqueTutorial</strong></td>
+            <td class="td-score">9.5/10</td>
+            <td class="td-star">★★★★★</td>
+            <td class="highlight-cell">极简盘面 + 分步演示 + 角色教学</td>
+            <td class="improve-cell">仅 5 个技巧有教程</td>
+          </tr>
+          <tr>
+            <td><strong>TechniqueDemo</strong></td>
+            <td class="td-score">7.0/10</td>
+            <td class="td-star">★★★★☆</td>
+            <td class="highlight-cell">叠加 Canvas + Resize 自适应</td>
+            <td class="improve-cell">非交互，功能较基础</td>
+          </tr>
+          <tr>
+            <td><strong>TechniqueFeedback</strong></td>
+            <td class="td-score">8.5/10</td>
+            <td class="td-star">★★★★★</td>
+            <td class="highlight-cell">冷却/连击/首次反馈 + 4 技巧检测</td>
+            <td class="improve-cell">检测技巧种类有限</td>
+          </tr>
+          <tr>
+            <td><strong>提示引擎+关卡数据</strong></td>
+            <td class="td-score">8.0/10</td>
+            <td class="td-star">★★★★☆</td>
+            <td class="highlight-cell">行/列/宫/笼 四维隐单检测</td>
+            <td class="improve-cell">仅 3 种技巧检测</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ===== OVERALL ===== -->
+  <section id="overall" class="overall-section">
+    <div class="overall-card">
+      <h2>综合评分</h2>
+      <div class="big-score">8.6 / 10</div>
+      <div class="big-stars">★★★★★</div>
+
+      <h3 style="font-size:16px;font-weight:600;color:var(--text-secondary);position:relative;margin-bottom:16px">教学引擎的三个最强点</h3>
+      <div class="strength-grid">
+        <div class="strength-item">
+          <div class="rank">#1 STRONGEST</div>
+          <h4>渐进式自适应教学</h4>
+          <p>三阶段（opening &rarr; breakthrough &rarr; finishing）+ 三层提示（L1位置/L2技巧/L3答案）= 由浅入深、因材施教的自动教学体验</p>
+        </div>
+        <div class="strength-item">
+          <div class="rank">#2 STRONGEST</div>
+          <h4>事件驱动智能教学</h4>
+          <p>GuideManager 触发器引擎支持 15 种事件条件 + 延迟 + 去重，让教学引导精准响应玩家行为</p>
+        </div>
+        <div class="strength-item">
+          <div class="rank">#3 STRONGEST</div>
+          <h4>手把手可视化教学</h4>
+          <p>TechniqueTutorial 以极简盘面 + 分步演示 + 角色对话 + 丰富视觉元素，实现高级技巧的零门槛教学</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== APPENDIX ===== -->
+  <section id="appendix" class="appendix-section">
+    <div class="appendix-card">
+      <h2>附录：代码行数统计</h2>
+      <div class="code-stats">
+        <div class="code-stat-item">
+          <div class="file-name">guide.js</div>
+          <div class="line-count">1,600+</div>
+          <div class="line-label">主要代码（三阶段框架）</div>
+        </div>
+        <div class="code-stat-item">
+          <div class="file-name">technique-tutorial.js</div>
+          <div class="line-count">1,420</div>
+          <div class="line-label">含教程数据</div>
+        </div>
+        <div class="code-stat-item">
+          <div class="file-name">guide-manager.js</div>
+          <div class="line-count">1,195</div>
+          <div class="line-label">触发器引擎</div>
+        </div>
+        <div class="code-stat-item">
+          <div class="file-name">technique-feedback.js</div>
+          <div class="line-count">500+</div>
+          <div class="line-label">技巧识别反馈系统</div>
+        </div>
+        <div class="code-stat-item">
+          <div class="file-name">game.js（相关部分）</div>
+          <div class="line-count">~250</div>
+          <div class="line-label">提示引擎</div>
+        </div>
+        <div class="code-stat-item">
+          <div class="file-name">technique-demo.js</div>
+          <div class="line-count">100+</div>
+          <div class="line-label">技巧演示叠加层</div>
+        </div>
+      </div>
+      <p style="text-align:center;margin-top:20px;color:var(--text-dim);font-size:13px">
+        教学引擎代码总量约 <strong style="color:var(--accent-gold)">5,065+ 行</strong> JavaScript
+      </p>
+    </div>
+  </section>
+
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <p>档案侦探 · 笼中密码 &mdash; 教学引擎深度评估报告 &nbsp;|&nbsp; 生成于 2026-07-03</p>
+</footer>
+
+<script>
+(function() {
+  // Animate bars on load
+  const bars = document.querySelectorAll('.dim-bar-fill');
+  const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        const pct = parseFloat(el.getAttribute('data-pct'));
+        el.style.width = pct + '%';
+        observer.unobserve(el);
+      }
+    });
+  }, { threshold: 0.3 });
+  bars.forEach(function(b) { observer.observe(b); });
+
+  // Nav active highlight
+  const navItems = document.querySelectorAll('.nav-item');
+  const sections = [];
+  navItems.forEach(function(nav) {
+    var href = nav.getAttribute('href');
+    if (href && href.startsWith('#')) {
+      var sec = document.getElementById(href.slice(1));
+      if (sec) sections.push({ el: sec, nav: nav });
+    }
+  });
+  function onScroll() {
+    var top = window.scrollY + 80;
+    var current = null;
+    sections.forEach(function(s) {
+      if (s.el.offsetTop <= top) current = s.nav;
+    });
+    navItems.forEach(function(n) { n.style.color = ''; n.style.background = ''; });
+    if (current) { current.style.color = '#f0c060'; current.style.background = 'rgba(240,192,96,0.08)'; }
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+})();
+</script>
+</body>
+</html>

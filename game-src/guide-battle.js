@@ -1560,6 +1560,7 @@ const GuideBattle = {
     const btn = document.getElementById('boss-result-continue');
     if (btn) {
       btn.addEventListener('click', () => {
+        if (typeof AudioManager !== 'undefined') AudioManager.playClick();
         overlay.style.display = 'none';
         if (result === 'lose') {
           this._restartBattle();
@@ -1578,6 +1579,23 @@ const GuideBattle = {
     // active会在stop()中设为false
     if (this.aiTimer) { clearTimeout(this.aiTimer); this.aiTimer = null; }
     if (this._fogAnimFrame) { cancelAnimationFrame(this._fogAnimFrame); this._fogAnimFrame = null; }
+
+    // ===== 胜负音效与振动 =====
+    if (result === 'win') {
+      if (typeof AudioManager !== 'undefined') AudioManager.playWin();
+      if (typeof AudioManager !== 'undefined' && typeof AudioManager.vibrate === 'function') {
+        AudioManager.vibrate('victory');
+      } else if (navigator.vibrate) {
+        navigator.vibrate([30, 20, 50, 30, 80]);
+      }
+    } else {
+      if (typeof AudioManager !== 'undefined') AudioManager.playLose();
+      if (typeof AudioManager !== 'undefined' && typeof AudioManager.vibrate === 'function') {
+        AudioManager.vibrate('defeat');
+      } else if (navigator.vibrate) {
+        navigator.vibrate([100, 50, 80, 50, 200]);
+      }
+    }
 
     // ===== 角色表演：胜负 =====
     if (result === 'win') {

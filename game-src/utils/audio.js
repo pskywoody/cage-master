@@ -1241,38 +1241,60 @@ const AudioManager = {
 
   // ========== 剧情/演出音效（逆转裁判风格）==========
 
-  // 打字机音效 - 短促的机械键盘敲击声
+  // 打字机音效 - 短促的机械键盘敲击声（优化版：更响亮、更有质感）
   playTypewriterKey() {
     if (!this.enabled || !this.ctx || !this.sfxEnabled) return;
     this.resume();
     const now = this.ctx.currentTime;
+
+    // 1. 低频"咔嗒"主体（方波快速下滑，模拟按键触底的机械感）
     const osc = this.ctx.createOscillator();
-    const gain = this.ctx.createGain();
-    const filter = this.ctx.createBiquadFilter();
+    const oscGain = this.ctx.createGain();
+    const oscFilter = this.ctx.createBiquadFilter();
     osc.type = 'square';
-    osc.frequency.setValueAtTime(1800 + Math.random() * 400, now);
-    osc.frequency.exponentialRampToValueAtTime(600, now + 0.025);
-    filter.type = 'bandpass';
-    filter.frequency.value = 2000;
-    filter.Q.value = 2;
-    gain.gain.setValueAtTime(0, now);
-    gain.gain.linearRampToValueAtTime(0.1, now + 0.002);
-    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.03);
-    osc.connect(filter); filter.connect(gain); gain.connect(this.sfxGain);
-    osc.start(now); osc.stop(now + 0.04);
+    // 起始频率降低到中高频（800-1200Hz），人耳更敏感
+    osc.frequency.setValueAtTime(900 + Math.random() * 300, now);
+    osc.frequency.exponentialRampToValueAtTime(200, now + 0.035);
+    oscFilter.type = 'lowpass';
+    oscFilter.frequency.value = 1500;
+    oscFilter.Q.value = 1;
+    oscGain.gain.setValueAtTime(0, now);
+    oscGain.gain.linearRampToValueAtTime(0.18, now + 0.0015);
+    oscGain.gain.exponentialRampToValueAtTime(0.001, now + 0.05);
+    osc.connect(oscFilter); oscFilter.connect(oscGain); oscGain.connect(this.sfxGain);
+    osc.start(now); osc.stop(now + 0.06);
+
+    // 2. 高频"嗒"声噪声（每次都触发，模拟键帽撞击的清脆感）
+    const noiseLen = this.ctx.sampleRate * 0.025;
+    const nb = this.ctx.createBuffer(1, noiseLen, this.ctx.sampleRate);
+    const nd = nb.getChannelData(0);
+    for (let i = 0; i < noiseLen; i++) {
+      // 指数衰减的白噪声，更像真实撞击
+      nd[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / noiseLen, 2);
+    }
+    const ns = this.ctx.createBufferSource(); ns.buffer = nb;
+    const ng = this.ctx.createGain();
+    const nf = this.ctx.createBiquadFilter();
+    nf.type = 'bandpass';
+    nf.frequency.value = 2500 + Math.random() * 500;
+    nf.Q.value = 3;
+    ng.gain.setValueAtTime(0.08, now);
+    ng.gain.exponentialRampToValueAtTime(0.001, now + 0.025);
+    ns.connect(nf); nf.connect(ng); ng.connect(this.sfxGain);
+    ns.start(now); ns.stop(now + 0.03);
+
+    // 3. 30%概率触发"空格/回车"级别的重按键音（更响、更低沉）
     if (Math.random() < 0.3) {
-      const noiseLen = this.ctx.sampleRate * 0.015;
-      const nb = this.ctx.createBuffer(1, noiseLen, this.ctx.sampleRate);
-      const nd = nb.getChannelData(0);
-      for (let i = 0; i < noiseLen; i++) nd[i] = (Math.random()*2-1) * 0.3;
-      const ns = this.ctx.createBufferSource(); ns.buffer = nb;
-      const ng = this.ctx.createGain();
-      ng.gain.setValueAtTime(0.03, now);
-      ng.gain.exponentialRampToValueAtTime(0.001, now + 0.015);
-      const nf = this.ctx.createBiquadFilter();
-      nf.type = 'highpass'; nf.frequency.value = 3000;
-      ns.connect(nf); nf.connect(ng); ng.connect(this.sfxGain);
-      ns.start(now); ns.stop(now + 0.02);
+      const lowOsc = this.ctx.createOscillator();
+      const lowGain = this.ctx.createGain();
+      lowOsc.type = 'triangle';
+      lowOsc.frequency.setValueAtTime(300 + Math.random() * 100, now);
+      lowOsc.frequency.exponentialRampToValueAtTime(80, now + 0.06);
+      lowGain.gain.setValueAtTime(0, now);
+      lowGain.gain.linearRampToValueAtTime(0.12, now + 0.002);
+      lowGain.gain.exponentialRampToValueAtTime(0.001, now + 0.08);
+      lowOsc.connect(lowGain); lowGain.connect(this.sfxGain);
+      lowOsc.start(now); lowOsc.stop(now + 0.1);
     }
   },
 
@@ -1413,6 +1435,261 @@ const AudioManager = {
     g.gain.exponentialRampToValueAtTime(0.001, now + 0.12);
     o.connect(g); g.connect(this.sfxGain);
     o.start(now); o.stop(now + 0.15);
+  },
+
+  // ========== 逆转裁判风格演出音效 ==========
+
+  // 思考音 - 低沉的"嗯..."，思考时循环用
+  playThinking() {
+    if (!this.enabled || !this.ctx || !this.sfxEnabled) return;
+    this.resume();
+    const now = this.ctx.currentTime;
+    // 轻微的思索"叮"声
+    const o = this.ctx.createOscillator();
+    const g = this.ctx.createGain();
+    o.type = 'sine';
+    o.frequency.setValueAtTime(800, now);
+    o.frequency.exponentialRampToValueAtTime(600, now + 0.15);
+    g.gain.setValueAtTime(0, now);
+    g.gain.linearRampToValueAtTime(0.08, now + 0.02);
+    g.gain.exponentialRampToValueAtTime(0.001, now + 0.2);
+    o.connect(g); g.connect(this.sfxGain);
+    o.start(now); o.stop(now + 0.25);
+  },
+
+  // 灵光一闪 - "叮！"的顿悟感
+  playInsight() {
+    if (!this.enabled || !this.ctx || !this.sfxEnabled) return;
+    this.resume();
+    const now = this.ctx.currentTime;
+    // 上升琶音
+    [523, 659, 784, 1047, 1319].forEach((f, i) => {
+      const o = this.ctx.createOscillator();
+      const g = this.ctx.createGain();
+      o.type = 'sine';
+      o.frequency.value = f;
+      g.gain.setValueAtTime(0, now + i * 0.04);
+      g.gain.linearRampToValueAtTime(0.12, now + i * 0.04 + 0.01);
+      g.gain.exponentialRampToValueAtTime(0.001, now + i * 0.04 + 0.3);
+      o.connect(g); g.connect(this.sfxGain);
+      o.start(now + i * 0.04); o.stop(now + i * 0.04 + 0.35);
+    });
+    // 顶部闪亮
+    setTimeout(() => this._playBell(1568, 0.5, 0.1), 150);
+    // 短暂的闪光噪声
+    this._playNoise(0.1, 0.06, 6000, 'highpass', 100);
+  },
+
+  // 发现线索 - "发现了！"的感觉
+  playDiscover() {
+    if (!this.enabled || !this.ctx || !this.sfxEnabled) return;
+    this.resume();
+    const now = this.ctx.currentTime;
+    // 三连快速"哒哒哒"上升
+    [440, 554, 659].forEach((f, i) => {
+      const o = this.ctx.createOscillator();
+      const g = this.ctx.createGain();
+      o.type = 'square';
+      o.frequency.value = f;
+      g.gain.setValueAtTime(0, now + i * 0.06);
+      g.gain.linearRampToValueAtTime(0.08, now + i * 0.06 + 0.005);
+      g.gain.exponentialRampToValueAtTime(0.001, now + i * 0.06 + 0.08);
+      o.connect(g); g.connect(this.sfxGain);
+      o.start(now + i * 0.06); o.stop(now + i * 0.06 + 0.1);
+    });
+    // 最后一下"叮"
+    setTimeout(() => {
+      this._playBell(880, 0.3, 0.12);
+      this._playNote(1109, 0.2, 'sine', 0.1, 0.005);
+    }, 180);
+  },
+
+  // 矛盾指证 - 有力的"咚！"
+  playContradiction() {
+    if (!this.enabled || !this.ctx || !this.sfxEnabled) return;
+    this.resume();
+    const now = this.ctx.currentTime;
+    // 低音冲击
+    const o = this.ctx.createOscillator();
+    const g = this.ctx.createGain();
+    o.type = 'sawtooth';
+    o.frequency.setValueAtTime(200, now);
+    o.frequency.exponentialRampToValueAtTime(80, now + 0.2);
+    g.gain.setValueAtTime(0, now);
+    g.gain.linearRampToValueAtTime(0.2, now + 0.01);
+    g.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
+    o.connect(g); g.connect(this.sfxGain);
+    o.start(now); o.stop(now + 0.35);
+    // 噪声冲击
+    this._playNoise(0.15, 0.15, 800, 'lowpass', 100);
+    // 金属回响
+    setTimeout(() => this._playBell(330, 0.5, 0.08), 30);
+  },
+
+  // 证据出示 - 翻开证据的"唰"声
+  playEvidence() {
+    if (!this.enabled || !this.ctx || !this.sfxEnabled) return;
+    this.resume();
+    const now = this.ctx.currentTime;
+    // "唰"的翻页声
+    const noiseLen = this.ctx.sampleRate * 0.2;
+    const nb = this.ctx.createBuffer(1, noiseLen, this.ctx.sampleRate);
+    const nd = nb.getChannelData(0);
+    for (let i = 0; i < noiseLen; i++) {
+      nd[i] = (Math.random() * 2 - 1) * (1 - i / noiseLen);
+    }
+    const ns = this.ctx.createBufferSource(); ns.buffer = nb;
+    const ng = this.ctx.createGain();
+    const nf = this.ctx.createBiquadFilter();
+    nf.type = 'bandpass';
+    nf.frequency.setValueAtTime(1000, now);
+    nf.frequency.exponentialRampToValueAtTime(4000, now + 0.15);
+    ng.gain.setValueAtTime(0.15, now);
+    ng.gain.exponentialRampToValueAtTime(0.001, now + 0.2);
+    ns.connect(nf); nf.connect(ng); ng.connect(this.sfxGain);
+    ns.start(now); ns.stop(now + 0.25);
+    // 结尾"啪"
+    setTimeout(() => {
+      this._playClick(1800, 0.02, 0.15);
+    }, 150);
+  },
+
+  // 法庭记录选择 - 轻微的选择音
+  playCourtRecord() {
+    if (!this.enabled || !this.ctx || !this.sfxEnabled) return;
+    this.resume();
+    this._playNote(660, 0.08, 'triangle', 0.1, 0.005);
+    setTimeout(() => this._playNote(880, 0.1, 'sine', 0.08, 0.005), 30);
+  },
+
+  // ========== UI 音效补充 ==========
+
+  // 弹窗出现
+  playPopupOpen() {
+    if (!this.enabled || !this.ctx || !this.sfxEnabled) return;
+    this.resume();
+    const now = this.ctx.currentTime;
+    [330, 440, 554].forEach((f, i) => {
+      const o = this.ctx.createOscillator();
+      const g = this.ctx.createGain();
+      o.type = 'sine';
+      o.frequency.value = f;
+      g.gain.setValueAtTime(0, now + i * 0.03);
+      g.gain.linearRampToValueAtTime(0.08, now + i * 0.03 + 0.01);
+      g.gain.exponentialRampToValueAtTime(0.001, now + i * 0.03 + 0.15);
+      o.connect(g); g.connect(this.sfxGain);
+      o.start(now + i * 0.03); o.stop(now + i * 0.03 + 0.2);
+    });
+  },
+
+  // 弹窗关闭
+  playPopupClose() {
+    if (!this.enabled || !this.ctx || !this.sfxEnabled) return;
+    this.resume();
+    const now = this.ctx.currentTime;
+    [554, 440, 330].forEach((f, i) => {
+      const o = this.ctx.createOscillator();
+      const g = this.ctx.createGain();
+      o.type = 'sine';
+      o.frequency.value = f;
+      g.gain.setValueAtTime(0, now + i * 0.025);
+      g.gain.linearRampToValueAtTime(0.06, now + i * 0.025 + 0.01);
+      g.gain.exponentialRampToValueAtTime(0.001, now + i * 0.025 + 0.12);
+      o.connect(g); g.connect(this.sfxGain);
+      o.start(now + i * 0.025); o.stop(now + i * 0.025 + 0.15);
+    });
+  },
+
+  // 按钮悬停（轻微的）
+  playHover() {
+    if (!this.enabled || !this.ctx || !this.sfxEnabled) return;
+    this.resume();
+    this._playNote(1000, 0.03, 'sine', 0.04, 0.002);
+  },
+
+  // 切换开关
+  playToggle() {
+    if (!this.enabled || !this.ctx || !this.sfxEnabled) return;
+    this.resume();
+    this._playClick(1600, 0.025, 0.15);
+    setTimeout(() => this._playClick(1200, 0.02, 0.1), 50);
+  },
+
+  // 滑块调整
+  playSlider() {
+    if (!this.enabled || !this.ctx || !this.sfxEnabled) return;
+    this.resume();
+    this._playNote(800 + Math.random() * 200, 0.02, 'sine', 0.03, 0.002);
+  },
+
+  // ========== 振动反馈（Vibration）==========
+
+  vibrate(pattern) {
+    if (!navigator.vibrate) return;
+    try {
+      // 检查设置是否开启振动（默认开启）
+      if (typeof Storage !== 'undefined' && Storage.getSettings) {
+        const s = Storage.getSettings();
+        if (s && s.vibration === false) return;
+      }
+      switch (pattern) {
+        // 轻触
+        case 'tap':
+          navigator.vibrate(10);
+          break;
+        // 点击按钮
+        case 'click':
+          navigator.vibrate(15);
+          break;
+        // 填对数字 - 短促有力的一下
+        case 'correct':
+          navigator.vibrate([20, 10, 15]);
+          break;
+        // 填错数字 - 低沉的错误感
+        case 'wrong':
+          navigator.vibrate([50, 20, 40]);
+          break;
+        // 擦除
+        case 'erase':
+          navigator.vibrate(25);
+          break;
+        // 选中格移动
+        case 'move':
+          navigator.vibrate(5);
+          break;
+        // 异议！ - 爆发式振动
+        case 'objection':
+          navigator.vibrate([30, 20, 50, 30, 80]);
+          break;
+        // 灵光一闪
+        case 'insight':
+          navigator.vibrate([10, 8, 10, 8, 15, 10, 30]);
+          break;
+        // 发现矛盾
+        case 'contradiction':
+          navigator.vibrate([60, 20, 60]);
+          break;
+        // 胜利 - 庆祝节奏
+        case 'victory':
+          navigator.vibrate([50, 30, 50, 30, 100, 50, 150]);
+          break;
+        // 失败
+        case 'defeat':
+          navigator.vibrate([100, 50, 80, 50, 200]);
+          break;
+        // 砸桌/重击
+        case 'slam':
+          navigator.vibrate([80, 30, 60]);
+          break;
+        // 轻微提示
+        case 'notice':
+          navigator.vibrate([15, 10, 15]);
+          break;
+        // 默认
+        default:
+          navigator.vibrate(20);
+      }
+    } catch(e) {}
   },
 
   // 开关

@@ -88,41 +88,41 @@ const CHAPTER_THEMES = {
   // 第3章 谜案追踪 · 设局人残影 - 阴森迷雾风格：暗灰底+暗红+血红强调
   3: {
     name: '谜案追踪',
-    bgColor: '#1a1a1f',           // 暗灰底（阴森）
-    gridLine: '#2d2d3a',          // 暗灰细线
-    boxLine: '#5a2020',           // 暗红宫线
-    outerBorder: '#7f1d1d',       // 深红边框
-    cageDash: '#8b3030',          // 暗红笼虚线
-    cageBadgeBg: '#ef4444',       // 血红和值徽章
+    bgColor: '#1e1b24',           // 深紫灰底（阴森但不刺眼）
+    gridLine: '#353040',          // 暗紫灰细线
+    boxLine: '#4a3d52',           // 暗紫红宫线
+    outerBorder: '#6d4c7a',       // 紫红边框
+    cageDash: '#7c5a88',          // 紫红笼虚线
+    cageBadgeBg: '#8b5cf6',       // 紫罗兰和值徽章
     cageBadgeText: '#ffffff',
-    selectedBg: 'rgba(239,68,68,0.25)',
-    selectedBorder: '#dc2626',
-    rowColHighlight: 'rgba(120,40,40,0.25)',
-    cageHighlight: 'rgba(239,68,68,0.1)',
-    sameNumHighlight: 'rgba(220,38,38,0.15)',
-    fixedNum: '#c9b8b8',          // 灰白预填（暗色背景要亮）
-    playerNum: '#f87171',         // 亮红玩家数
-    errorNum: '#fbbf24',          // 金色错误（暗底上红配红看不清）
-    candidateNum: '#6b6070',      // 暗紫灰候选
+    selectedBg: 'rgba(139,92,246,0.25)',
+    selectedBorder: '#a78bfa',
+    rowColHighlight: 'rgba(109,76,122,0.25)',
+    cageHighlight: 'rgba(139,92,246,0.1)',
+    sameNumHighlight: 'rgba(167,139,250,0.15)',
+    fixedNum: '#c4b5d0',          // 淡紫灰预填
+    playerNum: '#c4b5fd',         // 淡紫玩家数
+    errorNum: '#fbbf24',          // 金色错误
+    candidateNum: '#6b5e7a',      // 暗紫灰候选
     hintBorder: '#fbbf24',
     hintBg: 'rgba(251,191,36,0.12)',
-    candidateBorder: '#f97316',
-    candidateText: '#f97316',
-    playerOwned: 'rgba(220,38,38,0.2)',
-    highlight45: 'rgba(239,68,68,0.2)',
+    candidateBorder: '#a78bfa',
+    candidateText: '#c4b5fd',
+    playerOwned: 'rgba(139,92,246,0.2)',
+    highlight45: 'rgba(167,139,250,0.2)',
     hintNumColor: '#fbbf24',
-    accent: '#ef4444',
-    accentDark: '#b91c1c',
-    accentLight: '#fecaca',
-    bgPage: '#15151a',
-    numPadBg: '#2a1a1a',
-    numPadText: '#f87171',
-    numPadDoneBg: '#2d2d3a',
-    numPadDoneText: '#5a5060',
-    toolBarBg: '#252028',
-    toolBarText: '#c9b8b8',
-    fogColor: 'rgba(30,5,5,',     // 血红迷雾
-    fogTexColor: 'rgba(100,20,20,',
+    accent: '#8b5cf6',
+    accentDark: '#6d28d9',
+    accentLight: '#ddd6fe',
+    bgPage: '#17141c',
+    numPadBg: '#2a2432',
+    numPadText: '#c4b5fd',
+    numPadDoneBg: '#353040',
+    numPadDoneText: '#5a5068',
+    toolBarBg: '#231f2a',
+    toolBarText: '#c4b5d0',
+    fogColor: 'rgba(40,20,60,',     // 紫雾
+    fogTexColor: 'rgba(100,80,140,',
   },
 
   // 第4章 密码破译 · 残局守护者 - 古老羊皮纸风格：羊皮黄+深棕+琥珀金强调
@@ -205,45 +205,45 @@ const CHAPTER_THEMES = {
     fogTexColor: 'rgba(80,50,140,',
   },
 
-  // 第6章 大师之路 · 设局人本体 - 终局决战风格：黑金底+赤金+深红
+  // 第6章 大师之路 · 设局人本体 - 终局决战风格：深黑金底+赤金+暗橙红
   6: {
     name: '大师之路',
-    bgColor: '#0d0d0d',           // 纯黑底
-    gridLine: '#2a2010',          // 暗金细线
+    bgColor: '#14110f',           // 深褐黑底（比纯黑柔和）
+    gridLine: '#2a2318',          // 暗金细线
     boxLine: '#92400e',           // 深赤宫线
     outerBorder: '#b45309',       // 赤金边框
     cageDash: '#a16207',          // 金色笼虚线
-    cageBadgeBg: '#dc2626',       // 深红和值徽章（设局人色）
+    cageBadgeBg: '#b45309',       // 暗橙红和值徽章（降低红色饱和度）
     cageBadgeText: '#fef3c7',
-    selectedBg: 'rgba(220,38,38,0.3)',
-    selectedBorder: '#fbbf24',    // 金色选中边框！
-    rowColHighlight: 'rgba(185,28,28,0.2)',
+    selectedBg: 'rgba(180,83,9,0.3)',
+    selectedBorder: '#fbbf24',    // 金色选中边框
+    rowColHighlight: 'rgba(146,64,14,0.2)',
     cageHighlight: 'rgba(251,191,36,0.1)',
-    sameNumHighlight: 'rgba(220,38,38,0.18)',
-    fixedNum: '#d4a850',          // 暗金预填（黑底要亮）
-    playerNum: '#f87171',         // 亮红玩家数
-    errorNum: '#60a5fa',          // 蓝色错误（红黑底上需对比）
+    sameNumHighlight: 'rgba(180,83,9,0.18)',
+    fixedNum: '#d4a850',          // 暗金预填
+    playerNum: '#fbbf24',         // 金色玩家数（红改金，更和谐）
+    errorNum: '#60a5fa',          // 蓝色错误
     candidateNum: '#5a4a30',
     hintBorder: '#fbbf24',
     hintBg: 'rgba(251,191,36,0.15)',
-    candidateBorder: '#dc2626',
+    candidateBorder: '#b45309',
     candidateText: '#fbbf24',
-    playerOwned: 'rgba(220,38,38,0.25)',
+    playerOwned: 'rgba(180,83,9,0.25)',
     highlight45: 'rgba(251,191,36,0.2)',
     hintNumColor: '#fbbf24',
-    accent: '#dc2626',
-    accentDark: '#991b1b',
-    accentLight: '#fecaca',
-    accentGold: '#fbbf24',       // 特殊金色accent
-    bgPage: '#080808',
-    numPadBg: '#1a1008',
-    numPadText: '#f87171',
-    numPadDoneBg: '#2a2010',
+    accent: '#b45309',
+    accentDark: '#78350f',
+    accentLight: '#fef3c7',
+    accentGold: '#fbbf24',
+    bgPage: '#0c0a08',
+    numPadBg: '#1a140c',
+    numPadText: '#fbbf24',
+    numPadDoneBg: '#2a2318',
     numPadDoneText: '#5a4a30',
-    toolBarBg: '#150f0a',
+    toolBarBg: '#15110c',
     toolBarText: '#d4a850',
-    fogColor: 'rgba(30,5,5,',
-    fogTexColor: 'rgba(100,20,20,',
+    fogColor: 'rgba(40,20,5,',
+    fogTexColor: 'rgba(160,100,30,',
   },
 
   // ===== 第7章 秘术档案 · 设局人秘术 — 星辰秘术风格：深紫黑底+秘银紫+幻彩强调 =====
@@ -320,6 +320,263 @@ class Renderer {
     this.padding = 12;
     this.themeId = 1;
     this.theme = DEFAULT_THEME;
+    // 尺寸缓存（避免每帧重置canvas尺寸）
+    this._canvasSize = 0;
+    this._dpr = 0;
+    this._lastSize = 0;
+    // 离屏缓存层
+    this._staticCache = null;       // 背景+网格+宫线+外边框
+    this._staticCacheKey = '';      // 缓存key：themeId+canvasSize+dpr
+    this._boardCache = null;        // 笼子+预填数
+    this._boardCacheKey = '';       // 缓存key：levelId+themeId+canvasSize+dpr
+    this._currentLevelId = null;    // 当前关卡ID
+  }
+
+  /**
+   * 更新Canvas尺寸（仅在尺寸/DPR变化时调用）
+   */
+  _updateCanvasSize(canvasSize) {
+    const dpr = window.devicePixelRatio || 1;
+    if (canvasSize === this._lastSize && dpr === this._dpr) return false;
+    this._lastSize = canvasSize;
+    this._dpr = dpr;
+    this.canvas.width = canvasSize * dpr;
+    this.canvas.height = canvasSize * dpr;
+    this.canvas.style.width = canvasSize + 'px';
+    this.canvas.style.height = canvasSize + 'px';
+    this.ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    // 尺寸变化，缓存失效
+    this._staticCacheKey = '';
+    this._boardCacheKey = '';
+    return true;
+  }
+
+  /**
+   * 创建或获取离屏Canvas
+   */
+  _getOffscreenCanvas(cacheProp, width, height) {
+    if (!this[cacheProp]) {
+      this[cacheProp] = document.createElement('canvas');
+    }
+    const canvas = this[cacheProp];
+    if (canvas.width !== width || canvas.height !== height) {
+      canvas.width = width;
+      canvas.height = height;
+    }
+    return canvas;
+  }
+
+  /**
+   * 绘制静态缓存层（背景+网格+宫线+外边框）
+   */
+  _drawStaticCache(board, canvasSize) {
+    const cache = this._getOffscreenCanvas('_staticCache', canvasSize * this._dpr, canvasSize * this._dpr);
+    const ctx = cache.getContext('2d');
+    ctx.setTransform(this._dpr, 0, 0, this._dpr, 0, 0);
+    const { cellSize, padding, theme } = this;
+    const size = board.size;
+
+    ctx.clearRect(0, 0, canvasSize, canvasSize);
+
+    // 章节背景图（如果已加载）
+    const bgImg = bgImageCache[this.themeId];
+    if (bgImg && bgImg.complete && bgImg.naturalWidth > 0) {
+      ctx.save();
+      const imgRatio = bgImg.naturalWidth / bgImg.naturalHeight;
+      const canvasRatio = canvasSize / canvasSize;
+      let sx, sy, sw, sh;
+      if (imgRatio > canvasRatio) {
+        sh = bgImg.naturalHeight;
+        sw = sh * canvasRatio;
+        sx = (bgImg.naturalWidth - sw) / 2;
+        sy = 0;
+      } else {
+        sw = bgImg.naturalWidth;
+        sh = sw / canvasRatio;
+        sx = 0;
+        sy = (bgImg.naturalHeight - sh) / 2;
+      }
+      ctx.globalAlpha = theme.isDark ? 0.35 : 0.5;
+      ctx.drawImage(bgImg, sx, sy, sw, sh, 0, 0, canvasSize, canvasSize);
+      ctx.globalAlpha = 1;
+      ctx.fillStyle = theme.bgColor;
+      ctx.globalAlpha = theme.isDark ? 0.7 : 0.55;
+      ctx.fillRect(0, 0, canvasSize, canvasSize);
+      ctx.globalAlpha = 1;
+      ctx.restore();
+    } else {
+      ctx.fillStyle = theme.bgColor;
+      ctx.fillRect(0, 0, canvasSize, canvasSize);
+    }
+
+    ctx.save();
+    ctx.translate(padding, padding);
+
+    // 网格
+    ctx.strokeStyle = theme.gridLine;
+    ctx.lineWidth = 1;
+    for (let i = 1; i < size; i++) {
+      ctx.beginPath();
+      ctx.moveTo(i * cellSize, 0);
+      ctx.lineTo(i * cellSize, size * cellSize);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(0, i * cellSize);
+      ctx.lineTo(size * cellSize, i * cellSize);
+      ctx.stroke();
+    }
+
+    // 宫线
+    const { boxW, boxH } = this.getBoxSize(size);
+    ctx.strokeStyle = theme.boxLine;
+    ctx.lineWidth = 2;
+    for (let i = 1; i < size / boxW; i++) {
+      ctx.beginPath();
+      ctx.moveTo(i * boxW * cellSize, 0);
+      ctx.lineTo(i * boxW * cellSize, size * cellSize);
+      ctx.stroke();
+    }
+    for (let i = 1; i < size / boxH; i++) {
+      ctx.beginPath();
+      ctx.moveTo(0, i * boxH * cellSize);
+      ctx.lineTo(size * cellSize, i * boxH * cellSize);
+      ctx.stroke();
+    }
+
+    // 外边框
+    ctx.strokeStyle = theme.outerBorder;
+    ctx.lineWidth = 3;
+    const r = Math.min(cellSize * 0.15, 10);
+    const w = size * cellSize;
+    const h = size * cellSize;
+    ctx.beginPath();
+    ctx.moveTo(r, 0);
+    ctx.lineTo(w - r, 0);
+    ctx.quadraticCurveTo(w, 0, w, r);
+    ctx.lineTo(w, h - r);
+    ctx.quadraticCurveTo(w, h, w - r, h);
+    ctx.lineTo(r, h);
+    ctx.quadraticCurveTo(0, h, 0, h - r);
+    ctx.lineTo(0, r);
+    ctx.quadraticCurveTo(0, 0, r, 0);
+    ctx.closePath();
+    ctx.stroke();
+
+    ctx.restore();
+
+    this._staticCacheKey = `${this.themeId}-${canvasSize}-${this._dpr}`;
+  }
+
+  /**
+   * 绘制盘面缓存层（笼子+预填数）
+   */
+  _drawBoardCache(board, canvasSize) {
+    const cache = this._getOffscreenCanvas('_boardCache', canvasSize * this._dpr, canvasSize * this._dpr);
+    const ctx = cache.getContext('2d');
+    ctx.setTransform(this._dpr, 0, 0, this._dpr, 0, 0);
+    const { cellSize, padding, theme } = this;
+    const size = board.size;
+
+    ctx.clearRect(0, 0, canvasSize, canvasSize);
+    ctx.save();
+    ctx.translate(padding, padding);
+
+    // 笼子
+    if (board.cages && board.cages.length > 0) {
+      const sumFontSize = Math.max(9, Math.floor(cellSize * 0.22));
+      ctx.font = `bold ${sumFontSize}px sans-serif`;
+      ctx.textBaseline = 'top';
+      ctx.strokeStyle = theme.cageBorder;
+      ctx.lineWidth = 2;
+      ctx.setLineDash([4, 3]);
+
+      board.cages.forEach(cage => {
+        const cellSet = new Set(cage.cells.map(([r, c]) => `${r},${c}`));
+        const sumText = String(cage.sum);
+        const textWidth = ctx.measureText(sumText).width;
+        const badgeW = textWidth + 8;
+        const badgeH = Math.max(14, sumFontSize + 4);
+
+        cage.cells.forEach(([r, c]) => {
+          const x = c * cellSize;
+          const y = r * cellSize;
+          // 顶边
+          if (!cellSet.has(`${r - 1},${c}`)) {
+            ctx.beginPath();
+            ctx.moveTo(x, y);
+            ctx.lineTo(x + cellSize, y);
+            ctx.stroke();
+          }
+          // 底边
+          if (!cellSet.has(`${r + 1},${c}`)) {
+            ctx.beginPath();
+            ctx.moveTo(x, y + cellSize);
+            ctx.lineTo(x + cellSize, y + cellSize);
+            ctx.stroke();
+          }
+          // 左边
+          if (!cellSet.has(`${r},${c - 1}`)) {
+            ctx.beginPath();
+            ctx.moveTo(x, y);
+            ctx.lineTo(x, y + cellSize);
+            ctx.stroke();
+          }
+          // 右边
+          if (!cellSet.has(`${r},${c + 1}`)) {
+            ctx.beginPath();
+            ctx.moveTo(x + cellSize, y);
+            ctx.lineTo(x + cellSize, y + cellSize);
+            ctx.stroke();
+          }
+        });
+
+        // 和值徽章
+        const [tr, tc] = cage.cells[0];
+        const tx = tc * cellSize + 3;
+        const ty = tr * cellSize + 2;
+        ctx.setLineDash([]);
+        ctx.fillStyle = theme.cageBadgeBg || 'rgba(255,255,255,0.85)';
+        const br = 4;
+        ctx.beginPath();
+        ctx.moveTo(tx + br, ty);
+        ctx.lineTo(tx + badgeW - br, ty);
+        ctx.quadraticCurveTo(tx + badgeW, ty, tx + badgeW, ty + br);
+        ctx.lineTo(tx + badgeW, ty + badgeH - br);
+        ctx.quadraticCurveTo(tx + badgeW, ty + badgeH, tx + badgeW - br, ty + badgeH);
+        ctx.lineTo(tx + br, ty + badgeH);
+        ctx.quadraticCurveTo(tx, ty + badgeH, tx, ty + badgeH - br);
+        ctx.lineTo(tx, ty + br);
+        ctx.quadraticCurveTo(tx, ty, tx + br, ty);
+        ctx.closePath();
+        ctx.fill();
+        ctx.fillStyle = theme.cageSumText || theme.fixedNum;
+        ctx.fillText(sumText, tx + 4, ty + 2);
+        ctx.setLineDash([4, 3]);
+      });
+
+      ctx.setLineDash([]);
+    }
+
+    // 预填数字
+    const fontSize = Math.floor(cellSize * 0.45);
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.font = `bold ${fontSize}px sans-serif`;
+    ctx.fillStyle = theme.fixedNum;
+
+    for (let r = 0; r < size; r++) {
+      for (let c = 0; c < size; c++) {
+        const cell = board.cells[r][c];
+        if (cell.fixedNum) {
+          ctx.fillText(cell.fixedNum, c * cellSize + cellSize / 2, r * cellSize + cellSize / 2);
+        }
+      }
+    }
+
+    ctx.restore();
+
+    const levelId = board.levelId || this._currentLevelId || 'unknown';
+    this._boardCacheKey = `${levelId}-${this.themeId}-${canvasSize}-${this._dpr}`;
   }
 
   /**
@@ -339,6 +596,9 @@ class Renderer {
     this._applyThemeCSS();
     // 设置页面背景图
     this._applyPageBg(id);
+    // 主题变化，缓存失效
+    this._staticCacheKey = '';
+    this._boardCacheKey = '';
   }
 
   _applyPageBg(chapterId) {
@@ -405,56 +665,31 @@ class Renderer {
     const size = board.size;
     const canvasSize = size * cellSize + padding * 2;
 
-    const dpr = window.devicePixelRatio || 1;
-    this.canvas.width = canvasSize * dpr;
-    this.canvas.height = canvasSize * dpr;
-    this.canvas.style.width = canvasSize + 'px';
-    this.canvas.style.height = canvasSize + 'px';
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    // 仅在尺寸/DPR变化时更新canvas尺寸（避免每帧重置状态）
+    this._updateCanvasSize(canvasSize);
 
     ctx.clearRect(0, 0, canvasSize, canvasSize);
 
-    // 章节背景图（如果已加载）
-    const bgImg = bgImageCache[this.themeId];
-    if (bgImg && bgImg.complete && bgImg.naturalWidth > 0) {
-      ctx.save();
-      // 绘制背景图（cover模式，居中裁剪）
-      const imgRatio = bgImg.naturalWidth / bgImg.naturalHeight;
-      const canvasRatio = canvasSize / canvasSize;
-      let sx, sy, sw, sh;
-      if (imgRatio > canvasRatio) {
-        sh = bgImg.naturalHeight;
-        sw = sh * canvasRatio;
-        sx = (bgImg.naturalWidth - sw) / 2;
-        sy = 0;
-      } else {
-        sw = bgImg.naturalWidth;
-        sh = sw / canvasRatio;
-        sx = 0;
-        sy = (bgImg.naturalHeight - sh) / 2;
-      }
-      ctx.globalAlpha = theme.isDark ? 0.35 : 0.5;
-      ctx.drawImage(bgImg, sx, sy, sw, sh, 0, 0, canvasSize, canvasSize);
-      ctx.globalAlpha = 1;
-      // 叠加半透明底色保证可读性
-      ctx.fillStyle = theme.bgColor;
-      ctx.globalAlpha = theme.isDark ? 0.7 : 0.55;
-      ctx.fillRect(0, 0, canvasSize, canvasSize);
-      ctx.globalAlpha = 1;
-      ctx.restore();
-    } else {
-      // 主题背景色
-      ctx.fillStyle = theme.bgColor;
-      ctx.fillRect(0, 0, canvasSize, canvasSize);
+    // ===== 静态层缓存（背景+网格+宫线+外边框）=====
+    const staticKey = `${this.themeId}-${canvasSize}-${this._dpr}`;
+    if (this._staticCacheKey !== staticKey) {
+      this._drawStaticCache(board, canvasSize);
     }
+    ctx.drawImage(this._staticCache, 0, 0, canvasSize, canvasSize);
+
+    // ===== 盘面层缓存（笼子+预填数）=====
+    const levelId = board.levelId || this._currentLevelId || 'unknown';
+    if (board.levelId) this._currentLevelId = board.levelId;
+    const boardKey = `${levelId}-${this.themeId}-${canvasSize}-${this._dpr}`;
+    if (this._boardCacheKey !== boardKey) {
+      this._drawBoardCache(board, canvasSize);
+    }
+    ctx.drawImage(this._boardCache, 0, 0, canvasSize, canvasSize);
 
     ctx.save();
     ctx.translate(padding, padding);
 
-    this._drawInnerGrid(size);
-    this._drawInnerBoxLines(size);
-    this._drawRoundOuterBorder(size, board);
-    this._drawCages(board);
+    // ===== 动态层：高亮、选中、玩家数字、候选数等 =====
     this._drawHighlightMask(board);
     this._drawRowColBoxHighlight(board);
     this._drawCageHighlight(board);
@@ -464,7 +699,7 @@ class Renderer {
     this._drawSelectedCell(board);
     this._drawHintHighlight(board);
     this._drawBattlePlayerOwned(board);
-    this._drawNumbers(board);
+    this._drawPlayerNumbers(board);
     this._drawLockMask(board);
     this._drawCandidates(board);
     this._drawHintNumber(board);
@@ -827,6 +1062,31 @@ class Renderer {
         }
         ctx.fillText(num, c * cellSize + cellSize / 2, r * cellSize + cellSize / 2);
         ctx.globalAlpha = 1;
+      }
+    }
+  }
+
+  // 只画玩家填的数字（预填数已在缓存层中）
+  _drawPlayerNumbers(board) {
+    const { ctx, cellSize, theme } = this;
+    const size = board.size;
+
+    const fontSize = Math.floor(cellSize * 0.45);
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.font = `${fontSize}px sans-serif`;
+
+    for (let r = 0; r < size; r++) {
+      for (let c = 0; c < size; c++) {
+        const cell = board.cells[r][c];
+        if (!cell.fillNum) continue;
+
+        if (cell.isError && board.settings.conflictRed) {
+          ctx.fillStyle = theme.errorNum;
+        } else {
+          ctx.fillStyle = theme.playerNum;
+        }
+        ctx.fillText(cell.fillNum, c * cellSize + cellSize / 2, r * cellSize + cellSize / 2);
       }
     }
   }

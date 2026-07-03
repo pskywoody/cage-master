@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>档案侦探·笼中密码 — 剧情系统深度评估报告</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', Arial, sans-serif;
+    background: #0a0a12;
+    color: #e0d8e8;
+    line-height: 1.7;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  a { color: #d4af37; text-decoration: none; transition: color .3s; }
+  a:hover { color: #f1c40f; }
+  ::-webkit-scrollbar { width: 8px; }
+  ::-webkit-scrollbar-track { background: #12101e; }
+  ::-webkit-scrollbar-thumb { background: #3a2a5a; border-radius: 4px; }
+  ::-webkit-scrollbar-thumb:hover { background: #5a3a8a; }
+
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px 20px;
+    overflow: hidden;
+    background: radial-gradient(ellipse at 50% 30%, #1a0a2e 0%, #0a0a12 70%);
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(2px 2px at 20% 30%, rgba(212,175,55,.4), transparent),
+      radial-gradient(2px 2px at 80% 20%, rgba(155,89,182,.3), transparent),
+      radial-gradient(2px 2px at 50% 80%, rgba(231,76,60,.2), transparent),
+      radial-gradient(2px 2px at 10% 70%, rgba(212,175,55,.25), transparent),
+      radial-gradient(2px 2px at 90% 60%, rgba(155,89,182,.2), transparent);
+    pointer-events: none;
+  }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(212,175,55,.12);
+    border: 1px solid rgba(212,175,55,.3);
+    border-radius: 50px;
+    padding: 8px 24px;
+    font-size: .85rem;
+    color: #d4af37;
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+    backdrop-filter: blur(4px);
+  }
+  .hero-badge svg { width: 18px; height: 18px; fill: currentColor; }
+  .hero h1 {
+    font-size: clamp(2.2rem, 7vw, 4.5rem);
+    font-weight: 900;
+    background: linear-gradient(135deg, #f1c40f 0%, #d4af37 40%, #e74c3c 70%, #9b59b6 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 16px;
+    position: relative;
+    z-index: 1;
+    letter-spacing: 2px;
+  }
+  .hero-sub {
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
+    color: #a99cc0;
+    max-width: 700px;
+    margin-bottom: 40px;
+    position: relative;
+    z-index: 1;
+    letter-spacing: 1px;
+  }
+  .hero-score { display: flex; flex-direction: column; align-items: center; gap: 12px; position: relative; z-index: 1; }
+  .hero-score .big-number {
+    font-size: 5rem; font-weight: 900;
+    background: linear-gradient(135deg, #d4af37, #f1c40f);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1;
+  }
+  .hero-score .big-number span { font-size: 1.8rem; opacity: .6; }
+  .hero-score .score-label { font-size: .95rem; color: #8a7ca0; letter-spacing: 3px; text-transform: uppercase; }
+  .hero-stars { display: flex; gap: 6px; margin-top: 4px; }
+  .hero-stars .star { width: 24px; height: 24px; fill: #d4af37; filter: drop-shadow(0 0 6px rgba(212,175,55,.4)); }
+  .hero-stars .star.half { fill: #3a2a4a; }
+  .hero-stats { display: flex; gap: 30px; margin-top: 40px; flex-wrap: wrap; justify-content: center; position: relative; z-index: 1; }
+  .hero-stat { text-align: center; }
+  .hero-stat .num { font-size: 1.8rem; font-weight: 800; color: #d4af37; }
+  .hero-stat .label { font-size: .75rem; color: #8a7ca0; letter-spacing: 1px; margin-top: 2px; }
+
+  .nav-bar {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(10,10,18,.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(212,175,55,.15);
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+    overflow-x: auto;
+    gap: 4px;
+  }
+  .nav-bar .brand { font-size: .85rem; font-weight: 700; color: #d4af37; white-space: nowrap; letter-spacing: 1px; }
+  .nav-links { display: flex; gap: 2px; }
+  .nav-links a { padding: 6px 14px; font-size: .8rem; color: #8a7ca0; border-radius: 6px; white-space: nowrap; transition: all .25s; }
+  .nav-links a:hover, .nav-links a.active { color: #f1c40f; background: rgba(212,175,55,.1); }
+
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+  section { padding: 80px 0; border-bottom: 1px solid rgba(212,175,55,.06); }
+  section:last-of-type { border-bottom: none; }
+  .section-title {
+    font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+    font-weight: 800;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .section-title .icon { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .section-title .icon svg { width: 22px; height: 22px; fill: #fff; }
+  .section-desc { color: #8a7ca0; font-size: .95rem; margin-bottom: 36px; max-width: 720px; line-height: 1.8; }
+
+  .card {
+    background: linear-gradient(145deg, rgba(26,15,46,.85), rgba(16,12,28,.85));
+    border: 1px solid rgba(212,175,55,.12);
+    border-radius: 16px;
+    padding: 30px;
+    margin-bottom: 24px;
+    backdrop-filter: blur(6px);
+    transition: border-color .3s, transform .25s;
+  }
+  .card:hover { border-color: rgba(212,175,55,.28); transform: translateY(-2px); }
+  .card h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+  .card h3 .tag { font-size: .65rem; padding: 2px 10px; border-radius: 20px; font-weight: 600; letter-spacing: .5px; }
+  .card p, .card li { color: #b8aec8; font-size: .92rem; }
+  .card ul { padding-left: 20px; }
+  .card ul li { margin-bottom: 6px; }
+  .card ul li::marker { color: #d4af37; }
+
+  .layer-card {
+    background: linear-gradient(145deg, rgba(26,15,46,.85), rgba(16,12,28,.85));
+    border: 1px solid rgba(212,175,55,.1);
+    border-radius: 16px;
+    padding: 28px;
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .layer-card::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; border-radius: 4px 0 0 4px; }
+  .layer-card.l0::before { background: #3498db; }
+  .layer-card.l1::before { background: #9b59b6; }
+  .layer-card.l2::before { background: #e67e22; }
+  .layer-card.l3::before { background: #2ecc71; }
+  .layer-card.l4::before { background: #e74c3c; }
+  .layer-card.l5::before { background: #f1c40f; }
+  .layer-card.l6::before { background: #1abc9c; }
+  .layer-card .layer-badge { display: inline-flex; align-items: center; gap: 8px; font-size: .75rem; font-weight: 700; letter-spacing: 1px; color: #8a7ca0; margin-bottom: 8px; }
+  .layer-card h3 { font-size: 1.1rem; margin-bottom: 10px; }
+  .layer-card .line-count { display: inline-block; background: rgba(212,175,55,.1); color: #d4af37; font-size: .75rem; padding: 2px 12px; border-radius: 20px; margin-bottom: 12px; }
+  .layer-card .feature-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 8px; list-style: none; padding: 0; }
+  .layer-card .feature-list li { display: flex; align-items: flex-start; gap: 8px; font-size: .88rem; color: #b8aec8; padding: 6px 10px; background: rgba(255,255,255,.02); border-radius: 8px; }
+  .layer-card .feature-list li::before { content: ''; width: 6px; height: 6px; min-width: 6px; border-radius: 50%; margin-top: 8px; background: #d4af37; }
+
+  .score-table { width: 100%; border-collapse: collapse; font-size: .9rem; }
+  .score-table thead th { padding: 14px 16px; text-align: left; font-weight: 700; font-size: .8rem; letter-spacing: 1px; text-transform: uppercase; color: #8a7ca0; border-bottom: 2px solid rgba(212,175,55,.15); }
+  .score-table tbody td { padding: 16px; border-bottom: 1px solid rgba(255,255,255,.04); vertical-align: top; }
+  .score-table tbody tr:hover td { background: rgba(212,175,55,.03); }
+  .score-table .dim-name { font-weight: 600; color: #e0d8e8; white-space: nowrap; }
+  .score-table .dim-score { font-weight: 800; font-size: 1.1rem; white-space: nowrap; }
+  .score-bar-wrapper { width: 120px; height: 6px; background: rgba(255,255,255,.06); border-radius: 4px; overflow: hidden; margin-top: 4px; }
+  .score-bar { height: 100%; border-radius: 4px; transition: width 1s ease; }
+  .score-bar.s9 { background: linear-gradient(90deg, #d4af37, #f1c40f); }
+  .score-bar.s8 { background: linear-gradient(90deg, #9b59b6, #d4af37); }
+  .score-bar.s7_5 { background: linear-gradient(90deg, #8e44ad, #9b59b6); }
+  .score-bar.s7 { background: linear-gradient(90deg, #e67e22, #e74c3c); }
+  .dim-stars { display: flex; gap: 2px; }
+  .dim-stars svg { width: 16px; height: 16px; fill: #d4af37; }
+  .dim-stars svg.empty { fill: #2a1f3a; }
+  .dim-highlight { color: #2ecc71; font-size: .82rem; }
+  .dim-improve { color: #e74c3c; font-size: .82rem; }
+
+  .priority-p0 { display: inline-block; background: rgba(231,76,60,.15); color: #e74c3c; padding: 2px 12px; border-radius: 20px; font-size: .7rem; font-weight: 800; letter-spacing: 1px; border: 1px solid rgba(231,76,60,.25); }
+  .priority-p1 { display: inline-block; background: rgba(241,196,15,.12); color: #f1c40f; padding: 2px 12px; border-radius: 20px; font-size: .7rem; font-weight: 800; letter-spacing: 1px; border: 1px solid rgba(241,196,15,.2); }
+  .priority-p2 { display: inline-block; background: rgba(155,89,182,.12); color: #9b59b6; padding: 2px 12px; border-radius: 20px; font-size: .7rem; font-weight: 800; letter-spacing: 1px; border: 1px solid rgba(155,89,182,.2); }
+
+  .improve-card {
+    background: linear-gradient(145deg, rgba(26,15,46,.85), rgba(16,12,28,.85));
+    border: 1px solid rgba(212,175,55,.1);
+    border-radius: 16px;
+    padding: 26px 28px;
+    margin-bottom: 16px;
+    display: flex;
+    gap: 18px;
+    align-items: flex-start;
+    transition: border-color .3s;
+  }
+  .improve-card:hover { border-color: rgba(212,175,55,.25); }
+  .improve-card .num { width: 36px; height: 36px; min-width: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: .9rem; }
+  .improve-card .num.p0 { background: rgba(231,76,60,.15); color: #e74c3c; border: 1px solid rgba(231,76,60,.25); }
+  .improve-card .num.p1 { background: rgba(241,196,15,.12); color: #f1c40f; border: 1px solid rgba(241,196,15,.2); }
+  .improve-card .num.p2 { background: rgba(155,89,182,.12); color: #9b59b6; border: 1px solid rgba(155,89,182,.2); }
+  .improve-card .body { flex: 1; }
+  .improve-card .body h4 { font-size: 1rem; font-weight: 700; margin-bottom: 6px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .improve-card .body p { color: #b8aec8; font-size: .9rem; line-height: 1.7; }
+
+  .radar-wrapper { display: flex; flex-direction: column; align-items: center; padding: 30px 0; }
+  .radar-container { position: relative; width: 320px; height: 320px; }
+  .radar-container svg { width: 100%; height: 100%; }
+  .radar-legend { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px 24px; margin-top: 20px; max-width: 440px; }
+  .radar-legend-item { display: flex; align-items: center; gap: 6px; font-size: .8rem; color: #b8aec8; }
+  .radar-legend-item .dot { width: 10px; height: 10px; border-radius: 50%; min-width: 10px; }
+
+  .stats-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
+  .stat-block { background: linear-gradient(145deg, rgba(26,15,46,.85), rgba(16,12,28,.85)); border: 1px solid rgba(212,175,55,.08); border-radius: 12px; padding: 20px; text-align: center; transition: border-color .3s, transform .25s; }
+  .stat-block:hover { border-color: rgba(212,175,55,.25); transform: translateY(-2px); }
+  .stat-block .stat-num { font-size: 1.6rem; font-weight: 800; color: #d4af37; line-height: 1.2; }
+  .stat-block .stat-label { font-size: .78rem; color: #8a7ca0; margin-top: 4px; }
+  .stat-block .stat-file { font-size: .68rem; color: #5a4c6a; margin-top: 6px; font-family: 'Courier New', monospace; }
+
+  .summary-box { background: linear-gradient(135deg, rgba(212,175,55,.06), rgba(155,89,182,.06)); border: 1px solid rgba(212,175,55,.15); border-radius: 16px; padding: 30px; text-align: center; margin: 40px 0; }
+  .summary-box .big-score { font-size: 4rem; font-weight: 900; background: linear-gradient(135deg, #d4af37, #f1c40f); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; line-height: 1; }
+  .summary-box .big-score span { font-size: 1.6rem; }
+  .summary-box .score-label-sm { font-size: .9rem; color: #8a7ca0; margin: 6px 0 16px; letter-spacing: 2px; }
+  .summary-box .verdict { font-size: 1.05rem; color: #e0d8e8; max-width: 600px; margin: 0 auto; line-height: 1.8; }
+  .summary-box .verdict strong { color: #d4af37; }
+
+  footer { text-align: center; padding: 40px 20px; border-top: 1px solid rgba(212,175,55,.08); color: #5a4c6a; font-size: .82rem; }
+  footer span { color: #d4af37; }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+  .fade-up { animation: fadeUp .8s ease both; }
+  .delay-1 { animation-delay: .1s; }
+  .delay-2 { animation-delay: .2s; }
+  .delay-3 { animation-delay: .3s; }
+  .delay-4 { animation-delay: .4s; }
+  .delay-5 { animation-delay: .5s; }
+  .delay-6 { animation-delay: .6s; }
+
+  @media (max-width: 768px) {
+    .nav-bar .brand { display: none; }
+    .nav-links { width: 100%; justify-content: center; }
+    .layer-card .feature-list { grid-template-columns: 1fr; }
+    .score-table { font-size: .8rem; }
+    .score-table thead th, .score-table tbody td { padding: 10px 8px; }
+    .score-bar-wrapper { width: 80px; }
+    .improve-card { flex-direction: column; gap: 12px; }
+    .improve-card .num { width: 30px; height: 30px; min-width: 30px; font-size: .8rem; }
+    .radar-container { width: 260px; height: 260px; }
+    .hero-stats { gap: 16px; }
+    .hero-stat .num { font-size: 1.4rem; }
+    section { padding: 50px 0; }
+  }
+  @media (max-width: 500px) {
+    .score-table, .score-table thead, .score-table tbody, .score-table tr, .score-table td, .score-table th { display: block; }
+    .score-table thead { display: none; }
+    .score-table tbody td { padding: 10px 14px; border-bottom: none; position: relative; padding-left: 50%; }
+    .score-table tbody td::before { content: attr(data-label); position: absolute; left: 14px; width: 45%; font-weight: 600; font-size: .72rem; color: #8a7ca0; text-transform: uppercase; letter-spacing: .5px; }
+    .score-table tbody tr { border-bottom: 2px solid rgba(212,175,55,.1); margin-bottom: 12px; display: block; }
+    .score-bar-wrapper { width: 100%; max-width: 120px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="hero-badge">
+    <svg viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+    系统深度评估
+  </div>
+  <h1>档案侦探 · 笼中密码</h1>
+  <p class="hero-sub">杀手数独教学游戏 — 剧情系统完整评估报告</p>
+  <div class="hero-score">
+    <div class="big-number">8.1<span>/10</span></div>
+    <div class="score-label">综合评分</div>
+    <div class="hero-stars">
+      <svg class="star" viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+      <svg class="star" viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+      <svg class="star" viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+      <svg class="star" viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+      <svg class="star half" viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="num">7</div><div class="label">系统层级</div></div>
+    <div class="hero-stat"><div class="num">78+</div><div class="label">台词总数</div></div>
+    <div class="hero-stat"><div class="num">40+</div><div class="label">场景标识</div></div>
+    <div class="hero-stat"><div class="num">7</div><div class="label">角色数量</div></div>
+    <div class="hero-stat"><div class="num">~3368+</div><div class="label">代码行数</div></div>
+  </div>
+</header>
+
+<!-- NAV -->
+<nav class="nav-bar" id="nav">
+  <span class="brand">档案侦探<br>剧情评估</span>
+  <div class="nav-links">
+    <a href="#layers">系统架构</a>
+    <a href="#scores">评分表</a>
+    <a href="#improvements">改进方向</a>
+    <a href="#appendix">附录</a>
+  </div>
+</nav>
+
+<!-- ======================== LAYERS ======================== -->
+<section id="layers">
+  <div class="container">
+    <h2 class="section-title fade-up">
+      <span class="icon" style="background: linear-gradient(135deg,#9b59b6,#8e44ad);">
+        <svg viewBox="0 0 24 24"><path d="M4 8h4V4H4v4zm6 12h4v-4h-4v4zm-6 0h4v-4H4v4zm0-6h4v-4H4v4zm6 0h4v-4h-4v4zm6-10v4h4V4h-4zm-6 4h4V4h-4v4zm6 6h4v-4h-4v4zm0 6h4v-4h-4v4z"/></svg>
+      </span>
+      已探索的完整系统架构
+    </h2>
+    <p class="section-desc fade-up delay-1">该项目构建了一个仿《逆转裁判》风格的七层剧情演出体系，从基础对话到Boss战演出形成完整链条。</p>
+
+    <div class="layer-card l0 fade-up delay-1">
+      <div class="layer-badge">第 1 层</div>
+      <h3>StoryModal (story.js) — 基础对话系统</h3>
+      <span class="line-count">~570 行</span>
+      <ul class="feature-list">
+        <li>仿视觉小说对话框，支持角色头像 / 名称 / 打字机效果 / 点击继续</li>
+        <li>章节标题卡（全屏文字展示）</li>
+        <li>BadgeAward 组件：徽章获得动画弹窗</li>
+        <li>StoryManager：剧情播放管理，判断是否播放开场 / 收尾剧情</li>
+        <li>角色预设映射：7 个角色（守笼人 / 阿岩 / 设局人 / 残影 / 星辰梭 / 残局守护者 / 旁白）</li>
+        <li>对话格式：{speaker, text} 自动映射到角色预设</li>
+      </ul>
+    </div>
+
+    <div class="layer-card l1 fade-up delay-2">
+      <div class="layer-badge">第 2 层</div>
+      <h3>StoryEngine v3 (scripts/story.js) — 逆转裁判演出引擎</h3>
+      <span class="line-count">~1568 行</span>
+      <ul class="feature-list">
+        <li>立绘砸入动画：从右侧砸入 + 弹性弹跳效果（portrait-slam 关键帧）</li>
+        <li>情绪驱动演出：surprised/angry/sad/confident 推近拉远 + 抖动</li>
+        <li>"异议！"破局指示器：objection-pop 动画 + 震动 + 屏闪 + BGM 压低</li>
+        <li>章节标题卡：金色大标题 + 字幕，缩放 + 字间距变化</li>
+        <li>旁白模式：居中无框文字，斜体</li>
+        <li>打字机速度变档：serene(80ms)/normal(40ms)/fast(15ms)/instant(0ms)/heavy(120ms)/thinking(60ms)</li>
+        <li>情绪音效：surprised/angry/smirk/sad/think 分别触发不同音效</li>
+        <li>立绘滤镜：角色情绪不同 → 不同的 CSS 滤镜</li>
+        <li>立绘缩放：zoomPortrait('close'/'normal'/'far') 带过渡动画</li>
+        <li>震动反馈：light/medium/strong/victory/slam/insight/objection/contradiction 分级</li>
+        <li>Boss 登场/击败/终章胜利 4 场顺序播放</li>
+        <li>BGM 压低 (ducking)：异议时 BGM 压到 20%，0.8 秒恢复</li>
+        <li>配音系统：MP3 文件播放 + 音频解锁处理</li>
+        <li>环境台词：sayAmbient 轻量对话，自动隐藏</li>
+        <li>打字机音效：每 2 字触发一次 keyclick</li>
+        <li>响应式适配：手机端立绘缩小、气泡位置调整</li>
+      </ul>
+    </div>
+
+    <div class="layer-card l2 fade-up delay-3">
+      <div class="layer-badge">第 3 层</div>
+      <h3>ComedySystem (utils/comedy.js) — 喜剧桥段系统</h3>
+      <span class="line-count">~300+ 行</span>
+      <ul class="feature-list">
+        <li>追踪状态：连续填错次数 / 总错误 / 正确数 / 提示次数 / 重置次数</li>
+        <li>闲置检测计时器（逐级触发不同台词）</li>
+        <li>守笼人毒舌 / 设局人打脸 / 阿岩吐槽</li>
+        <li>气泡容器（最多同时 3 个）</li>
+        <li>3 种角色对话方法：keeperSays / setterSays / ayanSays</li>
+        <li>自动降级：StoryEngine → ComedySystem → 气泡</li>
+        <li>连击检测 + 防刷屏（同一句话 3 秒不重复）</li>
+        <li>角色立绘头像映射</li>
+      </ul>
+    </div>
+
+    <div class="layer-card l3 fade-up delay-4">
+      <div class="layer-badge">第 4 层</div>
+      <h3>DIALOGUES + SCENE_TRIGGERS (data/dialogues.js)</h3>
+      <span class="line-count">~330 行</span>
+      <ul class="feature-list">
+        <li>7 个角色定义含 voicePrefix 配音前缀、表情映射、Azure TTS 语音风格</li>
+        <li>守笼人: 6 种 / 阿岩: 5 种 / 设局人: 7 种 / 残影: 4 种 / 星辰梭: 4 种 / 残局守护者: 3 种 / 秘术: 5 种</li>
+        <li>共约 78+ 句台词（含无配音旁白 / 标题）</li>
+        <li>每个台词有关联 scene 标签 + effect 等级 (0-4)</li>
+        <li>共约 40+ 个场景标识：章节开场 (7)、Boss 登场 (7)、击败 (7)、破局、卡壳、终章真结局等</li>
+      </ul>
+    </div>
+
+    <div class="layer-card l4 fade-up delay-5">
+      <div class="layer-badge">第 5 层</div>
+      <h3>guide.js — 剧情集成</h3>
+      <span class="line-count">~300 行（剧情相关）</span>
+      <ul class="feature-list">
+        <li>onPreDialogComplete / playLevelPreDialog 播放关卡前置对话</li>
+        <li>markComplete 播放通关剧情 + 徽章颁发</li>
+        <li>_onStoryCorrect / _onStoryWrong / _onStoryComplete 积分演出</li>
+        <li>5 连击或 15 格正确 → 破局时刻 StoryEngine.breakthrough()</li>
+        <li>Boss 30 格正确 → 被逼入绝境场景</li>
+        <li>BOSS_CONFIGS + startBossBattle 启动 Boss 战</li>
+        <li>_initStoryPerformance 初始化 BGM / 配音 / 特效系统</li>
+      </ul>
+    </div>
+
+    <div class="layer-card l5 fade-up delay-6">
+      <div class="layer-badge">第 6 层</div>
+      <h3>Boss 战演出 (guide-battle.js)</h3>
+      <span class="line-count">~200+ 行</span>
+      <ul class="feature-list">
+        <li>boss-dialogue-zone DOM 区域</li>
+        <li>_guideBossSay / _guideAyanSay 接口</li>
+        <li>遭遇事件：远 / 中 / 近三档距离反馈</li>
+        <li>抢格子闪光 + 烟雾 / 迷雾渲染</li>
+      </ul>
+    </div>
+
+    <div class="layer-card l6 fade-up delay-6">
+      <div class="layer-badge">第 7 层</div>
+      <h3>音频系统 (utils/audio.js)</h3>
+      <span class="line-count">~500+ 行</span>
+      <ul class="feature-list">
+        <li>Web Audio API 程序化生成音效</li>
+        <li>音效种类：click / correct / wrong / typewriter / portraitSlam / objection / bubblePop / thinking / emotion</li>
+        <li>BGM：暗黑 drone 低频嗡鸣 + 心跳脉冲</li>
+        <li>BGM 阶段切换：opening → breakthrough → finishing → victory</li>
+        <li>混响效果 + 自动恢复音频</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== SCORES ======================== -->
+<section id="scores">
+  <div class="container">
+    <h2 class="section-title fade-up">
+      <span class="icon" style="background: linear-gradient(135deg,#d4af37,#f1c40f);">
+        <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+      </span>
+      多维度评分表
+    </h2>
+    <p class="section-desc fade-up delay-1">基于代码审查与功能分析，从 8 个核心维度对剧情系统进行量化评估。</p>
+
+    <div class="card fade-up delay-1" style="overflow-x:auto; padding:20px 16px;">
+      <table class="score-table">
+        <thead>
+          <tr><th>评估维度</th><th>评分</th><th>星级</th><th>亮点</th><th>改进方向</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="dim-name" data-label="维度">StoryEngine 演出系统</td>
+            <td data-label="评分"><span class="dim-score" style="color:#f1c40f;">9.2</span><div class="score-bar-wrapper"><div class="score-bar s9" style="width:92%"></div></div></td>
+            <td data-label="星级"><div class="dim-stars"><svg viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg></div></td>
+            <td data-label="亮点" class="dim-highlight">逆转裁判复刻级演出</td>
+            <td data-label="改进" class="dim-improve">缺少"待った！"等完整逆转操作</td>
+          </tr>
+          <tr>
+            <td class="dim-name" data-label="维度">角色立绘与表情</td>
+            <td data-label="评分"><span class="dim-score" style="color:#a55eea;">8.5</span><div class="score-bar-wrapper"><div class="score-bar s8" style="width:85%"></div></div></td>
+            <td data-label="星级"><div class="dim-stars"><svg viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg><svg viewBox="0 0 24 24" class="empty"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg></div></td>
+            <td data-label="亮点" class="dim-highlight">7 角色 + 表情情绪联动</td>
+            <td data-label="改进" class="dim-improve">部分角色表情仅 2-3 种，可扩展</td>
+          </tr>
+          <tr>
+            <td class="dim-name" data-label="维度">DIALOGUES 台词数据</td>
+            <td data-label="评分"><span class="dim-score" style="color:#a55eea;">7.5</span><div class="score-bar-wrapper"><div class="score-bar s7_5" style="width:75%"></div></div></td>
+            <td data-label="星级"><div class="dim-stars"><svg viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg><svg viewBox="0 0 24 24" class="empty"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg></div></td>
+            <td data-label="亮点" class="dim-highlight">78+ 句 + 40 场景</td>
+            <td data-label="改进" class="dim-improve">整体台词量偏少，场景间过渡欠缺</td>
+          </tr>
+          <tr>
+            <td class="dim-name" data-label="维度">ComedySystem 喜剧系统</td>
+            <td data-label="评分"><span class="dim-score" style="color:#a55eea;">8.0</span><div class="score-bar-wrapper"><div class="score-bar s8" style="width:80%"></div></div></td>
+            <td data-label="星级"><div class="dim-stars"><svg viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg><svg viewBox="0 0 24 24" class="empty"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg></div></td>
+            <td data-label="亮点" class="dim-highlight">闲置检测 + 连击 + 毒舌</td>
+            <td data-label="改进" class="dim-improve">喜剧触发与教学严肃性需要平衡</td>
+          </tr>
+          <tr>
+            <td class="dim-name" data-label="维度">Boss 战演出</td>
+            <td data-label="评分"><span class="dim-score" style="color:#f1c40f;">9.0</span><div class="score-bar-wrapper"><div class="score-bar s9" style="width:90%"></div></div></td>
+            <td data-label="星级"><div class="dim-stars"><svg viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg></div></td>
+            <td data-label="亮点" class="dim-highlight">砸入 + 击败 + 遭遇一体化</td>
+            <td data-label="改进" class="dim-improve">boss-dialogue-zone 功能较基础</td>
+          </tr>
+          <tr>
+            <td class="dim-name" data-label="维度">配音与 BGM 系统</td>
+            <td data-label="评分"><span class="dim-score" style="color:#a55eea;">7.5</span><div class="score-bar-wrapper"><div class="score-bar s7_5" style="width:75%"></div></div></td>
+            <td data-label="星级"><div class="dim-stars"><svg viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg><svg viewBox="0 0 24 24" class="empty"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg></div></td>
+            <td data-label="亮点" class="dim-highlight">Web Audio 程序化生成</td>
+            <td data-label="改进" class="dim-improve">缺少高质量配音文件，BGM 较为单薄</td>
+          </tr>
+          <tr>
+            <td class="dim-name" data-label="维度">剧情与教学融合</td>
+            <td data-label="评分"><span class="dim-score" style="color:#a55eea;">8.0</span><div class="score-bar-wrapper"><div class="score-bar s8" style="width:80%"></div></div></td>
+            <td data-label="星级"><div class="dim-stars"><svg viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg><svg viewBox="0 0 24 24" class="empty"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg></div></td>
+            <td data-label="亮点" class="dim-highlight">破局时刻自然触发</td>
+            <td data-label="改进" class="dim-improve">非关卡核心阶段的剧情空白</td>
+          </tr>
+          <tr>
+            <td class="dim-name" data-label="维度">代码架构</td>
+            <td data-label="评分"><span class="dim-score" style="color:#e67e22;">7.0</span><div class="score-bar-wrapper"><div class="score-bar s7" style="width:70%"></div></div></td>
+            <td data-label="星级"><div class="dim-stars"><svg viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg><svg viewBox="0 0 24 24" class="empty"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg></div></td>
+            <td data-label="亮点" class="dim-highlight">分层清晰</td>
+            <td data-label="改进" class="dim-improve">多个故事系统并存有冗余，兼容代码复杂</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Radar Chart -->
+    <div class="card fade-up delay-2" style="margin-top:30px;">
+      <h3 style="justify-content:center;">评分雷达图</h3>
+      <div class="radar-wrapper">
+        <div class="radar-container">
+          <svg viewBox="0 0 320 320">
+            <circle cx="160" cy="160" r="120" fill="none" stroke="rgba(212,175,55,.06)" stroke-width="1"/>
+            <circle cx="160" cy="160" r="90" fill="none" stroke="rgba(212,175,55,.05)" stroke-width="1"/>
+            <circle cx="160" cy="160" r="60" fill="none" stroke="rgba(212,175,55,.04)" stroke-width="1"/>
+            <circle cx="160" cy="160" r="30" fill="none" stroke="rgba(212,175,55,.03)" stroke-width="1"/>
+            <line x1="160" y1="40" x2="160" y2="280" stroke="rgba(212,175,55,.08)" stroke-width="1"/>
+            <line x1="40" y1="160" x2="280" y2="160" stroke="rgba(212,175,55,.08)" stroke-width="1"/>
+            <line x1="75.15" y1="75.15" x2="244.85" y2="244.85" stroke="rgba(212,175,55,.08)" stroke-width="1"/>
+            <line x1="244.85" y1="75.15" x2="75.15" y2="244.85" stroke="rgba(212,175,55,.08)" stroke-width="1"/>
+            <polygon points="160,31.2 244.1,75.9 265,160 239.2,239.2 160,286 85.8,234.2 48,160 90.7,90.7"
+                     fill="rgba(212,175,55,.15)" stroke="#d4af37" stroke-width="2"/>
+            <circle cx="160" cy="31.2" r="4" fill="#f1c40f" stroke="#0a0a12" stroke-width="2"/>
+            <circle cx="244.1" cy="75.9" r="4" fill="#f1c40f" stroke="#0a0a12" stroke-width="2"/>
+            <circle cx="265" cy="160" r="4" fill="#f1c40f" stroke="#0a0a12" stroke-width="2"/>
+            <circle cx="239.2" cy="239.2" r="4" fill="#f1c40f" stroke="#0a0a12" stroke-width="2"/>
+            <circle cx="160" cy="286" r="4" fill="#f1c40f" stroke="#0a0a12" stroke-width="2"/>
+            <circle cx="85.8" cy="234.2" r="4" fill="#f1c40f" stroke="#0a0a12" stroke-width="2"/>
+            <circle cx="48" cy="160" r="4" fill="#f1c40f" stroke="#0a0a12" stroke-width="2"/>
+            <circle cx="90.7" cy="90.7" r="4" fill="#f1c40f" stroke="#0a0a12" stroke-width="2"/>
+            <text x="160" y="24" text-anchor="middle" fill="#d4af37" font-size="10" font-weight="700">演出系统</text>
+            <text x="262" y="74" text-anchor="start" fill="#d4af37" font-size="10" font-weight="700">角色立绘</text>
+            <text x="280" y="164" text-anchor="start" fill="#d4af37" font-size="10" font-weight="700">台词数据</text>
+            <text x="250" y="256" text-anchor="start" fill="#d4af37" font-size="10" font-weight="700">喜剧系统</text>
+            <text x="160" y="302" text-anchor="middle" fill="#d4af37" font-size="10" font-weight="700">Boss战</text>
+            <text x="60" y="256" text-anchor="end" fill="#d4af37" font-size="10" font-weight="700">配音BGM</text>
+            <text x="36" y="164" text-anchor="end" fill="#d4af37" font-size="10" font-weight="700">教学融合</text>
+            <text x="60" y="74" text-anchor="end" fill="#d4af37" font-size="10" font-weight="700">代码架构</text>
+          </svg>
+        </div>
+        <div class="radar-legend">
+          <span class="radar-legend-item"><span class="dot" style="background:#d4af37;"></span>评分多边形</span>
+          <span class="radar-legend-item"><span class="dot" style="background:rgba(212,175,55,.06);border:1px solid rgba(212,175,55,.2);"></span>满分范围</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="summary-box fade-up delay-3">
+      <div class="big-score">8.1<span>/10</span></div>
+      <div class="score-label-sm">综合评分</div>
+      <div class="verdict">
+        该项目的剧情系统已构建了完整的 <strong>7 层架构</strong>，从基础对话到逆转裁判级演出引擎再到 Boss 战，技术实现扎实。<br>
+        StoryEngine 演出系统和 Boss 战演出是最大的亮点，达到了 <strong>9.0+ 的高分水准</strong>。<br>
+        主要瓶颈在于 <strong>台词数据量偏少</strong>（仅 78+ 句）和 <strong>配音资源缺失</strong>，限制了整体体验的上限。
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== IMPROVEMENTS ======================== -->
+<section id="improvements">
+  <div class="container">
+    <h2 class="section-title fade-up">
+      <span class="icon" style="background: linear-gradient(135deg,#e74c3c,#c0392b);">
+        <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>
+      </span>
+      改进方向与路线图
+    </h2>
+    <p class="section-desc fade-up delay-1">基于深度分析，提出 10 项改进建议，按优先级分为 P0 (核心急需)、P1 (体验提升)、P2 (锦上添花) 三个等级。</p>
+
+    <h3 style="margin:30px 0 16px; display:flex; align-items:center; gap:12px; font-size:1.1rem;">
+      <span class="priority-p0" style="font-size:.85rem; padding:4px 16px;">P0 核心改进</span>
+      <span style="color:#8a7ca0; font-size:.85rem; font-weight:400;">急需处理 — 直接影响核心体验</span>
+    </h3>
+
+    <div class="improve-card fade-up delay-1">
+      <div class="num p0">1</div>
+      <div class="body">
+        <h4>增加台词量 <span class="priority-p0">P0</span></h4>
+        <p>DIALOGUES 目前仅 <strong>78+ 句</strong>，需要扩充到 <strong>200+ 句</strong>。尤其是每一关的关卡内互动台词目前严重不足。建议为每章增加至少 10-15 句关卡进行中的吐槽/鼓励台词，以及关卡完成的庆祝/过渡对话。台词量直接从 78+ 提升 156%+ 至 200+，从根本上解决台词偏少的问题。</p>
+      </div>
+    </div>
+
+    <div class="improve-card fade-up delay-2">
+      <div class="num p0">2</div>
+      <div class="body">
+        <h4>关卡内"实时剧情" <span class="priority-p0">P0</span></h4>
+        <p>目前玩家解题过程中除破局/Boss 外基本无剧情互动。应在每个关键节点插入短对话：
+          <strong>首次填笼</strong> → 守笼人惊讶反应；<strong>45 法则使用</strong> → 阿岩教学台词；<strong>高级技巧使用</strong> → 设局人残影回忆闪回。
+          建议利用现有的 ComedySystem 闲置检测机制扩展，在解题里程碑（填对 5/10/15 格）时触发轻量剧情。</p>
+      </div>
+    </div>
+
+    <div class="improve-card fade-up delay-3">
+      <div class="num p0">3</div>
+      <div class="body">
+        <h4>Boss 战演出强化 <span class="priority-p0">P0</span></h4>
+        <p>目前 Boss 战的对话仅为固定文本，需要根据玩家行为动态变化。建议：
+          将 guide-battle.js 中的 <code>boss-dialogue-zone</code> 升级为完整 StoryEngine 集成；
+          根据玩家连续正确/错误次数切换 Boss 的不同情绪状态（轻蔑→愤怒→震惊→绝望）；
+          增加 Boss"反击"机制——玩家连续填错时 Boss 释放"气场压制"特效。</p>
+      </div>
+    </div>
+
+    <h3 style="margin:40px 0 16px; display:flex; align-items:center; gap:12px; font-size:1.1rem;">
+      <span class="priority-p1" style="font-size:.85rem; padding:4px 16px;">P1 体验提升</span>
+      <span style="color:#8a7ca0; font-size:.85rem; font-weight:400;">显著改善 — 提升整体沉浸感</span>
+    </h3>
+
+    <div class="improve-card fade-up delay-1">
+      <div class="num p1">4</div>
+      <div class="body">
+        <h4>增加"待った！"和"指证！"机制 <span class="priority-p1">P1</span></h4>
+        <p>在 Boss 战中增加更多逆转裁判标志性操作。"待った！"（Hold It!）可打断 Boss 台词并触发辩解动画；"指证！"（Take That!）在玩家填入正确数独值时触发"证据展示"演出。这两个机制可复用现有的 objection-pop 动画框架进行扩展。</p>
+      </div>
+    </div>
+
+    <div class="improve-card fade-up delay-2">
+      <div class="num p1">5</div>
+      <div class="body">
+        <h4>立绘量扩充 <span class="priority-p1">P1</span></h4>
+        <p>当前角色表情数量不均衡：设局人 7 种/守笼人 6 种较丰富，但星辰梭 4 种、残局守护者仅 3 种，严重欠缺。每个角色至少需要 <strong>5-6 种不同表情</strong>，特别是需要增加"轻蔑""震惊""悲伤""喜悦""困惑""专注"等基本情绪覆盖。这直接关系到 StoryEngine 情绪驱动演出的表现力。</p>
+      </div>
+    </div>
+
+    <div class="improve-card fade-up delay-3">
+      <div class="num p1">6</div>
+      <div class="body">
+        <h4>结局演出扩展 <span class="priority-p1">P1</span></h4>
+        <p>终章通关后增加各角色 <strong>结局后日谈</strong>。目前终章胜利仅有 4 场顺序播放（setter_defeat → setter_transfer → setter_farewell → true_ending），通关后缺乏角色归宿的交代。建议为守笼人、阿岩、星辰梭等主要角色各增加一段 30-60 秒的专属结局片段，参考逆转裁判系列的角色结局滚动展示方式。</p>
+      </div>
+    </div>
+
+    <div class="improve-card fade-up delay-4">
+      <div class="num p1">7</div>
+      <div class="body">
+        <h4>配音文件生成 <span class="priority-p1">P1</span></h4>
+        <p>目前的配音文件列表中只有少量 MP3，需要为所有 <code>VO_*_ID</code> 生成配音。可利用 Azure TTS（已在 dialogues.js 中配置语音风格）批量生成高质量配音文件。实现后可使用 StoryEngine 的配音系统（voiceManager）播放，配合 BGM ducking 效果达到专业级语音演出。</p>
+      </div>
+    </div>
+
+    <h3 style="margin:40px 0 16px; display:flex; align-items:center; gap:12px; font-size:1.1rem;">
+      <span class="priority-p2" style="font-size:.85rem; padding:4px 16px;">P2 锦上添花</span>
+      <span style="color:#8a7ca0; font-size:.85rem; font-weight:400;">长期优化 — 提升品质上限</span>
+    </h3>
+
+    <div class="improve-card fade-up delay-1">
+      <div class="num p2">8</div>
+      <div class="body">
+        <h4>多剧情线 <span class="priority-p2">P2</span></h4>
+        <p>根据玩家表现（错误次数 / 解题速度 / 提示使用次数等）触发不同剧情分支。例如：连续错误 5 次 → 触发"守笼人焦虑"分支 vs. 零错误通关 → 触发"设局人赞赏"分支。可利用现有的 <code>ComedySystem</code> 状态追踪（连续填错次数 / 总错误 / 正确数 / 提示次数）实现条件分支。</p>
+      </div>
+    </div>
+
+    <div class="improve-card fade-up delay-2">
+      <div class="num p2">9</div>
+      <div class="body">
+        <h4>闪回回忆系统 <span class="priority-p2">P2</span></h4>
+        <p>在关键教学点插入<strong>设局人过去的闪回</strong>。例如：当玩家首次使用"45 法则"时，触发一段设局人年轻时学习数独的回忆片段。闪回可使用 StoryEngine 的 <code>playScene</code> 配合 sepia 色调滤镜 + 模糊效果实现。建议在 dialogues.js 中定义 FLASHBACK_* 场景标签配套实现。</p>
+      </div>
+    </div>
+
+    <div class="improve-card fade-up delay-3">
+      <div class="num p2">10</div>
+      <div class="body">
+        <h4>章节间过渡动画 <span class="priority-p2">P2</span></h4>
+        <p>当前章节过渡只有文本标题卡，可增加<strong>动态场景过渡</strong>。建议实现：章节结束时播放关卡场景"淡出 + 锁链碎裂"动画；章节开始时播放"笼子浮现 + 标题砸入"组合动画。可利用现有 portrait-slam 关键帧动画框架扩展为 scene-transition 关键帧。</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ======================== APPENDIX ======================== -->
+<section id="appendix">
+  <div class="container">
+    <h2 class="section-title fade-up">
+      <span class="icon" style="background: linear-gradient(135deg,#1abc9c,#16a085);">
+        <svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13zM6 20V4h5v7h7v9H6z"/></svg>
+      </span>
+      附录：代码规模统计
+    </h2>
+    <p class="section-desc fade-up delay-1">各系统模块的代码行数分布，反映开发重心与复杂度。</p>
+
+    <div class="stats-grid fade-up delay-1">
+      <div class="stat-block">
+        <div class="stat-num">~1568</div>
+        <div class="stat-label">StoryEngine 演出引擎</div>
+        <div class="stat-file">scripts/story.js</div>
+      </div>
+      <div class="stat-block">
+        <div class="stat-num">~570</div>
+        <div class="stat-label">StoryModal 基础对话</div>
+        <div class="stat-file">story.js</div>
+      </div>
+      <div class="stat-block">
+        <div class="stat-num">~500+</div>
+        <div class="stat-label">音频系统</div>
+        <div class="stat-file">utils/audio.js</div>
+      </div>
+      <div class="stat-block">
+        <div class="stat-num">~330</div>
+        <div class="stat-label">DIALOGUES 台词数据</div>
+        <div class="stat-file">data/dialogues.js</div>
+      </div>
+      <div class="stat-block">
+        <div class="stat-num">~300+</div>
+        <div class="stat-label">喜剧桥段系统</div>
+        <div class="stat-file">utils/comedy.js</div>
+      </div>
+      <div class="stat-block">
+        <div class="stat-num">~300</div>
+        <div class="stat-label">guide.js 剧情集成</div>
+        <div class="stat-file">guide.js (剧情相关)</div>
+      </div>
+      <div class="stat-block">
+        <div class="stat-num">~200+</div>
+        <div class="stat-label">Boss 战演出</div>
+        <div class="stat-file">guide-battle.js</div>
+      </div>
+    </div>
+
+    <div class="card fade-up delay-2" style="margin-top:30px;">
+      <h3>系统架构全景图</h3>
+      <div style="display:flex; flex-wrap:wrap; gap:10px; margin-top:14px;">
+        <span style="background:rgba(52,152,219,.12); color:#3498db; padding:4px 16px; border-radius:20px; font-size:.78rem; border:1px solid rgba(52,152,219,.2);">L1 StoryModal 基础对话</span>
+        <span style="background:rgba(155,89,182,.12); color:#9b59b6; padding:4px 16px; border-radius:20px; font-size:.78rem; border:1px solid rgba(155,89,182,.2);">L2 StoryEngine 演出引擎</span>
+        <span style="background:rgba(230,126,34,.12); color:#e67e22; padding:4px 16px; border-radius:20px; font-size:.78rem; border:1px solid rgba(230,126,34,.2);">L3 ComedySystem 喜剧</span>
+        <span style="background:rgba(46,204,113,.12); color:#2ecc71; padding:4px 16px; border-radius:20px; font-size:.78rem; border:1px solid rgba(46,204,113,.2);">L4 DIALOGUES 台词数据</span>
+        <span style="background:rgba(231,76,60,.12); color:#e74c3c; padding:4px 16px; border-radius:20px; font-size:.78rem; border:1px solid rgba(231,76,60,.2);">L5 guide.js 剧情集成</span>
+        <span style="background:rgba(241,196,15,.12); color:#f1c40f; padding:4px 16px; border-radius:20px; font-size:.78rem; border:1px solid rgba(241,196,15,.2);">L6 guide-battle.js Boss演出</span>
+        <span style="background:rgba(26,188,156,.12); color:#1abc9c; padding:4px 16px; border-radius:20px; font-size:.78rem; border:1px solid rgba(26,188,156,.2);">L7 audio.js 音频系统</span>
+      </div>
+    </div>
+
+    <div class="card fade-up delay-3" style="margin-top:24px;">
+      <h3>角色表情分布</h3>
+      <div style="overflow-x:auto; margin-top:14px;">
+        <table class="score-table" style="min-width:500px;">
+          <thead>
+            <tr><th>角色</th><th>表情数量</th><th>台词数量</th><th>配音前缀</th><th>TTS 风格</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>守笼人</td><td>6 种</td><td>18 句</td><td>VO_KEEPER_</td><td>friendly</td></tr>
+            <tr><td>阿岩</td><td>5 种</td><td>13 句</td><td>VO_AYAN_</td><td>calm</td></tr>
+            <tr><td>设局人</td><td>7 种</td><td>10 句</td><td>VO_SETTER_</td><td>serious</td></tr>
+            <tr><td>设局人(秘术)</td><td>5 种</td><td>12 句</td><td>VO_SETTER_MYSTIC_</td><td>mystic</td></tr>
+            <tr><td>设局人(残影)</td><td>4 种</td><td>4 句</td><td>VO_SETTER_SHADE_</td><td>whisper</td></tr>
+            <tr><td>星辰梭</td><td>4 种</td><td>9 句</td><td>VO_STARWEAVER_</td><td>ethereal</td></tr>
+            <tr><td>残局守护者</td><td>3 种</td><td>6 句</td><td>VO_ENDGUARDIAN_</td><td>ancient</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card fade-up delay-3" style="margin-top:24px;">
+      <h3>DIALOGUES 评分等级分布</h3>
+      <div style="margin-top:16px;">
+        <div style="display:flex; align-items:center; gap:12px; margin-bottom:10px;">
+          <span style="font-size:.82rem; color:#b8aec8; min-width:70px;">Effect 4</span>
+          <div style="flex:1; height:22px; background:rgba(255,255,255,.04); border-radius:4px; overflow:hidden;">
+            <div style="width:15%; height:100%; background:linear-gradient(90deg,#e74c3c,#c0392b);"></div>
+          </div>
+          <span style="font-size:.78rem; color:#8a7ca0;">~15%</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:12px; margin-bottom:10px;">
+          <span style="font-size:.82rem; color:#b8aec8; min-width:70px;">Effect 3</span>
+          <div style="flex:1; height:22px; background:rgba(255,255,255,.04); border-radius:4px; overflow:hidden;">
+            <div style="width:25%; height:100%; background:linear-gradient(90deg,#e67e22,#d35400);"></div>
+          </div>
+          <span style="font-size:.78rem; color:#8a7ca0;">~25%</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:12px; margin-bottom:10px;">
+          <span style="font-size:.82rem; color:#b8aec8; min-width:70px;">Effect 2</span>
+          <div style="flex:1; height:22px; background:rgba(255,255,255,.04); border-radius:4px; overflow:hidden;">
+            <div style="width:35%; height:100%; background:linear-gradient(90deg,#f1c40f,#f39c12);"></div>
+          </div>
+          <span style="font-size:.78rem; color:#8a7ca0;">~35%</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:12px; margin-bottom:10px;">
+          <span style="font-size:.82rem; color:#b8aec8; min-width:70px;">Effect 0-1</span>
+          <div style="flex:1; height:22px; background:rgba(255,255,255,.04); border-radius:4px; overflow:hidden;">
+            <div style="width:25%; height:100%; background:linear-gradient(90deg,#9b59b6,#8e44ad);"></div>
+          </div>
+          <span style="font-size:.78rem; color:#8a7ca0;">~25%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>档案侦探 · 笼中密码 &mdash; 剧情系统深度评估报告</p>
+  <p style="margin-top:6px;">生成于 <span>2026 年 7 月 3 日</span> &middot; 基于代码审查 v3.0</p>
+</footer>
+
+</body>
+</html>

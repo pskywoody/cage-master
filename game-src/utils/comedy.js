@@ -63,10 +63,15 @@ const ComedySystem = {
     if (document.getElementById('comedy-bubble-container')) return;
     const container = document.createElement('div');
     container.id = 'comedy-bubble-container';
+    const isMobile = window.innerWidth < 640 || ('ontouchstart' in window && window.innerWidth < 768);
     container.style.cssText = [
-      'position:fixed', 'top:80px', 'right:20px', 'z-index:400',
+      'position:fixed',
+      isMobile ? 'top:56px' : 'top:80px',
+      isMobile ? 'right:10px' : 'right:20px',
+      'z-index:400',
       'display:flex', 'flex-direction:column', 'gap:10px',
-      'pointer-events:none', 'max-width:320px'
+      'pointer-events:none',
+      isMobile ? 'max-width:calc(100vw - 20px)' : 'max-width:320px'
     ].join(';');
     document.body.appendChild(container);
   },
@@ -99,8 +104,9 @@ const ComedySystem = {
     const container = document.getElementById('comedy-bubble-container');
 
     const portrait = this._charPortrait(speaker, emotion);
+    const isMobile = window.innerWidth < 640 || ('ontouchstart' in window && window.innerWidth < 768);
     const avatarHtml = portrait.img
-      ? `<img src="${portrait.img}" style="width:42px;height:42px;border-radius:50%;object-fit:cover;flex-shrink:0;border:2px solid rgba(255,255,255,0.3);box-shadow:0 2px 8px rgba(0,0,0,0.3);" onerror="this.style.display='none';this.nextElementSibling.style.display='inline';">`
+      ? `<img src="${portrait.img}" style="width:${isMobile ? '36px' : '42px'};height:${isMobile ? '36px' : '42px'};border-radius:50%;object-fit:cover;flex-shrink:0;border:2px solid rgba(255,255,255,0.3);box-shadow:0 2px 8px rgba(0,0,0,0.3);" onerror="this.style.display='none';this.nextElementSibling.style.display='inline';">`
       : `<span style="display:none;"></span>`;
     const emojiFallback = emoji || '👤';
 
@@ -108,12 +114,12 @@ const ComedySystem = {
     bubble.className = 'comedy-bubble';
     bubble.style.cssText = [
       'background:' + color,
-      'color:#fff', 'padding:12px 16px', 'border-radius:16px',
-      'font-size:14px', 'line-height:1.6',
+      'color:#fff', `padding:${isMobile ? '10px 12px' : '12px 16px'}`, 'border-radius:16px',
+      `font-size:${isMobile ? '13px' : '14px'}`, 'line-height:1.5',
       'box-shadow:0 4px 16px rgba(0,0,0,0.25)',
       'animation:comedyBubbleIn 0.4s ease-out',
       'position:relative', 'pointer-events:auto', 'cursor:pointer',
-      'max-width:320px', 'word-break:break-word'
+      'max-width:100%', 'word-break:break-word'
     ].join(';');
 
     bubble.innerHTML = `

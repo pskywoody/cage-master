@@ -1178,11 +1178,16 @@ function bindToolbar() {
   });
 
   // 重来
-  document.getElementById('btn-restart').addEventListener('click', () => {
-    if (isPaused) return;
-    if (typeof AudioManager !== 'undefined') AudioManager.playClick();
-    confirmRestartSingle();
-  });
+  const restartBtn = document.getElementById('btn-restart');
+  if (restartBtn) {
+    restartBtn.addEventListener('click', () => {
+      if (isPaused) {
+        togglePause();
+      }
+      if (typeof AudioManager !== 'undefined') AudioManager.playClick();
+      confirmRestartSingle();
+    });
+  }
 }
 
 // ==========================================

@@ -25,11 +25,56 @@ app.use(express.static(path.join(__dirname, 'game-src'), {
   }
 }));
 
-// 2. 读取题库数据（修正路径：题库实际位于 game-src/data/levels.json）
+// 2. 读取题库数据
 function loadLevels() {
   const filePath = path.join(__dirname, 'game-src', 'data', 'levels.json');
+  
+  // 如果 levels.json 不存在，从 v6 题库生成
+  if (!fs.existsSync(filePath)) {
+    console.log('[INFO] levels.json 不存在，正在从 v6 题库生成...');
+    ensureLevelsGenerated(filePath);
+  }
+  
   const raw = fs.readFileSync(filePath, 'utf-8');
   return JSON.parse(raw);
+}
+
+// 2.0 自动生成 levels.json（从 v6 题库源文件）
+function ensureLevelsGenerated(outputPath) {
+  const V6_DIR = path.join(__dirname, 'game-src', 'data', 'puzzles', 'v6');
+  const FILES = [
+    { file: 'killer-pure-1star.json', diff: '简单', diffLevel: 1 },
+    { file: 'killer-pure-2star.json', diff: '中等', diffLevel: 2 },
+    { file: 'killer-pure-3star.json', diff: '困难', diffLevel: 3 },
+    { file: 'killer-pure-4star.json', diff: '困难', diffLevel: 4 },
+    { file: 'killer-pure-5star.json', diff: '地狱', diffLevel: 5 },
+    { file: 'killer-stuck-endgame.json', diff: '地狱', diffLevel: 5 },
+  ];
+  const DIFF_MAP = { '1星': '简单', '2星': '中等', '3星': '困难', '4星': '困难', '5星': '地狱' };
+
+  let allPuzzles = [];
+  let idCounter = 1;
+
+  for (const { file, diff, diffLevel } of FILES) {
+    const fp = path.join(V6_DIR, file);
+    if (!fs.existsSync(fp)) continue;
+    const data = JSON.parse(fs.readFileSync(fp, 'utf-8'));
+    for (const p of (data.puzzles || [])) {
+      allPuzzles.push({
+        id: idCounter,
+        name: p.title || `档案 #${String(idCounter).padStart(3, '0')}`,
+        difficulty: DIFF_MAP[p.difficulty] || diff,
+        difficultyLevel: diffLevel,
+        cells: p.boardData || p.cells || p.board,
+        cages: p.cages.map(c => ({ id: c.id, sum: c.sum, cells: c.cells })),
+        solution: p.solution || null
+      });
+      idCounter++;
+    }
+  }
+
+  fs.writeFileSync(outputPath, JSON.stringify(allPuzzles, null, 2), 'utf-8');
+  console.log(`[INFO] 已生成 levels.json：${allPuzzles.length} 道题`);
 }
 
 // 2.1 读取章节数据（教学模式）

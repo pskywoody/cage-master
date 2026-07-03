@@ -8,3 +8,8 @@ test-*.json
 test-*.html
 crawlers/debug-*
 crawlers/.uploads/
+
+# 生成的题库文件（可从 src 重建）
+game-src/data/levels.json
+game-src/data/levels-killer.json
+game-src/data/puzzles/v6/*.json

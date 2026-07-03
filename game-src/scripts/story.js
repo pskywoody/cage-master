@@ -20,7 +20,56 @@ const StoryEngine = (function() {
   let _typewriterTimer = null;
   let _isBossEnter = false;
   let _typingSpeed = 45; // ms per character (slightly slower for better readability)
+  let _isMobile = false;
+
+  // ---- 打字机速度档位（P0 剧情张力增强）----
+  const TYPING_SPEEDS = {
+    serene: 80,    // 庄重/教学：慢，一字一顿
+    normal: 40,    // 日常对话
+    fast: 15,      // 吐槽/爆发/快速
+    instant: 0,    // 瞬间显示（系统/彩蛋）
+    heavy: 120,    // Boss压迫感：极慢
+    thinking: 60,  // 思考状态：稍慢
+  };
+
+  // ---- 情绪 → 打字机速度映射 ----
+  function _emotionTypingSpeed(emotion) {
+    const e = (emotion || 'default').toLowerCase();
+    switch (e) {
+      case 'serious':
+      case 'sad':
+      case 'lose':
+      case 'stern':
+        return TYPING_SPEEDS.serene;
+      case 'think':
+      case 'thinking':
+        return TYPING_SPEEDS.thinking;
+      case 'surprised':
+      case 'angry':
+        return TYPING_SPEEDS.fast;
+      case 'confident':
+        return TYPING_SPEEDS.heavy;
+      case 'smile':
+      case 'smirk':
+      case 'default':
+      default:
+        return TYPING_SPEEDS.normal;
+    }
+  }
+
+  // ---- 判断情绪是否属于"爆发类"（用于前慢后快的节奏变化）----
+  function _isBurstEmotion(emotion) {
+    const e = (emotion || '').toLowerCase();
+    return e === 'surprised' || e === 'angry';
+  }
   let _pendingVoiceId = null; // voice to play after audio unlocks
+  let _portraitZoom = 1.0;    // 当前立绘缩放比例（1.0 = normal）
+  let _portraitShakeTimer = null;
+  const PORTRAIT_ZOOM_LEVELS = {
+    far: 0.85,
+    normal: 1.0,
+    close: 1.15,
+  };
 
   // ---- 解锁音频 ----
   function _unlockAudio() {
@@ -61,6 +110,47 @@ const StoryEngine = (function() {
     else if (e === 'angry') _sfx('playEmotionAngry');
     else if (e === 'smirk' || e === 'confident') _sfx('playEmotionSmirk');
     else if (e === 'sad' || e === 'lose') _sfx('playEmotionSad');
+    else if (e === 'think' || e === 'thinking') _sfx('playThinking');
+  }
+
+  // ---- 震动反馈（分级：light / medium / strong / victory / slam / insight / objection / contradiction）----
+  function _vibrate(level) {
+    if (!navigator.vibrate) return;
+    try {
+      switch (level) {
+        case 'light':
+          navigator.vibrate(30);
+          break;
+        case 'medium':
+          navigator.vibrate([80, 40, 80]);
+          break;
+        case 'strong':
+          navigator.vibrate([150, 60, 120, 60, 150]);
+          break;
+        case 'victory':
+          // 胜利节奏：短-短-长-短-长（类似庆祝感）
+          navigator.vibrate([100, 80, 100, 80, 200, 100, 300]);
+          break;
+        case 'slam':
+          // 砸入：一下重击
+          navigator.vibrate([120, 30, 80]);
+          break;
+        case 'insight':
+          // 灵光一闪：细碎的灵感节奏
+          navigator.vibrate([10, 8, 10, 8, 15, 10, 30]);
+          break;
+        case 'objection':
+          // 异议！：爆发式振动
+          navigator.vibrate([30, 20, 50, 30, 80]);
+          break;
+        case 'contradiction':
+          // 发现矛盾：有力的双震
+          navigator.vibrate([60, 20, 60]);
+          break;
+        default:
+          navigator.vibrate(50);
+      }
+    } catch(e) {}
   }
 
   // ---- 初始化UI ----
@@ -71,12 +161,18 @@ const StoryEngine = (function() {
     document.addEventListener('touchstart', _unlockAudio, true);
     document.addEventListener('keydown', _unlockAudio, true);
 
-    const isMobile = window.innerWidth < 640 || ('ontouchstart' in window && window.innerWidth < 768);
+    _isMobile = window.innerWidth < 640 || ('ontouchstart' in window && window.innerWidth < 768);
+    const isMobile = _isMobile;
     const vh = window.innerHeight;
+
+    // 手机端打字速度稍慢，更易阅读
+    if (_isMobile) _typingSpeed = 52;
 
     // 底部UI区域估算（数字键盘+工具栏）
     const bottomUI = isMobile ? 220 : 170;
-    const pHeight = Math.min(Math.floor(vh * (isMobile ? 0.35 : 0.52)), vh - bottomUI);
+    // 手机端立绘稍小，给对话气泡腾出空间
+    const pHeightRatio = isMobile ? 0.30 : 0.52;
+    const pHeight = Math.min(Math.floor(vh * pHeightRatio), vh - bottomUI);
     const pWidth = Math.floor(pHeight * 0.72);
     const pRight = isMobile ? 5 : 30;
     const pBottom = bottomUI - 30;
@@ -229,6 +325,23 @@ const StoryEngine = (function() {
       .narrator-show {
         animation: narrator-fade 0.6s ease-out forwards;
       }
+      /* ---- P0: 立绘抖动动画（震惊/破防）---- */
+      @keyframes portrait-shake {
+        0%,100% { transform: translateX(0) scale(var(--pzoom, 1)) rotate(0deg); }
+        15% { transform: translateX(-6px) scale(var(--pzoom, 1)) rotate(-1deg); }
+        30% { transform: translateX(5px) scale(var(--pzoom, 1)) rotate(1deg); }
+        45% { transform: translateX(-4px) scale(var(--pzoom, 1)) rotate(-0.5deg); }
+        60% { transform: translateX(3px) scale(var(--pzoom, 1)) rotate(0.5deg); }
+        75% { transform: translateX(-2px) scale(var(--pzoom, 1)) rotate(0deg); }
+        90% { transform: translateX(1px) scale(var(--pzoom, 1)) rotate(0deg); }
+      }
+      .portrait-shaking {
+        animation: portrait-shake 0.4s ease-in-out;
+      }
+      /* ---- P0: 立绘缩放过渡 ---- */
+      .portrait-zoom-transition {
+        transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), opacity 0.3s ease !important;
+      }
     `;
     document.head.appendChild(style);
 
@@ -306,7 +419,8 @@ const StoryEngine = (function() {
   }
 
   // ---- 显示立绘（带砸入动画）----
-  function showPortrait(charId, emotion, isEnter = false) {
+  // zoom: 'far' | 'normal' | 'close' | number（可选，默认保持当前缩放）
+  function showPortrait(charId, emotion, isEnter = false, zoom) {
     init();
     const char = CHARACTERS[charId];
     if (!char || !char.portraits || Object.keys(char.portraits).length === 0) {
@@ -320,7 +434,17 @@ const StoryEngine = (function() {
     const src = `assets/images/portraits/${file.replace(/\.(png|jpg)$/, '')}.png`;
     const sameChar = currentPortrait && currentPortrait.charId === charId;
     const sameEmotion = sameChar && currentPortrait.emotion === emotion;
-    if (sameEmotion) return;
+    if (sameEmotion && zoom === undefined) return;
+
+    // 处理 zoom 参数
+    if (zoom !== undefined) {
+      if (typeof zoom === 'number') {
+        _portraitZoom = zoom;
+      } else if (PORTRAIT_ZOOM_LEVELS[zoom] !== undefined) {
+        _portraitZoom = PORTRAIT_ZOOM_LEVELS[zoom];
+      }
+    }
+    portraitEl.style.setProperty('--pzoom', _portraitZoom);
 
     // 根据情绪设置滤镜
     let filter = 'drop-shadow(0 12px 32px rgba(0,0,0,0.7))';
@@ -344,6 +468,8 @@ const StoryEngine = (function() {
     if (!sameChar || isEnter) {
       portraitEl.classList.remove('portrait-exiting');
       portraitEl.classList.remove('portrait-slamming');
+      portraitEl.classList.remove('portrait-shaking');
+      portraitEl.classList.remove('portrait-zoom-transition');
       void portraitEl.offsetWidth;
       portraitEl.classList.add('portrait-slamming');
       portraitEl.style.opacity = '1';
@@ -358,11 +484,19 @@ const StoryEngine = (function() {
         if (typeof Effects !== 'undefined') Effects.shake(4, 150);
       }
       _isBossEnter = false;
+      // 砸入动画结束后，应用当前缩放
+      setTimeout(() => {
+        if (portraitEl && currentPortrait && currentPortrait.charId === charId) {
+          portraitEl.classList.remove('portrait-slamming');
+          _applyPortraitTransform();
+        }
+      }, 500);
     } else {
       portraitEl.classList.remove('portrait-slamming');
       portraitEl.classList.remove('portrait-exiting');
+      portraitEl.classList.remove('portrait-shaking');
       portraitEl.style.opacity = '1';
-      portraitEl.style.transform = 'translateX(0) scale(1) rotate(0deg)';
+      portraitEl.style.transform = `translateX(0) scale(${_portraitZoom}) rotate(0deg)`;
       portraitEl.style.transition = 'none';
       _sfx('playEmotionSnap');
       if (typeof Effects !== 'undefined') Effects.shake(2, 80);
@@ -381,11 +515,17 @@ const StoryEngine = (function() {
     init();
     if (!currentPortrait) return;
     portraitEl.classList.remove('portrait-slamming');
+    portraitEl.classList.remove('portrait-shaking');
+    portraitEl.classList.remove('portrait-zoom-transition');
     portraitEl.classList.add('portrait-exiting');
+    if (_portraitShakeTimer) { clearTimeout(_portraitShakeTimer); _portraitShakeTimer = null; }
     setTimeout(() => {
       portraitEl.classList.remove('portrait-exiting');
       portraitEl.style.opacity = '0';
       portraitEl.style.backgroundImage = '';
+      // 重置缩放状态
+      _portraitZoom = 1.0;
+      portraitEl.style.setProperty('--pzoom', 1.0);
     }, 350);
     currentPortrait = null;
   }
@@ -394,6 +534,138 @@ const StoryEngine = (function() {
   function setEmotion(emotion) {
     if (!currentPortrait) return;
     showPortrait(currentPortrait.charId, emotion);
+  }
+
+  // ---- 应用立绘当前缩放（内部工具：把 _portraitZoom 写入 inline transform）----
+  function _applyPortraitTransform() {
+    if (!portraitEl) return;
+    const z = _portraitZoom;
+    portraitEl.style.setProperty('--pzoom', z);
+    // 只有当立绘没有在播放 slam/exit 动画时才设置 inline transform
+    if (!portraitEl.classList.contains('portrait-slamming') &&
+        !portraitEl.classList.contains('portrait-exiting') &&
+        !portraitEl.classList.contains('portrait-shaking')) {
+      portraitEl.style.transform = `translateX(0) scale(${z}) rotate(0deg)`;
+    }
+  }
+
+  // ---- 立绘缩放（zoom: 'far' | 'normal' | 'close' 或数字，duration: 过渡时间 ms）----
+  function zoomPortrait(zoom, duration) {
+    if (!portraitEl || !currentPortrait) return;
+    let scale;
+    if (typeof zoom === 'number') {
+      scale = zoom;
+    } else {
+      scale = PORTRAIT_ZOOM_LEVELS[zoom] !== undefined ? PORTRAIT_ZOOM_LEVELS[zoom] : 1.0;
+    }
+    _portraitZoom = scale;
+    const dur = (duration !== undefined && duration !== null) ? duration : 300;
+
+    // 如果正在播放 slam/exit/shake 动画，只更新状态值，等动画结束后再应用
+    if (portraitEl.classList.contains('portrait-slamming') ||
+        portraitEl.classList.contains('portrait-exiting') ||
+        portraitEl.classList.contains('portrait-shaking')) {
+      portraitEl.style.setProperty('--pzoom', scale);
+      return;
+    }
+
+    // 添加过渡类
+    portraitEl.classList.add('portrait-zoom-transition');
+    portraitEl.style.setProperty('--pzoom', scale);
+    portraitEl.style.transform = `translateX(0) scale(${scale}) rotate(0deg)`;
+
+    // 过渡结束后移除过渡类（避免和 slam 等动画冲突）
+    setTimeout(() => {
+      if (portraitEl) portraitEl.classList.remove('portrait-zoom-transition');
+    }, dur + 20);
+  }
+
+  // ---- 预设：立绘推近（震惊/特写）----
+  function zoomIn(duration) {
+    zoomPortrait('close', duration);
+  }
+
+  // ---- 预设：立绘拉远（释然/消散）----
+  function zoomOut(duration) {
+    zoomPortrait('far', duration);
+  }
+
+  // ---- 预设：立绘抖动（震惊/破防）----
+  function shake() {
+    if (!portraitEl || !currentPortrait) return;
+    // 如果正在播放 slam/exit 动画，跳过抖动（避免动画冲突）
+    if (portraitEl.classList.contains('portrait-slamming') ||
+        portraitEl.classList.contains('portrait-exiting')) return;
+    if (_portraitShakeTimer) {
+      clearTimeout(_portraitShakeTimer);
+      _portraitShakeTimer = null;
+    }
+    portraitEl.classList.remove('portrait-shaking');
+    portraitEl.classList.remove('portrait-zoom-transition');
+    portraitEl.style.setProperty('--pzoom', _portraitZoom);
+    void portraitEl.offsetWidth;
+    portraitEl.classList.add('portrait-shaking');
+    _portraitShakeTimer = setTimeout(() => {
+      if (portraitEl) portraitEl.classList.remove('portrait-shaking');
+      _portraitShakeTimer = null;
+      // 抖动结束后恢复当前缩放的 transform
+      _applyPortraitTransform();
+    }, 400);
+  }
+
+  // ---- 预设：恢复立绘正常缩放 ----
+  function resetZoom(duration) {
+    zoomPortrait('normal', duration);
+  }
+
+  // ---- 根据情绪自动触发立绘演出（P0 剧情张力增强）----
+  function _triggerPortraitEmotion(emotion) {
+    if (!currentPortrait || !portraitEl) return;
+    const e = (emotion || 'default').toLowerCase();
+    // 判断是否正在播放 slam 动画（新角色登场）
+    const isSlamming = portraitEl.classList.contains('portrait-slamming');
+
+    switch (e) {
+      case 'surprised':
+        // 惊讶：轻微推近 + 短暂抖动
+        zoomPortrait('close', 250);
+        if (isSlamming) {
+          // slam 结束后再抖动
+          setTimeout(shake, 520);
+        } else {
+          setTimeout(shake, 150);
+        }
+        break;
+      case 'angry':
+        // 愤怒：推近 + 抖动
+        zoomPortrait('close', 200);
+        if (isSlamming) {
+          setTimeout(shake, 520);
+        } else {
+          setTimeout(shake, 100);
+        }
+        break;
+      case 'sad':
+      case 'lose':
+        // 悲伤：拉远
+        zoomPortrait('far', 400);
+        break;
+      case 'confident':
+        // 自信（设局人压迫感）：推近
+        zoomPortrait('close', 350);
+        break;
+      case 'serious':
+      case 'stern':
+        // 严肃：轻微推近
+        zoomPortrait(1.05, 300);
+        break;
+      default:
+        // 其他情绪：恢复正常
+        if (_portraitZoom !== 1.0) {
+          resetZoom(300);
+        }
+        break;
+    }
   }
 
   // ---- 显示章节标题卡 ----
@@ -534,7 +806,8 @@ const StoryEngine = (function() {
   }
 
   // ---- 打字机效果显示文字 ----
-  function _typewrite(charId, text, onComplete) {
+  // speed: 每字间隔 ms；burst: 是否启用"前慢后快"爆发节奏
+  function _typewrite(charId, text, onComplete, speed, burst) {
     const nameEl = document.getElementById('dlg-name');
     const textEl = document.getElementById('dlg-text');
     const indicator = document.getElementById('dlg-indicator');
@@ -551,7 +824,10 @@ const StoryEngine = (function() {
 
     let idx = 0;
     const totalLen = text.length;
-    const speed = _typingSpeed;
+    const baseSpeed = (speed !== undefined && speed !== null) ? speed : _typingSpeed;
+    // 爆发模式：前4个字用庄重速度（先愣一下），之后切到快速
+    const burstThreshold = burst ? 4 : 0;
+    const burstSlowSpeed = TYPING_SPEEDS.serene;
 
     // 检查是否有配音（VO_开头的ID）
     const hasVoice = dialogueQueue.length > 0 && dialogueQueue[0] && dialogueQueue[0].startsWith('VO_');
@@ -559,6 +835,15 @@ const StoryEngine = (function() {
     // 我们需要知道当前正在播放的voiceId
     const currentVid = _currentVoiceId || '';
     const currentHasVoice = currentVid.startsWith('VO_');
+
+    // instant 速度：直接显示全部文字
+    if (baseSpeed <= 0) {
+      textEl.textContent = text;
+      _typewriterTimer = null;
+      indicator.style.opacity = '1';
+      if (onComplete) onComplete();
+      return;
+    }
 
     function type() {
       if (idx >= totalLen) {
@@ -570,11 +855,17 @@ const StoryEngine = (function() {
       const ch = text[idx];
       textEl.textContent += ch;
       idx++;
-      // 打字音效：无配音时播放打字机音效，有配音时不播放（避免和语音重叠）
-      if (!currentHasVoice && ch !== ' ' && ch !== '　' && idx % 2 === 0) {
+      // 打字音效：有配音时每5字播放一次避免干扰语音，无配音时每2字播放一次
+      const _twInterval = currentHasVoice ? 5 : 2;
+      if (ch !== ' ' && ch !== '　' && idx % _twInterval === 0) {
         _sfx('playTypewriterKey');
       }
-      _typewriterTimer = setTimeout(type, speed + (Math.random() * 20 - 10));
+      // 爆发模式：前几个字稍慢，模拟"先愣一下然后爆发"
+      let delay = baseSpeed + (Math.random() * 20 - 10);
+      if (burst && idx <= burstThreshold && idx > 0) {
+        delay = burstSlowSpeed + (Math.random() * 15 - 7);
+      }
+      _typewriterTimer = setTimeout(type, delay);
     }
     type();
   }
@@ -605,7 +896,8 @@ const StoryEngine = (function() {
   let _narratorEl = null;
 
   // ---- 显示对话气泡 ----
-  function showBubble(charId, text) {
+  // speed: 打字机速度（ms/字），不传则用默认速度；burst: 是否启用前慢后快爆发节奏
+  function showBubble(charId, text, speed, burst) {
     init();
     _currentText = text;
     // 隐藏旁白
@@ -618,7 +910,7 @@ const StoryEngine = (function() {
     overlayEl.style.opacity = '1';
     overlayEl.style.pointerEvents = 'auto';
     _sfx('playBubblePop');
-    _typewrite(charId, text, null);
+    _typewrite(charId, text, null, speed, burst);
   }
 
   // ---- 隐藏对话气泡 ----
@@ -700,6 +992,8 @@ const StoryEngine = (function() {
     // 显示立绘
     if (dlg.char && dlg.portrait) {
       showPortrait(dlg.char, dlg.portrait);
+      // P0: 根据情绪自动触发立绘演出动画
+      _triggerPortraitEmotion(dlg.portrait);
     } else if (!dlg.char) {
       hidePortrait();
     }
@@ -709,8 +1003,12 @@ const StoryEngine = (function() {
       Effects.triggerLevel(dlg.effect, { portrait: dlg.char || null });
     }
 
+    // P0: 根据情绪计算打字机速度
+    const typingSpeed = dlg.portrait ? _emotionTypingSpeed(dlg.portrait) : _typingSpeed;
+    const isBurst = _isBurstEmotion(dlg.portrait);
+
     // 显示文字（打字机）
-    showBubble(dlg.char, dlg.text);
+    showBubble(dlg.char, dlg.text, typingSpeed, isBurst);
 
     // 播放配音
     playVoice(voiceId);
@@ -839,9 +1137,33 @@ const StoryEngine = (function() {
     indicator.style.opacity = '0';
     _ambientCurrentText = text;
 
+    // P0: 根据情绪计算打字机速度
+    const emo = emotion || 'default';
+    const typingSpeed = _emotionTypingSpeed(emo);
+    const isBurst = _isBurstEmotion(emo);
+
+    // P0: 根据情绪触发立绘演出
+    if (currentPortrait) {
+      _triggerPortraitEmotion(emo);
+    }
+
     // 打字机效果
     let idx = 0;
-    const speed = _typingSpeed;
+    const speed = typingSpeed;
+    // 爆发模式：前4个字稍慢
+    const burstThreshold = isBurst ? 4 : 0;
+    const burstSlowSpeed = TYPING_SPEEDS.serene;
+
+    // instant 速度直接显示
+    if (speed <= 0) {
+      textEl.textContent = text;
+      _ambientTypeTimer = null;
+      indicator.style.opacity = '0';
+      const waitMs = displayMs || Math.max(2500, text.length * 180);
+      _startAmbientAutoHide(waitMs);
+      return;
+    }
+
     function typeAmbient() {
       if (idx >= text.length) {
         _ambientTypeTimer = null;
@@ -856,7 +1178,12 @@ const StoryEngine = (function() {
       if (text[idx - 1] !== ' ' && text[idx - 1] !== '　' && idx % 3 === 0) {
         _sfx('playTypewriterKey');
       }
-      _ambientTypeTimer = setTimeout(typeAmbient, speed + (Math.random() * 15 - 7));
+      // 爆发模式：前几个字稍慢
+      let delay = speed + (Math.random() * 15 - 7);
+      if (isBurst && idx <= burstThreshold && idx > 0) {
+        delay = burstSlowSpeed + (Math.random() * 10 - 5);
+      }
+      _ambientTypeTimer = setTimeout(typeAmbient, delay);
     }
     typeAmbient();
   }
@@ -942,7 +1269,11 @@ const StoryEngine = (function() {
       Effects.vignette(0.6, 600);
       Effects.shake(12, 500);
     }
-    if (navigator.vibrate) { try { navigator.vibrate([150, 50, 200]); } catch(e) {} }
+    if (typeof AudioManager !== 'undefined' && typeof AudioManager.vibrate === 'function') {
+      AudioManager.vibrate('slam');
+    } else if (navigator.vibrate) {
+      _vibrate('slam');
+    }
     _sfx('playPortraitSlam');
     if (typeof MidiBGM !== 'undefined') {
       MidiBGM.setPhase('breakthrough');
@@ -983,7 +1314,12 @@ const StoryEngine = (function() {
       Effects.victoryFlash();
       Effects.vignette(0, 800);
     }
-    if (typeof AudioManager !== 'undefined') AudioManager.playWin();
+    if (typeof AudioManager !== 'undefined') {
+      AudioManager.playWin();
+      if (typeof AudioManager.vibrate === 'function') AudioManager.vibrate('victory');
+    } else if (navigator.vibrate) {
+      _vibrate('victory');
+    }
     if (typeof MidiBGM !== 'undefined') {
       MidiBGM.setPhase('finishing');
     }
@@ -1002,7 +1338,11 @@ const StoryEngine = (function() {
       Effects.shake(8, 800);
       setTimeout(() => Effects.vignette(0, 2000), 500);
     }
-    if (navigator.vibrate) { try { navigator.vibrate([300, 100, 300, 100, 500]); } catch(e) {} }
+    if (typeof AudioManager !== 'undefined' && typeof AudioManager.vibrate === 'function') {
+      AudioManager.vibrate('victory');
+    } else if (navigator.vibrate) {
+      _vibrate('victory');
+    }
 
     // 2. 切换到胜利BGM
     if (typeof AudioManager !== 'undefined') {
@@ -1117,10 +1457,40 @@ const StoryEngine = (function() {
       Effects.flash('#ffffff', 300, 0.4);
       Effects.vignette(0.5, 300);
     }
-    if (navigator.vibrate) { try { navigator.vibrate([200, 80, 200, 80, 300]); } catch(e) {} }
+    if (typeof AudioManager !== 'undefined' && typeof AudioManager.vibrate === 'function') {
+      AudioManager.vibrate('objection');
+    } else if (navigator.vibrate) {
+      _vibrate('objection');
+    }
+
+    // BGM短暂压低，突出异议音效（逆转裁判式"等一下！"的感觉）
+    let originalVolume = null;
+    let duckTarget = null;
+    if (typeof MidiBGM !== 'undefined' && MidiBGM.volume !== undefined) {
+      originalVolume = MidiBGM.volume;
+      MidiBGM.setVolume(originalVolume * 0.2);
+      duckTarget = 'midi';
+    } else if (typeof AudioManager !== 'undefined' && AudioManager.bgmGain && AudioManager.ctx) {
+      originalVolume = AudioManager.bgmGain.gain.value;
+      AudioManager.bgmGain.gain.setValueAtTime(originalVolume * 0.2, AudioManager.ctx.currentTime);
+      duckTarget = 'audio';
+    }
+
     _sfx('playObjection');
     if (typeof MidiBGM !== 'undefined') MidiBGM.setPhase('breakthrough');
     else if (typeof AudioManager !== 'undefined') AudioManager.startBreakthroughBGM && AudioManager.startBreakthroughBGM();
+
+    // 0.8秒后BGM恢复
+    setTimeout(() => {
+      if (originalVolume !== null) {
+        if (duckTarget === 'midi' && typeof MidiBGM !== 'undefined') {
+          MidiBGM.setVolume(originalVolume);
+        } else if (duckTarget === 'audio' && typeof AudioManager !== 'undefined' && AudioManager.bgmGain && AudioManager.ctx) {
+          AudioManager.bgmGain.gain.linearRampToValueAtTime(originalVolume, AudioManager.ctx.currentTime + 0.5);
+        }
+      }
+    }, 800);
+
     setTimeout(() => hideObjection(), 2000);
   }
 
@@ -1135,6 +1505,12 @@ const StoryEngine = (function() {
     // 破局时刻：金色闪光 + "破局！"全屏特效
     if (typeof Effects !== 'undefined') {
       Effects.triggerLevel(4, { type: 'flash' });
+    }
+    _sfx('playInsight');
+    if (typeof AudioManager !== 'undefined' && typeof AudioManager.vibrate === 'function') {
+      AudioManager.vibrate('insight');
+    } else if (navigator.vibrate) {
+      _vibrate('insight');
     }
     showObjection('破局！');
   }
@@ -1166,6 +1542,11 @@ const StoryEngine = (function() {
     hidePortrait,
     hideBubble,
     setEmotion,
+    zoomPortrait,
+    zoomIn,
+    zoomOut,
+    shake,
+    resetZoom,
     bossEnter,
     bossDefeat,
     finalVictory,

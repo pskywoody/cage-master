@@ -74,7 +74,10 @@ class Board {
       autoClearCandidates: true,  // 自动清除关联候选
       muteAll: false,        // 一键静音
       bgm: true,             // 背景音乐
-      sfx: true              // 音效
+      sfx: true,             // 音效
+      bgmVolume: 50,         // BGM音量 0-100
+      sfxVolume: 67,         // 音效音量 0-100
+      vibration: true        // 触感反馈
     };
 
     // 输入模式：normal 正式填数 / candidate 候选标记

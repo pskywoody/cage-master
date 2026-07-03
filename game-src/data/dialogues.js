@@ -16,7 +16,7 @@ const CHARACTERS = {
       think: 'cagekeeper_serious.png',
       sad: 'cagekeeper_serious.png'
     },
-    voice: 'zh-CN-YunxiNeural',
+    voice: 'zh-CN-YunyeNeural',
     voiceStyle: 'gentle'
   },
   ray: {

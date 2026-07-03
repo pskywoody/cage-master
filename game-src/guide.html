@@ -8,6 +8,13 @@
   <link rel="stylesheet" href="assets/css/style.css?v=37" />
 </head>
 <body>
+  <!-- 横屏提示（手机横屏时显示） -->
+  <div id="landscape-hint">
+    <div class="hint-icon">📱</div>
+    <div>请旋转手机</div>
+    <div class="hint-text">竖屏体验更佳<br>（可在系统设置中关闭"方向锁定"）</div>
+  </div>
+
   <div id="app">
     <div id="game-container">
       <!-- 顶部状态栏 -->
@@ -192,6 +199,11 @@
               <span class="toggle-slider"></span>
             </label>
           </div>
+          <div class="setting-volume">
+            <span class="volume-label">音量</span>
+            <input type="range" id="setting-bgm-volume" min="0" max="100" value="50" class="volume-slider" />
+            <span class="volume-value" id="setting-bgm-volume-value">50%</span>
+          </div>
           <div class="setting-item">
             <div class="setting-info">
               <span class="setting-name" data-i18n="ui.settings.sfx">🔊 音效</span>
@@ -201,6 +213,11 @@
               <input type="checkbox" id="setting-sfx" checked />
               <span class="toggle-slider"></span>
             </label>
+          </div>
+          <div class="setting-volume">
+            <span class="volume-label">音量</span>
+            <input type="range" id="setting-sfx-volume" min="0" max="100" value="67" class="volume-slider" />
+            <span class="volume-value" id="setting-sfx-volume-value">67%</span>
           </div>
           <div class="setting-item">
             <div class="setting-info">
@@ -290,6 +307,19 @@
           </div>
         </div>
         <div class="settings-section">
+          <h4 data-i18n="ui.settings.vibrationSection">📳 触感反馈</h4>
+          <div class="setting-item">
+            <div class="setting-info">
+              <span class="setting-name" data-i18n="ui.settings.vibration">振动反馈</span>
+              <span class="setting-desc" data-i18n="ui.settings.vibrationDesc">点击、填数、擦除等操作的触感反馈</span>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="setting-vibration" checked />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+        </div>
+        <div class="settings-section">
           <h4>🌐 Language</h4>
           <div class="setting-item">
             <div class="setting-info">
@@ -317,6 +347,7 @@
   <script>if (typeof AudioManager !== 'undefined') { AudioManager.init(); }</script>
   <script src="data/dialogues.js?v=6"></script>
   <script src="utils/comedy.js?v=7"></script>
+  <script src="utils/technique-feedback.js?v=1"></script>
   <script src="utils/technique-tutorial.js?v=38"></script>
   <script src="game.js?v=42"></script>
   <script src="renderer.js?v=42"></script>
@@ -325,7 +356,7 @@
   <script src="scripts/midi-bgm.js?v=4"></script>
   <script src="utils/bgm-bridge.js?v=1"></script>
   <script>if (typeof BGMEngine !== 'undefined') BGMEngine.init();</script>
-  <script src="story.js?v=51"></script>
+  <script src="story.js?v=52"></script>
   <script src="scripts/story.js?v=23"></script>
   <script src="guide-manager.js?v=45"></script>
   <script src="guide-battle.js?v=45"></script>
@@ -346,6 +377,70 @@
       background: #3b82f6;
       color: #fff;
       border-color: #3b82f6;
+    }
+
+    /* ========== 设置弹窗过渡动画 ========== */
+    /* 覆盖默认 display:none，使用 opacity + visibility 实现平滑过渡 */
+    #settings-overlay {
+      display: flex !important;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.25s ease, visibility 0.25s ease;
+    }
+    #settings-overlay.active {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    /* 设置卡片入场动画：从上方滑入 + 淡入 */
+    #settings-overlay .settings-card {
+      opacity: 0;
+      transform: translateY(-30px) scale(0.96);
+      transition: opacity 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+                  transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    #settings-overlay.active .settings-card {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    /* 设置关闭按钮 hover 效果 */
+    .settings-close {
+      transition: background 0.15s ease, transform 0.15s ease;
+    }
+    .settings-close:hover {
+      background: #e2e8f0;
+      transform: scale(1.1);
+    }
+
+    /* toggle 开关过渡效果 */
+    .toggle-switch .toggle-slider {
+      transition: background-color 0.2s ease;
+    }
+    .toggle-switch .toggle-slider::before {
+      transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    /* 音量滑块 hover 效果 */
+    .volume-slider {
+      transition: opacity 0.15s ease;
+    }
+    .volume-slider:hover {
+      opacity: 0.9;
+    }
+
+    /* 工具栏按钮 hover 效果 */
+    #toolbar button {
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+    }
+    #toolbar button:hover {
+      transform: scale(1.08);
+      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25);
+    }
+    #toolbar button:active {
+      transform: scale(0.95);
     }
   </style>
 </body>

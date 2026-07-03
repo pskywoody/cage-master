@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <title>🧪 测试模式 · 档案侦探</title>
+  <link rel="icon" type="image/jpeg" href="assets/images/favicon.jpg" />
+  <link rel="stylesheet" href="assets/css/style.css?v=37" />
+  <style>
+    /* 测试面板样式 */
+    #test-panel {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 320px;
+      height: 100vh;
+      background: #0f172a;
+      color: #e2e8f0;
+      z-index: 100000;
+      overflow-y: auto;
+      font-size: 12px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      transform: translateX(-100%);
+      transition: transform 0.3s ease;
+      box-shadow: 2px 0 20px rgba(0,0,0,0.5);
+    }
+    #test-panel.open {
+      transform: translateX(0);
+    }
+    #test-toggle {
+      position: fixed;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+      z-index: 99999;
+      background: #3b82f6;
+      color: white;
+      border: none;
+      padding: 12px 6px;
+      border-radius: 0 8px 8px 0;
+      cursor: pointer;
+      font-size: 14px;
+      writing-mode: vertical-rl;
+      box-shadow: 2px 0 10px rgba(0,0,0,0.3);
+    }
+    #test-toggle.open {
+      left: 320px;
+    }
+    .test-section {
+      padding: 12px;
+      border-bottom: 1px solid #1e293b;
+    }
+    .test-section h3 {
+      font-size: 13px;
+      color: #60a5fa;
+      margin: 0 0 8px 0;
+      padding-bottom: 4px;
+      border-bottom: 1px solid #1e293b;
+    }
+    .test-section h4 {
+      font-size: 11px;
+      color: #94a3b8;
+      margin: 8px 0 4px 0;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .test-btn {
+      display: inline-block;
+      padding: 5px 10px;
+      margin: 2px;
+      background: #1e293b;
+      color: #e2e8f0;
+      border: 1px solid #334155;
+      border-radius: 4px;
+      font-size: 11px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .test-btn:hover {
+      background: #334155;
+      border-color: #60a5fa;
+    }
+    .test-btn:active {
+      background: #3b82f6;
+      color: white;
+    }
+    .test-btn.primary {
+      background: #3b82f6;
+      border-color: #3b82f6;
+      color: white;
+    }
+    .test-btn.primary:hover {
+      background: #2563eb;
+    }
+    .test-btn.danger {
+      background: #7f1d1d;
+      border-color: #dc2626;
+      color: #fecaca;
+    }
+    .test-btn.danger:hover {
+      background: #991b1b;
+    }
+    .test-chapter-title {
+      font-size: 11px;
+      color: #fbbf24;
+      margin: 6px 0 2px 0;
+      font-weight: 600;
+    }
+    .test-level-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 3px;
+      margin-bottom: 4px;
+    }
+    .test-level-btn {
+      padding: 4px 0;
+      background: #1e293b;
+      color: #94a3b8;
+      border: 1px solid #334155;
+      border-radius: 3px;
+      font-size: 10px;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.15s;
+    }
+    .test-level-btn:hover {
+      background: #3b82f6;
+      color: white;
+      border-color: #3b82f6;
+    }
+    .test-level-btn.boss {
+      background: #7f1d1d;
+      color: #fecaca;
+      border-color: #dc2626;
+    }
+    .test-level-btn.boss:hover {
+      background: #dc2626;
+      color: white;
+    }
+    .scene-list {
+      max-height: 180px;
+      overflow-y: auto;
+      border: 1px solid #1e293b;
+      border-radius: 4px;
+      padding: 4px;
+    }
+    .scene-item {
+      padding: 3px 6px;
+      cursor: pointer;
+      border-radius: 3px;
+      font-size: 11px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .scene-item:hover {
+      background: #1e293b;
+    }
+    .scene-item .scene-name {
+      color: #94a3b8;
+    }
+    .scene-item .scene-count {
+      color: #64748b;
+      font-size: 10px;
+    }
+    .voice-test-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px;
+    }
+    .voice-btn {
+      padding: 4px 6px;
+      background: #1e293b;
+      color: #cbd5e1;
+      border: 1px solid #334155;
+      border-radius: 4px;
+      font-size: 10px;
+      cursor: pointer;
+      text-align: left;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      transition: all 0.15s;
+    }
+    .voice-btn:hover {
+      background: #334155;
+      border-color: #10b981;
+    }
+    .voice-btn.ck { border-left: 3px solid #22c55e; }
+    .voice-btn.r { border-left: 3px solid #3b82f6; }
+    .voice-btn.p { border-left: 3px solid #a855f7; }
+    .voice-btn.w { border-left: 3px solid #f59e0b; }
+    .voice-btn.re { border-left: 3px solid #64748b; }
+    .voice-btn.s { border-left: 3px solid #ec4899; }
+    .voice-btn.ss { border-left: 3px solid #ef4444; }
+    .test-row {
+      display: flex;
+      gap: 6px;
+      margin: 4px 0;
+    }
+    .test-row .test-btn {
+      flex: 1;
+      margin: 0;
+    }
+    .test-label {
+      font-size: 11px;
+      color: #64748b;
+      margin-right: 4px;
+    }
+    /* 主内容区偏移 */
+    body.test-open #app {
+      margin-left: 320px;
+    }
+  </style>
+</head>
+<body>
+  <!-- 横屏提示（手机横屏时显示） -->
+  <div id="landscape-hint">
+    <div class="hint-icon">📱</div>
+    <div>请旋转手机</div>
+    <div class="hint-text">竖屏体验更佳<br>（可在系统设置中关闭"方向锁定"）</div>
+  </div>
+
+  <!-- 测试面板切换按钮 -->
+  <button id="test-toggle">🧪 测试面板</button>
+
+  <!-- 测试面板 -->
+  <div id="test-panel">
+    <div class="test-section">
+      <h3>🧪 测试控制台</h3>
+      <div class="test-row">
+        <button class="test-btn primary" onclick="TestUtils.unlockAll()">🔓 解锁全部关卡</button>
+        <button class="test-btn danger" onclick="TestUtils.resetProgress()">🗑 重置进度</button>
+      </div>
+      <div class="test-row">
+        <button class="test-btn" onclick="TestUtils.skipToEnd()">⏩ 直接通关</button>
+        <button class="test-btn" onclick="TestUtils.fillAllCells()">✅ 填满答案</button>
+      </div>
+    </div>
+
+    <div class="test-section">
+      <h3>🎮 关卡选择</h3>
+      <div id="test-levels">
+        <div style="color:#64748b; font-size:11px;">加载中...</div>
+      </div>
+    </div>
+
+    <div class="test-section">
+      <h3>🎬 剧情场景</h3>
+      <div id="test-scenes" class="scene-list">
+        <div style="color:#64748b; font-size:11px;">加载中...</div>
+      </div>
+    </div>
+
+    <div class="test-section">
+      <h3>🔊 配音测试</h3>
+      <div style="margin-bottom:6px;">
+        <span class="test-label">角色筛选：</span>
+        <select id="voice-filter" style="background:#1e293b; color:#e2e8f0; border:1px solid #334155; border-radius:3px; padding:2px 4px; font-size:11px;">
+          <option value="all">全部</option>
+          <option value="CK">守笼人</option>
+          <option value="R">阿岩</option>
+          <option value="P">设局人</option>
+          <option value="W">星辰梭</option>
+          <option value="RE">残局守护者</option>
+          <option value="S">系统</option>
+          <option value="SS">秘术设局人</option>
+        </select>
+      </div>
+      <div id="test-voices" class="voice-test-grid">
+        <div style="color:#64748b; font-size:11px;">加载中...</div>
+      </div>
+    </div>
+
+    <div class="test-section">
+      <h3>⚡ 快捷效果</h3>
+      <div class="test-row">
+        <button class="test-btn" onclick="TestUtils.playObjection()">⚡ 异议！</button>
+        <button class="test-btn" onclick="TestUtils.playShake()">📳 震动</button>
+      </div>
+      <div class="test-row">
+        <button class="test-btn" onclick="TestUtils.playFlash()">💡 闪光</button>
+        <button class="test-btn" onclick="TestUtils.playVignette()">🕳 暗角</button>
+      </div>
+      <div class="test-row">
+        <button class="test-btn" onclick="TestUtils.showComedyBubble()">💬 喜剧气泡</button>
+        <button class="test-btn" onclick="TestUtils.playVictory()">🏆 胜利</button>
+      </div>
+    </div>
+
+    <div class="test-section">
+      <h3>📊 状态信息</h3>
+      <div id="test-status" style="font-size:11px; color:#94a3b8; line-height:1.8;">
+        <div>当前关卡：<span id="status-level">-</span></div>
+        <div>当前章节：<span id="status-chapter">-</span></div>
+        <div>盘面尺寸：<span id="status-size">-</span></div>
+        <div>已填数字：<span id="status-filled">-</span></div>
+        <div>BGM状态：<span id="status-bgm">-</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="app">
+    <div id="game-container">
+      <!-- 顶部状态栏 -->
+      <div id="game-header">
+        <button id="btn-back" data-i18n="ui.common.backToChapter">← 章节</button>
+        <div id="timer">00:00</div>
+        <button id="btn-setting" class="header-icon-btn" data-i18n-title="ui.toolbar.setting">⚙️</button>
+      </div>
+
+      <h2 id="level-title">教学关卡</h2>
+      <p id="level-goal"></p>
+
+      <!-- 盘面 -->
+      <div id="board-area">
+        <canvas id="gameCanvas"></canvas>
+      </div>
+
+      <!-- 工具栏 -->
+      <div id="toolbar">
+        <button id="btn-undo" data-i18n-title="ui.toolbar.undo" title="撤销">↶</button>
+        <button id="btn-erase" data-i18n-title="ui.toolbar.erase" title="擦除">⌫</button>
+        <button id="btn-candidate" data-i18n-title="ui.toolbar.candidate" title="候选">✏️</button>
+        <button id="btn-auto-cands" data-i18n-title="ui.toolbar.autoCands" title="自动填候选">🔢</button>
+        <button id="btn-hint" data-i18n-title="ui.toolbar.hint" title="提示">💡</button>
+        <button id="btn-45rule" data-i18n-title="ui.rule45.title" title="算珠">🧮</button>
+        <button id="btn-restart" data-i18n-title="ui.common.restart" title="重来">🔄</button>
+      </div>
+
+      <!-- 透视面板（随导航切换） -->
+      <div id="perspective-panel" style="display:none; padding: 6px 12px; background: #f0f9ff; border-radius: 8px; margin: 4px 0; font-size: 12px;">
+        <div style="display: flex; gap: 8px; justify-content: center;">
+          <span id="persp-row">行 <span id="persp-row-nums" style="font-weight:700;color:#ef4444;">-</span></span>
+          <span id="persp-col">列 <span id="persp-col-nums" style="font-weight:700;color:#22c55e;">-</span></span>
+          <span id="persp-box">宫 <span id="persp-box-nums" style="font-weight:700;color:#3b82f6;">-</span></span>
+        </div>
+      </div>
+
+      <!-- 数字键盘（动态生成） -->
+      <div id="num-pad"></div>
+      <!-- 连填提示（第一次使用后自动隐藏） -->
+      <p id="quick-fill-hint" class="quick-fill-hint" data-i18n="ui.canvas.quickFillHint">💡 不选格子→点数字→再点空格，快速填入</p>
+    </div>
+  </div>
+
+  <!-- 暂停蒙层 -->
+  <div id="pause-overlay">
+    <div class="pause-card">
+      <h3 data-i18n="ui.pause.title">⏸ 游戏暂停</h3>
+      <p data-i18n="ui.pause.desc">点击下方按钮继续游戏</p>
+      <button id="btn-resume" data-i18n="ui.common.resume">继续游戏</button>
+    </div>
+  </div>
+
+  <!-- 通关弹窗 -->
+  <div id="complete-overlay">
+    <div class="complete-card">
+      <div class="trophy" data-i18n="ui.complete.trophy">🏆</div>
+      <h3 data-i18n="ui.complete.title">恭喜通关！</h3>
+      <div id="complete-grade" class="complete-grade-badge grade-A">A</div>
+      <div id="complete-stars" class="complete-stars"></div>
+      <div id="complete-fragment" class="complete-fragment" style="display:none;">
+        <span class="fragment-icon">📜</span>
+        <span class="fragment-text">获得档案碎片</span>
+      </div>
+      <div id="complete-time" class="complete-time" data-i18n="ui.complete.timeUsed">用时 00:00</div>
+      <div id="complete-comment" class="complete-comment" style="display:none;">
+        <div class="complete-comment-speaker">🧙 守笼人</div>
+        <div class="complete-comment-text" id="complete-comment-text"></div>
+      </div>
+      <div class="btn-row">
+        <button class="btn-secondary" id="btn-complete-back" data-i18n="ui.common.returnToLevels">返回关卡</button>
+        <button class="btn-primary" id="btn-complete-next" data-i18n="ui.common.nextLevel">下一关</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 45法则计算器弹窗 -->
+  <div id="rule45-overlay">
+    <div class="rule45-card">
+      <div class="rule45-header">
+        <h3 id="rule45-title">🧮 45法则计算器</h3>
+        <button id="btn-rule45-close" class="rule45-close" data-i18n="ui.common.close">×</button>
+      </div>
+      <div class="rule45-body">
+        <div class="rule45-input-row">
+          <div class="rule45-input-group">
+            <label data-i18n="ui.rule45.cellCount">格子数</label>
+            <input type="number" id="rule45-cellcount" min="1" max="9" value="2" />
+          </div>
+          <div class="rule45-input-group">
+            <label data-i18n="ui.rule45.targetSum">目标和</label>
+            <input type="number" id="rule45-targetsum" min="1" max="45" value="10" />
+          </div>
+        </div>
+        <div class="rule45-input-row">
+          <div class="rule45-input-group">
+            <label data-i18n="ui.rule45.mustInclude">必含数字</label>
+            <div class="rule45-num-picker" id="rule45-must"></div>
+          </div>
+        </div>
+        <div class="rule45-input-row">
+          <div class="rule45-input-group">
+            <label data-i18n="ui.rule45.exclude">排除数字</label>
+            <div class="rule45-num-picker" id="rule45-exclude"></div>
+          </div>
+        </div>
+        <div class="rule45-result">
+          <div class="rule45-result-header">
+            <span data-i18n="ui.rule45.possibleCombinations">可能的组合</span>
+            <span id="rule45-count" class="rule45-count">0 种</span>
+          </div>
+          <div id="rule45-combinations" class="rule45-combinations">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 设置弹窗 -->
+  <div id="settings-overlay">
+    <div class="settings-card">
+      <div class="settings-header">
+        <h3 data-i18n="ui.settings.title">⚙️ 设置</h3>
+        <button id="btn-settings-close" class="settings-close" data-i18n="ui.common.close">×</button>
+      </div>
+      <div class="settings-body">
+        <div class="settings-section">
+          <h4 data-i18n="ui.settings.audioSection">🔊 音频</h4>
+          <div class="setting-item">
+            <div class="setting-info">
+              <span class="setting-name" data-i18n="ui.settings.muteAll">🔇 一键静音</span>
+              <span class="setting-desc" data-i18n="ui.settings.muteAllDesc">关闭所有声音（BGM+音效）</span>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="setting-mute-all" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <div class="setting-item">
+            <div class="setting-info">
+              <span class="setting-name" data-i18n="ui.settings.bgm">🎵 背景音乐</span>
+              <span class="setting-desc" data-i18n="ui.settings.bgmDesc">游戏过程中的背景音乐</span>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="setting-bgm" checked />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <div class="setting-volume">
+            <span class="volume-label">音量</span>
+            <input type="range" id="setting-bgm-volume" min="0" max="100" value="50" class="volume-slider" />
+            <span class="volume-value" id="setting-bgm-volume-value">50%</span>
+          </div>
+          <div class="setting-item">
+            <div class="setting-info">
+              <span class="setting-name" data-i18n="ui.settings.sfx">🔊 音效</span>
+              <span class="setting-desc" data-i18n="ui.settings.sfxDesc">点击、填数等操作音效</span>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="setting-sfx" checked />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <div class="setting-volume">
+            <span class="volume-label">音量</span>
+            <input type="range" id="setting-sfx-volume" min="0" max="100" value="67" class="volume-slider" />
+            <span class="volume-value" id="setting-sfx-volume-value">67%</span>
+          </div>
+          <div class="setting-item">
+            <div class="setting-info">
+              <span class="setting-name">🎙️ 剧情配音</span>
+              <span class="setting-desc">角色对话语音与打字机音效</span>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="setting-voice" checked />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+        </div>
+        <div class="settings-section">
+          <h4 data-i18n="ui.settings.displaySection">显示</h4>
+          <div class="setting-item">
+            <div class="setting-info">
+              <span class="setting-name" data-i18n="ui.settings.conflictRed">冲突标红</span>
+              <span class="setting-desc" data-i18n="ui.settings.conflictRedDesc">填错数字时标红提示</span>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="setting-conflict-red" checked />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <div class="setting-item">
+            <div class="setting-info">
+              <span class="setting-name" data-i18n="ui.settings.highlightRow">同行高亮</span>
+              <span class="setting-desc" data-i18n="ui.settings.highlightRowDesc">选中格子时高亮整行</span>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="setting-highlight-row" checked />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <div class="setting-item">
+            <div class="setting-info">
+              <span class="setting-name" data-i18n="ui.settings.highlightCol">同列高亮</span>
+              <span class="setting-desc" data-i18n="ui.settings.highlightColDesc">选中格子时高亮整列</span>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="setting-highlight-col" checked />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <div class="setting-item">
+            <div class="setting-info">
+              <span class="setting-name" data-i18n="ui.settings.highlightBox">同宫高亮</span>
+              <span class="setting-desc" data-i18n="ui.settings.highlightBoxDesc">选中格子时高亮整宫</span>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="setting-highlight-box" checked />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <div class="setting-item">
+            <div class="setting-info">
+              <span class="setting-name" data-i18n="ui.settings.highlightSameNum">同数字高亮</span>
+              <span class="setting-desc" data-i18n="ui.settings.highlightSameNumDesc">选中数字时高亮所有相同数字</span>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="setting-highlight-samenum" checked />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <div class="setting-item">
+            <div class="setting-info">
+              <span class="setting-name" data-i18n="ui.settings.highlightSameCage">同笼高亮</span>
+              <span class="setting-desc" data-i18n="ui.settings.highlightSameCageDesc">选中格子时高亮所属笼子</span>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="setting-highlight-samecage" checked />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+        </div>
+        <div class="settings-section">
+          <h4 data-i18n="ui.settings.operationSection">操作</h4>
+          <div class="setting-item">
+            <div class="setting-info">
+              <span class="setting-name" data-i18n="ui.settings.autoClear">自动清候选</span>
+              <span class="setting-desc" data-i18n="ui.settings.autoClearDesc">填入数字后自动清除关联候选数</span>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="setting-auto-clear" checked />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="config.js?v=1"></script>
+  <script src="platform.js?v=1"></script>
+  <script src="resource-manager.js?v=1"></script>
+  <script>if (typeof ResourceManager !== 'undefined' && window.CONFIG && CONFIG.debug) console.log('[ResourceManager] ready');</script>
+  <script src="utils/storage.js?v=40"></script>
+  <script src="utils/i18n.js?v=40"></script>
+  <script src="utils/audio.js?v=50"></script>
+  <script>if (typeof AudioManager !== 'undefined') { AudioManager.init(); }</script>
+  <script src="data/dialogues.js?v=6"></script>
+  <script src="utils/comedy.js?v=7"></script>
+  <script src="utils/technique-tutorial.js?v=38"></script>
+  <script src="game.js?v=42"></script>
+  <script src="renderer.js?v=42"></script>
+  <script src="config/chapter-styles.js?v=3"></script>
+  <script src="scripts/effects.js?v=10"></script>
+  <script src="scripts/midi-bgm.js?v=4"></script>
+  <script src="utils/bgm-bridge.js?v=1"></script>
+  <script>if (typeof BGMEngine !== 'undefined') BGMEngine.init();</script>
+  <script src="story.js?v=52"></script>
+  <script src="scripts/story.js?v=23"></script>
+  <script src="guide-manager.js?v=45"></script>
+  <script src="guide-battle.js?v=45"></script>
+  <script src="guide.js?v=65"></script>
+
+  <!-- 测试工具脚本 -->
+  <script>
+  const TestUtils = {
+    // 面板切换
+    togglePanel() {
+      const panel = document.getElementById('test-panel');
+      const toggle = document.getElementById('test-toggle');
+      panel.classList.toggle('open');
+      toggle.classList.toggle('open');
+      document.body.classList.toggle('test-open');
+    },
+
+    // 解锁全部关卡
+    unlockAll() {
+      if (typeof Storage === 'undefined') return;
+      // 标记所有关卡为已完成
+      fetch('data/chapters.json')
+        .then(r => r.json())
+        .then(chapters => {
+          chapters.forEach(ch => {
+            ch.levels.forEach(lv => {
+              Storage.markComplete(lv.levelId, { time: 60, stars: 3 });
+            });
+          });
+          alert('✅ 全部关卡已解锁！');
+          this.refreshLevelList();
+        });
+    },
+
+    // 重置进度
+    resetProgress() {
+      if (!confirm('确定要重置所有进度吗？')) return;
+      if (typeof Storage === 'undefined') return;
+      const keys = Object.keys(localStorage).filter(k => k.startsWith('killersudoku_'));
+      keys.forEach(k => localStorage.removeItem(k));
+      alert('🗑 进度已重置，刷新页面生效');
+      location.reload();
+    },
+
+    // 直接通关
+    skipToEnd() {
+      if (typeof guideBoard === 'undefined' || !guideBoard) return;
+      // 填入所有正确答案
+      const solution = guideBoard.solution;
+      if (!solution) return;
+      for (let r = 0; r < guideBoard.size; r++) {
+        for (let c = 0; c < guideBoard.size; c++) {
+          if (guideBoard.cells[r][c].value === 0 && solution[r] && solution[r][c]) {
+            guideBoard.setValue(r, c, solution[r][c]);
+          }
+        }
+      }
+      if (typeof refreshBoard === 'function') refreshBoard();
+      if (typeof checkWin === 'function') checkWin();
+    },
+
+    // 填满答案
+    fillAllCells() {
+      if (typeof guideBoard === 'undefined' || !guideBoard) return;
+      const solution = guideBoard.solution;
+      if (!solution) { alert('没有答案数据'); return; }
+      let filled = 0;
+      for (let r = 0; r < guideBoard.size; r++) {
+        for (let c = 0; c < guideBoard.size; c++) {
+          if (guideBoard.cells[r][c].value === 0 && solution[r] && solution[r][c]) {
+            guideBoard.setValue(r, c, solution[r][c]);
+            filled++;
+          }
+        }
+      }
+      if (typeof refreshBoard === 'function') refreshBoard();
+      alert(`✅ 已填入 ${filled} 个数字`);
+    },
+
+    // 加载关卡
+    loadLevel(levelId) {
+      if (typeof startLevel === 'function') {
+        startLevel(String(levelId));
+      } else if (typeof loadTeachingLevel === 'function') {
+        currentLevelId = String(levelId);
+        location.reload();
+      }
+      this.togglePanel();
+    },
+
+    // 播放剧情场景
+    playScene(sceneId) {
+      if (typeof StoryEngine !== 'undefined' && StoryEngine.playScene) {
+        StoryEngine.playScene(sceneId);
+      } else if (typeof playScene === 'function') {
+        playScene(sceneId);
+      }
+    },
+
+    // 播放单句配音
+    playVoice(voiceId) {
+      if (typeof StoryEngine !== 'undefined' && StoryEngine.playVoice) {
+        StoryEngine.playVoice(voiceId);
+      } else if (typeof playVoice === 'function') {
+        playVoice(voiceId);
+      }
+    },
+
+    // 异议效果
+    playObjection() {
+      if (typeof showObjection === 'function') {
+        showObjection('异议！');
+      }
+    },
+
+    // 震动
+    playShake() {
+      if (typeof Effects !== 'undefined' && Effects.shake) {
+        Effects.shake(10, 300);
+      }
+    },
+
+    // 闪光
+    playFlash() {
+      if (typeof Effects !== 'undefined' && Effects.flash) {
+        Effects.flash('#ffffff', 200, 0.5);
+      }
+    },
+
+    // 暗角
+    playVignette() {
+      if (typeof Effects !== 'undefined' && Effects.vignette) {
+        Effects.vignette(0.6, 500);
+        setTimeout(() => Effects.vignette(0, 500), 1000);
+      }
+    },
+
+    // 喜剧气泡
+    showComedyBubble() {
+      if (typeof ComedySystem !== 'undefined' && ComedySystem.showBubble) {
+        ComedySystem.showBubble('测试气泡！', { type: 'surprised' });
+      } else {
+        alert('ComedySystem not available');
+      }
+    },
+
+    // 胜利音效
+    playVictory() {
+      if (typeof AudioManager !== 'undefined' && AudioManager.playVictory) {
+        AudioManager.playVictory();
+      }
+    },
+
+    // 刷新关卡列表
+    async refreshLevelList() {
+      const container = document.getElementById('test-levels');
+      try {
+        const res = await fetch('data/chapters.json');
+        const chapters = await res.json();
+        let html = '';
+        chapters.forEach(ch => {
+          html += `<div class="test-chapter-title">第${ch.chapterId}章 ${ch.title || ''}（${ch.levels.length}关）</div>`;
+          html += '<div class="test-level-grid">';
+          ch.levels.forEach((lv, i) => {
+            const isBoss = lv.isBoss || i === ch.levels.length - 1;
+            html += `<div class="test-level-btn ${isBoss ? 'boss' : ''}" onclick="TestUtils.loadLevel('${lv.levelId}')" title="${lv.name || lv.levelId}">${String(i+1).padStart(2,'0')}</div>`;
+          });
+          html += '</div>';
+        });
+        container.innerHTML = html;
+      } catch (e) {
+        container.innerHTML = `<div style="color:#ef4444;">加载失败: ${e.message}</div>`;
+      }
+    },
+
+    // 刷新场景列表
+    refreshSceneList() {
+      const container = document.getElementById('test-scenes');
+      if (typeof SCENE_TRIGGERS === 'undefined') {
+        container.innerHTML = '<div style="color:#64748b;">场景数据未加载</div>';
+        return;
+      }
+      let html = '';
+      Object.keys(SCENE_TRIGGERS).sort().forEach(sceneId => {
+        const voices = SCENE_TRIGGERS[sceneId];
+        const count = Array.isArray(voices) ? voices.length : 0;
+        html += `<div class="scene-item" onclick="TestUtils.playScene('${sceneId}')">
+          <span class="scene-name">${sceneId}</span>
+          <span class="scene-count">${count}句</span>
+        </div>`;
+      });
+      container.innerHTML = html || '<div style="color:#64748b;">无场景</div>';
+    },
+
+    // 刷新配音列表
+    refreshVoiceList(filter = 'all') {
+      const container = document.getElementById('test-voices');
+      if (typeof DIALOGUES === 'undefined') {
+        container.innerHTML = '<div style="color:#64748b;">配音数据未加载</div>';
+        return;
+      }
+      let html = '';
+      const prefixMap = { CK: 'ck', R: 'r', P: 'p', W: 'w', RE: 're', S: 's', SS: 'ss' };
+      Object.keys(DIALOGUES).sort().forEach(voId => {
+        if (!voId.startsWith('VO_')) return;
+        const prefix = voId.replace('VO_', '').split('_')[0];
+        if (filter !== 'all' && prefix !== filter) return;
+        const dlg = DIALOGUES[voId];
+        const text = dlg.text || '(无文本)';
+        const cls = prefixMap[prefix] || '';
+        html += `<button class="voice-btn ${cls}" onclick="TestUtils.playVoice('${voId}')" title="${text}">${voId}: ${text.slice(0, 8)}${text.length>8?'...':''}</button>`;
+      });
+      container.innerHTML = html || '<div style="color:#64748b;">无匹配</div>';
+    },
+
+    // 更新状态
+    updateStatus() {
+      const set = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
+      set('status-level', typeof currentLevelId !== 'undefined' ? currentLevelId : '-');
+      set('status-chapter', typeof currentChapterId !== 'undefined' ? currentChapterId : '-');
+      set('status-size', typeof guideBoard !== 'undefined' && guideBoard ? guideBoard.size : '-');
+
+      if (typeof guideBoard !== 'undefined' && guideBoard) {
+        let filled = 0, total = 0;
+        for (let r = 0; r < guideBoard.size; r++) {
+          for (let c = 0; c < guideBoard.size; c++) {
+            total++;
+            if (guideBoard.cells[r][c].value !== 0) filled++;
+          }
+        }
+        set('status-filled', `${filled}/${total}`);
+      } else {
+        set('status-filled', '-');
+      }
+
+      if (typeof AudioManager !== 'undefined') {
+        set('status-bgm', AudioManager.bgmPlaying ? '▶ 播放中' : '⏸ 停止');
+      } else {
+        set('status-bgm', '-');
+      }
+    },
+
+    // 初始化
+    init() {
+      // 面板切换
+      document.getElementById('test-toggle').addEventListener('click', () => this.togglePanel());
+
+      // 配音筛选
+      const filter = document.getElementById('voice-filter');
+      if (filter) {
+        filter.addEventListener('change', (e) => this.refreshVoiceList(e.target.value));
+      }
+
+      // 初始化数据
+      setTimeout(() => {
+        this.refreshLevelList();
+        this.refreshSceneList();
+        this.refreshVoiceList();
+      }, 500);
+
+      // 定时更新状态
+      setInterval(() => this.updateStatus(), 1000);
+
+      console.log('🧪 TestUtils initialized');
+    }
+  };
+
+  // 等待页面加载完成后初始化
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => TestUtils.init());
+  } else {
+    TestUtils.init();
+  }
+  </script>
+
+  <style>
+    .lang-btn {
+      padding: 6px 12px;
+      border: 1px solid var(--theme-border, #d1d5db);
+      background: var(--theme-bg, #fff);
+      color: var(--theme-text, #333);
+      border-radius: 8px;
+      font-size: 13px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .lang-btn:hover { background: var(--theme-hover, #f3f4f6); }
+    .lang-btn.active {
+      background: #3b82f6;
+      color: #fff;
+      border-color: #3b82f6;
+    }
+  </style>
+</body>
+</html>

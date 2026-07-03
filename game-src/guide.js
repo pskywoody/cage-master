@@ -403,6 +403,7 @@ window.onload = async function() {
     // 绑定语言切换按钮
     document.querySelectorAll('.lang-btn').forEach(btn => {
       btn.addEventListener('click', async () => {
+        if (typeof AudioManager !== 'undefined') AudioManager.playClick();
         const locale = btn.dataset.locale;
         await I18N.setLocale(locale);
         updateLangButtons();
@@ -625,6 +626,7 @@ window.onload = async function() {
     // 8. 加载关卡盘面数据
     const puzzle = extractPuzzleData(levelData);
     guideBoard.loadLevel(puzzle);
+    guideBoard.levelId = currentLevelId;
 
     // 8.5 重置三阶段状态
     resetPhase();
@@ -673,6 +675,11 @@ window.onload = async function() {
           ComedySystem._showBubble('阿岩', text, 'linear-gradient(135deg,#22c55e,#15803d)', '🍃');
         }
       };
+    }
+
+    // 12.06 初始化技巧识别反馈系统
+    if (typeof TechniqueFeedback !== 'undefined') {
+      TechniqueFeedback.init(guideBoard);
     }
 
     // 12.1 应用i18n动态文本
@@ -1056,7 +1063,20 @@ function bindTimerAndPause() {
 }
 
 // ---------- 统一的操作后刷新 ----------
-function refreshBoard() {
+// ===== 渲染节流（rAF合并，确保每帧最多一次渲染）=====
+let _renderPending = false;
+let _renderFrameId = null;
+
+function scheduleRender() {
+  if (_renderPending) return;
+  _renderPending = true;
+  _renderFrameId = requestAnimationFrame(() => {
+    _renderPending = false;
+    _doRender();
+  });
+}
+
+function _doRender() {
   // 操作后清除提示状态
   if (hintStep > 0) {
     guideBoard.clearHints();
@@ -1096,6 +1116,20 @@ function refreshBoard() {
   }
 
   checkAndNotifyConflict();
+}
+
+function refreshBoard(immediate) {
+  if (immediate) {
+    // 立即渲染（取消待处理的rAF）
+    if (_renderFrameId) {
+      cancelAnimationFrame(_renderFrameId);
+      _renderFrameId = null;
+    }
+    _renderPending = false;
+    _doRender();
+  } else {
+    scheduleRender();
+  }
   saveProgress();
   updateNumberButtons();
 
@@ -1320,6 +1354,7 @@ function _initStoryPerformance() {
   if (voiceToggle && typeof StoryEngine !== 'undefined') {
     StoryEngine.setVoiceEnabled(voiceToggle.checked);
     voiceToggle.addEventListener('change', () => {
+      if (typeof AudioManager !== 'undefined') AudioManager.playToggle();
       StoryEngine.setVoiceEnabled(voiceToggle.checked);
     });
   } else if (typeof StoryEngine !== 'undefined') {
@@ -1808,9 +1843,12 @@ function _showBattleToast(text, intensity, duration) {
 
 /**
  * 设备震动（如果支持）
+ * 优先使用 AudioManager.vibrate()，fallback 到本地 navigator.vibrate
  */
 function _vibrate(pattern) {
-  if (navigator.vibrate) {
+  if (typeof AudioManager !== 'undefined' && typeof AudioManager.vibrate === 'function') {
+    AudioManager.vibrate(pattern);
+  } else if (navigator.vibrate) {
     try { navigator.vibrate(pattern); } catch (e) {}
   }
 }
@@ -2480,7 +2518,9 @@ function handleCanvasTap(clientX, clientY) {
 function handleLongPress(clientX, clientY) {
   if (!features.allowDraft) return;
 
-  if (navigator.vibrate) {
+  if (typeof AudioManager !== 'undefined') {
+    AudioManager.vibrate('tap');
+  } else if (navigator.vibrate) {
     navigator.vibrate(50);
   }
 
@@ -2508,7 +2548,10 @@ function bindNumPad() {
     if (!btn) return;
     if (isPaused) return;
     if (btn.classList.contains('completed')) return;
-    if (typeof AudioManager !== 'undefined') AudioManager.playClick();
+    if (typeof AudioManager !== 'undefined') {
+      AudioManager.playClick();
+      AudioManager.vibrate('click');
+    }
 
     const num = parseInt(btn.dataset.num);
     
@@ -2593,11 +2636,21 @@ function handleNumberInput(num) {
       colEmpty: countEmptyInCol(c)
     };
 
+    // 填数前：记录技巧检测所需的状态
+    if (typeof TechniqueFeedback !== 'undefined') {
+      TechniqueFeedback.recordBeforeState(guideBoard, r, c);
+    }
+
     guideBoard.setNumber(num);
     const newVal = guideBoard.cells[r][c].fillNum;
     // 只有真正填入了新数字才触发
     if (newVal && newVal !== oldVal) {
       guide_onNumberFilled(r, c, newVal);
+
+      // 智能技巧识别反馈
+      if (typeof TechniqueFeedback !== 'undefined') {
+        TechniqueFeedback.onNumberFilled(guideBoard, r, c, newVal);
+      }
 
       // Boss战：追踪玩家填数进度
       if (typeof GuideBattle !== 'undefined' && GuideBattle.active && !GuideBattle.ended) {
@@ -2711,7 +2764,10 @@ function bindToolbar() {
   if (undoBtn) {
     undoBtn.addEventListener('click', () => {
       if (isPaused) return;
-      if (typeof AudioManager !== 'undefined') AudioManager.playClick();
+      if (typeof AudioManager !== 'undefined') {
+        AudioManager.playClick();
+        if (typeof AudioManager.vibrate === 'function') AudioManager.vibrate('click');
+      }
       guideBoard.undo();
       refreshBoard();
     });
@@ -2722,7 +2778,10 @@ function bindToolbar() {
   if (eraseBtn) {
     eraseBtn.addEventListener('click', () => {
       if (isPaused) return;
-      if (typeof AudioManager !== 'undefined') AudioManager.playClick();
+      if (typeof AudioManager !== 'undefined') {
+        AudioManager.playErase();
+        AudioManager.vibrate('erase');
+      }
       if (guideBoard.selectedCells.length > 1) {
         guideBoard.eraseSelection();
       } else if (guideBoard.selectedCell) {
@@ -2739,7 +2798,10 @@ function bindToolbar() {
   if (candidateBtn) {
     candidateBtn.addEventListener('click', () => {
       if (isPaused) return;
-      if (typeof AudioManager !== 'undefined') AudioManager.playClick();
+      if (typeof AudioManager !== 'undefined') {
+        AudioManager.playClick();
+        if (typeof AudioManager.vibrate === 'function') AudioManager.vibrate('click');
+      }
       if (!features.allowDraft) return;
       const mode = guideBoard.toggleInputMode();
       if (mode === 'candidate') {
@@ -2757,7 +2819,10 @@ function bindToolbar() {
   if (autoCandsBtn) {
     autoCandsBtn.addEventListener('click', () => {
       if (isPaused) return;
-      if (typeof AudioManager !== 'undefined') AudioManager.playClick();
+      if (typeof AudioManager !== 'undefined') {
+        AudioManager.playClick();
+        if (typeof AudioManager.vibrate === 'function') AudioManager.vibrate('click');
+      }
       if (!features.allowDraft) return;
       const count = guideBoard.autoFillCandidates();
       if (count > 0) {
@@ -2784,7 +2849,10 @@ function bindToolbar() {
   if (hintBtn) {
     hintBtn.addEventListener('click', () => {
       if (isPaused) return;
-      if (typeof AudioManager !== 'undefined') AudioManager.playClick();
+      if (typeof AudioManager !== 'undefined') {
+        AudioManager.playClick();
+        if (typeof AudioManager.vibrate === 'function') AudioManager.vibrate('click');
+      }
       if (!features.showHints) return;
       handleHint();
     });
@@ -2795,7 +2863,10 @@ function bindToolbar() {
   if (rule45Btn) {
     rule45Btn.addEventListener('click', () => {
       if (isPaused) return;
-      if (typeof AudioManager !== 'undefined') AudioManager.playClick();
+      if (typeof AudioManager !== 'undefined') {
+        AudioManager.playClick();
+        if (typeof AudioManager.vibrate === 'function') AudioManager.vibrate('click');
+      }
       if (!features.assistant45) return;
       toggleRule45Calculator();
     });
@@ -2806,7 +2877,10 @@ function bindToolbar() {
   if (settingBtn) {
     settingBtn.addEventListener('click', () => {
       if (isPaused) return;
-      if (typeof AudioManager !== 'undefined') AudioManager.playClick();
+      if (typeof AudioManager !== 'undefined') {
+        AudioManager.playClick();
+        if (typeof AudioManager.vibrate === 'function') AudioManager.vibrate('click');
+      }
       toggleSettings();
     });
   }
@@ -2815,8 +2889,13 @@ function bindToolbar() {
   const restartBtn = document.getElementById('btn-restart');
   if (restartBtn) {
     restartBtn.addEventListener('click', () => {
-      if (isPaused) return;
-      if (typeof AudioManager !== 'undefined') AudioManager.playClick();
+      if (isPaused) {
+        togglePause();
+      }
+      if (typeof AudioManager !== 'undefined') {
+        AudioManager.playClick();
+        if (typeof AudioManager.vibrate === 'function') AudioManager.vibrate('click');
+      }
       if (typeof ComedySystem !== 'undefined') ComedySystem.onReset();
       confirmRestart();
     });
@@ -3320,7 +3399,11 @@ function setupQuickFillLongPress() {
         longPressTriggered = true;
         btn.classList.remove('long-pressing');
         selectQuickFillNum(num);           // 变绿 + 高亮盘面
-        if (navigator.vibrate) navigator.vibrate(50);
+        if (typeof AudioManager !== 'undefined') {
+          AudioManager.vibrate('tap');
+        } else if (navigator.vibrate) {
+          navigator.vibrate(50);
+        }
         _skipNextClick = true;
         longPressTimer = null;
       }, 650);
@@ -3552,6 +3635,10 @@ function guide_onNumberFilled(r, c, num) {
   // 逆转裁判式演出：正确/错误回调
   if (isCorrect) {
     _onStoryCorrect();
+    if (typeof AudioManager !== 'undefined') {
+      AudioManager.playCorrect();
+      AudioManager.vibrate('correct');
+    }
   } else {
     _onStoryWrong();
   }
@@ -3570,6 +3657,7 @@ function guide_onNumberFilled(r, c, num) {
     // 播放错误音效
     if (typeof AudioManager !== 'undefined') {
       AudioManager.playWrong();
+      AudioManager.vibrate('wrong');
     }
     
     // 错误震动反馈
@@ -3814,9 +3902,11 @@ function toggleSettings() {
 
   if (overlay.classList.contains('active')) {
     overlay.classList.remove('active');
+    if (typeof AudioManager !== 'undefined') AudioManager.playPopupClose();
   } else {
     loadSettingsToUI();
     overlay.classList.add('active');
+    if (typeof AudioManager !== 'undefined') AudioManager.playPopupOpen();
   }
 }
 
@@ -3838,6 +3928,7 @@ function initSettingsBindings() {
   const conflictRed = document.getElementById('setting-conflict-red');
   if (conflictRed) {
     conflictRed.addEventListener('change', (e) => {
+      if (typeof AudioManager !== 'undefined') AudioManager.playToggle();
       guideBoard.settings.conflictRed = e.target.checked;
       saveSettings();
       refreshBoard();
@@ -3847,6 +3938,7 @@ function initSettingsBindings() {
   const highlightRow = document.getElementById('setting-highlight-row');
   if (highlightRow) {
     highlightRow.addEventListener('change', (e) => {
+      if (typeof AudioManager !== 'undefined') AudioManager.playToggle();
       guideBoard.highlightSettings.sameRow = e.target.checked;
       saveSettings();
       refreshBoard();
@@ -3856,6 +3948,7 @@ function initSettingsBindings() {
   const highlightCol = document.getElementById('setting-highlight-col');
   if (highlightCol) {
     highlightCol.addEventListener('change', (e) => {
+      if (typeof AudioManager !== 'undefined') AudioManager.playToggle();
       guideBoard.highlightSettings.sameCol = e.target.checked;
       saveSettings();
       refreshBoard();
@@ -3865,6 +3958,7 @@ function initSettingsBindings() {
   const highlightBox = document.getElementById('setting-highlight-box');
   if (highlightBox) {
     highlightBox.addEventListener('change', (e) => {
+      if (typeof AudioManager !== 'undefined') AudioManager.playToggle();
       guideBoard.highlightSettings.sameBox = e.target.checked;
       saveSettings();
       refreshBoard();
@@ -3874,6 +3968,7 @@ function initSettingsBindings() {
   const highlightSameNum = document.getElementById('setting-highlight-samenum');
   if (highlightSameNum) {
     highlightSameNum.addEventListener('change', (e) => {
+      if (typeof AudioManager !== 'undefined') AudioManager.playToggle();
       guideBoard.highlightSettings.sameNumber = e.target.checked;
       saveSettings();
       refreshBoard();
@@ -3883,6 +3978,7 @@ function initSettingsBindings() {
   const highlightSameCage = document.getElementById('setting-highlight-samecage');
   if (highlightSameCage) {
     highlightSameCage.addEventListener('change', (e) => {
+      if (typeof AudioManager !== 'undefined') AudioManager.playToggle();
       guideBoard.highlightSettings.sameCage = e.target.checked;
       saveSettings();
       refreshBoard();
@@ -3892,7 +3988,18 @@ function initSettingsBindings() {
   const autoClear = document.getElementById('setting-auto-clear');
   if (autoClear) {
     autoClear.addEventListener('change', (e) => {
+      if (typeof AudioManager !== 'undefined') AudioManager.playToggle();
       guideBoard.settings.autoClearCandidates = e.target.checked;
+      saveSettings();
+    });
+  }
+
+  // 触感反馈：振动开关
+  const vibrationToggle = document.getElementById('setting-vibration');
+  if (vibrationToggle) {
+    vibrationToggle.addEventListener('change', (e) => {
+      if (typeof AudioManager !== 'undefined') AudioManager.playToggle();
+      guideBoard.settings.vibration = e.target.checked;
       saveSettings();
     });
   }
@@ -3901,6 +4008,7 @@ function initSettingsBindings() {
   const muteAll = document.getElementById('setting-mute-all');
   if (muteAll) {
     muteAll.addEventListener('change', (e) => {
+      if (typeof AudioManager !== 'undefined') AudioManager.playToggle();
       const muted = e.target.checked;
       guideBoard.settings.muteAll = muted;
       if (typeof AudioManager !== 'undefined') {
@@ -3926,6 +4034,7 @@ function initSettingsBindings() {
   const bgmToggle = document.getElementById('setting-bgm');
   if (bgmToggle) {
     bgmToggle.addEventListener('change', (e) => {
+      if (typeof AudioManager !== 'undefined') AudioManager.playToggle();
       const bgmOn = e.target.checked;
       guideBoard.settings.bgm = bgmOn;
       if (typeof AudioManager !== 'undefined') {
@@ -3935,6 +4044,8 @@ function initSettingsBindings() {
           AudioManager.setBgmEnabled(bgmOn);
         }
       }
+      // 同步音量条禁用状态
+      updateVolumeSlidersDisabled();
       saveSettings();
     });
   }
@@ -3943,6 +4054,7 @@ function initSettingsBindings() {
   const sfxToggle = document.getElementById('setting-sfx');
   if (sfxToggle) {
     sfxToggle.addEventListener('change', (e) => {
+      if (typeof AudioManager !== 'undefined') AudioManager.playToggle();
       const sfxOn = e.target.checked;
       guideBoard.settings.sfx = sfxOn;
       if (typeof AudioManager !== 'undefined') {
@@ -3952,8 +4064,79 @@ function initSettingsBindings() {
           AudioManager.setSfxEnabled(sfxOn);
         }
       }
+      // 同步音量条禁用状态
+      updateVolumeSlidersDisabled();
       saveSettings();
     });
+  }
+
+  // 音频设置：BGM音量滑块
+  const bgmVolumeSlider = document.getElementById('setting-bgm-volume');
+  const bgmVolumeValue = document.getElementById('setting-bgm-volume-value');
+  let _bgmSliderThrottle = 0;
+  if (bgmVolumeSlider) {
+    bgmVolumeSlider.addEventListener('input', (e) => {
+      const val = parseInt(e.target.value, 10);
+      if (bgmVolumeValue) bgmVolumeValue.textContent = val + '%';
+      if (typeof AudioManager !== 'undefined') {
+        // 将 0-100 映射到 0-1（BGM默认音量较低，用0.3作为最大值）
+        AudioManager.setBgmVolume(val / 100 * 0.3);
+        // slider 音效节流 100ms
+        const now = Date.now();
+        if (now - _bgmSliderThrottle >= 100) {
+          _bgmSliderThrottle = now;
+          if (typeof AudioManager.playSlider === 'function') AudioManager.playSlider();
+        }
+      }
+      guideBoard.settings.bgmVolume = val;
+    });
+    bgmVolumeSlider.addEventListener('change', () => {
+      saveSettings();
+    });
+  }
+
+  // 音频设置：音效音量滑块
+  const sfxVolumeSlider = document.getElementById('setting-sfx-volume');
+  const sfxVolumeValue = document.getElementById('setting-sfx-volume-value');
+  let _sfxSliderThrottle = 0;
+  if (sfxVolumeSlider) {
+    sfxVolumeSlider.addEventListener('input', (e) => {
+      const val = parseInt(e.target.value, 10);
+      if (sfxVolumeValue) sfxVolumeValue.textContent = val + '%';
+      if (typeof AudioManager !== 'undefined') {
+        // 将 0-100 映射到 0-1（音效默认音量适中，用0.6作为最大值）
+        AudioManager.setSfxVolume(val / 100 * 0.6);
+        // slider 音效节流 100ms
+        const now = Date.now();
+        if (now - _sfxSliderThrottle >= 100) {
+          _sfxSliderThrottle = now;
+          if (typeof AudioManager.playSlider === 'function') AudioManager.playSlider();
+        }
+      }
+      guideBoard.settings.sfxVolume = val;
+    });
+    sfxVolumeSlider.addEventListener('change', () => {
+      saveSettings();
+      // 播放一个点击音作为反馈
+      if (typeof AudioManager !== 'undefined' && guideBoard.settings.sfx !== false && !guideBoard.settings.muteAll) {
+        AudioManager.playClick && AudioManager.playClick();
+      }
+    });
+  }
+
+  // 初始化音量条禁用状态
+  updateVolumeSlidersDisabled();
+}
+
+function updateVolumeSlidersDisabled() {
+  const isMuted = guideBoard.settings.muteAll;
+  const bgmVolRow = document.getElementById('setting-bgm-volume')?.closest('.setting-volume');
+  const sfxVolRow = document.getElementById('setting-sfx-volume')?.closest('.setting-volume');
+  if (bgmVolRow) {
+    bgmVolRow.classList.toggle('disabled', isMuted || guideBoard.settings.bgm === false);
+  }
+  if (sfxVolRow) {
+    sfxVolRow.classList.toggle('disabled', isMuted || guideBoard.settings.sfx === false);
   }
 }
 
@@ -3973,6 +4156,9 @@ function loadSettings() {
   if (saved.muteAll !== undefined) guideBoard.settings.muteAll = saved.muteAll;
   if (saved.bgm !== undefined) guideBoard.settings.bgm = saved.bgm;
   if (saved.sfx !== undefined) guideBoard.settings.sfx = saved.sfx;
+  if (saved.bgmVolume !== undefined) guideBoard.settings.bgmVolume = saved.bgmVolume;
+  if (saved.sfxVolume !== undefined) guideBoard.settings.sfxVolume = saved.sfxVolume;
+  if (saved.vibration !== undefined) guideBoard.settings.vibration = saved.vibration;
   
   // 应用音频设置
   applyAudioSettings();
@@ -3987,6 +4173,13 @@ function applyAudioSettings() {
   } else {
     AudioManager.setBgmEnabled(s.bgm !== false);
     AudioManager.setSfxEnabled(s.sfx !== false);
+  }
+  // 应用音量设置（默认值：BGM 50%→0.15，音效 67%→0.4）
+  if (s.bgmVolume !== undefined) {
+    AudioManager.setBgmVolume(s.bgmVolume / 100 * 0.3);
+  }
+  if (s.sfxVolume !== undefined) {
+    AudioManager.setSfxVolume(s.sfxVolume / 100 * 0.6);
   }
   // 同步 BGMEngine（通知菜单页静音）
   document.dispatchEvent(new CustomEvent('bgm-toggle', { detail: s.muteAll ? false : (s.bgm !== false) }));
@@ -4004,7 +4197,10 @@ function saveSettings() {
     highlightSameCage: guideBoard.highlightSettings.sameCage,
     muteAll: guideBoard.settings.muteAll,
     bgm: guideBoard.settings.bgm,
-    sfx: guideBoard.settings.sfx
+    sfx: guideBoard.settings.sfx,
+    bgmVolume: guideBoard.settings.bgmVolume,
+    sfxVolume: guideBoard.settings.sfxVolume,
+    vibration: guideBoard.settings.vibration
   });
 }
 
@@ -4030,6 +4226,10 @@ function loadSettingsToUI() {
   const autoClear = document.getElementById('setting-auto-clear');
   if (autoClear) autoClear.checked = guideBoard.settings.autoClearCandidates;
 
+  // 触感反馈UI
+  const vibrationToggle = document.getElementById('setting-vibration');
+  if (vibrationToggle) vibrationToggle.checked = guideBoard.settings.vibration !== false;
+
   // 音频设置UI
   const muteAll = document.getElementById('setting-mute-all');
   const bgmToggle = document.getElementById('setting-bgm');
@@ -4046,4 +4246,26 @@ function loadSettingsToUI() {
     sfxToggle.disabled = isMuted;
     sfxToggle.parentElement.style.opacity = isMuted ? '0.5' : '1';
   }
+
+  // 音量滑块UI
+  const bgmVolSlider = document.getElementById('setting-bgm-volume');
+  const bgmVolValue = document.getElementById('setting-bgm-volume-value');
+  const sfxVolSlider = document.getElementById('setting-sfx-volume');
+  const sfxVolValue = document.getElementById('setting-sfx-volume-value');
+  // 默认值：BGM 50（对应0.15），音效 67（对应0.4）
+  const defaultBgmVol = 50;
+  const defaultSfxVol = 67;
+  if (bgmVolSlider) {
+    const v = guideBoard.settings.bgmVolume !== undefined ? guideBoard.settings.bgmVolume : defaultBgmVol;
+    bgmVolSlider.value = v;
+    if (bgmVolValue) bgmVolValue.textContent = v + '%';
+  }
+  if (sfxVolSlider) {
+    const v = guideBoard.settings.sfxVolume !== undefined ? guideBoard.settings.sfxVolume : defaultSfxVol;
+    sfxVolSlider.value = v;
+    if (sfxVolValue) sfxVolValue.textContent = v + '%';
+  }
+
+  // 更新音量条禁用状态
+  updateVolumeSlidersDisabled();
 }

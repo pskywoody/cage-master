@@ -181,6 +181,10 @@ class StoryModal {
       if (speakerName === '守笼人') preset = chars.keeper;
       else if (speakerName === '阿岩') preset = chars.ayan;
       else if (speakerName === '设局人') preset = chars.setter;
+      else if (speakerName === '设局人残影') preset = chars.shadow;
+      else if (speakerName === '设局人（秘术）') preset = chars.setterSecret;
+      else if (speakerName === '星辰梭' || speakerName === '织网者') preset = chars.starshuttle;
+      else if (speakerName === '残局守护者' || speakerName === '残局') preset = chars.guardian;
       else if (speakerName === '旁白') preset = chars.narrator;
     }
 

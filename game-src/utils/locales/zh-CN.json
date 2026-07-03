@@ -982,7 +982,19 @@
       "cheatSheetStreak5": ["等等……你该不会是设局人派来的卧底吧？这也太顺了。不合理。"],
       "cheatSheetComplete": ["……你居然真的学会了。老夫有点感动。也有点害怕——设局人怕是要哭了。"],
       "memorizeMnemonic": ["这四句口诀，乃老夫毕生心血所聚，你要铭记于心——三取一二，四取一三，六取二四，七取三四。"],
-      "mnemonicTooLong": ["怎么？没记住？"]
+      "mnemonicTooLong": ["怎么？没记住？"],
+      "tech_nakedSingle_first": ["嗯…此格唯余一数，别无选择——这便是孤星之法的精要。"],
+      "tech_nakedSingle_normal": ["孤星。", "又是孤星。", "一眼就能看出来的。"],
+      "tech_nakedSingle_combo": ["……你是只会孤星吗？", "又是孤星…能不能来点新鲜的？"],
+      "tech_hiddenSingle_first": ["群曜遮目，一光独隐。你居然能看穿这一层……不错。"],
+      "tech_hiddenSingle_normal": ["隐曜。", "藏的够深，但没逃过你的眼。", "隐曜之法，用得越来越熟了。"],
+      "tech_hiddenSingle_combo": ["连续找出三颗隐曜…眼力不错。", "三连隐曜，你已经出师了。"],
+      "tech_rule45_first": ["四十五星衡…你开始用星辰梭推算全局了。"],
+      "tech_rule45_normal": ["星衡术，用得不错。", "算得挺准。", "45法则，越来越顺手了。"],
+      "tech_rule45_combo": ["星衡术三连，你快成半个设局人了。", "三次星衡术，丝毫不差。"],
+      "tech_nakedPair_first": ["两格两数——并蒂锁。你居然看出来了。"],
+      "tech_nakedPair_normal": ["并蒂锁。", "锁得漂亮。", "又一把并蒂锁。"],
+      "tech_nakedPair_combo": ["三把并蒂锁…这盘面干净得像被扫过。", "连续三把并蒂锁，好眼力。"]
     },
     "setter": {
       "bossIntroNormal": ["哼，这一关我可是用了'二连纵横阵'加'斜飞阵'的混合双打。哪怕是一头猪来填，也得填上三天三夜。"],

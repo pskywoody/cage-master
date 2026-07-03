@@ -46,14 +46,14 @@ class HumanSimulator {
     this.techniques = {
       nakedSingle: 0,      // 显单
       hiddenSingle: 0,     // 隐单
+      nakedPair: 0,        // 裸数对
+      hiddenPair: 0,       // 隐数对
+      pointingClaiming: 0, // 区块排除法
       rule45: 0,           // 45法则
       elimination: 0       // 摒除（候选数移除）
     };
 
-    // 初始化候选数
-    this._initCandidates();
-
-    // 初始化笼子状态（从初始数字）
+    // 初始化笼子状态（从初始数字）—— 必须在初始化候选数之前！
     for (let r = 0; r < 9; r++) {
       for (let c = 0; c < 9; c++) {
         if (this.grid[r][c] !== 0) {
@@ -61,6 +61,9 @@ class HumanSimulator {
         }
       }
     }
+
+    // 初始化候选数（依赖笼子状态）
+    this._initCandidates();
   }
 
   // ---------- 初始化候选数 ----------
@@ -325,7 +328,320 @@ class HumanSimulator {
     return null;
   }
 
-  // ---------- 技巧3：45法则 ----------
+  // ---------- 技巧3：裸数对（Naked Pair）----------
+  // 某行/列/宫/笼中，有两个格子恰好有相同的两个候选数
+  // 则这两个数字一定在这两个格子里，可以从同行/列/宫/笼的其他格子中移除这两个候选
+  _findNakedPair() {
+    // 检查行
+    for (let r = 0; r < 9; r++) {
+      const result = this._findNakedPairInScope('row', r);
+      if (result) return result;
+    }
+    // 检查列
+    for (let c = 0; c < 9; c++) {
+      const result = this._findNakedPairInScope('col', c);
+      if (result) return result;
+    }
+    // 检查宫
+    for (let b = 0; b < 9; b++) {
+      const result = this._findNakedPairInScope('box', b);
+      if (result) return result;
+    }
+    return null;
+  }
+
+  _findNakedPairInScope(scope, id) {
+    let cells = [];
+    if (scope === 'row') {
+      for (let c = 0; c < 9; c++) {
+        if (this.grid[id][c] === 0) cells.push([id, c]);
+      }
+    } else if (scope === 'col') {
+      for (let r = 0; r < 9; r++) {
+        if (this.grid[r][id] === 0) cells.push([r, id]);
+      }
+    } else if (scope === 'box') {
+      const br = Math.floor(id / 3) * 3;
+      const bc = (id % 3) * 3;
+      for (let dr = 0; dr < 3; dr++) {
+        for (let dc = 0; dc < 3; dc++) {
+          if (this.grid[br+dr][bc+dc] === 0) cells.push([br+dr, bc+dc]);
+        }
+      }
+    }
+
+    // 找出所有候选数为2的格子
+    const twoCandCells = cells.filter(([r, c]) => this.candidates[r][c].size === 2);
+    if (twoCandCells.length < 2) return null;
+
+    // 两两比较，找候选数完全相同的对
+    for (let i = 0; i < twoCandCells.length; i++) {
+      for (let j = i + 1; j < twoCandCells.length; j++) {
+        const [r1, c1] = twoCandCells[i];
+        const [r2, c2] = twoCandCells[j];
+        const cands1 = this.candidates[r1][c1];
+        const cands2 = this.candidates[r2][c2];
+        
+        if (cands1.size === cands2.size && cands1.size === 2) {
+          let same = true;
+          for (const n of cands1) {
+            if (!cands2.has(n)) { same = false; break; }
+          }
+          if (same) {
+            // 找到了裸数对！检查能否移除其他格子的候选
+            const pairNums = Array.from(cands1).sort((a,b)=>a-b);
+            let eliminated = false;
+            
+            for (const [r, c] of cells) {
+              if ((r === r1 && c === c1) || (r === r2 && c === c2)) continue;
+              for (const n of pairNums) {
+                if (this.candidates[r][c].has(n)) {
+                  this.candidates[r][c].delete(n);
+                  eliminated = true;
+                }
+              }
+            }
+            
+            if (eliminated) {
+              return { eliminated: true, technique: 'nakedPair', scope, scopeId: id, pair: pairNums };
+            }
+          }
+        }
+      }
+    }
+    return null;
+  }
+
+  // ---------- 技巧4：隐数对（Hidden Pair）----------
+  // 某行/列/宫/笼中，有两个数字恰好只出现在两个格子的候选里
+  // 则这两个格子只能是这两个数字，可以移除这两个格子的其他候选
+  _findHiddenPair() {
+    // 检查行
+    for (let r = 0; r < 9; r++) {
+      const result = this._findHiddenPairInScope('row', r);
+      if (result) return result;
+    }
+    // 检查列
+    for (let c = 0; c < 9; c++) {
+      const result = this._findHiddenPairInScope('col', c);
+      if (result) return result;
+    }
+    // 检查宫
+    for (let b = 0; b < 9; b++) {
+      const result = this._findHiddenPairInScope('box', b);
+      if (result) return result;
+    }
+    return null;
+  }
+
+  _findHiddenPairInScope(scope, id) {
+    // 收集每个数字出现的位置
+    const numPositions = {}; // num -> [[r,c], ...]
+    
+    const collectCell = (r, c) => {
+      if (this.grid[r][c] !== 0) return;
+      for (const n of this.candidates[r][c]) {
+        if (!numPositions[n]) numPositions[n] = [];
+        numPositions[n].push([r, c]);
+      }
+    };
+    
+    if (scope === 'row') {
+      for (let c = 0; c < 9; c++) collectCell(id, c);
+    } else if (scope === 'col') {
+      for (let r = 0; r < 9; r++) collectCell(r, id);
+    } else if (scope === 'box') {
+      const br = Math.floor(id / 3) * 3;
+      const bc = (id % 3) * 3;
+      for (let dr = 0; dr < 3; dr++) {
+        for (let dc = 0; dc < 3; dc++) {
+          collectCell(br+dr, bc+dc);
+        }
+      }
+    }
+
+    // 找出恰好出现在2个位置的数字
+    const twoPosNums = [];
+    for (const n of Object.keys(numPositions)) {
+      if (numPositions[n].length === 2) {
+        twoPosNums.push({ num: parseInt(n), positions: numPositions[n] });
+      }
+    }
+    
+    if (twoPosNums.length < 2) return null;
+
+    // 两两比较，找位置完全相同的数字对
+    for (let i = 0; i < twoPosNums.length; i++) {
+      for (let j = i + 1; j < twoPosNums.length; j++) {
+        const a = twoPosNums[i];
+        const b = twoPosNums[j];
+        
+        // 检查两个数字是否出现在相同的两个位置
+        const samePositions = 
+          ((a.positions[0][0] === b.positions[0][0] && a.positions[0][1] === b.positions[0][1] &&
+            a.positions[1][0] === b.positions[1][0] && a.positions[1][1] === b.positions[1][1]) ||
+           (a.positions[0][0] === b.positions[1][0] && a.positions[0][1] === b.positions[1][1] &&
+            a.positions[1][0] === b.positions[0][0] && a.positions[1][1] === b.positions[0][1]));
+        
+        if (samePositions) {
+          // 找到了隐数对！移除这两个格子的其他候选
+          const pairNums = [a.num, b.num].sort((x,y)=>x-y);
+          const pos1 = a.positions[0];
+          const pos2 = a.positions[1];
+          let eliminated = false;
+          
+          for (const [r, c] of [pos1, pos2]) {
+            const toRemove = [];
+            for (const n of this.candidates[r][c]) {
+              if (n !== pairNums[0] && n !== pairNums[1]) {
+                toRemove.push(n);
+              }
+            }
+            for (const n of toRemove) {
+              this.candidates[r][c].delete(n);
+              eliminated = true;
+            }
+          }
+          
+          if (eliminated) {
+            return { eliminated: true, technique: 'hiddenPair', scope, scopeId: id, pair: pairNums };
+          }
+        }
+      }
+    }
+    return null;
+  }
+
+  // ---------- 技巧5：区块排除法（Locked Candidates / Pointing & Claiming）----------
+  // Pointing Pair（宫→行/列）：某数字在某宫中只出现在同一行/列 → 该行/列其他宫移除该数字
+  // Claiming Pair（行/列→宫）：某数字在某行/列中只出现在同一宫 → 该宫其他行/列移除该数字
+  _findPointingClaiming() {
+    let eliminated = false;
+
+    // 1. Pointing Pair（宫→行/列）
+    for (let b = 0; b < 9; b++) {
+      const br = Math.floor(b / 3) * 3;
+      const bc = (b % 3) * 3;
+      
+      // 统计每个数字在宫中出现的行和列
+      const numRows = {};
+      const numCols = {};
+      for (let dr = 0; dr < 3; dr++) {
+        for (let dc = 0; dc < 3; dc++) {
+          const r = br + dr, c = bc + dc;
+          if (this.grid[r][c] !== 0) continue;
+          for (const n of this.candidates[r][c]) {
+            if (!numRows[n]) numRows[n] = new Set();
+            if (!numCols[n]) numCols[n] = new Set();
+            numRows[n].add(r);
+            numCols[n].add(c);
+          }
+        }
+      }
+      
+      // 检查每个数字：如果只出现在同一行 → Pointing Row
+      for (const n of Object.keys(numRows)) {
+        const rows = numRows[n];
+        if (rows.size === 1) {
+          const r = [...rows][0];
+          // 从该行的其他宫中移除n
+          for (let c = 0; c < 9; c++) {
+            if (c >= bc && c < bc + 3) continue; // 跳过当前宫
+            if (this.grid[r][c] === 0 && this.candidates[r][c].has(parseInt(n))) {
+              this.candidates[r][c].delete(parseInt(n));
+              eliminated = true;
+            }
+          }
+        }
+        // 只出现在同一列 → Pointing Column
+        const cols = numCols[n];
+        if (cols.size === 1) {
+          const c = [...cols][0];
+          for (let r = 0; r < 9; r++) {
+            if (r >= br && r < br + 3) continue; // 跳过当前宫
+            if (this.grid[r][c] === 0 && this.candidates[r][c].has(parseInt(n))) {
+              this.candidates[r][c].delete(parseInt(n));
+              eliminated = true;
+            }
+          }
+        }
+      }
+    }
+
+    // 2. Claiming Pair（行/列→宫）
+    // 行→宫
+    for (let r = 0; r < 9; r++) {
+      const numBoxes = {}; // num -> Set of box indices
+      for (let c = 0; c < 9; c++) {
+        if (this.grid[r][c] !== 0) continue;
+        const b = Math.floor(r / 3) * 3 + Math.floor(c / 3);
+        for (const n of this.candidates[r][c]) {
+          if (!numBoxes[n]) numBoxes[n] = new Set();
+          numBoxes[n].add(b);
+        }
+      }
+      for (const n of Object.keys(numBoxes)) {
+        const boxes = numBoxes[n];
+        if (boxes.size === 1) {
+          const b = [...boxes][0];
+          const br = Math.floor(b / 3) * 3;
+          const bc = (b % 3) * 3;
+          // 从该宫的其他行移除n
+          for (let dr = 0; dr < 3; dr++) {
+            const rr = br + dr;
+            if (rr === r) continue;
+            for (let dc = 0; dc < 3; dc++) {
+              const cc = bc + dc;
+              if (this.grid[rr][cc] === 0 && this.candidates[rr][cc].has(parseInt(n))) {
+                this.candidates[rr][cc].delete(parseInt(n));
+                eliminated = true;
+              }
+            }
+          }
+        }
+      }
+    }
+    
+    // 列→宫
+    for (let c = 0; c < 9; c++) {
+      const numBoxes = {};
+      for (let r = 0; r < 9; r++) {
+        if (this.grid[r][c] !== 0) continue;
+        const b = Math.floor(r / 3) * 3 + Math.floor(c / 3);
+        for (const n of this.candidates[r][c]) {
+          if (!numBoxes[n]) numBoxes[n] = new Set();
+          numBoxes[n].add(b);
+        }
+      }
+      for (const n of Object.keys(numBoxes)) {
+        const boxes = numBoxes[n];
+        if (boxes.size === 1) {
+          const b = [...boxes][0];
+          const br = Math.floor(b / 3) * 3;
+          const bc = (b % 3) * 3;
+          // 从该宫的其他列移除n
+          for (let dc = 0; dc < 3; dc++) {
+            const cc = bc + dc;
+            if (cc === c) continue;
+            for (let dr = 0; dr < 3; dr++) {
+              const rr = br + dr;
+              if (this.grid[rr][cc] === 0 && this.candidates[rr][cc].has(parseInt(n))) {
+                this.candidates[rr][cc].delete(parseInt(n));
+                eliminated = true;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    if (eliminated) {
+      return { eliminated: true, technique: 'pointingClaiming' };
+    }
+    return null;
+  }
+
+  // ---------- 技巧6：45法则 ----------
   // 涵盖：行/列/宫剩余推导 + 笼子剩余和推导
   // 策略：先做全面候选摒除，再找能确定的数字
   _findRule45() {
@@ -462,26 +778,30 @@ class HumanSimulator {
     if (combinations.length === 1) {
       const combo = combinations[0];
       // 检查每格是否只有一个可能
+      // 注意：只有当该格原来有多个候选时，才算"45法则确定的数字"
+      // 如果本来只有1个候选，那是裸单，不算45法则
       for (let i = 0; i < count; i++) {
         const possibleNums = new Set(combinations.map(c => c[i]));
         if (possibleNums.size === 1) {
           const num = Array.from(possibleNums)[0];
           const [r, c] = emptyCells[i];
-          if (this.grid[r][c] === 0 && this.candidates[r][c].has(num)) {
-            return { r, c, num, scope, scopeId, rule45: true, comboCount: combinations.length };
+          // 关键：只有当候选数>1时，才算45法则的功劳
+          if (this.grid[r][c] === 0 && this.candidates[r][c].has(num) && cellCandidates[i].length > 1) {
+            return { r, c, num, scope, scopeId, rule45: true, comboCount: combinations.length, candBefore: cellCandidates[i].length };
           }
         }
       }
     }
 
     // 情况2：某个数字在所有组合中都出现在同一个格子 → 确定该格
+    // 同样，只有当该格原来有多个候选时才算45法则
     for (let i = 0; i < count; i++) {
       const [r, c] = emptyCells[i];
       const possibleNums = new Set(combinations.map(combo => combo[i]));
       if (possibleNums.size === 1) {
         const num = Array.from(possibleNums)[0];
-        if (this.grid[r][c] === 0 && this.candidates[r][c].has(num)) {
-          return { r, c, num, scope, scopeId, rule45: true, comboCount: combinations.length };
+        if (this.grid[r][c] === 0 && this.candidates[r][c].has(num) && cellCandidates[i].length > 1) {
+          return { r, c, num, scope, scopeId, rule45: true, comboCount: combinations.length, candBefore: cellCandidates[i].length };
         }
       }
     }
@@ -611,7 +931,7 @@ class HumanSimulator {
     };
   }
 
-  // 做一轮全面候选摒除（45法则 + 笼子约束）
+  // 做一轮全面候选摒除（45法则 + 笼子约束 + 数对法）
   _doEliminationRound() {
     let anyEliminated = false;
 
@@ -641,6 +961,27 @@ class HumanSimulator {
         const result = this._rule45ForScope('box', br * 3 + bc);
         if (result && result.eliminated) anyEliminated = true;
       }
+    }
+
+    // 裸数对（Naked Pair）
+    const nakedPairResult = this._findNakedPair();
+    if (nakedPairResult && nakedPairResult.eliminated) {
+      this.techniques.nakedPair++;
+      anyEliminated = true;
+    }
+
+    // 隐数对（Hidden Pair）
+    const hiddenPairResult = this._findHiddenPair();
+    if (hiddenPairResult && hiddenPairResult.eliminated) {
+      this.techniques.hiddenPair++;
+      anyEliminated = true;
+    }
+
+    // 区块排除法（Pointing & Claiming）
+    const pointingResult = this._findPointingClaiming();
+    if (pointingResult && pointingResult.eliminated) {
+      this.techniques.pointingClaiming++;
+      anyEliminated = true;
     }
 
     if (anyEliminated) {
@@ -687,34 +1028,60 @@ class HumanSimulator {
     return true;
   }
 
-  // 获取难度评级
+  // 获取难度评级（v2）
   getDifficultyRating() {
     const t = this.techniques;
     const total = this.steps.length;
-
-    // 按技巧占比和完成度综合评分
-    let score = 0;
-
-    // 基础分：能解到什么程度
     const emptyCells = this._countEmpty();
     const fillRate = 1 - emptyCells / 81;
-    score += fillRate * 30; // 完成度最高 30 分
 
-    // 技巧加权分（最高 70 分）
-    score += Math.min(20, t.nakedSingle * 0.3);       // 显单最多 20 分
-    score += Math.min(25, t.hiddenSingle * 1.0);      // 隐单最多 25 分
-    score += Math.min(25, t.rule45 * 2.5);             // 45法则最多 25 分
+    let score = 0;
 
-    // 解不完的题，额外加分（说明需要更高级技巧）
-    if (!this._isComplete()) {
-      score += Math.min(20, emptyCells * 1.5);
+    // 1. 完成度分（最多25分）
+    // 能完全解出的题，根据难度来定；解不出的题，完成度越低越难
+    if (this._isComplete()) {
+      // 完全解出：基础分20分，剩余5分由技巧难度决定
+      score += 20;
+    } else {
+      // 未完成：按完成度给分（完成越少分越高=越难）
+      score += 25 + (1 - fillRate) * 25; // 25~50分
     }
 
-    score = Math.min(100, Math.round(score));
+    // 2. 总步数（最多20分）
+    // 步数越多说明题越复杂
+    // 参考：入门约30步，简单约45步，中等约55步，困难约65步，地狱约80步
+    score += Math.min(20, total * 0.3);
 
-    let level = '简单';
-    if (score >= 60) level = '困难';
-    else if (score >= 30) level = '中等';
+    // 3. 技巧加权分（最多35分）
+    // 裸单：基础技巧，权重最低（最多6分）
+    score += Math.min(6, t.nakedSingle * 0.1);
+    // 隐单：中级技巧（最多6分）
+    score += Math.min(6, t.hiddenSingle * 0.5);
+    // 裸数对：中高级技巧（最多6分）
+    score += Math.min(6, t.nakedPair * 0.8);
+    // 隐数对：高级技巧（最多6分）
+    score += Math.min(6, t.hiddenPair * 1.2);
+    // 区块排除法：中高级技巧（最多6分）
+    score += Math.min(6, t.pointingClaiming * 1.0);
+    // 45法则摒除：核心技巧（最多3分）
+    score += Math.min(3, t.elimination * 0.05);
+    // 45法则直接确定数字：少见但高级（额外加分）
+    score += t.rule45 * 1.0;
+
+    // 4. 卡壳惩罚/加分（最多20分）
+    // 解不完的题，空格越多说明需要越高级的技巧
+    if (!this._isComplete()) {
+      score += Math.min(20, emptyCells * 0.8);
+    }
+
+    score = Math.min(100, Math.max(0, Math.round(score)));
+
+    // 五级难度评级
+    let level = '入门';
+    if (score >= 75) level = '地狱';
+    else if (score >= 60) level = '困难';
+    else if (score >= 45) level = '中等';
+    else if (score >= 25) level = '简单';
 
     return {
       score,
@@ -722,7 +1089,8 @@ class HumanSimulator {
       techniques: { ...t },
       totalSteps: total,
       solvable: this._isComplete(),
-      emptyCells
+      emptyCells,
+      fillRate: Math.round(fillRate * 100) / 100
     };
   }
 

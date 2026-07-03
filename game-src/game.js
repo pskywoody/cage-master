@@ -133,27 +133,33 @@ class Board {
     }
 
     // 加载笼子（兼容多种坐标格式：数组[r,c]或字符串"r c"）
-    this.cages = cages;
-    // 构建 cageId -> cells 索引，加速查找
-    this.cageIdToCells = {};
-    cages.forEach(cage => {
-      // 标准化坐标格式：支持 [r,c] 数组和 "r c" 字符串两种格式
-      const normalizedCells = cage.cells.map(cell => {
-        if (Array.isArray(cell)) return [cell[0]|0, cell[1]|0];
-        if (typeof cell === 'string') {
-          const parts = cell.split(/[ ,]+/).filter(Boolean).map(Number);
-          return [parts[0]|0, parts[1]|0];
-        }
-        return [cell[0]|0, cell[1]|0];
+    // 经典数独没有笼子，兼容处理
+    if (!cages || !Array.isArray(cages) || cages.length === 0) {
+      this.cages = [];
+      this.cageIdToCells = {};
+    } else {
+      this.cages = cages;
+      this.cageIdToCells = {};
+      
+      const safeCages = cages.filter(c => c && c.cells);
+      safeCages.forEach(cage => {
+        const normalizedCells = cage.cells.map(cell => {
+          if (Array.isArray(cell)) return [cell[0]|0, cell[1]|0];
+          if (typeof cell === 'string') {
+            const parts = cell.split(/[ ,]+/).filter(Boolean).map(Number);
+            return [parts[0]|0, parts[1]|0];
+          }
+          return [cell[0]|0, cell[1]|0];
+        });
+        cage.cells = normalizedCells;
+        this.cageIdToCells[cage.id] = normalizedCells;
+        normalizedCells.forEach(([r, c]) => {
+          if (r >= 0 && r < this.size && c >= 0 && c < this.size && this.cells[r] && this.cells[r][c]) {
+            this.cells[r][c].cageId = cage.id;
+          }
+        });
       });
-      cage.cells = normalizedCells;
-      this.cageIdToCells[cage.id] = normalizedCells;
-      normalizedCells.forEach(([r, c]) => {
-        if (r >= 0 && r < this.size && c >= 0 && c < this.size && this.cells[r] && this.cells[r][c]) {
-          this.cells[r][c].cageId = cage.id;
-        }
-      });
-    });
+    }
   }
 
   /**
@@ -970,12 +976,15 @@ class Board {
             const [rr, cc] = key.split(',').map(Number);
             highlightCells.push([rr, cc]);
           }
+          const hasCages = this.cages && this.cages.length > 0;
           return {
             r, c,
             num: candidates[0],
             technique: 'nakedSingle',
-            techniqueName: '显性唯一（裸单）',
-            description: '这个格子的同行、同列、同宫、同笼已经出现了其他所有数字，只剩一个候选',
+            techniqueName: hasCages ? '显性唯一（裸单）' : '显性唯一',
+            description: hasCages 
+              ? '这个格子的同行、同列、同宫、同笼已经出现了其他所有数字，只剩一个候选'
+              : '这个格子的同行、同列、同宫已经出现了其他所有数字，只剩一个候选',
             regionType: 'all',
             highlightCells
           };

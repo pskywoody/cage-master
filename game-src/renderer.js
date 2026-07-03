@@ -785,6 +785,8 @@ class Renderer {
   _drawCages(board) {
     const { ctx, cellSize, theme } = this;
     const size = board.size;
+    if (!board.cages || board.cages.length === 0) return;
+    
     const battle = this._battleActive ? this._battleCtx : null;
     ctx.strokeStyle = theme.cageDash;
     ctx.lineWidth = 2.5;

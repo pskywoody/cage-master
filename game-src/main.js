@@ -178,9 +178,9 @@ async function loadLevel(id) {
   const mode = params.get('mode');
   _gameMode = (mode === 'killer') ? 'killer' : 'classic';
 
-  // 1. 优先从后端接口获取
+  // 1. 优先从后端接口获取（传递模式参数）
   try {
-    const res = await fetch('/api/level/' + id);
+    const res = await fetch('/api/level/' + id + '?mode=' + _gameMode);
     const json = await res.json();
     if (json.code === 0 && json.data) {
       const titleEl = document.getElementById('level-title');

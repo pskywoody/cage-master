@@ -162,9 +162,19 @@ app.get('/api/levels', (req, res) => {
 // ==========================================
 // 接口：获取单个关卡详情
 // ==========================================
+function loadClassicLevels() {
+  const filePath = path.join(__dirname, 'game-src', 'data', 'levels-classic.json');
+  if (!fs.existsSync(filePath)) return [];
+  const raw = fs.readFileSync(filePath, 'utf-8');
+  return JSON.parse(raw);
+}
+
 app.get('/api/level/:id', (req, res) => {
   const { id } = req.params;
-  const levels = loadLevels();
+  const mode = req.query.mode || 'killer';
+  
+  // 经典模式从 levels-classic.json 加载
+  const levels = mode === 'classic' ? loadClassicLevels() : loadLevels();
   const level = levels.find(item => String(item.id) === String(id));
 
   if (!level) {
@@ -178,7 +188,7 @@ app.get('/api/level/:id', (req, res) => {
       name: level.name,
       difficulty: level.difficulty,
       cells: level.cells,
-      cages: level.cages
+      cages: level.cages || []
     },
     msg: 'ok'
   });

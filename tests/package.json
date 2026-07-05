@@ -1,0 +1,21 @@
+{
+  "name": "cage-master-tests",
+  "version": "1.0.0",
+  "description": "笼中密码 - 自动化测试套件",
+  "private": true,
+  "scripts": {
+    "test": "playwright test",
+    "test:ui": "playwright test --ui",
+    "test:debug": "playwright test --debug",
+    "test:loading": "playwright test 01-loading",
+    "test:core": "playwright test 02-core",
+    "test:hints": "playwright test 03-hints",
+    "test:ledger": "playwright test 04-ledger",
+    "test:responsive": "playwright test 05-responsive",
+    "test:perf": "playwright test 06-performance",
+    "report": "playwright show-report"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.44.0"
+  }
+}

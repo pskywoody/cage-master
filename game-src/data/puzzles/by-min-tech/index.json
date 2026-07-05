@@ -1,0 +1,253 @@
+{
+  "generatedAt": "2026-07-05T17:34:22.826Z",
+  "source": "v6-pure-killer",
+  "totalPuzzles": 2649,
+  "description": "按「最低必要技巧」分类。maxTechLevel 就是这道题的门槛技巧——不用到这个等级的技巧就解不出来。",
+  "techniques": {
+    "nakedSingle": {
+      "level": 1,
+      "name": "裸单",
+      "nameEn": "Naked Single",
+      "description": "某格只有一个候选数，直接确定答案",
+      "difficulty": "入门",
+      "color": "#22c55e",
+      "count": 145,
+      "difficultyRange": {
+        "minScore": 200,
+        "maxScore": 200
+      },
+      "levels": {
+        "入门": {
+          "count": 49,
+          "scoreRange": [
+            200,
+            200
+          ]
+        },
+        "进阶": {
+          "count": 49,
+          "scoreRange": [
+            200,
+            200
+          ]
+        },
+        "挑战": {
+          "count": 47,
+          "scoreRange": [
+            200,
+            200
+          ]
+        }
+      },
+      "file": "nakedSingle.json"
+    },
+    "cageUnique": {
+      "level": 2,
+      "name": "笼子唯一组合",
+      "nameEn": "Cage Unique Combination",
+      "description": "笼子内某数字只能出现在一个位置",
+      "difficulty": "入门+",
+      "color": "#10b981",
+      "count": 152,
+      "difficultyRange": {
+        "minScore": 50,
+        "maxScore": 375
+      },
+      "levels": {
+        "入门": {
+          "count": 51,
+          "scoreRange": [
+            50,
+            125
+          ]
+        },
+        "进阶": {
+          "count": 51,
+          "scoreRange": [
+            125,
+            300
+          ]
+        },
+        "挑战": {
+          "count": 50,
+          "scoreRange": [
+            300,
+            375
+          ]
+        }
+      },
+      "file": "cageUnique.json"
+    },
+    "hiddenSingle": {
+      "level": 3,
+      "name": "隐单",
+      "nameEn": "Hidden Single",
+      "description": "某数字在一行/列/宫中只能出现在一格",
+      "difficulty": "简单",
+      "color": "#3b82f6",
+      "count": 421,
+      "difficultyRange": {
+        "minScore": 150,
+        "maxScore": 500
+      },
+      "levels": {
+        "入门": {
+          "count": 141,
+          "scoreRange": [
+            150,
+            225
+          ]
+        },
+        "进阶": {
+          "count": 141,
+          "scoreRange": [
+            225,
+            425
+          ]
+        },
+        "挑战": {
+          "count": 139,
+          "scoreRange": [
+            425,
+            500
+          ]
+        }
+      },
+      "file": "hiddenSingle.json"
+    },
+    "rule45": {
+      "level": 4,
+      "name": "45法则",
+      "nameEn": "Rule of 45",
+      "description": "利用行/列/宫总和为45推导单格数值",
+      "difficulty": "中等",
+      "color": "#8b5cf6",
+      "count": 1753,
+      "difficultyRange": {
+        "minScore": 250,
+        "maxScore": 600
+      },
+      "levels": {
+        "入门": {
+          "count": 585,
+          "scoreRange": [
+            250,
+            500
+          ]
+        },
+        "进阶": {
+          "count": 585,
+          "scoreRange": [
+            500,
+            550
+          ]
+        },
+        "挑战": {
+          "count": 583,
+          "scoreRange": [
+            550,
+            600
+          ]
+        }
+      },
+      "file": "rule45.json"
+    },
+    "nakedPair": {
+      "level": 5,
+      "name": "显性数对",
+      "nameEn": "Naked Pair",
+      "description": "两格有相同双候选，排除同区其他格的这两个数",
+      "difficulty": "困难",
+      "color": "#f59e0b",
+      "count": 178,
+      "difficultyRange": {
+        "minScore": 350,
+        "maxScore": 700
+      },
+      "levels": {
+        "入门": {
+          "count": 60,
+          "scoreRange": [
+            350,
+            575
+          ]
+        },
+        "进阶": {
+          "count": 60,
+          "scoreRange": [
+            600,
+            650
+          ]
+        },
+        "挑战": {
+          "count": 58,
+          "scoreRange": [
+            650,
+            700
+          ]
+        }
+      },
+      "file": "nakedPair.json"
+    },
+    "hiddenPair": {
+      "level": 6,
+      "name": "隐性数对",
+      "nameEn": "Hidden Pair",
+      "description": "两数字只能出现在相同两格，排除这两格其他候选",
+      "difficulty": "困难+",
+      "color": "#ef4444",
+      "count": 0,
+      "levels": {
+        "入门": {},
+        "进阶": {},
+        "挑战": {}
+      },
+      "file": "hiddenPair.json"
+    },
+    "pointingClaiming": {
+      "level": 7,
+      "name": "区块排除",
+      "nameEn": "Pointing / Claiming",
+      "description": "行列区块/宫区块摒除",
+      "difficulty": "专家",
+      "color": "#dc2626",
+      "count": 0,
+      "levels": {
+        "入门": {},
+        "进阶": {},
+        "挑战": {}
+      },
+      "file": "pointingClaiming.json"
+    },
+    "nakedTriplet": {
+      "level": 8,
+      "name": "三链数",
+      "nameEn": "Naked Triplet",
+      "description": "三格包含相同三候选，排除同区其他格",
+      "difficulty": "专家+",
+      "color": "#991b1b",
+      "count": 0,
+      "levels": {
+        "入门": {},
+        "进阶": {},
+        "挑战": {}
+      },
+      "file": "nakedTriplet.json"
+    },
+    "xWing": {
+      "level": 9,
+      "name": "X-Wing",
+      "nameEn": "X-Wing",
+      "description": "X翼构型，高级排除技巧",
+      "difficulty": "大师",
+      "color": "#7c2d12",
+      "count": 0,
+      "levels": {
+        "入门": {},
+        "进阶": {},
+        "挑战": {}
+      },
+      "file": "xWing.json"
+    }
+  }
+}

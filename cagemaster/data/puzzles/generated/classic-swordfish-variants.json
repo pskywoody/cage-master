@@ -1,0 +1,10 @@
+{
+  "source": "handcrafted",
+  "type": "classic-sudoku",
+  "technique": "swordfish",
+  "seedFile": "handcrafted-swordfish",
+  "seedCount": 1,
+  "variantCount": 0,
+  "generatedAt": "2026-06-28T23:27:15.803Z",
+  "puzzles": []
+}

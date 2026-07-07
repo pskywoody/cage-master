@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <title data-i18n="ui.titles.appName">档案侦探 · 笼中密码</title>
+  <link rel="icon" type="image/jpeg" href="assets/images/favicon.jpg" />
+  <link rel="stylesheet" href="assets/css/style.css?v=42" />
+  <script>
+    // 无URL参数时自动跳转到主菜单（无论是Web还是APK环境）
+    (function() {
+      const hasParams = location.search.length > 0;
+      if (!hasParams) {
+        location.replace('menu.html');
+      }
+    })();
+  </script>
+</head>
+<body>
+  <div id="app">
+    <div id="game-container">
+      <!-- 顶部状态栏 -->
+      <div id="game-header">
+        <button id="btn-back" data-i18n="ui.common.backToMenu">← 菜单</button>
+        <div id="level-title">档案 #01 · 加密来信</div>
+        <div class="header-right">
+          <div id="timer">00:00</div>
+          <button id="btn-setting" class="header-btn" data-i18n-title="ui.toolbar.setting" title="设置">⚙️</button>
+        </div>
+      </div>
+
+      <div id="board-area">
+        <canvas id="gameCanvas"></canvas>
+      </div>
+
+      <!-- 工具栏（合并为一行） -->
+      <div id="toolbar">
+        <button id="btn-undo" data-i18n="ui.toolbar.undo" title="撤销">↶</button>
+        <button id="btn-erase" data-i18n="ui.toolbar.erase" title="擦除">⌫</button>
+        <button id="btn-candidate" data-i18n="ui.toolbar.candidate" title="候选">✏️</button>
+        <button id="btn-auto-cands" data-i18n-title="ui.toolbar.autoCands" title="自动填候选">🔢</button>
+        <button id="btn-hint" data-i18n="ui.toolbar.hint" title="提示">💡</button>
+        <button id="btn-playback" title="笔记回放">📝</button>
+        <button id="btn-quick-fill" data-i18n="ui.toolbar.quickFill" title="连填">⚡</button>
+        <button id="btn-restart" data-i18n="ui.common.restart" title="重来">🔄</button>
+      </div>
+
+      <!-- 数字键盘 -->
+      <div id="num-pad">
+        <button class="num-btn" data-num="1">1</button>
+        <button class="num-btn" data-num="2">2</button>
+        <button class="num-btn" data-num="3">3</button>
+        <button class="num-btn" data-num="4">4</button>
+        <button class="num-btn" data-num="5">5</button>
+        <button class="num-btn" data-num="6">6</button>
+        <button class="num-btn" data-num="7">7</button>
+        <button class="num-btn" data-num="8">8</button>
+        <button class="num-btn" data-num="9">9</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 暂停蒙层 -->
+  <div id="pause-overlay">
+    <div class="pause-card">
+      <h3 data-i18n="ui.pause.title">⏸ 游戏暂停</h3>
+      <p data-i18n="ui.pause.desc">点击下方按钮继续游戏</p>
+      <button id="btn-resume" data-i18n="ui.common.resume">继续游戏</button>
+    </div>
+  </div>
+
+  <!-- 通关弹窗 -->
+  <div id="complete-overlay">
+    <div class="complete-card">
+      <div class="trophy" data-i18n="ui.complete.trophy">🏆</div>
+      <h3 data-i18n="ui.complete.title">恭喜通关！</h3>
+      <div id="complete-grade" class="complete-grade-badge grade-A">A</div>
+      <div id="complete-stars" class="complete-stars"></div>
+      <div id="complete-time" class="complete-time">用时 00:00</div>
+      <div id="complete-comment" class="complete-comment" style="display:none;">
+        <div class="complete-comment-speaker">🧙 守笼人</div>
+        <div class="complete-comment-text" id="complete-comment-text"></div>
+      </div>
+      <div class="btn-row">
+        <button class="btn-secondary" id="btn-complete-back" data-i18n="ui.common.returnToLevels">返回关卡</button>
+        <button class="btn-primary" id="btn-complete-next" data-i18n="ui.common.nextLevel">下一关</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 设置弹窗 -->
+  <div id="settings-overlay">
+    <div class="settings-card">
+      <div class="settings-header">
+        <h3 data-i18n="ui.settings.title">⚙️ 设置</h3>
+        <button id="btn-settings-close" class="settings-close">×</button>
+      </div>
+      <div class="settings-body">
+        <div class="settings-section">
+          <h4 data-i18n="ui.settings.audioSection">🔊 音频</h4>
+          <div class="setting-item">
+            <div class="setting-info">
+              <span class="setting-name" data-i18n="ui.settings.muteAll">🔇 一键静音</span>
+              <span class="setting-desc" data-i18n="ui.settings.muteAllDesc">关闭所有声音（BGM+音效）</span>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="setting-mute-all" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <div class="setting-item">
+            <div class="setting-info">
+              <span class="setting-name" data-i18n="ui.settings.bgm">🎵 背景音乐</span>
+              <span class="setting-desc" data-i18n="ui.settings.bgmDesc">游戏过程中的背景音乐</span>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="setting-bgm" checked />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <div class="setting-volume">
+            <span class="volume-label">音量</span>
+            <input type="range" id="setting-bgm-volume" min="0" max="100" value="50" class="volume-slider" />
+            <span class="volume-value" id="setting-bgm-volume-value">50%</span>
+          </div>
+          <div class="setting-item">
+            <div class="setting-info">
+              <span class="setting-name" data-i18n="ui.settings.sfx">🔊 音效</span>
+              <span class="setting-desc" data-i18n="ui.settings.sfxDesc">点击、填数等操作音效</span>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="setting-sfx" checked />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <div class="setting-volume">
+            <span class="volume-label">音量</span>
+            <input type="range" id="setting-sfx-volume" min="0" max="100" value="67" class="volume-slider" />
+            <span class="volume-value" id="setting-sfx-volume-value">67%</span>
+          </div>
+        </div>
+        <div class="settings-section">
+          <h4 data-i18n="ui.settings.displaySection">显示</h4>
+          <div class="setting-item">
+            <div class="setting-info">
+              <span class="setting-name" data-i18n="ui.settings.conflictRed">冲突标红</span>
+              <span class="setting-desc" data-i18n="ui.settings.conflictRedDesc">填错数字时标红提示</span>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="setting-conflict-red" checked />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <div class="setting-item">
+            <div class="setting-info">
+              <span class="setting-name" data-i18n="ui.settings.highlightRowColBox">同行列宫高亮</span>
+              <span class="setting-desc" data-i18n="ui.settings.highlightRowColBoxDesc">选中格子时高亮整行整列整宫</span>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="setting-highlight-rowcolbox" checked />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <div class="setting-item">
+            <div class="setting-info">
+              <span class="setting-name" data-i18n="ui.settings.highlightSameNum">同数字高亮</span>
+              <span class="setting-desc" data-i18n="ui.settings.highlightSameNumDesc">选中数字时高亮所有相同数字</span>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="setting-highlight-samenum" checked />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <div class="setting-item">
+            <div class="setting-info">
+              <span class="setting-name" data-i18n="ui.settings.highlightSameCage">同笼高亮</span>
+              <span class="setting-desc" data-i18n="ui.settings.highlightSameCageDesc">选中格子时高亮所属笼子</span>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="setting-highlight-samecage" checked />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+        </div>
+        <div class="settings-section">
+          <h4 data-i18n="ui.settings.operationSection">操作</h4>
+          <div class="setting-item">
+            <div class="setting-info">
+              <span class="setting-name" data-i18n="ui.settings.autoClearCandidates">自动清除关联候选</span>
+              <span class="setting-desc" data-i18n="ui.settings.autoClearCandidatesDesc">填数后自动清除行/列/宫/笼的关联候选</span>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="setting-auto-clear" checked />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+        </div>
+        <div class="settings-section">
+          <h4>🎭 角色提示</h4>
+          <div class="setting-item">
+            <div class="setting-info">
+              <span class="setting-name">角色主动提示</span>
+              <span class="setting-desc">卡关时角色会主动说话给提示</span>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="setting-char-hint" checked />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <div class="setting-item">
+            <div class="setting-info">
+              <span class="setting-name">分享匿名数据</span>
+              <span class="setting-desc">帮助我们改进提示系统（完全匿名）</span>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="setting-data-collect" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+        </div>
+        <div class="settings-section">
+          <h4>🌐 Language</h4>
+          <div class="setting-item">
+            <div style="display:flex;gap:6px;flex-wrap:wrap;width:100%;">
+              <button class="lang-btn" data-locale="zh-CN">中文</button>
+              <button class="lang-btn" data-locale="ja">日本語</button>
+              <button class="lang-btn" data-locale="ko">한국어</button>
+              <button class="lang-btn" data-locale="en">English</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="config/app-config.js?v=1"></script>
+  <script src="services/platform.js?v=1"></script>
+  <script src="services/resource-manager.js?v=1"></script>
+  <script src="services/audio.js?v=51"></script>
+  <script>if (typeof AudioManager !== 'undefined') { AudioManager.init(); }</script>
+  <script src="services/storage.js?v=39"></script>
+  <script src="services/i18n.js?v=40"></script>
+  <script src="ui/comedy.js?v=4"></script>
+  <script src="core/variant-engine.js?v=1"></script>
+  <script src="core/tech-rater-v2.js?v=7"></script>
+  <script src="hint/rule45-hint.js?v=11"></script>
+  <script src="hint/script-hint.js?v=9"></script>
+  <!-- 推理与提示联动系统 (RAHS) -->
+  <script src="hint/reasoning-monitor.js?v=1"></script>
+  <script src="hint/eureka-detector.js?v=1"></script>
+  <script src="hint/dynamic-threshold.js?v=1"></script>
+  <script src="hint/dialogue-database.js?v=1"></script>
+  <script src="hint/character-error.js?v=1"></script>
+  <!-- CGS v5.0: 纯净度验证 + 双模提示路由器（需在 hint-director 之前加载） -->
+  <script src="core/technical-purity-validator.js?v=1"></script>
+  <script src="hint/characterized-hint-router.js?v=1"></script>
+  <script src="hint/hint-director.js?v=1"></script>
+  <script src="hint/note-playback.js?v=1"></script>
+  <script src="services/data-collector.js?v=1"></script>
+  <script src="hint/reasoning-hint-system.js?v=1"></script>
+  <script src="game/board.js?v=43"></script>
+  <script src="game/note-system.js?v=1"></script>
+  <script src="game/renderer.js?v=41"></script>
+  <script src="config/chapter-styles.js?v=3"></script>
+  <script src="data/dialogues.js?v=3"></script>
+  <script src="story/effects.js?v=5"></script>
+  <script src="story/story-engine.js?v=9"></script>
+  <script src="services/midi-bgm.js?v=4"></script>
+  <script src="services/bgm-bridge.js?v=1"></script>
+  <script>if (typeof BGMEngine !== 'undefined') BGMEngine.init();</script>
+  <script src="game/timer.js?v=1"></script>
+  <script src="pages/main.js?v=54"></script>
+  <style>
+    .lang-btn {
+      padding: 6px 12px;
+      border: 1px solid var(--theme-border, #d1d5db);
+      background: var(--theme-bg, #fff);
+      color: var(--theme-text, #333);
+      border-radius: 8px;
+      font-size: 13px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .lang-btn:hover { background: var(--theme-hover, #f3f4f6); }
+    .lang-btn.active {
+      background: #3b82f6;
+      color: #fff;
+      border-color: #3b82f6;
+    }
+  </style>
+  <script>
+    // 初始化i18n
+    (async function() {
+      await I18N.init();
+      updateLangButtons();
+    })();
+
+    // 语言切换
+    function updateLangButtons() {
+      const current = I18N.getLocale();
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.locale === current);
+      });
+    }
+
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const locale = btn.dataset.locale;
+        await I18N.setLocale(locale);
+        updateLangButtons();
+      });
+    });
+
+    document.addEventListener('localechanged', () => {
+      updateLangButtons();
+    });
+  </script>
+</body>
+</html>

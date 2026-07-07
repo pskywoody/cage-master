@@ -1,0 +1,32 @@
+{
+  "version": "1.0",
+  "generatedAt": "2026-07-03T10:27:16.316Z",
+  "total": 62,
+  "groups": {
+    "L1": {
+      "file": "practice-l1.json",
+      "name": "孤星与笼子",
+      "count": 2
+    },
+    "L2": {
+      "file": "practice-l2.json",
+      "name": "笼子推理进阶",
+      "count": 2
+    },
+    "L3": {
+      "file": "practice-l3.json",
+      "name": "隐曜练习",
+      "count": 18
+    },
+    "L4": {
+      "file": "practice-l4.json",
+      "name": "星衡法则练习",
+      "count": 20
+    },
+    "L5": {
+      "file": "practice-l5.json",
+      "name": "数对练习",
+      "count": 20
+    }
+  }
+}

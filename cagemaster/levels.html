@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>关卡选择 · 档案侦探</title>
+  <link rel="icon" type="image/jpeg" href="assets/images/favicon.jpg" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <div id="app">
+    <div id="levels-container">
+      <h1 style="text-align:center; margin-bottom: 8px; color: #334155; font-size: 24px;">档案侦探 · 笼中密码</h1>
+      <p id="stats-line" style="text-align:center; color: #64748b; font-size: 14px; margin-bottom: 16px;">加载中...</p>
+
+      <!-- 教学模式入口 -->
+      <div id="teaching-entry" style="margin-bottom: 12px;">
+        <div class="level-card" style="background: linear-gradient(135deg, #dbeafe, #bfdbfe); cursor: pointer; border: 2px solid #3b82f6;">
+          <div class="level-id" style="background: linear-gradient(135deg, #3b82f6, #2563eb);">📚</div>
+          <div class="level-info">
+            <div class="level-name" style="color: #1e40af;">教学模式</div>
+            <div class="level-meta">
+              <span class="diff-tag" style="background: #3b82f6;">入门</span>
+              <span class="time-tag" id="teaching-stats">从零开始学杀手数独</span>
+            </div>
+          </div>
+          <div class="level-arrow" style="color: #2563eb;">›</div>
+        </div>
+      </div>
+
+      <!-- 对战模式入口 -->
+      <div id="battle-entry" style="margin-bottom: 16px;">
+        <div class="level-card" style="background: linear-gradient(135deg, #fef3c7, #fde68a); cursor: pointer; border: 2px solid #f59e0b;">
+          <div class="level-id" style="background: linear-gradient(135deg, #f59e0b, #d97706);">⚔️</div>
+          <div class="level-info">
+            <div class="level-name" style="color: #92400e;">AI 对战模式</div>
+            <div class="level-meta">
+              <span class="diff-tag" style="background: #f59e0b;">对战</span>
+              <span class="time-tag" id="battle-stats">战绩：0 胜 0 负</span>
+            </div>
+          </div>
+          <div class="level-arrow" style="color: #d97706;">›</div>
+        </div>
+      </div>
+
+      <!-- 难度筛选 -->
+      <div id="difficulty-filter">
+        <button class="filter-btn active" data-diff="all">全部</button>
+        <button class="filter-btn" data-diff="简单">简单</button>
+        <button class="filter-btn" data-diff="中等">中等</button>
+        <button class="filter-btn" data-diff="困难">困难</button>
+        <button class="filter-btn" data-diff="calibrated" id="btn-calibrated" style="display:none;">校准排序</button>
+      </div>
+
+      <!-- 关卡列表 -->
+      <div id="levels-list">
+        <div style="text-align:center; padding: 40px; color: #94a3b8;">加载关卡中...</div>
+      </div>
+    </div>
+  </div>
+
+  <script src="services/audio.js?v=50"></script>
+  <script src="services/storage.js"></script>
+  <script>
+    // 初始化音频
+    if (typeof AudioManager !== 'undefined') { AudioManager.init(); }
+    let allLevels = [];
+    let currentFilter = 'all';
+
+    // 加载关卡列表
+    async function loadLevels() {
+      let levels = [];
+      try {
+        const res = await fetch('/api/levels');
+        const json = await res.json();
+        if (json.code === 0 && json.data) {
+          levels = json.data;
+        }
+      } catch (e) {
+        console.warn('获取关卡列表失败：', e.message);
+        // 降级：本地空列表提示
+        document.getElementById('levels-list').innerHTML =
+          '<div style="text-align:center; padding: 40px; color: #94a3b8;">网络异常，请刷新重试</div>';
+        return;
+      }
+
+      allLevels = levels;
+      renderLevels();
+      renderStats();
+      renderBattleStats();
+      updateCalibratedButton();
+    }
+
+    // 渲染对战战绩
+    function renderBattleStats() {
+      const stats = Storage.getBattleStats();
+      const el = document.getElementById('battle-stats');
+      if (el) {
+        el.textContent = `战绩：${stats.wins} 胜 ${stats.losses} 负`;
+      }
+      // 绑定点击
+      document.querySelector('#battle-entry .level-card').addEventListener('click', () => {
+        window.location.href = 'battle.html';
+      });
+
+      // 绑定教学模式入口点击
+      const teachingEntry = document.querySelector('#teaching-entry .level-card');
+      if (teachingEntry) {
+        teachingEntry.addEventListener('click', () => {
+          window.location.href = 'chapters.html';
+        });
+      }
+
+      // 更新教学模式进度显示
+      updateTeachingStats();
+    }
+
+    // 更新教学模式进度
+    function updateTeachingStats() {
+      const el = document.getElementById('teaching-stats');
+      if (!el) return;
+      const allComplete = Storage.getTeachingCompleteAll();
+      const count = Object.values(allComplete).filter(c => c.completed).length;
+      if (count > 0) {
+        el.textContent = `已通关 ${count} 个教学关卡`;
+      }
+    }
+
+    // 如果有玩家数据，显示校准排序按钮
+    function updateCalibratedButton() {
+      const analytics = Storage.getAllAnalytics();
+      const hasData = Object.values(analytics).some(a => a.completions > 0);
+      const btn = document.getElementById('btn-calibrated');
+      if (btn) {
+        btn.style.display = hasData ? '' : 'none';
+      }
+    }
+
+    // 渲染关卡列表
+    function renderLevels() {
+      const list = document.getElementById('levels-list');
+      const completeMap = Storage.getCompleteBatch(allLevels.map(l => l.id));
+      const analytics = Storage.getAllAnalytics();
+
+      let levelsToShow = allLevels;
+      let useCalibrated = false;
+
+      if (currentFilter === 'calibrated') {
+        // 校准排序：用玩家数据重新排
+        levelsToShow = Storage.calibrateDifficulty(allLevels);
+        useCalibrated = true;
+      } else if (currentFilter !== 'all') {
+        levelsToShow = allLevels.filter(l => l.difficulty === currentFilter);
+      }
+
+      if (levelsToShow.length === 0) {
+        list.innerHTML = '<div style="text-align:center; padding: 40px; color: #94a3b8;">该难度暂无关卡</div>';
+        return;
+      }
+
+      let html = '';
+      levelsToShow.forEach(level => {
+        const id = level.id;
+        const status = completeMap[id];
+        const completed = status && status.completed;
+        const bestTime = completed ? formatTime(status.time) : '';
+        const diffColor = useCalibrated
+          ? getDiffColor(level.calibratedDifficulty)
+          : getDiffColor(level.difficulty);
+        const diffLabel = useCalibrated
+          ? level.calibratedDifficulty + (level.hasPlayerData ? '★' : '')
+          : level.difficulty;
+
+        // 玩家数据
+        const levelData = analytics[id];
+        const hasData = levelData && levelData.completions > 0;
+        let statsHtml = '';
+        if (hasData) {
+          statsHtml = `
+            <div class="level-stats">
+              <span>均时 ${formatTime(levelData.avgTime)}</span>
+              <span>提示 ${levelData.avgHints}次</span>
+              <span>通关 ${levelData.completions}/${levelData.attempts}</span>
+            </div>
+          `;
+        }
+
+        html += `
+          <div class="level-card ${completed ? 'completed' : ''}" data-id="${id}">
+            <div class="level-id">${id}</div>
+            <div class="level-info">
+              <div class="level-name">${level.name}</div>
+              <div class="level-meta">
+                <span class="diff-tag" style="background:${diffColor};">${diffLabel}</span>
+                ${completed ? '<span class="complete-tag">✓ 已通关</span>' : ''}
+                ${bestTime ? '<span class="time-tag">最佳 ' + bestTime + '</span>' : ''}
+              </div>
+              ${statsHtml}
+            </div>
+            <div class="level-arrow">›</div>
+          </div>
+        `;
+      });
+
+      list.innerHTML = html;
+
+      // 绑定点击
+      document.querySelectorAll('.level-card').forEach(card => {
+        card.addEventListener('click', () => {
+          const id = card.dataset.id;
+          window.location.href = 'index.html?id=' + id;
+        });
+      });
+    }
+
+    // 渲染统计
+    function renderStats() {
+      const stats = Storage.getStats();
+      const total = allLevels.length;
+      const line = document.getElementById('stats-line');
+      line.textContent = `已通关 ${stats.totalCompleted} / ${total} 关 · 总用时 ${formatTime(stats.totalTime)}`;
+    }
+
+    // 难度筛选按钮
+    function bindFilter() {
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          currentFilter = btn.dataset.diff;
+          renderLevels();
+        });
+      });
+    }
+
+    // 工具：时间格式化
+    function formatTime(seconds) {
+      const m = Math.floor(seconds / 60);
+      const s = seconds % 60;
+      return m + '分' + String(s).padStart(2, '0') + '秒';
+    }
+
+    // 工具：难度颜色
+    function getDiffColor(diff) {
+      if (diff === '简单') return '#22c55e';
+      if (diff === '中等') return '#f59e0b';
+      if (diff === '困难') return '#ef4444';
+      return '#64748b';
+    }
+
+    // 启动
+    loadLevels();
+    bindFilter();
+  </script>
+</body>
+</html>

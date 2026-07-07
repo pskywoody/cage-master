@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>笼镇档案 · 杀手数独</title>
+  <link rel="icon" type="image/jpeg" href="assets/images/favicon.jpg" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #0c4a6e 0%, #0f172a 50%, #1e293b 100%);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: #f1f5f9;
+    }
+
+    .page-container {
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 16px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .top-bar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 8px 14px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      color: #94a3b8;
+      text-decoration: none;
+      font-size: 13px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .back-btn:active { background: rgba(255,255,255,0.15); transform: scale(0.97); }
+
+    .page-title { flex: 1; font-size: 22px; font-weight: 700; }
+    .page-title span { font-size: 13px; font-weight: 400; color: #94a3b8; display: block; margin-top: 2px; }
+
+    .difficulty-tabs {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+
+    .diff-tab {
+      padding: 10px 4px;
+      border: 2px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      background: rgba(255,255,255,0.04);
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.25s;
+    }
+    .diff-tab:active { transform: scale(0.95); }
+    .diff-tab.active {
+      border-color: var(--diff-color);
+      background: var(--diff-bg);
+    }
+    .diff-tab .diff-icon { font-size: 20px; margin-bottom: 2px; }
+    .diff-tab .diff-name { font-size: 11px; font-weight: 600; }
+    .diff-tab .diff-count { font-size: 9px; color: #94a3b8; margin-top: 1px; }
+    .diff-tab.active .diff-count { color: var(--diff-color); }
+
+    .diff-tab[data-diff="1"] { --diff-color: #22c55e; --diff-bg: rgba(34,197,94,0.15); }
+    .diff-tab[data-diff="2"] { --diff-color: #3b82f6; --diff-bg: rgba(59,130,246,0.15); }
+    .diff-tab[data-diff="3"] { --diff-color: #f59e0b; --diff-bg: rgba(245,158,11,0.15); }
+    .diff-tab[data-diff="4"] { --diff-color: #ef4444; --diff-bg: rgba(239,68,68,0.15); }
+    .diff-tab[data-diff="5"] { --diff-color: #a855f7; --diff-bg: rgba(168,85,247,0.15); }
+
+    .diff-stats {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 14px;
+      padding: 12px 16px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 14px;
+    }
+    .diff-stat { flex: 1; text-align: center; }
+    .diff-stat-val { font-size: 18px; font-weight: 700; color: var(--diff-color, #22c55e); }
+    .diff-stat-label { font-size: 11px; color: #64748b; margin-top: 2px; }
+
+    .levels-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+      flex: 1;
+      overflow-y: auto;
+      padding-bottom: 20px;
+      max-height: 62vh;
+    }
+
+    .level-cell {
+      aspect-ratio: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.06);
+      border: 2px solid rgba(255,255,255,0.08);
+      cursor: pointer;
+      transition: all 0.2s;
+      position: relative;
+      text-decoration: none;
+      color: inherit;
+    }
+    .level-cell:active { transform: scale(0.93); }
+    .level-cell:hover { border-color: rgba(255,255,255,0.2); background: rgba(255,255,255,0.1); }
+    .level-cell.completed { background: rgba(34,197,94,0.1); border-color: rgba(34,197,94,0.3); }
+    .level-cell .level-num { font-size: 16px; font-weight: 700; }
+    .level-cell.completed .level-num { color: #22c55e; }
+    .level-cell .level-best { font-size: 9px; color: #64748b; margin-top: 2px; }
+    .level-cell.completed .level-best { color: rgba(34,197,94,0.8); }
+    .level-cell .check-mark { position: absolute; top: 3px; right: 5px; font-size: 10px; color: #22c55e; }
+    .level-cell.locked { opacity: 0.35; cursor: not-allowed; }
+    .level-cell .star-rating { font-size: 8px; margin-top: 1px; letter-spacing: -1px; }
+
+    .levels-grid::-webkit-scrollbar { width: 4px; }
+    .levels-grid::-webkit-scrollbar-track { background: transparent; }
+    .levels-grid::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 2px; }
+
+    .mode-switch {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+    .mode-btn {
+      flex: 1;
+      padding: 8px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.04);
+      color: #94a3b8;
+      font-size: 12px;
+      font-weight: 600;
+      text-align: center;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .mode-btn.active {
+      background: rgba(99,102,241,0.2);
+      border-color: #6366f1;
+      color: #c7d2fe;
+    }
+
+    /* 练习模式切换（难度分级 / 技巧专项） */
+    .practice-switch {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+    .practice-btn {
+      flex: 1;
+      padding: 8px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.04);
+      color: #94a3b8;
+      font-size: 12px;
+      font-weight: 600;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .practice-btn.active {
+      background: rgba(250,204,21,0.15);
+      border-color: #facc15;
+      color: #fef08a;
+    }
+
+    /* 技巧分类卡片 */
+    .skill-categories {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      flex: 1;
+      overflow-y: auto;
+      padding-bottom: 20px;
+      max-height: 62vh;
+    }
+    .skill-card {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 16px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.05);
+      border: 2px solid rgba(255,255,255,0.08);
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+      color: inherit;
+    }
+    .skill-card:active { transform: scale(0.97); }
+    .skill-card:hover {
+      border-color: rgba(250,204,21,0.3);
+      background: rgba(250,204,21,0.08);
+    }
+    .skill-icon {
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      border-radius: 12px;
+      background: rgba(250,204,21,0.12);
+      flex-shrink: 0;
+    }
+    .skill-info { flex: 1; min-width: 0; }
+    .skill-name { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+    .skill-desc { font-size: 12px; color: #94a3b8; margin-bottom: 6px; }
+    .skill-meta { display: flex; gap: 10px; align-items: center; }
+    .skill-count {
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 20px;
+      background: rgba(250,204,21,0.15);
+      color: #fde68a;
+      font-weight: 600;
+    }
+    .skill-difficulty {
+      font-size: 11px;
+      color: #64748b;
+    }
+    .skill-arrow {
+      font-size: 20px;
+      color: #475569;
+      flex-shrink: 0;
+    }
+
+    /* 技巧关卡列表的返回 */
+    .skill-back-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+      padding: 8px 0;
+    }
+    .skill-back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 6px 12px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px;
+      color: #94a3b8;
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .skill-back-btn:active { transform: scale(0.95); }
+    .skill-title-text {
+      flex: 1;
+      font-size: 15px;
+      font-weight: 700;
+      color: #fef08a;
+    }
+
+    .skill-categories::-webkit-scrollbar { width: 4px; }
+    .skill-categories::-webkit-scrollbar-track { background: transparent; }
+    .skill-categories::-webkit-scrollbar-thumb { background: rgba(250,204,21,0.3); border-radius: 2px; }
+  </style>
+</head>
+<body>
+  <div class="page-container">
+    <div class="top-bar">
+      <a href="menu.html" class="back-btn">← 返回</a>
+      <div class="page-title">
+        🧩 杀手数独
+        <span id="subtitle">笼镇档案 · 自由挑战</span>
+      </div>
+    </div>
+
+    <!-- 模式切换 -->
+    <div class="mode-switch">
+      <a href="free-play.html?mode=classic" class="mode-btn active" id="modeClassic">经典数独</a>
+      <a href="free-play.html?mode=killer" class="mode-btn" id="modeKiller">杀手数独</a>
+    </div>
+
+    <!-- 练习模式切换（仅杀手数独显示） -->
+    <div class="practice-switch" id="practiceSwitch" style="display:none;">
+      <div class="practice-btn active" id="practiceDiff" onclick="switchPracticeMode('diff')">📊 难度分级</div>
+      <div class="practice-btn" id="practiceSkill" onclick="switchPracticeMode('skill')">🎯 技巧专项</div>
+    </div>
+
+    <!-- 难度选择（难度分级模式） -->
+    <div class="difficulty-tabs" id="diffTabs">
+      <div class="diff-tab active" data-diff="1" onclick="switchDifficulty(1)">
+        <div class="diff-icon">🌱</div>
+        <div class="diff-name">入门</div>
+        <div class="diff-count" id="cnt1">--</div>
+      </div>
+      <div class="diff-tab" data-diff="2" onclick="switchDifficulty(2)">
+        <div class="diff-icon">🌿</div>
+        <div class="diff-name">简单</div>
+        <div class="diff-count" id="cnt2">--</div>
+      </div>
+      <div class="diff-tab" data-diff="3" onclick="switchDifficulty(3)">
+        <div class="diff-icon">🔥</div>
+        <div class="diff-name">中等</div>
+        <div class="diff-count" id="cnt3">--</div>
+      </div>
+      <div class="diff-tab" data-diff="4" onclick="switchDifficulty(4)">
+        <div class="diff-icon">💀</div>
+        <div class="diff-name">困难</div>
+        <div class="diff-count" id="cnt4">--</div>
+      </div>
+      <div class="diff-tab" data-diff="5" onclick="switchDifficulty(5)">
+        <div class="diff-icon">👑</div>
+        <div class="diff-name">地狱</div>
+        <div class="diff-count" id="cnt5">--</div>
+      </div>
+    </div>
+
+    <!-- 难度统计（难度分级模式） -->
+    <div class="diff-stats" id="diffStats">
+      <div class="diff-stat">
+        <div class="diff-stat-val" id="statCompleted">0</div>
+        <div class="diff-stat-label">已通关</div>
+      </div>
+      <div class="diff-stat">
+        <div class="diff-stat-val" id="statBestTime">--</div>
+        <div class="diff-stat-label">最佳用时</div>
+      </div>
+      <div class="diff-stat">
+        <div class="diff-stat-val" id="statAvgTime">--</div>
+        <div class="diff-stat-label">平均用时</div>
+      </div>
+    </div>
+
+    <!-- 技巧返回栏（技巧专项模式） -->
+    <div class="skill-back-bar" id="skillBackBar" style="display:none;">
+      <div class="skill-back-btn" onclick="backToSkillList()">← 返回分类</div>
+      <div class="skill-title-text" id="skillTitleText">--</div>
+    </div>
+
+    <!-- 关卡网格（难度分级模式） -->
+    <div class="levels-grid" id="levelsGrid">
+      <div style="grid-column:1/-1;text-align:center;padding:40px 0;color:#64748b;">加载中...</div>
+    </div>
+
+    <!-- 技巧分类列表（技巧专项模式） -->
+    <div class="skill-categories" id="skillCategories" style="display:none;">
+      <div style="text-align:center;padding:40px 0;color:#64748b;">加载中...</div>
+    </div>
+  </div>
+
+  <script src="services/i18n.js?v=39"></script>
+  <script src="config/app-config.js?v=1"></script>
+  <script src="services/platform.js?v=1"></script>
+  <script src="services/audio.js?v=50"></script>
+  <script>if (typeof AudioManager !== 'undefined') { AudioManager.init(); }</script>
+  <script src="services/storage.js?v=1"></script>
+  <script src="services/midi-bgm.js?v=4"></script>
+  <script src="services/bgm-bridge.js?v=1"></script>
+  <script>if (typeof BGMEngine !== 'undefined') BGMEngine.init();</script>
+  <script>
+    const DIFF_CONFIG = {
+      1: { name: '入门', icon: '🌱', color: '#22c55e', star: '★' },
+      2: { name: '简单', icon: '🌿', color: '#3b82f6', star: '★★' },
+      3: { name: '中等', icon: '🔥', color: '#f59e0b', star: '★★★' },
+      4: { name: '困难', icon: '💀', color: '#ef4444', star: '★★★★' },
+      5: { name: '地狱', icon: '👑', color: '#a855f7', star: '★★★★★' },
+    };
+
+    // 从URL确定模式（默认为杀手数独，因为这是笼镇档案游戏）
+    const urlParams = new URLSearchParams(window.location.search);
+    const modeParam = urlParams.get('mode');
+    const GAME_MODE = (modeParam === 'classic') ? 'classic' : 'killer';
+    const DATA_FILE = GAME_MODE === 'killer' ? 'data/levels.json?v=41' : 'data/levels-classic.json?v=1';
+
+    // 同步模式按钮状态
+    document.getElementById('modeClassic').classList.toggle('active', GAME_MODE === 'classic');
+    document.getElementById('modeKiller').classList.toggle('active', GAME_MODE === 'killer');
+
+    // 支持从URL中读取 focus 参数，自动跳转到指定难度（用于微练习跳转）
+    const focusParam = urlParams.get('focus');
+
+    let allLevels = [];
+    let byDifficulty = { 1: [], 2: [], 3: [], 4: [], 5: [] };
+    let currentDifficulty = parseInt(focusParam) || 1;
+
+    function formatTime(seconds) {
+      if (!seconds || seconds < 0) return '--';
+      const m = Math.floor(seconds / 60);
+      const s = seconds % 60;
+      if (m >= 60) { const h = Math.floor(m / 60); return `${h}h${m%60}m`; }
+      return `${m}:${s.toString().padStart(2,'0')}`;
+    }
+
+    function switchDifficulty(diff) {
+      currentDifficulty = diff;
+      document.querySelectorAll('.diff-tab').forEach(t => {
+        t.classList.toggle('active', parseInt(t.dataset.diff) === diff);
+      });
+      document.documentElement.style.setProperty('--diff-color', DIFF_CONFIG[diff].color);
+      renderLevels();
+    }
+
+    function renderLevels() {
+      const levels = byDifficulty[currentDifficulty] || [];
+      const grid = document.getElementById('levelsGrid');
+      const analytics = Storage.getAllAnalytics();
+
+      let completed = 0;
+      let bestTime = Infinity;
+      let totalTime = 0;
+      let completedWithTime = 0;
+
+      if (levels.length === 0) {
+        grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:40px 0;color:#64748b;">
+          <div style="font-size:32px;margin-bottom:8px;">🚧</div>
+          <div>此难度题目正在收集中</div>
+          <div style="font-size:12px;margin-top:4px;color:#475569;">爬虫和生成器正在努力扩充题库</div>
+        </div>`;
+      } else {
+        let html = '';
+        for (const level of levels) {
+          const isCompleted = Storage.isCompleted(level.id);
+          const record = Storage.getCompleteRecord(level.id);
+          const lvlAnalytic = analytics[level.id];
+
+          if (isCompleted) {
+            completed++;
+            if (record.time && record.time < bestTime) bestTime = record.time;
+            if (record.time) { totalTime += record.time; completedWithTime++; }
+          }
+
+          const bestTimeStr = isCompleted && record.time ? formatTime(record.time) : '';
+          const stars = DIFF_CONFIG[currentDifficulty].star;
+
+          html += `
+            <a href="index.html?id=${level.id}&mode=${GAME_MODE}" class="level-cell ${isCompleted ? 'completed' : ''}">
+              ${isCompleted ? '<div class="check-mark">✓</div>' : ''}
+              <div class="level-num">${level.id}</div>
+              <div class="star-rating" style="color:${DIFF_CONFIG[currentDifficulty].color}">${stars}</div>
+              ${bestTimeStr ? `<div class="level-best">${bestTimeStr}</div>` : ''}
+            </a>
+          `;
+        }
+        grid.innerHTML = html;
+      }
+
+      document.getElementById('statCompleted').textContent = `${completed}/${levels.length}`;
+      document.getElementById('statBestTime').textContent = bestTime === Infinity ? '--' : formatTime(bestTime);
+      document.getElementById('statAvgTime').textContent = completedWithTime > 0
+        ? formatTime(Math.round(totalTime / completedWithTime))
+        : '--';
+
+      document.querySelectorAll('.diff-stat-val').forEach(el => {
+        el.style.color = DIFF_CONFIG[currentDifficulty].color;
+      });
+    }
+
+    function updateCounts() {
+      for (let d = 1; d <= 5; d++) {
+        const cnt = (byDifficulty[d] || []).length;
+        const el = document.getElementById('cnt' + d);
+        if (el) el.textContent = cnt > 0 ? cnt + '题' : '--';
+      }
+    }
+
+    async function loadLevels() {
+      try {
+        const res = await fetch(DATA_FILE);
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        const data = await res.json();
+        allLevels = Array.isArray(data) ? data : (data.levels || []);
+
+        // 按难度分组
+        byDifficulty = { 1: [], 2: [], 3: [], 4: [], 5: [] };
+        for (const lv of allLevels) {
+          let d = lv.difficultyLevel || 2;
+          // 兼容旧的字符串难度
+          if (typeof lv.difficulty === 'string') {
+            const map = { '入门': 1, '简单': 2, '中等': 3, '困难': 4, '地狱': 5 };
+            d = map[lv.difficulty] || d;
+          }
+          if (d < 1) d = 1;
+          if (d > 5) d = 5;
+          byDifficulty[d].push(lv);
+        }
+
+        // 每个难度内按id排序
+        for (let d = 1; d <= 5; d++) {
+          byDifficulty[d].sort((a, b) => a.id - b.id);
+        }
+
+        document.getElementById('subtitle').textContent =
+          GAME_MODE === 'killer'
+            ? `共${allLevels.length}道杀手数独谜题`
+            : `共${allLevels.length}道精选谜题`;
+
+        updateCounts();
+        renderLevels();
+      } catch (e) {
+        console.error('加载题库失败:', e);
+        document.getElementById('levelsGrid').innerHTML =
+          `<div style="grid-column:1/-1;text-align:center;padding:40px 0;color:#ef4444;">题库加载失败，请刷新</div>`;
+      }
+    }
+
+    // 初始化
+    loadLevels();
+
+    // ============================================================
+    //  技巧专项模式
+    // ============================================================
+
+    const SKILL_INFO = {
+      rule45: {
+        icon: '📐',
+        name: '星衡法则',
+        desc: '利用行/列/宫总和为45的特性，推导笼子外溢/内缺数值',
+        difficulty: '★★☆☆☆ 基础进阶',
+      },
+      hiddenSingle: {
+        icon: '🔍',
+        name: '隐曜',
+        desc: '某个数字在行列宫中只能出现在唯一位置',
+        difficulty: '★★☆☆☆ 基础进阶',
+      },
+      cageUnique: {
+        icon: '🔒',
+        name: '笼子唯一组合',
+        desc: '笼子内数字组合唯一，直接锁定所有笔记',
+        difficulty: '★☆☆☆☆ 入门',
+      },
+      nakedPair: {
+        icon: '👯',
+        name: '并蒂锁',
+        desc: '两格共享同一对笔记，可排除同行列宫其他格的该对数字',
+        difficulty: '★★★☆☆ 中级',
+      },
+    };
+
+    let skillOverview = null;
+    let currentSkill = null;
+    let currentSkillPuzzles = [];
+    let practiceMode = 'diff'; // 'diff' | 'skill'
+
+    // 杀手数独模式下显示练习模式切换
+    if (GAME_MODE === 'killer') {
+      document.getElementById('practiceSwitch').style.display = 'flex';
+    }
+
+    function switchPracticeMode(mode) {
+      practiceMode = mode;
+      document.getElementById('practiceDiff').classList.toggle('active', mode === 'diff');
+      document.getElementById('practiceSkill').classList.toggle('active', mode === 'skill');
+
+      // 难度分级模式
+      document.getElementById('diffTabs').style.display = mode === 'diff' ? 'grid' : 'none';
+      document.getElementById('diffStats').style.display = mode === 'diff' ? 'flex' : 'none';
+      document.getElementById('levelsGrid').style.display = mode === 'diff' ? 'grid' : 'none';
+
+      // 技巧专项模式
+      document.getElementById('skillCategories').style.display = mode === 'skill' ? 'flex' : 'none';
+      document.getElementById('skillBackBar').style.display = (mode === 'skill' && currentSkill) ? 'flex' : 'none';
+
+      if (mode === 'skill' && !skillOverview) {
+        loadSkillOverview();
+      }
+
+      if (typeof AudioManager !== 'undefined') AudioManager.playClick();
+    }
+
+    async function loadSkillOverview() {
+      const container = document.getElementById('skillCategories');
+      container.innerHTML = '<div style="text-align:center;padding:40px 0;color:#64748b;">加载中...</div>';
+
+      try {
+        const res = await fetch('data/puzzles/by-technique/overview.json?v=1');
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        skillOverview = await res.json();
+        renderSkillCategories();
+      } catch (e) {
+        console.error('加载技巧题库失败:', e);
+        container.innerHTML =
+          `<div style="text-align:center;padding:40px 0;color:#ef4444;">
+            <div style="font-size:32px;margin-bottom:8px;">⚠️</div>
+            <div>技巧题库加载失败</div>
+          </div>`;
+      }
+    }
+
+    function renderSkillCategories() {
+      const container = document.getElementById('skillCategories');
+      if (!skillOverview || !skillOverview.techniques) return;
+
+      // 按技巧顺序排列（从易到难）
+      const order = ['nakedSingle', 'cageUnique', 'hiddenSingle', 'rule45', 'nakedPair', 'hiddenPair', 'pointingClaiming', 'nakedTriplet', 'xWing'];
+      let html = '';
+
+      for (const key of order) {
+        const tech = skillOverview.techniques[key];
+        if (!tech) continue;
+        const info = SKILL_INFO[key] || { icon: '🧩', name: tech.name, desc: '', difficulty: '' };
+
+        html += `
+          <div class="skill-card" onclick="enterSkillCategory('${key}')">
+            <div class="skill-icon">${info.icon}</div>
+            <div class="skill-info">
+              <div class="skill-name">${tech.name}</div>
+              <div class="skill-desc">${info.desc}</div>
+              <div class="skill-meta">
+                <span class="skill-count">${tech.count} 道</span>
+                <span class="skill-difficulty">${info.difficulty}</span>
+              </div>
+            </div>
+            <div class="skill-arrow">›</div>
+          </div>
+        `;
+      }
+
+      container.innerHTML = html;
+    }
+
+    async function enterSkillCategory(skillKey) {
+      currentSkill = skillKey;
+      const info = SKILL_INFO[skillKey] || {};
+      document.getElementById('skillTitleText').textContent =
+        `${info.icon || '🎯'} ${info.name || skillKey} 专项练习`;
+      document.getElementById('skillBackBar').style.display = 'flex';
+
+      const container = document.getElementById('skillCategories');
+      container.innerHTML = '<div style="text-align:center;padding:40px 0;color:#64748b;">加载中...</div>';
+
+      try {
+        if (typeof AudioManager !== 'undefined') AudioManager.playClick();
+      } catch (e) { /* 音频错误不影响功能 */ }
+      
+      try {
+        const tech = skillOverview.techniques[skillKey];
+        const res = await fetch(`data/puzzles/by-technique/${tech.file}?v=1`);
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        const data = await res.json();
+        // 展平三级结构（入门/进阶/挑战）为一维数组
+        currentSkillPuzzles = [];
+        if (data.levels) {
+          for (const levelName of ['入门', '进阶', '挑战']) {
+            if (data.levels[levelName] && Array.isArray(data.levels[levelName])) {
+              currentSkillPuzzles.push(...data.levels[levelName]);
+            }
+          }
+        }
+        // 兼容旧格式
+        if (currentSkillPuzzles.length === 0 && data.puzzles) {
+          currentSkillPuzzles = data.puzzles;
+        }
+        renderSkillPuzzles();
+      } catch (e) {
+        console.error('加载技巧关卡失败:', e);
+        container.innerHTML =
+          `<div style="text-align:center;padding:40px 0;color:#ef4444;">关卡加载失败</div>`;
+      }
+    }
+
+    function backToSkillList() {
+      currentSkill = null;
+      currentSkillPuzzles = [];
+      document.getElementById('skillBackBar').style.display = 'none';
+      renderSkillCategories();
+      if (typeof AudioManager !== 'undefined') AudioManager.playClick();
+    }
+
+    function renderSkillPuzzles() {
+      const container = document.getElementById('skillCategories');
+      const puzzles = currentSkillPuzzles;
+      const analytics = Storage.getAllAnalytics();
+
+      if (puzzles.length === 0) {
+        container.innerHTML =
+          `<div style="text-align:center;padding:40px 0;color:#64748b;">
+            <div style="font-size:32px;margin-bottom:8px;">🚧</div>
+            <div>该技巧题目正在扩充中</div>
+          </div>`;
+        return;
+      }
+
+      // 用5列网格显示关卡（复用 levels-grid 样式但放在 skill-categories 里）
+      let html = `<div class="levels-grid" style="display:grid;max-height:none;flex:1;">`;
+
+      for (let i = 0; i < puzzles.length; i++) {
+        const puzzle = puzzles[i];
+        const isCompleted = Storage.isCompleted(puzzle.id);
+        const record = Storage.getCompleteRecord(puzzle.id);
+        const bestTimeStr = isCompleted && record.time ? formatTime(record.time) : '';
+
+        // 根据难度分数决定颜色
+        const diffScore = puzzle.difficultyScore || 0;
+        let starCount = 1;
+        if (diffScore > 200) starCount = 2;
+        if (diffScore > 500) starCount = 3;
+        if (diffScore > 1000) starCount = 4;
+        if (diffScore > 2000) starCount = 5;
+        const stars = '★'.repeat(starCount);
+        const starColor = DIFF_CONFIG[starCount]?.color || '#facc15';
+
+        html += `
+          <a href="index.html?id=${puzzle.id}&mode=killer&skill=${currentSkill}" 
+             class="level-cell ${isCompleted ? 'completed' : ''}"
+             style="text-decoration:none;">
+            ${isCompleted ? '<div class="check-mark">✓</div>' : ''}
+            <div class="level-num">${i + 1}</div>
+            <div class="star-rating" style="color:${starColor};font-size:8px;margin-top:1px;letter-spacing:-1px;">${stars}</div>
+            ${bestTimeStr ? `<div class="level-best">${bestTimeStr}</div>` : ''}
+          </a>
+        `;
+      }
+
+      html += `</div>`;
+      container.innerHTML = html;
+    }
+
+    // 按钮音效
+    document.querySelectorAll('.back-btn, .diff-tab, .mode-btn, .practice-btn, .skill-card, .skill-back-btn').forEach(el => {
+      el.addEventListener('click', () => {
+        if (typeof AudioManager !== 'undefined') AudioManager.playClick();
+      });
+    });
+  </script>
+</body>
+</html>

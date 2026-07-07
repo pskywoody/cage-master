@@ -1,0 +1,71 @@
+{
+  "version": "v6-targeted",
+  "generatedAt": "2026-07-06T07:34:38.860Z",
+  "totalPuzzles": 140,
+  "type": "classic",
+  "techniques": {
+    "nakedSingle": {
+      "name": "孤星",
+      "nameEn": "Naked Single",
+      "level": 1,
+      "description": "某格只有一个笔记，直接确定答案",
+      "difficulty": "入门",
+      "count": 30,
+      "file": "classic-nakedSingle.json"
+    },
+    "hiddenSingle": {
+      "name": "隐曜",
+      "nameEn": "Hidden Single",
+      "level": 3,
+      "description": "某数字在某行/列/宫只能出现在一个格子",
+      "difficulty": "简单",
+      "count": 30,
+      "file": "classic-hiddenSingle.json"
+    },
+    "nakedPair": {
+      "name": "并蒂锁",
+      "nameEn": "Naked Pair",
+      "level": 5,
+      "description": "两格有相同的两个笔记，可排除同区其他格的这两个数",
+      "difficulty": "困难",
+      "count": 20,
+      "file": "classic-nakedPair.json"
+    },
+    "hiddenPair": {
+      "name": "双曜",
+      "nameEn": "Hidden Pair",
+      "level": 6,
+      "description": "某两个数字只能出现在相同的两格，可排除这两格的其他候选",
+      "difficulty": "困难+",
+      "count": 20,
+      "file": "classic-hiddenPair.json"
+    },
+    "nakedTriplet": {
+      "name": "三子法",
+      "nameEn": "Naked Triplet",
+      "level": 8,
+      "description": "三格包含相同的三个笔记，可排除同区其他格",
+      "difficulty": "专家+",
+      "count": 15,
+      "file": "classic-nakedTriplet.json"
+    },
+    "xWing": {
+      "name": "二连纵横阵",
+      "nameEn": "二连纵横阵",
+      "level": 9,
+      "description": "二连纵横阵构型，两行/列中某数字只出现在相同两列/行",
+      "difficulty": "大师",
+      "count": 15,
+      "file": "classic-xWing.json"
+    },
+    "swordfish": {
+      "name": "三才游鱼阵",
+      "nameEn": "Swordfish",
+      "level": 10,
+      "description": "三才游鱼阵，三行/列中某数字只出现在相同三列/行",
+      "difficulty": "大师+",
+      "count": 10,
+      "file": "classic-swordfish.json"
+    }
+  }
+}

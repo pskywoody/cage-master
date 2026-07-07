@@ -1,0 +1,48 @@
+{
+  "version": "1.0",
+  "totalChapters": 7,
+  "chapters": [
+    {
+      "id": 0,
+      "key": "ch1",
+      "title": "初识笼中密码",
+      "file": "ch1-awakening.json"
+    },
+    {
+      "id": 1,
+      "key": "ch2",
+      "title": "四十五星衡",
+      "file": "ch2-balance.json"
+    },
+    {
+      "id": 2,
+      "key": "ch3",
+      "title": "档案室深层",
+      "file": "ch3-deep.json"
+    },
+    {
+      "id": 3,
+      "key": "ch4",
+      "title": "尘封旧案",
+      "file": "ch4-cold.json"
+    },
+    {
+      "id": 4,
+      "key": "ch5",
+      "title": "星辰梭核心",
+      "file": "ch5-core.json"
+    },
+    {
+      "id": 5,
+      "key": "ch6",
+      "title": "终局笼局",
+      "file": "ch6-end.json"
+    },
+    {
+      "id": 6,
+      "key": "ch7",
+      "title": "秘术档案",
+      "file": "ch7-secret.json"
+    }
+  ]
+}

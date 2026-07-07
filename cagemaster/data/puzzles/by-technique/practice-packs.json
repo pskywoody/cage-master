@@ -1,0 +1,355 @@
+{
+  "generatedAt": "2026-07-06T07:20:26.908Z",
+  "description": "技巧分级练习题集，每个技巧分入门/进阶/挑战三档，破局点精准匹配目标技巧",
+  "techniques": {
+    "nakedSingle": {
+      "name": "孤星",
+      "nameEn": "Naked Single",
+      "level": 1,
+      "description": "某格只有一个笔记，直接确定答案",
+      "difficulty": "入门",
+      "levels": {
+        "入门": [
+          "kt_nakedSingle_001",
+          "kt_nakedSingle_002",
+          "kt_nakedSingle_003",
+          "kt_nakedSingle_004",
+          "kt_nakedSingle_005",
+          "kt_nakedSingle_006",
+          "kt_nakedSingle_007",
+          "kt_nakedSingle_008",
+          "kt_nakedSingle_009",
+          "kt_nakedSingle_010"
+        ],
+        "进阶": [
+          "kt_nakedSingle_011",
+          "kt_nakedSingle_012",
+          "kt_nakedSingle_013",
+          "kt_nakedSingle_014",
+          "kt_nakedSingle_015",
+          "kt_nakedSingle_016",
+          "kt_nakedSingle_017",
+          "kt_nakedSingle_018",
+          "kt_nakedSingle_019",
+          "kt_nakedSingle_020"
+        ],
+        "挑战": [
+          "kt_nakedSingle_021",
+          "kt_nakedSingle_022",
+          "kt_nakedSingle_023",
+          "kt_nakedSingle_024",
+          "kt_nakedSingle_025",
+          "kt_nakedSingle_026",
+          "kt_nakedSingle_027",
+          "kt_nakedSingle_028",
+          "kt_nakedSingle_029",
+          "kt_nakedSingle_030"
+        ]
+      },
+      "total": 30
+    },
+    "cageUnique": {
+      "name": "笼子唯一组合",
+      "nameEn": "Cage Unique Combination",
+      "level": 2,
+      "description": "笼子内某数字只能出现在一个格子",
+      "difficulty": "入门+",
+      "levels": {
+        "入门": [
+          "kt_cageUnique_001",
+          "kt_cageUnique_002",
+          "kt_cageUnique_003",
+          "kt_cageUnique_004",
+          "kt_cageUnique_005",
+          "kt_cageUnique_006",
+          "kt_cageUnique_007",
+          "kt_cageUnique_008",
+          "kt_cageUnique_009",
+          "kt_cageUnique_010"
+        ],
+        "进阶": [
+          "kt_cageUnique_011",
+          "kt_cageUnique_012",
+          "kt_cageUnique_013",
+          "kt_cageUnique_014",
+          "kt_cageUnique_015",
+          "kt_cageUnique_016",
+          "kt_cageUnique_017",
+          "kt_cageUnique_018",
+          "kt_cageUnique_019",
+          "kt_cageUnique_020"
+        ],
+        "挑战": [
+          "kt_cageUnique_021",
+          "kt_cageUnique_022",
+          "kt_cageUnique_023",
+          "kt_cageUnique_024",
+          "kt_cageUnique_025",
+          "kt_cageUnique_026",
+          "kt_cageUnique_027",
+          "kt_cageUnique_028",
+          "kt_cageUnique_029",
+          "kt_cageUnique_030"
+        ]
+      },
+      "total": 30
+    },
+    "hiddenSingle": {
+      "name": "隐曜",
+      "nameEn": "Hidden Single",
+      "level": 3,
+      "description": "某数字在某行/列/宫只能出现在一个格子",
+      "difficulty": "简单",
+      "levels": {
+        "入门": [
+          "kt_hiddenSingle_001",
+          "kt_hiddenSingle_002",
+          "kt_hiddenSingle_003",
+          "kt_hiddenSingle_004",
+          "kt_hiddenSingle_005",
+          "kt_hiddenSingle_006",
+          "kt_hiddenSingle_007",
+          "kt_hiddenSingle_008",
+          "kt_hiddenSingle_009",
+          "kt_hiddenSingle_010"
+        ],
+        "进阶": [
+          "kt_hiddenSingle_011",
+          "kt_hiddenSingle_012",
+          "kt_hiddenSingle_013",
+          "kt_hiddenSingle_014",
+          "kt_hiddenSingle_015",
+          "kt_hiddenSingle_016",
+          "kt_hiddenSingle_017",
+          "kt_hiddenSingle_018",
+          "kt_hiddenSingle_019",
+          "kt_hiddenSingle_020"
+        ],
+        "挑战": [
+          "kt_hiddenSingle_021",
+          "kt_hiddenSingle_022",
+          "kt_hiddenSingle_023",
+          "kt_hiddenSingle_024",
+          "kt_hiddenSingle_025",
+          "kt_hiddenSingle_026",
+          "kt_hiddenSingle_027",
+          "kt_hiddenSingle_028",
+          "kt_hiddenSingle_029",
+          "kt_hiddenSingle_030"
+        ]
+      },
+      "total": 30
+    },
+    "rule45": {
+      "name": "星衡法则",
+      "nameEn": "Rule of 45",
+      "level": 4,
+      "description": "利用行/列/宫总和为45推导单格数值（Innie/Outie）",
+      "difficulty": "中等",
+      "levels": {
+        "入门": [
+          "kt_rule45_001",
+          "kt_rule45_002",
+          "kt_rule45_003",
+          "kt_rule45_004",
+          "kt_rule45_005",
+          "kt_rule45_006",
+          "kt_rule45_007",
+          "kt_rule45_008",
+          "kt_rule45_009",
+          "kt_rule45_010"
+        ],
+        "进阶": [
+          "kt_rule45_011",
+          "kt_rule45_012",
+          "kt_rule45_013",
+          "kt_rule45_014",
+          "kt_rule45_015",
+          "kt_rule45_016",
+          "kt_rule45_017",
+          "kt_rule45_018",
+          "kt_rule45_019",
+          "kt_rule45_020"
+        ],
+        "挑战": [
+          "kt_rule45_021",
+          "kt_rule45_022",
+          "kt_rule45_023",
+          "kt_rule45_024",
+          "kt_rule45_025",
+          "kt_rule45_026",
+          "kt_rule45_027",
+          "kt_rule45_028",
+          "kt_rule45_029",
+          "kt_rule45_030"
+        ]
+      },
+      "total": 30
+    },
+    "nakedPair": {
+      "name": "并蒂锁",
+      "nameEn": "Naked Pair",
+      "level": 5,
+      "description": "两格有相同的两个笔记，可排除同区其他格的这两个数",
+      "difficulty": "困难",
+      "levels": {
+        "入门": [
+          "kt_nakedPair_001",
+          "kt_nakedPair_002",
+          "kt_nakedPair_003",
+          "kt_nakedPair_004",
+          "kt_nakedPair_005",
+          "kt_nakedPair_006",
+          "kt_nakedPair_007"
+        ],
+        "进阶": [
+          "kt_nakedPair_008",
+          "kt_nakedPair_009",
+          "kt_nakedPair_010",
+          "kt_nakedPair_011",
+          "kt_nakedPair_012",
+          "kt_nakedPair_013",
+          "kt_nakedPair_014"
+        ],
+        "挑战": [
+          "kt_nakedPair_015",
+          "kt_nakedPair_016",
+          "kt_nakedPair_017",
+          "kt_nakedPair_018",
+          "kt_nakedPair_019",
+          "kt_nakedPair_020"
+        ]
+      },
+      "total": 20
+    },
+    "hiddenPair": {
+      "name": "双曜",
+      "nameEn": "Hidden Pair",
+      "level": 6,
+      "description": "某两个数字只能出现在相同的两格，可排除这两格的其他候选",
+      "difficulty": "困难+",
+      "levels": {
+        "入门": [
+          "kt_hiddenPair_001",
+          "kt_hiddenPair_002",
+          "kt_hiddenPair_003",
+          "kt_hiddenPair_004",
+          "kt_hiddenPair_005",
+          "kt_hiddenPair_006",
+          "kt_hiddenPair_007"
+        ],
+        "进阶": [
+          "kt_hiddenPair_008",
+          "kt_hiddenPair_009",
+          "kt_hiddenPair_010",
+          "kt_hiddenPair_011",
+          "kt_hiddenPair_012",
+          "kt_hiddenPair_013",
+          "kt_hiddenPair_014"
+        ],
+        "挑战": [
+          "kt_hiddenPair_015",
+          "kt_hiddenPair_016",
+          "kt_hiddenPair_017",
+          "kt_hiddenPair_018",
+          "kt_hiddenPair_019",
+          "kt_hiddenPair_020"
+        ]
+      },
+      "total": 20
+    },
+    "pointingClaiming": {
+      "name": "区块排除",
+      "nameEn": "Pointing / Claiming",
+      "level": 7,
+      "description": "行列区块/宫区块摒除",
+      "difficulty": "专家",
+      "levels": {
+        "入门": [
+          "kt_pointingClaiming_001",
+          "kt_pointingClaiming_002",
+          "kt_pointingClaiming_003",
+          "kt_pointingClaiming_004",
+          "kt_pointingClaiming_005",
+          "kt_pointingClaiming_006",
+          "kt_pointingClaiming_007"
+        ],
+        "进阶": [
+          "kt_pointingClaiming_008",
+          "kt_pointingClaiming_009",
+          "kt_pointingClaiming_010",
+          "kt_pointingClaiming_011",
+          "kt_pointingClaiming_012",
+          "kt_pointingClaiming_013",
+          "kt_pointingClaiming_014"
+        ],
+        "挑战": [
+          "kt_pointingClaiming_015",
+          "kt_pointingClaiming_016",
+          "kt_pointingClaiming_017",
+          "kt_pointingClaiming_018",
+          "kt_pointingClaiming_019",
+          "kt_pointingClaiming_020"
+        ]
+      },
+      "total": 20
+    },
+    "nakedTriplet": {
+      "name": "三子法",
+      "nameEn": "Naked Triplet",
+      "level": 8,
+      "description": "三格包含相同的三个笔记，可排除同区其他格",
+      "difficulty": "专家+",
+      "levels": {
+        "入门": [
+          "kt_nakedTriplet_001",
+          "kt_nakedTriplet_002",
+          "kt_nakedTriplet_003",
+          "kt_nakedTriplet_004",
+          "kt_nakedTriplet_005"
+        ],
+        "进阶": [
+          "kt_nakedTriplet_006",
+          "kt_nakedTriplet_007",
+          "kt_nakedTriplet_008",
+          "kt_nakedTriplet_009",
+          "kt_nakedTriplet_010"
+        ],
+        "挑战": [
+          "kt_nakedTriplet_011",
+          "kt_nakedTriplet_012",
+          "kt_nakedTriplet_013",
+          "kt_nakedTriplet_014",
+          "kt_nakedTriplet_015"
+        ]
+      },
+      "total": 15
+    },
+    "xWing": {
+      "name": "二连纵横阵",
+      "nameEn": "二连纵横阵",
+      "level": 9,
+      "description": "二连纵横阵构型，两行/列中某数字只出现在相同两列/行",
+      "difficulty": "大师",
+      "levels": {
+        "入门": [
+          "kt_xWing_001",
+          "kt_xWing_002",
+          "kt_xWing_003"
+        ],
+        "进阶": [
+          "kt_xWing_004",
+          "kt_xWing_005",
+          "kt_xWing_006"
+        ],
+        "挑战": [
+          "kt_xWing_007",
+          "kt_xWing_008",
+          "kt_xWing_009",
+          "kt_xWing_010"
+        ]
+      },
+      "total": 10
+    }
+  }
+}

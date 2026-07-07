@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>测试工具 - 全关卡解锁</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #1a1a2e;
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .container {
+      background: #16213e;
+      border-radius: 16px;
+      padding: 32px;
+      max-width: 500px;
+      width: 100%;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    }
+    h1 {
+      font-size: 22px;
+      margin-bottom: 8px;
+      color: #e94560;
+    }
+    .subtitle {
+      color: #94a3b8;
+      font-size: 13px;
+      margin-bottom: 24px;
+    }
+    .status {
+      background: #0f3460;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 20px;
+      font-size: 14px;
+      line-height: 1.8;
+    }
+    .status-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 4px 0;
+    }
+    .status-label { color: #94a3b8; }
+    .status-value { font-weight: 600; color: #e2e8f0; font-family: monospace; }
+    .status-value.ok { color: #10b981; }
+    .status-value.warn { color: #f59e0b; }
+    .btn-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    button {
+      width: 100%;
+      padding: 14px 20px;
+      border: none;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #e94560, #c73659);
+      color: white;
+    }
+    .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(233,69,96,0.4); }
+    .btn-secondary {
+      background: #334155;
+      color: #e2e8f0;
+    }
+    .btn-secondary:hover { background: #475569; }
+    .btn-danger {
+      background: #7f1d1d;
+      color: #fca5a5;
+    }
+    .btn-danger:hover { background: #991b1b; }
+    .divider {
+      height: 1px;
+      background: #334155;
+      margin: 20px 0;
+    }
+    .section-title {
+      font-size: 13px;
+      color: #64748b;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+    }
+    .quick-jump {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .jump-btn {
+      padding: 10px 4px;
+      background: #1e293b;
+      color: #94a3b8;
+      border: 1px solid #334155;
+      border-radius: 6px;
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .jump-btn:hover {
+      background: #334155;
+      color: #fff;
+      border-color: #e94560;
+    }
+    .log {
+      background: #0f172a;
+      border-radius: 6px;
+      padding: 12px;
+      font-family: monospace;
+      font-size: 12px;
+      color: #94a3b8;
+      max-height: 120px;
+      overflow-y: auto;
+      margin-top: 12px;
+      line-height: 1.6;
+    }
+    .log-line { padding: 2px 0; }
+    .log-line.success { color: #10b981; }
+    .log-line.error { color: #ef4444; }
+    .log-line.info { color: #60a5fa; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🧪 测试工具面板</h1>
+    <p class="subtitle">杀手数独 - 开发调试专用</p>
+    
+    <div class="status">
+      <div class="status-row">
+        <span class="status-label">当前存储前缀</span>
+        <span class="status-value" id="prefix">killersudoku_</span>
+      </div>
+      <div class="status-row">
+        <span class="status-label">已通关关卡</span>
+        <span class="status-value warn" id="completedCount">计算中...</span>
+      </div>
+      <div class="status-row">
+        <span class="status-label">总关卡数</span>
+        <span class="status-value" id="totalCount">2918</span>
+      </div>
+    </div>
+    
+    <div class="section-title">🚀 一键操作</div>
+    <div class="btn-group">
+      <button class="btn-primary" onclick="unlockAll()">🔓 解锁全部关卡（通关标记）</button>
+      <button class="btn-secondary" onclick="unlockAllWithTime()">⏱️ 解锁全部（含通关时间）</button>
+      <button class="btn-secondary" onclick="quickUnlockFirst100()">⚡ 快速解锁前100关</button>
+    </div>
+    
+    <div class="divider"></div>
+    
+    <div class="section-title">🎯 快速跳转</div>
+    <div class="quick-jump" id="quickJump">
+      <button class="jump-btn" onclick="jumpTo(1)">第1关</button>
+      <button class="jump-btn" onclick="jumpTo(50)">第50关</button>
+      <button class="jump-btn" onclick="jumpTo(100)">第100关</button>
+      <button class="jump-btn" onclick="jumpTo(200)">第200关</button>
+      <button class="jump-btn" onclick="jumpTo(271)">第271关</button>
+      <button class="jump-btn" onclick="jumpTo(500)">第500关</button>
+      <button class="jump-btn" onclick="jumpTo(1000)">第1000关</button>
+      <button class="jump-btn" onclick="jumpTo(1500)">第1500关</button>
+      <button class="jump-btn" onclick="jumpTo(2000)">第2000关</button>
+      <button class="jump-btn" onclick="jumpTo(2900)">第2900关</button>
+    </div>
+    
+    <div class="divider"></div>
+    
+    <div class="section-title">⚠️ 危险操作</div>
+    <div class="btn-group">
+      <button class="btn-danger" onclick="clearAllProgress()">🗑️ 清空所有进度</button>
+      <button class="btn-danger" onclick="clearSettings()">🔄 重置设置</button>
+    </div>
+    
+    <div class="log" id="log"></div>
+  </div>
+
+  <script src="utils/storage.js?v=1"></script>
+  <script>
+    const KEY_PREFIX = 'killersudoku_';
+    const TOTAL_LEVELS = 2918;
+    
+    function log(msg, type = 'info') {
+      const logEl = document.getElementById('log');
+      const line = document.createElement('div');
+      line.className = 'log-line ' + type;
+      const time = new Date().toLocaleTimeString();
+      line.textContent = `[${time}] ${msg}`;
+      logEl.appendChild(line);
+      logEl.scrollTop = logEl.scrollHeight;
+    }
+    
+    function updateStatus() {
+      let count = 0;
+      for (let i = 1; i <= TOTAL_LEVELS; i++) {
+        if (localStorage.getItem(KEY_PREFIX + 'complete_' + i)) {
+          count++;
+        }
+      }
+      document.getElementById('completedCount').textContent = count + ' / ' + TOTAL_LEVELS;
+      document.getElementById('completedCount').className = 
+        count === TOTAL_LEVELS ? 'status-value ok' : 'status-value warn';
+    }
+    
+    function unlockAll() {
+      if (!confirm('确定要解锁全部 ' + TOTAL_LEVELS + ' 关吗？')) return;
+      
+      let count = 0;
+      for (let i = 1; i <= TOTAL_LEVELS; i++) {
+        const key = KEY_PREFIX + 'complete_' + i;
+        if (!localStorage.getItem(key)) {
+          localStorage.setItem(key, JSON.stringify({ time: 300, stars: 3 }));
+          count++;
+        }
+      }
+      log(`已解锁 ${count} 关新关卡`, 'success');
+      updateStats();
+      updateStatus();
+    }
+    
+    function unlockAllWithTime() {
+      if (!confirm('确定要解锁全部关卡并生成随机通关时间吗？')) return;
+      
+      let count = 0;
+      for (let i = 1; i <= TOTAL_LEVELS; i++) {
+        const key = KEY_PREFIX + 'complete_' + i;
+        const time = Math.floor(60 + Math.random() * 600); // 1~11分钟
+        const stars = Math.random() > 0.3 ? 3 : (Math.random() > 0.5 ? 2 : 1);
+        localStorage.setItem(key, JSON.stringify({ time, stars }));
+        count++;
+      }
+      
+      // 更新统计
+      const stats = {
+        totalCompleted: TOTAL_LEVELS,
+        totalTime: TOTAL_LEVELS * 300,
+        difficultyCount: { 1: 600, 2: 700, 3: 800, 4: 500, 5: 318 }
+      };
+      localStorage.setItem(KEY_PREFIX + 'stats', JSON.stringify(stats));
+      
+      log(`已解锁全部 ${count} 关（含随机时间和星级）`, 'success');
+      updateStatus();
+    }
+    
+    function quickUnlockFirst100() {
+      let count = 0;
+      for (let i = 1; i <= 100; i++) {
+        const key = KEY_PREFIX + 'complete_' + i;
+        if (!localStorage.getItem(key)) {
+          localStorage.setItem(key, JSON.stringify({ time: 180, stars: 3 }));
+          count++;
+        }
+      }
+      log(`已解锁前100关（新增 ${count} 关）`, 'success');
+      updateStatus();
+    }
+    
+    function updateStats() {
+      let count = 0;
+      let totalTime = 0;
+      const diffCount = {};
+      for (let i = 1; i <= TOTAL_LEVELS; i++) {
+        const record = localStorage.getItem(KEY_PREFIX + 'complete_' + i);
+        if (record) {
+          count++;
+          try {
+            const data = JSON.parse(record);
+            totalTime += data.time || 0;
+          } catch(e) {}
+        }
+      }
+      const stats = {
+        totalCompleted: count,
+        totalTime: totalTime,
+        difficultyCount: { 1: Math.floor(count*0.2), 2: Math.floor(count*0.25), 3: Math.floor(count*0.25), 4: Math.floor(count*0.2), 5: Math.floor(count*0.1) }
+      };
+      localStorage.setItem(KEY_PREFIX + 'stats', JSON.stringify(stats));
+    }
+    
+    function clearAllProgress() {
+      if (!confirm('确定要清空所有进度吗？此操作不可恢复！')) return;
+      
+      let count = 0;
+      const keys = [];
+      for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        if (key && key.startsWith(KEY_PREFIX)) {
+          keys.push(key);
+        }
+      }
+      keys.forEach(key => {
+        localStorage.removeItem(key);
+        count++;
+      });
+      log(`已清空 ${count} 条数据`, 'error');
+      updateStatus();
+    }
+    
+    function clearSettings() {
+      if (!confirm('确定要重置所有设置吗？')) return;
+      localStorage.removeItem(KEY_PREFIX + 'settings');
+      log('设置已重置', 'info');
+    }
+    
+    function jumpTo(levelId) {
+      window.location.href = 'index.html?id=' + levelId + '&mode=killer';
+    }
+    
+    // 初始化
+    updateStatus();
+    log('测试工具已就绪', 'success');
+  </script>
+</body>
+</html>

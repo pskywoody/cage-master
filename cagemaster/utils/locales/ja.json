@@ -1,0 +1,1100 @@
+{
+  "i18n": {
+    "languageName_zhCN": "简体中文",
+    "languageName_ja": "日本語",
+    "languageName_en": "English",
+    "languageName_ko": "한국어",
+    "en": "English",
+    "ja": "日本語",
+    "ko": "한국어",
+    "zh-CN": "简体中文"
+  },
+  "ui": {
+    "common": {
+      "back": "← 戻る",
+      "backToMenu": "← メニュー",
+      "backToChapter": "← チャプター",
+      "backToChapters": "← チャプターリスト",
+      "backToMainMenu": "← メインメニュー",
+      "confirm": "確認",
+      "cancel": "キャンセル",
+      "close": "×",
+      "ok": "OK",
+      "next": "次へ ▶",
+      "prev": "◀ 前へ",
+      "start": "学習開始 ▶",
+      "startGame": "ゲーム開始",
+      "resume": "ゲーム再開",
+      "restart": "リセット",
+      "loading": "読み込み中...",
+      "loadingLevels": "レベル読み込み中...",
+      "loadingChapters": "チャプター読み込み中...",
+      "noData": "チャプターデータがありません",
+      "noLevels": "レベルがありません",
+      "returnToLevels": "レベルに戻る",
+      "nextLevel": "次のレベル",
+      "returnToChapter": "🏁 チャプターに戻る",
+      "gridView": "グリッド",
+      "listView": "リスト",
+      "progress": "進捗",
+      "versus": "VS",
+      "go": "開始！",
+      "continue": "続ける",
+      "no": "いいえ",
+      "noLevelsInDifficulty": "この難易度にはレベルがありません",
+      "reset": "リセット",
+      "retry": "再試行",
+      "save": "保存",
+      "yes": "はい"
+    },
+    "titles": {
+      "appName": "アーカイブ・ディテクティブ ～カゴの中の暗号～",
+      "guideMode": "チュートリアルモード",
+      "menuPage": "アーカイブ・ディテクティブ ～カゴの中の暗号～",
+      "chaptersPage": "ストーリーモード · チャプター選択",
+      "levelsPage": "レベル選択",
+      "optionsPage": "設定",
+      "chapterLevelsPage": "チャプターレベル",
+      "freePlayPage": "数独パズル · フリーモード",
+      "battlePage": "AI対戦",
+      "freePlayTitle": "🧩 数独パズル",
+      "freePlaySubtitle": "自由に挑戦、厳選300問",
+      "gamePage": "ゲーム",
+      "guidePage": "チュートリアルレベル"
+    },
+    "menu": {
+      "logo": "🔐",
+      "gameTitle": "カゴの中の暗号",
+      "subtitle": "アーカイブ・ディテクティブ · KILLER SUDOKU",
+      "storyMode": "ストーリーモード",
+      "storyModeDesc": "ストーリーに沿ってキラー数独のテクニックを学ぼう",
+      "freeMode": "数独パズル",
+      "freeModeDesc": "厳選300問、3つの難易度",
+      "battleMode": "フォグバトル",
+      "battleModeBeta": "BETA",
+      "battleModeDesc": "謎の仕掛け人AIと頭脳対決！",
+      "settings": "設定",
+      "settingsDesc": "音楽、効果音、進捗管理",
+      "version": "v1.0.0",
+      "statsCompleted": "クリア済み",
+      "statsBadges": "バッジ",
+      "statsTotalTime": "プレイ時間",
+      "newHint": "新"
+    },
+    "toolbar": {
+      "undo": "元に戻す",
+      "erase": "消去",
+      "candidate": "候補",
+      "candidateMode": "候補モード",
+      "fillMode": "記入モード",
+      "autoCands": "候補自動入力",
+      "hint": "ヒント",
+      "rule45": "🧮",
+      "setting": "設定",
+      "quickFill": "⚡ 連続入力"
+    },
+    "timer": {
+      "timeUsed": "タイム",
+      "timeFormat_min_sec": "{m}分{s}秒",
+      "timeFormat_sec": "{s}秒",
+      "timeFormat_h_m": "{h}h{m}m",
+      "timeFormat_clock": "{m}:{s}"
+    },
+    "pause": {
+      "title": "⏸ 一時停止",
+      "desc": "下のボタンをクリックして再開"
+    },
+    "complete": {
+      "trophy": "🏆",
+      "title": "クリアおめでとう！",
+      "timeUsed": "タイム {time}",
+      "rematch": "もう一度"
+    },
+    "settings": {
+      "title": "⚙️ 設定",
+      "audioSection": "🔊 オーディオ",
+      "displaySection": "表示",
+      "operationSection": "操作",
+      "gameSection": "ゲーム",
+      "dataSection": "データ管理",
+      "muteAll": "🔇 一括ミュート",
+      "muteAllDesc": "すべての音（BGM+効果音）をオフ",
+      "bgm": "🎵 BGM",
+      "bgmDesc": "ゲーム中のBGM",
+      "sfx": "🔊 効果音",
+      "sfxDesc": "クリックや数字入力の効果音",
+      "conflictRed": "重複を赤表示",
+      "conflictRedDesc": "間違った数字を赤で表示",
+      "highlightRow": "行ハイライト",
+      "highlightRowDesc": "選択したマスの行をハイライト",
+      "highlightCol": "列ハイライト",
+      "highlightColDesc": "選択したマスの列をハイライト",
+      "highlightBox": "ボックスハイライト",
+      "highlightBoxDesc": "選択したマスのボックスをハイライト",
+      "highlightSameNum": "同数字ハイライト",
+      "highlightSameNumDesc": "選択した数字と同じ数字をハイライト",
+      "highlightSameCage": "同ケージハイライト",
+      "highlightSameCageDesc": "選択したマスのケージをハイライト",
+      "highlightRowColBox": "行列ボックスハイライト",
+      "highlightRowColBoxDesc": "選択したマスの行・列・ボックスをハイライト",
+      "autoClearCands": "候補自動消去",
+      "autoClearCandsDesc": "数字入力後に行/列/ボックス/カゴの候補を自動消去",
+      "autoClearCandsShort": "候補自動消去",
+      "autoClearCandsShortDesc": "入力後に関連候補を自動消去",
+      "rowColHighlightCombined": "行列ボックスハイライト",
+      "rowColHighlightCombinedDesc": "選択したマスの行・列・ボックスをハイライト",
+      "exportData": "📤 セーブデータ出力",
+      "resetAll": "🗑️ 進捗リセット",
+      "aboutTitle": "アーカイブ・ディテクティブ ～カゴの中の暗号～",
+      "aboutVersion": "バージョン 1.0.0",
+      "aboutDesc1": "没入型キラー数独ストーリーパズルゲーム",
+      "aboutDesc2": "番人とアヤンと共に、謎の仕掛け人が残した秘術のアーカイブを解き明かそう",
+      "statsTotalComplete": "総クリア数",
+      "statsTotalTime": "総プレイ時間",
+      "statsBadges": "バッジ",
+      "confirmResetTitle": "⚠️ リセット確認",
+      "confirmResetMsg": "リセットしますか？",
+      "confirmResetDetail": "この操作はすべてのクリア記録、進捗、バッジ、設定を消去し、復元できません。",
+      "confirmOk": "リセット実行",
+      "toastReset": "進捗をリセットしました",
+      "toastResetFail": "リセットに失敗しました",
+      "toastExported": "セーブデータを出力しました",
+      "toastExportFail": "出力に失敗しました",
+      "back": "← 戻る",
+      "aboutDesc": "没入型キラー数独ストーリーパズルゲーム\\n番人と彩と共に、謎の仕掛け人が残した秘術のアーカイブを解き明かそう",
+      "autoClearCandidates": "候補自動消去",
+      "autoClearCandidatesDesc": "入力後に関連候補を自動消去",
+      "statBadges": "バッジ",
+      "statTotalCompleted": "総クリア数",
+      "statTotalTime": "総プレイ時間",
+      "toastExportFailed": "出力に失敗しました",
+      "toastResetFailed": "リセットに失敗しました",
+      "toggleBgm": "BGM切り替え",
+      "toggleSfx": "効果音切り替え"
+    },
+    "rule45": {
+      "title": "🧮 星衡法則計算機",
+      "cellCount": "マス数",
+      "targetSum": "目標の合計",
+      "mustInclude": "必須の数字",
+      "exclude": "除外する数字",
+      "possibleCombinations": "可能な組み合わせ",
+      "combinationsCount": "{count} 通り",
+      "errorInvalidInput": "有効なマス数と目標の合計を入力してください",
+      "errorTooManyMust": "必須の数字がマス数を超えています",
+      "errorConflict": "必須の数字は除外できません",
+      "errorNoCombination": "条件に合う組み合わせがありません",
+      "rule10": "10の法則（4x4）",
+      "rule21": "21の法則（6x6）",
+      "rule45": "45の法則（9x9）",
+      "errorMustExceedCells": "必須の数字がマス数を超えています",
+      "errorMustExcluded": "必須の数字は除外できません",
+      "errorNoResult": "条件に合う組み合わせがありません",
+      "ruleName": "星衡法則"
+    },
+    "chapters": {
+      "title": "📖 ストーリーモード",
+      "subtitle": "番人と彩と共に、キラー数独の秘術アーカイブを解き明かそう",
+      "chapterPrefix": "第{id}章：",
+      "badge": "🏅 {name}",
+      "badgeUnearned": "🎖️ {name}",
+      "lockedIcon": "🔒",
+      "loading": "チャプター読み込み中...",
+      "backToMenu": "← メニュー",
+      "noData": "チャプターデータがありません",
+      "fallbackCh1": {
+        "title": "暗号の手紙",
+        "subtitle": "入門編 · 4x4",
+        "desc": "キラー数独の基本ルールを学び、最小の4x4盤面から探偵の旅を始めよう。",
+        "badgeName": "新人探偵"
+      },
+      "fallbackCh2": {
+        "title": "二重の手がかり",
+        "subtitle": "初級編 · 6x6",
+        "desc": "より多くのテクニックを学び、6x6盤面に挑戦して推理力を高めよう。",
+        "badgeName": "ジュニア探偵"
+      },
+      "fallbackCh3": {
+        "title": "謎の追跡",
+        "subtitle": "中級編 · 6x6",
+        "desc": "星衡法則などの高度なテクニックをマスターし、より複雑なパズルを解き明かそう。",
+        "badgeName": "ミドル探偵"
+      },
+      "fallbackCh4": {
+        "title": "暗号解読",
+        "subtitle": "上級編 · 9x9",
+        "desc": "いよいよ9x9盤面に挑戦、キラー数独の魅力を存分に味わおう。",
+        "badgeName": "シニア探偵"
+      },
+      "fallbackCh5": {
+        "title": "究極の試練",
+        "subtitle": "チャレンジ編 · 9x9",
+        "desc": "高難度9x9パズル、学んだテクニックのすべてを試される。",
+        "badgeName": "エリート探偵"
+      },
+      "fallbackCh6": {
+        "title": "マスターへの道",
+        "subtitle": "マスター編 · 9x9",
+        "desc": "伝説級の難易度、真の探偵マスターだけがクリアできる。",
+        "badgeName": "マスター探偵"
+      },
+      "fallbackCh7": {
+        "title": "秘術のアーカイブ",
+        "subtitle": "マスター編 · 上級テクニック",
+        "desc": "番人が謎の仕掛け人の残した6巻の秘術手稿を発見した。独立双子法、二連列、三連列などの高度な推敲術が記されている。",
+        "badgeName": "秘術マスター"
+      },
+      "progress": "進捗"
+    },
+    "chapterLevels": {
+      "levelNum": "第{num}関",
+      "fallbackDesc": "第{chapterId}章のレッスン。キラー数独のコアテクニックを段階的にマスターしよう。",
+      "teachingGoal_default": "学習目標 {n}",
+      "bestTime": "ベスト {time}",
+      "completed": "✓ クリア済み",
+      "backToChapters": "← チャプターリスト",
+      "gridView": "グリッド",
+      "listView": "リスト",
+      "loading": "レベル読み込み中...",
+      "noLevels": "レベルがありません",
+      "progress": "進捗",
+      "unknownChapter": "不明なチャプター"
+    },
+    "levels": {
+      "title": "アーカイブ・ディテクティブ ～カゴの中の暗号～",
+      "teachingEntry": "チュートリアル",
+      "teachingEntryTag": "入門",
+      "teachingDesc": "ゼロからキラー数独を学ぼう",
+      "teachingProgress": "{count}個のチュートリアルレベルをクリア",
+      "battleEntry": "AI対戦モード",
+      "battleEntryTag": "対戦",
+      "battleStats": "戦績：{wins}勝{losses}敗",
+      "filterAll": "すべて",
+      "filterEasy": "簡単",
+      "filterMedium": "普通",
+      "filterHard": "難しい",
+      "filterCalibrated": "難易度順",
+      "statsLine": "{completed} / {total}クリア · 総プレイ時間 {time}",
+      "bestTimeTag": "ベスト {time}",
+      "avgTimeTag": "平均 {time}",
+      "hintsTag": "ヒント {count}回",
+      "completionsTag": "クリア {done}/{attempts}",
+      "battleDesc": "対戦",
+      "completedTag": "✓ クリア済み",
+      "entryLevel": "入門",
+      "loading": "レベル読み込み中...",
+      "networkError": "ネットワークエラー、再読み込みして再試行してください",
+      "noLevelsForDiff": "この難易度にはレベルがありません"
+    },
+    "freePlay": {
+      "easy": "簡単",
+      "easyRange": "1-100",
+      "medium": "普通",
+      "mediumRange": "101-200",
+      "hard": "難しい",
+      "hardRange": "201-300",
+      "completed": "クリア済み",
+      "bestTimeLabel": "ベストタイム",
+      "avgTimeLabel": "平均タイム",
+      "back": "← 戻る",
+      "subtitle": "自由に挑戦、厳選300問",
+      "title": "🧩 数独パズル"
+    },
+    "badge": {
+      "title": "🏅 バッジ獲得",
+      "newBadge": "新しいバッジ",
+      "accept": "受け取る"
+    },
+    "story": {
+      "continueHint": "▼ クリックで続ける",
+      "defaultSpeaker": "アーカイブ・ディテクティブ"
+    },
+    "debug": {
+      "title": "🛠 診断パネル",
+      "close": "✕"
+    },
+    "canvas": {
+      "candidateMode_label": "✏️候補",
+      "row": "行",
+      "col": "列",
+      "box": "ボックス",
+      "quickFillHint": "💡 マスを選ばず→数字をタップ→空きマスをタップで素早く入力",
+      "cage": "ケージ",
+      "quickFillActivated": "⚡ 連続入力{num}：空きマスをタップして素早く入力",
+      "quickFillComplete": "✅ {num}がすべて埋まりました。連続入力を自動でオフにします"
+    },
+    "perspective": {
+      "row": "行 ",
+      "col": "列 ",
+      "box": "ボックス ",
+      "boxPrefix": "第{n}ボックス",
+      "colPrefix": "第{n}列",
+      "rowPrefix": "第{n}行"
+    },
+    "progress": {
+      "format": "{current} / {total}"
+    }
+  },
+  "battle": {
+    "title": "⚔️ AI対戦モード",
+    "subtitle": "正解でエネルギーを溜めて、攻撃を放ち相手を妨害しよう！",
+    "you": "あなた",
+    "aiBot": "AI Bot",
+    "bot1": "Bot 1",
+    "bot2": "Bot 2",
+    "detective": "探偵",
+    "difficulty": {
+      "label": "難易度：",
+      "easy": "簡単",
+      "medium": "普通",
+      "hard": "難しい"
+    },
+    "startBattle": "対戦開始",
+    "spectate": "👀 観戦",
+    "back": "戻る",
+    "energy": "⚡ エネルギー",
+    "progress": "{filled} / {total}",
+    "attackCount": "攻撃: {count}",
+    "combo": "{count}コンボ!",
+    "attacks": {
+      "normal": "通常攻撃",
+      "normalCost": "30エネルギー",
+      "heavy": "強攻撃",
+      "heavyCost": "60エネルギー",
+      "ultimate": "必殺技",
+      "ultimateCost": "100エネルギー"
+    },
+    "controls": {
+      "quickFill": "⚡ 連続入力",
+      "fillMode": "記入モード",
+      "candidateMode": "候補モード",
+      "erase": "消去",
+      "restart": "リセット",
+      "modeToggle": "記入モード"
+    },
+    "attackText": "ATTACK!",
+    "result": {
+      "win": "🎉 勝利！",
+      "lose": "😢 敗北...",
+      "continueStory": "ストーリーを続ける",
+      "retry": "もう一度",
+      "rematch": "再戦",
+      "back": "戻る",
+      "timeUsed": "タイム：{m}分{s}秒",
+      "yourProgress": "{label}進捗：{filled} / 81（{pct}%）",
+      "aiProgress": "AI進捗：{filled} / 81（{pct}%）",
+      "maxCombo": "最高コンボ：{count}",
+      "yourAttacks": "あなたの攻撃：{n}回",
+      "aiAttacks": "AIの攻撃：{count}回",
+      "aiDifficulty": "AI難易度：{diff}",
+      "bot1Win": "🏆 Bot 1 勝利！",
+      "bot2Win": "🏆 Bot 2 勝利！",
+      "playerAttacks": "{label}の攻撃：{count}回"
+    },
+    "countdown": {
+      "hint": "霧の中で競い合い、先に75%埋めた方が勝ち",
+      "opponent": "相手",
+      "start": "開始！",
+      "vs": "VS"
+    },
+    "boss": {
+      "mysteriousOpponent": "謎の対戦相手",
+      "unknownPersonality": "未知の相手"
+    },
+    "dialogue": {
+      "toast": {}
+    },
+    "tips": {
+      "bewareOpponent": "相手に注意！",
+      "bewareOpponentText": "点滅する赤いマスが見えるか？それは{name}が埋めたゴーストセルだ。同じマスを正解で埋めれば奪い返せる！",
+      "exploreCages": "ケージの手がかりを探索",
+      "exploreCagesText": "すべての数字は見えている！しかしケージの点線と青い和のバッジは霧に隠されている。正解を埋めて視野を広げ、ケージの手がかりを見つけよう！",
+      "fogCleared": "霧が晴れた！",
+      "fogClearedText": "正解を埋めると近くのケージの点線と和が現れる。さらに埋めて、ケージの手がかりを解き明かせ！",
+      "ruleFog": "霧に隠されたケージ",
+      "ruleFogDesc": "すべての数字は常に見えている！しかしケージの点線と青い和のバッジは霧に隠されている。近づいてケージの形と和を見つけよう。見える数字から推理し、正解を埋めて視野を広げケージの手がかりを暴け！",
+      "ruleGhost": "ゴースト対戦相手",
+      "ruleGhostDesc": "{name}が霧の中で競っている！点滅する赤いマスは{name}のゴーストセルだ。同じマスを正解で埋めれば奪い返せる。先に75%埋めた方が勝ち！",
+      "ruleReveal": "開拓してケージを暴く",
+      "ruleRevealDesc": "正解を埋めるたびに周囲の霧が晴れ、近くのケージの枠と和が現れる。多く埋めるほど、多くの手がかりが見える！",
+      "ruleWarning": "60%警告",
+      "ruleWarningDesc": "どちらかの進捗が60%に達すると画面端が赤く点滅する——最後の追い上げチャンスだ！",
+      "rulesTitle": "⚔️ 霧のバトルルール",
+      "startBattle": "バトル開始",
+      "stolen": "奪い返した！",
+      "stolenText": "見事！このマスを先に正解で埋め、{name}から奪い返した。さらに多くのマスを奪取せよ！"
+    },
+    "confirmRestart": "このレベルをリセットしますか？入力した数字はすべて消去されます。",
+    "loadFailed": "レベルの読み込みに失敗しました。更新して再試行してください",
+    "aiPersonalities": {
+      "easy": {
+        "attack": [
+          "やあ！",
+          "はい！",
+          "食らえ！"
+        ],
+        "attacked": [
+          "わあ！なんで殴るの！",
+          "うう…痛いよ〜",
+          "ひどい！新人いじめ！"
+        ],
+        "combo": [
+          "連続ヒット！私すごい！",
+          "わあ、連続で当てた！",
+          "これが天才ってやつ？"
+        ],
+        "correct": [
+          "合ってた！",
+          "わあ、私すごい！",
+          "イェイ！",
+          "へへ、当てた〜"
+        ],
+        "energyFull": [
+          "エネルギー満タン！大技いくよ！",
+          "必殺技の準備完了！",
+          "へへへ…くらえ！"
+        ],
+        "lose": [
+          "ううう…負けちゃった…",
+          "おめでとう…",
+          "次は絶対勝つ！"
+        ],
+        "losing": [
+          "うう…負けそう…",
+          "待って！",
+          "置いて行かないで！"
+        ],
+        "name": "初心者ちゃん",
+        "playerAttack": [
+          "やめて！",
+          "ちょっと待って！",
+          "降参降参！"
+        ],
+        "start": [
+          "へへ〜初心者です、よろしく！",
+          "初めてで緊張してる…",
+          "えっと…これどう解くんだっけ？"
+        ],
+        "win": [
+          "イェイ！勝った！はは！",
+          "初勝利！嬉しい！",
+          "やっぱり天才だった！"
+        ],
+        "winning": [
+          "勝つの？本当に？",
+          "わあ！リードしてる！",
+          "まさか天才？"
+        ],
+        "wrong": [
+          "え？間違えた…",
+          "うう、違うの？",
+          "あらら、手が滑った"
+        ]
+      },
+      "hard": {
+        "attack": [
+          "消え去れ！",
+          "滅びよ！",
+          "消えろ！"
+        ],
+        "attacked": [
+          "お？傷つけたか？",
+          "面白い…よくも怒らせたな。",
+          "蟻の力で挑むか？"
+        ],
+        "combo": [
+          "蟻の足掻きだ。",
+          "それだけか？",
+          "物足りないな。"
+        ],
+        "correct": [
+          "…退屈だ。",
+          "遅すぎる。",
+          "こんな問題に考える必要があるのか？",
+          "ふん。"
+        ],
+        "energyFull": [
+          "ゲームオーバーだ。",
+          "必殺・籠中煉獄！",
+          "絶望させてやる。"
+        ],
+        "lose": [
+          "ありえん！！俺が負けるだと！！",
+          "こ…こんなはずは！！",
+          "人間よ…覚えておけ！必ず戻る！"
+        ],
+        "losing": [
+          "……ありえん！",
+          "人間ごときが…！",
+          "俺が…遅れてる？"
+        ],
+        "name": "スドク魔王",
+        "playerAttack": [
+          "無駄だ。",
+          "それだけか？",
+          "かすり傷だな。"
+        ],
+        "start": [
+          "ふん…人間ごときが挑むか？",
+          "三分で終わらせてやる。",
+          "真の数独を見せてやろう。"
+        ],
+        "win": [
+          "ふん、当然の結果だ。",
+          "この差を忘れるな。",
+          "弱者は挑む資格もない。"
+        ],
+        "winning": [
+          "見えたか？これが神と人の差だ。",
+          "終わりだ。",
+          "絶望しろ。"
+        ],
+        "wrong": [
+          "……（ありえん）",
+          "ふん、バグか。",
+          "…システムエラー。"
+        ]
+      },
+      "medium": {
+        "attack": [
+          "食らえ！",
+          "はっ！",
+          "いくぞ！"
+        ],
+        "attacked": [
+          "なかなかやるな…",
+          "面白くなってきた。",
+          "まさか当たるとは？"
+        ],
+        "combo": [
+          "連続、いいリズムだ。",
+          "調子が出てきたな。",
+          "いい感触だ。"
+        ],
+        "correct": [
+          "悪くない。",
+          "うん、このマスは簡単だ。",
+          "基本だ。",
+          "当然だな。"
+        ],
+        "energyFull": [
+          "満ちた。終わりにしよう。",
+          "俺のターン、必殺！",
+          "本当の実力を見せてやろう。"
+        ],
+        "lose": [
+          "…油断した。",
+          "いい対局だった。",
+          "次は負けない。"
+        ],
+        "losing": [
+          "まさか遅れてる…",
+          "ありえん…",
+          "面白い、本気を出すぞ。"
+        ],
+        "name": "数独マスター",
+        "playerAttack": [
+          "ちっ…",
+          "シールド！",
+          "調子に乗るな！"
+        ],
+        "start": [
+          "ふん、かかってこい！",
+          "準備はいいか？手加減はしないぞ。",
+          "中級、ちょうどいいウォーミングアップだ。"
+        ],
+        "win": [
+          "お見事。",
+          "実力差だ、仕方ない。",
+          "次は頑張れ。"
+        ],
+        "winning": [
+          "勝負ありだ。",
+          "差は明らかだな。",
+          "まだまだだな。"
+        ],
+        "wrong": [
+          "…ミスだ。",
+          "くそっ、見間違えた。",
+          "ん？違うのか？"
+        ]
+      }
+    },
+    "bosses": {
+      "boss1": {
+        "avatar": "🐣",
+        "encounter": {
+          "far": [
+            "{\"text\": \"え？どこにいるの？\", \"intensity\": \"light\"}"
+          ],
+          "mid": [
+            "{\"text\": \"なかなかやるね。\", \"intensity\": \"medium\"}"
+          ],
+          "near": [
+            "{\"text\": \"最後の一手だ。\", \"intensity\": \"strong\"}"
+          ]
+        },
+        "name": "初心者ちゃん",
+        "preDialog": [
+          "へへ〜初心者です、よろしく！",
+          "初めてで緊張してる…"
+        ],
+        "warningLines": [
+          "相手がもうすぐ終わる！"
+        ],
+        "winDialog": [
+          "ううう…負けちゃった…",
+          "おめでとう…"
+        ]
+      },
+      "boss2": {
+        "avatar": "🦊",
+        "encounter": {
+          "far": [
+            "{\"text\": \"お？面白いな。\", \"intensity\": \"light\"}"
+          ],
+          "mid": [
+            "{\"text\": \"ただ者じゃないな。\", \"intensity\": \"medium\"}"
+          ],
+          "near": [
+            "{\"text\": \"本気出すぞ！\", \"intensity\": \"strong\"}"
+          ]
+        },
+        "name": "数独マスター",
+        "preDialog": [
+          "ふん、かかってこい！",
+          "準備はいいか？手加減はしないぞ。"
+        ],
+        "warningLines": [
+          "相手がもうすぐ勝つ！"
+        ],
+        "winDialog": [
+          "…油断した。",
+          "いい対局だった。"
+        ]
+      },
+      "boss3": {
+        "avatar": "👹",
+        "encounter": {
+          "far": [
+            "{\"text\": \"蟻の力だ。\", \"intensity\": \"light\"}"
+          ],
+          "mid": [
+            "{\"text\": \"よくも怒らせたな。\", \"intensity\": \"medium\"}"
+          ],
+          "near": [
+            "{\"text\": \"ゲームオーバーだ！\", \"intensity\": \"strong\"}"
+          ]
+        },
+        "name": "スドク魔王",
+        "preDialog": [
+          "ふん…人間ごときが挑むか？",
+          "三分で終わらせてやる。"
+        ],
+        "warningLines": [
+          "相手がもうすぐ終わる！"
+        ],
+        "winDialog": [
+          "ありえん！！俺が負けるだと！！",
+          "人間よ…覚えておけ！"
+        ]
+      },
+      "boss4": {
+        "avatar": "👤",
+        "encounter": {
+          "far": [
+            "{\"text\": \"私は見えない…\", \"intensity\": \"light\"}"
+          ],
+          "mid": [
+            "{\"text\": \"霧が私を守る。\", \"intensity\": \"medium\"}"
+          ],
+          "near": [
+            "{\"text\": \"よくも私を見つけたな！\", \"intensity\": \"strong\"}"
+          ]
+        },
+        "name": "仕掛け人の残影",
+        "preDialog": [
+          "私に追いつけると思っているのか？",
+          "霧の中の真実、永遠に見えないだろう。"
+        ],
+        "warningLines": [
+          "残影が消える前に終わる！追え！"
+        ],
+        "winDialog": [
+          "ありえん…なぜ霧を見通せる！",
+          "これは始まりに過ぎない…"
+        ]
+      },
+      "boss5": {
+        "avatar": "🛡️",
+        "encounter": {
+          "far": [
+            "{\"text\": \"来たのは誰だ？\", \"intensity\": \"light\"}"
+          ],
+          "mid": [
+            "{\"text\": \"この先へは進めさせない！\", \"intensity\": \"medium\"}"
+          ],
+          "near": [
+            "{\"text\": \"最終防衛線！\", \"intensity\": \"strong\"}"
+          ]
+        },
+        "name": "残局の守護者",
+        "preDialog": [
+          "この関を超えたいなら、まず俺を倒せ！",
+          "これらの残局は俺が守る秘密だ。"
+        ],
+        "warningLines": [
+          "守護者がすべての手がかりを封じようとしている！"
+        ],
+        "winDialog": [
+          "お前…これらの残局を解いたのか…",
+          "守護者の使命…果たされた…"
+        ]
+      },
+      "boss6": {
+        "avatar": "🔮",
+        "encounter": {
+          "far": [
+            "{\"text\": \"秘術の力…お前にはわかるまい。\", \"intensity\": \"light\"}"
+          ],
+          "mid": [
+            "{\"text\": \"本気を出させるとはな。\", \"intensity\": \"medium\"}"
+          ],
+          "near": [
+            "{\"text\": \"秘術・籠中煉獄！\", \"intensity\": \"strong\"}"
+          ]
+        },
+        "name": "仕掛け人（秘術）",
+        "preDialog": [
+          "よくここまで来たな…",
+          "秘術の真の力を見せてやろう！"
+        ],
+        "warningLines": [
+          "秘術が完成しようとしている！止めろ！"
+        ],
+        "winDialog": [
+          "秘術が…破られた？",
+          "ありえん…これは究極の推敲術だ…"
+        ]
+      },
+      "mysteriousOpponent": {
+        "encounter": {
+          "mid": [
+            "{\"text\": \"なかなかやるな。\", \"intensity\": \"medium\"}"
+          ],
+          "near": [
+            "{\"text\": \"最後の一手だ。\", \"intensity\": \"strong\"}"
+          ]
+        },
+        "name": "謎の対戦相手",
+        "preDialog": [
+          "来い。"
+        ],
+        "warningLines": [
+          "相手がもうすぐ勝つ！"
+        ],
+        "winDialog": [
+          "お前の勝ちだ。"
+        ]
+      }
+    },
+    "energyFormat": "{current} / {max}",
+    "narratorLines": {
+      "aiLead": [
+        "【AIがリード！プレイヤー頑張れ！】",
+        "【AIが先手！緊迫の展開！】"
+      ],
+      "close": [
+        "【互角！戦況は膠着！】",
+        "【一進一退！これこそ真の対決！】"
+      ],
+      "combo3": [
+        "【三連撃！プレイヤー絶好調！】",
+        "【三連勝！AIが慌て始めた！】"
+      ],
+      "combo5": [
+        "【五連撃！伝説の始まり！】",
+        "【五連続！AIが打ちのめされた！】"
+      ],
+      "energyFull": [
+        "【エネルギー満タン！必殺技準備完了！】",
+        "【究極エネルギー充填！最終一撃が来る！】"
+      ],
+      "finalSprint": [
+        "【終局スプリント！双方全力！】",
+        "【最終局面！最後に笑うのは誰だ？】"
+      ],
+      "playerLead": [
+        "【プレイヤーリード！AIがプレッシャーを感じている！】",
+        "【人類反撃！AI注意せよ！】"
+      ],
+      "start": [
+        "【試合開始！双方一触即発！】",
+        "【戦闘開始！先に解くのは誰だ？】",
+        "【本日の対決：人間 VS AI！】"
+      ]
+    },
+    "playerLines": {
+      "attack": [
+        "食らえ！",
+        "やあ！",
+        "はっ！",
+        "いくぞ！"
+      ],
+      "attacked": [
+        "なにっ！",
+        "くそっ！やられた！",
+        "何だって！"
+      ],
+      "combo": [
+        "よし！連続だ！",
+        "いい感じ！",
+        "止まらない！",
+        "無敵は寂しい〜"
+      ],
+      "correct": [
+        "よし！",
+        "正解！",
+        "綺麗に入った！",
+        "やった！"
+      ],
+      "energyFull": [
+        "エネルギー満タン！必殺準備！",
+        "本当の実力を見せる時だ！"
+      ],
+      "lose": [
+        "あ…負けた",
+        "くそっ…",
+        "次は絶対！"
+      ],
+      "losing": [
+        "やばい…負けそう",
+        "ちょっと待って！",
+        "まだまだ！チャンスはある！"
+      ],
+      "start": [
+        "来い！",
+        "準備はできた！",
+        "今日こそ勝つ！",
+        "見てろ！"
+      ],
+      "win": [
+        "勝った！！！",
+        "他に誰かいるか！！",
+        "俺は数独の王だ！"
+      ],
+      "winning": [
+        "大丈夫だ",
+        "勝利は目前だ！"
+      ],
+      "wrong": [
+        "あ…違った",
+        "しまった…",
+        "手が滑った",
+        "恥ずかしい…"
+      ]
+    },
+    "spectateBot1": "Bot 1",
+    "spectateBot2": "Bot 2",
+    "spectateBotLines": {
+      "bot1Combo": "連続！俺の推敲の方が速い！",
+      "bot1Correct": "正解。",
+      "bot1Start": "Bot 1だ。見ていろ！",
+      "bot2Start": "ふん、機械効率がすべてだ。"
+    },
+    "toast": {
+      "almostWin": "もうすぐ勝てる、頑張れ！",
+      "bewareOpponent": "相手に注意！",
+      "cageRevealed": "ケージの手がかりが現れた！",
+      "fogCleared": "霧が晴れた！",
+      "opponent60": "⚠️ 相手が60%に到達！",
+      "player60": "🔥 あなたが60%を掌握！最後の一押し！",
+      "stolen": "マスを奪取！",
+      "stolenCell": "奪い返した！"
+    }
+  },
+  "hint": {
+    "level1": "💡 第1層ヒント：このマス（緑の枠）をよく見て。何か特別な点は？",
+    "level3_answer": "🎯 答えは{num}。入力すると関連する候補が自動的に除外されます",
+    "level3_technique": "📖 このステップでは「{technique}」テクニックを使います。ハイライト領域の紫色のマークをよく見て",
+    "noHint": "🔍 現在の盤面には明らかな進める手が見つかりません。他の方法を試すか、星衡法則計算機を使ってみてください",
+    "nakedSingle": {
+      "name": "ネイキッドシングル",
+      "desc_level2": "📘 第2層：【単独法】\\n{cellName}のマスがある行・列・ボックス・ケージには、他のすべての数字が既に出現しています。{num}だけがまだ出現していないので、{num}しか入りません。\\n👉 金色のハイライト領域を見てください：既に出ている数字が揃っていて、この数だけが残っています。"
+    },
+    "hiddenSingle": {
+      "name": "ヒドゥンシングル",
+      "desc_level2": "📘 第2層：【隠れ単独法】\\n{description}。関連領域をよく見ると、{num}は{cellName}にしか入れないことが分かります。",
+      "rowLabel": "行",
+      "colLabel": "列",
+      "boxLabel": "ボックス",
+      "cageLabel": "ケージ"
+    },
+    "nakedPair": {
+      "name": "ネイキッドペア",
+      "desc_level2": "📘 第2層：【独立双子法】\\n{cell1}と{cell2}はどちらも{num1}か{num2}しか入れません（紫色マーク）。この二つの数字は「ロック」され、同じ領域の他のマスから除外できます。",
+      "regionRow": "同行",
+      "regionCol": "同列",
+      "regionBox": "同ボックス",
+      "regionCage": "同ケージ",
+      "desc_level2_noNum": "除外後、候補が減ります。さらに推理を進めて次の数字を見つけましょう。",
+      "desc_level2_withNum": "除外後、{cellName}には{num}しか残りません！",
+      "desc_level3": "📘 第3層：【独立双子法】\\n{cell1}と{cell2}はどちらも{num1}か{num2}しか入れません（紫色マーク）。この二つの数字は「ロック」され、同じ領域の他のマスから除外できます。\\n除外後、{cellName}には{num}しか残りません！"
+    },
+    "noCandidatesToFill": "🔢 候補を入力する必要のある空きマスがありません",
+    "autoFilledCandidates": "🔢 {count}個の空きマスに理論上の候補を自動入力しました",
+    "selectCellFirst": "💡 先に空きマスを選択してから数字を入力してください",
+    "selectCellFirst_quickFill": "先にマスを選択するか、「⚡ 連続入力」をクリックして数字を選択してください",
+    "quickFillActivated": "⚡ 連続入力モードが有効になりました。数字を選択してください",
+    "quickFillComplete": "✅ {num}がすべて埋まりました。連続入力を自動でオフにします",
+    "breakthroughNoGuess": "💡 当て推量はやめて、「ヒント」ボタンをクリックしてテクニックのデモを見てみませんか？",
+    "wrongGuess": [
+      "もう一度考えて…その数字は違うようだ",
+      "違うよ。行・列・ボックス・ケージに競合がないか確認して",
+      "このマスにはその数字は入れないよ。もう一度よく見て",
+      "間違いだよ。ケージの和の制約に注意して",
+      "その数字じゃないよ。除外法を試してみて",
+      "うーん…違うね。別のアプローチを試そう"
+    ]
+  },
+  "technique": {
+    "names": {
+      "nakedSingle": "ネイキッドシングル",
+      "hiddenSingle": "ヒドゥンシングル",
+      "nakedPair": "ネイキッドペア",
+      "hiddenPair": "ヒドゥンペア",
+      "nakedTriple": "ネイキッドトリプル",
+      "xwing": "エックスウィング",
+      "swordfish": "ソードフィッシュ",
+      "xywing": "エックスワイウィング",
+      "forcingChain": "フォーシングチェーン"
+    },
+    "archaicNames": {
+      "nakedSingle": "単独法（たんどくほう）",
+      "hiddenSingle": "隠れ単独法（かくれたんどくほう）",
+      "nakedPair": "独立双子法（どくりつふたごほう）",
+      "hiddenPair": "隠れ双子法（かくれふたごほう）",
+      "nakedTriple": "独立三子法（どくりつみつごほう）",
+      "xwing": "二連列（にれんれつ）",
+      "swordfish": "三連列（さんれんれつ）",
+      "xywing": "変則三連列（へんそくさんれんれつ）",
+      "forcingChain": "強制連鎖法（きょうせいれんさほう）"
+    },
+    "descriptions": {},
+    "tutorial": {
+      "title": "テクニック講座",
+      "speaker_default": "番人",
+      "startHint": "「学習開始」をクリックしてデモに従ってください",
+      "stepHint_default": "「次へ」をクリックして続ける",
+      "finalHint": "準備ができたら問題を解き始めましょう！",
+      "nextStep_last": "✓ わかった、問題を始める！",
+      "nextStep_mid": "次へ ▶",
+      "demo": {
+        "title_default": "テクニックデモ",
+        "startPractice": "✓ 練習開始",
+        "nextStep": "次へ ▶",
+        "gotIt": "わかった"
+      }
+    }
+  },
+  "story": {
+    "characters": {
+      "keeper": "番人",
+      "yan": "彩",
+      "setter": "謎の仕掛け人",
+      "setterShadow": "謎の仕掛け人の残像",
+      "guardian": "残局ガーディアン",
+      "starshuttle": "星シャトル",
+      "setterSecret": "謎の仕掛け人（秘術）",
+      "narrator": "ナレーター",
+      "mysteriousOpponent": "謎の対戦相手"
+    },
+    "chapterThemes": {
+      "ch1": "暗号の手紙",
+      "ch2": "二重の手がかり",
+      "ch3": "謎の追跡",
+      "ch4": "暗号解読",
+      "ch5": "究極の試練",
+      "ch6": "マスターへの道",
+      "ch7": "秘術のアーカイブ"
+    },
+    "phases": {
+      "breakthrough": "⚡ ブレイクスルー",
+      "finishing": "✨ フィニッシュ"
+    },
+    "bossDefault": {
+      "comeAtMe": "かかってきなさい。",
+      "youWin": "あなたの勝ちです。",
+      "warningNear": "相手がもうすぐ完成します！"
+    }
+  },
+  "error": {
+    "levelLoadFailed": "レベルの読み込みに失敗しました。戻って再試行してください",
+    "apiAbnormal": "⚠️ チュートリアルレベルのAPIが異常を返しました",
+    "apiChapterDataFailed": "チャプターデータの取得に失敗：{msg}",
+    "apiChaptersFailed": "チャプターリストの取得に失敗：{msg}",
+    "apiError": "APIリクエストに失敗しました",
+    "apiLevelsFailed": "レベルリストの取得に失敗：{msg}",
+    "backendCheckFailed": "⚠️ バックエンド検証失敗、フロントエンド検出を優先",
+    "bossAlreadyActive": "⚠️ ボス戦は既に進行中です",
+    "bossNoSolution": "⚠️ ボスレベルにソリューションデータがありません。対戦をスキップします",
+    "bossStartFailed": "❌ ボス戦の開始に失敗：ソリューションまたはinitialBoardが不足",
+    "endgameNoKeyCells": "⚠️ 残局チュートリアルレベルにkeyCells設定がありません",
+    "exportFailed": "出力に失敗しました",
+    "fallbackLevel": "フォールバックレベルを使用（すべてのデータソースの読み込みに失敗）",
+    "finalFallbackLevel": "⚠️ 最終フォールバックレベルを使用",
+    "fixedNumInKeyCell": "⚠️ キーセル({r},{c})はプリフィル済み、fixedNumを削除",
+    "guideManagerNotLoaded": "⚠️ GuideManagerが読み込まれていません",
+    "invalidInput": "無効な入力です",
+    "keyCellPreset": "🎯 残局チュートリアルレベル初期化：{n}個のキーセル",
+    "lessonGenerateFailed": "コースファイルからのレベル生成に失敗：{msg}",
+    "loadFailed": "読み込みに失敗しました。再試行してください",
+    "loadSaveFailed": "セーブデータの読み込みに失敗しました",
+    "localChapterDetailFailed": "チャプター詳細の読み込みに失敗：{msg}",
+    "localChapterLoadFailed": "ローカルチャプターデータの読み込みに失敗：{msg}",
+    "localDataFailed": "ローカルデータの読み込みに失敗しました",
+    "networkAbnormal": "⚠️ ネットワーク異常、ローカルデータを試行：{msg}",
+    "networkError": "ネットワークエラー、再読み込みして再試行してください",
+    "noLevelData": "チャプターデータがありません",
+    "resetFailed": "リセットに失敗しました",
+    "saveFailed": "保存に失敗しました",
+    "statsLoadFailed": "統計データの読み込みに失敗：{msg}",
+    "storageAnalyticsFailed": "アナリティクスの保存に失敗：{msg}",
+    "storageBadgeFailed": "バッジの解除に失敗：{msg}",
+    "storageBattleFailed": "対戦戦績の保存に失敗：{msg}",
+    "storageChapterFailed": "チャプター進捗の保存に失敗：{msg}",
+    "storageClearFailed": "セーブデータの削除に失敗：{msg}",
+    "storageCompleteFailed": "クリア記録の保存に失敗：{msg}",
+    "storageLoadFailed": "セーブデータの読み込みに失敗：{msg}",
+    "storageSaveFailed": "セーブに失敗：{msg}",
+    "storageSettingsLoadFailed": "設定の読み込みに失敗：{msg}",
+    "storageSettingsSaveFailed": "設定の保存に失敗：{msg}",
+    "storageTeachingClearFailed": "チュートリアル進捗の削除に失敗：{msg}",
+    "storageTeachingCompleteFailed": "チュートリアルクリア記録の保存に失敗：{msg}",
+    "storageTeachingProgressFailed": "チュートリアル進捗の保存に失敗：{msg}",
+    "webAudioNotSupported": "Web Audio APIはサポートされていません"
+  },
+  "time": {
+    "seconds": "秒",
+    "minutes": "分",
+    "hours": "h",
+    "minutes_short": "m",
+    "format_ms": "{m}分{s}秒",
+    "format_s": "{s}秒",
+    "format_hm": "{h}h{m}m",
+    "format_clock": "{m}:{s}",
+    "elapsedLoading": "📂 チュートリアルセーブデータを読み込みました（タイム {time}）",
+    "elapsedFreePlay": "📂 セーブデータを読み込みました（タイム {time}）",
+    "format": {
+      "clock": "{m}:{s}",
+      "hm": "{h}h{m}m",
+      "min_sec": "{m}分{s}秒",
+      "ms": "{m}分{s}秒",
+      "s": "{s}秒"
+    }
+  },
+  "audio": {
+    "bgm": {}
+  },
+  "i18n_placeholder_note": "This is a partial Japanese translation. Full translation coming soon."
+}

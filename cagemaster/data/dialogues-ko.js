@@ -1,0 +1,95 @@
+// ==========================================
+// 对话数据 - ko
+// 基于129条VO体系自动生成
+// ==========================================
+
+const DIALOGUES = {
+  VO_CK_01: { char: 'cagekeeper', portrait: 'serious', text: "", effect: 2, emotion: '장엄·신비', typingSpeed: '느림' },
+  VO_CK_02: { char: 'cagekeeper', portrait: 'default', text: "목적은 각자 다르겠지만, 이 기록관에서는 규칙이 최우선이다.", effect: 1, emotion: '엄숙·경고', typingSpeed: '느림' },
+  VO_CK_03: { char: 'cagekeeper', portrait: 'default', text: "첫 번째 자물쇠는 행 규칙을 따른다. 하나의 행 안에서는 같은 숫자가 두 번 나타날 수 없다.", effect: 0, emotion: '엄숙·교육', typingSpeed: '느림' },
+  VO_CK_05: { char: 'cagekeeper', portrait: 'serious', text: "기초를 잡았다. 이제——진정한 우리 자물쇠가 심연에서 떠오른다.", effect: 1, emotion: '장엄·신비', typingSpeed: '느림' },
+  VO_CK_06: { char: 'cagekeeper', portrait: 'default', text: "첫 번째 자물쇠를 열었다. 관찰력이 좋군.", effect: 0, emotion: '흡족·인정', typingSpeed: '느림' },
+  VO_CK_07: { char: 'cagekeeper', portrait: 'serious', text: "두 셀 우리가 가장 단순하다. 그 합계는 유일한 숫자 쌍을 만들어낸다. 이것을 기억하라: 3은 1과 2를, 4는 1과 3을, 6은 2와 4를, 7은 3과 4를 취한다.", effect: 1, emotion: '장엄·느림', typingSpeed: '느림' },
+  VO_CK_08: { char: 'cagekeeper', portrait: 'serious', text: "우리가 서로 얽힐 때, 행, 열, 박스, 우리 합계라는 네 가지 제약이 동시에 작용한다. 기억하라——\"수많은 별들 사이에서, 하나의 빛이 조용히 지키고 있다.\"", effect: 1, emotion: '장엄·신비', typingSpeed: '느림' },
+  VO_CK_09: { char: 'cagekeeper', portrait: 'serious', text: "이 장의 마지막 시험——모든 기초 기술의 결합. 네이키드 싱글, 히든 싱글, 네이키드 페어, 네이키드 트리플, 열의 법칙.", effect: 2, emotion: '장엄·결단', typingSpeed: '느림' },
+  VO_CK_10: { char: 'cagekeeper', portrait: 'default', text: "……한때 내 곁에 서 있던 남자다. 그의 이름은 모든 기록에서 지워졌다.", effect: 2, emotion: '낮음·복잡', typingSpeed: '느림' },
+  VO_J_01: { char: 'ying', portrait: 'smile', text: "와아! 새 얼굴이다! 나는 지원! 너보다 두 달 먼저 왔어!", effect: 0, emotion: '신남·따뜻함', typingSpeed: '빠름' },
+  VO_J_02: { char: 'ying', portrait: 'energetic', text: "쉽게 말하면——각 행에 1, 2, 3, 4가 정확히 한 번씩 들어가야 해! 빠진 걸 채우면 돼!", effect: 0, emotion: '자신감·활발', typingSpeed: '빠름' },
+  VO_J_03: { char: 'ying', portrait: 'surprised', text: "와아! 해냈어! 나는 이거 푸는 데 30분이나 걸렸는데!", effect: 1, emotion: '놀람·열정', typingSpeed: '빠름' },
+  VO_J_04: { char: 'ying', portrait: 'default', text: "아! 나 여기서 엄청 망했었어! 행은 다 맞췄는데, 열을 보니 3이 한 줄에 세 개나 있었어!", effect: 1, emotion: '열정·활기', typingSpeed: '빠름' },
+  VO_J_05: { char: 'ying', portrait: 'default', text: "우리 자물쇠…… 드디어. 아빠의 그림들은 이 점선 박스들로 가득했어.", effect: 0, emotion: '향수·감성', typingSpeed: '보통' },
+  VO_J_09: { char: 'ying', portrait: 'default', text: "한 걸음 더 가까워졌어! 세어봤어——이거 푸는 데 112번이나 시도했어!", effect: 1, emotion: '단호·결심', typingSpeed: '보통' },
+  VO_J_10: { char: 'ying', portrait: 'default', text: "넌 할 수 있어! 이걸 클리어하면 전체 기록관이 열려!", effect: 0, emotion: '단호·결심', typingSpeed: '보통' },
+  VO_J_11: { char: 'ying', portrait: 'default', text: "(뒤쫓으며) 소연 씨——기다려!", effect: 0, emotion: '장난·추격', typingSpeed: '빠름' },
+  VO_P_01: { char: 'plotter', portrait: 'default', text: "", effect: 3, emotion: '풍화·원격', typingSpeed: '느림' },
+  VO_P_02: { char: 'plotter', portrait: 'default', text: "45는 표면에 불과하다. 진정한 비밀은 차이에 있다.", effect: 2, emotion: '신비·도발', typingSpeed: '느림' },
+  VO_P_03: { char: 'plotter', portrait: 'default', text: "도구에 의존하면 우리 아래의 항성 논리를 결코 읽을 수 없을 것이다.", effect: 2, emotion: '조롱·압박', typingSpeed: '느림' },
+  VO_P_04: { char: 'plotter', portrait: 'default', text: "별균형 시험을 통과했다면, 이제 겨우 나의 진정한 우리에 맞설 자격을 얻은 것이다.", effect: 2, emotion: '오만·압박', typingSpeed: '느림' },
+  VO_P_05: { char: 'plotter', portrait: 'default', text: "다른 길은 만날 수 없다. 너는 기록관을 지켜라. 나는 내 함정을 놓겠다.", effect: 3, emotion: '결연·냉철', typingSpeed: '느림' },
+  VO_P_06: { char: 'plotter', portrait: 'default', text: "먼지가 가라앉으면, 성진사의 빛이 다시 나타날 것이다.", effect: 4, emotion: '위압·심원', typingSpeed: '느림' },
+  VO_P_07: { char: 'plotter', portrait: 'default', text: "첫 번째 우리——내가 지킴이를 처음 만난 날의 대국이다. 나는 17세였고, 그는 20세였다.", effect: 2, emotion: '회상·무거움', typingSpeed: '느림' },
+  VO_R_01: { char: 'yan', portrait: 'default', text: "소연. 너보다 3주 먼저 왔어.", effect: 0, emotion: '냉정·간결', typingSpeed: '보통' },
+  VO_R_02: { char: 'yan', portrait: 'default', text: "빠진 숫자가 정답이다. 너무 깊게 생각하지 마.", effect: 1, emotion: '단호·냉정', typingSpeed: '보통' },
+  VO_R_03: { char: 'yan', portrait: 'default', text: "(여전히 판에 다가서지는 않지만, 목소리는 전보다 부드럽다) ……나쁘지 않아. 계속해.", effect: 0, emotion: '따뜻·인정', typingSpeed: '보통' },
+  VO_R_04: { char: 'yan', portrait: 'default', text: "(창가에서 돌아서며, 목소리가 매우 부드럽다) ……배후자.", effect: 1, emotion: '엄숙·확인', typingSpeed: '느림' },
+  VO_R_05: { char: 'yan', portrait: 'default', text: "(이미 다음 문으로 향하고 있다) ……가자.", effect: 0, emotion: '차가움·마무리', typingSpeed: '보통' },
+  VO_R_06: { char: 'yan', portrait: 'default', text: "(지원의 노트에 시선을 스치듯 보내고, 아주 잠시 멈춘다) 네 아버지는 여기 기록관 직원이셨어?", effect: 0, emotion: '냉정·분석', typingSpeed: '보통' },
+  VO_R_07: { char: 'yan', portrait: 'default', text: "(책을 읽고 있는 듯 고개를 들지 않지만, 입꼬리가 살짝 움직인다) ……본다.", effect: 0, emotion: '간결·인정', typingSpeed: '보통' },
+  VO_R_08: { char: 'yan', portrait: 'default', text: "(이미 책장으로 돌아가 있으며, 어조는 평평하다) 너무 이르다.", effect: 0, emotion: '차가움·마무리', typingSpeed: '보통' },
+  VO_R_11: { char: 'yan', portrait: 'default', text: "(처음으로 지원에게 따뜻한 말을 건넨다) ……넌 모든 레벨에서 울잖아.", effect: 0, emotion: '어쩔 수 없음·감싸줌', typingSpeed: '보통' },
+  VO_R_13: { char: 'yan', portrait: 'default', text: "(책을 닫고, 마침내 판으로 다가간다) 숫자를 길게 누르면 빠르게 채울 수 있어. 시간을 절약해.", effect: 0, emotion: '냉정·진행', typingSpeed: '보통' },
+  VO_SM_01: { char: 'shenmo', portrait: 'default', text: "……좋아.", effect: 1, emotion: '단호·간결', typingSpeed: '보통' },
+  VO_SM_02: { char: 'shenmo', portrait: 'default', text: "(소연이 가리킨 곳을 보고, 가볍게 고개를 끄덕인다) ……그게 더 빠르네.", effect: 0, emotion: '조용·인정', typingSpeed: '보통' },
+  VO_SM_03: { char: 'shenmo', portrait: 'default', text: "(고개를 들어 지원을 바라본다. 웃지는 않지만, 목소리에는 조용한 따뜻함이 담겨 있다) ……아까 \"아빠의 그림\"이라고 했지. 네 아버지는 여기 기록관 직원이셨어?", effect: 0, emotion: '따뜻·질문', typingSpeed: '보통' },
+  VO_SM_04: { char: 'shenmo', portrait: 'default', text: "(고개를 저으며) ……아니. 하지만 편지를 한 통 받았어. 서명은 \"숫자에 갇힌 남자\"였어.", effect: 1, emotion: '낮음·확인', typingSpeed: '느림' },
+  VO_SM_05: { char: 'shenmo', portrait: 'default', text: "(이미 주문을 속으로 외우고 있다) ……\"3은 1과 2를. 4는 1과 3을.\"", effect: 0, emotion: '확인·깨달음', typingSpeed: '보통' },
+  VO_SM_06: { char: 'shenmo', portrait: 'default', text: "(판 옆에 서서 잠시 침묵한 후, 조용히 말한다) ……아마도. 하지만 모두 클리어하면…… 떠나야 해.", effect: 0, emotion: '낮음·주저', typingSpeed: '느림' },
+  VO_SM_07: { char: 'shenmo', portrait: 'default', text: "(지원이 가리킨 셀을 계속 지켜보고 있었다. 잠시 후, 조용히 확인한다) ……2. 그녀 말이 맞아.", effect: 0, emotion: '확인·깨달음', typingSpeed: '보통' },
+  VO_SM_08: { char: 'shenmo', portrait: 'default', text: "(이미 행, 열, 박스의 합을 조용히 계산하고, 조용히 말한다) ……\"10. 모든 행의 합은 10이다.\"", effect: 0, emotion: '확인·깨달음', typingSpeed: '보통' },
+  VO_SM_09: { char: 'shenmo', portrait: 'default', text: "(소연을 바라본다. 두 사람의 시선이 잠시 마주친다. 그런 다음 고개를 숙이고 펜을 든다. 목소리는 부드럽다) ……응.", effect: 0, emotion: '간결·단호', typingSpeed: '보통' },
+  VO_SM_10: { char: 'shenmo', portrait: 'default', text: "(아무 말도 하지 않는다. 하지만 주머니에서 편지를 꺼내 한 번 본다——봉투에는 서명이 없다. 하지만 종이 뒷면에 희미한 연필선이 있다: \"이 페이지를 본다면, 더 이상 나를 필요로 하지 않는다는 뜻이다.\" 그는 접어서 주머니에 넣고, 조용히 말한다) ……그는 우리가 이 장소를 찾기를 기다리고 있었다.", effect: 1, emotion: '낮음·확인', typingSpeed: '느림' },
+  VO_SM_11: { char: 'shenmo', portrait: 'default', text: "(뒤에 남는다. 계단참의 빛은 어둡다. 바로 따라가지 않는다. 계단참에 서서, 뒤에 있는 기록관을 마지막으로 한 번 바라본 후, 돌아서서 그들을 따른다. 조용히 말한다——공기에게, 자신에게) ……\"기록 번호 K-734. 이 퍼즐을 풀면, 나를 찾을 수 있을 것이다.\"……나는 이 퍼즐을 풀기 위해 온 게 아니다. 너를 찾기 위해 왔다.", effect: 1, emotion: '낮음·확인', typingSpeed: '느림' },
+  VO_SM_12: { char: 'shenmo', portrait: 'default', text: "(이미 첫 번째 행의 합을 머릿속으로 계산하며, 조용히 말한다) ……두 번째 행, 네 번째 열. 5.", effect: 0, emotion: '확인·깨달음', typingSpeed: '보통' },
+  VO_SM_14: { char: 'shenmo', portrait: 'default', text: "(아무 말도 하지 않는다. 하지만 그의 시선은 지킴이에게 머문다——평소보다 조금 더 길게.) ……한 사람을 기다리는 것인가. 아니면 한 종류의 사람을 기다리는 것인가?", effect: 0, emotion: '낮음·질문', typingSpeed: '보통' },
+  VO_SM_15: { char: 'shenmo', portrait: 'default', text: "(판을 보며, 고개를 들지 않지만 목소리는 평소보다 더 명확하다) ……그는 답을 숨긴 게 아니다. 답으로 이끄는 길을 숨긴 것이다.", effect: 0, emotion: '깨달음·확인', typingSpeed: '보통' },
+  VO_SM_16: { char: 'shenmo', portrait: 'default', text: "(간단한 다이어그램을 스케치한다——세 층이 겹쳐진 것. 그런 다음 고개를 들어 종이를 지원 쪽으로 밀어준다) ……이게 더 명확해 보이나?", effect: 0, emotion: '따뜻·동행', typingSpeed: '보통' },
+  VO_SM_17: { char: 'shenmo', portrait: 'default', text: "(그는 뒤를 따른다. 심층에 들어서자마자, 그의 시선은 바닥에서 가장 많이 닳은 경로에 고정된다——그것은 책장 뒤편의 숨은 문으로 이어져 있다. 아무 말도 하지 않는다. 하지만 그 선을 기억한다.)", effect: 0, emotion: '조용·관찰', typingSpeed: '보통' },
+  VO_SM_18: { char: 'shenmo', portrait: 'default', text: "(배후자의 음성이 나온 방향을 바라본다——두려움도 분노도 아니다. 이미 알고 있는 사실을 확인하는 듯이.) ……그가 버린 모든 조각은 사람들을 오랫동안 붙잡아 두었다.", effect: 0, emotion: '낮음·확인', typingSpeed: '보통' },
+  VO_SM_19: { char: 'shenmo', portrait: 'default', text: "(판 위의 세 단서가 수렴하는 지점을 바라보며, 손가락이 거기에 멈춘다——채우지 않고, 그냥 멈춘다. 그런 다음 조용히 말한다) ……그의 퍼즐들은 답을 숨기기 위해 설계된 것이 아니다. 네가 이미 얼마나 많은 길을 지나왔는지 숨기기 위해 설계된 것이다.", effect: 0, emotion: '깨달음·확인', typingSpeed: '보통' },
+  VO_SM_20: { char: 'shenmo', portrait: 'default', text: "(구석으로 밀린 두 셀을 바라본다. 고개를 들지 않고, 목소리가 낮다) ……사람처럼.", effect: 0, emotion: '낮음·확인', typingSpeed: '보통' },
+  VO_SM_21: { char: 'shenmo', portrait: 'default', text: "(그는 마지막에 걸어간다. 문턱을 넘을 때, 문을 돌아본다——그런 다음 무언가를 확인하듯, 그들을 따른다.)", effect: 0, emotion: '조용·관찰', typingSpeed: '보통' },
+  VO_SM_22: { char: 'shenmo', portrait: 'default', text: "(그는 뒤를 따른다. 소연이 \"그 마지막 대국을 보러\"라고 말한 후, 중얼거린다——오직 자신만 들을 수 있게) ……마지막 대국. 그녀의 것이 아니다. 그의 것이다.", effect: 0, emotion: '낮음·확인', typingSpeed: '보통' },
+  VO_SM_23: { char: 'shenmo', portrait: 'default', text: "(그는 소연보다 한 걸음 뒤에 서서 그 날짜를 본다. 다가가지도, 손을 뻗지도 않는다——그저 그 숫자들의 배열을 알아본다. 그것은 그가 받은 편지의 우표와 같은 날짜다.)", effect: 0, emotion: '낮음·확인', typingSpeed: '보통' },
+  VO_SM_24: { char: 'shenmo', portrait: 'default', text: "(소연이 가리킨 곳을 흘끗 보고, 조용히 말한다) ……블록 제거. 세 번째 수.", effect: 0, emotion: '확인·깨달음', typingSpeed: '보통' },
+  VO_SM_25: { char: 'shenmo', portrait: 'default', text: "(소연이 그 줄을 읽는 것을 들으며, 그의 시선은 노트의 여백으로 향한다. 거기에는 아주 작은 연필 자국이 있고, 여러 번 지워졌다. 그는 모두 읽을 수는 없지만——마지막 글자는 여전히 읽을 수 있다: 한 단어——\"기다려\".)", effect: 0, emotion: '조용·관찰', typingSpeed: '보통' },
+  VO_SM_26: { char: 'shenmo', portrait: 'default', text: "(그는 이미 머릿속에 세 개의 교차하는 선을 그렸다. 말하지 않지만, 그의 손가락이 테이블 위를 가볍게 따라간다——자신에게 보여주듯이.)", effect: 0, emotion: '조용·깨달음', typingSpeed: '보통' },
+  VO_SM_27: { char: 'shenmo', portrait: 'default', text: "(그 두 개의 연결된 셀을 오랫동안 바라본다. 그런 다음 펜을 내려놓는다. 채우지 않는다——기다린다. 그 두 숫자가 그들이 속한 자리에 내려앉기를 기다리는 것이다.)", effect: 0, emotion: '조용·확인', typingSpeed: '보통' },
+  VO_SM_28: { char: 'shenmo', portrait: 'default', text: "(그는 이미 세 숫자에 동그라미를 치고, 오랫동안 바라본다. 그의 펜이 종이 위에 떠서 내려가지 않는다——확인을 기다리는 듯이.) ……이 세 숫자는 자리를 바꿀 수 있다. 하지만 이 세 셀을 떠나지 않을 것이다.", effect: 0, emotion: '깨달음·확인', typingSpeed: '보통' },
+  VO_SM_29: { char: 'shenmo', portrait: 'default', text: "(소연이 \"자격\"에 대해 말하는 것을 듣는다. 펜을 내려놓는다. 긴 침묵. 그런 다음 다시 펜을 들고 계속한다. 하지만 그의 움직임은 한 박자 느리다——그도 같은 것을 확인하는 듯이.)", effect: 0, emotion: '조용·확인', typingSpeed: '보통' },
+  VO_SM_30: { char: 'shenmo', portrait: 'default', text: "(그는 노트 페이지를 보지 않는다. 소연을 본다——그녀가 \"뒷면\"이라고 말할 때 목소리가 잠시 멈췄다. 그 멈춤은 그녀의 평소 리듬보다 반 박자 느렸다. 그는 알아챘다.)", effect: 0, emotion: '조용·관찰', typingSpeed: '보통' },
+  VO_SM_32: { char: 'shenmo', portrait: 'default', text: "(그 두 개의 연결된 셀을 잠시 바라보며, 조용히 말한다) ……두 숫자를 잠그고, 다른 모든 곳을 제거하라. 남은 것이 답이다.", effect: 0, emotion: '확인·깨달음', typingSpeed: '보통' },
+  VO_SM_37: { char: 'shenmo', portrait: 'default', text: "(그는 뒤에 서서 여섯 개의 문을 바라본다. 앞으로 가지도, 뒤로 물러서지도 않는다. 그는 센다. 하나, 둘, 셋, 넷, 다섯, 여섯——그러고는 그의 시선이 마지막 문에 멈춘다. 그 틈새에 종이 조각의 모서리가 끼어 있다. 그는 보지만, 지적하지는 않는다.)", effect: 0, emotion: '조용·관찰', typingSpeed: '보통' },
+  VO_SM_38: { char: 'shenmo', portrait: 'default', text: "(그는 \"17세\"를 듣고 멈춘다. 놀라움 때문이 아니다——그것이 그가 첫 번째 익명의 편지를 받았던 나이와 정확히 같기 때문이다.)", effect: 0, emotion: '낮음·확인', typingSpeed: '보통' },
+  VO_SM_39: { char: 'shenmo', portrait: 'default', text: "(소연이 \"관계가 가까울수록 균열이 깊어진다\"고 말하는 것을 듣는다. 아무 말도 하지 않지만, 그의 펜이 종이 위에 잠시 멈춘다——생각하는 듯이, 확인하는 듯이.)", effect: 0, emotion: '조용·깨달음', typingSpeed: '보통' },
+  VO_SM_40: { char: 'shenmo', portrait: 'default', text: "(그는 \"오직 그것을 사용하는 사람에게만\"이라는 말을 듣고 펜을 멈춘다. 그는 몇 초 동안 멈춘다——그 문장이 그의 머릿속에서 한 바퀴 돌아 어딘가에 자리 잡은 듯이. 그런 다음 다시 펜을 들고 계속한다.)", effect: 0, emotion: '낮음·확인', typingSpeed: '보통' },
+  VO_SM_41: { char: 'shenmo', portrait: 'default', text: "(그는 지킴이를 오랫동안 바라본다. 그런 다음 고개를 숙인다——아직 말로 하지 않은 무언가를 이해한 듯이.)", effect: 0, emotion: '조용·관찰', typingSpeed: '보통' },
+  VO_SM_42: { char: 'shenmo', portrait: 'default', text: "(\"드디어 깨달았구나\"를 듣고, 그는 아무도 보지 않는다——완성된 판을 바라보며, 그의 목소리는 매우 낮고, 누군가의 마지막 대사를 대신 말하는 듯이) ……30년. 늦지 않았어.", effect: 0, emotion: '낮음·확인', typingSpeed: '보통' },
+  VO_SM_43: { char: 'shenmo', portrait: 'default', text: "(그는 그 열쇠를 바라본다. 아무 말도 하지 않는다. 하지만 그 형태를 알아본다——3년 전에 받은 편지 안에 끼어 있던 열쇠와 똑같다.)", effect: 1, emotion: '낮음·확인', typingSpeed: '보통' },
+  VO_SM_44: { char: 'shenmo', portrait: 'default', text: "(그는 입구에 서서 들어가지 않는다. 하지만 그는 그 종이 위의 글을 본다——그리고 그는 접는 방식을 알아본다. 그것은 그가 받은 편지와 동일하다.)", effect: 0, emotion: '낮음·확인', typingSpeed: '보통' },
+  VO_SM_45: { char: 'shenmo', portrait: 'default', text: "(말하지 않는다. 하지만 \"히든 페어 열쇠\"라는 말을 듣는다. 그의 펜이 멈춘다——그 네 단어는 3년 전에 받은 편지의 뒷면에 쓰여 있던 것과 같다.)", effect: 1, emotion: '낮음·확인', typingSpeed: '보통' },
+  VO_SM_46: { char: 'shenmo', portrait: 'default', text: "(그는 3x3 상호 연결 구조를 계속 바라보고 있었다. 그런 다음 조용히 말한다) ……그물이 던져질 때, 물고기는 더 이상 물속에 있지 않다.", effect: 0, emotion: '깨달음·확인', typingSpeed: '보통' },
+  VO_SM_47: { char: 'shenmo', portrait: 'default', text: "(그는 잔상 앞에 선다. 물러서지 않는다. 그 반투명한 윤곽을 바라보며, 그의 목소리는 낮고, 무언가를 확인하는 듯이) ……이 편지는——네가 쓴 것이냐?", effect: 1, emotion: '낮음·확인', typingSpeed: '보통' },
+  VO_SM_48: { char: 'shenmo', portrait: 'default', text: "(그는 구획 앞에 서서 자신의 편지를 들고 있다. 그는 구획 안의 \"딸에게\" 편지를 보고, 자신의 편지를 본다——같은 것은 아니다. 하지만 접는 방식은 동일하다.)", effect: 1, emotion: '낮음·확인', typingSpeed: '보통' },
+};
+
+// ==========================================
+// 剧情场景触发映射
+// ==========================================
+const SCENE_TRIGGERS = {
+  intro: ['VO_SM_01', 'VO_CK_01', 'VO_J_01', 'VO_R_01', 'VO_CK_02', 'VO_CK_03', 'VO_J_02', 'VO_R_02', 'VO_CK_06', 'VO_J_03', 'VO_R_03', 'VO_J_04', 'VO_R_07', 'VO_R_13', 'VO_SM_02', 'VO_CK_05', 'VO_J_05', 'VO_R_06', 'VO_R_08', 'VO_SM_03', 'VO_SM_04', 'VO_CK_07', 'VO_SM_05', 'VO_SM_06', 'VO_CK_08', 'VO_SM_07', 'VO_R_11', 'VO_R_05', 'VO_SM_08', 'VO_J_09', 'VO_CK_09', 'VO_J_10', 'VO_SM_09', 'VO_CK_10', 'VO_R_04', 'VO_SM_10', 'VO_J_11', 'VO_SM_11', 'VO_SM_12', 'VO_P_01', 'VO_SM_14', 'VO_P_02', 'VO_SM_15', 'VO_P_03', 'VO_SM_16', 'VO_P_04', 'VO_SM_17', 'VO_SM_18', 'VO_SM_19', 'VO_SM_20', 'VO_SM_21', 'VO_P_05', 'VO_SM_22', 'VO_SM_23', 'VO_SM_24', 'VO_SM_25', 'VO_SM_26', 'VO_SM_27', 'VO_SM_28', 'VO_SM_29', 'VO_SM_30', 'VO_P_06', 'VO_SM_37', 'VO_P_07', 'VO_SM_38', 'VO_SM_39', 'VO_SM_40', 'VO_SM_41', 'VO_SM_42', 'VO_SM_43', 'VO_SM_44', 'VO_SM_32', 'VO_SM_45', 'VO_SM_46', 'VO_SM_47', 'VO_SM_48'],
+};
+
+// 导出（Node环境）
+if (typeof module !== "undefined" && module.exports) {
+  module.exports = { DIALOGUES, SCENE_TRIGGERS };
+}

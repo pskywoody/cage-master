@@ -1,0 +1,13 @@
+{
+  "seeds": [
+    {
+      "id": "sc_empty-rectangle_1",
+      "source": "sudoku-coach",
+      "technique": "empty-rectangle",
+      "techniqueName": "Empty Rectangle",
+      "difficulty": 6,
+      "givenCount": 60,
+      "file": "seeds/sudoku-coach-empty-rectangle.json"
+    }
+  ]
+}

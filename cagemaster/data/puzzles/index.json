@@ -1,0 +1,47 @@
+{
+  "name": "cage-master-seeds",
+  "version": "1.0.0",
+  "description": "手工构造的高级技巧示范种子题",
+  "seeds": {
+    "二连纵横阵": {
+      "name": "二连纵横阵示范题",
+      "technique": "二连纵横阵（二连纵横阵构型）",
+      "description": "一道精心构造的杀手数独，解题关键是在第2行和第8行发现数字4的二连纵横阵构型，从而排除其他位置的4"
+    },
+    "naked_pair": {
+      "name": "并蒂锁示范题",
+      "technique": "Naked Pair（并蒂锁）",
+      "description": "同一区域内两个格子恰好只能是相同的两个数字，排除其他格子中这两个数字"
+    },
+    "hidden_pair": {
+      "name": "双曜示范题",
+      "technique": "Hidden Pair（双曜）",
+      "description": "两个数字在同一区域内只能出现在相同的两个格子中，排除这两个格子的其他候选"
+    },
+    "naked_triple": {
+      "name": "三子法示范题",
+      "technique": "Naked Triple（显性三子法）",
+      "description": "同一区域内三个格子恰好只包含3个不同数字的组合"
+    },
+    "swordfish": {
+      "name": "三才游鱼阵示范题",
+      "technique": "Swordfish（三才游鱼阵）",
+      "description": "二连纵横阵的三行三列推广"
+    },
+    "xy_wing": {
+      "name": "XY-Wing示范题",
+      "technique": "XY-Wing",
+      "description": "三个双值格形成Y型链，排除共同影响格中的公共数字"
+    },
+    "killer_innie_outie": {
+      "name": "内外笼差值进阶",
+      "technique": "Innies & Outies（内外笼差值法）",
+      "description": "利用星衡法则在多行/多宫联合区域计算差值"
+    },
+    "killer_45_multi": {
+      "name": "多区域星衡法则",
+      "technique": "Multi-Unit 45 Rule（多区域星衡法则）",
+      "description": "同时对行+列+宫三个方向应用星衡法则"
+    }
+  }
+}

@@ -83,14 +83,12 @@ html body.layout-mobile #level-goal {
   display: none !important;
 }
 
-/* 角色立绘：移动端适配（不隐藏，缩小显示） */
+/* 角色立绘：移动端适配（不隐藏，显示为中等尺寸） */
 html body.layout-mobile #story-portrait {
-  width: 120px !important;
-  height: auto !important;
+  width: 160px !important;
+  height: 200px !important;
   flex-shrink: 0;
-  display: flex !important;
-  align-items: center;
-  justify-content: center;
+  display: block !important;
 }
 
 html body.layout-mobile .layout-bottom::after {

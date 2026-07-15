@@ -4025,14 +4025,27 @@
               "type": "tutorial",
               "tutorial": {
                 "id": "tutorial_intro_101",
-                "title": "唯一余数法入门",
                 "steps": [
                   {
-                    "type": "show_text",
-                    "speaker": "守笼人",
-                    "text": "欢迎来到档案馆，新人。我是守笼人。在这里，每个格子都遵守三条铁律：每行、每列、每个2×2小宫，数字1-4只能出现一次。",
-                    "autoAdvance": true,
-                    "delay": 3500
+                    "type": "dialogue",
+                    "lines": [
+                      {
+                        "speaker": "守笼人",
+                        "text": "欢迎来到档案馆，新人。我是守笼人。",
+                        "emotion": "serious",
+                        "effect": 2
+                      },
+                      {
+                        "speaker": "守笼人",
+                        "text": "在这里，每个格子都遵守三条铁律：每行、每列、每个2×2小宫，数字1-4只能出现一次。",
+                        "emotion": "default"
+                      },
+                      {
+                        "speaker": "守笼人",
+                        "text": "今天教你第一招——「唯一余数法」。当某个格子只剩一个可能的数字时，那个数就是答案。",
+                        "emotion": "serious"
+                      }
+                    ]
                   },
                   {
                     "type": "highlight_cells",
@@ -4046,9 +4059,23 @@
                     "highlightRow": 0,
                     "highlightCol": 1,
                     "highlightBox": true,
-                    "text": "看这个格子。它所在的行已经有1和3，列已经有2，宫里已经有1、2、3。所以这个格子只能填——",
                     "autoSelect": true,
                     "delay": 3500
+                  },
+                  {
+                    "type": "dialogue",
+                    "lines": [
+                      {
+                        "speaker": "守笼人",
+                        "text": "看这个格子。它所在的行已经有1和3，列已经有2，宫里已经有1、2、3。",
+                        "emotion": "serious"
+                      },
+                      {
+                        "speaker": "守笼人",
+                        "text": "所以这个格子只能填——",
+                        "emotion": "default"
+                      }
+                    ]
                   },
                   {
                     "type": "prompt_fill",
@@ -4059,8 +4086,6 @@
                       ]
                     ],
                     "number": 4,
-                    "speaker": "守笼人",
-                    "text": "没错，只剩4了！在数字键盘上按4填入它。",
                     "validation": {
                       "type": "fill_number",
                       "cell": [
@@ -4071,18 +4096,25 @@
                     }
                   },
                   {
-                    "type": "show_text",
-                    "speaker": "莹莹",
-                    "text": "哇！你真厉害！这就是「排除法」——看看格子周围有哪些数字，排除掉它们，剩下的就是答案！",
-                    "autoAdvance": true,
-                    "delay": 4000
-                  },
-                  {
-                    "type": "show_text",
-                    "speaker": "守笼人",
-                    "text": "很好。现在，用同样的方法，试着找出下一个可以确定的格子。",
-                    "autoAdvance": true,
-                    "delay": 2500
+                    "type": "dialogue_after_fill",
+                    "lines": [
+                      {
+                        "speaker": "莹莹",
+                        "text": "哇！你真厉害！",
+                        "emotion": "smile",
+                        "effect": 1
+                      },
+                      {
+                        "speaker": "莹莹",
+                        "text": "这就是「排除法」——看看格子周围有哪些数字，排除掉它们，剩下的就是答案！",
+                        "emotion": "energetic"
+                      },
+                      {
+                        "speaker": "守笼人",
+                        "text": "很好。现在，用同样的方法，试着找出下一个可以确定的格子。",
+                        "emotion": "default"
+                      }
+                    ]
                   }
                 ]
               },
@@ -4168,14 +4200,27 @@
           ],
           "tutorial": {
             "id": "tutorial_intro_101",
-            "title": "唯一余数法入门",
             "steps": [
               {
-                "type": "show_text",
-                "speaker": "守笼人",
-                "text": "欢迎来到档案馆，新人。我是守笼人。在这里，每个格子都遵守三条铁律：每行、每列、每个2×2小宫，数字1-4只能出现一次。",
-                "autoAdvance": true,
-                "delay": 3500
+                "type": "dialogue",
+                "lines": [
+                  {
+                    "speaker": "守笼人",
+                    "text": "欢迎来到档案馆，新人。我是守笼人。",
+                    "emotion": "serious",
+                    "effect": 2
+                  },
+                  {
+                    "speaker": "守笼人",
+                    "text": "在这里，每个格子都遵守三条铁律：每行、每列、每个2×2小宫，数字1-4只能出现一次。",
+                    "emotion": "default"
+                  },
+                  {
+                    "speaker": "守笼人",
+                    "text": "今天教你第一招——「唯一余数法」。当某个格子只剩一个可能的数字时，那个数就是答案。",
+                    "emotion": "serious"
+                  }
+                ]
               },
               {
                 "type": "highlight_cells",
@@ -4189,9 +4234,23 @@
                 "highlightRow": 0,
                 "highlightCol": 1,
                 "highlightBox": true,
-                "text": "看这个格子。它所在的行已经有1和3，列已经有2，宫里已经有1、2、3。所以这个格子只能填——",
                 "autoSelect": true,
                 "delay": 3500
+              },
+              {
+                "type": "dialogue",
+                "lines": [
+                  {
+                    "speaker": "守笼人",
+                    "text": "看这个格子。它所在的行已经有1和3，列已经有2，宫里已经有1、2、3。",
+                    "emotion": "serious"
+                  },
+                  {
+                    "speaker": "守笼人",
+                    "text": "所以这个格子只能填——",
+                    "emotion": "default"
+                  }
+                ]
               },
               {
                 "type": "prompt_fill",
@@ -4202,8 +4261,6 @@
                   ]
                 ],
                 "number": 4,
-                "speaker": "守笼人",
-                "text": "没错，只剩4了！在数字键盘上按4填入它。",
                 "validation": {
                   "type": "fill_number",
                   "cell": [
@@ -4214,18 +4271,25 @@
                 }
               },
               {
-                "type": "show_text",
-                "speaker": "莹莹",
-                "text": "哇！你真厉害！这就是「排除法」——看看格子周围有哪些数字，排除掉它们，剩下的就是答案！",
-                "autoAdvance": true,
-                "delay": 4000
-              },
-              {
-                "type": "show_text",
-                "speaker": "守笼人",
-                "text": "很好。现在，用同样的方法，试着找出下一个可以确定的格子。",
-                "autoAdvance": true,
-                "delay": 2500
+                "type": "dialogue_after_fill",
+                "lines": [
+                  {
+                    "speaker": "莹莹",
+                    "text": "哇！你真厉害！",
+                    "emotion": "smile",
+                    "effect": 1
+                  },
+                  {
+                    "speaker": "莹莹",
+                    "text": "这就是「排除法」——看看格子周围有哪些数字，排除掉它们，剩下的就是答案！",
+                    "emotion": "energetic"
+                  },
+                  {
+                    "speaker": "守笼人",
+                    "text": "很好。现在，用同样的方法，试着找出下一个可以确定的格子。",
+                    "emotion": "default"
+                  }
+                ]
               }
             ]
           }

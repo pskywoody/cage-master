@@ -83,6 +83,16 @@ html body.layout-mobile #level-goal {
   display: none !important;
 }
 
+/* 角色立绘：移动端适配（不隐藏，缩小显示） */
+html body.layout-mobile #story-portrait {
+  width: 64px !important;
+  height: 64px !important;
+  flex-shrink: 0;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+}
+
 html body.layout-mobile .layout-bottom::after {
   display: none !important;
   content: none !important;
@@ -675,14 +685,4 @@ html body.layout-mobile #num-pad .num-btn.quick-fill-num {
   color: #f0f8ec;
   border-color: #4a8a5a;
   box-shadow: 0 0 16px rgba(80,180,100,0.2), 0 3px 8px rgba(0,0,0,0.3);
-}
-
-/* ---------- 角色立绘（移动端显示）---------- */
-html body.layout-mobile #story-portrait {
-  display: block !important;
-  width: 120px !important;
-  height: auto !important;
-  bottom: 120px !important;
-  right: 0 !important;
-  opacity: 0.85;
 }

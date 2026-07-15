@@ -953,7 +953,8 @@ class GuideManager {
    * config.tutorial = { id, title, speaker, steps: [...] }
    */
   _startTutorial(trigger, config, eventData) {
-    const tutorialConfig = config.tutorial;
+    // 教程数据可能在 trigger.tutorial 或 config.tutorial
+    const tutorialConfig = trigger.tutorial || config.tutorial;
     if (!tutorialConfig || !tutorialConfig.steps) {
       console.warn('[GuideManager] tutorial 触发器缺少 steps 配置');
       return;

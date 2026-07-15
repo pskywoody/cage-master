@@ -4020,6 +4020,63 @@
           "cages": [],
           "triggers": [
             {
+              "id": "t101_tutorial",
+              "condition": "onLevelStart",
+              "type": "tutorial",
+              "tutorial": {
+                "id": "tutorial_intro_101",
+                "title": "唯一余数法入门",
+                "speaker": "守笼人",
+                "steps": [
+                  {
+                    "type": "show_text",
+                    "text": "欢迎来到档案馆！这是你的第一课：当某个格子只剩一个可能的数字时，那个数就是答案！",
+                    "autoAdvance": true,
+                    "delay": 3000
+                  },
+                  {
+                    "type": "highlight_cells",
+                    "cells": [
+                      [
+                        0,
+                        0
+                      ]
+                    ],
+                    "color": "#22c55e",
+                    "text": "看这个格子——它在同一行、列、宫中已经有哪些数字了？",
+                    "autoSelect": true,
+                    "delay": 2500
+                  },
+                  {
+                    "type": "prompt_fill",
+                    "cells": [
+                      [
+                        0,
+                        0
+                      ]
+                    ],
+                    "number": 1,
+                    "text": "排除已知数字后，这个格子只能填 1！试试看",
+                    "validation": {
+                      "type": "fill_number",
+                      "cell": [
+                        0,
+                        0
+                      ],
+                      "expected": 1
+                    }
+                  },
+                  {
+                    "type": "show_text",
+                    "text": "太棒了！你刚刚用排除法找到了唯一答案。现在试试独立完成剩下的格子吧！",
+                    "autoAdvance": true,
+                    "delay": 3000
+                  }
+                ]
+              },
+              "once": true
+            },
+            {
               "id": "t100_s",
               "condition": "onLevelStart",
               "type": "freeze_mask",

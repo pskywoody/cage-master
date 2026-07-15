@@ -4051,13 +4051,13 @@
                     "type": "highlight_cells",
                     "cells": [
                       [
-                        0,
-                        1
+                        1,
+                        2
                       ]
                     ],
                     "color": "#fbbf24",
-                    "highlightRow": 0,
-                    "highlightCol": 1,
+                    "highlightRow": 1,
+                    "highlightCol": 2,
                     "autoSelect": true,
                     "delay": 3500
                   },
@@ -4066,7 +4066,7 @@
                     "lines": [
                       {
                         "speaker": "守笼人",
-                        "text": "看这个格子。行已经有1和3，列已经有2。",
+                        "text": "看这个格子。行已经有2，列已经有3。",
                         "emotion": "serious"
                       },
                       {
@@ -4080,16 +4080,16 @@
                     "type": "prompt_fill",
                     "cells": [
                       [
-                        0,
-                        1
+                        1,
+                        2
                       ]
                     ],
                     "number": 4,
                     "validation": {
                       "type": "fill_number",
                       "cell": [
-                        0,
-                        1
+                        1,
+                        2
                       ],
                       "expected": 4
                     }
@@ -4225,13 +4225,13 @@
                 "type": "highlight_cells",
                 "cells": [
                   [
-                    0,
-                    1
+                    1,
+                    2
                   ]
                 ],
                 "color": "#fbbf24",
-                "highlightRow": 0,
-                "highlightCol": 1,
+                "highlightRow": 1,
+                "highlightCol": 2,
                 "autoSelect": true,
                 "delay": 3500
               },
@@ -4240,7 +4240,7 @@
                 "lines": [
                   {
                     "speaker": "守笼人",
-                    "text": "看这个格子。行已经有1和3，列已经有2。",
+                    "text": "看这个格子。行已经有2，列已经有3。",
                     "emotion": "serious"
                   },
                   {
@@ -4254,16 +4254,16 @@
                 "type": "prompt_fill",
                 "cells": [
                   [
-                    0,
-                    1
+                    1,
+                    2
                   ]
                 ],
                 "number": 4,
                 "validation": {
                   "type": "fill_number",
                   "cell": [
-                    0,
-                    1
+                    1,
+                    2
                   ],
                   "expected": 4
                 }

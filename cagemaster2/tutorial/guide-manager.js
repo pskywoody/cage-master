@@ -962,6 +962,11 @@ class GuideManager {
     
     console.log(`[GuideManager] 启动交互式教学: ${tutorialConfig.id}`, tutorialConfig.title);
     
+    // 确保音频已解锁（打字机音效需要）
+    if (typeof AudioManager !== 'undefined') {
+      try { AudioManager.resume(); } catch(e) {}
+    }
+    
     // 创建 TutorialRunner（如果还没有）
     if (!window._tutorialRunner) {
       window._tutorialRunner = new TutorialRunner({

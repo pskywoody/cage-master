@@ -7157,6 +7157,13 @@ function recordAction() {
 // ---------- 事件回调：填数 ----------
 function guide_onNumberFilled(r, c, num) {
   if (!guideManager) { console.log('❌ guide_onNumberFilled: guideManager 不存在'); return; }
+  
+  // 优先交给教程系统处理
+  if (window._tutorialRunner && window._tutorialRunner.isActive) {
+    const consumed = window._tutorialRunner.onNumberFilled(r, c, num);
+    if (consumed) return; // 教程消费了此事件
+  }
+  
   recordAction();
 
   // 笔记系统：填数后同步（阿妍视角自动更新笔记）

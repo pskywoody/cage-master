@@ -112,7 +112,7 @@ class TutorialRunner {
    * 处理显示文字步骤
    */
   _handleShowText() {
-    this.ui.showText(this.currentStep.text);
+    this.ui.showText(this.currentStep.text, this.currentStep.speaker);
     this.isWaitingForAction = false;
     
     if (this.currentStep.autoAdvance) {
@@ -127,19 +127,64 @@ class TutorialRunner {
   _handleHighlightCells() {
     const cells = this.currentStep.cells || [];
     const color = this.currentStep.color || '#22c55e';
+    const boardSize = this.board.size || 9;
     
-    // 高亮格子
+    // 高亮目标格子
     cells.forEach(([r, c]) => {
       const cell = this.board.cells[r]?.[c];
       if (cell) {
         cell.isHighlightMask = true;
-        cell.highlightOpacity = 0.4;
+        cell.highlightOpacity = 0.5;
         cell.highlightColor = color;
       }
     });
-    this.renderer.render(this.board);
     
-    this.ui.showText(this.currentStep.text);
+    // 高亮相关行
+    if (this.currentStep.highlightRow !== undefined) {
+      const row = this.currentStep.highlightRow;
+      for (let c = 0; c < boardSize; c++) {
+        const cell = this.board.cells[row]?.[c];
+        if (cell && !cell.fixedNum && !cell.fillNum && !(cell.isHighlightMask && cell.highlightColor === color)) {
+          cell.isHighlightMask = true;
+          cell.highlightOpacity = 0.25;
+          cell.highlightColor = '#3b82f6';
+        }
+      }
+    }
+    
+    // 高亮相关列
+    if (this.currentStep.highlightCol !== undefined) {
+      const col = this.currentStep.highlightCol;
+      for (let r = 0; r < boardSize; r++) {
+        const cell = this.board.cells[r]?.[col];
+        if (cell && !cell.fixedNum && !cell.fillNum && !(cell.isHighlightMask && cell.highlightColor === color)) {
+          cell.isHighlightMask = true;
+          cell.highlightOpacity = 0.25;
+          cell.highlightColor = '#3b82f6';
+        }
+      }
+    }
+    
+    // 高亮相关宫
+    if (this.currentStep.highlightBox && cells.length > 0) {
+      const [tr, tc] = cells[0];
+      const boxSize = boardSize === 4 ? 2 : 3;
+      const boxR = Math.floor(tr / boxSize) * boxSize;
+      const boxC = Math.floor(tc / boxSize) * boxSize;
+      for (let r = boxR; r < boxR + boxSize; r++) {
+        for (let c = boxC; c < boxC + boxSize; c++) {
+          const cell = this.board.cells[r]?.[c];
+          if (cell && !cell.fixedNum && !cell.fillNum && !(cell.isHighlightMask)) {
+            cell.isHighlightMask = true;
+            cell.highlightOpacity = 0.25;
+            cell.highlightColor = '#a855f7';
+          }
+        }
+      }
+    }
+    
+    this.renderer.render(this.board);
+    this.ui.showText(this.currentStep.text, this.currentStep.speaker);
     
     // 如果需要自动选中
     if (this.currentStep.autoSelect && cells.length > 0) {
@@ -159,7 +204,7 @@ class TutorialRunner {
    * 处理填数提示步骤
    */
   _handlePromptFill() {
-    this.ui.showText(this.currentStep.text);
+    this.ui.showText(this.currentStep.text, this.currentStep.speaker);
     this.ui.showActionHint('在数字键盘上填入数字');
     this.isWaitingForAction = true;
     

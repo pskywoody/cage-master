@@ -83,9 +83,20 @@ class TutorialUI {
   /**
    * 显示教学文字
    * @param {string} text - 文字内容
+   * @param {string} speaker - 说话角色（可选）
    */
-  showText(text) {
+  showText(text, speaker) {
     const textEl = this.panelEl.querySelector('.tutorial-text');
+    const speakerEl = this.panelEl.querySelector('.tutorial-speaker');
+    
+    // 显示角色名称
+    if (speaker) {
+      speakerEl.textContent = speaker + '：';
+      speakerEl.style.display = 'inline';
+    } else {
+      speakerEl.style.display = 'none';
+    }
+    
     textEl.textContent = text;
     textEl.style.display = 'block';
     

@@ -85,8 +85,8 @@ html body.layout-mobile #level-goal {
 
 /* 角色立绘：移动端适配（不隐藏，缩小显示） */
 html body.layout-mobile #story-portrait {
-  width: 64px !important;
-  height: 64px !important;
+  width: 120px !important;
+  height: auto !important;
   flex-shrink: 0;
   display: flex !important;
   align-items: center;

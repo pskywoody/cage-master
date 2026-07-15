@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <title data-i18n="ui.titles.routeSelectPage">故事模式 · 周目选择</title>
+  <link rel="icon" type="image/jpeg" href="assets/images/favicon.jpg" />
+  <link rel="stylesheet" href="assets/css/style.css?v=50" />
+  <link rel="stylesheet" href="assets/css/style-mobile.css?v=17" />
+  <style>
+    /* 周目选择页样式 - 参考 menu.html 风格 */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* 背景装饰 */
+    .bg-grid {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-image:
+        linear-gradient(rgba(148,163,184,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(148,163,184,0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+    }
+
+    .bg-glow {
+      position: absolute;
+      width: 400px; height: 400px;
+      border-radius: 50%;
+      filter: blur(120px);
+      opacity: 0.15;
+      pointer-events: none;
+    }
+    .bg-glow.g1 { background: #8b5cf6; top: -100px; left: -100px; }
+    .bg-glow.g2 { background: #3b82f6; bottom: -100px; right: -100px; }
+    .bg-glow.g3 { background: #f59e0b; top: 50%; left: 50%; transform: translate(-50%,-50%); opacity: 0.08; }
+
+    /* 主容器 */
+    .route-container {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+      width: 100%;
+      max-width: 460px;
+      padding: 20px;
+    }
+
+    /* 页面标题 */
+    .page-header {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .page-header .header-icon {
+      font-size: 48px;
+      margin-bottom: 8px;
+      filter: drop-shadow(0 4px 20px rgba(139,92,246,0.4));
+    }
+
+    .page-header h1 {
+      font-size: 26px;
+      font-weight: 700;
+      color: #f1f5f9;
+      letter-spacing: 3px;
+      margin-bottom: 4px;
+      text-shadow: 0 2px 10px rgba(139,92,246,0.3);
+    }
+
+    .page-header .subtitle {
+      font-size: 13px;
+      color: #94a3b8;
+      letter-spacing: 2px;
+    }
+
+    /* 返回按钮 */
+    #back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      margin-bottom: 16px;
+      align-self: flex-start;
+      padding: 10px 16px;
+      min-height: 44px;
+      background: rgba(30,41,59,0.8);
+      border: 1px solid rgba(148,163,184,0.15);
+      border-radius: 8px;
+      font-size: 13px;
+      color: #94a3b8;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.15s;
+      backdrop-filter: blur(10px);
+    }
+
+    #back-link:hover {
+      background: rgba(51,65,85,0.9);
+      color: #cbd5e1;
+    }
+
+    #back-link:active {
+      transform: scale(0.95);
+    }
+
+    /* 周目卡片列表 */
+    .route-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      width: 100%;
+      max-height: 62vh;
+      overflow-y: auto;
+      padding-right: 4px;
+    }
+
+    /* 周目卡片 */
+    .route-card {
+      position: relative;
+      border-radius: 20px;
+      padding: 18px 20px;
+      cursor: pointer;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      overflow: hidden;
+      border: 2px solid transparent;
+    }
+
+    .route-card:active {
+      transform: scale(0.97);
+    }
+
+    .route-card.unlocked {
+      background: rgba(30,41,59,0.9);
+      backdrop-filter: blur(10px);
+    }
+
+    .route-card.unlocked:hover {
+      border-color: rgba(148,163,184,0.3);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+
+    .route-card.locked {
+      background: rgba(30,41,59,0.5);
+      opacity: 0.6;
+      cursor: not-allowed;
+      backdrop-filter: blur(10px);
+    }
+
+    /* 周目1 - 紫色调 */
+    .route-card.route-1.unlocked {
+      background: linear-gradient(135deg, rgba(124,58,237,0.2) 0%, rgba(30,41,59,0.9) 100%);
+      border-color: rgba(124,58,237,0.3);
+    }
+    .route-card.route-1.unlocked:hover {
+      border-color: rgba(124,58,237,0.6);
+      box-shadow: 0 10px 30px rgba(124,58,237,0.2);
+    }
+
+    /* 周目2 - 蓝色调 */
+    .route-card.route-2.unlocked {
+      background: linear-gradient(135deg, rgba(14,165,233,0.2) 0%, rgba(30,41,59,0.9) 100%);
+      border-color: rgba(14,165,233,0.3);
+    }
+    .route-card.route-2.unlocked:hover {
+      border-color: rgba(14,165,233,0.6);
+      box-shadow: 0 10px 30px rgba(14,165,233,0.2);
+    }
+
+    /* 周目3 - 金色调 */
+    .route-card.route-3.unlocked {
+      background: linear-gradient(135deg, rgba(245,158,11,0.2) 0%, rgba(30,41,59,0.9) 100%);
+      border-color: rgba(245,158,11,0.3);
+    }
+    .route-card.route-3.unlocked:hover {
+      border-color: rgba(245,158,11,0.6);
+      box-shadow: 0 10px 30px rgba(245,158,11,0.2);
+    }
+
+    .route-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 10px;
+    }
+
+    .route-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      flex-shrink: 0;
+    }
+
+    .route-card.route-1 .route-icon { background: rgba(124,58,237,0.3); }
+    .route-card.route-2 .route-icon { background: rgba(14,165,233,0.3); }
+    .route-card.route-3 .route-icon { background: rgba(245,158,11,0.3); }
+
+    .route-titles {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .route-number {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      margin-bottom: 2px;
+      text-transform: uppercase;
+    }
+
+    .route-card.route-1 .route-number { color: #a78bfa; }
+    .route-card.route-2 .route-number { color: #38bdf8; }
+    .route-card.route-3 .route-number { color: #fbbf24; }
+
+    .route-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: #f1f5f9;
+      margin-bottom: 2px;
+    }
+
+    .route-subtitle {
+      font-size: 13px;
+      color: #94a3b8;
+    }
+
+    .route-lock-icon {
+      font-size: 24px;
+      color: #64748b;
+    }
+
+    .route-description {
+      font-size: 13px;
+      color: #94a3b8;
+      line-height: 1.6;
+      margin-bottom: 12px;
+    }
+
+    .route-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .route-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .route-status.unlocked-status {
+      background: rgba(34,197,94,0.15);
+      color: #4ade80;
+    }
+
+    .route-status.locked-status {
+      background: rgba(100,116,139,0.2);
+      color: #94a3b8;
+    }
+
+    .route-status.completed-status {
+      background: rgba(251,191,36,0.15);
+      color: #fbbf24;
+    }
+
+    .route-progress {
+      font-size: 12px;
+      color: #64748b;
+    }
+
+    .route-arrow {
+      font-size: 22px;
+      color: #64748b;
+      transition: transform 0.25s;
+      flex-shrink: 0;
+    }
+
+    .route-card.unlocked:hover .route-arrow {
+      transform: translateX(4px);
+      color: #94a3b8;
+    }
+
+    /* 底部版本号 */
+    .version-info {
+      position: absolute;
+      bottom: 16px;
+      font-size: 11px;
+      color: #475569;
+      letter-spacing: 1px;
+    }
+
+    /* 新周目提示徽章 */
+    .new-badge {
+      position: absolute;
+      top: 12px;
+      right: 16px;
+      background: #22c55e;
+      color: white;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 10px;
+      letter-spacing: 1px;
+      animation: pulse-badge 2s infinite;
+    }
+
+    @keyframes pulse-badge {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.08); }
+    }
+  </style>
+</head>
+<body>
+  <!-- 横屏提示（手机横屏时显示） -->
+  <div id="landscape-hint">
+    <div class="hint-icon">📱</div>
+    <div>请旋转手机</div>
+    <div class="hint-text">竖屏体验更佳<br>（可在系统设置中关闭"方向锁定"）</div>
+  </div>
+
+  <div class="bg-grid"></div>
+  <div class="bg-glow g1"></div>
+  <div class="bg-glow g2"></div>
+  <div class="bg-glow g3"></div>
+
+  <div class="route-container">
+    <a href="menu.html" id="back-link" data-i18n="ui.routeSelect.backToMenu">← 返回主菜单</a>
+
+    <!-- 页面标题 -->
+    <div class="page-header">
+      <div class="header-icon" data-i18n="ui.routeSelect.headerIcon">📖</div>
+      <h1 data-i18n="ui.routeSelect.title">故事模式</h1>
+      <div class="subtitle" data-i18n="ui.routeSelect.subtitle">选择你的视角，开启不同的真相</div>
+    </div>
+
+    <!-- 周目卡片列表 -->
+    <div class="route-list" id="routeList">
+      <div style="text-align:center; padding: 40px; color: #94a3b8;" data-i18n="ui.common.loading">加载中...</div>
+    </div>
+  </div>
+
+  <div class="version-info" data-i18n="ui.menu.version">v1.0.0</div>
+
+  <!-- Core 模块（底层基础设施，最优先加载） -->
+  <script src="core/event-bus.js?v=11"></script>
+  <script src="core/layout-detector.js?v=11"></script>
+  <script>LayoutDetector.init();</script>
+  <script src="core/logger.js?v=11"></script>
+  <script src="core/storage.js?v=11"></script>
+
+  <script src="services/audio.js?v=60"></script>
+  <script src="services/storage.js?v=50"></script>
+  <script src="services/i18n.js?v=50"></script>
+  <script>
+    // 初始化音频
+    if (typeof AudioManager !== 'undefined') { AudioManager.init(); }
+
+    // 周目配置
+    const ROUTES = [
+      {
+        id: 1,
+        icon: '🕵️',
+        number: '第一周目',
+        title: '沈墨视角',
+        subtitle: '新手侦探 · 7章剧情',
+        description: '你是新人侦探沈墨，收到一封匿名信后来到档案馆。从最基础的4×4盘面开始，逐步揭开杀手数独的秘密。',
+        totalChapters: 7,
+        colorClass: 'route-1'
+      },
+      {
+        id: 2,
+        icon: '❄️',
+        number: '第二周目',
+        title: '阿妍视角',
+        subtitle: '冷面侦探 · 7章剧情',
+        description: '你是档案侦探阿妍，比沈墨早来三周。以你的视角重新经历这段故事，发现一周目中被忽略的线索。',
+        totalChapters: 7,
+        colorClass: 'route-2',
+        unlockRequirement: 1 // 需要一周目通关
+      },
+      {
+        id: 3,
+        icon: '🌻',
+        number: '第三周目',
+        title: '莹莹视角',
+        subtitle: '寻女之路 · 7章+隐藏关+真结局',
+        description: '你是莹莹，为寻找失踪的父亲来到档案馆。隐藏关卡和真结局将揭示所有真相——他一直在等你。',
+        totalChapters: 8, // 7章 + 隐藏关
+        colorClass: 'route-3',
+        unlockRequirement: 2 // 需要二周目通关
+      }
+    ];
+
+    // 检查周目是否解锁
+    function isRouteUnlocked(route) {
+      if (typeof Storage !== 'undefined' && Storage.isRouteUnlocked) {
+        return Storage.isRouteUnlocked(route.id);
+      }
+      // 降级：一周目默认解锁
+      if (route.id === 1) return true;
+      if (!route.unlockRequirement) return true;
+      return isRouteCompleted(route.unlockRequirement);
+    }
+
+    // 检查周目是否通关
+    function isRouteCompleted(routeId) {
+      if (typeof Storage !== 'undefined' && Storage.isRouteCompleted) {
+        return Storage.isRouteCompleted(routeId);
+      }
+      // 降级
+      try {
+        const key = 'killersudoku_route_' + routeId;
+        return localStorage.getItem(key) === '1';
+      } catch (e) {
+        return false;
+      }
+    }
+
+    // 获取周目进度
+    function getRouteProgress(routeId) {
+      if (typeof Storage !== 'undefined' && Storage.getRouteProgress) {
+        return Storage.getRouteProgress(routeId);
+      }
+      // 降级
+      try {
+        const key = 'killersudoku_route_progress_' + routeId;
+        const raw = localStorage.getItem(key);
+        if (raw) return JSON.parse(raw);
+      } catch (e) {}
+      const totalChapters = routeId === 3 ? 8 : 7;
+      return { completedChapters: 0, totalChapters, chapters: {} };
+    }
+
+    // 渲染周目列表
+    function renderRoutes() {
+      const list = document.getElementById('routeList');
+      let html = '';
+
+      ROUTES.forEach(route => {
+        const unlocked = isRouteUnlocked(route);
+        const completed = isRouteCompleted(route.id);
+        const progress = getRouteProgress(route.id);
+
+        let cardClass = 'route-card ' + route.colorClass + ' ';
+        if (!unlocked) cardClass += 'locked';
+        else cardClass += 'unlocked';
+
+        let statusHtml = '';
+        let statusClass = '';
+        let statusText = '';
+        if (!unlocked) {
+          statusClass = 'locked-status';
+          statusText = t('ui.routeSelect.locked');
+        } else if (completed) {
+          statusClass = 'completed-status';
+          statusText = t('ui.routeSelect.completed');
+        } else {
+          statusClass = 'unlocked-status';
+          statusText = t('ui.routeSelect.unlocked');
+        }
+
+        const progressText = unlocked
+          ? I18N.formatProgress(progress.completedChapters || 0, route.totalChapters)
+          : t('ui.routeSelect.lockedHint');
+
+        const lockIcon = !unlocked ? '<div class="route-lock-icon">🔒</div>' : '';
+        const arrowIcon = unlocked ? '<div class="route-arrow">›</div>' : '';
+
+        // 解锁条件文本
+        let unlockHint = '';
+        if (!unlocked && route.unlockRequirement) {
+          const prevRoute = ROUTES.find(r => r.id === route.unlockRequirement);
+          if (prevRoute) {
+            unlockHint = '<div class="route-description" style="color: #64748b; font-style: italic;">' +
+              t('ui.routeSelect.unlockHint', { route: prevRoute.title }) +
+              '</div>';
+          }
+        }
+
+        html += `
+          <div class="${cardClass}" data-route="${route.id}" data-unlocked="${unlocked}">
+            <div class="route-header">
+              <div class="route-icon">${unlocked ? route.icon : '🔒'}</div>
+              <div class="route-titles">
+                <div class="route-number">${route.number}</div>
+                <div class="route-title">${route.title}</div>
+                <div class="route-subtitle">${route.subtitle}</div>
+              </div>
+              ${lockIcon}
+            </div>
+            ${unlocked ? '<div class="route-description">' + route.description + '</div>' : unlockHint}
+            <div class="route-footer">
+              <span class="route-status ${statusClass}">
+                ${completed ? '🏆' : unlocked ? '✓' : '🔒'} ${statusText}
+              </span>
+              <span class="route-progress">${progressText}</span>
+              ${arrowIcon}
+            </div>
+          </div>
+        `;
+      });
+
+      list.innerHTML = html;
+
+      // 绑定点击事件
+      document.querySelectorAll('.route-card').forEach(card => {
+        card.addEventListener('click', () => {
+          if (card.dataset.unlocked === 'false') {
+            return;
+          }
+          if (typeof AudioManager !== 'undefined') {
+            AudioManager.playClick();
+          }
+          const routeId = card.dataset.route;
+          window.location.href = 'chapters.html?route=' + routeId;
+        });
+      });
+    }
+
+    // 初始化i18n并渲染
+    (async function() {
+      try {
+        await I18N.init();
+      } catch (e) {
+        console.warn('[route-select] i18n init failed, using fallback:', e);
+      }
+      try {
+        renderRoutes();
+      } catch (e) {
+        console.error('[route-select] renderRoutes failed:', e);
+        // 降级：直接显示错误信息
+        const list = document.getElementById('routeList');
+        if (list) {
+          list.innerHTML = '<div style="text-align:center; padding: 40px; color: #f87171;">页面加载失败，请刷新重试</div>';
+        }
+      }
+    })();
+  </script>
+</body>
+</html>

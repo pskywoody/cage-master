@@ -1,0 +1,1310 @@
+{
+  "ui": {
+    "common": {
+      "back": "돌아가기",
+      "backToMenu": "← 메뉴",
+      "confirm": "확인",
+      "cancel": "취소",
+      "close": "×",
+      "ok": "알겠어요",
+      "next": "다음 ▶",
+      "prev": "◀ 이전",
+      "start": "학습 시작 ▶",
+      "startGame": "게임 시작",
+      "resume": "게임 재개",
+      "restart": "다시 시작",
+      "loading": "로딩 중...",
+      "returnToLevels": "레벨로 돌아가기",
+      "nextLevel": "다음 레벨",
+      "returnToChapter": "🏁 챕터로 돌아가기",
+      "yes": "네",
+      "no": "아니요",
+      "save": "저장",
+      "reset": "초기화",
+      "retry": "다시 시도",
+      "continue": "계속",
+      "backToChapter": "← 챕터",
+      "backToChapters": "← 챕터 목록",
+      "backToMainMenu": "← 메인 메뉴로",
+      "go": "시작!",
+      "gridView": "그리드",
+      "listView": "목록",
+      "loadingChapters": "챕터 로딩 중...",
+      "loadingLevels": "레벨 로딩 중...",
+      "noData": "챕터 데이터가 없습니다",
+      "noLevels": "사용 가능한 레벨이 없습니다",
+      "noLevelsInDifficulty": "이 난이도에는 레벨이 없습니다",
+      "progress": "진행",
+      "versus": "VS"
+    },
+    "titles": {
+      "appName": "기록 탐정 · 케이지 암호",
+      "guideMode": "튜토리얼 모드",
+      "menuPage": "기록 탐정 · 케이지 암호",
+      "chaptersPage": "스토리 모드 · 챕터 선택",
+      "levelsPage": "레벨 선택",
+      "chapterLevelsPage": "챕터 레벨",
+      "freePlayPage": "스도쿠 퍼즐 · 자유 모드",
+      "battlePage": "AI 대전",
+      "optionsPage": "설정",
+      "gamePage": "게임",
+      "guidePage": "튜토리얼 레벨"
+    },
+    "menu": {
+      "logo": "🔐",
+      "gameTitle": "케이지 암호",
+      "subtitle": "기록 탐정 · KILLER SUDOKU",
+      "storyMode": "스토리 모드",
+      "storyModeDesc": "스토리를 따라가며 킬러 스도쿠 기술을 마스터하세요",
+      "freeMode": "스도쿠 퍼즐",
+      "freeModeDesc": "엄선된 300문제, 3가지 난이도",
+      "battleMode": "안개 대전",
+      "battleModeDesc": "배후자 AI와 두뇌 대결!",
+      "battleModeBeta": "BETA",
+      "settings": "설정",
+      "settingsDesc": "음악, 효과음, 진행 관리",
+      "version": "v1.0.0",
+      "statsCompleted": "클리어됨",
+      "statsBadges": "배지",
+      "statsTotalTime": "총 시간"
+    },
+    "toolbar": {
+      "undo": "실행 취소",
+      "erase": "지우기",
+      "candidate": "후보",
+      "candidateMode": "후보 모드",
+      "fillMode": "입력 모드",
+      "autoCands": "후보 자동 입력",
+      "hint": "힌트",
+      "rule45": "45",
+      "setting": "설정",
+      "quickFill": "⚡ 연속 입력"
+    },
+    "timer": {
+      "timeUsed": "시간",
+      "timeFormat_min_sec": "{m}분{s}초",
+      "timeFormat_sec": "{s}초",
+      "timeFormat_h_m": "{h}h{m}m",
+      "timeFormat_clock": "{m}:{s}"
+    },
+    "pause": {
+      "title": "⏸ 일시 정지",
+      "desc": "아래 버튼을 눌러 게임을 계속하세요"
+    },
+    "complete": {
+      "trophy": "🏆",
+      "title": "클리어 축하합니다!",
+      "timeUsed": "시간 {time}",
+      "rematch": "다시 하기"
+    },
+    "settings": {
+      "title": "⚙️ 설정",
+      "audioSection": "오디오",
+      "gameSection": "게임",
+      "displaySection": "표시",
+      "operationSection": "조작",
+      "dataSection": "데이터 관리",
+      "muteAll": "🔇 전체 음소거",
+      "muteAllDesc": "모든 소리(BGM+효과음) 끄기",
+      "bgm": "🎵 배경 음악",
+      "bgmDesc": "게임 중 배경 음악",
+      "sfx": "🔊 효과음",
+      "sfxDesc": "클릭, 숫자 입력 등의 효과음",
+      "conflictRed": "충돌 빨간색 표시",
+      "conflictRedDesc": "잘못된 숫자를 빨간색으로 표시",
+      "highlightRowColBox": "행/열/박스 강조",
+      "highlightRowColBoxDesc": "선택한 셀의 행, 열, 박스를 강조",
+      "highlightSameNum": "같은 숫자 강조",
+      "highlightSameNumDesc": "선택한 숫자와 같은 숫자를 가진 모든 셀 강조",
+      "highlightSameCage": "같은 케이지 강조",
+      "highlightSameCageDesc": "선택한 셀의 케이지를 강조",
+      "autoClearCandidates": "후보 자동 제거",
+      "autoClearCandidatesDesc": "숫자 입력 후 관련 후보를 자동으로 제거",
+      "vibrationSection": "📳 진동",
+      "vibration": "진동 피드백",
+      "vibrationDesc": "탭, 입력, 지울 때의 촉각 피드백",
+      "voice": "🎙️ 성우",
+      "voiceDesc": "캐릭터 대화와 타이핑 사운드 이펙트",
+      "languageSection": "🌐 Language",
+      "exportData": "📤 저장 데이터 내보내기",
+      "resetAll": "🗑️ 모든 진행 초기화",
+      "aboutTitle": "기록 탐정 · 케이지 암호",
+      "aboutVersion": "버전 1.0.0",
+      "aboutDesc": "몰입형 킬러 스도쿠 스토리 퍼즐 게임\\n지킴이와 아연과 함께 배후자가 남긴 비술 기록을 해독하세요",
+      "confirmResetTitle": "초기화 확인?",
+      "confirmResetMsg": "이 작업은 모든 클리어 기록, 진행, 배지, 설정을 삭제하며 복구할 수 없습니다.",
+      "confirmResetDetail": "이 작업은 모든 클리어 기록, 진행, 배지, 설정을 삭제하며 복구할 수 없습니다.",
+      "confirmOk": "초기화 확인",
+      "toastReset": "진행이 초기화되었습니다",
+      "toastExported": "저장 데이터 내보내기 완료",
+      "toastResetFailed": "초기화 실패",
+      "toastExportFailed": "내보내기 실패",
+      "back": "← 돌아가기",
+      "statTotalCompleted": "총 클리어",
+      "statTotalTime": "총 플레이 시간",
+      "statBadges": "배지",
+      "toggleBgm": "BGM 전환",
+      "toggleSfx": "효과음 전환",
+      "highlightBox": "박스 강조",
+      "highlightBoxDesc": "선택한 셀의 박스를 강조",
+      "highlightCol": "열 강조",
+      "highlightColDesc": "선택한 셀의 열을 강조",
+      "highlightRow": "행 강조",
+      "highlightRowDesc": "선택한 셀의 행을 강조"
+    },
+    "rule45": {
+      "title": "🧮 성균 법칙 계산기",
+      "cellCount": "셀 수",
+      "targetSum": "목표 합계",
+      "mustInclude": "포함 필수 숫자",
+      "exclude": "제외할 숫자",
+      "possibleCombinations": "가능한 조합",
+      "combinationsCount": "{count}가지",
+      "errorInvalidInput": "유효한 셀 수와 목표 합계를 입력하세요",
+      "errorMustExceedCells": "포함 필수 숫자가 셀 수를 초과할 수 없습니다",
+      "errorMustExcluded": "포함 필수 숫자는 제외할 수 없습니다",
+      "errorNoResult": "조건에 맞는 조합이 없습니다",
+      "rule10": "10 법칙 (4x4)",
+      "rule21": "21 법칙 (6x6)",
+      "rule45": "45 법칙 (9x9)",
+      "ruleName": "성균 법칙"
+    },
+    "chapters": {
+      "title": "📖 스토리 모드",
+      "subtitle": "지킴이와 아연과 함께 배후자의 킬러 스도쿠 비술 기록을 해독하세요",
+      "chapterPrefix": "제{id}장:",
+      "badge": "배지",
+      "lockedIcon": "🔒",
+      "loading": "챕터 로딩 중...",
+      "noData": "챕터 데이터가 없습니다",
+      "backToMenu": "← 메인 메뉴로",
+      "progress": "진행",
+      "fallbackCh1": {
+        "title": "암호화된 편지",
+        "subtitle": "입문편 · 4x4",
+        "desc": "킬러 스도쿠의 기본 규칙을 배우고, 가장 작은 4x4 판에서 탐정 여정을 시작하세요.",
+        "badgeName": "초보 탐정"
+      },
+      "fallbackCh2": {
+        "title": "이중 단서",
+        "subtitle": "중급편 · 6x6",
+        "desc": "더 많은 해결 기술을 배우고 6x6 판에 도전하여 추론 능력을 키우세요.",
+        "badgeName": "주니어 탐정"
+      },
+      "fallbackCh3": {
+        "title": "수수께끼 추적",
+        "subtitle": "고급편 · 6x6",
+        "desc": "성균 법칙과 같은 고급 기술을 마스터하여 더 복잡한 퍼즐을 풀어보세요.",
+        "badgeName": "중급 탐정"
+      },
+      "fallbackCh4": {
+        "title": "암호 해독",
+        "subtitle": "고급편 · 9x9",
+        "desc": "본격적인 9x9 판에 도전하여 킬러 스도쿠의 완전한 매력을 경험하세요.",
+        "badgeName": "시니어 탐정"
+      },
+      "fallbackCh5": {
+        "title": "궁극의 시험",
+        "subtitle": "도전편 · 9x9",
+        "desc": "고난도 9x9 퍼즐로 배운 모든 기술을 시험해보세요.",
+        "badgeName": "엘리트 탐정"
+      },
+      "fallbackCh6": {
+        "title": "마스터의 길",
+        "subtitle": "마스터편 · 9x9",
+        "desc": "전설적인 난이도, 진정한 탐정 마스터만 클리어할 수 있습니다.",
+        "badgeName": "마스터 탐정"
+      },
+      "fallbackCh7": {
+        "title": "비술 기록",
+        "subtitle": "마스터편 · 고급 기술",
+        "desc": "지킴이가 배후자가 남긴 6권의 비술 원고를 발견했습니다. 병제쇄, 이련종횡진, 삼재유어진 등의 고급 추론술이 기록되어 있습니다.",
+        "badgeName": "비술 마스터"
+      }
+    },
+    "chapterLevels": {
+      "levelNum": "제{num}레벨",
+      "fallbackDesc": "{chapterId}장의 튜토리얼이 킬러 스도쿠 핵심 기술을 단계별로 안내합니다.",
+      "teachingGoal_default": "이 퍼즐을 풀어보세요",
+      "bestTime": "최고 {time}",
+      "completed": "✓ 클리어됨",
+      "backToChapters": "← 챕터 목록",
+      "progress": "진행",
+      "gridView": "그리드",
+      "listView": "목록",
+      "loading": "레벨 로딩 중...",
+      "noLevels": "사용 가능한 레벨이 없습니다",
+      "unknownChapter": "알 수 없는 챕터"
+    },
+    "levels": {
+      "title": "기록 탐정 · 케이지 암호",
+      "teachingEntry": "튜토리얼 모드",
+      "teachingDesc": "처음부터 킬러 스도쿠 배우기",
+      "battleEntry": "AI 대전 모드",
+      "battleDesc": "대전",
+      "battleStats": "전적: {wins}승 {losses}패",
+      "teachingProgress": "{count}개 튜토리얼 레벨 클리어",
+      "filterAll": "전체",
+      "filterEasy": "쉬움",
+      "filterMedium": "보통",
+      "filterHard": "어려움",
+      "filterCalibrated": "난이도순",
+      "statsLine": "클리어 {completed} / {total} · 총 시간 {time}",
+      "bestTimeTag": "최고 {time}",
+      "avgTimeTag": "평균 {time}",
+      "hintsTag": "힌트: {count}회",
+      "completionsTag": "클리어 {completions}/{attempts}",
+      "completedTag": "✓ 클리어됨",
+      "loading": "레벨 로딩 중...",
+      "networkError": "네트워크 오류, 새로고침 후 다시 시도하세요",
+      "noLevelsForDiff": "이 난이도에는 레벨이 없습니다",
+      "entryLevel": "입문"
+    },
+    "freePlay": {
+      "title": "🧩 스도쿠 퍼즐",
+      "subtitle": "자유 도전, 엄선된 300문제",
+      "back": "← 돌아가기",
+      "easy": {
+        "name": "쉬움",
+        "icon": "🌱",
+        "range": "1-100"
+      },
+      "medium": {
+        "name": "보통",
+        "icon": "🔥",
+        "range": "101-200"
+      },
+      "hard": {
+        "name": "어려움",
+        "icon": "💀",
+        "range": "201-300"
+      },
+      "completed": "클리어됨",
+      "bestTimeLabel": "최고 시간",
+      "avgTimeLabel": "평균 시간"
+    },
+    "badge": {
+      "title": "🏅 배지 획득",
+      "newBadge": "새 배지",
+      "accept": "받기"
+    },
+    "story": {
+      "continueHint": "▼ 탭하여 계속",
+      "defaultSpeaker": "기록 탐정"
+    },
+    "canvas": {
+      "candidateMode_label": "✏️후보",
+      "row": "행",
+      "col": "열",
+      "box": "박스",
+      "cage": "케이지",
+      "quickFillHint": "💡 숫자를 선택한 후 빈 셀을 탭하여 빠르게 입력",
+      "quickFillActivated": "⚡ 연속 입력 {num}: 빈 셀을 탭하여 빠르게 입력",
+      "quickFillComplete": "✅ {num}이(가) 모두 채워졌습니다. 연속 입력이 자동으로 종료됩니다"
+    },
+    "perspective": {
+      "rowPrefix": "제{n}행",
+      "colPrefix": "제{n}열",
+      "boxPrefix": "제{n}박스"
+    },
+    "progress": {
+      "format": "{current} / {total}"
+    },
+    "debug": {
+      "close": "✕",
+      "title": "🛠 진단 패널"
+    }
+  },
+  "battle": {
+    "title": "⚔️ AI 대전 모드",
+    "subtitle": "숫자를 맞춰 에너지를 모으고, 공격으로 상대를 방해하라!",
+    "you": "당신",
+    "aiBot": "AI Bot",
+    "spectateBot1": "Bot 1",
+    "spectateBot2": "Bot 2",
+    "difficulty": {
+      "label": "난이도:",
+      "easy": "쉬움",
+      "medium": "보통",
+      "hard": "어려움"
+    },
+    "startBattle": "대전 시작",
+    "spectate": "👀 관전",
+    "back": "돌아가기",
+    "energy": "⚡ 에너지",
+    "energyFormat": "{current} / {max}",
+    "progress": "{filled} / {total}",
+    "attackCount": "공격: {count}",
+    "combo": "{count} 콤보!",
+    "attacks": {
+      "normal": {
+        "name": "일반 공격",
+        "cost": "30 에너지",
+        "costNum": "30"
+      },
+      "heavy": {
+        "name": "강공격",
+        "cost": "60 에너지",
+        "costNum": "60"
+      },
+      "ultimate": {
+        "name": "필살기",
+        "cost": "100 에너지",
+        "costNum": "100"
+      }
+    },
+    "controls": {
+      "quickFill": "⚡ 연속 입력",
+      "modeToggle": "입력 모드",
+      "candidateMode": "후보 모드",
+      "erase": "지우기",
+      "restart": "다시 시작"
+    },
+    "attackText": "ATTACK!",
+    "result": {
+      "win": "🎉 승리!",
+      "lose": "😢 패배...",
+      "bot1Win": "🏆 Bot 1 승리!",
+      "bot2Win": "🏆 Bot 2 승리!",
+      "continueStory": "스토리 계속",
+      "retry": "다시 시도",
+      "rematch": "재대결",
+      "back": "돌아가기",
+      "timeUsed": "시간: {m}분{s}초",
+      "yourProgress": "{label} 진행: {filled} / 81 ({pct}%)",
+      "aiProgress": "AI 진행: {filled} / 81 ({pct}%)",
+      "maxCombo": "최고 콤보: {count}",
+      "playerAttacks": "{label} 공격: {count}회",
+      "aiAttacks": "AI 공격: {count}회",
+      "aiDifficulty": "AI 난이도: {diff}"
+    },
+    "countdown": {
+      "vs": "VS",
+      "start": "시작!",
+      "hint": "안개 속에서 경쟁, 먼저 75% 채우는 쪽이 승리!",
+      "opponent": "상대"
+    },
+    "bosses": {
+      "boss1": {
+        "name": "뉴비",
+        "avatar": "🐣",
+        "preDialog": [
+          "헤헤~ 초보예요, 잘 부탁해요!",
+          "처음이라 긴장돼..."
+        ],
+        "winDialog": [
+          "으으으... 졌어...",
+          "축하해..."
+        ],
+        "warningLines": [
+          "상대가 거의 다 끝났어!"
+        ],
+        "encounter": {
+          "far": [
+            "{\"text\": \"어? 어디 있어?\", \"intensity\": \"light\"}"
+          ],
+          "mid": [
+            "{\"text\": \"괜찮은데?\", \"intensity\": \"medium\"}"
+          ],
+          "near": [
+            "{\"text\": \"마지막 한 수다.\", \"intensity\": \"strong\"}"
+          ]
+        }
+      },
+      "boss2": {
+        "name": "스도쿠 달인",
+        "avatar": "🦊",
+        "preDialog": [
+          "흥, 덤벼봐!",
+          "준비됐나? 봐주지 않을 거야."
+        ],
+        "winDialog": [
+          "...방심했어.",
+          "좋은 대국이었어."
+        ],
+        "warningLines": [
+          "상대가 곧 이긴다!"
+        ],
+        "encounter": {
+          "far": [
+            "{\"text\": \"오? 재미있군.\", \"intensity\": \"light\"}"
+          ],
+          "mid": [
+            "{\"text\": \"보통 사람이 아니군.\", \"intensity\": \"medium\"}"
+          ],
+          "near": [
+            "{\"text\": \"진지해진다!\", \"intensity\": \"strong\"}"
+          ]
+        }
+      },
+      "boss3": {
+        "name": "스도쿠 마왕",
+        "avatar": "👹",
+        "preDialog": [
+          "흥... 인간이 나에게 도전하다니?",
+          "3분 만에 끝내주마."
+        ],
+        "winDialog": [
+          "말도 안 돼!! 내가 지다니!!",
+          "인간아... 기억해라!"
+        ],
+        "warningLines": [
+          "상대가 거의 다 끝났어!"
+        ],
+        "encounter": {
+          "far": [
+            "{\"text\": \"개미의 힘이다.\", \"intensity\": \"light\"}"
+          ],
+          "mid": [
+            "{\"text\": \"나를 화나게 했군.\", \"intensity\": \"medium\"}"
+          ],
+          "near": [
+            "{\"text\": \"게임 오버다!\", \"intensity\": \"strong\"}"
+          ]
+        }
+      },
+      "boss4": {
+        "name": "배후자의 잔영",
+        "avatar": "👤",
+        "preDialog": [
+          "나를 따라잡을 수 있을 거라 생각해?",
+          "안개 속의 진실, 영원히 볼 수 없을 거야."
+        ],
+        "winDialog": [
+          "말도 안 돼... 어떻게 안개를 꿰뚫어 봤어!",
+          "이것은 시작에 불과해..."
+        ],
+        "warningLines": [
+          "잔영이 사라지기 전에 끝낸다! 쫓아가!"
+        ],
+        "encounter": {
+          "far": [
+            "{\"text\": \"나를 볼 수 없어...\", \"intensity\": \"light\"}"
+          ],
+          "mid": [
+            "{\"text\": \"안개가 나를 보호한다.\", \"intensity\": \"medium\"}"
+          ],
+          "near": [
+            "{\"text\": \"나를 찾아내다니!\", \"intensity\": \"strong\"}"
+          ]
+        }
+      },
+      "boss5": {
+        "name": "잔국 수호자",
+        "avatar": "🛡️",
+        "preDialog": [
+          "이 관을 넘으려면, 나를 먼저 이겨라!",
+          "이 잔국들은 내가 지키는 비밀이다."
+        ],
+        "winDialog": [
+          "너... 이 잔국들을 풀었어...",
+          "수호자의 사명... 완수되었다..."
+        ],
+        "warningLines": [
+          "수호자가 모든 단서를 봉인하려 한다!"
+        ],
+        "encounter": {
+          "far": [
+            "{\"text\": \"누구냐?\", \"intensity\": \"light\"}"
+          ],
+          "mid": [
+            "{\"text\": \"더 이상 못 가!\", \"intensity\": \"medium\"}"
+          ],
+          "near": [
+            "{\"text\": \"최후의 방어선!\", \"intensity\": \"strong\"}"
+          ]
+        }
+      },
+      "boss6": {
+        "name": "배후자 (비술)",
+        "avatar": "🔮",
+        "preDialog": [
+          "여기까지 왔구나...",
+          "비술의 진정한 힘을 보여주마!"
+        ],
+        "winDialog": [
+          "비술이... 깨졌다고?",
+          "말도 안 돼... 이것은 궁극의 추론술인데..."
+        ],
+        "warningLines": [
+          "비술이 곧 완성된다! 막아라!"
+        ],
+        "encounter": {
+          "far": [
+            "{\"text\": \"비술의 힘... 너는 모를 거야.\", \"intensity\": \"light\"}"
+          ],
+          "mid": [
+            "{\"text\": \"진짜 실력을 쓰게 만들었군.\", \"intensity\": \"medium\"}"
+          ],
+          "near": [
+            "{\"text\": \"비술·케이지 지옥!\", \"intensity\": \"strong\"}"
+          ]
+        }
+      },
+      "mysteriousOpponent": {
+        "name": "수수께끼의 상대",
+        "preDialog": [
+          "와라."
+        ],
+        "winDialog": [
+          "네 승리다."
+        ],
+        "warningLines": [
+          "상대가 곧 이긴다!"
+        ],
+        "encounter": {
+          "mid": [
+            "{\"text\": \"괜찮은데?\", \"intensity\": \"medium\"}"
+          ],
+          "near": [
+            "{\"text\": \"마지막 한 수다.\", \"intensity\": \"strong\"}"
+          ]
+        }
+      }
+    },
+    "toast": {
+      "stolen": "셀을 뺏었다!",
+      "almostWin": "거의 다 왔어, 힘내!",
+      "fogCleared": "안개가 걷혔다!",
+      "cageRevealed": "케이지 단서가 드러났다!",
+      "bewareOpponent": "상대를 주목하라!",
+      "stolenCell": "뺏었다!",
+      "opponent60": "⚠️ 상대가 60% 도달!",
+      "player60": "🔥 당신이 60% 확보! 마지막 스퍼트!"
+    },
+    "tips": {
+      "bewareOpponent": "상대를 주목하라!",
+      "bewareOpponentText": "깜빡이는 빨간 셀이 보이나? 그것은 {name}이 채운 유령 셀이다. 같은 셀을 맞추면 뺏을 수 있다!",
+      "fogCleared": "안개가 걷혔다!",
+      "fogClearedText": "숫자를 맞추면 주변 케이지의 점선과 합계가 드러난다. 계속 숫자를 맞춰 더 많은 케이지 단서를 찾아라!",
+      "stolen": "뺏었다!",
+      "stolenText": "잘했어! 이 셀을 먼저 맞춰 {name}에게서 뺏었다. 계속 더 많은 셀을 뺏어라!",
+      "exploreCages": "케이지 단서 탐색",
+      "exploreCagesText": "모든 숫자는 보인다! 그러나 케이지의 점선과 파란색 합계 배지는 안개에 가려져 있다. 숫자를 맞춰 시야를 넓히고 케이지 단서를 찾아라!",
+      "rulesTitle": "⚔️ 안개 대전 규칙",
+      "ruleFog": "안개에 가려진 케이지",
+      "ruleFogDesc": "모든 숫자는 항상 보인다! 그러나 케이지의 점선과 파란색 합계 배지는 안개에 숨겨져 있다. 가까이 가서 케이지의 모양과 합계를 확인하라. 보이는 숫자로 추론하고, 숫자를 맞춰 시야를 넓혀 케이지 단서를 찾아라!",
+      "ruleReveal": "개척하여 케이지 발견",
+      "ruleRevealDesc": "숫자를 맞출 때마다 주변 안개가 걷히고, 근처 케이지의 테두리와 합계가 드러난다. 많이 맞출수록 더 많은 단서를 볼 수 있다!",
+      "ruleGhost": "유령 상대",
+      "ruleGhostDesc": "{name}이 안개 속에서 경쟁 중이다! 깜빡이는 빨간 셀은 {name}의 유령 셀이다. 같은 셀을 맞추면 뺏을 수 있다. 먼저 75% 채우는 쪽이 승리!",
+      "ruleWarning": "60% 경고",
+      "ruleWarningDesc": "어느 한쪽의 진행이 60%에 도달하면 화면 가장자리가 빨간색으로 깜빡인다 — 마지막 추격 기회다!",
+      "startBattle": "대전 시작"
+    },
+    "confirmRestart": "이 레벨을 다시 시작하시겠습니까? 입력한 숫자가 모두 초기화됩니다.",
+    "loadFailed": "레벨 로드 실패, 새로고침 후 다시 시도하세요",
+    "playerLines": {
+      "start": [
+        "와라!",
+        "준비됐어!",
+        "오늘은 꼭 이긴다!",
+        "봐봐!"
+      ],
+      "correct": [
+        "좋아!",
+        "맞았어!",
+        "깔끔해!",
+        "예이!"
+      ],
+      "combo": [
+        "좋아! 콤보!",
+        "감이 왔어!",
+        "멈출 수 없어!",
+        "무적은 외로워~"
+      ],
+      "wrong": [
+        "아... 틀렸어",
+        "이런...",
+        "손이 미끄러졌네",
+        "민망해..."
+      ],
+      "attack": [
+        "이걸 받아라!",
+        "받아라!",
+        "햇!",
+        "간다!"
+      ],
+      "attacked": [
+        "뭐야!",
+        "제기랄! 당했어!",
+        "뭐야 이게!"
+      ],
+      "energyFull": [
+        "에너지 가득! 필살기 준비!",
+        "진짜 실력을 보여줄 때다!"
+      ],
+      "winning": [
+        "이건 됐어",
+        "승리가 눈앞이다!"
+      ],
+      "losing": [
+        "이런... 질 것 같아",
+        "잠깐만!",
+        "아직! 기회는 있어!"
+      ],
+      "win": [
+        "이겼다!!!",
+        "또 누가 있어!!",
+        "내가 스도쿠의 왕이다!"
+      ],
+      "lose": [
+        "아... 졌어",
+        "제기랄...",
+        "다음엔 꼭!"
+      ]
+    },
+    "narratorLines": {
+      "start": [
+        "【경기 시작! 양측 긴장감!】",
+        "【전투 시작! 먼저 푸는 자는 누구?】",
+        "【오늘의 대결: 인간 VS AI!】"
+      ],
+      "combo3": [
+        "【3연타! 플레이어 감이 뜨겁다!】",
+        "【3연승! AI가 당황하기 시작했다!】"
+      ],
+      "combo5": [
+        "【5연타! 전설의 시작!】",
+        "【5연속! AI가 충격에 빠졌다!】"
+      ],
+      "aiLead": [
+        "【AI가 리드! 플레이어 힘내!】",
+        "【AI가 선점! 긴박한 상황!】"
+      ],
+      "playerLead": [
+        "【플레이어 리드! AI가 압박을 느끼고 있다!】",
+        "【인류 반격! AI 조심해!】"
+      ],
+      "close": [
+        "【접전! 팽팽한 상황!】",
+        "【일진일퇴! 이것이 진정한 대결!】"
+      ],
+      "energyFull": [
+        "【에너지 가득! 필살기 준비 완료!】",
+        "【궁극 에너지 충전! 최후의 일격이 온다!】"
+      ],
+      "finalSprint": [
+        "【종국 스프린트! 양측 전력!】",
+        "【최종 단계! 마지막에 웃는 자는 누구?】"
+      ]
+    },
+    "aiPersonalities": {
+      "easy": {
+        "name": "뉴비",
+        "start": [
+          "헤헤~ 초보예요, 잘 부탁해요!",
+          "처음이라 긴장돼...",
+          "어... 이거 어떻게 푸는 거였지?"
+        ],
+        "correct": [
+          "맞췄어!",
+          "와, 나 대단해!",
+          "예이!",
+          "헤헤, 찍었는데 맞았어~"
+        ],
+        "combo": [
+          "콤보! 나 대단해!",
+          "와, 연속으로 맞췄어!",
+          "이게 천재인가?"
+        ],
+        "wrong": [
+          "어? 틀렸어...",
+          "윽, 아닌가?",
+          "어머, 손이 미끄러졌네"
+        ],
+        "attack": [
+          "이걸 받아라!",
+          "헤이!",
+          "먹어라!"
+        ],
+        "attacked": [
+          "와! 왜 때리는 거야!",
+          "윽... 아파~",
+          "나쁜 사람! 새내기 괴롭히기!"
+        ],
+        "energyFull": [
+          "에너지 가득! 큰 기술 쓴다!",
+          "필살기 준비 완료!",
+          "헤헤헤... 받아라!"
+        ],
+        "playerAttack": [
+          "안 돼!",
+          "잠깐만!",
+          "항복 항복!"
+        ],
+        "winning": [
+          "이기는 거야? 진짜?",
+          "와! 앞서고 있어!",
+          "설마 천재?"
+        ],
+        "losing": [
+          "윽... 질 것 같아...",
+          "기다려!",
+          "버리지 마!"
+        ],
+        "win": [
+          "예이! 이겼다! 하하!",
+          "첫 승! 기뻐!",
+          "역시 천재였어!"
+        ],
+        "lose": [
+          "으으으... 졌어...",
+          "축하해...",
+          "다음엔 꼭 이길 거야!"
+        ]
+      },
+      "medium": {
+        "name": "스도쿠 달인",
+        "start": [
+          "흥, 덤벼봐!",
+          "준비됐나? 봐주지 않을 거야.",
+          "중간 난이도, 딱 워밍업이야."
+        ],
+        "correct": [
+          "나쁘지 않군.",
+          "음, 이 셀은 쉽군.",
+          "기본이야.",
+          "당연하지."
+        ],
+        "combo": [
+          "콤보, 리듬이 좋군.",
+          "감이 오기 시작했어.",
+          "감이 왔어."
+        ],
+        "wrong": [
+          "...실수야.",
+          "제기랄, 잘못 봤어.",
+          "음? 틀렸어?"
+        ],
+        "attack": [
+          "이걸 받아라!",
+          "햇!",
+          "간다!"
+        ],
+        "attacked": [
+          "괜찮은데...",
+          "재미있어지네.",
+          "설마 맞히다니?"
+        ],
+        "energyFull": [
+          "찼다. 끝내자.",
+          "내 턴, 필살기!",
+          "진짜 실력을 보여주지."
+        ],
+        "playerAttack": [
+          "칫...",
+          "쉴드!",
+          "너무 잘난 척 하지 마!"
+        ],
+        "winning": [
+          "승부가 났군.",
+          "차이가 확실하군.",
+          "아직 멀었어."
+        ],
+        "losing": [
+          "설마 뒤처지고 있어...",
+          "말도 안 돼...",
+          "재미있어, 진지해지자."
+        ],
+        "win": [
+          "잘 했어.",
+          "실력 차이, 어쩔 수 없지.",
+          "다음엔 더 잘 해봐."
+        ],
+        "lose": [
+          "...방심했어.",
+          "좋은 대국이었어.",
+          "다음엔 안 져."
+        ]
+      },
+      "hard": {
+        "name": "스도쿠 마왕",
+        "start": [
+          "흥... 인간이 나에게 도전하다니?",
+          "3분 만에 끝내주마.",
+          "진정한 스도쿠를 보여주마."
+        ],
+        "correct": [
+          "...지루해.",
+          "너무 느려.",
+          "이런 문제를 생각할 필요가 있어?",
+          "흥."
+        ],
+        "combo": [
+          "개미의 몸부림일 뿐이다.",
+          "그게 다야?",
+          "보잘것없군."
+        ],
+        "wrong": [
+          "......(말도 안 돼)",
+          "흥, 버그군.",
+          "...시스템 오류."
+        ],
+        "attack": [
+          "소멸하라!",
+          "멸망하라!",
+          "사라져라!"
+        ],
+        "attacked": [
+          "오? 나를 다치게 했나?",
+          "재미있군... 나를 화나게 했어.",
+          "개미의 힘으로 덤비다니?"
+        ],
+        "energyFull": [
+          "게임 오버다.",
+          "필살·케이지 지옥!",
+          "절망하게 해주마."
+        ],
+        "playerAttack": [
+          "소용없다.",
+          "그게 다야?",
+          "긁는 거야?"
+        ],
+        "winning": [
+          "보이나? 이것이 신과 인간의 차이다.",
+          "끝이다.",
+          "절망하라."
+        ],
+        "losing": [
+          "……말도 안 돼!",
+          "인간이... 어떻게!",
+          "내가... 뒤처지고 있어?"
+        ],
+        "win": [
+          "흥, 당연한 결과다.",
+          "이 차이를 기억하라.",
+          "약자는 도전할 자격이 없다."
+        ],
+        "lose": [
+          "말도 안 돼!! 내가 지다니!!",
+          "이... 이런 일은!!",
+          "인간아... 기억해라! 반드시 돌아온다!"
+        ]
+      }
+    },
+    "spectateBotLines": {
+      "bot1Start": "나는 Bot 1, 봐봐!",
+      "bot2Start": "흥, 기계 효율이 전부다.",
+      "bot1Combo": "콤보! 내 추론이 더 빨라!",
+      "bot1Correct": "정답."
+    }
+  },
+  "hint": {
+    "level1": "💡 1단계 힌트: 이 셀(초록색 테두리)을 자세히 보세요. 특별한 점이 무엇인가요?",
+    "level3_answer": "🎯 정답은 {num}입니다. 입력하면 관련 후보가 자동으로 제거됩니다",
+    "level3_technique": "📖 이 단계에서는 「{technique}」 기술이 필요합니다. 강조 표시된 영역의 보라색 셀을 관찰하세요",
+    "noHint": "🔍 현재 판에서 명확한 진행 단계가 없습니다. 다른 방법을 시도하거나, 성균 법칙 계산기를 사용해 보세요",
+    "nakedSingle": {
+      "name": "네이키드 싱글",
+      "desc_level2": "📘 2단계: 【네이키드 싱글】\\n{cellName} 셀이 있는 행, 열, 박스, 케이지에 다른 모든 숫자가 이미 나타났습니다. {num}만 아직 나타나지 않았으므로 {num}만 들어갈 수 있습니다.\\n👉 금색 강조 영역을 보세요: 이미 있는 숫자가 모두 모여 있어 이 숫자만 남았습니다."
+    },
+    "hiddenSingle": {
+      "name": "히든 싱글",
+      "desc_level2": "📘 2단계: 【숨은 싱글】\\n{description}. 관련 영역을 자세히 보면 {num}은(는) {cellName}에만 들어갈 수 있습니다.",
+      "rowLabel": "행",
+      "colLabel": "열",
+      "boxLabel": "박스",
+      "cageLabel": "케이지"
+    },
+    "nakedPair": {
+      "name": "네이키드 페어",
+      "desc_level2": "📘 2단계: 【네이키드 페어】\\n{cell1}과(와) {cell2}는 모두 {num1} 또는 {num2}만 들어갈 수 있습니다(보라색 표시). 이 두 숫자는 \"잠금\"되어 같은 영역의 다른 셀에서 제거할 수 있습니다.",
+      "desc_level3": "📘 3단계: 【네이키드 페어】\\n{cell1}과(와) {cell2}는 모두 {num1} 또는 {num2}만 들어갈 수 있습니다(보라색 표시). 이 두 숫자는 \"잠금\"되어 같은 영역의 다른 셀에서 제거할 수 있습니다.\\n제거 후, {cellName}에는 {num}만 남았습니다!",
+      "desc_level2_withNum": "제거 후, {cellName}에는 {num}만 남았습니다!",
+      "desc_level2_noNum": "제거 후 후보가 줄어듭니다. 계속 추론하여 다음 숫자를 찾으세요.",
+      "regionRow": "같은 행",
+      "regionCol": "같은 열",
+      "regionBox": "같은 박스",
+      "regionCage": "같은 케이지"
+    },
+    "noCandidatesToFill": "🔢 후보를 입력해야 할 빈 셀이 없습니다",
+    "autoFilledCandidates": "🔢 {count}개 빈 셀에 이론적 후보를 자동 입력했습니다",
+    "selectCellFirst": "💡 빈 셀을 먼저 선택한 후 숫자를 입력하세요",
+    "quickFillActivated": "⚡ 연속 입력 모드가 활성화되었습니다. 숫자를 선택하세요",
+    "quickFillComplete": "✅ {num}이(가) 모두 채워졌습니다. 연속 입력이 자동으로 종료됩니다",
+    "breakthroughNoGuess": "💡 추측하지 마세요! \"힌트\" 버튼을 눌러 기술 데모를 확인해 보세요?",
+    "wrongGuess": [
+      "다시 생각해 보세요... 그 숫자는 맞지 않는 것 같아요",
+      "아니에요. 행/열/박스/케이지에 충돌이 있는지 확인하세요",
+      "이 셀에는 그 숫자를 넣을 수 없어요. 더 자세히 보세요",
+      "틀렸어요! 케이지 합계 제약을 주의하세요",
+      "그 숫자가 아니에요. 제거법을 시도해 보세요",
+      "음... 아니네요. 다른 접근 방식을 시도해 보세요"
+    ]
+  },
+  "technique": {
+    "names": {
+      "nakedSingle": "네이키드 싱글",
+      "hiddenSingle": "히든 싱글",
+      "nakedPair": "네이키드 페어",
+      "hiddenPair": "히든 페어",
+      "nakedTriple": "네이키드 트리플",
+      "xwing": "X-윙",
+      "swordfish": "소드피시",
+      "forcingChain": "포싱 체인",
+      "xywing": "XY-윙"
+    },
+    "descriptions": {
+      "nakedSingle": "A cell whose row, column, box, and cage already contain every other number, leaving only one possible digit.",
+      "hiddenSingle": "A digit that can only be placed in one cell within a given row, column, box, or cage.",
+      "nakedPair": "Two cells in the same region share exactly the same two candidates; those digits are locked to those cells and can be eliminated from other cells in the region.",
+      "hiddenPair": "Two digits in the same region can only go in exactly two cells (even if those cells have other candidates); extra candidates in those two cells can be removed.",
+      "nakedTriple": "Three cells in the same region contain candidates drawn from exactly three distinct digits combined; those digits are locked and can be eliminated from other cells in the region.",
+      "xwing": "A digit has exactly two possible positions in two different rows, and those positions fall in the same two columns, forming a rectangle; the digit can be eliminated from other cells in those two columns.",
+      "swordfish": "The 3x3 extension of X-Wing: a digit's possible positions in three rows fall within exactly three columns; the digit can be eliminated from other cells in those three columns."
+    },
+    "tutorial": {
+      "title": "Technique Tutorial",
+      "speaker_default": "The Keeper",
+      "startHint": "Tap \"Start Learning\" to follow the demo",
+      "stepHint_default": "Tap \"Next\" to continue",
+      "finalHint": "When you're ready, start solving!",
+      "nextStep_last": "✓ Got it, start solving!",
+      "nextStep_mid": "Next ▶",
+      "startButton": "Start Learning ▶",
+      "prevButton": "◀ Back",
+      "nakedPair": {
+        "title": "Naked Pair",
+        "steps": [
+          {
+            "title": "Understanding Candidates",
+            "speaker": "The Keeper",
+            "text": "📖 Today's first arcane art: Naked Pair\n\nThe small numbers in cells are called 「candidates」 (or pencil marks) - they show what a cell might contain.\n\nFor example, if a cell shows 3 and 7, it means: \"This cell is either 3 or 7, nothing else.\"\n💡 Small numbers = Candidates = Possible answers",
+            "hint": "First, understand candidates: small numbers show what a cell could be"
+          },
+          {
+            "title": "Find the First Special Cell",
+            "speaker": "The Keeper",
+            "text": "Step 1: Find the first special cell\n\n👉 Look here! (The cell circled in green)\n\nIt has exactly two candidates: 3 and 7!\nNothing else is possible - it's either 3 or 7.",
+            "hint": "The first cell is in the green circle! Only two candidates: 3 and 7"
+          },
+          {
+            "title": "Find Its Partner",
+            "speaker": "The Keeper",
+            "text": "Step 2: Find its partner!\n\n👉 Now look at the adjacent cell (the second green circle)\n\nIt also has exactly two candidates: 3 and 7!\n\nBoth cells have the exact same two candidates!",
+            "hint": "The second cell is also {3,7}! These two form a 「Pair」!"
+          },
+          {
+            "title": "The Pair's 「Lock」 Effect",
+            "speaker": "The Keeper",
+            "text": "Step 3: These two cells have 「locked」 3 and 7 in place!\n\nIn this row, 3 must appear once and 7 must appear once.\n\nBut the only cells that can hold 3 and 7 are these two!\n\n🔒 So: one cell is 3 and the other is 7 - there's no escape!\n💡 Think of it like two seats with two people already sitting in them - nobody else can sit down",
+            "hint": "3 and 7 are locked between these two cells! No other cell in the row can have 3 or 7!"
+          },
+          {
+            "title": "Eliminate 3 from Other Cells",
+            "speaker": "The Keeper",
+            "text": "Step 4: Eliminate 3 from other cells in the row!\n\n👉 Look at the cell the red arrow points to\n\nIt has 3 as a candidate, but 3 is already locked - there can't be another 3 elsewhere in the row!\n\nCross out the 3 in that cell!",
+            "hint": "Cross out 3 in the cell pointed to by the red arrow!"
+          },
+          {
+            "title": "Eliminate 7 from Other Cells",
+            "speaker": "The Keeper",
+            "text": "Step 5: Now cross out 7!\n\n7 is also locked in!\n\nThat cell's candidates are now: 4 and 9 (3 and 7 are both crossed out).",
+            "hint": "7 is locked too, cross it out! Now only 4 and 9 remain"
+          },
+          {
+            "title": "Box Elimination Works Too",
+            "speaker": "Ayan",
+            "text": "Step 6: Don't forget the box also lets you eliminate!\n\nThese two cells aren't just in the same row - they're also in the same box (purple frame)!\n\n👉 Look at other cells in the same box - their candidate 3 must also be crossed out!",
+            "hint": "A pair locks both the row AND the box!"
+          },
+          {
+            "title": "Results Appear",
+            "speaker": "The Keeper",
+            "text": "✨ Wow! A number falls right out!\n\nAfter eliminating 3 and 7, the remaining candidates let you deduce the answer directly - the key lesson is: pairs let you eliminate numbers from other cells!",
+            "hint": "After elimination, fewer candidates remain - keep deducing and numbers appear"
+          },
+          {
+            "title": "Naked Pair Mnemonic",
+            "speaker": "The Keeper",
+            "text": "🔐 Naked Pair Mnemonic\n\n🔍 FIND: In the same row/col/box, two cells with identical candidates (just {a,b})\n🔒 LOCK: Those two cells must be a and b - no escape\n❌ DELETE: Cross out a and b from every other cell in that row/col/box\n✨ FILL: When a cell is down to one number → place it!\n\nOne pair often unlocks a whole region! Now go find pairs in your puzzles and crack them!",
+            "hint": "Remember four steps: Find → Lock → Delete → Fill!"
+          }
+        ]
+      },
+      "hiddenPair": {
+        "title": "Hidden Pair",
+        "steps": [
+          {
+            "title": "What is a Hidden Pair?",
+            "speaker": "The Keeper",
+            "text": "👁️ The second arcane art: Hidden Pair\n\nA Naked Pair says: \"Two cells can only be a and b.\"\n\nA Hidden Pair looks at it from the opposite direction:\n\"Digits a and b can only go in two specific cells.\"\n💡 One looks at cells, the other looks at digits - opposite perspectives!",
+            "hint": "Hidden Pair is about looking from the opposite angle"
+          },
+          {
+            "title": "Focus on a Box",
+            "speaker": "The Keeper",
+            "text": "Step 1: Focus on one box\n\n👉 Look at the purple-framed box\n\nThis box already has several numbers filled in, with 4 digits still missing.",
+            "hint": "First, see what digits are missing from this box"
+          },
+          {
+            "title": "Where Can Digit 3 Go?",
+            "speaker": "The Keeper",
+            "text": "Step 2: Where can digit 3 go?\n\nLooking from the opposite angle: which cells in this box can hold 3?\n\nEliminate cells where 3 is already blocked by the same row or column - 3 can only go in two cells!",
+            "hint": "Process of elimination: 3 can only go in two cells!"
+          },
+          {
+            "title": "Digit 7 Can Only Go There Too",
+            "speaker": "Ayan",
+            "text": "Step 3: Digit 7 can only go in those same two cells!\n\nNow look at digit 7 the same way: eliminate cells blocked by rows and columns, and 7 also can only go in those exact same two cells!",
+            "hint": "7 can also only go in those two cells! That's a Hidden Pair!"
+          },
+          {
+            "title": "The Hidden Pair is Found",
+            "speaker": "The Keeper",
+            "text": "Step 4: The Hidden Pair is found!\n\nBoth 3 and 7 can only go in these two cells!\n\nEven though these cells appear to have more candidates, no other digit can actually go here - because 3 and 7 have already 「claimed」 those spots!",
+            "hint": "3 and 7 are 「hiding」 in these two cells"
+          },
+          {
+            "title": "Clean Up Extra Candidates",
+            "speaker": "The Keeper",
+            "text": "Step 5: Clean up extra candidates\n\nDelete every candidate in these two cells except 3 and 7!\n\nOnce a Hidden Pair is 「dug out」, it becomes a Naked Pair {3,7}!",
+            "hint": "Delete the extra digits - hidden becomes naked!"
+          },
+          {
+            "title": "Remaining Cells Yield Numbers",
+            "speaker": "Ayan",
+            "text": "✨ The remaining cells produce numbers directly!\n\nNow that these two cells form the {3,7} pair, the remaining cells in the box must hold other digits, which can be deduced immediately!",
+            "hint": "After cleanup, numbers fall right out!"
+          },
+          {
+            "title": "Hidden Pair Mnemonic",
+            "speaker": "The Keeper",
+            "text": "👁️ Hidden Pair Mnemonic\n\n👁️ REVERSE VIEW: Don't look at 「what cells can hold」 - look at 「where digits can go」\n🔍 FIND THE SQUEEZE: a and b can both only go in the same two cells → Hidden Pair\n🧹 CLEAN UP: Delete all other candidates from those two cells\n\nHidden Pairs are harder to spot, but when found, they clean up powerfully!",
+            "hint": "Remember: reverse your perspective - look where digits can go!"
+          }
+        ]
+      },
+      "triple": {
+        "title": "Naked Triple",
+        "steps": [
+          {
+            "title": "Naked Triple Concept",
+            "speaker": "The Keeper",
+            "text": "🔱 The third arcane art: Naked Triple\n\nOnce you understand Pairs (2 cells locking 2 digits), the Triple is a natural extension -\nthree cells locking three digits!",
+            "hint": "The Pair's big sibling: 3 cells lock 3 digits"
+          },
+          {
+            "title": "Find Three Cells",
+            "speaker": "The Keeper",
+            "text": "Step 1: Find three cells\n\n👉 Look at the three orange cells:\nAcross all three cells, the only candidates that appear are 2, 4, and 9!\n💡 Not every cell needs all three digits! Combined, they cover exactly three digits",
+            "hint": "Three cells whose candidates combined are only three digits!"
+          },
+          {
+            "title": "Three Digits Are Locked",
+            "speaker": "Ayan",
+            "text": "Step 2: Three digits are locked!\n\nThe digits 2, 4, and 9 are completely claimed by these three cells!\n\nNo matter how they're arranged, these three cells must be a permutation of 2, 4, and 9.\n\n🔒 No other cell in the region can contain 2, 4, or 9!",
+            "hint": "Three digits are locked to three cells!"
+          },
+          {
+            "title": "Eliminate from Other Cells in the Row",
+            "speaker": "The Keeper",
+            "text": "Step 3: Eliminate from other cells in the row!\n\nCross out 2, 4, and 9 from every other cell in the same row!",
+            "hint": "Cross out 2, 4, 9 from all other cells in the row!"
+          },
+          {
+            "title": "Naked Triple Key Points",
+            "speaker": "The Keeper",
+            "text": "🔱 Naked Triple Key Points\n\n🔱 CONDITION: Three cells whose combined candidates cover exactly 3 distinct digits\n🔒 LOCK: Those 3 digits must occupy those 3 cells\n❌ DELETE: Eliminate those 3 candidates from all other cells in the region\n\n⚠️ Not every cell needs all three candidates! The same logic extends to 「Quads」 (4 cells locking 4 digits).",
+            "hint": "Naked Triple: 3 cells lock 3 digits!"
+          }
+        ]
+      },
+      "xwing": {
+        "title": "X-Wing",
+        "steps": [
+          {
+            "title": "X-Wing Concept",
+            "speaker": "The Keeper",
+            "text": "✈️ The fourth arcane art: X-Wing\n\nNamed after the X-wing starfighter from Star Wars - it forms an X shape.\n\nX-Wing doesn't look at 「what cells can hold」 - it looks at where a single digit can go.\n\nLet's use digit 7 as an example.",
+            "hint": "X-Wing looks at the rectangular pattern of a single digit"
+          },
+          {
+            "title": "Find the Digit's Positions in Two Rows",
+            "speaker": "The Keeper",
+            "text": "Step 1: Find where digit 7 sits in two rows\n\n👉 Look at rows D and F (the two orange row bands).\n\nAll other cells in row D are filled - 7 can only go in two positions!\nSame for row F - 7 can only go in two positions!",
+            "hint": "In each of the two rows, 7 has exactly two possible positions!"
+          },
+          {
+            "title": "Four Cells Form a Rectangle",
+            "speaker": "The Keeper",
+            "text": "Step 2: Four cells form a rectangle!\n\nThe four cells form a perfect rectangle!\n\nThere are only two possibilities:\n✈️ Top-left = 7 → Bottom-right = 7 (top-left to bottom-right diagonal)\n✈️ Top-right = 7 → Bottom-left = 7 (top-right to bottom-left diagonal)\n\nThe red X shows both possibilities - 7 must lie on one of the two diagonals!",
+            "hint": "An X-shaped diagonal - 7 is on one of the two diagonals!"
+          },
+          {
+            "title": "Eliminate from Other Cells in the Two Columns",
+            "speaker": "Ayan",
+            "text": "Step 3: Eliminate 7 from other cells in those two columns!\n\nWhichever diagonal is correct, both columns will contain a 7!\n\nSo no other cell in those columns can be 7 - cross them out!",
+            "hint": "No other cells in those two columns can be 7!"
+          },
+          {
+            "title": "X-Wing Mnemonic",
+            "speaker": "The Keeper",
+            "text": "✈️ X-Wing Mnemonic\n\n✈️ FIND THE RECTANGLE: A digit has exactly 2 positions in 2 rows, sharing the same 2 columns\n❌ DELETE COLUMNS: Eliminate that digit from all other cells in those columns\n🔄 BIDIRECTIONAL: 2 columns × 2 rows also works → eliminate from the rows instead\n\nX-Wing is the foundation of 「fish」 patterns. Swordfish is the 3×3 upgrade!",
+            "hint": "X-Wing: Rectangle → Diagonal → Eliminate columns (or rows)"
+          }
+        ]
+      },
+      "swordfish": {
+        "title": "Swordfish",
+        "steps": [
+          {
+            "title": "Swordfish Concept",
+            "speaker": "The Keeper",
+            "text": "🐟 The fifth arcane art: Swordfish\n\nOnce you understand X-Wing (2×2 rectangle), Swordfish is the upgrade - a 3-row × 3-column 「fishing net.」\n\nThe principle is identical, just scaled up from 2×2 to 3×3!",
+            "hint": "Swordfish is X-Wing's 3×3 big sibling"
+          },
+          {
+            "title": "Find the Digit's Positions in Three Rows",
+            "speaker": "The Keeper",
+            "text": "Step 1: Find where digit 5 sits in three rows\n\nLet's use digit 5. 👉 Look at the three rows (orange bands):\nIn each row, 5 can only go in 2 or 3 positions, and all of them fall within the same three columns!",
+            "hint": "In all three rows, 5 only appears in the same three columns!"
+          },
+          {
+            "title": "A 3×3 Fishing Net Forms",
+            "speaker": "The Keeper",
+            "text": "Step 2: A 3×3 fishing net forms!\n\nThese cells form a 3×3 net!\n\nThere are more combinations than with X-Wing, but no matter how 5 is arranged, each of the three columns will contain exactly one 5.\n\n🐟 5 is 「caught」 in this three-column net!",
+            "hint": "A 3×3 net covers all three columns!"
+          },
+          {
+            "title": "Eliminate from Other Cells in the Three Columns",
+            "speaker": "Ayan",
+            "text": "Step 3: Eliminate 5 from other cells in the three columns!\n\nNo other cell in these three columns can be 5!\n\n👉 Cross out 5 in every cell marked with a red X!",
+            "hint": "Eliminate 5 from all other cells in the three columns!"
+          },
+          {
+            "title": "Swordfish Mnemonic",
+            "speaker": "The Keeper",
+            "text": "🐟 Swordfish Mnemonic\n\n🐟 FIND THE NET: A digit has only 2-3 positions per row across 3 rows, all falling in the same 3 columns\n❌ DELETE COLUMNS: Eliminate that digit from all other cells in those columns\n🔄 BIDIRECTIONAL: 3 columns × 3 rows also works → eliminate from the rows instead\n\nSwordfish is complex, but its eliminations are devastating - a key weapon for cracking hard puzzles!",
+            "hint": "Swordfish: 3×3 net → eliminate columns (or rows)"
+          }
+        ]
+      }
+    },
+    "archaicNames": {
+      "forcingChain": "인과연환쇄",
+      "hiddenPair": "쌍요",
+      "hiddenSingle": "은요",
+      "nakedPair": "병제쇄",
+      "nakedSingle": "고성",
+      "nakedTriple": "삼자법",
+      "swordfish": "삼재유어진",
+      "xwing": "이련종횡진",
+      "xywing": "사비진"
+    }
+  },
+  "story": {
+    "characters": {
+      "keeper": "지킴이",
+      "yan": "아연",
+      "setter": "배후자",
+      "setterShadow": "배후자의 잔영",
+      "guardian": "잔국 수호자",
+      "starshuttle": "성진추",
+      "setterSecret": "배후자 (비술)",
+      "narrator": "나레이터",
+      "mysteriousOpponent": "수수께끼의 상대"
+    },
+    "chapterThemes": {
+      "ch1": "암호화된 편지",
+      "ch2": "이중 단서",
+      "ch3": "수수께끼 추적",
+      "ch4": "암호 해독",
+      "ch5": "궁극의 시험",
+      "ch6": "마스터의 길",
+      "ch7": "비술 기록"
+    },
+    "phases": {
+      "breakthrough": "⚡ 돌파",
+      "finishing": "✨ 마무리"
+    },
+    "bossDefaultStart": "Come, let us settle this!",
+    "ayanWin": "We won!",
+    "bossDefault": {
+      "comeAtMe": "와라.",
+      "warningNear": "상대가 거의 다 끝났어!",
+      "youWin": "네 승리다."
+    }
+  },
+  "error": {
+    "loadFailed": "로드 실패, 다시 시도하세요",
+    "levelLoadFailed": "레벨 로드 실패, 돌아가서 다시 시도하세요",
+    "networkError": "네트워크 오류, 새로고침 후 다시 시도하세요",
+    "noLevelData": "챕터 데이터가 없습니다",
+    "invalidInput": "잘못된 입력입니다",
+    "saveFailed": "저장 실패",
+    "loadSaveFailed": "저장 데이터 로드 실패",
+    "exportFailed": "내보내기 실패",
+    "resetFailed": "초기화 실패",
+    "bossNoSolution": "⚠️ 보스 레벨에 솔루션 데이터가 없습니다. 전투를 건너뜁니다",
+    "apiError": "API 요청 실패",
+    "localDataFailed": "로컬 데이터 로드 실패",
+    "fallbackLevel": "폴백 레벨 사용 (모든 데이터 소스 로드 실패)",
+    "apiAbnormal": "⚠️ 튜토리얼 레벨 API가 비정상 응답을 반환했습니다",
+    "apiChapterDataFailed": "챕터 데이터 가져오기 실패: {msg}",
+    "apiChaptersFailed": "챕터 목록 가져오기 실패: {msg}",
+    "apiLevelsFailed": "레벨 목록 가져오기 실패: {msg}",
+    "backendCheckFailed": "⚠️ 백엔드 검증 실패, 프론트엔드 감지를 기준으로 함",
+    "bossAlreadyActive": "⚠️ 보스전이 이미 진행 중입니다",
+    "bossStartFailed": "❌ 보스전 시작 실패: 솔루션 또는 initialBoard 누락",
+    "endgameNoKeyCells": "⚠️ 잔국 튜토리얼 레벨에 keyCells 구성이 없습니다",
+    "finalFallbackLevel": "⚠️ 최종 폴백 레벨 사용",
+    "fixedNumInKeyCell": "⚠️ 키 셀({r},{c})은 미리 채워져 있음, fixedNum 제거됨",
+    "guideManagerNotLoaded": "⚠️ GuideManager가 로드되지 않았습니다",
+    "keyCellPreset": "🎯 잔국 튜토리얼 레벨 초기화: {n}개 키 셀",
+    "lessonGenerateFailed": "코스 파일에서 레벨 생성 실패: {msg}",
+    "localChapterDetailFailed": "챕터 상세 로드 실패: {msg}",
+    "localChapterLoadFailed": "로컬 챕터 데이터 로드 실패: {msg}",
+    "networkAbnormal": "⚠️ 네트워크 이상, 로컬 데이터 시도: {msg}",
+    "statsLoadFailed": "통계 로드 실패: {msg}",
+    "storageAnalyticsFailed": "분석 데이터 저장 실패: {msg}",
+    "storageBadgeFailed": "배지 잠금 해제 실패: {msg}",
+    "storageBattleFailed": "대전 기록 저장 실패: {msg}",
+    "storageChapterFailed": "챕터 진행 저장 실패: {msg}",
+    "storageClearFailed": "저장 데이터 삭제 실패: {msg}",
+    "storageCompleteFailed": "클리어 기록 저장 실패: {msg}",
+    "storageLoadFailed": "저장 데이터 로드 실패: {msg}",
+    "storageSaveFailed": "저장 실패: {msg}",
+    "storageSettingsLoadFailed": "설정 로드 실패: {msg}",
+    "storageSettingsSaveFailed": "설정 저장 실패: {msg}",
+    "storageTeachingClearFailed": "튜토리얼 진행 삭제 실패: {msg}",
+    "storageTeachingCompleteFailed": "튜토리얼 클리어 기록 저장 실패: {msg}",
+    "storageTeachingProgressFailed": "튜토리얼 진행 저장 실패: {msg}",
+    "webAudioNotSupported": "Web Audio API가 지원되지 않습니다"
+  },
+  "time": {
+    "seconds": "초",
+    "minutes": "분",
+    "hours": "시간",
+    "format": {
+      "ms": "{m}분{s}초",
+      "s": "{s}초",
+      "min_sec": "{m}분{s}초",
+      "hm": "{h}h{m}m",
+      "clock": "{m}:{s}"
+    },
+    "elapsedLoading": "📂 튜토리얼 저장 데이터를 불러왔습니다 (시간 {time})",
+    "elapsedFreePlay": "📂 저장 데이터를 불러왔습니다 (시간 {time})"
+  },
+  "audio": {
+    "bgm": {
+      "menu": "Main Menu",
+      "game": "Game BGM",
+      "boss": "Boss Battle",
+      "tension": "Tension",
+      "victory": "Victory",
+      "darkAmbient": "Dark Ambient"
+    }
+  },
+  "i18n": {
+    "zh-CN": "Simplified Chinese",
+    "ja": "Japanese",
+    "ko": "Korean",
+    "en": "English",
+    "languageName_en": "English",
+    "languageName_ja": "Japanese",
+    "languageName_ko": "Korean",
+    "languageName_zhCN": "Simplified Chinese"
+  }
+}

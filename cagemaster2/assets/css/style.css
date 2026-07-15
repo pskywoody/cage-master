@@ -5,7 +5,7 @@
   user-select: none;
 }
 
-/* ===== 章节主题CSS变量（默�?�?�?温暖侦探风）===== */
+/* ===== 章节主题CSS变量（默�?�?�?温暖侦探风）===== */
 :root {
   --theme-accent: #22c55e;
   --theme-accent-dark: #15803d;
@@ -25,12 +25,12 @@
   --theme-header-text: #5c4a2a;
   --theme-header-bg: #fef9f0;
 
-  /* ===== 设计令牌系统：字�?===== */
+  /* ===== 设计令牌系统：字�?===== */
   --font-mono: 'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace;
   --font-ui: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-serif: 'Noto Serif SC', 'Songti SC', serif;
 
-  /* ===== 设计令牌系统：颜色（暗色主题基准�?===== */
+  /* ===== 设计令牌系统：颜色（暗色主题基准�?===== */
   --bg-primary: #0d0d0d;
   --bg-secondary: #1a1a1a;
   --text-primary: #f0f0f0;
@@ -56,7 +56,7 @@
   --fs-num-pad: clamp(16px, 4vw, 22px);
   --fs-timer: clamp(14px, 3.2vw, 18px);
 
-  /* ===== 设计令牌系统：间距（4px 基础�?===== */
+  /* ===== 设计令牌系统：间距（4px 基础�?===== */
   --space-1: 4px;
   --space-2: 8px;
   --space-3: 12px;
@@ -70,18 +70,18 @@
   --space-11: 44px;
   --space-12: 48px;
 
-  /* ===== 设计令牌系统：圆�?===== */
+  /* ===== 设计令牌系统：圆�?===== */
   --radius-sm: 4px;
   --radius-md: 8px;
   --radius-lg: 12px;
   --radius-xl: 16px;
 
-  /* ===== 设计令牌系统：阴�?===== */
+  /* ===== 设计令牌系统：阴�?===== */
   --shadow-sm: 0 1px 2px var(--shadow-default);
   --shadow-md: 0 4px 12px var(--shadow-default);
   --shadow-lg: 0 8px 24px var(--shadow-default);
 
-  /* ===== 设计令牌系统：过�?===== */
+  /* ===== 设计令牌系统：过�?===== */
   --transition-fast: 0.15s ease;
   --transition-base: 0.25s ease;
   --transition-slow: 0.4s ease;
@@ -120,7 +120,7 @@ body {
   flex-direction: column;
   padding: 0 8px;
   min-height: 0;
-  /* 无圆角、无阴影、无外边�?*/
+  /* 无圆角、无阴影、无外边�?*/
 }
 
 /* ========== 顶部状态栏 ========== */
@@ -262,7 +262,7 @@ body {
   line-height: 1.3;
 }
 
-/* ========== 盘面区域（flex:1 撑满剩余空间�?========== */
+/* ========== 盘面区域（flex:1 撑满剩余空间�?========== */
 #board-area {
   flex: 1;
   display: flex;
@@ -287,7 +287,7 @@ body {
   transition: max-height 0.25s ease;
 }
 
-/* ========== 关卡选择�?========== */
+/* ========== 关卡选择�?========== */
 #levels-container {
   background: white;
   border-radius: 24px;
@@ -568,7 +568,7 @@ body {
 
 /* ========== 功能解锁系统样式 ========== */
 
-/* 功能锁定状态：灰色半透明，不可点�?*/
+/* 功能锁定状态：灰色半透明，不可点�?*/
 #toolbar button.feature-locked,
 .mode-switcher.feature-locked {
   opacity: 0.35;
@@ -583,7 +583,7 @@ body {
   pointer-events: none;
 }
 
-/* 功能解锁动画：从灰色渐变为正常颜�?*/
+/* 功能解锁动画：从灰色渐变为正常颜�?*/
 #toolbar button.feature-unlocking,
 .mode-switcher.feature-unlocking {
   animation: feature-unlock-fade 0.5s ease-out forwards;
@@ -606,7 +606,7 @@ body {
   }
 }
 
-/* 解锁光效：按钮周围发光脉�?*/
+/* 解锁光效：按钮周围发光脉�?*/
 #toolbar button.feature-unlock-glow {
   animation: feature-unlock-glow 0.8s ease-out;
 }
@@ -623,7 +623,7 @@ body {
   }
 }
 
-/* "�?角标 */
+/* "�?角标 */
 .feature-new-badge {
   position: absolute;
   top: -4px;
@@ -651,13 +651,13 @@ body {
   }
 }
 
-/* 模式切换栏的"�?角标位置调整 */
+/* 模式切换栏的"�?角标位置调整 */
 .mode-switcher .feature-new-badge {
   top: -2px;
   right: 8px;
 }
 
-/* ========== 模式切换栏（三色切换�?========== */
+/* ========== 模式切换栏（三色切换�?========== */
 .mode-switcher {
   display: flex;
   gap: 6px;
@@ -727,7 +727,7 @@ body {
   color: #e06050;
 }
 
-/* PC端：模式切换栏横向排列文字标签完整显�?*/
+/* PC端：模式切换栏横向排列文字标签完整显�?*/
 @media (min-width: 768px) {
   .mode-switcher {
     max-width: 400px;
@@ -746,7 +746,7 @@ body {
   }
 }
 
-/* 快捷填入模式：被选中的数字凹�?*/
+/* 快捷填入模式：被选中的数字凹�?*/
 .num-btn.quick-fill-num {
   background: #16a34a !important;
   color: white !important;
@@ -754,7 +754,7 @@ body {
   transform: scale(0.92);
 }
 
-/* 数字键滑动手势视觉反�?*/
+/* 数字键滑动手势视觉反�?*/
 .num-btn.swipe-up-indicator {
   background: rgba(234, 179, 8, 0.25) !important;
   color: #ca8a04 !important;
@@ -771,7 +771,7 @@ body {
   transition: transform 0.1s ease, box-shadow 0.1s ease;
 }
 
-/* 数字键盘颜色模式（随输入模式变化�?- 增强版见下方 .num-btn.completed 之后 */
+/* 数字键盘颜色模式（随输入模式变化�?- 增强版见下方 .num-btn.completed 之后 */
 
 /* 连填功能提示文字 */
 .quick-fill-hint {
@@ -788,10 +788,10 @@ body {
   pointer-events: none;
 }
 
-/* ========== 数字键盘（单行横向排列，最大化盘面空间�?========== */
+/* ========== 数字键盘（单行横向排列，最大化盘面空间�?========== */
 #num-pad {
   display: grid;
-  /* 默认9列（9×9盘面），guide.js会根据盘面大小动态设置为4/6/9�?*/
+  /* 默认9列（9×9盘面），guide.js会根据盘面大小动态设置为4/6/9�?*/
   grid-template-columns: repeat(9, 1fr);
   gap: 4px;
   padding: 4px 0 8px;
@@ -832,7 +832,7 @@ body {
 }
 
 .num-btn.completed::after {
-  content: '�?;
+  content: '�?;
   position: absolute;
   top: 2px;
   right: 4px;
@@ -859,8 +859,8 @@ body {
   box-shadow: inset 0 0 0 1px rgba(224, 96, 80, 0.3);
 }
 
-/* ========== 数字键长按进度反�?========== */
-/* 按下时：浅绿底，底部绿色粗条�?�?00%变宽 */
+/* ========== 数字键长按进度反�?========== */
+/* 按下时：浅绿底，底部绿色粗条�?�?00%变宽 */
 .num-btn.long-pressing {
   position: relative;
   overflow: hidden;
@@ -1099,7 +1099,7 @@ body {
   color: #475569;
 }
 
-/* 守笼人评�?*/
+/* 守笼人评�?*/
 .complete-comment {
   background: linear-gradient(135deg, #fef3c7, #fde68a);
   border-radius: 12px;
@@ -1124,7 +1124,7 @@ body {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* ========== 星衡法则计算�?========== */
+/* ========== 星衡法则计算�?========== */
 #rule45-overlay {
   display: none;
   position: fixed;
@@ -1430,7 +1430,7 @@ body {
   color: #94a3b8;
 }
 
-/* 开关按�?*/
+/* 开关按�?*/
 .toggle-switch {
   position: relative;
   width: 48px;
@@ -1575,7 +1575,7 @@ body {
   transform: translateX(-50%) translateY(0);
 }
 
-/* 求解动画播放�?*/
+/* 求解动画播放�?*/
 .solution-player {
   position: fixed;
   bottom: 80px;
@@ -1683,7 +1683,7 @@ body {
   50% { box-shadow: inset 0 0 0 3px #f59e0b, 0 0 15px rgba(251, 191, 36, 0.5); }
 }
 
-/* 设置菜单里的小按�?*/
+/* 设置菜单里的小按�?*/
 .action-btn-small {
   padding: 6px 14px;
   border-radius: 20px;
@@ -1713,17 +1713,20 @@ body {
   opacity: 0;
   transform: scale(0.3);
   transition: none;
+  display: none;
 }
 
 .rule45-compass.active {
+  display: block;
   animation: compass-burst-in 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
 
 .rule45-compass.closing {
+  display: block;
   animation: compass-fade-out 0.3s ease forwards;
 }
 
-/* 罗盘爆发式入�?*/
+/* 罗盘爆发式入�?*/
 @keyframes compass-burst-in {
   0% {
     opacity: 0;
@@ -1750,7 +1753,7 @@ body {
   to { opacity: 0; transform: scale(0.8); }
 }
 
-/* 冲击波环（入场时扩散�?*/
+/* 冲击波环（入场时扩散�?*/
 .rule45-shockwave {
   position: absolute;
   top: 50%;
@@ -1926,15 +1929,17 @@ body {
   color: #22c55e;
 }
 
-/* ========== 激光引爆特�?========== */
+/* ========== 激光引爆特�?========== */
 .rule45-laser {
   position: absolute;
   pointer-events: none;
   z-index: 49;
   opacity: 0;
+  display: none;
 }
 
 .rule45-laser.active {
+  display: block;
   animation: laser-appear 0.1s ease forwards;
   animation-delay: 0.35s;
 }
@@ -1947,7 +1952,7 @@ body {
   position: absolute;
   height: 3px;
   transform-origin: left center;
-  /* 激光从罗盘中心射出的动�?*/
+  /* 激光从罗盘中心射出的动�?*/
   width: 0;
   background: linear-gradient(90deg,
     rgba(251, 191, 36, 0) 0%,
@@ -1966,7 +1971,7 @@ body {
   animation-delay: 0.35s, 0.75s;
 }
 
-/* 激光发射动画：�?延伸到全�?*/
+/* 激光发射动画：�?延伸到全�?*/
 @keyframes laser-shoot {
   0% {
     width: 0;
@@ -2132,6 +2137,7 @@ body {
   position: absolute;
   pointer-events: none;
   z-index: 51;
+  display: none;
 }
 
 .rule45-particle {
@@ -2155,15 +2161,17 @@ body {
   }
 }
 
-/* ========== 多米诺连锁推理展�?========== */
+/* ========== 多米诺连锁推理展�?========== */
 .rule45-chain {
   position: absolute;
   pointer-events: none;
   z-index: 48;
   opacity: 0;
+  display: none;
 }
 
 .rule45-chain.active {
+  display: block;
   animation: chain-fade-in 0.4s ease forwards;
   animation-delay: 1.2s;
 }
@@ -2216,7 +2224,7 @@ body {
 }
 
 /* ========== 星衡法则·实时账本面板（盘面顶部常驻） ========== */
-/* 旧账本面板已废弃，永久隐�?*/
+/* 旧账本面板已废弃，永久隐�?*/
 .ledger-panel {
   display: none !important;
 }
@@ -2266,7 +2274,7 @@ body {
 }
 
 .ledger-tab.smart::after {
-  content: '�?;
+  content: '�?;
   margin-left: 1px;
   font-size: 8px;
 }
@@ -2293,7 +2301,7 @@ body {
   background: rgba(251, 191, 36, 0.08);
 }
 
-/* 账本内容�?*/
+/* 账本内容�?*/
 .ledger-body {
   display: flex;
   align-items: center;
@@ -2372,7 +2380,7 @@ body {
   color: #22c55e;
 }
 
-/* 详情�?*/
+/* 详情�?*/
 .ledger-detail {
   margin-top: 4px;
   padding-top: 4px;
@@ -2402,7 +2410,7 @@ body {
   font-weight: 600;
 }
 
-/* ========== 高亮叠加�?========== */
+/* ========== 高亮叠加�?========== */
 .ledger-highlight {
   position: absolute;
   pointer-events: none;
@@ -2415,7 +2423,7 @@ body {
   opacity: 1;
 }
 
-/* �?�?�?微光背景 */
+/* �?�?�?微光背景 */
 .hl-row-glow {
   background: linear-gradient(90deg,
     rgba(251, 191, 36, 0) 0%,
@@ -2487,7 +2495,7 @@ body {
   }
 }
 
-/* �?�?�?维度标签 */
+/* �?�?�?维度标签 */
 .hl-dim-label {
   position: absolute;
   font-size: 11px;
@@ -2527,7 +2535,7 @@ body {
   margin-left: 2px;
 }
 
-/* 跨出格子（碎屑格）绿边标�?*/
+/* 跨出格子（碎屑格）绿边标�?*/
 .hl-outie-cell {
   position: absolute;
   border: 2.5px solid #22c55e;
@@ -2973,20 +2981,20 @@ body {
   opacity: 0;
   transition: opacity 0.25s ease;
   pointer-events: none;  /* 非激活状态不拦截点击 */
-  /* 背景透明，实际遮罩由 spotlight �?box-shadow 扩散产生挖空效果 */
+  /* 背景透明，实际遮罩由 spotlight �?box-shadow 扩散产生挖空效果 */
   background: transparent;
 }
 
 .guide-freeze-mask.active {
   opacity: 1;
-  pointer-events: auto;  /* 激活时才拦截点�?*/
+  pointer-events: auto;  /* 激活时才拦截点�?*/
 }
 
 /* 高亮挖空区域：box-shadow 向外扩散填满整个屏幕，中心透明形成"挖空"效果 */
 .guide-freeze-spotlight {
   position: fixed;
   background: transparent;
-  /* 巨大的扩散半�?+ 70% 黑色 = 全屏遮罩，中心透明 = 挖空 */
+  /* 巨大的扩散半�?+ 70% 黑色 = 全屏遮罩，中心透明 = 挖空 */
   box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.7);
   pointer-events: none;
   transform: translate(-50%, -50%);
@@ -3046,7 +3054,7 @@ body {
 }
 
 /* ========== 引导系统 - 气泡提示 ========== */
-/* 顶部固定提示条，不遮挡盘�?*/
+/* 顶部固定提示条，不遮挡盘�?*/
 .guide-popup-hint {
   position: fixed;
   top: 60px;
@@ -3062,7 +3070,7 @@ body {
   width: fit-content;
   opacity: 0;
   transition: opacity 0.3s ease, transform 0.3s ease;
-  pointer-events: none; /* 不打断玩家操�?*/
+  pointer-events: none; /* 不打断玩家操�?*/
   border: 1px solid rgba(251, 191, 36, 0.25);
 }
 
@@ -3085,7 +3093,7 @@ body {
   display: none;
 }
 
-/* ========== 剧情系统 - 对话�?========== */
+/* ========== 剧情系统 - 对话�?========== */
 .story-modal {
   position: fixed;
   top: 0;
@@ -3295,7 +3303,7 @@ body {
   background: #d97706;
 }
 
-/* ========== Boss战样�?========== */
+/* ========== Boss战样�?========== */
 
 /* Boss对战状态条 - 升级版Q版头像表演区 */
 #boss-battle-bar {
@@ -3415,7 +3423,7 @@ body {
   flex-direction: row;
 }
 
-/* Q版头像容�?*/
+/* Q版头像容�?*/
 .q-avatar-wrap {
   position: relative;
   width: 48px;
@@ -3448,7 +3456,7 @@ body {
   box-shadow: 0 0 14px rgba(59, 130, 246, 0.5), inset 0 -2px 6px rgba(0,0,0,0.3);
 }
 
-/* 情绪图标 - 飘在头像右上�?*/
+/* 情绪图标 - 飘在头像右上�?*/
 .q-emotion {
   position: absolute;
   top: -6px;
@@ -3591,7 +3599,7 @@ body {
   color: #4ade80;
 }
 
-/* 进度条共用样�?*/
+/* 进度条共用样�?*/
 .boss-progress-bar, .player-progress-bar {
   height: 10px;
   background: rgba(255,255,255,0.1);
@@ -3634,7 +3642,7 @@ body.boss-battle-active {
   padding-top: 78px;
 }
 
-/* Boss战结果弹�?*/
+/* Boss战结果弹�?*/
 #boss-result-overlay {
   position: fixed;
   top: 0;
@@ -3761,7 +3769,7 @@ body.boss-battle-active {
   transform: scale(0.97);
 }
 
-/* VS 分隔�?*/
+/* VS 分隔�?*/
 .vs-divider {
   font-size: 11px;
   font-weight: 900;
@@ -3772,7 +3780,7 @@ body.boss-battle-active {
   padding: 0 2px;
 }
 
-/* 60%预警：屏幕边缘红�?*/
+/* 60%预警：屏幕边缘红�?*/
 #boss-warning-edge {
   position: fixed;
   top: 0;
@@ -3858,7 +3866,7 @@ body.boss-battle-active {
   75% { transform: translateX(4px) scale(1.02); }
 }
 
-/* ========== Boss战倒计�?========== */
+/* ========== Boss战倒计�?========== */
 #boss-countdown-overlay {
   position: fixed;
   top: 0; left: 0;
@@ -3951,7 +3959,7 @@ body.boss-battle-active {
   letter-spacing: 2px;
 }
 
-/* ========== 进度条增�?========== */
+/* ========== 进度条增�?========== */
 .boss-progress-fill {
   transition: width 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
@@ -4135,7 +4143,7 @@ body.boss-battle-active {
   transform: translateX(-50%) translateY(10px);
 }
 
-/* ========== 横屏提示（手机横屏时显示�?========== */
+/* ========== 横屏提示（手机横屏时显示�?========== */
 #landscape-hint {
   position: fixed; top: 0; left: 0; width: 100%; height: 100%;
   background: rgba(0,0,0,0.92); z-index: 100000;
@@ -4209,8 +4217,8 @@ body.boss-battle-active {
   background: rgba(255,255,255,0.2);
   color: #fff;
 }
-/* ========== 三阶段状态视觉反�?========== */
-/* 破局阶段：四周暗化聚�?*/
+/* ========== 三阶段状态视觉反�?========== */
+/* 破局阶段：四周暗化聚�?*/
 .phase-vignette {
   position: fixed;
   top: 0; left: 0;
@@ -4224,7 +4232,7 @@ body.boss-battle-active {
 .phase-vignette.active {
   opacity: 1;
 }
-/* 破局阶段：棋盘脉冲呼�?*/
+/* 破局阶段：棋盘脉冲呼�?*/
 @keyframes breakthrough-pulse {
   0%, 100% { filter: drop-shadow(0 0 8px rgba(251,191,36,0.3)); }
   50% { filter: drop-shadow(0 0 20px rgba(251,191,36,0.7)); }
@@ -4240,7 +4248,7 @@ body.boss-battle-active {
   60% { transform: translateX(-4px); }
   80% { transform: translateX(4px); }
 }
-/* 收官阶段：粒子光�?*/
+/* 收官阶段：粒子光�?*/
 @keyframes finishing-glow {
   0% { box-shadow: 0 0 0 0 rgba(34,197,94,0); }
   50% { box-shadow: 0 0 30px 10px rgba(34,197,94,0.3); }
@@ -4249,7 +4257,7 @@ body.boss-battle-active {
 .phase-finishing #gameCanvas {
   animation: finishing-glow 3s ease-in-out infinite;
 }
-/* 阶段指示�?*/
+/* 阶段指示�?*/
 .phase-indicator {
   position: fixed;
   top: 12px;
@@ -4390,7 +4398,7 @@ body.boss-battle-active {
 }
 #fx-victory.active { animation: fx-victory 1000ms ease-out; }
 
-/* ===== 剧情立绘（样式由JS设置inline，此处仅补充�?==== */
+/* ===== 剧情立绘（样式由JS设置inline，此处仅补充�?==== */
 #story-portrait img { width: 100%; height: 100%; object-fit: contain; }
 
 /* ===== 对话气泡 ===== */
@@ -4408,7 +4416,7 @@ body.boss-battle-active {
 .fx-tear { animation: fx-tear 600ms ease-in-out; }
 
 
-/* ===== 星衡法则简化提示面�?===== */
+/* ===== 星衡法则简化提示面�?===== */
 .rule45-hint-panel {
   width: 100%;
   max-width: 500px;
@@ -4631,7 +4639,7 @@ body.boss-battle-active {
 
 
 
-/* ===== 三步剧本式动画提�?===== *//* ===== 三步剧本式动画提�?===== */
+/* ===== 三步剧本式动画提�?===== *//* ===== 三步剧本式动画提�?===== */
 .script-hint-overlay {
   position: fixed;
   top: 0;
@@ -4874,7 +4882,7 @@ body.boss-battle-active {
     margin: 0;
   }
 
-  /* 连填提示移到合适位�?*/
+  /* 连填提示移到合适位�?*/
   #quick-fill-hint {
     grid-column: 2 / 3;
     justify-self: center;
@@ -4887,7 +4895,7 @@ body.boss-battle-active {
   }
 }
 
-/* 超宽屏进一步优�?*/
+/* 超宽屏进一步优�?*/
 @media (min-width: 1440px) and (hover: hover) and (pointer: fine) {
   #game-container {
     max-width: 1400px;
@@ -4954,7 +4962,7 @@ body.boss-battle-active {
   gap: var(--space-1);
 }
 
-/* ---------- Combo 条（占位�?---------- */
+/* ---------- Combo 条（占位�?---------- */
 .combo-bar-placeholder {
   display: flex;
   align-items: center;
@@ -5243,7 +5251,7 @@ body.boss-battle-active {
   display: none;
 }
 
-/* ---------- 底部工具栏区（手机端�?---------- */
+/* ---------- 底部工具栏区（手机端�?---------- */
 .layout-bottom {
   flex-shrink: 0;
   display: flex;
@@ -5252,7 +5260,7 @@ body.boss-battle-active {
   padding: 0 var(--space-2) var(--space-2);
 }
 
-/* ---------- 立绘�?& 对话区（占位样式�?---------- */
+/* ---------- 立绘�?& 对话区（占位样式�?---------- */
 .portrait-area {
   flex: 0 0 auto;
   display: flex;
@@ -5325,9 +5333,9 @@ body.boss-battle-active {
 }
 
 /* ============================================================
-   平板端（768px - 1023px�?
-   竖屏：单栏布局 + 底部工具�?+ 数字键盘（默认）
-   横屏：三栏布局（见下方 landscape 媒体查询�?
+   平板端（768px - 1023px�?
+   竖屏：单栏布局 + 底部工具�?+ 数字键盘（默认）
+   横屏：三栏布局（见下方 landscape 媒体查询�?
    ============================================================ */
 @media (min-width: 768px) and (max-width: 1023px) {
   #app {
@@ -5444,7 +5452,7 @@ body.boss-battle-active {
     display: contents;
   }
 
-  /* ---------- 左栏：立�?+ 对话 + 工具按钮 ---------- */
+  /* ---------- 左栏：立�?+ 对话 + 工具按钮 ---------- */
   .layout-left {
     grid-area: left;
     display: flex;
@@ -5484,7 +5492,7 @@ body.boss-battle-active {
     line-height: 1.5;
   }
 
-  /* 左栏工具按钮�?*/
+  /* 左栏工具按钮�?*/
   .left-tool-buttons {
     display: flex;
     flex-direction: column;
@@ -5542,7 +5550,7 @@ body.boss-battle-active {
     font-weight: 500;
   }
 
-  /* ---------- 中栏：盘�?---------- */
+  /* ---------- 中栏：盘�?---------- */
   .layout-center {
     grid-area: center;
     display: flex;
@@ -5564,7 +5572,7 @@ body.boss-battle-active {
     box-shadow: var(--shadow-md);
   }
 
-  /* ---------- 右栏：心流波�?+ 账本 + 技术矩�?---------- */
+  /* ---------- 右栏：心流波�?+ 账本 + 技术矩�?---------- */
   .layout-right {
     grid-area: right;
     display: flex;
@@ -5610,7 +5618,7 @@ body.boss-battle-active {
     overflow-y: auto;
   }
 
-  /* ---------- 底部：模式切�?+ 数字键盘 ---------- */
+  /* ---------- 底部：模式切�?+ 数字键盘 ---------- */
   .layout-bottom {
     grid-area: bottom;
     padding: 0;
@@ -5639,7 +5647,7 @@ body.boss-battle-active {
   }
 
   #num-pad {
-    /* 平板横屏保留数字键盘（触摸操作需要），但更紧�?*/
+    /* 平板横屏保留数字键盘（触摸操作需要），但更紧�?*/
     display: grid !important;
     padding: 2px 0 6px;
     gap: 3px;
@@ -5657,9 +5665,9 @@ body.boss-battle-active {
 }
 
 /* ============================================================
-   宽屏布局�?=768px 横屏 �?有鼠标）�?
-   两栏弹性布局 —�?左盘�?+ 右信息栏
-   一套布局自适应所有宽屏尺寸（平板横屏 �?桌面 �?超宽屏）
+   宽屏布局�?=768px 横屏 �?有鼠标）�?
+   两栏弹性布局 —�?左盘�?+ 右信息栏
+   一套布局自适应所有宽屏尺寸（平板横屏 �?桌面 �?超宽屏）
    ============================================================ */
 @media (min-width: 768px) and (orientation: landscape),
        (min-width: 768px) and (hover: hover) and (pointer: fine) {
@@ -5699,7 +5707,7 @@ body.boss-battle-active {
     width: 100%;
     height: 100%;
     background:
-      /* 顶部暖光�?- 模拟台灯 */
+      /* 顶部暖光�?- 模拟台灯 */
       radial-gradient(ellipse 80% 50% at 50% -10%, rgba(245, 166, 35, 0.15) 0%, transparent 60%),
       /* 左下冷光 - 屏幕反光 */
       radial-gradient(ellipse 40% 60% at 10% 90%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
@@ -5747,7 +5755,7 @@ body.boss-battle-active {
     align-items: stretch;
   }
 
-  /* ---------- 顶部�?---------- */
+  /* ---------- 顶部�?---------- */
   .layout-topbar {
     grid-area: topbar;
     display: flex;
@@ -5770,7 +5778,7 @@ body.boss-battle-active {
     font-size: 14px;
   }
 
-  /* combo 心流条放�?header �?*/
+  /* combo 心流条放�?header �?*/
   .combo-bar-placeholder {
     flex: 0 0 auto;
     width: 200px;
@@ -5806,7 +5814,7 @@ body.boss-battle-active {
     display: none;
   }
 
-  /* 顶部账本在宽屏隐藏（移到右栏）——只在顶部栏中隐�?*/
+  /* 顶部账本在宽屏隐藏（移到右栏）——只在顶部栏中隐�?*/
   .layout-topbar #ledger-panel {
     display: none;
   }
@@ -5819,12 +5827,12 @@ body.boss-battle-active {
     box-shadow: none;
   }
 
-  /* ---------- 盘面区（左栏�?---------- */
+  /* ---------- 盘面区（左栏�?---------- */
   .layout-main {
     display: contents;
   }
 
-  /* 旧左栏在两栏布局中隐�?*/
+  /* 旧左栏在两栏布局中隐�?*/
   .layout-left {
     display: none;
   }
@@ -5868,7 +5876,7 @@ body.boss-battle-active {
     max-width: 500px;
   }
 
-  /* ---------- 信息栏（右栏�?---------- */
+  /* ---------- 信息栏（右栏�?---------- */
   .layout-right {
     grid-area: sidebar;
     display: flex;
@@ -5904,7 +5912,7 @@ body.boss-battle-active {
     gap: 8px;
   }
 
-  /* 迷你工具栏（图标+文字横排，更紧凑�?*/
+  /* 迷你工具栏（图标+文字横排，更紧凑�?*/
   .right-tool-buttons-mini {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -6072,7 +6080,7 @@ body.boss-battle-active {
     display: flex;
     flex-direction: column;
     min-height: 0;
-    /* 笔记本纸张质�?*/
+    /* 笔记本纸张质�?*/
     background:
       linear-gradient(180deg, rgba(255, 250, 240, 0.03) 0%, rgba(255, 250, 240, 0.01) 100%),
       var(--surface-card, #1e1e1e);
@@ -6122,7 +6130,7 @@ body.boss-battle-active {
     font-family: var(--font-mono);
   }
 
-  /* --- L2: 逻辑演算�?--- */
+  /* --- L2: 逻辑演算�?--- */
   .tm-deduction-zone {
     display: flex;
     flex-direction: column;
@@ -6237,7 +6245,7 @@ body.boss-battle-active {
     opacity: 0.7;
   }
 
-  /* 有效候选状�?*/
+  /* 有效候选状�?*/
   .tm-matrix-cell.valid {
     background: rgba(34, 197, 94, 0.08);
     border-color: rgba(34, 197, 94, 0.2);
@@ -6285,7 +6293,7 @@ body.boss-battle-active {
     opacity: 0.4;
   }
 
-  /* 已确认状�?*/
+  /* 已确认状�?*/
   .tm-matrix-cell.confirmed {
     background: rgba(245, 166, 35, 0.15);
     border-color: rgba(245, 166, 35, 0.4);
@@ -6348,7 +6356,7 @@ body.boss-battle-active {
     color: var(--text-secondary, #a0a0a0);
   }
 
-  /* --- 操作�?--- */
+  /* --- 操作�?--- */
   .tm-actions {
     display: flex;
     gap: 6px;
@@ -6377,7 +6385,7 @@ body.boss-battle-active {
     transform: scale(0.96);
   }
 
-  /* 工具按钮�?*/
+  /* 工具按钮�?*/
   .right-toolbar {
     flex: 0 0 auto;
   }
@@ -6503,7 +6511,7 @@ body.boss-battle-active {
     background: rgba(224, 96, 80, 0.2);
   }
 
-  /* ---------- 工具快捷键高亮反�?---------- */
+  /* ---------- 工具快捷键高亮反�?---------- */
   .right-tool-btn-mini.flash-highlight {
     animation: toolFlash 0.3s ease;
   }
@@ -6605,7 +6613,7 @@ body.boss-battle-active {
   /* 有鼠标时：显示快捷键提示 */
   @media (hover: hover) and (pointer: fine) {
     .layout-bottom::before {
-      content: '1-9 填数  �?�?�?�?移动  Delete 擦除  Ctrl+Z 撤销  Space 笔记  E 排除  H 提示';
+      content: '1-9 填数  �?�?�?�?移动  Delete 擦除  Ctrl+Z 撤销  Space 笔记  E 排除  H 提示';
       display: block;
       text-align: center;
       padding: clamp(6px, 1vw, 10px) clamp(12px, 2vw, 20px);
@@ -6622,7 +6630,7 @@ body.boss-battle-active {
   }
 }
 
-/* 超宽屏优化（>1200px�?*/
+/* 超宽屏优化（>1200px�?*/
 @media (min-width: 1200px) and (orientation: landscape),
        (min-width: 1200px) and (hover: hover) and (pointer: fine) {
   #game-container {
@@ -6691,7 +6699,7 @@ body.dark-mode .ledger-label {
 }
 
 /* ============================================================
-   工具�?
+   工具�?
    ============================================================ */
 .sr-only {
   position: absolute;
@@ -6718,10 +6726,10 @@ body.dark-mode .ledger-label {
 
 /* ============================================================
    Flow Display System (心流显示系统)
-   波形 Combo �?+ 墨火效果 + Combo 数字动画
+   波形 Combo �?+ 墨火效果 + Combo 数字动画
    ============================================================ */
 
-/* ---------- 波形容器（状态栏�?---------- */
+/* ---------- 波形容器（状态栏�?---------- */
 .flow-wave-container {
   position: relative;
   width: 100%;
@@ -6779,7 +6787,7 @@ body.dark-mode .ledger-label {
   z-index: 4;
 }
 
-/* 墨滴凝结效果（Combo 触发�?*/
+/* 墨滴凝结效果（Combo 触发�?*/
 .flow-combo-number.flow-combo-appear {
   animation: flow-ink-coalesce 300ms cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
@@ -6816,7 +6824,7 @@ body.dark-mode .ledger-label {
   100% { opacity: 1; transform: translateX(-50%) translateY(0); }
 }
 
-/* Combo 增加：放大弹�?*/
+/* Combo 增加：放大弹�?*/
 .flow-combo-number.flow-combo-bump {
   animation: flow-combo-bump 150ms ease-out;
 }
@@ -6859,14 +6867,14 @@ body.dark-mode .ledger-label {
   100% { opacity: 0; }
 }
 
-/* Combo 5+：极细金色光�?*/
+/* Combo 5+：极细金色光�?*/
 .flow-combo-number.flow-combo-glow-5 {
   text-shadow:
     0 0 4px rgba(245, 166, 35, 0.6),
     0 0 8px rgba(245, 166, 35, 0.3);
 }
 
-/* Combo 10+：光晕扩�?*/
+/* Combo 10+：光晕扩�?*/
 .flow-combo-number.flow-combo-glow-10 {
   text-shadow:
     0 0 6px rgba(255, 215, 0, 0.8),
@@ -6932,7 +6940,7 @@ body.dark-mode .ledger-label {
   border-radius: inherit;
 }
 
-/* 墨火波动边缘（顶部不规则效果�?*/
+/* 墨火波动边缘（顶部不规则效果�?*/
 .flow-ink-fire::before {
   content: '';
   position: absolute;
@@ -7033,7 +7041,7 @@ body.dark-mode .ledger-label {
   }
 }
 
-/* ---------- 右栏波形容器（PC/平板横屏�?---------- */
+/* ---------- 右栏波形容器（PC/平板横屏�?---------- */
 .flow-right-wave-wrap {
   background: var(--surface-card, #1e1e1e);
   border-radius: var(--radius-md);
@@ -7057,10 +7065,10 @@ body.dark-mode .ledger-label {
 }
 
 /* ============================================================
-   Flow Display - 响应式调�?
+   Flow Display - 响应式调�?
    ============================================================ */
 
-/* 平板竖屏�?600px 竖屏�?*/
+/* 平板竖屏�?600px 竖屏�?*/
 @media (min-width: 600px) and (max-width: 1023px) and (orientation: portrait) {
   .flow-wave-container {
     height: 24px;
@@ -7083,7 +7091,7 @@ body.dark-mode .ledger-label {
   }
 }
 
-/* PC �?*/
+/* PC �?*/
 @media (min-width: 768px) and (hover: hover) and (pointer: fine) {
   .flow-right-wave-wrap {
     padding: var(--space-3) var(--space-4);
@@ -7136,10 +7144,10 @@ body:not(.dark-mode) .flow-ink-fire.flow-ink-fire-eureka {
 
 /* ============================================================
    Combo UI - 原有系统样式补充
-   (combo-ui.js 中引用的 CSS �?
+   (combo-ui.js 中引用的 CSS �?
    ============================================================ */
 
-/* ---------- Combo 容器（浮动式�?---------- */
+/* ---------- Combo 容器（浮动式�?---------- */
 .combo-container {
   position: absolute;
   top: 10px;
@@ -7164,12 +7172,12 @@ body:not(.dark-mode) .flow-ink-fire.flow-ink-fire-eureka {
 /* ============================================================
    PC 端单栏通栏布局（杀手数独大改造）
    适用：有鼠标设备 + 宽度 >= 768px
-   通过 body.layout-desktop 限定范围，不影响手机�?
+   通过 body.layout-desktop 限定范围，不影响手机�?
    ============================================================ */
 
 @media (hover: hover) and (pointer: fine) and (min-width: 768px) {
   body.layout-desktop {
-    /* 禁用滚动�?*/
+    /* 禁用滚动�?*/
     overflow: hidden;
     height: 100vh;
     width: 100vw;
@@ -7191,7 +7199,7 @@ body:not(.dark-mode) .flow-ink-fire.flow-ink-fire-eureka {
     --desk-card-border: rgba(184, 160, 124, 0.2);
   }
 
-  /* 主背景：深褐暖色 + 木纹纹理�?*/
+  /* 主背景：深褐暖色 + 木纹纹理�?*/
   body.layout-desktop #app {
     background:
       radial-gradient(ellipse at 50% 30%, #2a1e15 0%, var(--desk-bg-warm) 40%, var(--desk-bg-deep) 100%);
@@ -7234,7 +7242,7 @@ body:not(.dark-mode) .flow-ink-fire.flow-ink-fire-eureka {
     overflow: hidden;
   }
 
-  /* ========== 1. Header 通栏�?0px�?========== */
+  /* ========== 1. Header 通栏�?0px�?========== */
   body.layout-desktop .layout-topbar {
     flex: 0 0 auto;
     background: transparent;
@@ -7403,7 +7411,7 @@ body:not(.dark-mode) .flow-ink-fire.flow-ink-fire-eureka {
     display: none !important;
   }
 
-  /* ========== 2. 模式指示�?========== */
+  /* ========== 2. 模式指示�?========== */
   body.layout-desktop #mode-indicator {
     display: flex !important;
     align-items: center;
@@ -7438,7 +7446,7 @@ body:not(.dark-mode) .flow-ink-fire.flow-ink-fire-eureka {
     background: var(--desk-ind-off);
   }
 
-  /* 激活状�?*/
+  /* 激活状�?*/
   body.layout-desktop #mode-indicator.mode-fill .ind.fill {
     background: var(--desk-ind-fill);
     box-shadow: 0 0 8px var(--desk-ind-fill), 0 0 0 2px rgba(127, 199, 255, 0.2);
@@ -7484,7 +7492,7 @@ body:not(.dark-mode) .flow-ink-fire.flow-ink-fire-eureka {
     display: none;
   }
 
-  /* ========== 3. 棋盘区域 - 严格正方�?========== */
+  /* ========== 3. 棋盘区域 - 严格正方�?========== */
   body.layout-desktop #board-area {
     flex: 0 0 auto;
     aspect-ratio: 1 / 1;
@@ -7515,7 +7523,7 @@ body:not(.dark-mode) .flow-ink-fire.flow-ink-fire-eureka {
     display: block;
   }
 
-  /* ========== 4. 45账本精简显示（整行常驻，四行数据�?========== */
+  /* ========== 4. 45账本精简显示（整行常驻，四行数据�?========== */
   body.layout-desktop #ledger-compact {
     flex: 0 0 auto;
     display: flex !important;
@@ -7587,7 +7595,7 @@ body:not(.dark-mode) .flow-ink-fire.flow-ink-fire-eureka {
     font-weight: 500;
   }
 
-  /* ========== 5. 数字键盘 - 3x3 九宫�?========== */
+  /* ========== 5. 数字键盘 - 3x3 九宫�?========== */
   body.layout-desktop .layout-bottom {
     flex: 0 0 auto;
     display: flex !important;
@@ -7671,7 +7679,7 @@ body:not(.dark-mode) .flow-ink-fire.flow-ink-fire-eureka {
     pointer-events: none;
   }
 
-  /* ========== 6. 工具�?- 4个按�?========== */
+  /* ========== 6. 工具�?- 4个按�?========== */
   body.layout-desktop #toolbar {
     display: flex !important;
     align-items: center;
@@ -7728,7 +7736,7 @@ body:not(.dark-mode) .flow-ink-fire.flow-ink-fire-eureka {
     display: none !important;
   }
 
-  /* 确保 num-pad �?toolbar 下方 */
+  /* 确保 num-pad �?toolbar 下方 */
   body.layout-desktop .layout-bottom {
     flex-direction: column;
   }
@@ -7810,7 +7818,7 @@ body:not(.dark-mode) .flow-ink-fire.flow-ink-fire-eureka {
   font-weight: 700;
 }
 
-/* 计时�?*/
+/* 计时�?*/
 .combo-timer-bar {
   width: 80px;
   height: 4px;
@@ -7884,7 +7892,7 @@ body:not(.dark-mode) .flow-ink-fire.flow-ink-fire-eureka {
   }
 }
 
-/* 棋盘 Eureka 覆盖�?*/
+/* 棋盘 Eureka 覆盖�?*/
 .board-eureka-overlay {
   position: absolute;
   top: 0;
@@ -7916,10 +7924,10 @@ body:not(.dark-mode) .flow-ink-fire.flow-ink-fire-eureka {
 
 /* ============================================================
    Eureka 演出特效系统（规格书 7.5 节）
-   三级：小�?small) / 顿悟(medium) / 大悟(large)
+   三级：小�?small) / 顿悟(medium) / 大悟(large)
    ============================================================ */
 
-/* ---------- Eureka 全屏覆盖�?---------- */
+/* ---------- Eureka 全屏覆盖�?---------- */
 .eureka-overlay {
   position: fixed;
   top: 0;
@@ -7931,7 +7939,7 @@ body:not(.dark-mode) .flow-ink-fire.flow-ink-fire-eureka {
   opacity: 0;
 }
 
-/* 小悟：盘面金色微�?*/
+/* 小悟：盘面金色微�?*/
 .eureka-overlay.eureka-small {
   background: radial-gradient(
     ellipse at center,
@@ -7950,7 +7958,7 @@ body:not(.dark-mode) .flow-ink-fire.flow-ink-fire-eureka {
   100% { opacity: 0; }
 }
 
-/* 顿悟：墨火冲�?+ 金色光晕 */
+/* 顿悟：墨火冲�?+ 金色光晕 */
 .eureka-overlay.eureka-medium {
   background:
     radial-gradient(
@@ -7976,7 +7984,7 @@ body:not(.dark-mode) .flow-ink-fire.flow-ink-fire-eureka {
   100% { opacity: 0; filter: brightness(1); }
 }
 
-/* 大悟：全屏金色爆�?*/
+/* 大悟：全屏金色爆�?*/
 .eureka-overlay.eureka-large {
   background:
     radial-gradient(
@@ -8000,7 +8008,7 @@ body:not(.dark-mode) .flow-ink-fire.flow-ink-fire-eureka {
   100% { opacity: 0; transform: scale(1.1); filter: brightness(1); }
 }
 
-/* ---------- Eureka "�?字浮�?---------- */
+/* ---------- Eureka "�?字浮�?---------- */
 .eureka-character {
   position: fixed;
   top: 50%;
@@ -8188,7 +8196,7 @@ body:not(.dark-mode) .flow-ink-fire.flow-ink-fire-eureka {
    使用场景：Combo数字出现 / 正确填数 / Eureka数字凝结
    ============================================================ */
 
-/* ---------- 通用墨滴凝结�?---------- */
+/* ---------- 通用墨滴凝结�?---------- */
 .ink-coalesce {
   animation: ink-coalesce-anim 350ms cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
@@ -8221,7 +8229,7 @@ body:not(.dark-mode) .flow-ink-fire.flow-ink-fire-eureka {
   }
 }
 
-/* ---------- 墨滴凝结 - 从上方滴落变�?---------- */
+/* ---------- 墨滴凝结 - 从上方滴落变�?---------- */
 .ink-drop-coalesce {
   animation: ink-drop-coalesce-anim 400ms cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
@@ -8259,7 +8267,7 @@ body:not(.dark-mode) .flow-ink-fire.flow-ink-fire-eureka {
   }
 }
 
-/* ---------- 数字爆裂粒子（正确填�?/ Eureka 用） ---------- */
+/* ---------- 数字爆裂粒子（正确填�?/ Eureka 用） ---------- */
 .ink-burst-particle {
   position: absolute;
   width: 4px;
@@ -8285,7 +8293,7 @@ body:not(.dark-mode) .flow-ink-fire.flow-ink-fire-eureka {
   }
 }
 
-/* ---------- 填入正确数字的闪光效�?---------- */
+/* ---------- 填入正确数字的闪光效�?---------- */
 .num-btn.correct-flash {
   animation: num-correct-flash 400ms ease-out;
 }
@@ -8352,7 +8360,7 @@ body:not(.dark-mode) .flow-ink-fire.flow-ink-fire-eureka {
   }
 }
 
-/* ---------- Eureka �?Combo 数字重新凝结 ---------- */
+/* ---------- Eureka �?Combo 数字重新凝结 ---------- */
 .flow-combo-number.flow-combo-eureka-coalesce {
   animation: eureka-combo-coalesce 500ms cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
@@ -8385,7 +8393,7 @@ body:not(.dark-mode) .flow-ink-fire.flow-ink-fire-eureka {
 }
 
 /* ================================================================
-   手机端竖屏布局（body.layout-mobile�?   7点改造：通栏Header / 45账本4�?/ 棋盘正方�?/ 模式指示�?/
+   手机端竖屏布局（body.layout-mobile�?   7点改造：通栏Header / 45账本4�?/ 棋盘正方�?/ 模式指示�?/
            隐藏多格差�?/ 隐藏透视面板 / 隐藏填数说明
    ================================================================ */
 body.layout-mobile {
@@ -8563,7 +8571,7 @@ body.layout-mobile .header-icon-btn {
   color: var(--theme-text, #fff);
 }
 
-/* ===== 2. 45账本整行显示�?行同时显示） ===== */
+/* ===== 2. 45账本整行显示�?行同时显示） ===== */
 body.layout-mobile #ledger-panel {
   display: none !important;
 }
@@ -8571,8 +8579,8 @@ body.layout-mobile #ledger-panel {
 body.layout-mobile #ledger-compact {
   display: flex !important;
   flex-direction: column;
-  gap: 2px;
-  padding: 8px 12px;
+  gap: 1px;
+  padding: 4px 10px;
   background: var(--theme-panel-bg, rgba(30, 27, 24, 0.92));
   border-bottom: 1px solid var(--theme-border, rgba(255, 255, 255, 0.05));
   margin: 0;
@@ -8689,7 +8697,7 @@ body.layout-mobile .layout-right {
   display: none !important;
 }
 
-/* ===== 3. 棋盘正方�?===== */
+/* ===== 3. 棋盘正方�?===== */
 body.layout-mobile #level-goal {
   margin: 0;
   padding: 4px 8px;
@@ -8739,7 +8747,7 @@ body.layout-mobile #mode-indicator.mode-eliminate .ind.eliminate {
 }
 
 body.layout-mobile #board-area {
-  flex: 0 0 auto;
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -8749,7 +8757,7 @@ body.layout-mobile #board-area {
   position: relative;
   gap: 0;
   width: 100%;
-  max-width: min(100%, calc(100vh - 320px));
+  max-width: min(100%, calc(100vh - 240px));
   height: auto;
   max-height: none;
   aspect-ratio: 1 / 1;
@@ -8783,8 +8791,8 @@ body.layout-mobile .layout-bottom {
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  padding: 6px 12px 10px;
+  gap: 2px;
+  padding: 4px 12px 6px;
   grid-area: auto;
   background: var(--theme-panel-bg, rgba(20, 18, 16, 0.95));
   border-top: 1px solid var(--theme-border, rgba(255, 255, 255, 0.06));
@@ -8802,8 +8810,8 @@ body.layout-mobile #toolbar {
   flex-direction: row !important;
   justify-content: center;
   align-items: center;
-  gap: 8px;
-  padding: 6px 0 4px;
+  gap: 6px;
+  padding: 2px 0;
   flex-shrink: 0;
   flex-wrap: nowrap;
   height: auto;
@@ -8811,10 +8819,10 @@ body.layout-mobile #toolbar {
 }
 
 body.layout-mobile #toolbar button {
-  width: 42px;
-  height: 38px;
-  border-radius: 10px;
-  font-size: 18px;
+  width: 38px;
+  height: 34px;
+  border-radius: 8px;
+  font-size: 16px;
   background: var(--theme-toolbar-bg, rgba(255, 255, 255, 0.08));
   color: var(--theme-toolbar-text, #fff);
   border: none;
@@ -8834,8 +8842,8 @@ body.layout-mobile #toolbar button.active {
   color: white;
 }
 
-/* 隐藏多余按钮：排除、自动候选�?5账本、技能、重�?*/
-/* 保留：撤销、擦除、笔�?填数切换、提�?*/
+/* 隐藏多余按钮：排除、自动候选�?5账本、技能、重�?*/
+/* 保留：撤销、擦除、笔�?填数切换、提�?*/
 body.layout-mobile #btn-elimination,
 body.layout-mobile #btn-auto-cands,
 body.layout-mobile #btn-ability,
@@ -8848,8 +8856,8 @@ body.layout-mobile #btn-restart {
 body.layout-mobile #num-pad {
   display: grid !important;
   grid-template-columns: repeat(var(--numpad-columns, 9), 1fr) !important;
-  gap: 4px;
-  padding: 4px 0 6px;
+  gap: 3px;
+  padding: 2px 0 4px;
   flex-shrink: 0;
   width: 100%;
   height: auto;
@@ -8861,7 +8869,7 @@ body.layout-mobile #num-pad {
 
 body.layout-mobile #num-pad .num-btn {
   height: var(--numpad-btn-h) !important;
-  min-height: 44px !important;
+  min-height: 40px !important;
   min-width: 0 !important;
   font-size: clamp(16px, 5vw, 22px);
   font-weight: 600;
@@ -8881,7 +8889,7 @@ body.layout-mobile #num-pad .num-btn:active {
   background: rgba(255, 255, 255, 0.12);
 }
 
-/* ===== 通用手机端优�?===== */
+/* ===== 通用手机端优�?===== */
 body.layout-mobile::before {
   display: none !important;
 }
@@ -8890,7 +8898,7 @@ body.layout-mobile::after {
   display: none !important;
 }
 
-/* 移动端：隐藏PC端角色立�?*/
+/* 移动端：隐藏PC端角色立�?*/
 body.layout-mobile .portrait-out,
 body.layout-mobile #story-portrait {
   display: none !important;

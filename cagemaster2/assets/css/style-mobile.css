@@ -6,7 +6,7 @@
 /* ---------- 全局变量 ---------- */
 html body.layout-mobile {
   --board-size: min(94vw, 520px);
-  --numpad-btn-h: clamp(48px, 7vh, 58px);
+  --numpad-btn-h: clamp(42px, 6vh, 50px);
   --toolbar-btn-h: clamp(40px, 5.5vh, 48px);
   --ledger-font-size: 14px;
   --header-title-size: 17px;
@@ -83,7 +83,6 @@ html body.layout-mobile #level-goal {
   display: none !important;
 }
 
-html body.layout-mobile .layout-bottom::before,
 html body.layout-mobile .layout-bottom::after {
   display: none !important;
   content: none !important;
@@ -507,7 +506,8 @@ html body.layout-mobile .layout-bottom {
 
 /* 缝合线针脚细节 */
 html body.layout-mobile .layout-bottom::before {
-  content: '';
+  content: '' !important;
+  display: block !important;
   position: absolute;
   top: -6px;
   left: 20%;

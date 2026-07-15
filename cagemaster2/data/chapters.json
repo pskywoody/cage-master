@@ -4058,7 +4058,6 @@
                     "color": "#fbbf24",
                     "highlightRow": 0,
                     "highlightCol": 1,
-                    "highlightBox": true,
                     "autoSelect": true,
                     "delay": 3500
                   },
@@ -4067,12 +4066,12 @@
                     "lines": [
                       {
                         "speaker": "守笼人",
-                        "text": "看这个格子。它所在的行已经有1和3，列已经有2，宫里已经有1、2、3。",
+                        "text": "看这个格子。行已经有1和3，列已经有2。",
                         "emotion": "serious"
                       },
                       {
                         "speaker": "守笼人",
-                        "text": "所以这个格子只能填——",
+                        "text": "根据每个数字在相同的行和列只出现一次的原则，这个格子只能填——",
                         "emotion": "default"
                       }
                     ]
@@ -4233,7 +4232,6 @@
                 "color": "#fbbf24",
                 "highlightRow": 0,
                 "highlightCol": 1,
-                "highlightBox": true,
                 "autoSelect": true,
                 "delay": 3500
               },
@@ -4242,12 +4240,12 @@
                 "lines": [
                   {
                     "speaker": "守笼人",
-                    "text": "看这个格子。它所在的行已经有1和3，列已经有2，宫里已经有1、2、3。",
+                    "text": "看这个格子。行已经有1和3，列已经有2。",
                     "emotion": "serious"
                   },
                   {
                     "speaker": "守笼人",
-                    "text": "所以这个格子只能填——",
+                    "text": "根据每个数字在相同的行和列只出现一次的原则，这个格子只能填——",
                     "emotion": "default"
                   }
                 ]

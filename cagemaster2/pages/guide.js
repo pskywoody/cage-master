@@ -7111,12 +7111,23 @@ function initGuideManager() {
   window.enterFinishing = enterFinishing;
   window.gamePhase = () => gamePhase;
 
-  // 关卡开始触发
+  // 关卡开始触发（延迟500ms等待渲染完成）
   setTimeout(() => {
     if (guideManager) {
       guideManager.onLevelStart();
     }
   }, 500);
+  
+  // 3秒后自动关闭任何残留的教学遮罩（保险措施）
+  setTimeout(() => {
+    const freezeMask = document.querySelector('.guide-freeze-mask.active');
+    if (freezeMask) {
+      console.log('[Guide] 自动关闭残留教学遮罩');
+      freezeMask.classList.remove('active');
+      freezeMask.style.pointerEvents = 'none';
+      setTimeout(() => { freezeMask.style.display = 'none'; }, 300);
+    }
+  }, 3000);
 
   // 启动卡壳计时器
   startStuckTimer();

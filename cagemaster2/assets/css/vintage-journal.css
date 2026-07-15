@@ -1,0 +1,605 @@
+/* ================================================================
+   vintage-journal.css — 复古日记本主题
+   档案侦探·笼中密码 | 仅用于手机端导航页面
+   ================================================================ */
+
+/* ---------- CSS变量 ---------- */
+:root {
+  --vj-paper: #f5e6c8;
+  --vj-paper-light: #faf3e3;
+  --vj-paper-dark: #e8d5a8;
+  --vj-ink: #2c1810;
+  --vj-ink-faded: #8b7355;
+  --vj-red: #8b2500;
+  --vj-gold: #b8860b;
+  --vj-line: rgba(139, 115, 85, 0.12);
+  --vj-margin: rgba(180, 60, 30, 0.25);
+}
+
+/* ---------- 全局纸张基础 ---------- */
+@media (max-width: 767px) {
+  body {
+    background: var(--vj-paper) !important;
+    background-image: none !important;
+    font-family: "Noto Serif SC", "Songti SC", "SimSun", Georgia, serif !important;
+    color: var(--vj-ink) !important;
+    min-height: 100vh;
+    position: relative;
+  }
+
+  /* 纸张纤维纹理 */
+  body::before {
+    content: '' !important;
+    position: fixed !important;
+    top: 0; left: 0; right: 0; bottom: 0 !important;
+    background-image:
+      repeating-conic-gradient(rgba(139,115,85,0.025) 0% 25%, transparent 0% 50%) 0 0/3px 3px,
+      radial-gradient(ellipse at 20% 50%, rgba(212,188,139,0.35), transparent 70%),
+      radial-gradient(circle at 80% 30%, rgba(180,140,80,0.12), transparent 50%),
+      radial-gradient(circle at 50% 80%, rgba(160,120,60,0.08), transparent 60%);
+    pointer-events: none !important;
+    z-index: 0 !important;
+  }
+
+  /* 暗角效果 */
+  body::after {
+    content: '' !important;
+    position: fixed !important;
+    top: 0; left: 0; right: 0; bottom: 0 !important;
+    background: radial-gradient(ellipse at center, transparent 50%, rgba(80,50,20,0.15) 100%) !important;
+    pointer-events: none !important;
+    z-index: 0 !important;
+  }
+
+  * { box-sizing: border-box; }
+}
+
+/* ---------- 笔记本横线背景 ---------- */
+.vj-lined {
+  background-image: repeating-linear-gradient(
+    transparent 0px, transparent 31px,
+    var(--vj-line) 31px, var(--vj-line) 32px
+  );
+  background-position: 0 8px;
+}
+
+/* ---------- 页边红线 ---------- */
+.vj-margin::before {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0;
+  left: 48px;
+  width: 2px;
+  background: var(--vj-margin);
+  z-index: 1;
+}
+
+/* ---------- 页面容器 ---------- */
+.vj-page {
+  position: relative;
+  z-index: 1;
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 20px 20px 40px 56px;
+  min-height: 100vh;
+}
+
+/* ---------- 页面顶部标题栏 ---------- */
+.vj-topbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--vj-line);
+}
+
+.vj-topbar .vj-title {
+  flex: 1;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--vj-ink);
+  font-family: "Ma Shan Zheng", "KaiTi", "楷体", cursive;
+  letter-spacing: 2px;
+}
+
+/* ---------- 返回按钮 ---------- */
+.vj-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 10px 16px;
+  min-height: 44px;
+  background: transparent;
+  border: 1px solid var(--vj-line);
+  border-radius: 4px;
+  color: var(--vj-ink-faded);
+  text-decoration: none;
+  font-size: 13px;
+  font-family: "Noto Serif SC", serif;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+}
+
+.vj-back::before {
+  content: '';
+  position: absolute;
+  top: -2px; left: 8px; right: 8px;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, rgba(180,140,80,0.2), transparent);
+}
+
+.vj-back:active {
+  background: rgba(139,115,85,0.08);
+  transform: scale(0.97);
+}
+
+/* ---------- 卡片/纸张区块 ---------- */
+.vj-card {
+  background: var(--vj-paper-light);
+  border: 1px solid rgba(139,115,85,0.15);
+  border-radius: 2px;
+  padding: 16px;
+  margin-bottom: 12px;
+  position: relative;
+  box-shadow:
+    1px 1px 0 rgba(139,115,85,0.06),
+    2px 2px 4px rgba(80,50,20,0.04);
+}
+
+/* 卡片左上角折角效果 */
+.vj-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 16px; height: 16px;
+  background: linear-gradient(135deg, var(--vj-paper-dark) 50%, transparent 50%);
+  opacity: 0.4;
+}
+
+/* ---------- 分组标题（手写风格）---------- */
+.vj-group-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--vj-ink-faded);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  margin-bottom: 10px;
+  padding-left: 4px;
+  font-family: "Ma Shan Zheng", "KaiTi", "楷体", cursive;
+  position: relative;
+}
+
+.vj-group-title::after {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 1px;
+  background: var(--vj-gold);
+  margin-top: 4px;
+}
+
+/* ---------- 设置项 ---------- */
+.vj-setting-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--vj-line);
+}
+
+.vj-setting-item:last-child {
+  border-bottom: none;
+}
+
+.vj-setting-name {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--vj-ink);
+  margin-bottom: 2px;
+}
+
+.vj-setting-desc {
+  font-size: 12px;
+  color: var(--vj-ink-faded);
+  line-height: 1.4;
+}
+
+/* ---------- 复古开关 ---------- */
+.vj-toggle {
+  position: relative;
+  width: 48px;
+  height: 26px;
+  flex-shrink: 0;
+}
+
+.vj-toggle input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
+}
+
+.vj-toggle-track {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: var(--vj-paper-dark);
+  border: 1px solid rgba(139,115,85,0.3);
+  border-radius: 13px;
+  transition: 0.3s;
+}
+
+.vj-toggle-track::before {
+  content: "";
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  left: 2px;
+  bottom: 2px;
+  background: var(--vj-ink-faded);
+  border-radius: 50%;
+  transition: 0.3s;
+}
+
+.vj-toggle input:checked + .vj-toggle-track {
+  background: var(--vj-red);
+  border-color: var(--vj-red);
+}
+
+.vj-toggle input:checked + .vj-toggle-track::before {
+  transform: translateX(22px);
+  background: var(--vj-paper-light);
+}
+
+/* ---------- 火漆印章按钮 ---------- */
+.vj-seal {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 24px;
+  min-height: 48px;
+  background: radial-gradient(circle at 40% 35%,
+    #c43e1c 0%, #8b2500 60%, #6b1a00 100%);
+  color: var(--vj-paper-light);
+  border: none;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: "Noto Serif SC", serif;
+  cursor: pointer;
+  box-shadow:
+    inset 0 2px 4px rgba(255,255,255,0.15),
+    inset 0 -2px 4px rgba(0,0,0,0.2),
+    0 2px 8px rgba(139,37,0,0.3),
+    0 0 0 2px rgba(139,37,0,0.1);
+  transition: all 0.2s;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.vj-seal:active {
+  transform: scale(0.95);
+  box-shadow:
+    inset 0 2px 4px rgba(0,0,0,0.2),
+    inset 0 -2px 4px rgba(255,255,255,0.1),
+    0 1px 4px rgba(139,37,0,0.2);
+}
+
+/* 印章外圈装饰 */
+.vj-seal::before {
+  content: '';
+  position: absolute;
+  top: 3px; left: 3px; right: 3px; bottom: 3px;
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* ---------- 普通按钮（纸片风格）---------- */
+.vj-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 14px;
+  min-height: 44px;
+  border: 1px solid rgba(139,115,85,0.2);
+  border-radius: 2px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: "Noto Serif SC", serif;
+  cursor: pointer;
+  transition: all 0.2s;
+  background: var(--vj-paper-light);
+  color: var(--vj-ink);
+}
+
+.vj-btn:active {
+  transform: scale(0.98);
+  background: var(--vj-paper-dark);
+}
+
+.vj-btn-danger {
+  color: var(--vj-red);
+  border-color: rgba(139,37,0,0.2);
+}
+
+/* ---------- 标签页（纸签条风格）---------- */
+.vj-tabs {
+  display: flex;
+  gap: 0;
+  margin-bottom: 16px;
+  border-bottom: 2px solid var(--vj-line);
+}
+
+.vj-tab {
+  flex: 1;
+  padding: 10px 8px;
+  min-height: 44px;
+  border: none;
+  background: transparent;
+  color: var(--vj-ink-faded);
+  font-size: 13px;
+  font-weight: 600;
+  font-family: "Noto Serif SC", serif;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+  text-align: center;
+}
+
+.vj-tab.active {
+  color: var(--vj-ink);
+}
+
+.vj-tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 20%; right: 20%;
+  height: 2px;
+  background: var(--vj-gold);
+}
+
+/* ---------- 难度色标 ---------- */
+.vj-diff-1 { --vj-diff: #2e7d32; }
+.vj-diff-2 { --vj-diff: #1565c0; }
+.vj-diff-3 { --vj-diff: #e65100; }
+.vj-diff-4 { --vj-diff: #b71c1c; }
+.vj-diff-5 { --vj-diff: #6a1b9a; }
+
+.vj-diff-tab {
+  border-left: 3px solid var(--vj-diff, var(--vj-line));
+}
+
+.vj-diff-tab.active {
+  background: rgba(139,115,85,0.06);
+  border-left-color: var(--vj-diff);
+}
+
+/* ---------- 关卡网格单元 ---------- */
+.vj-level-cell {
+  aspect-ratio: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--vj-paper-light);
+  border: 1px solid var(--vj-line);
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+}
+
+.vj-level-cell:active {
+  transform: scale(0.95);
+  background: var(--vj-paper-dark);
+}
+
+.vj-level-cell.completed::after {
+  content: '✓';
+  position: absolute;
+  top: 2px; right: 4px;
+  font-size: 10px;
+  color: var(--vj-gold);
+}
+
+/* ---------- 进度条 ---------- */
+.vj-progress {
+  height: 4px;
+  background: var(--vj-paper-dark);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-top: 8px;
+}
+
+.vj-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--vj-gold), #d4a017);
+  border-radius: 2px;
+  transition: width 0.4s ease;
+}
+
+/* ---------- 透明胶带装饰 ---------- */
+.vj-tape {
+  position: absolute;
+  width: 80px;
+  height: 20px;
+  background: linear-gradient(180deg,
+    rgba(255,240,200,0.6) 0%,
+    rgba(255,230,170,0.5) 100%);
+  border: 1px solid rgba(200,180,120,0.3);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.vj-tape-top {
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-1deg);
+}
+
+.vj-tape-left {
+  top: 12px;
+  left: -12px;
+  transform: rotate(-8deg);
+}
+
+/* ---------- 墨水渍装饰 ---------- */
+.vj-inkblot {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle,
+    rgba(44,24,16,0.06) 0%,
+    rgba(44,24,16,0.02) 60%,
+    transparent 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ---------- 页码 ---------- */
+.vj-pagenum {
+  text-align: center;
+  font-size: 11px;
+  color: var(--vj-ink-faded);
+  opacity: 0.5;
+  margin-top: 32px;
+  font-family: "Ma Shan Zheng", "KaiTi", cursive;
+  letter-spacing: 2px;
+}
+
+/* ---------- 滚动条美化 ---------- */
+.vj-scroll::-webkit-scrollbar {
+  width: 4px;
+}
+.vj-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.vj-scroll::-webkit-scrollbar-thumb {
+  background: rgba(139,115,85,0.2);
+  border-radius: 2px;
+}
+
+/* ---------- 统计数字 ---------- */
+.vj-stat-num {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--vj-ink);
+  font-family: "Ma Shan Zheng", "KaiTi", cursive;
+}
+
+.vj-stat-label {
+  font-size: 11px;
+  color: var(--vj-ink-faded);
+  margin-top: 4px;
+}
+
+/* ---------- 确认弹窗 ---------- */
+.vj-confirm-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(44,24,16,0.6);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.vj-confirm-overlay.show {
+  display: flex;
+}
+
+.vj-confirm-card {
+  background: var(--vj-paper);
+  border: 1px solid rgba(139,115,85,0.2);
+  border-radius: 2px;
+  padding: 24px;
+  max-width: 320px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(44,24,16,0.2);
+}
+
+/* ---------- Toast ---------- */
+.vj-toast {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-100px);
+  background: var(--vj-ink);
+  color: var(--vj-paper-light);
+  padding: 10px 24px;
+  border-radius: 2px;
+  font-size: 14px;
+  z-index: 2000;
+  transition: transform 0.3s;
+}
+
+.vj-toast.show {
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ---------- 语言选择按钮 ---------- */
+.vj-lang-btn {
+  padding: 10px 16px;
+  min-height: 44px;
+  border: 1px solid var(--vj-line);
+  background: transparent;
+  color: var(--vj-ink-faded);
+  border-radius: 2px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.vj-lang-btn:active {
+  background: rgba(139,115,85,0.08);
+}
+
+.vj-lang-btn.active {
+  background: var(--vj-ink);
+  color: var(--vj-paper-light);
+  border-color: var(--vj-ink);
+}
+
+/* ---------- 视图切换 ---------- */
+.vj-view-toggle {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 12px;
+  gap: 4px;
+}
+
+.vj-view-btn {
+  padding: 10px 16px;
+  min-height: 44px;
+  border: 1px solid var(--vj-line);
+  background: transparent;
+  color: var(--vj-ink-faded);
+  border-radius: 2px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: "Noto Serif SC", serif;
+}
+
+.vj-view-btn.active {
+  background: var(--vj-ink);
+  color: var(--vj-paper-light);
+  border-color: var(--vj-ink);
+}
+
+/* ---------- 横屏适配 ---------- */
+@media (orientation: landscape) and (max-height: 500px) {
+  .vj-page {
+    padding: 12px 16px 20px 48px;
+  }
+}

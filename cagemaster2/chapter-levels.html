@@ -7,30 +7,13 @@
   <link rel="icon" type="image/jpeg" href="assets/images/favicon.jpg" />
   <link rel="stylesheet" href="assets/css/style.css?v=50" />
   <link rel="stylesheet" href="assets/css/style-mobile.css?v=17" />
+  <link rel="stylesheet" href="assets/css/vintage-journal.css?v=1" />
   <style>
     /* 章节关卡列表页样式 - 暖琥珀档案风 */
     body {
-      background: #f5ede0;
-      background-image:
-        radial-gradient(ellipse at 50% 0%, rgba(200, 154, 75, 0.08) 0%, transparent 60%),
-        url("assets/images/scenes/scene_hall.jpg");
-      background-size: cover;
-      background-position: center top;
-      background-attachment: fixed;
+      background: #f5e6c8;
       min-height: 100vh;
       font-family: "Noto Serif SC", "Songti SC", "SimSun", "STSong", Georgia, serif;
-    }
-
-    body::before {
-      content: '';
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: linear-gradient(180deg,
-        rgba(245, 237, 224, 0.85) 0%,
-        rgba(245, 237, 224, 0.92) 40%,
-        rgba(245, 237, 224, 0.97) 100%);
-      pointer-events: none;
-      z-index: 0;
     }
 
     #app {
@@ -44,6 +27,10 @@
       border-radius: 0;
       padding: 20px 16px 40px;
       box-shadow: none;
+    }
+
+    #chapter-title {
+      font-family: "Ma Shan Zheng", "KaiTi", cursive;
     }
 
     /* 返回按钮 */

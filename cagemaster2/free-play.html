@@ -7,14 +7,15 @@
   <link rel="icon" type="image/jpeg" href="assets/images/favicon.jpg" />
   <link rel="stylesheet" href="assets/css/style.css?v=50" />
   <link rel="stylesheet" href="assets/css/style-mobile.css?v=17" />
+  <link rel="stylesheet" href="assets/css/vintage-journal.css?v=1" />
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       min-height: 100vh;
-      background: linear-gradient(135deg, #0c4a6e 0%, #0f172a 50%, #1e293b 100%);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      color: #f1f5f9;
+      background: #f5e6c8;
+      font-family: "Noto Serif SC", "Songti SC", Georgia, serif;
+      color: #2c1810;
     }
 
     .page-container {
@@ -39,19 +40,19 @@
       gap: 4px;
       padding: 10px 16px;
       min-height: 44px;
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(139,115,85,0.12);
+      border: 1px solid rgba(139,115,85,0.25);
       border-radius: 12px;
-      color: #94a3b8;
+      color: #8b7355;
       text-decoration: none;
       font-size: 13px;
       cursor: pointer;
       transition: all 0.2s;
     }
-    .back-btn:active { background: rgba(255,255,255,0.15); transform: scale(0.97); }
+    .back-btn:active { background: rgba(139,115,85,0.2); transform: scale(0.97); }
 
     .page-title { flex: 1; font-size: 22px; font-weight: 700; }
-    .page-title span { font-size: 13px; font-weight: 400; color: #94a3b8; display: block; margin-top: 2px; }
+    .page-title span { font-size: 13px; font-weight: 400; color: #8b7355; display: block; margin-top: 2px; }
 
     .difficulty-tabs {
       display: grid;
@@ -63,9 +64,9 @@
     .diff-tab {
       padding: 10px 4px;
       min-height: 44px;
-      border: 2px solid rgba(255,255,255,0.1);
+      border: 2px solid rgba(139,115,85,0.25);
       border-radius: 12px;
-      background: rgba(255,255,255,0.04);
+      background: rgba(139,115,85,0.06);
       text-align: center;
       cursor: pointer;
       transition: all 0.25s;
@@ -77,26 +78,26 @@
     }
     .diff-tab .diff-icon { font-size: 20px; margin-bottom: 2px; }
     .diff-tab .diff-name { font-size: 11px; font-weight: 600; }
-    .diff-tab .diff-count { font-size: 9px; color: #94a3b8; margin-top: 1px; }
+    .diff-tab .diff-count { font-size: 9px; color: #8b7355; margin-top: 1px; }
     .diff-tab.active .diff-count { color: var(--diff-color); }
 
-    .diff-tab[data-diff="1"] { --diff-color: #22c55e; --diff-bg: rgba(34,197,94,0.15); }
-    .diff-tab[data-diff="2"] { --diff-color: #3b82f6; --diff-bg: rgba(59,130,246,0.15); }
-    .diff-tab[data-diff="3"] { --diff-color: #f59e0b; --diff-bg: rgba(245,158,11,0.15); }
-    .diff-tab[data-diff="4"] { --diff-color: #ef4444; --diff-bg: rgba(239,68,68,0.15); }
-    .diff-tab[data-diff="5"] { --diff-color: #a855f7; --diff-bg: rgba(168,85,247,0.15); }
+    .diff-tab[data-diff="1"] { --diff-color: #22c55e; --diff-bg: rgba(34,197,94,0.12); }
+    .diff-tab[data-diff="2"] { --diff-color: #3b82f6; --diff-bg: rgba(59,130,246,0.12); }
+    .diff-tab[data-diff="3"] { --diff-color: #f59e0b; --diff-bg: rgba(245,158,11,0.12); }
+    .diff-tab[data-diff="4"] { --diff-color: #ef4444; --diff-bg: rgba(239,68,68,0.12); }
+    .diff-tab[data-diff="5"] { --diff-color: #a855f7; --diff-bg: rgba(168,85,247,0.12); }
 
     .diff-stats {
       display: flex;
       gap: 12px;
       margin-bottom: 14px;
       padding: 12px 16px;
-      background: rgba(255,255,255,0.05);
+      background: rgba(139,115,85,0.08);
       border-radius: 14px;
     }
     .diff-stat { flex: 1; text-align: center; }
     .diff-stat-val { font-size: 18px; font-weight: 700; color: var(--diff-color, #22c55e); }
-    .diff-stat-label { font-size: 11px; color: #64748b; margin-top: 2px; }
+    .diff-stat-label { font-size: 11px; color: #8b7355; margin-top: 2px; }
 
     .levels-grid {
       display: grid;
@@ -115,8 +116,8 @@
       align-items: center;
       justify-content: center;
       border-radius: 12px;
-      background: rgba(255,255,255,0.06);
-      border: 2px solid rgba(255,255,255,0.08);
+      background: rgba(139,115,85,0.08);
+      border: 2px solid rgba(139,115,85,0.15);
       cursor: pointer;
       transition: all 0.2s;
       position: relative;
@@ -124,11 +125,11 @@
       color: inherit;
     }
     .level-cell:active { transform: scale(0.93); }
-    .level-cell:hover { border-color: rgba(255,255,255,0.2); background: rgba(255,255,255,0.1); }
+    .level-cell:hover { border-color: rgba(139,115,85,0.35); background: rgba(139,115,85,0.15); }
     .level-cell.completed { background: rgba(34,197,94,0.1); border-color: rgba(34,197,94,0.3); }
     .level-cell .level-num { font-size: 16px; font-weight: 700; }
     .level-cell.completed .level-num { color: #22c55e; }
-    .level-cell .level-best { font-size: 9px; color: #64748b; margin-top: 2px; }
+    .level-cell .level-best { font-size: 9px; color: #8b7355; margin-top: 2px; }
     .level-cell.completed .level-best { color: rgba(34,197,94,0.8); }
     .level-cell .check-mark { position: absolute; top: 3px; right: 5px; font-size: 10px; color: #22c55e; }
     .level-cell.locked { opacity: 0.35; cursor: not-allowed; }
@@ -136,7 +137,7 @@
 
     .levels-grid::-webkit-scrollbar { width: 4px; }
     .levels-grid::-webkit-scrollbar-track { background: transparent; }
-    .levels-grid::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 2px; }
+    .levels-grid::-webkit-scrollbar-thumb { background: rgba(139,115,85,0.25); border-radius: 2px; }
 
     .mode-switch {
       display: flex;
@@ -148,9 +149,9 @@
       padding: 10px 8px;
       min-height: 44px;
       border-radius: 10px;
-      border: 1px solid rgba(255,255,255,0.1);
-      background: rgba(255,255,255,0.04);
-      color: #94a3b8;
+      border: 1px solid rgba(139,115,85,0.25);
+      background: rgba(139,115,85,0.06);
+      color: #8b7355;
       font-size: 12px;
       font-weight: 600;
       text-align: center;
@@ -159,9 +160,9 @@
       transition: all 0.2s;
     }
     .mode-btn.active {
-      background: rgba(99,102,241,0.2);
-      border-color: #6366f1;
-      color: #c7d2fe;
+      background: rgba(139,37,0,0.15);
+      border-color: #8b2500;
+      color: #5c1a00;
     }
 
     /* 练习模式切换（难度分级 / 技巧专项） */
@@ -175,9 +176,9 @@
       padding: 10px 8px;
       min-height: 44px;
       border-radius: 10px;
-      border: 1px solid rgba(255,255,255,0.1);
-      background: rgba(255,255,255,0.04);
-      color: #94a3b8;
+      border: 1px solid rgba(139,115,85,0.25);
+      background: rgba(139,115,85,0.06);
+      color: #8b7355;
       font-size: 12px;
       font-weight: 600;
       text-align: center;
@@ -185,9 +186,9 @@
       transition: all 0.2s;
     }
     .practice-btn.active {
-      background: rgba(250,204,21,0.15);
-      border-color: #facc15;
-      color: #fef08a;
+      background: rgba(139,37,0,0.12);
+      border-color: #8b2500;
+      color: #5c1a00;
     }
 
     /* 技巧分类卡片 */
@@ -206,8 +207,8 @@
       gap: 14px;
       padding: 16px;
       border-radius: 14px;
-      background: rgba(255,255,255,0.05);
-      border: 2px solid rgba(255,255,255,0.08);
+      background: rgba(139,115,85,0.08);
+      border: 2px solid rgba(139,115,85,0.15);
       cursor: pointer;
       transition: all 0.2s;
       text-decoration: none;
@@ -215,8 +216,8 @@
     }
     .skill-card:active { transform: scale(0.97); }
     .skill-card:hover {
-      border-color: rgba(250,204,21,0.3);
-      background: rgba(250,204,21,0.08);
+      border-color: rgba(139,37,0,0.3);
+      background: rgba(139,37,0,0.08);
     }
     .skill-icon {
       width: 48px;
@@ -226,28 +227,28 @@
       justify-content: center;
       font-size: 28px;
       border-radius: 12px;
-      background: rgba(250,204,21,0.12);
+      background: rgba(139,37,0,0.1);
       flex-shrink: 0;
     }
     .skill-info { flex: 1; min-width: 0; }
     .skill-name { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
-    .skill-desc { font-size: 12px; color: #94a3b8; margin-bottom: 6px; }
+    .skill-desc { font-size: 12px; color: #8b7355; margin-bottom: 6px; }
     .skill-meta { display: flex; gap: 10px; align-items: center; }
     .skill-count {
       font-size: 11px;
       padding: 2px 8px;
       border-radius: 20px;
-      background: rgba(250,204,21,0.15);
-      color: #fde68a;
+      background: rgba(139,37,0,0.12);
+      color: #8b2500;
       font-weight: 600;
     }
     .skill-difficulty {
       font-size: 11px;
-      color: #64748b;
+      color: #8b7355;
     }
     .skill-arrow {
       font-size: 20px;
-      color: #475569;
+      color: #8b7355;
       flex-shrink: 0;
     }
 
@@ -265,10 +266,10 @@
       gap: 4px;
       padding: 10px 14px;
       min-height: 44px;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(139,115,85,0.1);
+      border: 1px solid rgba(139,115,85,0.25);
       border-radius: 8px;
-      color: #94a3b8;
+      color: #8b7355;
       font-size: 12px;
       cursor: pointer;
       transition: all 0.2s;
@@ -278,12 +279,12 @@
       flex: 1;
       font-size: 15px;
       font-weight: 700;
-      color: #fef08a;
+      color: #5c1a00;
     }
 
     .skill-categories::-webkit-scrollbar { width: 4px; }
     .skill-categories::-webkit-scrollbar-track { background: transparent; }
-    .skill-categories::-webkit-scrollbar-thumb { background: rgba(250,204,21,0.3); border-radius: 2px; }
+    .skill-categories::-webkit-scrollbar-thumb { background: rgba(139,37,0,0.2); border-radius: 2px; }
   </style>
 </head>
 <body>
@@ -361,12 +362,12 @@
 
     <!-- 关卡网格（难度分级模式） -->
     <div class="levels-grid" id="levelsGrid">
-      <div style="grid-column:1/-1;text-align:center;padding:40px 0;color:#64748b;">加载中...</div>
+      <div style="grid-column:1/-1;text-align:center;padding:40px 0;color:#8b7355;">加载中...</div>
     </div>
 
     <!-- 技巧分类列表（技巧专项模式） -->
     <div class="skill-categories" id="skillCategories" style="display:none;">
-      <div style="text-align:center;padding:40px 0;color:#64748b;">加载中...</div>
+      <div style="text-align:center;padding:40px 0;color:#8b7355;">加载中...</div>
     </div>
   </div>
 
@@ -442,10 +443,10 @@
       let completedWithTime = 0;
 
       if (levels.length === 0) {
-        grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:40px 0;color:#64748b;">
+        grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:40px 0;color:#8b7355;">
           <div style="font-size:32px;margin-bottom:8px;">🚧</div>
           <div>此难度题目正在收集中</div>
-          <div style="font-size:12px;margin-top:4px;color:#475569;">爬虫和生成器正在努力扩充题库</div>
+          <div style="font-size:12px;margin-top:4px;color:#8b7355;">爬虫和生成器正在努力扩充题库</div>
         </div>`;
       } else {
         let html = '';
@@ -601,7 +602,7 @@
 
     async function loadSkillOverview() {
       const container = document.getElementById('skillCategories');
-      container.innerHTML = '<div style="text-align:center;padding:40px 0;color:#64748b;">加载中...</div>';
+      container.innerHTML = '<div style="text-align:center;padding:40px 0;color:#8b7355;">加载中...</div>';
 
       try {
         const res = await fetch('data/puzzles/by-technique/overview.json?v=1');
@@ -658,7 +659,7 @@
       document.getElementById('skillBackBar').style.display = 'flex';
 
       const container = document.getElementById('skillCategories');
-      container.innerHTML = '<div style="text-align:center;padding:40px 0;color:#64748b;">加载中...</div>';
+      container.innerHTML = '<div style="text-align:center;padding:40px 0;color:#8b7355;">加载中...</div>';
 
       try {
         if (typeof AudioManager !== 'undefined') AudioManager.playClick();
@@ -705,7 +706,7 @@
 
       if (puzzles.length === 0) {
         container.innerHTML =
-          `<div style="text-align:center;padding:40px 0;color:#64748b;">
+          `<div style="text-align:center;padding:40px 0;color:#8b7355;">
             <div style="font-size:32px;margin-bottom:8px;">🚧</div>
             <div>该技巧题目正在扩充中</div>
           </div>`;

@@ -175,16 +175,29 @@ class TutorialRunner {
   _handlePromptFill() {
     this.isWaitingForAction = true;
     
-    // 高亮目标格子
-    const cells = this.currentStep.cells || [];
-    cells.forEach(([r, c]) => {
-      const cell = this.board.cells[r]?.[c];
-      if (cell) {
-        cell.isHighlightMask = true;
-        cell.highlightOpacity = 0.5;
-        cell.highlightColor = '#fbbf24';
+    const targetCells = this.currentStep.cells || [];
+    const boardSize = this.board.size || 9;
+    
+    // 锁定所有非目标格子，只允许操作目标格子
+    for (let r = 0; r < boardSize; r++) {
+      for (let c = 0; c < boardSize; c++) {
+        const cell = this.board.cells[r]?.[c];
+        if (!cell) continue;
+        
+        const isTarget = targetCells.some(([tr, tc]) => tr === r && tc === c);
+        
+        if (isTarget) {
+          // 高亮目标格子
+          cell.isHighlightMask = true;
+          cell.highlightOpacity = 0.5;
+          cell.highlightColor = '#fbbf24';
+          cell.isLocked = false;
+        } else {
+          // 锁定非目标格子
+          cell.isLocked = true;
+        }
       }
-    });
+    }
     this.renderer.render(this.board);
     
     // 显示提示（使用toast）
@@ -199,8 +212,9 @@ class TutorialRunner {
   advance() {
     if (!this.isActive) return;
     
-    // 清除高亮
+    // 清除高亮并解锁所有格子
     this._clearHighlights();
+    this._unlockAllCells();
     
     // 推进索引
     this.currentStepIndex++;
@@ -318,14 +332,32 @@ class TutorialRunner {
    */
   _clearHighlights() {
     if (!this.board || !this.board.cells) return;
+    const boardSize = this.board.size || 9;
     
-    for (let r = 0; r < 9; r++) {
-      for (let c = 0; c < 9; c++) {
+    for (let r = 0; r < boardSize; r++) {
+      for (let c = 0; c < boardSize; c++) {
         const cell = this.board.cells[r]?.[c];
         if (cell) {
           cell.isHighlightMask = false;
           cell.highlightOpacity = 0;
           cell.highlightColor = null;
+        }
+      }
+    }
+  }
+
+  /**
+   * 解锁所有格子
+   */
+  _unlockAllCells() {
+    if (!this.board || !this.board.cells) return;
+    const boardSize = this.board.size || 9;
+    
+    for (let r = 0; r < boardSize; r++) {
+      for (let c = 0; c < boardSize; c++) {
+        const cell = this.board.cells[r]?.[c];
+        if (cell) {
+          cell.isLocked = false;
         }
       }
     }

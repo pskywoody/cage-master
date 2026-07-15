@@ -8899,10 +8899,7 @@ body.layout-mobile::after {
 }
 
 /* ç§»åŠ¨ç«¯ï¼šéšè—PCç«¯è§’è‰²ç«‹ï¿?*/
-body.layout-mobile .portrait-out,
-body.layout-mobile #story-portrait {
-  display: none !important;
-}
+/* Á¢»æÓÉstyle-mobile.css¿ØÖÆÏÔÊ¾ */
 
 /* ç§»åŠ¨ç«¯ï¼šä¼˜åŒ–æ•´ä½“èƒŒæ™¯ */
 body.layout-mobile {

@@ -4120,13 +4120,6 @@
               "once": true
             },
             {
-              "id": "t100_s",
-              "condition": "onLevelStart",
-              "type": "freeze_mask",
-              "text": "欢迎！数独三大铁律：每行、每列、每个2×2宫，数字1-4不能重复！点一个空格，看看能填什么？",
-              "once": true
-            },
-            {
               "id": "t100_f1",
               "condition": "onFirstNumberFilled",
               "type": "popup_hint",

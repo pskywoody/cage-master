@@ -83,10 +83,10 @@ html body.layout-mobile #level-goal {
   display: none !important;
 }
 
-/* 角色立绘：移动端适配（接近桌面端大小） */
+/* 角色立绘：移动端适配（逆转裁判风格，占据右侧大半屏） */
 html body.layout-mobile #story-portrait {
-  width: 200px !important;
-  height: 270px !important;
+  width: 280px !important;
+  height: 540px !important;
   flex-shrink: 0;
   display: block !important;
 }

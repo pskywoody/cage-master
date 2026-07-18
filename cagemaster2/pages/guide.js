@@ -4542,19 +4542,23 @@ function bindCanvasClick() {
 function getCellFromPos(clientX, clientY) {
   const rect = guideRenderer.canvas.getBoundingClientRect();
   const size = guideBoard.size;
-  const pad = guideRenderer.padding;
   
-  // 使用canvas实际显示尺寸计算（不依赖DPR手动缩放）
-  const boardDisplayW = rect.width - pad * 2;
-  const boardDisplayH = rect.height - pad * 2;
-  const cellW = boardDisplayW / size;
-  const cellH = boardDisplayH / size;
+  // 直接使用 renderer 实际的 cellSize 和 padding，与绘制逻辑保持完全一致
+  // 注意：renderer 的 cellSize 和 padding 都是 CSS 像素单位
+  // （renderer 用 ctx.setTransform(dpr, ...) 处理 DPR，绘制坐标即 CSS 像素）
+  const cellSize = guideRenderer.cellSize;
+  const padL = guideRenderer.paddingLeft;
+  const padT = guideRenderer.paddingTop;
   
-  let x = clientX - rect.left - pad;
-  let y = clientY - rect.top - pad;
+  // 棋盘实际尺寸（由 cellSize * size 决定，不是 canvas 宽高 - padding*2）
+  const boardW = cellSize * size;
+  const boardH = cellSize * size;
   
-  let c = Math.floor(x / cellW);
-  let r = Math.floor(y / cellH);
+  let x = clientX - rect.left - padL;
+  let y = clientY - rect.top - padT;
+  
+  let c = Math.floor(x / cellSize);
+  let r = Math.floor(y / cellSize);
   
   // 边界clamp
   r = Math.max(0, Math.min(size - 1, r));
@@ -5574,12 +5578,18 @@ function showRule45Compass(r, c) {
   
   // 获取宫的像素位置
   const canvasRect = guideRenderer.canvas.getBoundingClientRect();
-  const pad = guideRenderer.padding;
-  const cellW = (canvasRect.width - pad * 2) / guideBoard.size;
-  const cellH = (canvasRect.height - pad * 2) / guideBoard.size;
   
-  const boxX = pad + boxC * cellW;
-  const boxY = pad + boxR * cellH;
+  // 直接使用 renderer 实际的 cellSize 和 padding，与绘制逻辑保持一致
+  const cellSize = guideRenderer.cellSize;
+  const padL = guideRenderer.paddingLeft;
+  const padT = guideRenderer.paddingTop;
+  
+  // 兼容变量名（格子是正方形，宽高相同）
+  const cellW = cellSize;
+  const cellH = cellSize;
+  
+  const boxX = padL + boxC * cellW;
+  const boxY = padT + boxR * cellH;
   const boxW_px = cellW * 3;
   const boxH_px = cellH * 3;
   const centerX = boxX + boxW_px / 2;

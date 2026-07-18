@@ -78,7 +78,9 @@ class FreezeMask {
    * @param {string} options.highlightShape - 'circle' 圆形 / 'rect' 方形
    * @param {Object} options.canvas - canvas 元素引用
    * @param {number} options.cellSize - 格子尺寸
-   * @param {number} options.padding - canvas 内边距
+   * @param {number} options.padding - canvas 内边距（兼容旧版，统一设置四边）
+   * @param {number} options.paddingLeft - canvas 左边距
+   * @param {number} options.paddingTop - canvas 上边距
    * @param {Array}  options.targetCells - 目标格子数组（cage/box 时用）[[r,c], ...]
    * @param {Function} options.onClose - 关闭回调
    */
@@ -91,6 +93,8 @@ class FreezeMask {
       canvas = null,
       cellSize = 60,
       padding = 12,
+      paddingLeft = null,
+      paddingTop = null,
       targetCells = null,
       onClose = null
     } = options;
@@ -108,9 +112,14 @@ class FreezeMask {
     this.el.style.pointerEvents = '';
 
     // 计算高亮位置和大小
+    // 优先使用独立的 paddingLeft/paddingTop，兼容旧版 padding
+    const pLeft = paddingLeft !== null ? paddingLeft : padding;
+    const pTop = paddingTop !== null ? paddingTop : padding;
     this._positionSpotlight({
       targetR, targetC, targetType,
-      highlightShape, canvas, cellSize, padding, targetCells
+      highlightShape, canvas, cellSize,
+      paddingLeft: pLeft, paddingTop: pTop,
+      targetCells
     });
 
     this.el.style.display = 'block';
@@ -123,7 +132,7 @@ class FreezeMask {
   /**
    * 定位高亮挖空区域
    */
-  _positionSpotlight({ targetR, targetC, targetType, highlightShape, canvas, cellSize, padding, targetCells }) {
+  _positionSpotlight({ targetR, targetC, targetType, highlightShape, canvas, cellSize, paddingLeft, paddingTop, targetCells }) {
     if (!canvas) {
       this.spotlightEl.style.display = 'none';
       return;
@@ -132,21 +141,27 @@ class FreezeMask {
     const rect = canvas.getBoundingClientRect();
     // cellSize 和 padding 已经是 CSS 像素，getBoundingClientRect 也返回 CSS 像素，无需额外缩放
     // 通过 canvas 实际宽高推算盘面大小（支持4x4/6x6/9x9）
-    const boardSize = (rect.width - padding * 2) / cellSize;
+    // 注意：左右 padding 可能不等，上下 padding 也可能不等，需要分别计算
+    const padL = paddingLeft !== undefined ? paddingLeft : 12;
+    const padT = paddingTop !== undefined ? paddingTop : 12;
+    // 假设右边距 = 左边距，下边距 = 上边距（renderer 的默认行为）
+    const boardSize = (rect.width - padL * 2) / cellSize;
 
     let left, top, width, height;
 
     if (targetType === 'cell') {
       // 单个格子
-      const cellX = padding + targetC * cellSize;
-      const cellY = padding + targetR * cellSize;
+      const cellX = padL + targetC * cellSize;
+      const cellY = padT + targetR * cellSize;
       const w = cellSize;
       const h = cellSize;
 
+      // 中心点坐标（rect.left/top 是 canvas 左上角，加上格子偏移，再加格子中心）
       left = rect.left + cellX + w / 2;
       top = rect.top + cellY + h / 2;
-      width = w * 0.9;
-      height = h * 0.9;
+      // 聚光灯大小：略大于格子，确保完整覆盖
+      width = w * 1.1;
+      height = h * 1.1;
 
     } else if (targetType === 'cage' && targetCells && targetCells.length > 0) {
       // 笼子：计算包围盒
@@ -157,8 +172,8 @@ class FreezeMask {
         if (c < minC) minC = c;
         if (c > maxC) maxC = c;
       }
-      const cellX = padding + minC * cellSize;
-      const cellY = padding + minR * cellSize;
+      const cellX = padL + minC * cellSize;
+      const cellY = padT + minR * cellSize;
       const w = (maxC - minC + 1) * cellSize;
       const h = (maxR - minR + 1) * cellSize;
 
@@ -171,8 +186,8 @@ class FreezeMask {
       // 整行
       const rowW = boardSize * cellSize;
       const rowH = cellSize;
-      left = rect.left + padding + rowW / 2;
-      top = rect.top + padding + targetR * cellSize + rowH / 2;
+      left = rect.left + padL + rowW / 2;
+      top = rect.top + padT + targetR * cellSize + rowH / 2;
       width = rowW;
       height = rowH + 4;
 
@@ -185,8 +200,8 @@ class FreezeMask {
       const boxC = Math.floor(targetC / boxW) * boxW;
       const bw = boxW * cellSize;
       const bh = boxH * cellSize;
-      left = rect.left + padding + boxC * cellSize + bw / 2;
-      top = rect.top + padding + boxR * cellSize + bh / 2;
+      left = rect.left + padL + boxC * cellSize + bw / 2;
+      top = rect.top + padT + boxR * cellSize + bh / 2;
       width = bw + 4;
       height = bh + 4;
 
@@ -202,7 +217,8 @@ class FreezeMask {
 
     // 设置形状
     if (highlightShape === 'circle') {
-      const size = Math.max(width, height) * 0.7;
+      // 圆形：取宽高较大值，确保完整覆盖目标区域
+      const size = Math.max(width, height);
       this.spotlightEl.style.width = size + 'px';
       this.spotlightEl.style.height = size + 'px';
       this.spotlightEl.style.borderRadius = '50%';
@@ -290,7 +306,9 @@ class PopupHint {
    * @param {number} options.duration - 显示时长（毫秒），默认 3500
    * @param {Object} options.canvas - canvas 元素
    * @param {number} options.cellSize - 格子尺寸
-   * @param {number} options.padding - canvas 内边距
+   * @param {number} options.padding - canvas 内边距（兼容旧版，统一设置四边）
+   * @param {number} options.paddingLeft - canvas 左边距
+   * @param {number} options.paddingTop - canvas 上边距
    * @param {Function} options.onClose - 关闭回调
    */
   show(options) {
@@ -302,6 +320,8 @@ class PopupHint {
       canvas = null,
       cellSize = 60,
       padding = 12,
+      paddingLeft = null,
+      paddingTop = null,
       onClose = null
     } = options;
 
@@ -317,8 +337,10 @@ class PopupHint {
     this.el.style.display = 'block';
     this.el.style.opacity = '1';
 
-    // 计算位置
-    this._positionBubble({ targetR, targetC, position, canvas, cellSize, padding });
+    // 计算位置（优先使用独立的 paddingLeft/paddingTop）
+    const pLeft = paddingLeft !== null ? paddingLeft : padding;
+    const pTop = paddingTop !== null ? paddingTop : padding;
+    this._positionBubble({ targetR, targetC, position, canvas, cellSize, paddingLeft: pLeft, paddingTop: pTop });
 
     // 自动淡出
     if (this._hideTimer) clearTimeout(this._hideTimer);
@@ -330,7 +352,7 @@ class PopupHint {
   /**
    * 定位气泡
    */
-  _positionBubble({ targetR, targetC, position, canvas, cellSize, padding }) {
+  _positionBubble({ targetR, targetC, position, canvas, cellSize, paddingLeft, paddingTop }) {
     if (!canvas) {
       // 没有 canvas 就居中显示在屏幕上
       this.el.style.left = '50%';
@@ -341,10 +363,12 @@ class PopupHint {
 
     const rect = canvas.getBoundingClientRect();
     // cellSize 和 padding 为 CSS 像素，getBoundingClientRect 返回 CSS 像素，无需缩放
+    const padL = paddingLeft !== undefined ? paddingLeft : 12;
+    const padT = paddingTop !== undefined ? paddingTop : 12;
 
     // 目标格子中心坐标（页面坐标）
-    const cellCenterX = rect.left + padding + (targetC + 0.5) * cellSize;
-    const cellCenterY = rect.top + padding + (targetR + 0.5) * cellSize;
+    const cellCenterX = rect.left + padL + (targetC + 0.5) * cellSize;
+    const cellCenterY = rect.top + padT + (targetR + 0.5) * cellSize;
 
     const bubbleW = this.el.offsetWidth;
     const bubbleH = this.el.offsetHeight;
@@ -907,6 +931,8 @@ class GuideManager {
       canvas: this.canvas,
       cellSize: this.renderer ? this.renderer.cellSize : 60,
       padding: this.renderer ? this.renderer.padding : 12,
+      paddingLeft: this.renderer ? this.renderer.paddingLeft : 12,
+      paddingTop: this.renderer ? this.renderer.paddingTop : 12,
       onClose: () => {
         this._currentFreeze = null;
         if (config.onCloseAction === 'resumeGame') {
@@ -944,7 +970,9 @@ class GuideManager {
       duration: config.duration || 2500,
       canvas: this.canvas,
       cellSize: this.renderer ? this.renderer.cellSize : 60,
-      padding: this.renderer ? this.renderer.padding : 12
+      padding: this.renderer ? this.renderer.padding : 12,
+      paddingLeft: this.renderer ? this.renderer.paddingLeft : 12,
+      paddingTop: this.renderer ? this.renderer.paddingTop : 12
     });
   }
 

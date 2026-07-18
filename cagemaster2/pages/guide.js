@@ -3668,6 +3668,33 @@ function _onBossBattleEnd(result, bossConfig) {
 }
 
 /**
+ * 重新播放当前关卡的剧情（清除缓存 + 重新播放）
+ * 不需要刷新页面
+ */
+function replayCurrentLevelStory() {
+  // 1. 清除当前关卡的剧情缓存
+  const preDialogKey = `killersudoku_v2_level_dialog_pre_${currentLevelId}_route${currentRoute}`;
+  const clearDialogKey = `killersudoku_v2_level_dialog_clear_${currentLevelId}_route${currentRoute}`;
+  try {
+    localStorage.removeItem(preDialogKey);
+    localStorage.removeItem(clearDialogKey);
+  } catch (e) {}
+  
+  // 2. 清除当前关卡的引导触发记录
+  if (window.guideManager && typeof window.guideManager.clearAllRecords === 'function') {
+    window.guideManager.clearAllRecords();
+    // 重置引导管理器状态
+    window.guideManager.reset();
+  }
+  
+  // 3. 重新播放前置剧情
+  if (typeof playLevelPreDialog === 'function') {
+    console.log('🔄 重新播放剧情:', currentLevelId);
+    playLevelPreDialog(null, true); // force = true
+  }
+}
+
+/**
  * 播放关卡前置对话（preDialog）
  * 首次进入关卡时播放，重进不重复播（URL加?story=1可强制重播）
  * 优先使用带周目前缀的场景key（route{N}_ch{X}_lvl{Y}_before），找不到则降级
@@ -7721,6 +7748,16 @@ function initSettingsBindings() {
 
   // 初始化音量条禁用状态
   updateVolumeSlidersDisabled();
+  
+  // 教学工具：重新播放剧情
+  const replayStoryBtn = document.getElementById('btn-replay-story');
+  if (replayStoryBtn) {
+    replayStoryBtn.addEventListener('click', () => {
+      if (typeof AudioManager !== 'undefined') AudioManager.playClick();
+      toggleSettings(); // 关闭设置菜单
+      replayCurrentLevelStory();
+    });
+  }
   
   // 教学工具：自动演示求解过程
   const showSolutionBtn = document.getElementById('btn-show-solution');

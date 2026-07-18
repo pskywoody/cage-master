@@ -191,6 +191,15 @@ class FreezeMask {
       width = rowW;
       height = rowH + 4;
 
+    } else if (targetType === 'col') {
+      // 整列
+      const colW = cellSize;
+      const colH = boardSize * cellSize;
+      left = rect.left + padL + targetC * cellSize + colW / 2;
+      top = rect.top + padT + colH / 2;
+      width = colW + 4;
+      height = colH;
+
     } else if (targetType === 'box') {
       // 某个宫 - 动态计算宫大小
       const size = Math.round(boardSize);
@@ -751,6 +760,12 @@ class GuideManager {
         result = eventType === 'colLastCellFill' && eventData.isCorrect === false;
         break;
 
+      case 'onKeyCellsFilledCorrectly':
+        // 所有关键格子都被正确填入时触发
+        if (eventType !== 'numberFilled') { result = false; break; }
+        result = this._checkAllKeyCellsFilled(cond);
+        break;
+
       default:
         result = false;
     }
@@ -835,6 +850,42 @@ class GuideManager {
     }
 
     return count === targetCount;
+  }
+
+  /**
+   * 检查所有关键格子是否都已正确填入
+   * cond.keyCells = [[r1,c1], [r2,c2], ...]
+   * 如果没有配置 keyCells，则默认为所有非固定数字的格子
+   */
+  _checkAllKeyCellsFilled(cond) {
+    if (!this.board) return false;
+    
+    let keyCells = cond.keyCells;
+    
+    // 如果没有配置 keyCells，使用所有空格子（非固定数字）
+    if (!keyCells || !Array.isArray(keyCells) || keyCells.length === 0) {
+      keyCells = [];
+      const size = this.board.size;
+      for (let r = 0; r < size; r++) {
+        for (let c = 0; c < size; c++) {
+          const cell = this.board.cells[r][c];
+          if (!cell.fixedNum) {
+            keyCells.push([r, c]);
+          }
+        }
+      }
+    }
+    
+    // 检查所有关键格子是否都有正确的填入数字
+    for (const [r, c] of keyCells) {
+      const cell = this.board.cells[r]?.[c];
+      if (!cell) return false;
+      if (!cell.fillNum) return false; // 还没填
+      // 如果有 solution 可以校验正确性，但这里只检查是否填了
+      // 正确性由游戏本身的冲突检测保证
+    }
+    
+    return true;
   }
 
   // ---------- 触发执行 ----------

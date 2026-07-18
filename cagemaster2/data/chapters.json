@@ -4362,7 +4362,11 @@
               "condition": "onLevelStart",
               "type": "freeze_mask",
               "text": "欢迎！灰色是提示数字。看空格旁的小数字（笔记），只剩1个的就是「孤星」，直接填！",
-              "once": true
+              "once": true,
+              "targetR": 0,
+              "targetC": 2,
+              "targetType": "cell",
+              "highlightShape": "circle"
             },
             {
               "id": "t101_f",
@@ -4517,7 +4521,11 @@
               "condition": "onLevelStart",
               "type": "freeze_mask",
               "text": "看虚线框！这是「笼子」，左上角是笼内总和。1格的笼子，和值是几就填几！",
-              "once": true
+              "once": true,
+              "targetR": 0,
+              "targetC": 0,
+              "targetType": "cell",
+              "highlightShape": "circle"
             },
             {
               "id": "t102_f",
@@ -4688,7 +4696,11 @@
               "type": "freeze_mask",
               "delay": 800,
               "text": "专项训练！只剩这几个空格，全是孤星，看笔记填！",
-              "once": true
+              "once": true,
+              "targetR": 0,
+              "targetC": 0,
+              "targetType": "cell",
+              "highlightShape": "circle"
             },
             {
               "id": "t103_d",
@@ -4941,7 +4953,11 @@
               "condition": "onLevelStart",
               "type": "freeze_mask",
               "text": "2格笼和值为3/4/6/7时数字唯一！口诀：3要1+2，4要1+3，6要2+4，7要3+4！",
-              "once": true
+              "once": true,
+              "targetR": 0,
+              "targetC": 0,
+              "targetType": "cell",
+              "highlightShape": "circle"
             },
             {
               "id": "t104_f",
@@ -5208,7 +5224,11 @@
               "condition": "onLevelStart",
               "type": "freeze_mask",
               "text": "孤星和唯一组合用完了怎么办？找「隐曜」！不要只看格子有几个笔记，要扫数字——比如看数字「3」在第一行还能放哪里？",
-              "once": true
+              "once": true,
+              "targetR": 0,
+              "targetC": 0,
+              "targetType": "cell",
+              "highlightShape": "circle"
             },
             {
               "id": "t105_b",
@@ -5511,7 +5531,11 @@
               "type": "freeze_mask",
               "delay": 800,
               "text": "组合专项！用唯一组合口诀解这些笼子～",
-              "once": true
+              "once": true,
+              "targetR": 0,
+              "targetC": 2,
+              "targetType": "cell",
+              "highlightShape": "circle"
             },
             {
               "id": "t106_d",
@@ -5776,7 +5800,11 @@
               "condition": "onLevelStart",
               "type": "freeze_mask",
               "text": "大招来了！「10法则」：4×4每行/列/宫总和永远是10（1+2+3+4=10）！用10减已知数，就能算出剩下的！",
-              "once": true
+              "once": true,
+              "targetR": 0,
+              "targetC": 0,
+              "targetType": "cell",
+              "highlightShape": "circle"
             },
             {
               "id": "t107_b",
@@ -6023,7 +6051,11 @@
               "condition": "onLevelStart",
               "type": "freeze_mask",
               "text": "第一章综合考验！运用所有技巧——孤星、唯一组合、隐曜、10法则！",
-              "once": true
+              "once": true,
+              "targetR": 1,
+              "targetC": 1,
+              "targetType": "cell",
+              "highlightShape": "circle"
             },
             {
               "id": "t108_b",
@@ -21489,7 +21521,11 @@
               "type": "freeze_mask",
               "highlightButton": "btn-45rule",
               "text": "工具栏的「45」按钮是组合计算器，不确定组合时可以用它！",
-              "once": true
+              "once": true,
+              "targetR": 0,
+              "targetC": 0,
+              "targetType": "cell",
+              "highlightShape": "circle"
             },
             {
               "id": "t404_s",
@@ -34587,7 +34623,11 @@
               "highlight": "full",
               "text": "第一卷「数对之锁」：观察盘面，先把所有能一眼看出的孤星（行/列/宫里只缺一个数字的格子）填上。填到一定程度，你会发现推不动了——这时候就需要「并蒂锁」。",
               "once": true,
-              "id": "t701_auto_0"
+              "id": "t701_auto_0",
+              "targetR": 1,
+              "targetC": 1,
+              "targetType": "cell",
+              "highlightShape": "circle"
             },
             {
               "condition": "onFillCountReached",
@@ -35083,7 +35123,11 @@
               "highlight": "full",
               "text": "提示：双曜不容易直接看到。尝试逐个数字检查——某个数字在该行/列/宫中只出现在两个位置？如果另一个数字也恰好只在这两个位置，那就是双曜！",
               "once": true,
-              "id": "t702_auto_0"
+              "id": "t702_auto_0",
+              "targetR": 0,
+              "targetC": 0,
+              "targetType": "cell",
+              "highlightShape": "circle"
             },
             {
               "condition": "onStuckForSeconds",
@@ -35717,7 +35761,11 @@
               "highlight": "full",
               "text": "提示：三子法的标志是三个格子，它们的笔记合起来恰好只有3个不同的数字。常见模式：{a,b},{b,c},{a,c} 或 {a,b,c},{a,b},{a,c} 等。",
               "once": true,
-              "id": "t703_auto_0"
+              "id": "t703_auto_0",
+              "targetR": 5,
+              "targetC": 4,
+              "targetType": "cell",
+              "highlightShape": "circle"
             },
             {
               "condition": "onStuckForSeconds",
@@ -36339,7 +36387,11 @@
               "highlight": "full",
               "text": "提示：寻找二连纵横阵的方法——逐数字检查：选一个数字，看它在每行中能去的位置。如果发现有两行，这个数字都只能去相同的两列，二连纵横阵就找到了！",
               "once": true,
-              "id": "t704_auto_0"
+              "id": "t704_auto_0",
+              "targetR": 0,
+              "targetC": 0,
+              "targetType": "cell",
+              "highlightShape": "circle"
             },
             {
               "condition": "onStuckForSeconds",
@@ -36949,7 +37001,11 @@
               "highlight": "full",
               "text": "提示：三才游鱼阵是二连纵横阵的三行版。找法：选一个数字→看每行的候选位置→如果三行的候选恰好分布在三列中→排除这三列其他位置的该数字。",
               "once": true,
-              "id": "t705_auto_0"
+              "id": "t705_auto_0",
+              "targetR": 6,
+              "targetC": 4,
+              "targetType": "cell",
+              "highlightShape": "circle"
             },
             {
               "condition": "onStuckForSeconds",
@@ -37545,7 +37601,11 @@
               "highlight": "full",
               "text": "终极试炼：这道题需要综合运用你学到的所有高级技巧。从简单技巧开始（显单→隐曜→数对→三子法→二连纵横阵→三才游鱼阵），一步步推进。不要急，仔细观察。",
               "once": true,
-              "id": "t706_auto_0"
+              "id": "t706_auto_0",
+              "targetR": 2,
+              "targetC": 6,
+              "targetType": "cell",
+              "highlightShape": "circle"
             },
             {
               "condition": "onStuckForSeconds",

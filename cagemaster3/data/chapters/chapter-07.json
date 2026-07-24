@@ -1,0 +1,6232 @@
+{
+  "chapterId": 7,
+  "title": "秘术档案",
+  "description": "守笼人在档案馆最深处发现了设局人留下的六卷秘术手稿，记载着从数对到二连纵横阵到三才游鱼阵的高级推演术。掌握它们，你才能真正理解星辰梭的奥义。",
+  "unlockCondition": {},
+  "theme": 0,
+  "levels": [
+    {
+      "levelId": 701,
+      "title": "第1关：数对之锁",
+      "gridSize": 9,
+      "difficulty": "中等",
+      "teachingGoal": "学习并蒂锁（Naked Pair）：当同一区域两个格子恰好只能填入相同的两个数字时，这两个数字可以从该区域其他格子中排除。",
+      "features": {
+        "allowDraft": true,
+        "assistant45": true,
+        "showHints": true,
+        "perspectiveMode": true,
+        "highlightRow": true,
+        "highlightCol": true,
+        "highlightBox": true,
+        "highlightNumber": true,
+        "highlightCage": true,
+        "autoFillCandidates": true
+      },
+      "triggers": [
+        {
+          "condition": "onLevelStart",
+          "type": "freeze_mask",
+          "highlight": "full",
+          "text": "第一卷「数对之锁」：观察盘面，先把所有能一眼看出的孤星（行/列/宫里只缺一个数字的格子）填上。填到一定程度，你会发现推不动了——这时候就需要「并蒂锁」。",
+          "once": true,
+          "id": "t701_auto_0",
+          "targetR": 1,
+          "targetC": 1,
+          "targetType": "cell",
+          "highlightShape": "circle"
+        },
+        {
+          "condition": "onFillCountReached",
+          "count": 27,
+          "type": "enter_phase",
+          "phase": "breakthrough",
+          "once": true,
+          "id": "t701_auto_1"
+        },
+        {
+          "condition": "onStuckForSeconds",
+          "seconds": 20,
+          "type": "enter_phase",
+          "phase": "breakthrough",
+          "once": true,
+          "id": "t701_auto_2"
+        },
+        {
+          "condition": "onStuckForSeconds",
+          "seconds": 30,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "💡 试试用笔记笔记（✏️按钮）标记每个空格的可能数字。当两个格子恰好只能填相同的两个数字时，就形成了「数对」——这两个数字可以从同行/列/宫的其他格子中排除。",
+          "delay": 500,
+          "id": "t701_auto_3"
+        },
+        {
+          "condition": "onFillCountReached",
+          "count": 60,
+          "type": "enter_phase",
+          "phase": "finishing",
+          "once": true,
+          "id": "t701_auto_4"
+        },
+        {
+          "id": "t701_c",
+          "condition": "onLevelComplete",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "🎉 数对之锁已解！并蒂锁成为你 repertory 中的第一件秘术武器。下一卷：隐性之钥。",
+          "once": true
+        },
+        {
+          "id": "t701_ag",
+          "condition": "onConflict",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "⚠️ 秘术档案中的错误尤其致命——确认这个数字真的被数对排除了吗？",
+          "once": false
+        },
+        {
+          "id": "t701_st40",
+          "condition": "onStuckForSeconds",
+          "seconds": 40,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "💡 再提示：数对的关键是「两个格子，恰好两个笔记，在同一个区域」。先找到所有只有两个笔记的格子，再看它们的笔记是否完全相同！",
+          "once": false
+        },
+        {
+          "id": "t701_bt",
+          "condition": "onFillCountReached",
+          "count": 55,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "⚡ 破局时刻！你找到了关键的数对，排除生效后盘面开始加速！",
+          "once": true,
+          "delay": 400
+        },
+        {
+          "id": "t701_fit",
+          "condition": "onFillCountReached",
+          "count": 70,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "✨ 收官！数对排除的余波扫清了最后的障碍！",
+          "once": true,
+          "delay": 400
+        }
+      ],
+      "boardData": [
+        [
+          5,
+          4,
+          3,
+          0,
+          7,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          9,
+          0,
+          0,
+          3,
+          0,
+          0,
+          0,
+          0,
+          8
+        ],
+        [
+          6,
+          0,
+          7,
+          9,
+          0,
+          0,
+          4,
+          0,
+          0
+        ],
+        [
+          2,
+          9,
+          0,
+          5,
+          1,
+          6,
+          8,
+          7,
+          0
+        ],
+        [
+          0,
+          5,
+          8,
+          0,
+          9,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          6,
+          0,
+          0,
+          0,
+          9,
+          2,
+          5
+        ],
+        [
+          0,
+          7,
+          0,
+          0,
+          0,
+          0,
+          3,
+          0,
+          9
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          7
+        ],
+        [
+          0,
+          1,
+          9,
+          0,
+          0,
+          7,
+          0,
+          8,
+          2
+        ]
+      ],
+      "cages": [],
+      "solution": [
+        [
+          5,
+          4,
+          3,
+          8,
+          7,
+          1,
+          2,
+          9,
+          6
+        ],
+        [
+          9,
+          2,
+          1,
+          3,
+          6,
+          4,
+          7,
+          5,
+          8
+        ],
+        [
+          6,
+          8,
+          7,
+          9,
+          2,
+          5,
+          4,
+          3,
+          1
+        ],
+        [
+          2,
+          9,
+          4,
+          5,
+          1,
+          6,
+          8,
+          7,
+          3
+        ],
+        [
+          7,
+          5,
+          8,
+          2,
+          9,
+          3,
+          1,
+          6,
+          4
+        ],
+        [
+          1,
+          3,
+          6,
+          7,
+          4,
+          8,
+          9,
+          2,
+          5
+        ],
+        [
+          4,
+          7,
+          5,
+          6,
+          8,
+          2,
+          3,
+          1,
+          9
+        ],
+        [
+          8,
+          6,
+          2,
+          1,
+          3,
+          9,
+          5,
+          4,
+          7
+        ],
+        [
+          3,
+          1,
+          9,
+          4,
+          5,
+          7,
+          6,
+          8,
+          2
+        ]
+      ],
+      "preDialog": [
+        {
+          "speaker": "守笼人",
+          "text": "第一卷——并蒂锁。双星并蒂，闭户成局。两个格子共享两个候选数时，它们形成一把“锁”。",
+          "side": "right",
+          "emotion": "mysterious",
+          "voiceId": "VO_CK_05",
+          "effect": 1
+        },
+        {
+          "speaker": "莹莹",
+          "text": "我明白了！比如两个格子都只能是3和7！",
+          "side": "right",
+          "emotion": "smile",
+          "voiceId": "VO_J_02",
+          "effect": 0
+        },
+        {
+          "speaker": "阿妍",
+          "text": "并蒂锁的意义不在于填它们自己。而在于排除其他格子的可能性。",
+          "side": "right",
+          "emotion": "thinking",
+          "voiceId": "VO_R_06",
+          "effect": 0
+        },
+        {
+          "speaker": "守笼人",
+          "text": "正是。数对是所有高阶技巧的基础。",
+          "side": "right",
+          "emotion": "mysterious",
+          "voiceId": "VO_CK_05",
+          "effect": 0
+        },
+        {
+          "speaker": "沈墨",
+          "text": "（他看着棋盘上那两个互锁的格子，看了一会儿。然后他轻声说）……锁住两个数，排除掉其他地方。剩下的就是答案了。",
+          "side": "left",
+          "emotion": "thinking",
+          "voiceId": "VO_SM_32",
+          "effect": 0
+        }
+      ],
+      "clearDialog": [
+        {
+          "speaker": "设局人（秘术）",
+          "text": "并蒂锁——第一卷秘术。你学得很快。",
+          "side": "right",
+          "emotion": "smirk",
+          "effect": 0
+        },
+        {
+          "speaker": "沈墨",
+          "text": "……这只是开始。",
+          "side": "left",
+          "emotion": "calm",
+          "effect": 0
+        }
+      ],
+      "isBoss": false,
+      "breakthroughCell": [
+        3,
+        2
+      ],
+      "pairCells": [
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          5
+        ]
+      ],
+      "pairNums": [
+        6,
+        9
+      ],
+      "mode": "endgame",
+      "coreMove": {
+        "row": 6,
+        "col": 4,
+        "value": 8,
+        "cascadeCount": 19,
+        "cascadeSequence": [
+          {
+            "row": 6,
+            "col": 0,
+            "value": 4,
+            "cellId": 54
+          },
+          {
+            "row": 8,
+            "col": 0,
+            "value": 3,
+            "cellId": 72
+          },
+          {
+            "row": 7,
+            "col": 0,
+            "value": 8,
+            "cellId": 63
+          },
+          {
+            "row": 8,
+            "col": 4,
+            "value": 5,
+            "cellId": 76
+          },
+          {
+            "row": 2,
+            "col": 4,
+            "value": 2,
+            "cellId": 22
+          },
+          {
+            "row": 2,
+            "col": 5,
+            "value": 5,
+            "cellId": 23
+          },
+          {
+            "row": 6,
+            "col": 5,
+            "value": 2,
+            "cellId": 59
+          },
+          {
+            "row": 6,
+            "col": 2,
+            "value": 5,
+            "cellId": 56
+          },
+          {
+            "row": 7,
+            "col": 2,
+            "value": 2,
+            "cellId": 65
+          },
+          {
+            "row": 7,
+            "col": 4,
+            "value": 3,
+            "cellId": 67
+          },
+          {
+            "row": 8,
+            "col": 6,
+            "value": 6,
+            "cellId": 78
+          },
+          {
+            "row": 4,
+            "col": 6,
+            "value": 1,
+            "cellId": 42
+          },
+          {
+            "row": 4,
+            "col": 7,
+            "value": 6,
+            "cellId": 43
+          },
+          {
+            "row": 6,
+            "col": 7,
+            "value": 1,
+            "cellId": 61
+          },
+          {
+            "row": 6,
+            "col": 3,
+            "value": 6,
+            "cellId": 57
+          },
+          {
+            "row": 7,
+            "col": 6,
+            "value": 5,
+            "cellId": 69
+          },
+          {
+            "row": 7,
+            "col": 7,
+            "value": 4,
+            "cellId": 70
+          },
+          {
+            "row": 7,
+            "col": 3,
+            "value": 1,
+            "cellId": 66
+          },
+          {
+            "row": 8,
+            "col": 3,
+            "value": 4,
+            "cellId": 75
+          }
+        ]
+      },
+      "isClassic": true,
+      "breakPointIndex": 27,
+      "totalSteps": 47,
+      "targetTechnique": "nakedPair",
+      "threeAct": {
+        "opening": [
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            3,
+            8
+          ],
+          [
+            2,
+            8
+          ],
+          [
+            0,
+            8
+          ],
+          [
+            0,
+            6
+          ],
+          [
+            0,
+            7
+          ],
+          [
+            1,
+            7
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            1,
+            6
+          ],
+          [
+            2,
+            7
+          ],
+          [
+            4,
+            8
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            6,
+            0
+          ],
+          [
+            8,
+            0
+          ]
+        ],
+        "breakthrough": [
+          [
+            7,
+            5
+          ],
+          [
+            6,
+            4
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            6,
+            5
+          ],
+          [
+            6,
+            2
+          ],
+          [
+            7,
+            2
+          ],
+          [
+            7,
+            4
+          ],
+          [
+            4,
+            7
+          ],
+          [
+            6,
+            7
+          ],
+          [
+            6,
+            3
+          ],
+          [
+            7,
+            6
+          ],
+          [
+            7,
+            7
+          ],
+          [
+            7,
+            3
+          ]
+        ],
+        "avalanche": [
+          [
+            5,
+            5
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            5,
+            4
+          ],
+          [
+            5,
+            3
+          ],
+          [
+            4,
+            3
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            5,
+            0
+          ],
+          [
+            4,
+            0
+          ],
+          [
+            7,
+            1
+          ],
+          [
+            7,
+            0
+          ],
+          [
+            8,
+            4
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            8,
+            6
+          ],
+          [
+            4,
+            6
+          ],
+          [
+            8,
+            3
+          ]
+        ]
+      }
+    },
+    {
+      "levelId": 702,
+      "title": "第2关：隐性之钥",
+      "gridSize": 9,
+      "difficulty": "中等",
+      "teachingGoal": "学习双曜（Hidden Pair）：当两个数字在某区域内只能出现在相同的两个格子中时，这两个格子只可能是这两个数字，可以排除其他候选。",
+      "features": {
+        "allowDraft": true,
+        "assistant45": true,
+        "showHints": true,
+        "perspectiveMode": true,
+        "highlightRow": true,
+        "highlightCol": true,
+        "highlightBox": true,
+        "highlightNumber": true,
+        "highlightCage": true,
+        "autoFillCandidates": true
+      },
+      "triggers": [
+        {
+          "condition": "onLevelStart",
+          "type": "freeze_mask",
+          "highlight": "full",
+          "text": "提示：双曜不容易直接看到。尝试逐个数字检查——某个数字在该行/列/宫中只出现在两个位置？如果另一个数字也恰好只在这两个位置，那就是双曜！",
+          "once": true,
+          "id": "t702_auto_0",
+          "targetR": 0,
+          "targetC": 0,
+          "targetType": "cell",
+          "highlightShape": "circle"
+        },
+        {
+          "condition": "onStuckForSeconds",
+          "seconds": 35,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "💡 双曜的关键：不是看格子有什么候选，而是看数字能去哪里。",
+          "delay": 500,
+          "id": "t702_auto_1"
+        },
+        {
+          "id": "t702_f1",
+          "condition": "onFirstNumberFilled",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "对了！双曜被你发现了——虽然格子有多个候选，但2和7只能在这两格！",
+          "once": true
+        },
+        {
+          "id": "t702_b",
+          "condition": "onFillCountReached",
+          "count": 59,
+          "type": "enter_phase",
+          "phase": "breakthrough",
+          "once": true
+        },
+        {
+          "id": "t702_bt",
+          "condition": "onFillCountReached",
+          "count": 59,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "⚡ 破局时刻！双曜被你揪出，多余候选一扫而空！",
+          "once": true,
+          "delay": 400
+        },
+        {
+          "id": "t702_st20",
+          "condition": "onStuckForSeconds",
+          "seconds": 20,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "💡 卡住了？双曜要「看数字不看格」：找两个数字，看它们在某行/列/宫里的可能位置，如果恰好是相同两格，就是双曜！",
+          "once": false
+        },
+        {
+          "id": "t702_ag",
+          "condition": "onConflict",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "⚠️ 双曜要确认这两个数字真的只在这两个格子里——漏掉一个位置就会错删候选！",
+          "once": false
+        },
+        {
+          "id": "t702_fi",
+          "condition": "onFillCountReached",
+          "count": 72,
+          "type": "enter_phase",
+          "phase": "finishing",
+          "once": true
+        },
+        {
+          "id": "t702_fit",
+          "condition": "onFillCountReached",
+          "count": 72,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "✨ 收官！隐性之钥打开了通往答案的最后一道门！",
+          "once": true,
+          "delay": 400
+        },
+        {
+          "id": "t702_c",
+          "condition": "onLevelComplete",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "🎉 双曜已掌握！「显看格，隐看数」——数对的两种形态尽在掌握！",
+          "once": true
+        }
+      ],
+      "boardData": [
+        [
+          0,
+          5,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          7
+        ],
+        [
+          2,
+          0,
+          0,
+          6,
+          0,
+          7,
+          8,
+          9,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          8,
+          3,
+          0,
+          5,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          5,
+          0,
+          1,
+          0,
+          4,
+          3,
+          2
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          6,
+          5,
+          8
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          8,
+          0,
+          7,
+          0
+        ],
+        [
+          0,
+          4,
+          0,
+          0,
+          9,
+          3,
+          0,
+          6,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          0,
+          8,
+          5,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          9,
+          2,
+          0,
+          0,
+          0,
+          0,
+          8,
+          0
+        ]
+      ],
+      "cages": [],
+      "solution": [
+        [
+          6,
+          5,
+          8,
+          1,
+          4,
+          9,
+          3,
+          2,
+          7
+        ],
+        [
+          2,
+          1,
+          3,
+          6,
+          5,
+          7,
+          8,
+          9,
+          4
+        ],
+        [
+          9,
+          7,
+          4,
+          8,
+          3,
+          2,
+          5,
+          1,
+          6
+        ],
+        [
+          7,
+          8,
+          5,
+          9,
+          1,
+          6,
+          4,
+          3,
+          2
+        ],
+        [
+          1,
+          2,
+          9,
+          3,
+          7,
+          4,
+          6,
+          5,
+          8
+        ],
+        [
+          4,
+          3,
+          6,
+          5,
+          2,
+          8,
+          9,
+          7,
+          1
+        ],
+        [
+          8,
+          4,
+          7,
+          2,
+          9,
+          3,
+          1,
+          6,
+          5
+        ],
+        [
+          3,
+          6,
+          1,
+          7,
+          8,
+          5,
+          2,
+          4,
+          9
+        ],
+        [
+          5,
+          9,
+          2,
+          4,
+          6,
+          1,
+          7,
+          8,
+          3
+        ]
+      ],
+      "preDialog": [
+        {
+          "speaker": "守笼人",
+          "text": "第二卷——隐曜。群曜遮目，一光独隐。两个数字被“暗中标定”在同一对格子里。",
+          "side": "right",
+          "emotion": "mysterious",
+          "voiceId": "VO_CK_05",
+          "effect": 1
+        },
+        {
+          "speaker": "莹莹",
+          "text": "虽然格子看起来有很多候选，但其实只能填那两个数！",
+          "side": "right",
+          "emotion": "smile",
+          "voiceId": "VO_J_02",
+          "effect": 0
+        },
+        {
+          "speaker": "阿妍",
+          "text": "隐性数对比显性数对更难发现。但一旦找到，就打开了一片区域。",
+          "side": "right",
+          "emotion": "thinking",
+          "voiceId": "VO_R_06",
+          "effect": 0
+        },
+        {
+          "speaker": "守笼人",
+          "text": "隐曜之钥，能解开看似无解的死局。",
+          "side": "right",
+          "emotion": "mysterious",
+          "voiceId": "VO_CK_05",
+          "effect": 0
+        },
+        {
+          "speaker": "沈墨",
+          "text": "（他没有说话。但他听到了“隐曜之钥”这四个字。他手里的笔顿了一下——那四个字，和他三年前收到的那封信背面写的四个字，一样。）",
+          "side": "left",
+          "emotion": "sad",
+          "voiceId": "VO_SM_45",
+          "effect": 1
+        }
+      ],
+      "clearDialog": [
+        {
+          "speaker": "星辰梭",
+          "text": "双曜之术——两星同耀，互为密钥。",
+          "side": "right",
+          "emotion": "default",
+          "effect": 0
+        },
+        {
+          "speaker": "沈墨",
+          "text": "……隐曜之钥。原来如此。",
+          "side": "left",
+          "emotion": "serious",
+          "effect": 0
+        }
+      ],
+      "isBoss": false,
+      "mode": "endgame",
+      "coreMove": {
+        "row": 0,
+        "col": 6,
+        "value": 3,
+        "cascadeCount": 45,
+        "cascadeSequence": [
+          {
+            "row": 7,
+            "col": 7,
+            "value": 4,
+            "cellId": 70
+          },
+          {
+            "row": 1,
+            "col": 8,
+            "value": 4,
+            "cellId": 17
+          },
+          {
+            "row": 1,
+            "col": 2,
+            "value": 3,
+            "cellId": 11
+          },
+          {
+            "row": 1,
+            "col": 1,
+            "value": 1,
+            "cellId": 10
+          },
+          {
+            "row": 2,
+            "col": 1,
+            "value": 7,
+            "cellId": 19
+          },
+          {
+            "row": 4,
+            "col": 1,
+            "value": 2,
+            "cellId": 37
+          },
+          {
+            "row": 4,
+            "col": 0,
+            "value": 1,
+            "cellId": 36
+          },
+          {
+            "row": 5,
+            "col": 4,
+            "value": 2,
+            "cellId": 49
+          },
+          {
+            "row": 0,
+            "col": 4,
+            "value": 4,
+            "cellId": 4
+          },
+          {
+            "row": 4,
+            "col": 4,
+            "value": 7,
+            "cellId": 40
+          },
+          {
+            "row": 3,
+            "col": 3,
+            "value": 9,
+            "cellId": 30
+          },
+          {
+            "row": 3,
+            "col": 5,
+            "value": 6,
+            "cellId": 32
+          },
+          {
+            "row": 3,
+            "col": 0,
+            "value": 7,
+            "cellId": 27
+          },
+          {
+            "row": 4,
+            "col": 5,
+            "value": 4,
+            "cellId": 41
+          },
+          {
+            "row": 4,
+            "col": 2,
+            "value": 9,
+            "cellId": 38
+          },
+          {
+            "row": 2,
+            "col": 2,
+            "value": 4,
+            "cellId": 20
+          },
+          {
+            "row": 2,
+            "col": 0,
+            "value": 9,
+            "cellId": 18
+          },
+          {
+            "row": 5,
+            "col": 2,
+            "value": 6,
+            "cellId": 47
+          },
+          {
+            "row": 0,
+            "col": 2,
+            "value": 8,
+            "cellId": 2
+          },
+          {
+            "row": 0,
+            "col": 0,
+            "value": 6,
+            "cellId": 0
+          },
+          {
+            "row": 5,
+            "col": 1,
+            "value": 3,
+            "cellId": 46
+          },
+          {
+            "row": 5,
+            "col": 0,
+            "value": 4,
+            "cellId": 45
+          },
+          {
+            "row": 6,
+            "col": 2,
+            "value": 7,
+            "cellId": 56
+          },
+          {
+            "row": 7,
+            "col": 0,
+            "value": 3,
+            "cellId": 63
+          },
+          {
+            "row": 7,
+            "col": 1,
+            "value": 6,
+            "cellId": 64
+          },
+          {
+            "row": 7,
+            "col": 8,
+            "value": 9,
+            "cellId": 71
+          },
+          {
+            "row": 5,
+            "col": 8,
+            "value": 1,
+            "cellId": 53
+          },
+          {
+            "row": 5,
+            "col": 6,
+            "value": 9,
+            "cellId": 51
+          },
+          {
+            "row": 6,
+            "col": 8,
+            "value": 5,
+            "cellId": 62
+          },
+          {
+            "row": 6,
+            "col": 0,
+            "value": 8,
+            "cellId": 54
+          },
+          {
+            "row": 8,
+            "col": 0,
+            "value": 5,
+            "cellId": 72
+          },
+          {
+            "row": 8,
+            "col": 4,
+            "value": 6,
+            "cellId": 76
+          },
+          {
+            "row": 8,
+            "col": 5,
+            "value": 1,
+            "cellId": 77
+          },
+          {
+            "row": 2,
+            "col": 5,
+            "value": 2,
+            "cellId": 23
+          },
+          {
+            "row": 0,
+            "col": 3,
+            "value": 1,
+            "cellId": 3
+          },
+          {
+            "row": 0,
+            "col": 5,
+            "value": 9,
+            "cellId": 5
+          },
+          {
+            "row": 0,
+            "col": 7,
+            "value": 2,
+            "cellId": 7
+          },
+          {
+            "row": 2,
+            "col": 7,
+            "value": 1,
+            "cellId": 25
+          },
+          {
+            "row": 6,
+            "col": 3,
+            "value": 2,
+            "cellId": 57
+          },
+          {
+            "row": 6,
+            "col": 6,
+            "value": 1,
+            "cellId": 60
+          },
+          {
+            "row": 7,
+            "col": 3,
+            "value": 7,
+            "cellId": 66
+          },
+          {
+            "row": 7,
+            "col": 6,
+            "value": 2,
+            "cellId": 69
+          },
+          {
+            "row": 8,
+            "col": 3,
+            "value": 4,
+            "cellId": 75
+          },
+          {
+            "row": 8,
+            "col": 6,
+            "value": 7,
+            "cellId": 78
+          },
+          {
+            "row": 8,
+            "col": 8,
+            "value": 3,
+            "cellId": 80
+          }
+        ]
+      },
+      "isClassic": true,
+      "breakPointIndex": 6,
+      "totalSteps": 54,
+      "targetTechnique": "hiddenPair",
+      "threeAct": {
+        "opening": [
+          [
+            1,
+            4
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            2,
+            8
+          ],
+          [
+            0,
+            6
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            6,
+            2
+          ],
+          [
+            5,
+            8
+          ],
+          [
+            5,
+            6
+          ],
+          [
+            6,
+            8
+          ]
+        ],
+        "breakthrough": [
+          [
+            0,
+            0
+          ],
+          [
+            8,
+            0
+          ],
+          [
+            8,
+            4
+          ],
+          [
+            8,
+            5
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            0,
+            7
+          ],
+          [
+            2,
+            7
+          ],
+          [
+            6,
+            3
+          ],
+          [
+            6,
+            6
+          ],
+          [
+            7,
+            3
+          ],
+          [
+            7,
+            6
+          ],
+          [
+            8,
+            3
+          ],
+          [
+            8,
+            6
+          ],
+          [
+            8,
+            8
+          ]
+        ],
+        "avalanche": [
+          [
+            5,
+            3
+          ],
+          [
+            4,
+            3
+          ],
+          [
+            7,
+            7
+          ],
+          [
+            1,
+            8
+          ],
+          [
+            4,
+            0
+          ],
+          [
+            5,
+            4
+          ],
+          [
+            3,
+            0
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            4,
+            2
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            5,
+            2
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            5,
+            0
+          ],
+          [
+            7,
+            0
+          ],
+          [
+            7,
+            1
+          ],
+          [
+            7,
+            8
+          ],
+          [
+            6,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "levelId": 703,
+      "title": "第3关：三链之阵",
+      "gridSize": 9,
+      "difficulty": "中等",
+      "teachingGoal": "学习三子法（Naked Triple）：同一区域内三个格子恰好只包含3个不同数字的组合，可以排除该区域其他格子中的这3个数字。",
+      "features": {
+        "allowDraft": true,
+        "assistant45": true,
+        "showHints": true,
+        "perspectiveMode": true,
+        "highlightRow": true,
+        "highlightCol": true,
+        "highlightBox": true,
+        "highlightNumber": true,
+        "highlightCage": true,
+        "autoFillCandidates": true
+      },
+      "triggers": [
+        {
+          "condition": "onLevelStart",
+          "type": "freeze_mask",
+          "highlight": "full",
+          "text": "提示：三子法的标志是三个格子，它们的笔记合起来恰好只有3个不同的数字。常见模式：{a,b},{b,c},{a,c} 或 {a,b,c},{a,b},{a,c} 等。",
+          "once": true,
+          "id": "t703_auto_0",
+          "targetR": 5,
+          "targetC": 4,
+          "targetType": "cell",
+          "highlightShape": "circle"
+        },
+        {
+          "condition": "onStuckForSeconds",
+          "seconds": 40,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "💡 寻找三子法时，关注笔记较少的格子（2-3个候选），看看它们的「集合」是否恰好3个数字。",
+          "delay": 500,
+          "id": "t703_auto_1"
+        },
+        {
+          "id": "t703_f1",
+          "condition": "onFirstNumberFilled",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "找到了！三个格子恰好包含三个数字——三子法锁定！",
+          "once": true
+        },
+        {
+          "id": "t703_b",
+          "condition": "onFillCountReached",
+          "count": 59,
+          "type": "enter_phase",
+          "phase": "breakthrough",
+          "once": true
+        },
+        {
+          "id": "t703_bt",
+          "condition": "onFillCountReached",
+          "count": 59,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "⚡ 破局时刻！三子法被锁定，三个数字从同区域其他格子中全部排除！",
+          "once": true,
+          "delay": 400
+        },
+        {
+          "id": "t703_st20",
+          "condition": "onStuckForSeconds",
+          "seconds": 20,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "💡 卡住了？找三个格子，它们的笔记合起来恰好是三个不同的数字（比如{3,5,8}的各种组合）！",
+          "once": false
+        },
+        {
+          "id": "t703_ag",
+          "condition": "onConflict",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "⚠️ 三子法判断：如果三个格子合起来有四个或更多不同笔记，就不是三子法！",
+          "once": false
+        },
+        {
+          "id": "t703_fi",
+          "condition": "onFillCountReached",
+          "count": 72,
+          "type": "enter_phase",
+          "phase": "finishing",
+          "once": true
+        },
+        {
+          "id": "t703_fit",
+          "condition": "onFillCountReached",
+          "count": 72,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "✨ 收官！三链之阵已破，最后的数字自然浮现！",
+          "once": true,
+          "delay": 400
+        },
+        {
+          "id": "t703_c",
+          "condition": "onLevelComplete",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "🎉 三子法已精通！从数对到三链，你的模式识别能力更上一层楼！",
+          "once": true
+        }
+      ],
+      "boardData": [
+        [
+          0,
+          8,
+          0,
+          7,
+          0,
+          0,
+          9,
+          0,
+          0
+        ],
+        [
+          0,
+          9,
+          2,
+          0,
+          0,
+          0,
+          5,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          3,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          6,
+          4,
+          0,
+          5,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          4,
+          0,
+          7,
+          0,
+          1,
+          0
+        ],
+        [
+          2,
+          7,
+          1,
+          6,
+          0,
+          8,
+          0,
+          0,
+          0
+        ],
+        [
+          4,
+          0,
+          0,
+          0,
+          5,
+          0,
+          1,
+          2,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          5
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          7,
+          0,
+          6,
+          0,
+          4
+        ]
+      ],
+      "cages": [],
+      "solution": [
+        [
+          5,
+          8,
+          4,
+          7,
+          6,
+          2,
+          9,
+          3,
+          1
+        ],
+        [
+          3,
+          9,
+          2,
+          1,
+          8,
+          4,
+          5,
+          6,
+          7
+        ],
+        [
+          7,
+          1,
+          6,
+          9,
+          3,
+          5,
+          2,
+          4,
+          8
+        ],
+        [
+          6,
+          4,
+          8,
+          5,
+          1,
+          3,
+          7,
+          9,
+          2
+        ],
+        [
+          9,
+          5,
+          3,
+          4,
+          2,
+          7,
+          8,
+          1,
+          6
+        ],
+        [
+          2,
+          7,
+          1,
+          6,
+          9,
+          8,
+          4,
+          5,
+          3
+        ],
+        [
+          4,
+          3,
+          7,
+          8,
+          5,
+          6,
+          1,
+          2,
+          9
+        ],
+        [
+          8,
+          6,
+          9,
+          2,
+          4,
+          1,
+          3,
+          7,
+          5
+        ],
+        [
+          1,
+          2,
+          5,
+          3,
+          7,
+          9,
+          6,
+          8,
+          4
+        ]
+      ],
+      "preDialog": [
+        {
+          "speaker": "守笼人",
+          "text": "第三卷——三子法。三子连阵，锁数成局。三格锁三数。",
+          "side": "right",
+          "emotion": "mysterious",
+          "voiceId": "VO_CK_05",
+          "effect": 1
+        },
+        {
+          "speaker": "莹莹",
+          "text": "三个格子加起来只有三个候选数！",
+          "side": "right",
+          "emotion": "smile",
+          "voiceId": "VO_J_02",
+          "effect": 0
+        },
+        {
+          "speaker": "阿妍",
+          "text": "每一格不需要都有三个候选。只要它们共用三个数就行。",
+          "side": "right",
+          "emotion": "thinking",
+          "voiceId": "VO_R_06",
+          "effect": 0
+        },
+        {
+          "speaker": "守笼人",
+          "text": "三链数是数对的自然延伸。",
+          "side": "right",
+          "emotion": "mysterious",
+          "voiceId": "VO_CK_05",
+          "effect": 0
+        },
+        {
+          "speaker": "沈墨",
+          "text": "（他看着棋盘上那三个互相缠绕的格子，然后轻声说）……它们可以换位置。但它们不会分开。",
+          "side": "left",
+          "emotion": "thinking",
+          "voiceId": "VO_SM_32",
+          "effect": 0
+        }
+      ],
+      "clearDialog": [
+        {
+          "speaker": "设局人（秘术）",
+          "text": "三子法——三生万物。三格互锁，如影随形。",
+          "side": "right",
+          "emotion": "smirk",
+          "effect": 0
+        },
+        {
+          "speaker": "莹莹",
+          "text": "三个格子锁在一起……好浪漫啊！",
+          "side": "right",
+          "emotion": "surprised",
+          "effect": 0
+        }
+      ],
+      "isBoss": false,
+      "mode": "endgame",
+      "coreMove": {
+        "row": 1,
+        "col": 3,
+        "value": 1,
+        "cascadeCount": 43,
+        "cascadeSequence": [
+          {
+            "row": 2,
+            "col": 8,
+            "value": 8,
+            "cellId": 26
+          },
+          {
+            "row": 1,
+            "col": 8,
+            "value": 7,
+            "cellId": 17
+          },
+          {
+            "row": 1,
+            "col": 0,
+            "value": 3,
+            "cellId": 9
+          },
+          {
+            "row": 2,
+            "col": 6,
+            "value": 2,
+            "cellId": 24
+          },
+          {
+            "row": 0,
+            "col": 8,
+            "value": 1,
+            "cellId": 8
+          },
+          {
+            "row": 0,
+            "col": 0,
+            "value": 5,
+            "cellId": 0
+          },
+          {
+            "row": 2,
+            "col": 3,
+            "value": 9,
+            "cellId": 21
+          },
+          {
+            "row": 3,
+            "col": 6,
+            "value": 7,
+            "cellId": 33
+          },
+          {
+            "row": 3,
+            "col": 7,
+            "value": 9,
+            "cellId": 34
+          },
+          {
+            "row": 3,
+            "col": 8,
+            "value": 2,
+            "cellId": 35
+          },
+          {
+            "row": 4,
+            "col": 0,
+            "value": 9,
+            "cellId": 36
+          },
+          {
+            "row": 6,
+            "col": 8,
+            "value": 9,
+            "cellId": 62
+          },
+          {
+            "row": 6,
+            "col": 5,
+            "value": 6,
+            "cellId": 59
+          },
+          {
+            "row": 1,
+            "col": 5,
+            "value": 4,
+            "cellId": 14
+          },
+          {
+            "row": 0,
+            "col": 4,
+            "value": 6,
+            "cellId": 4
+          },
+          {
+            "row": 0,
+            "col": 2,
+            "value": 4,
+            "cellId": 2
+          },
+          {
+            "row": 0,
+            "col": 5,
+            "value": 2,
+            "cellId": 5
+          },
+          {
+            "row": 0,
+            "col": 7,
+            "value": 3,
+            "cellId": 7
+          },
+          {
+            "row": 1,
+            "col": 4,
+            "value": 8,
+            "cellId": 13
+          },
+          {
+            "row": 1,
+            "col": 7,
+            "value": 6,
+            "cellId": 16
+          },
+          {
+            "row": 2,
+            "col": 5,
+            "value": 5,
+            "cellId": 23
+          },
+          {
+            "row": 2,
+            "col": 7,
+            "value": 4,
+            "cellId": 25
+          },
+          {
+            "row": 6,
+            "col": 1,
+            "value": 3,
+            "cellId": 55
+          },
+          {
+            "row": 4,
+            "col": 1,
+            "value": 5,
+            "cellId": 37
+          },
+          {
+            "row": 4,
+            "col": 2,
+            "value": 3,
+            "cellId": 38
+          },
+          {
+            "row": 6,
+            "col": 2,
+            "value": 7,
+            "cellId": 56
+          },
+          {
+            "row": 2,
+            "col": 2,
+            "value": 6,
+            "cellId": 20
+          },
+          {
+            "row": 2,
+            "col": 1,
+            "value": 1,
+            "cellId": 19
+          },
+          {
+            "row": 2,
+            "col": 0,
+            "value": 7,
+            "cellId": 18
+          },
+          {
+            "row": 6,
+            "col": 3,
+            "value": 8,
+            "cellId": 57
+          },
+          {
+            "row": 7,
+            "col": 2,
+            "value": 9,
+            "cellId": 65
+          },
+          {
+            "row": 7,
+            "col": 3,
+            "value": 2,
+            "cellId": 66
+          },
+          {
+            "row": 7,
+            "col": 1,
+            "value": 6,
+            "cellId": 64
+          },
+          {
+            "row": 7,
+            "col": 4,
+            "value": 4,
+            "cellId": 67
+          },
+          {
+            "row": 7,
+            "col": 5,
+            "value": 1,
+            "cellId": 68
+          },
+          {
+            "row": 7,
+            "col": 0,
+            "value": 8,
+            "cellId": 63
+          },
+          {
+            "row": 7,
+            "col": 7,
+            "value": 7,
+            "cellId": 70
+          },
+          {
+            "row": 8,
+            "col": 0,
+            "value": 1,
+            "cellId": 72
+          },
+          {
+            "row": 8,
+            "col": 1,
+            "value": 2,
+            "cellId": 73
+          },
+          {
+            "row": 8,
+            "col": 2,
+            "value": 5,
+            "cellId": 74
+          },
+          {
+            "row": 8,
+            "col": 3,
+            "value": 3,
+            "cellId": 75
+          },
+          {
+            "row": 8,
+            "col": 5,
+            "value": 9,
+            "cellId": 77
+          },
+          {
+            "row": 8,
+            "col": 7,
+            "value": 8,
+            "cellId": 79
+          }
+        ]
+      },
+      "isClassic": true,
+      "breakPointIndex": 11,
+      "totalSteps": 56,
+      "targetTechnique": "nakedTriplet",
+      "threeAct": {
+        "opening": [
+          [
+            5,
+            4
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            5,
+            8
+          ],
+          [
+            4,
+            6
+          ],
+          [
+            5,
+            6
+          ],
+          [
+            5,
+            7
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            7,
+            6
+          ],
+          [
+            1,
+            8
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            0,
+            8
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            4,
+            1
+          ]
+        ],
+        "breakthrough": [
+          [
+            2,
+            5
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            6,
+            3
+          ],
+          [
+            7,
+            2
+          ],
+          [
+            7,
+            3
+          ],
+          [
+            7,
+            1
+          ],
+          [
+            7,
+            4
+          ],
+          [
+            7,
+            5
+          ],
+          [
+            7,
+            0
+          ],
+          [
+            7,
+            7
+          ],
+          [
+            8,
+            0
+          ],
+          [
+            8,
+            1
+          ],
+          [
+            8,
+            2
+          ],
+          [
+            8,
+            3
+          ],
+          [
+            8,
+            5
+          ],
+          [
+            8,
+            7
+          ]
+        ],
+        "avalanche": [
+          [
+            4,
+            8
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            8
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            6
+          ],
+          [
+            3,
+            7
+          ],
+          [
+            3,
+            8
+          ],
+          [
+            4,
+            0
+          ],
+          [
+            6,
+            8
+          ],
+          [
+            6,
+            5
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            0,
+            7
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            1,
+            7
+          ],
+          [
+            2,
+            7
+          ],
+          [
+            4,
+            2
+          ],
+          [
+            6,
+            2
+          ],
+          [
+            2,
+            2
+          ]
+        ]
+      }
+    },
+    {
+      "levelId": 704,
+      "title": "第4关：二连纵横阵构型",
+      "gridSize": 9,
+      "difficulty": "中等偏难",
+      "teachingGoal": "学习二连纵横阵（二连纵横阵构型）：若某个数字在两行中都仅可能出现在相同的两列，则这两列其他位置可排除该数字。",
+      "features": {
+        "allowDraft": true,
+        "assistant45": true,
+        "showHints": true,
+        "perspectiveMode": true,
+        "highlightRow": true,
+        "highlightCol": true,
+        "highlightBox": true,
+        "highlightNumber": true,
+        "highlightCage": true,
+        "autoFillCandidates": true
+      },
+      "triggers": [
+        {
+          "condition": "onLevelStart",
+          "type": "freeze_mask",
+          "highlight": "full",
+          "text": "提示：寻找二连纵横阵的方法——逐数字检查：选一个数字，看它在每行中能去的位置。如果发现有两行，这个数字都只能去相同的两列，二连纵横阵就找到了！",
+          "once": true,
+          "id": "t704_auto_0",
+          "targetR": 0,
+          "targetC": 0,
+          "targetType": "cell",
+          "highlightShape": "circle"
+        },
+        {
+          "condition": "onStuckForSeconds",
+          "seconds": 45,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "💡 二连纵横阵检查清单：①选一个数字 ②逐行标记该数字能填的位置 ③找两行共享相同两列 ④排除这两列其他位置。也可以从列出发找行。",
+          "delay": 500,
+          "id": "t704_auto_1"
+        },
+        {
+          "id": "t704_f1",
+          "condition": "onFirstNumberFilled",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "好！二连纵横阵的矩形顶点被你标记出来了——这是构型推理的起点！",
+          "once": true
+        },
+        {
+          "id": "t704_b",
+          "condition": "onFillCountReached",
+          "count": 53,
+          "type": "enter_phase",
+          "phase": "breakthrough",
+          "once": true
+        },
+        {
+          "id": "t704_bt",
+          "condition": "onFillCountReached",
+          "count": 53,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "⚡ 破局时刻！二连纵横阵的翅膀展开了，同列其他位置的该数字被全部排除！",
+          "once": true,
+          "delay": 400
+        },
+        {
+          "id": "t704_st20",
+          "condition": "onStuckForSeconds",
+          "seconds": 20,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "💡 卡住了？二连纵横阵找法：选一个数字，找两行中这个数字都恰好只能出现在相同两列的位置——这四个格子形成矩形！",
+          "once": false
+        },
+        {
+          "id": "t704_ag",
+          "condition": "onConflict",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "⚠️ 二连纵横阵要求这两行里这个数字只能出现在这两列（不能有第三列），否则就不是二连纵横阵！",
+          "once": false
+        },
+        {
+          "id": "t704_fi",
+          "condition": "onFillCountReached",
+          "count": 70,
+          "type": "enter_phase",
+          "phase": "finishing",
+          "once": true
+        },
+        {
+          "id": "t704_fit",
+          "condition": "onFillCountReached",
+          "count": 70,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "✨ 收官！二连纵横阵构型的威力完全释放，最后几格一览无余！",
+          "once": true,
+          "delay": 400
+        },
+        {
+          "id": "t704_c",
+          "condition": "onLevelComplete",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "🎉 二连纵横阵已掌握！你正式进入了构型推理的领域！",
+          "once": true
+        }
+      ],
+      "boardData": [
+        [
+          0,
+          0,
+          7,
+          0,
+          0,
+          0,
+          0,
+          0,
+          5
+        ],
+        [
+          0,
+          0,
+          9,
+          8,
+          3,
+          0,
+          0,
+          2,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          9,
+          6,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          3,
+          4,
+          5,
+          0,
+          0,
+          0,
+          9
+        ],
+        [
+          2,
+          0,
+          0,
+          0,
+          0,
+          0,
+          5,
+          0,
+          0
+        ],
+        [
+          0,
+          7,
+          0,
+          9,
+          8,
+          0,
+          2,
+          4,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          8,
+          0,
+          0
+        ],
+        [
+          6,
+          3,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "cages": [],
+      "solution": [
+        [
+          3,
+          8,
+          7,
+          1,
+          2,
+          4,
+          6,
+          9,
+          5
+        ],
+        [
+          5,
+          6,
+          9,
+          8,
+          3,
+          7,
+          4,
+          2,
+          1
+        ],
+        [
+          4,
+          2,
+          1,
+          5,
+          9,
+          6,
+          3,
+          7,
+          8
+        ],
+        [
+          7,
+          5,
+          4,
+          3,
+          6,
+          9,
+          1,
+          8,
+          2
+        ],
+        [
+          8,
+          1,
+          3,
+          4,
+          5,
+          2,
+          7,
+          6,
+          9
+        ],
+        [
+          2,
+          9,
+          6,
+          7,
+          1,
+          8,
+          5,
+          3,
+          4
+        ],
+        [
+          1,
+          7,
+          5,
+          9,
+          8,
+          3,
+          2,
+          4,
+          6
+        ],
+        [
+          9,
+          4,
+          2,
+          6,
+          7,
+          1,
+          8,
+          5,
+          3
+        ],
+        [
+          6,
+          3,
+          8,
+          2,
+          4,
+          5,
+          9,
+          1,
+          7
+        ]
+      ],
+      "preDialog": [
+        {
+          "speaker": "守笼人",
+          "text": "第四卷——二连纵横阵。两纵两横，四角绞绳。矩形对角线，排除一切。",
+          "side": "right",
+          "emotion": "mysterious",
+          "voiceId": "VO_CK_05",
+          "effect": 2
+        },
+        {
+          "speaker": "莹莹",
+          "text": "X形！",
+          "side": "right",
+          "emotion": "surprised",
+          "voiceId": "VO_J_03",
+          "effect": 0
+        },
+        {
+          "speaker": "阿妍",
+          "text": "二连纵横阵的核心是矩形结构。找到四个顶点，剩下的事情就交给排除法。",
+          "side": "right",
+          "emotion": "thinking",
+          "voiceId": "VO_R_06",
+          "effect": 0
+        },
+        {
+          "speaker": "守笼人",
+          "text": "当年，我就是用二连纵横阵为基础，推演出了第一套星辰梭笼局模型。",
+          "side": "right",
+          "emotion": "calm",
+          "voiceId": "VO_CK_10",
+          "effect": 2
+        },
+        {
+          "speaker": "沈墨",
+          "text": "（他看了一眼守笼人——在他提到“当年”的时候，守笼人的手指微微蜷了一下。很短，但他看见了。）",
+          "side": "left",
+          "effect": 0
+        }
+      ],
+      "clearDialog": [
+        {
+          "speaker": "守笼人",
+          "text": "二连纵横阵……当年，我就是在这一局上输给了设局人。",
+          "side": "right",
+          "emotion": "serious",
+          "effect": 0
+        },
+        {
+          "speaker": "沈墨",
+          "text": "……现在，你赢回来了。",
+          "side": "left",
+          "emotion": "calm",
+          "effect": 0
+        }
+      ],
+      "isBoss": false,
+      "mode": "endgame",
+      "coreMove": {
+        "row": 7,
+        "col": 7,
+        "value": 5,
+        "cascadeCount": 40,
+        "cascadeSequence": [
+          {
+            "row": 7,
+            "col": 3,
+            "value": 6,
+            "cellId": 66
+          },
+          {
+            "row": 3,
+            "col": 3,
+            "value": 3,
+            "cellId": 30
+          },
+          {
+            "row": 3,
+            "col": 7,
+            "value": 8,
+            "cellId": 34
+          },
+          {
+            "row": 3,
+            "col": 5,
+            "value": 9,
+            "cellId": 32
+          },
+          {
+            "row": 4,
+            "col": 7,
+            "value": 6,
+            "cellId": 43
+          },
+          {
+            "row": 0,
+            "col": 7,
+            "value": 9,
+            "cellId": 7
+          },
+          {
+            "row": 4,
+            "col": 6,
+            "value": 7,
+            "cellId": 42
+          },
+          {
+            "row": 4,
+            "col": 0,
+            "value": 8,
+            "cellId": 36
+          },
+          {
+            "row": 0,
+            "col": 0,
+            "value": 3,
+            "cellId": 0
+          },
+          {
+            "row": 0,
+            "col": 6,
+            "value": 6,
+            "cellId": 6
+          },
+          {
+            "row": 0,
+            "col": 1,
+            "value": 8,
+            "cellId": 1
+          },
+          {
+            "row": 1,
+            "col": 6,
+            "value": 4,
+            "cellId": 15
+          },
+          {
+            "row": 2,
+            "col": 6,
+            "value": 3,
+            "cellId": 24
+          },
+          {
+            "row": 5,
+            "col": 1,
+            "value": 9,
+            "cellId": 46
+          },
+          {
+            "row": 5,
+            "col": 3,
+            "value": 7,
+            "cellId": 48
+          },
+          {
+            "row": 2,
+            "col": 3,
+            "value": 5,
+            "cellId": 21
+          },
+          {
+            "row": 1,
+            "col": 5,
+            "value": 7,
+            "cellId": 14
+          },
+          {
+            "row": 1,
+            "col": 8,
+            "value": 1,
+            "cellId": 17
+          },
+          {
+            "row": 1,
+            "col": 0,
+            "value": 5,
+            "cellId": 9
+          },
+          {
+            "row": 1,
+            "col": 1,
+            "value": 6,
+            "cellId": 10
+          },
+          {
+            "row": 2,
+            "col": 7,
+            "value": 7,
+            "cellId": 25
+          },
+          {
+            "row": 3,
+            "col": 4,
+            "value": 6,
+            "cellId": 31
+          },
+          {
+            "row": 5,
+            "col": 5,
+            "value": 8,
+            "cellId": 50
+          },
+          {
+            "row": 5,
+            "col": 7,
+            "value": 3,
+            "cellId": 52
+          },
+          {
+            "row": 6,
+            "col": 0,
+            "value": 1,
+            "cellId": 54
+          },
+          {
+            "row": 2,
+            "col": 0,
+            "value": 4,
+            "cellId": 18
+          },
+          {
+            "row": 2,
+            "col": 1,
+            "value": 2,
+            "cellId": 19
+          },
+          {
+            "row": 2,
+            "col": 2,
+            "value": 1,
+            "cellId": 20
+          },
+          {
+            "row": 3,
+            "col": 0,
+            "value": 7,
+            "cellId": 27
+          },
+          {
+            "row": 6,
+            "col": 2,
+            "value": 5,
+            "cellId": 56
+          },
+          {
+            "row": 3,
+            "col": 2,
+            "value": 4,
+            "cellId": 29
+          },
+          {
+            "row": 3,
+            "col": 1,
+            "value": 5,
+            "cellId": 28
+          },
+          {
+            "row": 7,
+            "col": 0,
+            "value": 9,
+            "cellId": 63
+          },
+          {
+            "row": 7,
+            "col": 1,
+            "value": 4,
+            "cellId": 64
+          },
+          {
+            "row": 7,
+            "col": 2,
+            "value": 2,
+            "cellId": 65
+          },
+          {
+            "row": 7,
+            "col": 4,
+            "value": 7,
+            "cellId": 67
+          },
+          {
+            "row": 8,
+            "col": 5,
+            "value": 5,
+            "cellId": 77
+          },
+          {
+            "row": 8,
+            "col": 6,
+            "value": 9,
+            "cellId": 78
+          },
+          {
+            "row": 8,
+            "col": 7,
+            "value": 1,
+            "cellId": 79
+          },
+          {
+            "row": 8,
+            "col": 8,
+            "value": 7,
+            "cellId": 80
+          }
+        ]
+      },
+      "isClassic": true,
+      "breakPointIndex": 19,
+      "totalSteps": 60,
+      "targetTechnique": "xWing",
+      "threeAct": {
+        "opening": [
+          [
+            4,
+            5
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            6,
+            8
+          ],
+          [
+            6,
+            5
+          ],
+          [
+            8,
+            4
+          ],
+          [
+            8,
+            3
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            5,
+            4
+          ],
+          [
+            5,
+            2
+          ],
+          [
+            7,
+            3
+          ],
+          [
+            4,
+            6
+          ],
+          [
+            4,
+            0
+          ],
+          [
+            6,
+            0
+          ],
+          [
+            6,
+            2
+          ],
+          [
+            8,
+            6
+          ],
+          [
+            8,
+            8
+          ]
+        ],
+        "breakthrough": [
+          [
+            3,
+            8
+          ],
+          [
+            7,
+            7
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            0
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            7,
+            0
+          ],
+          [
+            7,
+            1
+          ],
+          [
+            7,
+            2
+          ],
+          [
+            7,
+            4
+          ],
+          [
+            8,
+            5
+          ],
+          [
+            8,
+            7
+          ]
+        ],
+        "avalanche": [
+          [
+            8,
+            2
+          ],
+          [
+            5,
+            8
+          ],
+          [
+            2,
+            8
+          ],
+          [
+            7,
+            8
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            3,
+            7
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            4,
+            7
+          ],
+          [
+            0,
+            7
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            6
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            6
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            5,
+            3
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            1,
+            8
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            7
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            5,
+            5
+          ],
+          [
+            5,
+            7
+          ]
+        ]
+      }
+    },
+    {
+      "levelId": 705,
+      "title": "第5关：三才游鱼阵",
+      "gridSize": 9,
+      "difficulty": "中等偏难",
+      "teachingGoal": "学习Swordfish（三才游鱼阵）：二连纵横阵的三行三列推广——若某个数字在三行中都仅可能出现在相同的三列，则这些列其他位置可排除该数字。",
+      "features": {
+        "allowDraft": true,
+        "assistant45": true,
+        "showHints": true,
+        "perspectiveMode": true,
+        "highlightRow": true,
+        "highlightCol": true,
+        "highlightBox": true,
+        "highlightNumber": true,
+        "highlightCage": true,
+        "autoFillCandidates": true
+      },
+      "triggers": [
+        {
+          "condition": "onLevelStart",
+          "type": "freeze_mask",
+          "highlight": "full",
+          "text": "提示：三才游鱼阵是二连纵横阵的三行版。找法：选一个数字→看每行的候选位置→如果三行的候选恰好分布在三列中→排除这三列其他位置的该数字。",
+          "once": true,
+          "id": "t705_auto_0",
+          "targetR": 6,
+          "targetC": 4,
+          "targetType": "cell",
+          "highlightShape": "circle"
+        },
+        {
+          "condition": "onStuckForSeconds",
+          "seconds": 50,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "💡 三才游鱼阵比二连纵横阵更难找。建议用草稿纸逐行记录候选位置，寻找三行三列的覆盖模式。别灰心——这是最难的技巧之一！",
+          "delay": 500,
+          "id": "t705_auto_1"
+        },
+        {
+          "id": "t705_f1",
+          "condition": "onFirstNumberFilled",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "好眼力！三才游鱼阵的三行三列轮廓开始显现了！",
+          "once": true
+        },
+        {
+          "id": "t705_b",
+          "condition": "onFillCountReached",
+          "count": 53,
+          "type": "enter_phase",
+          "phase": "breakthrough",
+          "once": true
+        },
+        {
+          "id": "t705_bt",
+          "condition": "onFillCountReached",
+          "count": 53,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "⚡ 破局时刻！三才游鱼阵被你发现，三列中其他位置的该数字被全部清除！",
+          "once": true,
+          "delay": 400
+        },
+        {
+          "id": "t705_st20",
+          "condition": "onStuckForSeconds",
+          "seconds": 20,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "💡 卡住了？三才游鱼阵是二连纵横阵的三行版：找一个数字，在三行中都只能出现在相同的三列里——九个格子形成网状！",
+          "once": false
+        },
+        {
+          "id": "t705_st40",
+          "condition": "onStuckForSeconds",
+          "seconds": 40,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "💡 三才游鱼阵不要求每一行都有三个位置——每行只要有2-3个，且全部落在相同三列内即可！逐数字耐心扫描！",
+          "once": false,
+          "delay": 300
+        },
+        {
+          "id": "t705_ag",
+          "condition": "onConflict",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "⚠️ 三才游鱼阵复杂——确认这三行中该数字的所有可能位置确实都在这三列里，一个都不能漏到第四列！",
+          "once": false
+        },
+        {
+          "id": "t705_fi",
+          "condition": "onFillCountReached",
+          "count": 70,
+          "type": "enter_phase",
+          "phase": "finishing",
+          "once": true
+        },
+        {
+          "id": "t705_fit",
+          "condition": "onFillCountReached",
+          "count": 70,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "✨ 收官！三才游鱼阵入海，最后的谜题随之瓦解！",
+          "once": true,
+          "delay": 400
+        },
+        {
+          "id": "t705_c",
+          "condition": "onLevelComplete",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "🎉 三才游鱼阵已征服！你掌握了最强大的高级构型之一！",
+          "once": true
+        }
+      ],
+      "boardData": [
+        [
+          0,
+          3,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          7,
+          0,
+          0,
+          0,
+          0,
+          0,
+          8,
+          0
+        ],
+        [
+          2,
+          0,
+          1,
+          0,
+          0,
+          5,
+          0,
+          0,
+          6
+        ],
+        [
+          8,
+          0,
+          0,
+          0,
+          0,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          2,
+          0,
+          6,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          7,
+          0,
+          3,
+          9,
+          8,
+          0,
+          2,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          4,
+          0,
+          0,
+          5,
+          9,
+          0
+        ],
+        [
+          0,
+          0,
+          5,
+          6,
+          3,
+          7,
+          0,
+          0,
+          2
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          8
+        ]
+      ],
+      "cages": [],
+      "solution": [
+        [
+          5,
+          3,
+          8,
+          7,
+          1,
+          6,
+          9,
+          2,
+          4
+        ],
+        [
+          6,
+          7,
+          9,
+          2,
+          4,
+          3,
+          1,
+          8,
+          5
+        ],
+        [
+          2,
+          4,
+          1,
+          8,
+          9,
+          5,
+          7,
+          3,
+          6
+        ],
+        [
+          8,
+          1,
+          6,
+          5,
+          7,
+          2,
+          3,
+          4,
+          9
+        ],
+        [
+          4,
+          9,
+          2,
+          3,
+          6,
+          1,
+          8,
+          5,
+          7
+        ],
+        [
+          7,
+          5,
+          3,
+          9,
+          8,
+          4,
+          2,
+          6,
+          1
+        ],
+        [
+          1,
+          6,
+          7,
+          4,
+          2,
+          8,
+          5,
+          9,
+          3
+        ],
+        [
+          9,
+          8,
+          5,
+          6,
+          3,
+          7,
+          4,
+          1,
+          2
+        ],
+        [
+          3,
+          2,
+          4,
+          1,
+          5,
+          9,
+          6,
+          7,
+          8
+        ]
+      ],
+      "preDialog": [
+        {
+          "speaker": "守笼人",
+          "text": "第五卷——三才游鱼阵。三才合围，网断鱼飞。三行三列交错。",
+          "side": "right",
+          "emotion": "mysterious",
+          "voiceId": "VO_CK_05",
+          "effect": 2
+        },
+        {
+          "speaker": "莹莹",
+          "text": "三行三列……像一张网！",
+          "side": "right",
+          "emotion": "surprised",
+          "voiceId": "VO_J_03",
+          "effect": 0
+        },
+        {
+          "speaker": "阿妍",
+          "text": "三才游鱼阵的核心是覆盖。三行三列的位置被锁住后，其余区域都会被排除。",
+          "side": "right",
+          "emotion": "thinking",
+          "voiceId": "VO_R_06",
+          "effect": 0
+        },
+        {
+          "speaker": "守笼人",
+          "text": "剑鱼构型极其罕见，也极其强大。能在实战中发现它的人，已经是顶尖高手。",
+          "side": "right",
+          "emotion": "mysterious",
+          "voiceId": "VO_CK_05",
+          "effect": 1
+        },
+        {
+          "speaker": "沈墨",
+          "text": "（他一直在看那个三行三列的交错结构。然后他说）……网撒下去的时候，鱼已经不在水里了。",
+          "side": "left",
+          "emotion": "calm",
+          "voiceId": "VO_SM_46",
+          "effect": 0
+        }
+      ],
+      "clearDialog": [
+        {
+          "speaker": "星辰梭",
+          "text": "三才游鱼阵——你已经摸到星辰梭的门了。",
+          "side": "right",
+          "emotion": "smirk",
+          "effect": 0
+        },
+        {
+          "speaker": "设局人（秘术）",
+          "text": "六卷秘术，已得其五。最后一卷，等着你。",
+          "side": "right",
+          "emotion": "confident",
+          "effect": 0
+        }
+      ],
+      "isBoss": false,
+      "mode": "endgame",
+      "coreMove": {
+        "row": 8,
+        "col": 0,
+        "value": 3,
+        "cascadeCount": 36,
+        "cascadeSequence": [
+          {
+            "row": 6,
+            "col": 8,
+            "value": 3,
+            "cellId": 62
+          },
+          {
+            "row": 3,
+            "col": 8,
+            "value": 9,
+            "cellId": 35
+          },
+          {
+            "row": 4,
+            "col": 8,
+            "value": 7,
+            "cellId": 44
+          },
+          {
+            "row": 4,
+            "col": 1,
+            "value": 9,
+            "cellId": 37
+          },
+          {
+            "row": 2,
+            "col": 1,
+            "value": 4,
+            "cellId": 19
+          },
+          {
+            "row": 0,
+            "col": 0,
+            "value": 5,
+            "cellId": 0
+          },
+          {
+            "row": 0,
+            "col": 8,
+            "value": 4,
+            "cellId": 8
+          },
+          {
+            "row": 1,
+            "col": 0,
+            "value": 6,
+            "cellId": 9
+          },
+          {
+            "row": 1,
+            "col": 2,
+            "value": 9,
+            "cellId": 11
+          },
+          {
+            "row": 1,
+            "col": 4,
+            "value": 4,
+            "cellId": 13
+          },
+          {
+            "row": 1,
+            "col": 6,
+            "value": 1,
+            "cellId": 15
+          },
+          {
+            "row": 1,
+            "col": 8,
+            "value": 5,
+            "cellId": 17
+          },
+          {
+            "row": 2,
+            "col": 4,
+            "value": 9,
+            "cellId": 22
+          },
+          {
+            "row": 5,
+            "col": 8,
+            "value": 1,
+            "cellId": 53
+          },
+          {
+            "row": 3,
+            "col": 7,
+            "value": 4,
+            "cellId": 34
+          },
+          {
+            "row": 3,
+            "col": 2,
+            "value": 6,
+            "cellId": 29
+          },
+          {
+            "row": 3,
+            "col": 6,
+            "value": 3,
+            "cellId": 33
+          },
+          {
+            "row": 2,
+            "col": 6,
+            "value": 7,
+            "cellId": 24
+          },
+          {
+            "row": 2,
+            "col": 7,
+            "value": 3,
+            "cellId": 25
+          },
+          {
+            "row": 3,
+            "col": 3,
+            "value": 5,
+            "cellId": 30
+          },
+          {
+            "row": 3,
+            "col": 1,
+            "value": 1,
+            "cellId": 28
+          },
+          {
+            "row": 4,
+            "col": 0,
+            "value": 4,
+            "cellId": 36
+          },
+          {
+            "row": 4,
+            "col": 3,
+            "value": 3,
+            "cellId": 39
+          },
+          {
+            "row": 4,
+            "col": 5,
+            "value": 1,
+            "cellId": 41
+          },
+          {
+            "row": 4,
+            "col": 7,
+            "value": 5,
+            "cellId": 43
+          },
+          {
+            "row": 5,
+            "col": 1,
+            "value": 5,
+            "cellId": 46
+          },
+          {
+            "row": 5,
+            "col": 5,
+            "value": 4,
+            "cellId": 50
+          },
+          {
+            "row": 5,
+            "col": 7,
+            "value": 6,
+            "cellId": 52
+          },
+          {
+            "row": 6,
+            "col": 0,
+            "value": 1,
+            "cellId": 54
+          },
+          {
+            "row": 6,
+            "col": 1,
+            "value": 6,
+            "cellId": 55
+          },
+          {
+            "row": 6,
+            "col": 2,
+            "value": 7,
+            "cellId": 56
+          },
+          {
+            "row": 7,
+            "col": 6,
+            "value": 4,
+            "cellId": 69
+          },
+          {
+            "row": 7,
+            "col": 7,
+            "value": 1,
+            "cellId": 70
+          },
+          {
+            "row": 8,
+            "col": 2,
+            "value": 4,
+            "cellId": 74
+          },
+          {
+            "row": 8,
+            "col": 6,
+            "value": 6,
+            "cellId": 78
+          },
+          {
+            "row": 8,
+            "col": 7,
+            "value": 7,
+            "cellId": 79
+          }
+        ]
+      },
+      "isClassic": true,
+      "breakPointIndex": 22,
+      "totalSteps": 59,
+      "targetTechnique": "swordfish",
+      "threeAct": {
+        "opening": [
+          [
+            6,
+            4
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            6,
+            5
+          ],
+          [
+            7,
+            0
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            8,
+            4
+          ],
+          [
+            8,
+            3
+          ],
+          [
+            8,
+            5
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            5,
+            5
+          ],
+          [
+            7,
+            6
+          ],
+          [
+            7,
+            7
+          ]
+        ],
+        "breakthrough": [
+          [
+            4,
+            6
+          ],
+          [
+            0,
+            6
+          ],
+          [
+            8,
+            0
+          ],
+          [
+            6,
+            8
+          ],
+          [
+            3,
+            8
+          ],
+          [
+            4,
+            8
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            3,
+            7
+          ],
+          [
+            3,
+            6
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            4,
+            0
+          ],
+          [
+            4,
+            3
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            4,
+            7
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            5,
+            7
+          ],
+          [
+            6,
+            0
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            6,
+            2
+          ],
+          [
+            8,
+            2
+          ],
+          [
+            8,
+            6
+          ],
+          [
+            8,
+            7
+          ]
+        ],
+        "avalanche": [
+          [
+            0,
+            7
+          ],
+          [
+            7,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            8,
+            1
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            8
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            6
+          ],
+          [
+            1,
+            8
+          ],
+          [
+            5,
+            8
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            2,
+            7
+          ],
+          [
+            3,
+            3
+          ]
+        ]
+      }
+    },
+    {
+      "levelId": 706,
+      "title": "第6关：秘术大师",
+      "gridSize": 9,
+      "difficulty": "困难",
+      "teachingGoal": "综合运用所有高级技巧（数对、三子法、二连纵横阵、三才游鱼阵）破解设局人留下的终极秘术笼局。",
+      "features": {
+        "allowDraft": true,
+        "assistant45": true,
+        "showHints": true,
+        "perspectiveMode": true,
+        "highlightRow": true,
+        "highlightCol": true,
+        "highlightBox": true,
+        "highlightNumber": true,
+        "highlightCage": true,
+        "autoFillCandidates": true
+      },
+      "triggers": [
+        {
+          "condition": "onLevelStart",
+          "type": "freeze_mask",
+          "highlight": "full",
+          "text": "终极试炼：这道题需要综合运用你学到的所有高级技巧。从简单技巧开始（显单→隐曜→数对→三子法→二连纵横阵→三才游鱼阵），一步步推进。不要急，仔细观察。",
+          "once": true,
+          "id": "t706_auto_0",
+          "targetR": 2,
+          "targetC": 6,
+          "targetType": "cell",
+          "highlightShape": "circle"
+        },
+        {
+          "condition": "onStuckForSeconds",
+          "seconds": 60,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "💡 遇到瓶颈时，回头检查是否漏掉了数对或三子法。高级技巧往往藏在基础排除之后。",
+          "delay": 500,
+          "id": "t706_auto_1"
+        },
+        {
+          "id": "t706_f1",
+          "condition": "onFirstNumberFilled",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "秘术终极挑战的第一步！数对、三链、二连纵横阵、三才游鱼阵——全部用上！",
+          "once": true
+        },
+        {
+          "id": "t706_b",
+          "condition": "onFillCountReached",
+          "count": 53,
+          "type": "enter_phase",
+          "phase": "breakthrough",
+          "once": true
+        },
+        {
+          "id": "t706_bt",
+          "condition": "onFillCountReached",
+          "count": 53,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "⚡ 破局时刻！五大秘术技巧协同发力，终极谜题开始崩塌！",
+          "once": true,
+          "delay": 400
+        },
+        {
+          "id": "t706_st20",
+          "condition": "onStuckForSeconds",
+          "seconds": 20,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "💡 卡住了？按系统顺序排查：孤星→隐曜→并蒂锁→双曜→三子法→二连纵横阵→三才游鱼阵，层层递进！",
+          "once": false
+        },
+        {
+          "id": "t706_st40",
+          "condition": "onStuckForSeconds",
+          "seconds": 40,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "💡 秘术大师的提示：高级盘面前期最容易遗漏的是隐曜（Hidden Single）！在找构型之前，先确保所有隐曜都已填出！",
+          "once": false,
+          "delay": 300
+        },
+        {
+          "id": "t706_ag",
+          "condition": "onConflict",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "⚠️ 秘术终极考验容不得半点猜测！每一个构型都要严格验证，否则差之毫厘谬以千里！",
+          "once": false
+        },
+        {
+          "id": "t706_fi",
+          "condition": "onFillCountReached",
+          "count": 70,
+          "type": "enter_phase",
+          "phase": "finishing",
+          "once": true
+        },
+        {
+          "id": "t706_fit",
+          "condition": "onFillCountReached",
+          "count": 70,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "✨ 收官！秘术大师徽章即将加冕，最后的真相就在眼前！",
+          "once": true,
+          "delay": 400
+        },
+        {
+          "id": "t706_c",
+          "condition": "onLevelComplete",
+          "type": "badge_award",
+          "text": "🎉 恭喜成为秘术大师！五大高级技巧——并蒂锁、双曜、三子法、二连纵横阵、三才游鱼阵——全部掌握！",
+          "once": true,
+          "badgeId": "badge_c7_master"
+        }
+      ],
+      "boardData": [
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          4,
+          5,
+          0,
+          0
+        ],
+        [
+          0,
+          2,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          7
+        ],
+        [
+          0,
+          0,
+          4,
+          0,
+          9,
+          3,
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          3,
+          4,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          4,
+          0,
+          2,
+          0,
+          1,
+          8,
+          0,
+          3
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          2,
+          0
+        ],
+        [
+          6,
+          0,
+          0,
+          0,
+          0,
+          9,
+          2,
+          0,
+          0
+        ],
+        [
+          0,
+          7,
+          0,
+          3,
+          0,
+          6,
+          0,
+          5,
+          0
+        ],
+        [
+          5,
+          0,
+          1,
+          0,
+          4,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "cages": [],
+      "solution": [
+        [
+          3,
+          1,
+          7,
+          6,
+          2,
+          4,
+          5,
+          8,
+          9
+        ],
+        [
+          9,
+          2,
+          6,
+          1,
+          8,
+          5,
+          4,
+          3,
+          7
+        ],
+        [
+          8,
+          5,
+          4,
+          7,
+          9,
+          3,
+          6,
+          1,
+          2
+        ],
+        [
+          2,
+          8,
+          3,
+          4,
+          6,
+          7,
+          1,
+          9,
+          5
+        ],
+        [
+          7,
+          4,
+          9,
+          2,
+          5,
+          1,
+          8,
+          6,
+          3
+        ],
+        [
+          1,
+          6,
+          5,
+          9,
+          3,
+          8,
+          7,
+          2,
+          4
+        ],
+        [
+          6,
+          3,
+          8,
+          5,
+          7,
+          9,
+          2,
+          4,
+          1
+        ],
+        [
+          4,
+          7,
+          2,
+          3,
+          1,
+          6,
+          9,
+          5,
+          8
+        ],
+        [
+          5,
+          9,
+          1,
+          8,
+          4,
+          2,
+          3,
+          7,
+          6
+        ]
+      ],
+      "preDialog": [
+        {
+          "speaker": "设局人",
+          "text": "……你来了。",
+          "side": "right",
+          "emotion": "calm",
+          "voiceId": "VO_SS_01",
+          "effect": 4
+        },
+        {
+          "speaker": "阿妍",
+          "text": "（看着残影，没有后退）……来了。",
+          "side": "right",
+          "emotion": "calm",
+          "voiceId": "VO_R_07",
+          "effect": 0
+        },
+        {
+          "speaker": "设局人",
+          "text": "这不是教学卷。这是我三十年前为自己设下的终极考验——一道需要同时运用并蒂锁、三子法、二连纵横阵和三才游鱼阵才能解开的笼局。",
+          "side": "right",
+          "emotion": "calm",
+          "voiceId": "VO_SS_03",
+          "effect": 3
+        },
+        {
+          "speaker": "设局人",
+          "text": "我花了三天三夜才解开它。如果你能独立完成——你就不再是我的学生，而是与我并列的设局者。",
+          "side": "right",
+          "emotion": "calm",
+          "voiceId": "VO_SS_04",
+          "effect": 3
+        },
+        {
+          "speaker": "莹莹",
+          "text": "三天三夜？！这也太难了吧……",
+          "side": "right",
+          "emotion": "calm",
+          "voiceId": "VO_J_05",
+          "effect": 0
+        },
+        {
+          "speaker": "阿妍",
+          "text": "（声音很轻，但很稳）……最后一道了。开始吧。",
+          "side": "right",
+          "emotion": "determined",
+          "voiceId": "VO_R_13",
+          "effect": 0
+        },
+        {
+          "speaker": "沈墨",
+          "text": "（他站在残影面前。没有后退。他看着那个半透明的轮廓，声音很低，像是在确认什么）……这封信，是你写的吗？",
+          "side": "left",
+          "emotion": "sad",
+          "voiceId": "VO_SM_47",
+          "effect": 1
+        },
+        {
+          "speaker": "旁白",
+          "text": "（他从口袋里取出一封信——不是设局人暗格里的那封，是他自己收到的那封。）",
+          "isNarration": true
+        },
+        {
+          "speaker": "设局人",
+          "text": "……不是我写的。是另一个人。但那封信，是我让她写的。",
+          "side": "right",
+          "emotion": "calm",
+          "voiceId": "VO_SS_05",
+          "effect": 4
+        }
+      ],
+      "clearDialog": [
+        {
+          "speaker": "设局人",
+          "text": "……你做到了。",
+          "side": "right",
+          "emotion": "calm",
+          "voiceId": "VO_SS_06",
+          "effect": 4
+        },
+        {
+          "speaker": "设局人",
+          "text": "星辰梭的奥义，从来不是某一种构型、某一条规则。它是一种信念——在混沌的数字迷雾中，永远存在着秩序，等待被发现。",
+          "side": "right",
+          "emotion": "calm",
+          "voiceId": "VO_SS_07",
+          "effect": 3
+        },
+        {
+          "speaker": "设局人",
+          "text": "从今以后，你就是新的设局人。档案馆、星辰梭、还有这六卷秘术——都交给你了。",
+          "side": "right",
+          "emotion": "calm",
+          "voiceId": "VO_SS_08",
+          "effect": 3
+        },
+        {
+          "speaker": "阿妍",
+          "text": "（看着残影渐渐淡去，没有移开目光）……你等了多久？",
+          "side": "right",
+          "emotion": "calm",
+          "voiceId": "VO_R_07",
+          "effect": 0
+        },
+        {
+          "speaker": "设局人",
+          "text": "（停顿了一下，声音变得很轻）……等你问这个问题，等了很久。",
+          "side": "right",
+          "emotion": "calm",
+          "voiceId": "VO_SS_09",
+          "effect": 2
+        },
+        {
+          "speaker": "旁白",
+          "text": "（残影彻底消散。）",
+          "isNarration": true
+        },
+        {
+          "speaker": "莹莹",
+          "text": "（在阿妍身边，声音很轻）阿妍姐……你好像早就认识他。",
+          "side": "right",
+          "emotion": "calm",
+          "voiceId": "VO_J_05",
+          "effect": 0
+        },
+        {
+          "speaker": "阿妍",
+          "text": "（沉默了很久）……不。我不认识他。我只是认识他留下来的所有东西。",
+          "side": "right",
+          "emotion": "thinking",
+          "voiceId": "VO_R_06",
+          "effect": 0
+        },
+        {
+          "speaker": "守笼人",
+          "text": "恭喜你，秘术大师。七章全部完成。",
+          "side": "right",
+          "emotion": "smile",
+          "voiceId": "VO_CK_06",
+          "effect": 2
+        },
+        {
+          "speaker": "阿妍",
+          "text": "（轻声）……七章。",
+          "side": "right",
+          "emotion": "calm",
+          "voiceId": "VO_R_07",
+          "effect": 0
+        },
+        {
+          "speaker": "沈墨",
+          "text": "（他站在暗格前，手里握着那封自己带来的信。他看了看暗格里那封“写给女儿”的信，又看了看自己手里的信——不是同一封。但折纸的方式，一模一样。）",
+          "side": "left",
+          "emotion": "sad",
+          "voiceId": "VO_SM_48",
+          "effect": 1
+        }
+      ],
+      "isBoss": true,
+      "mode": "endgame",
+      "isClassic": true,
+      "breakPointIndex": null,
+      "totalSteps": 55,
+      "targetTechnique": "mixed",
+      "threeAct": {
+        "opening": [
+          [
+            2,
+            6
+          ],
+          [
+            6,
+            2
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            8,
+            1
+          ],
+          [
+            7,
+            2
+          ],
+          [
+            7,
+            0
+          ],
+          [
+            2,
+            8
+          ],
+          [
+            8,
+            5
+          ],
+          [
+            7,
+            4
+          ],
+          [
+            6,
+            3
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            6,
+            8
+          ],
+          [
+            7,
+            6
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            4,
+            0
+          ]
+        ],
+        "breakthrough": [
+          [
+            0,
+            7
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            3,
+            7
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            3,
+            6
+          ],
+          [
+            5,
+            0
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            5,
+            2
+          ],
+          [
+            5,
+            5
+          ],
+          [
+            5,
+            6
+          ]
+        ],
+        "avalanche": [
+          [
+            0,
+            4
+          ],
+          [
+            3,
+            0
+          ],
+          [
+            5,
+            4
+          ],
+          [
+            5,
+            3
+          ],
+          [
+            8,
+            3
+          ],
+          [
+            6,
+            4
+          ],
+          [
+            6,
+            7
+          ],
+          [
+            7,
+            8
+          ],
+          [
+            0,
+            8
+          ],
+          [
+            8,
+            8
+          ],
+          [
+            3,
+            8
+          ],
+          [
+            5,
+            8
+          ],
+          [
+            1,
+            7
+          ],
+          [
+            1,
+            6
+          ],
+          [
+            8,
+            7
+          ],
+          [
+            8,
+            6
+          ],
+          [
+            4,
+            7
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            4,
+            2
+          ],
+          [
+            1,
+            2
+          ]
+        ]
+      }
+    },
+    {
+      "levelId": 799,
+      "title": "隐藏关：星辰之眼",
+      "isHidden": true,
+      "hiddenUnlockType": "all_s_chapter",
+      "gridSize": 9,
+      "difficulty": "中等偏难",
+      "teachingGoal": "隐藏关：设局人留下的终极秘术笼局——「星辰之眼」。融合所有高级技巧，揭示星辰梭的真正秘密。",
+      "features": {
+        "allowDraft": true,
+        "assistant45": true,
+        "showHints": true,
+        "perspectiveMode": true,
+        "highlightRow": true,
+        "highlightCol": true,
+        "highlightBox": true,
+        "highlightNumber": true,
+        "highlightCage": true,
+        "autoFillCandidates": true
+      },
+      "triggers": [
+        {
+          "condition": "onLevelStart",
+          "type": "freeze_mask",
+          "highlight": "full",
+          "text": "「星辰之眼」——设局人毕生心血的结晶。只有掌握所有秘术、全S级通关的人，才有资格挑战。",
+          "once": true,
+          "id": "t799_auto_0",
+          "targetR": 4,
+          "targetC": 4,
+          "targetType": "cell",
+          "highlightShape": "circle"
+        },
+        {
+          "condition": "onStuckForSeconds",
+          "seconds": 120,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "💡 星辰之眼的核心：中心的十字构型是破局关键。先找数对，再三子法，最后用二连纵横阵突破。",
+          "delay": 500,
+          "id": "t799_auto_1",
+          "once": true
+        }
+      ],
+      "boardData": [
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          8,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          7,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          5,
+          0,
+          0
+        ],
+        [
+          0,
+          9,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          6
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          8,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          6,
+          0,
+          0,
+          9,
+          0,
+          0
+        ]
+      ],
+      "solution": [
+        [
+          2,
+          1,
+          6,
+          3,
+          9,
+          5,
+          7,
+          8,
+          4
+        ],
+        [
+          5,
+          4,
+          3,
+          8,
+          2,
+          7,
+          1,
+          6,
+          9
+        ],
+        [
+          7,
+          8,
+          9,
+          1,
+          6,
+          4,
+          2,
+          3,
+          5
+        ],
+        [
+          8,
+          2,
+          1,
+          4,
+          3,
+          6,
+          5,
+          9,
+          7
+        ],
+        [
+          6,
+          9,
+          4,
+          5,
+          7,
+          2,
+          8,
+          1,
+          3
+        ],
+        [
+          3,
+          5,
+          7,
+          9,
+          8,
+          1,
+          4,
+          2,
+          6
+        ],
+        [
+          4,
+          3,
+          8,
+          2,
+          5,
+          9,
+          6,
+          7,
+          1
+        ],
+        [
+          9,
+          6,
+          5,
+          7,
+          1,
+          8,
+          3,
+          4,
+          2
+        ],
+        [
+          1,
+          7,
+          2,
+          6,
+          4,
+          3,
+          9,
+          5,
+          8
+        ]
+      ],
+      "cages": [
+        {
+          "id": 0,
+          "sum": 34,
+          "cells": [
+            [
+              0,
+              8
+            ],
+            [
+              0,
+              7
+            ],
+            [
+              0,
+              6
+            ],
+            [
+              1,
+              8
+            ],
+            [
+              1,
+              7
+            ]
+          ]
+        },
+        {
+          "id": 1,
+          "sum": 25,
+          "cells": [
+            [
+              3,
+              5
+            ],
+            [
+              2,
+              5
+            ],
+            [
+              3,
+              6
+            ],
+            [
+              4,
+              6
+            ],
+            [
+              4,
+              5
+            ]
+          ]
+        },
+        {
+          "id": 2,
+          "sum": 30,
+          "cells": [
+            [
+              5,
+              3
+            ],
+            [
+              5,
+              4
+            ],
+            [
+              5,
+              5
+            ],
+            [
+              4,
+              3
+            ],
+            [
+              4,
+              4
+            ]
+          ]
+        },
+        {
+          "id": 3,
+          "sum": 23,
+          "cells": [
+            [
+              5,
+              1
+            ],
+            [
+              4,
+              1
+            ],
+            [
+              5,
+              0
+            ],
+            [
+              4,
+              2
+            ],
+            [
+              3,
+              1
+            ]
+          ]
+        },
+        {
+          "id": 4,
+          "sum": 25,
+          "cells": [
+            [
+              8,
+              0
+            ],
+            [
+              8,
+              1
+            ],
+            [
+              7,
+              1
+            ],
+            [
+              8,
+              2
+            ],
+            [
+              7,
+              0
+            ]
+          ]
+        },
+        {
+          "id": 5,
+          "sum": 22,
+          "cells": [
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              2,
+              0
+            ],
+            [
+              3,
+              0
+            ]
+          ]
+        },
+        {
+          "id": 6,
+          "sum": 19,
+          "cells": [
+            [
+              2,
+              6
+            ],
+            [
+              2,
+              7
+            ],
+            [
+              2,
+              8
+            ],
+            [
+              3,
+              7
+            ]
+          ]
+        },
+        {
+          "id": 7,
+          "sum": 19,
+          "cells": [
+            [
+              8,
+              8
+            ],
+            [
+              7,
+              8
+            ],
+            [
+              8,
+              7
+            ],
+            [
+              7,
+              7
+            ]
+          ]
+        },
+        {
+          "id": 8,
+          "sum": 13,
+          "cells": [
+            [
+              5,
+              8
+            ],
+            [
+              5,
+              7
+            ],
+            [
+              5,
+              6
+            ],
+            [
+              4,
+              7
+            ]
+          ]
+        },
+        {
+          "id": 9,
+          "sum": 22,
+          "cells": [
+            [
+              8,
+              4
+            ],
+            [
+              8,
+              5
+            ],
+            [
+              8,
+              3
+            ],
+            [
+              8,
+              6
+            ]
+          ]
+        },
+        {
+          "id": 10,
+          "sum": 10,
+          "cells": [
+            [
+              4,
+              8
+            ],
+            [
+              3,
+              8
+            ]
+          ]
+        },
+        {
+          "id": 11,
+          "sum": 14,
+          "cells": [
+            [
+              6,
+              8
+            ],
+            [
+              6,
+              7
+            ],
+            [
+              6,
+              6
+            ]
+          ]
+        },
+        {
+          "id": 12,
+          "sum": 12,
+          "cells": [
+            [
+              7,
+              5
+            ],
+            [
+              7,
+              6
+            ],
+            [
+              7,
+              4
+            ]
+          ]
+        },
+        {
+          "id": 13,
+          "sum": 17,
+          "cells": [
+            [
+              2,
+              4
+            ],
+            [
+              1,
+              4
+            ],
+            [
+              0,
+              4
+            ]
+          ]
+        },
+        {
+          "id": 14,
+          "sum": 6,
+          "cells": [
+            [
+              4,
+              0
+            ]
+          ]
+        },
+        {
+          "id": 15,
+          "sum": 14,
+          "cells": [
+            [
+              7,
+              3
+            ],
+            [
+              7,
+              2
+            ],
+            [
+              6,
+              3
+            ]
+          ]
+        },
+        {
+          "id": 16,
+          "sum": 18,
+          "cells": [
+            [
+              6,
+              1
+            ],
+            [
+              6,
+              2
+            ],
+            [
+              5,
+              2
+            ]
+          ]
+        },
+        {
+          "id": 17,
+          "sum": 8,
+          "cells": [
+            [
+              3,
+              2
+            ],
+            [
+              3,
+              3
+            ],
+            [
+              3,
+              4
+            ]
+          ]
+        },
+        {
+          "id": 18,
+          "sum": 18,
+          "cells": [
+            [
+              2,
+              3
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              0,
+              3
+            ],
+            [
+              0,
+              2
+            ]
+          ]
+        },
+        {
+          "id": 19,
+          "sum": 14,
+          "cells": [
+            [
+              6,
+              4
+            ],
+            [
+              6,
+              5
+            ]
+          ]
+        },
+        {
+          "id": 20,
+          "sum": 13,
+          "cells": [
+            [
+              1,
+              6
+            ],
+            [
+              1,
+              5
+            ],
+            [
+              0,
+              5
+            ]
+          ]
+        },
+        {
+          "id": 21,
+          "sum": 4,
+          "cells": [
+            [
+              6,
+              0
+            ]
+          ]
+        },
+        {
+          "id": 22,
+          "sum": 25,
+          "cells": [
+            [
+              2,
+              1
+            ],
+            [
+              2,
+              2
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              0,
+              1
+            ]
+          ]
+        }
+      ],
+      "preDialog": [
+        {
+          "speaker": "旁白",
+          "text": "当你全S级通关第七章秘术档案后，暗格深处浮现出一个从未见过的笼局——它悬浮在半空中，中心闪烁着微光，像一只凝视着你的眼睛。",
+          "isNarration": true,
+          "bg": "assets/images/backgrounds/bg_scene63.jpg"
+        },
+        {
+          "speaker": "设局人（残影）",
+          "text": "……你来了。比我预想的要快。",
+          "side": "right",
+          "emotion": "calm",
+          "voiceId": "VO_SS_10",
+          "effect": 3
+        },
+        {
+          "speaker": "阿妍",
+          "text": "这是……什么？",
+          "side": "right",
+          "emotion": "surprised",
+          "voiceId": "VO_R_04"
+        },
+        {
+          "speaker": "设局人（残影）",
+          "text": "「星辰之眼」。我这辈子布过的最难的一道笼局。也是……我留给她的最后一道题。",
+          "side": "right",
+          "emotion": "calm",
+          "voiceId": "VO_SS_12",
+          "effect": 2
+        },
+        {
+          "speaker": "守笼人",
+          "text": "（声音微颤）……你从来没给我看过这道题。",
+          "side": "right",
+          "emotion": "surprised",
+          "voiceId": "VO_CK_10"
+        },
+        {
+          "speaker": "设局人（残影）",
+          "text": "因为你不需要解开它。但她需要——如果她真的想知道真相的话。",
+          "side": "right",
+          "emotion": "calm",
+          "voiceId": "VO_SS_11",
+          "effect": 1
+        },
+        {
+          "speaker": "莹莹",
+          "text": "（握紧拳头）我……我想知道。",
+          "side": "right",
+          "emotion": "confident",
+          "voiceId": "VO_J_05"
+        },
+        {
+          "speaker": "设局人（残影）",
+          "text": "那就解开它。解开星辰之眼，你会看到——我真正想对你说的话。",
+          "side": "right",
+          "emotion": "calm",
+          "voiceId": "VO_SS_13",
+          "effect": 3
+        }
+      ],
+      "clearDialog": [
+        {
+          "speaker": "旁白",
+          "text": "最后一个数字落下的瞬间，星辰之眼骤然亮起——整个笼局化作一道光柱，直冲穹顶。",
+          "isNarration": true,
+          "effect": 3
+        },
+        {
+          "speaker": "设局人（残影）",
+          "text": "（身影变得清晰了一些）……你做到了。我的女儿。",
+          "side": "right",
+          "emotion": "smirk",
+          "voiceId": "VO_SS_11",
+          "effect": 2
+        },
+        {
+          "speaker": "莹莹",
+          "text": "（声音颤抖）……爸？",
+          "side": "right",
+          "emotion": "surprised",
+          "voiceId": "VO_J_05"
+        },
+        {
+          "speaker": "设局人（残影）",
+          "text": "对不起。我不能亲自陪你长大。但我把我所有的智慧、所有的爱，都藏在了这些笼局里。",
+          "side": "right",
+          "emotion": "calm",
+          "voiceId": "VO_SS_12",
+          "effect": 1
+        },
+        {
+          "speaker": "设局人（残影）",
+          "text": "你能走到这里，说明你已经成为了比我更优秀的人。我为你骄傲。",
+          "side": "right",
+          "emotion": "calm",
+          "voiceId": "VO_SS_13",
+          "effect": 3
+        },
+        {
+          "speaker": "莹莹",
+          "text": "（泪流满面，却说不出话）……",
+          "side": "right",
+          "emotion": "sad",
+          "voiceId": "VO_J_07"
+        },
+        {
+          "speaker": "设局人（残影）",
+          "text": "但这还不是结束。档案馆最深处，还有最后一道锁——那是我留给「真正的传人」的。如果你准备好了，就去找它吧。",
+          "side": "right",
+          "emotion": "calm",
+          "voiceId": "VO_SS_10",
+          "effect": 2
+        },
+        {
+          "speaker": "沈墨",
+          "text": "（轻声）……最后一道锁。",
+          "side": "left",
+          "emotion": "thinking",
+          "voiceId": "VO_SM_44"
+        },
+        {
+          "speaker": "阿妍",
+          "text": "（看向沈墨）和你收到的那封信……有关系吗？",
+          "side": "right",
+          "emotion": "thinking",
+          "voiceId": "VO_R_06"
+        }
+      ],
+      "isBoss": true,
+      "threeAct": {
+        "opening": [
+          [
+            4,
+            0
+          ],
+          [
+            6,
+            0
+          ],
+          [
+            7,
+            6
+          ],
+          [
+            7,
+            4
+          ],
+          [
+            7,
+            3
+          ],
+          [
+            6,
+            3
+          ],
+          [
+            7,
+            7
+          ],
+          [
+            4,
+            6
+          ],
+          [
+            4,
+            8
+          ],
+          [
+            2,
+            8
+          ],
+          [
+            2,
+            7
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            4,
+            7
+          ],
+          [
+            0,
+            6
+          ],
+          [
+            0,
+            7
+          ],
+          [
+            1,
+            7
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            5,
+            7
+          ],
+          [
+            6,
+            4
+          ],
+          [
+            6,
+            5
+          ]
+        ],
+        "breakthrough": [
+          [
+            3,
+            5
+          ],
+          [
+            7,
+            2
+          ],
+          [
+            7,
+            1
+          ],
+          [
+            7,
+            0
+          ],
+          [
+            5,
+            3
+          ],
+          [
+            5,
+            6
+          ],
+          [
+            7,
+            8
+          ],
+          [
+            6,
+            8
+          ],
+          [
+            5,
+            2
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            1,
+            6
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            7
+          ],
+          [
+            3,
+            8
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            4,
+            2
+          ],
+          [
+            4,
+            3
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            3,
+            0
+          ],
+          [
+            5,
+            4
+          ],
+          [
+            5,
+            5
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            8
+          ],
+          [
+            0,
+            8
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            5,
+            0
+          ],
+          [
+            6,
+            2
+          ],
+          [
+            6,
+            6
+          ],
+          [
+            6,
+            7
+          ],
+          [
+            8,
+            0
+          ],
+          [
+            8,
+            1
+          ],
+          [
+            8,
+            2
+          ],
+          [
+            8,
+            4
+          ],
+          [
+            8,
+            5
+          ],
+          [
+            8,
+            7
+          ],
+          [
+            8,
+            8
+          ]
+        ],
+        "avalanche": []
+      }
+    }
+  ],
+  "prologue": [
+    {
+      "speaker": "旁白",
+      "text": "终极笼局结束后，你成为了新任守笼人。在整理档案时，你发现了一个被层层封锁的暗格。",
+      "isNarration": true,
+      "effect": 0,
+      "bg": "assets/images/backgrounds/bg_scene56.jpg"
+    },
+    {
+      "speaker": "莹莹",
+      "text": "（推开暗格的门，灰尘扑面而来，她咳嗽了两声）哇——这是什么？！上面写着……“秘术档案——非星辰梭传人不得开启”！",
+      "side": "right",
+      "emotion": "surprised",
+      "voiceId": "VO_J_03",
+      "effect": 1
+    },
+    {
+      "speaker": "守笼人",
+      "text": "……这是设局人当年留下的最后一批手稿。我以为这些东西已经和他一起消失了。",
+      "side": "right",
+      "emotion": "calm",
+      "voiceId": "VO_CK_10",
+      "effect": 2
+    },
+    {
+      "speaker": "阿妍",
+      "text": "（没有走向暗格，而是走向了书架的另一侧。她抽出一本旧书，翻开——里面夹着一张泛黄的纸。）……他不只留下了手稿。",
+      "side": "right",
+      "emotion": "thinking",
+      "voiceId": "VO_R_06",
+      "effect": 0
+    },
+    {
+      "speaker": "阿妍",
+      "text": "他留了一封信。写给女儿的。",
+      "side": "right",
+      "emotion": "calm",
+      "voiceId": "VO_R_07",
+      "effect": 0
+    },
+    {
+      "speaker": "莹莹",
+      "text": "（愣住了，声音有些颤抖）……留给……谁的？",
+      "side": "right",
+      "emotion": "calm",
+      "voiceId": "VO_J_05",
+      "effect": 0
+    },
+    {
+      "speaker": "阿妍",
+      "text": "（把纸翻过来，对着光，念出上面的字）……“给我的女儿。当你读到这封信的时候，我已经不在了。但你要知道——我从来没有离开过你。”",
+      "side": "right",
+      "emotion": "thinking",
+      "voiceId": "VO_R_06",
+      "effect": 1
+    },
+    {
+      "speaker": "莹莹",
+      "text": "（没有哭，但她的眼睛已经红了。）",
+      "side": "right",
+      "effect": 0
+    },
+    {
+      "speaker": "沈墨",
+      "text": "（他站在门口，没有走进来。但他看到了那张纸上的字——然后他认出了那封信的折纸方式。和他收到的信，一模一样。）……同样的折法。",
+      "side": "left",
+      "emotion": "sad",
+      "voiceId": "VO_SM_44",
+      "effect": 0
+    }
+  ],
+  "introStory": [
+    {
+      "type": "title",
+      "text": "第七章",
+      "subtitle": "秘术档案"
+    },
+    {
+      "speaker": "旁白",
+      "text": "终极笼局结束后，你成为了新任守笼人。在整理档案时，你发现了一个被层层封锁的暗格。"
+    },
+    {
+      "speaker": "阿妍",
+      "text": "哇！这是什么？上面写着「秘术档案——非星辰梭传人不得开启」！"
+    },
+    {
+      "speaker": "守笼人",
+      "text": "这是……他当年留下的最后一批手稿。我以为这些东西已经和他一起消失了。"
+    },
+    {
+      "speaker": "守笼人",
+      "text": "数对、三子法、二连纵横阵、三才游鱼阵……这些是比星衡法则更高阶的推演术。能掌握它们的人，整个数独界也屈指可数。"
+    },
+    {
+      "speaker": "阿妍",
+      "text": "那我们岂不是第一批看到这些秘术的人？太酷了！快来看看第一卷写了什么！"
+    }
+  ],
+  "epilogue": [
+    {
+      "speaker": "设局人",
+      "text": "……你终于看到这里了。",
+      "side": "right",
+      "emotion": "calm",
+      "voiceId": "VO_SS_10",
+      "effect": 3,
+      "bg": "assets/images/backgrounds/bg_scene63.jpg"
+    },
+    {
+      "speaker": "阿妍",
+      "text": "（站在书架旁，手里握着那张泛黄的信纸）……终于。",
+      "side": "right",
+      "emotion": "calm",
+      "voiceId": "VO_R_07",
+      "effect": 0
+    },
+    {
+      "speaker": "设局人",
+      "text": "不必叫我老师。当你能看懂三才游鱼阵的那一刻，你已经超越了我当年的水平。",
+      "side": "right",
+      "emotion": "calm",
+      "voiceId": "VO_SS_11",
+      "effect": 2
+    },
+    {
+      "speaker": "设局人",
+      "text": "但记住——技巧是死的，洞察是活的。星辰梭的真正奥义，从来不是某一种固定的构型，而是在混沌中看见秩序的眼睛。",
+      "side": "right",
+      "emotion": "calm",
+      "voiceId": "VO_SS_12",
+      "effect": 3
+    },
+    {
+      "speaker": "设局人",
+      "text": "……你来了。就够了。",
+      "side": "right",
+      "emotion": "calm",
+      "voiceId": "VO_SS_13",
+      "effect": 2
+    },
+    {
+      "speaker": "莹莹",
+      "text": "（在阿妍身边，声音很轻）阿妍姐……他好像一直在等你。",
+      "side": "right",
+      "emotion": "calm",
+      "voiceId": "VO_J_05",
+      "effect": 0
+    },
+    {
+      "speaker": "阿妍",
+      "text": "（低头看了一会儿手里那张泛黄的信纸，然后轻轻折好，放进口袋里）……嗯。我知道。",
+      "side": "right",
+      "emotion": "calm",
+      "voiceId": "VO_R_07",
+      "effect": 0
+    },
+    {
+      "speaker": "阿妍",
+      "text": "……走吧。档案馆的新时代开始了。",
+      "side": "right",
+      "emotion": "calm",
+      "voiceId": "VO_R_05",
+      "effect": 0
+    },
+    {
+      "speaker": "守笼人",
+      "text": "（在门口微微点头）……走吧，新任守笼人。",
+      "side": "right",
+      "emotion": "smile",
+      "voiceId": "VO_CK_06",
+      "effect": 1
+    },
+    {
+      "speaker": "沈墨",
+      "text": "（他站在门口，没有立刻跟上。他回头看了一眼那扇暗格的门——它已经关上了。他停了一下。然后他轻声说，像是给所有人听的，也像是给自己听的）……我不是来解开这一局的。我是来找到你的。",
+      "side": "left",
+      "emotion": "sad",
+      "voiceId": "VO_SM_11",
+      "effect": 1
+    },
+    {
+      "speaker": "旁白",
+      "text": "（他转身，跟上了她们。）",
+      "isNarration": true
+    },
+    {
+      "speaker": "旁白",
+      "text": "（——第一周目·完——）",
+      "isNarration": true
+    }
+  ],
+  "endingStory": [
+    {
+      "speaker": "设局人（残影）",
+      "text": "……你终于看到这里了。"
+    },
+    {
+      "speaker": "你",
+      "text": "设局人……不，老师。"
+    },
+    {
+      "speaker": "设局人（残影）",
+      "text": "不必叫我老师。当你能看懂三才游鱼阵的那一刻，你已经超越了我当年的水平。"
+    },
+    {
+      "speaker": "设局人（残影）",
+      "text": "但记住——技巧是死的，洞察是活的。星辰梭的真正奥义，从来不是某一种固定的构型，而是在混沌中看见秩序的眼睛。"
+    },
+    {
+      "speaker": "阿妍",
+      "text": "他消失了……但我感觉他一直在看着我们。"
+    },
+    {
+      "speaker": "守笼人",
+      "text": "档案馆的新时代开始了。走吧，新任守笼人——还有无数笼局等待你去破解。"
+    }
+  ]
+}

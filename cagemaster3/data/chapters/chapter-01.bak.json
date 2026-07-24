@@ -1,0 +1,3917 @@
+{
+  "chapterId": 1,
+  "title": "初识笼中密码",
+  "description": "你作为新人侦探来到旧档案馆，守笼人是谜题管理员，阿妍是实习侦探。从4×4迷你盘面开始，学习数独三大铁律和杀手数独基础笼格。",
+  "unlockCondition": {},
+  "theme": 0,
+  "levels": [
+    {
+      "levelId": 101,
+      "title": "第0关：规则初探",
+      "mode": "full",
+      "gridSize": 4,
+      "difficulty": "入门",
+      "teachingGoal": "认识数独基础规则：每行每列数字不重复。试着填出第一个数字。",
+      "features": {
+        "allowDraft": false,
+        "assistant45": false,
+        "showHints": true,
+        "highlightRow": true,
+        "highlightCol": true,
+        "highlightBox": false,
+        "highlightNumber": false,
+        "highlightCage": false,
+        "autoFillCandidates": false
+      },
+      "boardData": [
+        [
+          1,
+          0,
+          0,
+          3
+        ],
+        [
+          0,
+          2,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          3,
+          0
+        ],
+        [
+          2,
+          0,
+          0,
+          4
+        ]
+      ],
+      "solution": [
+        [
+          1,
+          4,
+          2,
+          3
+        ],
+        [
+          3,
+          2,
+          4,
+          1
+        ],
+        [
+          4,
+          1,
+          3,
+          2
+        ],
+        [
+          2,
+          3,
+          1,
+          4
+        ]
+      ],
+      "cages": [],
+      "triggers": [
+        {
+          "id": "t101_tutorial",
+          "condition": "onLevelStart",
+          "type": "tutorial",
+          "tutorial": {
+            "id": "tutorial_intro_101",
+            "steps": [
+              {
+                "type": "dialogue",
+                "lines": [
+                  {
+                    "speaker": "守笼人",
+                    "text": "每行每列数字不重复。来试试吧。",
+                    "emotion": "default",
+                    "effect": 1
+                  }
+                ]
+              },
+              {
+                "type": "highlight_cells",
+                "cells": [
+                  [
+                    0,
+                    1
+                  ]
+                ],
+                "color": "#fbbf24",
+                "highlightRow": 0,
+                "highlightCol": 1,
+                "autoSelect": true,
+                "delay": 2000
+              },
+              {
+                "type": "prompt_fill",
+                "cells": [
+                  [
+                    0,
+                    1
+                  ]
+                ],
+                "number": 4,
+                "validation": {
+                  "type": "fill_number",
+                  "cell": [
+                    0,
+                    1
+                  ],
+                  "expected": 4
+                }
+              },
+              {
+                "type": "dialogue_after_fill",
+                "lines": [
+                  {
+                    "speaker": "守笼人",
+                    "text": "很好。继续填完所有空格吧。",
+                    "emotion": "default"
+                  }
+                ]
+              }
+            ]
+          },
+          "once": true
+        },
+        {
+          "id": "t100_f1",
+          "condition": "onFirstNumberFilled",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "答对了！看看行和列里已经有的数字，剩下的就是答案。",
+          "once": true
+        },
+        {
+          "id": "t100_f2",
+          "condition": "onFillCountReached",
+          "count": 5,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "继续加油！选中空格时，同行同列会高亮帮你排除。",
+          "once": true
+        },
+        {
+          "id": "t100_st",
+          "condition": "onStuckForSeconds",
+          "seconds": 30,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "卡住了？看看行和列里已经出现了哪些数字，剩下的就是答案！",
+          "once": false
+        },
+        {
+          "id": "t100_fi",
+          "condition": "onFillCountReached",
+          "count": 10,
+          "type": "enter_phase",
+          "phase": "finishing",
+          "once": true
+        }
+      ],
+      "preDialog": [
+        {
+          "speaker": "守笼人",
+          "text": "欢迎来到数字档案馆。这是第一关——试着填满所有空格吧。",
+          "side": "right",
+          "voiceId": "VO_CK_03",
+          "emotion": "default",
+          "effect": 0
+        },
+        {
+          "speaker": "守笼人",
+          "text": "记住：每行、每列，数字1到4各出现一次。",
+          "side": "right",
+          "voiceId": "VO_CK_03",
+          "emotion": "serious",
+          "effect": 1
+        }
+      ],
+      "clearDialog": [
+        {
+          "speaker": "守笼人",
+          "text": "能解开基础行锁，说明你至少具备了最基本的观察力。记住了——每一行，1到4各一次。",
+          "side": "right",
+          "voiceId": "VO_CK_06",
+          "emotion": "smile",
+          "effect": 0
+        },
+        {
+          "speaker": "莹莹",
+          "text": "哇！你过了！我当年卡这关卡了快半个钟头！",
+          "side": "right",
+          "voiceId": "VO_J_03",
+          "emotion": "surprised",
+          "effect": 1
+        },
+        {
+          "speaker": "旁白",
+          "text": "阿妍依然没有靠近棋盘，但声音比之前低了一点",
+          "isNarration": true
+        },
+        {
+          "speaker": "阿妍",
+          "text": "不错。继续。",
+          "side": "right",
+          "voiceId": "VO_R_003",
+          "emotion": "smile",
+          "effect": 0
+        },
+        {
+          "speaker": "旁白",
+          "text": "沈墨放下笔，抬头看了一眼守笼人。没有笑，但目光里有一种确认感。",
+          "isNarration": true
+        },
+        {
+          "speaker": "沈墨",
+          "text": "……嗯。",
+          "side": "left",
+          "voiceId": "VO_SM_09",
+          "emotion": "calm",
+          "effect": 0
+        }
+      ],
+      "tutorial": {
+        "id": "tutorial_intro_101",
+        "steps": [
+          {
+            "type": "dialogue",
+            "lines": [
+              {
+                "speaker": "守笼人",
+                "text": "每行每列数字不重复。来试试吧。",
+                "emotion": "default",
+                "effect": 1
+              }
+            ]
+          },
+          {
+            "type": "highlight_cells",
+            "cells": [
+              [
+                0,
+                1
+              ]
+            ],
+            "color": "#fbbf24",
+            "highlightRow": 0,
+            "highlightCol": 1,
+            "autoSelect": true,
+            "delay": 2000
+          },
+          {
+            "type": "prompt_fill",
+            "cells": [
+              [
+                0,
+                1
+              ]
+            ],
+            "number": 4,
+            "validation": {
+              "type": "fill_number",
+              "cell": [
+                0,
+                1
+              ],
+              "expected": 4
+            }
+          },
+          {
+            "type": "dialogue_after_fill",
+            "lines": [
+              {
+                "speaker": "守笼人",
+                "text": "很好。继续填完所有空格吧。",
+                "emotion": "default"
+              }
+            ]
+          }
+        ]
+      },
+      "lessonPlan": {
+        "newSkill": "row_col_rule",
+        "skillName": "行列规则",
+        "isFirstLesson": true,
+        "skippable": true,
+        "prerequisite": [],
+        "phases": {
+          "intro": {
+            "text": "每行每列，1到4各出现一次。",
+            "voiceId": "CK_03",
+            "duration": 2500
+          },
+          "demo": {
+            "steps": [
+              {
+                "action": "highlightRow",
+                "target": 0,
+                "duration": 1000
+              },
+              {
+                "action": "focusCell",
+                "target": [
+                  0,
+                  0
+                ],
+                "duration": 800
+              },
+              {
+                "action": "focusCell",
+                "target": [
+                  0,
+                  3
+                ],
+                "duration": 800
+              },
+              {
+                "action": "highlightCol",
+                "target": 1,
+                "duration": 1000
+              },
+              {
+                "action": "focusCell",
+                "target": [
+                  1,
+                  1
+                ],
+                "duration": 800
+              },
+              {
+                "action": "focusCell",
+                "target": [
+                  0,
+                  1
+                ],
+                "duration": 1200
+              }
+            ]
+          },
+          "guided": {
+            "targetCell": [
+              0,
+              1
+            ],
+            "correctValue": 4,
+            "maxAttempts": 2,
+            "failHint": "行里有1和3，列里有2。还剩几？",
+            "failVoiceId": "CK_05",
+            "autoRevealAfter": 2,
+            "successText": "行和列一起看，答案就出来了。",
+            "successVoiceId": "J_03"
+          },
+          "semiAuto": {
+            "enabled": true,
+            "targetCount": 2,
+            "hintText": "用同样的方法，再找出两个数字。",
+            "hintVoiceId": "R_07",
+            "watchCells": [
+              [
+                1,
+                0
+              ],
+              [
+                2,
+                3
+              ],
+              [
+                3,
+                1
+              ]
+            ]
+          },
+          "free": {
+            "enabled": true,
+            "unlockText": "剩下的交给你了。"
+          }
+        }
+      }
+    },
+    {
+      "levelId": 102,
+      "title": "第1关：初入档案馆",
+      "mode": "full",
+      "gridSize": 4,
+      "difficulty": "入门",
+      "teachingGoal": "认识「宫」：每个2×2的小宫格也是1-4不重复。行、列、宫三条规则一起用！",
+      "features": {
+        "allowDraft": false,
+        "assistant45": false,
+        "showHints": true,
+        "highlightRow": true,
+        "highlightCol": true,
+        "highlightBox": true,
+        "highlightNumber": false,
+        "highlightCage": false,
+        "autoFillCandidates": false
+      },
+      "boardData": [
+        [
+          1,
+          2,
+          0,
+          0
+        ],
+        [
+          0,
+          4,
+          1,
+          2
+        ],
+        [
+          2,
+          1,
+          4,
+          3
+        ],
+        [
+          4,
+          3,
+          0,
+          1
+        ]
+      ],
+      "solution": [
+        [
+          1,
+          2,
+          3,
+          4
+        ],
+        [
+          3,
+          4,
+          1,
+          2
+        ],
+        [
+          2,
+          1,
+          4,
+          3
+        ],
+        [
+          4,
+          3,
+          2,
+          1
+        ]
+      ],
+      "cages": [],
+      "triggers": [
+        {
+          "id": "t101_s",
+          "condition": "onLevelStart",
+          "type": "freeze_mask",
+          "text": "欢迎！灰色是提示数字。看空格旁的小数字（笔记），只剩1个的就是「孤星」，直接填！",
+          "once": true,
+          "targetR": 0,
+          "targetC": 2,
+          "targetType": "cell",
+          "highlightShape": "circle"
+        },
+        {
+          "id": "t101_f",
+          "condition": "onFirstNumberFilled",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "答对了🎉 每行、每列、每个2×2宫，1-4各出现一次！",
+          "once": true
+        },
+        {
+          "id": "t101_h",
+          "condition": "onFillCountReached",
+          "count": 11,
+          "type": "enter_phase",
+          "phase": "finishing",
+          "once": true
+        },
+        {
+          "id": "t101_c",
+          "condition": "onConflict",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "数字重复啦！检查行、列、小宫～",
+          "once": false
+        }
+      ],
+      "preDialog": [
+        {
+          "speaker": "守笼人",
+          "text": "竖列为档案第二重约束。现在横竖交叉，数字1-4在每一列也不能重复。",
+          "side": "right",
+          "sfx": "playDoorOpen",
+          "voiceId": "VO_CK_03",
+          "emotion": "serious",
+          "effect": 0
+        },
+        {
+          "speaker": "莹莹",
+          "text": "啊！这个我熟！我在这道关吃了大亏——横着全对了，竖着一看，三个3挤在一起！",
+          "side": "right",
+          "voiceId": "VO_J_04",
+          "emotion": "smile",
+          "effect": 1
+        },
+        {
+          "speaker": "阿妍",
+          "text": "横竖交叉才是真正的校验。单看一条线不够。",
+          "side": "right",
+          "voiceId": "VO_R_002",
+          "emotion": "serious",
+          "effect": 0
+        },
+        {
+          "speaker": "守笼人",
+          "text": "提示数比上一关少了。多出来的空格，需要靠行和列一起确认。",
+          "side": "right",
+          "voiceId": "VO_CK_03",
+          "emotion": "serious",
+          "effect": 0
+        },
+        {
+          "speaker": "旁白",
+          "text": "沈墨已经在第二列落笔，比上一关稍快——像是找到了某种节奏。",
+          "isNarration": true
+        },
+        {
+          "speaker": "阿妍",
+          "text": "列通了。还有行。",
+          "side": "right",
+          "voiceId": "VO_R_007",
+          "emotion": "calm",
+          "effect": 0
+        }
+      ],
+      "clearDialog": [
+        {
+          "speaker": "守笼人",
+          "text": "纵横交错，纹丝不乱。不错。",
+          "side": "right",
+          "voiceId": "VO_CK_06",
+          "emotion": "smile",
+          "effect": 0
+        },
+        {
+          "speaker": "莹莹",
+          "text": "他过了！阿妍姐你看到了吗？比我的记录快好多！",
+          "side": "right",
+          "voiceId": "VO_J_24",
+          "emotion": "surprised",
+          "effect": 1
+        },
+        {
+          "speaker": "旁白",
+          "text": "阿妍正在翻书，没有抬头，但嘴角微微动了一下",
+          "isNarration": true
+        },
+        {
+          "speaker": "阿妍",
+          "text": "嗯。看到了。",
+          "side": "right",
+          "voiceId": "VO_R_007",
+          "emotion": "calm",
+          "effect": 0
+        },
+        {
+          "speaker": "旁白",
+          "text": "沈墨放下笔，没有急着去下一关。看了一眼棋盘上填满的数字，像是在确认自己真的填完了。",
+          "isNarration": true
+        },
+        {
+          "speaker": "沈墨",
+          "text": "……三条都过了。",
+          "side": "left",
+          "voiceId": "VO_SM_09",
+          "emotion": "calm",
+          "effect": 0
+        }
+      ],
+      "lessonPlan": {
+        "newSkill": "box_rule",
+        "skillName": "宫规则",
+        "isFirstLesson": true,
+        "skippable": true,
+        "prerequisite": [
+          "row_col_rule"
+        ],
+        "phases": {
+          "intro": {
+            "text": "粗线围起来的2x2叫宫，也是1到4不重复。",
+            "voiceId": "CK_03",
+            "duration": 2800
+          },
+          "demo": {
+            "steps": [
+              {
+                "action": "highlightBox",
+                "target": 0,
+                "duration": 1200
+              },
+              {
+                "action": "focusCell",
+                "target": [
+                  0,
+                  0
+                ],
+                "duration": 700
+              },
+              {
+                "action": "focusCell",
+                "target": [
+                  0,
+                  1
+                ],
+                "duration": 700
+              },
+              {
+                "action": "focusCell",
+                "target": [
+                  1,
+                  1
+                ],
+                "duration": 700
+              },
+              {
+                "action": "focusCell",
+                "target": [
+                  1,
+                  0
+                ],
+                "duration": 1200
+              }
+            ]
+          },
+          "guided": {
+            "targetCell": [
+              1,
+              0
+            ],
+            "correctValue": 3,
+            "maxAttempts": 2,
+            "failHint": "数一数宫里的数字：1、2、？、4。",
+            "failVoiceId": "CK_05",
+            "autoRevealAfter": 2,
+            "successText": "行、列、宫，三锁齐开。",
+            "successVoiceId": "J_03"
+          },
+          "semiAuto": {
+            "enabled": true,
+            "targetCount": 2,
+            "hintText": "看看右下角的宫，也能找到答案。",
+            "hintVoiceId": "R_07",
+            "watchCells": [
+              [
+                3,
+                2
+              ],
+              [
+                0,
+                3
+              ],
+              [
+                0,
+                2
+              ]
+            ]
+          },
+          "free": {
+            "enabled": true,
+            "unlockText": "三条规则一起用，继续吧。"
+          }
+        }
+      }
+    },
+    {
+      "levelId": 103,
+      "title": "第2关：初识笼格",
+      "mode": "full",
+      "gridSize": 4,
+      "difficulty": "入门",
+      "teachingGoal": "认识笼子：虚线框是笼子，左上角数字是笼内总和。单格笼子，和值是几就填几！",
+      "allowPartialCages": true,
+      "features": {
+        "allowDraft": false,
+        "assistant45": false,
+        "showHints": true,
+        "highlightRow": true,
+        "highlightCol": true,
+        "highlightBox": true,
+        "highlightNumber": false,
+        "highlightCage": true,
+        "autoFillCandidates": false
+      },
+      "boardData": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          4,
+          0
+        ],
+        [
+          2,
+          0,
+          0,
+          0
+        ]
+      ],
+      "solution": [
+        [
+          3,
+          1,
+          2,
+          4
+        ],
+        [
+          4,
+          2,
+          3,
+          1
+        ],
+        [
+          1,
+          3,
+          4,
+          2
+        ],
+        [
+          2,
+          4,
+          1,
+          3
+        ]
+      ],
+      "cages": [
+        {
+          "id": 0,
+          "sum": 10,
+          "cells": [
+            [
+              0,
+              3
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              0,
+              2
+            ]
+          ]
+        },
+        {
+          "id": 1,
+          "sum": 7,
+          "cells": [
+            [
+              3,
+              2
+            ],
+            [
+              2,
+              2
+            ],
+            [
+              2,
+              3
+            ]
+          ]
+        },
+        {
+          "id": 2,
+          "sum": 10,
+          "cells": [
+            [
+              2,
+              0
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              2,
+              1
+            ]
+          ]
+        },
+        {
+          "id": 3,
+          "sum": 6,
+          "cells": [
+            [
+              3,
+              1
+            ],
+            [
+              3,
+              0
+            ]
+          ]
+        },
+        {
+          "id": 4,
+          "sum": 3,
+          "cells": [
+            [
+              3,
+              3
+            ]
+          ]
+        },
+        {
+          "id": 5,
+          "sum": 4,
+          "cells": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        }
+      ],
+      "triggers": [
+        {
+          "id": "t102_s",
+          "condition": "onLevelStart",
+          "type": "freeze_mask",
+          "text": "看虚线框！这是「笼子」，左上角是笼内总和。1格的笼子，和值是几就填几！",
+          "once": true,
+          "targetR": 0,
+          "targetC": 0,
+          "targetType": "cell",
+          "highlightShape": "circle"
+        },
+        {
+          "id": "t102_f",
+          "condition": "onFirstNumberFilled",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "对了！单格笼是送分题🎉",
+          "once": true
+        },
+        {
+          "id": "t102_b",
+          "condition": "onFillCountReached",
+          "count": 8,
+          "type": "enter_phase",
+          "phase": "breakthrough",
+          "once": true
+        },
+        {
+          "id": "t102_fi",
+          "condition": "onFillCountReached",
+          "count": 12,
+          "type": "enter_phase",
+          "phase": "finishing",
+          "once": true
+        },
+        {
+          "id": "t102_c",
+          "condition": "onConflict",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "检查笼子和值哦～",
+          "once": false
+        }
+      ],
+      "preDialog": [
+        {
+          "speaker": "守笼人",
+          "text": "第三重约束——宫。每个2×2小方格内，数字1-4也不能重复。",
+          "side": "right",
+          "voiceId": "VO_CK_03",
+          "emotion": "serious",
+          "effect": 0
+        },
+        {
+          "speaker": "莹莹",
+          "text": "行、列、宫——三重限制！这一关要把三个规则一起看了！",
+          "side": "right",
+          "voiceId": "VO_J_02",
+          "emotion": "confident",
+          "effect": 0
+        },
+        {
+          "speaker": "阿妍",
+          "text": "横、竖、框。三个方向一起约束。",
+          "side": "right",
+          "voiceId": "VO_R_002",
+          "emotion": "serious",
+          "effect": 0
+        },
+        {
+          "speaker": "守笼人",
+          "text": "注意——从这一关起，错一步，后面的格子都会跟着错。所以要反复验证。",
+          "side": "right",
+          "voiceId": "VO_CK_03",
+          "emotion": "serious",
+          "effect": 0
+        },
+        {
+          "speaker": "旁白",
+          "text": "沈墨看向棋盘，没有急于落笔。目光依次扫过行、列、小宫格的位置后，才开始填数。",
+          "isNarration": true
+        },
+        {
+          "speaker": "守笼人",
+          "text": "宫通了。",
+          "side": "right",
+          "voiceId": "VO_CK_06",
+          "emotion": "smile",
+          "effect": 0
+        }
+      ],
+      "clearDialog": [
+        {
+          "speaker": "守笼人",
+          "text": "行、列、宫，三锁齐开。",
+          "side": "right",
+          "voiceId": "VO_CK_06",
+          "emotion": "smile",
+          "effect": 0
+        },
+        {
+          "speaker": "莹莹",
+          "text": "三条规则一起看果然比单看难多了……",
+          "side": "right",
+          "voiceId": "VO_J_03",
+          "emotion": "surprised",
+          "effect": 1
+        },
+        {
+          "speaker": "旁白",
+          "text": "阿妍看了一眼棋盘，微微点头",
+          "isNarration": true
+        },
+        {
+          "speaker": "阿妍",
+          "text": "三条线都对齐了。",
+          "side": "right",
+          "voiceId": "VO_R_007",
+          "emotion": "calm",
+          "effect": 0
+        },
+        {
+          "speaker": "旁白",
+          "text": "沈墨放下笔，安静地看了一眼棋盘",
+          "isNarration": true
+        },
+        {
+          "speaker": "沈墨",
+          "text": "……三条。",
+          "side": "left",
+          "voiceId": "VO_SM_07",
+          "emotion": "default",
+          "effect": 0
+        }
+      ],
+      "lessonPlan": {
+        "newSkill": "cage_sum_combo",
+        "skillName": "笼和组合",
+        "isFirstLesson": true,
+        "skippable": true,
+        "prerequisite": [
+          "box_rule"
+        ],
+        "phases": {
+          "intro": {
+            "text": "虚线框是笼子，左上角的数字是笼内数字的总和。",
+            "voiceId": "CK_05",
+            "duration": 3000
+          },
+          "demo": {
+            "steps": [
+              {
+                "action": "highlightCage",
+                "target": 5,
+                "duration": 1500
+              },
+              {
+                "action": "focusCell",
+                "target": [
+                  0,
+                  0
+                ],
+                "duration": 900
+              },
+              {
+                "action": "focusCell",
+                "target": [
+                  0,
+                  1
+                ],
+                "duration": 900
+              },
+              {
+                "action": "highlightCol",
+                "target": 0,
+                "duration": 1200
+              },
+              {
+                "action": "focusCell",
+                "target": [
+                  2,
+                  0
+                ],
+                "duration": 1000
+              },
+              {
+                "action": "focusCell",
+                "target": [
+                  0,
+                  0
+                ],
+                "duration": 1500
+              }
+            ]
+          },
+          "guided": {
+            "targetCell": [
+              0,
+              0
+            ],
+            "correctValue": 3,
+            "maxAttempts": 2,
+            "failHint": "这个笼和是4，两格只能是1和3。第一列已经有1了，想想哪个格不能是1？",
+            "failVoiceId": "CK_05",
+            "autoRevealAfter": 2,
+            "successText": "笼和加行列排除，答案就出来了。",
+            "successVoiceId": "J_03"
+          },
+          "semiAuto": {
+            "enabled": true,
+            "targetCount": 2,
+            "hintText": "用同样的方法，再找出两个能确定的数字。",
+            "hintVoiceId": "R_07",
+            "watchCells": [
+              [
+                0,
+                1
+              ],
+              [
+                3,
+                3
+              ],
+              [
+                3,
+                2
+              ]
+            ]
+          },
+          "free": {
+            "enabled": true,
+            "unlockText": "笼和是把利器，继续吧。"
+          }
+        }
+      }
+    },
+    {
+      "levelId": 104,
+      "title": "第3关：笔记入门",
+      "mode": "endgame",
+      "gridSize": 4,
+      "difficulty": "入门",
+      "teachingGoal": "认识笔记：格子里的小数字是候选数。笔记里只剩一个的数字，就是答案！",
+      "keyCells": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          3,
+          2
+        ]
+      ],
+      "features": {
+        "allowDraft": true,
+        "assistant45": false,
+        "showHints": true,
+        "highlightRow": true,
+        "highlightCol": true,
+        "highlightBox": true,
+        "highlightNumber": false,
+        "highlightCage": false,
+        "autoFillCandidates": false
+      },
+      "boardData": [
+        [
+          0,
+          1,
+          4,
+          0
+        ],
+        [
+          0,
+          2,
+          3,
+          1
+        ],
+        [
+          1,
+          0,
+          2,
+          4
+        ],
+        [
+          2,
+          4,
+          0,
+          3
+        ]
+      ],
+      "solution": [
+        [
+          3,
+          1,
+          4,
+          2
+        ],
+        [
+          4,
+          2,
+          3,
+          1
+        ],
+        [
+          1,
+          3,
+          2,
+          4
+        ],
+        [
+          2,
+          4,
+          1,
+          3
+        ]
+      ],
+      "cages": [],
+      "triggers": [
+        {
+          "id": "t103_s",
+          "condition": "onLevelStart",
+          "type": "enter_phase",
+          "phase": "breakthrough",
+          "once": true
+        },
+        {
+          "id": "t103_h",
+          "condition": "onLevelStart",
+          "type": "freeze_mask",
+          "delay": 800,
+          "text": "专项训练！只剩这几个空格，全是孤星，看笔记填！",
+          "once": true,
+          "targetR": 0,
+          "targetC": 0,
+          "targetType": "cell",
+          "highlightShape": "circle"
+        },
+        {
+          "id": "t103_d",
+          "condition": "onKeyCellsFilledCorrectly",
+          "type": "enter_phase",
+          "phase": "finishing",
+          "once": true
+        }
+      ],
+      "preDialog": [
+        {
+          "speaker": "守笼人",
+          "text": "虚线围起的区域便是「笼」，左上角数字代表笼内所有数字相加的总和。",
+          "side": "right",
+          "voiceId": "VO_CK_05",
+          "emotion": "default",
+          "effect": 0
+        },
+        {
+          "speaker": "莹莹",
+          "text": "虚线框=笼子，左上角=笼子里所有数字加起来的结果！而且不能重复！",
+          "side": "right",
+          "voiceId": "VO_J_02",
+          "emotion": "confident",
+          "effect": 0
+        },
+        {
+          "speaker": "阿妍",
+          "text": "虚线里的数加起来等于左上角那个数。不重。就这两条。",
+          "side": "right",
+          "voiceId": "VO_R_002",
+          "emotion": "serious",
+          "effect": 0
+        },
+        {
+          "speaker": "守笼人",
+          "text": "这一关，提示数很少。你要靠笼和来推断，而不是等格子自己亮起来。",
+          "side": "right",
+          "voiceId": "VO_CK_05",
+          "emotion": "default",
+          "effect": 0
+        },
+        {
+          "speaker": "旁白",
+          "text": "沈墨没有像之前那样先观察再动笔，直接落笔。一边填数，一边轻声重复",
+          "isNarration": true
+        },
+        {
+          "speaker": "沈墨",
+          "text": "……“不重。就两条。”",
+          "side": "left"
+        },
+        {
+          "speaker": "阿妍",
+          "text": "笼和通了。",
+          "side": "right",
+          "voiceId": "VO_R_003",
+          "emotion": "smile",
+          "effect": 0
+        },
+        {
+          "speaker": "守笼人",
+          "text": "笼格认知已初步建立。",
+          "side": "right",
+          "voiceId": "VO_CK_06",
+          "emotion": "smile",
+          "effect": 0
+        },
+        {
+          "speaker": "莹莹",
+          "text": "你真的好快……阿妍姐，我们是不是遇到高手了？",
+          "side": "right",
+          "voiceId": "VO_J_03",
+          "emotion": "surprised",
+          "effect": 1
+        }
+      ],
+      "clearDialog": [
+        {
+          "speaker": "旁白",
+          "text": "阿妍已经回到书架前，语气平淡",
+          "isNarration": true
+        },
+        {
+          "speaker": "阿妍",
+          "text": "高不高手，还早。",
+          "side": "right",
+          "voiceId": "VO_R_008",
+          "emotion": "default",
+          "effect": 0
+        },
+        {
+          "speaker": "旁白",
+          "text": "沈墨他抬起头，看向莹莹。没有笑，但语气里有一种温和的肯定",
+          "isNarration": true
+        },
+        {
+          "speaker": "沈墨",
+          "text": "……你刚才说的那些纸片。你父亲是这里的档案员？",
+          "side": "left",
+          "voiceId": "VO_SM_03",
+          "emotion": "smile",
+          "effect": 0
+        },
+        {
+          "speaker": "莹莹",
+          "text": "……嗯。他叫沈世安。你认识他？",
+          "side": "right"
+        },
+        {
+          "speaker": "旁白",
+          "text": "沈墨摇了摇头",
+          "isNarration": true
+        },
+        {
+          "speaker": "沈墨",
+          "text": "……不认识。但我收到过一封信。署名是“一个被困在数字里的人”。",
+          "side": "left",
+          "voiceId": "VO_SM_04",
+          "emotion": "default",
+          "effect": 1
+        },
+        {
+          "speaker": "旁白",
+          "text": "阿妍语气平得像湖面，但目光很深",
+          "isNarration": true
+        },
+        {
+          "speaker": "阿妍",
+          "text": "……你收到的信？",
+          "side": "right",
+          "voiceId": "VO_R_006",
+          "emotion": "calm",
+          "effect": 0
+        },
+        {
+          "speaker": "沈墨",
+          "text": "……嗯。在你们任何人到达之前，我就收到了。",
+          "side": "left",
+          "voiceId": "VO_SM_10",
+          "emotion": "default",
+          "effect": 1
+        }
+      ],
+      "lessonPlan": {
+        "newSkill": "note_taking",
+        "skillName": "笔记入门",
+        "isFirstLesson": true,
+        "skippable": true,
+        "prerequisite": [
+          "box_rule"
+        ],
+        "phases": {
+          "intro": {
+            "text": "不确定的时候，先把候选数记下来——这就是笔记。",
+            "voiceId": "CK_03",
+            "duration": 3000
+          },
+          "demo": {
+            "steps": [
+              {
+                "action": "highlightButton",
+                "target": "note",
+                "duration": 2000
+              },
+              {
+                "action": "focusCell",
+                "target": [
+                  0,
+                  0
+                ],
+                "duration": 1500
+              },
+              {
+                "action": "highlightRow",
+                "target": 0,
+                "duration": 1000
+              },
+              {
+                "action": "highlightCol",
+                "target": 0,
+                "duration": 1000
+              },
+              {
+                "action": "highlightButton",
+                "target": "note",
+                "duration": 1500
+              }
+            ]
+          },
+          "guided": {
+            "targetCell": [
+              0,
+              0
+            ],
+            "interactionType": "NOTE_ONLY",
+            "expectedNote": [
+              2,
+              3
+            ],
+            "maxAttempts": 3,
+            "failHint": "先点笔记按钮切换到笔记模式，再点数字2和3。",
+            "failVoiceId": "CK_03",
+            "autoRevealAfter": 3,
+            "successText": "笔记记好了——这样就不会忘。",
+            "successVoiceId": "J_03"
+          },
+          "semiAuto": {
+            "enabled": true,
+            "targetCount": 2,
+            "hintText": "再给右边那个空格也记上笔记吧。",
+            "hintVoiceId": "R_07",
+            "watchCells": [
+              [
+                0,
+                3
+              ],
+              [
+                2,
+                1
+              ],
+              [
+                3,
+                2
+              ]
+            ],
+            "interactionType": "NOTE_ONLY"
+          },
+          "free": {
+            "enabled": true,
+            "unlockText": "笔记是好帮手，慢慢用起来。"
+          }
+        }
+      }
+    },
+    {
+      "levelId": 105,
+      "title": "第4关：唯一组合",
+      "mode": "full",
+      "gridSize": 4,
+      "difficulty": "入门",
+      "teachingGoal": "2格笼和值3/4/6/7时组合唯一！口诀：3=1+2,4=1+3,6=2+4,7=3+4",
+      "features": {
+        "allowDraft": true,
+        "assistant45": false,
+        "showHints": true,
+        "highlightRow": true,
+        "highlightCol": true,
+        "highlightBox": true,
+        "highlightNumber": true,
+        "highlightCage": true,
+        "autoFillCandidates": false
+      },
+      "boardData": [
+        [
+          0,
+          0,
+          4,
+          0
+        ],
+        [
+          0,
+          2,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          2,
+          4
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "solution": [
+        [
+          3,
+          1,
+          4,
+          2
+        ],
+        [
+          4,
+          2,
+          3,
+          1
+        ],
+        [
+          1,
+          3,
+          2,
+          4
+        ],
+        [
+          2,
+          4,
+          1,
+          3
+        ]
+      ],
+      "cages": [
+        {
+          "id": 0,
+          "cells": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "sum": 4
+        },
+        {
+          "id": 1,
+          "cells": [
+            [
+              0,
+              3
+            ],
+            [
+              1,
+              3
+            ]
+          ],
+          "sum": 3
+        },
+        {
+          "id": 2,
+          "cells": [
+            [
+              2,
+              0
+            ],
+            [
+              3,
+              0
+            ]
+          ],
+          "sum": 3
+        },
+        {
+          "id": 3,
+          "cells": [
+            [
+              3,
+              2
+            ],
+            [
+              3,
+              3
+            ]
+          ],
+          "sum": 4
+        },
+        {
+          "id": 4,
+          "cells": [
+            [
+              0,
+              2
+            ]
+          ],
+          "sum": 4
+        },
+        {
+          "id": 5,
+          "cells": [
+            [
+              1,
+              0
+            ]
+          ],
+          "sum": 4
+        },
+        {
+          "id": 6,
+          "cells": [
+            [
+              1,
+              1
+            ]
+          ],
+          "sum": 2
+        },
+        {
+          "id": 7,
+          "cells": [
+            [
+              1,
+              2
+            ]
+          ],
+          "sum": 3
+        },
+        {
+          "id": 8,
+          "cells": [
+            [
+              2,
+              1
+            ]
+          ],
+          "sum": 3
+        },
+        {
+          "id": 9,
+          "cells": [
+            [
+              2,
+              2
+            ]
+          ],
+          "sum": 2
+        },
+        {
+          "id": 10,
+          "cells": [
+            [
+              2,
+              3
+            ]
+          ],
+          "sum": 4
+        },
+        {
+          "id": 11,
+          "cells": [
+            [
+              3,
+              1
+            ]
+          ],
+          "sum": 4
+        }
+      ],
+      "triggers": [
+        {
+          "id": "t104_s",
+          "condition": "onLevelStart",
+          "type": "freeze_mask",
+          "text": "2格笼和值为3/4/6/7时数字唯一！口诀：3要1+2，4要1+3，6要2+4，7要3+4！",
+          "once": true,
+          "targetR": 0,
+          "targetC": 0,
+          "targetType": "cell",
+          "highlightShape": "circle"
+        },
+        {
+          "id": "t104_f",
+          "condition": "onFirstNumberFilled",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "找到唯一组合了！这是杀手数独的第一把钥匙🎉",
+          "once": true
+        },
+        {
+          "id": "t104_b",
+          "condition": "onFillCountReached",
+          "count": 6,
+          "type": "enter_phase",
+          "phase": "breakthrough",
+          "once": true
+        },
+        {
+          "id": "t104_st",
+          "condition": "onStuckForSeconds",
+          "seconds": 20,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "💡 看笼子！和值3=1+2，和值4=1+3，结合行列宫确定位置！",
+          "once": false
+        },
+        {
+          "id": "t104_fi",
+          "condition": "onFillCountReached",
+          "count": 12,
+          "type": "enter_phase",
+          "phase": "finishing",
+          "once": true
+        }
+      ],
+      "preDialog": [
+        {
+          "speaker": "守笼人",
+          "text": "双格笼是最基础的笼型，可直接根据和值锁定仅有的数字组合。记住——三取一二，四取一三，六取二四，七取三四。",
+          "side": "right",
+          "voiceId": "VO_CK_07",
+          "emotion": "default",
+          "effect": 1
+        },
+        {
+          "speaker": "莹莹",
+          "text": "两个格子相加等于左上角数字，比如和为3只能是1+2！",
+          "side": "right",
+          "voiceId": "VO_J_02",
+          "emotion": "confident",
+          "effect": 0
+        },
+        {
+          "speaker": "阿妍",
+          "text": "和3——1和2。和4——1和3。和6——2和4。和7——3和4。记住了，后面用得上。",
+          "side": "right",
+          "voiceId": "VO_R_002",
+          "emotion": "serious",
+          "effect": 0
+        },
+        {
+          "speaker": "守笼人",
+          "text": "这一关的提示数只剩下两个。大部分格子要靠口诀来锁定。",
+          "side": "right",
+          "voiceId": "VO_CK_07",
+          "emotion": "default",
+          "effect": 1
+        },
+        {
+          "speaker": "旁白",
+          "text": "沈墨已经把口诀默念了一遍",
+          "isNarration": true
+        },
+        {
+          "speaker": "沈墨",
+          "text": "……“三取一二，四取一三。”",
+          "side": "left",
+          "voiceId": "VO_SM_05",
+          "emotion": "default",
+          "effect": 0
+        },
+        {
+          "speaker": "守笼人",
+          "text": "口诀对了。",
+          "side": "right",
+          "voiceId": "VO_CK_06",
+          "emotion": "smile",
+          "effect": 0
+        },
+        {
+          "speaker": "守笼人",
+          "text": "口诀已入心。可以进入下一层了。",
+          "side": "right",
+          "voiceId": "VO_CK_06",
+          "emotion": "smile",
+          "effect": 0
+        }
+      ],
+      "clearDialog": [
+        {
+          "speaker": "莹莹",
+          "text": "你又过了！阿妍姐你说他会不会一路把七章全部通关？",
+          "side": "right",
+          "voiceId": "VO_J_03",
+          "emotion": "surprised",
+          "effect": 1
+        },
+        {
+          "speaker": "旁白",
+          "text": "阿妍微微侧过头，看向沈墨",
+          "isNarration": true
+        },
+        {
+          "speaker": "阿妍",
+          "text": "会。",
+          "side": "right",
+          "voiceId": "VO_R_007",
+          "emotion": "calm",
+          "effect": 0
+        },
+        {
+          "speaker": "旁白",
+          "text": "沈墨站在棋盘边，沉默了片刻，然后轻声说",
+          "isNarration": true
+        },
+        {
+          "speaker": "沈墨",
+          "text": "……但如果通关了，写信的那个人，就不会再等我了。",
+          "side": "left",
+          "voiceId": "VO_SM_06",
+          "emotion": "think",
+          "effect": 0
+        },
+        {
+          "speaker": "莹莹",
+          "text": "那封信里写的？谁啊？",
+          "side": "right",
+          "voiceId": "VO_J_07",
+          "emotion": "default",
+          "effect": 0
+        },
+        {
+          "speaker": "旁白",
+          "text": "沈墨没有回答。只是把目光移向了书架上那些更高处的卷宗",
+          "isNarration": true
+        },
+        {
+          "speaker": "沈墨",
+          "text": "……还不知道。",
+          "side": "left",
+          "voiceId": "VO_SM_14",
+          "emotion": "default",
+          "effect": 0
+        }
+      ],
+      "lessonPlan": {
+        "newSkill": "cage_combo",
+        "skillName": "唯一组合",
+        "isFirstLesson": true,
+        "skippable": true,
+        "prerequisite": [
+          "cage_sum_combo"
+        ],
+        "phases": {
+          "intro": {
+            "text": "两个格子的笼子有口诀：三取一二，四取一三，六取二四，七取三四。",
+            "voiceId": "CK_07",
+            "duration": 3500
+          },
+          "demo": {
+            "steps": [
+              {
+                "action": "highlightCage",
+                "target": 1,
+                "duration": 1200
+              },
+              {
+                "action": "focusCell",
+                "target": [
+                  0,
+                  3
+                ],
+                "duration": 800
+              },
+              {
+                "action": "focusCell",
+                "target": [
+                  1,
+                  3
+                ],
+                "duration": 800
+              },
+              {
+                "action": "highlightRow",
+                "target": 1,
+                "duration": 1000
+              },
+              {
+                "action": "focusCell",
+                "target": [
+                  1,
+                  1
+                ],
+                "duration": 800
+              },
+              {
+                "action": "focusCell",
+                "target": [
+                  1,
+                  3
+                ],
+                "duration": 1500
+              }
+            ]
+          },
+          "guided": {
+            "targetCell": [
+              1,
+              3
+            ],
+            "correctValue": 1,
+            "maxAttempts": 2,
+            "failHint": "和值是3，只能是1和2。这一行已经有2了，那这格是几？",
+            "failVoiceId": "CK_07",
+            "autoRevealAfter": 2,
+            "successText": "口诀加行排除，答案就出来了。",
+            "successVoiceId": "J_03"
+          },
+          "semiAuto": {
+            "enabled": true,
+            "targetCount": 2,
+            "hintText": "再找找其他双格笼，用口诀试试看。",
+            "hintVoiceId": "R_07",
+            "watchCells": [
+              [
+                0,
+                1
+              ],
+              [
+                2,
+                0
+              ],
+              [
+                3,
+                2
+              ]
+            ]
+          },
+          "free": {
+            "enabled": true,
+            "unlockText": "口诀记住了吗？后面常常用到。"
+          }
+        }
+      }
+    },
+    {
+      "levelId": 106,
+      "title": "第5关：隐曜的秘密",
+      "mode": "full",
+      "gridSize": 4,
+      "difficulty": "入门",
+      "teachingGoal": "认识隐曜：孤星不够用时，扫数字！某数字在某行/列/宫只能放一个位置时，就是答案！",
+      "features": {
+        "allowDraft": true,
+        "assistant45": false,
+        "showHints": true,
+        "highlightRow": true,
+        "highlightCol": true,
+        "highlightBox": true,
+        "highlightNumber": true,
+        "highlightCage": true,
+        "autoFillCandidates": false
+      },
+      "boardData": [
+        [
+          0,
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          3,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "solution": [
+        [
+          4,
+          2,
+          1,
+          3
+        ],
+        [
+          1,
+          3,
+          4,
+          2
+        ],
+        [
+          3,
+          4,
+          2,
+          1
+        ],
+        [
+          2,
+          1,
+          3,
+          4
+        ]
+      ],
+      "cages": [
+        {
+          "id": 0,
+          "cells": [
+            [
+              1,
+              1
+            ]
+          ],
+          "sum": 3
+        },
+        {
+          "id": 1,
+          "cells": [
+            [
+              0,
+              2
+            ]
+          ],
+          "sum": 1
+        },
+        {
+          "id": 2,
+          "cells": [
+            [
+              2,
+              3
+            ]
+          ],
+          "sum": 1
+        },
+        {
+          "id": 3,
+          "cells": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "sum": 6
+        },
+        {
+          "id": 4,
+          "cells": [
+            [
+              0,
+              3
+            ],
+            [
+              1,
+              3
+            ]
+          ],
+          "sum": 5
+        },
+        {
+          "id": 5,
+          "cells": [
+            [
+              1,
+              0
+            ],
+            [
+              2,
+              0
+            ]
+          ],
+          "sum": 4
+        },
+        {
+          "id": 6,
+          "cells": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              2
+            ]
+          ],
+          "sum": 6
+        },
+        {
+          "id": 7,
+          "cells": [
+            [
+              2,
+              1
+            ],
+            [
+              3,
+              1
+            ]
+          ],
+          "sum": 5
+        },
+        {
+          "id": 8,
+          "cells": [
+            [
+              3,
+              2
+            ],
+            [
+              3,
+              3
+            ]
+          ],
+          "sum": 7
+        },
+        {
+          "id": 9,
+          "cells": [
+            [
+              3,
+              0
+            ]
+          ],
+          "sum": 2
+        }
+      ],
+      "triggers": [
+        {
+          "id": "t105_s",
+          "condition": "onLevelStart",
+          "type": "freeze_mask",
+          "text": "孤星和唯一组合用完了怎么办？找「隐曜」！不要只看格子有几个笔记，要扫数字——比如看数字「3」在第一行还能放哪里？",
+          "once": true,
+          "targetR": 0,
+          "targetC": 0,
+          "targetType": "cell",
+          "highlightShape": "circle"
+        },
+        {
+          "id": "t105_b",
+          "condition": "onFillCountReached",
+          "count": 5,
+          "type": "enter_phase",
+          "phase": "breakthrough",
+          "once": true
+        },
+        {
+          "id": "t105_st",
+          "condition": "onStuckForSeconds",
+          "seconds": 25,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "💡 扫数字！找「3」在第一行能放哪里？整行只有一个位置能放3！",
+          "once": false
+        },
+        {
+          "id": "t105_fi",
+          "condition": "onFillCountReached",
+          "count": 13,
+          "type": "enter_phase",
+          "phase": "finishing",
+          "once": true
+        }
+      ],
+      "preDialog": [
+        {
+          "speaker": "守笼人",
+          "text": "多重笼格交错时，需要同时兼顾行、列、宫与笼和四条约束。记住——“群曜遮目，一光独隐”。",
+          "side": "right",
+          "voiceId": "VO_CK_08",
+          "emotion": "default",
+          "effect": 1
+        },
+        {
+          "speaker": "莹莹",
+          "text": "群曜遮目，一光独隐……什么意思？",
+          "side": "right",
+          "voiceId": "VO_J_07",
+          "emotion": "default",
+          "effect": 0
+        },
+        {
+          "speaker": "守笼人",
+          "text": "当一个数字在某区域中只能出现在唯一一格时，它便是“隐曜”。它藏在暗处，但一直都在。",
+          "side": "right"
+        },
+        {
+          "speaker": "阿妍",
+          "text": "四条线同时收束。踩对一步，全线松绑；踩错一步，全线崩断。",
+          "side": "right",
+          "voiceId": "VO_R_006",
+          "emotion": "calm",
+          "effect": 0
+        },
+        {
+          "speaker": "守笼人",
+          "text": "这一关只有一个提示数。剩下的，要靠你从“隐曜”里找出来。",
+          "side": "right",
+          "voiceId": "VO_CK_08",
+          "emotion": "default",
+          "effect": 1
+        },
+        {
+          "speaker": "旁白",
+          "text": "莹莹盯着棋盘，忽然开口",
+          "isNarration": true
+        },
+        {
+          "speaker": "莹莹",
+          "text": "阿妍姐……你看第三行那个空位，是不是只能填2？",
+          "side": "right"
+        },
+        {
+          "speaker": "旁白",
+          "text": "阿妍眼神微微一变",
+          "isNarration": true
+        }
+      ],
+      "clearDialog": [
+        {
+          "speaker": "阿妍",
+          "text": "……你看出来了？",
+          "side": "right",
+          "voiceId": "VO_R_008",
+          "emotion": "default",
+          "effect": 1
+        },
+        {
+          "speaker": "莹莹",
+          "text": "我也不知道为什么，就是感觉它该在那儿。",
+          "side": "right"
+        },
+        {
+          "speaker": "旁白",
+          "text": "沈墨一直在看莹莹指的那个位置。片刻后，他轻声确认",
+          "isNarration": true
+        },
+        {
+          "speaker": "沈墨",
+          "text": "……2。她是对的。",
+          "side": "left",
+          "voiceId": "VO_SM_07",
+          "emotion": "default",
+          "effect": 0
+        },
+        {
+          "speaker": "守笼人",
+          "text": "这种交错笼的排布手法……我只在多年前一批匿名送来的档案中见过。",
+          "side": "right",
+          "voiceId": "VO_CK_05",
+          "emotion": "default",
+          "effect": 1
+        },
+        {
+          "speaker": "莹莹",
+          "text": "匿名档案？我爸的笔记里也提到过。他说那些档案“不是从这间馆子里长出来的”。",
+          "side": "right",
+          "voiceId": "VO_J_05",
+          "emotion": "default",
+          "effect": 0
+        },
+        {
+          "speaker": "旁白",
+          "text": "阿妍没有说话，但目光落在了书架最上层的某个位置",
+          "isNarration": true
+        },
+        {
+          "speaker": "旁白",
+          "text": "沈墨顺着阿妍的目光看向那个位置。没有说话，但他记住了那本书的位置。",
+          "isNarration": true
+        }
+      ],
+      "lessonPlan": {
+        "newSkill": "hidden_single",
+        "skillName": "隐曜",
+        "isFirstLesson": true,
+        "skippable": true,
+        "prerequisite": [
+          "cage_combo"
+        ],
+        "phases": {
+          "intro": {
+            "text": "如果一个数字在某个宫里只能出现在一个位置，那它就是答案。",
+            "voiceId": "CK_08",
+            "duration": 3200
+          },
+          "demo": {
+            "steps": [
+              {
+                "action": "highlightBox",
+                "target": 0,
+                "duration": 1200
+              },
+              {
+                "action": "highlightRow",
+                "target": 0,
+                "duration": 1000
+              },
+              {
+                "action": "focusCell",
+                "target": [
+                  0,
+                  2
+                ],
+                "duration": 800
+              },
+              {
+                "action": "highlightRow",
+                "target": 1,
+                "duration": 1000
+              },
+              {
+                "action": "focusCell",
+                "target": [
+                  1,
+                  1
+                ],
+                "duration": 800
+              },
+              {
+                "action": "focusCell",
+                "target": [
+                  1,
+                  0
+                ],
+                "duration": 1500
+              }
+            ]
+          },
+          "guided": {
+            "targetCell": [
+              1,
+              0
+            ],
+            "correctValue": 1,
+            "maxAttempts": 3,
+            "failHint": "数字1在第一宫里能放哪？第一行已经有1了，第二行第二个是3。",
+            "failVoiceId": "CK_08",
+            "autoRevealAfter": 3,
+            "successText": "这就是隐曜——藏起来的唯一位置。",
+            "successVoiceId": "J_03"
+          },
+          "semiAuto": {
+            "enabled": true,
+            "targetCount": 2,
+            "hintText": "用扫数字的方法，再找两个隐曜。",
+            "hintVoiceId": "R_07",
+            "watchCells": [
+              [
+                3,
+                0
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                0,
+                1
+              ]
+            ]
+          },
+          "free": {
+            "enabled": true,
+            "unlockText": "隐曜藏得深，但总能找出来。"
+          }
+        }
+      }
+    },
+    {
+      "levelId": 107,
+      "title": "第6关：组合专项",
+      "mode": "endgame",
+      "gridSize": 4,
+      "difficulty": "入门",
+      "teachingGoal": "巩固唯一组合：熟练运用3/4/6/7的唯一组合",
+      "keyCells": [
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          3,
+          0
+        ]
+      ],
+      "features": {
+        "allowDraft": true,
+        "assistant45": false,
+        "showHints": true,
+        "highlightRow": true,
+        "highlightCol": true,
+        "highlightBox": true,
+        "highlightNumber": true,
+        "highlightCage": true,
+        "autoFillCandidates": false
+      },
+      "boardData": [
+        [
+          4,
+          3,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          4,
+          3
+        ],
+        [
+          3,
+          4,
+          1,
+          2
+        ],
+        [
+          0,
+          2,
+          3,
+          4
+        ]
+      ],
+      "solution": [
+        [
+          4,
+          3,
+          2,
+          1
+        ],
+        [
+          2,
+          1,
+          4,
+          3
+        ],
+        [
+          3,
+          4,
+          1,
+          2
+        ],
+        [
+          1,
+          2,
+          3,
+          4
+        ]
+      ],
+      "cages": [
+        {
+          "id": 0,
+          "cells": [
+            [
+              0,
+              2
+            ],
+            [
+              0,
+              3
+            ]
+          ],
+          "sum": 3
+        },
+        {
+          "id": 1,
+          "cells": [
+            [
+              1,
+              0
+            ],
+            [
+              2,
+              0
+            ],
+            [
+              3,
+              0
+            ]
+          ],
+          "sum": 6
+        },
+        {
+          "id": 2,
+          "cells": [
+            [
+              0,
+              0
+            ]
+          ],
+          "sum": 4
+        },
+        {
+          "id": 3,
+          "cells": [
+            [
+              0,
+              1
+            ]
+          ],
+          "sum": 3
+        },
+        {
+          "id": 4,
+          "cells": [
+            [
+              1,
+              1
+            ]
+          ],
+          "sum": 1
+        },
+        {
+          "id": 5,
+          "cells": [
+            [
+              1,
+              2
+            ]
+          ],
+          "sum": 4
+        },
+        {
+          "id": 6,
+          "cells": [
+            [
+              1,
+              3
+            ]
+          ],
+          "sum": 3
+        },
+        {
+          "id": 7,
+          "cells": [
+            [
+              2,
+              1
+            ]
+          ],
+          "sum": 4
+        },
+        {
+          "id": 8,
+          "cells": [
+            [
+              2,
+              2
+            ]
+          ],
+          "sum": 1
+        },
+        {
+          "id": 9,
+          "cells": [
+            [
+              2,
+              3
+            ]
+          ],
+          "sum": 2
+        },
+        {
+          "id": 10,
+          "cells": [
+            [
+              3,
+              1
+            ]
+          ],
+          "sum": 2
+        },
+        {
+          "id": 11,
+          "cells": [
+            [
+              3,
+              2
+            ]
+          ],
+          "sum": 3
+        },
+        {
+          "id": 12,
+          "cells": [
+            [
+              3,
+              3
+            ]
+          ],
+          "sum": 4
+        }
+      ],
+      "triggers": [
+        {
+          "id": "t106_s",
+          "condition": "onLevelStart",
+          "type": "enter_phase",
+          "phase": "breakthrough",
+          "once": true
+        },
+        {
+          "id": "t106_h",
+          "condition": "onLevelStart",
+          "type": "freeze_mask",
+          "delay": 800,
+          "text": "组合专项！用唯一组合口诀解这些笼子～",
+          "once": true,
+          "targetR": 0,
+          "targetC": 2,
+          "targetType": "cell",
+          "highlightShape": "circle"
+        },
+        {
+          "id": "t106_d",
+          "condition": "onKeyCellsFilledCorrectly",
+          "type": "enter_phase",
+          "phase": "finishing",
+          "once": true
+        }
+      ],
+      "preDialog": [
+        {
+          "speaker": "守笼人",
+          "text": "第七道锁——笔记模式。遇到不确定的空格，可以把候选数字记下来，辅助推理。",
+          "side": "right",
+          "voiceId": "VO_CK_03",
+          "emotion": "serious",
+          "effect": 0
+        },
+        {
+          "speaker": "守笼人",
+          "text": "选中一个格子，在数字键盘上向上滑动，就能把数字记入笔记。也可以滑动选择多个格子，批量标记。",
+          "side": "right",
+          "voiceId": "VO_CK_03",
+          "emotion": "serious",
+          "effect": 0
+        },
+        {
+          "speaker": "莹莹",
+          "text": "选中的格子会亮黄灯！这样你就知道哪些格子正在被编辑！",
+          "side": "right",
+          "voiceId": "VO_J_02",
+          "emotion": "confident",
+          "effect": 0
+        },
+        {
+          "speaker": "阿妍",
+          "text": "笔记是工具。不是答案本身。",
+          "side": "right",
+          "voiceId": "VO_R_013",
+          "emotion": "calm",
+          "effect": 0
+        },
+        {
+          "speaker": "旁白",
+          "text": "沈墨已经打开了笔记模式，在空格里标了几个候选数字，声音很低",
+          "isNarration": true
+        },
+        {
+          "speaker": "沈墨",
+          "text": "……像在画地图。",
+          "side": "left",
+          "voiceId": "VO_SM_07",
+          "emotion": "default",
+          "effect": 0
+        },
+        {
+          "speaker": "旁白",
+          "text": "莹莹好奇",
+          "isNarration": true
+        },
+        {
+          "speaker": "莹莹",
+          "text": "画地图？",
+          "side": "right"
+        },
+        {
+          "speaker": "旁白",
+          "text": "沈墨没有抬头，继续标注",
+          "isNarration": true
+        },
+        {
+          "speaker": "沈墨",
+          "text": "……把可能的路都标出来。然后走剩下那一条。",
+          "side": "left"
+        },
+        {
+          "speaker": "守笼人",
+          "text": "来，试一次。选中任意空格，向上滑动数字键盘，标一个候选数。",
+          "side": "right",
+          "voiceId": "VO_CK_03",
+          "emotion": "serious",
+          "effect": 0
+        }
+      ],
+      "clearDialog": [
+        {
+          "speaker": "旁白",
+          "text": "【UI强制高亮：盘面上一个特定空格闪烁提示】",
+          "isNarration": true
+        },
+        {
+          "speaker": "旁白",
+          "text": "【玩家操作：必须在该空格填入一个候选笔记，否则对话不推进】",
+          "isNarration": true
+        },
+        {
+          "speaker": "守笼人",
+          "text": "笔记已成器。现在……这个空格就是靠笔记锁定的。",
+          "side": "right",
+          "voiceId": "VO_CK_06",
+          "emotion": "smile",
+          "effect": 0
+        },
+        {
+          "speaker": "莹莹",
+          "text": "你马上就要见到第一章的最后一关了。那关……我当时是哭着过的。",
+          "side": "right",
+          "voiceId": "VO_J_05",
+          "emotion": "default",
+          "effect": 0
+        },
+        {
+          "speaker": "旁白",
+          "text": "阿妍第一次对莹莹说了句带温度的话",
+          "isNarration": true
+        },
+        {
+          "speaker": "阿妍",
+          "text": "……你哪关不是哭着过的。",
+          "side": "right",
+          "voiceId": "VO_R_011",
+          "emotion": "default",
+          "effect": 0
+        },
+        {
+          "speaker": "旁白",
+          "text": "莹莹愣住",
+          "isNarration": true
+        },
+        {
+          "speaker": "莹莹",
+          "text": "阿妍姐你……你也会开玩笑？",
+          "side": "right"
+        },
+        {
+          "speaker": "旁白",
+          "text": "阿妍已经转身走向下一扇门",
+          "isNarration": true
+        },
+        {
+          "speaker": "阿妍",
+          "text": "……走了。",
+          "side": "right",
+          "voiceId": "VO_R_005",
+          "emotion": "default",
+          "effect": 0
+        },
+        {
+          "speaker": "旁白",
+          "text": "沈墨放下笔，看了一眼棋盘",
+          "isNarration": true
+        },
+        {
+          "speaker": "沈墨",
+          "text": "……笔记已成器。",
+          "side": "left",
+          "voiceId": "VO_SM_09",
+          "emotion": "calm",
+          "effect": 0
+        }
+      ],
+      "lessonPlan": {
+        "newSkill": "combo_mastery",
+        "skillName": "组合专项",
+        "isFirstLesson": false,
+        "skippable": true,
+        "prerequisite": [
+          "cage_combo"
+        ],
+        "phases": {
+          "intro": {
+            "text": "再练练唯一组合，这次用列排除一起找。",
+            "voiceId": "CK_07",
+            "duration": 2500
+          },
+          "demo": {
+            "steps": [
+              {
+                "action": "highlightCage",
+                "target": 0,
+                "duration": 1200
+              },
+              {
+                "action": "highlightCol",
+                "target": 3,
+                "duration": 1000
+              },
+              {
+                "action": "focusCell",
+                "target": [
+                  1,
+                  3
+                ],
+                "duration": 600
+              },
+              {
+                "action": "focusCell",
+                "target": [
+                  2,
+                  3
+                ],
+                "duration": 600
+              },
+              {
+                "action": "focusCell",
+                "target": [
+                  3,
+                  3
+                ],
+                "duration": 600
+              },
+              {
+                "action": "focusCell",
+                "target": [
+                  0,
+                  3
+                ],
+                "duration": 1500
+              }
+            ]
+          },
+          "guided": {
+            "targetCell": [
+              0,
+              3
+            ],
+            "correctValue": 1,
+            "maxAttempts": 2,
+            "failHint": "和值是3，两格是1和2。这一列已经有2了，那这格是几？",
+            "failVoiceId": "CK_07",
+            "autoRevealAfter": 2,
+            "successText": "组合加列排除，又快又准。",
+            "successVoiceId": "J_03"
+          },
+          "semiAuto": {
+            "enabled": true,
+            "targetCount": 2,
+            "hintText": "第一列最上面那个笼子，也能确定了。",
+            "hintVoiceId": "R_07",
+            "watchCells": [
+              [
+                1,
+                0
+              ],
+              [
+                3,
+                0
+              ],
+              [
+                0,
+                2
+              ]
+            ]
+          },
+          "free": {
+            "enabled": true,
+            "unlockText": "唯一组合已经熟练了。"
+          }
+        }
+      }
+    },
+    {
+      "levelId": 108,
+      "title": "第7关：十则秘术",
+      "mode": "full",
+      "gridSize": 4,
+      "difficulty": "入门",
+      "teachingGoal": "认识「10法则」：4×4每行/列/宫总和都是10！",
+      "features": {
+        "allowDraft": true,
+        "assistant45": true,
+        "showHints": true,
+        "highlightRow": true,
+        "highlightCol": true,
+        "highlightBox": true,
+        "highlightNumber": true,
+        "highlightCage": true,
+        "autoFillCandidates": false
+      },
+      "boardData": [
+        [
+          0,
+          0,
+          4,
+          2
+        ],
+        [
+          4,
+          2,
+          0,
+          1
+        ],
+        [
+          1,
+          0,
+          2,
+          4
+        ],
+        [
+          2,
+          4,
+          0,
+          0
+        ]
+      ],
+      "solution": [
+        [
+          3,
+          1,
+          4,
+          2
+        ],
+        [
+          4,
+          2,
+          3,
+          1
+        ],
+        [
+          1,
+          3,
+          2,
+          4
+        ],
+        [
+          2,
+          4,
+          1,
+          3
+        ]
+      ],
+      "cages": [
+        {
+          "id": 0,
+          "cells": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "sum": 4
+        },
+        {
+          "id": 1,
+          "cells": [
+            [
+              3,
+              2
+            ],
+            [
+              3,
+              3
+            ]
+          ],
+          "sum": 4
+        },
+        {
+          "id": 2,
+          "cells": [
+            [
+              0,
+              2
+            ]
+          ],
+          "sum": 4
+        },
+        {
+          "id": 3,
+          "cells": [
+            [
+              0,
+              3
+            ]
+          ],
+          "sum": 2
+        },
+        {
+          "id": 4,
+          "cells": [
+            [
+              1,
+              0
+            ]
+          ],
+          "sum": 4
+        },
+        {
+          "id": 5,
+          "cells": [
+            [
+              1,
+              1
+            ]
+          ],
+          "sum": 2
+        },
+        {
+          "id": 6,
+          "cells": [
+            [
+              1,
+              2
+            ]
+          ],
+          "sum": 3
+        },
+        {
+          "id": 7,
+          "cells": [
+            [
+              1,
+              3
+            ]
+          ],
+          "sum": 1
+        },
+        {
+          "id": 8,
+          "cells": [
+            [
+              2,
+              0
+            ]
+          ],
+          "sum": 1
+        },
+        {
+          "id": 9,
+          "cells": [
+            [
+              2,
+              1
+            ]
+          ],
+          "sum": 3
+        },
+        {
+          "id": 10,
+          "cells": [
+            [
+              2,
+              2
+            ]
+          ],
+          "sum": 2
+        },
+        {
+          "id": 11,
+          "cells": [
+            [
+              2,
+              3
+            ]
+          ],
+          "sum": 4
+        },
+        {
+          "id": 12,
+          "cells": [
+            [
+              3,
+              0
+            ]
+          ],
+          "sum": 2
+        },
+        {
+          "id": 13,
+          "cells": [
+            [
+              3,
+              1
+            ]
+          ],
+          "sum": 4
+        }
+      ],
+      "triggers": [
+        {
+          "id": "t107_s",
+          "condition": "onLevelStart",
+          "type": "freeze_mask",
+          "text": "大招来了！「10法则」：4×4每行/列/宫总和永远是10（1+2+3+4=10）！用10减已知数，就能算出剩下的！",
+          "once": true,
+          "targetR": 0,
+          "targetC": 0,
+          "targetType": "cell",
+          "highlightShape": "circle"
+        },
+        {
+          "id": "t107_b",
+          "condition": "onFillCountReached",
+          "count": 6,
+          "type": "enter_phase",
+          "phase": "breakthrough",
+          "once": true
+        },
+        {
+          "id": "t107_st",
+          "condition": "onStuckForSeconds",
+          "seconds": 25,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "💡 看第一行！10-4-2=4，再看笼子和值是4，就知道两个数是1和3！",
+          "once": false
+        },
+        {
+          "id": "t107_fi",
+          "condition": "onFillCountReached",
+          "count": 12,
+          "type": "enter_phase",
+          "phase": "finishing",
+          "once": true
+        }
+      ],
+      "preDialog": [
+        {
+          "speaker": "守笼人",
+          "text": "4×4盘面里，每一行、每一列、每个宫格的总和都恒为十——是谓“十则”。",
+          "side": "right",
+          "sfx": "playFootstep",
+          "voiceId": "VO_CK_05",
+          "emotion": "default",
+          "effect": 1
+        },
+        {
+          "speaker": "莹莹",
+          "text": "十！十！十！我把它刻脑门上了——后来洗脸洗掉了，又忘了三次！",
+          "side": "right",
+          "voiceId": "VO_J_02",
+          "emotion": "confident",
+          "effect": 0
+        },
+        {
+          "speaker": "阿妍",
+          "text": "……记住就行了。不用刻。",
+          "side": "right",
+          "voiceId": "VO_R_007",
+          "emotion": "calm",
+          "effect": 0
+        },
+        {
+          "speaker": "守笼人",
+          "text": "提示数比上一关多了一些，但有陷阱。你能找到它吗？不要只看和值——要验证每一条线。",
+          "side": "right",
+          "voiceId": "VO_CK_05",
+          "emotion": "default",
+          "effect": 1
+        },
+        {
+          "speaker": "守笼人",
+          "text": "看到了吗？表面是对的，但验证后发现不对。十则不是终点——是起点。",
+          "side": "right",
+          "voiceId": "VO_CK_06",
+          "emotion": "smile",
+          "effect": 0
+        },
+        {
+          "speaker": "旁白",
+          "text": "沈墨已经把行、列、宫各自的和默算了一遍，轻声说",
+          "isNarration": true
+        }
+      ],
+      "clearDialog": [
+        {
+          "speaker": "沈墨",
+          "text": "……“十。每一行都是十。”",
+          "side": "left",
+          "voiceId": "VO_SM_08",
+          "emotion": "default",
+          "effect": 0
+        },
+        {
+          "speaker": "守笼人",
+          "text": "十则之术已破。你离真正的笼局又近了一步。",
+          "side": "right",
+          "voiceId": "VO_CK_06",
+          "emotion": "smile",
+          "effect": 0
+        },
+        {
+          "speaker": "莹莹",
+          "text": "又近了一步！我当初数过——训练关一共112次！",
+          "side": "right",
+          "voiceId": "VO_J_09",
+          "emotion": "confident",
+          "effect": 1
+        },
+        {
+          "speaker": "旁白",
+          "text": "阿妍第一次对莹莹的话有了直接回应",
+          "isNarration": true
+        },
+        {
+          "speaker": "阿妍",
+          "text": "……112次。你还数了。",
+          "side": "right",
+          "voiceId": "VO_R_007",
+          "emotion": "calm",
+          "effect": 0
+        },
+        {
+          "speaker": "莹莹",
+          "text": "当然！我爸说过——每一步都算数。",
+          "side": "right",
+          "voiceId": "VO_J_05",
+          "emotion": "default",
+          "effect": 0
+        }
+      ],
+      "lessonPlan": {
+        "newSkill": "rule_of_ten",
+        "skillName": "十则秘术",
+        "isFirstLesson": true,
+        "skippable": true,
+        "prerequisite": [
+          "cage_combo",
+          "hidden_single"
+        ],
+        "phases": {
+          "intro": {
+            "text": "4x4的每一行、每一列、每一宫，加起来都等于10——此谓十则。",
+            "voiceId": "CK_05",
+            "duration": 3000
+          },
+          "demo": {
+            "steps": [
+              {
+                "action": "highlightRow",
+                "target": 0,
+                "duration": 1000
+              },
+              {
+                "action": "focusCell",
+                "target": [
+                  0,
+                  2
+                ],
+                "duration": 600
+              },
+              {
+                "action": "focusCell",
+                "target": [
+                  0,
+                  3
+                ],
+                "duration": 600
+              },
+              {
+                "action": "highlightCage",
+                "target": 0,
+                "duration": 1200
+              },
+              {
+                "action": "highlightCol",
+                "target": 0,
+                "duration": 1000
+              },
+              {
+                "action": "focusCell",
+                "target": [
+                  2,
+                  0
+                ],
+                "duration": 800
+              },
+              {
+                "action": "focusCell",
+                "target": [
+                  0,
+                  0
+                ],
+                "duration": 1500
+              }
+            ]
+          },
+          "guided": {
+            "targetCell": [
+              0,
+              0
+            ],
+            "correctValue": 3,
+            "maxAttempts": 2,
+            "failHint": "笼和是4，两格是1和3。但第一列已经有1了，想想这格该填什么？",
+            "failVoiceId": "CK_05",
+            "autoRevealAfter": 2,
+            "successText": "十则加上行列验证，才算真的确定。",
+            "successVoiceId": "J_03",
+            "isTrap": true,
+            "trapValue": 1,
+            "trapText": "笼和是对的——但别忘了检查列！第一列已经有1了。",
+            "trapVoiceId": "CK_10"
+          },
+          "semiAuto": {
+            "enabled": true,
+            "targetCount": 2,
+            "hintText": "用十则和笼和，再找出两个确定的数字。",
+            "hintVoiceId": "R_07",
+            "watchCells": [
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                2
+              ],
+              [
+                3,
+                2
+              ]
+            ]
+          },
+          "free": {
+            "enabled": true,
+            "unlockText": "十则是总纲，也是验证的利器。"
+          }
+        }
+      }
+    },
+    {
+      "levelId": 109,
+      "title": "第8关：档案馆初试",
+      "mode": "comprehensive",
+      "gridSize": 4,
+      "difficulty": "入门",
+      "teachingGoal": "综合运用：孤星、唯一组合、隐曜、10法则",
+      "features": {
+        "allowDraft": true,
+        "assistant45": true,
+        "showHints": true,
+        "highlightRow": true,
+        "highlightCol": true,
+        "highlightBox": true,
+        "highlightNumber": true,
+        "highlightCage": true,
+        "autoFillCandidates": false
+      },
+      "boardData": [
+        [
+          1,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          2
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          3,
+          0,
+          0
+        ]
+      ],
+      "solution": [
+        [
+          1,
+          2,
+          3,
+          4
+        ],
+        [
+          3,
+          4,
+          1,
+          2
+        ],
+        [
+          2,
+          1,
+          4,
+          3
+        ],
+        [
+          4,
+          3,
+          2,
+          1
+        ]
+      ],
+      "cages": [
+        {
+          "id": 0,
+          "cells": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "sum": 3
+        },
+        {
+          "id": 1,
+          "cells": [
+            [
+              0,
+              2
+            ],
+            [
+              0,
+              3
+            ]
+          ],
+          "sum": 7
+        },
+        {
+          "id": 2,
+          "cells": [
+            [
+              1,
+              0
+            ],
+            [
+              2,
+              0
+            ]
+          ],
+          "sum": 5
+        },
+        {
+          "id": 3,
+          "cells": [
+            [
+              1,
+              1
+            ],
+            [
+              1,
+              2
+            ]
+          ],
+          "sum": 5
+        },
+        {
+          "id": 4,
+          "cells": [
+            [
+              1,
+              3
+            ],
+            [
+              2,
+              3
+            ]
+          ],
+          "sum": 5
+        },
+        {
+          "id": 5,
+          "cells": [
+            [
+              2,
+              1
+            ],
+            [
+              2,
+              2
+            ]
+          ],
+          "sum": 5
+        },
+        {
+          "id": 6,
+          "cells": [
+            [
+              3,
+              0
+            ],
+            [
+              3,
+              1
+            ]
+          ],
+          "sum": 7
+        },
+        {
+          "id": 7,
+          "cells": [
+            [
+              3,
+              2
+            ],
+            [
+              3,
+              3
+            ]
+          ],
+          "sum": 3
+        }
+      ],
+      "triggers": [
+        {
+          "id": "t108_s",
+          "condition": "onLevelStart",
+          "type": "freeze_mask",
+          "text": "第一章综合考验！运用所有技巧——孤星、唯一组合、隐曜、10法则！",
+          "once": true,
+          "targetR": 1,
+          "targetC": 1,
+          "targetType": "cell",
+          "highlightShape": "circle"
+        },
+        {
+          "id": "t108_b",
+          "condition": "onFillCountReached",
+          "count": 5,
+          "type": "enter_phase",
+          "phase": "breakthrough",
+          "once": true
+        },
+        {
+          "id": "t108_fi",
+          "condition": "onFillCountReached",
+          "count": 12,
+          "type": "enter_phase",
+          "phase": "finishing",
+          "once": true
+        }
+      ],
+      "preDialog": [
+        {
+          "speaker": "守笼人",
+          "text": "本章最终考核，检验你所有基础笼局推理能力——行、列、宫、笼和、隐曜、十则。",
+          "side": "right",
+          "voiceId": "VO_CK_09",
+          "emotion": "default",
+          "effect": 2
+        },
+        {
+          "speaker": "莹莹",
+          "text": "加油！考完这关就能解锁档案馆深处的完整卷宗！",
+          "side": "right",
+          "voiceId": "VO_J_10",
+          "emotion": "confident",
+          "effect": 0
+        },
+        {
+          "speaker": "旁白",
+          "text": "阿妍靠在窗边，没有看棋盘，声音平静但清晰",
+          "isNarration": true
+        },
+        {
+          "speaker": "阿妍",
+          "text": "……提示数又少了。不过这关没有新东西——全是你会了的。",
+          "side": "right",
+          "voiceId": "VO_R_003",
+          "emotion": "smile",
+          "effect": 0
+        },
+        {
+          "speaker": "旁白",
+          "text": "沈墨看向阿妍。两人目光短暂交汇。然后他低下头，拿起笔。声音很轻",
+          "isNarration": true
+        },
+        {
+          "speaker": "沈墨",
+          "text": "……嗯。",
+          "side": "left",
+          "voiceId": "VO_SM_09",
+          "emotion": "calm",
+          "effect": 0
+        },
+        {
+          "speaker": "守笼人",
+          "text": "前半程全部正确。后半程也一样——你已经会了。",
+          "side": "right",
+          "voiceId": "VO_CK_06",
+          "emotion": "smile",
+          "effect": 0
+        },
+        {
+          "speaker": "守笼人",
+          "text": "基础笼局逻辑你已全部掌握。接下来等待你的，是那人留下的全套谜题。",
+          "side": "right",
+          "voiceId": "VO_CK_06",
+          "emotion": "smile",
+          "effect": 1
+        },
+        {
+          "speaker": "莹莹",
+          "text": "那人？你说的是谁？设计这些笼子的人吗？",
+          "side": "right",
+          "voiceId": "VO_J_07",
+          "emotion": "default",
+          "effect": 0
+        }
+      ],
+      "clearDialog": [
+        {
+          "speaker": "守笼人",
+          "text": "……一个曾经和我站在一起的人。他的名字，已被从所有档案里抹去了。",
+          "side": "right",
+          "voiceId": "VO_CK_10",
+          "emotion": "surprised",
+          "effect": 2
+        },
+        {
+          "speaker": "旁白",
+          "text": "阿妍从窗边转过身来，声音很轻",
+          "isNarration": true
+        },
+        {
+          "speaker": "阿妍",
+          "text": "……设局人。",
+          "side": "right",
+          "voiceId": "VO_R_004",
+          "emotion": "serious",
+          "effect": 1
+        },
+        {
+          "speaker": "莹莹",
+          "text": "阿妍姐你怎么知道？！",
+          "side": "right"
+        },
+        {
+          "speaker": "旁白",
+          "text": "阿妍看向守笼人",
+          "isNarration": true
+        },
+        {
+          "speaker": "阿妍",
+          "text": "……因为他留下的所有谜题，都有同一个签名。",
+          "side": "right",
+          "voiceId": "VO_R_006",
+          "emotion": "calm",
+          "effect": 0
+        },
+        {
+          "speaker": "旁白",
+          "text": "沈墨从口袋里取出那封信，看了一眼——信封上没有署名。但信纸背面，有一行极淡的铅笔字：如果你看到了这一页，说明你已经不需要我了。他合上信，放回口袋，轻声说",
+          "isNarration": true
+        },
+        {
+          "speaker": "沈墨",
+          "text": "……他一直在等我们找到这里。",
+          "side": "left",
+          "voiceId": "VO_SM_10",
+          "emotion": "default",
+          "effect": 1
+        },
+        {
+          "speaker": "旁白",
+          "text": "画面淡出，进入第1章结尾",
+          "isNarration": true
+        }
+      ]
+    },
+    {
+      "levelId": 199,
+      "title": "隐藏关：笼中密信",
+      "isHidden": true,
+      "hiddenUnlockType": "all_s_chapter",
+      "gridSize": 4,
+      "difficulty": "入门",
+      "teachingGoal": "隐藏关：综合运用所有4x4技巧，发现设局人留下的第一封密信。",
+      "features": {
+        "allowDraft": true,
+        "assistant45": true,
+        "showHints": true,
+        "highlightRow": true,
+        "highlightCol": true,
+        "highlightBox": true,
+        "highlightNumber": true,
+        "highlightCage": true,
+        "autoFillCandidates": false
+      },
+      "boardData": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          2
+        ],
+        [
+          0,
+          0,
+          3,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "solution": [
+        [
+          2,
+          4,
+          1,
+          3
+        ],
+        [
+          1,
+          3,
+          4,
+          2
+        ],
+        [
+          4,
+          2,
+          3,
+          1
+        ],
+        [
+          3,
+          1,
+          2,
+          4
+        ]
+      ],
+      "cages": [
+        {
+          "id": 0,
+          "sum": 10,
+          "cells": [
+            [
+              2,
+              1
+            ],
+            [
+              3,
+              1
+            ],
+            [
+              3,
+              0
+            ],
+            [
+              2,
+              0
+            ]
+          ]
+        },
+        {
+          "id": 1,
+          "sum": 9,
+          "cells": [
+            [
+              1,
+              1
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              3
+            ]
+          ]
+        },
+        {
+          "id": 2,
+          "sum": 3,
+          "cells": [
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "id": 3,
+          "sum": 10,
+          "cells": [
+            [
+              2,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              2
+            ],
+            [
+              3,
+              3
+            ]
+          ]
+        },
+        {
+          "id": 4,
+          "sum": 3,
+          "cells": [
+            [
+              0,
+              3
+            ]
+          ]
+        },
+        {
+          "id": 5,
+          "sum": 5,
+          "cells": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              2
+            ]
+          ]
+        }
+      ],
+      "preDialog": [
+        {
+          "speaker": "守笼人",
+          "text": "……你找到了。这是设局人藏在第一章档案里的密信。他说，只有全S级通关的人，才有资格看到。",
+          "side": "right",
+          "emotion": "surprised",
+          "voiceId": "VO_CK_10"
+        },
+        {
+          "speaker": "阿妍",
+          "text": "（目光微动）……密信？",
+          "side": "right",
+          "emotion": "thinking",
+          "voiceId": "VO_R_06"
+        },
+        {
+          "speaker": "守笼人",
+          "text": "这道笼局，没有任何提示数字。全凭笼格的和值来推导。他称之为——「无字之笼」。",
+          "side": "right",
+          "emotion": "serious",
+          "voiceId": "VO_CK_02"
+        },
+        {
+          "speaker": "莹莹",
+          "text": "哇！一个提示数字都没有？！这能解吗？！",
+          "side": "right",
+          "emotion": "surprised",
+          "voiceId": "VO_J_03"
+        },
+        {
+          "speaker": "守笼人",
+          "text": "星衡法则，加上唯一组合——已经足够了。试试看吧。",
+          "side": "right",
+          "emotion": "smile",
+          "voiceId": "VO_CK_06"
+        }
+      ],
+      "clearDialog": [
+        {
+          "speaker": "旁白",
+          "text": "盘面全部填满的那一刻，棋盘中央浮现出一行极淡的小字",
+          "isNarration": true
+        },
+        {
+          "speaker": "沈墨",
+          "text": "（轻声念出）「当你看到这封信的时候，说明你已经找到了第一把钥匙。但真正的锁，在最后。」",
+          "side": "left",
+          "emotion": "thinking",
+          "voiceId": "VO_SM_05"
+        },
+        {
+          "speaker": "阿妍",
+          "text": "（声音很轻）……最后一把锁。",
+          "side": "right",
+          "emotion": "calm",
+          "voiceId": "VO_R_07"
+        },
+        {
+          "speaker": "守笼人",
+          "text": "七章档案，每一章都藏着一封密信。全部找到的人，才能看到……真正的结局。",
+          "side": "right",
+          "emotion": "serious",
+          "voiceId": "VO_CK_02"
+        }
+      ]
+    }
+  ]
+}

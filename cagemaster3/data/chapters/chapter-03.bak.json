@@ -1,0 +1,7623 @@
+{
+  "chapterId": 3,
+  "title": "档案室深层",
+  "description": "深入档案馆深层，学习区块排除、数对法、二连纵横阵等进阶技巧。设局人正式现身对话，揭露当年与守笼人的同门过往。",
+  "unlockCondition": {},
+  "theme": 0,
+  "levels": [
+    {
+      "levelId": 301,
+      "title": "第1关：行区块",
+      "gridSize": 9,
+      "difficulty": "简单",
+      "teachingGoal": "区块排除法（行区块）：当某数字在某宫内只能出现在同一行时，可排除该行其他位置的该数字。",
+      "features": {
+        "allowDraft": true,
+        "assistant45": true,
+        "showHints": true,
+        "perspectiveMode": true,
+        "highlightRow": true,
+        "highlightCol": true,
+        "highlightBox": true,
+        "highlightNumber": true,
+        "highlightCage": true,
+        "autoFillCandidates": true
+      },
+      "triggers": [
+        {
+          "id": "t301_multirow",
+          "condition": "onLevelStart",
+          "type": "popup_hint",
+          "text": "试试把两行加起来看？21×2=42，有时候能发现突破口！",
+          "once": true
+        },
+        {
+          "id": "t301_f1",
+          "condition": "onFirstNumberFilled",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "对了！这就是区块排除——当数字在这个宫里只能出现在这一行时，整行其他位置都排除掉！",
+          "once": true
+        },
+        {
+          "id": "t301_b",
+          "condition": "onFillCountReached",
+          "count": 59,
+          "type": "enter_phase",
+          "phase": "breakthrough",
+          "once": true
+        },
+        {
+          "id": "t301_bt",
+          "condition": "onFillCountReached",
+          "count": 59,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "⚡ 破局时刻！你找到了关键的行区块排除，连锁反应开始了！",
+          "once": true,
+          "delay": 400
+        },
+        {
+          "id": "t301_st20",
+          "condition": "onStuckForSeconds",
+          "seconds": 20,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "💡 卡住了？找一个数字，看它在某个3×3宫里的可能位置——如果这些位置恰好在同一行，那整行其他位置都排除掉！",
+          "once": false
+        },
+        {
+          "id": "t301_st40",
+          "condition": "onStuckForSeconds",
+          "seconds": 40,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "💡 行区块口诀：「宫看行，行删余」。打开笔记笔记（✏️），标记所有候选，区块就会自己跳出来！",
+          "once": false,
+          "delay": 300
+        },
+        {
+          "id": "t301_ag",
+          "condition": "onConflict",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "⚠️ 猜数字是行不通的！找到区块证据再填——如果笔记没标记，先标上！",
+          "once": false
+        },
+        {
+          "id": "t301_fi",
+          "condition": "onFillCountReached",
+          "count": 72,
+          "type": "enter_phase",
+          "phase": "finishing",
+          "once": true
+        },
+        {
+          "id": "t301_fit",
+          "condition": "onFillCountReached",
+          "count": 72,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "✨ 收官！区块排除的余波扫清了最后的障碍，继续冲刺！",
+          "once": true,
+          "delay": 400
+        },
+        {
+          "id": "t301_c",
+          "condition": "onLevelComplete",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "🎉 行区块排除已掌握！这是所有进阶技巧的基石。",
+          "once": true
+        }
+      ],
+      "boardData": [
+        [
+          0,
+          3,
+          6,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          4,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "cages": [
+        {
+          "id": 0,
+          "sum": 19,
+          "cells": [
+            [
+              8,
+              3
+            ],
+            [
+              8,
+              4
+            ],
+            [
+              8,
+              5
+            ],
+            [
+              7,
+              5
+            ],
+            [
+              8,
+              2
+            ]
+          ]
+        },
+        {
+          "id": 1,
+          "sum": 22,
+          "cells": [
+            [
+              8,
+              7
+            ],
+            [
+              7,
+              7
+            ],
+            [
+              7,
+              6
+            ],
+            [
+              7,
+              8
+            ]
+          ]
+        },
+        {
+          "id": 2,
+          "sum": 22,
+          "cells": [
+            [
+              0,
+              4
+            ],
+            [
+              0,
+              3
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              2,
+              3
+            ]
+          ]
+        },
+        {
+          "id": 3,
+          "sum": 18,
+          "cells": [
+            [
+              5,
+              2
+            ],
+            [
+              5,
+              1
+            ],
+            [
+              4,
+              1
+            ],
+            [
+              4,
+              2
+            ]
+          ]
+        },
+        {
+          "id": 4,
+          "sum": 13,
+          "cells": [
+            [
+              3,
+              1
+            ],
+            [
+              2,
+              1
+            ],
+            [
+              3,
+              0
+            ]
+          ]
+        },
+        {
+          "id": 5,
+          "sum": 16,
+          "cells": [
+            [
+              6,
+              8
+            ],
+            [
+              6,
+              7
+            ],
+            [
+              5,
+              8
+            ]
+          ]
+        },
+        {
+          "id": 6,
+          "sum": 21,
+          "cells": [
+            [
+              5,
+              3
+            ],
+            [
+              6,
+              3
+            ],
+            [
+              7,
+              3
+            ]
+          ]
+        },
+        {
+          "id": 7,
+          "sum": 14,
+          "cells": [
+            [
+              1,
+              5
+            ],
+            [
+              1,
+              6
+            ],
+            [
+              0,
+              6
+            ]
+          ]
+        },
+        {
+          "id": 8,
+          "sum": 8,
+          "cells": [
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              2,
+              0
+            ]
+          ]
+        },
+        {
+          "id": 9,
+          "sum": 12,
+          "cells": [
+            [
+              4,
+              7
+            ],
+            [
+              3,
+              7
+            ]
+          ]
+        },
+        {
+          "id": 10,
+          "sum": 6,
+          "cells": [
+            [
+              1,
+              4
+            ],
+            [
+              2,
+              4
+            ]
+          ]
+        },
+        {
+          "id": 11,
+          "sum": 7,
+          "cells": [
+            [
+              2,
+              7
+            ],
+            [
+              2,
+              6
+            ]
+          ]
+        },
+        {
+          "id": 12,
+          "sum": 3,
+          "cells": [
+            [
+              6,
+              2
+            ],
+            [
+              7,
+              2
+            ]
+          ]
+        },
+        {
+          "id": 13,
+          "sum": 28,
+          "cells": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              2
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              0,
+              2
+            ]
+          ]
+        },
+        {
+          "id": 14,
+          "sum": 5,
+          "cells": [
+            [
+              4,
+              4
+            ],
+            [
+              3,
+              4
+            ]
+          ]
+        },
+        {
+          "id": 15,
+          "sum": 14,
+          "cells": [
+            [
+              4,
+              0
+            ],
+            [
+              5,
+              0
+            ]
+          ]
+        },
+        {
+          "id": 16,
+          "sum": 14,
+          "cells": [
+            [
+              5,
+              4
+            ],
+            [
+              6,
+              4
+            ]
+          ]
+        },
+        {
+          "id": 17,
+          "sum": 17,
+          "cells": [
+            [
+              0,
+              7
+            ],
+            [
+              1,
+              7
+            ]
+          ]
+        },
+        {
+          "id": 18,
+          "sum": 14,
+          "cells": [
+            [
+              8,
+              0
+            ],
+            [
+              8,
+              1
+            ]
+          ]
+        },
+        {
+          "id": 19,
+          "sum": 8,
+          "cells": [
+            [
+              4,
+              8
+            ]
+          ]
+        },
+        {
+          "id": 20,
+          "sum": 12,
+          "cells": [
+            [
+              3,
+              6
+            ],
+            [
+              5,
+              6
+            ],
+            [
+              4,
+              6
+            ],
+            [
+              5,
+              7
+            ]
+          ]
+        },
+        {
+          "id": 21,
+          "sum": 25,
+          "cells": [
+            [
+              7,
+              0
+            ],
+            [
+              6,
+              1
+            ],
+            [
+              6,
+              0
+            ],
+            [
+              7,
+              1
+            ]
+          ]
+        },
+        {
+          "id": 22,
+          "sum": 2,
+          "cells": [
+            [
+              0,
+              5
+            ]
+          ]
+        },
+        {
+          "id": 23,
+          "sum": 1,
+          "cells": [
+            [
+              8,
+              8
+            ]
+          ]
+        },
+        {
+          "id": 24,
+          "sum": 21,
+          "cells": [
+            [
+              2,
+              5
+            ],
+            [
+              3,
+              5
+            ],
+            [
+              4,
+              5
+            ]
+          ]
+        },
+        {
+          "id": 25,
+          "sum": 19,
+          "cells": [
+            [
+              3,
+              8
+            ],
+            [
+              2,
+              8
+            ],
+            [
+              1,
+              8
+            ],
+            [
+              0,
+              8
+            ]
+          ]
+        },
+        {
+          "id": 26,
+          "sum": 14,
+          "cells": [
+            [
+              6,
+              6
+            ],
+            [
+              6,
+              5
+            ],
+            [
+              5,
+              5
+            ]
+          ]
+        },
+        {
+          "id": 27,
+          "sum": 18,
+          "cells": [
+            [
+              4,
+              3
+            ],
+            [
+              3,
+              2
+            ],
+            [
+              3,
+              3
+            ]
+          ]
+        },
+        {
+          "id": 28,
+          "sum": 8,
+          "cells": [
+            [
+              8,
+              6
+            ]
+          ]
+        },
+        {
+          "id": 29,
+          "sum": 4,
+          "cells": [
+            [
+              7,
+              4
+            ]
+          ]
+        }
+      ],
+      "solution": [
+        [
+          5,
+          3,
+          6,
+          4,
+          9,
+          2,
+          1,
+          8,
+          7
+        ],
+        [
+          2,
+          4,
+          7,
+          3,
+          1,
+          8,
+          5,
+          9,
+          6
+        ],
+        [
+          1,
+          9,
+          8,
+          6,
+          5,
+          7,
+          4,
+          3,
+          2
+        ],
+        [
+          3,
+          1,
+          9,
+          8,
+          2,
+          5,
+          6,
+          7,
+          4
+        ],
+        [
+          6,
+          7,
+          4,
+          1,
+          3,
+          9,
+          2,
+          5,
+          8
+        ],
+        [
+          8,
+          2,
+          5,
+          7,
+          6,
+          4,
+          3,
+          1,
+          9
+        ],
+        [
+          4,
+          6,
+          1,
+          9,
+          8,
+          3,
+          7,
+          2,
+          5
+        ],
+        [
+          7,
+          8,
+          2,
+          5,
+          4,
+          1,
+          9,
+          6,
+          3
+        ],
+        [
+          9,
+          5,
+          3,
+          2,
+          7,
+          6,
+          8,
+          4,
+          1
+        ]
+      ],
+      "preDialog": [
+        {
+          "speaker": "守笼人",
+          "text": "区块排除——当某数字仅可能出现在某一宫的特定行或列时，可排除该行该列其他位置的可能性。",
+          "side": "right",
+          "emotion": "teaching",
+          "voiceId": "VO_CK_03",
+          "effect": 0
+        },
+        {
+          "speaker": "莹莹",
+          "text": "就是说——数字在某个小框框里只能在某一行出现，那这一行其他地方就没它的事了！",
+          "side": "right",
+          "emotion": "smile",
+          "voiceId": "VO_J_02",
+          "effect": 0
+        },
+        {
+          "speaker": "阿妍",
+          "text": "行内排除。压缩候选空间的基本手段。",
+          "side": "right",
+          "emotion": "determined",
+          "voiceId": "VO_R_02",
+          "effect": 0
+        }
+      ],
+      "clearDialog": [
+        {
+          "speaker": "守笼人",
+          "text": "区块排除是破所有高阶笼局的钥匙。",
+          "side": "right",
+          "emotion": "smile",
+          "voiceId": "VO_CK_06",
+          "effect": 1
+        },
+        {
+          "speaker": "设局人",
+          "text": "钥匙？这不过是我当年随手丢下的一枚废铜片罢了。",
+          "side": "right",
+          "emotion": "calm",
+          "voiceId": "VO_P_03",
+          "effect": 2
+        },
+        {
+          "speaker": "阿妍",
+          "text": "（这一次，她轻轻接了一句）……废铜片。",
+          "side": "right",
+          "emotion": "calm",
+          "voiceId": "VO_R_07",
+          "effect": 0
+        },
+        {
+          "speaker": "沈墨",
+          "text": "（他看了一眼设局人留声的方向——不是恐惧，不是愤怒。像在确认一个他已经知道的事实。）……他丢下的每一片，都困了人很久。",
+          "side": "left",
+          "emotion": "sad",
+          "voiceId": "VO_SM_18",
+          "effect": 0
+        }
+      ],
+      "mode": "full",
+      "coreMove": {
+        "row": 5,
+        "col": 3,
+        "value": 5,
+        "cascadeCount": 53,
+        "cascadeSequence": [
+          {
+            "row": 4,
+            "col": 3,
+            "value": 2,
+            "cellId": 39
+          },
+          {
+            "row": 8,
+            "col": 3,
+            "value": 1,
+            "cellId": 75
+          },
+          {
+            "row": 8,
+            "col": 4,
+            "value": 9,
+            "cellId": 76
+          },
+          {
+            "row": 7,
+            "col": 3,
+            "value": 4,
+            "cellId": 66
+          },
+          {
+            "row": 6,
+            "col": 6,
+            "value": 9,
+            "cellId": 60
+          },
+          {
+            "row": 6,
+            "col": 0,
+            "value": 5,
+            "cellId": 54
+          },
+          {
+            "row": 7,
+            "col": 0,
+            "value": 9,
+            "cellId": 63
+          },
+          {
+            "row": 7,
+            "col": 7,
+            "value": 5,
+            "cellId": 70
+          },
+          {
+            "row": 7,
+            "col": 2,
+            "value": 6,
+            "cellId": 65
+          },
+          {
+            "row": 6,
+            "col": 7,
+            "value": 1,
+            "cellId": 61
+          },
+          {
+            "row": 8,
+            "col": 5,
+            "value": 5,
+            "cellId": 77
+          },
+          {
+            "row": 2,
+            "col": 1,
+            "value": 2,
+            "cellId": 19
+          },
+          {
+            "row": 1,
+            "col": 1,
+            "value": 8,
+            "cellId": 10
+          },
+          {
+            "row": 1,
+            "col": 5,
+            "value": 2,
+            "cellId": 14
+          },
+          {
+            "row": 1,
+            "col": 4,
+            "value": 6,
+            "cellId": 13
+          },
+          {
+            "row": 5,
+            "col": 4,
+            "value": 7,
+            "cellId": 49
+          },
+          {
+            "row": 5,
+            "col": 0,
+            "value": 8,
+            "cellId": 45
+          },
+          {
+            "row": 4,
+            "col": 0,
+            "value": 7,
+            "cellId": 36
+          },
+          {
+            "row": 3,
+            "col": 7,
+            "value": 7,
+            "cellId": 34
+          },
+          {
+            "row": 3,
+            "col": 6,
+            "value": 5,
+            "cellId": 33
+          },
+          {
+            "row": 2,
+            "col": 8,
+            "value": 5,
+            "cellId": 26
+          },
+          {
+            "row": 5,
+            "col": 6,
+            "value": 4,
+            "cellId": 51
+          },
+          {
+            "row": 8,
+            "col": 7,
+            "value": 4,
+            "cellId": 79
+          },
+          {
+            "row": 0,
+            "col": 7,
+            "value": 2,
+            "cellId": 7
+          },
+          {
+            "row": 0,
+            "col": 8,
+            "value": 4,
+            "cellId": 8
+          },
+          {
+            "row": 3,
+            "col": 2,
+            "value": 4,
+            "cellId": 29
+          },
+          {
+            "row": 8,
+            "col": 2,
+            "value": 2,
+            "cellId": 74
+          },
+          {
+            "row": 6,
+            "col": 2,
+            "value": 8,
+            "cellId": 56
+          },
+          {
+            "row": 6,
+            "col": 5,
+            "value": 7,
+            "cellId": 59
+          },
+          {
+            "row": 6,
+            "col": 3,
+            "value": 6,
+            "cellId": 57
+          },
+          {
+            "row": 6,
+            "col": 8,
+            "value": 3,
+            "cellId": 62
+          },
+          {
+            "row": 6,
+            "col": 4,
+            "value": 2,
+            "cellId": 58
+          },
+          {
+            "row": 7,
+            "col": 4,
+            "value": 3,
+            "cellId": 67
+          },
+          {
+            "row": 7,
+            "col": 5,
+            "value": 8,
+            "cellId": 68
+          },
+          {
+            "row": 7,
+            "col": 8,
+            "value": 7,
+            "cellId": 71
+          },
+          {
+            "row": 1,
+            "col": 8,
+            "value": 9,
+            "cellId": 17
+          },
+          {
+            "row": 1,
+            "col": 3,
+            "value": 7,
+            "cellId": 12
+          },
+          {
+            "row": 2,
+            "col": 3,
+            "value": 9,
+            "cellId": 21
+          },
+          {
+            "row": 2,
+            "col": 7,
+            "value": 8,
+            "cellId": 25
+          },
+          {
+            "row": 2,
+            "col": 6,
+            "value": 7,
+            "cellId": 24
+          },
+          {
+            "row": 3,
+            "col": 8,
+            "value": 1,
+            "cellId": 35
+          },
+          {
+            "row": 3,
+            "col": 5,
+            "value": 9,
+            "cellId": 32
+          },
+          {
+            "row": 4,
+            "col": 5,
+            "value": 6,
+            "cellId": 41
+          },
+          {
+            "row": 4,
+            "col": 7,
+            "value": 9,
+            "cellId": 43
+          },
+          {
+            "row": 4,
+            "col": 2,
+            "value": 1,
+            "cellId": 38
+          },
+          {
+            "row": 4,
+            "col": 8,
+            "value": 8,
+            "cellId": 44
+          },
+          {
+            "row": 4,
+            "col": 6,
+            "value": 3,
+            "cellId": 42
+          },
+          {
+            "row": 5,
+            "col": 2,
+            "value": 9,
+            "cellId": 47
+          },
+          {
+            "row": 5,
+            "col": 5,
+            "value": 1,
+            "cellId": 50
+          },
+          {
+            "row": 5,
+            "col": 7,
+            "value": 6,
+            "cellId": 52
+          },
+          {
+            "row": 5,
+            "col": 8,
+            "value": 2,
+            "cellId": 53
+          },
+          {
+            "row": 7,
+            "col": 6,
+            "value": 2,
+            "cellId": 69
+          },
+          {
+            "row": 8,
+            "col": 6,
+            "value": 8,
+            "cellId": 78
+          }
+        ]
+      },
+      "breakPointIndex": 29,
+      "totalSteps": 84,
+      "nakedSingleRatio": 0.6190476190476191,
+      "targetTechnique": "pointingClaiming"
+    },
+    {
+      "levelId": 302,
+      "title": "第2关：列区块",
+      "gridSize": 9,
+      "difficulty": "简单",
+      "teachingGoal": "区块排除法（列区块）：当某数字在某宫内只能出现在同一列时，可排除该列其他位置的该数字。",
+      "features": {
+        "allowDraft": true,
+        "assistant45": false,
+        "showHints": true,
+        "perspectiveMode": true,
+        "highlightRow": true,
+        "highlightCol": true,
+        "highlightBox": true,
+        "highlightNumber": true,
+        "highlightCage": true,
+        "autoFillCandidates": true
+      },
+      "triggers": [
+        {
+          "id": "t302_s",
+          "condition": "onLevelStart",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "第二关：列区块！上一关学了行方向的区块排除，这一关是列方向——原理一样，方向变了！",
+          "once": true
+        },
+        {
+          "id": "t302_f1",
+          "condition": "onFirstNumberFilled",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "漂亮！列区块和行区块是双胞胎——宫内看列，列删余！",
+          "once": true
+        },
+        {
+          "id": "t302_b",
+          "condition": "onFillCountReached",
+          "count": 57,
+          "type": "enter_phase",
+          "phase": "breakthrough",
+          "once": true
+        },
+        {
+          "id": "t302_bt",
+          "condition": "onFillCountReached",
+          "count": 57,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "⚡ 破局时刻！列区块排除启动，盘面上的数字开始连锁填入！",
+          "once": true,
+          "delay": 400
+        },
+        {
+          "id": "t302_st20",
+          "condition": "onStuckForSeconds",
+          "seconds": 20,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "💡 卡住了？竖着看！找一个数字，看它在某个宫里只能出现在哪一列，那整列其他格子都排除！",
+          "once": false
+        },
+        {
+          "id": "t302_st40",
+          "condition": "onStuckForSeconds",
+          "seconds": 40,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "💡 别忘记星衡法则依然可用！有时候用星衡法则先锁定一个数字，区块自然就出现了。",
+          "once": false,
+          "delay": 300
+        },
+        {
+          "id": "t302_ag",
+          "condition": "onConflict",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "⚠️ 别急着填！确定这一列其他地方都不能放这个数字了吗？再检查一遍~",
+          "once": false
+        },
+        {
+          "id": "t302_fi",
+          "condition": "onFillCountReached",
+          "count": 71,
+          "type": "enter_phase",
+          "phase": "finishing",
+          "once": true
+        },
+        {
+          "id": "t302_fit",
+          "condition": "onFillCountReached",
+          "count": 71,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "✨ 收官！行列区块都用上了，最后几格轻松拿下！",
+          "once": true,
+          "delay": 400
+        },
+        {
+          "id": "t302_c",
+          "condition": "onLevelComplete",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "🎉 列区块到手！行和列的双向排除你都掌握了！",
+          "once": true
+        }
+      ],
+      "boardData": [
+        [
+          0,
+          0,
+          0,
+          0,
+          3,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          7,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          3,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          4,
+          0
+        ]
+      ],
+      "cages": [
+        {
+          "id": 0,
+          "sum": 26,
+          "cells": [
+            [
+              8,
+              8
+            ],
+            [
+              8,
+              7
+            ],
+            [
+              7,
+              7
+            ],
+            [
+              8,
+              6
+            ],
+            [
+              6,
+              7
+            ]
+          ]
+        },
+        {
+          "id": 1,
+          "sum": 17,
+          "cells": [
+            [
+              2,
+              2
+            ],
+            [
+              3,
+              2
+            ],
+            [
+              3,
+              3
+            ],
+            [
+              3,
+              1
+            ]
+          ]
+        },
+        {
+          "id": 2,
+          "sum": 16,
+          "cells": [
+            [
+              6,
+              6
+            ],
+            [
+              7,
+              6
+            ],
+            [
+              6,
+              5
+            ],
+            [
+              5,
+              6
+            ]
+          ]
+        },
+        {
+          "id": 3,
+          "sum": 17,
+          "cells": [
+            [
+              0,
+              5
+            ],
+            [
+              0,
+              4
+            ],
+            [
+              1,
+              4
+            ],
+            [
+              0,
+              3
+            ]
+          ]
+        },
+        {
+          "id": 4,
+          "sum": 1,
+          "cells": [
+            [
+              7,
+              8
+            ]
+          ]
+        },
+        {
+          "id": 5,
+          "sum": 12,
+          "cells": [
+            [
+              6,
+              0
+            ],
+            [
+              6,
+              1
+            ],
+            [
+              6,
+              2
+            ]
+          ]
+        },
+        {
+          "id": 6,
+          "sum": 21,
+          "cells": [
+            [
+              2,
+              7
+            ],
+            [
+              3,
+              7
+            ],
+            [
+              3,
+              6
+            ]
+          ]
+        },
+        {
+          "id": 7,
+          "sum": 13,
+          "cells": [
+            [
+              3,
+              4
+            ],
+            [
+              3,
+              5
+            ],
+            [
+              4,
+              4
+            ]
+          ]
+        },
+        {
+          "id": 8,
+          "sum": 17,
+          "cells": [
+            [
+              2,
+              4
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              1,
+              3
+            ]
+          ]
+        },
+        {
+          "id": 9,
+          "sum": 12,
+          "cells": [
+            [
+              1,
+              5
+            ],
+            [
+              2,
+              5
+            ],
+            [
+              1,
+              6
+            ]
+          ]
+        },
+        {
+          "id": 10,
+          "sum": 24,
+          "cells": [
+            [
+              4,
+              7
+            ],
+            [
+              5,
+              7
+            ],
+            [
+              6,
+              8
+            ],
+            [
+              5,
+              8
+            ],
+            [
+              4,
+              8
+            ]
+          ]
+        },
+        {
+          "id": 11,
+          "sum": 6,
+          "cells": [
+            [
+              7,
+              1
+            ],
+            [
+              7,
+              2
+            ]
+          ]
+        },
+        {
+          "id": 12,
+          "sum": 8,
+          "cells": [
+            [
+              2,
+              6
+            ]
+          ]
+        },
+        {
+          "id": 13,
+          "sum": 7,
+          "cells": [
+            [
+              5,
+              5
+            ],
+            [
+              5,
+              4
+            ]
+          ]
+        },
+        {
+          "id": 14,
+          "sum": 4,
+          "cells": [
+            [
+              2,
+              0
+            ],
+            [
+              2,
+              1
+            ]
+          ]
+        },
+        {
+          "id": 15,
+          "sum": 10,
+          "cells": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              1
+            ]
+          ]
+        },
+        {
+          "id": 16,
+          "sum": 16,
+          "cells": [
+            [
+              0,
+              2
+            ],
+            [
+              1,
+              2
+            ]
+          ]
+        },
+        {
+          "id": 17,
+          "sum": 15,
+          "cells": [
+            [
+              4,
+              5
+            ],
+            [
+              4,
+              6
+            ]
+          ]
+        },
+        {
+          "id": 18,
+          "sum": 9,
+          "cells": [
+            [
+              3,
+              0
+            ]
+          ]
+        },
+        {
+          "id": 19,
+          "sum": 19,
+          "cells": [
+            [
+              8,
+              1
+            ],
+            [
+              7,
+              0
+            ],
+            [
+              8,
+              0
+            ]
+          ]
+        },
+        {
+          "id": 20,
+          "sum": 15,
+          "cells": [
+            [
+              8,
+              3
+            ],
+            [
+              8,
+              2
+            ],
+            [
+              7,
+              3
+            ]
+          ]
+        },
+        {
+          "id": 21,
+          "sum": 25,
+          "cells": [
+            [
+              6,
+              3
+            ],
+            [
+              6,
+              4
+            ],
+            [
+              7,
+              5
+            ],
+            [
+              7,
+              4
+            ]
+          ]
+        },
+        {
+          "id": 22,
+          "sum": 28,
+          "cells": [
+            [
+              5,
+              3
+            ],
+            [
+              4,
+              3
+            ],
+            [
+              5,
+              2
+            ],
+            [
+              5,
+              1
+            ]
+          ]
+        },
+        {
+          "id": 23,
+          "sum": 9,
+          "cells": [
+            [
+              8,
+              4
+            ],
+            [
+              8,
+              5
+            ]
+          ]
+        },
+        {
+          "id": 24,
+          "sum": 15,
+          "cells": [
+            [
+              4,
+              1
+            ],
+            [
+              4,
+              2
+            ],
+            [
+              5,
+              0
+            ],
+            [
+              4,
+              0
+            ]
+          ]
+        },
+        {
+          "id": 25,
+          "sum": 15,
+          "cells": [
+            [
+              0,
+              6
+            ],
+            [
+              0,
+              7
+            ],
+            [
+              1,
+              7
+            ]
+          ]
+        },
+        {
+          "id": 26,
+          "sum": 10,
+          "cells": [
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              1
+            ]
+          ]
+        },
+        {
+          "id": 27,
+          "sum": 18,
+          "cells": [
+            [
+              0,
+              8
+            ],
+            [
+              3,
+              8
+            ],
+            [
+              2,
+              8
+            ],
+            [
+              1,
+              8
+            ]
+          ]
+        }
+      ],
+      "solution": [
+        [
+          2,
+          8,
+          7,
+          5,
+          3,
+          1,
+          4,
+          6,
+          9
+        ],
+        [
+          6,
+          4,
+          9,
+          7,
+          8,
+          2,
+          1,
+          5,
+          3
+        ],
+        [
+          1,
+          3,
+          5,
+          4,
+          6,
+          9,
+          8,
+          7,
+          2
+        ],
+        [
+          9,
+          7,
+          3,
+          2,
+          1,
+          5,
+          6,
+          8,
+          4
+        ],
+        [
+          4,
+          1,
+          2,
+          8,
+          7,
+          6,
+          9,
+          3,
+          5
+        ],
+        [
+          8,
+          5,
+          6,
+          9,
+          4,
+          3,
+          2,
+          1,
+          7
+        ],
+        [
+          5,
+          6,
+          1,
+          3,
+          9,
+          4,
+          7,
+          2,
+          8
+        ],
+        [
+          7,
+          2,
+          4,
+          6,
+          5,
+          8,
+          3,
+          9,
+          1
+        ],
+        [
+          3,
+          9,
+          8,
+          1,
+          2,
+          7,
+          5,
+          4,
+          6
+        ]
+      ],
+      "preDialog": [
+        {
+          "speaker": "守笼人",
+          "text": "当行与列的区块限制叠加时，可进一步缩小数字范围。",
+          "side": "right",
+          "emotion": "teaching",
+          "voiceId": "VO_CK_03",
+          "effect": 0
+        },
+        {
+          "speaker": "莹莹",
+          "text": "横着排除一遍，竖着再排除一遍！",
+          "side": "right",
+          "emotion": "smile",
+          "voiceId": "VO_J_02",
+          "effect": 0
+        },
+        {
+          "speaker": "阿妍",
+          "text": "行列叠加，双重锁定。候选范围缩小约一半。",
+          "side": "right",
+          "emotion": "determined",
+          "voiceId": "VO_R_02",
+          "effect": 0
+        },
+        {
+          "speaker": "沈墨",
+          "text": "（他已经在心里算完了第二列的空位。没有说出来——但他用笔尖在纸上轻轻点了两下，像是在给已经知道答案的格子做标记。）",
+          "side": "left",
+          "effect": 0
+        }
+      ],
+      "clearDialog": [
+        {
+          "speaker": "守笼人",
+          "text": "区块逻辑愈发纯熟。",
+          "side": "right",
+          "emotion": "smile",
+          "voiceId": "VO_CK_06",
+          "effect": 0
+        },
+        {
+          "speaker": "莹莹",
+          "text": "用区块排除一下，思路瞬间清晰多了！",
+          "side": "right",
+          "emotion": "surprised",
+          "voiceId": "VO_J_03",
+          "effect": 0
+        },
+        {
+          "speaker": "阿妍",
+          "text": "（点头）嗯。",
+          "side": "right",
+          "emotion": "calm",
+          "voiceId": "VO_R_07",
+          "effect": 0
+        }
+      ],
+      "mode": "full",
+      "coreMove": {
+        "row": 1,
+        "col": 5,
+        "value": 4,
+        "cascadeCount": 62,
+        "cascadeSequence": [
+          {
+            "row": 1,
+            "col": 5,
+            "value": 4,
+            "cellId": 14
+          },
+          {
+            "row": 0,
+            "col": 5,
+            "value": 8,
+            "cellId": 5
+          },
+          {
+            "row": 1,
+            "col": 6,
+            "value": 9,
+            "cellId": 15
+          },
+          {
+            "row": 2,
+            "col": 6,
+            "value": 8,
+            "cellId": 24
+          },
+          {
+            "row": 5,
+            "col": 6,
+            "value": 5,
+            "cellId": 51
+          },
+          {
+            "row": 6,
+            "col": 6,
+            "value": 7,
+            "cellId": 60
+          },
+          {
+            "row": 0,
+            "col": 7,
+            "value": 7,
+            "cellId": 7
+          },
+          {
+            "row": 0,
+            "col": 6,
+            "value": 3,
+            "cellId": 6
+          },
+          {
+            "row": 1,
+            "col": 4,
+            "value": 3,
+            "cellId": 13
+          },
+          {
+            "row": 3,
+            "col": 7,
+            "value": 9,
+            "cellId": 34
+          },
+          {
+            "row": 2,
+            "col": 7,
+            "value": 4,
+            "cellId": 25
+          },
+          {
+            "row": 5,
+            "col": 4,
+            "value": 8,
+            "cellId": 49
+          },
+          {
+            "row": 1,
+            "col": 0,
+            "value": 7,
+            "cellId": 9
+          },
+          {
+            "row": 5,
+            "col": 8,
+            "value": 7,
+            "cellId": 53
+          },
+          {
+            "row": 6,
+            "col": 8,
+            "value": 3,
+            "cellId": 62
+          },
+          {
+            "row": 4,
+            "col": 7,
+            "value": 3,
+            "cellId": 43
+          },
+          {
+            "row": 4,
+            "col": 8,
+            "value": 8,
+            "cellId": 44
+          },
+          {
+            "row": 7,
+            "col": 8,
+            "value": 9,
+            "cellId": 71
+          },
+          {
+            "row": 8,
+            "col": 5,
+            "value": 7,
+            "cellId": 77
+          },
+          {
+            "row": 2,
+            "col": 5,
+            "value": 9,
+            "cellId": 23
+          },
+          {
+            "row": 2,
+            "col": 4,
+            "value": 7,
+            "cellId": 22
+          },
+          {
+            "row": 6,
+            "col": 4,
+            "value": 9,
+            "cellId": 58
+          },
+          {
+            "row": 4,
+            "col": 3,
+            "value": 9,
+            "cellId": 39
+          },
+          {
+            "row": 4,
+            "col": 4,
+            "value": 4,
+            "cellId": 40
+          },
+          {
+            "row": 3,
+            "col": 5,
+            "value": 5,
+            "cellId": 32
+          },
+          {
+            "row": 3,
+            "col": 4,
+            "value": 1,
+            "cellId": 31
+          },
+          {
+            "row": 0,
+            "col": 4,
+            "value": 2,
+            "cellId": 4
+          },
+          {
+            "row": 1,
+            "col": 3,
+            "value": 1,
+            "cellId": 12
+          },
+          {
+            "row": 3,
+            "col": 2,
+            "value": 2,
+            "cellId": 29
+          },
+          {
+            "row": 3,
+            "col": 8,
+            "value": 4,
+            "cellId": 35
+          },
+          {
+            "row": 4,
+            "col": 2,
+            "value": 5,
+            "cellId": 38
+          },
+          {
+            "row": 7,
+            "col": 4,
+            "value": 6,
+            "cellId": 67
+          },
+          {
+            "row": 5,
+            "col": 0,
+            "value": 9,
+            "cellId": 45
+          },
+          {
+            "row": 7,
+            "col": 5,
+            "value": 3,
+            "cellId": 68
+          },
+          {
+            "row": 8,
+            "col": 1,
+            "value": 3,
+            "cellId": 73
+          },
+          {
+            "row": 7,
+            "col": 6,
+            "value": 4,
+            "cellId": 69
+          },
+          {
+            "row": 6,
+            "col": 5,
+            "value": 1,
+            "cellId": 59
+          },
+          {
+            "row": 6,
+            "col": 2,
+            "value": 6,
+            "cellId": 56
+          },
+          {
+            "row": 5,
+            "col": 2,
+            "value": 1,
+            "cellId": 47
+          },
+          {
+            "row": 4,
+            "col": 0,
+            "value": 6,
+            "cellId": 36
+          },
+          {
+            "row": 4,
+            "col": 5,
+            "value": 2,
+            "cellId": 41
+          },
+          {
+            "row": 4,
+            "col": 6,
+            "value": 1,
+            "cellId": 42
+          },
+          {
+            "row": 5,
+            "col": 5,
+            "value": 6,
+            "cellId": 50
+          },
+          {
+            "row": 5,
+            "col": 7,
+            "value": 2,
+            "cellId": 52
+          },
+          {
+            "row": 1,
+            "col": 7,
+            "value": 6,
+            "cellId": 16
+          },
+          {
+            "row": 6,
+            "col": 1,
+            "value": 2,
+            "cellId": 55
+          },
+          {
+            "row": 1,
+            "col": 1,
+            "value": 5,
+            "cellId": 10
+          },
+          {
+            "row": 0,
+            "col": 0,
+            "value": 1,
+            "cellId": 0
+          },
+          {
+            "row": 0,
+            "col": 8,
+            "value": 5,
+            "cellId": 8
+          },
+          {
+            "row": 1,
+            "col": 8,
+            "value": 2,
+            "cellId": 17
+          },
+          {
+            "row": 2,
+            "col": 0,
+            "value": 2,
+            "cellId": 18
+          },
+          {
+            "row": 2,
+            "col": 1,
+            "value": 6,
+            "cellId": 19
+          },
+          {
+            "row": 2,
+            "col": 8,
+            "value": 1,
+            "cellId": 26
+          },
+          {
+            "row": 6,
+            "col": 3,
+            "value": 4,
+            "cellId": 57
+          },
+          {
+            "row": 7,
+            "col": 0,
+            "value": 5,
+            "cellId": 63
+          },
+          {
+            "row": 7,
+            "col": 1,
+            "value": 1,
+            "cellId": 64
+          },
+          {
+            "row": 7,
+            "col": 7,
+            "value": 8,
+            "cellId": 70
+          },
+          {
+            "row": 7,
+            "col": 3,
+            "value": 2,
+            "cellId": 66
+          },
+          {
+            "row": 8,
+            "col": 3,
+            "value": 8,
+            "cellId": 75
+          },
+          {
+            "row": 8,
+            "col": 6,
+            "value": 2,
+            "cellId": 78
+          },
+          {
+            "row": 8,
+            "col": 7,
+            "value": 1,
+            "cellId": 79
+          },
+          {
+            "row": 8,
+            "col": 8,
+            "value": 6,
+            "cellId": 80
+          }
+        ]
+      },
+      "breakPointIndex": 19,
+      "totalSteps": 83,
+      "nakedSingleRatio": 0.6385542168674698,
+      "targetTechnique": "pointingClaiming"
+    },
+    {
+      "levelId": 303,
+      "title": "第3关：宫区块",
+      "gridSize": 9,
+      "difficulty": "简单",
+      "teachingGoal": "区块排除法（宫区块）：当某数字在某行/列中只能出现在同一个3×3宫时，可排除宫内其他位置的该数字。",
+      "features": {
+        "allowDraft": true,
+        "assistant45": false,
+        "showHints": true,
+        "perspectiveMode": true,
+        "highlightRow": true,
+        "highlightCol": true,
+        "highlightBox": true,
+        "highlightNumber": true,
+        "highlightCage": true,
+        "autoFillCandidates": true
+      },
+      "triggers": [
+        {
+          "id": "t303_s",
+          "condition": "onLevelStart",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "第三关：宫区块！方向反过来——如果某个数字在一整行里只能出现在同一个宫，那宫里其他格子排除掉它！",
+          "once": true
+        },
+        {
+          "id": "t303_f1",
+          "condition": "onFirstNumberFilled",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "很好！宫区块是反向推理：从行/列看宫，而不是从宫看行/列！",
+          "once": true
+        },
+        {
+          "id": "t303_b",
+          "condition": "onFillCountReached",
+          "count": 56,
+          "type": "enter_phase",
+          "phase": "breakthrough",
+          "once": true
+        },
+        {
+          "id": "t303_bt",
+          "condition": "onFillCountReached",
+          "count": 56,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "⚡ 破局时刻！宫区块被你发现了，排除一大片笔记！",
+          "once": true,
+          "delay": 400
+        },
+        {
+          "id": "t303_st20",
+          "condition": "onStuckForSeconds",
+          "seconds": 20,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "💡 卡住了？换个方向扫：看某一行里某个数字能放的所有位置——如果它们都在同一个3×3宫里，宫内其他格就排除！",
+          "once": false
+        },
+        {
+          "id": "t303_st40",
+          "condition": "onStuckForSeconds",
+          "seconds": 40,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "💡 宫区块口诀：「行看宫，宫删余」。笔记标记是你的好帮手，记得打开✏️按钮！",
+          "once": false,
+          "delay": 300
+        },
+        {
+          "id": "t303_ag",
+          "condition": "onConflict",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "⚠️ 再仔细看看——这个数字在行里的位置真的都在同一个宫吗？",
+          "once": false
+        },
+        {
+          "id": "t303_fi",
+          "condition": "onFillCountReached",
+          "count": 71,
+          "type": "enter_phase",
+          "phase": "finishing",
+          "once": true
+        },
+        {
+          "id": "t303_fit",
+          "condition": "onFillCountReached",
+          "count": 71,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "✨ 收官！行列宫三种区块都能灵活运用了，最后几步稳了！",
+          "once": true,
+          "delay": 400
+        },
+        {
+          "id": "t303_c",
+          "condition": "onLevelComplete",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "🎉 宫区块已掌握！区块排除法三方向全部通关！",
+          "once": true
+        }
+      ],
+      "boardData": [
+        [
+          0,
+          0,
+          0,
+          0,
+          9,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          7,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          6,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          3,
+          0,
+          0
+        ],
+        [
+          0,
+          5,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          2,
+          0,
+          0,
+          0
+        ]
+      ],
+      "cages": [
+        {
+          "id": 0,
+          "sum": 20,
+          "cells": [
+            [
+              8,
+              3
+            ],
+            [
+              8,
+              4
+            ],
+            [
+              7,
+              4
+            ],
+            [
+              7,
+              3
+            ],
+            [
+              8,
+              5
+            ]
+          ]
+        },
+        {
+          "id": 1,
+          "sum": 12,
+          "cells": [
+            [
+              2,
+              6
+            ],
+            [
+              3,
+              6
+            ],
+            [
+              4,
+              6
+            ],
+            [
+              5,
+              6
+            ]
+          ]
+        },
+        {
+          "id": 2,
+          "sum": 24,
+          "cells": [
+            [
+              1,
+              8
+            ],
+            [
+              1,
+              7
+            ],
+            [
+              2,
+              8
+            ],
+            [
+              2,
+              7
+            ]
+          ]
+        },
+        {
+          "id": 3,
+          "sum": 22,
+          "cells": [
+            [
+              6,
+              1
+            ],
+            [
+              6,
+              0
+            ],
+            [
+              7,
+              1
+            ],
+            [
+              7,
+              0
+            ]
+          ]
+        },
+        {
+          "id": 4,
+          "sum": 18,
+          "cells": [
+            [
+              8,
+              0
+            ],
+            [
+              8,
+              1
+            ],
+            [
+              8,
+              2
+            ]
+          ]
+        },
+        {
+          "id": 5,
+          "sum": 14,
+          "cells": [
+            [
+              7,
+              8
+            ],
+            [
+              8,
+              8
+            ],
+            [
+              6,
+              8
+            ]
+          ]
+        },
+        {
+          "id": 6,
+          "sum": 7,
+          "cells": [
+            [
+              0,
+              8
+            ],
+            [
+              0,
+              7
+            ]
+          ]
+        },
+        {
+          "id": 7,
+          "sum": 15,
+          "cells": [
+            [
+              2,
+              3
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              3,
+              4
+            ]
+          ]
+        },
+        {
+          "id": 8,
+          "sum": 12,
+          "cells": [
+            [
+              3,
+              2
+            ],
+            [
+              3,
+              1
+            ],
+            [
+              4,
+              1
+            ]
+          ]
+        },
+        {
+          "id": 9,
+          "sum": 14,
+          "cells": [
+            [
+              7,
+              2
+            ],
+            [
+              6,
+              2
+            ],
+            [
+              5,
+              2
+            ]
+          ]
+        },
+        {
+          "id": 10,
+          "sum": 26,
+          "cells": [
+            [
+              1,
+              4
+            ],
+            [
+              0,
+              4
+            ],
+            [
+              0,
+              5
+            ],
+            [
+              1,
+              5
+            ],
+            [
+              0,
+              6
+            ]
+          ]
+        },
+        {
+          "id": 11,
+          "sum": 17,
+          "cells": [
+            [
+              8,
+              6
+            ],
+            [
+              7,
+              6
+            ]
+          ]
+        },
+        {
+          "id": 12,
+          "sum": 9,
+          "cells": [
+            [
+              1,
+              3
+            ],
+            [
+              0,
+              3
+            ]
+          ]
+        },
+        {
+          "id": 13,
+          "sum": 12,
+          "cells": [
+            [
+              6,
+              5
+            ],
+            [
+              7,
+              5
+            ]
+          ]
+        },
+        {
+          "id": 14,
+          "sum": 12,
+          "cells": [
+            [
+              5,
+              1
+            ],
+            [
+              5,
+              0
+            ]
+          ]
+        },
+        {
+          "id": 15,
+          "sum": 7,
+          "cells": [
+            [
+              1,
+              6
+            ]
+          ]
+        },
+        {
+          "id": 16,
+          "sum": 14,
+          "cells": [
+            [
+              2,
+              2
+            ],
+            [
+              2,
+              1
+            ]
+          ]
+        },
+        {
+          "id": 17,
+          "sum": 17,
+          "cells": [
+            [
+              5,
+              8
+            ],
+            [
+              4,
+              8
+            ]
+          ]
+        },
+        {
+          "id": 18,
+          "sum": 15,
+          "cells": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              2
+            ]
+          ]
+        },
+        {
+          "id": 19,
+          "sum": 9,
+          "cells": [
+            [
+              4,
+              0
+            ],
+            [
+              3,
+              0
+            ]
+          ]
+        },
+        {
+          "id": 20,
+          "sum": 3,
+          "cells": [
+            [
+              3,
+              8
+            ]
+          ]
+        },
+        {
+          "id": 21,
+          "sum": 6,
+          "cells": [
+            [
+              1,
+              2
+            ]
+          ]
+        },
+        {
+          "id": 22,
+          "sum": 15,
+          "cells": [
+            [
+              4,
+              5
+            ],
+            [
+              5,
+              5
+            ],
+            [
+              4,
+              4
+            ]
+          ]
+        },
+        {
+          "id": 23,
+          "sum": 14,
+          "cells": [
+            [
+              8,
+              7
+            ],
+            [
+              7,
+              7
+            ],
+            [
+              6,
+              6
+            ],
+            [
+              6,
+              7
+            ]
+          ]
+        },
+        {
+          "id": 24,
+          "sum": 14,
+          "cells": [
+            [
+              3,
+              3
+            ],
+            [
+              4,
+              2
+            ],
+            [
+              4,
+              3
+            ]
+          ]
+        },
+        {
+          "id": 25,
+          "sum": 14,
+          "cells": [
+            [
+              3,
+              7
+            ],
+            [
+              4,
+              7
+            ],
+            [
+              5,
+              7
+            ]
+          ]
+        },
+        {
+          "id": 26,
+          "sum": 20,
+          "cells": [
+            [
+              5,
+              4
+            ],
+            [
+              6,
+              3
+            ],
+            [
+              6,
+              4
+            ],
+            [
+              5,
+              3
+            ]
+          ]
+        },
+        {
+          "id": 27,
+          "sum": 13,
+          "cells": [
+            [
+              3,
+              5
+            ],
+            [
+              2,
+              5
+            ]
+          ]
+        },
+        {
+          "id": 28,
+          "sum": 10,
+          "cells": [
+            [
+              2,
+              0
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        }
+      ],
+      "solution": [
+        [
+          2,
+          8,
+          7,
+          1,
+          9,
+          5,
+          6,
+          3,
+          4
+        ],
+        [
+          3,
+          1,
+          6,
+          8,
+          2,
+          4,
+          7,
+          9,
+          5
+        ],
+        [
+          4,
+          9,
+          5,
+          3,
+          7,
+          6,
+          1,
+          8,
+          2
+        ],
+        [
+          8,
+          6,
+          2,
+          9,
+          5,
+          7,
+          4,
+          1,
+          3
+        ],
+        [
+          1,
+          4,
+          3,
+          2,
+          6,
+          8,
+          5,
+          7,
+          9
+        ],
+        [
+          5,
+          7,
+          9,
+          4,
+          3,
+          1,
+          2,
+          6,
+          8
+        ],
+        [
+          6,
+          2,
+          1,
+          5,
+          8,
+          9,
+          3,
+          4,
+          7
+        ],
+        [
+          9,
+          5,
+          4,
+          7,
+          1,
+          3,
+          8,
+          2,
+          6
+        ],
+        [
+          7,
+          3,
+          8,
+          6,
+          4,
+          2,
+          9,
+          5,
+          1
+        ]
+      ],
+      "preDialog": [
+        {
+          "speaker": "守笼人",
+          "text": "多个区块同时作用时，需要综合判断，这是设局人最擅长的布局手法。",
+          "side": "right",
+          "emotion": "mysterious",
+          "voiceId": "VO_CK_05",
+          "effect": 0
+        },
+        {
+          "speaker": "莹莹",
+          "text": "好几个区块叠在一起看着乱，一个一个拆开来分析就清楚了。",
+          "side": "right",
+          "emotion": "smile",
+          "voiceId": "VO_J_02",
+          "effect": 0
+        },
+        {
+          "speaker": "阿妍",
+          "text": "……他喜欢把多条线索叠在一起。然后在交叉点埋下陷阱。",
+          "side": "right",
+          "emotion": "thinking",
+          "voiceId": "VO_R_06",
+          "effect": 0
+        },
+        {
+          "speaker": "沈墨",
+          "text": "（他看着棋盘上三条线索的交汇点，手指停在了那里——没有填，只是停在那里。然后他说）……他布的局，不是让人看不见答案。是让人看不见自己走过了几条线。",
+          "side": "left",
+          "emotion": "calm",
+          "voiceId": "VO_SM_19",
+          "effect": 0
+        }
+      ],
+      "clearDialog": [
+        {
+          "speaker": "守笼人",
+          "text": "这种多区块交错的笼型，正是当年他最得意的作品。",
+          "side": "right",
+          "emotion": "mysterious",
+          "voiceId": "VO_CK_05",
+          "effect": 1
+        },
+        {
+          "speaker": "莹莹",
+          "text": "当年……你和设局人当年到底发生了什么？",
+          "side": "right",
+          "emotion": "calm",
+          "voiceId": "VO_J_05",
+          "effect": 0
+        },
+        {
+          "speaker": "守笼人",
+          "text": "……当年我们曾是同门，一起研究星辰梭推演笼局的极限。",
+          "side": "right",
+          "emotion": "calm",
+          "voiceId": "VO_CK_10",
+          "effect": 2
+        },
+        {
+          "speaker": "阿妍",
+          "text": "（停顿了一下，声音比平时轻）……研究了多久？",
+          "side": "right",
+          "emotion": "calm",
+          "voiceId": "VO_R_07",
+          "effect": 0
+        },
+        {
+          "speaker": "守笼人",
+          "text": "……十三年。",
+          "side": "right",
+          "effect": 0
+        },
+        {
+          "speaker": "阿妍",
+          "text": "（没有再问）",
+          "side": "right",
+          "effect": 0
+        },
+        {
+          "speaker": "沈墨",
+          "text": "（他听到了“十三年”。没有说话，但他的笔在纸上停了一瞬，然后继续。）",
+          "side": "left",
+          "effect": 0
+        }
+      ],
+      "mode": "full",
+      "coreMove": {
+        "row": 5,
+        "col": 5,
+        "value": 7,
+        "cascadeCount": 60,
+        "cascadeSequence": [
+          {
+            "row": 6,
+            "col": 3,
+            "value": 8,
+            "cellId": 57
+          },
+          {
+            "row": 5,
+            "col": 3,
+            "value": 4,
+            "cellId": 48
+          },
+          {
+            "row": 7,
+            "col": 4,
+            "value": 5,
+            "cellId": 67
+          },
+          {
+            "row": 1,
+            "col": 4,
+            "value": 9,
+            "cellId": 13
+          },
+          {
+            "row": 3,
+            "col": 1,
+            "value": 9,
+            "cellId": 28
+          },
+          {
+            "row": 3,
+            "col": 2,
+            "value": 4,
+            "cellId": 29
+          },
+          {
+            "row": 4,
+            "col": 2,
+            "value": 7,
+            "cellId": 38
+          },
+          {
+            "row": 0,
+            "col": 5,
+            "value": 4,
+            "cellId": 5
+          },
+          {
+            "row": 7,
+            "col": 5,
+            "value": 1,
+            "cellId": 68
+          },
+          {
+            "row": 1,
+            "col": 5,
+            "value": 5,
+            "cellId": 14
+          },
+          {
+            "row": 4,
+            "col": 5,
+            "value": 9,
+            "cellId": 41
+          },
+          {
+            "row": 4,
+            "col": 3,
+            "value": 5,
+            "cellId": 39
+          },
+          {
+            "row": 2,
+            "col": 2,
+            "value": 5,
+            "cellId": 20
+          },
+          {
+            "row": 0,
+            "col": 2,
+            "value": 9,
+            "cellId": 2
+          },
+          {
+            "row": 2,
+            "col": 7,
+            "value": 9,
+            "cellId": 25
+          },
+          {
+            "row": 7,
+            "col": 1,
+            "value": 7,
+            "cellId": 64
+          },
+          {
+            "row": 0,
+            "col": 4,
+            "value": 8,
+            "cellId": 4
+          },
+          {
+            "row": 8,
+            "col": 3,
+            "value": 9,
+            "cellId": 75
+          },
+          {
+            "row": 8,
+            "col": 4,
+            "value": 7,
+            "cellId": 76
+          },
+          {
+            "row": 6,
+            "col": 4,
+            "value": 4,
+            "cellId": 58
+          },
+          {
+            "row": 6,
+            "col": 2,
+            "value": 1,
+            "cellId": 56
+          },
+          {
+            "row": 3,
+            "col": 6,
+            "value": 5,
+            "cellId": 33
+          },
+          {
+            "row": 5,
+            "col": 1,
+            "value": 5,
+            "cellId": 46
+          },
+          {
+            "row": 5,
+            "col": 2,
+            "value": 8,
+            "cellId": 47
+          },
+          {
+            "row": 6,
+            "col": 1,
+            "value": 3,
+            "cellId": 55
+          },
+          {
+            "row": 4,
+            "col": 1,
+            "value": 2,
+            "cellId": 37
+          },
+          {
+            "row": 3,
+            "col": 0,
+            "value": 3,
+            "cellId": 27
+          },
+          {
+            "row": 6,
+            "col": 8,
+            "value": 2,
+            "cellId": 62
+          },
+          {
+            "row": 6,
+            "col": 0,
+            "value": 5,
+            "cellId": 54
+          },
+          {
+            "row": 1,
+            "col": 0,
+            "value": 4,
+            "cellId": 9
+          },
+          {
+            "row": 1,
+            "col": 1,
+            "value": 8,
+            "cellId": 10
+          },
+          {
+            "row": 8,
+            "col": 0,
+            "value": 8,
+            "cellId": 72
+          },
+          {
+            "row": 8,
+            "col": 1,
+            "value": 4,
+            "cellId": 73
+          },
+          {
+            "row": 8,
+            "col": 8,
+            "value": 1,
+            "cellId": 80
+          },
+          {
+            "row": 0,
+            "col": 3,
+            "value": 7,
+            "cellId": 3
+          },
+          {
+            "row": 0,
+            "col": 0,
+            "value": 2,
+            "cellId": 0
+          },
+          {
+            "row": 1,
+            "col": 2,
+            "value": 3,
+            "cellId": 11
+          },
+          {
+            "row": 1,
+            "col": 8,
+            "value": 6,
+            "cellId": 17
+          },
+          {
+            "row": 1,
+            "col": 7,
+            "value": 2,
+            "cellId": 16
+          },
+          {
+            "row": 2,
+            "col": 0,
+            "value": 7,
+            "cellId": 18
+          },
+          {
+            "row": 7,
+            "col": 8,
+            "value": 3,
+            "cellId": 71
+          },
+          {
+            "row": 7,
+            "col": 3,
+            "value": 2,
+            "cellId": 66
+          },
+          {
+            "row": 3,
+            "col": 3,
+            "value": 6,
+            "cellId": 30
+          },
+          {
+            "row": 2,
+            "col": 3,
+            "value": 3,
+            "cellId": 21
+          },
+          {
+            "row": 2,
+            "col": 5,
+            "value": 2,
+            "cellId": 23
+          },
+          {
+            "row": 2,
+            "col": 4,
+            "value": 6,
+            "cellId": 22
+          },
+          {
+            "row": 3,
+            "col": 7,
+            "value": 1,
+            "cellId": 34
+          },
+          {
+            "row": 0,
+            "col": 7,
+            "value": 3,
+            "cellId": 7
+          },
+          {
+            "row": 0,
+            "col": 6,
+            "value": 1,
+            "cellId": 6
+          },
+          {
+            "row": 3,
+            "col": 4,
+            "value": 2,
+            "cellId": 31
+          },
+          {
+            "row": 4,
+            "col": 6,
+            "value": 3,
+            "cellId": 42
+          },
+          {
+            "row": 4,
+            "col": 4,
+            "value": 1,
+            "cellId": 40
+          },
+          {
+            "row": 5,
+            "col": 4,
+            "value": 3,
+            "cellId": 49
+          },
+          {
+            "row": 5,
+            "col": 7,
+            "value": 6,
+            "cellId": 52
+          },
+          {
+            "row": 5,
+            "col": 6,
+            "value": 2,
+            "cellId": 51
+          },
+          {
+            "row": 7,
+            "col": 2,
+            "value": 6,
+            "cellId": 65
+          },
+          {
+            "row": 7,
+            "col": 6,
+            "value": 8,
+            "cellId": 69
+          },
+          {
+            "row": 8,
+            "col": 2,
+            "value": 2,
+            "cellId": 74
+          },
+          {
+            "row": 8,
+            "col": 5,
+            "value": 3,
+            "cellId": 77
+          },
+          {
+            "row": 8,
+            "col": 6,
+            "value": 6,
+            "cellId": 78
+          }
+        ]
+      },
+      "breakPointIndex": 21,
+      "totalSteps": 83,
+      "nakedSingleRatio": 0.6506024096385542,
+      "targetTechnique": "pointingClaiming"
+    },
+    {
+      "levelId": 304,
+      "title": "第4关：九域复习",
+      "gridSize": 9,
+      "difficulty": "中等",
+      "teachingGoal": "9×9盘面星衡法则复习与巩固：综合运用行、列、宫的星衡法则及差值技巧。",
+      "features": {
+        "allowDraft": true,
+        "assistant45": false,
+        "showHints": true,
+        "perspectiveMode": true,
+        "highlightRow": true,
+        "highlightCol": true,
+        "highlightBox": true,
+        "highlightNumber": true,
+        "highlightCage": true,
+        "autoFillCandidates": true
+      },
+      "triggers": [
+        {
+          "id": "t304_welcome_9x9",
+          "condition": "onLevelStart",
+          "type": "freeze_mask",
+          "targetCell": [
+            0,
+            0
+          ],
+          "text": "欢迎来到9x9的世界！数字变成1-9了，但所有技巧都通用哦～",
+          "once": true
+        },
+        {
+          "id": "t304_f1",
+          "condition": "onFirstNumberFilled",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "不错！基础功扎实，继续保持！",
+          "once": true
+        },
+        {
+          "id": "t304_b",
+          "condition": "onFillCountReached",
+          "count": 55,
+          "type": "enter_phase",
+          "phase": "breakthrough",
+          "once": true
+        },
+        {
+          "id": "t304_bt",
+          "condition": "onFillCountReached",
+          "count": 55,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "⚡ 破局时刻！关键线索找到了，盘面开始松动！",
+          "once": true,
+          "delay": 400
+        },
+        {
+          "id": "t304_st20",
+          "condition": "onStuckForSeconds",
+          "seconds": 20,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "💡 卡住了？不要忘记已经学过的武器：星衡法则（行/列/宫）、差值、区块排除——总有一个能用上！",
+          "once": false
+        },
+        {
+          "id": "t304_st40",
+          "condition": "onStuckForSeconds",
+          "seconds": 40,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "💡 换个思路：先扫一遍所有笼子和差值，再找区块，不要死磕一个地方！",
+          "once": false,
+          "delay": 300
+        },
+        {
+          "id": "t304_ag",
+          "condition": "onConflict",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "⚠️ 不要猜！回到已学的技巧，寻找确定的推理链！",
+          "once": false
+        },
+        {
+          "id": "t304_fi",
+          "condition": "onFillCountReached",
+          "count": 70,
+          "type": "enter_phase",
+          "phase": "finishing",
+          "once": true
+        },
+        {
+          "id": "t304_fit",
+          "condition": "onFillCountReached",
+          "count": 70,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "✨ 收官！复习关即将完成，你已经准备好了迎接新的技巧！",
+          "once": true,
+          "delay": 400
+        },
+        {
+          "id": "t304_c",
+          "condition": "onLevelComplete",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "🎉 九域复习完成！基础已经打牢，准备好学习数对了吗？",
+          "once": true
+        }
+      ],
+      "boardData": [
+        [
+          0,
+          0,
+          0,
+          0,
+          2,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          8,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          3,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          4,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          6,
+          0,
+          0,
+          9,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          5,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "cages": [
+        {
+          "id": 0,
+          "sum": 20,
+          "cells": [
+            [
+              6,
+              0
+            ],
+            [
+              6,
+              1
+            ],
+            [
+              7,
+              0
+            ],
+            [
+              7,
+              1
+            ],
+            [
+              8,
+              0
+            ]
+          ]
+        },
+        {
+          "id": 1,
+          "sum": 27,
+          "cells": [
+            [
+              8,
+              8
+            ],
+            [
+              7,
+              8
+            ],
+            [
+              7,
+              7
+            ],
+            [
+              6,
+              7
+            ],
+            [
+              5,
+              7
+            ]
+          ]
+        },
+        {
+          "id": 2,
+          "sum": 19,
+          "cells": [
+            [
+              4,
+              0
+            ],
+            [
+              4,
+              1
+            ],
+            [
+              3,
+              0
+            ],
+            [
+              3,
+              1
+            ],
+            [
+              4,
+              2
+            ]
+          ]
+        },
+        {
+          "id": 3,
+          "sum": 19,
+          "cells": [
+            [
+              2,
+              0
+            ],
+            [
+              2,
+              1
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              1,
+              0
+            ]
+          ]
+        },
+        {
+          "id": 4,
+          "sum": 20,
+          "cells": [
+            [
+              1,
+              4
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              0,
+              4
+            ]
+          ]
+        },
+        {
+          "id": 5,
+          "sum": 22,
+          "cells": [
+            [
+              7,
+              5
+            ],
+            [
+              7,
+              6
+            ],
+            [
+              6,
+              6
+            ],
+            [
+              6,
+              5
+            ]
+          ]
+        },
+        {
+          "id": 6,
+          "sum": 20,
+          "cells": [
+            [
+              7,
+              3
+            ],
+            [
+              7,
+              2
+            ],
+            [
+              8,
+              3
+            ],
+            [
+              6,
+              3
+            ]
+          ]
+        },
+        {
+          "id": 7,
+          "sum": 9,
+          "cells": [
+            [
+              8,
+              7
+            ],
+            [
+              8,
+              6
+            ],
+            [
+              8,
+              5
+            ]
+          ]
+        },
+        {
+          "id": 8,
+          "sum": 16,
+          "cells": [
+            [
+              5,
+              3
+            ],
+            [
+              5,
+              4
+            ],
+            [
+              4,
+              4
+            ]
+          ]
+        },
+        {
+          "id": 9,
+          "sum": 14,
+          "cells": [
+            [
+              0,
+              2
+            ],
+            [
+              0,
+              3
+            ],
+            [
+              0,
+              1
+            ]
+          ]
+        },
+        {
+          "id": 10,
+          "sum": 15,
+          "cells": [
+            [
+              5,
+              5
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              3,
+              5
+            ]
+          ]
+        },
+        {
+          "id": 11,
+          "sum": 16,
+          "cells": [
+            [
+              6,
+              2
+            ],
+            [
+              5,
+              2
+            ],
+            [
+              5,
+              1
+            ]
+          ]
+        },
+        {
+          "id": 12,
+          "sum": 15,
+          "cells": [
+            [
+              0,
+              5
+            ],
+            [
+              1,
+              5
+            ],
+            [
+              2,
+              5
+            ]
+          ]
+        },
+        {
+          "id": 13,
+          "sum": 19,
+          "cells": [
+            [
+              3,
+              3
+            ],
+            [
+              3,
+              2
+            ],
+            [
+              2,
+              2
+            ]
+          ]
+        },
+        {
+          "id": 14,
+          "sum": 2,
+          "cells": [
+            [
+              4,
+              3
+            ]
+          ]
+        },
+        {
+          "id": 15,
+          "sum": 15,
+          "cells": [
+            [
+              8,
+              2
+            ],
+            [
+              8,
+              1
+            ]
+          ]
+        },
+        {
+          "id": 16,
+          "sum": 15,
+          "cells": [
+            [
+              5,
+              8
+            ],
+            [
+              6,
+              8
+            ]
+          ]
+        },
+        {
+          "id": 17,
+          "sum": 10,
+          "cells": [
+            [
+              2,
+              3
+            ],
+            [
+              1,
+              3
+            ]
+          ]
+        },
+        {
+          "id": 18,
+          "sum": 5,
+          "cells": [
+            [
+              1,
+              7
+            ],
+            [
+              1,
+              8
+            ]
+          ]
+        },
+        {
+          "id": 19,
+          "sum": 9,
+          "cells": [
+            [
+              5,
+              0
+            ]
+          ]
+        },
+        {
+          "id": 20,
+          "sum": 8,
+          "cells": [
+            [
+              2,
+              7
+            ],
+            [
+              2,
+              6
+            ]
+          ]
+        },
+        {
+          "id": 21,
+          "sum": 15,
+          "cells": [
+            [
+              3,
+              6
+            ],
+            [
+              3,
+              7
+            ],
+            [
+              3,
+              8
+            ],
+            [
+              2,
+              8
+            ]
+          ]
+        },
+        {
+          "id": 22,
+          "sum": 7,
+          "cells": [
+            [
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "id": 23,
+          "sum": 28,
+          "cells": [
+            [
+              0,
+              7
+            ],
+            [
+              0,
+              6
+            ],
+            [
+              1,
+              6
+            ],
+            [
+              0,
+              8
+            ]
+          ]
+        },
+        {
+          "id": 24,
+          "sum": 14,
+          "cells": [
+            [
+              6,
+              4
+            ],
+            [
+              7,
+              4
+            ],
+            [
+              8,
+              4
+            ]
+          ]
+        },
+        {
+          "id": 25,
+          "sum": 21,
+          "cells": [
+            [
+              4,
+              8
+            ],
+            [
+              4,
+              7
+            ],
+            [
+              4,
+              6
+            ],
+            [
+              5,
+              6
+            ]
+          ]
+        },
+        {
+          "id": 26,
+          "sum": 5,
+          "cells": [
+            [
+              1,
+              2
+            ]
+          ]
+        }
+      ],
+      "solution": [
+        [
+          7,
+          4,
+          1,
+          9,
+          2,
+          3,
+          8,
+          5,
+          6
+        ],
+        [
+          8,
+          6,
+          5,
+          4,
+          1,
+          7,
+          9,
+          2,
+          3
+        ],
+        [
+          2,
+          3,
+          9,
+          6,
+          8,
+          5,
+          7,
+          1,
+          4
+        ],
+        [
+          4,
+          5,
+          7,
+          3,
+          9,
+          6,
+          1,
+          8,
+          2
+        ],
+        [
+          6,
+          1,
+          3,
+          2,
+          7,
+          8,
+          4,
+          9,
+          5
+        ],
+        [
+          9,
+          8,
+          2,
+          5,
+          4,
+          1,
+          3,
+          6,
+          7
+        ],
+        [
+          1,
+          2,
+          6,
+          7,
+          3,
+          9,
+          5,
+          4,
+          8
+        ],
+        [
+          3,
+          9,
+          4,
+          8,
+          5,
+          2,
+          6,
+          7,
+          1
+        ],
+        [
+          5,
+          7,
+          8,
+          1,
+          6,
+          4,
+          2,
+          3,
+          9
+        ]
+      ],
+      "preDialog": [
+        {
+          "speaker": "守笼人",
+          "text": "隐曜——群曜遮目，一光独隐。当某两个数字在某区域内只能放在相同的两个格子里时，这两个格子便被暗中标定。",
+          "side": "right",
+          "emotion": "mysterious",
+          "voiceId": "VO_CK_05",
+          "effect": 1
+        },
+        {
+          "speaker": "莹莹",
+          "text": "就是两个数偷偷约好只出现在两个格子里！",
+          "side": "right",
+          "emotion": "smile",
+          "voiceId": "VO_J_02",
+          "effect": 0
+        },
+        {
+          "speaker": "阿妍",
+          "text": "……它们不是约好的。是被挤到那里去的。",
+          "side": "right",
+          "emotion": "determined",
+          "voiceId": "VO_R_02",
+          "effect": 0
+        },
+        {
+          "speaker": "沈墨",
+          "text": "（他看着棋盘上那两个被压到角落的格子。没有抬头，声音很低）……就像人一样。",
+          "side": "left",
+          "emotion": "sad",
+          "voiceId": "VO_SM_20",
+          "effect": 0
+        }
+      ],
+      "clearDialog": [
+        {
+          "speaker": "守笼人",
+          "text": "隐曜已通。",
+          "side": "right",
+          "emotion": "smile",
+          "voiceId": "VO_CK_06",
+          "effect": 0
+        },
+        {
+          "speaker": "莹莹",
+          "text": "原来藏在候选数里的数字才是关键！",
+          "side": "right",
+          "emotion": "surprised",
+          "voiceId": "VO_J_03",
+          "effect": 0
+        },
+        {
+          "speaker": "阿妍",
+          "text": "隐性数对比显性更难发现。但一旦找到，就打开了一片区域。",
+          "side": "right",
+          "emotion": "thinking",
+          "voiceId": "VO_R_06",
+          "effect": 0
+        }
+      ],
+      "mode": "full",
+      "coreMove": {
+        "row": 7,
+        "col": 5,
+        "value": 2
+      },
+      "totalSteps": 82,
+      "nakedSingleRatio": 0.768,
+      "techCount": {
+        "nakedSingle": 63,
+        "cageUnique": 8,
+        "hiddenSingle": 3,
+        "rule45": 7,
+        "nakedPair": 1
+      },
+      "maxTechLevel": 5
+    },
+    {
+      "levelId": 305,
+      "title": "第5关：数对初探",
+      "gridSize": 9,
+      "difficulty": "中等",
+      "teachingGoal": "并蒂锁（Naked Pair）入门：同一行/列/宫内两个格子恰好只能填相同的两个数字，可排除区域内其他格子的这两个数字。",
+      "features": {
+        "allowDraft": true,
+        "assistant45": false,
+        "showHints": true,
+        "perspectiveMode": true,
+        "highlightRow": true,
+        "highlightCol": true,
+        "highlightBox": true,
+        "highlightNumber": true,
+        "highlightCage": true,
+        "autoFillCandidates": true
+      },
+      "triggers": [
+        {
+          "id": "t305_s",
+          "condition": "onLevelStart",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "新技巧：并蒂锁！如果一行里有两个空格都恰好只能填相同的两个数字（比如3和7），那这两个格子就占了3和7，同行其他格子可以排除3和7！",
+          "once": true
+        },
+        {
+          "id": "t305_f1",
+          "condition": "onFirstNumberFilled",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "好眼力！你发现了第一个数对！这就是「Naked Pair」——两个格子赤裸裸地只可能是两个数！",
+          "once": true
+        },
+        {
+          "id": "t305_b",
+          "condition": "onFillCountReached",
+          "count": 54,
+          "type": "enter_phase",
+          "phase": "breakthrough",
+          "once": true
+        },
+        {
+          "id": "t305_bt",
+          "condition": "onFillCountReached",
+          "count": 54,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "⚡ 破局时刻！数对排除了大片笔记，盘面豁然开朗！",
+          "once": true,
+          "delay": 400
+        },
+        {
+          "id": "t305_st20",
+          "condition": "onStuckForSeconds",
+          "seconds": 20,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "💡 卡住了？打开✏️笔记笔记，标记所有空格的可能数字，然后找那些恰好有两个相同笔记的格子对！",
+          "once": false
+        },
+        {
+          "id": "t305_st40",
+          "condition": "onStuckForSeconds",
+          "seconds": 40,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "💡 数对不一定在同行——同列或同宫也可以！只要在同一个区域（行/列/宫）里，两个格子恰有相同两个笔记就是数对！",
+          "once": false,
+          "delay": 300
+        },
+        {
+          "id": "t305_ag",
+          "condition": "onConflict",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "⚠️ 数对判断要谨慎——两个格子必须恰好只有这两个笔记，多一个都不算！",
+          "once": false
+        },
+        {
+          "id": "t305_fi",
+          "condition": "onFillCountReached",
+          "count": 70,
+          "type": "enter_phase",
+          "phase": "finishing",
+          "once": true
+        },
+        {
+          "id": "t305_fit",
+          "condition": "onFillCountReached",
+          "count": 70,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "✨ 收官！数对的力量让最后的数字一一浮现！",
+          "once": true,
+          "delay": 400
+        },
+        {
+          "id": "t305_c",
+          "condition": "onLevelComplete",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "🎉 并蒂锁已掌握！这是高阶推理的第一块多米诺骨牌！",
+          "once": true
+        }
+      ],
+      "boardData": [
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          4,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          6,
+          0,
+          0,
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          5,
+          0,
+          0,
+          0
+        ]
+      ],
+      "cages": [
+        {
+          "id": 0,
+          "sum": 26,
+          "cells": [
+            [
+              6,
+              4
+            ],
+            [
+              6,
+              5
+            ],
+            [
+              6,
+              6
+            ],
+            [
+              6,
+              3
+            ],
+            [
+              5,
+              5
+            ]
+          ]
+        },
+        {
+          "id": 1,
+          "sum": 27,
+          "cells": [
+            [
+              8,
+              2
+            ],
+            [
+              8,
+              3
+            ],
+            [
+              8,
+              4
+            ],
+            [
+              7,
+              3
+            ],
+            [
+              8,
+              5
+            ]
+          ]
+        },
+        {
+          "id": 2,
+          "sum": 22,
+          "cells": [
+            [
+              5,
+              6
+            ],
+            [
+              4,
+              6
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              3,
+              6
+            ],
+            [
+              3,
+              7
+            ]
+          ]
+        },
+        {
+          "id": 3,
+          "sum": 21,
+          "cells": [
+            [
+              3,
+              5
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              4,
+              4
+            ]
+          ]
+        },
+        {
+          "id": 4,
+          "sum": 21,
+          "cells": [
+            [
+              7,
+              1
+            ],
+            [
+              8,
+              1
+            ],
+            [
+              6,
+              1
+            ],
+            [
+              8,
+              0
+            ]
+          ]
+        },
+        {
+          "id": 5,
+          "sum": 21,
+          "cells": [
+            [
+              5,
+              2
+            ],
+            [
+              5,
+              1
+            ],
+            [
+              5,
+              3
+            ],
+            [
+              5,
+              4
+            ]
+          ]
+        },
+        {
+          "id": 6,
+          "sum": 15,
+          "cells": [
+            [
+              2,
+              7
+            ],
+            [
+              1,
+              7
+            ],
+            [
+              1,
+              6
+            ],
+            [
+              1,
+              8
+            ]
+          ]
+        },
+        {
+          "id": 7,
+          "sum": 9,
+          "cells": [
+            [
+              6,
+              2
+            ],
+            [
+              7,
+              2
+            ]
+          ]
+        },
+        {
+          "id": 8,
+          "sum": 12,
+          "cells": [
+            [
+              4,
+              3
+            ],
+            [
+              4,
+              2
+            ],
+            [
+              4,
+              1
+            ]
+          ]
+        },
+        {
+          "id": 9,
+          "sum": 6,
+          "cells": [
+            [
+              7,
+              8
+            ],
+            [
+              8,
+              8
+            ],
+            [
+              7,
+              7
+            ]
+          ]
+        },
+        {
+          "id": 10,
+          "sum": 20,
+          "cells": [
+            [
+              4,
+              8
+            ],
+            [
+              5,
+              8
+            ],
+            [
+              6,
+              8
+            ]
+          ]
+        },
+        {
+          "id": 11,
+          "sum": 23,
+          "cells": [
+            [
+              5,
+              7
+            ],
+            [
+              4,
+              7
+            ],
+            [
+              6,
+              7
+            ]
+          ]
+        },
+        {
+          "id": 12,
+          "sum": 12,
+          "cells": [
+            [
+              0,
+              4
+            ],
+            [
+              0,
+              5
+            ],
+            [
+              1,
+              5
+            ]
+          ]
+        },
+        {
+          "id": 13,
+          "sum": 19,
+          "cells": [
+            [
+              1,
+              0
+            ],
+            [
+              2,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "id": 14,
+          "sum": 14,
+          "cells": [
+            [
+              7,
+              5
+            ],
+            [
+              7,
+              6
+            ]
+          ]
+        },
+        {
+          "id": 15,
+          "sum": 7,
+          "cells": [
+            [
+              7,
+              4
+            ]
+          ]
+        },
+        {
+          "id": 16,
+          "sum": 7,
+          "cells": [
+            [
+              3,
+              0
+            ],
+            [
+              4,
+              0
+            ]
+          ]
+        },
+        {
+          "id": 17,
+          "sum": 10,
+          "cells": [
+            [
+              8,
+              7
+            ],
+            [
+              8,
+              6
+            ]
+          ]
+        },
+        {
+          "id": 18,
+          "sum": 5,
+          "cells": [
+            [
+              2,
+              8
+            ],
+            [
+              3,
+              8
+            ]
+          ]
+        },
+        {
+          "id": 19,
+          "sum": 15,
+          "cells": [
+            [
+              0,
+              1
+            ],
+            [
+              2,
+              1
+            ],
+            [
+              2,
+              2
+            ],
+            [
+              1,
+              1
+            ]
+          ]
+        },
+        {
+          "id": 20,
+          "sum": 10,
+          "cells": [
+            [
+              5,
+              0
+            ],
+            [
+              6,
+              0
+            ],
+            [
+              7,
+              0
+            ]
+          ]
+        },
+        {
+          "id": 21,
+          "sum": 22,
+          "cells": [
+            [
+              3,
+              3
+            ],
+            [
+              3,
+              2
+            ],
+            [
+              3,
+              1
+            ]
+          ]
+        },
+        {
+          "id": 22,
+          "sum": 19,
+          "cells": [
+            [
+              1,
+              4
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              1,
+              3
+            ]
+          ]
+        },
+        {
+          "id": 23,
+          "sum": 18,
+          "cells": [
+            [
+              0,
+              8
+            ],
+            [
+              0,
+              7
+            ],
+            [
+              0,
+              6
+            ]
+          ]
+        },
+        {
+          "id": 24,
+          "sum": 15,
+          "cells": [
+            [
+              1,
+              2
+            ],
+            [
+              0,
+              3
+            ],
+            [
+              0,
+              2
+            ]
+          ]
+        },
+        {
+          "id": 25,
+          "sum": 9,
+          "cells": [
+            [
+              2,
+              6
+            ],
+            [
+              2,
+              5
+            ]
+          ]
+        }
+      ],
+      "solution": [
+        [
+          8,
+          1,
+          9,
+          4,
+          3,
+          2,
+          7,
+          5,
+          6
+        ],
+        [
+          4,
+          5,
+          2,
+          8,
+          6,
+          7,
+          1,
+          3,
+          9
+        ],
+        [
+          7,
+          3,
+          6,
+          5,
+          9,
+          1,
+          8,
+          2,
+          4
+        ],
+        [
+          6,
+          8,
+          5,
+          9,
+          4,
+          3,
+          2,
+          7,
+          1
+        ],
+        [
+          1,
+          7,
+          3,
+          2,
+          5,
+          6,
+          4,
+          9,
+          8
+        ],
+        [
+          2,
+          9,
+          4,
+          7,
+          1,
+          8,
+          3,
+          6,
+          5
+        ],
+        [
+          5,
+          6,
+          1,
+          3,
+          2,
+          4,
+          9,
+          8,
+          7
+        ],
+        [
+          3,
+          4,
+          8,
+          6,
+          7,
+          9,
+          5,
+          1,
+          2
+        ],
+        [
+          9,
+          2,
+          7,
+          1,
+          8,
+          5,
+          6,
+          4,
+          3
+        ]
+      ],
+      "preDialog": [
+        {
+          "speaker": "守笼人",
+          "text": "两行两列形成一个矩形。找到四个角，就能排除其余。",
+          "side": "right",
+          "emotion": "mysterious",
+          "voiceId": "VO_CK_05",
+          "effect": 1
+        },
+        {
+          "speaker": "莹莹",
+          "text": "听起来像X形！",
+          "side": "right",
+          "emotion": "surprised",
+          "voiceId": "VO_J_03",
+          "effect": 0
+        },
+        {
+          "speaker": "阿妍",
+          "text": "就是X形。四个顶点。两种可能。排除一切。",
+          "side": "right",
+          "emotion": "determined",
+          "voiceId": "VO_R_02",
+          "effect": 0
+        },
+        {
+          "speaker": "设局人",
+          "text": "能看懂二连纵横阵，勉强算摸到了星辰梭的门槛。",
+          "side": "right",
+          "emotion": "calm",
+          "voiceId": "VO_P_04",
+          "effect": 3
+        },
+        {
+          "speaker": "阿妍",
+          "text": "（看着棋盘，没有抬头）……嗯。",
+          "side": "right",
+          "emotion": "calm",
+          "voiceId": "VO_R_07",
+          "effect": 0
+        }
+      ],
+      "clearDialog": [
+        {
+          "speaker": "守笼人",
+          "text": "当年，我就是用二连纵横阵为基础，推演出了第一套星辰梭笼局模型。",
+          "side": "right",
+          "emotion": "calm",
+          "voiceId": "VO_CK_10",
+          "effect": 2
+        },
+        {
+          "speaker": "莹莹",
+          "text": "你们当年……到底为什么决裂？",
+          "side": "right",
+          "emotion": "calm",
+          "voiceId": "VO_J_05",
+          "effect": 0
+        },
+        {
+          "speaker": "守笼人",
+          "text": "（沉默了很久）……因为他走到了我不敢走的路。",
+          "side": "right",
+          "emotion": "calm",
+          "voiceId": "VO_CK_10",
+          "effect": 2
+        },
+        {
+          "speaker": "阿妍",
+          "text": "（替他说完了）……道不同。",
+          "side": "right",
+          "emotion": "calm",
+          "voiceId": "VO_R_04",
+          "effect": 1
+        },
+        {
+          "speaker": "守笼人",
+          "text": "第四章的残局档案，记录了我们决裂那天的最后一局。",
+          "side": "right",
+          "emotion": "calm",
+          "voiceId": "VO_CK_10",
+          "effect": 2
+        }
+      ],
+      "mode": "full",
+      "coreMove": {
+        "row": 6,
+        "col": 8,
+        "value": 9,
+        "cascadeCount": 63,
+        "cascadeSequence": [
+          {
+            "row": 6,
+            "col": 7,
+            "value": 8,
+            "cellId": 61
+          },
+          {
+            "row": 5,
+            "col": 6,
+            "value": 8,
+            "cellId": 51
+          },
+          {
+            "row": 3,
+            "col": 7,
+            "value": 9,
+            "cellId": 34
+          },
+          {
+            "row": 0,
+            "col": 0,
+            "value": 9,
+            "cellId": 0
+          },
+          {
+            "row": 0,
+            "col": 6,
+            "value": 7,
+            "cellId": 6
+          },
+          {
+            "row": 2,
+            "col": 6,
+            "value": 9,
+            "cellId": 24
+          },
+          {
+            "row": 1,
+            "col": 4,
+            "value": 9,
+            "cellId": 13
+          },
+          {
+            "row": 2,
+            "col": 5,
+            "value": 6,
+            "cellId": 23
+          },
+          {
+            "row": 6,
+            "col": 3,
+            "value": 6,
+            "cellId": 57
+          },
+          {
+            "row": 4,
+            "col": 7,
+            "value": 7,
+            "cellId": 43
+          },
+          {
+            "row": 0,
+            "col": 8,
+            "value": 2,
+            "cellId": 8
+          },
+          {
+            "row": 0,
+            "col": 5,
+            "value": 4,
+            "cellId": 5
+          },
+          {
+            "row": 0,
+            "col": 2,
+            "value": 3,
+            "cellId": 2
+          },
+          {
+            "row": 0,
+            "col": 1,
+            "value": 1,
+            "cellId": 1
+          },
+          {
+            "row": 2,
+            "col": 4,
+            "value": 2,
+            "cellId": 22
+          },
+          {
+            "row": 1,
+            "col": 0,
+            "value": 2,
+            "cellId": 9
+          },
+          {
+            "row": 1,
+            "col": 1,
+            "value": 5,
+            "cellId": 10
+          },
+          {
+            "row": 2,
+            "col": 1,
+            "value": 4,
+            "cellId": 19
+          },
+          {
+            "row": 2,
+            "col": 2,
+            "value": 7,
+            "cellId": 20
+          },
+          {
+            "row": 1,
+            "col": 2,
+            "value": 6,
+            "cellId": 11
+          },
+          {
+            "row": 2,
+            "col": 3,
+            "value": 3,
+            "cellId": 21
+          },
+          {
+            "row": 1,
+            "col": 3,
+            "value": 7,
+            "cellId": 12
+          },
+          {
+            "row": 1,
+            "col": 5,
+            "value": 1,
+            "cellId": 14
+          },
+          {
+            "row": 2,
+            "col": 7,
+            "value": 1,
+            "cellId": 25
+          },
+          {
+            "row": 4,
+            "col": 2,
+            "value": 8,
+            "cellId": 38
+          },
+          {
+            "row": 8,
+            "col": 2,
+            "value": 9,
+            "cellId": 74
+          },
+          {
+            "row": 8,
+            "col": 1,
+            "value": 8,
+            "cellId": 73
+          },
+          {
+            "row": 5,
+            "col": 7,
+            "value": 2,
+            "cellId": 52
+          },
+          {
+            "row": 4,
+            "col": 5,
+            "value": 2,
+            "cellId": 41
+          },
+          {
+            "row": 5,
+            "col": 5,
+            "value": 9,
+            "cellId": 50
+          },
+          {
+            "row": 4,
+            "col": 1,
+            "value": 9,
+            "cellId": 37
+          },
+          {
+            "row": 7,
+            "col": 6,
+            "value": 2,
+            "cellId": 69
+          },
+          {
+            "row": 3,
+            "col": 1,
+            "value": 2,
+            "cellId": 28
+          },
+          {
+            "row": 6,
+            "col": 6,
+            "value": 1,
+            "cellId": 60
+          },
+          {
+            "row": 6,
+            "col": 0,
+            "value": 4,
+            "cellId": 54
+          },
+          {
+            "row": 6,
+            "col": 1,
+            "value": 7,
+            "cellId": 55
+          },
+          {
+            "row": 5,
+            "col": 1,
+            "value": 6,
+            "cellId": 46
+          },
+          {
+            "row": 7,
+            "col": 1,
+            "value": 3,
+            "cellId": 64
+          },
+          {
+            "row": 8,
+            "col": 0,
+            "value": 5,
+            "cellId": 72
+          },
+          {
+            "row": 7,
+            "col": 0,
+            "value": 6,
+            "cellId": 63
+          },
+          {
+            "row": 3,
+            "col": 0,
+            "value": 7,
+            "cellId": 27
+          },
+          {
+            "row": 3,
+            "col": 6,
+            "value": 3,
+            "cellId": 33
+          },
+          {
+            "row": 1,
+            "col": 6,
+            "value": 4,
+            "cellId": 15
+          },
+          {
+            "row": 1,
+            "col": 7,
+            "value": 3,
+            "cellId": 16
+          },
+          {
+            "row": 3,
+            "col": 5,
+            "value": 5,
+            "cellId": 32
+          },
+          {
+            "row": 3,
+            "col": 2,
+            "value": 4,
+            "cellId": 29
+          },
+          {
+            "row": 3,
+            "col": 8,
+            "value": 1,
+            "cellId": 35
+          },
+          {
+            "row": 3,
+            "col": 4,
+            "value": 6,
+            "cellId": 31
+          },
+          {
+            "row": 5,
+            "col": 2,
+            "value": 5,
+            "cellId": 47
+          },
+          {
+            "row": 5,
+            "col": 8,
+            "value": 4,
+            "cellId": 53
+          },
+          {
+            "row": 5,
+            "col": 3,
+            "value": 1,
+            "cellId": 48
+          },
+          {
+            "row": 4,
+            "col": 3,
+            "value": 4,
+            "cellId": 39
+          },
+          {
+            "row": 4,
+            "col": 4,
+            "value": 3,
+            "cellId": 40
+          },
+          {
+            "row": 4,
+            "col": 0,
+            "value": 1,
+            "cellId": 36
+          },
+          {
+            "row": 5,
+            "col": 0,
+            "value": 3,
+            "cellId": 45
+          },
+          {
+            "row": 5,
+            "col": 4,
+            "value": 7,
+            "cellId": 49
+          },
+          {
+            "row": 6,
+            "col": 4,
+            "value": 5,
+            "cellId": 58
+          },
+          {
+            "row": 6,
+            "col": 5,
+            "value": 3,
+            "cellId": 59
+          },
+          {
+            "row": 7,
+            "col": 4,
+            "value": 4,
+            "cellId": 67
+          },
+          {
+            "row": 7,
+            "col": 7,
+            "value": 5,
+            "cellId": 70
+          },
+          {
+            "row": 8,
+            "col": 4,
+            "value": 1,
+            "cellId": 76
+          },
+          {
+            "row": 8,
+            "col": 7,
+            "value": 4,
+            "cellId": 79
+          },
+          {
+            "row": 8,
+            "col": 8,
+            "value": 3,
+            "cellId": 80
+          }
+        ]
+      },
+      "breakPointIndex": 17,
+      "totalSteps": 82,
+      "nakedSingleRatio": 0.6829268292682927,
+      "targetTechnique": "nakedPair"
+    },
+    {
+      "levelId": 306,
+      "title": "第6关：组合运用",
+      "gridSize": 9,
+      "difficulty": "中等",
+      "teachingGoal": "组合运用：区块排除法与并蒂锁的结合使用，加上星衡法则，多技巧联合解题。",
+      "features": {
+        "allowDraft": true,
+        "assistant45": false,
+        "showHints": true,
+        "perspectiveMode": true,
+        "highlightRow": true,
+        "highlightCol": true,
+        "highlightBox": true,
+        "highlightNumber": true,
+        "highlightCage": true,
+        "autoFillCandidates": true
+      },
+      "triggers": [
+        {
+          "id": "t306_s",
+          "condition": "onLevelStart",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "组合运用关！这一关需要你同时使用区块排除和数对——技巧之间会互相触发，连锁反应！",
+          "once": true
+        },
+        {
+          "id": "t306_f1",
+          "condition": "onFirstNumberFilled",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "不错！第一个突破点找到了，接下来的连锁反应会越来越顺！",
+          "once": true
+        },
+        {
+          "id": "t306_b",
+          "condition": "onFillCountReached",
+          "count": 54,
+          "type": "enter_phase",
+          "phase": "breakthrough",
+          "once": true
+        },
+        {
+          "id": "t306_bt",
+          "condition": "onFillCountReached",
+          "count": 54,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "⚡ 破局时刻！数对+区块的组合拳打出了效果，盘面开始崩塌！",
+          "once": true,
+          "delay": 400
+        },
+        {
+          "id": "t306_st20",
+          "condition": "onStuckForSeconds",
+          "seconds": 20,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "💡 卡住了？先找数对锁定候选，再用区块排除删除更多候选，交替使用两种技巧！",
+          "once": false
+        },
+        {
+          "id": "t306_st40",
+          "condition": "onStuckForSeconds",
+          "seconds": 40,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "💡 别忘了星衡法则和笼子组合！基础技巧永远不过时，它们经常是连锁的起点！",
+          "once": false,
+          "delay": 300
+        },
+        {
+          "id": "t306_ag",
+          "condition": "onConflict",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "⚠️ 一步错步步错！每填入一个数字前，确认它通过了所有约束条件！",
+          "once": false
+        },
+        {
+          "id": "t306_fi",
+          "condition": "onFillCountReached",
+          "count": 70,
+          "type": "enter_phase",
+          "phase": "finishing",
+          "once": true
+        },
+        {
+          "id": "t306_fit",
+          "condition": "onFillCountReached",
+          "count": 70,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "✨ 收官！多技巧协同作战，最后几格尽收囊中！",
+          "once": true,
+          "delay": 400
+        },
+        {
+          "id": "t306_c",
+          "condition": "onLevelComplete",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "🎉 组合运用纯熟！你已经可以灵活切换多种推理技巧了！",
+          "once": true
+        }
+      ],
+      "boardData": [
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          3,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          8,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "cages": [
+        {
+          "id": 0,
+          "sum": 24,
+          "cells": [
+            [
+              0,
+              7
+            ],
+            [
+              1,
+              7
+            ],
+            [
+              2,
+              7
+            ],
+            [
+              2,
+              6
+            ],
+            [
+              2,
+              8
+            ]
+          ]
+        },
+        {
+          "id": 1,
+          "sum": 22,
+          "cells": [
+            [
+              8,
+              7
+            ],
+            [
+              8,
+              6
+            ],
+            [
+              7,
+              7
+            ],
+            [
+              8,
+              5
+            ],
+            [
+              8,
+              8
+            ]
+          ]
+        },
+        {
+          "id": 2,
+          "sum": 17,
+          "cells": [
+            [
+              4,
+              6
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              5,
+              6
+            ],
+            [
+              5,
+              5
+            ],
+            [
+              5,
+              7
+            ]
+          ]
+        },
+        {
+          "id": 3,
+          "sum": 20,
+          "cells": [
+            [
+              7,
+              3
+            ],
+            [
+              7,
+              2
+            ],
+            [
+              8,
+              2
+            ],
+            [
+              6,
+              2
+            ]
+          ]
+        },
+        {
+          "id": 4,
+          "sum": 27,
+          "cells": [
+            [
+              6,
+              6
+            ],
+            [
+              6,
+              7
+            ],
+            [
+              6,
+              5
+            ],
+            [
+              6,
+              4
+            ]
+          ]
+        },
+        {
+          "id": 5,
+          "sum": 25,
+          "cells": [
+            [
+              1,
+              1
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              2,
+              1
+            ],
+            [
+              2,
+              0
+            ]
+          ]
+        },
+        {
+          "id": 6,
+          "sum": 22,
+          "cells": [
+            [
+              4,
+              7
+            ],
+            [
+              4,
+              8
+            ],
+            [
+              3,
+              7
+            ],
+            [
+              3,
+              8
+            ]
+          ]
+        },
+        {
+          "id": 7,
+          "sum": 16,
+          "cells": [
+            [
+              5,
+              2
+            ],
+            [
+              5,
+              1
+            ],
+            [
+              5,
+              3
+            ]
+          ]
+        },
+        {
+          "id": 8,
+          "sum": 14,
+          "cells": [
+            [
+              2,
+              4
+            ],
+            [
+              1,
+              4
+            ],
+            [
+              2,
+              3
+            ]
+          ]
+        },
+        {
+          "id": 9,
+          "sum": 9,
+          "cells": [
+            [
+              1,
+              8
+            ],
+            [
+              0,
+              8
+            ]
+          ]
+        },
+        {
+          "id": 10,
+          "sum": 16,
+          "cells": [
+            [
+              7,
+              4
+            ],
+            [
+              7,
+              5
+            ],
+            [
+              7,
+              6
+            ]
+          ]
+        },
+        {
+          "id": 11,
+          "sum": 14,
+          "cells": [
+            [
+              2,
+              5
+            ],
+            [
+              1,
+              5
+            ],
+            [
+              1,
+              6
+            ]
+          ]
+        },
+        {
+          "id": 12,
+          "sum": 11,
+          "cells": [
+            [
+              8,
+              1
+            ],
+            [
+              7,
+              1
+            ],
+            [
+              6,
+              1
+            ]
+          ]
+        },
+        {
+          "id": 13,
+          "sum": 16,
+          "cells": [
+            [
+              7,
+              0
+            ],
+            [
+              6,
+              0
+            ],
+            [
+              8,
+              0
+            ]
+          ]
+        },
+        {
+          "id": 14,
+          "sum": 16,
+          "cells": [
+            [
+              0,
+              2
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              3
+            ]
+          ]
+        },
+        {
+          "id": 15,
+          "sum": 14,
+          "cells": [
+            [
+              0,
+              6
+            ],
+            [
+              0,
+              5
+            ]
+          ]
+        },
+        {
+          "id": 16,
+          "sum": 4,
+          "cells": [
+            [
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "id": 17,
+          "sum": 15,
+          "cells": [
+            [
+              5,
+              0
+            ],
+            [
+              4,
+              0
+            ]
+          ]
+        },
+        {
+          "id": 18,
+          "sum": 8,
+          "cells": [
+            [
+              3,
+              5
+            ],
+            [
+              3,
+              6
+            ]
+          ]
+        },
+        {
+          "id": 19,
+          "sum": 12,
+          "cells": [
+            [
+              8,
+              4
+            ],
+            [
+              8,
+              3
+            ]
+          ]
+        },
+        {
+          "id": 20,
+          "sum": 7,
+          "cells": [
+            [
+              3,
+              0
+            ],
+            [
+              3,
+              1
+            ]
+          ]
+        },
+        {
+          "id": 21,
+          "sum": 21,
+          "cells": [
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              4
+            ],
+            [
+              4,
+              3
+            ],
+            [
+              3,
+              3
+            ]
+          ]
+        },
+        {
+          "id": 22,
+          "sum": 19,
+          "cells": [
+            [
+              5,
+              8
+            ],
+            [
+              7,
+              8
+            ],
+            [
+              6,
+              8
+            ]
+          ]
+        },
+        {
+          "id": 23,
+          "sum": 1,
+          "cells": [
+            [
+              6,
+              3
+            ]
+          ]
+        },
+        {
+          "id": 24,
+          "sum": 5,
+          "cells": [
+            [
+              5,
+              4
+            ]
+          ]
+        },
+        {
+          "id": 25,
+          "sum": 18,
+          "cells": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              2
+            ],
+            [
+              4,
+              2
+            ],
+            [
+              3,
+              2
+            ],
+            [
+              1,
+              3
+            ]
+          ]
+        },
+        {
+          "id": 26,
+          "sum": 8,
+          "cells": [
+            [
+              0,
+              4
+            ]
+          ]
+        },
+        {
+          "id": 27,
+          "sum": 4,
+          "cells": [
+            [
+              4,
+              1
+            ]
+          ]
+        }
+      ],
+      "solution": [
+        [
+          4,
+          7,
+          6,
+          3,
+          8,
+          5,
+          9,
+          2,
+          1
+        ],
+        [
+          5,
+          9,
+          1,
+          4,
+          6,
+          2,
+          3,
+          7,
+          8
+        ],
+        [
+          3,
+          8,
+          2,
+          7,
+          1,
+          9,
+          6,
+          5,
+          4
+        ],
+        [
+          2,
+          5,
+          8,
+          9,
+          4,
+          7,
+          1,
+          3,
+          6
+        ],
+        [
+          9,
+          4,
+          3,
+          6,
+          2,
+          1,
+          7,
+          8,
+          5
+        ],
+        [
+          6,
+          1,
+          7,
+          8,
+          5,
+          3,
+          2,
+          4,
+          9
+        ],
+        [
+          7,
+          2,
+          5,
+          1,
+          9,
+          4,
+          8,
+          6,
+          3
+        ],
+        [
+          1,
+          6,
+          4,
+          2,
+          3,
+          8,
+          5,
+          9,
+          7
+        ],
+        [
+          8,
+          3,
+          9,
+          5,
+          7,
+          6,
+          4,
+          1,
+          2
+        ]
+      ],
+      "preDialog": [
+        {
+          "speaker": "守笼人",
+          "text": "本题融合区块排除、并蒂锁、二连纵横阵多种技巧，需要灵活组合运用。",
+          "side": "right",
+          "emotion": "teaching",
+          "voiceId": "VO_CK_03",
+          "effect": 0
+        },
+        {
+          "speaker": "莹莹",
+          "text": "各种方法混着来，哪条路能走通就走哪条！",
+          "side": "right",
+          "emotion": "smile",
+          "voiceId": "VO_J_02",
+          "effect": 0
+        },
+        {
+          "speaker": "阿妍",
+          "text": "组合技巧验证的前提是——各自的判定条件互不冲突。",
+          "side": "right",
+          "emotion": "thinking",
+          "voiceId": "VO_R_06",
+          "effect": 0
+        }
+      ],
+      "clearDialog": [
+        {
+          "speaker": "守笼人",
+          "text": "区块、数对、二连纵横阵——三者已融会贯通。",
+          "side": "right",
+          "emotion": "smile",
+          "voiceId": "VO_CK_06",
+          "effect": 0
+        },
+        {
+          "speaker": "莹莹",
+          "text": "混着用感觉更顺手了！",
+          "side": "right",
+          "emotion": "surprised",
+          "voiceId": "VO_J_03",
+          "effect": 0
+        },
+        {
+          "speaker": "阿妍",
+          "text": "多种方法联合验证，排除范围扩展至全局。",
+          "side": "right",
+          "emotion": "thinking",
+          "voiceId": "VO_R_06",
+          "effect": 0
+        }
+      ],
+      "mode": "full",
+      "coreMove": {
+        "row": 7,
+        "col": 7,
+        "value": 9
+      },
+      "totalSteps": 82,
+      "nakedSingleRatio": 0.744,
+      "techCount": {
+        "nakedSingle": 61,
+        "rule45": 4,
+        "hiddenSingle": 9,
+        "cageUnique": 7,
+        "nakedPair": 1
+      },
+      "maxTechLevel": 5
+    },
+    {
+      "levelId": 307,
+      "title": "第7关：深层试炼",
+      "gridSize": 9,
+      "difficulty": "中等",
+      "teachingGoal": "第三章综合测试：星衡法则、区块排除（行/列/宫）、并蒂锁，综合运用所有进阶基础技巧。",
+      "features": {
+        "allowDraft": true,
+        "assistant45": true,
+        "showHints": true,
+        "perspectiveMode": true,
+        "highlightRow": true,
+        "highlightCol": true,
+        "highlightBox": true,
+        "highlightNumber": true,
+        "highlightCage": true,
+        "autoFillCandidates": true
+      },
+      "triggers": [
+        {
+          "id": "t307_s",
+          "condition": "onLevelStart",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "📜 深层档案室试炼！综合运用星衡法则、区块排除、并蒂锁，证明你有资格继续深入！",
+          "once": true
+        },
+        {
+          "id": "t307_f1",
+          "condition": "onFirstNumberFilled",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "好的开始！设局人的谜题虽然狡猾，但你已经有了破解它的武器！",
+          "once": true
+        },
+        {
+          "id": "t307_b",
+          "condition": "onFillCountReached",
+          "count": 53,
+          "type": "enter_phase",
+          "phase": "breakthrough",
+          "once": true
+        },
+        {
+          "id": "t307_bt",
+          "condition": "onFillCountReached",
+          "count": 53,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "⚡ 破局时刻！你撕开了设局人谜题的第一道防线，乘胜追击！",
+          "once": true,
+          "delay": 400
+        },
+        {
+          "id": "t307_st20",
+          "condition": "onStuckForSeconds",
+          "seconds": 20,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "💡 卡住了？深呼吸，从头扫一遍：先填孤星→星衡法则找差值→找数对→找区块，按部就班！",
+          "once": false
+        },
+        {
+          "id": "t307_st40",
+          "condition": "onStuckForSeconds",
+          "seconds": 40,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "💡 设局人喜欢把线索藏在最显眼的地方——有没有漏掉哪个简单的星衡法则？有没有笼子和值很特殊？",
+          "once": false,
+          "delay": 300
+        },
+        {
+          "id": "t307_ag",
+          "condition": "onConflict",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "⚠️ 设局人的陷阱！这个数字看似合理，但违反了某个约束——再仔细检查！",
+          "once": false
+        },
+        {
+          "id": "t307_fi",
+          "condition": "onFillCountReached",
+          "count": 70,
+          "type": "enter_phase",
+          "phase": "finishing",
+          "once": true
+        },
+        {
+          "id": "t307_fit",
+          "condition": "onFillCountReached",
+          "count": 70,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "✨ 收官！徽章就在眼前，不要在最后一步失误！",
+          "once": true,
+          "delay": 400
+        },
+        {
+          "id": "t307_c",
+          "condition": "onLevelComplete",
+          "type": "badge_award",
+          "text": "🎉 恭喜通过深层试炼！中级侦探徽章已解锁！档案室更深处的尘封旧案等你揭开！",
+          "once": true,
+          "badgeId": "badge_c3_advanced"
+        }
+      ],
+      "boardData": [
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          8,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          7,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          4,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          6,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "cages": [
+        {
+          "id": 0,
+          "sum": 22,
+          "cells": [
+            [
+              8,
+              6
+            ],
+            [
+              8,
+              7
+            ],
+            [
+              7,
+              7
+            ],
+            [
+              7,
+              6
+            ],
+            [
+              8,
+              8
+            ]
+          ]
+        },
+        {
+          "id": 1,
+          "sum": 15,
+          "cells": [
+            [
+              1,
+              8
+            ],
+            [
+              0,
+              8
+            ],
+            [
+              2,
+              8
+            ],
+            [
+              3,
+              8
+            ],
+            [
+              2,
+              7
+            ]
+          ]
+        },
+        {
+          "id": 2,
+          "sum": 19,
+          "cells": [
+            [
+              5,
+              4
+            ],
+            [
+              6,
+              4
+            ],
+            [
+              5,
+              3
+            ],
+            [
+              6,
+              5
+            ],
+            [
+              4,
+              4
+            ]
+          ]
+        },
+        {
+          "id": 3,
+          "sum": 21,
+          "cells": [
+            [
+              1,
+              1
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "id": 4,
+          "sum": 20,
+          "cells": [
+            [
+              1,
+              5
+            ],
+            [
+              0,
+              5
+            ],
+            [
+              1,
+              4
+            ],
+            [
+              0,
+              4
+            ]
+          ]
+        },
+        {
+          "id": 5,
+          "sum": 18,
+          "cells": [
+            [
+              7,
+              1
+            ],
+            [
+              7,
+              0
+            ],
+            [
+              8,
+              1
+            ],
+            [
+              8,
+              2
+            ]
+          ]
+        },
+        {
+          "id": 6,
+          "sum": 30,
+          "cells": [
+            [
+              1,
+              7
+            ],
+            [
+              0,
+              7
+            ],
+            [
+              0,
+              6
+            ],
+            [
+              1,
+              6
+            ]
+          ]
+        },
+        {
+          "id": 7,
+          "sum": 4,
+          "cells": [
+            [
+              8,
+              0
+            ]
+          ]
+        },
+        {
+          "id": 8,
+          "sum": 15,
+          "cells": [
+            [
+              3,
+              2
+            ],
+            [
+              4,
+              2
+            ],
+            [
+              5,
+              2
+            ]
+          ]
+        },
+        {
+          "id": 9,
+          "sum": 12,
+          "cells": [
+            [
+              0,
+              3
+            ],
+            [
+              0,
+              2
+            ],
+            [
+              1,
+              2
+            ]
+          ]
+        },
+        {
+          "id": 10,
+          "sum": 18,
+          "cells": [
+            [
+              6,
+              8
+            ],
+            [
+              7,
+              8
+            ],
+            [
+              6,
+              7
+            ]
+          ]
+        },
+        {
+          "id": 11,
+          "sum": 16,
+          "cells": [
+            [
+              5,
+              1
+            ],
+            [
+              5,
+              0
+            ],
+            [
+              4,
+              1
+            ]
+          ]
+        },
+        {
+          "id": 12,
+          "sum": 9,
+          "cells": [
+            [
+              5,
+              7
+            ],
+            [
+              5,
+              8
+            ]
+          ]
+        },
+        {
+          "id": 13,
+          "sum": 1,
+          "cells": [
+            [
+              5,
+              5
+            ]
+          ]
+        },
+        {
+          "id": 14,
+          "sum": 15,
+          "cells": [
+            [
+              4,
+              8
+            ],
+            [
+              4,
+              7
+            ]
+          ]
+        },
+        {
+          "id": 15,
+          "sum": 5,
+          "cells": [
+            [
+              1,
+              3
+            ],
+            [
+              2,
+              3
+            ]
+          ]
+        },
+        {
+          "id": 16,
+          "sum": 17,
+          "cells": [
+            [
+              4,
+              3
+            ],
+            [
+              3,
+              3
+            ]
+          ]
+        },
+        {
+          "id": 17,
+          "sum": 23,
+          "cells": [
+            [
+              6,
+              6
+            ],
+            [
+              5,
+              6
+            ],
+            [
+              4,
+              6
+            ],
+            [
+              4,
+              5
+            ]
+          ]
+        },
+        {
+          "id": 18,
+          "sum": 11,
+          "cells": [
+            [
+              6,
+              3
+            ],
+            [
+              7,
+              4
+            ],
+            [
+              7,
+              3
+            ]
+          ]
+        },
+        {
+          "id": 19,
+          "sum": 14,
+          "cells": [
+            [
+              3,
+              1
+            ],
+            [
+              4,
+              0
+            ],
+            [
+              3,
+              0
+            ]
+          ]
+        },
+        {
+          "id": 20,
+          "sum": 29,
+          "cells": [
+            [
+              8,
+              4
+            ],
+            [
+              8,
+              3
+            ],
+            [
+              7,
+              5
+            ],
+            [
+              8,
+              5
+            ]
+          ]
+        },
+        {
+          "id": 21,
+          "sum": 19,
+          "cells": [
+            [
+              2,
+              4
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              2,
+              5
+            ]
+          ]
+        },
+        {
+          "id": 22,
+          "sum": 17,
+          "cells": [
+            [
+              2,
+              0
+            ],
+            [
+              2,
+              2
+            ],
+            [
+              2,
+              1
+            ]
+          ]
+        },
+        {
+          "id": 23,
+          "sum": 23,
+          "cells": [
+            [
+              6,
+              0
+            ],
+            [
+              7,
+              2
+            ],
+            [
+              6,
+              2
+            ],
+            [
+              6,
+              1
+            ]
+          ]
+        },
+        {
+          "id": 24,
+          "sum": 12,
+          "cells": [
+            [
+              3,
+              7
+            ],
+            [
+              3,
+              5
+            ],
+            [
+              3,
+              6
+            ],
+            [
+              2,
+              6
+            ]
+          ]
+        }
+      ],
+      "solution": [
+        [
+          7,
+          1,
+          4,
+          5,
+          3,
+          9,
+          6,
+          8,
+          2
+        ],
+        [
+          8,
+          5,
+          3,
+          4,
+          6,
+          2,
+          9,
+          7,
+          1
+        ],
+        [
+          6,
+          2,
+          9,
+          1,
+          8,
+          7,
+          3,
+          5,
+          4
+        ],
+        [
+          5,
+          7,
+          8,
+          9,
+          4,
+          6,
+          2,
+          1,
+          3
+        ],
+        [
+          2,
+          4,
+          1,
+          8,
+          5,
+          3,
+          7,
+          9,
+          6
+        ],
+        [
+          9,
+          3,
+          6,
+          2,
+          7,
+          1,
+          8,
+          4,
+          5
+        ],
+        [
+          3,
+          8,
+          7,
+          6,
+          1,
+          4,
+          5,
+          2,
+          9
+        ],
+        [
+          1,
+          9,
+          5,
+          3,
+          2,
+          8,
+          4,
+          6,
+          7
+        ],
+        [
+          4,
+          6,
+          2,
+          7,
+          9,
+          5,
+          1,
+          3,
+          8
+        ]
+      ],
+      "preDialog": [
+        {
+          "speaker": "守笼人",
+          "text": "本章最终试炼，所有区块技巧融会贯通。提示数降至三十一，是设局人当年的标准出题难度。",
+          "side": "right",
+          "emotion": "calm",
+          "voiceId": "VO_CK_09",
+          "effect": 2
+        },
+        {
+          "speaker": "莹莹",
+          "text": "提示数少了这么多……加油！",
+          "side": "right",
+          "emotion": "calm",
+          "voiceId": "VO_J_10",
+          "effect": 0
+        },
+        {
+          "speaker": "阿妍",
+          "text": "数少了，但要推的步数多了。",
+          "side": "right",
+          "emotion": "determined",
+          "voiceId": "VO_R_13",
+          "effect": 0
+        }
+      ],
+      "mode": "comprehensive",
+      "coreMove": {
+        "row": 8,
+        "col": 6,
+        "value": 3
+      },
+      "totalSteps": 81,
+      "nakedSingleRatio": 0.654,
+      "techCount": {
+        "nakedSingle": 53,
+        "rule45": 4,
+        "cageUnique": 13,
+        "hiddenSingle": 10,
+        "nakedPair": 1
+      },
+      "maxTechLevel": 5,
+      "clearDialog": [
+        {
+          "speaker": "守笼人",
+          "text": "区块排除法，你已融会贯通。",
+          "side": "right",
+          "emotion": "smile",
+          "voiceId": "VO_CK_06",
+          "effect": 1
+        },
+        {
+          "speaker": "莹莹",
+          "text": "原来藏在区块里的数字才是破局关键！",
+          "side": "right",
+          "emotion": "surprised",
+          "voiceId": "VO_J_03",
+          "effect": 0
+        },
+        {
+          "speaker": "阿妍",
+          "text": "（看着棋盘，低声说）……我在档案分类索引里看到的。第六章，残局编号F-6。",
+          "side": "right",
+          "emotion": "calm",
+          "voiceId": "VO_R_05",
+          "effect": 0
+        },
+        {
+          "speaker": "莹莹",
+          "text": "……什么？",
+          "side": "right",
+          "effect": 0
+        },
+        {
+          "speaker": "阿妍",
+          "text": "（已经转身）最后的谜题。在第六章。",
+          "side": "right",
+          "emotion": "calm",
+          "voiceId": "VO_R_05",
+          "effect": 0
+        },
+        {
+          "speaker": "沈墨",
+          "text": "（他走在最后。在跨过门槛的时候，他回头看了一眼那扇门——然后确认了什么似的，跟上了她们。）",
+          "side": "left",
+          "emotion": "calm",
+          "voiceId": "VO_SM_21",
+          "effect": 0
+        }
+      ]
+    }
+  ]
+}

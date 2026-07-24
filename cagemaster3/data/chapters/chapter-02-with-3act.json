@@ -1,0 +1,7210 @@
+{
+  "chapterId": 2,
+  "title": "四十五星衡",
+  "description": "进入手稿室，学习星衡法则（星衡法则与星衡法则），掌握基础差值推演，初闻设局人留声印记。",
+  "unlockCondition": {},
+  "theme": 0,
+  "levels": [
+    {
+      "levelId": 201,
+      "title": "第1关：手稿室入口",
+      "gridSize": 6,
+      "difficulty": "入门",
+      "teachingGoal": "行的星衡法则：21-4-1-2-3-6=5",
+      "features": {
+        "allowDraft": true,
+        "assistant45": true,
+        "showHints": true,
+        "perspectiveMode": true,
+        "highlightRow": true,
+        "highlightCol": true,
+        "highlightBox": true,
+        "highlightNumber": false,
+        "highlightCage": false,
+        "autoFillCandidates": false
+      },
+      "triggers": [
+        {
+          "id": "t201_start",
+          "condition": "onLevelStart",
+          "type": "freeze_mask",
+          "targetCell": [
+            0,
+            0
+          ],
+          "targetType": "row",
+          "text": "欢迎来到6×6盘面！数字是1-6。注意这一行——所有数字加起来永远等于21。用21减去已知数：21-4-1-2-3-6=5，空格就是5！",
+          "once": true
+        },
+        {
+          "id": "t201_calc_intro",
+          "condition": "onLevelStart",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "右上角有个「45」按钮，打开是黄铜算珠计算器～不确定的时候可以用它算组合！",
+          "once": true,
+          "delay": 1500
+        },
+        {
+          "id": "t201_first_fill",
+          "condition": "onFirstNumberFilled",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "答对了！星衡法则就是这么简单：行的总和21，减去已知数，剩下的就是答案～列和宫也是一样哦",
+          "once": true
+        },
+        {
+          "id": "t201_b",
+          "condition": "onFillCountReached",
+          "count": 32,
+          "type": "enter_phase",
+          "phase": "breakthrough",
+          "once": true
+        },
+        {
+          "id": "t201_bt",
+          "condition": "onFillCountReached",
+          "count": 32,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "⚡ 破局时刻！你已掌握行星衡，继续推进，剩下的空格可以用同样的方法解决！",
+          "once": true,
+          "delay": 400
+        },
+        {
+          "id": "t201_st20",
+          "condition": "onStuckForSeconds",
+          "seconds": 20,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "💡 卡住了？记住：6×6每行数字之和恒为21，用21减去行内所有已知数字，就能得到空格的值！",
+          "once": false
+        },
+        {
+          "id": "t201_st40",
+          "condition": "onStuckForSeconds",
+          "seconds": 40,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "💡 再看一遍这一行——把所有数字加起来：21减去它们，那个唯一的空格就是答案！试试点击右上角的「45」按钮使用计算器～",
+          "once": false,
+          "delay": 300
+        },
+        {
+          "id": "t201_ag",
+          "condition": "onConflict",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "⚠️ 数字不对哦！检查一下这一行的和是不是21？用排除法再想想~",
+          "once": false
+        },
+        {
+          "id": "t201_fi",
+          "condition": "onFillCountReached",
+          "count": 34,
+          "type": "enter_phase",
+          "phase": "finishing",
+          "once": true
+        },
+        {
+          "id": "t201_fit",
+          "condition": "onFillCountReached",
+          "count": 34,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "✨ 收官阶段！最后几格了，保持节奏，胜利就在眼前！",
+          "once": true,
+          "delay": 400
+        },
+        {
+          "id": "t201_c",
+          "condition": "onLevelComplete",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "🎉 行星衡已掌握！每行和为21的法则将是你破解笼局的第一把钥匙。",
+          "once": true
+        }
+      ],
+      "boardData": [
+        [
+          4,
+          1,
+          2,
+          3,
+          6,
+          0
+        ],
+        [
+          0,
+          5,
+          3,
+          4,
+          2,
+          1
+        ],
+        [
+          2,
+          6,
+          0,
+          1,
+          3,
+          4
+        ],
+        [
+          3,
+          4,
+          1,
+          6,
+          0,
+          2
+        ],
+        [
+          5,
+          0,
+          4,
+          2,
+          1,
+          6
+        ],
+        [
+          1,
+          2,
+          6,
+          0,
+          4,
+          3
+        ]
+      ],
+      "cages": [],
+      "solution": [
+        [
+          4,
+          1,
+          2,
+          3,
+          6,
+          5
+        ],
+        [
+          6,
+          5,
+          3,
+          4,
+          2,
+          1
+        ],
+        [
+          2,
+          6,
+          5,
+          1,
+          3,
+          4
+        ],
+        [
+          3,
+          4,
+          1,
+          6,
+          5,
+          2
+        ],
+        [
+          5,
+          3,
+          4,
+          2,
+          1,
+          6
+        ],
+        [
+          1,
+          2,
+          6,
+          5,
+          4,
+          3
+        ]
+      ],
+      "preDialog": [
+        {
+          "speaker": "守笼人",
+          "text": "六阶档案遵循星衡基础：每行六数相加，总和恒为二十一。",
+          "side": "right",
+          "emotion": "teaching",
+          "voiceId": "VO_CK_03",
+          "effect": 0
+        },
+        {
+          "speaker": "莹莹",
+          "text": "横竖都要凑二十一，双重约束一叠加，能填的数字一下就少了！",
+          "side": "right",
+          "emotion": "smile",
+          "voiceId": "VO_J_02",
+          "effect": 0
+        },
+        {
+          "speaker": "阿妍",
+          "text": "填完一行减一下。不对就回头。",
+          "side": "right",
+          "emotion": "determined",
+          "voiceId": "VO_R_13",
+          "effect": 0
+        },
+        {
+          "speaker": "沈墨",
+          "text": "（已经在心里开始算第一行的和，轻声）……第二行第四列。5。",
+          "side": "left",
+          "emotion": "thinking",
+          "voiceId": "VO_SM_12",
+          "effect": 0
+        },
+        {
+          "speaker": "守笼人",
+          "text": "二十一。对。",
+          "side": "right",
+          "emotion": "smile",
+          "voiceId": "VO_CK_06",
+          "effect": 0
+        }
+      ],
+      "clearDialog": [
+        {
+          "speaker": "守笼人",
+          "text": "星衡逻辑掌握得愈发熟练。",
+          "side": "right",
+          "emotion": "smile",
+          "voiceId": "VO_CK_06",
+          "effect": 0
+        },
+        {
+          "speaker": "莹莹",
+          "text": "吃透这套和值法则，再乱的笼子看着都清晰多了！",
+          "side": "right",
+          "emotion": "surprised",
+          "voiceId": "VO_J_03",
+          "effect": 0
+        },
+        {
+          "speaker": "阿妍",
+          "text": "（没有评价，但微微点头）",
+          "side": "right",
+          "emotion": "calm",
+          "voiceId": "VO_R_07",
+          "effect": 0
+        },
+        {
+          "speaker": "沈墨",
+          "text": "（放下笔，看了一眼棋盘）……二十一。",
+          "side": "left",
+          "emotion": "thinking",
+          "voiceId": "VO_SM_08",
+          "effect": 0
+        }
+      ],
+      "mode": "full",
+      "threeAct": {
+        "opening": [
+          [
+            0,
+            5
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            5,
+            3
+          ]
+        ],
+        "breakthrough": [],
+        "avalanche": []
+      }
+    },
+    {
+      "levelId": 202,
+      "title": "第2关：列的星衡",
+      "gridSize": 6,
+      "difficulty": "入门",
+      "teachingGoal": "列的星衡法则：21-4-6-2-3-5=1",
+      "features": {
+        "allowDraft": true,
+        "assistant45": true,
+        "showHints": true,
+        "perspectiveMode": true,
+        "highlightRow": true,
+        "highlightCol": true,
+        "highlightBox": true,
+        "highlightNumber": false,
+        "highlightCage": false,
+        "autoFillCandidates": false
+      },
+      "triggers": [
+        {
+          "id": "t202_start",
+          "condition": "onLevelStart",
+          "type": "freeze_mask",
+          "targetCell": [
+            0,
+            0
+          ],
+          "targetType": "col",
+          "text": "列也是一样的！每一列所有数字加起来也等于21。看这一列：21-4-6-2-3-5=1，空格就是1～",
+          "once": true
+        },
+        {
+          "id": "t202_rowcol",
+          "condition": "onFirstNumberFilled",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "行和列都满足星衡法则，以后可以灵活运用哦～右上角的黄铜算珠随时可以帮你计算！",
+          "once": true
+        },
+        {
+          "id": "t202_b",
+          "condition": "onFillCountReached",
+          "count": 32,
+          "type": "enter_phase",
+          "phase": "breakthrough",
+          "once": true
+        },
+        {
+          "id": "t202_bt",
+          "condition": "onFillCountReached",
+          "count": 32,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "⚡ 破局时刻！列的星衡也被你掌握了，行列交叉验证，接下来势如破竹！",
+          "once": true,
+          "delay": 400
+        },
+        {
+          "id": "t202_st20",
+          "condition": "onStuckForSeconds",
+          "seconds": 20,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "💡 卡住了？别只看行！看看每一列——找只有一个空格的列，21减其他数字就是答案！",
+          "once": false
+        },
+        {
+          "id": "t202_st40",
+          "condition": "onStuckForSeconds",
+          "seconds": 40,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "💡 记住星衡法则三要素：行和=21，列和=21，宫和=21。现在找一个空格最少的列试试看？",
+          "once": false,
+          "delay": 300
+        },
+        {
+          "id": "t202_ag",
+          "condition": "onConflict",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "⚠️ 别猜！检查一下列的和是不是21？如果不对，换个数字试试～",
+          "once": false
+        },
+        {
+          "id": "t202_fi",
+          "condition": "onFillCountReached",
+          "count": 34,
+          "type": "enter_phase",
+          "phase": "finishing",
+          "once": true
+        },
+        {
+          "id": "t202_fit",
+          "condition": "onFillCountReached",
+          "count": 34,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "✨ 收官！最后几格了，用行和列双向验证，确保不犯错！",
+          "once": true,
+          "delay": 400
+        },
+        {
+          "id": "t202_c",
+          "condition": "onLevelComplete",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "🎉 列星衡到手！行和列都是你的武器了，准备好迎接宫的星衡了吗？",
+          "once": true
+        }
+      ],
+      "boardData": [
+        [
+          4,
+          1,
+          2,
+          3,
+          6,
+          0
+        ],
+        [
+          6,
+          5,
+          3,
+          4,
+          0,
+          1
+        ],
+        [
+          2,
+          6,
+          5,
+          0,
+          3,
+          4
+        ],
+        [
+          3,
+          4,
+          0,
+          6,
+          5,
+          2
+        ],
+        [
+          5,
+          0,
+          4,
+          2,
+          1,
+          6
+        ],
+        [
+          0,
+          2,
+          6,
+          5,
+          4,
+          3
+        ]
+      ],
+      "cages": [],
+      "solution": [
+        [
+          4,
+          1,
+          2,
+          3,
+          6,
+          5
+        ],
+        [
+          6,
+          5,
+          3,
+          4,
+          2,
+          1
+        ],
+        [
+          2,
+          6,
+          5,
+          1,
+          3,
+          4
+        ],
+        [
+          3,
+          4,
+          1,
+          6,
+          5,
+          2
+        ],
+        [
+          5,
+          3,
+          4,
+          2,
+          1,
+          6
+        ],
+        [
+          1,
+          2,
+          6,
+          5,
+          4,
+          3
+        ]
+      ],
+      "preDialog": [
+        {
+          "speaker": "守笼人",
+          "text": "竖列同样遵循星衡平衡，每列数字相加，恒等于二十一。",
+          "side": "right",
+          "emotion": "teaching",
+          "voiceId": "VO_CK_03",
+          "effect": 0
+        },
+        {
+          "speaker": "莹莹",
+          "text": "横竖都要凑二十一！",
+          "side": "right",
+          "emotion": "smile",
+          "voiceId": "VO_J_02",
+          "effect": 0
+        },
+        {
+          "speaker": "阿妍",
+          "text": "行列交叉验证。单一维度不可靠。",
+          "side": "right",
+          "emotion": "determined",
+          "voiceId": "VO_R_02",
+          "effect": 0
+        },
+        {
+          "speaker": "沈墨",
+          "text": "（已经在看第一列的空位，停顿了片刻）……第一列第六行。3。",
+          "side": "left",
+          "emotion": "thinking",
+          "voiceId": "VO_SM_12",
+          "effect": 0
+        },
+        {
+          "speaker": "阿妍",
+          "text": "（这次她侧过头，看了他一眼。很短。）……你算得很快。",
+          "side": "right",
+          "effect": 0
+        },
+        {
+          "speaker": "沈墨",
+          "text": "（没有抬头，继续看棋盘）……习惯了。",
+          "side": "left",
+          "effect": 0
+        }
+      ],
+      "clearDialog": [
+        {
+          "speaker": "守笼人",
+          "text": "行列双衡，已入正轨。",
+          "side": "right",
+          "emotion": "smile",
+          "voiceId": "VO_CK_06",
+          "effect": 0
+        },
+        {
+          "speaker": "莹莹",
+          "text": "用行和列互相校验，准确率高了好多！",
+          "side": "right",
+          "emotion": "surprised",
+          "voiceId": "VO_J_03",
+          "effect": 0
+        },
+        {
+          "speaker": "阿妍",
+          "text": "（轻轻点头）嗯。",
+          "side": "right",
+          "effect": 0
+        },
+        {
+          "speaker": "沈墨",
+          "text": "（放下笔）……二十一。列也是。",
+          "side": "left",
+          "emotion": "thinking",
+          "voiceId": "VO_SM_08",
+          "effect": 0
+        }
+      ],
+      "mode": "full",
+      "threeAct": {
+        "opening": [
+          [
+            0,
+            5
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            5,
+            0
+          ]
+        ],
+        "breakthrough": [],
+        "avalanche": []
+      }
+    },
+    {
+      "levelId": 203,
+      "title": "第3关：宫的星衡",
+      "gridSize": 6,
+      "difficulty": "入门",
+      "teachingGoal": "宫的星衡法则 + 基础笼子",
+      "features": {
+        "allowDraft": true,
+        "assistant45": true,
+        "showHints": true,
+        "perspectiveMode": true,
+        "highlightRow": true,
+        "highlightCol": true,
+        "highlightBox": true,
+        "highlightNumber": true,
+        "highlightCage": true,
+        "autoFillCandidates": false
+      },
+      "triggers": [
+        {
+          "id": "t203_start",
+          "condition": "onLevelStart",
+          "type": "freeze_mask",
+          "targetCell": [
+            0,
+            0
+          ],
+          "targetType": "box",
+          "text": "宫也不例外！每个2×3的宫，总和也是21。看这个宫：1+2+6+5=14，21-14=7，剩下两格加起来等于7～",
+          "once": true
+        },
+        {
+          "id": "t203_calc",
+          "condition": "onFirstNumberFilled",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "笼子也回来了！用黄铜算珠（右上角「45」按钮）可以算出笼子里可能的数字组合～",
+          "once": true
+        },
+        {
+          "id": "t203_b",
+          "condition": "onFillCountReached",
+          "count": 29,
+          "type": "enter_phase",
+          "phase": "breakthrough",
+          "once": true
+        },
+        {
+          "id": "t203_bt",
+          "condition": "onFillCountReached",
+          "count": 29,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "⚡ 破局时刻！宫星衡+笼格双重推理已启动，你已真正进入杀手数独的领域！",
+          "once": true,
+          "delay": 400
+        },
+        {
+          "id": "t203_st20",
+          "condition": "onStuckForSeconds",
+          "seconds": 20,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "💡 卡住了？先看每个2×3宫——宫和21，减一减就能找到单格答案！再看笼子的和值，双管齐下！",
+          "once": false
+        },
+        {
+          "id": "t203_st40",
+          "condition": "onStuckForSeconds",
+          "seconds": 40,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "💡 笼子和值是关键！比如和值为3的两格笼一定是1+2，和值为4一定是1+3，再结合宫的星衡法则排除！",
+          "once": false,
+          "delay": 300
+        },
+        {
+          "id": "t203_ag",
+          "condition": "onConflict",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "⚠️ 检查一下！笼子和值对吗？宫里面有没有重复？星衡数字是不会骗人的～",
+          "once": false
+        },
+        {
+          "id": "t203_fi",
+          "condition": "onFillCountReached",
+          "count": 33,
+          "type": "enter_phase",
+          "phase": "finishing",
+          "once": true
+        },
+        {
+          "id": "t203_fit",
+          "condition": "onFillCountReached",
+          "count": 33,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "✨ 收官！笼子、行、列、宫四重验证，最后几步稳住！",
+          "once": true,
+          "delay": 400
+        },
+        {
+          "id": "t203_c",
+          "condition": "onLevelComplete",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "🎉 宫的星衡和基础笼格都掌握了！你已经学会了杀手数独三大和值武器！",
+          "once": true
+        }
+      ],
+      "boardData": [
+        [
+          0,
+          1,
+          2,
+          0,
+          6,
+          5
+        ],
+        [
+          6,
+          5,
+          0,
+          4,
+          2,
+          0
+        ],
+        [
+          2,
+          0,
+          5,
+          1,
+          0,
+          4
+        ],
+        [
+          0,
+          4,
+          1,
+          0,
+          5,
+          2
+        ],
+        [
+          5,
+          3,
+          0,
+          2,
+          1,
+          0
+        ],
+        [
+          1,
+          0,
+          6,
+          5,
+          0,
+          3
+        ]
+      ],
+      "cages": [
+        {
+          "id": 1,
+          "sum": 5,
+          "cells": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              1
+            ]
+          ]
+        },
+        {
+          "id": 2,
+          "sum": 5,
+          "cells": [
+            [
+              0,
+              2
+            ],
+            [
+              0,
+              3
+            ]
+          ]
+        },
+        {
+          "id": 3,
+          "sum": 11,
+          "cells": [
+            [
+              0,
+              4
+            ],
+            [
+              0,
+              5
+            ]
+          ]
+        },
+        {
+          "id": 4,
+          "sum": 11,
+          "cells": [
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              1
+            ]
+          ]
+        },
+        {
+          "id": 5,
+          "sum": 7,
+          "cells": [
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              3
+            ]
+          ]
+        },
+        {
+          "id": 6,
+          "sum": 3,
+          "cells": [
+            [
+              1,
+              4
+            ],
+            [
+              1,
+              5
+            ]
+          ]
+        },
+        {
+          "id": 7,
+          "sum": 8,
+          "cells": [
+            [
+              2,
+              0
+            ],
+            [
+              2,
+              1
+            ]
+          ]
+        },
+        {
+          "id": 8,
+          "sum": 6,
+          "cells": [
+            [
+              2,
+              2
+            ],
+            [
+              2,
+              3
+            ]
+          ]
+        },
+        {
+          "id": 9,
+          "sum": 7,
+          "cells": [
+            [
+              2,
+              4
+            ],
+            [
+              2,
+              5
+            ]
+          ]
+        },
+        {
+          "id": 10,
+          "sum": 7,
+          "cells": [
+            [
+              3,
+              0
+            ],
+            [
+              3,
+              1
+            ]
+          ]
+        },
+        {
+          "id": 11,
+          "sum": 7,
+          "cells": [
+            [
+              3,
+              2
+            ],
+            [
+              3,
+              3
+            ]
+          ]
+        },
+        {
+          "id": 12,
+          "sum": 7,
+          "cells": [
+            [
+              3,
+              4
+            ],
+            [
+              3,
+              5
+            ]
+          ]
+        },
+        {
+          "id": 13,
+          "sum": 8,
+          "cells": [
+            [
+              4,
+              0
+            ],
+            [
+              4,
+              1
+            ]
+          ]
+        },
+        {
+          "id": 14,
+          "sum": 6,
+          "cells": [
+            [
+              4,
+              2
+            ],
+            [
+              4,
+              3
+            ]
+          ]
+        },
+        {
+          "id": 15,
+          "sum": 7,
+          "cells": [
+            [
+              4,
+              4
+            ],
+            [
+              4,
+              5
+            ]
+          ]
+        },
+        {
+          "id": 16,
+          "sum": 3,
+          "cells": [
+            [
+              5,
+              0
+            ],
+            [
+              5,
+              1
+            ]
+          ]
+        },
+        {
+          "id": 17,
+          "sum": 11,
+          "cells": [
+            [
+              5,
+              2
+            ],
+            [
+              5,
+              3
+            ]
+          ]
+        },
+        {
+          "id": 18,
+          "sum": 7,
+          "cells": [
+            [
+              5,
+              4
+            ],
+            [
+              5,
+              5
+            ]
+          ]
+        }
+      ],
+      "solution": [
+        [
+          4,
+          1,
+          2,
+          3,
+          6,
+          5
+        ],
+        [
+          6,
+          5,
+          3,
+          4,
+          2,
+          1
+        ],
+        [
+          2,
+          6,
+          5,
+          1,
+          3,
+          4
+        ],
+        [
+          3,
+          4,
+          1,
+          6,
+          5,
+          2
+        ],
+        [
+          5,
+          3,
+          4,
+          2,
+          1,
+          6
+        ],
+        [
+          1,
+          2,
+          6,
+          5,
+          4,
+          3
+        ]
+      ],
+      "preDialog": [
+        {
+          "speaker": "守笼人",
+          "text": "六宫小方格亦满足星衡平衡。手稿中首次出现基础笼格。",
+          "side": "right",
+          "emotion": "mysterious",
+          "voiceId": "VO_CK_05",
+          "effect": 0
+        },
+        {
+          "speaker": "莹莹",
+          "text": "六阶总和二十一，九阶四十五，千万别记混！",
+          "side": "right",
+          "emotion": "smile",
+          "voiceId": "VO_J_02",
+          "effect": 0
+        },
+        {
+          "speaker": "阿妍",
+          "text": "宫与笼同时作用。注意它们重叠的地方。",
+          "side": "right",
+          "emotion": "thinking",
+          "voiceId": "VO_R_06",
+          "effect": 0
+        },
+        {
+          "speaker": "沈墨",
+          "text": "（他看着棋盘，忽然轻声说）……这个宫的右上角。只剩一个数了。",
+          "side": "left",
+          "emotion": "thinking",
+          "voiceId": "VO_SM_07",
+          "effect": 0
+        },
+        {
+          "speaker": "莹莹",
+          "text": "（凑过去看）哪个？",
+          "side": "right",
+          "effect": 0
+        },
+        {
+          "speaker": "沈墨",
+          "text": "（指了指那个位置）……6。",
+          "side": "left",
+          "emotion": "thinking",
+          "voiceId": "VO_SM_07",
+          "effect": 0
+        }
+      ],
+      "clearDialog": [
+        {
+          "speaker": "守笼人",
+          "text": "这些笼型的排布手法，正是设局人当年最擅长的风格。",
+          "side": "right",
+          "emotion": "mysterious",
+          "voiceId": "VO_CK_05",
+          "effect": 0
+        },
+        {
+          "speaker": "设局人",
+          "text": "只会死守二十一星衡，你永远破不开我完整的九域笼局。",
+          "side": "right",
+          "emotion": "calm",
+          "voiceId": "VO_P_01",
+          "effect": 3
+        },
+        {
+          "speaker": "莹莹",
+          "text": "（猛地转头）谁？！谁在说话？！",
+          "side": "right",
+          "emotion": "calm",
+          "voiceId": "VO_J_05",
+          "effect": 1
+        },
+        {
+          "speaker": "守笼人",
+          "text": "……是他留下的留声印记。",
+          "side": "right",
+          "emotion": "calm",
+          "voiceId": "VO_CK_10",
+          "effect": 1
+        },
+        {
+          "speaker": "阿妍",
+          "text": "（没有看声音的方向，但握笔的手停住了）……留声印记。他把自己的声音留在了笼局里。",
+          "side": "right",
+          "emotion": "thinking",
+          "voiceId": "VO_R_06",
+          "effect": 0
+        },
+        {
+          "speaker": "莹莹",
+          "text": "为什么？",
+          "side": "right",
+          "effect": 0
+        },
+        {
+          "speaker": "阿妍",
+          "text": "（沉默了片刻）……因为他在等人听见。",
+          "side": "right",
+          "emotion": "calm",
+          "voiceId": "VO_R_07",
+          "effect": 0
+        },
+        {
+          "speaker": "沈墨",
+          "text": "（他没有说话。但他的目光落在了守笼人身上——比平时多停留了一秒。）……是等一个人，还是等一种人？",
+          "side": "left",
+          "emotion": "calm",
+          "voiceId": "VO_SM_14",
+          "effect": 0
+        }
+      ],
+      "mode": "full",
+      "threeAct": {
+        "opening": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            3,
+            0
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            4,
+            2
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            5,
+            4
+          ]
+        ],
+        "breakthrough": [],
+        "avalanche": []
+      }
+    },
+    {
+      "levelId": 204,
+      "title": "第4关：九域星图",
+      "gridSize": 9,
+      "difficulty": "入门",
+      "teachingGoal": "9×9盘面 + 星衡法则入门",
+      "features": {
+        "allowDraft": true,
+        "assistant45": true,
+        "showHints": true,
+        "perspectiveMode": true,
+        "highlightRow": true,
+        "highlightCol": true,
+        "highlightBox": true,
+        "highlightNumber": true,
+        "highlightCage": false,
+        "autoFillCandidates": false
+      },
+      "triggers": [
+        {
+          "id": "t204_start",
+          "condition": "onLevelStart",
+          "type": "freeze_mask",
+          "targetCell": [
+            0,
+            0
+          ],
+          "targetType": "row",
+          "text": "📜 大师手记：「欢迎来到九域星图。从今天起，你面对的是真正的9×9标准盘面。1到9，每一行的和都是45。」",
+          "once": true
+        },
+        {
+          "id": "t204_story2",
+          "condition": "onLevelStart",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "📜 「星衡法则——这是我毕生演算的核心。记住它，它会是你最锋利的推理武器。」",
+          "once": true,
+          "delay": 3000
+        },
+        {
+          "id": "t204_45",
+          "condition": "onFirstNumberFilled",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "📜 「很好，第一步走得很稳。黄铜算珠你可以随意使用，它不会替你思考，但能帮你计算。」",
+          "once": true
+        },
+        {
+          "id": "t204_b",
+          "condition": "onFillCountReached",
+          "count": 69,
+          "type": "enter_phase",
+          "phase": "breakthrough",
+          "once": true
+        },
+        {
+          "id": "t204_bt",
+          "condition": "onFillCountReached",
+          "count": 69,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "⚡ 📜 「破局时刻。你已领悟星衡法则的精髓——从此，九域星图在你眼中不再是谜。」",
+          "once": true,
+          "delay": 400
+        },
+        {
+          "id": "t204_st20",
+          "condition": "onStuckForSeconds",
+          "seconds": 20,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "💡 📜 「45是九域的星衡基数。找空格最少的行、列或3×3宫，45减去已知数，答案自现。」",
+          "once": false
+        },
+        {
+          "id": "t204_st40",
+          "condition": "onStuckForSeconds",
+          "seconds": 40,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "💡 📜 「莫要急于求成。九域星图讲究纵观全局——先扫一遍所有行/列/宫，找突破口比盲目填数更重要。」",
+          "once": false,
+          "delay": 300
+        },
+        {
+          "id": "t204_ag",
+          "condition": "onConflict",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "⚠️ 📜 「差之毫厘，谬以千里。检查行/列/宫的和是否为45，再思。」",
+          "once": false
+        },
+        {
+          "id": "t204_fi",
+          "condition": "onFillCountReached",
+          "count": 76,
+          "type": "enter_phase",
+          "phase": "finishing",
+          "once": true
+        },
+        {
+          "id": "t204_fit",
+          "condition": "onFillCountReached",
+          "count": 76,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "✨ 📜 「收官了。九域星图即将完成，感受星衡法则的力量吧。」",
+          "once": true,
+          "delay": 400
+        },
+        {
+          "id": "t204_c",
+          "condition": "onLevelComplete",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "🎉 📜 「九域星图已解。你正式成为星衡法则的传人——继续前行，更大的谜题在等你。」",
+          "once": true
+        }
+      ],
+      "boardData": [
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          4,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          8,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          2,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          4,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          5,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          2,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "cages": [
+        {
+          "id": 0,
+          "sum": 21,
+          "cells": [
+            [
+              3,
+              2
+            ],
+            [
+              4,
+              2
+            ],
+            [
+              2,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              1,
+              2
+            ]
+          ]
+        },
+        {
+          "id": 1,
+          "sum": 19,
+          "cells": [
+            [
+              5,
+              5
+            ],
+            [
+              5,
+              6
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              3,
+              5
+            ]
+          ]
+        },
+        {
+          "id": 2,
+          "sum": 24,
+          "cells": [
+            [
+              8,
+              3
+            ],
+            [
+              7,
+              3
+            ],
+            [
+              7,
+              2
+            ],
+            [
+              7,
+              1
+            ]
+          ]
+        },
+        {
+          "id": 3,
+          "sum": 23,
+          "cells": [
+            [
+              1,
+              6
+            ],
+            [
+              2,
+              6
+            ],
+            [
+              2,
+              7
+            ],
+            [
+              0,
+              6
+            ]
+          ]
+        },
+        {
+          "id": 4,
+          "sum": 11,
+          "cells": [
+            [
+              4,
+              6
+            ],
+            [
+              4,
+              7
+            ],
+            [
+              3,
+              6
+            ]
+          ]
+        },
+        {
+          "id": 5,
+          "sum": 11,
+          "cells": [
+            [
+              3,
+              0
+            ],
+            [
+              3,
+              1
+            ],
+            [
+              4,
+              1
+            ]
+          ]
+        },
+        {
+          "id": 6,
+          "sum": 15,
+          "cells": [
+            [
+              5,
+              2
+            ],
+            [
+              6,
+              2
+            ],
+            [
+              6,
+              1
+            ]
+          ]
+        },
+        {
+          "id": 7,
+          "sum": 15,
+          "cells": [
+            [
+              6,
+              7
+            ],
+            [
+              5,
+              7
+            ],
+            [
+              7,
+              7
+            ]
+          ]
+        },
+        {
+          "id": 8,
+          "sum": 12,
+          "cells": [
+            [
+              5,
+              8
+            ],
+            [
+              4,
+              8
+            ],
+            [
+              6,
+              8
+            ]
+          ]
+        },
+        {
+          "id": 9,
+          "sum": 14,
+          "cells": [
+            [
+              6,
+              3
+            ],
+            [
+              5,
+              3
+            ]
+          ]
+        },
+        {
+          "id": 10,
+          "sum": 3,
+          "cells": [
+            [
+              2,
+              1
+            ],
+            [
+              1,
+              1
+            ]
+          ]
+        },
+        {
+          "id": 11,
+          "sum": 10,
+          "cells": [
+            [
+              2,
+              0
+            ],
+            [
+              1,
+              0
+            ]
+          ]
+        },
+        {
+          "id": 12,
+          "sum": 11,
+          "cells": [
+            [
+              6,
+              5
+            ],
+            [
+              6,
+              6
+            ]
+          ]
+        },
+        {
+          "id": 13,
+          "sum": 11,
+          "cells": [
+            [
+              4,
+              3
+            ],
+            [
+              3,
+              3
+            ]
+          ]
+        },
+        {
+          "id": 14,
+          "sum": 11,
+          "cells": [
+            [
+              0,
+              5
+            ],
+            [
+              0,
+              4
+            ]
+          ]
+        },
+        {
+          "id": 15,
+          "sum": 14,
+          "cells": [
+            [
+              3,
+              8
+            ],
+            [
+              3,
+              7
+            ]
+          ]
+        },
+        {
+          "id": 16,
+          "sum": 15,
+          "cells": [
+            [
+              1,
+              5
+            ],
+            [
+              2,
+              5
+            ]
+          ]
+        },
+        {
+          "id": 17,
+          "sum": 24,
+          "cells": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              2
+            ],
+            [
+              0,
+              3
+            ],
+            [
+              0,
+              1
+            ]
+          ]
+        },
+        {
+          "id": 18,
+          "sum": 4,
+          "cells": [
+            [
+              2,
+              8
+            ]
+          ]
+        },
+        {
+          "id": 19,
+          "sum": 15,
+          "cells": [
+            [
+              5,
+              1
+            ],
+            [
+              4,
+              0
+            ],
+            [
+              5,
+              0
+            ]
+          ]
+        },
+        {
+          "id": 20,
+          "sum": 18,
+          "cells": [
+            [
+              8,
+              5
+            ],
+            [
+              8,
+              6
+            ],
+            [
+              7,
+              4
+            ],
+            [
+              8,
+              4
+            ]
+          ]
+        },
+        {
+          "id": 21,
+          "sum": 13,
+          "cells": [
+            [
+              7,
+              8
+            ],
+            [
+              8,
+              8
+            ],
+            [
+              8,
+              7
+            ]
+          ]
+        },
+        {
+          "id": 22,
+          "sum": 20,
+          "cells": [
+            [
+              6,
+              4
+            ],
+            [
+              5,
+              4
+            ],
+            [
+              4,
+              4
+            ]
+          ]
+        },
+        {
+          "id": 23,
+          "sum": 27,
+          "cells": [
+            [
+              7,
+              0
+            ],
+            [
+              6,
+              0
+            ],
+            [
+              8,
+              0
+            ],
+            [
+              8,
+              1
+            ],
+            [
+              8,
+              2
+            ]
+          ]
+        },
+        {
+          "id": 24,
+          "sum": 18,
+          "cells": [
+            [
+              2,
+              4
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              1,
+              4
+            ]
+          ]
+        },
+        {
+          "id": 25,
+          "sum": 18,
+          "cells": [
+            [
+              0,
+              8
+            ],
+            [
+              1,
+              8
+            ],
+            [
+              1,
+              7
+            ],
+            [
+              0,
+              7
+            ]
+          ]
+        },
+        {
+          "id": 26,
+          "sum": 8,
+          "cells": [
+            [
+              7,
+              6
+            ],
+            [
+              7,
+              5
+            ]
+          ]
+        }
+      ],
+      "solution": [
+        [
+          8,
+          9,
+          5,
+          2,
+          7,
+          4,
+          1,
+          3,
+          6
+        ],
+        [
+          4,
+          1,
+          3,
+          5,
+          8,
+          6,
+          9,
+          7,
+          2
+        ],
+        [
+          6,
+          2,
+          7,
+          1,
+          3,
+          9,
+          5,
+          8,
+          4
+        ],
+        [
+          1,
+          7,
+          6,
+          4,
+          2,
+          8,
+          3,
+          5,
+          9
+        ],
+        [
+          5,
+          3,
+          4,
+          7,
+          9,
+          1,
+          2,
+          6,
+          8
+        ],
+        [
+          2,
+          8,
+          9,
+          6,
+          5,
+          3,
+          7,
+          4,
+          1
+        ],
+        [
+          9,
+          5,
+          1,
+          8,
+          6,
+          7,
+          4,
+          2,
+          3
+        ],
+        [
+          7,
+          4,
+          8,
+          3,
+          1,
+          2,
+          6,
+          9,
+          5
+        ],
+        [
+          3,
+          6,
+          2,
+          9,
+          4,
+          5,
+          8,
+          1,
+          7
+        ]
+      ],
+      "preDialog": [
+        {
+          "speaker": "守笼人",
+          "text": "九个数加起来永远是四十五。这是所有笼局的根。",
+          "side": "right",
+          "emotion": "mysterious",
+          "voiceId": "VO_CK_05",
+          "effect": 0
+        },
+        {
+          "speaker": "莹莹",
+          "text": "六阶二十一、九阶四十五！",
+          "side": "right",
+          "emotion": "smile",
+          "voiceId": "VO_J_02",
+          "effect": 0
+        },
+        {
+          "speaker": "设局人",
+          "text": "四十五只是最表层的障眼法。真正的笼局玄机，藏在差值之中。",
+          "side": "right",
+          "emotion": "calm",
+          "voiceId": "VO_P_02",
+          "effect": 2
+        },
+        {
+          "speaker": "阿妍",
+          "text": "（这一次，她抬起了头）……差值。",
+          "side": "right",
+          "emotion": "calm",
+          "voiceId": "VO_R_07",
+          "effect": 1
+        },
+        {
+          "speaker": "阿妍",
+          "text": "（声音很轻，像在自言自语）他用差值藏了最后的答案。",
+          "side": "right",
+          "emotion": "thinking",
+          "voiceId": "VO_R_06",
+          "effect": 0
+        },
+        {
+          "speaker": "沈墨",
+          "text": "（他看着棋盘，没有抬头。但他的声音比平时清晰了一点）……藏的不是答案。藏的是——指向答案的路。",
+          "side": "left",
+          "emotion": "calm",
+          "voiceId": "VO_SM_15",
+          "effect": 0
+        }
+      ],
+      "clearDialog": [
+        {
+          "speaker": "守笼人",
+          "text": "吃透四十五法则，才有资格拆解设局人留下的差值笼。",
+          "side": "right",
+          "emotion": "smile",
+          "voiceId": "VO_CK_06",
+          "effect": 1
+        },
+        {
+          "speaker": "莹莹",
+          "text": "差值笼……听起来好难。",
+          "side": "right",
+          "emotion": "calm",
+          "voiceId": "VO_J_05",
+          "effect": 0
+        },
+        {
+          "speaker": "阿妍",
+          "text": "差值就是减法。两层笼子的数相减，剩下的就是那几格该填的。",
+          "side": "right",
+          "emotion": "determined",
+          "voiceId": "VO_R_02",
+          "effect": 0
+        },
+        {
+          "speaker": "莹莹",
+          "text": "……你说得好简单。",
+          "side": "right",
+          "effect": 0
+        },
+        {
+          "speaker": "阿妍",
+          "text": "因为本来就不复杂。",
+          "side": "right",
+          "emotion": "determined",
+          "voiceId": "VO_R_13",
+          "effect": 0
+        },
+        {
+          "speaker": "沈墨",
+          "text": "（安静地看了棋盘一眼）……四十五。",
+          "side": "left",
+          "emotion": "thinking",
+          "voiceId": "VO_SM_08",
+          "effect": 0
+        }
+      ],
+      "mode": "full",
+      "coreMove": {
+        "row": 2,
+        "col": 2,
+        "value": 8
+      },
+      "totalSteps": 81,
+      "nakedSingleRatio": 0.741,
+      "techCount": {
+        "nakedSingle": 60,
+        "rule45": 5,
+        "hiddenSingle": 5,
+        "cageUnique": 11
+      },
+      "maxTechLevel": 4,
+      "threeAct": {
+        "opening": [
+          [
+            0,
+            4
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            8
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            4,
+            3
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            5,
+            3
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            6,
+            3
+          ],
+          [
+            6,
+            4
+          ],
+          [
+            5,
+            7
+          ],
+          [
+            3,
+            7
+          ],
+          [
+            3,
+            8
+          ]
+        ],
+        "breakthrough": [
+          [
+            3,
+            0
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            4,
+            0
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            4,
+            6
+          ],
+          [
+            5,
+            0
+          ],
+          [
+            5,
+            2
+          ],
+          [
+            5,
+            6
+          ],
+          [
+            1,
+            6
+          ],
+          [
+            1,
+            7
+          ],
+          [
+            1,
+            8
+          ],
+          [
+            7,
+            7
+          ],
+          [
+            7,
+            3
+          ],
+          [
+            8,
+            3
+          ],
+          [
+            7,
+            1
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            6,
+            2
+          ],
+          [
+            6,
+            5
+          ],
+          [
+            6,
+            6
+          ],
+          [
+            6,
+            8
+          ],
+          [
+            5,
+            8
+          ],
+          [
+            0,
+            8
+          ],
+          [
+            0,
+            7
+          ],
+          [
+            0,
+            6
+          ],
+          [
+            4,
+            8
+          ],
+          [
+            2,
+            7
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            3,
+            6
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            4,
+            7
+          ],
+          [
+            5,
+            5
+          ],
+          [
+            6,
+            0
+          ],
+          [
+            7,
+            0
+          ],
+          [
+            7,
+            2
+          ],
+          [
+            7,
+            4
+          ],
+          [
+            7,
+            6
+          ],
+          [
+            7,
+            5
+          ],
+          [
+            7,
+            8
+          ],
+          [
+            8,
+            0
+          ],
+          [
+            8,
+            1
+          ],
+          [
+            8,
+            2
+          ],
+          [
+            8,
+            4
+          ],
+          [
+            8,
+            5
+          ],
+          [
+            8,
+            6
+          ],
+          [
+            8,
+            7
+          ],
+          [
+            8,
+            8
+          ]
+        ],
+        "avalanche": []
+      }
+    },
+    {
+      "levelId": 205,
+      "title": "第5关：单格推演",
+      "gridSize": 9,
+      "difficulty": "简单",
+      "teachingGoal": "用星衡法则推单个格子",
+      "features": {
+        "allowDraft": true,
+        "assistant45": true,
+        "showHints": true,
+        "perspectiveMode": true,
+        "highlightRow": true,
+        "highlightCol": true,
+        "highlightBox": true,
+        "highlightNumber": true,
+        "highlightCage": true,
+        "autoFillCandidates": false
+      },
+      "triggers": [
+        {
+          "id": "t205_start",
+          "condition": "onLevelStart",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "📜 大师手记：「笼子又回来了。注意看——有些笼子伸进了行里，有些伸了出去。用星衡法则，你能算出那个'多出来'的格子。」",
+          "once": true
+        },
+        {
+          "id": "t205_first",
+          "condition": "onFirstNumberFilled",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "📜 「漂亮。这就是单格差值法——用整体减去已知，得到未知。简单，但是最基础的武器。」",
+          "once": true
+        },
+        {
+          "id": "t205_b",
+          "condition": "onFillCountReached",
+          "count": 66,
+          "type": "enter_phase",
+          "phase": "breakthrough",
+          "once": true
+        },
+        {
+          "id": "t205_bt",
+          "condition": "onFillCountReached",
+          "count": 66,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "⚡ 破局时刻！差值推理已启动，那些藏在笼中的数字一个接一个现身了！",
+          "once": true,
+          "delay": 400
+        },
+        {
+          "id": "t205_st20",
+          "condition": "onStuckForSeconds",
+          "seconds": 20,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "💡 卡住了？找那些跨宫的笼子！如果笼子只有一个格子在某宫外，用笼和减45就是那一格的值！",
+          "once": false
+        },
+        {
+          "id": "t205_st40",
+          "condition": "onStuckForSeconds",
+          "seconds": 40,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "💡 差值法口诀：笼跨宫，数一数字，差多少就是那个格子。比如一个笼在宫里有8格，和为40，那伸出去的就是5！",
+          "once": false,
+          "delay": 300
+        },
+        {
+          "id": "t205_ag",
+          "condition": "onConflict",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "⚠️ 别急！差值算错了会全错——再算一遍笼和与45的差！",
+          "once": false
+        },
+        {
+          "id": "t205_fi",
+          "condition": "onFillCountReached",
+          "count": 75,
+          "type": "enter_phase",
+          "phase": "finishing",
+          "once": true
+        },
+        {
+          "id": "t205_fit",
+          "condition": "onFillCountReached",
+          "count": 75,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "✨ 收官！单格差值全部算出，剩下的就是基础排除了！",
+          "once": true,
+          "delay": 400
+        },
+        {
+          "id": "t205_c",
+          "condition": "onLevelComplete",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "🎉 单格差值已掌握！这是星衡法则最锋利的匕首，直插谜题的心脏！",
+          "once": true
+        }
+      ],
+      "boardData": [
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          5,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          5,
+          0,
+          0
+        ],
+        [
+          0,
+          4,
+          0,
+          0,
+          0,
+          0,
+          0,
+          2,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          5,
+          0,
+          4,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          4,
+          0,
+          0,
+          0,
+          0,
+          3
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          9,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "cages": [
+        {
+          "id": 0,
+          "sum": 23,
+          "cells": [
+            [
+              2,
+              8
+            ],
+            [
+              3,
+              8
+            ],
+            [
+              2,
+              7
+            ],
+            [
+              1,
+              7
+            ],
+            [
+              3,
+              7
+            ]
+          ]
+        },
+        {
+          "id": 1,
+          "sum": 29,
+          "cells": [
+            [
+              8,
+              4
+            ],
+            [
+              8,
+              3
+            ],
+            [
+              7,
+              4
+            ],
+            [
+              8,
+              5
+            ]
+          ]
+        },
+        {
+          "id": 2,
+          "sum": 23,
+          "cells": [
+            [
+              2,
+              4
+            ],
+            [
+              2,
+              5
+            ],
+            [
+              2,
+              6
+            ],
+            [
+              2,
+              3
+            ]
+          ]
+        },
+        {
+          "id": 3,
+          "sum": 23,
+          "cells": [
+            [
+              5,
+              1
+            ],
+            [
+              4,
+              1
+            ],
+            [
+              5,
+              2
+            ],
+            [
+              5,
+              3
+            ]
+          ]
+        },
+        {
+          "id": 4,
+          "sum": 18,
+          "cells": [
+            [
+              0,
+              4
+            ],
+            [
+              0,
+              5
+            ],
+            [
+              1,
+              5
+            ]
+          ]
+        },
+        {
+          "id": 5,
+          "sum": 10,
+          "cells": [
+            [
+              7,
+              6
+            ],
+            [
+              6,
+              6
+            ],
+            [
+              8,
+              6
+            ]
+          ]
+        },
+        {
+          "id": 6,
+          "sum": 13,
+          "cells": [
+            [
+              1,
+              4
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              0,
+              3
+            ]
+          ]
+        },
+        {
+          "id": 7,
+          "sum": 14,
+          "cells": [
+            [
+              0,
+              2
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              1
+            ]
+          ]
+        },
+        {
+          "id": 8,
+          "sum": 21,
+          "cells": [
+            [
+              6,
+              1
+            ],
+            [
+              6,
+              0
+            ],
+            [
+              7,
+              1
+            ]
+          ]
+        },
+        {
+          "id": 9,
+          "sum": 13,
+          "cells": [
+            [
+              4,
+              6
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              4,
+              7
+            ]
+          ]
+        },
+        {
+          "id": 10,
+          "sum": 12,
+          "cells": [
+            [
+              5,
+              0
+            ],
+            [
+              4,
+              0
+            ]
+          ]
+        },
+        {
+          "id": 11,
+          "sum": 9,
+          "cells": [
+            [
+              0,
+              8
+            ],
+            [
+              1,
+              8
+            ]
+          ]
+        },
+        {
+          "id": 12,
+          "sum": 14,
+          "cells": [
+            [
+              6,
+              8
+            ],
+            [
+              6,
+              7
+            ]
+          ]
+        },
+        {
+          "id": 13,
+          "sum": 23,
+          "cells": [
+            [
+              4,
+              2
+            ],
+            [
+              3,
+              2
+            ],
+            [
+              4,
+              3
+            ],
+            [
+              4,
+              4
+            ],
+            [
+              3,
+              4
+            ]
+          ]
+        },
+        {
+          "id": 14,
+          "sum": 15,
+          "cells": [
+            [
+              2,
+              2
+            ],
+            [
+              1,
+              2
+            ]
+          ]
+        },
+        {
+          "id": 15,
+          "sum": 9,
+          "cells": [
+            [
+              3,
+              3
+            ]
+          ]
+        },
+        {
+          "id": 16,
+          "sum": 12,
+          "cells": [
+            [
+              3,
+              5
+            ],
+            [
+              3,
+              6
+            ]
+          ]
+        },
+        {
+          "id": 17,
+          "sum": 6,
+          "cells": [
+            [
+              6,
+              2
+            ],
+            [
+              7,
+              2
+            ]
+          ]
+        },
+        {
+          "id": 18,
+          "sum": 17,
+          "cells": [
+            [
+              4,
+              8
+            ],
+            [
+              5,
+              7
+            ],
+            [
+              5,
+              8
+            ]
+          ]
+        },
+        {
+          "id": 19,
+          "sum": 18,
+          "cells": [
+            [
+              8,
+              1
+            ],
+            [
+              8,
+              2
+            ],
+            [
+              7,
+              0
+            ],
+            [
+              8,
+              0
+            ]
+          ]
+        },
+        {
+          "id": 20,
+          "sum": 10,
+          "cells": [
+            [
+              7,
+              5
+            ],
+            [
+              6,
+              5
+            ],
+            [
+              6,
+              4
+            ]
+          ]
+        },
+        {
+          "id": 21,
+          "sum": 7,
+          "cells": [
+            [
+              5,
+              6
+            ],
+            [
+              5,
+              5
+            ],
+            [
+              5,
+              4
+            ]
+          ]
+        },
+        {
+          "id": 22,
+          "sum": 21,
+          "cells": [
+            [
+              8,
+              7
+            ],
+            [
+              8,
+              8
+            ],
+            [
+              7,
+              7
+            ],
+            [
+              7,
+              8
+            ]
+          ]
+        },
+        {
+          "id": 23,
+          "sum": 15,
+          "cells": [
+            [
+              1,
+              6
+            ],
+            [
+              0,
+              7
+            ],
+            [
+              0,
+              6
+            ]
+          ]
+        },
+        {
+          "id": 24,
+          "sum": 6,
+          "cells": [
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "id": 25,
+          "sum": 18,
+          "cells": [
+            [
+              2,
+              1
+            ],
+            [
+              3,
+              0
+            ],
+            [
+              2,
+              0
+            ],
+            [
+              3,
+              1
+            ]
+          ]
+        },
+        {
+          "id": 26,
+          "sum": 6,
+          "cells": [
+            [
+              7,
+              3
+            ],
+            [
+              6,
+              3
+            ]
+          ]
+        }
+      ],
+      "solution": [
+        [
+          2,
+          1,
+          8,
+          5,
+          6,
+          9,
+          3,
+          4,
+          7
+        ],
+        [
+          4,
+          5,
+          9,
+          1,
+          7,
+          3,
+          8,
+          6,
+          2
+        ],
+        [
+          7,
+          3,
+          6,
+          8,
+          2,
+          4,
+          9,
+          1,
+          5
+        ],
+        [
+          6,
+          2,
+          1,
+          9,
+          4,
+          7,
+          5,
+          3,
+          8
+        ],
+        [
+          9,
+          4,
+          7,
+          3,
+          8,
+          5,
+          6,
+          2,
+          1
+        ],
+        [
+          3,
+          8,
+          5,
+          6,
+          1,
+          2,
+          4,
+          7,
+          9
+        ],
+        [
+          5,
+          9,
+          4,
+          2,
+          3,
+          1,
+          7,
+          8,
+          6
+        ],
+        [
+          8,
+          7,
+          2,
+          4,
+          5,
+          6,
+          1,
+          9,
+          3
+        ],
+        [
+          1,
+          6,
+          3,
+          7,
+          9,
+          8,
+          2,
+          5,
+          4
+        ]
+      ],
+      "preDialog": [
+        {
+          "speaker": "守笼人",
+          "text": "用九域总和四十五减去其余笼格数字，可直接推导单独空格数值。",
+          "side": "right",
+          "emotion": "teaching",
+          "voiceId": "VO_CK_03",
+          "effect": 0
+        },
+        {
+          "speaker": "莹莹",
+          "text": "整行总和减掉已知的数，剩下的格子直接算出来！",
+          "side": "right",
+          "emotion": "smile",
+          "voiceId": "VO_J_02",
+          "effect": 0
+        },
+        {
+          "speaker": "阿妍",
+          "text": "整行减掉已知的，剩下一个，就是它。",
+          "side": "right",
+          "emotion": "determined",
+          "voiceId": "VO_R_02",
+          "effect": 0
+        },
+        {
+          "speaker": "沈墨",
+          "text": "（已经开始算第五行的空位。片刻后，他放下笔，声音很稳）……第七行第三列。4。",
+          "side": "left",
+          "emotion": "thinking",
+          "voiceId": "VO_SM_12",
+          "effect": 0
+        }
+      ],
+      "clearDialog": [
+        {
+          "speaker": "守笼人",
+          "text": "单格推演已通。",
+          "side": "right",
+          "emotion": "smile",
+          "voiceId": "VO_CK_06",
+          "effect": 0
+        },
+        {
+          "speaker": "莹莹",
+          "text": "你算得比我快多了……",
+          "side": "right",
+          "emotion": "surprised",
+          "voiceId": "VO_J_03",
+          "effect": 0
+        },
+        {
+          "speaker": "阿妍",
+          "text": "熟悉了公式就快。",
+          "side": "right",
+          "emotion": "determined",
+          "voiceId": "VO_R_13",
+          "effect": 0
+        }
+      ],
+      "mode": "full",
+      "coreMove": {
+        "row": 4,
+        "col": 4,
+        "value": 3
+      },
+      "totalSteps": 82,
+      "nakedSingleRatio": 0.707,
+      "techCount": {
+        "nakedSingle": 58,
+        "rule45": 5,
+        "cageUnique": 13,
+        "hiddenSingle": 5,
+        "nakedPair": 1
+      },
+      "maxTechLevel": 5,
+      "threeAct": {
+        "opening": [
+          [
+            3,
+            3
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            5,
+            6
+          ],
+          [
+            5,
+            5
+          ],
+          [
+            6,
+            3
+          ],
+          [
+            7,
+            2
+          ],
+          [
+            8,
+            6
+          ],
+          [
+            6,
+            6
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            7,
+            1
+          ],
+          [
+            7,
+            6
+          ],
+          [
+            8,
+            3
+          ],
+          [
+            6,
+            4
+          ],
+          [
+            7,
+            5
+          ],
+          [
+            7,
+            0
+          ],
+          [
+            7,
+            4
+          ],
+          [
+            7,
+            7
+          ],
+          [
+            8,
+            5
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            6,
+            7
+          ],
+          [
+            6,
+            8
+          ]
+        ],
+        "breakthrough": [
+          [
+            3,
+            4
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            4,
+            2
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            8,
+            2
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            5,
+            2
+          ],
+          [
+            8,
+            1
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            5,
+            3
+          ],
+          [
+            4,
+            3
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            6
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            1,
+            6
+          ],
+          [
+            0,
+            7
+          ],
+          [
+            0,
+            8
+          ],
+          [
+            1,
+            7
+          ],
+          [
+            1,
+            8
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            3,
+            0
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            3,
+            8
+          ],
+          [
+            3,
+            7
+          ],
+          [
+            4,
+            0
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            4,
+            6
+          ],
+          [
+            4,
+            8
+          ],
+          [
+            2,
+            8
+          ],
+          [
+            2,
+            7
+          ],
+          [
+            5,
+            0
+          ],
+          [
+            5,
+            7
+          ],
+          [
+            5,
+            8
+          ],
+          [
+            8,
+            0
+          ],
+          [
+            8,
+            7
+          ],
+          [
+            8,
+            8
+          ]
+        ],
+        "avalanche": []
+      }
+    },
+    {
+      "levelId": 206,
+      "title": "第6关：差值之术",
+      "gridSize": 9,
+      "difficulty": "简单",
+      "teachingGoal": "多格差值 + 笼子组合计算器",
+      "features": {
+        "allowDraft": true,
+        "assistant45": true,
+        "showHints": true,
+        "perspectiveMode": true,
+        "highlightRow": true,
+        "highlightCol": true,
+        "highlightBox": true,
+        "highlightNumber": true,
+        "highlightCage": true,
+        "autoFillCandidates": false
+      },
+      "triggers": [
+        {
+          "id": "t206_start",
+          "condition": "onLevelStart",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "这次笼子更大了！有时候差值不止一个格子，需要算出几格的和，再推理里面的数字～",
+          "once": true
+        },
+        {
+          "id": "t206_combo",
+          "condition": "onFirstNumberFilled",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "笼子组合计算器解锁了！点击工具栏的「组合」按钮，可以查看n格笼有哪些可能的数字组合～",
+          "once": true
+        },
+        {
+          "id": "t206_b",
+          "condition": "onFillCountReached",
+          "count": 68,
+          "type": "enter_phase",
+          "phase": "breakthrough",
+          "once": true
+        },
+        {
+          "id": "t206_bt",
+          "condition": "onFillCountReached",
+          "count": 68,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "⚡ 破局时刻！多格差值+组合计算器，双重火力全开！",
+          "once": true,
+          "delay": 400
+        },
+        {
+          "id": "t206_st20",
+          "condition": "onStuckForSeconds",
+          "seconds": 20,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "💡 卡住了？先找跨宫笼子，用45减出伸出部分的和值，再用组合计算器看哪些数字组合能凑出这个和！",
+          "once": false
+        },
+        {
+          "id": "t206_st40",
+          "condition": "onStuckForSeconds",
+          "seconds": 40,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "💡 组合计算器用法：点击「45」按钮→输入格子数和和值→它会列出所有可能的组合，再结合排除法筛选！",
+          "once": false,
+          "delay": 300
+        },
+        {
+          "id": "t206_ag",
+          "condition": "onConflict",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "⚠️ 填入前先验证——这个数字在组合里吗？行/列/宫有重复吗？",
+          "once": false
+        },
+        {
+          "id": "t206_fi",
+          "condition": "onFillCountReached",
+          "count": 75,
+          "type": "enter_phase",
+          "phase": "finishing",
+          "once": true
+        },
+        {
+          "id": "t206_fit",
+          "condition": "onFillCountReached",
+          "count": 75,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "✨ 收官阶段！组合范围越缩越小，最后几格呼之欲出！",
+          "once": true,
+          "delay": 400
+        },
+        {
+          "id": "t206_c",
+          "condition": "onLevelComplete",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "🎉 多格差值与组合计算器双剑合璧！你又多了一件神器！",
+          "once": true
+        }
+      ],
+      "boardData": [
+        [
+          0,
+          3,
+          6,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          4,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "cages": [
+        {
+          "id": 0,
+          "sum": 19,
+          "cells": [
+            [
+              8,
+              3
+            ],
+            [
+              8,
+              4
+            ],
+            [
+              8,
+              5
+            ],
+            [
+              7,
+              5
+            ],
+            [
+              8,
+              2
+            ]
+          ]
+        },
+        {
+          "id": 1,
+          "sum": 22,
+          "cells": [
+            [
+              8,
+              7
+            ],
+            [
+              7,
+              7
+            ],
+            [
+              7,
+              6
+            ],
+            [
+              7,
+              8
+            ]
+          ]
+        },
+        {
+          "id": 2,
+          "sum": 22,
+          "cells": [
+            [
+              0,
+              4
+            ],
+            [
+              0,
+              3
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              2,
+              3
+            ]
+          ]
+        },
+        {
+          "id": 3,
+          "sum": 18,
+          "cells": [
+            [
+              5,
+              2
+            ],
+            [
+              5,
+              1
+            ],
+            [
+              4,
+              1
+            ],
+            [
+              4,
+              2
+            ]
+          ]
+        },
+        {
+          "id": 4,
+          "sum": 13,
+          "cells": [
+            [
+              3,
+              1
+            ],
+            [
+              2,
+              1
+            ],
+            [
+              3,
+              0
+            ]
+          ]
+        },
+        {
+          "id": 5,
+          "sum": 16,
+          "cells": [
+            [
+              6,
+              8
+            ],
+            [
+              6,
+              7
+            ],
+            [
+              5,
+              8
+            ]
+          ]
+        },
+        {
+          "id": 6,
+          "sum": 21,
+          "cells": [
+            [
+              5,
+              3
+            ],
+            [
+              6,
+              3
+            ],
+            [
+              7,
+              3
+            ]
+          ]
+        },
+        {
+          "id": 7,
+          "sum": 14,
+          "cells": [
+            [
+              1,
+              5
+            ],
+            [
+              1,
+              6
+            ],
+            [
+              0,
+              6
+            ]
+          ]
+        },
+        {
+          "id": 8,
+          "sum": 8,
+          "cells": [
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              2,
+              0
+            ]
+          ]
+        },
+        {
+          "id": 9,
+          "sum": 12,
+          "cells": [
+            [
+              4,
+              7
+            ],
+            [
+              3,
+              7
+            ]
+          ]
+        },
+        {
+          "id": 10,
+          "sum": 6,
+          "cells": [
+            [
+              1,
+              4
+            ],
+            [
+              2,
+              4
+            ]
+          ]
+        },
+        {
+          "id": 11,
+          "sum": 7,
+          "cells": [
+            [
+              2,
+              7
+            ],
+            [
+              2,
+              6
+            ]
+          ]
+        },
+        {
+          "id": 12,
+          "sum": 3,
+          "cells": [
+            [
+              6,
+              2
+            ],
+            [
+              7,
+              2
+            ]
+          ]
+        },
+        {
+          "id": 13,
+          "sum": 28,
+          "cells": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              2
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              0,
+              2
+            ]
+          ]
+        },
+        {
+          "id": 14,
+          "sum": 5,
+          "cells": [
+            [
+              4,
+              4
+            ],
+            [
+              3,
+              4
+            ]
+          ]
+        },
+        {
+          "id": 15,
+          "sum": 14,
+          "cells": [
+            [
+              4,
+              0
+            ],
+            [
+              5,
+              0
+            ]
+          ]
+        },
+        {
+          "id": 16,
+          "sum": 14,
+          "cells": [
+            [
+              5,
+              4
+            ],
+            [
+              6,
+              4
+            ]
+          ]
+        },
+        {
+          "id": 17,
+          "sum": 17,
+          "cells": [
+            [
+              0,
+              7
+            ],
+            [
+              1,
+              7
+            ]
+          ]
+        },
+        {
+          "id": 18,
+          "sum": 14,
+          "cells": [
+            [
+              8,
+              0
+            ],
+            [
+              8,
+              1
+            ]
+          ]
+        },
+        {
+          "id": 19,
+          "sum": 8,
+          "cells": [
+            [
+              4,
+              8
+            ]
+          ]
+        },
+        {
+          "id": 20,
+          "sum": 12,
+          "cells": [
+            [
+              3,
+              6
+            ],
+            [
+              5,
+              6
+            ],
+            [
+              4,
+              6
+            ],
+            [
+              5,
+              7
+            ]
+          ]
+        },
+        {
+          "id": 21,
+          "sum": 25,
+          "cells": [
+            [
+              7,
+              0
+            ],
+            [
+              6,
+              1
+            ],
+            [
+              6,
+              0
+            ],
+            [
+              7,
+              1
+            ]
+          ]
+        },
+        {
+          "id": 22,
+          "sum": 2,
+          "cells": [
+            [
+              0,
+              5
+            ]
+          ]
+        },
+        {
+          "id": 23,
+          "sum": 1,
+          "cells": [
+            [
+              8,
+              8
+            ]
+          ]
+        },
+        {
+          "id": 24,
+          "sum": 21,
+          "cells": [
+            [
+              2,
+              5
+            ],
+            [
+              3,
+              5
+            ],
+            [
+              4,
+              5
+            ]
+          ]
+        },
+        {
+          "id": 25,
+          "sum": 19,
+          "cells": [
+            [
+              3,
+              8
+            ],
+            [
+              2,
+              8
+            ],
+            [
+              1,
+              8
+            ],
+            [
+              0,
+              8
+            ]
+          ]
+        },
+        {
+          "id": 26,
+          "sum": 14,
+          "cells": [
+            [
+              6,
+              6
+            ],
+            [
+              6,
+              5
+            ],
+            [
+              5,
+              5
+            ]
+          ]
+        },
+        {
+          "id": 27,
+          "sum": 18,
+          "cells": [
+            [
+              4,
+              3
+            ],
+            [
+              3,
+              2
+            ],
+            [
+              3,
+              3
+            ]
+          ]
+        },
+        {
+          "id": 28,
+          "sum": 8,
+          "cells": [
+            [
+              8,
+              6
+            ]
+          ]
+        },
+        {
+          "id": 29,
+          "sum": 4,
+          "cells": [
+            [
+              7,
+              4
+            ]
+          ]
+        }
+      ],
+      "solution": [
+        [
+          5,
+          3,
+          6,
+          4,
+          9,
+          2,
+          1,
+          8,
+          7
+        ],
+        [
+          2,
+          4,
+          7,
+          3,
+          1,
+          8,
+          5,
+          9,
+          6
+        ],
+        [
+          1,
+          9,
+          8,
+          6,
+          5,
+          7,
+          4,
+          3,
+          2
+        ],
+        [
+          3,
+          1,
+          9,
+          8,
+          2,
+          5,
+          6,
+          7,
+          4
+        ],
+        [
+          6,
+          7,
+          4,
+          1,
+          3,
+          9,
+          2,
+          5,
+          8
+        ],
+        [
+          8,
+          2,
+          5,
+          7,
+          6,
+          4,
+          3,
+          1,
+          9
+        ],
+        [
+          4,
+          6,
+          1,
+          9,
+          8,
+          3,
+          7,
+          2,
+          5
+        ],
+        [
+          7,
+          8,
+          2,
+          5,
+          4,
+          1,
+          9,
+          6,
+          3
+        ],
+        [
+          9,
+          5,
+          3,
+          2,
+          7,
+          6,
+          8,
+          4,
+          1
+        ]
+      ],
+      "preDialog": [
+        {
+          "speaker": "守笼人",
+          "text": "多笼交错时，利用两组笼的和值差值锁定数字区间。",
+          "side": "right",
+          "emotion": "teaching",
+          "voiceId": "VO_CK_03",
+          "effect": 0
+        },
+        {
+          "speaker": "莹莹",
+          "text": "差值……听起来好难。",
+          "side": "right",
+          "emotion": "calm",
+          "voiceId": "VO_J_05",
+          "effect": 0
+        },
+        {
+          "speaker": "阿妍",
+          "text": "差值不是概念，是操作。两层相减，剩下的就是你要填的。",
+          "side": "right",
+          "emotion": "determined",
+          "voiceId": "VO_R_02",
+          "effect": 0
+        },
+        {
+          "speaker": "设局人",
+          "text": "你拦不住我。因为工具从不会犯错，只有人才会。",
+          "side": "right",
+          "emotion": "calm",
+          "voiceId": "VO_P_03",
+          "effect": 2
+        },
+        {
+          "speaker": "阿妍",
+          "text": "（头也不抬）工具是效率载体。不改变底层逻辑。",
+          "side": "right",
+          "emotion": "thinking",
+          "voiceId": "VO_R_06",
+          "effect": 0
+        }
+      ],
+      "clearDialog": [
+        {
+          "speaker": "守笼人",
+          "text": "差值只是中段技巧。他真正的杀招，是内外嵌套的交错笼局。",
+          "side": "right",
+          "emotion": "mysterious",
+          "voiceId": "VO_CK_05",
+          "effect": 1
+        },
+        {
+          "speaker": "阿妍",
+          "text": "嵌套笼——外层笼和内层笼共享部分格子。拆外层，才能看到内层。",
+          "side": "right",
+          "emotion": "thinking",
+          "voiceId": "VO_R_06",
+          "effect": 0
+        }
+      ],
+      "mode": "full",
+      "coreMove": {
+        "row": 0,
+        "col": 2,
+        "value": 4
+      },
+      "totalSteps": 83,
+      "nakedSingleRatio": 0.711,
+      "techCount": {
+        "nakedSingle": 59,
+        "cageUnique": 12,
+        "rule45": 4,
+        "hiddenSingle": 5,
+        "nakedPair": 3
+      },
+      "maxTechLevel": 5,
+      "threeAct": {
+        "opening": [
+          [
+            0,
+            5
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            4,
+            8
+          ],
+          [
+            7,
+            4
+          ],
+          [
+            8,
+            6
+          ],
+          [
+            8,
+            8
+          ],
+          [
+            7,
+            2
+          ],
+          [
+            6,
+            2
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            3,
+            0
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            8,
+            0
+          ],
+          [
+            8,
+            1
+          ],
+          [
+            4,
+            0
+          ],
+          [
+            5,
+            0
+          ],
+          [
+            7,
+            0
+          ],
+          [
+            6,
+            0
+          ],
+          [
+            6,
+            4
+          ],
+          [
+            5,
+            4
+          ],
+          [
+            0,
+            7
+          ],
+          [
+            1,
+            7
+          ],
+          [
+            4,
+            7
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            4,
+            6
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            1,
+            2
+          ]
+        ],
+        "breakthrough": [
+          [
+            7,
+            5
+          ],
+          [
+            8,
+            7
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            8,
+            3
+          ],
+          [
+            5,
+            2
+          ],
+          [
+            8,
+            2
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            7,
+            1
+          ],
+          [
+            8,
+            4
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            8,
+            5
+          ],
+          [
+            5,
+            3
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            3,
+            7
+          ],
+          [
+            4,
+            3
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            5,
+            5
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            6,
+            5
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            1,
+            6
+          ],
+          [
+            0,
+            6
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            8
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            5,
+            6
+          ],
+          [
+            3,
+            6
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            2,
+            7
+          ],
+          [
+            1,
+            8
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            2,
+            8
+          ],
+          [
+            3,
+            8
+          ],
+          [
+            5,
+            7
+          ],
+          [
+            5,
+            8
+          ],
+          [
+            6,
+            6
+          ],
+          [
+            6,
+            7
+          ],
+          [
+            6,
+            8
+          ],
+          [
+            6,
+            3
+          ],
+          [
+            7,
+            3
+          ],
+          [
+            7,
+            6
+          ],
+          [
+            7,
+            7
+          ],
+          [
+            7,
+            8
+          ]
+        ],
+        "avalanche": []
+      }
+    },
+    {
+      "levelId": 207,
+      "title": "第7关：内外玄机",
+      "gridSize": 9,
+      "difficulty": "简单",
+      "teachingGoal": "内外笼进阶",
+      "features": {
+        "allowDraft": true,
+        "assistant45": true,
+        "showHints": true,
+        "perspectiveMode": true,
+        "highlightRow": true,
+        "highlightCol": true,
+        "highlightBox": true,
+        "highlightNumber": true,
+        "highlightCage": true,
+        "autoFillCandidates": false
+      },
+      "triggers": [
+        {
+          "id": "t207_start",
+          "condition": "onLevelStart",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "注意观察笼子和行列宫的关系——有些笼子完全在里面，有些伸出去了一截。星衡法则可以帮你算出那些『多出的格子』～",
+          "once": true
+        },
+        {
+          "id": "t207_first",
+          "condition": "onFirstNumberFilled",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "漂亮！这就是内外笼的精髓——用整体的45减去已知部分，剩下的就是那个『突出的格子』。继续加油～",
+          "once": true
+        },
+        {
+          "id": "t207_b",
+          "condition": "onFillCountReached",
+          "count": 72,
+          "type": "enter_phase",
+          "phase": "breakthrough",
+          "once": true
+        },
+        {
+          "id": "t207_bt",
+          "condition": "onFillCountReached",
+          "count": 72,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "⚡ 破局时刻！内外笼的秘密被你揭开了，innies和outies无所遁形！",
+          "once": true,
+          "delay": 400
+        },
+        {
+          "id": "t207_st20",
+          "condition": "onStuckForSeconds",
+          "seconds": 20,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "💡 卡住了？把每个3×3宫里的笼子都看一遍——完全在宫内的笼，笼和加起来应该小于等于45；如果大于45，差值就是伸出的格子！",
+          "once": false
+        },
+        {
+          "id": "t207_st40",
+          "condition": "onStuckForSeconds",
+          "seconds": 40,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "💡 Innie技巧：宫内所有笼的和 减去 45 = 所有outie格的和。如果只有一个outie格，直接得到答案！",
+          "once": false,
+          "delay": 300
+        },
+        {
+          "id": "t207_ag",
+          "condition": "onConflict",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "⚠️ 小心！笼格归属判断错了，全盘皆错——再看一眼虚线边界！",
+          "once": false
+        },
+        {
+          "id": "t207_fi",
+          "condition": "onFillCountReached",
+          "count": 77,
+          "type": "enter_phase",
+          "phase": "finishing",
+          "once": true
+        },
+        {
+          "id": "t207_fit",
+          "condition": "onFillCountReached",
+          "count": 77,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "✨ 收官！内笼外笼全部解锁，最后的答案水到渠成！",
+          "once": true,
+          "delay": 400
+        },
+        {
+          "id": "t207_c",
+          "condition": "onLevelComplete",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "🎉 内外笼大法已成！你已经掌握了星衡法则的全部基础应用！",
+          "once": true
+        }
+      ],
+      "boardData": [
+        [
+          6,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          4,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          3,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          6,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          5,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "cages": [
+        {
+          "id": 0,
+          "sum": 24,
+          "cells": [
+            [
+              7,
+              5
+            ],
+            [
+              6,
+              5
+            ],
+            [
+              7,
+              6
+            ],
+            [
+              8,
+              5
+            ],
+            [
+              8,
+              4
+            ]
+          ]
+        },
+        {
+          "id": 1,
+          "sum": 20,
+          "cells": [
+            [
+              8,
+              2
+            ],
+            [
+              8,
+              3
+            ],
+            [
+              8,
+              1
+            ],
+            [
+              8,
+              0
+            ]
+          ]
+        },
+        {
+          "id": 2,
+          "sum": 23,
+          "cells": [
+            [
+              7,
+              2
+            ],
+            [
+              6,
+              2
+            ],
+            [
+              5,
+              2
+            ],
+            [
+              6,
+              1
+            ]
+          ]
+        },
+        {
+          "id": 3,
+          "sum": 18,
+          "cells": [
+            [
+              2,
+              7
+            ],
+            [
+              3,
+              7
+            ],
+            [
+              3,
+              8
+            ],
+            [
+              2,
+              6
+            ]
+          ]
+        },
+        {
+          "id": 4,
+          "sum": 22,
+          "cells": [
+            [
+              0,
+              5
+            ],
+            [
+              0,
+              6
+            ],
+            [
+              0,
+              7
+            ]
+          ]
+        },
+        {
+          "id": 5,
+          "sum": 15,
+          "cells": [
+            [
+              2,
+              2
+            ],
+            [
+              3,
+              2
+            ],
+            [
+              3,
+              1
+            ]
+          ]
+        },
+        {
+          "id": 6,
+          "sum": 13,
+          "cells": [
+            [
+              7,
+              7
+            ],
+            [
+              7,
+              8
+            ],
+            [
+              8,
+              8
+            ]
+          ]
+        },
+        {
+          "id": 7,
+          "sum": 7,
+          "cells": [
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              0,
+              3
+            ]
+          ]
+        },
+        {
+          "id": 8,
+          "sum": 10,
+          "cells": [
+            [
+              6,
+              8
+            ],
+            [
+              5,
+              8
+            ]
+          ]
+        },
+        {
+          "id": 9,
+          "sum": 11,
+          "cells": [
+            [
+              4,
+              2
+            ],
+            [
+              4,
+              1
+            ]
+          ]
+        },
+        {
+          "id": 10,
+          "sum": 26,
+          "cells": [
+            [
+              5,
+              3
+            ],
+            [
+              6,
+              3
+            ],
+            [
+              4,
+              3
+            ],
+            [
+              3,
+              3
+            ],
+            [
+              3,
+              4
+            ]
+          ]
+        },
+        {
+          "id": 11,
+          "sum": 16,
+          "cells": [
+            [
+              2,
+              8
+            ],
+            [
+              1,
+              7
+            ],
+            [
+              1,
+              8
+            ],
+            [
+              0,
+              8
+            ]
+          ]
+        },
+        {
+          "id": 12,
+          "sum": 13,
+          "cells": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              1
+            ]
+          ]
+        },
+        {
+          "id": 13,
+          "sum": 12,
+          "cells": [
+            [
+              5,
+              6
+            ],
+            [
+              5,
+              7
+            ]
+          ]
+        },
+        {
+          "id": 14,
+          "sum": 8,
+          "cells": [
+            [
+              4,
+              8
+            ]
+          ]
+        },
+        {
+          "id": 15,
+          "sum": 12,
+          "cells": [
+            [
+              6,
+              6
+            ],
+            [
+              6,
+              7
+            ]
+          ]
+        },
+        {
+          "id": 16,
+          "sum": 14,
+          "cells": [
+            [
+              2,
+              0
+            ],
+            [
+              2,
+              1
+            ]
+          ]
+        },
+        {
+          "id": 17,
+          "sum": 11,
+          "cells": [
+            [
+              1,
+              1
+            ],
+            [
+              1,
+              0
+            ]
+          ]
+        },
+        {
+          "id": 18,
+          "sum": 12,
+          "cells": [
+            [
+              3,
+              6
+            ],
+            [
+              4,
+              6
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              4,
+              7
+            ]
+          ]
+        },
+        {
+          "id": 19,
+          "sum": 11,
+          "cells": [
+            [
+              7,
+              3
+            ],
+            [
+              7,
+              4
+            ],
+            [
+              6,
+              4
+            ]
+          ]
+        },
+        {
+          "id": 20,
+          "sum": 21,
+          "cells": [
+            [
+              4,
+              4
+            ],
+            [
+              5,
+              4
+            ],
+            [
+              5,
+              5
+            ]
+          ]
+        },
+        {
+          "id": 21,
+          "sum": 17,
+          "cells": [
+            [
+              7,
+              1
+            ],
+            [
+              6,
+              0
+            ],
+            [
+              7,
+              0
+            ]
+          ]
+        },
+        {
+          "id": 22,
+          "sum": 17,
+          "cells": [
+            [
+              1,
+              4
+            ],
+            [
+              0,
+              4
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              2,
+              4
+            ]
+          ]
+        },
+        {
+          "id": 23,
+          "sum": 12,
+          "cells": [
+            [
+              4,
+              0
+            ],
+            [
+              3,
+              0
+            ],
+            [
+              5,
+              0
+            ]
+          ]
+        },
+        {
+          "id": 24,
+          "sum": 26,
+          "cells": [
+            [
+              1,
+              6
+            ],
+            [
+              1,
+              5
+            ],
+            [
+              2,
+              5
+            ],
+            [
+              3,
+              5
+            ]
+          ]
+        },
+        {
+          "id": 25,
+          "sum": 10,
+          "cells": [
+            [
+              8,
+              6
+            ],
+            [
+              8,
+              7
+            ]
+          ]
+        },
+        {
+          "id": 26,
+          "sum": 2,
+          "cells": [
+            [
+              5,
+              1
+            ]
+          ]
+        },
+        {
+          "id": 27,
+          "sum": 2,
+          "cells": [
+            [
+              0,
+              2
+            ]
+          ]
+        }
+      ],
+      "solution": [
+        [
+          6,
+          7,
+          2,
+          4,
+          1,
+          5,
+          8,
+          9,
+          3
+        ],
+        [
+          8,
+          3,
+          1,
+          2,
+          6,
+          9,
+          5,
+          4,
+          7
+        ],
+        [
+          5,
+          9,
+          4,
+          7,
+          3,
+          8,
+          1,
+          6,
+          2
+        ],
+        [
+          7,
+          8,
+          3,
+          1,
+          5,
+          4,
+          6,
+          2,
+          9
+        ],
+        [
+          4,
+          5,
+          6,
+          9,
+          7,
+          2,
+          3,
+          1,
+          8
+        ],
+        [
+          1,
+          2,
+          9,
+          3,
+          8,
+          6,
+          7,
+          5,
+          4
+        ],
+        [
+          2,
+          1,
+          5,
+          8,
+          4,
+          7,
+          9,
+          3,
+          6
+        ],
+        [
+          9,
+          6,
+          8,
+          5,
+          2,
+          3,
+          4,
+          7,
+          1
+        ],
+        [
+          3,
+          4,
+          7,
+          6,
+          9,
+          1,
+          2,
+          8,
+          5
+        ]
+      ],
+      "preDialog": [
+        {
+          "speaker": "守笼人",
+          "text": "内外重叠笼格会互相限制数字范围，需要同时拆分多层笼分别计算差值。",
+          "side": "right",
+          "emotion": "teaching",
+          "voiceId": "VO_CK_03",
+          "effect": 0
+        },
+        {
+          "speaker": "莹莹",
+          "text": "一层一层拆开，分别套四十五差值……",
+          "side": "right",
+          "emotion": "smile",
+          "voiceId": "VO_J_02",
+          "effect": 0
+        },
+        {
+          "speaker": "阿妍",
+          "text": "解法顺序由外向内。外层和值减去内层和值，余下为中间层边界。",
+          "side": "right",
+          "emotion": "thinking",
+          "voiceId": "VO_R_06",
+          "effect": 0
+        },
+        {
+          "speaker": "沈墨",
+          "text": "（他在纸上画了一个简单的示意图——三层叠加的结构。然后他抬头，把纸推给莹莹）……你看这样是不是清楚一点。",
+          "side": "left",
+          "emotion": "calm",
+          "voiceId": "VO_SM_16",
+          "effect": 0
+        }
+      ],
+      "clearDialog": [
+        {
+          "speaker": "守笼人",
+          "text": "内外皆通，方见全局。",
+          "side": "right",
+          "emotion": "smile",
+          "voiceId": "VO_CK_06",
+          "effect": 0
+        },
+        {
+          "speaker": "莹莹",
+          "text": "拆完一层还有一层……像剥洋葱！",
+          "side": "right",
+          "emotion": "surprised",
+          "voiceId": "VO_J_03",
+          "effect": 0
+        },
+        {
+          "speaker": "阿妍",
+          "text": "不是洋葱。是套娃。",
+          "side": "right",
+          "emotion": "calm",
+          "voiceId": "VO_R_11",
+          "effect": 0
+        }
+      ],
+      "mode": "full",
+      "coreMove": {
+        "row": 0,
+        "col": 3,
+        "value": 3
+      },
+      "totalSteps": 84,
+      "nakedSingleRatio": 0.679,
+      "techCount": {
+        "nakedSingle": 57,
+        "rule45": 5,
+        "cageUnique": 10,
+        "hiddenSingle": 9,
+        "nakedPair": 3
+      },
+      "maxTechLevel": 5,
+      "threeAct": {
+        "opening": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            4,
+            8
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            5,
+            6
+          ],
+          [
+            1,
+            8
+          ],
+          [
+            2,
+            8
+          ],
+          [
+            3,
+            8
+          ],
+          [
+            4,
+            6
+          ],
+          [
+            4,
+            7
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            5,
+            8
+          ],
+          [
+            6,
+            8
+          ],
+          [
+            0,
+            7
+          ],
+          [
+            6,
+            7
+          ],
+          [
+            5,
+            4
+          ],
+          [
+            5,
+            5
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            0
+          ]
+        ],
+        "breakthrough": [
+          [
+            0,
+            8
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            2,
+            7
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            3,
+            7
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            7,
+            7
+          ],
+          [
+            8,
+            6
+          ],
+          [
+            8,
+            7
+          ],
+          [
+            6,
+            6
+          ],
+          [
+            7,
+            6
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            5,
+            3
+          ],
+          [
+            4,
+            3
+          ],
+          [
+            6,
+            4
+          ],
+          [
+            7,
+            4
+          ],
+          [
+            7,
+            3
+          ],
+          [
+            7,
+            8
+          ],
+          [
+            8,
+            8
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            6,
+            3
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            5,
+            2
+          ],
+          [
+            8,
+            3
+          ],
+          [
+            8,
+            4
+          ],
+          [
+            7,
+            5
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            6,
+            5
+          ],
+          [
+            6,
+            2
+          ],
+          [
+            4,
+            2
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            4,
+            0
+          ],
+          [
+            3,
+            0
+          ],
+          [
+            6,
+            0
+          ],
+          [
+            7,
+            2
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            6
+          ],
+          [
+            0,
+            6
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            7,
+            0
+          ],
+          [
+            7,
+            1
+          ],
+          [
+            8,
+            0
+          ],
+          [
+            8,
+            1
+          ],
+          [
+            8,
+            2
+          ],
+          [
+            8,
+            5
+          ]
+        ],
+        "avalanche": []
+      }
+    },
+    {
+      "levelId": 208,
+      "title": "第8关：星衡试炼",
+      "gridSize": 9,
+      "difficulty": "简单",
+      "teachingGoal": "星衡法则综合挑战",
+      "features": {
+        "allowDraft": true,
+        "assistant45": true,
+        "showHints": true,
+        "perspectiveMode": true,
+        "highlightRow": true,
+        "highlightCol": true,
+        "highlightBox": true,
+        "highlightNumber": true,
+        "highlightCage": true,
+        "autoFillCandidates": false
+      },
+      "triggers": [
+        {
+          "id": "t208_start",
+          "condition": "onLevelStart",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "📜 大师手记：「星衡试炼——这是我留下的第二道考验。综合运用你学到的一切，解开它。」",
+          "once": true
+        },
+        {
+          "id": "t208_story2",
+          "condition": "onLevelStart",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "📜 「通过这道题，你就能获得黄铜算珠徽章——星衡学徒的证明。」",
+          "once": true,
+          "delay": 2500
+        },
+        {
+          "id": "t208_f1",
+          "condition": "onFirstNumberFilled",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "📜 「好的开始。记住——星衡试炼没有捷径，唯有综合运用你学到的一切。」",
+          "once": true
+        },
+        {
+          "id": "t208_b",
+          "condition": "onFillCountReached",
+          "count": 55,
+          "type": "enter_phase",
+          "phase": "breakthrough",
+          "once": true
+        },
+        {
+          "id": "t208_bt",
+          "condition": "onFillCountReached",
+          "count": 55,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "⚡ 📜 「破局时刻！你找到了关键的突破口——乘胜追击，不要给谜题喘息的机会！」",
+          "once": true,
+          "delay": 400
+        },
+        {
+          "id": "t208_st20",
+          "condition": "onStuckForSeconds",
+          "seconds": 20,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "💡 📜 「急躁是推理的大敌。重新审视盘面：行、列、宫、笼、差值——哪个是你漏掉的线索？」",
+          "once": false
+        },
+        {
+          "id": "t208_st40",
+          "condition": "onStuckForSeconds",
+          "seconds": 40,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "💡 📜 「退一步，海阔天空。试试从不同的宫/笼入手，有时候换个角度答案就浮现了。善用组合计算器。」",
+          "once": false,
+          "delay": 300
+        },
+        {
+          "id": "t208_ag",
+          "condition": "onConflict",
+          "type": "popup_hint",
+          "position": "top",
+          "text": "⚠️ 📜 「错了。星衡从不说谎——回头检查你的推理链，哪里出了破绽？」",
+          "once": false
+        },
+        {
+          "id": "t208_fi",
+          "condition": "onFillCountReached",
+          "count": 72,
+          "type": "enter_phase",
+          "phase": "finishing",
+          "once": true
+        },
+        {
+          "id": "t208_fit",
+          "condition": "onFillCountReached",
+          "count": 72,
+          "type": "popup_hint",
+          "position": "top",
+          "text": "✨ 📜 「收官！答案就在眼前，星衡学徒徽章即将属于你！」",
+          "once": true,
+          "delay": 400
+        },
+        {
+          "id": "t208_c",
+          "condition": "onLevelComplete",
+          "type": "badge_award",
+          "text": "🎉 恭喜通过星衡试炼！黄铜算珠徽章——「星衡学徒」已解锁！你已具备进入深层档案室的资格。",
+          "once": true,
+          "badgeId": "badge_c2_45law"
+        }
+      ],
+      "boardData": [
+        [
+          8,
+          0,
+          2,
+          0,
+          5,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          6,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          7,
+          0,
+          0,
+          0,
+          0,
+          0,
+          3
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          4,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          2,
+          0,
+          0,
+          0,
+          3,
+          0,
+          0,
+          7,
+          5
+        ],
+        [
+          0,
+          8,
+          0,
+          0,
+          0,
+          5,
+          0,
+          3,
+          0
+        ],
+        [
+          6,
+          2,
+          0,
+          0,
+          0,
+          3,
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          8,
+          6,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          5,
+          0
+        ]
+      ],
+      "cages": [
+        {
+          "id": 0,
+          "sum": 23,
+          "cells": [
+            [
+              1,
+              7
+            ],
+            [
+              1,
+              6
+            ],
+            [
+              1,
+              5
+            ],
+            [
+              0,
+              7
+            ],
+            [
+              0,
+              5
+            ]
+          ]
+        },
+        {
+          "id": 1,
+          "sum": 18,
+          "cells": [
+            [
+              7,
+              5
+            ],
+            [
+              6,
+              5
+            ],
+            [
+              7,
+              6
+            ],
+            [
+              7,
+              7
+            ]
+          ]
+        },
+        {
+          "id": 2,
+          "sum": 16,
+          "cells": [
+            [
+              7,
+              1
+            ],
+            [
+              6,
+              1
+            ],
+            [
+              8,
+              1
+            ],
+            [
+              8,
+              0
+            ]
+          ]
+        },
+        {
+          "id": 3,
+          "sum": 25,
+          "cells": [
+            [
+              3,
+              3
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              3,
+              2
+            ],
+            [
+              4,
+              3
+            ]
+          ]
+        },
+        {
+          "id": 4,
+          "sum": 15,
+          "cells": [
+            [
+              1,
+              0
+            ],
+            [
+              2,
+              0
+            ],
+            [
+              2,
+              1
+            ]
+          ]
+        },
+        {
+          "id": 5,
+          "sum": 14,
+          "cells": [
+            [
+              4,
+              1
+            ],
+            [
+              3,
+              1
+            ],
+            [
+              4,
+              2
+            ]
+          ]
+        },
+        {
+          "id": 6,
+          "sum": 19,
+          "cells": [
+            [
+              6,
+              8
+            ],
+            [
+              5,
+              8
+            ],
+            [
+              7,
+              8
+            ]
+          ]
+        },
+        {
+          "id": 7,
+          "sum": 18,
+          "cells": [
+            [
+              7,
+              0
+            ],
+            [
+              6,
+              0
+            ],
+            [
+              5,
+              0
+            ]
+          ]
+        },
+        {
+          "id": 8,
+          "sum": 19,
+          "cells": [
+            [
+              1,
+              4
+            ],
+            [
+              0,
+              4
+            ],
+            [
+              2,
+              4
+            ]
+          ]
+        },
+        {
+          "id": 9,
+          "sum": 7,
+          "cells": [
+            [
+              0,
+              6
+            ]
+          ]
+        },
+        {
+          "id": 10,
+          "sum": 11,
+          "cells": [
+            [
+              8,
+              8
+            ],
+            [
+              8,
+              7
+            ]
+          ]
+        },
+        {
+          "id": 11,
+          "sum": 9,
+          "cells": [
+            [
+              0,
+              8
+            ]
+          ]
+        },
+        {
+          "id": 12,
+          "sum": 23,
+          "cells": [
+            [
+              0,
+              2
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              1
+            ]
+          ]
+        },
+        {
+          "id": 13,
+          "sum": 5,
+          "cells": [
+            [
+              8,
+              6
+            ],
+            [
+              8,
+              5
+            ]
+          ]
+        },
+        {
+          "id": 14,
+          "sum": 10,
+          "cells": [
+            [
+              2,
+              7
+            ],
+            [
+              3,
+              7
+            ]
+          ]
+        },
+        {
+          "id": 15,
+          "sum": 8,
+          "cells": [
+            [
+              2,
+              6
+            ]
+          ]
+        },
+        {
+          "id": 16,
+          "sum": 11,
+          "cells": [
+            [
+              3,
+              8
+            ],
+            [
+              4,
+              8
+            ],
+            [
+              2,
+              8
+            ],
+            [
+              1,
+              8
+            ]
+          ]
+        },
+        {
+          "id": 17,
+          "sum": 18,
+          "cells": [
+            [
+              6,
+              2
+            ],
+            [
+              7,
+              2
+            ],
+            [
+              8,
+              2
+            ]
+          ]
+        },
+        {
+          "id": 18,
+          "sum": 23,
+          "cells": [
+            [
+              2,
+              5
+            ],
+            [
+              3,
+              5
+            ],
+            [
+              4,
+              5
+            ]
+          ]
+        },
+        {
+          "id": 19,
+          "sum": 5,
+          "cells": [
+            [
+              4,
+              0
+            ],
+            [
+              3,
+              0
+            ]
+          ]
+        },
+        {
+          "id": 20,
+          "sum": 14,
+          "cells": [
+            [
+              3,
+              6
+            ],
+            [
+              4,
+              7
+            ],
+            [
+              4,
+              6
+            ]
+          ]
+        },
+        {
+          "id": 21,
+          "sum": 15,
+          "cells": [
+            [
+              5,
+              1
+            ],
+            [
+              5,
+              2
+            ],
+            [
+              5,
+              3
+            ]
+          ]
+        },
+        {
+          "id": 22,
+          "sum": 26,
+          "cells": [
+            [
+              6,
+              4
+            ],
+            [
+              6,
+              3
+            ],
+            [
+              8,
+              3
+            ],
+            [
+              7,
+              3
+            ]
+          ]
+        },
+        {
+          "id": 23,
+          "sum": 10,
+          "cells": [
+            [
+              4,
+              4
+            ],
+            [
+              5,
+              4
+            ],
+            [
+              5,
+              5
+            ]
+          ]
+        },
+        {
+          "id": 24,
+          "sum": 17,
+          "cells": [
+            [
+              6,
+              7
+            ],
+            [
+              5,
+              6
+            ],
+            [
+              6,
+              6
+            ],
+            [
+              5,
+              7
+            ]
+          ]
+        },
+        {
+          "id": 25,
+          "sum": 16,
+          "cells": [
+            [
+              0,
+              3
+            ],
+            [
+              2,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              1,
+              3
+            ]
+          ]
+        },
+        {
+          "id": 26,
+          "sum": 10,
+          "cells": [
+            [
+              8,
+              4
+            ],
+            [
+              7,
+              4
+            ]
+          ]
+        }
+      ],
+      "solution": [
+        [
+          8,
+          4,
+          2,
+          3,
+          5,
+          1,
+          7,
+          6,
+          9
+        ],
+        [
+          9,
+          6,
+          3,
+          2,
+          8,
+          7,
+          5,
+          4,
+          1
+        ],
+        [
+          1,
+          5,
+          7,
+          4,
+          6,
+          9,
+          8,
+          2,
+          3
+        ],
+        [
+          3,
+          9,
+          5,
+          7,
+          4,
+          6,
+          1,
+          8,
+          2
+        ],
+        [
+          2,
+          1,
+          4,
+          9,
+          3,
+          8,
+          6,
+          7,
+          5
+        ],
+        [
+          7,
+          8,
+          6,
+          1,
+          2,
+          5,
+          9,
+          3,
+          4
+        ],
+        [
+          6,
+          2,
+          9,
+          5,
+          7,
+          3,
+          4,
+          1,
+          8
+        ],
+        [
+          5,
+          3,
+          8,
+          6,
+          1,
+          4,
+          2,
+          9,
+          7
+        ],
+        [
+          4,
+          7,
+          1,
+          8,
+          9,
+          2,
+          3,
+          5,
+          6
+        ]
+      ],
+      "preDialog": [
+        {
+          "speaker": "守笼人",
+          "text": "本章全部星衡、笼格推演技巧融合在此，检验你能否抵御设局人的谜题陷阱。",
+          "side": "right",
+          "emotion": "calm",
+          "voiceId": "VO_CK_09",
+          "effect": 2
+        },
+        {
+          "speaker": "莹莹",
+          "text": "这一关把二十一、四十五、差值、嵌套笼全堆一起了！",
+          "side": "right",
+          "emotion": "calm",
+          "voiceId": "VO_J_10",
+          "effect": 0
+        },
+        {
+          "speaker": "阿妍",
+          "text": "（看着棋盘，沉默了三秒，然后拿起笔）……开始吧。",
+          "side": "right",
+          "emotion": "determined",
+          "voiceId": "VO_R_13",
+          "effect": 0
+        },
+        {
+          "speaker": "沈墨",
+          "text": "（他已经把第一行扫完了，几乎没有犹豫）……第一行第六列。2。",
+          "side": "left",
+          "emotion": "thinking",
+          "voiceId": "VO_SM_12",
+          "effect": 0
+        }
+      ],
+      "clearDialog": [
+        {
+          "speaker": "守笼人",
+          "text": "你已吃透星衡全部基础。设局人留下的深层档案即将解锁。",
+          "side": "right",
+          "emotion": "smile",
+          "voiceId": "VO_CK_06",
+          "effect": 1
+        },
+        {
+          "speaker": "设局人",
+          "text": "能闯过星衡试炼，勉强有资格直面我真正的笼局。",
+          "side": "right",
+          "emotion": "calm",
+          "voiceId": "VO_P_04",
+          "effect": 2
+        },
+        {
+          "speaker": "莹莹",
+          "text": "我一定要解开所有谜题，搞懂你和守笼人当年到底发生了什么！",
+          "side": "right",
+          "emotion": "calm",
+          "voiceId": "VO_J_10",
+          "effect": 0
+        },
+        {
+          "speaker": "阿妍",
+          "text": "（没有接话。但在转身走向下一层的时候，她的声音很轻地传来）……会的。",
+          "side": "right",
+          "emotion": "calm",
+          "voiceId": "VO_R_03",
+          "effect": 0
+        }
+      ],
+      "mode": "comprehensive",
+      "coreMove": {
+        "row": 3,
+        "col": 4,
+        "value": 4
+      },
+      "totalSteps": 81,
+      "nakedSingleRatio": 0.679,
+      "techCount": {
+        "nakedSingle": 55,
+        "cageUnique": 16,
+        "rule45": 3,
+        "hiddenSingle": 6,
+        "nakedPair": 1
+      },
+      "maxTechLevel": 5,
+      "threeAct": {
+        "opening": [
+          [
+            0,
+            6
+          ],
+          [
+            0,
+            8
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            3,
+            0
+          ],
+          [
+            5,
+            4
+          ],
+          [
+            5,
+            3
+          ],
+          [
+            5,
+            2
+          ],
+          [
+            5,
+            8
+          ],
+          [
+            5,
+            6
+          ],
+          [
+            5,
+            0
+          ],
+          [
+            6,
+            2
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            4,
+            2
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            4,
+            3
+          ],
+          [
+            3,
+            8
+          ],
+          [
+            1,
+            8
+          ],
+          [
+            8,
+            5
+          ],
+          [
+            8,
+            8
+          ]
+        ],
+        "breakthrough": [
+          [
+            1,
+            5
+          ],
+          [
+            1,
+            6
+          ],
+          [
+            6,
+            6
+          ],
+          [
+            6,
+            8
+          ],
+          [
+            6,
+            3
+          ],
+          [
+            7,
+            0
+          ],
+          [
+            7,
+            6
+          ],
+          [
+            7,
+            5
+          ],
+          [
+            7,
+            7
+          ],
+          [
+            7,
+            4
+          ],
+          [
+            7,
+            8
+          ],
+          [
+            7,
+            1
+          ],
+          [
+            8,
+            0
+          ],
+          [
+            8,
+            1
+          ],
+          [
+            8,
+            3
+          ],
+          [
+            8,
+            4
+          ],
+          [
+            8,
+            6
+          ]
+        ],
+        "avalanche": [
+          [
+            0,
+            5
+          ],
+          [
+            0,
+            7
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            4,
+            6
+          ],
+          [
+            3,
+            6
+          ],
+          [
+            3,
+            7
+          ],
+          [
+            2,
+            7
+          ],
+          [
+            1,
+            7
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            6,
+            4
+          ]
+        ]
+      }
+    }
+  ]
+}

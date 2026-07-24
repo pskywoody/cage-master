@@ -13,3 +13,14 @@ crawlers/.uploads/
 game-src/data/levels.json
 game-src/data/levels-killer.json
 game-src/data/puzzles/v6/*.json
+
+# cagemaster3 排除项
+cagemaster3/.venv*/
+cagemaster3/.mimocode/
+cagemaster3/.uploads/
+cagemaster3/logs/
+cagemaster3/output/
+cagemaster3/models/
+cagemaster3/__pycache__/
+cagemaster3/**/__pycache__/
+*.pyc

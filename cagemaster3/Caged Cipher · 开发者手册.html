@@ -1,0 +1,4187 @@
+<!DOCTYPE html>
+<!-- saved from url=(0052)file:///d%3A/killersudoku/dev-manual/dev-manual.html -->
+<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Caged Cipher · 开发者手册</title>
+<script src="file:///d%3A/killersudoku/dev-manual/_shared/js/mermaid.min.js"></script>
+<script src="file:///d%3A/killersudoku/dev-manual/_shared/js/echarts.min.js"></script>
+<style>
+:root {
+  --bg: #0f1115;
+  --bg2: #1a1d24;
+  --bg3: #252a34;
+  --ink: #e8eaed;
+  --muted: #9aa0a6;
+  --rule: #2a2f3a;
+  --accent: #6366f1;
+  --accent2: #22d3ee;
+  --accent3: #f59e0b;
+  --success: #22c55e;
+  --error: #ef4444;
+  --warning: #f59e0b;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background:
+    radial-gradient(ellipse at top, rgba(99,102,241,0.12) 0%, transparent 50%),
+    radial-gradient(ellipse at bottom, rgba(34,211,238,0.08) 0%, transparent 50%),
+    var(--bg);
+  color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  line-height: 1.7;
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ===== Header ===== */
+.hero {
+  padding: 80px 0 60px;
+  text-align: center;
+  border-bottom: 1px solid var(--rule);
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero .subtitle {
+  color: var(--muted);
+  font-size: 1.1rem;
+  margin-bottom: 24px;
+}
+
+.hero .meta {
+  display: flex;
+  gap: 32px;
+  justify-content: center;
+  flex-wrap: wrap;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.hero .meta span strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+/* ===== TOC ===== */
+.toc {
+  position: sticky;
+  top: 20px;
+  float: right;
+  width: 220px;
+  margin-right: -240px;
+  padding: 20px;
+  background: var(--bg2);
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+  font-size: 0.85rem;
+}
+
+.toc h3 {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.toc ul {
+  list-style: none;
+}
+
+.toc li {
+  margin-bottom: 6px;
+}
+
+.toc a {
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s;
+  display: block;
+  padding: 2px 0;
+}
+
+.toc a:hover {
+  color: var(--accent2);
+}
+
+.toc .lvl2 { padding-left: 0; }
+.toc .lvl3 { padding-left: 12px; font-size: 0.82rem; }
+
+/* ===== Content ===== */
+.content {
+  padding: 60px 0;
+}
+
+h2 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin: 56px 0 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--accent);
+  letter-spacing: -0.01em;
+}
+
+h2:first-child {
+  margin-top: 0;
+}
+
+h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 32px 0 12px;
+  color: var(--accent2);
+}
+
+h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 20px 0 8px;
+  color: var(--ink);
+}
+
+p {
+  margin-bottom: 14px;
+  color: var(--ink);
+}
+
+ul, ol {
+  margin-bottom: 14px;
+  padding-left: 24px;
+}
+
+li {
+  margin-bottom: 6px;
+}
+
+/* Code */
+code {
+  background: var(--bg3);
+  color: var(--accent2);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: "SF Mono", "Consolas", "Liberation Mono", monospace;
+  font-size: 0.88em;
+}
+
+pre {
+  background: var(--bg2);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  padding: 16px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+pre code {
+  background: none;
+  padding: 0;
+  color: var(--ink);
+}
+
+/* Tables */
+.table-wrap {
+  overflow-x: auto;
+  margin-bottom: 16px;
+  border-radius: 8px;
+  border: 1px solid var(--rule);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+th {
+  background: var(--bg2);
+  font-weight: 600;
+  text-align: left;
+  padding: 10px 14px;
+  border-bottom: 2px solid var(--rule);
+  color: var(--accent2);
+  white-space: nowrap;
+}
+
+td {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--rule);
+  color: var(--ink);
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+tr:hover td {
+  background: var(--bg2);
+}
+
+/* Callouts */
+.callout {
+  padding: 16px 20px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  border-left: 4px solid var(--accent);
+  background: var(--bg2);
+}
+
+.callout.tip {
+  border-left-color: var(--success);
+}
+
+.callout.warn {
+  border-left-color: var(--warning);
+}
+
+.callout.danger {
+  border-left-color: var(--error);
+}
+
+.callout strong {
+  display: block;
+  margin-bottom: 4px;
+}
+
+.callout.tip strong { color: var(--success); }
+.callout.warn strong { color: var(--warning); }
+.callout.danger strong { color: var(--error); }
+
+/* Badges */
+.badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: var(--bg3);
+  color: var(--muted);
+  margin-right: 4px;
+}
+
+.badge.module { background: rgba(99,102,241,0.2); color: var(--accent); }
+.badge.core { background: rgba(34,211,238,0.2); color: var(--accent2); }
+.badge.expert { background: rgba(245,158,11,0.2); color: var(--warning); }
+.badge.story { background: rgba(236,72,153,0.2); color: #ec4899; }
+.badge.data { background: rgba(34,197,94,0.2); color: var(--success); }
+
+/* Cards grid */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.card {
+  background: var(--bg2);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  padding: 18px;
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.card:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.card h4 {
+  margin: 0 0 6px;
+  color: var(--accent2);
+  font-size: 1rem;
+}
+
+.card .card-meta {
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+.card p {
+  font-size: 0.88rem;
+  color: var(--muted);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* File tree */
+.file-tree {
+  background: var(--bg2);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin-bottom: 16px;
+  font-family: "SF Mono", "Consolas", monospace;
+  font-size: 0.82rem;
+  line-height: 1.8;
+  overflow-x: auto;
+}
+
+.file-tree .dir { color: var(--accent2); font-weight: 600; }
+.file-tree .file { color: var(--muted); }
+.file-tree .important { color: var(--ink); font-weight: 500; }
+
+/* Stats row */
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+  margin: 24px 0;
+}
+
+.stat-card {
+  background: var(--bg2);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  padding: 16px;
+  text-align: center;
+}
+
+.stat-card .num {
+  font-size: 2rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.2;
+}
+
+.stat-card .label {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+/* Mermaid */
+.mermaid {
+  background: var(--bg2);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+/* Chart figure */
+.chart-figure {
+  margin: 24px 0;
+}
+
+.chart-figure figcaption {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 10px;
+}
+
+/* Footer */
+footer {
+  margin-top: 80px;
+  padding: 40px 0;
+  border-top: 1px solid var(--rule);
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .toc { display: none; }
+}
+
+@media (max-width: 768px) {
+  .hero { padding: 48px 0 32px; }
+  .hero h1 { font-size: 1.8rem; }
+  .content { padding: 32px 0; }
+  h2 { font-size: 1.3rem; margin-top: 36px; }
+  .card-grid { grid-template-columns: 1fr; }
+  .stats-row { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* Print */
+@media print {
+  .toc { display: none; }
+  .hero { padding: 20px 0; }
+  .content { padding: 20px 0; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- ===== Hero ===== -->
+<header class="hero">
+  <h1>Caged Cipher · 开发者手册</h1>
+  <p class="subtitle">笼中密码 — 五层专家系统驱动的杀手数独剧情游戏</p>
+  <div class="meta">
+    <span>版本 <strong>v3.1</strong></span>
+    <span>章节 <strong>8</strong></span>
+    <span>关卡 <strong>53</strong></span>
+    <span>角色 <strong>11</strong></span>
+  </div>
+</header>
+
+<!-- ===== TOC ===== -->
+<nav class="toc">
+  <h3>目录</h3>
+  <ul>
+    <li class="lvl2"><a href="file:///d%3A/killersudoku/dev-manual/dev-manual.html#overview">1. 项目概览</a></li>
+    <li class="lvl3"><a href="file:///d%3A/killersudoku/dev-manual/dev-manual.html#arch">1.1 架构总览</a></li>
+    <li class="lvl3"><a href="file:///d%3A/killersudoku/dev-manual/dev-manual.html#tech">1.2 技术栈</a></li>
+    <li class="lvl3"><a href="file:///d%3A/killersudoku/dev-manual/dev-manual.html#quickstart">1.3 快速启动</a></li>
+    <li class="lvl2"><a href="file:///d%3A/killersudoku/dev-manual/dev-manual.html#structure">2. 项目结构</a></li>
+    <li class="lvl3"><a href="file:///d%3A/killersudoku/dev-manual/dev-manual.html#dirs">2.1 目录结构</a></li>
+    <li class="lvl3"><a href="file:///d%3A/killersudoku/dev-manual/dev-manual.html#modules">2.2 核心模块</a></li>
+    <li class="lvl2"><a href="file:///d%3A/killersudoku/dev-manual/dev-manual.html#core">3. 核心系统</a></li>
+    <li class="lvl3"><a href="file:///d%3A/killersudoku/dev-manual/dev-manual.html#board">3.1 棋盘系统</a></li>
+    <li class="lvl3"><a href="file:///d%3A/killersudoku/dev-manual/dev-manual.html#renderer">3.2 渲染系统</a></li>
+    <li class="lvl3"><a href="file:///d%3A/killersudoku/dev-manual/dev-manual.html#note">3.3 笔记系统</a></li>
+    <li class="lvl3"><a href="file:///d%3A/killersudoku/dev-manual/dev-manual.html#rule45">3.4 星衡法则</a></li>
+    <li class="lvl3"><a href="file:///d%3A/killersudoku/dev-manual/dev-manual.html#techrater">3.5 推理引擎</a></li>
+    <li class="lvl3"><a href="file:///d%3A/killersudoku/dev-manual/dev-manual.html#guide-battle">3.6 对战系统</a></li>
+    <li class="lvl3"><a href="file:///d%3A/killersudoku/dev-manual/dev-manual.html#what-if">3.7 What If 模式</a></li>
+    <li class="lvl2"><a href="file:///d%3A/killersudoku/dev-manual/dev-manual.html#expert">4. 专家系统</a></li>
+    <li class="lvl3"><a href="file:///d%3A/killersudoku/dev-manual/dev-manual.html#five-layers">4.1 五层架构</a></li>
+    <li class="lvl3"><a href="file:///d%3A/killersudoku/dev-manual/dev-manual.html#teaching">4.2 教学系统</a></li>
+    <li class="lvl3"><a href="file:///d%3A/killersudoku/dev-manual/dev-manual.html#hints">4.3 提示系统</a></li>
+    <li class="lvl2"><a href="file:///d%3A/killersudoku/dev-manual/dev-manual.html#story">5. 剧情与音频</a></li>
+    <li class="lvl3"><a href="file:///d%3A/killersudoku/dev-manual/dev-manual.html#story-engine">5.1 剧情引擎</a></li>
+    <li class="lvl3"><a href="file:///d%3A/killersudoku/dev-manual/dev-manual.html#audio">5.2 音频服务</a></li>
+    <li class="lvl3"><a href="file:///d%3A/killersudoku/dev-manual/dev-manual.html#gallery">5.3 图鉴系统</a></li>
+    <li class="lvl2"><a href="file:///d%3A/killersudoku/dev-manual/dev-manual.html#ui">6. UI 组件</a></li>
+    <li class="lvl3"><a href="file:///d%3A/killersudoku/dev-manual/dev-manual.html#side-rail">6.1 右侧浮条</a></li>
+    <li class="lvl3"><a href="file:///d%3A/killersudoku/dev-manual/dev-manual.html#menu-ui">6.2 主菜单</a></li>
+    <li class="lvl2"><a href="file:///d%3A/killersudoku/dev-manual/dev-manual.html#data">7. 数据结构</a></li>
+    <li class="lvl3"><a href="file:///d%3A/killersudoku/dev-manual/dev-manual.html#chapters">7.1 章节数据</a></li>
+    <li class="lvl3"><a href="file:///d%3A/killersudoku/dev-manual/dev-manual.html#progress">7.2 进度系统</a></li>
+    <li class="lvl2"><a href="file:///d%3A/killersudoku/dev-manual/dev-manual.html#interaction">8. 交互设计</a></li>
+    <li class="lvl2"><a href="file:///d%3A/killersudoku/dev-manual/dev-manual.html#dev-guide">9. 开发指南</a></li>
+    <li class="lvl3"><a href="file:///d%3A/killersudoku/dev-manual/dev-manual.html#add-level">9.1 添加关卡</a></li>
+    <li class="lvl3"><a href="file:///d%3A/killersudoku/dev-manual/dev-manual.html#add-char">9.2 添加角色</a></li>
+    <li class="lvl3"><a href="file:///d%3A/killersudoku/dev-manual/dev-manual.html#add-achievement">9.3 添加成就</a></li>
+    <li class="lvl3"><a href="file:///d%3A/killersudoku/dev-manual/dev-manual.html#pipeline">9.4 数据构建Pipeline</a></li>
+    <li class="lvl3"><a href="file:///d%3A/killersudoku/dev-manual/dev-manual.html#level-design">9.5 关卡设计规范</a></li>
+    <li class="lvl3"><a href="file:///d%3A/killersudoku/dev-manual/dev-manual.html#audio-naming">9.6 音频命名规范</a></li>
+    <li class="lvl3"><a href="file:///d%3A/killersudoku/dev-manual/dev-manual.html#expert-config">9.7 专家系统配置</a></li>
+    <li class="lvl3"><a href="file:///d%3A/killersudoku/dev-manual/dev-manual.html#changelog">9.8 开发日志</a></li>
+    <li class="lvl2"><a href="file:///d%3A/killersudoku/dev-manual/dev-manual.html#level-validator">10. 关卡验证系统</a></li>
+    <li class="lvl3"><a href="file:///d%3A/killersudoku/dev-manual/dev-manual.html#validator-goal">10.1 设计目标</a></li>
+    <li class="lvl3"><a href="file:///d%3A/killersudoku/dev-manual/dev-manual.html#validator-triple">10.2 三重验证体系</a></li>
+    <li class="lvl3"><a href="file:///d%3A/killersudoku/dev-manual/dev-manual.html#validator-data-integrity">10.3 数据完整性检查</a></li>
+    <li class="lvl3"><a href="file:///d%3A/killersudoku/dev-manual/dev-manual.html#validator-solvability">10.4 可解性验证</a></li>
+    <li class="lvl3"><a href="file:///d%3A/killersudoku/dev-manual/dev-manual.html#validator-batch">10.5 批量验证工具</a></li>
+    <li class="lvl3"><a href="file:///d%3A/killersudoku/dev-manual/dev-manual.html#validator-report">10.6 验证报告格式</a></li>
+    <li class="lvl3"><a href="file:///d%3A/killersudoku/dev-manual/dev-manual.html#validator-common-errors">10.7 常见错误类型</a></li>
+    <li class="lvl2"><a href="file:///d%3A/killersudoku/dev-manual/dev-manual.html#purity-validator">11. 技巧纯净度验证</a></li>
+    <li class="lvl3"><a href="file:///d%3A/killersudoku/dev-manual/dev-manual.html#purity-concept">11.1 高纯度定向技巧关</a></li>
+    <li class="lvl3"><a href="file:///d%3A/killersudoku/dev-manual/dev-manual.html#purity-triple-standard">11.2 三重纯净标准</a></li>
+    <li class="lvl3"><a href="file:///d%3A/killersudoku/dev-manual/dev-manual.html#purity-score">11.3 纯净度评分公式</a></li>
+    <li class="lvl3"><a href="file:///d%3A/killersudoku/dev-manual/dev-manual.html#purity-restricted-solve">11.4 受限求解模式</a></li>
+    <li class="lvl3"><a href="file:///d%3A/killersudoku/dev-manual/dev-manual.html#purity-downstream">11.5 顺水推舟策略</a></li>
+    <li class="lvl2"><a href="file:///d%3A/killersudoku/dev-manual/dev-manual.html#cage-fixer-v6">12. 关卡生成器</a></li>
+    <li class="lvl3"><a href="file:///d%3A/killersudoku/dev-manual/dev-manual.html#gen-naming">12.1 命名与设计哲学</a></li>
+    <li class="lvl3"><a href="file:///d%3A/killersudoku/dev-manual/dev-manual.html#gen-pipeline">12.2 六步生成流水线</a></li>
+    <li class="lvl3"><a href="file:///d%3A/killersudoku/dev-manual/dev-manual.html#gen-api">12.3 API 与命令行</a></li>
+    <li class="lvl3"><a href="file:///d%3A/killersudoku/dev-manual/dev-manual.html#gen-performance">12.4 性能基准</a></li>
+    <li class="lvl2"><a href="file:///d%3A/killersudoku/dev-manual/dev-manual.html#tech-matrix">13. 技术矩阵</a></li>
+    <li class="lvl3"><a href="file:///d%3A/killersudoku/dev-manual/dev-manual.html#matrix-philosophy">13.1 设计理念</a></li>
+    <li class="lvl3"><a href="file:///d%3A/killersudoku/dev-manual/dev-manual.html#matrix-modules">13.2 四大功能模块</a></li>
+    <li class="lvl3"><a href="file:///d%3A/killersudoku/dev-manual/dev-manual.html#matrix-hint-linkage">13.3 与提示系统联动</a></li>
+    <li class="lvl3"><a href="file:///d%3A/killersudoku/dev-manual/dev-manual.html#matrix-api">13.4 公共 API</a></li>
+    <li class="lvl3"><a href="file:///d%3A/killersudoku/dev-manual/dev-manual.html#matrix-interactions">13.5 交互操作清单</a></li>
+    <li class="lvl2"><a href="file:///d%3A/killersudoku/dev-manual/dev-manual.html#seal-system">14. 印记系统</a></li>
+    <li class="lvl3"><a href="file:///d%3A/killersudoku/dev-manual/dev-manual.html#seal-positioning">14.1 设计定位</a></li>
+    <li class="lvl3"><a href="file:///d%3A/killersudoku/dev-manual/dev-manual.html#seal-five">14.2 五枚印记详解</a></li>
+    <li class="lvl3"><a href="file:///d%3A/killersudoku/dev-manual/dev-manual.html#seal-data">14.3 数据层结构</a></li>
+    <li class="lvl3"><a href="file:///d%3A/killersudoku/dev-manual/dev-manual.html#seal-ui">14.4 UI 展示</a></li>
+    <li class="lvl3"><a href="file:///d%3A/killersudoku/dev-manual/dev-manual.html#seal-unlock">14.5 解锁触发与动画</a></li>
+    <li class="lvl3"><a href="file:///d%3A/killersudoku/dev-manual/dev-manual.html#seal-vs-achievement">14.6 与成就系统的区别</a></li>
+    <li class="lvl2"><a href="file:///d%3A/killersudoku/dev-manual/dev-manual.html#techrater-bugfixes">15. TechRater Bug 修复</a></li>
+    <li class="lvl3"><a href="file:///d%3A/killersudoku/dev-manual/dev-manual.html#bugfix-1">15.1 高亮轴硬编码</a></li>
+    <li class="lvl3"><a href="file:///d%3A/killersudoku/dev-manual/dev-manual.html#bugfix-2">15.2 只返回第一个结果</a></li>
+    <li class="lvl3"><a href="file:///d%3A/killersudoku/dev-manual/dev-manual.html#bugfix-3">15.3 Rule45 只返回第一个</a></li>
+    <li class="lvl3"><a href="file:///d%3A/killersudoku/dev-manual/dev-manual.html#bugfix-4">15.4 _fillCell 不重算笼约束</a></li>
+    <li class="lvl3"><a href="file:///d%3A/killersudoku/dev-manual/dev-manual.html#bugfix-compatibility">15.5 v2.4 兼容性保证</a></li>
+    <li class="lvl2"><a href="file:///d%3A/killersudoku/dev-manual/dev-manual.html#changelog">16. 版本历史</a></li>
+  </ul>
+</nav>
+
+<!-- ===== Content ===== -->
+<main class="content">
+
+<!-- 1. Overview -->
+<h2 id="overview">1. 项目概览</h2>
+
+<p><strong>Caged Cipher（笼中密码）</strong> 是一款以杀手数独为核心玩法的剧情向解谜游戏。玩家扮演「守笼人」，通过破解数独谜题揭开「星辰梭」的秘密，与多位性格迥异的角色共同推进剧情。</p>
+
+<div class="stats-row">
+  <div class="stat-card"><div class="num">53</div><div class="label">游戏关卡</div></div>
+  <div class="stat-card"><div class="num">8</div><div class="label">章节剧情</div></div>
+  <div class="stat-card"><div class="num">11</div><div class="label">登场角色</div></div>
+  <div class="stat-card"><div class="num">7</div><div class="label">核心技巧</div></div>
+  <div class="stat-card"><div class="num">5</div><div class="label">专家系统层</div></div>
+  <div class="stat-card"><div class="num">400+</div><div class="label">配音文件</div></div>
+</div>
+
+<h3 id="arch">1.1 架构总览</h3>
+
+<p>项目采用<strong>五层专家系统架构</strong>，通过感知→决策→节拍→表达→学习的闭环，为玩家提供自适应的游戏体验。</p>
+
+<div class="mermaid">
+flowchart TB
+    subgraph Input["输入层"]
+        A[玩家操作<br>填数/擦除/笔记]
+    end
+
+    subgraph Expert["五层专家系统"]
+        direction TB
+        P[感知层<br>PlayerStateMonitor<br>追踪状态: 卡顿/心流/焦虑]
+        D[决策层<br>DecisionEngine<br>规则引擎: 6条决策规则]
+        T[节拍层<br>BeatQuantizer<br>节奏对齐: 防反馈轰炸]
+        E[表达层<br>ExpressionDirector<br>优先级队列: 中断管理]
+        L[学习层<br>LearningSystem<br>风格画像: 技巧熟练度]
+    end
+
+    subgraph Output["输出层"]
+        B[角色气泡对话]
+        C[提示高亮]
+        D2[特效/音效]
+        E2[教学演出]
+    end
+
+    A --&gt; P
+    P --&gt; D
+    D --&gt; T
+    T --&gt; E
+    E --&gt; L
+    E --&gt; B
+    E --&gt; C
+    E --&gt; D2
+    E --&gt; E2
+    L --&gt; D
+
+    style Expert fill:rgba(99,102,241,0.1),stroke:#6366f1
+    style Input fill:rgba(34,211,238,0.1),stroke:#22d3ee
+    style Output fill:rgba(245,158,11,0.1),stroke:#f59e0b
+</div>
+
+<h3 id="tech">1.2 技术栈</h3>
+
+<div class="card-grid">
+  <div class="card">
+    <h4>渲染层</h4>
+    <div class="card-meta">Canvas 2D + DPR</div>
+    <p>纯 Canvas 绘制，支持高 DPI 屏幕，离屏缓存优化性能</p>
+  </div>
+  <div class="card">
+    <h4>音频系统</h4>
+    <div class="card-meta">Web Audio API</div>
+    <p>四通道音量控制，SFX/语音缓冲池，57 种音效 + 16 首 BGM</p>
+  </div>
+  <div class="card">
+    <h4>数据层</h4>
+    <div class="card-meta">JSON + localStorage</div>
+    <p>章节关卡数据 JSON 驱动，进度本地持久化</p>
+  </div>
+  <div class="card">
+    <h4>事件系统</h4>
+    <div class="card-meta">GlobalBus + 回调</div>
+    <p>全局事件总线 + 模块间直接引用混合通信</p>
+  </div>
+  <div class="card">
+    <h4>UI 框架</h4>
+    <div class="card-meta">原生 DOM + CSS</div>
+    <p>无框架依赖，轻量面板组件，滑动抽屉式交互</p>
+  </div>
+  <div class="card">
+    <h4>动画系统</h4>
+    <div class="card-meta">CSS + requestAnimationFrame</div>
+    <p>打字机效果、呼吸态笔记、高亮渐变</p>
+  </div>
+</div>
+
+<h3 id="quickstart">1.3 快速启动</h3>
+
+<h4 id="start-server">1.3.1 启动本地开发服务</h4>
+
+<p>项目为纯静态前端，无需编译，启动任意 HTTP 静态服务即可：</p>
+
+<div class="code-block"><pre><span class="comment"># 方式一：Python 内置服务（推荐，无需安装）</span>
+cd cagemaster3
+python -m http.server 8080
+
+<span class="comment"># 方式二：Node.js http-server</span>
+npx http-server -p 8080 cagemaster3
+
+<span class="comment"># 方式三：PHP 内置服务</span>
+cd cagemaster3
+php -S localhost:8080</pre></div>
+
+<p>启动后在浏览器打开：<code>http://localhost:8080/guide.html</code></p>
+
+<div class="tip">
+  <strong>💡 小技巧</strong>
+  <p>直接用 <code>file://</code> 协议打开 <code>guide.html</code> 也能运行，但部分浏览器会限制音频自动播放和 fetch 请求，建议使用 HTTP 服务。</p>
+</div>
+
+<h4 id="mobile-test">1.3.2 手机测试方法</h4>
+
+<p>确保手机和电脑在<strong>同一个 Wi-Fi 网络</strong>下，按以下步骤操作：</p>
+
+<ol>
+  <li><p><strong>启动本地服务</strong>（绑定 0.0.0.0 以允许局域网访问）：</p>
+    <div class="code-block"><pre>cd cagemaster3
+python -m http.server 8080 --bind 0.0.0.0</pre></div>
+  </li>
+  <li><p><strong>查看电脑局域网 IP</strong>：</p>
+    <div class="code-block"><pre><span class="comment"># Windows PowerShell</span>
+(Get-NetIPAddress -AddressFamily IPv4 | Where-Object {
+  $_.InterfaceAlias -notmatch 'Loopback|vEthernet'
+}).IPAddress
+
+<span class="comment"># 或简化命令</span>
+ipconfig | findstr "IPv4"</pre></div>
+    <p>当前开发机 IP：<code class="highlight">192.168.2.20</code></p>
+  </li>
+  <li><p><strong>手机浏览器访问</strong>：</p>
+    <p>在手机浏览器地址栏输入：<code>http://192.168.2.20:8080/guide.html</code></p>
+  </li>
+  <li><p><strong>直达指定关卡</strong>：</p>
+    <p>在 URL 后加 <code>?id=关卡编号</code>，例如：<br>
+    <code>http://192.168.2.20:8080/guide.html?id=204</code></p>
+  </li>
+</ol>
+
+<div class="warning">
+  <strong>⚠️ 注意事项</strong>
+  <ul>
+    <li>电脑防火墙需允许 8080 端口入站</li>
+    <li>iOS Safari 可能需要手动允许音频播放（首次点击后解锁）</li>
+    <li>修改 JS/CSS 文件后，手机端需<strong>强制刷新</strong>（清空缓存）才能看到更新</li>
+    <li>建议使用 Chrome DevTools 的「Remote Devices」进行真机调试</li>
+  </ul>
+</div>
+
+<h4 id="cache-bust">1.3.3 缓存刷新与版本号</h4>
+
+<p>项目通过 URL 参数 <code>?v=N</code> 控制静态资源缓存。修改 <code>guide.html</code> 中对应的 script 标签版本号即可强制浏览器加载新文件：</p>
+
+<div class="code-block"><pre>&lt;script src="game/board.js?v=3"&gt;&lt;/script&gt;
+&lt;script src="game/renderer.js?v=8"&gt;&lt;/script&gt;
+&lt;script src="pages/guide.js?v=9"&gt;&lt;/script&gt;</pre></div>
+
+<p>每次修改对应文件后，将版本号 +1 即可。</p>
+
+<!-- 2. Structure -->
+<h2 id="structure">2. 项目结构</h2>
+
+<h3 id="dirs">2.1 目录结构</h3>
+
+<div class="file-tree">
+<span class="dir">cagemaster3/</span><br>
+├── <span class="important">guide.html</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# 游戏主入口页面<br>
+├── <span class="dir">assets/</span><br>
+│&nbsp;&nbsp; ├── <span class="dir">audio/</span><br>
+│&nbsp;&nbsp; │&nbsp;&nbsp; ├── <span class="dir">bgm/</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# 背景音乐（16首）<br>
+│&nbsp;&nbsp; │&nbsp;&nbsp; ├── <span class="dir">sfx/</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# 音效（57个）<br>
+│&nbsp;&nbsp; │&nbsp;&nbsp; └── <span class="dir">voices/</span> &nbsp;&nbsp;&nbsp;&nbsp;# 角色配音（400+）<br>
+│&nbsp;&nbsp; └── <span class="dir">images/</span><br>
+│&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; ├── <span class="dir">backgrounds/</span> &nbsp;# 场景背景（63张）<br>
+│&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; ├── <span class="dir">portraits/</span> &nbsp;&nbsp;# 角色立绘（44张）<br>
+│&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; └── <span class="dir">items/</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# 道具图片（6张）<br>
+├── <span class="dir">audio/</span><br>
+│&nbsp;&nbsp; └── <span class="important">audio-service.js</span> &nbsp;&nbsp;# 统一音频服务<br>
+├── <span class="dir">core/</span><br>
+│&nbsp;&nbsp; ├── <span class="file">event-bus.js</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# 全局事件总线<br>
+│&nbsp;&nbsp; ├── <span class="file">event-logger.js</span><br>
+│&nbsp;&nbsp; └── <span class="file">logger.js</span><br>
+├── <span class="dir">data/</span><br>
+│&nbsp;&nbsp; ├── <span class="important">chapters.json</span> &nbsp;&nbsp;# 章节+关卡+角色数据<br>
+│&nbsp;&nbsp; ├── <span class="file">characters.js</span><br>
+│&nbsp;&nbsp; └── <span class="file">levels.json</span><br>
+├── <span class="dir">expert/</span><br>
+│&nbsp;&nbsp; ├── <span class="important">expert-system.js</span> &nbsp;&nbsp;# 专家系统门面<br>
+│&nbsp;&nbsp; ├── <span class="important">teaching-system.js</span> # 教学系统<br>
+│&nbsp;&nbsp; ├── <span class="file">hint-system.js</span><br>
+│&nbsp;&nbsp; ├── <span class="file">replay-system.js</span><br>
+│&nbsp;&nbsp; ├── <span class="dir">perception/</span> &nbsp;&nbsp;# 感知层<br>
+│&nbsp;&nbsp; ├── <span class="dir">decision/</span> &nbsp;&nbsp;&nbsp;&nbsp;# 决策层<br>
+│&nbsp;&nbsp; ├── <span class="dir">expression/</span> &nbsp;&nbsp;# 表达层<br>
+│&nbsp;&nbsp; ├── <span class="dir">learning/</span> &nbsp;&nbsp;&nbsp;&nbsp;# 学习层<br>
+│&nbsp;&nbsp; └── <span class="dir">timing/</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# 节拍层<br>
+├── <span class="dir">game/</span><br>
+│&nbsp;&nbsp; ├── <span class="important">board.js</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# 棋盘核心逻辑<br>
+│&nbsp;&nbsp; ├── <span class="important">renderer.js</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Canvas渲染器<br>
+│&nbsp;&nbsp; ├── <span class="important">note-system.js</span> &nbsp;&nbsp;# 三视角笔记系统<br>
+│&nbsp;&nbsp; ├── <span class="file">rule45.js</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# 45法则算法<br>
+│&nbsp;&nbsp; ├── <span class="file">rule45-panel.js</span> # 45法则面板<br>
+│&nbsp;&nbsp; ├── <span class="file">settings-panel.js</span> # 设置面板<br>
+│&nbsp;&nbsp; └── <span class="file">achievement-panel.js</span> # 成就面板<br>
+├── <span class="dir">pages/</span><br>
+│&nbsp;&nbsp; ├── <span class="important">guide.js</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# 游戏主控制器<br>
+│&nbsp;&nbsp; └── <span class="file">chapter-select.js</span> # 章节选择+进度管理<br>
+└── <span class="dir">story/</span><br>
+&nbsp;&nbsp;&nbsp; └── <span class="important">story-engine.js</span> &nbsp;&nbsp;# 剧情引擎<br>
+</div>
+
+<h3 id="modules">2.2 核心模块速览</h3>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr><th>模块</th><th>文件</th><th>核心类</th><th>职责</th></tr>
+</thead>
+<tbody>
+<tr><td><span class="badge core">核心</span>棋盘</td><td><code>game/board.js</code></td><td>Board / Cell</td><td>杀手数独数据层，填数/擦除/笔记/历史/冲突检测</td></tr>
+<tr><td><span class="badge core">核心</span>渲染</td><td><code>game/renderer.js</code></td><td>Renderer</td><td>Canvas 绘制，主题系统，多类型高亮，动画</td></tr>
+<tr><td><span class="badge core">核心</span>笔记</td><td><code>game/note-system.js</code></td><td>NoteSystem</td><td>三视角呼吸态笔记（隐藏/单格/全览）</td></tr>
+<tr><td><span class="badge core">核心</span>45法则</td><td><code>game/rule45.js</code></td><td>Rule45</td><td>组合枚举、内突外突计算、单宫分析</td></tr>
+<tr><td><span class="badge expert">专家</span>感知层</td><td><code>expert/perception/player-state-monitor.js</code></td><td>PlayerStateMonitor</td><td>追踪玩家状态：卡顿/心流/焦虑/节奏</td></tr>
+<tr><td><span class="badge expert">专家</span>决策层</td><td><code>expert/decision/decision-engine.js</code></td><td>DecisionEngine</td><td>6条规则的规则引擎，生成反馈命令</td></tr>
+<tr><td><span class="badge expert">专家</span>表达层</td><td><code>expert/expression/expression-director.js</code></td><td>ExpressionDirector</td><td>优先级队列 + 中断管理</td></tr>
+<tr><td><span class="badge expert">专家</span>学习层</td><td><code>expert/learning/learning-system.js</code></td><td>LearningSystem</td><td>玩家风格画像，技巧熟练度</td></tr>
+<tr><td><span class="badge expert">专家</span>节拍层</td><td><code>expert/timing/beat-quantizer.js</code></td><td>BeatQuantizer</td><td>反馈节奏对齐，防轰炸</td></tr>
+<tr><td><span class="badge expert">专家</span>教学系统</td><td><code>expert/teaching-system.js</code></td><td>TeachingSystem</td><td>技巧百科，掌握度分级，教学对话</td></tr>
+<tr><td><span class="badge story">剧情</span>剧情引擎</td><td><code>story/story-engine.js</code></td><td>StoryEngine</td><td>打字机效果，立绘，语音同步，跳过</td></tr>
+<tr><td><span class="badge module">音频</span>音频服务</td><td><code>audio/audio-service.js</code></td><td>AudioService</td><td>Web Audio API 统一入口，四通道音量</td></tr>
+<tr><td><span class="badge data">数据</span>进度管理</td><td><code>pages/chapter-select.js</code></td><td>ProgressManager</td><td>章节解锁、评分、成就、多周目</td></tr>
+<tr><td><span class="badge module">主控制</span>游戏控制</td><td><code>pages/guide.js</code></td><td>—</td><td>串联所有模块，输入处理，流程控制</td></tr>
+</tbody>
+</table>
+</div>
+
+<!-- 3. Core Systems -->
+<h2 id="core">3. 核心系统</h2>
+
+<h3 id="board">3.1 棋盘系统（Board）</h3>
+
+<p>棋盘系统是游戏的核心数据层，管理所有格子状态、笼子定义、游戏规则和历史记录。</p>
+
+<h4>3.1.1 Cell 数据结构</h4>
+
+<pre><code>class Cell {
+  r, c;                     // 坐标
+  cageIds: number[];        // 所属笼子ID（支持嵌套笼）
+  fixedNum: number | null;  // 给定数字
+  fillNum: number | null;   // 玩家填入数字
+  candidates: Set&lt;number&gt;;  // 候选笔记
+  eliminations: Set&lt;number&gt;; // 排除标记
+  isError: boolean;         // 冲突错误
+  isCageSumError: boolean;  // 笼和超限错误
+  isSelected: boolean;      // 是否选中
+  isHintCell: boolean;      // 提示目标
+  isLocked: boolean;        // 残局锁定
+}</code></pre>
+
+<h4>3.1.2 核心 API</h4>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr><th>方法</th><th>说明</th><th>触发历史</th></tr>
+</thead>
+<tbody>
+<tr><td><code>loadLevel(puzzle)</code></td><td>加载关卡数据</td><td>否</td></tr>
+<tr><td><code>setNumber(num)</code></td><td>在选中格填数</td><td>是</td></tr>
+<tr><td><code>setNumberAt(r, c, num, opts)</code></td><td>在指定格填数</td><td>是</td></tr>
+<tr><td><code>eraseNumber()</code></td><td>擦除选中格</td><td>是</td></tr>
+<tr><td><code>eraseSelection()</code></td><td>批量擦除多选格</td><td>是</td></tr>
+<tr><td><code>toggleCandidate(num)</code></td><td>切换候选笔记</td><td>是</td></tr>
+<tr><td><code>toggleElimination(num)</code></td><td>切换排除标记</td><td>是</td></tr>
+<tr><td><code>undo()</code></td><td>撤销（最多 500 步）</td><td>—</td></tr>
+<tr><td><code>redo()</code></td><td>重做</td><td>—</td></tr>
+<tr><td><code>checkConflicts()</code></td><td>全盘冲突检测</td><td>否</td></tr>
+<tr><td><code>getNextHint()</code></td><td>生成下一步提示</td><td>否</td></tr>
+<tr><td><code>autoFillCandidates()</code></td><td>自动填入理论候选数</td><td>是</td></tr>
+<tr><td><code>clearAllCandidates()</code></td><td>清除所有候选</td><td>是</td></tr>
+</tbody>
+</table>
+</div>
+
+<h4>3.1.3 笼和校验机制</h4>
+
+<p>填数后自动校验笼子和值约束，不依赖答案数组：</p>
+
+<ul>
+<li><strong>上限检测</strong>：当前和 + 剩余格子最小可能和 &gt; 目标和 → 标错</li>
+<li><strong>下限检测</strong>：当前和 + 剩余格子最大可能和 &lt; 目标和 → 标错</li>
+<li><strong>最小/最大可能和</strong>：从 1~size 中排除已用数字，取最小/最大的 N 个之和</li>
+<li><strong>单格笼</strong>：填入后立即比对，不相等直接标错</li>
+</ul>
+
+<div class="callout tip">
+<strong>💡 性能优化</strong>
+笼和校验只在填数/擦除时触发，不在每帧 render 时计算，避免性能损耗。
+</div>
+
+<h3 id="renderer">3.2 渲染系统（Renderer）</h3>
+
+<p>基于 Canvas 2D 的高性能渲染器，支持高 DPI 屏幕和章节主题系统。</p>
+
+<h4>3.2.1 渲染管线</h4>
+
+<div class="mermaid">
+flowchart LR
+    A[render(board)] --&gt; B[清屏+背景]
+    B --&gt; C[绘制笼子<br>填充+边框+和值]
+    C --&gt; D[绘制网格线<br>粗线:宫/细线:格]
+    D --&gt; E[绘制高亮层<br>选中/同行列/同数/提示]
+    E --&gt; F[绘制数字层<br>预填/填入/候选]
+    F --&gt; G[绘制笔记层<br>呼吸态/三视角]
+    G --&gt; H[绘制错误标记<br>红色闪烁]
+
+    style A fill:#22c55e,stroke:#22c55e
+    style H fill:#ef4444,stroke:#ef4444
+</div>
+
+<h4>3.2.2 主题系统</h4>
+
+<p>每个章节有独立的颜色主题，由 <code>CHAPTER_THEMES</code> 定义：</p>
+
+<pre><code>{
+  id: 'chapter1',
+  name: '初识笼中密码',
+  bg: '#0f172a',           // 页面背景
+  boardBg: '#1e293b',      // 棋盘背景
+  line: '#334155',         // 网格线
+  thickLine: '#64748b',    // 粗线
+  cageBorder: '#22c55e',   // 笼子边框
+  cageFill: 'rgba(34,197,94,0.08)', // 笼子填充
+  fixedNum: '#e2e8f0',     // 预填数字色
+  fillNum: '#22d3ee',      // 填入数字色
+  candidate: '#94a3b8',    // 候选数色
+  highlight: 'rgba(99,102,241,0.3)', // 选中高亮
+  accent: '#22c55e',       // 主题色
+}</code></pre>
+
+<h4>3.2.3 提示动画引擎</h4>
+
+<p>渲染器内置了一套动画式推理展示引擎，用于将提示步骤以可视化方式逐步呈现，让玩家像观看侦探推理一样理解解题思路。</p>
+
+<h5>五种动画步骤类型</h5>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr><th>步骤类型</th><th>ID</th><th>视觉效果</th><th>说明</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>观察</strong></td><td><code>observe</code></td><td>行/列/宫高亮、笼子金色虚线边框</td><td>引导玩家关注关键区域和笼子</td></tr>
+<tr><td><strong>聚焦</strong></td><td><code>focus</code></td><td>目标格呼吸脉动效果</td><td>将注意力引向推理的核心格子</td></tr>
+<tr><td><strong>排除</strong></td><td><code>eliminate</code></td><td>排除数字红色斜线划掉</td><td>展示哪些候选数被排除</td></tr>
+<tr><td><strong>揭示</strong></td><td><code>reveal</code></td><td>揭示数字金色闪光</td><td>公布最终推理结果</td></tr>
+<tr><td><strong>完成</strong></td><td><code>complete</code></td><td>全局高亮渐隐</td><td>收尾动画，总结推理过程</td></tr>
+</tbody>
+</table>
+</div>
+
+<h5>核心 API</h5>
+
+<pre><code>// 启动提示动画
+Renderer.playHintAnimation(steps, {
+  onStepComplete: (index) => {...},
+  onComplete: () => {...}
+})
+
+// 跳过当前步骤
+Renderer.skipHintStep()
+
+// 停止动画
+Renderer.stopHintAnimation()
+
+// 动画步骤数据结构
+{
+  type: 'observe' | 'focus' | 'eliminate' | 'reveal' | 'complete',
+  highlight: { rows: [], cols: [], boxes: [], cells: [] },  // 高亮区域
+  cageHighlight: [cageId1, cageId2],                        // 笼子金色虚线
+  targetCell: { r, c },                                     // 目标格
+  eliminateNumbers: [{ r, c, numbers: [3, 5] }],            // 排除的数字
+  revealNumber: { r, c, value: 7 },                         // 揭示的数字
+  dialogue: '这里因为45法则，所以只能是7',                     // 同步显示的文案
+  duration: 1500                                            // 单步持续时间(ms)
+}</code></pre>
+
+<div class="callout tip">
+  <strong>交互加速</strong>
+  动画播放中点击棋盘可跳过当前步骤直接进入下一步，提升节奏掌控感。右侧浮条同步显示动画进度（当前步骤/总步骤）。
+</div>
+
+<h3 id="note">3.3 笔记系统（NoteSystem）</h3>
+
+<p>独创的<strong>三视角呼吸态笔记系统</strong>，不同角色有不同的笔记展示方式。</p>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr><th>视角</th><th>角色</th><th>模式</th><th>特点</th></tr>
+</thead>
+<tbody>
+<tr><td><code>hero</code></td><td>主角（守笼人）</td><td>经典模式</td><td>正常显示所有候选数，经典数独体验</td></tr>
+<tr><td><code>yan</code></td><td>阿妍</td><td>呼吸态</td><td>默认隐藏，选中单格时显示，有渐隐渐现动画</td></tr>
+<tr><td><code>ying</code></td><td>莹莹</td><td>全览模式</td><td>可以短暂展开全览所有笔记，有次数限制</td></tr>
+</tbody>
+</table>
+</div>
+
+<h4>3.3.1 呼吸态三阶段</h4>
+
+<ol>
+<li><strong>隐藏态</strong>：不显示任何笔记，保持盘面清爽</li>
+<li><strong>单格态</strong>：选中某格时显示该格的候选数</li>
+<li><strong>全览态</strong>（莹莹限定）：短暂显示所有格子的笔记，3秒后自动收回</li>
+</ol>
+
+<h3 id="rule45">3.4 星衡法则（Rule45）</h3>
+
+<p>杀手数独核心技巧的数学引擎和可视化面板。</p>
+
+<h4>3.4.1 算法能力</h4>
+
+<ul>
+<li><strong>组合枚举</strong>：回溯法计算 k 个数和为 target 的所有组合</li>
+<li><strong>内突/外突计算</strong>：计算伸出/伸入宫的笼子的差值</li>
+<li><strong>单宫分析</strong>：自动检测内突外突并枚举组合</li>
+<li><strong>多尺寸适配</strong>：支持 4×4（和为10）、6×6（和为21）、9×9（和为45）</li>
+</ul>
+
+<h4>3.4.2 面板功能</h4>
+
+<ul>
+<li>交互式宫格选择，点击宫查看分析</li>
+<li>自动检测内突/外突笼子并高亮</li>
+<li>枚举所有可能的数字组合</li>
+<li>与棋盘联动：选中组合时高亮对应格子</li>
+</ul>
+
+<h4>3.4.3 顶部常驻HUD</h4>
+
+<p>棋盘顶部常驻显示的45法则快速参考面板，让玩家在解题时随时查看当前选中区域的和值状态，无需频繁打开完整面板。</p>
+
+<div class="callout tip">
+  <strong>显示条件</strong>
+  仅在 9×9 关卡中显示（和值为45）。4×4 和 6×6 关卡因盘面较小、计算简单，不启用此 HUD。
+</div>
+
+<h5>三个 Tab 切换</h5>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr><th>Tab</th><th>显示内容</th><th>触发方式</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>行和</strong></td><td>当前选中行的已填数字之和、与45的差值、涉及的笼子组合</td><td>选中任意格子 → 显示所在行</td></tr>
+<tr><td><strong>列和</strong></td><td>当前选中列的已填数字之和、与45的差值、涉及的笼子组合</td><td>选中任意格子 → 显示所在列</td></tr>
+<tr><td><strong>宫和</strong></td><td>当前选中宫的已填数字之和、与45的差值、涉及的笼子组合</td><td>选中任意格子 → 显示所在宫</td></tr>
+</tbody>
+</table>
+</div>
+
+<h5>核心功能</h5>
+
+<ul>
+  <li><strong>实时和值计算</strong>：随棋盘填数实时更新已填数字之和</li>
+  <li><strong>差值显示</strong>：显示距离 45 的剩余值，正值表示还需填入的和</li>
+  <li><strong>涉及笼子列表</strong>：列出与当前行/列/宫相交的所有笼子，包含笼子和值、已入格数</li>
+  <li><strong>候选数字展示</strong>：根据差值和剩余格数，自动枚举可能的数字组合</li>
+  <li><strong>点击联动</strong>：点击笼子可高亮对应笼子区域</li>
+</ul>
+
+<h5>实现文件</h5>
+
+<div class="file-tree">
+<span class="dir">guide.html</span> — HUD 的 CSS 样式与 HTML 结构<br>
+<span class="dir">guide.js</span> — HUD 的数据计算与交互逻辑<br>
+</div>
+
+<h5>关键数据结构</h5>
+
+<pre><code>{
+  activeTab: 'row' | 'col' | 'box',       // 当前Tab
+  selectedIndex: 0,                       // 当前选中的行/列/宫索引
+  sum: 23,                                // 已填数字之和
+  diff: 22,                               // 与45的差值
+  remainingCells: 4,                      // 剩余空格数
+  involvedCages: [                        // 涉及的笼子
+    {
+      cageId: 5,
+      sum: 15,
+      cellsInRegion: 2,                   // 该笼在当前区域内的格数
+      cellsOutside: 1,                    // 该笼在区域外的格数
+      contribution: 8                     // 已贡献的和
+    }
+  ],
+  candidateCombos: [[3, 5, 6, 8], ...]    // 候选数字组合
+}</code></pre>
+
+<h3 id="techrater">3.5 推理引擎（TechRater）</h3>
+
+<p>独立的杀手数独推理引擎，既是技巧评级器，也是完整的求解器。源自 cagemaster2 的 tech-rater-v2，是整个提示系统、难度评分、教学验证的算法核心。</p>
+
+<h4>3.5.1 核心能力</h4>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr><th>能力</th><th>说明</th><th>方法</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>单步推理</strong></td><td>找出当前盘面的下一步最优解，带完整证据链</td><td><code>findNextStep()</code></td></tr>
+<tr><td><strong>完整求解</strong></td><td>按人类解题策略逐步推导，记录每步使用的技巧</td><td><code>solve(maxSteps)</code></td></tr>
+<tr><td><strong>难度评级</strong></td><td>1-5星 + 0-1000分制，基于最高技巧+密度+剩余格</td><td><code>getRating()</code></td></tr>
+<tr><td><strong>三阶段剧本</strong></td><td>提取开局-破局-收官三阶段，定位破局点和级联序列</td><td><code>getTriPhaseScript()</code></td></tr>
+<tr><td><strong>影响力评分</strong></td><td>5维度加权，从多个候选中选最有教学价值的一步</td><td><code>_calcInfluence()</code></td></tr>
+</tbody>
+</table>
+</div>
+
+<h4>3.5.2 支持的技巧（10级体系）</h4>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr><th>等级</th><th>ID</th><th>中文名</th><th>别名</th><th>4×4</th><th>6×6</th><th>9×9</th></tr>
+</thead>
+<tbody>
+<tr><td>L1</td><td>nakedSingle</td><td>裸单</td><td>孤星</td><td>✅</td><td>✅</td><td>✅</td></tr>
+<tr><td>L2</td><td>cageUnique</td><td>笼子唯一组合</td><td>-</td><td>❌</td><td>✅</td><td>✅</td></tr>
+<tr><td>L3</td><td>hiddenSingle</td><td>隐单</td><td>隐曜</td><td>✅</td><td>✅</td><td>✅</td></tr>
+<tr><td>L4</td><td>rule45</td><td>45法则</td><td>星衡法则</td><td>❌</td><td>✅</td><td>✅</td></tr>
+<tr><td>L5</td><td>nakedPair</td><td>裸数对</td><td>并蒂锁</td><td>✅</td><td>✅</td><td>✅</td></tr>
+<tr><td>L6</td><td>hiddenPair</td><td>隐数对</td><td>双曜</td><td>❌</td><td>✅</td><td>✅</td></tr>
+<tr><td>L7</td><td>pointingClaiming</td><td>区块排除</td><td>-</td><td>❌</td><td>✅</td><td>✅</td></tr>
+<tr><td>L8</td><td>nakedTriplet</td><td>裸三数组</td><td>三子法</td><td>❌</td><td>✅</td><td>✅</td></tr>
+<tr><td>L9</td><td>xWing</td><td>X-Wing</td><td>二连纵横阵</td><td>❌</td><td>❌</td><td>✅</td></tr>
+<tr><td>L10</td><td>swordfish</td><td>Swordfish</td><td>三才游鱼阵</td><td>❌</td><td>❌</td><td>✅</td></tr>
+</tbody>
+</table>
+</div>
+
+<h4>3.5.3 求解策略</h4>
+
+<p>采用「最低可用技巧」策略，模拟真实人类解题路径：</p>
+
+<ol>
+  <li>从最低级技巧开始遍历</li>
+  <li>找到可填的格子 → 填数，记录为 fill 步骤，break</li>
+  <li>没找到可填的 → 检查是否有候选被排除（elimination）</li>
+  <li>有排除 → 记录为 elimination 步骤，break</li>
+  <li>下一轮从最低级技巧重新开始</li>
+</ol>
+
+<p>这种「排除一步就回头」的策略，确保求解路径与人类思考顺序高度一致。</p>
+
+<h4>3.5.4 难度评分算法</h4>
+
+<pre><code>baseScore = maxTechLevel × 100        // 最高技巧等级基础分
+score = baseScore
+      + remainingFactor × 100        // 剩余空格修正
+      + densityFactor × 50           // 非孤星比例修正</code></pre>
+
+<p>星级划分：1星 &lt;250 / 2星 250-400 / 3星 400-525 / 4星 525-600 / 5星 ≥600</p>
+
+<h4>3.5.5 快速上手</h4>
+
+<pre><code>// 从 Board 创建求解器
+const solver = TechRater.fromBoard(board);
+
+// 找下一步
+const step = solver.findNextStep();
+// =&gt; { row, col, num, technique, techniqueName, depth, evidence }
+
+// 难度评级
+const rating = solver.getRating();
+// =&gt; { level: '3星', score: 480, maxTechLevel: 5, nonTrivialRatio: 0.25, ... }
+
+// 三阶段剧本
+const script = solver.getTriPhaseScript();
+// =&gt; { opening, breakthrough, ending, cascades, targetSkill }</code></pre>
+
+<h4>3.5.6 组合枚举算法</h4>
+
+<p>TechRater 的组合枚举采用<strong>回溯法 + 四重剪枝</strong>，用于笼子唯一组合、笼和推导等场景。</p>
+
+<p><strong>四重剪枝策略：</strong></p>
+<ol>
+  <li><strong>和值剪枝</strong>：target ≤ 0 时直接返回</li>
+  <li><strong>升序剪枝</strong>：v &gt; target 时 break（升序排列，后面更大）</li>
+  <li><strong>排除剪枝</strong>：已用/已填数字直接跳过</li>
+  <li><strong>候选约束剪枝</strong>：数字不在任何空格的候选集中时跳过</li>
+</ol>
+
+<p><strong>时间复杂度：</strong>最坏 O(C(9, n))，n 为空格数。4格笼最多 126 种组合，实际因四重剪枝远小于理论上限。</p>
+
+<p><strong>三套组合函数层级：</strong></p>
+<ul>
+  <li><code>_combosHelper()</code> — 基础组合（只考虑和+个数+排除），返回可能出现的数字集合</li>
+  <li><code>_findAllCombos()</code> — 完整组合枚举（考虑每格候选约束），返回全部组合</li>
+  <li><code>_canFillSum()</code> — 可行性判断（找到一个可行解就返回），用于快速检测</li>
+</ul>
+
+<h4>3.5.7 影响力评分算法</h4>
+
+<p>从多个候选结果中选择"最有教学价值"的一步，采用<strong>5 维度加权求和</strong>。</p>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr><th>维度</th><th>变量</th><th>公式</th><th>权重</th><th>分值范围</th></tr>
+</thead>
+<tbody>
+<tr><td>笼子完成度</td><td>cageScore</td><td>1 / max(cageEmpty, 1)</td><td>0.35</td><td>[0.11, 1]</td></tr>
+<tr><td>区域完成度</td><td>emptyScore</td><td>1 / max(min(row,col,box空), 1)</td><td>0.25</td><td>[0.11, 1]</td></tr>
+<tr><td>笔记确定性</td><td>candScore</td><td>1 / max(candCount, 1)</td><td>0.15</td><td>[0.11, 1]</td></tr>
+<tr><td>多笼交叉点</td><td>cageCrossScore</td><td>cageCount &gt; 1 ? 1 : 0</td><td>0.15</td><td>{0, 1}</td></tr>
+<tr><td>星衡法则触发</td><td>rule45Score</td><td>跨宫笼且剩≤2格时加分</td><td>0.10</td><td>[0, 1]</td></tr>
+</tbody>
+</table>
+</div>
+
+<p><strong>总公式：</strong></p>
+<pre><code>influence = cageScore × 0.35
+          + emptyScore × 0.25
+          + candScore × 0.15
+          + cageCrossScore × 0.15
+          + rule45Score × 0.10</code></pre>
+
+<p><strong>设计理念</strong>：以"笼子推进"为核心（Killer数独本质），辅以"区域连锁"和"确定性"，再加两个Killer特有的加分项。权重从高到低符合教学优先级。</p>
+
+<p><strong>选择策略</strong>：纯最高分选择，无随机性。Tie-break 规则为先来后到（用 &gt; 而非 &gt;=，保留第一个出现的最高分）。</p>
+
+<h4>3.5.8 三阶段剧本提取</h4>
+
+<p>从完整解题步骤中提取"开局-破局-收官"三阶段戏剧结构，用于教学演出和关卡评价。</p>
+
+<div class="mermaid">
+flowchart LR
+    A[开局阶段] --&gt; B[破局点]
+    B --&gt; C[级联坍塌]
+    A:::stage --&gt;|低级技巧铺垫| A
+    B:::break --&gt;|最高深度技巧| B
+    C:::stage --&gt;|多米诺雪崩| C
+    classDef stage fill:#1a1d24,stroke:#22d3ee
+    classDef break fill:#2a2f3a,stroke:#f59e0b,stroke-width:2
+</div>
+
+<p><strong>破局点确定：</strong></p>
+<ul>
+  <li>取<strong>深度最高</strong>的第一步（技巧深度 = 认知难度）</li>
+  <li>多个同深度步骤时，取<strong>第一个出现的</strong></li>
+  <li>全是孤星（深度为0）则不生成剧本</li>
+</ul>
+
+<p><strong>级联识别（顺水推舟策略）：</strong>破局点之后的所有 fill 步骤都是级联的一部分——"多米诺不需要算，它就是高级技巧破局后引发的雪崩现象。"</p>
+
+<p><strong>级联起点：</strong></p>
+<ul>
+  <li>破局点为 fill 类型 → 级联从破局点下一个开始</li>
+  <li>破局点为 elimination 类型 → 级联从之后第一个 fill 开始</li>
+</ul>
+
+<h3 id="guide-battle">3.6 对战系统（GuideBattle）</h3>
+
+<p>章节 Boss 战系统，玩家与 AI 角色同盘竞速抢格，提供实时对战体验。支持凝视拦截、必杀技、连击震慑、动态难度等多种进阶机制。</p>
+
+<h4>3.6.1 核心概念</h4>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr><th>概念</th><th>说明</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>幽灵格</strong></td><td>AI 占领的格子只显示淡色底色+呼吸边框+中心圆点，不显示数字——玩家不知道 AI 填的是什么，形成信息不对称</td></tr>
+<tr><td><strong>归属系统</strong></td><td>每个空格子有三种状态：未占领 / 玩家所有 / AI 所有。玩家填对 AI 的格子可以"抢过来"</td></tr>
+<tr><td><strong>胜利条件</strong></td><td>先填到总空格数的 <strong>75%</strong> 即获胜（最少 3 格）</td></tr>
+<tr><td><strong>AI 犯错</strong></td><td>AI 有概率填错，错格显示为灰色虚线边框 + 问号标记 + 轻微晃动，玩家可以"捡漏"</td></tr>
+</tbody>
+</table>
+</div>
+
+<h4>3.6.2 启动与生命周期</h4>
+
+<pre><code>// 启动Boss战
+GuideBattle.start({
+  board: board,           // Board 实例
+  renderer: renderer,     // Renderer 实例
+  solution: solution,     // 答案数组（二维）
+  opponent: bossConfig,   // Boss 配置对象
+  onEnd: onEndCallback,   // 结束回调
+});
+
+// 结束回调参数
+onEnd(result, bossConfig)
+// result: 'win' | 'lose' | 'draw'</code></pre>
+
+<p>生命周期：<code>start()</code> → 2 秒准备时间 → AI 开始走棋 → 双方抢格 → 达到 75% → <code>onEnd()</code></p>
+
+<h4>3.6.3 AI 玩家系统（AIPlayer）</h4>
+
+<p>基于 TechRater 推理引擎的 AI，不是随机填数，而是真实解题。有多种性格类型：</p>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr><th>性格</th><th>代表Boss</th><th>特点</th><th>拦截欲望</th></tr>
+</thead>
+<tbody>
+<tr><td><code>reckless</code> 冒失型</td><td>阿妍</td><td>失误率高（12%），速度不稳定，时快时慢</td><td>低（25%）</td></tr>
+<tr><td><code>steady</code> 稳健型</td><td>守笼人/星辰梭/沈墨</td><td>失误率低（2%），速度稳定，稳中带攻</td><td>中（40%）</td></tr>
+<tr><td><code>surround</code> 包围型</td><td>设局人/残影</td><td>从边缘往中心推进，喜欢拦截抢格</td><td>高（65%）</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>AI 思考时间 = 基础时间 × 难度系数 × 速度倍率。基础时间随技巧等级递增，越高级的技巧思考越久。</p>
+
+<h4>3.6.4 凝视拦截系统</h4>
+
+<p>玩家选中/凝视某个格子时，AI 有概率抢先一步填掉，制造"读心术"的压迫感。</p>
+
+<ul>
+<li><strong>触发条件</strong>：玩家聚焦格子 + AI 不在思考中 + 冷却已结束</li>
+<li><strong>冷却时间</strong>：默认 3 秒，杀手数独关卡延长至 8 秒</li>
+<li><strong>拦截概率</strong>：由 AI 性格的 <code>interceptProbability</code> 决定</li>
+<li><strong>视觉反馈</strong>：红光闪烁 + Boss 气泡台词</li>
+</ul>
+
+<h4>3.6.5 必杀技系统</h4>
+
+<p>AI 进度达到 70%（第二阶段预警）时触发必杀技，每个 Boss 技能不同：</p>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr><th>Boss</th><th>技能名</th><th>效果</th></tr>
+</thead>
+<tbody>
+<tr><td>阿妍</td><td>观局</td><td>找出全盘所有唯一可填格，高亮显示 3 秒（给玩家提示，也制造心理压力）</td></tr>
+<tr><td>守笼人</td><td>定式</td><td>直接推导并填入一个关键格子（选中间位置有视觉冲击力）</td></tr>
+<tr><td>设局人/残影/秘术</td><td>圈套</td><td>瞬间抢占 3 个边缘格子，形成包围态势，连续抢占制造视觉冲击</td></tr>
+</tbody>
+</table>
+</div>
+
+<h4>3.6.6 连击震慑系统</h4>
+
+<p>玩家连续填对时触发 AI 震慑（暂停思考），给玩家反击爽感。</p>
+
+<ul>
+<li><strong>触发阈值</strong>：标准关卡 3 连击，杀手数独 2 连击（更易触发）</li>
+<li><strong>震慑时长</strong>：基础 1.5 秒（杀手 2 秒），每多一连击加 0.5 秒（杀手 0.8 秒）</li>
+<li><strong>视觉反馈</strong>：右侧弹出连击数字（2/3/5/7/10 连，颜色逐级升级），抢格时额外显示"反抢!"</li>
+<li><strong>重置条件</strong>：填错即重置连击计数</li>
+</ul>
+
+<h4>3.6.7 AI 犯错可视化</h4>
+
+<p>AI 填错的格子不再是"完美的幽灵格"，而是有明显的视觉区分：</p>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr><th>表现</th><th>AI 填对</th><th>AI 填错</th></tr>
+</thead>
+<tbody>
+<tr><td>底色</td><td>Boss 主题色（淡）</td><td>灰色（更淡）</td></tr>
+<tr><td>边框</td><td>实线呼吸边框</td><td>灰色虚线边框，不稳定闪烁</td></tr>
+<tr><td>中心标记</td><td>实心小圆点</td><td>问号 "?" + 轻微晃动</td></tr>
+</tbody>
+</table>
+</div>
+
+<p><strong>自我修正机制</strong>：AI 有概率（<code>min(60%, 失误率 × 3)</code>）在 4~9 秒后发现自己填错并修正，修正后格子变回正常幽灵格样式。每个 Boss 有独特的犯错/修正台词。</p>
+
+<h4>3.6.8 动态难度调节</h4>
+
+<p>系统根据玩家填数速度自动调整 AI 速度，实现"遇强则强，遇弱则弱"的自适应体验。</p>
+
+<pre><code>// 核心参数
+_difficulty: {
+  speedMultiplier: 1.3,    // 开局慢30%，给玩家适应时间
+  targetRatio: 1.3,        // 目标：AI速度 ≈ 玩家的1.3倍（玩家略快）
+  minMultiplier: 0.5,      // AI最快 = 基准的50%
+  maxMultiplier: 2.5,      // AI最慢 = 基准的250%
+  smoothFactor: 0.15,      // 平滑系数（每次调整15%）
+  adjustInterval: 8000,    // 每8秒调整一次
+}</code></pre>
+
+<p>算法：记录最近 20 次玩家填数时间 → 计算平均间隔 → 对比目标比例 → 平滑调整 AI 速度倍率。</p>
+
+<h4>3.6.9 杀手数独专属适配</h4>
+
+<p>杀手数独心算量大，不适合高速竞速，因此做了专门的适配优化：</p>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr><th>机制</th><th>标准关卡</th><th>杀手数独</th></tr>
+</thead>
+<tbody>
+<tr><td>AI 基础速度</td><td>基准</td><td>慢 50%~70%</td></tr>
+<tr><td>拦截冷却</td><td>3 秒</td><td>8 秒</td></tr>
+<tr><td>连击阈值</td><td>3 连击</td><td>2 连击</td></tr>
+<tr><td>必杀技触发</td><td>70%</td><td>85%</td></tr>
+<tr><td>笼子虚线</td><td>正常</td><td>淡化至 40% 透明度，线宽 60%</td></tr>
+<tr><td>AI 技巧上限</td><td>10 级</td><td>4 级（只用到星衡法则）</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="callout tip">
+<strong>💡 设计理念</strong>
+杀手数独的核心乐趣是沉浸式逻辑推演，不适合高强度竞速压迫。适配原则是：<strong>降低节奏、减少打断、增加反击空间</strong>，让玩家在保证心算体验的前提下，依然能感受到对战的紧张感。
+</div>
+
+<h4>3.6.10 Boss 配置参考</h4>
+
+<p>在 <code>BOSS_CONFIGS</code> 对象中配置每个章节的 Boss：</p>
+
+<pre><code>{
+  id: 'cagekeeper',           // Boss唯一ID
+  name: '守笼人',              // 显示名称
+  portrait: 'CK_01_庄重.png',  // 头像图片
+  color: '#6366f1',           // 主题色（用于幽灵格、UI）
+  speedMin: 5500,             // 最快思考时间（ms）
+  speedMax: 8500,             // 最慢思考时间（ms）
+  mistakeChance: 0.08,        // 基础失误率
+  personality: '...',         // 性格描述
+  // AI难度调整（Boss战比关卡本身弱一些）
+  aiDifficulty: {
+    maxTechLevel: 4,          // 技巧等级上限
+    discoveryMultiplier: 0.7, // 发现率折扣
+    speedMultiplier: 1.5,     // 速度倍率（>1 = 变慢）
+    mistakeMultiplier: 2.0,   // 失误率倍率
+    interceptMultiplier: 0.3, // 拦截欲望倍率
+  },
+  // 战斗调优（杀手数独等特殊关卡）
+  battleTuning: {
+    isKiller: true,           // 是否杀手数独
+    interceptCooldown: 8000,  // 拦截冷却
+    warningPhase1At: 0.70,    // 一阶段预警
+    warningPhase2At: 0.85,    // 二阶段预警+必杀
+    fadeCagesInBattle: true,  // 淡化笼子虚线
+  },
+  battleLevelId: 205,         // （可选）对战专用关卡ID
+  preDialog: [...],           // 战前对话
+  winDialog: [...],           // 玩家胜利后对话
+  warningLines: [...],        // 预警台词
+}</code></pre>
+
+<h4>3.6.11 对战专用关卡池</h4>
+
+<p>每个 Boss 可以配置独立的对战关卡（<code>battleLevelId</code>），而不是直接使用章节通关的标准关卡。</p>
+
+<ul>
+<li><strong>设计目的</strong>：对战关卡应该预填多、节奏快、残局化，让双方一上来就进入收割阶段</li>
+<li><strong>筛选标准</strong>：视线扫描度高、预填率 40%~60% 以上、规则简单、有集中破局点</li>
+<li><strong>自动切换</strong>：战斗开始时自动加载对战关卡，结束后自动恢复原始关卡</li>
+<li><strong>可选配置</strong>：不配置 <code>battleLevelId</code> 则使用当前关卡</li>
+</ul>
+
+<div class="callout warn">
+<strong>⚠️ 注意</strong>
+对战关卡的 answer 必须与 puzzle 严格对应，否则会出现"填对了却说错"的 bug。建议使用 LevelValidator 验证。
+</div>
+
+<h3 id="what-if">3.7 What If 假设模式（分支快照）</h3>
+
+<p>What If 模式是一套「假设—验证」的分支推理工具，允许玩家在当前盘面基础上创建快照分支，尝试不同的填数路径，如果发现矛盾可以随时回退，是高级杀手数独解题的利器。</p>
+
+<h4>3.7.1 状态机模型</h4>
+
+<p>What If 模式的核心是一个快照栈状态机 <code>WhatIfState</code>：</p>
+
+<pre><code>{
+  active: false,             // 是否处于 What If 模式
+  rootSnapshot: Snapshot,    // 进入模式时的根快照
+  snapshots: [ ... ],        // 快照栈（最多3张，第4次覆盖最旧）
+  currentIndex: 0,           // 当前所在快照索引
+}</code></pre>
+
+<div class="callout tip">
+  <strong>卡片式设计</strong>
+  快照在右侧浮条中以<strong>扑克牌式堆叠</strong>展示：3 张卡片，每张垂直偏移 24px，最新的在最上方。第 4 次创建快照时，最底部（最旧）的快照被自动覆盖。
+</div>
+
+<h4>3.7.2 三种操作</h4>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr><th>操作</th><th>快捷键</th><th>效果</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>采纳（Accept）</strong></td><td><code>Enter</code></td><td>将当前分支的所有修改合并回主盘面，退出 What If 模式</td></tr>
+<tr><td><strong>回退（Undo）</strong></td><td><code>Backspace</code></td><td>回到上一个快照（弹栈），如果已在根快照则退出模式</td></tr>
+<tr><td><strong>彻底回退（Revert）</strong></td><td><code>Esc</code></td><td>放弃所有分支修改，直接回到根快照并退出模式</td></tr>
+</tbody>
+</table>
+</div>
+
+<h4>3.7.3 视觉标识</h4>
+
+<ul>
+  <li><strong>蓝色光晕</strong>：What If 模式激活时，棋盘整体覆盖一层淡蓝色光晕边框，明确区分正常模式与假设模式</li>
+  <li><strong>快照缩略图</strong>：每张快照卡片自动生成盘面缩略图，方便玩家快速识别不同分支</li>
+  <li><strong>当前标记</strong>：当前所在的快照卡片有高亮边框和"当前"标签</li>
+</ul>
+
+<h4>3.7.4 键盘快捷键</h4>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr><th>按键</th><th>功能</th></tr>
+</thead>
+<tbody>
+<tr><td><code>W</code></td><td>切换 What If 模式（进入/退出）</td></tr>
+<tr><td><code>Enter</code></td><td>采纳当前分支（合并到主盘面并退出）</td></tr>
+<tr><td><code>Backspace</code></td><td>回退到上一个快照</td></tr>
+<tr><td><code>Esc</code></td><td>彻底回退，放弃所有分支修改</td></tr>
+</tbody>
+</table>
+</div>
+
+<h4>3.7.5 核心 API</h4>
+
+<pre><code>// 进入 What If 模式
+WhatIfManager.enter()
+
+// 退出 What If 模式（保留当前分支）
+WhatIfManager.exit()
+
+// 创建新快照
+WhatIfManager.createSnapshot(label?)
+
+// 采纳当前分支
+WhatIfManager.accept()
+
+// 回退一步
+WhatIfManager.undo()
+
+// 彻底回退到根
+WhatIfManager.revert()
+
+// 获取当前快照列表
+WhatIfManager.getSnapshots()
+
+// 事件回调
+WhatIfManager.on('enter', () => {...})
+WhatIfManager.on('exit', () => {...})
+WhatIfManager.on('snapshotCreated', (snap) => {...})</code></pre>
+
+<h4>3.7.6 与其他系统的联动</h4>
+
+<ul>
+  <li><strong>技术矩阵平滑过渡</strong>：启动 What If 时自动关闭技术矩阵面板，避免信息过载和视觉冲突</li>
+  <li><strong>历史记录独立</strong>：What If 分支内的撤销/重做独立于主历史栈，互不干扰</li>
+  <li><strong>安卓返回键拦截</strong>：通过 <code>popstate</code> 事件拦截安卓系统返回键，在 What If 模式下回退快照而非返回上一页</li>
+  <li><strong>右侧浮条</strong>：What If 模式下右侧浮条切换为快照卡片视图</li>
+</ul>
+
+<!-- 4. Expert System -->
+<h2 id="expert">4. 专家系统</h2>
+
+<h3 id="five-layers">4.1 五层架构详解</h3>
+
+<div class="mermaid">
+flowchart TB
+    subgraph P["感知层 Perception"]
+        P1[玩家状态监测]
+        P2[操作序列追踪]
+        P3[状态推导: 卡顿/心流/焦虑]
+    end
+
+    subgraph D["决策层 Decision"]
+        D1[规则引擎: 6条规则]
+        D2[优先级排序]
+        D3[冷却时间管理]
+    end
+
+    subgraph T["节拍层 Timing"]
+        T1[节拍队列]
+        T2[速率限制]
+        T3[防反馈轰炸]
+    end
+
+    subgraph E["表达层 Expression"]
+        E1[动作处理器注册]
+        E2[优先级队列]
+        E3[中断/替换机制]
+    end
+
+    subgraph L["学习层 Learning"]
+        L1[风格画像: 4种类型]
+        L2[技巧熟练度追踪]
+        L3[动态阈值调整]
+    end
+
+    P1 --&gt; P2 --&gt; P3
+    P3 --&gt; D1 --&gt; D2 --&gt; D3
+    D3 --&gt; T1 --&gt; T2 --&gt; T3
+    T3 --&gt; E1 --&gt; E2 --&gt; E3
+    E3 --&gt; L1 --&gt; L2 --&gt; L3
+    L3 --&gt; D1
+
+    style P fill:rgba(34,211,238,0.15),stroke:#22d3ee
+    style D fill:rgba(99,102,241,0.15),stroke:#6366f1
+    style T fill:rgba(245,158,11,0.15),stroke:#f59e0b
+    style E fill:rgba(236,72,153,0.15),stroke:#ec4899
+    style L fill:rgba(34,197,94,0.15),stroke:#22c55e
+</div>
+
+<h4>4.1.1 决策规则（6条）</h4>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr><th>规则</th><th>优先级</th><th>触发条件</th><th>输出动作</th></tr>
+</thead>
+<tbody>
+<tr><td>teaching_trigger</td><td>100</td><td>卡顿 + 连续错误 + 遇到新技巧</td><td>SHOW_DIALOG（教学对话）</td></tr>
+<tr><td>eureka_burst</td><td>90</td><td>8连击 + 心流状态</td><td>EUREKA（爆发庆祝）</td></tr>
+<tr><td>stuck_guide</td><td>80</td><td>卡顿超过阈值</td><td>SHOW_TOAST（引导提示）</td></tr>
+<tr><td>anxiety_cooldown</td><td>70</td><td>焦虑状态（高频操作+错误）</td><td>SHOW_TOAST（安抚）</td></tr>
+<tr><td>flow_encouragement</td><td>60</td><td>5连击 + 心流</td><td>SHOW_TOAST（鼓励）</td></tr>
+<tr><td>progress_milestone</td><td>30</td><td>每填 10 个数字</td><td>SHOW_TOAST（里程碑）</td></tr>
+</tbody>
+</table>
+</div>
+
+<h4>4.1.2 表达层优先级</h4>
+
+<p>高优先级动作可以中断低优先级动作，确保重要反馈不被淹没：</p>
+
+<pre><code>EUREKA       = 100  // 爆发特效（可打断一切）
+TEACHING     = 80   // 教学对话（重要学习时刻）
+STUCK_GUIDE  = 50   // 卡顿引导
+COMBO_EFFECT = 30   // 连击效果
+AMBIENT      = 10   // 环境氛围（最弱）</code></pre>
+
+<h3 id="teaching">4.2 教学系统</h3>
+
+<p>教学系统跟踪玩家对每种技巧的掌握程度，提供分级教学对话。</p>
+
+<h4>4.2.1 七种核心技巧</h4>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr><th>技巧ID</th><th>名称</th><th>教师</th><th>难度</th></tr>
+</thead>
+<tbody>
+<tr><td><code>nakedSingle</code></td><td>裸单（唯一余数）</td><td>守笼人</td><td>★☆☆</td></tr>
+<tr><td><code>hiddenSingle</code></td><td>隐单（摒除）</td><td>守笼人</td><td>★☆☆</td></tr>
+<tr><td><code>nakedPair</code></td><td>裸对</td><td>阿妍</td><td>★★☆</td></tr>
+<tr><td><code>pointingPair</code></td><td>区块摒除</td><td>阿妍</td><td>★★☆</td></tr>
+<tr><td><code>cageSumDeduction</code></td><td>笼和推导</td><td>阿妍</td><td>★★☆</td></tr>
+<tr><td><code>cageSumPair</code></td><td>笼和组合</td><td>莹莹</td><td>★★★</td></tr>
+<tr><td><code>rule45</code></td><td>星衡法则（45法则）</td><td>莹莹</td><td>★★★</td></tr>
+</tbody>
+</table>
+</div>
+
+<h4>4.2.2 掌握度分级</h4>
+
+<ol>
+<li><strong>初识</strong>（0-1次）：首次遭遇，播放完整教学演出</li>
+<li><strong>入门</strong>（2-5次）：复习式简短提示</li>
+<li><strong>熟练</strong>（6-15次）：一句话提示</li>
+<li><strong>精通</strong>（16-30次）：只高亮目标格</li>
+<li><strong>大师</strong>（31-50次）：自动跳过基础提示</li>
+<li><strong>传说</strong>（50+次）：无需提示</li>
+</ol>
+
+<h3 id="hints">4.3 提示系统</h3>
+
+<p>提示系统基于棋盘当前状态，动态生成下一步最优提示。</p>
+
+<h4>4.3.1 提示结构</h4>
+
+<pre><code>{
+  technique: 'nakedSingle',    // 技巧ID
+  type: 'single',              // 提示类型
+  targetCells: [{r, c}],       // 目标格子
+  targetNumber: 5,             // 目标数字
+  dialogue: '这一格只能是5',     // 提示文本
+  character: 'ayan',           // 说话角色
+  isFirstEncounter: false,     // 是否首次遇到
+  teachingDialog: [...],       // 教学对话（首次时）
+  difficulty: 1,               // 难度等级
+  reason: '...'                // 推导理由
+}</code></pre>
+
+<h4>4.3.2 提示播放器（动画式推理展示）</h4>
+
+<p>提示不再是简单的文字气泡，而是一套完整的<strong>动画式推理展示</strong>系统。玩家点击提示后，系统会像播放侦探推理剧一样，逐步展示从观察到结论的完整推导过程。</p>
+
+<h5>动画编排流程</h5>
+
+<div class="mermaid">
+flowchart LR
+    A[生成提示数据] --&gt; B[构建动画步骤<br>_buildHintAnimationSteps]
+    B --&gt; C[启动动画引擎<br>playHintAnimation]
+    C --&gt; D[observe 观察]
+    D --&gt; E[focus 聚焦]
+    E --&gt; F[eliminate 排除]
+    F --&gt; G[reveal 揭示]
+    G --&gt; H[complete 完成]
+    H --&gt; I[动画结束回调]
+
+    style A fill:#6366f1,stroke:#6366f1
+    style I fill:#22c55e,stroke:#22c55e
+</div>
+
+<h5>步骤编排逻辑</h5>
+
+<p>动画步骤由 <code>guide.js</code> 中的 <code>_buildHintAnimationSteps()</code> 根据提示类型动态编排：</p>
+
+<ul>
+  <li><strong>裸单/隐单类</strong>：观察（高亮行列宫）→ 聚焦（目标格呼吸）→ 排除（划掉候选）→ 揭示（数字闪光）→ 完成</li>
+  <li><strong>45法则类</strong>：观察（笼子金色虚线）→ 聚焦（伸出格）→ 排除（划掉不可能的和）→ 揭示 → 完成</li>
+  <li><strong>数对/数组类</strong>：观察（多格高亮）→ 聚焦（候选数字）→ 排除（划掉同行列的相同数字）→ 揭示 → 完成</li>
+</ul>
+
+<h5>播放控制 API</h5>
+
+<pre><code>// 由 guide.js 调用，启动提示动画
+GuideSystem.playHintAnimation(hintData)
+
+// 渲染层核心方法（renderer.js）
+Renderer.playHintAnimation(steps, callbacks)   // 播放
+Renderer.skipHintStep()                         // 跳过当前步
+Renderer.stopHintAnimation()                    // 停止
+
+// 进度同步
+// 右侧浮条显示：当前步骤 / 总步骤数
+{ currentStep: 3, totalSteps: 5 }</code></pre>
+
+<div class="callout tip">
+  <strong>交互优化</strong>
+  动画播放中点击棋盘任意位置可跳过当前步骤，支持玩家自主掌控节奏。动画结束后自动回到正常交互状态。
+</div>
+
+<h5>与右侧浮条的联动</h5>
+
+<p>提示播放期间，右侧浮条自动切换为「提示播放中」模式，显示：</p>
+<ul>
+  <li>进度指示器（当前步骤 / 总步骤）</li>
+  <li>进度条动画</li>
+  <li>暂停/跳过按钮</li>
+</ul>
+
+<!-- 5. Story & Audio -->
+<h2 id="story">5. 剧情与音频</h2>
+
+<h3 id="story-engine">5.1 剧情引擎（StoryEngine）</h3>
+
+<p>支持打字机效果、立绘显示、语音同步、背景切换的轻量剧情引擎。</p>
+
+<h4>5.1.1 行类型</h4>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr><th>类型</th><th>说明</th><th>字段</th></tr>
+</thead>
+<tbody>
+<tr><td><code>dialogue</code></td><td>角色对话</td><td>speaker, text, emotion, side, voiceId</td></tr>
+<tr><td><code>narration</code></td><td>旁白</td><td>text, bg</td></tr>
+<tr><td><code>title</code></td><td>标题卡</td><td>text, subtitle</td></tr>
+<tr><td><code>bg</code></td><td>背景切换</td><td>bg</td></tr>
+<tr><td><code>portrait</code></td><td>立绘显示/隐藏</td><td>speaker, emotion, side, show</td></tr>
+<tr><td><code>sfx</code></td><td>音效</td><td>sfx</td></tr>
+<tr><td><code>voice</code></td><td>语音</td><td>voiceId</td></tr>
+<tr><td><code>item</code></td><td>道具展示</td><td>item, show</td></tr>
+</tbody>
+</table>
+</div>
+
+<h4>5.1.2 跳过机制</h4>
+
+<ul>
+<li><strong>跳过按钮</strong>：右下角「跳过 ▶▶」，点击立即结束</li>
+<li><strong>长按跳过</strong>：长按对话气泡 1 秒，带圆形进度条</li>
+<li><strong>已读加速</strong>：二周目已读剧情自动 2 倍速打字机</li>
+<li><strong>跳过确认</strong>：首次跳过时弹窗确认，可勾选「不再提示」</li>
+</ul>
+
+<h3 id="audio">5.2 音频服务（AudioService）</h3>
+
+<p>基于 Web Audio API 的统一音频入口，分四个音量通道。</p>
+
+<h4>5.2.1 四通道架构</h4>
+
+<div class="mermaid">
+flowchart LR
+    A[Master Gain<br>总音量] --&gt; B[SFX Gain<br>音效]
+    A --&gt; C[Voice Gain<br>语音]
+    A --&gt; D[BGM Gain<br>背景音乐]
+    B --&gt; E[AudioBufferSource × N<br>音效缓冲池]
+    C --&gt; F[AudioBufferSource × N<br>语音缓冲池]
+    D --&gt; G[HTML Audio Element<br>BGM 流播放]
+
+    style A fill:#6366f1,stroke:#6366f1
+    style E fill:#22d3ee,stroke:#22d3ee
+    style F fill:#f59e0b,stroke:#f59e0b
+    style G fill:#ec4899,stroke:#ec4899
+</div>
+
+<h4>5.2.2 核心 API</h4>
+
+<pre><code>// 初始化与解锁
+AudioService.init()
+AudioService.unlock()    // 用户首次交互后调用
+
+// 音量控制
+AudioService.setVolume('master', 0.7)
+AudioService.setVolume('sfx', 0.6)
+AudioService.setVolume('voice', 0.85)
+AudioService.setVolume('bgm', 0.4)
+AudioService.getVolume('sfx')  // → 0.6
+
+// 音效
+AudioService.sfx.play('fill_correct')
+AudioService.sfx.play('victory', { volume: 0.8 })
+AudioService.sfx.preload(['click', 'hint', 'erase'])
+
+// 语音
+AudioService.voice.play('VO_CK_001')
+AudioService.voice.stop(500)  // 500ms 淡出
+
+// 背景音乐
+AudioService.bgm.play('chapter_1')
+AudioService.bgm.stop()</code></pre>
+
+<h3 id="gallery">5.3 图鉴系统（Gallery）</h3>
+
+<p>图鉴系统是剧情内容的收集与回放中心，集成了角色档案、剧情回顾和 CG 收藏三大模块，让玩家可以随时重温游戏中的精彩瞬间。</p>
+
+<h4>5.3.1 三个 Tab</h4>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr><th>Tab</th><th>内容</th><th>解锁方式</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>角色图鉴</strong></td><td>角色立绘、人物简介、配音信息</td><td>角色首次登场时自动解锁</td></tr>
+<tr><td><strong>剧情回顾</strong></td><td>已读剧情列表，支持章节选择回放</td><td>对话播放完成时自动标记已读</td></tr>
+<tr><td><strong>CG 收藏</strong></td><td>背景图/场景 CG 收集</td><td>场景切换时自动解锁对应 CG</td></tr>
+</tbody>
+</table>
+</div>
+
+<h4>5.3.2 自动解锁机制</h4>
+
+<ul>
+  <li><strong>剧情已读标记</strong>：<code>StoryEngine</code> 在对话播放完成时自动调用 <code>ProgressManager.markStoryRead(storyId)</code>，无需手动触发</li>
+  <li><strong>CG/背景图解锁</strong>：剧情引擎执行 <code>bg</code> 指令切换背景时，自动将该背景图加入 CG 收藏</li>
+  <li><strong>角色解锁</strong>：角色首次在剧情中出现立绘时，自动解锁角色图鉴条目</li>
+</ul>
+
+<h4>5.3.3 剧情回放优化</h4>
+
+<ul>
+  <li><strong>章节式组织</strong>：剧情按章节分组，支持按章节快速跳转</li>
+  <li><strong>已读加速</strong>：回放已读剧情时自动启用 2 倍速打字机效果</li>
+  <li><strong>进度保存</strong>：回放进度不影响主线进度，可随时退出</li>
+  <li><strong>场景选择</strong>：支持从章节内任意场景开始回放</li>
+</ul>
+
+<h4>5.3.4 数据结构</h4>
+
+<pre><code>// ProgressManager 中的图鉴数据
+gallery: {
+  characters: {               // 角色图鉴
+    "ayan": { unlocked: true, unlockedAt: 1234567890 },
+    "ck": { unlocked: true, unlockedAt: 1234567890 },
+    ...
+  },
+  stories: {                  // 剧情已读标记
+    "ch1_opening": { read: true, readAt: 1234567890 },
+    "ch1_clear": { read: false },
+    ...
+  },
+  cgs: {                      // CG 收藏
+    "bg_office_day": { unlocked: true, unlockedAt: 1234567890 },
+    "bg_night_rooftop": { unlocked: false },
+    ...
+  }
+}</code></pre>
+
+<h4>5.3.5 核心 API</h4>
+
+<pre><code>// 解锁角色
+ProgressManager.unlockCharacter(charId)
+
+// 标记剧情已读
+ProgressManager.markStoryRead(storyId)
+
+// 解锁 CG
+ProgressManager.unlockCG(cgId)
+
+// 获取图鉴统计
+ProgressManager.getGalleryStats()
+// → { characters: 8/11, stories: 24/30, cgs: 12/18 }
+
+// 打开图鉴面板
+GalleryPanel.open(tab?)    // tab: 'characters' | 'stories' | 'cgs'</code></pre>
+
+<!-- 6. UI Components -->
+<h2 id="ui">6. UI 组件</h2>
+
+<div class="card-grid">
+  <div class="card">
+    <h4>设置面板</h4>
+    <div class="card-meta">SettingsPanel</div>
+    <p>音量控制 / 游戏设置 / 显示设置 / 数据管理，右侧滑入</p>
+  </div>
+  <div class="card">
+    <h4>成就面板</h4>
+    <div class="card-meta">AchievementPanel</div>
+    <p>20个成就按分类展示，进度统计，解锁时间记录，游戏时长</p>
+  </div>
+  <div class="card">
+    <h4>右侧浮条</h4>
+    <div class="card-meta">SideRail</div>
+    <p>金属色拉扣头，滑出面板，三模式切换（普通/What If/提示中）</p>
+  </div>
+  <div class="card">
+    <h4>星衡法则面板</h4>
+    <div class="card-meta">Rule45Panel</div>
+    <p>交互式宫格分析，内突外突检测，组合枚举</p>
+  </div>
+  <div class="card">
+    <h4>技巧图鉴</h4>
+    <div class="card-meta">TeachingSystem UI</div>
+    <p>已学技巧列表，掌握度进度条，描述与分类</p>
+  </div>
+  <div class="card">
+    <h4>图鉴面板</h4>
+    <div class="card-meta">GalleryPanel</div>
+    <p>角色图鉴 / 剧情回顾 / CG收藏，三Tab切换</p>
+  </div>
+  <div class="card">
+    <h4>角色气泡</h4>
+    <div class="card-meta">showCharacterBubble()</div>
+    <p>轻量角色对话气泡，5种样式：提示/顿悟/鼓励/错误/信息</p>
+  </div>
+  <div class="card">
+    <h4>章节选择</h4>
+    <div class="card-meta">ChapterSelect</div>
+    <p>8章网格布局，进度徽章，隐藏关解锁，多周目支持</p>
+  </div>
+  <div class="card">
+    <h4>主菜单</h4>
+    <div class="card-meta">menu.html</div>
+    <p>牛皮封面质感，烫金标题，皮革质感按钮</p>
+  </div>
+</div>
+
+<h3 id="side-rail">6.1 右侧浮条（SideRail）</h3>
+
+<p>贴附在屏幕右边缘的可交互浮条，由一个金属色「拉扣头」和一个 80px 宽的滑出面板组成，是 What If 模式和提示播放的核心交互入口。</p>
+
+<h4>6.1.1 拉扣头设计</h4>
+
+<ul>
+  <li><strong>尺寸</strong>：32px 宽，高度自适应内容</li>
+  <li><strong>位置</strong>：固定在屏幕右边缘，垂直居中</li>
+  <li><strong>视觉</strong>：金属质感渐变，有细微纹理和高光</li>
+  <li><strong>交互</strong>：点击拉扣头 → 面板从右侧滑入展开</li>
+</ul>
+
+<h4>6.1.2 三种模式内容</h4>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr><th>模式</th><th>触发条件</th><th>面板内容</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>普通模式</strong></td><td>默认状态</td><td>空面板或提示功能入口按钮</td></tr>
+<tr><td><strong>What If 模式</strong></td><td>进入 What If 时自动切换</td><td>快照堆叠卡片（3张扑克牌式）+ 操作按钮</td></tr>
+<tr><td><strong>提示播放中</strong></td><td>播放提示动画时自动切换</td><td>进度指示器（当前步骤/总步骤）+ 进度条</td></tr>
+</tbody>
+</table>
+</div>
+
+<h4>6.1.3 快照卡片堆叠</h4>
+
+<p>What If 模式下，快照以<strong>扑克牌式堆叠</strong>展示：</p>
+<ul>
+  <li>最多显示 3 张卡片，每张垂直偏移 24px</li>
+  <li>最新的快照在最上方（最完整可见）</li>
+  <li>第 4 次创建快照时，最底部（最旧）的卡片被自动覆盖</li>
+  <li>当前所在快照有高亮边框和「当前」标记</li>
+  <li>点击卡片可快速切换到对应快照</li>
+</ul>
+
+<h4>6.1.4 交互细节</h4>
+
+<ul>
+  <li><strong>点击外部收起</strong>：点击面板以外的区域自动收起面板</li>
+  <li><strong>安卓边缘手势屏蔽</strong>：通过 <code>touch-action: none</code> + <code>popstate</code> 事件拦截，防止安卓边缘返回手势误触</li>
+  <li><strong>滑动动画</strong>：面板展开/收起时有平滑的位移动画</li>
+  <li><strong>模式切换</strong>：模式切换时内容有淡入淡出过渡</li>
+</ul>
+
+<h3 id="menu-ui">6.2 主菜单（menu.html）</h3>
+
+<p>独立的主菜单页面，采用牛皮封面与烫金文字的复古侦探手册风格，是游戏的入口界面。</p>
+
+<h4>6.2.1 视觉设计</h4>
+
+<ul>
+  <li><strong>背景</strong>：牛皮纸封面质感，带有细微纹理和磨损效果</li>
+  <li><strong>标题</strong>：烫金效果 "CAGED CIPHER"，副标题 "笼中密码"</li>
+  <li><strong>按钮</strong>：皮革质感按钮，带有缝线和阴影效果</li>
+  <li><strong>氛围</strong>：暖色调灯光，营造档案室/侦探笔记的沉浸感</li>
+</ul>
+
+<h4>6.2.2 功能入口</h4>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr><th>菜单项</th><th>功能</th><th>说明</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>继续调查</strong></td><td>继续上次游戏</td><td>自动跳转到上次退出的关卡</td></tr>
+<tr><td><strong>开启卷宗</strong></td><td>新游戏</td><td>从头开始新游戏（可选择周目）</td></tr>
+<tr><td><strong>章节选择</strong></td><td>章节列表</td><td>查看已解锁章节，自由选择进入</td></tr>
+<tr><td><strong>设置</strong></td><td>设置面板</td><td>音量、游戏设置、数据管理</td></tr>
+<tr><td><strong>关于</strong></td><td>关于页面</td><td>版本信息、制作人员、特别鸣谢</td></tr>
+</tbody>
+</table>
+</div>
+
+<h4>6.2.3 实现说明</h4>
+
+<div class="file-tree">
+<span class="file important">menu.html</span> — 主菜单页面（独立 HTML 文件）<br>
+<span class="file">menu.css</span> — 牛皮封面质感样式<br>
+<span class="file">menu.js</span> — 菜单交互逻辑与进度加载<br>
+</div>
+
+<!-- 7. Data -->
+<h2 id="data">7. 数据结构</h2>
+
+<h3 id="chapters">7.1 章节数据（chapters.json）</h3>
+
+<p>所有游戏内容由单一 JSON 文件驱动，包含角色、章节、关卡、剧情。</p>
+
+<h4>7.1.1 顶层结构</h4>
+
+<pre><code>{
+  "version": 3,
+  "characters": { ... },   // 11个角色定义
+  "scenes": { ... },       // 独立场景对话
+  "chapters": [ ... ]      // 8个章节
+}</code></pre>
+
+<h4>7.1.2 关卡数据结构</h4>
+
+<pre><code>{
+  "levelId": 101,
+  "title": "第一封信",
+  "difficulty": "入门",
+  "difficultyLevel": 1,
+  "gridSize": 4,
+  "teachingGoal": "学习杀手数独基础规则",
+  "features": {
+    "allowDraft": true,
+    "assistant45": false,
+    "showHints": true,
+    "perspectiveMode": false
+  },
+  "triggers": [ ... ],     // 关卡触发事件
+  "cells": [               // 初始盘面（0=空）
+    [0,0,0,0],
+    [0,0,0,0],
+    [0,0,0,0],
+    [0,0,0,0]
+  ],
+  "cages": [               // 笼子定义
+    { "id": 1, "sum": 7, "cells": [[0,0],[0,1]] },
+    ...
+  ],
+  "solution": [ ... ],     // 答案（用于校验）
+  "preDialog": [ ... ],    // 关卡前剧情
+  "clearDialog": [ ... ]   // 通关剧情
+}</code></pre>
+
+<div class="callout warn">
+<strong>⚠️ 笼子定义规则</strong>
+每格必须恰好属于一个笼子，不能遗漏也不能重复。笼子的 cells 数组是 [行, 列] 格式。
+</div>
+
+<h3 id="progress">7.2 进度系统</h3>
+
+<p>进度数据存储在 <code>localStorage</code> 中，key 为 <code>caged_cipher_progress</code>。</p>
+
+<pre><code>{
+  version: 3,
+  unlockedChapters: [1, 2],            // 已解锁章节
+  levelScores: {                        // 关卡评分
+    "101": { stars: 3, time: 120, hints: 0, cleared: true },
+    ...
+  },
+  achievements: {                       // 成就（统一数据源）
+    "first_clear": { unlocked: true, unlockedAt: 1234567890 },
+    ...
+  },
+  achievementTimes: {                   // 成就解锁时间戳
+    "first_clear": 1234567890,
+    "combo_master": 1234567900,
+    ...
+  },
+  hiddenLevels: [199],                  // 解锁的隐藏关
+  trueEndingUnlocked: false,            // 真结局解锁状态
+  trueEndingCleared: false,             // 真结局通关状态
+  playCount: 5,                         // 周目数
+  totalPlayTime: 3600,                  // 总游戏时长（秒）
+  teaching: { ... },                    // 教学系统数据
+  gallery: {                            // 图鉴系统数据
+    characters: { ... },
+    stories: { ... },
+    cgs: { ... }
+  }
+}</code></pre>
+
+<h4>7.2.1 成就面板统一</h4>
+
+<p>成就系统已全面统一为以 <code>ProgressManager</code> 为单一数据源，面板 UI 直接从 <code>ProgressManager.ACHIEVEMENT_DEFS</code> 读取定义，消除了数据冗余。</p>
+
+<div class="callout tip">
+  <strong>设计原则</strong>
+  成就定义、解锁状态、解锁时间三者统一存储在 ProgressManager 中，成就面板（AchievementPanel）仅负责展示，不持有任何独立数据。
+</div>
+
+<h5>20 个成就 · 三大分类</h5>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr><th>分类</th><th>数量</th><th>说明</th><th>示例</th></tr>
+</thead>
+<tbody>
+<tr><td><span class="badge module">进度类</span></td><td>约 8 个</td><td>随剧情推进自动解锁</td><td>初入笼中、洞察真相、守笼人</td></tr>
+<tr><td><span class="badge expert">技巧类</span></td><td>约 6 个</td><td>掌握特定解题技巧</td><td>星衡初悟、并蒂花开、游鱼破阵</td></tr>
+<tr><td><span class="badge story">挑战类</span></td><td>约 6 个</td><td>高难度挑战与特殊成就</td><td>无提示通关、极速破局、完美印记</td></tr>
+</tbody>
+</table>
+</div>
+
+<h5>核心 API</h5>
+
+<pre><code>// 获取总游戏时长（秒）
+ProgressManager.getTotalPlayTime()  // → 3600
+
+// 格式化游戏时长
+ProgressManager.formatPlayTime(seconds)  // → "1小时 0分"
+
+// 解锁成就
+ProgressManager.unlockAchievement(achievementId)
+
+// 获取成就列表
+ProgressManager.getAchievements()
+
+// 获取成就分类统计
+ProgressManager.getAchievementStats()
+// → { progress: 6/8, skill: 3/6, challenge: 2/6 }</code></pre>
+
+<!-- 8. Interaction -->
+<h2 id="interaction">8. 交互设计</h2>
+
+<h4>8.1 核心操作</h4>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr><th>操作</th><th>鼠标/触控</th><th>键盘</th></tr>
+</thead>
+<tbody>
+<tr><td>选中格子</td><td>点击格子</td><td>方向键移动</td></tr>
+<tr><td>填数</td><td>选中后点数字键 / 长按数字键激活后点格子</td><td>1-9 数字键</td></tr>
+<tr><td>擦除</td><td>点击橡皮擦按钮</td><td>Backspace / Delete / 0</td></tr>
+<tr><td>笔记模式</td><td>点击笔记按钮（N）</td><td>N 键切换</td></tr>
+<tr><td>多选</td><td>拖拽选择区域（自动进入笔记模式）</td><td>Shift + 方向键</td></tr>
+<tr><td>撤销</td><td>点击撤销按钮</td><td>Ctrl+Z</td></tr>
+<tr><td>重做</td><td>—</td><td>Ctrl+Y / Ctrl+Shift+Z</td></tr>
+<tr><td>提示</td><td>点击💡按钮</td><td>H 键</td></tr>
+<tr><td>45法则</td><td>点击📐按钮</td><td>R 键</td></tr>
+<tr><td>技巧图鉴</td><td>点击📖按钮</td><td>T 键</td></tr>
+<tr><td>What If 模式</td><td>点击右侧浮条/假设按钮</td><td>W 键</td></tr>
+<tr><td>What If 采纳</td><td>点击采纳按钮</td><td>Enter</td></tr>
+<tr><td>What If 回退</td><td>点击回退按钮</td><td>Backspace</td></tr>
+<tr><td>What If 退出</td><td>点击关闭</td><td>Esc</td></tr>
+<tr><td>设置</td><td>点击⚙按钮</td><td>S 键</td></tr>
+<tr><td>取消激活</td><td>点击空白处</td><td>Esc</td></tr>
+</tbody>
+</table>
+</div>
+
+<h4>8.2 高级手势</h4>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr><th>手势</th><th>操作</th><th>效果</th></tr>
+</thead>
+<tbody>
+<tr><td>拖拽多选</td><td>在棋盘上拖动</td><td>选中矩形区域，自动进入笔记模式</td></tr>
+<tr><td>上划数字键</td><td>数字键向上滑动</td><td>在选中格切换笔记候选数</td></tr>
+<tr><td>长按棋盘数字</td><td>长按已填数字的格子 0.5s</td><td>高亮所有同数字格子（3秒）</td></tr>
+<tr><td>长按数字键</td><td>长按数字键 0.5s</td><td>激活该数字，点击格子自动填入</td></tr>
+<tr><td>长按剧情</td><td>长按对话气泡 1s</td><td>跳过当前剧情（带进度环）</td></tr>
+</tbody>
+</table>
+</div>
+
+<h4>8.3 模式交互</h4>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr><th>场景</th><th>操作</th><th>效果</th></tr>
+</thead>
+<tbody>
+<tr><td>提示动画播放中</td><td>点击棋盘</td><td>跳过当前动画步骤</td></tr>
+<tr><td>右侧浮条</td><td>点击拉扣头</td><td>展开/收起滑出面板</td></tr>
+<tr><td>右侧浮条</td><td>点击面板外部</td><td>自动收起面板</td></tr>
+<tr><td>What If 模式</td><td>点击快照卡片</td><td>快速切换到对应快照</td></tr>
+<tr><td>45法则HUD</td><td>点击行/列/宫 Tab</td><td>切换显示维度</td></tr>
+<tr><td>45法则HUD</td><td>点击笼子项</td><td>高亮棋盘上对应笼子</td></tr>
+</tbody>
+</table>
+</div>
+
+<!-- 9. Dev Guide -->
+<h2 id="dev-guide">9. 开发指南</h2>
+
+<h3 id="add-level">9.1 添加新关卡</h3>
+
+<ol>
+<li><strong>在 chapters.json 中添加关卡数据</strong>
+  <ul>
+    <li>找到对应章节的 <code>levels</code> 数组</li>
+    <li>添加新的关卡对象，包含 <code>levelId</code>、<code>title</code>、<code>gridSize</code></li>
+    <li>定义 <code>cells</code>（初始盘面）和 <code>cages</code>（笼子）</li>
+    <li>提供 <code>solution</code>（答案数组）</li>
+  </ul>
+</li>
+<li><strong>验证笼子覆盖</strong>
+  <ul>
+    <li>确保每格恰好属于一个笼子</li>
+    <li>验证每个笼子的和值与答案一致</li>
+    <li>检查预填数字与答案不矛盾</li>
+  </ul>
+</li>
+<li><strong>添加剧情（可选）</strong>
+  <ul>
+    <li><code>preDialog</code>：关卡开始前的对话</li>
+    <li><code>clearDialog</code>：通关后的对话</li>
+    <li><code>triggers</code>：关卡内触发事件</li>
+  </ul>
+</li>
+<li><strong>添加教学目标（可选）</strong>
+  <ul>
+    <li>设置 <code>teachingGoal</code> 描述本关教学目标</li>
+    <li>确保关卡设计能引导玩家使用目标技巧</li>
+  </ul>
+</li>
+</ol>
+
+<h3 id="add-char">9.2 添加新角色</h3>
+
+<ol>
+<li><strong>在 chapters.json 的 characters 中添加角色定义</strong>
+<pre><code>"newchar": {
+  "id": "newchar",
+  "name": "新角色",
+  "nameEn": "NewChar",
+  "voicePrefix": "VO_NC",
+  "portraits": {
+    "default": "NC_01_常态.png",
+    "smile": "NC_02_微笑.png",
+    "serious": "NC_03_认真.png"
+  }
+}</code></pre>
+</li>
+<li><strong>添加立绘文件</strong>
+  <ul>
+    <li>将立绘 PNG 放入 <code>assets/images/portraits/</code></li>
+    <li>建议尺寸：约 400×600px，透明背景</li>
+    <li>至少提供 default、smile、serious 三种表情</li>
+  </ul>
+</li>
+<li><strong>添加配音（可选）</strong>
+  <ul>
+    <li>将语音 WAV 放入 <code>assets/audio/voices/</code></li>
+    <li>文件名格式：<code>{voicePrefix}_{编号}.wav</code></li>
+  </ul>
+</li>
+<li><strong>在 story-engine.js 中添加映射</strong>
+  <ul>
+    <li>在 <code>PORTRAIT_MAP</code> 中添加角色立绘路径映射</li>
+    <li>在 <code>_speakerToCharId</code> 中添加中文名→ID 映射</li>
+  </ul>
+</li>
+</ol>
+
+<h3 id="add-achievement">9.3 添加新成就</h3>
+
+<ol>
+<li><strong>在 ProgressManager 的 ACHIEVEMENT_DEFS 中添加定义</strong>
+<pre><code>{
+  id: 'new_achievement',
+  name: '新成就名称',
+  description: '成就描述',
+  icon: '🏆',
+  category: 'progress',  // progress / skill / challenge
+  secret: false          // 是否隐藏成就（未解锁时不显示描述）
+}</code></pre>
+</li>
+<li><strong>在合适的时机调用解锁</strong>
+<pre><code>ProgressManager.unlockAchievement('new_achievement')</code></pre>
+</li>
+<li><strong>成就会自动</strong>
+  <ul>
+    <li>显示解锁 Toast 通知</li>
+    <li>保存到 localStorage</li>
+    <li>在成就面板中显示</li>
+    <li>播放成就解锁音效</li>
+  </ul>
+</li>
+</ol>
+
+<h3 id="pipeline">9.4 数据构建 Pipeline</h3>
+
+<p>后端数据质量保障工具链，用于验证关卡数据、统计剧情信息、评估教学引导质量。源自 cagemaster2 的 pipeline 体系。</p>
+
+<h4>9.4.1 工具链概览</h4>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr><th>工具</th><th>位置</th><th>功能</th><th>依赖</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>validate-chapters</strong></td><td><code>tools/validate-chapters.js</code></td><td>chapters.json 格式验证</td><td>无</td></tr>
+<tr><td><strong>story-stats</strong></td><td><code>tools/story-stats.js</code></td><td>剧情数据统计（台词数、角色分布）</td><td>无</td></tr>
+<tr><td><strong>assess-tutorials</strong></td><td><code>tools/assess-tutorials.js</code></td><td>教学引导质量评估</td><td>无</td></tr>
+<tr><td><strong>TechRater</strong></td><td><code>game/tech-rater.js</code></td><td>关卡可解性验证 + 难度评级</td><td>Board</td></tr>
+<tr><td><strong>cage-fixer</strong></td><td>cagemaster2 中</td><td>笼子结构生成/修复（待移植）</td><td>TechRater</td></tr>
+</tbody>
+</table>
+</div>
+
+<h4>9.4.2 Pipeline 执行流程</h4>
+
+<div class="mermaid">
+flowchart LR
+    A[备份数据] --&gt; B[格式验证]
+    B --&gt; C[剧情统计]
+    C --&gt; D[教学评估]
+    D --&gt; E[生成报告]
+</div>
+
+<p>运行方式：双击 <code>run-pipeline.bat</code> 或在命令行执行对应 Node 脚本。</p>
+
+<h4>9.4.3 题库体系</h4>
+
+<p>cagemaster2 拥有完整的分级题库，可作为后续自由模式的内容来源：</p>
+
+<ul>
+<li><strong>按技巧分类</strong>：9 个技巧各 30 题，共 270 题（杀手数独版 + 经典数独版）</li>
+<li><strong>按难度分级</strong>：1星~5星自动生成题库，共 120 题</li>
+<li><strong>难度包</strong>：入门/简单/中等/困难/地狱 5 个难度包</li>
+<li><strong>隐藏关卡</strong>：5 个独立隐藏关（印记挑战）</li>
+<li><strong>经典残局</strong>：经典数独关卡库（用于自由模式）</li>
+</ul>
+
+<h4>9.4.4 关卡质量验证</h4>
+
+<p>使用 TechRater 可对关卡进行以下验证：</p>
+
+<ul>
+<li><strong>可解性验证</strong>：是否能用纯逻辑技巧完全解出</li>
+<li><strong>难度评级</strong>：自动计算 1-5 星和 0-1000 分</li>
+<li><strong>技巧统计</strong>：各技巧使用次数、最高技巧等级</li>
+<li><strong>教学纯净度</strong>：是否为定向技巧关（目标技巧是否为唯一破局点）</li>
+<li><strong>三阶段分析</strong>：开局-破局-收官节奏是否合理</li>
+</ul>
+
+<pre><code>// 验证单个关卡
+const solver = TechRater.fromBoard(board);
+const result = solver.solve();
+const rating = solver.getRating();
+
+if (!rating.solvable) {
+  console.log('⚠️  关卡不可解');
+} else if (rating.maxTechLevel &gt; targetLevel) {
+  console.log('⚠️  难度超标');
+}</code></pre>
+
+<h3 id="level-design">9.5 关卡设计规范</h3>
+
+<p>定向技巧关卡的设计方法论，确保关卡既能有效教学，又有足够的挑战性和沉浸感。</p>
+
+<h4>9.5.1 七步设计法</h4>
+
+<ol>
+  <li><strong>确定教学目标</strong> — 明确目标技巧、难度等级、盘面尺寸，撰写 teachingGoal</li>
+  <li><strong>构造解盘 + 设计锚点</strong> — 准备完整正解，设计 2-3 个锚点（SINGLE 或 PAIR_CONSTRAINED）确保关键模式不被破坏</li>
+  <li><strong>笼子定向生长</strong> — 纵向生长（垂直权重1.5），跨宫笼比例 ≥25%</li>
+  <li><strong>唯一解验证</strong> — MRV-BFS 求解器验证，多解则调整锚点</li>
+  <li><strong>减法校验必要性</strong> — 禁用目标技巧后是否卡住，目标状态为 PERFECT</li>
+  <li><strong>纯净度验证</strong> — 技术断点 + 唯一破局技巧 + 级联坍塌≥4格</li>
+  <li><strong>质量收尾</strong> — coreMove、keyCells、features、triggers、统计数据</li>
+</ol>
+
+<h4>9.5.2 锚点设计原则</h4>
+
+<p>锚点是关卡中预先固定的笼子，在生成过程中不参与随机生长。</p>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr><th>锚点类型</th><th>格式</th><th>用途</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>SINGLE</strong></td><td>单格笼，直接锁定一个已知数</td><td>强制某个关键位置的数值</td></tr>
+<tr><td><strong>PAIR_CONSTRAINED</strong></td><td>双格约束笼，锁定一个两格组合</td><td>强制形成特定组合约束（如 NakedPair 的候选模式）</td></tr>
+</tbody>
+</table>
+</div>
+
+<p><strong>设计原则：</strong></p>
+<ul>
+  <li>锚点数量：通常 2-3 个，不宜过多（否则限制生长空间）</li>
+  <li>位置策略：分散在盘面不同区域，避免局部过密</li>
+  <li>锚点是关卡的"骨架"，确保目标技巧的核心模式稳定出现</li>
+</ul>
+
+<h4>9.5.3 技巧必要性验证（减法校验）</h4>
+
+<p>核心思路：<strong>切除目标技巧后看是否还能解</strong>——如果切掉就解不动，说明该技巧是必须的。</p>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr><th>评估结果</th><th>含义</th><th>分数</th></tr>
+</thead>
+<tbody>
+<tr><td>UNSOLVABLE</td><td>关卡本身无解</td><td>0</td></tr>
+<tr><td>TOO_EASY</td><td>最高技巧低于目标等级</td><td>10</td></tr>
+<tr><td>BYPASSED</td><td>禁用目标技巧后仍能通关（技巧不必要）</td><td>30</td></tr>
+<tr><td><strong>PERFECT</strong></td><td>必须使用目标技巧才能推进</td><td>100+</td></tr>
+</tbody>
+</table>
+</div>
+
+<h4>9.5.4 纯净度三重标准</h4>
+
+<div class="mermaid">
+flowchart LR
+    A[技术断点] --&gt; B[技巧纯净]
+    B --&gt; C[级联坍塌≥4格]
+    A:::crit --&gt;|基础技巧完全解不动| A
+    B:::crit --&gt;|唯一能推进的就是目标技巧| B
+    C:::crit --&gt;|破局后多米诺效应| C
+    classDef crit fill:#2a2f3a,stroke:#6366f1
+</div>
+
+<ol>
+  <li><strong>技术断点</strong>：先用低于目标等级的所有技巧解题，直到完全卡住</li>
+  <li><strong>技巧纯净</strong>：从断点开始推进，最高级 elimination 必须就是目标技巧</li>
+  <li><strong>级联坍塌</strong>：核心破局格填入后，引发 ≥4 格连锁填充（多米诺骨牌效应）</li>
+</ol>
+
+<h4>9.5.5 各技巧典型笼子模式</h4>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr><th>技巧</th><th>等级</th><th>典型笼子模式</th></tr>
+</thead>
+<tbody>
+<tr><td>孤星 (nakedSingle)</td><td>L1</td><td>单格笼直接给值，大量已知数收缩候选</td></tr>
+<tr><td>笼子唯一组合</td><td>L2</td><td>2格笼和为3/4/16/17，3格笼和为6/7/23/24</td></tr>
+<tr><td>隐曜 (hiddenSingle)</td><td>L3</td><td>数字在行/列/宫中唯一位置，候选数多但实际唯一</td></tr>
+<tr><td>星衡法则 (rule45)</td><td>L4</td><td>跨宫笼，伸出宫的格数=1时直接用45-宫和推算</td></tr>
+<tr><td>并蒂锁 (nakedPair)</td><td>L5</td><td>同区域两格恰好是相同两候选，需纵向生长增强行多样性</td></tr>
+<tr><td>双曜 (hiddenPair)</td><td>L6</td><td>两个数字在区域内只能出现在相同两格</td></tr>
+<tr><td>区块排除</td><td>L7</td><td>宫内某数字只在同一行/列，排除行/列其他位置</td></tr>
+<tr><td>三子法 (nakedTriplet)</td><td>L8</td><td>三格候选的并集恰好三个数字</td></tr>
+</tbody>
+</table>
+</div>
+
+<h4>9.5.6 难度控制参数</h4>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr><th>参数</th><th>简单</th><th>中等</th><th>困难</th><th>极难</th></tr>
+</thead>
+<tbody>
+<tr><td>最高技巧等级</td><td>L1-L3</td><td>L4-L5</td><td>L6-L7</td><td>L8-L10</td></tr>
+<tr><td>已知数比例</td><td>50%+</td><td>35-50%</td><td>25-35%</td><td>&lt;25%</td></tr>
+<tr><td>跨宫笼比例</td><td>15-25%</td><td>25-35%</td><td>35-45%</td><td>45%+</td></tr>
+<tr><td>平均笼大小</td><td>2-3格</td><td>3-4格</td><td>4-5格</td><td>5-6格</td></tr>
+<tr><td>辅助功能</td><td>全开</td><td>部分开</td><td>少量开</td><td>全关</td></tr>
+</tbody>
+</table>
+</div>
+
+<h4>9.5.7 质量验证 Checklist</h4>
+
+<ul>
+  <li>✅ <strong>唯一解</strong>：MRV-BFS 确认只有一个解</li>
+  <li>✅ <strong>技巧匹配</strong>：maxTechLevel 与目标等级一致</li>
+  <li>✅ <strong>必要性</strong>：减法校验结果为 PERFECT</li>
+  <li>✅ <strong>纯净度</strong>：技术断点 + 唯一破局技巧 + 级联≥4格</li>
+  <li>✅ <strong>笼合法性</strong>：所有笼子连通、无重复数字、和值正确</li>
+  <li>✅ <strong>覆盖率</strong>：盘面所有格子都属于某个笼子</li>
+  <li>✅ <strong>教学性</strong>：coreMove 和 keyCells 与 teachingGoal 一致</li>
+  <li>✅ <strong>难度曲线</strong>：nakedSingleRatio 合理，不是全靠试数</li>
+</ul>
+
+<h3 id="audio-naming">9.6 音频资源命名规范</h3>
+
+<h4>9.6.1 目录结构</h4>
+
+<pre><code>assets/audio/
+├── bgm/              # 背景音乐（mp3）
+│   ├── chapter_1.mp3 ~ chapter_7.mp3
+│   ├── intro.mp3
+│   ├── eureka.mp3
+│   └── ending_true.mp3
+├── sfx/              # 音效（wav / mp3）
+│   ├── click.wav
+│   ├── fill_correct.wav
+│   ├── fill_wrong.wav
+│   ├── combo_3.wav / combo_5.wav / combo_max.wav
+│   └── ...
+└── voices/           # 角色语音（wav）
+    ├── VO_CK_01.wav ~ VO_CK_112.wav
+    ├── VO_J_01.wav ~ VO_J_89.wav
+    ├── VO_R_01.wav ~ VO_R_73.wav
+    └── ...</code></pre>
+
+<h4>9.6.2 文件命名约定</h4>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr><th>资源类型</th><th>目录</th><th>命名格式</th><th>扩展名</th></tr>
+</thead>
+<tbody>
+<tr><td>BGM</td><td>bgm/</td><td><code>{描述性名称}.mp3</code></td><td>.mp3</td></tr>
+<tr><td>章节BGM</td><td>bgm/</td><td><code>chapter_{N}.mp3</code></td><td>.mp3</td></tr>
+<tr><td>SFX</td><td>sfx/</td><td><code>{描述性名称}.wav</code></td><td>.wav / .mp3</td></tr>
+<tr><td>角色语音</td><td>voices/</td><td><code>VO_{PREFIX}_{NN}.wav</code></td><td>.wav</td></tr>
+</tbody>
+</table>
+</div>
+
+<h4>9.6.3 角色语音前缀对照表</h4>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr><th>前缀</th><th>角色</th><th>ID</th><th>TTS 音色</th><th>风格</th></tr>
+</thead>
+<tbody>
+<tr><td>VO_CK</td><td>守笼人</td><td>cagekeeper</td><td>zh-CN-YunyeNeural</td><td>gentle</td></tr>
+<tr><td>VO_R</td><td>阿妍</td><td>yan</td><td>zh-CN-XiaoyiNeural</td><td>calm, rate -5%</td></tr>
+<tr><td>VO_J</td><td>莹莹</td><td>ying</td><td>zh-CN-XiaoxiaoNeural</td><td>cheerful, rate +5%</td></tr>
+<tr><td>VO_P</td><td>设局人</td><td>plotter</td><td>zh-CN-YunyeNeural</td><td>calm</td></tr>
+<tr><td>VO_PS</td><td>设局人残影</td><td>plotterShadow</td><td>zh-CN-YunyeNeural</td><td>calm</td></tr>
+<tr><td>VO_W</td><td>星辰梭</td><td>weaver</td><td>zh-CN-YunxiNeural</td><td>proud, rate +15%</td></tr>
+<tr><td>VO_RE</td><td>残局守护者</td><td>remnant</td><td>zh-CN-YunxiNeural</td><td>mechanical, rate -10%</td></tr>
+<tr><td>VO_SS</td><td>设局人秘术</td><td>setterSecret</td><td>zh-CN-YunyeNeural</td><td>calm, rate -5%, pitch -3Hz</td></tr>
+<tr><td>VO_SM</td><td>沈墨</td><td>shenmo</td><td>zh-CN-YunxiNeural</td><td>calm, rate -5%</td></tr>
+<tr><td>VO_S</td><td>系统</td><td>system</td><td>zh-CN-XiaoxiaoNeural</td><td>—</td></tr>
+</tbody>
+</table>
+</div>
+
+<h4>9.6.4 voicePrefix 与 voiceId 的关系</h4>
+
+<p>voicePrefix 定义在 <code>chapters.json</code> 的 <code>characters.{id}.voicePrefix</code> 中，是角色语音文件的前缀标识。</p>
+
+<p>voiceId 在 chapters.json 中的完整格式为 <code>VO_{PREFIX}_{NN}</code>，即完整文件名（不含扩展名）。AudioService 直接将 voiceId 拼接到 <code>assets/audio/voices/</code> 路径下加载。</p>
+
+<p>示例：</p>
+<pre><code>"voicePrefix": "VO_CK"    // 角色前缀
+"voiceId": "VO_CK_03"     // 完整文件ID
+// → 加载路径: assets/audio/voices/VO_CK_03.wav</code></pre>
+
+<h4>9.6.5 情绪标签说明</h4>
+
+<p>情绪标签（如 default、smile、serious 等）定义在角色的 portraits 中，与立绘共用同一套标签。但<strong>语音文件名中不包含情绪信息</strong>，情绪与语音文件的对应关系通过台词映射表人工匹配。</p>
+
+<h3 id="expert-config">9.7 专家系统配置参考</h3>
+
+<p>专家系统全部可调参数速查表，用于调试体验和平衡难度。</p>
+
+<h4>9.7.1 感知层参数</h4>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr><th>参数</th><th>默认值(9×9)</th><th>4×4比例</th><th>6×6比例</th><th>含义</th></tr>
+</thead>
+<tbody>
+<tr><td>stuckMs</td><td>45000 ms</td><td>0.6</td><td>0.8</td><td>无操作多久判定为卡顿</td></tr>
+<tr><td>anxiousErrorCount</td><td>3 次</td><td>0.7</td><td>1.0</td><td>连续错误多少次触发焦虑</td></tr>
+<tr><td>flowWindowMs</td><td>8000 ms</td><td>—</td><td>—</td><td>心流判定：相邻正确填写的最大间隔</td></tr>
+<tr><td>flowCount</td><td>4 次</td><td>2</td><td>3</td><td>连续正确多少次进入心流</td></tr>
+<tr><td>eurekaCount</td><td>8 次</td><td>4</td><td>6</td><td>连续正确多少次触发EUREKA</td></tr>
+<tr><td>节奏计算窗口</td><td>10 条</td><td>—</td><td>—</td><td>节奏计算用最近N条填写记录</td></tr>
+<tr><td>焦虑自动恢复</td><td>10000 ms</td><td>—</td><td>—</td><td>焦虑状态持续多久自动解除</td></tr>
+</tbody>
+</table>
+</div>
+
+<h4>9.7.2 决策层规则与冷却</h4>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr><th>规则ID</th><th>优先级</th><th>触发条件</th><th>冷却时间</th><th>输出动作</th></tr>
+</thead>
+<tbody>
+<tr><td>teaching_trigger</td><td>100</td><td>卡顿 且 连续错误≥2</td><td>60000ms</td><td>SHOW_DIALOG</td></tr>
+<tr><td>eureka_burst</td><td>90</td><td>连续正确≥eurekaCount 且心流</td><td>30000ms</td><td>EUREKA</td></tr>
+<tr><td>stuck_guide</td><td>80</td><td>卡顿状态</td><td>30000ms</td><td>SHOW_TOAST</td></tr>
+<tr><td>anxiety_cooldown</td><td>70</td><td>焦虑状态</td><td>15000ms</td><td>SHOW_TOAST</td></tr>
+<tr><td>flow_encouragement</td><td>60</td><td>连续正确≥eurekaCount×0.625 且心流</td><td>10000ms</td><td>SHOW_TOAST</td></tr>
+<tr><td>progress_milestone</td><td>30</td><td>正确数为10的倍数</td><td>5000ms</td><td>SHOW_TOAST</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>优先级 ≥80 的规则触发后会停止后续低优先级规则判断。冷却时间受三重动态调整：玩家等级因子 × 实时状态因子 × 熟练度因子。</p>
+
+<h4>9.7.3 动态阈值因子</h4>
+
+<p><strong>玩家等级（长期适应）：</strong></p>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr><th>等级</th><th>完成关卡数</th><th>冷却倍率</th><th>卡顿时间倍率</th></tr>
+</thead>
+<tbody>
+<tr><td>novice（新手）</td><td>0-3</td><td>0.5</td><td>0.6</td></tr>
+<tr><td>intermediate（成长）</td><td>4-10</td><td>0.5→1.0 线性过渡</td><td>0.6→1.0 线性过渡</td></tr>
+<tr><td>advanced（熟练）</td><td>10+</td><td>1.0</td><td>1.0</td></tr>
+</tbody>
+</table>
+</div>
+
+<p><strong>玩家风格（学习风格）：</strong></p>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr><th>风格</th><th>判定条件</th><th>冷却倍率</th><th>心流阈值倍率</th></tr>
+</thead>
+<tbody>
+<tr><td>precise（精准型）</td><td>准确率&gt;0.9 且 提示率&lt;0.05</td><td>×1.2</td><td>×0.8</td></tr>
+<tr><td>experimental（实验型）</td><td>准确率&lt;0.6</td><td>×0.8</td><td>×1.2</td></tr>
+<tr><td>cautious（谨慎型）</td><td>提示率&gt;0.3</td><td>×0.9</td><td>—</td></tr>
+<tr><td>balanced（平衡型）</td><td>其他情况</td><td>×1.0</td><td>×1.0</td></tr>
+</tbody>
+</table>
+</div>
+
+<h4>9.7.4 表达层参数</h4>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr><th>参数</th><th>默认值</th><th>含义</th></tr>
+</thead>
+<tbody>
+<tr><td>_minInterval</td><td>1500 ms</td><td>两次表达之间的最小间隔</td></tr>
+<tr><td>节拍间隔</td><td>2000 ms</td><td>BeatQuantizer 节拍间隔（反馈对齐到节拍）</td></tr>
+<tr><td>Toast 默认时长</td><td>2500 ms</td><td>普通提示气泡显示时间</td></tr>
+<tr><td>Dialog 时长</td><td>3500 ms</td><td>对话气泡显示时间</td></tr>
+<tr><td>EUREKA 时长</td><td>3000 ms</td><td>EUREKA 提示显示时间</td></tr>
+<tr><td>阿妍权重</td><td>0.6</td><td>提示角色选择：阿妍出现概率</td></tr>
+<tr><td>守笼人权重</td><td>0.3</td><td>提示角色选择：守笼人出现概率</td></tr>
+<tr><td>莹莹权重</td><td>0.1</td><td>提示角色选择：莹莹出现概率</td></tr>
+</tbody>
+</table>
+</div>
+
+<h4>9.7.5 教学系统掌握度等级</h4>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr><th>等级</th><th>名称</th><th>条件</th><th>提示起始等级</th></tr>
+</thead>
+<tbody>
+<tr><td>1</td><td>初次见面</td><td>首次遭遇</td><td>2（技巧名称级）</td></tr>
+<tr><td>2</td><td>略有印象</td><td>遭遇 ≥ 2 次</td><td>1（模糊方向级）</td></tr>
+<tr><td>3</td><td>基本掌握</td><td>遭遇 ≥ 5 次 且 正确率 ≥ 50%</td><td>1</td></tr>
+<tr><td>4</td><td>熟练运用</td><td>遭遇 ≥ 10 次 且 正确率 ≥ 60%</td><td>1</td></tr>
+<tr><td>5</td><td>融会贯通</td><td>遭遇 ≥ 20 次 且 正确率 ≥ 70%</td><td>1</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3 id="changelog">9.8 开发日志（近期修改记录）</h3>
+
+<h4 id="log-20260722">2026-07-22 · 笔记功能修复与体验优化</h4>
+
+<div class="changelog">
+  <div class="change-item fixed">
+    <span class="change-tag">修复</span>
+    <span class="change-title">204关笔记无法使用的问题</span>
+    <p>经过多轮排查，确认核心原因是<strong>候选笔记可见性不足</strong>（颜色太淡、字号太小），用户误以为功能失效。同时加强了多处状态同步的健壮性。</p>
+    <ul>
+      <li><strong>renderer.js</strong>：候选笔记透明度从 0.5 提升到 0.8；字号从 cellSize*0.25 提升到 cellSize*0.3（最小 9px）；略微减小内边距给笔记更多空间；渲染层优先检查 board.inputMode 降级显示，避免笔记系统状态不同步</li>
+      <li><strong>board.js</strong>：toggleCandidate 优先使用 selectedCell（更可靠），fallback 到 getActiveCell；增加 isLocked 检查</li>
+      <li><strong>guide.js</strong>：handleNumberInput 单选模式增加 selectedCells 兼容路径；笔记模式下自动确保 inputMode 为 candidate；isLocked 检查前置</li>
+      <li><strong>guide.html</strong>：更新 board.js、renderer.js、guide.js 的版本号（v2→v3、v6→v8、v7→v9），强制浏览器刷新缓存</li>
+    </ul>
+  </div>
+
+  <div class="change-item feature">
+    <span class="change-tag">功能</span>
+    <span class="change-title">棋盘顶部显示关卡名称与编号</span>
+    <p>在顶部 header 中同时显示关卡编号和名称，格式为「第204关 · 九域星图」。横屏布局下在右侧控制面板顶部也显示关卡标题。</p>
+    <ul>
+      <li><strong>guide.html</strong>：新增 landscape-level-title 元素及样式（横屏可见）</li>
+      <li><strong>guide.js</strong>：initBoard 中同步更新竖屏和横屏的关卡标题</li>
+    </ul>
+  </div>
+
+  <div class="change-item fixed">
+    <span class="change-tag">修复</span>
+    <span class="change-title">101关背景未切换的问题</span>
+    <p>setLevelBackground 函数中背景文件名与实际文件不匹配，导致第一章第一关背景加载失败。</p>
+  </div>
+
+  <div class="change-item feature">
+    <span class="change-tag">功能</span>
+    <span class="change-title">第一章 BGM 调整</span>
+    <p>第一章背景音乐从 intro 改为 chapter1，与后续章节命名规范统一。</p>
+  </div>
+
+  <div class="change-item feature">
+    <span class="change-tag">功能</span>
+    <span class="change-title">每章最后一关改为 Boss 战</span>
+    <p>每章最后一关启用 Boss 战模式：对战人物 + Boss 战专属背景音乐。</p>
+  </div>
+
+  <div class="change-item fixed">
+    <span class="change-tag">修复</span>
+    <span class="change-title">数字按钮不居中</span>
+    <p>修复了数字键盘按钮文字偏移、视觉不居中的问题。</p>
+  </div>
+</div>
+
+<style>
+.changelog { margin-top: 16px; }
+.change-item {
+  padding: 16px;
+  margin-bottom: 12px;
+  background: var(--bg2);
+  border-left: 4px solid var(--rule);
+  border-radius: 0 8px 8px 0;
+}
+.change-item.fixed { border-left-color: var(--success); }
+.change-item.feature { border-left-color: var(--accent); }
+.change-tag {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  margin-right: 8px;
+  background: var(--bg3);
+  color: var(--muted);
+}
+.change-item.fixed .change-tag { background: rgba(34,197,94,0.15); color: #22c55e; }
+.change-item.feature .change-tag { background: rgba(99,102,241,0.15); color: #6366f1; }
+.change-title { font-weight: 600; color: var(--ink); }
+.change-item p { margin: 8px 0; color: var(--muted); font-size: 0.9rem; }
+.change-item ul { margin: 8px 0 0 0; padding-left: 20px; color: var(--muted); font-size: 0.9rem; }
+.change-item li { margin-bottom: 4px; }
+.change-item li strong { color: var(--accent2); }
+</style>
+
+<!-- 10. LevelValidator -->
+<h2 id="level-validator">10. 关卡验证系统（LevelValidator）</h2>
+
+<p><span class="badge module">工具链</span> <span class="badge core">核心</span></p>
+
+<p>LevelValidator 是 Phase E 新增的关卡质量保障工具，负责对每一道关卡进行自动化、标准化的三重验证。它既是开发阶段的 CI 检查器，也是关卡设计时的实时反馈工具。</p>
+
+<h3 id="validator-goal">10.1 设计目标</h3>
+
+<p>在 cagemaster2 时代，关卡验证完全依赖人工——设计完一道关后，需要手动跑求解器、核对笼子和值、确认唯一解。这个过程既繁琐又容易遗漏。LevelValidator 的诞生就是为了把这些重复劳动自动化：</p>
+
+<ul>
+  <li><strong>数据完整性</strong>：确保关卡数据格式正确、笼子不重叠不遗漏、和值一致</li>
+  <li><strong>可解性验证</strong>：确认关卡有且仅有一个解</li>
+  <li><strong>难度评级</strong>：给出客观的星级和分数，与设计目标对比</li>
+  <li><strong>批量自动化</strong>：一次验证整个题库，生成汇总报告</li>
+</ul>
+
+<div class="callout tip">
+  <strong>设计哲学</strong>
+  <p>LevelValidator 不负责「创造好关卡」，它负责「拦住坏关卡」。把住质量底线，让设计师把精力放在创意上。</p>
+</div>
+
+<h3 id="validator-triple">10.2 三重验证体系</h3>
+
+<div class="mermaid">
+flowchart TD
+    A[关卡数据] --&gt; B[第一重：数据完整性]
+    B --&gt;|通过| C[第二重：可解性验证]
+    B --&gt;|失败| X[数据错误报告]
+    C --&gt;|通过| D[第三重：难度评级]
+    C --&gt;|失败| Y[可解性错误报告]
+    D --&gt; Z[验证报告]
+    classDef crit fill:#2a2f3a,stroke:#6366f1
+    class A,B,C,D crit
+</div>
+
+<p>三重验证逐层递进，前一重不通过则不进入下一重，避免无效计算。</p>
+
+<h3 id="validator-data-integrity">10.3 数据完整性检查</h3>
+
+<p>第一重验证是纯静态检查，不涉及求解逻辑，速度极快（微秒级）。</p>
+
+<h4>10.3.1 检查项清单</h4>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr><th>检查项</th><th>说明</th><th>错误级别</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>gridSize 合法性</strong></td><td>尺寸必须是 4 / 6 / 9</td><td>error</td></tr>
+<tr><td><strong>笼子覆盖完整性</strong></td><td>每格恰好属于一个笼子，无遗漏无重叠</td><td>error</td></tr>
+<tr><td><strong>笼子连通性</strong></td><td>每个笼子的所有格子必须四邻连通</td><td>error</td></tr>
+<tr><td><strong>笼子内数字不重复</strong></td><td>预填数字在同一笼内不重复</td><td>error</td></tr>
+<tr><td><strong>和值范围校验</strong></td><td>n 格笼的和在 [minSum, maxSum] 范围内</td><td>error</td></tr>
+<tr><td><strong>和值与预填一致性</strong></td><td>已填数字之和 ≤ 笼和，且剩余空间可达到</td><td>error</td></tr>
+<tr><td><strong>预填数字合法性</strong></td><td>1~gridSize 范围内，行列宫不冲突</td><td>error</td></tr>
+<tr><td><strong>solution 一致性</strong></td><td>提供的答案与笼子和值、预填数字不矛盾</td><td>warn</td></tr>
+<tr><td><strong>levelId 唯一性</strong></td><td>在题库中不重复</td><td>error</td></tr>
+<tr><td><strong>必填字段检查</strong></td><td>title / gridSize / cages / cells 不为空</td><td>error</td></tr>
+</tbody>
+</table>
+</div>
+
+<h4>10.3.2 笼子连通性算法</h4>
+
+<p>采用 BFS 广度优先搜索验证连通性：</p>
+
+<pre><code>function _isCageConnected(cells, gridSize) {
+  if (cells.length &lt;= 1) return true;
+  const visited = new Set();
+  const queue = [cells[0]];
+  visited.add(cells[0].row * gridSize + cells[0].col);
+
+  while (queue.length &gt; 0) {
+    const curr = queue.shift();
+    for (const [dr, dc] of [[-1,0],[1,0],[0,-1],[0,1]]) {
+      const nr = curr.row + dr, nc = curr.col + dc;
+      const key = nr * gridSize + nc;
+      if (!visited.has(key) &amp;&amp; cells.some(c =&gt; c.row === nr &amp;&amp; c.col === nc)) {
+        visited.add(key);
+        queue.push({ row: nr, col: nc });
+      }
+    }
+  }
+  return visited.size === cells.length;
+}</code></pre>
+
+<h3 id="validator-solvability">10.4 可解性验证</h3>
+
+<p>第二重验证确认关卡有且仅有一个解，采用<strong>双层策略</strong>：</p>
+
+<ol>
+  <li><strong>逻辑求解层（TechRater）</strong>：用人类技巧逐步推导，能解出说明关卡符合人类解题逻辑</li>
+  <li><strong>暴力回溯层（BacktrackSolver）</strong>：MRV 启发式回溯，统计解的数量，确保唯一解</li>
+</ol>
+
+<div class="callout warn">
+  <strong>为什么需要两层？</strong>
+  <p>TechRater 只能解出「人类能解的关」，如果它解不出来，不代表关卡无解——可能只是需要更高级的技巧。暴力回溯不依赖技巧，能穷举所有解，但速度慢。两者配合，既确认可解性，又评估人类可达性。</p>
+</div>
+
+<h4>10.4.1 验证流程</h4>
+
+<pre><code>1. 用 TechRater 完整求解
+   → 成功：记录求解路径和最高技巧
+   → 失败：标记为「超出技巧范围」，进入暴力验证
+
+2. 用 BacktrackSolver 暴力求解（最多找2个解）
+   → 0 个解：无解（error）
+   → 1 个解：唯一解（通过）
+   → ≥2 个解：多解（error）
+
+3. 对比两层结果
+   → TechRater 解出 &amp;&amp; 暴力唯一解 → 优质关卡
+   → TechRater 未解出 &amp;&amp; 暴力唯一解 → 高难度 / 需高级技巧
+   → 暴力多解 → 不合格</code></pre>
+
+<h3 id="validator-batch">10.5 批量验证工具</h3>
+
+<p>LevelValidator 提供命令行批量验证能力，支持对整个题库进行一次性扫描。</p>
+
+<h4>10.5.1 使用方法</h4>
+
+<pre><code>// 验证单个关卡
+const report = LevelValidator.validate(levelData);
+console.log(report.passed ? '通过' : '失败');
+
+// 批量验证整个题库
+const batchReport = LevelValidator.validateBatch(levelsArray, {
+  parallel: true,          // 并行处理
+  stopOnError: false,      // 遇到错误不停止
+  includeDetails: true,    // 包含详细错误信息
+  threshold: 'warn'        // 报告级别：error / warn / info
+});
+
+// 输出汇总
+console.log(batchReport.summary);
+// { total: 53, passed: 51, failed: 2, errors: 3, warnings: 7 }</code></pre>
+
+<h3 id="validator-report">10.6 验证报告格式</h3>
+
+<p>每个关卡的验证结果返回结构化报告对象：</p>
+
+<pre><code>{
+  levelId: 'L001',
+  title: '初识数笼',
+  passed: true,
+  score: 95,
+  dataIntegrity: {
+    passed: true,
+    checks: [
+      { name: 'cage_coverage', status: 'pass' },
+      { name: 'cage_connectivity', status: 'pass' },
+      { name: 'sum_range', status: 'pass' },
+      { name: 'prefilled_valid', status: 'pass' }
+    ]
+  },
+  solvability: {
+    passed: true,
+    solutionCount: 1,
+    techRaterSolved: true,
+    maxTechLevel: 3,
+    solveSteps: 27
+  },
+  difficulty: {
+    stars: '2星',
+    score: 320,
+    maxTechnique: 'hiddenSingle',
+    cascadeCount: 3
+  },
+  errors: [],
+  warnings: [
+    { type: 'solution_missing', message: '未提供 solution 字段' }
+  ]
+}</code></pre>
+
+<h3 id="validator-common-errors">10.7 常见错误类型及修复方法</h3>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr><th>错误类型</th><th>典型原因</th><th>修复方法</th></tr>
+</thead>
+<tbody>
+<tr><td><code>cage_overlap</code></td><td>格子被多个笼子包含</td><td>检查 cages 数组，移除重复格子</td></tr>
+<tr><td><code>cage_gap</code></td><td>某格不属于任何笼子</td><td>将遗漏的格子加入某个笼子</td></tr>
+<tr><td><code>cage_disconnected</code></td><td>笼子形状不连通</td><td>调整笼子布局，确保四邻连通</td></tr>
+<tr><td><code>sum_mismatch</code></td><td>笼和与答案不符</td><td>重新计算笼子内数字之和</td></tr>
+<tr><td><code>multiple_solutions</code></td><td>关卡有多个解</td><td>增加预填数字或调整笼子，约束唯一解</td></tr>
+<tr><td><code>unsolvable</code></td><td>关卡无解</td><td>检查预填数字是否冲突，笼子和值是否正确</td></tr>
+<tr><td><code>prefilled_conflict</code></td><td>预填数字违反数独规则</td><td>移除冲突的预填数字</td></tr>
+</tbody>
+</table>
+</div>
+
+<!-- 11. TechnicalPurityValidator -->
+<h2 id="purity-validator">11. 技巧纯净度验证（TechnicalPurityValidator）</h2>
+
+<p><span class="badge module">工具链</span> <span class="badge expert">专家</span></p>
+
+<p>技巧纯净度验证是定向技巧关卡的质检核心。一道「高纯度定向技巧关」不仅仅是「需要用到某个技巧」，而是要求该技巧以最纯粹、最有教学价值的方式出现。</p>
+
+<h3 id="purity-concept">11.1 什么是「高纯度定向技巧关」</h3>
+
+<p>想象一下，你想教玩家 X-Wing 技巧。如果一道关需要先用 3 个其他高级技巧做铺垫，才能到达 X-Wing 的破局点，那这道关的教学效果就大打折扣——玩家还没等到 X-Wing，已经被前面的技巧劝退了。</p>
+
+<p>高纯度定向技巧关的定义：</p>
+
+<div class="callout tip">
+  <strong>纯净度定义</strong>
+  <p>用低于目标等级的技巧解题，解到完全卡住（技术断点）；此时唯一能推进的就是目标技巧（技巧纯净）；用出目标技巧后，触发连续的连锁填充（级联坍塌）。</p>
+</div>
+
+<h3 id="purity-triple-standard">11.2 三重纯净标准详解</h3>
+
+<div class="mermaid">
+flowchart LR
+    A[技术断点] --&gt; B[技巧纯净]
+    B --&gt; C[级联坍塌≥4格]
+    A:::crit --&gt;|基础技巧完全解不动| A
+    B:::crit --&gt;|唯一能推进的就是目标技巧| B
+    C:::crit --&gt;|破局后多米诺效应| C
+    classDef crit fill:#2a2f3a,stroke:#6366f1
+</div>
+
+<h4>11.2.1 第一重：技术断点（Technical Breakpoint）</h4>
+
+<p><strong>定义</strong>：使用低于目标技巧等级的所有技巧持续求解，直到盘面不再变化。</p>
+
+<p>验证方法——受限求解模式：</p>
+
+<pre><code>// 只启用低于 targetLevel 的技巧
+function solveWithTechCap(level, targetLevel) {
+  const solver = TechRater.fromLevel(level);
+  solver.setEnabledTechniques(
+    ALL_TECHNIQUES.filter(t =&gt; t.level &lt; targetLevel)
+  );
+  const result = solver.solve(500); // 最多500步
+  return {
+    breakpointBoard: result.finalBoard,
+    remainingCells: result.remaining,
+    reachedLimit: result.stalled  // 是否卡住
+  };
+}</code></pre>
+
+<p>断点的合格标准：</p>
+<ul>
+  <li>必须进入 stalled 状态（低级技巧确实解不动了）</li>
+  <li>剩余空格数 ≥ 5（不能还没怎么解就到断点了）</li>
+  <li>断点不能是开局（剩余 = 总空格数）</li>
+</ul>
+
+<h4>11.2.2 第二重：技巧纯净（Technique Purity）</h4>
+
+<p><strong>定义</strong>：从技术断点继续推进，第一个有实质进展的 elimination 步骤就是目标技巧。</p>
+
+<p>什么叫「实质进展」？就是能排除候选数、直接导向填数的那一步。具体标准：</p>
+
+<ul>
+  <li>该步骤的技巧等级 = 目标技巧等级</li>
+  <li>该步骤能排除 ≥ 1 个候选数</li>
+  <li>排除候选后，接下来的 fill 步骤能直接推进</li>
+  <li>断点和破局点之间，没有其他同级或更高级技巧</li>
+</ul>
+
+<div class="callout warn">
+  <strong>为什么强调「第一个」？</strong>
+  <p>如果玩家在断点处面对多个可选的高级技巧路径，说明关卡不够「定向」——玩家可能通过另一个技巧绕过，那就达不到教学目标技巧的目的。</p>
+</div>
+
+<h4>11.2.3 第三重：级联坍塌（Cascade Collapse）</h4>
+
+<p><strong>定义</strong>：破局格填入后，连续触发 ≥ 4 格的连锁填充（多米诺骨牌效应）。</p>
+
+<p>级联坍塌是衡量「爽感」的指标。破局技巧用出来之后，如果只是填了一个格就又卡住了，玩家的成就感会很弱。但如果触发了一连串的连锁反应，那种「打通任督二脉」的感觉会非常强烈。</p>
+
+<p>级联计数规则：</p>
+<ul>
+  <li>从破局点之后的第一个 fill 开始计数</li>
+  <li>只计数裸单（nakedSingle）级别的连锁</li>
+  <li>遇到需要更高级技巧才能推进时，级联结束</li>
+  <li>级联长度 = 连续裸单填充的格数</li>
+</ul>
+
+<h3 id="purity-score">11.3 纯净度评分公式</h3>
+
+<p>三重标准各占不同权重，总分 100 分：</p>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr><th>维度</th><th>权重</th><th>评分细则</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>技术断点</strong></td><td>30 分</td><td>有清晰断点 25 分 + 断点位置合理 5 分</td></tr>
+<tr><td><strong>技巧纯净</strong></td><td>40 分</td><td>唯一破局技巧 30 分 + 证据链清晰 10 分</td></tr>
+<tr><td><strong>级联坍塌</strong></td><td>30 分</td><td>≥4格 20 分 + ≥8格 25 分 + ≥12格 30 分</td></tr>
+</tbody>
+</table>
+</div>
+
+<pre><code>purityScore = breakpointScore   // 0-30
+            + purityScore       // 0-40
+            + cascadeScore;     // 0-30</code></pre>
+
+<p>等级划分：</p>
+<ul>
+  <li><strong>S 级（≥90分）</strong>：教科书级别的纯净关，可用于核心教学</li>
+  <li><strong>A 级（75-89分）</strong>：高质量定向关，可用于进阶教学</li>
+  <li><strong>B 级（60-74分）</strong>：合格的技巧关，可用于练习</li>
+  <li><strong>C 级（&lt;60分）</strong>：不够纯净，需调整或重新设计</li>
+</ul>
+
+<h3 id="purity-restricted-solve">11.4 受限求解模式的实现原理</h3>
+
+<p>受限求解是纯净度验证的核心技术。它的基本思想是：<strong>选择性地禁用某些技巧，然后看求解器能走多远</strong>。</p>
+
+<h4>11.4.1 实现要点</h4>
+
+<pre><code>class RestrictedTechRater extends TechRater {
+  constructor(board, options = {}) {
+    super(board);
+    this.disabledTechniques = new Set(options.disabled || []);
+    this.maxTechLevel = options.maxTechLevel || 10;
+  }
+
+  _tryTechnique(techId) {
+    // 禁用列表中的技巧直接跳过
+    if (this.disabledTechniques.has(techId)) return null;
+    // 超过等级上限的技巧跳过
+    const tech = TECHNIQUE_MAP[techId];
+    if (tech.level &gt; this.maxTechLevel) return null;
+    return super._tryTechnique(techId);
+  }
+}</code></pre>
+
+<h4>11.4.2 断点稳定性检查</h4>
+
+<p>为了防止「假断点」（求解器因为遍历顺序问题提前卡住），需要做稳定性检查：</p>
+
+<pre><code>// 多轮验证确保断点稳定
+function verifyBreakpointStability(level, targetLevel, rounds = 3) {
+  const breakpoints = [];
+  for (let i = 0; i &lt; rounds; i++) {
+    // 每轮打乱技巧遍历顺序（同一等级内）
+    const result = solveWithTechCap(level, targetLevel, { shuffle: true });
+    breakpoints.push(result.remainingCells);
+  }
+  // 所有轮次剩余格数一致 → 断点稳定
+  return breakpoints.every(n =&gt; n === breakpoints[0]);
+}</code></pre>
+
+<h3 id="purity-downstream">11.5 顺水推舟策略</h3>
+
+<p>「顺水推舟」是纯净度优化中的一个重要策略：当断点不是很纯净（有多个同级技巧可选）时，不是推翻重来，而是通过微调笼子布局，让目标技巧成为「最先被看到」的那个。</p>
+
+<p>具体做法：</p>
+<ol>
+  <li>分析断点处所有可用的同级技巧</li>
+  <li>找出目标技巧的关键格和证据链</li>
+  <li>调整相邻笼子的和值或形状，让目标技巧的排除效果更显著</li>
+  <li>或者反过来，让其他可选技巧的排除效果变弱</li>
+</ol>
+
+<div class="callout tip">
+  <strong>设计经验</strong>
+  <p>与其从零设计一道纯净关，不如先设计一道「大致对路」的关，再用纯净度验证工具反复迭代优化。通常经过 3-5 轮调整就能从 B 级提升到 A 级。</p>
+</div>
+
+<!-- 12. Cage Fixer V6 -->
+<h2 id="cage-fixer-v6">12. 关卡生成器（cage-fixer-v6）</h2>
+
+<p><span class="badge module">工具链</span> <span class="badge data">数据</span></p>
+
+<p>cage-fixer-v6 是 cagemaster3 的自动化关卡生成器，也是 Phase E 工具链的核心产出。它可以从零生成符合规范的杀手数独关卡，支持难度控制、技巧定向和纯净度校验。</p>
+
+<h3 id="gen-naming">12.1 命名由来与设计哲学</h3>
+
+<p>为什么叫「cage-fixer」？因为前五代生成器的核心问题都是「笼子划分不合理」——要么形状奇怪，要么和值冲突，要么唯一解不成立。v6 的目标就是把笼子划分这个难题彻底解决。</p>
+
+<p><strong>设计哲学：</strong></p>
+<ul>
+  <li><strong>从解出发</strong>：先生成完整正解，再划分笼子，保证和值天然正确</li>
+  <li><strong>生长算法</strong>：笼子从种子格开始生长，保证连通性和自然形状</li>
+  <li><strong>唯一解优先</strong>：每一步挖洞都验证唯一解，不做无效尝试</li>
+  <li><strong>难度可调控</strong>：通过笼子大小分布、挖洞策略逼近目标星级</li>
+</ul>
+
+<h3 id="gen-pipeline">12.2 六步生成流水线</h3>
+
+<div class="mermaid">
+flowchart TD
+    A[Step 1: 生成完整解] --&gt; B[Step 2: 划分笼子]
+    B --&gt; C[Step 3: 计算和值]
+    C --&gt; D[Step 4: 挖洞]
+    D --&gt; E[Step 5: 难度调节]
+    E --&gt; F[Step 6: 纯净度校验]
+    F --&gt; G[输出关卡]
+    classDef step fill:#2a2f3a,stroke:#6366f1
+    class A,B,C,D,E,F,G step
+</div>
+
+<h4>12.2.1 Step 1：生成完整解</h4>
+
+<p>用随机回溯法生成一个合法的数独终盘。这一步是整个流水线的基础。</p>
+
+<p><strong>算法：</strong>回溯 + MRV（最少剩余值）启发式</p>
+<ul>
+  <li>按空格候选数从小到大填充（MRV），加速收敛</li>
+  <li>每格随机选择候选数字，确保多样性</li>
+  <li>9×9 终盘生成平均耗时 &lt; 5ms</li>
+</ul>
+
+<pre><code>function generateSolution(gridSize = 9) {
+  const board = Array(gridSize).fill(null).map(() =&gt; Array(gridSize).fill(0));
+  return backtrack(board, gridSize);
+}
+
+function backtrack(board, n) {
+  // 找候选最少的空格（MRV）
+  const [row, col, candidates] = findMRVCell(board, n);
+  if (row === -1) return board; // 全部填满
+
+  // 随机打乱候选顺序
+  shuffle(candidates);
+
+  for (const num of candidates) {
+    if (isValidPlacement(board, row, col, num, n)) {
+      board[row][col] = num;
+      const result = backtrack(board, n);
+      if (result) return result;
+      board[row][col] = 0;
+    }
+  }
+  return null;
+}</code></pre>
+
+<h4>12.2.2 Step 2：划分笼子</h4>
+
+<p>采用<strong>生长算法</strong>划分笼子，同时满足「数字不重复」约束（同一笼内数字各不相同）。</p>
+
+<p><strong>算法流程：</strong></p>
+<ol>
+  <li>随机选择一个未分配的格子作为种子</li>
+  <li>从种子开始向四邻生长，每次选择一个邻居加入笼子</li>
+  <li>生长约束：新格子的数字在笼子中不重复（杀手数独规则）</li>
+  <li>停止条件：达到目标笼子大小，或没有可生长的邻居</li>
+  <li>重复直到所有格子被分配</li>
+</ol>
+
+<p>笼子大小分布是控制难度的关键参数之一：</p>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr><th>难度</th><th>2格笼</th><th>3格笼</th><th>4格笼</th><th>5+格笼</th><th>单格笼</th></tr>
+</thead>
+<tbody>
+<tr><td>1星</td><td>30%</td><td>25%</td><td>15%</td><td>5%</td><td>25%</td></tr>
+<tr><td>2星</td><td>35%</td><td>30%</td><td>20%</td><td>5%</td><td>10%</td></tr>
+<tr><td>3星</td><td>35%</td><td>30%</td><td>25%</td><td>10%</td><td>0%</td></tr>
+<tr><td>4星</td><td>30%</td><td>30%</td><td>25%</td><td>15%</td><td>0%</td></tr>
+<tr><td>5星</td><td>25%</td><td>25%</td><td>25%</td><td>25%</td><td>0%</td></tr>
+</tbody>
+</table>
+</div>
+
+<h4>12.2.3 Step 3：计算和值</h4>
+
+<p>最直接的一步——对每个笼子，把其中的答案数字相加，就是笼子的和值。</p>
+
+<pre><code>function calculateCageSums(solution, cages) {
+  return cages.map(cage =&gt; {
+    const sum = cage.cells.reduce((s, [r, c]) =&gt; s + solution[r][c], 0);
+    return { ...cage, sum };
+  });
+}</code></pre>
+
+<p>因为是从正解出发，所以和值天然正确，不会有冲突。</p>
+
+<h4>12.2.4 Step 4：挖洞</h4>
+
+<p>挖洞是生成有唯一解的谜题的核心步骤。策略是<strong>随机挖洞 + 唯一解验证</strong>。</p>
+
+<p><strong>算法流程：</strong></p>
+<ol>
+  <li>从全满盘面开始</li>
+  <li>随机选择一个格子，尝试移除其数字（变成空格）</li>
+  <li>用求解器验证是否仍为唯一解</li>
+  <li>唯一解 → 保留挖洞；不唯一 → 恢复数字</li>
+  <li>重复直到挖不动为止，或达到目标空格数</li>
+</ol>
+
+<div class="callout warn">
+  <strong>唯一解验证的双层策略</strong>
+  <p>挖洞阶段的唯一解验证是性能瓶颈。v6 采用双层策略：先用 TechRater 快速验证（逻辑求解），如果 TechRater 解出唯一解就直接通过；如果 TechRater 解不出来（可能多解也可能只是技巧不够），再用暴力回溯验证。这样 90% 以上的情况不需要暴力回溯，大幅提升速度。</p>
+</div>
+
+<h4>12.2.5 Step 5：难度调节</h4>
+
+<p>挖洞完成后，用 TechRater 评估难度。如果与目标星级差距较大，则进行调整：</p>
+
+<ul>
+  <li><strong>太难了</strong>：回填几个关键位置的数字（降低空格数）</li>
+  <li><strong>太简单了</strong>：继续挖洞（增加空格数），或者调整笼子</li>
+  <li><strong>技巧等级不够</strong>：调整笼子大小分布，增加大笼比例</li>
+</ul>
+
+<p>难度逼近采用<strong>二分策略</strong>：先大幅度调整，接近目标后逐步细化，通常 3-5 轮迭代即可收敛到目标星级。</p>
+
+<h4>12.2.6 Step 6：纯净度校验（可选）</h4>
+
+<p>如果指定了目标技巧（如生成定向教学关），则在最后一步调用 TechnicalPurityValidator 进行纯净度校验。</p>
+
+<p>纯净度不达标时的处理策略：</p>
+<ul>
+  <li>分数接近（B级以上） → 微调笼子后重试</li>
+  <li>分数差距大 → 丢弃本次生成，重新开始</li>
+  <li>纯净关生成成功率较低（约 5-15%），需要多轮尝试</li>
+</ul>
+
+<h3 id="gen-api">12.3 API 与命令行用法</h3>
+
+<h4>12.3.1 编程 API</h4>
+
+<pre><code>import { CageFixerV6 } from './cage-fixer-v6.js';
+
+// 基础用法：生成指定难度的关卡
+const generator = new CageFixerV6({
+  gridSize: 9,
+  targetStars: 3,      // 目标星级：1-5
+  seed: 42,            // 随机种子（可复现）
+});
+
+const level = generator.generate();
+// =&gt; { levelId, gridSize, cages, cells, solution, rating }
+
+// 定向技巧关生成
+const level = generator.generate({
+  targetTechnique: 'nakedPair',
+  minPurityScore: 75,  // 最低纯净度要求
+  maxAttempts: 50      // 最多尝试次数
+});</code></pre>
+
+<h4>12.3.2 命令行用法</h4>
+
+<pre><code># 生成一道 3 星 9x9 关卡
+node cage-fixer-v6.js --size 9 --stars 3
+
+# 批量生成 10 道 4 星关卡
+node cage-fixer-v6.js --size 9 --stars 4 --count 10 --output levels.json
+
+# 生成定向 NakedPair 教学关，纯净度 A 级以上
+node cage-fixer-v6.js --size 9 --technique nakedPair --min-purity 75
+
+# 指定笼子分布权重
+node cage-fixer-v6.js --size 9 --weights 2:30,3:30,4:25,5:15</code></pre>
+
+<h3 id="gen-performance">12.4 性能基准数据</h3>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr><th>关卡类型</th><th>平均生成时间</th><th>成功率</th><th>样本数</th></tr>
+</thead>
+<tbody>
+<tr><td>9×9 1-2星</td><td>120 ms</td><td>95%</td><td>1000</td></tr>
+<tr><td>9×9 3星</td><td>350 ms</td><td>85%</td><td>1000</td></tr>
+<tr><td>9×9 4星</td><td>800 ms</td><td>70%</td><td>500</td></tr>
+<tr><td>9×9 5星</td><td>2.5 s</td><td>40%</td><td>200</td></tr>
+<tr><td>6×6 任意难度</td><td>40 ms</td><td>98%</td><td>1000</td></tr>
+<tr><td>4×4 任意难度</td><td>10 ms</td><td>99%</td><td>1000</td></tr>
+<tr><td>定向纯净关（A级）</td><td>8 s</td><td>12%</td><td>100</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="callout tip">
+  <strong>性能优化建议</strong>
+  <p>批量生成时建议使用 Web Worker 并行处理。生成 100 道 3 星关卡，8 核并行约需 5 秒。纯净关建议异步生成，不阻塞主流程。</p>
+</div>
+
+<!-- 13. TechMatrix -->
+<h2 id="tech-matrix">13. 技术矩阵（TechMatrix）</h2>
+
+<p><span class="badge module">核心功能</span> <span class="badge expert">专家</span></p>
+
+<p>技术矩阵是 Phase E 新增的核心玩家功能——它不是一个「给答案」的作弊器，而是一套「侦探推理笔记」工具。玩家在卡关时打开技术矩阵，可以整理线索、可视化候选、推演推理，就像侦探在白板上梳理案情一样。</p>
+
+<h3 id="matrix-philosophy">13.1 设计理念：侦探推理笔记，不是答案器</h3>
+
+<div class="callout tip">
+  <strong>核心设计原则</strong>
+  <p>技术矩阵的目标是「帮助玩家自己想出来」，而不是「直接告诉玩家答案」。它提供工具和视角，但最终的推理必须由玩家自己完成。</p>
+</div>
+
+<p>与提示系统的区别：</p>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr><th>维度</th><th>提示系统</th><th>技术矩阵</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>定位</strong></td><td>教学引导</td><td>自主推理工具</td></tr>
+<tr><td><strong>是否给答案</strong></td><td>分级提示，最终指向答案</td><td>不给答案，只给工具</td></tr>
+<tr><td><strong>使用场景</strong></td><td>学习新技巧时</td><td>自主攻坚难题时</td></tr>
+<tr><td><strong>交互方式</strong></td><td>被动接收（角色对话）</td><td>主动操作（面板交互）</td></tr>
+<tr><td><strong>对难度的影响</strong></td><td>降低难度</td><td>不降低难度，提升效率</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3 id="matrix-modules">13.2 四大功能模块详解</h3>
+
+<div class="mermaid">
+graph LR
+    subgraph 技术矩阵
+        A[证据链面板]
+        B[候选热力图]
+        C[演算区]
+        D[技巧雷达]
+    end
+    A -- 联动 --&gt; B
+    B -- 联动 --&gt; C
+    D -- 提示 --&gt; A
+    classDef mod fill:#2a2f3a,stroke:#6366f1
+    class A,B,C,D mod
+</div>
+
+<h4 id="matrix-evidence">13.2.1 证据链面板</h4>
+
+<p>证据链面板是技术矩阵的核心视图，采用三层结构组织推理信息：</p>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr><th>层级</th><th>名称</th><th>内容</th><th>颜色</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>第一层</strong></td><td>观察（Observation）</td><td>盘面已知事实：已填数字、笼子和值、候选分布</td><td style="color: var(--muted);">灰色</td></tr>
+<tr><td><strong>第二层</strong></td><td>排除（Elimination）</td><td>可以排除的候选：规则排除、技巧排除、假设排除</td><td style="color: var(--error);">红色</td></tr>
+<tr><td><strong>第三层</strong></td><td>结论（Conclusion）</td><td>可以确定的填数：直接结论、间接推导</td><td style="color: var(--success);">绿色</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>每条证据都包含：</p>
+<ul>
+  <li><strong>来源</strong>：哪个技巧/规则得出的</li>
+  <li><strong>目标</strong>：哪个格子的哪个候选</li>
+  <li><strong>证据</strong>：支撑这个结论的关键格子</li>
+  <li><strong>置信度</strong>：确定 / 高 / 中（假设推理的置信度较低）</li>
+</ul>
+
+<pre><code>// 证据链数据结构
+interface Evidence {
+  id: string;
+  layer: 'observation' | 'elimination' | 'conclusion';
+  technique: string;       // 来源技巧
+  targetCell: [number, number];
+  targetCandidates: number[];
+  supportingCells: [number, number][];
+  confidence: 'certain' | 'high' | 'medium';
+  timestamp: number;
+}</code></pre>
+
+<h4 id="matrix-heatmap">13.2.2 候选热力图</h4>
+
+<p>候选热力图以可视化方式展示每个数字在盘面中的候选分布密度，帮助玩家快速发现「哪里数字最挤」「哪里可能有区块」。</p>
+
+<p><strong>功能特性：</strong></p>
+<ul>
+  <li>切换查看 1-9 每个数字的候选分布</li>
+  <li>颜色深浅表示候选密度（越深 = 候选越多）</li>
+  <li>一键高亮某数字的所有候选格</li>
+  <li>支持行列宫筛选视图</li>
+  <li>与笔记系统实时联动</li>
+</ul>
+
+<div class="callout tip">
+  <strong>设计巧思</strong>
+  <p>热力图本身不告诉你答案，但它能让「模式」变得可见。比如 X-Wing 的矩形模式在热力图上会非常明显——两行两列的四个角落都有同一个数字的候选，组成一个矩形。玩家看到这个模式，就知道该用 X-Wing 了。</p>
+</div>
+
+<h4 id="matrix-workspace">13.2.3 演算区</h4>
+
+<p>演算区是玩家的「便签纸」和「草稿板」，用于尝试性推理和假设验证。</p>
+
+<p><strong>三大子功能：</strong></p>
+
+<div class="card-grid">
+  <div class="card">
+    <h4>钉选格子</h4>
+    <p class="card-meta">Pin Cells</p>
+    <p>把关键格子钉选到演算区，聚焦分析，不受盘面其他信息干扰。支持同时钉选多个格子，自动对齐显示候选。</p>
+  </div>
+  <div class="card">
+    <h4>便签纸</h4>
+    <p class="card-meta">Scratchpad</p>
+    <p>假设某格是某个数字，然后推演后续变化。如果推出矛盾，说明假设错误。支持多分支假设，随时回退。</p>
+  </div>
+  <div class="card">
+    <h4>分组管理</h4>
+    <p class="card-meta">Group Management</p>
+    <p>把相关的格子、证据、假设编成一组，方便管理复杂推理。支持命名、颜色标签、折叠展开。</p>
+  </div>
+</div>
+
+<pre><code>// 演算区的假设推理
+class HypothesisEngine {
+  // 假设某格是某个值
+  assume(cell, value) {
+    this.pushState();  // 保存当前状态
+    this.board.fillCell(cell, value);
+    this._propagateConstraints();  // 传播约束
+  }
+
+  // 发现矛盾，撤销假设
+  contradiction() {
+    this.popState();  // 回退
+    // 记录：该格不能是这个值
+    this.addElimination(cell, value, 'hypothesis_contradiction');
+  }
+}</code></pre>
+
+<h4 id="matrix-radar">13.2.4 技巧雷达</h4>
+
+<p>技巧雷达实时扫描盘面，检测 10 种基础技巧的「迹象强度」，给玩家一个「往哪个方向想」的提示。</p>
+
+<p><strong>10 种技巧实时检测：</strong></p>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr><th>技巧</th><th>检测指标</th><th>强度判定</th></tr>
+</thead>
+<tbody>
+<tr><td>裸单</td><td>单候选格子数</td><td>有就直接提示</td></tr>
+<tr><td>笼子唯一组合</td><td>组合数 ≤ 2 的笼子</td><td>组合数越少越强</td></tr>
+<tr><td>隐单</td><td>行/列/宫中某数字位置数 ≤ 2</td><td>位置越少越强</td></tr>
+<tr><td>45法则</td><td>可计算的伸出/伸入格</td><td>可直接填数最强</td></tr>
+<tr><td>裸数对</td><td>同区域两格相同候选对数量</td><td>候选对完全匹配最强</td></tr>
+<tr><td>隐数对</td><td>两数字在同区域仅出现在相同两格</td><td>精确匹配最强</td></tr>
+<tr><td>区块排除</td><td>宫内某数字仅在同行/同列</td><td>排除候选数越多越强</td></tr>
+<tr><td>裸三数组</td><td>三格候选并集为三个数字</td><td>精确匹配最强</td></tr>
+<tr><td>X-Wing</td><td>两行/两列的矩形候选模式</td><td>完整矩形最强</td></tr>
+<tr><td>Swordfish</td><td>三行/三列的鱼形模式</td><td>完整鱼形最强</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>技巧雷达只显示「可能性」，不确认「一定有」。它的作用是引导玩家的注意力方向，就像侦探说「这几个人有嫌疑」——至于谁是真凶，还需要进一步调查。</p>
+
+<h3 id="matrix-hint-linkage">13.3 与提示系统的联动机制</h3>
+
+<p>技术矩阵和提示系统不是孤立的，它们之间有深层联动：</p>
+
+<ol>
+  <li><strong>提示导向矩阵</strong>：当提示系统给出「试试 X-Wing」的提示后，玩家点击提示气泡会自动打开技术矩阵，并定位到 X-Wing 相关的证据链</li>
+  <li><strong>矩阵反向提示</strong>：如果玩家在矩阵中操作了很久但没有进展，专家系统会检测到「卡顿」，适时给出更具体的提示</li>
+  <li><strong>技巧雷达联动</strong>：矩阵中的技巧雷达检测到强信号时，提示系统的提示等级会自动降低（玩家已经自己发现方向了，不需要再喂到嘴边）</li>
+</ol>
+
+<h3 id="matrix-api">13.4 公共 API 说明</h3>
+
+<pre><code>// 打开/关闭技术矩阵
+TechMatrix.open();
+TechMatrix.close();
+TechMatrix.toggle();
+
+// 切换到指定模块
+TechMatrix.switchTab('evidence');   // evidence | heatmap | workspace | radar
+TechMatrix.switchTab('heatmap', { number: 5 });  // 切换到5的热力图
+
+// 钉选格子
+TechMatrix.pinCell(row, col);
+TechMatrix.unpinCell(row, col);
+TechMatrix.clearPins();
+
+// 添加自定义证据（供其他系统调用）
+TechMatrix.addEvidence({
+  layer: 'elimination',
+  technique: 'custom',
+  targetCell: [row, col],
+  targetCandidates: [3, 7],
+  confidence: 'high'
+});
+
+// 事件监听
+TechMatrix.on('hypothesis_contradiction', (data) =&gt; {
+  console.log('假设矛盾：', data);
+});</code></pre>
+
+<h3 id="matrix-interactions">13.5 交互操作清单</h3>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr><th>操作</th><th>触发方式</th><th>效果</th></tr>
+</thead>
+<tbody>
+<tr><td>打开矩阵</td><td>点击工具栏「矩阵」按钮 / 按 M 键</td><td>展开技术矩阵面板</td></tr>
+<tr><td>切换模块</td><td>点击顶部 Tab / 数字键 1-4</td><td>切换四个功能模块</td></tr>
+<tr><td>钉选格子</td><td>右键点击格子 / 长按格子</td><td>将格子加入演算区</td></tr>
+<tr><td>切换热力图数字</td><td>点击数字按钮 / 滚轮切换</td><td>显示不同数字的候选热力</td></tr>
+<tr><td>开始假设</td><td>演算区中点击候选数字</td><td>假设该格为此数字，进入假设模式</td></tr>
+<tr><td>撤销假设</td><td>点击「撤销假设」 / Ctrl+Z</td><td>回退到假设前的状态</td></tr>
+<tr><td>确认结论</td><td>假设推导完成后点击「确认」</td><td>将结论应用到主盘面</td></tr>
+<tr><td>分组操作</td><td>拖拽框选 / Shift+点击多选</td><td>创建新分组</td></tr>
+<tr><td>技巧雷达扫描</td><td>自动 / 点击刷新按钮</td><td>重新扫描盘面技巧迹象</td></tr>
+</tbody>
+</table>
+</div>
+
+<!-- 14. Seal System -->
+<h2 id="seal-system">14. 印记系统（Seal System）</h2>
+
+<p><span class="badge module">游戏系统</span> <span class="badge story">剧情</span></p>
+
+<p>印记系统是 Phase E 新增的隐藏挑战奖励机制。玩家在满足特定条件通关隐藏关后，会获得对应的「印记」——一种比成就更稀有、更有仪式感的荣誉象征。</p>
+
+<h3 id="seal-positioning">14.1 设计定位：隐藏关的完美挑战奖励</h3>
+
+<div class="callout tip">
+  <strong>印记 vs 成就</strong>
+  <p>成就像「收集邮票」——完成各种目标，积少成多；印记像「武道馆段位」——只有少数高手能获得，每一枚都沉甸甸的。成就有 21 个，印记只有 5 枚；成就可以慢慢刷，印记必须一次完美通关。</p>
+</div>
+
+<p>印记的设计原则：</p>
+<ul>
+  <li><strong>稀有性</strong>：全游戏仅 5 枚，每枚对应一个隐藏关</li>
+  <li><strong>挑战性</strong>：获得条件苛刻（无提示、无错误、限时等）</li>
+  <li><strong>仪式感</strong>：解锁时有专属动画和音效</li>
+  <li><strong>叙事性</strong>：每枚印记都有对应的剧情和角色意义</li>
+</ul>
+
+<h3 id="seal-five">14.2 五枚印记详解</h3>
+
+<p>五枚印记以五行元素命名，对应五位核心角色和五道隐藏关卡。</p>
+
+<div class="card-grid">
+  <div class="card">
+    <h4>🔥 炎之印记</h4>
+    <p class="card-meta">Flame Seal · 对应角色：CK</p>
+    <p>对应第 3 章隐藏关。挑战条件：无提示通关 + 无错误填入 + 10 分钟内完成。设计意图：考验玩家对基础技巧的熟练度。</p>
+  </div>
+  <div class="card">
+    <h4>💧 水之印记</h4>
+    <p class="card-meta">Water Seal · 对应角色：Ray</p>
+    <p>对应第 5 章隐藏关。挑战条件：仅使用笔记功能通关（不使用技术矩阵）+ 错误 ≤ 1 次。设计意图：鼓励传统纸笔式思考。</p>
+  </div>
+  <div class="card">
+    <h4>🪨 岩之印记</h4>
+    <p class="card-meta">Stone Seal · 对应角色：Remnant</p>
+    <p>对应第 6 章隐藏关。挑战条件：无提示通关 + 不使用撤销功能 + 首次尝试即通关。设计意图：考验沉稳和准确性。</p>
+  </div>
+  <div class="card">
+    <h4>🌪️ 风之印记</h4>
+    <p class="card-meta">Wind Seal · 对应角色：J</p>
+    <p>对应第 7 章隐藏关。挑战条件：5 分钟内通关 + 连击数 ≥ 15。设计意图：考验速度和连击技巧。</p>
+  </div>
+  <div class="card">
+    <h4>⭐ 星之印记</h4>
+    <p class="card-meta">Star Seal · 对应角色：Setter</p>
+    <p>对应第 8 章隐藏关（最终隐藏关）。挑战条件：前四枚印记全部获得 + 无提示无错误通关最终隐藏关。设计意图：终极挑战，完美玩家的象征。</p>
+  </div>
+</div>
+
+<h4>14.2.1 挑战条件汇总表</h4>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr><th>印记</th><th>对应关卡</th><th>无提示</th><th>无错误</th><th>时间限制</th><th>其他条件</th></tr>
+</thead>
+<tbody>
+<tr><td>炎</td><td>隐藏关 3-1</td><td>✅</td><td>✅</td><td>≤ 10 分钟</td><td>-</td></tr>
+<tr><td>水</td><td>隐藏关 5-1</td><td>✅</td><td>≤ 1 次</td><td>-</td><td>不使用技术矩阵</td></tr>
+<tr><td>岩</td><td>隐藏关 6-1</td><td>✅</td><td>✅</td><td>-</td><td>不使用撤销 + 首通</td></tr>
+<tr><td>风</td><td>隐藏关 7-1</td><td>✅</td><td>≤ 2 次</td><td>≤ 5 分钟</td><td>连击 ≥ 15</td></tr>
+<tr><td>星</td><td>隐藏关 8-1</td><td>✅</td><td>✅</td><td>≤ 15 分钟</td><td>前四枚已获得</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3 id="seal-data">14.3 数据层结构（ProgressManager 扩展）</h3>
+
+<p>印记数据存储在 ProgressManager 中，作为进度系统的扩展模块。</p>
+
+<h4>14.3.1 数据结构</h4>
+
+<pre><code>// 印记定义
+const SEAL_DEFS = [
+  {
+    id: 'flame',
+    name: '炎之印记',
+    nameEn: 'Flame Seal',
+    icon: '🔥',
+    color: '#ef4444',
+    chapter: 3,
+    levelId: 'H3_01',
+    conditions: {
+      noHints: true,
+      noErrors: true,
+      timeLimit: 600  // 秒
+    },
+    character: 'CK',
+    lore: '烈焰之中，初心不改。只有在限定时间内完美通关第三章隐藏关，才能获得守笼人首领的认可。'
+  },
+  // ... 其他四枚
+];
+
+// 玩家进度中的印记数据
+interface SealProgress {
+  unlocked: boolean;          // 是否已解锁
+  unlockedAt: number | null;  // 解锁时间戳
+  bestAttempt: {              // 最佳挑战记录
+    time: number;
+    errors: number;
+    hintsUsed: number;
+    combo: number;
+  } | null;
+  attempts: number;           // 挑战次数
+}</code></pre>
+
+<h4>14.3.2 解锁判定逻辑</h4>
+
+<pre><code>class SealManager {
+  // 关卡完成时检查是否解锁印记
+  checkSealUnlock(levelId, runStats) {
+    const seal = SEAL_DEFS.find(s =&gt; s.levelId === levelId);
+    if (!seal || this.isUnlocked(seal.id)) return null;
+
+    const conditions = seal.conditions;
+    const passed = this._checkConditions(conditions, runStats);
+
+    if (passed) {
+      this._unlockSeal(seal.id);
+      return seal;
+    }
+    return null;
+  }
+
+  _checkConditions(conditions, stats) {
+    if (conditions.noHints &amp;&amp; stats.hintsUsed &gt; 0) return false;
+    if (conditions.noErrors &amp;&amp; stats.errors &gt; 0) return false;
+    if (conditions.timeLimit &amp;&amp; stats.time &gt; conditions.timeLimit) return false;
+    if (conditions.noUndo &amp;&amp; stats.undoCount &gt; 0) return false;
+    if (conditions.minCombo &amp;&amp; stats.maxCombo &lt; conditions.minCombo) return false;
+    if (conditions.requiresSeals) {
+      for (const reqId of conditions.requiresSeals) {
+        if (!this.isUnlocked(reqId)) return false;
+      }
+    }
+    return true;
+  }
+}</code></pre>
+
+<h3 id="seal-ui">14.4 UI 展示——印记圣坛面板</h3>
+
+<p>印记的展示界面叫「印记圣坛」（Seal Altar），是一个专门的展示面板。</p>
+
+<p><strong>界面布局：</strong></p>
+<ul>
+  <li>中央是一个圆形圣坛，五个印记按五边形排列</li>
+  <li>未解锁的印记显示为灰色轮廓 + 「???」</li>
+  <li>已解锁的印记发光显示，点击可查看详情</li>
+  <li>全部解锁后，中央出现「星辰梭」图案（彩蛋）</li>
+</ul>
+
+<p><strong>详情面板内容：</strong></p>
+<ul>
+  <li>印记图标和名称</li>
+  <li>挑战条件回顾</li>
+  <li>最佳挑战记录</li>
+  <li>对应角色的寄语（专属文案）</li>
+  <li>背景故事片段</li>
+</ul>
+
+<h3 id="seal-unlock">14.5 解锁触发逻辑与动画</h3>
+
+<p>印记解锁的演出是一个高仪式感的时刻：</p>
+
+<ol>
+  <li><strong>触发时机</strong>：隐藏关通关结算时，检测到满足印记条件</li>
+  <li><strong>画面效果</strong>：
+    <ul>
+      <li>结算面板淡出</li>
+      <li>屏幕变暗，中央出现印记轮廓</li>
+      <li>印记从灰色逐渐被元素颜色填充（如火红、水蓝）</li>
+      <li>填充完成后爆发光效，粒子向四周扩散</li>
+      <li>印记名称浮现，伴随角色台词</li>
+    </ul>
+  </li>
+  <li><strong>音效</strong>：<code>seal_unlock.wav</code>（深沉的共鸣音 + 印章声）</li>
+  <li><strong>震动</strong>：解锁瞬间一次强震动，光效扩散时渐变减弱</li>
+</ol>
+
+<pre><code>// 解锁动画序列
+async function playSealUnlockAnimation(seal) {
+  AudioService.playSfx('seal_unlock');
+  VibrationService.pulse(200);
+
+  await fadeOutResultPanel();       // 结算面板淡出 300ms
+  await showSealOutline(seal);      // 显示印记轮廓 200ms
+  await fillSealWithColor(seal);    // 颜色填充动画 800ms
+  await burstParticles(seal);       // 粒子爆发 500ms
+  await showSealName(seal);         // 名称浮现 400ms
+  await showCharacterMessage(seal); // 角色寄语 600ms
+}</code></pre>
+
+<h3 id="seal-vs-achievement">14.6 与成就系统的区别</h3>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr><th>维度</th><th>成就系统</th><th>印记系统</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>数量</strong></td><td>21 个（进度9 + 技巧6 + 挑战6）</td><td>5 枚（五行）</td></tr>
+<tr><td><strong>获取难度</strong></td><td>中等，多数玩家能解锁大半</td><td>极高，只有核心玩家能全收集</td></tr>
+<tr><td><strong>触发方式</strong></td><td>达成条件即解锁，可跨局累积</td><td>必须单局完美通关</td></tr>
+<tr><td><strong>展示方式</strong></td><td>列表面板，图标 + 名称 + 描述</td><td>圣坛界面，仪式化展示</td></tr>
+<tr><td><strong>叙事关联</strong></td><td>弱，主要是游戏玩法目标</td><td>强，每枚对应角色和剧情</td></tr>
+<tr><td><strong>解锁演出</strong></td><td>Toast 通知 + 音效</td><td>专属动画 + 角色寄语</td></tr>
+<tr><td><strong>进度累积</strong></td><td>支持（累计次数类成就）</td><td>不支持，必须一次到位</td></tr>
+</tbody>
+</table>
+</div>
+
+<!-- 15. TechRater Bug Fixes -->
+<h2 id="techrater-bugfixes">15. TechRater Bug 修复记录（v2.3 → v2.4）</h2>
+
+<p><span class="badge module">技术附录</span> <span class="badge core">核心</span></p>
+
+<p>Phase E 对 TechRater 推理引擎进行了一次系统性的 Bug 修复，版本号从 v2.3 升级到 v2.4。本次修复涉及 4 个关键问题，其中部分问题会影响难度评级的准确性和提示系统的正确性。</p>
+
+<h3 id="bugfix-1">15.1 Bug #1：X-Wing/Swordfish 高亮轴硬编码</h3>
+
+<h4>15.1.1 现象</h4>
+
+<p>X-Wing 和 Swordfish 技巧在返回高亮信息时，行/列轴的方向是硬编码的——X-Wing 永远返回「行为基」的高亮，Swordfish 也是如此。但实际上 X-Wing 既可以是行基（两行中的候选构成矩形），也可以是列基（两列中的候选构成矩形）。硬编码导致列基的 X-Wing 高亮显示错误——本该高亮两列，结果高亮了两行。</p>
+
+<h4>15.1.2 原因</h4>
+
+<p>原始实现中，<code>_findXWing()</code> 函数只扫描了行方向的模式，找到匹配后直接将行作为主轴返回。没有区分「行基 X-Wing」和「列基 X-Wing」，高亮轴的计算写死为行。</p>
+
+<pre><code>// v2.3 中的问题代码（简化）
+_findXWing() {
+  // 只扫描行方向
+  for (let row1 = 0; row1 &lt; 9; row1++) {
+    for (let row2 = row1 + 1; row2 &lt; 9; row2++) {
+      // ... 找两行间的 X-Wing 模式
+      if (found) {
+        return {
+          type: 'xWing',
+          highlightRows: [row1, row2],  // 硬编码：只有行
+          highlightCols: [],            // 列永远为空！
+          // ...
+        };
+      }
+    }
+  }
+}</code></pre>
+
+<h4>15.1.3 修复方案</h4>
+
+<p>增加列方向的扫描，并根据实际检测到的模式正确设置高亮轴：</p>
+
+<pre><code>// v2.4 修复后
+_findXWing() {
+  // 行基 X-Wing（两行中，某数字只出现在相同两列）
+  const rowBased = this._findXWingRows();
+  if (rowBased) {
+    return {
+      ...rowBased,
+      highlightRows: rowBased.bases,     // 两行
+      highlightCols: rowBased.peers,     // 两列（排除的位置）
+      orientation: 'row'
+    };
+  }
+
+  // 列基 X-Wing（两列中，某数字只出现在相同两行）
+  const colBased = this._findXWingCols();
+  if (colBased) {
+    return {
+      ...colBased,
+      highlightRows: colBased.peers,     // 两行（排除的位置）
+      highlightCols: colBased.bases,     // 两列
+      orientation: 'col'
+    };
+  }
+
+  return null;
+}</code></pre>
+
+<h4>15.1.4 影响范围</h4>
+
+<ul>
+  <li><strong>提示系统</strong>：列基 X-Wing 的提示高亮错误，玩家看到的高亮位置不对 → 高影响</li>
+  <li><strong>技巧图鉴</strong>：示例高亮显示错误 → 中影响</li>
+  <li><strong>难度评级</strong>：不影响（是否检测到与高亮无关） → 无影响</li>
+</ul>
+
+<h3 id="bugfix-2">15.2 Bug #2：X-Wing/Swordfish 只返回第一个结果</h3>
+
+<h4>15.2.1 现象</h4>
+
+<p>X-Wing 和 Swordfish 的检测函数找到第一个匹配后就立即返回，没有继续寻找其他可能的模式。这导致两个问题：</p>
+<ol>
+  <li>当盘面上有多个 X-Wing 时，只返回最先找到的那个</li>
+  <li>影响力评分失效——因为只有一个候选，无法比较「哪个更有教学价值」</li>
+</ol>
+
+<h4>15.2.2 原因</h4>
+
+<p>早期实现中，X-Wing 等高级技巧被认为是稀有的，一盘最多一个，所以找到就返回。但随着题库扩大，尤其是高难度关卡中，可能同时存在多个 X-Wing 模式。</p>
+
+<pre><code>// v2.3 中的问题
+_findXWing() {
+  for (...) {
+    if (found) {
+      return result;  // 找到就返回，不继续找
+    }
+  }
+  return null;
+}</code></pre>
+
+<h4>15.2.3 修复方案</h4>
+
+<p>收集所有候选结果，然后通过影响力评分选出最优解：</p>
+
+<pre><code>// v2.4 修复后
+_findXWing() {
+  const candidates = [];
+
+  // 收集所有行基 X-Wing
+  for (...) {
+    if (found) candidates.push(result);
+  }
+
+  // 收集所有列基 X-Wing
+  for (...) {
+    if (found) candidates.push(result);
+  }
+
+  if (candidates.length === 0) return null;
+
+  // 按影响力评分排序，返回最优解
+  candidates.sort((a, b) =&gt; this._calcInfluence(b) - this._calcInfluence(a));
+  return candidates[0];
+}</code></pre>
+
+<h4>15.2.4 影响范围</h4>
+
+<ul>
+  <li><strong>提示系统</strong>：可能会选择不同的 X-Wing 作为提示目标（更有教学价值的那个） → 中影响</li>
+  <li><strong>影响力评分</strong>：高级技巧的影响力评分现在有效了 → 高影响（对教学质量）</li>
+  <li><strong>求解路径</strong>：可能改变求解顺序，因为选择了不同的 X-Wing → 低影响</li>
+  <li><strong>难度评级</strong>：基本不影响，最高技巧等级不变 → 无影响</li>
+</ul>
+
+<h3 id="bugfix-3">15.3 Bug #3：Rule45 只返回第一个结果</h3>
+
+<h4>15.3.1 现象</h4>
+
+<p>与 Bug #2 类似，Rule45（45法则/星衡法则）的检测函数也是找到第一个可计算的伸出/伸入格就返回。当一宫内有多个可用的 45 法则推导时，只返回最先找到的那个，跳过了可能更有教学价值的选项。</p>
+
+<h4>15.3.2 原因</h4>
+
+<p>Rule45 的实现沿用了早期「找到即返回」的模式。在简单关卡中问题不大，但在笼子布局复杂的关卡中，可能同时存在 3-5 个可用的 Rule45 推导，优先级选择很重要。</p>
+
+<h4>15.3.3 修复方案</h4>
+
+<p>与 X-Wing 的修复思路一致——收集全部候选，按影响力排序：</p>
+
+<pre><code>// v2.4 修复后
+_findRule45() {
+  const candidates = [];
+
+  // 扫描所有宫的伸出格（outie）
+  for (let box = 0; box &lt; 9; box++) {
+    const outies = this._findOutieCells(box);
+    for (const outie of outies) {
+      candidates.push({
+        type: 'rule45',
+        subtype: 'outie',
+        box,
+        cell: outie.cell,
+        value: outie.value,
+        cageSum: outie.cageSum,
+        boxSum: outie.boxSum,
+        evidence: outie.evidence
+      });
+    }
+  }
+
+  // 扫描所有宫的伸入格（innie）
+  // ... 同上
+
+  if (candidates.length === 0) return null;
+
+  // 优先级：直接出数 &gt; 单格伸入/伸出 &gt; 多格
+  candidates.sort((a, b) =&gt; {
+    const priority = { fill: 3, single: 2, multi: 1 };
+    return priority[b.subtype] - priority[a.subtype];
+  });
+
+  return candidates[0];
+}</code></pre>
+
+<h4>15.3.4 影响范围</h4>
+
+<ul>
+  <li><strong>提示系统</strong>：优先选择最直观的 Rule45 推导（直接出数的），教学效果更好 → 中高影响</li>
+  <li><strong>求解路径</strong>：可能加快求解速度，因为优先选直接出数的 → 低影响</li>
+  <li><strong>难度评级</strong>：基本不影响 → 无影响</li>
+</ul>
+
+<h3 id="bugfix-4">15.4 Bug #4：_fillCell 后不重新应用笼约束</h3>
+
+<h4>15.4.1 现象</h4>
+
+<p>这是最严重的一个 Bug。当 TechRater 通过某种技巧填入一个数字后（<code>_fillCell</code>），没有重新计算受影响笼子的组合约束，导致后续的候选排除不完整。</p>
+
+<p>具体表现：某些关卡中，TechRater 会「卡住」，认为需要更高级的技巧，但实际上用笼子唯一组合就可以继续推进——只是因为填数后没有刷新笼子的候选组合，所以没检测到。</p>
+
+<h4>15.4.2 原因</h4>
+
+<p><code>_fillCell</code> 方法只更新了格子的值和同行列宫的候选排除，但没有触发「笼子组合重算」。笼子的唯一组合检测是基于初始候选集做的，当某个笼子里填入新数字后，剩余空格的可能组合会收缩，甚至可能出现新的唯一组合——但这些都没有被重新计算。</p>
+
+<pre><code>// v2.3 中的问题
+_fillCell(row, col, num, technique) {
+  this.board[row][col] = num;
+  this._eliminateFromRow(row, num);     // 排除行
+  this._eliminateFromCol(col, num);     // 排除列
+  this._eliminateFromBox(row, col, num); // 排除宫
+  // ⚠️ 漏掉了：重新计算该格子所在笼子的组合约束！
+}</code></pre>
+
+<h4>15.4.3 修复方案</h4>
+
+<p>在 <code>_fillCell</code> 中增加笼子约束的重新应用：</p>
+
+<pre><code>// v2.4 修复后
+_fillCell(row, col, num, technique) {
+  this.board[row][col] = num;
+  this._eliminateFromRow(row, num);
+  this._eliminateFromCol(col, num);
+  this._eliminateFromBox(row, col, num);
+
+  // 重新应用所在笼子的组合约束
+  const cage = this._getCageAt(row, col);
+  if (cage) {
+    const newEliminations = this._recalcCageCombinations(cage);
+    // 如果新排除了候选，可能触发连锁，需要传播
+    if (newEliminations.length &gt; 0) {
+      this._propagateEliminations(newEliminations);
+    }
+  }
+
+  // 记录步骤
+  this.steps.push({ type: 'fill', row, col, num, technique });
+}</code></pre>
+
+<h4>15.4.4 影响范围</h4>
+
+<div class="callout danger">
+  <strong>高影响 Bug</strong>
+  <p>这是 v2.3 中最严重的 Bug，直接影响求解能力和难度评级的准确性。修复后，部分之前被评为 4-5 星的关卡实际只需要 3 星技巧就能解出。</p>
+</div>
+
+<ul>
+  <li><strong>求解能力</strong>：TechRater 能解出更多关卡（约 8% 的关卡评级下降） → 高影响</li>
+  <li><strong>难度评级</strong>：部分关卡的星级评定偏高，修复后需要重新评级 → 高影响</li>
+  <li><strong>提示系统</strong>：某些关卡中提示系统会说「需要更高级技巧」，但实际上用笼子组合就能推进 → 中高影响</li>
+  <li><strong>纯净度验证</strong>：断点位置可能变化，影响纯净度评分 → 中影响</li>
+</ul>
+
+<h3 id="bugfix-compatibility">15.5 v2.4 的兼容性保证</h3>
+
+<p>虽然修复了 4 个 Bug，但 v2.4 保持了向后兼容性：</p>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr><th>兼容性维度</th><th>状态</th><th>说明</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>API 接口</strong></td><td>✅ 完全兼容</td><td>所有公开方法签名不变</td></tr>
+<tr><td><strong>返回值结构</strong></td><td>✅ 兼容扩展</td><td>新增字段（如 orientation），原有字段不变</td></tr>
+<tr><td><strong>技巧编号</strong></td><td>✅ 不变</td><td>10种技巧的 ID 和等级不变</td></tr>
+<tr><td><strong>难度算法</strong></td><td>⚠️ 结果有变化</td><td>公式不变，但求解路径变化导致评分变化</td></tr>
+<tr><td><strong>三阶段剧本</strong></td><td>⚠️ 结果有变化</td><td>算法不变，但因求解能力提升，破局点位置可能变化</td></tr>
+</tbody>
+</table>
+</div>
+
+<p><strong>迁移建议：</strong></p>
+<ul>
+  <li>升级后重新运行全题库验证和评级，更新缓存的 rating 数据</li>
+  <li>检查依赖特定高亮格式的 UI 代码，确认新增的 <code>orientation</code> 字段不会导致报错</li>
+  <li>定向技巧关需要重新验证纯净度，部分关卡的纯净度评分可能变化</li>
+</ul>
+
+<!-- 16. Changelog -->
+<h2 id="changelog">16. 版本历史</h2>
+
+<h3>v3.1 · 交互体验大版本</h3>
+<p style="color: var(--muted); font-size: 0.9rem;">2026年7月</p>
+
+<h4>核心玩法增强</h4>
+<ul>
+<li><strong>45法则顶部常驻HUD</strong>：棋盘顶部实时显示当前选中行/列/宫的和、与45的差值、涉及的笼子组合及候选数字，仅在9×9关卡启用</li>
+<li><strong>What If 假设模式</strong>：分支快照系统，最多3张扑克牌式堆叠快照卡片，支持采纳/回退/彻底回退，蓝色光晕视觉标识，键盘快捷键 W/Enter/Backspace/Esc</li>
+<li><strong>提示播放器</strong>：动画式推理展示系统，5种动画步骤（观察→聚焦→排除→揭示→完成），行/列/宫高亮、笼子金色虚线、目标格呼吸脉动、排除数字红色斜线、揭示数字金色闪光</li>
+</ul>
+
+<h4>UI 交互升级</h4>
+<ul>
+<li><strong>右侧浮条</strong>：金属色拉扣头（32px）+ 80px滑出面板，三模式切换（普通/What If/提示播放中），扑克牌式快照堆叠（每张偏移24px），点击外部自动收起</li>
+<li><strong>主菜单 menu.html</strong>：牛皮封面质感设计，烫金标题 "CAGED CIPHER"，皮革质感按钮，继续调查/开启卷宗/章节选择/设置/关于</li>
+<li><strong>安卓边缘手势屏蔽</strong>：touch-action: none + popstate 拦截，防止误触返回键</li>
+</ul>
+
+<h4>系统完善</h4>
+<ul>
+<li><strong>成就面板统一</strong>：统一使用 ProgressManager 成就定义，打通 achievementTimes 解锁时间存储，20个成就分3大类（进度/技巧/挑战），游戏时长统计 getTotalPlayTime()</li>
+<li><strong>图鉴系统集成</strong>：剧情已读自动标记、CG/背景图自动解锁、三Tab（角色/剧情/CG）、剧情回放功能优化</li>
+<li><strong>What If 与技术矩阵平滑过渡</strong>：启动What If时自动关闭技术矩阵，避免信息过载</li>
+</ul>
+
+<h3>v3.0 · 重构完成版</h3>
+<p style="color: var(--muted); font-size: 0.9rem;">2026年7月</p>
+
+<h4>Phase E · 推理引擎与工具链</h4>
+<ul>
+<li><strong>TechRater v2.4 升级</strong>：修复 4 个关键 Bug（X-Wing/Swordfish 高亮轴硬编码、只返回第一个结果、Rule45 只返回第一个、_fillCell 后不重算笼约束），求解能力提升约 8%</li>
+<li><strong>LevelValidator 关卡验证系统</strong>：三重验证（数据完整性 / 可解性 / 难度评级），批量验证工具，结构化验证报告</li>
+<li><strong>TechnicalPurityValidator 技巧纯净度验证</strong>：三重纯净标准（技术断点 / 技巧纯净 / 级联坍塌），30+40+30 评分公式，受限求解模式</li>
+<li><strong>cage-fixer-v6 关卡生成器</strong>：六步生成流水线（生成解 / 划分笼子 / 计算和值 / 挖洞 / 难度调节 / 纯净度校验），支持难度控制和定向技巧关生成</li>
+<li><strong>TechMatrix 技术矩阵</strong>：侦探推理笔记工具，四大模块（证据链面板 / 候选热力图 / 演算区 / 技巧雷达），与提示系统深度联动</li>
+<li><strong>Seal System 印记系统</strong>：5 枚五行印记（炎/水/岩/风/星），隐藏关完美挑战奖励，专属解锁动画，印记圣坛面板</li>
+<li><strong>多尺寸支持</strong>：4×4 / 6×6 / 9×9 分级技巧列表，自适应规则配置</li>
+<li><strong>影响力评分</strong>：5 维度加权，从多候选中选最有教学价值的一步</li>
+<li><strong>elimination 步骤记录</strong>：排除类技巧完整追踪，证据链可回溯</li>
+<li><strong>题库体系梳理</strong>：按技巧 / 按难度 / 隐藏关 三级分类</li>
+</ul>
+
+<h4>Phase D · 核心体验补全</h4>
+<ul>
+<li>P0 修复：笼子冲突去重 bug、Board levelId 缺失</li>
+<li>P1 修复：chapters.json 重复 fetch 缓存优化</li>
+<li>游戏计时器 + 暂停系统（页面隐藏自动暂停、对话暂停嵌套）</li>
+<li>连击系统 ComboSystem（10秒窗口、4档里程碑、双路径EUREKA）</li>
+<li>心流阈值动态调整（按盘面尺寸：4×4→4连击 / 9×9→8连击）</li>
+<li>主菜单页面 menu.html（继续/新游戏/章节选择/设置/关于）</li>
+<li>暂停菜单（继续/重开/返回章节/返回主菜单/设置）</li>
+<li>成就系统扩充：6 → 21 个（进度9 + 技巧6 + 挑战6）</li>
+<li>错误填入优化：默认不保留错误数字，300ms 闪烁后清除</li>
+<li>新手教学瘦身：第1关从15+句精简到3步核心教学</li>
+<li>剧情图鉴系统 GalleryPanel（角色图鉴 / 剧情回顾 / CG收集）</li>
+<li>键盘快捷键完善：空格暂停、Esc逐层关闭、+-调数字、Shift+多选、C校验、A自动填充</li>
+</ul>
+
+<h4>Phase A · 核心玩法修复</h4>
+<ul>
+<li>数字按钮居中对齐 + CSS 全面优化</li>
+<li>直接点击数字填入（无需先选格再点再选）</li>
+<li>笔记模式候选数填入与显示（接入 NoteSystem）</li>
+<li>拖拽多选 + 自动笔记模式</li>
+<li>上划数字键填笔记</li>
+<li>长按棋盘数字高亮同数</li>
+<li>长按数字键激活填数模式</li>
+<li>错误填入视觉反馈 + 震动</li>
+</ul>
+
+<h4>Phase B · 特色功能补全</h4>
+<ul>
+<li>音效系统全面升级：Web Audio API + 缓冲池 + 50+ 音效映射</li>
+<li>笼和约束即时校验（不依赖答案）</li>
+<li>Rule45 面板适配 4×4 / 6×6 / 9×9</li>
+<li>历史记录上限 500 步 + Redo 支持</li>
+<li>首次教学遭遇完整演出</li>
+<li>专家系统反馈角色化（角色气泡）</li>
+<li>技巧图鉴 UI（T 键）</li>
+<li>四通道音量控制 + localStorage 持久化</li>
+</ul>
+
+<h4>Phase C · 精雕细琢</h4>
+<ul>
+<li>设置面板（音量/游戏/显示/数据管理）</li>
+<li>成就列表面板</li>
+<li>剧情跳过（按钮/长按/已读加速/确认弹窗）</li>
+<li>移动端横屏适配</li>
+<li>触控目标 44px 最小尺寸</li>
+<li>边缘死区 + 快速滑动防误触</li>
+<li>角色立绘映射补全（4个新角色）</li>
+<li>胜利条件独立规则校验（不依赖 solution）</li>
+<li>关卡数据修复（199/799/801 笼子和值错误）</li>
+<li>9 关通关对话补全</li>
+<li>SFX 预加载</li>
+</ul>
+
+<h3>v2.0 · cagemaster2</h3>
+<p style="color: var(--muted); font-size: 0.9rem;">前一版本，功能完整但代码结构臃肿</p>
+
+<h3>v1.0 · 初始版本</h3>
+<p style="color: var(--muted); font-size: 0.9rem;">基础杀手数独游戏</p>
+
+</main>
+
+<!-- ===== Footer ===== -->
+<footer>
+  <p>Caged Cipher Developer Manual · v3.1</p>
+  <p style="margin-top: 8px; font-size: 0.8rem;">Generated by Trae Work · 笼中密码开发团队</p>
+</footer>
+
+</div>
+
+<script>
+mermaid.initialize({
+  startOnLoad: true,
+  theme: 'dark',
+  securityLevel: 'loose',
+  themeVariables: {
+    background: '#1a1d24',
+    primaryColor: '#6366f1',
+    primaryTextColor: '#e8eaed',
+    primaryBorderColor: '#6366f1',
+    lineColor: '#2a2f3a',
+    secondaryColor: '#252a34',
+    tertiaryColor: '#0f1115'
+  }
+});
+</script>
+
+
+
+</body></html>

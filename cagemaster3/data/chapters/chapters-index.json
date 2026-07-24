@@ -1,0 +1,54 @@
+{
+  "version": 3,
+  "totalChapters": 8,
+  "chapters": [
+    {
+      "chapterId": 1,
+      "title": "初识笼中密码",
+      "levelCount": 10,
+      "file": "chapter-01.json"
+    },
+    {
+      "chapterId": 2,
+      "title": "四十五星衡",
+      "levelCount": 8,
+      "file": "chapter-02.json"
+    },
+    {
+      "chapterId": 3,
+      "title": "档案室深层",
+      "levelCount": 7,
+      "file": "chapter-03.json"
+    },
+    {
+      "chapterId": 4,
+      "title": "尘封旧案",
+      "levelCount": 6,
+      "file": "chapter-04.json"
+    },
+    {
+      "chapterId": 5,
+      "title": "星辰梭核心",
+      "levelCount": 6,
+      "file": "chapter-05.json"
+    },
+    {
+      "chapterId": 6,
+      "title": "终局笼局",
+      "levelCount": 6,
+      "file": "chapter-06.json"
+    },
+    {
+      "chapterId": 7,
+      "title": "秘术档案",
+      "levelCount": 7,
+      "file": "chapter-07.json"
+    },
+    {
+      "chapterId": 8,
+      "title": "星辰归途",
+      "levelCount": 1,
+      "file": "chapter-08.json"
+    }
+  ]
+}

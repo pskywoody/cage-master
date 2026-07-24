@@ -1,0 +1,57 @@
+# Dependencies
+node_modules/
+.venv*/
+venv/
+env/
+
+# IDE & Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# MimoCode / Trae internal
+.mimocode/
+
+# Uploads & temp files
+.uploads/
+uploads/
+tmp/
+temp/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Output / build
+output/
+build/
+dist/
+
+# Cache
+.cache/
+.parcel-cache/
+.next/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# OS
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+
+# Audio temp
+*.wav.bak
+*.mp3.tmp

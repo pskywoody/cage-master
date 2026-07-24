@@ -1,0 +1,1543 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <title>Caged Cipher</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    html, body { height: 100%; }
+    body {
+      background:
+        radial-gradient(ellipse at top, rgba(99,102,241,0.12) 0%, transparent 50%),
+        radial-gradient(ellipse at bottom, rgba(34,211,238,0.08) 0%, transparent 50%),
+        #0f1115;
+      color: #e8eaed;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+    /* Game scene background: preserves last scene BG from story with dark overlay */
+    body.game-scene-bg {
+      background-color: transparent;
+    }
+    body.game-scene-bg::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(10, 12, 16, 0.35);
+      pointer-events: none;
+      z-index: 0;
+    }
+    #game-container {
+      width: 100%;
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      height: 100vh;
+      height: 100dvh;
+      background: transparent;
+      position: relative;
+      z-index: 1;
+      box-sizing: border-box;
+      transform: translateY(-10px);
+    }
+    /* 顶部状态栏 */
+    #game-header {
+      width: 100%;
+      padding: 8px 12px 4px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+      box-sizing: border-box;
+    }
+    #game-header .header-left,
+    #game-header .header-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    #game-header .header-center {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+      min-width: 0;
+    }
+    .header-level-title {
+      font-size: 12px;
+      color: #64748b;
+      font-weight: 500;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 100%;
+    }
+    /* 幕次指示器 */
+    .act-indicator {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      width: 100%;
+      max-width: 180px;
+    }
+    .act-indicator-text {
+      font-size: 12px;
+      font-weight: 600;
+      color: #22c55e;
+      letter-spacing: 0.5px;
+    }
+    .act-indicator-progress {
+      width: 100%;
+      height: 3px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .act-indicator-fill {
+      height: 100%;
+      width: 0%;
+      background: #22c55e;
+      border-radius: 2px;
+      transition: width 0.3s ease-out, background 0.3s ease;
+    }
+    #game-timer-display {
+      min-width: 60px;
+      height: 32px;
+      padding: 0 12px;
+      background: rgba(15,23,42,0.6);
+      border: 1px solid rgba(251,191,36,0.25);
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 700;
+      color: #fbbf24;
+      font-family: "JetBrains Mono", monospace;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      backdrop-filter: blur(8px);
+    }
+    .header-btn {
+      width: 36px;
+      height: 36px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(15,23,42,0.5);
+      color: #94a3b8;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s;
+      backdrop-filter: blur(8px);
+    }
+    .header-btn:hover { background: rgba(30,41,59,0.7); color: #e8eaed; }
+    .header-btn:active { transform: scale(0.92); }
+    /* 棋盘区域 */
+    #board-area {
+      width: 100%;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 4px 4px 0;
+      box-sizing: border-box;
+      min-height: 0;
+      flex-shrink: 0;
+    }
+    /* Landscape layout: left board, right controls */
+    @media (orientation: landscape) and (max-height: 520px) {
+      #game-container {
+        flex-direction: row;
+        max-width: 100%;
+        justify-content: center;
+        align-items: flex-start;
+        padding: 8px 16px;
+        gap: 16px;
+        min-height: 100vh;
+      }
+      #game-header { display: none; }
+      #board-area {
+        flex: 0 0 auto;
+        padding: 0;
+      }
+      #gameCanvas {
+        max-width: calc(100vh - 16px);
+        max-height: calc(100vh - 16px);
+        width: auto;
+        height: calc(100vh - 16px);
+      }
+      .landscape-controls {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        max-width: 260px;
+        flex-shrink: 0;
+      }
+      .landscape-controls #toolbar {
+        order: 2;
+        margin: 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        max-width: 100%;
+      }
+      .landscape-controls #toolbar button {
+        width: 44px;
+        height: 44px;
+        flex: 0 0 44px;
+        display: flex !important;
+      }
+      .landscape-controls #num-pad {
+        order: 1;
+        margin-top: 0;
+        max-width: 100%;
+      }
+      .multi-select-hint {
+        display: none;
+      }
+      /* 横屏模式下HUD改为顶部浮动，不占棋盘空间 */
+      #boss-battle-hud {
+        position: fixed;
+        top: 6px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: auto;
+        max-width: 240px;
+        z-index: 11000;
+        margin: 0;
+        padding: 3px 10px;
+      }
+      #bottom-controls {
+        padding: 0;
+        gap: 0;
+      }
+    }
+    #gameCanvas {
+      width: 100%;
+      max-width: 100%;
+      max-height: 100%;
+      aspect-ratio: 1;
+      background: #1a1d24;
+      border-radius: 6px;
+      display: block;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+      touch-action: none;
+    }
+    /* 底部控制区 */
+    #bottom-controls {
+      width: 100%;
+      padding: 0 10px calc(10px + env(safe-area-inset-bottom, 0px));
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      box-sizing: border-box;
+    }
+    /* 竖屏：工具栏只显示4个核心按钮，其他隐藏 —— 淡化处理，突出数字键盘 */
+    #toolbar {
+      display: flex;
+      justify-content: center;
+      gap: 4px;
+      width: 100%;
+      max-width: 480px;
+      opacity: 0.7;
+    }
+    #toolbar button {
+      flex: 1;
+      height: 40px;
+      border: 1px solid rgba(255,255,255,0.04);
+      background: rgba(26,29,36,0.4);
+      color: #64748b;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s;
+      backdrop-filter: blur(4px);
+    }
+    #toolbar button:hover { background: rgba(35,39,49,0.7); color: #e8eaed; }
+    #toolbar button:active { transform: scale(0.95); }
+    #toolbar button.active {
+      background: rgba(251,191,36,0.12);
+      border-color: rgba(251,191,36,0.3);
+      color: #fbbf24;
+      opacity: 1;
+    }
+    /* 竖屏隐藏非核心工具栏按钮 */
+    #toolbar #btn-chapter,
+    #toolbar #btn-pause,
+    #toolbar #btn-rule45,
+    #toolbar #btn-techniques,
+    #toolbar #btn-tech-matrix,
+    #toolbar #btn-gallery,
+    #toolbar #btn-settings,
+    #toolbar #btn-achievement {
+      display: none;
+    }
+    /* Number pad —— 核心操作区，大按钮便于拇指点击 */
+    #num-pad {
+      display: grid;
+      grid-template-columns: repeat(9, 1fr);
+      gap: 4px;
+      width: 100%;
+      max-width: 480px;
+      margin: 0 auto;
+      justify-items: center;
+    }
+    .num-btn {
+      width: 100%;
+      height: 60px;
+      min-height: 56px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(30,41,59,0.9);
+      color: #f1f5f9;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.1s;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: none;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      position: relative;
+      padding: 4px 0;
+      gap: 2px;
+    }
+    .num-btn .num-main {
+      font-size: 26px;
+      font-weight: 700;
+      line-height: 1;
+    }
+    .num-btn .num-count {
+      font-size: 11px;
+      font-weight: 500;
+      color: #64748b;
+      line-height: 1;
+    }
+    .num-btn:hover { background: rgba(35,39,49,0.9); }
+    .num-btn:active, .num-btn.active {
+      background: rgba(99,102,241,0.25);
+      border-color: rgba(99,102,241,0.5);
+      color: #a5b4fc;
+      transform: scale(0.95);
+    }
+    .num-btn.completed {
+      opacity: 0.35;
+      pointer-events: none;
+    }
+    /* 连填模式：被选中的数字变绿 */
+    .num-btn.quick-fill-num {
+      background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%) !important;
+      color: white !important;
+      box-shadow: 0 0 15px rgba(34, 197, 94, 0.5), inset 0 2px 4px rgba(0,0,0,0.2);
+      transform: scale(0.95);
+      font-weight: 700;
+    }
+    /* 长按蓄力：浅绿色底 + 底部进度条 */
+    .num-btn.long-pressing {
+      position: relative;
+      overflow: hidden;
+      background: rgba(34, 197, 94, 0.2) !important;
+      color: #22c55e !important;
+      font-weight: 700 !important;
+      transition: none;
+    }
+    .num-btn.long-pressing::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0%;
+      height: 4px;
+      background: linear-gradient(90deg, #22c55e, #4ade80);
+      border-radius: 2px;
+      animation: long-press-progress 0.65s ease-out forwards;
+      z-index: 1;
+    }
+    @keyframes long-press-progress {
+      0%   { width: 0%; }
+      100% { width: 100%; }
+    }
+    /* 连填模式提示 */
+    .quick-fill-hint {
+      text-align: center;
+      font-size: 11px;
+      color: #22c55e;
+      margin: 2px 0 4px;
+      padding: 0;
+      transition: opacity 0.3s ease;
+      opacity: 0;
+      height: 0;
+      overflow: hidden;
+    }
+    .quick-fill-hint.show {
+      opacity: 1;
+      height: 18px;
+    }
+    /* 竖屏小屏适配：保证按钮最小可点击尺寸 */
+    @media (orientation: portrait) and (max-width: 380px) {
+      #num-pad {
+        gap: 3px;
+      }
+      .num-btn {
+        height: 52px;
+        min-height: 50px;
+        border-radius: 10px;
+        padding: 3px 0;
+        gap: 1px;
+      }
+      .num-btn .num-main {
+        font-size: 22px;
+      }
+      .num-btn .num-count {
+        font-size: 10px;
+      }
+      #toolbar button {
+        height: 36px;
+        font-size: 14px;
+      }
+      #bottom-controls {
+        padding: 2px 8px calc(6px + env(safe-area-inset-bottom, 0px));
+        gap: 5px;
+      }
+    }
+    /* Toast */
+    .game-toast {
+      position: fixed;
+      bottom: 120px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: rgba(26,29,36,0.95);
+      color: #fbbf24;
+      padding: 12px 20px;
+      border-radius: 10px;
+      font-size: 14px;
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+      z-index: 10000;
+      pointer-events: none;
+      border: 1px solid rgba(251,191,36,0.25);
+      backdrop-filter: blur(10px);
+      max-width: 85vw;
+      text-align: center;
+    }
+    .game-toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+    /* Multi-select indicator */
+    .multi-select-hint {
+      text-align: center;
+      font-size: 12px;
+      color: #6366f1;
+      margin: 0;
+      height: 0;
+      overflow: hidden;
+      transition: height 0.2s ease, margin 0.2s ease;
+    }
+    .multi-select-hint.show {
+      height: 18px;
+      margin: 4px 0;
+    }
+    /* 45法则顶部常驻 HUD */
+    .rule45-banner {
+      background: rgba(18, 20, 24, 0.75);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(212, 175, 55, 0.25);
+      border-radius: 8px;
+      margin: 6px 8px 4px;
+      padding: 8px 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+      flex-shrink: 0;
+      width: calc(100% - 16px);
+      box-sizing: border-box;
+    }
+    .rule45-row-main {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 6px;
+      margin-bottom: 6px;
+    }
+    .rule45-block {
+      flex: 1;
+      text-align: center;
+      position: relative;
+    }
+    .rule45-block:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      top: 15%;
+      height: 70%;
+      width: 1px;
+      background: rgba(255, 255, 255, 0.12);
+    }
+    .r45-label {
+      font-size: 11px;
+      color: #8c92a4;
+      margin-bottom: 2px;
+    }
+    .r45-data {
+      font-size: 13px;
+      font-weight: 600;
+      color: #f0f0f0;
+    }
+    .r45-diff {
+      color: #9ca3af;
+      font-weight: 400;
+      font-size: 11px;
+      margin: 0 2px;
+    }
+    .r45-remain {
+      color: #4cd964;
+      font-weight: 600;
+      font-size: 11px;
+    }
+    .rule45-row-cage {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 4px;
+      font-size: 12px;
+    }
+    .r45-cage-title {
+      color: #d4af37;
+      font-weight: bold;
+      flex-shrink: 0;
+    }
+    .r45-combo-pill {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 4px;
+      padding: 1px 6px;
+      font-size: 11px;
+      color: #d1d5db;
+      font-family: "JetBrains Mono", monospace;
+      white-space: nowrap;
+    }
+
+    /* ========== 右侧浮条（拉扣头 + 滑出面板） ========== */
+    .right-floating-bar {
+      position: fixed;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 100;
+      pointer-events: none;
+      touch-action: none;
+      display: flex;
+      align-items: center;
+    }
+
+    /* 拉扣头（金属色小块） */
+    .float-bar-tab {
+      width: 32px;
+      height: 64px;
+      background: linear-gradient(180deg, #d4a853 0%, #b8860b 50%, #8b6914 100%);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-right: none;
+      border-radius: 8px 0 0 8px;
+      pointer-events: auto;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: -2px 0 8px rgba(0, 0, 0, 0.3),
+                  inset 1px 0 2px rgba(255, 255, 255, 0.4);
+      transition: all 0.2s ease;
+      position: relative;
+      z-index: 2;
+      touch-action: none;
+    }
+    .float-bar-tab:hover {
+      width: 36px;
+      background: linear-gradient(180deg, #e8c46a 0%, #d4a853 50%, #b8860b 100%);
+    }
+    .float-bar-tab:active {
+      transform: translateX(2px);
+    }
+    .float-bar-tab-icon {
+      color: rgba(20, 15, 5, 0.9);
+      font-size: 16px;
+      font-weight: 900;
+      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3);
+      writing-mode: vertical-rl;
+      letter-spacing: 2px;
+    }
+    .float-bar-tab-badge {
+      position: absolute;
+      top: -4px;
+      left: -4px;
+      min-width: 16px;
+      height: 16px;
+      background: #ef4444;
+      color: white;
+      font-size: 10px;
+      font-weight: 700;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 4px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    }
+
+    /* 滑出面板 */
+    .float-bar-panel {
+      width: 0;
+      overflow: hidden;
+      background: rgba(15, 23, 42, 0.65);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-right: none;
+      border-radius: 12px 0 0 12px;
+      padding: 8px 0;
+      box-sizing: border-box;
+      pointer-events: none;
+      transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                  padding 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      touch-action: none;
+    }
+    .right-floating-bar.panel-open .float-bar-panel {
+      width: 80px;
+      padding: 8px 6px;
+      pointer-events: auto;
+    }
+    .float-bar-panel > * {
+      opacity: 0;
+      transition: opacity 0.2s ease 0.1s;
+      pointer-events: none;
+    }
+    .right-floating-bar.panel-open .float-bar-panel > * {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* 提示进度指示器 */
+    .hint-progress {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      padding: 4px;
+    }
+    .hint-progress-icon {
+      font-size: 18px;
+      animation: hint-spin 1.5s linear infinite;
+    }
+    @keyframes hint-spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    .hint-progress-text {
+      font-size: 10px;
+      color: #94a3b8;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* What If 快照堆叠（扑克牌式堆叠） */
+    .whatif-stack {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+      width: 100%;
+      position: relative;
+      padding-top: 4px;
+    }
+    .snapshot-cards {
+      position: relative;
+      width: 56px;
+      height: 120px; /* 3张卡片堆叠高度，每张偏移 4px */
+    }
+    .snapshot-card {
+      position: absolute;
+      width: 56px;
+      height: 56px;
+      background: rgba(30, 41, 59, 0.9);
+      border: 1.5px solid rgba(148, 163, 184, 0.3);
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+    /* 扑克牌堆叠：第1张(最旧)在最下面，第3张(最新)在最上面 */
+    .snapshot-card:nth-child(1) { top: 0; z-index: 1; transform: translateY(0); }
+    .snapshot-card:nth-child(2) { top: 24px; z-index: 2; transform: translateY(0); }
+    .snapshot-card:nth-child(3) { top: 48px; z-index: 3; transform: translateY(0); }
+    /* 悬停时整体展开一点 */
+    .snapshot-cards:hover .snapshot-card:nth-child(1) { top: 0; }
+    .snapshot-cards:hover .snapshot-card:nth-child(2) { top: 30px; }
+    .snapshot-cards:hover .snapshot-card:nth-child(3) { top: 60px; }
+    .snapshot-card:hover {
+      border-color: rgba(251, 191, 36, 0.6);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+      z-index: 10 !important;
+    }
+    .snapshot-card.active {
+      border-color: #fbbf24;
+      box-shadow: 0 0 10px rgba(251, 191, 36, 0.5),
+                  0 2px 8px rgba(0, 0, 0, 0.3);
+      animation: snapshot-pulse 1.5s ease-in-out infinite;
+    }
+    @keyframes snapshot-pulse {
+      0%, 100% { box-shadow: 0 0 6px rgba(251, 191, 36, 0.4); }
+      50% { box-shadow: 0 0 14px rgba(251, 191, 36, 0.7); }
+    }
+    .snapshot-card canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+    .snapshot-label {
+      position: absolute;
+      bottom: 1px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 9px;
+      color: #cbd5e1;
+      white-space: nowrap;
+      font-family: "JetBrains Mono", monospace;
+      background: rgba(0, 0, 0, 0.6);
+      padding: 0 3px;
+      border-radius: 2px;
+      pointer-events: none;
+    }
+    .snapshot-index {
+      position: absolute;
+      top: 2px;
+      right: 2px;
+      width: 14px;
+      height: 14px;
+      background: rgba(15, 23, 42, 0.8);
+      color: #94a3b8;
+      font-size: 9px;
+      font-weight: 700;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+    }
+    .snapshot-card.active .snapshot-index {
+      background: #fbbf24;
+      color: #0f172a;
+    }
+
+    /* What If 操作按钮 */
+    .whatif-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      width: 100%;
+      margin-top: 4px;
+      padding-top: 6px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .whatif-btn {
+      width: 100%;
+      height: 28px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(30, 41, 59, 0.6);
+      color: #e2e8f0;
+      border-radius: 5px;
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .whatif-btn:hover {
+      background: rgba(51, 65, 85, 0.8);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+    .whatif-btn:active {
+      transform: scale(0.95);
+    }
+    .whatif-accept {
+      background: rgba(34, 197, 94, 0.15);
+      border-color: rgba(34, 197, 94, 0.4);
+      color: #4ade80;
+    }
+    .whatif-accept:hover {
+      background: rgba(34, 197, 94, 0.25);
+    }
+    .whatif-undo {
+      background: rgba(96, 165, 250, 0.1);
+      border-color: rgba(96, 165, 250, 0.3);
+      color: #60a5fa;
+    }
+    .whatif-undo:hover {
+      background: rgba(96, 165, 250, 0.2);
+    }
+    .whatif-reset {
+      background: rgba(239, 68, 68, 0.1);
+      border-color: rgba(239, 68, 68, 0.3);
+      color: #f87171;
+      font-size: 11px;
+    }
+    .whatif-reset:hover {
+      background: rgba(239, 68, 68, 0.2);
+    }
+
+    /* 浮动提示入口按钮 */
+    .floating-hint-entry {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .floating-hint-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(251, 191, 36, 0.15);
+      border: 1px solid rgba(251, 191, 36, 0.4);
+      color: #fbbf24;
+      font-size: 18px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .floating-hint-btn:hover {
+      background: rgba(251, 191, 36, 0.25);
+      transform: scale(1.05);
+    }
+
+    /* What If 模式棋盘边框 */
+    .whatif-mode #board-area {
+      box-shadow: 0 0 30px rgba(96, 165, 250, 0.3);
+      border-radius: 8px;
+    }
+    .whatif-mode #level-title {
+      color: #60a5fa;
+    }
+    .whatif-mode #level-title::before {
+      content: "🧪 假设模式 · ";
+      font-size: 11px;
+    }
+
+    /* 小屏适配（<480px） */
+    @media (max-width: 480px) {
+      .float-bar-tab {
+        width: 28px;
+        height: 56px;
+      }
+      .float-bar-tab:hover {
+        width: 30px;
+      }
+      .float-bar-tab-icon {
+        font-size: 14px;
+      }
+      .right-floating-bar.panel-open .float-bar-panel {
+        width: 68px;
+      }
+      .snapshot-cards {
+        width: 44px;
+        height: 100px;
+      }
+      .snapshot-card {
+        width: 44px;
+        height: 44px;
+      }
+      .snapshot-card:nth-child(1) { top: 0; }
+      .snapshot-card:nth-child(2) { top: 20px; }
+      .snapshot-card:nth-child(3) { top: 40px; }
+      .snapshot-cards:hover .snapshot-card:nth-child(2) { top: 24px; }
+      .snapshot-cards:hover .snapshot-card:nth-child(3) { top: 48px; }
+      .snapshot-label {
+        font-size: 8px;
+      }
+      .whatif-btn {
+        height: 24px;
+        font-size: 11px;
+      }
+    }
+
+    /* Landscape controls wrapper (no effect in portrait) */
+    .landscape-controls {
+      width: 100%;
+      max-width: 480px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    /* 横屏关卡标题 */
+    .landscape-level-title {
+      display: none;
+      width: 100%;
+      text-align: center;
+      font-size: 14px;
+      font-weight: 600;
+      color: #e8eaed;
+      margin-bottom: 4px;
+      padding: 4px 0;
+    }
+    @media (orientation: landscape) and (max-height: 520px) {
+      .landscape-level-title {
+        display: block;
+        order: 0;
+      }
+    }
+    /* Boss战预警边缘红光 */
+    #boss-warning-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 12000;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      box-shadow: inset 0 0 80px 20px rgba(239, 68, 68, 0.6);
+    }
+    #boss-warning-overlay.show {
+      opacity: 1;
+      animation: bossWarningPulse 0.5s ease-in-out 2;
+    }
+    @keyframes bossWarningPulse {
+      0%, 100% { opacity: 0.5; }
+      50% { opacity: 1; }
+    }
+    /* Boss战HUD - 顶部浮动条，含头像/进度条/功能按钮 */
+    #boss-battle-hud {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      width: calc(100% - 24px);
+      max-width: 340px;
+      margin: 0 auto;
+      padding: 6px 10px;
+      background: rgba(15, 23, 42, 0.9);
+      border-radius: 10px;
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      backdrop-filter: blur(10px);
+      flex-shrink: 0;
+      box-shadow: 0 4px 16px rgba(239, 68, 68, 0.2);
+      position: relative;
+    }
+    #boss-battle-hud.visible {
+      display: flex;
+    }
+    .boss-hud-top-row {
+      display: flex;
+      width: 100%;
+      align-items: center;
+      gap: 8px;
+    }
+    /* Boss头像 */
+    .boss-hud-portrait-wrap {
+      position: relative;
+      width: 36px;
+      height: 36px;
+      flex-shrink: 0;
+    }
+    .boss-hud-portrait {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid rgba(239, 68, 68, 0.6);
+    }
+    .boss-hud-portrait-ring {
+      position: absolute;
+      top: -3px;
+      left: -3px;
+      right: -3px;
+      bottom: -3px;
+      border-radius: 50%;
+      border: 2px solid transparent;
+      border-top-color: rgba(239, 68, 68, 0.8);
+      border-right-color: rgba(239, 68, 68, 0.4);
+      animation: bossPortraitSpin 3s linear infinite;
+      pointer-events: none;
+    }
+    @keyframes bossPortraitSpin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    /* 中间区域 */
+    .boss-hud-center {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+    }
+    .boss-hud-title {
+      font-size: 8px;
+      color: #ef4444;
+      letter-spacing: 1.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      line-height: 1;
+    }
+    .boss-hud-bars {
+      display: flex;
+      width: 100%;
+      gap: 6px;
+      align-items: center;
+    }
+    .boss-hud-bar {
+      flex: 1;
+      height: 4px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 3px;
+      overflow: hidden;
+      position: relative;
+    }
+    .boss-hud-bar-fill {
+      height: 100%;
+      border-radius: 3px;
+      transition: width 0.3s ease;
+    }
+    .boss-hud-bar-fill.player {
+      background: linear-gradient(90deg, #22c55e, #4ade80);
+      box-shadow: 0 0 6px rgba(34, 197, 94, 0.5);
+    }
+    .boss-hud-bar-fill.ai {
+      background: linear-gradient(90deg, #ef4444, #f87171);
+      box-shadow: 0 0 6px rgba(239, 68, 68, 0.5);
+    }
+    .boss-hud-scores {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      font-size: 10px;
+      line-height: 1;
+      margin-top: 2px;
+      font-family: 'Courier New', monospace;
+      font-weight: 600;
+    }
+    .boss-hud-score-player {
+      color: #22c55e;
+    }
+    .boss-hud-score-ai {
+      color: #ef4444;
+    }
+    .boss-hud-labels {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      font-size: 9px;
+      line-height: 1;
+    }
+    .boss-hud-label-player {
+      color: #22c55e;
+      font-weight: 600;
+    }
+    .boss-hud-label-boss {
+      color: #ef4444;
+      font-weight: 600;
+    }
+    /* 右侧操作按钮 */
+    .boss-hud-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      flex-shrink: 0;
+    }
+    .boss-hud-btn {
+      width: 24px;
+      height: 24px;
+      border-radius: 6px;
+      border: 1px solid rgba(255,255,255,0.15);
+      background: rgba(255,255,255,0.05);
+      color: rgba(255,255,255,0.7);
+      font-size: 14px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      transition: all 0.2s ease;
+    }
+    .boss-hud-btn:hover {
+      background: rgba(255,255,255,0.12);
+      color: #fff;
+      transform: scale(1.05);
+    }
+    .boss-hud-btn:active {
+      transform: scale(0.95);
+    }
+    /* 难度选择面板 */
+    .boss-difficulty-panel {
+      display: none;
+      position: absolute;
+      top: 100%;
+      right: 10px;
+      margin-top: 6px;
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px;
+      padding: 8px 12px;
+      z-index: 100;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      backdrop-filter: blur(10px);
+    }
+    .boss-difficulty-panel.show {
+      display: block;
+      animation: diffPanelFadeIn 0.2s ease;
+    }
+    @keyframes diffPanelFadeIn {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .boss-difficulty-title {
+      font-size: 10px;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 6px;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+    .boss-difficulty-options {
+      display: flex;
+      gap: 4px;
+    }
+    .boss-diff-btn {
+      padding: 4px 10px;
+      border-radius: 5px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.03);
+      color: rgba(255,255,255,0.6);
+      font-size: 11px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .boss-diff-btn:hover {
+      background: rgba(255,255,255,0.08);
+      color: #fff;
+    }
+    .boss-diff-btn.active {
+      background: linear-gradient(135deg, #ef4444, #f97316);
+      color: #fff;
+      border-color: transparent;
+      font-weight: 600;
+    }
+
+    /* ===== 对战结算面板 ===== */
+    #battle-result-overlay #battle-result-card {
+      transform: scale(0.95);
+      opacity: 0;
+      transition: all 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    #battle-result-overlay.show #battle-result-card {
+      transform: scale(1);
+      opacity: 1;
+    }
+    #btn-battle-retry:hover {
+      background: rgba(255,255,255,0.15) !important;
+      transform: translateY(-1px);
+    }
+    #btn-battle-retry:active {
+      transform: translateY(0);
+    }
+    #btn-battle-back:hover {
+      filter: brightness(1.1);
+      transform: translateY(-1px);
+    }
+    #btn-battle-back:active {
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+  <!-- Boss战预警红光覆盖层 -->
+  <div id="boss-warning-overlay"></div>
+  <div id="game-container">
+    <!-- 顶部状态栏（竖屏） -->
+    <div id="game-header">
+      <div class="header-left">
+        <div id="game-timer-display">00:00</div>
+      </div>
+      <div class="header-center">
+        <!-- 幕次指示器 -->
+        <div id="act-indicator" class="act-indicator" style="display:none;">
+          <div class="act-indicator-text" id="act-indicator-text">第一幕·速填</div>
+          <div class="act-indicator-progress">
+            <div class="act-indicator-fill" id="act-indicator-fill"></div>
+          </div>
+        </div>
+        <!-- 关卡标题 -->
+        <div class="header-level-title" id="level-title">—</div>
+      </div>
+      <div class="header-right">
+        <button class="header-btn header-menu" title="菜单">☰</button>
+      </div>
+    </div>
+
+    <!-- Boss战HUD进度条 -->
+    <div id="boss-battle-hud">
+      <div class="boss-hud-top-row">
+        <div class="boss-hud-portrait-wrap">
+          <img class="boss-hud-portrait" id="boss-hud-portrait" src="" alt="">
+          <div class="boss-hud-portrait-ring"></div>
+        </div>
+        <div class="boss-hud-center">
+          <div class="boss-hud-title">BOSS BATTLE</div>
+          <div class="boss-hud-bars">
+            <div class="boss-hud-bar">
+              <div class="boss-hud-bar-fill player" id="boss-hud-player-fill" style="width: 0%"></div>
+            </div>
+            <div class="boss-hud-bar">
+              <div class="boss-hud-bar-fill ai" id="boss-hud-ai-fill" style="width: 0%"></div>
+            </div>
+          </div>
+          <div class="boss-hud-scores">
+            <span class="boss-hud-score-player" id="boss-hud-player-score">0</span>
+            <span class="boss-hud-score-ai" id="boss-hud-ai-score">0</span>
+          </div>
+          <div class="boss-hud-labels">
+            <span class="boss-hud-label-player">你</span>
+            <span class="boss-hud-label-boss" id="boss-hud-boss-name">对手</span>
+          </div>
+        </div>
+        <div class="boss-hud-actions">
+          <button class="boss-hud-btn" id="boss-hud-difficulty" title="切换难度">⚙</button>
+          <button class="boss-hud-btn" id="boss-hud-retry" title="重新开始">↻</button>
+        </div>
+      </div>
+      <!-- 难度选择面板 -->
+      <div class="boss-difficulty-panel" id="boss-difficulty-panel">
+        <div class="boss-difficulty-title">选择难度</div>
+        <div class="boss-difficulty-options">
+          <button class="boss-diff-btn" data-diff="easy">简单</button>
+          <button class="boss-diff-btn active" data-diff="normal">普通</button>
+          <button class="boss-diff-btn" data-diff="hard">困难</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 45法则顶部常驻 HUD（仅9x9显示） -->
+    <div id="rule45-banner" class="rule45-banner" style="display:none;">
+      <div class="rule45-row-main">
+        <div class="rule45-block" id="r45-row-block">
+          <div class="r45-label" id="r45-row-label">行1·剩9</div>
+          <div class="r45-data" id="r45-row-data">0<span class="r45-diff">/45</span> <span class="r45-remain">差45</span></div>
+        </div>
+        <div class="rule45-block" id="r45-col-block">
+          <div class="r45-label" id="r45-col-label">列1·剩9</div>
+          <div class="r45-data" id="r45-col-data">0<span class="r45-diff">/45</span> <span class="r45-remain">差45</span></div>
+        </div>
+        <div class="rule45-block" id="r45-box-block">
+          <div class="r45-label" id="r45-box-label">宫1·剩9</div>
+          <div class="r45-data" id="r45-box-data">0<span class="r45-diff">/45</span> <span class="r45-remain">差45</span></div>
+        </div>
+      </div>
+      <div class="rule45-row-cage">
+        <span class="r45-cage-title" id="r45-cage-title">选择格子查看</span>
+        <span id="r45-cage-combos" style="margin-left:8px;">点击任意格子查看行列宫及笼子信息</span>
+      </div>
+    </div>
+
+    <!-- 棋盘区域 -->
+    <div id="board-area">
+      <canvas id="gameCanvas"></canvas>
+    </div>
+
+    <!-- 右侧浮条（拉扣头 + 滑出面板：提示进度 / What If快照 / 空） -->
+    <div id="right-floating-bar" class="right-floating-bar" style="display:none;">
+      <!-- 滑出面板 -->
+      <div class="float-bar-panel">
+        <!-- 提示播放中：进度指示器 -->
+        <div id="hint-progress-indicator" class="hint-progress" style="display:none;">
+          <div class="hint-progress-icon">⏳</div>
+          <div class="hint-progress-text"><span id="hint-current-step">0</span>/<span id="hint-total-steps">0</span></div>
+        </div>
+        <!-- What If 模式：快照堆叠容器 -->
+        <div id="whatif-snapshot-stack" class="whatif-stack" style="display:none;">
+          <div class="snapshot-cards" id="snapshot-cards">
+            <!-- 快照卡片动态生成 -->
+          </div>
+          <div class="whatif-actions">
+            <button class="whatif-btn whatif-accept" id="btn-whatif-accept" title="采纳 (Enter)">✅</button>
+            <button class="whatif-btn whatif-undo" id="btn-whatif-undo" title="回退 (Backspace)">↩️</button>
+            <button class="whatif-btn whatif-reset" id="btn-whatif-reset" title="彻底回退">🔄</button>
+          </div>
+        </div>
+        <!-- 普通模式：提示入口（可选） -->
+        <div id="floating-hint-entry" class="floating-hint-entry" style="display:none;">
+          <button class="floating-hint-btn" title="提示 (H)">💡</button>
+        </div>
+      </div>
+      <!-- 拉扣头（金属色小块） -->
+      <div class="float-bar-tab" id="float-bar-tab" title="快照面板">
+        <span class="float-bar-tab-icon" id="float-bar-tab-icon">🧪</span>
+        <span class="float-bar-tab-badge" id="float-bar-tab-badge" style="display:none;">0</span>
+      </div>
+    </div>
+
+    <!-- 多选提示 -->
+    <div class="multi-select-hint" id="multi-select-hint"></div>
+
+    <!-- 底部控制区 -->
+    <div id="bottom-controls">
+      <div class="landscape-controls">
+        <!-- 横屏关卡标题（仅横屏显示） -->
+        <div id="landscape-level-title" class="landscape-level-title"></div>
+        <!-- 工具栏：竖屏只显示核心按钮，横屏显示全部 -->
+        <div id="toolbar">
+          <button id="btn-chapter" title="章节选择 (C)">📚</button>
+          <button id="btn-pause" title="暂停 (Space)">⏸</button>
+          <button id="btn-undo" title="撤销 (Ctrl+Z)">↶</button>
+          <button id="btn-erase" title="擦除 (Delete)">⌫</button>
+          <button id="btn-note" title="笔记模式 (N)">✏️</button>
+          <button id="btn-hint" title="提示 (H)">💡</button>
+          <button id="btn-whatif" title="假设模式 (W)">❓</button>
+          <button id="btn-rule45" title="星衡法则 (R)">⚖</button>
+          <button id="btn-techniques" title="技巧图鉴 (T)">📖</button>
+          <button id="btn-tech-matrix" title="技术矩阵 (M)">📋</button>
+          <button id="btn-gallery" title="剧情图鉴 (G)">🎭</button>
+          <button id="btn-settings" title="设置 (S)">⚙</button>
+          <button id="btn-achievement" title="成就">🏆</button>
+        </div>
+        <!-- 数字按键 -->
+        <div id="num-pad">
+          <button class="num-btn" data-num="1"><span class="num-main">1</span><span class="num-count">9</span></button>
+          <button class="num-btn" data-num="2"><span class="num-main">2</span><span class="num-count">9</span></button>
+          <button class="num-btn" data-num="3"><span class="num-main">3</span><span class="num-count">9</span></button>
+          <button class="num-btn" data-num="4"><span class="num-main">4</span><span class="num-count">9</span></button>
+          <button class="num-btn" data-num="5"><span class="num-main">5</span><span class="num-count">9</span></button>
+          <button class="num-btn" data-num="6"><span class="num-main">6</span><span class="num-count">9</span></button>
+          <button class="num-btn" data-num="7"><span class="num-main">7</span><span class="num-count">9</span></button>
+          <button class="num-btn" data-num="8"><span class="num-main">8</span><span class="num-count">9</span></button>
+          <button class="num-btn" data-num="9"><span class="num-main">9</span><span class="num-count">9</span></button>
+        </div>
+        <p id="quick-fill-hint" class="quick-fill-hint">💡 长按数字键激活连填，点格子自动填入</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pause Menu Overlay -->
+  <div id="pause-overlay" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.75);z-index:22000;display:none;flex-direction:column;align-items:center;justify-content:center;backdrop-filter:blur(8px);opacity:0;">
+    <div style="text-align:center;padding:32px 28px;background:linear-gradient(180deg,#1a1d24 0%,#0f1115 100%);border:1px solid rgba(251,191,36,0.2);border-radius:16px;box-shadow:0 16px 48px rgba(0,0,0,0.5);min-width:280px;max-width:90vw;">
+      <div style="font-size:20px;font-weight:700;color:#fbbf24;margin-bottom:4px;letter-spacing:4px;">游戏已暂停</div>
+      <div style="font-size:12px;color:#64748b;margin-bottom:20px;letter-spacing:2px;">— PAUSED —</div>
+      <div id="pause-time" style="font-size:36px;font-weight:900;color:#e8eaed;margin-bottom:24px;font-variant-numeric:tabular-nums;">00:00</div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <button id="btn-pause-resume" style="padding:14px 24px;font-size:15px;font-weight:600;background:linear-gradient(135deg,#fbbf24,#f59e0b);color:#0f172a;border:none;border-radius:10px;cursor:pointer;transition:all 0.15s;">继续游戏</button>
+        <button id="btn-pause-restart" style="padding:12px 24px;font-size:14px;font-weight:500;background:rgba(99,102,241,0.1);border:1px solid rgba(99,102,241,0.3);color:#818cf8;border-radius:10px;cursor:pointer;transition:all 0.15s;">重新开始本关</button>
+        <button id="btn-pause-chapter" style="padding:12px 24px;font-size:14px;font-weight:500;background:rgba(30,41,59,0.8);border:1px solid #334155;color:#94a3b8;border-radius:10px;cursor:pointer;transition:all 0.15s;">返回章节选择</button>
+        <button id="btn-pause-menu" style="padding:12px 24px;font-size:14px;font-weight:500;background:rgba(30,41,59,0.8);border:1px solid #334155;color:#94a3b8;border-radius:10px;cursor:pointer;transition:all 0.15s;">返回主菜单</button>
+        <button id="btn-pause-settings" style="padding:12px 24px;font-size:14px;font-weight:500;background:rgba(30,41,59,0.8);border:1px solid #334155;color:#94a3b8;border-radius:10px;cursor:pointer;transition:all 0.15s;">⚙ 设置</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Completion Overlay -->
+  <div id="complete-overlay" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.9);z-index:20000;display:none;flex-direction:column;align-items:center;justify-content:center;">
+    <div style="text-align:center;padding:40px;">
+      <div style="font-size:64px;margin-bottom:20px;">🏆</div>
+      <h2 style="font-size:32px;color:#fbbf24;margin-bottom:16px;">关卡完成</h2>
+      <div id="complete-grade" style="font-size:72px;font-weight:900;color:#22c55e;margin:20px 0;text-shadow:0 0 30px currentColor;">S</div>
+      <div id="complete-time" style="font-size:18px;color:#94a3b8;margin-bottom:8px;">用时 00:00</div>
+      <div id="complete-errors" style="font-size:16px;color:#f87171;margin-bottom:8px;">错误 0 次</div>
+      <div id="complete-hints" style="font-size:16px;color:#60a5fa;margin-bottom:10px;">提示 0 次</div>
+      <div id="complete-insight" style="font-size:14px;color:#60a5fa;margin-bottom:30px;max-width:400px;line-height:1.6;"></div>
+      <button id="btn-next-level" style="padding:14px 32px;font-size:18px;background:#fbbf24;color:#0f172a;border:none;border-radius:8px;cursor:pointer;font-weight:bold;transition:transform 0.2s;">下一关</button>
+    </div>
+  </div>
+
+  <!-- Battle Result Overlay -->
+  <div id="battle-result-overlay" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);z-index:20001;display:none;flex-direction:column;align-items:center;justify-content:center;opacity:0;transition:opacity 200ms ease;">
+    <div id="battle-result-card" style="width:90%;max-width:420px;background:rgba(15,23,42,0.95);border-radius:16px;padding:32px 24px;text-align:center;border:1px solid rgba(255,255,255,0.1);box-shadow:0 20px 60px rgba(0,0,0,0.5);">
+      <div id="battle-result-icon" style="font-size:56px;margin-bottom:12px;">🏆</div>
+      <h2 id="battle-result-title" style="font-size:32px;font-weight:900;margin-bottom:8px;letter-spacing:2px;">胜利</h2>
+      <div id="battle-result-opponent" style="font-size:14px;color:#94a3b8;margin-bottom:24px;">VS 对手</div>
+
+      <!-- 得分对比条 -->
+      <div style="margin-bottom:24px;">
+        <div style="display:flex;justify-content:space-between;font-size:12px;color:#94a3b8;margin-bottom:6px;">
+          <span id="battle-result-player-label">你</span>
+          <span id="battle-result-ai-label">对手</span>
+        </div>
+        <div style="position:relative;height:24px;background:rgba(255,255,255,0.1);border-radius:12px;overflow:hidden;">
+          <div id="battle-result-player-bar" style="position:absolute;left:0;top:0;height:100%;background:linear-gradient(90deg,#22c55e,#4ade80);border-radius:12px 0 0 12px;width:0%;transition:width 500ms ease-out;"></div>
+          <div id="battle-result-ai-bar" style="position:absolute;right:0;top:0;height:100%;background:linear-gradient(90deg,#ef4444,#f87171);border-radius:0 12px 12px 0;width:0%;transition:width 500ms ease-out;"></div>
+          <div style="position:absolute;left:50%;top:0;height:100%;width:2px;background:rgba(255,255,255,0.3);transform:translateX(-50%);"></div>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:14px;font-weight:700;margin-top:6px;">
+          <span id="battle-result-player-score" style="color:#4ade80;">0</span>
+          <span id="battle-result-ai-score" style="color:#f87171;">0</span>
+        </div>
+      </div>
+
+      <!-- 三色得分明细 -->
+      <div id="battle-result-breakdown" style="text-align:left;margin-bottom:24px;padding:16px;background:rgba(255,255,255,0.05);border-radius:10px;">
+        <div style="font-size:12px;color:#94a3b8;margin-bottom:12px;letter-spacing:1px;">得分明细</div>
+        <!-- Simple (绿色) -->
+        <div style="margin-bottom:10px;">
+          <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px;">
+            <span style="color:#86efac;">🟢 简单格</span>
+            <span id="battle-result-simple" style="color:#cbd5e1;">0 × 1 = 0</span>
+          </div>
+          <div style="display:flex;gap:4px;height:6px;border-radius:3px;overflow:hidden;">
+            <div id="battle-result-simple-player" style="background:#22c55e;width:0%;transition:width 400ms ease-out;"></div>
+            <div id="battle-result-simple-ai" style="background:#ef4444;width:0%;transition:width 400ms ease-out;"></div>
+          </div>
+        </div>
+        <!-- Core (黄色) -->
+        <div style="margin-bottom:10px;">
+          <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px;">
+            <span style="color:#fde047;">🟡 核心格</span>
+            <span id="battle-result-core" style="color:#cbd5e1;">0 × 1.5 = 0</span>
+          </div>
+          <div style="display:flex;gap:4px;height:6px;border-radius:3px;overflow:hidden;">
+            <div id="battle-result-core-player" style="background:#eab308;width:0%;transition:width 400ms ease-out;"></div>
+            <div id="battle-result-core-ai" style="background:#ef4444;width:0%;transition:width 400ms ease-out;"></div>
+          </div>
+        </div>
+        <!-- Gate (红色) -->
+        <div>
+          <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px;">
+            <span style="color:#fca5a5;">🔴 胜负手</span>
+            <span id="battle-result-gate" style="color:#cbd5e1;">0 × 2 = 0</span>
+          </div>
+          <div style="display:flex;gap:4px;height:6px;border-radius:3px;overflow:hidden;">
+            <div id="battle-result-gate-player" style="background:#dc2626;width:0%;transition:width 400ms ease-out;"></div>
+            <div id="battle-result-gate-ai" style="background:#ef4444;width:0%;transition:width 400ms ease-out;"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 对战时长 -->
+      <div id="battle-result-duration" style="font-size:13px;color:#94a3b8;margin-bottom:28px;">
+        对战时长：<span style="color:#e2e8f0;font-weight:500;">00:00</span>
+      </div>
+
+      <!-- 按钮组 -->
+      <div style="display:flex;gap:12px;justify-content:center;">
+        <button id="btn-battle-retry" style="padding:12px 28px;font-size:15px;background:rgba(255,255,255,0.1);color:#e2e8f0;border:1px solid rgba(255,255,255,0.2);border-radius:8px;cursor:pointer;font-weight:600;transition:all 0.15s;">再来一局</button>
+        <button id="btn-battle-back" style="padding:12px 28px;font-size:15px;background:#fbbf24;color:#0f172a;border:none;border-radius:8px;cursor:pointer;font-weight:600;transition:all 0.15s;">返回关卡</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Chapter Transition Overlay -->
+  <div id="chapter-transition" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:#000;z-index:21000;flex-direction:column;align-items:center;justify-content:center;opacity:0;">
+    <div style="text-align:center;">
+      <div style="font-size:14px;color:#64748b;letter-spacing:8px;margin-bottom:20px;">下一章</div>
+      <div id="ct-title" style="font-size:42px;font-weight:900;color:#fbbf24;letter-spacing:6px;text-shadow:0 0 30px rgba(251,191,36,0.5);"></div>
+      <div id="ct-subtitle" style="font-size:18px;color:#94a3b8;margin-top:16px;letter-spacing:2px;"></div>
+    </div>
+  </div>
+
+  <!-- Game Ending Overlay -->
+  <div id="game-ending" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:radial-gradient(ellipse at center,#1e1b4b 0%,#000 100%);z-index:21000;flex-direction:column;align-items:center;justify-content:center;opacity:0;">
+    <div style="text-align:center;padding:40px;">
+      <div style="font-size:18px;color:#64748b;letter-spacing:12px;margin-bottom:30px;">— 全剧终 —</div>
+      <div style="font-size:56px;font-weight:900;color:#fbbf24;letter-spacing:8px;text-shadow:0 0 40px rgba(251,191,36,0.4);margin-bottom:30px;">CAGED CIPHER</div>
+      <div style="font-size:16px;color:#94a3b8;line-height:2;max-width:500px;margin:0 auto 40px;">
+        笼中的数字已全部解开<br>
+        而你找到的答案<br>
+        或许只是新的谜题的开始
+      </div>
+      <div style="font-size:14px;color:#475569;letter-spacing:4px;">感谢你的游玩</div>
+    </div>
+  </div>
+
+  <!-- True Ending Overlay -->
+  <div id="true-ending" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:radial-gradient(ellipse at center,rgba(251,191,36,0.15) 0%,#0c0a1f 40%,#000 100%);z-index:21500;flex-direction:column;align-items:center;justify-content:center;opacity:0;">
+    <div style="text-align:center;padding:40px;max-width:600px;">
+      <div style="font-size:14px;color:#fbbf24;letter-spacing:12px;margin-bottom:20px;opacity:0.8;">TRUE ENDING</div>
+      <div style="font-size:16px;color:#fbbf24;letter-spacing:8px;margin-bottom:30px;opacity:0.8;">— 真结局 —</div>
+      <div style="font-size:48px;font-weight:900;color:#fbbf24;letter-spacing:6px;text-shadow:0 0 60px rgba(251,191,36,0.6);margin-bottom:40px;">星辰归途</div>
+      <div style="font-size:15px;color:#fef3c7;line-height:2.2;margin-bottom:40px;opacity:0.9;">
+        设局人的真相终于揭晓<br>
+        莹莹的身世、沈墨的来信、星辰梭的秘密<br>
+        一切都有了答案<br><br>
+        但这不是结束<br>
+        而是新的开始<br>
+        ——星辰的光芒，将永远指引前方
+      </div>
+      <div style="font-size:20px;color:#fbbf24;letter-spacing:4px;text-shadow:0 0 20px rgba(251,191,36,0.5);">✨ 星辰传人 ✨</div>
+      <div style="font-size:12px;color:#78716c;letter-spacing:3px;margin-top:30px;">感谢你找到所有真相</div>
+    </div>
+  </div>
+
+  <!-- Core -->
+  <script src="core/event-bus.js?v=3"></script>
+  <script src="core/logger.js?v=3"></script>
+  <script src="core/event-logger.js?v=1"></script>
+
+  <!-- Expert System (5 layers) -->
+  <script src="expert/perception/player-state-monitor.js?v=3"></script>
+  <script src="expert/decision/decision-engine.js?v=3"></script>
+  <script src="expert/expression/expression-director.js?v=3"></script>
+  <script src="expert/learning/learning-system.js?v=3"></script>
+  <script src="expert/timing/beat-quantizer.js?v=3"></script>
+  <script src="expert/expert-system.js?v=3"></script>
+  <script src="expert/hint-system.js?v=1"></script>
+  <script src="expert/teaching-system.js?v=1"></script>
+  <script src="expert/replay-system.js?v=1"></script>
+
+  <!-- Audio Service -->
+  <script src="audio/audio-service.js?v=4"></script>
+
+  <!-- Story Engine -->
+  <script src="story/story-engine.js?v=3"></script>
+
+  <!-- Game Logic -->
+  <script src="game/board.js?v=5"></script>
+  <script src="game/note-system.js?v=2"></script>
+  <script src="game/renderer.js?v=16"></script>
+  <script src="game/rule45.js?v=1"></script>
+  <script src="game/tech-rater.js?v=3"></script>
+  <script src="game/tech-rater-adapter.js?v=2"></script>
+  <script src="game/ai-player.js?v=3"></script>
+  <script src="game/tech-matrix.js?v=1"></script>
+  <script src="game/settings-panel.js?v=3"></script>
+  <script src="game/achievement-panel.js?v=2"></script>
+  <script src="game/gallery-panel.js?v=2"></script>
+  <script src="game/menu-sheet.js?v=1"></script>
+  <script src="game/game-timer.js?v=1"></script>
+  <script src="game/combo-system.js?v=1"></script>
+  <script src="game/guide-battle.js?v=6"></script>
+  <script src="game/lesson-player.js?v=10"></script>
+
+  <!-- UI Components -->
+  <script src="ui/battle-result-overlay.js?v=1"></script>
+
+  <!-- Pages -->
+  <script src="pages/chapter-select.js?v=1"></script>
+  <script src="pages/guide.js?v=30"></script>
+</body>
+</html>

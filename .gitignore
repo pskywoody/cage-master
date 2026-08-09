@@ -1,0 +1,11 @@
+node_modules/
+*.log
+.DS_Store
+*.tmp
+*.bak
+*.bak701
+__pycache__/
+*.pyc
+.trae-html-share-packages/
+.workbuddy-ai/
+reports/

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 对战回放 Dashboard — Top 5 vs Bottom 5</title>
+<style>
+  :root {
+    --bg: #1a1a2e;
+    --surface: #16213e;
+    --surface2: #0f3460;
+    --ink: #e8e8e8;
+    --muted: #8899aa;
+    --accent: #e94560;
+    --accent2: #f5a623;
+    --border: #2a2a4a;
+    --green: #66bb6a;
+    --red: #ef5350;
+    --blue: #4fc3f7;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    padding: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  h1 { font-size: 24px; color: var(--accent2); margin-bottom: 4px; }
+  .subtitle { color: var(--muted); font-size: 14px; margin-bottom: 20px; }
+  
+  .section-title { font-size: 18px; margin: 24px 0 12px; display: flex; align-items: center; gap: 8px; }
+  .section-title.gold { color: var(--accent2); }
+  .section-title.red { color: var(--accent); }
+  
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    transition: transform 0.1s, box-shadow 0.1s;
+  }
+  .card:hover { transform: translateY(-2px); box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
+  .card.top { border-left: 3px solid var(--accent2); }
+  .card.bot { border-left: 3px solid var(--accent); }
+  
+  .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+  .card-title { font-size: 15px; font-weight: 700; }
+  .card-rank { font-size: 12px; padding: 2px 8px; border-radius: 10px; }
+  .card-rank.top { background: rgba(245,166,35,0.2); color: var(--accent2); }
+  .card-rank.bot { background: rgba(233,69,96,0.2); color: var(--accent); }
+  
+  .fun-score { font-size: 28px; font-weight: 800; margin-bottom: 8px; }
+  .fun-score.top { color: var(--accent2); }
+  .fun-score.bot { color: var(--accent); }
+  
+  .sub-scores { display: flex; gap: 12px; font-size: 12px; color: var(--muted); margin-bottom: 8px; }
+  .sub-scores span { display: flex; align-items: center; gap: 4px; }
+  
+  .params { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+  .param-tag {
+    font-size: 11px; padding: 2px 8px; border-radius: 6px;
+    background: var(--surface2); color: var(--muted);
+  }
+  
+  .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; font-size: 12px; }
+  .stats .row { display: flex; justify-content: space-between; }
+  .stats .label { color: var(--muted); }
+  .stats .value { color: var(--ink); font-weight: 600; }
+  
+  .play-link {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 6px 16px;
+    background: var(--accent2);
+    color: #000;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    transition: opacity 0.15s;
+  }
+  .play-link:hover { opacity: 0.85; }
+  
+  .comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin: 12px 0 24px;
+  }
+  .comparison-table th {
+    background: var(--surface2);
+    color: var(--muted);
+    font-weight: 600;
+    padding: 8px 10px;
+    text-align: left;
+    border-bottom: 2px solid var(--border);
+  }
+  .comparison-table td {
+    padding: 6px 10px;
+    border-bottom: 1px solid var(--border);
+  }
+  .comparison-table tr:hover td { background: rgba(255,255,255,0.03); }
+  .comparison-table .num { text-align: right; font-variant-numeric: tabular-nums; }
+  .cell-high { color: var(--green); font-weight: 700; }
+  .cell-low { color: var(--red); font-weight: 700; }
+  
+  .insight-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+    margin: 20px 0;
+  }
+  .insight-box h3 { color: var(--accent2); font-size: 16px; margin-bottom: 8px; }
+  .insight-box ul { padding-left: 18px; font-size: 13px; line-height: 1.8; }
+  .insight-box li { margin-bottom: 4px; }
+  .insight-box strong { color: var(--accent2); }
+</style>
+</head>
+<body>
+
+<h1>⚔ AI 对战回放 Dashboard</h1>
+<p class="subtitle">Level 109 • 莹莹(ying) vs 阿妍(ayan) • 80组参数矩阵扫描 → Top 5 vs Bottom 5 回放对比</p>
+
+<div class="insight-box">
+  <h3>核心发现</h3>
+  <ul>
+    <li><strong>focusGain 是 FunScore 的最强决定因素</strong> — 所有 Top 5 的 focusGain ≥ 3，所有 Bottom 5 的 focusGain = 1</li>
+    <li><strong>cooldown 越低越好</strong> — Top 5 全部 cooldown=1，意味着频繁的拦截互动提升"打铁感"</li>
+    <li><strong>高 FunScore 的对局有较多忍杀触发</strong> — Top 5 的忍杀触发率 80-95%，Bottom 5 仅 10-25%</li>
+    <li>但 <strong>Bottom 3 号（bd=5 sm=1000 fg=1）是例外</strong>：虽然 FunScore 低，但回放数据 (8:7) 显示对战很胶着，提示 FunScore 公式可能低估了某些场景</li>
+  </ul>
+</div>
+
+<h2 class="section-title gold">🏆 Top 5 高 FunScore 回放</h2>
+<div class="grid" id="top-grid"></div>
+
+<h2 class="section-title red">📉 Bottom 5 低 FunScore 回放</h2>
+<div class="grid" id="bot-grid"></div>
+
+<h2 class="section-title">📊 参数对比表</h2>
+<table class="comparison-table" id="comp-table">
+  <thead>
+    <tr>
+      <th>排名</th><th>冷却</th><th>蓄力(ms)</th><th>专注增益</th>
+      <th class="num">FunScore</th><th class="num">Tempo</th><th class="num">Risk</th><th class="num">Climax</th>
+      <th class="num">拦截率</th><th class="num">招架率</th><th class="num">忍杀率</th>
+      <th class="num">莹/妍</th>
+    </tr>
+  </thead>
+  <tbody></tbody>
+</table>
+
+<script>
+const scanData = {
+  "entries": [
+    {"rank":1,"label":"Top 1","group":"top","cooldown":1,"siegeMs":5000,"focusGain":5,"total":89,"tempo":95,"risk":73,"climax":100,"interceptRate":12.9,"parryRate":84.2,"deathblowPct":95,"win":"15:4","file":"replay-top1.json"},
+    {"rank":2,"label":"Top 2","group":"top","cooldown":1,"siegeMs":5000,"focusGain":8,"total":88,"tempo":100,"risk":70,"climax":95,"interceptRate":13.1,"parryRate":84.2,"deathblowPct":100,"win":"10:9","file":"replay-top2.json"},
+    {"rank":3,"label":"Top 3","group":"top","cooldown":1,"siegeMs":3000,"focusGain":8,"total":87,"tempo":96,"risk":66,"climax":100,"interceptRate":12.9,"parryRate":84.2,"deathblowPct":100,"win":"8:12","file":"replay-top3.json"},
+    {"rank":4,"label":"Top 4","group":"top","cooldown":1,"siegeMs":1000,"focusGain":5,"total":86,"tempo":92,"risk":69,"climax":99,"interceptRate":13.9,"parryRate":84.2,"deathblowPct":95,"win":"12:8","file":"replay-top4.json"},
+    {"rank":5,"label":"Top 5","group":"top","cooldown":1,"siegeMs":2000,"focusGain":3,"total":84,"tempo":82,"risk":76,"climax":97,"interceptRate":13.1,"parryRate":84.2,"deathblowPct":80,"win":"18:2","file":"replay-top5.json"},
+    {"rank":1,"label":"Bot 1","group":"bot","cooldown":8,"siegeMs":3000,"focusGain":1,"total":43,"tempo":41,"risk":60,"climax":26,"interceptRate":8.2,"parryRate":84.2,"deathblowPct":10,"win":"20:0","file":"replay-bot1.json"},
+    {"rank":2,"label":"Bot 2","group":"bot","cooldown":12,"siegeMs":5000,"focusGain":1,"total":46,"tempo":42,"risk":60,"climax":36,"interceptRate":9.2,"parryRate":84.2,"deathblowPct":25,"win":"20:0","file":"replay-bot2.json"},
+    {"rank":3,"label":"Bot 3","group":"bot","cooldown":5,"siegeMs":1000,"focusGain":1,"total":46,"tempo":46,"risk":57,"climax":32,"interceptRate":8.2,"parryRate":84.2,"deathblowPct":10,"win":"20:0","file":"replay-bot3.json"},
+    {"rank":4,"label":"Bot 4","group":"bot","cooldown":3,"siegeMs":5000,"focusGain":1,"total":46,"tempo":47,"risk":61,"climax":27,"interceptRate":10,"parryRate":84.2,"deathblowPct":10,"win":"20:0","file":"replay-bot4.json"},
+    {"rank":5,"label":"Bot 5","group":"bot","cooldown":5,"siegeMs":2000,"focusGain":1,"total":47,"tempo":46,"risk":61,"climax":31,"interceptRate":10,"parryRate":84.2,"deathblowPct":20,"win":"20:0","file":"replay-bot5.json"}
+  ]
+};
+
+function renderCard(e, container) {
+  const card = document.createElement('div');
+  card.className = `card ${e.group}`;
+  card.innerHTML = `
+    <div class="card-header">
+      <span class="card-title">${e.label}</span>
+      <span class="card-rank ${e.group}">#${e.rank}</span>
+    </div>
+    <div class="fun-score ${e.group}">${e.total}</div>
+    <div class="sub-scores">
+      <span>Tempo <b>${e.tempo}</b></span>
+      <span>Risk <b>${e.risk}</b></span>
+      <span>Climax <b>${e.climax}</b></span>
+    </div>
+    <div class="params">
+      <span class="param-tag">冷却 ${e.cooldown}回合</span>
+      <span class="param-tag">蓄力 ${e.siegeMs}ms</span>
+      <span class="param-tag">专注 +${e.focusGain}</span>
+    </div>
+    <div class="stats">
+      <div class="row"><span class="label">拦截率</span><span class="value">${e.interceptRate}%</span></div>
+      <div class="row"><span class="label">招架率</span><span class="value">${e.parryRate}%</span></div>
+      <div class="row"><span class="label">忍杀率</span><span class="value">${e.deathblowPct}%</span></div>
+      <div class="row"><span class="label">胜负</span><span class="value">${e.win}</span></div>
+    </div>
+    <a class="play-link" href="replay.html?file=${e.file}" target="_blank">▶ 观看回放</a>
+  `;
+  container.appendChild(card);
+}
+
+function renderTable() {
+  const tbody = document.querySelector('#comp-table tbody');
+  scanData.entries.forEach(e => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td><span style="color:${e.group==='top'?'var(--accent2)':'var(--accent)'}">${e.label}</span></td>
+      <td>${e.cooldown}</td>
+      <td>${e.siegeMs}</td>
+      <td>${e.focusGain}</td>
+      <td class="num ${e.group==='top'?'cell-high':'cell-low'}">${e.total}</td>
+      <td class="num">${e.tempo}</td>
+      <td class="num">${e.risk}</td>
+      <td class="num">${e.climax}</td>
+      <td class="num">${e.interceptRate}%</td>
+      <td class="num">${e.parryRate}%</td>
+      <td class="num">${e.deathblowPct}%</td>
+      <td class="num">${e.win}</td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
+
+scanData.entries.filter(e => e.group === 'top').forEach(e => renderCard(e, document.getElementById('top-grid')));
+scanData.entries.filter(e => e.group === 'bot').forEach(e => renderCard(e, document.getElementById('bot-grid')));
+renderTable();
+</script>
+</body>
+</html>

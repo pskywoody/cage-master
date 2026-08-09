@@ -1,0 +1,142 @@
+{
+  "migrationVersion": "3-to-4",
+  "timestamp": "2026-08-01T20:05:13.854Z",
+  "summary": {
+    "totalChapters": 8,
+    "totalLevels": 51,
+    "converted": 51,
+    "skipped": 0,
+    "errors": 0,
+    "existingLessonPlan": 20,
+    "inferredLessonPlan": 31,
+    "overwritten": 51
+  },
+  "details": {
+    "chapters": [
+      {
+        "chapterId": 1,
+        "title": "初识笼中密码",
+        "description": "你作为新人侦探来到旧档案馆，守笼人是谜题管理员，阿妍是实习侦探。从4×4迷你盘面开始，学习数独三大铁律和杀手数独基础笼格。",
+        "theme": 0,
+        "unlockCondition": {},
+        "levelIds": [
+          101,
+          102,
+          103,
+          104,
+          105,
+          106,
+          107,
+          108,
+          109,
+          199
+        ]
+      },
+      {
+        "chapterId": 2,
+        "title": "四十五星衡",
+        "description": "进入手稿室，学习星衡法则（星衡法则与星衡法则），掌握基础差值推演，初闻设局人留声印记。",
+        "theme": 0,
+        "unlockCondition": {},
+        "levelIds": [
+          201,
+          202,
+          203,
+          204,
+          205,
+          206,
+          207,
+          208
+        ]
+      },
+      {
+        "chapterId": 3,
+        "title": "档案室深层",
+        "description": "深入档案馆深层，学习区块排除、数对法、二连纵横阵等进阶技巧。设局人正式现身对话，揭露当年与守笼人的同门过往。",
+        "theme": 0,
+        "unlockCondition": {},
+        "levelIds": [
+          301,
+          302,
+          303,
+          304,
+          305,
+          306,
+          307
+        ]
+      },
+      {
+        "chapterId": 4,
+        "title": "尘封旧案",
+        "description": "通过残缺笔记逆向推导当年决裂事件的真相碎片，学习残局逆向推导技巧，情感浓度最高的一章。",
+        "theme": 0,
+        "unlockCondition": {},
+        "levelIds": [
+          401,
+          402,
+          403,
+          404,
+          405,
+          406
+        ]
+      },
+      {
+        "chapterId": 5,
+        "title": "星辰梭核心",
+        "description": "深入星辰梭核心，面对嵌套笼、异形笼、复合笼组合，笼局复杂度达到峰值。星辰梭的真正用途逐渐浮出水面。",
+        "theme": 0,
+        "unlockCondition": {},
+        "levelIds": [
+          501,
+          502,
+          503,
+          504,
+          505,
+          506
+        ]
+      },
+      {
+        "chapterId": 6,
+        "title": "终局笼局",
+        "description": "设局人留下的最后六道笼局，每一关对应一段往事。终局双答案设计，主线完整收束，你将成为新任守笼人。",
+        "theme": 0,
+        "unlockCondition": {},
+        "levelIds": [
+          601,
+          602,
+          603,
+          604,
+          605,
+          606
+        ]
+      },
+      {
+        "chapterId": 7,
+        "title": "秘术档案",
+        "description": "守笼人在档案馆最深处发现了设局人留下的六卷秘术手稿，记载着从数对到二连纵横阵到三才游鱼阵的高级推演术。掌握它们，你才能真正理解星辰梭的奥义。",
+        "theme": 0,
+        "unlockCondition": {},
+        "levelIds": [
+          701,
+          702,
+          703,
+          704,
+          705,
+          706,
+          799
+        ]
+      },
+      {
+        "chapterId": 8,
+        "title": "星辰归途",
+        "description": "档案馆最深处的最终之锁。只有集齐七封密信、达成所有隐藏条件的人，才能进入这里。——这是设局人留给世界的最后答案。",
+        "theme": 0,
+        "unlockCondition": {},
+        "levelIds": [
+          801
+        ]
+      }
+    ],
+    "errors": []
+  }
+}

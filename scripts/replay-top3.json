@@ -1,0 +1,5767 @@
+{
+ "level": 109,
+ "gridSize": 6,
+ "params": {
+  "cooldown": 1,
+  "siegeMs": 3000,
+  "focusGain": 8,
+  "player": "ying",
+  "spawn": "yan"
+ },
+ "board": [
+  [
+   0,
+   0,
+   1,
+   3,
+   2,
+   6
+  ],
+  [
+   3,
+   6,
+   0,
+   0,
+   0,
+   5
+  ],
+  [
+   5,
+   0,
+   3,
+   6,
+   1,
+   0
+  ],
+  [
+   0,
+   0,
+   4,
+   0,
+   0,
+   2
+  ],
+  [
+   0,
+   0,
+   0,
+   2,
+   6,
+   0
+  ],
+  [
+   2,
+   0,
+   6,
+   0,
+   5,
+   1
+  ]
+ ],
+ "solution": [
+  [
+   4,
+   5,
+   1,
+   3,
+   2,
+   6
+  ],
+  [
+   3,
+   6,
+   2,
+   1,
+   4,
+   5
+  ],
+  [
+   5,
+   2,
+   3,
+   6,
+   1,
+   4
+  ],
+  [
+   6,
+   1,
+   4,
+   5,
+   3,
+   2
+  ],
+  [
+   1,
+   4,
+   5,
+   2,
+   6,
+   3
+  ],
+  [
+   2,
+   3,
+   6,
+   4,
+   5,
+   1
+  ]
+ ],
+ "cages": [
+  {
+   "sum": 15,
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ]
+   ]
+  },
+  {
+   "sum": 6,
+   "cells": [
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ]
+   ]
+  },
+  {
+   "sum": 11,
+   "cells": [
+    [
+     0,
+     3
+    ],
+    [
+     0,
+     4
+    ],
+    [
+     0,
+     5
+    ]
+   ]
+  },
+  {
+   "sum": 15,
+   "cells": [
+    [
+     1,
+     5
+    ],
+    [
+     2,
+     5
+    ],
+    [
+     3,
+     5
+    ],
+    [
+     4,
+     5
+    ],
+    [
+     5,
+     5
+    ]
+   ]
+  },
+  {
+   "sum": 5,
+   "cells": [
+    [
+     1,
+     4
+    ],
+    [
+     2,
+     4
+    ]
+   ]
+  },
+  {
+   "sum": 7,
+   "cells": [
+    [
+     1,
+     3
+    ],
+    [
+     2,
+     3
+    ]
+   ]
+  },
+  {
+   "sum": 12,
+   "cells": [
+    [
+     2,
+     0
+    ],
+    [
+     3,
+     0
+    ],
+    [
+     3,
+     1
+    ]
+   ]
+  },
+  {
+   "sum": 5,
+   "cells": [
+    [
+     2,
+     1
+    ],
+    [
+     2,
+     2
+    ]
+   ]
+  },
+  {
+   "sum": 10,
+   "cells": [
+    [
+     3,
+     4
+    ],
+    [
+     3,
+     3
+    ],
+    [
+     4,
+     3
+    ]
+   ]
+  },
+  {
+   "sum": 18,
+   "cells": [
+    [
+     3,
+     2
+    ],
+    [
+     4,
+     2
+    ],
+    [
+     5,
+     2
+    ],
+    [
+     5,
+     1
+    ]
+   ]
+  },
+  {
+   "sum": 7,
+   "cells": [
+    [
+     4,
+     0
+    ],
+    [
+     5,
+     0
+    ],
+    [
+     4,
+     1
+    ]
+   ]
+  },
+  {
+   "sum": 11,
+   "cells": [
+    [
+     4,
+     4
+    ],
+    [
+     5,
+     4
+    ]
+   ]
+  },
+  {
+   "sum": 4,
+   "cells": [
+    [
+     5,
+     3
+    ]
+   ]
+  }
+ ],
+ "result": {
+  "winner": "ayan",
+  "yingCount": 7,
+  "aiCount": 10,
+  "totalEmpty": 17,
+  "totalFrames": 260
+ },
+ "summary": {
+  "yingCorrect": 7,
+  "aiCorrect": 10,
+  "deathblows": 1,
+  "bestCombo": 5
+ },
+ "frames": [
+  {
+   "step": 1,
+   "turn": 0,
+   "player": "ying",
+   "row": 1,
+   "col": 3,
+   "num": 1,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 1,
+   "aiCount": 0,
+   "combo": 1,
+   "bestCombo": 1,
+   "focusBar": 0.08823529411764705,
+   "interceptCooldown": 0,
+   "underSiege": null
+  },
+  {
+   "step": 2,
+   "turn": 1,
+   "player": "ayan",
+   "row": 4,
+   "col": 0,
+   "num": 1,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 1,
+   "aiCount": 1,
+   "combo": 1,
+   "bestCombo": 1,
+   "focusBar": 0.08823529411764705,
+   "interceptCooldown": 0,
+   "underSiege": null
+  },
+  {
+   "step": 3,
+   "turn": 0,
+   "player": "ying",
+   "row": 1,
+   "col": 4,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 2,
+   "aiCount": 1,
+   "combo": 0,
+   "bestCombo": 2,
+   "focusBar": 0.1764705882352941,
+   "interceptCooldown": 0,
+   "underSiege": null
+  },
+  {
+   "step": 4,
+   "turn": 1,
+   "player": "ayan",
+   "row": 2,
+   "col": 1,
+   "num": 2,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 2,
+   "aiCount": 1,
+   "combo": 0,
+   "bestCombo": 2,
+   "focusBar": 0.1764705882352941,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 2,
+    "c": 1
+   }
+  },
+  {
+   "step": 5,
+   "turn": 0,
+   "player": "ying",
+   "row": 2,
+   "col": 1,
+   "num": 0,
+   "correct": true,
+   "event": "siege_start",
+   "eventDetail": "蓄力锁定 (2,1)",
+   "yingCount": 2,
+   "aiCount": 1,
+   "combo": 0,
+   "bestCombo": 2,
+   "focusBar": 0.1764705882352941,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 2,
+    "c": 1
+   }
+  },
+  {
+   "step": 6,
+   "turn": 0,
+   "player": "ying",
+   "row": 5,
+   "col": 3,
+   "num": 4,
+   "correct": true,
+   "event": "intercept",
+   "eventDetail": "拦截 (5,3)",
+   "yingCount": 2,
+   "aiCount": 2,
+   "combo": 0,
+   "bestCombo": 2,
+   "focusBar": 0.1764705882352941,
+   "interceptCooldown": 1,
+   "underSiege": {
+    "r": 2,
+    "c": 1
+   }
+  },
+  {
+   "step": 7,
+   "turn": 1,
+   "player": "ayan",
+   "row": 2,
+   "col": 1,
+   "num": 2,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 2,
+   "aiCount": 3,
+   "combo": 0,
+   "bestCombo": 2,
+   "focusBar": 0.1764705882352941,
+   "interceptCooldown": 1,
+   "underSiege": {
+    "r": 2,
+    "c": 1
+   }
+  },
+  {
+   "step": 8,
+   "turn": 0,
+   "player": "ying",
+   "row": 2,
+   "col": 1,
+   "num": 2,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 3,
+   "aiCount": 2,
+   "combo": 1,
+   "bestCombo": 2,
+   "focusBar": 0.2647058823529412,
+   "interceptCooldown": 1,
+   "underSiege": null
+  },
+  {
+   "step": 9,
+   "turn": 1,
+   "player": "ayan",
+   "row": 2,
+   "col": 5,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 3,
+   "aiCount": 3,
+   "combo": 1,
+   "bestCombo": 2,
+   "focusBar": 0.2647058823529412,
+   "interceptCooldown": 1,
+   "underSiege": null
+  },
+  {
+   "step": 10,
+   "turn": 0,
+   "player": "ying",
+   "row": 0,
+   "col": 1,
+   "num": 5,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 4,
+   "aiCount": 3,
+   "combo": 2,
+   "bestCombo": 2,
+   "focusBar": 0.3529411764705882,
+   "interceptCooldown": 0,
+   "underSiege": null
+  },
+  {
+   "step": 11,
+   "turn": 1,
+   "player": "ayan",
+   "row": 4,
+   "col": 5,
+   "num": 3,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 4,
+   "aiCount": 4,
+   "combo": 2,
+   "bestCombo": 2,
+   "focusBar": 0.3529411764705882,
+   "interceptCooldown": 0,
+   "underSiege": null
+  },
+  {
+   "step": 12,
+   "turn": 0,
+   "player": "ying",
+   "row": 2,
+   "col": 5,
+   "num": 4,
+   "correct": true,
+   "event": "combo",
+   "eventDetail": "3连击！",
+   "yingCount": 5,
+   "aiCount": 3,
+   "combo": 3,
+   "bestCombo": 3,
+   "focusBar": 0.4411764705882353,
+   "interceptCooldown": 0,
+   "underSiege": null
+  },
+  {
+   "step": 13,
+   "turn": 1,
+   "player": "ayan",
+   "row": 5,
+   "col": 1,
+   "num": 3,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 5,
+   "aiCount": 4,
+   "combo": 3,
+   "bestCombo": 3,
+   "focusBar": 0.4411764705882353,
+   "interceptCooldown": 0,
+   "underSiege": null
+  },
+  {
+   "step": 14,
+   "turn": 0,
+   "player": "ying",
+   "row": 4,
+   "col": 5,
+   "num": 3,
+   "correct": true,
+   "event": "combo",
+   "eventDetail": "4连击！",
+   "yingCount": 6,
+   "aiCount": 3,
+   "combo": 4,
+   "bestCombo": 4,
+   "focusBar": 0.5294117647058824,
+   "interceptCooldown": 0,
+   "underSiege": null
+  },
+  {
+   "step": 15,
+   "turn": 1,
+   "player": "ayan",
+   "row": 3,
+   "col": 3,
+   "num": 5,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 6,
+   "aiCount": 3,
+   "combo": 4,
+   "bestCombo": 4,
+   "focusBar": 0.5294117647058824,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 16,
+   "turn": 0,
+   "player": "ying",
+   "row": 3,
+   "col": 3,
+   "num": 0,
+   "correct": true,
+   "event": "siege_start",
+   "eventDetail": "蓄力锁定 (3,3)",
+   "yingCount": 6,
+   "aiCount": 3,
+   "combo": 4,
+   "bestCombo": 4,
+   "focusBar": 0.5294117647058824,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 17,
+   "turn": 0,
+   "player": "ying",
+   "row": 5,
+   "col": 3,
+   "num": 4,
+   "correct": true,
+   "event": "combo",
+   "eventDetail": "5连击！",
+   "yingCount": 7,
+   "aiCount": 2,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 18,
+   "turn": 1,
+   "player": "ayan",
+   "row": 4,
+   "col": 2,
+   "num": 5,
+   "correct": true,
+   "event": "deathblow",
+   "eventDetail": "忍杀触发！",
+   "yingCount": 7,
+   "aiCount": 3,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 19,
+   "turn": 1,
+   "player": "ayan",
+   "row": 3,
+   "col": 3,
+   "num": 5,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 4,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 20,
+   "turn": 1,
+   "player": "ayan",
+   "row": 3,
+   "col": 4,
+   "num": 3,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 5,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 21,
+   "turn": 1,
+   "player": "ayan",
+   "row": 4,
+   "col": 1,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 6,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 22,
+   "turn": 1,
+   "player": "ayan",
+   "row": 1,
+   "col": 2,
+   "num": 2,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 7,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 23,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 8,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 24,
+   "turn": 1,
+   "player": "ayan",
+   "row": 3,
+   "col": 1,
+   "num": 1,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 9,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 25,
+   "turn": 1,
+   "player": "ayan",
+   "row": 3,
+   "col": 0,
+   "num": 6,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 26,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 27,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 28,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 29,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 30,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 31,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 32,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 33,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 34,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 35,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 36,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 37,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 38,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 39,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 40,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 41,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 42,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 43,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 44,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 45,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 46,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 47,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 48,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 49,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 50,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 51,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 52,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 53,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 54,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 55,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 56,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 57,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 58,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 59,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 60,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 61,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 3,
+   "correct": false,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 62,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 63,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 64,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 65,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 66,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 67,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 68,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 69,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 70,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 71,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 72,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 73,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 74,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 75,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 76,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 77,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 78,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 79,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 80,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 81,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 82,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 83,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 84,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 85,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 86,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 87,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 88,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 89,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 90,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 91,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 92,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 93,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 94,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 95,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 96,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 97,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 98,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 99,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 100,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 101,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 102,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 103,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 104,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 105,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 106,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 107,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 108,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 109,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 110,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 111,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 112,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 113,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 114,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 115,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 116,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 117,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 118,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 119,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 120,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 121,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 122,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 123,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 124,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 125,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 126,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 127,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 128,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 129,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 130,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 131,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 132,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 133,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 134,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 6,
+   "correct": false,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 135,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 136,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 137,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 138,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 139,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 140,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 141,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 142,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 143,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 144,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 145,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 146,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 147,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 148,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 149,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 150,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 151,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 152,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 153,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 154,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 155,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 156,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 157,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 158,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 159,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 160,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 161,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 162,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 163,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 164,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 165,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 166,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 167,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 168,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 169,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 170,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 171,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 172,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 173,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 174,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 175,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 176,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 177,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 178,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 179,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 180,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 181,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 182,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 183,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 184,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 185,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 186,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 187,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 188,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 189,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 190,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 191,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 192,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 193,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 194,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 195,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 196,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 197,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 198,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 199,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 200,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 201,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 202,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 203,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 204,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 205,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 206,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 207,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 208,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 209,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 210,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 211,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 212,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 213,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 214,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 215,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 216,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 217,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 218,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 219,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 220,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 221,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 222,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 223,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 224,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 225,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 226,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 227,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 228,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 229,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 230,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 231,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 232,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 233,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 234,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 235,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 236,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 3,
+   "correct": false,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 237,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 238,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 239,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 240,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 241,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 242,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 243,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 244,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 245,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 246,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 247,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 248,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 249,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 250,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 251,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 252,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 253,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 254,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 255,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 256,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 1,
+   "correct": false,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 257,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 258,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 259,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  },
+  {
+   "step": 260,
+   "turn": 1,
+   "player": "ayan",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 10,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 3
+   }
+  }
+ ]
+}

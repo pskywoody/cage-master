@@ -1,0 +1,1898 @@
+{
+ "level": 109,
+ "player": "average",
+ "rounds": 20,
+ "totalRounds": 1600,
+ "matrix": {
+  "1": {
+   "1000": {
+    "1": {
+     "rounds": 20,
+     "win": {
+      "ying": 19,
+      "ayan": 1,
+      "draw": 0
+     },
+     "interceptRateMean": 12.9,
+     "interceptRateStd": 8.7,
+     "parryRateMean": 84.2,
+     "stealRateMean": 90.6,
+     "hotPotatoAvg": 0.673,
+     "winMarginAvg": 13.9,
+     "deathblowPerRound": 0.15,
+     "deathblowRoundsPct": 15,
+     "deathblowCompleteAvg": 88.2,
+     "fun": {
+      "tempo": 64,
+      "risk": 67,
+      "climax": 32,
+      "total": 56
+     }
+    },
+    "3": {
+     "rounds": 20,
+     "win": {
+      "ying": 18,
+      "ayan": 1,
+      "draw": 1
+     },
+     "interceptRateMean": 13.1,
+     "interceptRateStd": 7.7,
+     "parryRateMean": 84.2,
+     "stealRateMean": 89.9,
+     "hotPotatoAvg": 0.572,
+     "winMarginAvg": 10.6,
+     "deathblowPerRound": 0.65,
+     "deathblowRoundsPct": 65,
+     "deathblowCompleteAvg": 76,
+     "fun": {
+      "tempo": 70,
+      "risk": 67,
+      "climax": 80,
+      "total": 72
+     }
+    },
+    "5": {
+     "rounds": 20,
+     "win": {
+      "ying": 12,
+      "ayan": 8,
+      "draw": 0
+     },
+     "interceptRateMean": 18.2,
+     "interceptRateStd": 13.4,
+     "parryRateMean": 79.2,
+     "stealRateMean": 94,
+     "hotPotatoAvg": 0.461,
+     "winMarginAvg": 8.3,
+     "deathblowPerRound": 0.95,
+     "deathblowRoundsPct": 95,
+     "deathblowCompleteAvg": 68.1,
+     "fun": {
+      "tempo": 92,
+      "risk": 69,
+      "climax": 99,
+      "total": 86
+     }
+    },
+    "8": {
+     "rounds": 20,
+     "win": {
+      "ying": 12,
+      "ayan": 8,
+      "draw": 0
+     },
+     "interceptRateMean": 13.4,
+     "interceptRateStd": 10.8,
+     "parryRateMean": 90,
+     "stealRateMean": 91,
+     "hotPotatoAvg": 0.498,
+     "winMarginAvg": 10.4,
+     "deathblowPerRound": 0.95,
+     "deathblowRoundsPct": 95,
+     "deathblowCompleteAvg": 58.8,
+     "fun": {
+      "tempo": 71,
+      "risk": 60,
+      "climax": 91,
+      "total": 73
+     }
+    }
+   },
+   "2000": {
+    "1": {
+     "rounds": 20,
+     "win": {
+      "ying": 19,
+      "ayan": 1,
+      "draw": 0
+     },
+     "interceptRateMean": 11.7,
+     "interceptRateStd": 7.8,
+     "parryRateMean": 92.5,
+     "stealRateMean": 92.3,
+     "hotPotatoAvg": 0.646,
+     "winMarginAvg": 13.2,
+     "deathblowPerRound": 0.2,
+     "deathblowRoundsPct": 20,
+     "deathblowCompleteAvg": 72.1,
+     "fun": {
+      "tempo": 61,
+      "risk": 57,
+      "climax": 42,
+      "total": 54
+     }
+    },
+    "3": {
+     "rounds": 20,
+     "win": {
+      "ying": 18,
+      "ayan": 2,
+      "draw": 0
+     },
+     "interceptRateMean": 15.8,
+     "interceptRateStd": 10.2,
+     "parryRateMean": 72.9,
+     "stealRateMean": 92.9,
+     "hotPotatoAvg": 0.513,
+     "winMarginAvg": 8.8,
+     "deathblowPerRound": 0.8,
+     "deathblowRoundsPct": 80,
+     "deathblowCompleteAvg": 79.4,
+     "fun": {
+      "tempo": 82,
+      "risk": 76,
+      "climax": 97,
+      "total": 84
+     }
+    },
+    "5": {
+     "rounds": 20,
+     "win": {
+      "ying": 16,
+      "ayan": 4,
+      "draw": 0
+     },
+     "interceptRateMean": 14.5,
+     "interceptRateStd": 10.8,
+     "parryRateMean": 86.7,
+     "stealRateMean": 92,
+     "hotPotatoAvg": 0.522,
+     "winMarginAvg": 9.4,
+     "deathblowPerRound": 0.9,
+     "deathblowRoundsPct": 90,
+     "deathblowCompleteAvg": 68,
+     "fun": {
+      "tempo": 76,
+      "risk": 63,
+      "climax": 95,
+      "total": 77
+     }
+    },
+    "8": {
+     "rounds": 20,
+     "win": {
+      "ying": 8,
+      "ayan": 12,
+      "draw": 0
+     },
+     "interceptRateMean": 16.9,
+     "interceptRateStd": 12.2,
+     "parryRateMean": 84.6,
+     "stealRateMean": 93.2,
+     "hotPotatoAvg": 0.385,
+     "winMarginAvg": 7.7,
+     "deathblowPerRound": 1,
+     "deathblowRoundsPct": 100,
+     "deathblowCompleteAvg": 56.4,
+     "fun": {
+      "tempo": 86,
+      "risk": 64,
+      "climax": 100,
+      "total": 83
+     }
+    }
+   },
+   "3000": {
+    "1": {
+     "rounds": 20,
+     "win": {
+      "ying": 20,
+      "ayan": 0,
+      "draw": 0
+     },
+     "interceptRateMean": 13.3,
+     "interceptRateStd": 9.1,
+     "parryRateMean": 88.8,
+     "stealRateMean": 90.1,
+     "hotPotatoAvg": 0.656,
+     "winMarginAvg": 12.3,
+     "deathblowPerRound": 0.25,
+     "deathblowRoundsPct": 25,
+     "deathblowCompleteAvg": 81.2,
+     "fun": {
+      "tempo": 67,
+      "risk": 62,
+      "climax": 48,
+      "total": 60
+     }
+    },
+    "3": {
+     "rounds": 20,
+     "win": {
+      "ying": 18,
+      "ayan": 2,
+      "draw": 0
+     },
+     "interceptRateMean": 15.6,
+     "interceptRateStd": 7.3,
+     "parryRateMean": 75.8,
+     "stealRateMean": 93.4,
+     "hotPotatoAvg": 0.57,
+     "winMarginAvg": 9.4,
+     "deathblowPerRound": 0.85,
+     "deathblowRoundsPct": 85,
+     "deathblowCompleteAvg": 78.5,
+     "fun": {
+      "tempo": 81,
+      "risk": 73,
+      "climax": 95,
+      "total": 82
+     }
+    },
+    "5": {
+     "rounds": 20,
+     "win": {
+      "ying": 13,
+      "ayan": 7,
+      "draw": 0
+     },
+     "interceptRateMean": 13.8,
+     "interceptRateStd": 8.9,
+     "parryRateMean": 88.3,
+     "stealRateMean": 93.3,
+     "hotPotatoAvg": 0.443,
+     "winMarginAvg": 7.8,
+     "deathblowPerRound": 1,
+     "deathblowRoundsPct": 100,
+     "deathblowCompleteAvg": 67.9,
+     "fun": {
+      "tempo": 73,
+      "risk": 60,
+      "climax": 100,
+      "total": 77
+     }
+    },
+    "8": {
+     "rounds": 20,
+     "win": {
+      "ying": 8,
+      "ayan": 12,
+      "draw": 0
+     },
+     "interceptRateMean": 19.1,
+     "interceptRateStd": 10.5,
+     "parryRateMean": 82.1,
+     "stealRateMean": 93.8,
+     "hotPotatoAvg": 0.346,
+     "winMarginAvg": 6.5,
+     "deathblowPerRound": 1,
+     "deathblowRoundsPct": 100,
+     "deathblowCompleteAvg": 58.5,
+     "fun": {
+      "tempo": 96,
+      "risk": 66,
+      "climax": 100,
+      "total": 87
+     }
+    }
+   },
+   "5000": {
+    "1": {
+     "rounds": 20,
+     "win": {
+      "ying": 20,
+      "ayan": 0,
+      "draw": 0
+     },
+     "interceptRateMean": 11,
+     "interceptRateStd": 7,
+     "parryRateMean": 90.4,
+     "stealRateMean": 93.1,
+     "hotPotatoAvg": 0.631,
+     "winMarginAvg": 12.3,
+     "deathblowPerRound": 0.3,
+     "deathblowRoundsPct": 30,
+     "deathblowCompleteAvg": 86.3,
+     "fun": {
+      "tempo": 59,
+      "risk": 58,
+      "climax": 49,
+      "total": 55
+     }
+    },
+    "3": {
+     "rounds": 20,
+     "win": {
+      "ying": 18,
+      "ayan": 2,
+      "draw": 0
+     },
+     "interceptRateMean": 11.6,
+     "interceptRateStd": 8,
+     "parryRateMean": 92.1,
+     "stealRateMean": 90.3,
+     "hotPotatoAvg": 0.577,
+     "winMarginAvg": 11.6,
+     "deathblowPerRound": 0.85,
+     "deathblowRoundsPct": 85,
+     "deathblowCompleteAvg": 82.4,
+     "fun": {
+      "tempo": 63,
+      "risk": 59,
+      "climax": 85,
+      "total": 68
+     }
+    },
+    "5": {
+     "rounds": 20,
+     "win": {
+      "ying": 15,
+      "ayan": 4,
+      "draw": 1
+     },
+     "interceptRateMean": 18.8,
+     "interceptRateStd": 13.8,
+     "parryRateMean": 76.7,
+     "stealRateMean": 92.4,
+     "hotPotatoAvg": 0.445,
+     "winMarginAvg": 7.3,
+     "deathblowPerRound": 0.95,
+     "deathblowRoundsPct": 95,
+     "deathblowCompleteAvg": 70.6,
+     "fun": {
+      "tempo": 95,
+      "risk": 73,
+      "climax": 100,
+      "total": 89
+     }
+    },
+    "8": {
+     "rounds": 20,
+     "win": {
+      "ying": 10,
+      "ayan": 9,
+      "draw": 1
+     },
+     "interceptRateMean": 21.4,
+     "interceptRateStd": 11.1,
+     "parryRateMean": 75.4,
+     "stealRateMean": 97.9,
+     "hotPotatoAvg": 0.447,
+     "winMarginAvg": 9.3,
+     "deathblowPerRound": 1,
+     "deathblowRoundsPct": 100,
+     "deathblowCompleteAvg": 58.2,
+     "fun": {
+      "tempo": 100,
+      "risk": 70,
+      "climax": 95,
+      "total": 88
+     }
+    }
+   }
+  },
+  "3": {
+   "1000": {
+    "1": {
+     "rounds": 20,
+     "win": {
+      "ying": 20,
+      "ayan": 0,
+      "draw": 0
+     },
+     "interceptRateMean": 8.6,
+     "interceptRateStd": 5.7,
+     "parryRateMean": 88.8,
+     "stealRateMean": 93.2,
+     "hotPotatoAvg": 0.619,
+     "winMarginAvg": 13,
+     "deathblowPerRound": 0.3,
+     "deathblowRoundsPct": 30,
+     "deathblowCompleteAvg": 79.4,
+     "fun": {
+      "tempo": 49,
+      "risk": 60,
+      "climax": 49,
+      "total": 53
+     }
+    },
+    "3": {
+     "rounds": 20,
+     "win": {
+      "ying": 19,
+      "ayan": 1,
+      "draw": 0
+     },
+     "interceptRateMean": 10.3,
+     "interceptRateStd": 6.4,
+     "parryRateMean": 83.8,
+     "stealRateMean": 92.8,
+     "hotPotatoAvg": 0.526,
+     "winMarginAvg": 9.4,
+     "deathblowPerRound": 0.65,
+     "deathblowRoundsPct": 65,
+     "deathblowCompleteAvg": 77.8,
+     "fun": {
+      "tempo": 58,
+      "risk": 65,
+      "climax": 85,
+      "total": 69
+     }
+    },
+    "5": {
+     "rounds": 20,
+     "win": {
+      "ying": 15,
+      "ayan": 5,
+      "draw": 0
+     },
+     "interceptRateMean": 11.9,
+     "interceptRateStd": 9.6,
+     "parryRateMean": 80.4,
+     "stealRateMean": 96,
+     "hotPotatoAvg": 0.462,
+     "winMarginAvg": 9.3,
+     "deathblowPerRound": 0.9,
+     "deathblowRoundsPct": 90,
+     "deathblowCompleteAvg": 69.9,
+     "fun": {
+      "tempo": 65,
+      "risk": 66,
+      "climax": 95,
+      "total": 74
+     }
+    },
+    "8": {
+     "rounds": 20,
+     "win": {
+      "ying": 11,
+      "ayan": 9,
+      "draw": 0
+     },
+     "interceptRateMean": 13.9,
+     "interceptRateStd": 10,
+     "parryRateMean": 85.4,
+     "stealRateMean": 89.1,
+     "hotPotatoAvg": 0.427,
+     "winMarginAvg": 9.6,
+     "deathblowPerRound": 1,
+     "deathblowRoundsPct": 100,
+     "deathblowCompleteAvg": 57.6,
+     "fun": {
+      "tempo": 73,
+      "risk": 66,
+      "climax": 94,
+      "total": 77
+     }
+    }
+   },
+   "2000": {
+    "1": {
+     "rounds": 20,
+     "win": {
+      "ying": 20,
+      "ayan": 0,
+      "draw": 0
+     },
+     "interceptRateMean": 8.8,
+     "interceptRateStd": 5.4,
+     "parryRateMean": 93.8,
+     "stealRateMean": 92.7,
+     "hotPotatoAvg": 0.638,
+     "winMarginAvg": 13.1,
+     "deathblowPerRound": 0.25,
+     "deathblowRoundsPct": 25,
+     "deathblowCompleteAvg": 84.7,
+     "fun": {
+      "tempo": 49,
+      "risk": 55,
+      "climax": 43,
+      "total": 49
+     }
+    },
+    "3": {
+     "rounds": 20,
+     "win": {
+      "ying": 19,
+      "ayan": 1,
+      "draw": 0
+     },
+     "interceptRateMean": 14.4,
+     "interceptRateStd": 8.3,
+     "parryRateMean": 85.8,
+     "stealRateMean": 94.4,
+     "hotPotatoAvg": 0.475,
+     "winMarginAvg": 9,
+     "deathblowPerRound": 0.9,
+     "deathblowRoundsPct": 90,
+     "deathblowCompleteAvg": 80.4,
+     "fun": {
+      "tempo": 76,
+      "risk": 62,
+      "climax": 96,
+      "total": 77
+     }
+    },
+    "5": {
+     "rounds": 20,
+     "win": {
+      "ying": 17,
+      "ayan": 3,
+      "draw": 0
+     },
+     "interceptRateMean": 10.4,
+     "interceptRateStd": 6.7,
+     "parryRateMean": 95,
+     "stealRateMean": 92.7,
+     "hotPotatoAvg": 0.499,
+     "winMarginAvg": 11.5,
+     "deathblowPerRound": 1,
+     "deathblowRoundsPct": 100,
+     "deathblowCompleteAvg": 73.5,
+     "fun": {
+      "tempo": 58,
+      "risk": 54,
+      "climax": 86,
+      "total": 65
+     }
+    },
+    "8": {
+     "rounds": 20,
+     "win": {
+      "ying": 10,
+      "ayan": 9,
+      "draw": 1
+     },
+     "interceptRateMean": 13.6,
+     "interceptRateStd": 8.7,
+     "parryRateMean": 82.1,
+     "stealRateMean": 96.1,
+     "hotPotatoAvg": 0.414,
+     "winMarginAvg": 9.7,
+     "deathblowPerRound": 1,
+     "deathblowRoundsPct": 100,
+     "deathblowCompleteAvg": 61.5,
+     "fun": {
+      "tempo": 72,
+      "risk": 64,
+      "climax": 93,
+      "total": 76
+     }
+    }
+   },
+   "3000": {
+    "1": {
+     "rounds": 20,
+     "win": {
+      "ying": 20,
+      "ayan": 0,
+      "draw": 0
+     },
+     "interceptRateMean": 11.3,
+     "interceptRateStd": 3.8,
+     "parryRateMean": 83.3,
+     "stealRateMean": 93.6,
+     "hotPotatoAvg": 0.61,
+     "winMarginAvg": 11.7,
+     "deathblowPerRound": 0.35,
+     "deathblowRoundsPct": 35,
+     "deathblowCompleteAvg": 86.6,
+     "fun": {
+      "tempo": 61,
+      "risk": 65,
+      "climax": 54,
+      "total": 60
+     }
+    },
+    "3": {
+     "rounds": 20,
+     "win": {
+      "ying": 17,
+      "ayan": 2,
+      "draw": 1
+     },
+     "interceptRateMean": 12.5,
+     "interceptRateStd": 6,
+     "parryRateMean": 82.5,
+     "stealRateMean": 91.4,
+     "hotPotatoAvg": 0.516,
+     "winMarginAvg": 9.8,
+     "deathblowPerRound": 0.7,
+     "deathblowRoundsPct": 70,
+     "deathblowCompleteAvg": 75.2,
+     "fun": {
+      "tempo": 67,
+      "risk": 68,
+      "climax": 87,
+      "total": 73
+     }
+    },
+    "5": {
+     "rounds": 20,
+     "win": {
+      "ying": 15,
+      "ayan": 4,
+      "draw": 1
+     },
+     "interceptRateMean": 10.7,
+     "interceptRateStd": 4.7,
+     "parryRateMean": 93.3,
+     "stealRateMean": 93,
+     "hotPotatoAvg": 0.535,
+     "winMarginAvg": 11.2,
+     "deathblowPerRound": 1,
+     "deathblowRoundsPct": 100,
+     "deathblowCompleteAvg": 67.9,
+     "fun": {
+      "tempo": 59,
+      "risk": 55,
+      "climax": 88,
+      "total": 66
+     }
+    },
+    "8": {
+     "rounds": 20,
+     "win": {
+      "ying": 7,
+      "ayan": 13,
+      "draw": 0
+     },
+     "interceptRateMean": 14.9,
+     "interceptRateStd": 11.2,
+     "parryRateMean": 85.8,
+     "stealRateMean": 91.6,
+     "hotPotatoAvg": 0.361,
+     "winMarginAvg": 7.8,
+     "deathblowPerRound": 1,
+     "deathblowRoundsPct": 100,
+     "deathblowCompleteAvg": 56.8,
+     "fun": {
+      "tempo": 78,
+      "risk": 64,
+      "climax": 100,
+      "total": 80
+     }
+    }
+   },
+   "5000": {
+    "1": {
+     "rounds": 20,
+     "win": {
+      "ying": 20,
+      "ayan": 0,
+      "draw": 0
+     },
+     "interceptRateMean": 8.9,
+     "interceptRateStd": 4.6,
+     "parryRateMean": 88.3,
+     "stealRateMean": 92.4,
+     "hotPotatoAvg": 0.67,
+     "winMarginAvg": 14.4,
+     "deathblowPerRound": 0.1,
+     "deathblowRoundsPct": 10,
+     "deathblowCompleteAvg": 94.1,
+     "fun": {
+      "tempo": 47,
+      "risk": 61,
+      "climax": 27,
+      "total": 46
+     }
+    },
+    "3": {
+     "rounds": 20,
+     "win": {
+      "ying": 19,
+      "ayan": 1,
+      "draw": 0
+     },
+     "interceptRateMean": 10.6,
+     "interceptRateStd": 4.5,
+     "parryRateMean": 84.6,
+     "stealRateMean": 94.5,
+     "hotPotatoAvg": 0.561,
+     "winMarginAvg": 11.3,
+     "deathblowPerRound": 0.8,
+     "deathblowRoundsPct": 80,
+     "deathblowCompleteAvg": 84.2,
+     "fun": {
+      "tempo": 59,
+      "risk": 63,
+      "climax": 85,
+      "total": 68
+     }
+    },
+    "5": {
+     "rounds": 20,
+     "win": {
+      "ying": 14,
+      "ayan": 5,
+      "draw": 1
+     },
+     "interceptRateMean": 15.8,
+     "interceptRateStd": 8.1,
+     "parryRateMean": 86.3,
+     "stealRateMean": 92.3,
+     "hotPotatoAvg": 0.462,
+     "winMarginAvg": 8.6,
+     "deathblowPerRound": 0.95,
+     "deathblowRoundsPct": 95,
+     "deathblowCompleteAvg": 65,
+     "fun": {
+      "tempo": 82,
+      "risk": 63,
+      "climax": 98,
+      "total": 80
+     }
+    },
+    "8": {
+     "rounds": 20,
+     "win": {
+      "ying": 8,
+      "ayan": 12,
+      "draw": 0
+     },
+     "interceptRateMean": 14.6,
+     "interceptRateStd": 7.1,
+     "parryRateMean": 91.7,
+     "stealRateMean": 96.1,
+     "hotPotatoAvg": 0.345,
+     "winMarginAvg": 8.5,
+     "deathblowPerRound": 1,
+     "deathblowRoundsPct": 100,
+     "deathblowCompleteAvg": 55,
+     "fun": {
+      "tempo": 76,
+      "risk": 54,
+      "climax": 98,
+      "total": 75
+     }
+    }
+   }
+  },
+  "5": {
+   "1000": {
+    "1": {
+     "rounds": 20,
+     "win": {
+      "ying": 20,
+      "ayan": 0,
+      "draw": 0
+     },
+     "interceptRateMean": 8.1,
+     "interceptRateStd": 3.1,
+     "parryRateMean": 92.5,
+     "stealRateMean": 92,
+     "hotPotatoAvg": 0.633,
+     "winMarginAvg": 14.3,
+     "deathblowPerRound": 0.1,
+     "deathblowRoundsPct": 10,
+     "deathblowCompleteAvg": 85.3,
+     "fun": {
+      "tempo": 46,
+      "risk": 57,
+      "climax": 32,
+      "total": 46
+     }
+    },
+    "3": {
+     "rounds": 20,
+     "win": {
+      "ying": 19,
+      "ayan": 1,
+      "draw": 0
+     },
+     "interceptRateMean": 7,
+     "interceptRateStd": 3.5,
+     "parryRateMean": 88.3,
+     "stealRateMean": 92.6,
+     "hotPotatoAvg": 0.532,
+     "winMarginAvg": 10.9,
+     "deathblowPerRound": 0.85,
+     "deathblowRoundsPct": 85,
+     "deathblowCompleteAvg": 80.6,
+     "fun": {
+      "tempo": 43,
+      "risk": 61,
+      "climax": 88,
+      "total": 63
+     }
+    },
+    "5": {
+     "rounds": 20,
+     "win": {
+      "ying": 17,
+      "ayan": 2,
+      "draw": 1
+     },
+     "interceptRateMean": 8.1,
+     "interceptRateStd": 6,
+     "parryRateMean": 85.8,
+     "stealRateMean": 95.5,
+     "hotPotatoAvg": 0.525,
+     "winMarginAvg": 11.7,
+     "deathblowPerRound": 1,
+     "deathblowRoundsPct": 100,
+     "deathblowCompleteAvg": 71.2,
+     "fun": {
+      "tempo": 48,
+      "risk": 61,
+      "climax": 86,
+      "total": 64
+     }
+    },
+    "8": {
+     "rounds": 20,
+     "win": {
+      "ying": 8,
+      "ayan": 12,
+      "draw": 0
+     },
+     "interceptRateMean": 13.3,
+     "interceptRateStd": 6.6,
+     "parryRateMean": 91.7,
+     "stealRateMean": 92.2,
+     "hotPotatoAvg": 0.353,
+     "winMarginAvg": 7.8,
+     "deathblowPerRound": 1,
+     "deathblowRoundsPct": 100,
+     "deathblowCompleteAvg": 54.7,
+     "fun": {
+      "tempo": 71,
+      "risk": 57,
+      "climax": 100,
+      "total": 75
+     }
+    }
+   },
+   "2000": {
+    "1": {
+     "rounds": 20,
+     "win": {
+      "ying": 20,
+      "ayan": 0,
+      "draw": 0
+     },
+     "interceptRateMean": 8.4,
+     "interceptRateStd": 2.4,
+     "parryRateMean": 86.3,
+     "stealRateMean": 94.7,
+     "hotPotatoAvg": 0.645,
+     "winMarginAvg": 14.6,
+     "deathblowPerRound": 0.2,
+     "deathblowRoundsPct": 20,
+     "deathblowCompleteAvg": 91.2,
+     "fun": {
+      "tempo": 46,
+      "risk": 61,
+      "climax": 31,
+      "total": 47
+     }
+    },
+    "3": {
+     "rounds": 20,
+     "win": {
+      "ying": 17,
+      "ayan": 3,
+      "draw": 0
+     },
+     "interceptRateMean": 12.2,
+     "interceptRateStd": 6.8,
+     "parryRateMean": 80.4,
+     "stealRateMean": 90.9,
+     "hotPotatoAvg": 0.476,
+     "winMarginAvg": 8.6,
+     "deathblowPerRound": 0.95,
+     "deathblowRoundsPct": 95,
+     "deathblowCompleteAvg": 79,
+     "fun": {
+      "tempo": 66,
+      "risk": 70,
+      "climax": 98,
+      "total": 77
+     }
+    },
+    "5": {
+     "rounds": 20,
+     "win": {
+      "ying": 13,
+      "ayan": 6,
+      "draw": 1
+     },
+     "interceptRateMean": 9.7,
+     "interceptRateStd": 5.4,
+     "parryRateMean": 83.3,
+     "stealRateMean": 91.9,
+     "hotPotatoAvg": 0.449,
+     "winMarginAvg": 8,
+     "deathblowPerRound": 0.95,
+     "deathblowRoundsPct": 95,
+     "deathblowCompleteAvg": 67.5,
+     "fun": {
+      "tempo": 55,
+      "risk": 66,
+      "climax": 100,
+      "total": 72
+     }
+    },
+    "8": {
+     "rounds": 20,
+     "win": {
+      "ying": 16,
+      "ayan": 4,
+      "draw": 0
+     },
+     "interceptRateMean": 8.8,
+     "interceptRateStd": 5.2,
+     "parryRateMean": 86.7,
+     "stealRateMean": 89.9,
+     "hotPotatoAvg": 0.542,
+     "winMarginAvg": 10.8,
+     "deathblowPerRound": 1,
+     "deathblowRoundsPct": 100,
+     "deathblowCompleteAvg": 62.1,
+     "fun": {
+      "tempo": 51,
+      "risk": 64,
+      "climax": 89,
+      "total": 67
+     }
+    }
+   },
+   "3000": {
+    "1": {
+     "rounds": 20,
+     "win": {
+      "ying": 20,
+      "ayan": 0,
+      "draw": 0
+     },
+     "interceptRateMean": 9.3,
+     "interceptRateStd": 4.9,
+     "parryRateMean": 82.5,
+     "stealRateMean": 90.9,
+     "hotPotatoAvg": 0.599,
+     "winMarginAvg": 12.1,
+     "deathblowPerRound": 0.3,
+     "deathblowRoundsPct": 30,
+     "deathblowCompleteAvg": 84.3,
+     "fun": {
+      "tempo": 53,
+      "risk": 68,
+      "climax": 50,
+      "total": 58
+     }
+    },
+    "3": {
+     "rounds": 20,
+     "win": {
+      "ying": 17,
+      "ayan": 2,
+      "draw": 1
+     },
+     "interceptRateMean": 10.4,
+     "interceptRateStd": 6,
+     "parryRateMean": 85.4,
+     "stealRateMean": 96.5,
+     "hotPotatoAvg": 0.53,
+     "winMarginAvg": 12.4,
+     "deathblowPerRound": 1,
+     "deathblowRoundsPct": 100,
+     "deathblowCompleteAvg": 80,
+     "fun": {
+      "tempo": 58,
+      "risk": 61,
+      "climax": 83,
+      "total": 66
+     }
+    },
+    "5": {
+     "rounds": 20,
+     "win": {
+      "ying": 12,
+      "ayan": 7,
+      "draw": 1
+     },
+     "interceptRateMean": 12.3,
+     "interceptRateStd": 6.5,
+     "parryRateMean": 80.8,
+     "stealRateMean": 95.8,
+     "hotPotatoAvg": 0.438,
+     "winMarginAvg": 9.3,
+     "deathblowPerRound": 1,
+     "deathblowRoundsPct": 100,
+     "deathblowCompleteAvg": 70.9,
+     "fun": {
+      "tempo": 66,
+      "risk": 66,
+      "climax": 95,
+      "total": 75
+     }
+    },
+    "8": {
+     "rounds": 20,
+     "win": {
+      "ying": 12,
+      "ayan": 7,
+      "draw": 1
+     },
+     "interceptRateMean": 10.8,
+     "interceptRateStd": 7,
+     "parryRateMean": 87.5,
+     "stealRateMean": 94.6,
+     "hotPotatoAvg": 0.473,
+     "winMarginAvg": 11,
+     "deathblowPerRound": 1,
+     "deathblowRoundsPct": 100,
+     "deathblowCompleteAvg": 59.1,
+     "fun": {
+      "tempo": 60,
+      "risk": 60,
+      "climax": 88,
+      "total": 68
+     }
+    }
+   },
+   "5000": {
+    "1": {
+     "rounds": 20,
+     "win": {
+      "ying": 20,
+      "ayan": 0,
+      "draw": 0
+     },
+     "interceptRateMean": 9.1,
+     "interceptRateStd": 5,
+     "parryRateMean": 87.9,
+     "stealRateMean": 88,
+     "hotPotatoAvg": 0.631,
+     "winMarginAvg": 12.2,
+     "deathblowPerRound": 0.3,
+     "deathblowRoundsPct": 30,
+     "deathblowCompleteAvg": 87.3,
+     "fun": {
+      "tempo": 50,
+      "risk": 65,
+      "climax": 48,
+      "total": 55
+     }
+    },
+    "3": {
+     "rounds": 20,
+     "win": {
+      "ying": 19,
+      "ayan": 1,
+      "draw": 0
+     },
+     "interceptRateMean": 10.3,
+     "interceptRateStd": 5.9,
+     "parryRateMean": 81.3,
+     "stealRateMean": 92.1,
+     "hotPotatoAvg": 0.502,
+     "winMarginAvg": 9.8,
+     "deathblowPerRound": 0.85,
+     "deathblowRoundsPct": 85,
+     "deathblowCompleteAvg": 83,
+     "fun": {
+      "tempo": 58,
+      "risk": 68,
+      "climax": 91,
+      "total": 71
+     }
+    },
+    "5": {
+     "rounds": 20,
+     "win": {
+      "ying": 12,
+      "ayan": 8,
+      "draw": 0
+     },
+     "interceptRateMean": 10.3,
+     "interceptRateStd": 6.9,
+     "parryRateMean": 85.8,
+     "stealRateMean": 91.8,
+     "hotPotatoAvg": 0.422,
+     "winMarginAvg": 7.8,
+     "deathblowPerRound": 1,
+     "deathblowRoundsPct": 100,
+     "deathblowCompleteAvg": 69.1,
+     "fun": {
+      "tempo": 58,
+      "risk": 64,
+      "climax": 100,
+      "total": 73
+     }
+    },
+    "8": {
+     "rounds": 20,
+     "win": {
+      "ying": 11,
+      "ayan": 9,
+      "draw": 0
+     },
+     "interceptRateMean": 10.7,
+     "interceptRateStd": 6.7,
+     "parryRateMean": 86.7,
+     "stealRateMean": 89.8,
+     "hotPotatoAvg": 0.41,
+     "winMarginAvg": 9.3,
+     "deathblowPerRound": 1,
+     "deathblowRoundsPct": 100,
+     "deathblowCompleteAvg": 57.6,
+     "fun": {
+      "tempo": 59,
+      "risk": 65,
+      "climax": 95,
+      "total": 72
+     }
+    }
+   }
+  },
+  "8": {
+   "1000": {
+    "1": {
+     "rounds": 20,
+     "win": {
+      "ying": 20,
+      "ayan": 0,
+      "draw": 0
+     },
+     "interceptRateMean": 7.8,
+     "interceptRateStd": 4.1,
+     "parryRateMean": 89.2,
+     "stealRateMean": 91.4,
+     "hotPotatoAvg": 0.597,
+     "winMarginAvg": 12.1,
+     "deathblowPerRound": 0.4,
+     "deathblowRoundsPct": 40,
+     "deathblowCompleteAvg": 80.2,
+     "fun": {
+      "tempo": 47,
+      "risk": 61,
+      "climax": 59,
+      "total": 55
+     }
+    },
+    "3": {
+     "rounds": 20,
+     "win": {
+      "ying": 19,
+      "ayan": 1,
+      "draw": 0
+     },
+     "interceptRateMean": 8.9,
+     "interceptRateStd": 3.2,
+     "parryRateMean": 79.2,
+     "stealRateMean": 92.8,
+     "hotPotatoAvg": 0.507,
+     "winMarginAvg": 10.1,
+     "deathblowPerRound": 0.75,
+     "deathblowRoundsPct": 75,
+     "deathblowCompleteAvg": 79.2,
+     "fun": {
+      "tempo": 51,
+      "risk": 70,
+      "climax": 89,
+      "total": 69
+     }
+    },
+    "5": {
+     "rounds": 20,
+     "win": {
+      "ying": 15,
+      "ayan": 5,
+      "draw": 0
+     },
+     "interceptRateMean": 9.3,
+     "interceptRateStd": 5.2,
+     "parryRateMean": 84.6,
+     "stealRateMean": 93.7,
+     "hotPotatoAvg": 0.502,
+     "winMarginAvg": 11.3,
+     "deathblowPerRound": 0.95,
+     "deathblowRoundsPct": 95,
+     "deathblowCompleteAvg": 66.9,
+     "fun": {
+      "tempo": 53,
+      "risk": 64,
+      "climax": 87,
+      "total": 67
+     }
+    },
+    "8": {
+     "rounds": 20,
+     "win": {
+      "ying": 11,
+      "ayan": 9,
+      "draw": 0
+     },
+     "interceptRateMean": 10.3,
+     "interceptRateStd": 6.7,
+     "parryRateMean": 89.2,
+     "stealRateMean": 94.6,
+     "hotPotatoAvg": 0.446,
+     "winMarginAvg": 10.4,
+     "deathblowPerRound": 1,
+     "deathblowRoundsPct": 100,
+     "deathblowCompleteAvg": 56.5,
+     "fun": {
+      "tempo": 58,
+      "risk": 58,
+      "climax": 91,
+      "total": 68
+     }
+    }
+   },
+   "2000": {
+    "1": {
+     "rounds": 20,
+     "win": {
+      "ying": 20,
+      "ayan": 0,
+      "draw": 0
+     },
+     "interceptRateMean": 8.2,
+     "interceptRateStd": 1.9,
+     "parryRateMean": 90.4,
+     "stealRateMean": 93.1,
+     "hotPotatoAvg": 0.586,
+     "winMarginAvg": 13.1,
+     "deathblowPerRound": 0.4,
+     "deathblowRoundsPct": 40,
+     "deathblowCompleteAvg": 90.5,
+     "fun": {
+      "tempo": 48,
+      "risk": 58,
+      "climax": 49,
+      "total": 52
+     }
+    },
+    "3": {
+     "rounds": 20,
+     "win": {
+      "ying": 19,
+      "ayan": 1,
+      "draw": 0
+     },
+     "interceptRateMean": 9.2,
+     "interceptRateStd": 3.4,
+     "parryRateMean": 84.2,
+     "stealRateMean": 94.7,
+     "hotPotatoAvg": 0.477,
+     "winMarginAvg": 9.6,
+     "deathblowPerRound": 0.85,
+     "deathblowRoundsPct": 85,
+     "deathblowCompleteAvg": 77.9,
+     "fun": {
+      "tempo": 53,
+      "risk": 63,
+      "climax": 94,
+      "total": 69
+     }
+    },
+    "5": {
+     "rounds": 20,
+     "win": {
+      "ying": 14,
+      "ayan": 5,
+      "draw": 1
+     },
+     "interceptRateMean": 11.4,
+     "interceptRateStd": 3.7,
+     "parryRateMean": 68.3,
+     "stealRateMean": 90,
+     "hotPotatoAvg": 0.388,
+     "winMarginAvg": 6.7,
+     "deathblowPerRound": 1,
+     "deathblowRoundsPct": 100,
+     "deathblowCompleteAvg": 70.6,
+     "fun": {
+      "tempo": 62,
+      "risk": 84,
+      "climax": 100,
+      "total": 81
+     }
+    },
+    "8": {
+     "rounds": 20,
+     "win": {
+      "ying": 12,
+      "ayan": 8,
+      "draw": 0
+     },
+     "interceptRateMean": 11,
+     "interceptRateStd": 7.6,
+     "parryRateMean": 74.6,
+     "stealRateMean": 88.3,
+     "hotPotatoAvg": 0.493,
+     "winMarginAvg": 9.8,
+     "deathblowPerRound": 1,
+     "deathblowRoundsPct": 100,
+     "deathblowCompleteAvg": 55.9,
+     "fun": {
+      "tempo": 61,
+      "risk": 78,
+      "climax": 93,
+      "total": 77
+     }
+    }
+   },
+   "3000": {
+    "1": {
+     "rounds": 20,
+     "win": {
+      "ying": 20,
+      "ayan": 0,
+      "draw": 0
+     },
+     "interceptRateMean": 7.5,
+     "interceptRateStd": 1.5,
+     "parryRateMean": 90,
+     "stealRateMean": 90.8,
+     "hotPotatoAvg": 0.669,
+     "winMarginAvg": 14.5,
+     "deathblowPerRound": 0.1,
+     "deathblowRoundsPct": 10,
+     "deathblowCompleteAvg": 97,
+     "fun": {
+      "tempo": 41,
+      "risk": 60,
+      "climax": 26,
+      "total": 43
+     }
+    },
+    "3": {
+     "rounds": 20,
+     "win": {
+      "ying": 17,
+      "ayan": 2,
+      "draw": 1
+     },
+     "interceptRateMean": 10.3,
+     "interceptRateStd": 2.8,
+     "parryRateMean": 82.5,
+     "stealRateMean": 94,
+     "hotPotatoAvg": 0.484,
+     "winMarginAvg": 8.6,
+     "deathblowPerRound": 0.9,
+     "deathblowRoundsPct": 90,
+     "deathblowCompleteAvg": 74.2,
+     "fun": {
+      "tempo": 58,
+      "risk": 66,
+      "climax": 98,
+      "total": 72
+     }
+    },
+    "5": {
+     "rounds": 20,
+     "win": {
+      "ying": 16,
+      "ayan": 4,
+      "draw": 0
+     },
+     "interceptRateMean": 8.4,
+     "interceptRateStd": 5.3,
+     "parryRateMean": 86.3,
+     "stealRateMean": 93.2,
+     "hotPotatoAvg": 0.552,
+     "winMarginAvg": 12.3,
+     "deathblowPerRound": 0.95,
+     "deathblowRoundsPct": 95,
+     "deathblowCompleteAvg": 68.4,
+     "fun": {
+      "tempo": 49,
+      "risk": 62,
+      "climax": 83,
+      "total": 64
+     }
+    },
+    "8": {
+     "rounds": 20,
+     "win": {
+      "ying": 12,
+      "ayan": 8,
+      "draw": 0
+     },
+     "interceptRateMean": 9.6,
+     "interceptRateStd": 6.4,
+     "parryRateMean": 89.2,
+     "stealRateMean": 90.8,
+     "hotPotatoAvg": 0.455,
+     "winMarginAvg": 10.2,
+     "deathblowPerRound": 1,
+     "deathblowRoundsPct": 100,
+     "deathblowCompleteAvg": 55.3,
+     "fun": {
+      "tempo": 55,
+      "risk": 61,
+      "climax": 91,
+      "total": 68
+     }
+    }
+   },
+   "5000": {
+    "1": {
+     "rounds": 20,
+     "win": {
+      "ying": 20,
+      "ayan": 0,
+      "draw": 0
+     },
+     "interceptRateMean": 6.7,
+     "interceptRateStd": 3,
+     "parryRateMean": 81.7,
+     "stealRateMean": 92.2,
+     "hotPotatoAvg": 0.607,
+     "winMarginAvg": 13.1,
+     "deathblowPerRound": 0.35,
+     "deathblowRoundsPct": 35,
+     "deathblowCompleteAvg": 84.9,
+     "fun": {
+      "tempo": 41,
+      "risk": 68,
+      "climax": 49,
+      "total": 53
+     }
+    },
+    "3": {
+     "rounds": 20,
+     "win": {
+      "ying": 20,
+      "ayan": 0,
+      "draw": 0
+     },
+     "interceptRateMean": 7.5,
+     "interceptRateStd": 3.1,
+     "parryRateMean": 84.6,
+     "stealRateMean": 89.4,
+     "hotPotatoAvg": 0.608,
+     "winMarginAvg": 11.7,
+     "deathblowPerRound": 0.5,
+     "deathblowRoundsPct": 50,
+     "deathblowCompleteAvg": 77.7,
+     "fun": {
+      "tempo": 45,
+      "risk": 67,
+      "climax": 67,
+      "total": 59
+     }
+    },
+    "5": {
+     "rounds": 20,
+     "win": {
+      "ying": 14,
+      "ayan": 6,
+      "draw": 0
+     },
+     "interceptRateMean": 10,
+     "interceptRateStd": 4.7,
+     "parryRateMean": 72.9,
+     "stealRateMean": 95.4,
+     "hotPotatoAvg": 0.443,
+     "winMarginAvg": 9.3,
+     "deathblowPerRound": 1,
+     "deathblowRoundsPct": 100,
+     "deathblowCompleteAvg": 70.3,
+     "fun": {
+      "tempo": 56,
+      "risk": 75,
+      "climax": 95,
+      "total": 74
+     }
+    },
+    "8": {
+     "rounds": 20,
+     "win": {
+      "ying": 7,
+      "ayan": 13,
+      "draw": 0
+     },
+     "interceptRateMean": 13.7,
+     "interceptRateStd": 7.5,
+     "parryRateMean": 92.5,
+     "stealRateMean": 88.6,
+     "hotPotatoAvg": 0.345,
+     "winMarginAvg": 8.2,
+     "deathblowPerRound": 1,
+     "deathblowRoundsPct": 100,
+     "deathblowCompleteAvg": 54.7,
+     "fun": {
+      "tempo": 72,
+      "risk": 59,
+      "climax": 99,
+      "total": 76
+     }
+    }
+   }
+  },
+  "12": {
+   "1000": {
+    "1": {
+     "rounds": 20,
+     "win": {
+      "ying": 20,
+      "ayan": 0,
+      "draw": 0
+     },
+     "interceptRateMean": 7.5,
+     "interceptRateStd": 3.1,
+     "parryRateMean": 86.7,
+     "stealRateMean": 91.4,
+     "hotPotatoAvg": 0.582,
+     "winMarginAvg": 11.9,
+     "deathblowPerRound": 0.3,
+     "deathblowRoundsPct": 30,
+     "deathblowCompleteAvg": 81.4,
+     "fun": {
+      "tempo": 45,
+      "risk": 63,
+      "climax": 53,
+      "total": 54
+     }
+    },
+    "3": {
+     "rounds": 20,
+     "win": {
+      "ying": 19,
+      "ayan": 0,
+      "draw": 1
+     },
+     "interceptRateMean": 7.6,
+     "interceptRateStd": 2.3,
+     "parryRateMean": 92.9,
+     "stealRateMean": 92.6,
+     "hotPotatoAvg": 0.595,
+     "winMarginAvg": 13.1,
+     "deathblowPerRound": 0.65,
+     "deathblowRoundsPct": 65,
+     "deathblowCompleteAvg": 81.9,
+     "fun": {
+      "tempo": 46,
+      "risk": 56,
+      "climax": 70,
+      "total": 56
+     }
+    },
+    "5": {
+     "rounds": 20,
+     "win": {
+      "ying": 15,
+      "ayan": 5,
+      "draw": 0
+     },
+     "interceptRateMean": 10.1,
+     "interceptRateStd": 4.4,
+     "parryRateMean": 86.3,
+     "stealRateMean": 89.7,
+     "hotPotatoAvg": 0.503,
+     "winMarginAvg": 9.8,
+     "deathblowPerRound": 0.95,
+     "deathblowRoundsPct": 95,
+     "deathblowCompleteAvg": 67.2,
+     "fun": {
+      "tempo": 57,
+      "risk": 65,
+      "climax": 93,
+      "total": 70
+     }
+    },
+    "8": {
+     "rounds": 20,
+     "win": {
+      "ying": 7,
+      "ayan": 12,
+      "draw": 1
+     },
+     "interceptRateMean": 12.6,
+     "interceptRateStd": 6.5,
+     "parryRateMean": 68.3,
+     "stealRateMean": 95.1,
+     "hotPotatoAvg": 0.328,
+     "winMarginAvg": 7,
+     "deathblowPerRound": 1,
+     "deathblowRoundsPct": 100,
+     "deathblowCompleteAvg": 57.6,
+     "fun": {
+      "tempo": 68,
+      "risk": 80,
+      "climax": 100,
+      "total": 82
+     }
+    }
+   },
+   "2000": {
+    "1": {
+     "rounds": 20,
+     "win": {
+      "ying": 20,
+      "ayan": 0,
+      "draw": 0
+     },
+     "interceptRateMean": 6.8,
+     "interceptRateStd": 2.8,
+     "parryRateMean": 83.8,
+     "stealRateMean": 92.4,
+     "hotPotatoAvg": 0.591,
+     "winMarginAvg": 13.1,
+     "deathblowPerRound": 0.35,
+     "deathblowRoundsPct": 35,
+     "deathblowCompleteAvg": 88.2,
+     "fun": {
+      "tempo": 42,
+      "risk": 66,
+      "climax": 47,
+      "total": 52
+     }
+    },
+    "3": {
+     "rounds": 20,
+     "win": {
+      "ying": 18,
+      "ayan": 1,
+      "draw": 1
+     },
+     "interceptRateMean": 8.1,
+     "interceptRateStd": 3.8,
+     "parryRateMean": 84.6,
+     "stealRateMean": 95.6,
+     "hotPotatoAvg": 0.534,
+     "winMarginAvg": 11.7,
+     "deathblowPerRound": 0.75,
+     "deathblowRoundsPct": 75,
+     "deathblowCompleteAvg": 77.7,
+     "fun": {
+      "tempo": 48,
+      "risk": 62,
+      "climax": 82,
+      "total": 63
+     }
+    },
+    "5": {
+     "rounds": 20,
+     "win": {
+      "ying": 15,
+      "ayan": 4,
+      "draw": 1
+     },
+     "interceptRateMean": 6.7,
+     "interceptRateStd": 5.2,
+     "parryRateMean": 87.1,
+     "stealRateMean": 91.5,
+     "hotPotatoAvg": 0.479,
+     "winMarginAvg": 9.5,
+     "deathblowPerRound": 1,
+     "deathblowRoundsPct": 100,
+     "deathblowCompleteAvg": 72.6,
+     "fun": {
+      "tempo": 42,
+      "risk": 63,
+      "climax": 94,
+      "total": 65
+     }
+    },
+    "8": {
+     "rounds": 20,
+     "win": {
+      "ying": 11,
+      "ayan": 9,
+      "draw": 0
+     },
+     "interceptRateMean": 10.6,
+     "interceptRateStd": 7.6,
+     "parryRateMean": 90,
+     "stealRateMean": 91.8,
+     "hotPotatoAvg": 0.421,
+     "winMarginAvg": 9.9,
+     "deathblowPerRound": 1,
+     "deathblowRoundsPct": 100,
+     "deathblowCompleteAvg": 54.7,
+     "fun": {
+      "tempo": 59,
+      "risk": 60,
+      "climax": 93,
+      "total": 69
+     }
+    }
+   },
+   "3000": {
+    "1": {
+     "rounds": 20,
+     "win": {
+      "ying": 19,
+      "ayan": 1,
+      "draw": 0
+     },
+     "interceptRateMean": 7.6,
+     "interceptRateStd": 1.7,
+     "parryRateMean": 84.2,
+     "stealRateMean": 89.8,
+     "hotPotatoAvg": 0.645,
+     "winMarginAvg": 13.3,
+     "deathblowPerRound": 0.25,
+     "deathblowRoundsPct": 25,
+     "deathblowCompleteAvg": 80,
+     "fun": {
+      "tempo": 43,
+      "risk": 67,
+      "climax": 45,
+      "total": 52
+     }
+    },
+    "3": {
+     "rounds": 20,
+     "win": {
+      "ying": 20,
+      "ayan": 0,
+      "draw": 0
+     },
+     "interceptRateMean": 7.3,
+     "interceptRateStd": 3.9,
+     "parryRateMean": 79.2,
+     "stealRateMean": 90,
+     "hotPotatoAvg": 0.563,
+     "winMarginAvg": 10.6,
+     "deathblowPerRound": 0.8,
+     "deathblowRoundsPct": 80,
+     "deathblowCompleteAvg": 77.6,
+     "fun": {
+      "tempo": 44,
+      "risk": 72,
+      "climax": 90,
+      "total": 68
+     }
+    },
+    "5": {
+     "rounds": 20,
+     "win": {
+      "ying": 15,
+      "ayan": 5,
+      "draw": 0
+     },
+     "interceptRateMean": 10,
+     "interceptRateStd": 4.5,
+     "parryRateMean": 89.2,
+     "stealRateMean": 94.8,
+     "hotPotatoAvg": 0.481,
+     "winMarginAvg": 9.8,
+     "deathblowPerRound": 1,
+     "deathblowRoundsPct": 100,
+     "deathblowCompleteAvg": 70,
+     "fun": {
+      "tempo": 56,
+      "risk": 58,
+      "climax": 93,
+      "total": 68
+     }
+    },
+    "8": {
+     "rounds": 20,
+     "win": {
+      "ying": 11,
+      "ayan": 8,
+      "draw": 1
+     },
+     "interceptRateMean": 10.1,
+     "interceptRateStd": 5.8,
+     "parryRateMean": 87.1,
+     "stealRateMean": 94.9,
+     "hotPotatoAvg": 0.422,
+     "winMarginAvg": 9.3,
+     "deathblowPerRound": 1,
+     "deathblowRoundsPct": 100,
+     "deathblowCompleteAvg": 60.9,
+     "fun": {
+      "tempo": 57,
+      "risk": 60,
+      "climax": 95,
+      "total": 69
+     }
+    }
+   },
+   "5000": {
+    "1": {
+     "rounds": 20,
+     "win": {
+      "ying": 20,
+      "ayan": 0,
+      "draw": 0
+     },
+     "interceptRateMean": 7,
+     "interceptRateStd": 1.8,
+     "parryRateMean": 90,
+     "stealRateMean": 91.2,
+     "hotPotatoAvg": 0.624,
+     "winMarginAvg": 13.7,
+     "deathblowPerRound": 0.25,
+     "deathblowRoundsPct": 25,
+     "deathblowCompleteAvg": 94.1,
+     "fun": {
+      "tempo": 42,
+      "risk": 60,
+      "climax": 36,
+      "total": 46
+     }
+    },
+    "3": {
+     "rounds": 20,
+     "win": {
+      "ying": 19,
+      "ayan": 1,
+      "draw": 0
+     },
+     "interceptRateMean": 7.4,
+     "interceptRateStd": 4,
+     "parryRateMean": 81.3,
+     "stealRateMean": 95.4,
+     "hotPotatoAvg": 0.541,
+     "winMarginAvg": 12.6,
+     "deathblowPerRound": 0.8,
+     "deathblowRoundsPct": 80,
+     "deathblowCompleteAvg": 82,
+     "fun": {
+      "tempo": 45,
+      "risk": 66,
+      "climax": 81,
+      "total": 63
+     }
+    },
+    "5": {
+     "rounds": 20,
+     "win": {
+      "ying": 17,
+      "ayan": 3,
+      "draw": 0
+     },
+     "interceptRateMean": 8.2,
+     "interceptRateStd": 4.8,
+     "parryRateMean": 84.2,
+     "stealRateMean": 93.8,
+     "hotPotatoAvg": 0.48,
+     "winMarginAvg": 9.7,
+     "deathblowPerRound": 0.95,
+     "deathblowRoundsPct": 95,
+     "deathblowCompleteAvg": 70.9,
+     "fun": {
+      "tempo": 48,
+      "risk": 64,
+      "climax": 93,
+      "total": 67
+     }
+    },
+    "8": {
+     "rounds": 20,
+     "win": {
+      "ying": 15,
+      "ayan": 5,
+      "draw": 0
+     },
+     "interceptRateMean": 6.4,
+     "interceptRateStd": 5.9,
+     "parryRateMean": 90.8,
+     "stealRateMean": 93.7,
+     "hotPotatoAvg": 0.465,
+     "winMarginAvg": 11.5,
+     "deathblowPerRound": 1,
+     "deathblowRoundsPct": 100,
+     "deathblowCompleteAvg": 59.7,
+     "fun": {
+      "tempo": 41,
+      "risk": 57,
+      "climax": 86,
+      "total": 60
+     }
+    }
+   }
+  }
+ }
+}

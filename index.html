@@ -1,0 +1,856 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>渲染演示 - CageMaster M3 里程碑</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    background: #f7f2ea;
+    color: #3a3229;
+    min-height: 100vh;
+    user-select: none;
+  }
+  #header {
+    background: linear-gradient(135deg, #d4a373 0%, #c9956a 50%, #bf8357 100%);
+    padding: 14px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 12px rgba(180, 120, 70, 0.25);
+  }
+  #header h1 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #fffbf5;
+    letter-spacing: 1px;
+  }
+  #header .subtitle {
+    font-size: 13px;
+    color: rgba(255,251,245,0.8);
+    font-weight: 400;
+  }
+  #header .level-badge {
+    background: rgba(255,255,255,0.2);
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    color: #fffbf5;
+    font-weight: 600;
+  }
+  #app {
+    display: flex;
+    gap: 28px;
+    padding: 28px 32px;
+    max-width: 1200px;
+    margin: 0 auto;
+    align-items: flex-start;
+  }
+  #board-container {
+    position: relative;
+    flex-shrink: 0;
+    width: 540px;
+    height: 540px;
+    background: #f5f0e8;
+    border-radius: 10px;
+    box-shadow: 0 4px 24px rgba(140, 100, 60, 0.15), 0 1px 4px rgba(0,0,0,0.06);
+    overflow: hidden;
+  }
+  #board-container canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  #board-canvas     { z-index: 1; }
+  #effect-canvas   { z-index: 2; pointer-events: none; }
+  #ui-canvas       { z-index: 3; cursor: pointer; }
+  #control-panel {
+    flex: 1;
+    min-width: 320px;
+    max-width: 400px;
+    background: #fdfaf5;
+    border-radius: 10px;
+    box-shadow: 0 2px 16px rgba(140, 100, 60, 0.10);
+    padding: 22px 24px 24px 24px;
+    border: 1px solid #ece3d8;
+  }
+  #control-panel h2 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #6b4f3a;
+    margin-bottom: 18px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #e8dccc;
+    letter-spacing: 0.5px;
+  }
+  .ctrl-group {
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .ctrl-group label {
+    font-size: 13px;
+    font-weight: 500;
+    color: #5a4a3a;
+    min-width: 80px;
+    flex-shrink: 0;
+  }
+  .ctrl-group select {
+    flex: 1;
+    height: 32px;
+    border: 1px solid #dcd0c4;
+    border-radius: 6px;
+    background: #fffbf7;
+    padding: 0 10px;
+    font-size: 13px;
+    color: #3a3229;
+    outline: none;
+    cursor: pointer;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .ctrl-group select:focus {
+    border-color: #c9956a;
+    box-shadow: 0 0 0 3px rgba(201,149,106,0.2);
+  }
+  .toggle-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+  }
+  .toggle-row label {
+    font-size: 13px;
+    font-weight: 500;
+    color: #5a4a3a;
+    min-width: 80px;
+    flex-shrink: 0;
+  }
+  .toggle-switch {
+    position: relative;
+    width: 40px;
+    height: 22px;
+    flex-shrink: 0;
+    cursor: pointer;
+  }
+  .toggle-switch input { opacity: 0; width: 0; height: 0; }
+  .toggle-slider {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: #dcd0c4;
+    border-radius: 22px;
+    transition: background 0.25s;
+  }
+  .toggle-slider::before {
+    content: '';
+    position: absolute;
+    width: 18px; height: 18px;
+    left: 2px; top: 2px;
+    background: #fff;
+    border-radius: 50%;
+    transition: transform 0.25s;
+  }
+  .toggle-switch input:checked + .toggle-slider { background: #c9956a; }
+  .toggle-switch input:checked + .toggle-slider::before { transform: translateX(18px); }
+  .toggle-status { font-size: 12px; color: #8a7a6a; min-width: 24px; }
+  .stat-row {
+    display: flex;
+    gap: 16px;
+    margin-top: 6px;
+    margin-bottom: 14px;
+  }
+  .stat-item {
+    background: #f5efe8;
+    border-radius: 6px;
+    padding: 6px 14px;
+    text-align: center;
+    flex: 1;
+  }
+  .stat-item .stat-value {
+    font-size: 22px;
+    font-weight: 700;
+    color: #6b4f3a;
+    line-height: 1.3;
+  }
+  .stat-item .stat-label { font-size: 11px; color: #8a7a6a; }
+  .demo-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 4px;
+    margin-bottom: 14px;
+  }
+  .demo-btn {
+    padding: 7px 14px;
+    border: 1px solid #dcd0c4;
+    border-radius: 6px;
+    background: #fffbf7;
+    color: #5a4a3a;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .demo-btn:hover {
+    background: #f0e6dc;
+    border-color: #c9956a;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(201,149,106,0.2);
+  }
+  .demo-btn:active { transform: translateY(0); box-shadow: none; }
+  .demo-btn.active {
+    background: #c9956a;
+    border-color: #bf8357;
+    color: #fffbf5;
+  }
+  .divider { border: none; border-top: 1px solid #e8dccc; margin: 14px 0; }
+  #toast {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%) translateY(80px);
+    background: rgba(60, 45, 35, 0.92);
+    color: #fffbf5;
+    padding: 10px 24px;
+    border-radius: 8px;
+    font-size: 14px;
+    opacity: 0;
+    transition: all 0.35s ease;
+    pointer-events: none;
+    z-index: 9999;
+    white-space: nowrap;
+  }
+  #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+  @media (max-width: 900px) {
+    #app { flex-direction: column; align-items: center; }
+    #board-container { width: 420px; height: 420px; }
+    #control-panel { max-width: 100%; width: 100%; }
+  }
+  @media (max-width: 480px) {
+    #board-container { width: 320px; height: 320px; }
+    #header { padding: 10px 16px; flex-wrap: wrap; gap: 6px; }
+    #header h1 { font-size: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<header id="header">
+  <div>
+    <h1>CageMaster M3 &mdash; 渲染演示</h1>
+    <span class="subtitle">Canvas 2D 杀手数独棋盘渲染引擎</span>
+  </div>
+  <span class="level-badge" id="levelBadge">关卡 #301 加载中...</span>
+</header>
+
+<div id="app">
+  <div id="board-container">
+    <canvas id="board-canvas"></canvas>
+    <canvas id="effect-canvas"></canvas>
+    <canvas id="ui-canvas"></canvas>
+  </div>
+
+  <div id="control-panel">
+    <h2>控制面板</h2>
+
+    <div class="ctrl-group">
+      <label for="qualitySelect">画质</label>
+      <select id="qualitySelect">
+        <option value="high">高</option>
+        <option value="medium" selected>中</option>
+        <option value="low">低</option>
+      </select>
+    </div>
+
+    <hr class="divider">
+
+    <div class="toggle-row">
+      <label>粒子效果</label>
+      <label class="toggle-switch">
+        <input type="checkbox" id="toggleParticles" checked>
+        <span class="toggle-slider"></span>
+      </label>
+      <span class="toggle-status" id="particlesStatus">开</span>
+    </div>
+    <div class="toggle-row">
+      <label>辉光效果</label>
+      <label class="toggle-switch">
+        <input type="checkbox" id="toggleGlow" checked>
+        <span class="toggle-slider"></span>
+      </label>
+      <span class="toggle-status" id="glowStatus">开</span>
+    </div>
+    <div class="toggle-row">
+      <label>热力图</label>
+      <label class="toggle-switch">
+        <input type="checkbox" id="toggleHeatmap">
+        <span class="toggle-slider"></span>
+      </label>
+      <span class="toggle-status" id="heatmapStatus">关</span>
+    </div>
+    <div class="toggle-row">
+      <label>笼子颜色蒙层</label>
+      <label class="toggle-switch">
+        <input type="checkbox" id="toggleCageOverlay">
+        <span class="toggle-slider"></span>
+      </label>
+      <span class="toggle-status" id="cageOverlayStatus">关</span>
+    </div>
+
+    <hr class="divider">
+
+    <div style="font-size:13px;font-weight:500;color:#5a4a3a;margin-bottom:8px;">动画演示</div>
+    <div class="demo-buttons">
+      <button class="demo-btn" data-demo="pulse">单格脉冲</button>
+      <button class="demo-btn" data-demo="row">行高亮</button>
+      <button class="demo-btn" data-demo="xwing">X-Wing</button>
+      <button class="demo-btn" data-demo="swordfish">Swordfish</button>
+      <button class="demo-btn" data-demo="avalanche" style="border-color:#b34700;color:#b34700;">雪崩补全</button>
+    </div>
+
+    <hr class="divider">
+
+    <div class="stat-row">
+      <div class="stat-item">
+        <div class="stat-value" id="fpsDisplay">--</div>
+        <div class="stat-label">FPS</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value" id="scaleDisplay">--</div>
+        <div class="stat-label">渲染缩放</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value" id="qualityDisplay">--</div>
+        <div class="stat-label">当前画质</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script src="core/board.js"></script>
+
+<script type="module">
+import { BoardRenderer } from './renderer/board-renderer.js';
+import { EffectRenderer } from './renderer/effect-renderer.js';
+import { PerformanceMonitor } from './renderer/performance-monitor.js';
+import { AnimationController } from './renderer/animation-controller.js';
+
+var boardCanvas  = document.getElementById('board-canvas');
+var effectCanvas = document.getElementById('effect-canvas');
+var uiCanvas     = document.getElementById('ui-canvas');
+var boardContainer = document.getElementById('board-container');
+var levelBadge   = document.getElementById('levelBadge');
+var fpsDisplay   = document.getElementById('fpsDisplay');
+var scaleDisplay = document.getElementById('scaleDisplay');
+var qualityDisplay = document.getElementById('qualityDisplay');
+var toast        = document.getElementById('toast');
+
+var qualitySelect    = document.getElementById('qualitySelect');
+var toggleParticles  = document.getElementById('toggleParticles');
+var toggleGlow       = document.getElementById('toggleGlow');
+var toggleHeatmap    = document.getElementById('toggleHeatmap');
+var toggleCageOverlay = document.getElementById('toggleCageOverlay');
+
+var levelData = null;
+var boardState = null;
+var selectedCell = null;
+var lastFrameTime = 0;
+var animFrameId = null;
+
+var showParticles = true;
+var showGlow = true;
+var showHeatmap = false;
+var showCageOverlay = false;
+
+var perfMon = new PerformanceMonitor({ level: 'medium', autoAdjust: false });
+
+var boardRenderer = new BoardRenderer({
+  canvas: boardCanvas,
+  performanceMonitor: perfMon,
+  gridSize: 9,
+});
+
+var effectRenderer = new EffectRenderer({
+  canvas: effectCanvas,
+  performanceMonitor: perfMon,
+});
+
+var animCtrl = new AnimationController({
+  boardRenderer: boardRenderer,
+  effectRenderer: effectRenderer,
+  performanceMonitor: perfMon,
+});
+animCtrl.stopLoop();
+
+function resizeCanvases() {
+  var rect = boardContainer.getBoundingClientRect();
+  var w = Math.floor(rect.width);
+  var h = Math.floor(rect.height);
+  var size = Math.min(w, h);
+  [boardCanvas, effectCanvas, uiCanvas].forEach(function(canvas) {
+    canvas.style.width = size + 'px';
+    canvas.style.height = size + 'px';
+    var dpr = window.devicePixelRatio || 1;
+    canvas.width = Math.round(size * dpr);
+    canvas.height = Math.round(size * dpr);
+  });
+  boardRenderer.resize(size, size);
+  effectRenderer.resize(size, size);
+}
+resizeCanvases();
+window.addEventListener('resize', resizeCanvases);
+
+function showToast(msg, duration) {
+  duration = duration || 1800;
+  toast.textContent = msg;
+  toast.classList.add('show');
+  clearTimeout(toast._timer);
+  toast._timer = setTimeout(function() { toast.classList.remove('show'); }, duration);
+}
+
+function buildBoardStateFromLevel(level) {
+  var size = level.gridSize || 9;
+  var cells = [];
+  for (var r = 0; r < size; r++) {
+    var row = [];
+    for (var c = 0; c < size; c++) {
+      var cell = {
+        fixedNum: (level.boardData[r] && level.boardData[r][c] > 0) ? level.boardData[r][c] : null,
+        fillNum: null,
+        candidates: [],
+        isError: false,
+        isCageSumError: false,
+      };
+      if (!cell.fixedNum) {
+        var demo = getDemoCandidates(level, r, c);
+        if (demo) cell.candidates = demo;
+      }
+      row.push(cell);
+    }
+    cells.push(row);
+  }
+  return cells;
+}
+
+function getDemoCandidates(level, r, c) {
+  var demoMap = {
+    '0,0': [1,2,5], '0,3': [2,4,7], '0,4': [3,6,9], '0,5': [1,5,8],
+    '1,0': [2,4], '1,1': [1,5,6], '1,4': [3,7,8],
+    '2,0': [1,3,7], '2,4': [2,4,6],
+    '3,1': [2,5,8], '3,3': [1,4,7],
+    '4,0': [3,6], '4,3': [1,5,8],
+    '5,1': [3,6,9], '5,4': [2,7],
+    '6,2': [1,5], '6,4': [3,8,9],
+    '7,0': [1,4,6], '7,4': [2,5,7],
+    '8,0': [2,5], '8,6': [1,4,7], '8,8': [1,3,6],
+  };
+  var key = r + ',' + c;
+  if (demoMap[key]) return demoMap[key];
+  return null;
+}
+
+function buildRenderState() {
+  var state = {
+    size: 9,
+    gridSize: 9,
+    cells: boardState,
+    cages: levelData ? levelData.cages : [],
+    highlights: {},
+  };
+  if (selectedCell) {
+    state.highlights.selectedCell = { r: selectedCell.r, c: selectedCell.c };
+    state.highlights.selectedRow = selectedCell.r;
+    state.highlights.selectedCol = selectedCell.c;
+    var boxSize = 3;
+    var boxR = Math.floor(selectedCell.r / boxSize);
+    var boxC = Math.floor(selectedCell.c / boxSize);
+    state.highlights.selectedBox = boxR * boxSize + boxC;
+  }
+  return state;
+}
+
+function buildEffectsState() {
+  var effects = {};
+  if (showCageOverlay && levelData && levelData.cages) {
+    effects.cageOverlay = { cages: levelData.cages, opacity: 0.35 };
+  }
+  if (showHeatmap && levelData) {
+    var size = levelData.gridSize || 9;
+    var heatCells = [];
+    for (var r = 0; r < size; r++) {
+      var row = [];
+      for (var c = 0; c < size; c++) {
+        var val = 0;
+        if (boardState && boardState[r] && boardState[r][c]) {
+          if (boardState[r][c].fixedNum) {
+            val = 0.1 + (boardState[r][c].fixedNum / 9) * 0.6;
+          }
+        }
+        row.push(val);
+      }
+      heatCells.push(row);
+    }
+    effects.heatmap = { cells: heatCells };
+  }
+  if (showGlow && selectedCell) {
+    var cs = effectRenderer._cellSize || 60;
+    effects.glow = [{
+      x: selectedCell.c * cs + cs / 2,
+      y: selectedCell.r * cs + cs / 2,
+      radius: cs * 1.2,
+      color: 'rgba(255, 167, 38, 0.5)',
+      intensity: 0.6,
+    }];
+  }
+  var xw = animCtrl._xwingState;
+  if (xw && (xw.phase === 'drawLines' || xw.phase === 'exclusion')) {
+    effects.xwing = { rows: xw.rows, cols: xw.cols, color: xw.color };
+  }
+  var sw = animCtrl._swordfishState;
+  if (sw && (sw.phase === 'drawLines' || sw.phase === 'exclusion')) {
+    effects.swordfish = { rows: sw.rows, cols: sw.cols, color: sw.color };
+  }
+  return { size: 9, cellSize: effectRenderer._cellSize || 60, effects: effects };
+}
+
+async function loadLevel() {
+  try {
+    var resp = await fetch('data/levels/level-301.json');
+    if (!resp.ok) throw new Error('HTTP ' + resp.status);
+    levelData = await resp.json();
+    levelBadge.textContent = '关卡 #' + levelData.levelId + ' - ' + (levelData.title || '');
+    boardState = buildBoardStateFromLevel(levelData);
+    showToast('关卡 ' + levelData.levelId + ' 加载成功');
+    return true;
+  } catch (e) {
+    console.error('[loadLevel]', e);
+    levelBadge.textContent = '关卡加载失败';
+    levelData = { levelId: 0, title: 'Fallback', gridSize: 9, boardData: [], cages: [] };
+    boardState = [];
+    for (var r = 0; r < 9; r++) {
+      var row = [];
+      for (var c = 0; c < 9; c++) {
+        row.push({ fixedNum: null, fillNum: null, candidates: [], isError: false, isCageSumError: false });
+      }
+      boardState.push(row);
+    }
+    showToast('关卡加载失败，使用空棋盘', 2500);
+    return false;
+  }
+}
+
+function handleBoardClick(e) {
+  var rect = uiCanvas.getBoundingClientRect();
+  var x = e.clientX - rect.left;
+  var y = e.clientY - rect.top;
+  var size = 9;
+  var cs = rect.width / size;
+  var c = Math.floor(x / cs);
+  var r = Math.floor(y / cs);
+  if (r < 0 || r >= size || c < 0 || c >= size) return;
+  if (selectedCell && selectedCell.r === r && selectedCell.c === c) {
+    selectedCell = null;
+    boardRenderer.setHighlight(null, null);
+    showToast('取消选中');
+  } else {
+    selectedCell = { r: r, c: c };
+    boardRenderer.setHighlight(r, c, 'selected');
+    if (showParticles) effectRenderer.spawnParticles(c, r, '#ffa726', 12);
+    showToast('选中格 (' + (r + 1) + ', ' + (c + 1) + ')');
+  }
+  buildAndRender();
+}
+
+function demoPulse() {
+  if (!levelData) { showToast('请等待关卡加载完成'); return; }
+  var cell = { r: 4, c: 4 };
+  selectedCell = cell;
+  boardRenderer.setHighlight(cell.r, cell.c, 'selected');
+  showToast('单格脉冲动画 - 格 (5,5)');
+  animCtrl.enqueue({
+    type: 'pulseCell', duration: 800,
+    easing: animCtrl.easeInOutQuad.bind(animCtrl),
+    onStart: function() {
+      if (showParticles) effectRenderer.spawnParticles(cell.c, cell.r, '#ffa726', 20);
+    },
+    onComplete: function() { showToast('脉冲完成'); },
+  });
+}
+
+function demoRowHighlight() {
+  if (!levelData) { showToast('请等待关卡加载完成'); return; }
+  var row = 4;
+  selectedCell = { r: row, c: 0 };
+  boardRenderer.setHighlight(row, 0, 'selected');
+  showToast('行高亮 - 第 ' + (row + 1) + ' 行');
+  animCtrl.enqueue({
+    type: 'highlightRow', duration: 1500,
+    easing: animCtrl.easeInOutQuad.bind(animCtrl),
+    onStart: function() {
+      if (showParticles) {
+        for (var ci = 0; ci < 9; ci++) effectRenderer.spawnParticles(ci, row, '#ffeb3b', 3);
+      }
+    },
+    onComplete: function() { showToast('行高亮完成'); },
+  });
+}
+
+function demoXWing() {
+  if (!levelData) { showToast('请等待关卡加载完成'); return; }
+  showToast('X-Wing 矩形连线演示');
+  var rows = [1, 6];
+  var cols = [2, 7];
+  selectedCell = { r: rows[0], c: cols[0] };
+  boardRenderer.setHighlight(rows[0], cols[0], 'selected');
+  animCtrl.replayXWing(rows, cols, function() { showToast('X-Wing 演示完成'); });
+}
+
+function demoSwordfish() {
+  if (!levelData) { showToast('请等待关卡加载完成'); return; }
+  showToast('Swordfish 鱼骨高亮演示');
+  var rows = [0, 4, 8];
+  var cols = [1, 3, 7];
+  selectedCell = { r: rows[0], c: cols[0] };
+  boardRenderer.setHighlight(rows[0], cols[0], 'selected');
+  animCtrl.replaySwordfish(rows, cols, function() { showToast('Swordfish 演示完成'); });
+}
+
+function demoAvalanche() {
+  if (!levelData) { showToast('请等待关卡加载完成'); return; }
+  showToast('雪崩补全演示：模拟玩家填数，触发自动补全');
+  try {
+    // 使用浏览器端 Board 类（已在 core/board.js 全局加载）
+    if (typeof Board === 'undefined') { showToast('Board 类不可用'); return; }
+
+    var simBoard = new Board(9);
+    simBoard.loadLevel({
+      cells: levelData.boardData,
+      cages: levelData.cages,
+      solution: levelData.solution
+    });
+
+    var solution = levelData.solution;
+    var size = 9;
+
+    // 1. 收集所有空格
+    var emptyCells = [];
+    for (var r = 0; r < size; r++) {
+      for (var c = 0; c < size; c++) {
+        if (!simBoard.cells[r][c].fixedNum && !simBoard.cells[r][c].fillNum) {
+          emptyCells.push([r, c]);
+        }
+      }
+    }
+
+    // 2. 用 solution 逐步填数，同步刷新渲染，直到所有剩余格为裸单
+    var step = 0;
+    var filledToBoard = function() {
+      // 同步 boardState 到 simBoard（只同步 fillNum）
+      for (var rr = 0; rr < size; rr++) {
+        for (var cc = 0; cc < size; cc++) {
+          if (boardState[rr][cc] && simBoard.cells[rr][cc].fillNum) {
+            boardState[rr][cc].fillNum = simBoard.cells[rr][cc].fillNum;
+            boardState[rr][cc].isError = false;
+          }
+        }
+      }
+      buildAndRender();
+    };
+
+    var checkNakedSingles = function() {
+      var grid = simBoard._buildGrid();
+      var empties = [];
+      for (var r = 0; r < size; r++) {
+        for (var c = 0; c < size; c++) {
+          if (!simBoard.cells[r][c].fixedNum && !simBoard.cells[r][c].fillNum) {
+            var cands = simBoard._getCellCandidates(grid, r, c);
+            if (cands.length !== 1) return null;
+            empties.push({ r: r, c: c, num: cands[0] });
+          }
+        }
+      }
+      return empties;
+    };
+
+    var timer = null;
+    var runStep = function() {
+      if (step >= emptyCells.length) {
+        // 全部手动填完（理论不会到这里）
+        showToast('手动填完所有格');
+        return;
+      }
+      var [r, c] = emptyCells[step];
+      simBoard.setNumberAt(r, c, solution[r][c], { recordHistory: false, autoClear: false });
+      simBoard.checkConflicts();
+      filledToBoard();
+      if (showParticles) effectRenderer.spawnParticles(c, r, '#ffa726', 6);
+      step++;
+
+      // 检查雪崩条件
+      var avalanches = checkNakedSingles();
+      if (avalanches !== null) {
+        if (timer) clearInterval(timer);
+        showToast('雪崩触发！剩余 ' + avalanches.length + ' 格自动补全');
+        // 播放补全动画（逐格快速填入 + 粒子）
+        var ai = 0;
+        var avTimer = setInterval(function() {
+          if (ai >= avalanches.length) {
+            clearInterval(avTimer);
+            showToast('过关！雪崩补全完成', 2500);
+            return;
+          }
+          var av = avalanches[ai];
+          simBoard.setNumberAt(av.r, av.c, av.num, { recordHistory: false, autoClear: false });
+          simBoard.checkConflicts();
+          // 同步到 boardState
+          if (boardState[av.r][av.c]) {
+            boardState[av.r][av.c].fillNum = av.num;
+            boardState[av.r][av.c].isError = false;
+          }
+          if (showParticles) effectRenderer.spawnParticles(av.c, av.r, '#ffeb3b', 10);
+          buildAndRender();
+          ai++;
+        }, 120);
+        return;
+      }
+    };
+
+    // 每 30ms 填一格，模拟玩家操作
+    timer = setInterval(runStep, 30);
+  } catch (e) {
+    console.error('[demoAvalanche]', e);
+    showToast('雪崩演示出错: ' + e.message);
+  }
+}
+
+function buildAndRender() {
+  boardRenderer.render(buildRenderState());
+  effectRenderer.renderEffects(buildEffectsState());
+}
+
+function drawUIOverlay() {
+  var ctx = uiCanvas.getContext('2d');
+  var dpr = window.devicePixelRatio || 1;
+  var w = uiCanvas.width / dpr;
+  var h = uiCanvas.height / dpr;
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  ctx.clearRect(0, 0, w, h);
+  if (!selectedCell) return;
+  var size = 9;
+  var cs = w / size;
+  var x = selectedCell.c * cs;
+  var y = selectedCell.r * cs;
+  ctx.save();
+  ctx.fillStyle = 'rgba(255, 167, 38, 0.08)';
+  ctx.fillRect(x, y, cs, cs);
+  var cornerLen = 6, gap = 3;
+  ctx.strokeStyle = 'rgba(255, 167, 38, 0.6)';
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.moveTo(x + gap, y + gap + cornerLen); ctx.lineTo(x + gap, y + gap); ctx.lineTo(x + gap + cornerLen, y + gap);
+  ctx.stroke();
+  ctx.beginPath();
+  ctx.moveTo(x + cs - gap - cornerLen, y + gap); ctx.lineTo(x + cs - gap, y + gap); ctx.lineTo(x + cs - gap, y + gap + cornerLen);
+  ctx.stroke();
+  ctx.beginPath();
+  ctx.moveTo(x + gap, y + cs - gap - cornerLen); ctx.lineTo(x + gap, y + cs - gap); ctx.lineTo(x + gap + cornerLen, y + cs - gap);
+  ctx.stroke();
+  ctx.beginPath();
+  ctx.moveTo(x + cs - gap - cornerLen, y + cs - gap); ctx.lineTo(x + cs - gap, y + cs - gap); ctx.lineTo(x + cs - gap, y + cs - gap - cornerLen);
+  ctx.stroke();
+  ctx.restore();
+}
+
+function animate(timestamp) {
+  if (!lastFrameTime) lastFrameTime = timestamp;
+  var deltaMs = Math.min(timestamp - lastFrameTime, 50);
+  lastFrameTime = timestamp;
+  animCtrl.update(deltaMs / 1000);
+  buildAndRender();
+  drawUIOverlay();
+  var fps = perfMon.getFps();
+  var stats = perfMon.getStats();
+  fpsDisplay.textContent = fps;
+  var scale = perfMon.getRenderScale();
+  scaleDisplay.textContent = scale.toFixed(2) + 'x';
+  qualityDisplay.textContent = stats.level === 'high' ? '高' : stats.level === 'medium' ? '中' : '低';
+  perfMon.recordFrame();
+  animFrameId = requestAnimationFrame(animate);
+}
+
+qualitySelect.addEventListener('change', function() {
+  var level = qualitySelect.value;
+  perfMon.setLevel(level);
+  boardRenderer.setPerformanceMonitor(perfMon);
+  effectRenderer.setPerformanceMonitor(perfMon);
+  animCtrl.setPerformanceMonitor(perfMon);
+  resizeCanvases();
+  var label = { high: '高', medium: '中', low: '低' }[level] || level;
+  showToast('画质切换为：' + label);
+});
+
+toggleParticles.addEventListener('change', function() {
+  showParticles = toggleParticles.checked;
+  document.getElementById('particlesStatus').textContent = showParticles ? '开' : '关';
+  if (!showParticles) effectRenderer.clearParticles();
+  showToast('粒子效果：' + (showParticles ? '开启' : '关闭'));
+});
+
+toggleGlow.addEventListener('change', function() {
+  showGlow = toggleGlow.checked;
+  document.getElementById('glowStatus').textContent = showGlow ? '开' : '关';
+  showToast('辉光效果：' + (showGlow ? '开启' : '关闭'));
+});
+
+toggleHeatmap.addEventListener('change', function() {
+  showHeatmap = toggleHeatmap.checked;
+  document.getElementById('heatmapStatus').textContent = showHeatmap ? '开' : '关';
+  showToast('热力图：' + (showHeatmap ? '开启' : '关闭'));
+});
+
+toggleCageOverlay.addEventListener('change', function() {
+  showCageOverlay = toggleCageOverlay.checked;
+  document.getElementById('cageOverlayStatus').textContent = showCageOverlay ? '开' : '关';
+  showToast('笼子颜色蒙层：' + (showCageOverlay ? '开启' : '关闭'));
+});
+
+document.querySelectorAll('.demo-btn').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    var demo = btn.getAttribute('data-demo');
+    document.querySelectorAll('.demo-btn').forEach(function(b) { b.classList.remove('active'); });
+    btn.classList.add('active');
+    setTimeout(function() { btn.classList.remove('active'); }, 1200);
+    switch (demo) {
+      case 'pulse': demoPulse(); break;
+      case 'row': demoRowHighlight(); break;
+      case 'xwing': demoXWing(); break;
+      case 'swordfish': demoSwordfish(); break;
+      case 'avalanche': demoAvalanche(); break;
+    }
+  });
+});
+
+uiCanvas.addEventListener('click', handleBoardClick);
+uiCanvas.addEventListener('mousemove', function() { uiCanvas.style.cursor = 'pointer'; });
+
+async function init() {
+  await loadLevel();
+  resizeCanvases();
+  buildAndRender();
+  animFrameId = requestAnimationFrame(animate);
+}
+init();
+
+window.addEventListener('beforeunload', function() {
+  if (animFrameId) cancelAnimationFrame(animFrameId);
+  animCtrl.destroy();
+});
+</script>
+</body>
+</html>

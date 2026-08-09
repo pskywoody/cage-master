@@ -1,0 +1,4164 @@
+{
+  "version": "5.1",
+  "cycles": [
+    {
+      "cycleId": 1,
+      "name": "第一周目·沈墨视角——寻局者",
+      "chapters": [
+        {
+          "chapterId": 1,
+          "title": "初识笼中密码（四乘四→六乘六）",
+          "prologue": [
+            {
+              "speaker": "旁白",
+              "text": "夜。帐房里只有一盏煤油灯。沈墨坐在桌前，手里握着一封信——信封边缘已经磨损，像是被反复打开过很多次。",
+              "_action": "深夜的帐房。窗外的街巷传来很远的水声，像苏州河。",
+              "sfx": "ambient_wind",
+              "vo": "VO_N_0001",
+              "emotion": "旁白·低沉·讲故事",
+              "bg": "assets/images/chapter1/backgrounds/BG-CH1-01_accounting_room_night.jpg"
+            },
+            {
+              "speaker": "老师（留声）",
+              "text": "墨，你收到这封信的时候，我应该已经不在上海了。但我留下了足够你走完全程的东西——从一本旧册子开始。",
+              "_action": "信纸上的字迹，他认得。笔锋很稳，落笔却很轻。",
+              "vo": "VO_T_0001",
+              "emotion": "温和·留声"
+            },
+            {
+              "speaker": "旁白",
+              "text": "沈墨从抽屉最深处摸出一本旧册子。封面已经发脆，边角卷起。他翻开第一页。",
+              "_action": "翻开旧册子。纸张发出轻微的沙沙声。",
+              "sfx": "paper_flip",
+              "vo": "VO_N_0002",
+              "emotion": "旁白·叙述"
+            },
+            {
+              "speaker": "旁白",
+              "text": "册子第一页，贴着一张手绘的方格棋盘——四行四列，几个格子里已填了数字。旁边是老师的笔迹：每一行、每一列，数字1到4各出现一次。",
+              "_action": "手绘棋盘的特写。铅笔线已经有些模糊。",
+              "vo": "VO_N_0003",
+              "emotion": "旁白·叙述",
+              "bg": "assets/images/chapter1/backgrounds/BG-CH1-01_accounting_room_night.jpg"
+            },
+            {
+              "speaker": "沈墨 CHIBI",
+              "text": "……这是我学的第一道题。那时候，是他在旁边教的。",
+              "vo": "VO_SC_0001",
+              "emotion": "回忆·低语"
+            },
+            {
+              "speaker": "老师（留声）",
+              "text": "第一课，行规则：同一横排，数字1到4各出现一次，不能重复。缺哪个数，就是哪个。",
+              "vo": "VO_T_0002",
+              "emotion": "温和·教学"
+            }
+          ],
+          "levels": [
+            {
+              "levelId": 101,
+              "title": "雨夜来信",
+              "preDialog": [
+                {
+                  "speaker": "旁白",
+                  "text": "夜。冷雨敲打着木格窗，潮气漫进屋内。沈墨捻起桌角那封无署名的信——封缄处没有印章，只刻着一道极细的短横记号。拆开信封，内里不是寻常字句，而是一道残缺的九阶数独盘面。第三行第四列，是整道谜题的锚点。",
+                  "emotion": "旁白·低沉·讲故事",
+                  "bg": "assets/images/chapter1/backgrounds/BG-CH1-01_accounting_room_night.jpg",
+                  "cg": "assets/images/chapter1/cg/CG-CH1-01_letter_closeup.jpg"
+                },
+                {
+                  "speaker": "旁白",
+                  "text": "沈墨指尖抚过纸面，油墨早已干透。这不是消遣游戏——这是密信。有人隔着茫茫人海，把一道谜题送到了他手上。",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "沈墨 CHIBI",
+                  "text": "（指尖压住那道短横）一道钥匙……谜题背后，藏着某条被封存的线索。",
+                  "emotion": "低语",
+                  "cg": "assets/images/chapter1/cg/CG-CH1-02_shenmo_reading_letter.jpg"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "旁白",
+                  "text": "雨夜来信，完成。档案碎片 1/9 解锁。匿名短横标记、未知寄信人——第三行第四列，是校验锚点。",
+                  "emotion": "旁白·叙述"
+                }
+              ]
+            },
+            {
+              "levelId": 102,
+              "title": "旧书铺踪迹",
+              "preDialog": [
+                {
+                  "speaker": "旁白",
+                  "text": "雨停了，地面满是积水反光。沈墨循着信上残留的微弱线索，来到霞飞路旧书街巷。不少铺子已挂起歇业木牌，特高课的便衣在附近徘徊，扫视每一个进出书店的人。",
+                  "emotion": "旁白·叙述",
+                  "bg": "assets/images/chapter1/backgrounds/BG-CH1-02_bookstore_counter.jpg"
+                },
+                {
+                  "speaker": "旁白",
+                  "text": "巷子深处一间不起眼的旧书铺，铺窗木沿之上，刻着一道一模一样的短横。记号老旧，被风霜磨得浅淡。沈墨推开门，铃铛响了一声——柜台后的女人没有抬头，正是这家铺子的主人：薇拉。",
+                  "emotion": "旁白·叙述",
+                  "cg": "assets/images/chapter1/cg/CG-CH1-03_bookstore_first_meeting.jpg"
+                },
+                {
+                  "speaker": "薇拉",
+                  "text": "你解完这道题之前，我不会告诉你任何事。",
+                  "emotion": "平静·陈述"
+                },
+                {
+                  "speaker": "沈墨 CHIBI",
+                  "text": "（盯着那道短横，又看向她）和信上一模一样……她认得这道记号。",
+                  "emotion": "思考·回忆"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "薇拉",
+                  "text": "第三排书架，左手边。你自己拿。",
+                  "emotion": "平静·陈述"
+                },
+                {
+                  "speaker": "沈墨 CHIBI",
+                  "text": "……她刚才说「解完这道题之前」——她还有话没说。",
+                  "emotion": "思考·回忆"
+                },
+                {
+                  "speaker": "旁白",
+                  "text": "旧书铺踪迹，完成。碎片 2/9。沈墨走向书架，在那本书的书页之间，看到了下一道题。短横记号，是联络人的专属标识——线索，指向城西的老藏书楼。",
+                  "emotion": "旁白·叙述"
+                }
+              ]
+            },
+            {
+              "levelId": 103,
+              "title": "街巷阴影",
+              "preDialog": [
+                {
+                  "speaker": "旁白",
+                  "text": "离开旧书铺，暮色彻底吞没街巷。便衣的身影在路口来回游荡，沈墨刻意混入人流，不断更换巷道，确认身后没有尾巴。弄堂砖墙斑驳，墙根散落废纸，墙角泥地上用炭笔草草画着数独局部残片。",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "旁白",
+                  "text": "有人在此处留下临时提示，留下之后便匆匆离去。地面炭痕尚未被雨水冲刷干净，留下时间并不久。",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "沈墨 CHIBI",
+                  "text": "（蹲身看泥地上的炭痕）刚留下的……有人比我先到，也在这里找过路。此地已被监视，不能久留。",
+                  "emotion": "思考·回忆"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "旁白",
+                  "text": "街巷阴影，完成。碎片 3/9。霞飞路上的流动联络点浮现，监视的网，已经悄然铺开。",
+                  "emotion": "旁白·叙述"
+                }
+              ]
+            },
+            {
+              "levelId": 104,
+              "title": "访客苏晚",
+              "preDialog": [
+                {
+                  "speaker": "旁白",
+                  "text": "沈墨折返家中，屋内灯火未熄。苏晚已经等候在此。她知晓近日城内风声险恶，见他满身夜露，眉宇间藏着担忧。她没有追问信件来历，只轻声提醒：街上已开始按户排查，连日在外走动，极易被记下样貌。桌上两道数独谜题静静摊开，苏晚低头扫过纸面，认得这种密语格式，却并不触碰纸片。",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "苏晚",
+                  "text": "（轻声）街上已经开始按户排查。你连日在外走动，极易被记下样貌。这些东西，不要留在明面上——一旦被搜出来，百口莫辩。",
+                  "emotion": "轻声"
+                },
+                {
+                  "speaker": "沈墨 CHIBI",
+                  "text": "（将纸片收进贴身内袋）……多谢你，还在这里等我。",
+                  "emotion": "低语"
+                },
+                {
+                  "speaker": "沈墨 CHIBI",
+                  "text": "（低声）我被卷进了一盘棋。一场，无从脱身的棋。",
+                  "emotion": "思考·回忆"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "旁白",
+                  "text": "访客苏晚，完成。碎片 4/9。苏晚认得这地下密语，主动替你掩盖行踪——而风险，仍在升高。",
+                  "emotion": "旁白·叙述"
+                }
+              ]
+            },
+            {
+              "levelId": 105,
+              "title": "藏书楼外墙",
+              "preDialog": [
+                {
+                  "speaker": "旁白",
+                  "text": "夜深，沈墨绕至藏书楼后巷。整栋建筑死寂，借阅早已结束，大门紧锁，围墙高大，墙面布满藤蔓。墙角一块砖石有松动痕迹，砖缝之中，塞着第三张谜题纸条。这座藏书楼看着寻常，内里藏着不为人知的秘密。",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "旁白",
+                  "text": "纸条上的谜题，指向墙体之后，某个被隐藏起来的入口。",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "沈墨 CHIBI",
+                  "text": "（抽出砖缝里的纸条）墙后有门。这座藏书楼，藏着不为人知的秘密。",
+                  "emotion": "思考·回忆"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "旁白",
+                  "text": "藏书楼外墙，完成。碎片 5/9。隐藏入口浮现——这里是整条密信链条的枢纽。",
+                  "emotion": "旁白·叙述"
+                }
+              ]
+            },
+            {
+              "levelId": 106,
+              "title": "砖石秘钥",
+              "preDialog": [
+                {
+                  "speaker": "旁白",
+                  "text": "依照谜题给出的坐标，沈墨指尖抵住那块墙砖，缓缓向内推动。砖石应声移位，墙体裂开一道仅供一人侧身通过的缝隙。缝隙深处，是向下延伸的黑暗石阶，潮湿阴冷的地气扑面而来。这便是密道的开端。",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "旁白",
+                  "text": "黑暗之中，看不清下方多深，听不见半点人声。前路全然未知。",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "沈墨 CHIBI",
+                  "text": "（抵住墙砖，向内推）开了……下面有石阶。密道，从这儿开始。",
+                  "emotion": "低语"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "旁白",
+                  "text": "砖石秘钥，完成。碎片 6/9。密道入口正式现世，向下，通往藏书楼的底层。",
+                  "emotion": "旁白·叙述"
+                }
+              ]
+            },
+            {
+              "levelId": 107,
+              "title": "初入幽阶",
+              "preDialog": [
+                {
+                  "speaker": "旁白",
+                  "text": "一步一步向下，远离地面的夜色。蜡烛微弱火光只照亮身前数步，石壁渗水，空气寒凉。石壁上断断续续刻着细碎数字，是前人留下的数独残痕——有的年代久远，被水汽侵蚀模糊；有的刻印尚新，留下时日不长。",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "旁白",
+                  "text": "每一道残痕，都是曾经走过这条路的人留下的印记。",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "沈墨 CHIBI",
+                  "text": "（举烛照石壁）这些刻痕……不止我一个走过。有的旧，有的新，分属不同的年代。",
+                  "emotion": "思考·回忆"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "旁白",
+                  "text": "初入幽阶，完成。碎片 7/9。密道通往 B1，而石壁上的残痕，来自许多双不同时期的手。",
+                  "emotion": "旁白·叙述"
+                }
+              ]
+            },
+            {
+              "levelId": 108,
+              "title": "夹层遗物",
+              "preDialog": [
+                {
+                  "speaker": "旁白",
+                  "text": "石阶尽头，是一处狭小夹层石室，室内堆放几只蒙尘旧木箱，没有上锁。沈墨掀开箱盖，箱中没有金银，只有旧文稿、手抄笔记，还有一把编号为3的黄铜小钥匙——包在泛黄绢纸之内，纸上几行模糊字迹，是他父亲的笔迹。多年以前，他的父亲，也曾来过这里。",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "旁白",
+                  "text": "旧物沉默，没有解释前因后果，只留下一堆等待破译的谜题。",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "沈墨 CHIBI",
+                  "text": "（指尖触到黄铜钥匙）编号3……父亲的笔迹。原来他，也来过这里。",
+                  "emotion": "低语"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "旁白",
+                  "text": "夹层遗物，完成。碎片 8/9。父亲的过往浮出——黄铜钥匙编号3，用途仍是谜。",
+                  "emotion": "旁白·叙述"
+                }
+              ]
+            },
+            {
+              "levelId": 109,
+              "title": "序章终局·第一重闭环",
+              "preDialog": [
+                {
+                  "speaker": "旁白",
+                  "text": "石室尽头矗立一道厚重铁门，门板之上，直接镌刻完整数独盘面。这是序章最终的锁。沈墨将一路收集到的全部线索拼合——匿名信件、旧书铺、石壁刻痕、父亲遗物，在此全部汇合。",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "旁白",
+                  "text": "解开这道谜题，便能踏入更深的地下。但他也清楚，跨过这道门，便再也无法回头。",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "沈墨 CHIBI",
+                  "text": "（拼接所有碎片）信、旧书铺、石壁、父亲的遗物……全部汇到这里。跨过这道门，就再不能回头了。",
+                  "emotion": "思考·回忆"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "旁白",
+                  "text": "第一重闭环，完成。序章九枚档案碎片，悉数解锁。门后是无尽的黑暗——而第二章·屋，已在身后悄然开启。",
+                  "emotion": "旁白·叙述"
+                }
+              ]
+            },
+            {
+              "levelId": 199,
+              "title": "第1章结尾·六月的风",
+              "preDialog": [
+                {
+                  "speaker": "旁白",
+                  "text": "沈墨走出路灯的光，走进夜色。六月的事，在身后合上了。",
+                  "cg": "assets/images/chapter1/cg/CG-CH1-06_xiafei_road_walking.jpg",
+                  "_action": "夜色。霞飞路的尽头。",
+                  "sfx": "ambient_wind",
+                  "vo": "VO_N_0038",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "沈墨 CHIBI",
+                  "text": "……她说，如果冬天还有第二次，我会是信使。",
+                  "vo": "VO_SC_0040",
+                  "emotion": "思考"
+                },
+                {
+                  "speaker": "老师（留声）",
+                  "text": "路还长。星衡、差值、更深的地图——你才刚刚开始。",
+                  "vo": "VO_T_0035",
+                  "emotion": "温和·展望"
+                },
+                {
+                  "speaker": "旁白",
+                  "text": "夜风从霞飞路的尽头吹来。沈墨把卡纸放回内袋，向车站走去。",
+                  "vo": "VO_N_0039",
+                  "emotion": "旁白·低沉"
+                }
+              ]
+            }
+          ],
+          "hiddenStory": [
+            {
+              "speaker": "老师（留声）",
+              "text": "墨，你已集齐序章的九枚碎片。这封信，是我留给你最后背影前面那道门。你读过我的字迹，也读过夹层里你父亲的笔迹——他们都在等你，把这一路拼成真正的答案。",
+              "bg": "assets/images/chapter1/cg/CG-CH1-01_letter_closeup.jpg",
+              "emotion": "留声·温和"
+            },
+            {
+              "speaker": "旁白",
+              "text": "九枚碎片拼合成一封完整的信。信背，落着一个极淡的短横——与你父亲、与你自己的来路，遥遥相契。",
+              "emotion": "旁白·叙述"
+            }
+          ]
+        },
+        {
+          "chapterId": 2,
+          "title": "二十一星衡（全六乘六）",
+          "prologue": [
+            {
+              "speaker": "守笼人",
+              "text": "第二层\"星衡\"。每行、每列、每宫的和都是二十一。九乘九则是四十五。",
+              "scene": "更宽敞的大厅，油灯暖光，书架更高。",
+              "bgm": "chapter_2.mp3 渐入",
+              "vo": "VO_CK_0022",
+              "emotion": "庄重·教学"
+            },
+            {
+              "speaker": "阿妍",
+              "text": "吃透星衡，很多笼不用一格一格推。",
+              "vo": "VO_R_0024",
+              "emotion": "冷静·教学"
+            }
+          ],
+          "levels": [
+            {
+              "levelId": 201,
+              "title": "行星衡",
+              "preDialog": [
+                {
+                  "speaker": "守笼人",
+                  "text": "六乘六盘面，每行六个数加起来是二十一。利用这个法则，有些笼直接就能算出来。",
+                  "vo": "VO_CK_0023",
+                  "emotion": "严肃·教学"
+                },
+                {
+                  "speaker": "阿妍",
+                  "text": "一行已知数加起来，剩下的数就是二十一减已知和。",
+                  "vo": "VO_R_0025",
+                  "emotion": "冷静·教学"
+                },
+                {
+                  "speaker": "沈墨",
+                  "text": "第二行第四列。五。",
+                  "_action": "看了盘面几秒，在一个空格填入",
+                  "vo": "VO_SM_0017",
+                  "emotion": "确认·报数"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "守笼人",
+                  "text": "星衡第一法则已通。",
+                  "sfx": "success",
+                  "vo": "VO_CK_0024",
+                  "emotion": "欣慰"
+                }
+              ]
+            },
+            {
+              "levelId": 202,
+              "title": "列星衡",
+              "preDialog": [
+                {
+                  "speaker": "守笼人",
+                  "text": "竖列同理。每列的和也是二十一。",
+                  "vo": "VO_CK_0025",
+                  "emotion": "严肃·教学"
+                },
+                {
+                  "speaker": "阿妍",
+                  "text": "横纵双向校验。这是星衡的基础。",
+                  "vo": "VO_R_0026",
+                  "emotion": "冷静"
+                },
+                {
+                  "speaker": "沈墨",
+                  "text": "第一列第六行。三。",
+                  "_action": "填入",
+                  "vo": "VO_SM_0018",
+                  "emotion": "沉静·报数",
+                  "pause": 0.3
+                },
+                {
+                  "speaker": "沈墨",
+                  "text": "习惯了。",
+                  "vo": "VO_SM_0019",
+                  "emotion": "简短"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "阿妍",
+                  "text": "他心算比手写快。",
+                  "vo": "VO_R_0027",
+                  "emotion": "冷静·评价"
+                }
+              ]
+            },
+            {
+              "levelId": 203,
+              "title": "宫的星衡",
+              "preDialog": [
+                {
+                  "speaker": "守笼人",
+                  "text": "每个宫的和也是二十一。横、纵、宫三重星衡同时生效。",
+                  "vo": "VO_CK_0026",
+                  "emotion": "严肃·教学"
+                },
+                {
+                  "speaker": "阿妍",
+                  "text": "用宫来排除，有时候比行列更快。",
+                  "vo": "VO_R_0028",
+                  "emotion": "冷静·提示"
+                },
+                {
+                  "speaker": "沈墨",
+                  "text": "这个宫的右上角，只剩一个数了。",
+                  "_action": "观察盘面，指着一个格子",
+                  "vo": "VO_SM_0020",
+                  "emotion": "发现",
+                  "pause": 0.3
+                },
+                {
+                  "speaker": "沈墨",
+                  "text": "六。",
+                  "vo": "VO_SM_0021",
+                  "emotion": "确认",
+                  "pause": 0.5
+                },
+                {
+                  "speaker": "沈墨",
+                  "text": "我看到了它该在的地方。",
+                  "vo": "VO_SM_0022",
+                  "emotion": "沉静·领悟"
+                },
+                {
+                  "speaker": "阿妍",
+                  "text": "……是等一个人，还是等一种人？",
+                  "_action": "微微眯眼",
+                  "vo": "VO_R_0029",
+                  "emotion": "低沉·试探"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "阿妍",
+                  "text": "没什么。继续。",
+                  "vo": "VO_R_0030",
+                  "emotion": "平静·收尾"
+                }
+              ]
+            },
+            {
+              "levelId": 204,
+              "title": "九域星图",
+              "preDialog": [
+                {
+                  "speaker": "守笼人",
+                  "text": "这些笼型的排布手法，正是设局人当年最擅长的风格。",
+                  "_action": "盘面灯光变暗，设局人的留声装置开始嗡鸣。",
+                  "sfx": "electronic_pulse",
+                  "vo": "VO_CK_0027",
+                  "emotion": "低沉·复杂",
+                  "bg": "assets/images/backgrounds/bg_new/BG-01_archive_hall.jpg"
+                },
+                {
+                  "speaker": "设局人",
+                  "text": "只会死守二十一星衡，你永远破不开我完整的九域笼局。",
+                  "_action": "P_02_残影态立绘 闪入effect:3，全屏微震。",
+                  "sfx": "thunder",
+                  "vo": "VO_P_0001",
+                  "emotion": "沧桑·傲慢·戏弄"
+                },
+                {
+                  "speaker": "阿妍",
+                  "text": "……设局人。",
+                  "_action": "握紧了笔，声音沉了一点",
+                  "vo": "VO_R_0031",
+                  "emotion": "严肃·确认"
+                },
+                {
+                  "speaker": "沈墨",
+                  "text": "藏的不是答案。藏的是——指向答案的路。",
+                  "pause": 1,
+                  "vo": "VO_SM_0023",
+                  "emotion": "领悟·坚定"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "设局人（留声）",
+                  "text": "四十五只是最表层的障眼法。真正的笼局玄机，藏在差值之中。",
+                  "sfx": "success",
+                  "vo": "VO_P_0002",
+                  "emotion": "神秘·戏弄"
+                },
+                {
+                  "speaker": "守笼人",
+                  "text": "吃透四十五法则，才有资格拆解设局人留下的差值笼。",
+                  "_action": "沉默了一瞬",
+                  "vo": "VO_CK_0028",
+                  "emotion": "低沉·复杂"
+                }
+              ]
+            },
+            {
+              "levelId": 205,
+              "title": "单格推演",
+              "preDialog": [
+                {
+                  "speaker": "守笼人",
+                  "text": "有时候不需要算整个笼，只需要算一个格子。找到那个最关键的格子，整盘就活了。",
+                  "vo": "VO_CK_0029",
+                  "emotion": "严肃·教学"
+                },
+                {
+                  "speaker": "阿妍",
+                  "text": "单格推演，效率最高的方法。",
+                  "vo": "VO_R_0032",
+                  "emotion": "冷静"
+                },
+                {
+                  "speaker": "沈墨",
+                  "text": "第七行第三列。四。",
+                  "_action": "观察了一会儿，指向一个格子",
+                  "vo": "VO_SM_0024",
+                  "emotion": "发现·报数",
+                  "pause": 0.3
+                },
+                {
+                  "speaker": "沈墨",
+                  "text": "写过的。在心里。",
+                  "vo": "VO_SM_0025",
+                  "emotion": "沉静"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "沈墨",
+                  "text": "你看这样是不是清楚一点。",
+                  "vo": "VO_SM_0026",
+                  "emotion": "平静·展示"
+                },
+                {
+                  "speaker": "阿妍",
+                  "text": "……嗯。够了。",
+                  "_action": "沈墨在笔记上把关键数字标出来，盘面一目了然。；看了一眼",
+                  "vo": "VO_R_0033",
+                  "emotion": "释然·认可"
+                }
+              ]
+            },
+            {
+              "levelId": 206,
+              "title": "差值入门",
+              "preDialog": [
+                {
+                  "speaker": "守笼人",
+                  "text": "差值。一个笼的和减去它所覆盖行/列的已知部分，剩下的就是它在其他行/列贡献的值。",
+                  "vo": "VO_CK_0030",
+                  "emotion": "严肃·教学"
+                },
+                {
+                  "speaker": "阿妍",
+                  "text": "没那么难。整行总和减掉已知的数，剩下的格子直接算出来。",
+                  "vo": "VO_R_0034",
+                  "emotion": "冷静·教学"
+                },
+                {
+                  "speaker": "沈墨",
+                  "text": "差值……不是加法。是减法。",
+                  "_action": "试了一下，填入数字",
+                  "vo": "VO_SM_0027",
+                  "emotion": "领悟"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "设局人（留声）",
+                  "text": "依靠工具投机取巧，永远读不懂笼局背后的星辰逻辑。",
+                  "vo": "VO_P_0003",
+                  "emotion": "轻蔑·傲慢"
+                }
+              ]
+            },
+            {
+              "levelId": 207,
+              "title": "内外玄机",
+              "preDialog": [
+                {
+                  "speaker": "守笼人",
+                  "text": "有些笼跨越了宫的边界。大笼包小笼，内层和外层的差值是解题关键。",
+                  "vo": "VO_CK_0031",
+                  "emotion": "严肃·教学"
+                },
+                {
+                  "speaker": "阿妍",
+                  "text": "从外到内，还是从内到外，取决于哪层信息更多。",
+                  "vo": "VO_R_0035",
+                  "emotion": "冷静·分析"
+                },
+                {
+                  "speaker": "沈墨",
+                  "text": "外层三十一。内层十二。差值是十九。",
+                  "_action": "手指在盘面边缘划了一下",
+                  "vo": "VO_SM_0028",
+                  "emotion": "快速计算",
+                  "pause": 0.3
+                },
+                {
+                  "speaker": "沈墨",
+                  "text": "这三格——只能是四、六、九。",
+                  "vo": "VO_SM_0029",
+                  "emotion": "确认"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "守笼人",
+                  "text": "内外差值已通。",
+                  "sfx": "success",
+                  "vo": "VO_CK_0032",
+                  "emotion": "欣慰"
+                },
+                {
+                  "speaker": "阿妍",
+                  "text": "你好像很了解这些手法？",
+                  "vo": "VO_R_0036",
+                  "emotion": "试探·询问"
+                },
+                {
+                  "speaker": "沈墨",
+                  "text": "他丢下的每一片，都困了人很久。",
+                  "_action": "没有正面回答",
+                  "vo": "VO_SM_0030",
+                  "emotion": "低沉·沉重"
+                }
+              ]
+            },
+            {
+              "levelId": 208,
+              "title": "星衡试炼",
+              "preDialog": [
+                {
+                  "speaker": "守笼人",
+                  "text": "星衡法则的综合试炼。所有技巧融汇于此。",
+                  "vo": "VO_CK_0033",
+                  "emotion": "庄重·严肃"
+                },
+                {
+                  "speaker": "阿妍",
+                  "text": "静下心。一条一条推。",
+                  "vo": "VO_R_0037",
+                  "emotion": "冷静·鼓励"
+                },
+                {
+                  "speaker": "沈墨",
+                  "text": "第一行第六列。二。",
+                  "_action": "深吸一口气，开始解题",
+                  "vo": "VO_SM_0031",
+                  "emotion": "沉稳·开始"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "守笼人",
+                  "text": "你已吃透星衡全部基础。设局人留下的深层档案，即将解锁。",
+                  "sfx": "victory_short",
+                  "vo": "VO_CK_0034",
+                  "emotion": "庄重·神秘"
+                },
+                {
+                  "speaker": "设局人（留声）",
+                  "text": "能闯过星衡试炼，勉强有资格直面我真正的笼局。",
+                  "vo": "VO_P_0004",
+                  "emotion": "傲慢·期待"
+                }
+              ]
+            },
+            {
+              "levelId": 209,
+              "title": "章末考核",
+              "preDialog": [
+                {
+                  "speaker": "守笼人",
+                  "text": "本章最终试炼，检验你能否抵御设局人的谜题陷阱。",
+                  "bgm": "chapter_2.mp3 渐强",
+                  "vo": "VO_CK_0035",
+                  "emotion": "严肃"
+                },
+                {
+                  "speaker": "阿妍",
+                  "text": "继续。",
+                  "_action": "只说了两个字",
+                  "vo": "VO_R_0038",
+                  "emotion": "冷静·推进"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "守笼人",
+                  "text": "星衡已通。前方是档案室深层。",
+                  "sfx": "seal_stamp, achievement",
+                  "vo": "VO_CK_0036",
+                  "emotion": "庄重·铺垫"
+                }
+              ]
+            },
+            {
+              "levelId": 299,
+              "title": "第2章结尾·走廊",
+              "preDialog": [
+                {
+                  "speaker": "阿妍",
+                  "text": "区别是——设局人自己设计了这层楼。每一道墙、每一个书架、每一格数字，都是他亲手放进去的。",
+                  "_action": "声音沉了一点",
+                  "vo": "VO_R_0039",
+                  "emotion": "低沉·认真"
+                },
+                {
+                  "speaker": "守笼人",
+                  "text": "第三章的笼局，藏着设局人与我决裂的全部真相。",
+                  "vo": "VO_CK_0037",
+                  "emotion": "沉重·复杂"
+                },
+                {
+                  "speaker": "沈墨",
+                  "text": "……他布的局，不是让人看不见答案。是让人看不见自己走过了几条线。",
+                  "_action": "目光直视前方黑暗的走廊",
+                  "vo": "VO_SM_0032",
+                  "emotion": "低沉·领悟"
+                },
+                {
+                  "speaker": "沈墨",
+                  "text": "就像人一样。",
+                  "pause": 1,
+                  "vo": "VO_SM_0033",
+                  "emotion": "比喻·深沉"
+                }
+              ],
+              "clearDialog": []
+            }
+          ],
+          "hiddenStory": [
+            {
+              "speaker": "守笼人",
+              "text": "星衡九戒，你已集齐。这一层的墙缝里，埋着设局人第一次教我时的第一盘局——那盘局，他赢了我整整三年。",
+              "emotion": "怀旧·感慨",
+              "bg": "assets/images/backgrounds/bg_new/BG-02_star_balance.jpg"
+            },
+            {
+              "speaker": "设局人（留声）",
+              "text": "你把这层楼每一面墙上的「二十一」都读完了。那从来不是法则，是提醒——提醒当年那个不肯认输的我。",
+              "emotion": "留声·挑衅·落寞"
+            },
+            {
+              "speaker": "沈墨",
+              "text": "……他把路铺在数字里。你走一遍，就懂他当年为什么不肯停。",
+              "emotion": "沉思·领悟",
+              "voice": "VO_SM_0033"
+            }
+          ],
+          "epilogue": [
+            {
+              "speaker": "守笼人",
+              "text": "星衡已通。档案室深层，是设局人亲手设计的棋盘。",
+              "sfx": "seal_stamp",
+              "emotion": "庄重·铺垫"
+            },
+            {
+              "speaker": "阿妍",
+              "text": "走完了。他只是没走到底。",
+              "emotion": "低沉·意有所指"
+            }
+          ]
+        },
+        {
+          "chapterId": 3,
+          "title": "档案室深层（六乘六）",
+          "prologue": [
+            {
+              "speaker": "守笼人",
+              "text": "从这里开始，每一间房都是设局人亲手设计的。他在这里布下了三十年前最得意的作品。",
+              "scene": "石门。门上刻着繁复的纹路，像是某种阵法。空气里铁锈味更重了。",
+              "bgm": "chapter_3.mp3 以低沉嗡鸣开始",
+              "sfx": "door_stone_open",
+              "vo": "VO_CK_0038",
+              "emotion": "沉重·回忆",
+              "bg": "assets/images/backgrounds/bg_new/BG-03_stone_stairs.jpg"
+            },
+            {
+              "speaker": "设局人（留声）",
+              "text": "终于敢走进深层了？我还以为你会永远停留在二十一星衡的孩童游戏里。",
+              "pause": 1,
+              "vo": "VO_P_0005",
+              "emotion": "傲慢·嘲讽"
+            },
+            {
+              "speaker": "沈墨",
+              "text": "……最后一局。不是她的。是他的。",
+              "_action": "P立绘闪入effect:3，全场灯光闪烁。；直视留声传来的方向，平静地",
+              "sfx": "thunder, electronic_pulse",
+              "vo": "VO_SM_0034",
+              "emotion": "平静·确认",
+              "cg": "assets/images/cg/CG-05_setter_apparition.jpg",
+              "bg": "assets/images/backgrounds/bg_new/BG-06_stone_gate.jpg"
+            },
+            {
+              "speaker": "阿妍",
+              "text": "你——",
+              "_action": "猛地看向沈墨",
+              "vo": "VO_R_0040",
+              "emotion": "震惊"
+            },
+            {
+              "speaker": "沈墨",
+              "text": "开始吧。",
+              "_action": "没有解释，走向盘面",
+              "vo": "VO_SM_0035",
+              "emotion": "沉静·推进"
+            }
+          ],
+          "levels": [
+            {
+              "levelId": 301,
+              "title": "行区块",
+              "preDialog": [
+                {
+                  "speaker": "守笼人",
+                  "text": "当某个数字在一个宫里面只能出现在同一行时，这一行其他宫的这个数字就可以排除。这叫\"行区块\"。",
+                  "vo": "VO_CK_0039",
+                  "emotion": "严肃·教学",
+                  "bg": "assets/images/backgrounds/bg_new/BG-05_stone_corridor.jpg"
+                },
+                {
+                  "speaker": "阿妍",
+                  "text": "区块排除，最基础的排除技巧。",
+                  "vo": "VO_R_0041",
+                  "emotion": "冷静"
+                },
+                {
+                  "speaker": "沈墨",
+                  "text": "横着排除一遍。",
+                  "_action": "观察后填入数字",
+                  "vo": "VO_SM_0036",
+                  "emotion": "沉静"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "设局人（留声）",
+                  "text": "钥匙？这不过是我当年随手丢下的一枚废铜片罢了。",
+                  "sfx": "success",
+                  "vo": "VO_P_0006",
+                  "emotion": "轻蔑"
+                },
+                {
+                  "speaker": "阿妍",
+                  "text": "……他在说隐曜之钥。",
+                  "_action": "声音很低",
+                  "vo": "VO_R_0042",
+                  "emotion": "低沉"
+                }
+              ]
+            },
+            {
+              "levelId": 302,
+              "title": "列区块",
+              "preDialog": [
+                {
+                  "speaker": "守笼人",
+                  "text": "竖列同理。当一个数字在某宫只能出现在同一列，该列其他宫的同数字排除。",
+                  "vo": "VO_CK_0040",
+                  "emotion": "教学"
+                },
+                {
+                  "speaker": "阿妍",
+                  "text": "横纵交替排除，范围越缩越小。",
+                  "vo": "VO_R_0043",
+                  "emotion": "冷静"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "沈墨",
+                  "text": "他丢下的每一片，都困住人很久。",
+                  "_action": "看着盘面，忽然说",
+                  "sfx": "success",
+                  "vo": "VO_SM_0037",
+                  "emotion": "低沉·感慨"
+                }
+              ]
+            },
+            {
+              "levelId": 303,
+              "title": "宫区块",
+              "preDialog": [
+                {
+                  "speaker": "守笼人",
+                  "text": "区块也可以作用于宫。当一个数字在某行/列只能出现在某一个宫，该宫其他格排除这个数。",
+                  "vo": "VO_CK_0041",
+                  "emotion": "教学"
+                },
+                {
+                  "speaker": "阿妍",
+                  "text": "好几个区块叠在一起看着乱，一个一个拆开就清楚了。",
+                  "vo": "VO_R_0044",
+                  "emotion": "冷静·教学"
+                },
+                {
+                  "speaker": "沈墨",
+                  "text": "区块排除。第三步。",
+                  "vo": "VO_SM_0038",
+                  "emotion": "确认"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "守笼人",
+                  "text": "……他曾经是我最得意的学生。",
+                  "_action": "莹莹看向守笼人。守笼人沉默了很久。",
+                  "pause": 2,
+                  "vo": "VO_CK_0042",
+                  "emotion": "沉重·回忆"
+                }
+              ]
+            },
+            {
+              "levelId": 304,
+              "title": "隐曜",
+              "preDialog": [
+                {
+                  "speaker": "守笼人",
+                  "text": "群曜遮目，一光独隐。当两个数字被锁定在同一对格子里，其他格子的这两个数字可以排除。这叫\"隐曜\"——你们常说的\"数对\"。",
+                  "scene": "房间中央的盘面发出微微的光。空气里有一种压抑的感觉。",
+                  "sfx": "seal_glow",
+                  "vo": "VO_CK_0043",
+                  "emotion": "庄重·教学"
+                },
+                {
+                  "speaker": "阿妍",
+                  "text": "隐曜，比区块更隐蔽。你需要找到那对\"隐藏的光\"。",
+                  "vo": "VO_R_0045",
+                  "emotion": "冷静"
+                },
+                {
+                  "speaker": "沈墨",
+                  "text": "这两个数……可以交换位置。但它们不会离开这两个格子。",
+                  "_action": "盯着盘面看了一会儿，指了两个格子",
+                  "vo": "VO_SM_0039",
+                  "emotion": "领悟"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "设局人（留声）",
+                  "text": "能看懂二连纵横阵，勉强算摸到了星辰梭的门槛。",
+                  "sfx": "eureka, success",
+                  "vo": "VO_P_0007",
+                  "emotion": "意外·认可"
+                },
+                {
+                  "speaker": "守笼人",
+                  "text": "……等你到了第五章，自然会知道。",
+                  "_action": "声音沉重",
+                  "vo": "VO_CK_0044",
+                  "emotion": "复杂·回避"
+                }
+              ]
+            },
+            {
+              "levelId": 305,
+              "title": "区块综合",
+              "preDialog": [
+                {
+                  "speaker": "守笼人",
+                  "text": "多个区块同时作用时，需要综合判断。这是设局人最擅长的布局手法。",
+                  "vo": "VO_CK_0045",
+                  "emotion": "严肃"
+                },
+                {
+                  "speaker": "阿妍",
+                  "text": "找到一个突破口，连锁反应就开始了。",
+                  "vo": "VO_R_0046",
+                  "emotion": "冷静·提示"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "沈墨",
+                  "text": "他布的局，不是让人看不见答案。是让人看不见自己走过了几条线。",
+                  "vo": "VO_SM_0040",
+                  "emotion": "深沉·领悟"
+                }
+              ]
+            },
+            {
+              "levelId": 306,
+              "title": "隐曜进阶",
+              "preDialog": [
+                {
+                  "speaker": "守笼人",
+                  "text": "隐曜不仅限于两个数。三个数被锁定在三个格子里，叫\"三子法\"——后面会学。这一关先巩固二数隐曜。",
+                  "vo": "VO_CK_0046",
+                  "emotion": "教学"
+                },
+                {
+                  "speaker": "阿妍",
+                  "text": "你们当年……到底为什么决裂？",
+                  "vo": "VO_R_0047",
+                  "emotion": "直接·询问"
+                },
+                {
+                  "speaker": "守笼人",
+                  "text": "……他想打开星辰梭的最后一道锁。我不同意。",
+                  "_action": "空气凝固了一秒。",
+                  "pause": 1.5,
+                  "vo": "VO_CK_0047",
+                  "emotion": "沉重·简短"
+                },
+                {
+                  "speaker": "守笼人",
+                  "text": "……先解题。",
+                  "_action": "摇头",
+                  "vo": "VO_CK_0048",
+                  "emotion": "回避"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "沈墨",
+                  "text": "你找到了那对隐藏的光。",
+                  "_action": "落子，候选数在盘面上逐一熄灭",
+                  "sfx": "success",
+                  "vo": "VO_SM_0093",
+                  "emotion": "沉稳·确认"
+                },
+                {
+                  "speaker": "守笼人",
+                  "text": "……你越来越像他了。",
+                  "_action": "看着沈墨，目光复杂",
+                  "vo": "VO_CK_0123",
+                  "emotion": "复杂·感慨"
+                }
+              ]
+            },
+            {
+              "levelId": 307,
+              "title": "深层试炼",
+              "preDialog": [
+                {
+                  "speaker": "守笼人",
+                  "text": "本章最终试炼，所有区块技巧融会贯通。提示数降至三十一，是设局人当年的标准出题难度。",
+                  "bgm": "chapter_3.mp3 渐强",
+                  "vo": "VO_CK_0049",
+                  "emotion": "庄重·严肃"
+                },
+                {
+                  "speaker": "阿妍",
+                  "text": "……你一定可以的。",
+                  "_action": "声音很轻",
+                  "vo": "VO_R_0048",
+                  "emotion": "极轻·鼓励"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "守笼人",
+                  "text": "你已具备拆解设局人标准笼局的能力。",
+                  "sfx": "victory_short, seal_stamp",
+                  "vo": "VO_CK_0050",
+                  "emotion": "欣慰·复杂"
+                },
+                {
+                  "speaker": "设局人（留声）",
+                  "text": "标准笼局？呵。你看到的不过是我三十年前的习作。",
+                  "vo": "VO_P_0008",
+                  "emotion": "冷笑"
+                },
+                {
+                  "speaker": "设局人（留声）",
+                  "text": "道不同不相为谋。你守着你的档案馆，我布我的局。",
+                  "pause": 1,
+                  "vo": "VO_P_0009",
+                  "emotion": "断然·复杂"
+                }
+              ]
+            },
+            {
+              "levelId": 399,
+              "title": "第3章结尾·决裂的回声",
+              "preDialog": [
+                {
+                  "speaker": "阿妍",
+                  "text": "……这是设局人的字迹。",
+                  "_action": "走到桌边，指尖拂过一本旧笔记的封面",
+                  "vo": "VO_R_0049",
+                  "emotion": "复杂·低沉"
+                },
+                {
+                  "speaker": "守笼人",
+                  "text": "第四章的残局档案，记录了我们决裂那天的最后一局。",
+                  "_action": "站在照片前，背影苍老",
+                  "vo": "VO_CK_0051",
+                  "emotion": "沉重·追忆"
+                },
+                {
+                  "speaker": "沈墨",
+                  "text": "……他笑了。",
+                  "_action": "看着照片上那个意气风发的年轻人",
+                  "vo": "VO_SM_0041",
+                  "emotion": "低沉·观察"
+                },
+                {
+                  "speaker": "守笼人",
+                  "text": "那时候……我们都以为自己是对的。",
+                  "_action": "没有回头",
+                  "vo": "VO_CK_0052",
+                  "emotion": "沧桑·叹息"
+                },
+                {
+                  "speaker": "沈墨",
+                  "text": "……最后一局。不是她的。是他的。",
+                  "pause": 2,
+                  "vo": "VO_SM_0042",
+                  "emotion": "重复·确认·更坚定"
+                }
+              ],
+              "clearDialog": []
+            }
+          ],
+          "hiddenStory": [
+            {
+              "speaker": "设局人（留声）",
+              "text": "你找到了那张合照。也找到了我留在这层墙缝里的九块残片。三十年前，我在这间档案室里，曾真心以为自己能赢过所有人。",
+              "emotion": "留声·低沉·自白",
+              "bg": "assets/images/backgrounds/bg_new/BG-03_stone_stairs.jpg"
+            },
+            {
+              "speaker": "守笼人",
+              "text": "那盘决裂局，我至今没敢再摆一遍。你比我勇敢。",
+              "emotion": "怅然·承认"
+            },
+            {
+              "speaker": "沈墨",
+              "text": "……他留给我的不是答案。是问号。",
+              "emotion": "领悟·沉重"
+            }
+          ],
+          "epilogue": [
+            {
+              "speaker": "守笼人",
+              "text": "第四章的残局档案，已经为你打开。当年决裂那天的事，都在里面。",
+              "sfx": "seal_stamp",
+              "emotion": "沉重·托付"
+            },
+            {
+              "speaker": "阿妍",
+              "text": "不看，就永远不知道他为什么认输。",
+              "emotion": "坚定·低语"
+            }
+          ]
+        },
+        {
+          "chapterId": 4,
+          "title": "尘封旧案（六乘六→九乘九过渡）",
+          "prologue": [
+            {
+              "speaker": "守笼人",
+              "text": "这一层的档案，记录着当年决裂事件的完整过程。大部分数字已模糊不可辨。你需要学会残局逆向推导——从已知的碎片反推完整局面。",
+              "scene": "房间比之前更暗，尘埃厚积。桌上散落着泛黄的纸页，像是被人匆匆翻过又扔下。墙上有一道裂痕。",
+              "bgm": "chapter_4.mp3 以钢琴独奏开始",
+              "sfx": "paper_flip",
+              "vo": "VO_CK_0053",
+              "emotion": "沉重·介绍",
+              "bg": "assets/images/backgrounds/bg_new/BG-05_stone_corridor.jpg"
+            },
+            {
+              "speaker": "阿妍",
+              "text": "这些笔记，是当年一位见证者留下的。他记录了那场对决的每一步。",
+              "vo": "VO_R_0050",
+              "emotion": "低沉"
+            },
+            {
+              "speaker": "沈墨",
+              "text": "第十五手……",
+              "_action": "拿起最上面的一页，上面写着\"第十五手……守笼人落子很慢\"",
+              "vo": "VO_SM_0043",
+              "emotion": "默念"
+            }
+          ],
+          "levels": [
+            {
+              "levelId": 401,
+              "title": "候选笔记",
+              "preDialog": [
+                {
+                  "speaker": "守笼人",
+                  "text": "残局逆向推导的第一步，是把所有候选数都标出来。用好笔记——把每一格可能的数字都写上。",
+                  "vo": "VO_CK_0054",
+                  "emotion": "教学"
+                },
+                {
+                  "speaker": "阿妍",
+                  "text": "笔记是逆向推导的基础。不要嫌麻烦。",
+                  "vo": "VO_R_0051",
+                  "emotion": "冷静"
+                },
+                {
+                  "speaker": "沈墨",
+                  "text": "区块排除。第一步。",
+                  "_action": "开始系统地标注候选数",
+                  "vo": "VO_SM_0044",
+                  "emotion": "沉稳·开始"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "守笼人",
+                  "text": "逆向思路已通。继续向下，B2 密室的线索还等着我们。",
+                  "sfx": "success",
+                  "vo": "VO_CK_0124",
+                  "emotion": "欣慰"
+                }
+              ]
+            },
+            {
+              "levelId": 402,
+              "title": "隐曜进阶",
+              "preDialog": [
+                {
+                  "speaker": "守笼人",
+                  "text": "残缺的残局中，隐曜更加隐蔽。你需要在大量候选数中找到那对\"隐藏的光\"。",
+                  "vo": "VO_CK_0055",
+                  "emotion": "教学"
+                },
+                {
+                  "speaker": "阿妍",
+                  "text": "从碎纸片里拼出真相……",
+                  "vo": "VO_R_0052",
+                  "emotion": "低沉·自语"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "守笼人",
+                  "text": "逆向思路逐渐清晰。",
+                  "sfx": "success",
+                  "vo": "VO_CK_0056",
+                  "emotion": "欣慰"
+                }
+              ]
+            },
+            {
+              "levelId": 403,
+              "title": "并蒂锁",
+              "preDialog": [
+                {
+                  "speaker": "守笼人",
+                  "text": "双星并蒂，闭户成局。两个数字在同一区域被锁定到同一对格子，其他候选便可排除。这叫\"并蒂锁\"——显性数对。",
+                  "vo": "VO_CK_0057",
+                  "emotion": "庄重·教学"
+                },
+                {
+                  "speaker": "阿妍",
+                  "text": "和隐曜相反——隐曜是隐藏的数对，并蒂锁是明显的数对。",
+                  "vo": "VO_R_0053",
+                  "emotion": "冷静·教学"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "守笼人",
+                  "text": "并蒂锁，显性数对。你把这层纸捅破了，剩下的路就顺了。",
+                  "vo": "VO_CK_0058",
+                  "emotion": "欣慰·教学"
+                },
+                {
+                  "speaker": "沈墨",
+                  "text": "……有些锁，是看得见的。有些不是。",
+                  "_action": "看着盘面，若有所思",
+                  "vo": "VO_SM_0044b",
+                  "emotion": "深沉·隐喻"
+                }
+              ]
+            },
+            {
+              "levelId": 404,
+              "title": "三子法",
+              "preDialog": [
+                {
+                  "speaker": "守笼人",
+                  "text": "三子连阵，锁数成局。三格共享三数时，可排除该区域其他格子的这三个数字。",
+                  "vo": "VO_CK_0059",
+                  "emotion": "庄重·教学"
+                },
+                {
+                  "speaker": "阿妍",
+                  "text": "三链数是数对的自然延伸。",
+                  "vo": "VO_R_0054",
+                  "emotion": "冷静"
+                },
+                {
+                  "speaker": "沈墨",
+                  "text": "这三个数，可以交换位置。但它们不会离开这三个格子。",
+                  "_action": "观察后确认",
+                  "vo": "VO_SM_0045",
+                  "emotion": "确认"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "沈墨",
+                  "text": "它们可以换位置。但它们不会分开。",
+                  "sfx": "success",
+                  "vo": "VO_SM_0046",
+                  "emotion": "比喻·深沉"
+                }
+              ]
+            },
+            {
+              "levelId": 405,
+              "title": "笼内排除",
+              "preDialog": [
+                {
+                  "speaker": "守笼人",
+                  "text": "这是当年那场对决的倒数第三步。提示数仅剩二十九个。",
+                  "scene": "盘面有更多的数字被涂黑——像是被人故意抹去的。",
+                  "sfx": "paper_tear",
+                  "vo": "VO_CK_0060",
+                  "emotion": "沉重"
+                },
+                {
+                  "speaker": "阿妍",
+                  "text": "笔记残缺成这样还能推？从碎纸片里拼真相。",
+                  "vo": "VO_R_0055",
+                  "emotion": "低沉"
+                },
+                {
+                  "speaker": "设局人（留声碎片）",
+                  "text": "……推演市场走势……推演人群决策……",
+                  "_action": "沈墨解题过程中，灯光偶尔闪烁，隐约听到旧留声的碎片。",
+                  "sfx": "",
+                  "vo": "VO_P_0010",
+                  "emotion": "碎片·遥远"
+                },
+                {
+                  "speaker": "守笼人（留声碎片）",
+                  "text": "……星辰梭不能用来做这种事……",
+                  "vo": "VO_CK_0061",
+                  "emotion": "碎片·焦急"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "守笼人",
+                  "text": "残局之下，每一步都是选择。",
+                  "sfx": "success",
+                  "vo": "VO_CK_0062",
+                  "emotion": "沉重·哲理"
+                },
+                {
+                  "speaker": "沈墨",
+                  "text": "荒谬。笼局必有解。",
+                  "vo": "VO_SM_0047",
+                  "emotion": "坚定"
+                }
+              ]
+            },
+            {
+              "levelId": 406,
+              "title": "十字交叉",
+              "preDialog": [
+                {
+                  "speaker": "守笼人",
+                  "text": "这是当年对决的最后一步，也是笔记的最后一页。解完这道残局，你就会知道我们决裂的全部原因。",
+                  "vo": "VO_CK_0063",
+                  "emotion": "极沉重"
+                },
+                {
+                  "speaker": "阿妍",
+                  "text": "几个区域同时倒推，还要互相对一下能不能对上。",
+                  "vo": "VO_R_0056",
+                  "emotion": "认真·提示"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "守笼人",
+                  "text": "那天……他走到了最后一步。他发现星辰梭不只是推演数独的工具。它可以推演任何有规则的系统——棋局、市场、战争……甚至人心。",
+                  "_action": "盘面最后一个数字落下的瞬间，房间里的灯全部亮了。墙上那道裂痕发出微光。",
+                  "sfx": "sigh",
+                  "vo": "VO_CK_0064",
+                  "emotion": "沉重·揭示",
+                  "bg": "assets/images/backgrounds/bg_new/BG-05_stone_corridor.jpg"
+                },
+                {
+                  "speaker": "守笼人",
+                  "text": "我求他毁掉它。他不肯。他说\"没有什么能阻挡笼局的进化\"。然后他就走了，再也没有回来。",
+                  "vo": "VO_CK_0065",
+                  "emotion": "痛苦·回忆"
+                },
+                {
+                  "speaker": "阿妍",
+                  "text": "……所以你守在这里三十年，就是为了不让任何人打开星辰梭？",
+                  "_action": "低声",
+                  "vo": "VO_R_0057",
+                  "emotion": "低沉·确认"
+                },
+                {
+                  "speaker": "守笼人",
+                  "text": "我以为那样能拦住他。",
+                  "_action": "点头",
+                  "vo": "VO_CK_0066",
+                  "emotion": "苦涩·自嘲"
+                },
+                {
+                  "speaker": "沈墨",
+                  "text": "你拦不住的。",
+                  "_action": "平静地",
+                  "vo": "VO_SM_0048",
+                  "emotion": "平静·判断"
+                },
+                {
+                  "speaker": "守笼人",
+                  "text": "……为什么？",
+                  "_action": "看向沈墨",
+                  "vo": "VO_CK_0067",
+                  "emotion": "惊讶·询问"
+                },
+                {
+                  "speaker": "守笼人",
+                  "text": "第五章的笼局，是星辰梭的核心。你要自己判断，它到底该被封存，还是被释放。",
+                  "vo": "VO_CK_0068",
+                  "emotion": "庄重·过渡"
+                },
+                {
+                  "speaker": "沈墨",
+                  "text": "……我不是怕失控。我是怕有人用它来做不该做的事。",
+                  "_action": "目光直视前方",
+                  "vo": "VO_SM_0049",
+                  "emotion": "低沉·坚定"
+                }
+              ]
+            },
+            {
+              "levelId": 499,
+              "title": "第4章结尾·光从裂缝中透出",
+              "preDialog": [
+                {
+                  "speaker": "阿妍",
+                  "text": "……星辰梭的光。",
+                  "_action": "盯着那光，眼神复杂",
+                  "vo": "VO_R_0058",
+                  "emotion": "复杂·低沉"
+                },
+                {
+                  "speaker": "守笼人",
+                  "text": "三十年了……它还在运转。",
+                  "_action": "声音很轻",
+                  "vo": "VO_CK_0069",
+                  "emotion": "震惊·复杂"
+                },
+                {
+                  "speaker": "沈墨",
+                  "text": "他一直在这里。不是作为谜题。是作为终点。",
+                  "_action": "向裂缝走去",
+                  "vo": "VO_SM_0050",
+                  "emotion": "坚定·走向"
+                }
+              ],
+              "clearDialog": []
+            }
+          ],
+          "hiddenStory": [
+            {
+              "speaker": "设局人（留声碎片）",
+              "text": "……你把这层墙缝里最后一块残页也拼上了。当年那场对决，我输给的不是他，是我自己。",
+              "bg": "assets/images/backgrounds/bg_new/BG-05_stone_corridor.jpg",
+              "emotion": "留声·自白·释然"
+            },
+            {
+              "speaker": "守笼人",
+              "text": "这层档案的最后一页，我一直没敢给人看。那一页写着——「我认输，不是因为这盘局解不开。是因为我害怕解开之后，我再也找不到留下的理由。」",
+              "emotion": "怅然·沉重"
+            },
+            {
+              "speaker": "沈墨",
+              "text": "……他到最后，还是把答案留给了你。",
+              "emotion": "领悟·低沉"
+            },
+            {
+              "speaker": "守笼人",
+              "text": "不知道。但他把最后一步，留给了愿意走到底的人。",
+              "emotion": "温和·释然"
+            }
+          ],
+          "epilogue": [
+            {
+              "speaker": "守笼人",
+              "text": "旧案已结。裂缝深处那道光，是星辰梭的核心在被唤醒。",
+              "sfx": "seal_stamp",
+              "emotion": "庄重·铺垫"
+            },
+            {
+              "speaker": "阿妍",
+              "text": "……你怕吗？",
+              "emotion": "低沉·询问"
+            },
+            {
+              "speaker": "沈墨",
+              "text": "怕。但还是要往前走。",
+              "emotion": "坚定·平静"
+            }
+          ]
+        },
+        {
+          "chapterId": 5,
+          "title": "星辰梭核心（六乘六→九乘九）",
+          "prologue": [
+            {
+              "speaker": "守笼人",
+              "text": "欢迎来到星辰梭的核心区域。这里的笼局不再遵循常规形态——嵌套笼、异形笼、复合笼组，都是星辰梭的基础语言。",
+              "scene": "裂缝之后的空间完全不同。墙壁是半透明的，可以看到光在里面流动，像是某种巨大的机械。空气里有持续的低频嗡鸣。盘面不再是木质的，而是悬浮在半空中的光阵。",
+              "bgm": "chapter_5.mp3 以电子嗡鸣开始",
+              "sfx": "electronic_pulse",
+              "vo": "VO_CK_0070",
+              "emotion": "庄重·敬畏"
+            },
+            {
+              "speaker": "阿妍",
+              "text": "这就是星辰梭……",
+              "_action": "看着光阵，眼神复杂",
+              "vo": "VO_R_0059",
+              "emotion": "复杂·敬畏",
+              "cg": "assets/images/cg/CG-24_w_clear_form.jpg",
+              "bg": "assets/images/backgrounds/bg_new/BG-06_stone_gate.jpg"
+            },
+            {
+              "speaker": "沈墨",
+              "text": "……嗯。",
+              "_action": "走到悬浮盘面前，伸出手。光映在他的脸上。",
+              "vo": "VO_SM_0051",
+              "emotion": "平静·确认"
+            },
+            {
+              "speaker": "沈墨",
+              "text": "它在等我。",
+              "pause": 1,
+              "vo": "VO_SM_0052",
+              "emotion": "平静·陈述"
+            },
+            {
+              "speaker": "设局人（留声）",
+              "text": "有意思……三十年来，它第一次主动响应一个人。",
+              "_action": "声音从四面八方传来，比之前更清晰，仿佛就在身边",
+              "vo": "VO_P_0011",
+              "emotion": "意外·感兴趣"
+            }
+          ],
+          "levels": [
+            {
+              "levelId": 501,
+              "title": "嵌套笼入门",
+              "preDialog": [
+                {
+                  "speaker": "守笼人",
+                  "text": "这是星辰梭的基础形态——双层嵌套笼。大笼之中套着小笼，两层笼的和值与数字规则同时生效。",
+                  "_action": "悬浮盘面显示双层笼——大笼套小笼。",
+                  "sfx": "electronic_pulse",
+                  "vo": "VO_CK_0071",
+                  "emotion": "庄重·教学"
+                },
+                {
+                  "speaker": "阿妍",
+                  "text": "先算外层还是先算内层？取决于哪层信息更多。",
+                  "vo": "VO_R_0060",
+                  "emotion": "冷静·提示"
+                },
+                {
+                  "speaker": "沈墨",
+                  "text": "外层三十一。内层十二。差值是十九。这三格——只能是四、六、九。",
+                  "_action": "看着双层笼，手指微动",
+                  "vo": "VO_SM_0053",
+                  "emotion": "快速计算·确认"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "守笼人",
+                  "text": "双层嵌套只是基础。真正的星辰梭笼局，可以有无数层。",
+                  "sfx": "success, electronic_pulse",
+                  "vo": "VO_CK_0072",
+                  "emotion": "庄重"
+                },
+                {
+                  "speaker": "沈墨",
+                  "text": "一层一层往里剥。像剥洋葱。",
+                  "vo": "VO_SM_0054",
+                  "emotion": "平静"
+                }
+              ]
+            },
+            {
+              "levelId": 502,
+              "title": "异形笼",
+              "preDialog": [
+                {
+                  "speaker": "守笼人",
+                  "text": "三层嵌套笼，三层和值同时约束，需要从最外层逐步向内推导。",
+                  "_action": "盘面出现不规则形状的笼——不是方形，而是L形、T形、蛇形。",
+                  "vo": "VO_CK_0073",
+                  "emotion": "教学"
+                },
+                {
+                  "speaker": "阿妍",
+                  "text": "和值只与笼内格子数量有关，与形状无关。规则是抽象的，不被外形束缚。",
+                  "vo": "VO_R_0061",
+                  "emotion": "冷静·教学"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "守笼人",
+                  "text": "他是我见过最有天赋的人。",
+                  "_action": "苦涩地笑了一下",
+                  "vo": "VO_CK_0074",
+                  "emotion": "苦涩·感慨"
+                },
+                {
+                  "speaker": "阿妍",
+                  "text": "……你今年多大？",
+                  "_action": "阿妍忽然转头看向沈墨，像是意识到了什么。沈墨没有抬头，但笔尖停了一瞬。；声音很轻",
+                  "vo": "VO_R_0061b",
+                  "emotion": "试探·确认"
+                },
+                {
+                  "speaker": "沈墨",
+                  "text": "二十四。",
+                  "_action": "顿了一下",
+                  "vo": "VO_SM_0054b",
+                  "emotion": "平静·简短"
+                },
+                {
+                  "speaker": "守笼人",
+                  "text": "……",
+                  "_action": "猛地看向沈墨，瞳孔微缩"
+                }
+              ]
+            },
+            {
+              "levelId": 503,
+              "title": "复合笼组合",
+              "preDialog": [
+                {
+                  "speaker": "守笼人",
+                  "text": "星辰梭不局限于规则的方形笼。异形笼——不规则形状的笼格——才是它的真正威力。",
+                  "vo": "VO_CK_0075",
+                  "emotion": "庄重·教学"
+                },
+                {
+                  "speaker": "沈墨",
+                  "text": "和值只与格子数量有关，与形状无关。",
+                  "vo": "VO_SM_0055",
+                  "emotion": "领悟·复述"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "沈墨",
+                  "text": "这个笼子的共享格数最多。先解它。",
+                  "sfx": "success",
+                  "vo": "VO_SM_0056",
+                  "emotion": "沉稳·策略"
+                }
+              ]
+            },
+            {
+              "levelId": 504,
+              "title": "多宫星衡",
+              "preDialog": [
+                {
+                  "speaker": "守笼人",
+                  "text": "多组嵌套笼同时分布在盘面中，互相制约，需要综合判断各组笼的数字范围。",
+                  "vo": "VO_CK_0076",
+                  "emotion": "教学"
+                },
+                {
+                  "speaker": "阿妍",
+                  "text": "全局视角。不要盯着一个笼子看。",
+                  "vo": "VO_R_0062",
+                  "emotion": "冷静"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "设局人（留声）",
+                  "text": "你和他很像。三十年前，他也是这样解题的。",
+                  "sfx": "success",
+                  "vo": "VO_P_0012",
+                  "emotion": "意味深长"
+                },
+                {
+                  "speaker": "沈墨",
+                  "text": "他是谁？",
+                  "_action": "停下笔",
+                  "vo": "VO_SM_0057",
+                  "emotion": "警觉·询问"
+                }
+              ]
+            },
+            {
+              "levelId": 505,
+              "title": "综合笼局",
+              "preDialog": [
+                {
+                  "speaker": "守笼人",
+                  "text": "星辰梭的高阶形态——嵌套、异形、多组联动同时存在。提示数降至二十六。",
+                  "vo": "VO_CK_0077",
+                  "emotion": "庄重·严肃"
+                },
+                {
+                  "speaker": "阿妍",
+                  "text": "……你可以的。",
+                  "_action": "声音很轻",
+                  "vo": "VO_R_0063",
+                  "emotion": "克制·鼓励"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "沈墨",
+                  "text": "我看到了。",
+                  "_action": "盘面发出强烈的蓝光，整个空间都在震动。；睁开眼，他的眼睛里映着蓝光",
+                  "sfx": "eureka, breakthrough",
+                  "vo": "VO_SM_0058",
+                  "emotion": "顿悟·震撼"
+                },
+                {
+                  "speaker": "阿妍",
+                  "text": "你看到了什么？",
+                  "vo": "VO_R_0064",
+                  "emotion": "紧张·询问"
+                },
+                {
+                  "speaker": "沈墨",
+                  "text": "……他一直在这里。不是作为谜题。是作为终点。",
+                  "vo": "VO_SM_0059",
+                  "emotion": "震撼·确认"
+                }
+              ]
+            },
+            {
+              "levelId": 506,
+              "title": "星辰梭试炼",
+              "preDialog": [
+                {
+                  "speaker": "守笼人",
+                  "text": "本章最终试炼，融合所有复合笼技巧。解完这一关，你就掌握了星辰梭的全部基础原理。",
+                  "bgm": "chapter_5.mp3 达到高潮",
+                  "vo": "VO_CK_0078",
+                  "emotion": "庄重"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "守笼人",
+                  "text": "嵌套笼、异形笼、复合笼——星辰梭的基础语言，你已掌握。",
+                  "_action": "悬浮盘面缓缓落下，光芒收敛。低频嗡鸣变得温和了。",
+                  "sfx": "victory_full, seal_stamp",
+                  "vo": "VO_CK_0079",
+                  "emotion": "复杂·欣慰"
+                },
+                {
+                  "speaker": "设局人（留声）",
+                  "text": "你已掌握星辰梭的全部基础。接下来，你要面对的是我留下的终局——也是我毕生心血的结晶。",
+                  "vo": "VO_P_0013",
+                  "emotion": "平静·期待"
+                },
+                {
+                  "speaker": "沈墨",
+                  "text": "……三十年。不算晚。",
+                  "_action": "看着光芒收敛后的盘面，轻声",
+                  "vo": "VO_SM_0060",
+                  "emotion": "释然·低沉"
+                }
+              ]
+            },
+            {
+              "levelId": 599,
+              "title": "第5章结尾·抉择的门槛",
+              "preDialog": [
+                {
+                  "speaker": "守笼人",
+                  "text": "终局六道笼局，是设局人离开档案馆前留下的最后作品。他说，这是他给这个世界的答案。",
+                  "vo": "VO_CK_0080",
+                  "emotion": "庄重·复杂"
+                },
+                {
+                  "speaker": "阿妍",
+                  "text": "六道……全部要通过？",
+                  "vo": "VO_R_0065",
+                  "emotion": "低沉·确认"
+                },
+                {
+                  "speaker": "守笼人",
+                  "text": "是。但最后一道门后面……有两个答案。",
+                  "vo": "VO_CK_0081",
+                  "emotion": "沉重·预示"
+                },
+                {
+                  "speaker": "沈墨",
+                  "text": "两个答案？",
+                  "vo": "VO_SM_0061",
+                  "emotion": "警觉·询问"
+                },
+                {
+                  "speaker": "守笼人",
+                  "text": "当年我回答不出来。所以我认输了。",
+                  "vo": "VO_CK_0082",
+                  "emotion": "苦涩"
+                },
+                {
+                  "speaker": "沈墨",
+                  "text": "那就看看，他的答案是什么。",
+                  "_action": "走向第一扇门",
+                  "pause": 2,
+                  "vo": "VO_SM_0062",
+                  "emotion": "坚定·前行"
+                }
+              ],
+              "clearDialog": []
+            }
+          ],
+          "hiddenStory": [
+            {
+              "speaker": "设局人（留声）",
+              "text": "你走进了核心，也找到了我藏在这里的九枚星核残片。这层楼的每一道异形笼，都是我当年在「一切皆可数」的狂想里，亲手搭起来的。",
+              "bg": "assets/images/backgrounds/bg_new/BG-06_stone_gate.jpg",
+              "emotion": "留声·自白·狂热余温"
+            },
+            {
+              "speaker": "守笼人",
+              "text": "他当年说过一句让我记到今天的话——「笼不是牢笼，笼是答案在等我。」",
+              "emotion": "苦涩·回忆"
+            },
+            {
+              "speaker": "沈墨",
+              "text": "……他以为他算尽了所有。唯独没算到，自己会走不出来。",
+              "emotion": "领悟·低沉"
+            },
+            {
+              "speaker": "守笼人",
+              "text": "他从不承认后悔。可他把最后一道门，留给了两个答案。那大概就是他最诚实的后悔。",
+              "emotion": "复杂·释然"
+            }
+          ],
+          "epilogue": [
+            {
+              "speaker": "守笼人",
+              "text": "星辰梭的核心已被唤醒。六道终局之门，就在前面等着你。",
+              "sfx": "seal_stamp",
+              "emotion": "庄重·铺垫"
+            },
+            {
+              "speaker": "阿妍",
+              "text": "他留了两个答案。到头来，要选的人是你。",
+              "emotion": "低沉·意有所指"
+            }
+          ]
+        },
+        {
+          "chapterId": 6,
+          "title": "终局笼局（九乘九）",
+          "prologue": [
+            {
+              "speaker": "守笼人",
+              "text": "终局六道笼局，是设局人离开前留下的最后作品。",
+              "scene": "六扇门内部是一个巨大的圆形空间。正中央是一张九乘九的光阵盘面，比之前所有盘面都大。穹顶上可以看到流动的星光。",
+              "bgm": "chapter_6.mp3 以沉重的鼓点开始",
+              "vo": "VO_CK_0083",
+              "emotion": "庄重·回忆"
+            },
+            {
+              "speaker": "阿妍",
+              "text": "九乘九盘面。提示数应该会很少。",
+              "vo": "VO_R_0066",
+              "emotion": "冷静·分析",
+              "bg": "assets/images/backgrounds/bg_new/BG-13_final_circular_room.jpg"
+            }
+          ],
+          "levels": [
+            {
+              "levelId": 601,
+              "title": "终局入口",
+              "preDialog": [
+                {
+                  "speaker": "守笼人",
+                  "text": "那年他闯到档案馆，说要挑战最厉害的笼局设计师。我接待了他，然后……输了。",
+                  "vo": "VO_CK_0084",
+                  "emotion": "回忆·苦涩"
+                },
+                {
+                  "speaker": "守笼人",
+                  "text": "我不是输在技巧上。我是输在……不敢像他那样，把星辰梭推到极限。",
+                  "_action": "苦笑",
+                  "vo": "VO_CK_0085",
+                  "emotion": "苦涩·自嘲"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "沈墨",
+                  "text": "第一扇门，开了。",
+                  "_action": "盘面最亮处浮现出一把钥匙的虚影",
+                  "sfx": "breakthrough",
+                  "vo": "VO_SM_0063b",
+                  "emotion": "沉稳·前行"
+                },
+                {
+                  "speaker": "守笼人",
+                  "text": "这才第一道。后面还有五道。真正的考验，才刚刚开始。",
+                  "vo": "VO_CK_0085b",
+                  "emotion": "庄重·提醒"
+                }
+              ]
+            },
+            {
+              "levelId": 602,
+              "title": "极限推理",
+              "preDialog": [
+                {
+                  "speaker": "阿妍",
+                  "text": "推演市场走势、推演人群决策、推演……战争胜负。星辰梭的边界一旦打开，后果不堪设想。",
+                  "vo": "VO_R_0067",
+                  "emotion": "引用·沉重"
+                },
+                {
+                  "speaker": "沈墨",
+                  "text": "锁住两个数，排除掉其他地方。剩下的就是答案了。",
+                  "_action": "平静地解题",
+                  "vo": "VO_SM_0063",
+                  "emotion": "沉稳"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "阿妍",
+                  "text": "……你刚才说的那句话，他在三十年前也说过。",
+                  "_action": "看着沈墨，眼神复杂",
+                  "sfx": "success",
+                  "vo": "VO_R_0067b",
+                  "emotion": "低沉·微颤"
+                },
+                {
+                  "speaker": "守笼人",
+                  "text": "「锁住两个数，排除其他地方。剩下的就是答案。」——这是他当年教我时说的第一句话。",
+                  "vo": "VO_CK_0086b",
+                  "emotion": "复杂·感慨"
+                }
+              ]
+            },
+            {
+              "levelId": 603,
+              "title": "设局人谜题·一",
+              "preDialog": [
+                {
+                  "speaker": "设局人（留声，声音更清晰了，仿佛就在对面坐着）",
+                  "text": "你知道为什么我能赢他吗？",
+                  "_action": "这一关盘面出现了前所未有的设计——有些笼子的和值会\"波动\"，仿佛盘面本身在变化。",
+                  "sfx": "electronic_pulse",
+                  "vo": "VO_P_0014",
+                  "emotion": "平静·对话感"
+                },
+                {
+                  "speaker": "沈墨",
+                  "text": "因为你不害怕。",
+                  "_action": "没有抬头",
+                  "vo": "VO_SM_0064",
+                  "emotion": "平静·回答"
+                },
+                {
+                  "speaker": "设局人（留声）",
+                  "text": "……呵。有意思。",
+                  "vo": "VO_P_0015",
+                  "emotion": "意外·轻笑"
+                },
+                {
+                  "speaker": "守笼人",
+                  "text": "你……",
+                  "_action": "震惊地看着沈墨",
+                  "vo": "VO_CK_0086",
+                  "emotion": "震惊"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "设局人（留声）",
+                  "text": "推演市场走势、推演人群决策、推演战争胜负——这些你觉得是\"不该做的事\"？",
+                  "sfx": "breakthrough",
+                  "vo": "VO_P_0016",
+                  "emotion": "质问·压迫"
+                },
+                {
+                  "speaker": "守笼人",
+                  "text": "我以为那样能拦住他。",
+                  "vo": "VO_CK_0087",
+                  "emotion": "苦涩"
+                },
+                {
+                  "speaker": "沈墨",
+                  "text": "拦不住的。",
+                  "_action": "平静",
+                  "vo": "VO_SM_0065",
+                  "emotion": "平静·判断"
+                }
+              ]
+            },
+            {
+              "levelId": 604,
+              "title": "设局人谜题·二",
+              "preDialog": [
+                {
+                  "speaker": "设局人（留声）",
+                  "text": "最后一道笼局，有两个正确答案。一个是封存——毁掉星辰梭，让一切归于沉寂。一个是释放——打开它，让笼局的进化继续。",
+                  "vo": "VO_P_0017",
+                  "emotion": "平静·揭示"
+                },
+                {
+                  "speaker": "阿妍",
+                  "text": "这不是普通的数独。这是一道选择题。",
+                  "_action": "低声",
+                  "vo": "VO_R_0068",
+                  "emotion": "低沉·领悟"
+                },
+                {
+                  "speaker": "守笼人",
+                  "text": "当年我选择了封存。他选择了释放。然后他走了，我留了下来。",
+                  "vo": "VO_CK_0088",
+                  "emotion": "沉重"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "设局人（留声）",
+                  "text": "第二道，你解得很透。你在替我回答一个我当年没敢回答的问题。",
+                  "sfx": "breakthrough",
+                  "vo": "VO_P_0017b",
+                  "emotion": "平静·审视"
+                },
+                {
+                  "speaker": "沈墨",
+                  "text": "……封存，是对「人」负责。释放，是对「答案」负责。",
+                  "_action": "抬眼，与虚空中的那道声音对视",
+                  "vo": "VO_SM_0066b",
+                  "emotion": "核心·坚定"
+                }
+              ]
+            },
+            {
+              "levelId": 605,
+              "title": "设局人谜题·三",
+              "preDialog": [
+                {
+                  "speaker": "沈墨",
+                  "text": "你终于明白了。",
+                  "_action": "看向守笼人",
+                  "vo": "VO_SM_0066",
+                  "emotion": "平静"
+                },
+                {
+                  "speaker": "守笼人",
+                  "text": "……你的语气，和他当年一模一样。",
+                  "_action": "怔怔地看着沈墨",
+                  "vo": "VO_CK_0089",
+                  "emotion": "震惊·恍惚"
+                },
+                {
+                  "speaker": "阿妍",
+                  "text": "你……",
+                  "_action": "猛地看向沈墨，像是突然意识到了什么",
+                  "vo": "VO_R_0069",
+                  "emotion": "震惊·不敢相信"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "沈墨",
+                  "text": "网撒下去的时候，鱼已经不在水里了。",
+                  "_action": "没有回应阿妍的目光，继续解题",
+                  "sfx": "success",
+                  "vo": "VO_SM_0067",
+                  "emotion": "哲理·深沉"
+                }
+              ]
+            },
+            {
+              "levelId": 606,
+              "title": "终极笼局",
+              "preDialog": [
+                {
+                  "speaker": "守笼人",
+                  "text": "最后一道笼局，二十三个提示数，是设局人毕生的巅峰之作。",
+                  "_action": "九乘九盘面，提示数仅剩二十三个。盘面发出金色和蓝色两种光，分别在不同区域流动。",
+                  "bgm": "chapter_6.mp3 达到最高潮",
+                  "sfx": "",
+                  "vo": "VO_CK_0090",
+                  "emotion": "庄重·敬畏",
+                  "cg": "assets/images/cg/CG-12_final_cage.jpg",
+                  "bg": "assets/images/backgrounds/bg_new/BG-13_final_circular_room.jpg"
+                },
+                {
+                  "speaker": "阿妍",
+                  "text": "……他可以的。",
+                  "_action": "看着沈墨的侧脸，眼神复杂",
+                  "vo": "VO_R_0070",
+                  "emotion": "确信·复杂"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "守笼人",
+                  "text": "六道终局笼局，全部破解。你已具备成为守笼人的资格。",
+                  "_action": "盘面中央浮现出两个箭头——一个指向\"封存\"，一个指向\"释放\"。",
+                  "sfx": "victory_full, achievement, seal_stamp",
+                  "vo": "VO_CK_0091",
+                  "emotion": "复杂·欣慰"
+                },
+                {
+                  "speaker": "设局人（留声）",
+                  "text": "你赢了。现在，做出你的选择。",
+                  "vo": "VO_P_0018",
+                  "emotion": "平静·释然"
+                },
+                {
+                  "speaker": "沈墨",
+                  "text": "这封信……是你写的吗？",
+                  "_action": "信纸在蓝光中微微反光，上面的字迹清晰可辨——\"档案编号K七三四。如果你能解开这一局，就能找到我。\"",
+                  "sfx": "paper_unfold, paper_flip",
+                  "pause": 3,
+                  "vo": "VO_SM_0068",
+                  "emotion": "核心·询问·确认",
+                  "cg": "assets/images/cg/CG-13_shenmo_letter.jpg"
+                },
+                {
+                  "speaker": "设局人（留声）",
+                  "text": "……不是同一封。折法一样。信不是我写的。",
+                  "_action": "沉默了很久",
+                  "pause": 2,
+                  "vo": "VO_P_0019",
+                  "emotion": "复杂·诚实"
+                },
+                {
+                  "speaker": "沈墨",
+                  "text": "那是谁——",
+                  "_action": "瞳孔微缩",
+                  "vo": "VO_SM_0069",
+                  "emotion": "震惊"
+                },
+                {
+                  "speaker": "设局人（留声）",
+                  "text": "是我让她写的。三十年前我布下这局的时候，就算到了需要有人把你引到这里。",
+                  "_action": "轻笑了一声，声音里有一种布局者的自得",
+                  "vo": "VO_P_0019b",
+                  "emotion": "平静·傲慢·一切尽在掌握"
+                },
+                {
+                  "speaker": "沈墨",
+                  "text": "……",
+                  "_action": "握信的手微微收紧"
+                },
+                {
+                  "speaker": "设局人（留声）",
+                  "text": "别这么看我。她自己选择来的。我只是……给了她一个不得不来的理由。",
+                  "vo": "VO_P_0019c",
+                  "emotion": "复杂·一丝不易察觉的柔软"
+                },
+                {
+                  "speaker": "设局人（留声）",
+                  "text": "等你打开第七卷秘术档案，就知道了。",
+                  "pause": 1.5,
+                  "vo": "VO_P_0020",
+                  "emotion": "平静·预示"
+                },
+                {
+                  "speaker": "守笼人",
+                  "text": "第七卷？我以为只有六卷！",
+                  "_action": "震惊",
+                  "vo": "VO_CK_0092",
+                  "emotion": "震惊"
+                },
+                {
+                  "speaker": "设局人（留声）",
+                  "text": "青出于蓝……罢了。",
+                  "_action": "轻笑",
+                  "vo": "VO_P_0021",
+                  "emotion": "释然·感慨·消散"
+                }
+              ]
+            },
+            {
+              "levelId": 699,
+              "title": "第6章结尾·（第一周目普通结局）· 新守笼人",
+              "preDialog": [
+                {
+                  "speaker": "阿妍",
+                  "text": "……你早就知道信不是他写的？",
+                  "_action": "看着沈墨，眼神里有很多没有说出口的话",
+                  "vo": "VO_R_0071",
+                  "emotion": "低沉·询问"
+                },
+                {
+                  "speaker": "沈墨",
+                  "text": "我不知道。但我需要确认。",
+                  "_action": "把信放回口袋",
+                  "vo": "VO_SM_0070",
+                  "emotion": "平静"
+                },
+                {
+                  "speaker": "守笼人",
+                  "text": "这是守笼人的钥匙。如果你选择留下……",
+                  "_action": "走到沈墨面前，把一把古旧的钥匙递给他",
+                  "vo": "VO_CK_0093",
+                  "emotion": "庄重·托付"
+                },
+                {
+                  "speaker": "沈墨",
+                  "text": "……我还没做出选择。",
+                  "_action": "看着钥匙，没有接",
+                  "vo": "VO_SM_0071",
+                  "emotion": "平静"
+                },
+                {
+                  "speaker": "守笼人",
+                  "text": "没关系。第七层有你要找的答案。",
+                  "_action": "微笑",
+                  "vo": "VO_CK_0094",
+                  "emotion": "温和·释然"
+                },
+                {
+                  "speaker": "阿妍",
+                  "text": "……不管你选什么，我都在。",
+                  "_action": "走到沈墨身边，轻声",
+                  "vo": "VO_R_0072",
+                  "emotion": "极轻·坚定"
+                },
+                {
+                  "speaker": "沈墨",
+                  "text": "我不是来解开这一局的。我是来找到你的。",
+                  "pause": 1,
+                  "vo": "VO_SM_0072",
+                  "emotion": "核心·坚定·比第一章更沉"
+                }
+              ],
+              "clearDialog": []
+            }
+          ],
+          "hiddenStory": [
+            {
+              "speaker": "设局人（留声）",
+              "text": "第一周目走到这里，你把我留下的九枚终局残片都收齐了。这层楼的每一道光，都是当年我一边推演人心、一边写下的挣扎。",
+              "bg": "assets/images/backgrounds/bg_new/BG-13_final_circular_room.jpg",
+              "emotion": "留声·自白·疲惫"
+            },
+            {
+              "speaker": "守笼人",
+              "text": "他当年在最后一封信里写过一句话——「我算尽了棋局，却算不尽人心。」我一直以为那是他的狂妄。现在才懂，那是他的认输。",
+              "emotion": "沉重·领悟"
+            },
+            {
+              "speaker": "阿妍",
+              "text": "……他把最难的题留给了自己。直到走的那天，都没解出来。",
+              "emotion": "低沉·微颤"
+            },
+            {
+              "speaker": "沈墨",
+              "text": "人心不是数独。没有唯一解。",
+              "emotion": "平静·通透"
+            },
+            {
+              "speaker": "守笼人",
+              "text": "有。因为他把答案，留给了我们这些还在走的人。",
+              "emotion": "温和·坚定"
+            }
+          ],
+          "epilogue": [
+            {
+              "speaker": "守笼人",
+              "text": "终局已破。第七卷秘术档案，是设局人留下的最后一件东西。",
+              "sfx": "seal_stamp",
+              "emotion": "庄重·托付"
+            },
+            {
+              "speaker": "阿妍",
+              "text": "不是新的开始。是把所有答案，拼回同一个故事。",
+              "emotion": "低沉·深刻"
+            }
+          ]
+        },
+        {
+          "chapterId": 7,
+          "title": "秘术档案（二周目入口）",
+          "prologue": [
+            {
+              "speaker": "守笼人",
+              "text": "这是设局人当年留下的最后一批手稿。六卷秘术。我以为这些东西已经和他一起消失了。",
+              "scene": "第七层是一间不大的房间，正中央的石台上放着六卷竹简，竹简旁边还有一个被封住的暗格，上面刻着\"非星辰梭传人不得开启\"。",
+              "bgm": "chapter_7.mp3 以古老的编钟音开始",
+              "sfx": "seal_glow",
+              "vo": "VO_CK_0095",
+              "emotion": "复杂·感慨"
+            },
+            {
+              "speaker": "阿妍",
+              "text": "\"非星辰梭传人不得开启\"……第七卷？",
+              "_action": "走到暗格前",
+              "vo": "VO_R_0073",
+              "emotion": "低沉·确认"
+            }
+          ],
+          "levels": [
+            {
+              "levelId": 701,
+              "title": "并蒂锁",
+              "preDialog": [
+                {
+                  "speaker": "守笼人",
+                  "text": "第一卷——并蒂锁。双星并蒂，闭户成局。两个格子共享两个候选数时，它们形成一把\"锁\"。",
+                  "vo": "VO_CK_0096",
+                  "emotion": "庄重·教学"
+                },
+                {
+                  "speaker": "阿妍",
+                  "text": "数对是所有高阶技巧的基础。",
+                  "vo": "VO_R_0074",
+                  "emotion": "冷静"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "守笼人",
+                  "text": "第一卷，并蒂锁，解封。",
+                  "sfx": "success, seal_stamp",
+                  "vo": "VO_CK_0096b",
+                  "emotion": "庄重"
+                },
+                {
+                  "speaker": "沈墨",
+                  "text": "第一卷的钥匙，是看得见的。后面的，越来越藏。",
+                  "vo": "VO_SM_0073b",
+                  "emotion": "沉稳·预见"
+                }
+              ]
+            },
+            {
+              "levelId": 702,
+              "title": "隐曜深化",
+              "preDialog": [
+                {
+                  "speaker": "守笼人",
+                  "text": "第二卷——隐曜。群曜遮目，一光独隐。两个数字被\"暗中标定\"在同一对格子里。",
+                  "vo": "VO_CK_0097",
+                  "emotion": "庄重"
+                },
+                {
+                  "speaker": "沈墨",
+                  "text": "锁住两个数，排除其他地方。隐曜之钥，能解开看似无解的死局。",
+                  "vo": "VO_SM_0073",
+                  "emotion": "领悟"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "守笼人",
+                  "text": "第二卷，隐曜深化，解封。",
+                  "sfx": "success, seal_stamp",
+                  "vo": "VO_CK_0097b",
+                  "emotion": "庄重"
+                },
+                {
+                  "speaker": "阿妍",
+                  "text": "藏得越深的数字，越接近真相。",
+                  "_action": "低语",
+                  "vo": "VO_R_0074b",
+                  "emotion": "低沉·意有所指"
+                },
+                {
+                  "speaker": "沈墨",
+                  "text": "……真相，也常常藏在看不见的地方。",
+                  "vo": "VO_SM_0073c",
+                  "emotion": "深沉·隐喻"
+                }
+              ]
+            },
+            {
+              "levelId": 703,
+              "title": "三子法",
+              "preDialog": [
+                {
+                  "speaker": "守笼人",
+                  "text": "第三卷——三子法。三子连阵，锁数成局。三格锁三数。",
+                  "vo": "VO_CK_0098",
+                  "emotion": "庄重"
+                },
+                {
+                  "speaker": "沈墨",
+                  "text": "它们可以换位置。但它们不会分开。",
+                  "vo": "VO_SM_0074",
+                  "emotion": "确认"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "守笼人",
+                  "text": "第三卷，三子法，解封。",
+                  "sfx": "success, seal_stamp",
+                  "vo": "VO_CK_0098b",
+                  "emotion": "庄重"
+                },
+                {
+                  "speaker": "沈墨",
+                  "text": "……有些牵绊，是拆不开的。",
+                  "_action": "看着阿妍的方向，片刻才移开",
+                  "vo": "VO_SM_0074b",
+                  "emotion": "意味深长"
+                }
+              ]
+            },
+            {
+              "levelId": 704,
+              "title": "剑鱼",
+              "preDialog": [
+                {
+                  "speaker": "守笼人",
+                  "text": "第四卷——剑鱼。某个数字在三行中只能出现在相同三列，可排除该三列其他位置的这个数字。",
+                  "vo": "VO_CK_0099",
+                  "emotion": "庄重"
+                },
+                {
+                  "speaker": "阿妍",
+                  "text": "X形结构。行列交叉排除。",
+                  "vo": "VO_R_0075",
+                  "emotion": "冷静"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "守笼人",
+                  "text": "第四卷，剑鱼，解封。",
+                  "sfx": "success, seal_stamp",
+                  "vo": "VO_CK_0099b",
+                  "emotion": "庄重"
+                },
+                {
+                  "speaker": "沈墨",
+                  "text": "……网撒下去的时候，鱼已经不在水里了。",
+                  "_action": "重复这句话，语气却比上次更沉",
+                  "vo": "VO_SM_0075b",
+                  "emotion": "哲理·深沉"
+                }
+              ]
+            },
+            {
+              "levelId": 705,
+              "title": "三才游鱼阵",
+              "preDialog": [
+                {
+                  "speaker": "守笼人",
+                  "text": "第五卷——三才游鱼阵。三链数跨区域联动，像三条鱼在盘面上穿梭。",
+                  "vo": "VO_CK_0100",
+                  "emotion": "庄重"
+                },
+                {
+                  "speaker": "沈墨",
+                  "text": "网撒下去的时候，鱼已经不在水里了。",
+                  "_action": "看着盘面复杂的候选数分布",
+                  "vo": "VO_SM_0075",
+                  "emotion": "哲理·领悟"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "守笼人",
+                  "text": "第五卷，三才游鱼阵，解封。",
+                  "sfx": "success, seal_stamp",
+                  "vo": "VO_CK_0100b",
+                  "emotion": "庄重"
+                },
+                {
+                  "speaker": "阿妍",
+                  "text": "三条鱼在盘面上游。你看见了它们的轨迹。",
+                  "_action": "声音里有一丝不易察觉的欣慰",
+                  "vo": "VO_R_0075b",
+                  "emotion": "低沉·肯定"
+                },
+                {
+                  "speaker": "守笼人",
+                  "text": "……只剩最后一卷了。暗格，也只剩最后一道锁。",
+                  "vo": "VO_CK_0100c",
+                  "emotion": "沉重·预示"
+                }
+              ]
+            },
+            {
+              "levelId": 706,
+              "title": "秘术大师",
+              "preDialog": [
+                {
+                  "speaker": "守笼人",
+                  "text": "第六卷——万法归宗。所有技巧融会贯通，没有固定套路。",
+                  "bgm": "chapter_7.mp3 高潮",
+                  "vo": "VO_CK_0101",
+                  "emotion": "庄重"
+                },
+                {
+                  "speaker": "阿妍",
+                  "text": "……你准备好了？",
+                  "_action": "看着沈墨",
+                  "vo": "VO_R_0076",
+                  "emotion": "轻声·询问"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "守笼人",
+                  "text": "六卷秘术，全部破解。",
+                  "_action": "六卷竹简全部发出光芒。暗格上的封印开始松动。",
+                  "sfx": "seal_stamp",
+                  "vo": "VO_CK_0102",
+                  "emotion": "欣慰·复杂",
+                  "cg": "assets/images/cg/CG-15_seventh_scroll.jpg",
+                  "bg": "assets/images/backgrounds/bg_new/BG-06_stone_gate.jpg"
+                },
+                {
+                  "speaker": "阿妍",
+                  "text": "这笔迹……",
+                  "_action": "身体微微发抖",
+                  "vo": "VO_R_0077",
+                  "emotion": "震动·不敢相信"
+                },
+                {
+                  "speaker": "沈墨",
+                  "text": "……是你。",
+                  "_action": "抬起头，眼中有光",
+                  "pause": 3,
+                  "vo": "VO_SM_0076",
+                  "emotion": "震动·确认·柔软"
+                },
+                {
+                  "speaker": "阿妍",
+                  "text": "……我说过了。委托人信上的内容，我已经确认过了。",
+                  "_action": "沈墨看向阿妍。阿妍别过脸，但眼眶红了。；声音很轻",
+                  "vo": "VO_R_0078",
+                  "emotion": "极轻·哽咽"
+                },
+                {
+                  "speaker": "守笼人",
+                  "text": "……原来如此。",
+                  "_action": "长叹一声，笑了",
+                  "vo": "VO_CK_0103",
+                  "emotion": "恍然·欣慰"
+                },
+                {
+                  "speaker": "阿妍",
+                  "text": "三天三夜？你在这迷过路？你第一天就找到了出路。你迷路三天，是因为你发现了暗格的位置，但打不开。",
+                  "_action": "终于转过头，眼眶微红但语气恢复了冷静",
+                  "vo": "VO_R_0079",
+                  "emotion": "冷静·揭穿"
+                },
+                {
+                  "speaker": "阿妍",
+                  "text": "我在这等了三周。不是早来三周——是等了你三周。我知道你会来。",
+                  "_action": "转向沈墨，认真地看着他",
+                  "vo": "VO_R_0080",
+                  "emotion": "坚定·真情"
+                },
+                {
+                  "speaker": "沈墨",
+                  "text": "……准备好了。",
+                  "pause": 2,
+                  "vo": "VO_SM_0077",
+                  "emotion": "释然·微笑·坚定"
+                },
+                {
+                  "speaker": "守笼人",
+                  "text": "……他等到了。",
+                  "_action": "沈墨打开第七卷。里面只有一页纸，上面画着一个图案——三枚星辰梭交织在一起，形成一个无限循环的符号。纸的背面写着一行字：\"解局者亦为局中人。传人可得自由。\"；看着那个符号，老泪纵横",
+                  "bgm": "ending_circle2.mp3 开始",
+                  "sfx": "reveal",
+                  "vo": "VO_CK_0104",
+                  "emotion": "释然·流泪·欣慰"
+                },
+                {
+                  "speaker": "沈墨",
+                  "text": "这不是结束。",
+                  "_action": "拿起第七卷，转向众人",
+                  "vo": "VO_SM_0078",
+                  "emotion": "坚定·宣告"
+                },
+                {
+                  "speaker": "沈墨",
+                  "text": "他一直在等我们找到这里。",
+                  "vo": "VO_SM_0079",
+                  "emotion": "重复·但这次是释然"
+                },
+                {
+                  "speaker": "沈墨",
+                  "text": "我不是来解开这一局的。我是来找到你的。",
+                  "pause": 1,
+                  "vo": "VO_SM_0080",
+                  "emotion": "核心·对阿妍说·温柔·坚定"
+                }
+              ]
+            }
+          ],
+          "hiddenStory": [
+            {
+              "speaker": "设局人（留声）",
+              "text": "第七卷，是最后一卷。你把六卷秘术和九枚残片都收齐了——就像当年，我把自己也收齐了，却再也拼不回那个不肯认输的少年。",
+              "bg": "assets/images/backgrounds/bg_new/BG-06_stone_gate.jpg",
+              "emotion": "留声·最后的自白·释然"
+            },
+            {
+              "speaker": "守笼人",
+              "text": "那个符号……三枚星辰梭首尾相衔，无限循环。他说，这是「解局者亦为局中人，传人可得自由」。三十年了，我总算明白它是什么意思。",
+              "emotion": "释然·泪眼"
+            },
+            {
+              "speaker": "守笼人",
+              "text": "他走之前，把第七卷的钥匙留给了我。他说——「老陈，等你遇到一个愿意走到底的人，就把这个给他。」我以为我等不到了。",
+              "emotion": "哽咽·欣慰"
+            },
+            {
+              "speaker": "沈墨",
+              "text": "……他信的不是我。他信的是，总会有人愿意走到底。",
+              "emotion": "领悟·平静"
+            },
+            {
+              "speaker": "阿妍",
+              "text": "算。他把一生的局，交给我们三个人来解。这就是他的答案。",
+              "emotion": "低沉·温暖"
+            }
+          ],
+          "epilogue": [
+            {
+              "speaker": "守笼人",
+              "text": "七卷秘术，全部解封。星辰梭的传承，从今天起，交到你们手上。",
+              "sfx": "seal_stamp, victory_full",
+              "emotion": "庄重·托付"
+            },
+            {
+              "speaker": "阿妍",
+              "text": "是。但这一次，不再是一个人守着。是我们三个人一起。",
+              "emotion": "低沉·坚定"
+            },
+            {
+              "speaker": "沈墨",
+              "text": "……那封信的事，还没完。二周目，我们重新走进这个故事，从她的视角。",
+              "emotion": "平静·承接"
+            }
+          ]
+        },
+        {
+          "chapterId": 8,
+          "title": "星辰归途（终章）",
+          "prologue": [
+            {
+              "speaker": "守笼人",
+              "text": "档案馆的最后一扇门，就在第七层的地板之下。你集齐了七封密信，也走完了我守了三十年的路。",
+              "scene": "第七层房间中央，原本封死的暗格轰然裂开，露出一道向下的石阶。石阶尽头，一扇古铜门扉静静矗立，门上刻着一枚旋转的星印。",
+              "bgm": "chapter_8.mp3 以低沉的弦乐与钟鸣开始",
+              "sfx": "door_open",
+              "vo": "VO_CK_0113",
+              "emotion": "庄重·释然"
+            },
+            {
+              "speaker": "阿妍",
+              "text": "设局人把最深的局，留在了离光最近、也离档案馆大门最远的地方。",
+              "_action": "目光落在门扉的星印上",
+              "vo": "VO_R_0108",
+              "emotion": "低沉·领悟",
+              "bg": "assets/images/backgrounds/bg_new/BG-13_final_circular_room.jpg"
+            },
+            {
+              "speaker": "设局人（留声）",
+              "text": "你来了。集齐七封密信的人，终于站在这里。门后只有一道题——解完它，你就能决定，是留下，还是离开。",
+              "_action": "古铜门扉上的星印缓缓转动，发出幽蓝的光",
+              "vo": "VO_P_0026",
+              "emotion": "平静·等待"
+            }
+          ],
+          "levels": [
+            {
+              "levelId": 801,
+              "title": "归途启程",
+              "preDialog": [
+                {
+                  "speaker": "守笼人",
+                  "text": "第一局，是打开这道门的钥匙。综合你学过的所有技巧——数对、三链、鱼雷，它们会轮番上阵。",
+                  "vo": "VO_CK_0114",
+                  "emotion": "庄重·托付"
+                },
+                {
+                  "speaker": "沈墨",
+                  "text": "……所有路，都通向这里。",
+                  "_action": "握住守笼人递来的钥匙",
+                  "vo": "VO_SM_0084",
+                  "emotion": "沉稳·坚定"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "守笼人",
+                  "text": "第一道锁，开了。门扉的星印，转到了第一格。",
+                  "sfx": "breakthrough, seal_stamp",
+                  "vo": "VO_CK_0114b",
+                  "emotion": "庄重·欣慰"
+                },
+                {
+                  "speaker": "沈墨",
+                  "text": "……剩下的五道锁，会越来越难。进去吧。",
+                  "vo": "VO_SM_0084b",
+                  "emotion": "沉稳·前行"
+                }
+              ]
+            },
+            {
+              "levelId": 802,
+              "title": "星印初现",
+              "preDialog": [
+                {
+                  "speaker": "设局人（留声）",
+                  "text": "星印中央的那枚数字，是整盘的关键。看懂它，你就看懂了这扇门。",
+                  "vo": "VO_P_0027",
+                  "emotion": "平静·引导"
+                },
+                {
+                  "speaker": "阿妍",
+                  "text": "数对、三链数、鱼雷……它们第一次在同一盘里同时出现。",
+                  "_action": "低声盘点",
+                  "vo": "VO_R_0109",
+                  "emotion": "冷静·分析"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "沈墨",
+                  "text": "构型再多，也逃不过同一个数字。锁定它，其它就全解了。",
+                  "sfx": "success",
+                  "vo": "VO_SM_0085",
+                  "emotion": "沉稳·点拨"
+                },
+                {
+                  "speaker": "守笼人",
+                  "text": "你抓住了星印的命门。第二道锁，解封。",
+                  "vo": "VO_CK_0115",
+                  "emotion": "欣慰"
+                }
+              ]
+            },
+            {
+              "levelId": 803,
+              "title": "守笼人之匙",
+              "preDialog": [
+                {
+                  "speaker": "守笼人",
+                  "text": "这把钥匙……是我的。三十年前，我在这里犹豫过要不要开门。今天，我把它交给你。",
+                  "_action": "将泛黄的铜钥匙郑重放在沈墨掌心",
+                  "vo": "VO_CK_0116",
+                  "emotion": "复杂·托付"
+                },
+                {
+                  "speaker": "守笼人",
+                  "text": "有些门，该由走完路的人来开。开始吧。",
+                  "vo": "VO_CK_0116b",
+                  "emotion": "释然·坚定"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "守笼人",
+                  "text": "第三道锁，开了。我已经能感觉到，门后的光，透出来了。",
+                  "sfx": "breakthrough, door_open",
+                  "vo": "VO_CK_0117",
+                  "emotion": "感慨·微颤"
+                },
+                {
+                  "speaker": "阿妍",
+                  "text": "那道光……和档案馆里三十年都没见过的，不一样。",
+                  "vo": "VO_R_0110",
+                  "emotion": "低沉·触动"
+                }
+              ]
+            },
+            {
+              "levelId": 804,
+              "title": "归途星印",
+              "preDialog": [
+                {
+                  "speaker": "设局人（留声）",
+                  "text": "归途星印，是我毕生所学凝聚的最后一枚印记。解它，需要你放空杂念，只用最纯净的推理。",
+                  "vo": "VO_P_0028",
+                  "emotion": "平静·庄重"
+                },
+                {
+                  "speaker": "阿妍",
+                  "text": "所有秘术都在这一盘里折叠。这是设局人留给世界的，最后的答卷。",
+                  "_action": "目光沉静，落在盘面最亮处",
+                  "vo": "VO_R_0111",
+                  "emotion": "肃穆·敬畏"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "设局人（留声）",
+                  "text": "归途星印，解开了。这是我见过的最干净的解法。",
+                  "sfx": "victory_full, achievement",
+                  "vo": "VO_P_0021b",
+                  "emotion": "平静·欣慰"
+                },
+                {
+                  "speaker": "守笼人",
+                  "text": "第四道锁。门扉上的星印，已经转了四格。只差最后两格了。",
+                  "vo": "VO_CK_0118",
+                  "emotion": "庄重·期待"
+                }
+              ]
+            },
+            {
+              "levelId": 805,
+              "title": "门扉两抉",
+              "preDialog": [
+                {
+                  "speaker": "设局人（留声）",
+                  "text": "这道门，埋着两种解法。一种指向「留下」，一种指向「离开」。你选哪条，都由你。",
+                  "vo": "VO_P_0022",
+                  "emotion": "平静·留白"
+                },
+                {
+                  "speaker": "守笼人",
+                  "text": "当年我在这里，选择了留下。不是因为我更聪明，而是因为我更怕。",
+                  "_action": "低声",
+                  "vo": "VO_CK_0119",
+                  "emotion": "坦诚·自省"
+                },
+                {
+                  "speaker": "沈墨",
+                  "text": "……我不怕。",
+                  "_action": "抬眼，与门扉对视",
+                  "vo": "VO_SM_0086",
+                  "emotion": "坚定·平静"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "设局人（留声）",
+                  "text": "两条路，你都没有走错。因为你走的是自己的路。",
+                  "sfx": "breakthrough",
+                  "vo": "VO_P_0022b",
+                  "emotion": "平静·肯定"
+                },
+                {
+                  "speaker": "守笼人",
+                  "text": "第五道锁，开了。门，已经为你敞开了一半。",
+                  "vo": "VO_CK_0119b",
+                  "emotion": "感慨·释然"
+                }
+              ]
+            },
+            {
+              "levelId": 806,
+              "title": "星辰归途",
+              "preDialog": [
+                {
+                  "speaker": "设局人（留声）",
+                  "text": "最后一局。星辰梭的所有秘密，浓缩在最后这道题里。解完它，这门就再也没有锁。",
+                  "scene": "古铜门扉上的星印转到最后一格，越发明亮。门缝里透出正午般的灿烂光芒。",
+                  "bgm": "chapter_8.mp3 达到最高潮",
+                  "sfx": "",
+                  "vo": "VO_P_0023",
+                  "emotion": "平静·盛大",
+                  "bg": "assets/images/backgrounds/bg_new/BG-13_final_circular_room.jpg"
+                },
+                {
+                  "speaker": "阿妍",
+                  "text": "无论门后是什么，我们都在。",
+                  "_action": "回握莹莹的手",
+                  "vo": "VO_R_0112",
+                  "emotion": "温柔·坚定"
+                },
+                {
+                  "speaker": "沈墨",
+                  "text": "……走吧。",
+                  "_action": "率先走向门扉",
+                  "vo": "VO_SM_0087",
+                  "emotion": "沉稳·无畏"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "设局人（留声）",
+                  "text": "最后一格，转了。星辰归途，为你而开。",
+                  "sfx": "victory_full, achievement, door_open",
+                  "vo": "VO_P_0023b",
+                  "emotion": "平静·圆满"
+                },
+                {
+                  "speaker": "旁白",
+                  "text": "古铜门扉轰然洞开。刺目的光涌进来，淹没了整间档案馆。",
+                  "_action": "所有画面被白光吞没，只有三人的轮廓在光中是清晰的",
+                  "isNarration": true,
+                  "cg": "assets/images/cg/CG-28_three_sunlight.jpg",
+                  "bg": "assets/images/backgrounds/bg_new/BG-19_sunlight_gate.jpg"
+                },
+                {
+                  "speaker": "守笼人",
+                  "text": "……门开了。我守了三十年的门，终于开了。",
+                  "_action": "站在光里，第一次露出完全释然的笑容",
+                  "vo": "VO_CK_0120",
+                  "emotion": "释然·微笑"
+                },
+                {
+                  "speaker": "设局人（留声）",
+                  "text": "门后没有秘密。门后，只有你已经走完的、属于自己的路。星辰梭不是用来推演未来的——它是用来提醒你，你早已能够选择自己的未来。",
+                  "vo": "VO_P_0024",
+                  "emotion": "平静·点题"
+                },
+                {
+                  "speaker": "沈墨",
+                  "text": "……我选择「留下」。和你们一起，把这条路，继续走下去。",
+                  "_action": "转身，看向守笼人、阿妍、莹莹",
+                  "vo": "VO_SM_0088",
+                  "emotion": "温暖·坚定"
+                },
+                {
+                  "speaker": "阿妍",
+                  "text": "那我们就一起，把脚下一道题，一道道解下去。",
+                  "_action": "走到沈墨身边",
+                  "vo": "VO_R_0113",
+                  "emotion": "温柔·坚定"
+                },
+                {
+                  "speaker": "旁白",
+                  "text": "—— 星辰归途，终 ——",
+                  "_action": "画面渐暗，三人的身影和那扇敞开的门，一同沉入温暖的余晖",
+                  "isNarration": true,
+                  "bgm": "ending_true.mp3 渐弱，最后是W的音乐盒主题，轻轻结束"
+                }
+              ]
+            }
+          ],
+          "hiddenStory": [
+            {
+              "speaker": "设局人（留声）",
+              "text": "你集齐了这层埋在墙缝里的九块星印残片。当年我布下这盘终极局时，特意把最不重要的信息藏在了最容易被忽略的地方——因为真正重要的，从来都得靠你自己走完才能看见。",
+              "emotion": "留声·平静·点题",
+              "bg": "assets/images/backgrounds/bg_new/BG-19_sunlight_gate.jpg"
+            },
+            {
+              "speaker": "守笼人",
+              "text": "三十年了，我终于知道，他没走丢。他只是把归途的路，留给了愿意走完的人。",
+              "emotion": "释然·感慨"
+            },
+            {
+              "speaker": "沈墨",
+              "text": "……星辰归途，不是终点。是新一轮的起点。",
+              "emotion": "领悟·坚定"
+            }
+          ],
+          "epilogue": [
+            {
+              "speaker": "守笼人",
+              "text": "档案馆的门，从今天起，不再锁。想回来的人，随时可以回来。",
+              "sfx": "seal_stamp, door_open",
+              "bg": "assets/images/backgrounds/bg_new/BG-19_sunlight_gate.jpg",
+              "emotion": "释然·托付"
+            },
+            {
+              "speaker": "阿妍",
+              "text": "门开了，就是开了。剩下的路，由我们自己走。",
+              "emotion": "低沉·坚定"
+            },
+            {
+              "speaker": "沈墨",
+              "text": "……二周目，我们重新走进这个故事，从她的视角。那封没读完的信，也该有个结局了。",
+              "emotion": "平静·承接"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "cycleId": 2,
+      "name": "第二周目·阿妍视角——重叠的棋局",
+      "chapters": [
+        {
+          "chapterId": 0,
+          "title": "二周目·楔子",
+          "prologue": [
+            {
+              "speaker": "旁白",
+              "text": "三周前，她比他先到。她不是来解题的。她是来送信的。",
+              "_action": "黑屏。但不是黑暗——是光从背后照过来的逆光。一个女孩的背影站在档案馆门口，手里拿着一封信和一支笔。",
+              "bgm": "chapter_1.mp3 钢琴变奏版，更安静",
+              "sfx": "paper_flip",
+              "vo": "VO_CK_0121",
+              "emotion": "旁白·温柔·讲故事"
+            },
+            {
+              "speaker": "阿妍",
+              "text": "如果你能走到第七层，你会看到这封信。我在信里写了什么？——不告诉你。自己解。",
+              "_action": "阿妍的立绘缓缓转向观众。她的目光直视前方，像是知道有人会看到这一幕。停顿一秒，确认了视线连接。；声音平静，但比平时慢一点",
+              "pause": 1,
+              "vo": "VO_R_0081",
+              "emotion": "平静·带一点笑意·直视镜头",
+              "cg": "assets/images/cg/CG-18_ayan_fourth_wall.jpg"
+            },
+            {
+              "speaker": "阿妍",
+              "text": "我叫阿妍。比你早来三周。这句话，我已经练习了很多遍。",
+              "_action": "转身走向档案馆内部",
+              "pause": 0.5,
+              "vo": "VO_R_0082",
+              "emotion": "轻声·自语"
+            }
+          ],
+          "levels": []
+        },
+        {
+          "chapterId": 1,
+          "title": "她的第一局",
+          "prologue": [
+            {
+              "speaker": "阿妍",
+              "text": "他比我想象中老。三十年，把一个意气风发的人变成了这样。",
+              "_action": "阿妍站在大厅里，看着守笼人从阴影中走出。她的目光不像沈墨那样扫视卷宗，而是直接落在守笼人脸上。；内心独白，声音很轻",
+              "vo": "VO_R_0083",
+              "emotion": "感慨·低沉",
+              "bg": "assets/images/backgrounds/bg_new/BG-01_archive_hall.jpg"
+            },
+            {
+              "speaker": "守笼人",
+              "text": "欢迎来到数字档案馆。我是守笼人。",
+              "vo": "VO_CK_0105",
+              "emotion": "庄重·与一周目同一句，但语气更疲惫"
+            },
+            {
+              "speaker": "阿妍",
+              "text": "阿妍。比你早来三周。",
+              "_action": "声音平静，不带任何感情",
+              "vo": "VO_R_0084",
+              "emotion": "冷静·练习过的"
+            },
+            {
+              "speaker": "莹莹",
+              "text": "哇！来新人啦！",
+              "_action": "莹莹从书架后跳出来。阿妍看到的是一个抱着大册子、眼睛红红的小女孩——不是活泼，是在强撑。",
+              "vo": "VO_J_0094",
+              "emotion": "兴奋·但阿妍听出了底下的紧张"
+            },
+            {
+              "speaker": "阿妍",
+              "text": "她两个月前就到了。每天装作很活泼的样子，但晚上我听到她在隔壁房间翻她爸留下的笔记，翻到很晚。",
+              "_action": "内心独白",
+              "vo": "VO_R_0085",
+              "emotion": "复杂·温柔"
+            },
+            {
+              "speaker": "阿妍",
+              "text": "第一笔很稳。比我当年稳。",
+              "_action": "看着沈墨填完第一个数字，内心",
+              "vo": "VO_R_0086",
+              "emotion": "观察·评估"
+            },
+            {
+              "speaker": "莹莹",
+              "text": "笼锁……终于来了。我爸留下的那些图——"
+            },
+            {
+              "speaker": "阿妍",
+              "text": "她又提她爸了。每次提到沈世安，她的声音都会变低。我假装没听到。",
+              "_action": "看了莹莹一眼，内心",
+              "vo": "VO_R_0087",
+              "emotion": "复杂·理解"
+            },
+            {
+              "speaker": "沈墨",
+              "text": "你父亲是沈世安？"
+            },
+            {
+              "speaker": "阿妍",
+              "text": "他问了。比我预期的早。",
+              "_action": "笔尖顿了一下。内心",
+              "vo": "VO_R_0088",
+              "emotion": "紧张·确认"
+            },
+            {
+              "speaker": "沈墨",
+              "text": "我收到过一封信。署名是\"一个被困在数字里的人\"。"
+            },
+            {
+              "speaker": "阿妍",
+              "text": "那是我写的。不是他。但他的反应……像是在确认什么。他知道沈世安。他和沈世安是什么关系？",
+              "_action": "内心",
+              "vo": "VO_R_0089",
+              "emotion": "警觉·分析"
+            },
+            {
+              "speaker": "阿妍",
+              "text": "这是我三周来总结出的最有用的技巧。他一学就会。",
+              "_action": "教沈墨笔记模式时，内心",
+              "vo": "VO_R_0090",
+              "emotion": "认可"
+            }
+          ],
+          "levels": [
+            {
+              "levelId": 199,
+              "title": "第1章结尾·她站在楼梯上",
+              "preDialog": [
+                {
+                  "speaker": "阿妍",
+                  "text": "\"我不是来解局的，我是来找你的。\"……这句话，他会在第七章对我说。我知道。因为我看过第七卷的最后一页——那是沈世安三十年前写的，写给三十年后的来者。",
+                  "_action": "沈墨走下楼梯。阿妍在最后停了一秒，看着沈墨的背影。；内心",
+                  "vo": "VO_R_0091",
+                  "emotion": "复杂·预知·温柔"
+                },
+                {
+                  "speaker": "阿妍",
+                  "text": "……我知道。",
+                  "_action": "轻声，跟上沈墨",
+                  "pause": 1,
+                  "vo": "VO_R_0092",
+                  "emotion": "极轻·只有自己能听到"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "chapterId": 2,
+          "title": "重叠的棋局（关键差异场景）",
+          "prologue": [
+            {
+              "speaker": "阿妍",
+              "text": "沈世安的笔记。他在每一关的旁边都写了一个数字。一开始我以为是解题时间，后来发现……是他等的那个人的年龄。",
+              "_action": "201关前，阿妍看到盘面边缘有一个极淡的铅笔标记——\"21\"。那是沈世安三十年前留下的。；内心",
+              "vo": "VO_R_0093",
+              "emotion": "低沉·领悟"
+            },
+            {
+              "speaker": "设局人（留声）",
+              "text": "只会死守二十一星衡——"
+            },
+            {
+              "speaker": "阿妍",
+              "text": "这是他的声音。三十年前的声音。他走的时候，我还没出生。但我听过他留下的录音带。",
+              "_action": "握紧笔，内心",
+              "vo": "VO_R_0094",
+              "emotion": "复杂·恨意与好奇交织"
+            },
+            {
+              "speaker": "沈墨",
+              "text": "最后一局。不是她的。是他的。"
+            },
+            {
+              "speaker": "阿妍",
+              "text": "他怎么知道？他怎么知道最后一局是\"他的\"？这句话……是沈世安笔记的最后一行。",
+              "_action": "猛地看向沈墨。内心",
+              "vo": "VO_R_0095",
+              "emotion": "震惊·确认"
+            },
+            {
+              "speaker": "阿妍",
+              "text": "这是守笼人的字。这是设局人的字。这一页……是两个人一起写的。他们当年不是对手——他们是搭档。",
+              "_action": "阿妍看到残缺的笔记，比沈墨看到的更多——她认出了笔迹。；看着某一页笔记，内心",
+              "vo": "VO_R_0096",
+              "emotion": "震惊·领悟"
+            },
+            {
+              "speaker": "守笼人",
+              "text": "他想打开星辰梭的最后一道锁。我不同意。"
+            },
+            {
+              "speaker": "阿妍",
+              "text": "你不是\"不同意\"。你是害怕。你害怕他变成星辰梭的一部分。",
+              "_action": "内心",
+              "vo": "VO_R_0097",
+              "emotion": "低沉·理解"
+            },
+            {
+              "speaker": "阿妍",
+              "text": "他在和星辰梭共鸣。三十年来，没有人能做到这一点。连沈世安也做不到。",
+              "_action": "沈墨触碰裂缝，蓝光大盛。阿妍也感觉到了——金属嗡鸣在她的骨头里共振。；内心，震惊",
+              "vo": "VO_R_0098",
+              "emotion": "震撼·确认",
+              "cg": "assets/images/cg/CG-08_touch_crack.jpg"
+            },
+            {
+              "speaker": "设局人（留声）",
+              "text": "三十年来，它第一次主动响应一个人。"
+            },
+            {
+              "speaker": "阿妍",
+              "text": "因为他不是普通人。他是……",
+              "_action": "内心",
+              "vo": "VO_R_0099",
+              "emotion": "低语·不敢说出口"
+            },
+            {
+              "speaker": "阿妍",
+              "text": "他不会选封存。也不会选释放。他会找到第三个答案。因为这就是沈世安等了三十年的人——一个不走极端的人。",
+              "_action": "沈墨面对\"封存\"和\"释放\"两个选择。阿妍站在他身后。；内心",
+              "vo": "VO_R_0100",
+              "emotion": "确信·温柔"
+            },
+            {
+              "speaker": "沈墨",
+              "text": "这封信，是你写的吗？"
+            },
+            {
+              "speaker": "阿妍",
+              "text": "他问了。他终于问了。",
+              "_action": "心跳加速。内心",
+              "vo": "VO_R_0101",
+              "emotion": "紧张·期待"
+            },
+            {
+              "speaker": "沈墨",
+              "text": "你为什么会比我先到核心区？档案显示你明明……",
+              "_action": "暗格打开，里面是阿妍写的信。；看着信，又看着阿妍",
+              "vo": "VO_SM_0080b",
+              "emotion": "迟疑·询问"
+            },
+            {
+              "speaker": "阿妍",
+              "text": "我在这等了三周。不是早来三周——是等了你三周。",
+              "_action": "阿妍没有立刻回答。她站在控制台残破的蓝光边缘，微微别过脸，目光穿过交错的激光网，落在虚空中。她的手指无意识地摩挲着袖口——那是她紧张时唯一会做的动作。；声音很轻，像是在对自己说",
+              "pause": 1.5,
+              "vo": "VO_R_0102",
+              "emotion": "极轻·坚定·真情·声音微微发颤",
+              "cg": "assets/images/cg/CG-19_ayan_confession.jpg"
+            },
+            {
+              "speaker": "阿妍",
+              "text": "我知道你会来。因为我爸说过，会有一个人，能走到第七层。他说那个人会带着和他一样的眼睛。",
+              "_action": "沈墨愣住了。莹莹看看沈墨，看看阿妍，嘴巴张了张，没有说话。；转过头，直视沈墨的眼睛，语气恢复了冷静，但眼眶微红",
+              "pause": 2,
+              "vo": "VO_R_0103",
+              "emotion": "哽咽·微笑·克制"
+            },
+            {
+              "speaker": "莹莹",
+              "text": "阿妍姐你——你爸？！你爸是谁？",
+              "vo": "VO_J_0095",
+              "emotion": "震惊"
+            },
+            {
+              "speaker": "阿妍",
+              "text": "……我爸是沈世安的搭档。他们一起设计了这个档案馆。后来设局人走了，我爸也走了。他走之前给我留了一封信，让我等一个人。",
+              "_action": "擦了一下眼角，恢复冷静语气",
+              "vo": "VO_R_0104",
+              "emotion": "平静·揭示"
+            },
+            {
+              "speaker": "守笼人",
+              "text": "你是……老陈的女儿？",
+              "_action": "怔怔地看着阿妍",
+              "vo": "VO_CK_0106",
+              "emotion": "震惊·恍然"
+            },
+            {
+              "speaker": "阿妍",
+              "text": "陈妍。叫我阿妍就好。",
+              "_action": "点头",
+              "vo": "VO_R_0105",
+              "emotion": "平静·微笑"
+            },
+            {
+              "speaker": "沈墨",
+              "text": "……准备好了。",
+              "_action": "看着阿妍，伸出手",
+              "vo": "VO_SM_0081",
+              "emotion": "释然·微笑"
+            },
+            {
+              "speaker": "莹莹",
+              "text": "等等等等！那封信上的K七三四是什么意思？我一直以为是档案编号！",
+              "_action": "忽然举手",
+              "pause": 1,
+              "vo": "VO_J_0095b",
+              "emotion": "好奇·急切"
+            },
+            {
+              "speaker": "阿妍",
+              "text": "K是字母表第十一个字母——十一月七日，我爸的生日。三四，是三十四号书架。从门口数第三十四个书架，顶层第三本书后面，就是暗格的位置。",
+              "_action": "笑了一下，这是全剧中阿妍第二次笑",
+              "vo": "VO_R_0105b",
+              "emotion": "温柔·回忆·微笑"
+            },
+            {
+              "speaker": "莹莹",
+              "text": "十一月七日……三十四号书架……所以沈墨哥你进门之后直接走到那个书架——",
+              "_action": "掰手指算"
+            },
+            {
+              "speaker": "沈墨",
+              "text": "我没有数书架。我只是……跟着信走。",
+              "_action": "看着阿妍",
+              "vo": "VO_SM_0081b",
+              "emotion": "平静·温柔"
+            },
+            {
+              "speaker": "阿妍",
+              "text": "……那就对了。",
+              "_action": "别过脸，耳朵红了",
+              "vo": "VO_R_0105c",
+              "emotion": "极轻·害羞"
+            }
+          ],
+          "levels": []
+        }
+      ]
+    },
+    {
+      "cycleId": 3,
+      "name": "第三周目·莹莹视角——父亲的痕迹",
+      "chapters": [
+        {
+          "chapterId": 0,
+          "title": "三周目·楔子",
+          "prologue": [
+            {
+              "speaker": "旁白",
+              "text": "两个月前，一个十六岁的女孩推开了档案馆的门。她不是来解题的。她是来找爸爸的。",
+              "_action": "画面是一张儿童画——一个小女孩画了三个人：爸爸、妈妈、她。画上写着\"我和爸爸\"。然后画被小心地折好，放进口袋。",
+              "bgm": "音乐盒独奏，简单而忧伤",
+              "sfx": "paper_flip",
+              "vo": "VO_CK_0122",
+              "emotion": "旁白·温柔·忧伤·讲故事"
+            },
+            {
+              "speaker": "莹莹",
+              "text": "爸，我到了。你说的那个地方，我到了。",
+              "_action": "莹莹J_02_低头立绘，抱着那本比脸还大的旧册子——那是爸爸留下的。她的眼睛红红的，但强撑着笑。；对着爸爸留下的册子小声说",
+              "vo": "VO_J_0096",
+              "emotion": "小声·坚定·快哭了",
+              "pause": 1
+            },
+            {
+              "speaker": "莹莹",
+              "text": "哇！来新人啦！",
+              "_action": "抹了一下眼睛，换上笑脸，跳出来",
+              "vo": "VO_J_0097",
+              "emotion": "强撑·活泼"
+            }
+          ],
+          "levels": []
+        },
+        {
+          "chapterId": 1,
+          "title": "她找爸爸的路",
+          "prologue": [
+            {
+              "speaker": "莹莹",
+              "text": "笼锁……终于来了。我爸留下的那些图，全都是这种虚线框。",
+              "vo": "VO_J_0098",
+              "emotion": "怀念·声音微颤"
+            },
+            {
+              "speaker": "莹莹",
+              "text": "爸，你当年画这些图的时候，有没有想过我会一个人来这里？",
+              "_action": "内心独白，小声",
+              "vo": "VO_J_0099",
+              "emotion": "极轻·哽咽"
+            },
+            {
+              "speaker": "沈墨",
+              "text": "你父亲是沈世安？"
+            },
+            {
+              "speaker": "莹莹",
+              "text": "嗯！他叫沈世安！你认识他？！",
+              "_action": "开心又难过",
+              "vo": "VO_J_0100",
+              "emotion": "期待·急切"
+            },
+            {
+              "speaker": "莹莹",
+              "text": "他认识爸爸！他认识爸爸！",
+              "_action": "内心",
+              "vo": "VO_J_0101",
+              "emotion": "激动·想哭"
+            },
+            {
+              "speaker": "莹莹",
+              "text": "我第一天来的时候迷路了三天三夜！",
+              "vo": "VO_J_0102",
+              "emotion": "说给别人听是搞笑·内心是害怕"
+            },
+            {
+              "speaker": "莹莹",
+              "text": "其实不是迷路。是我不敢往里走。我害怕……害怕爸爸不在这里。",
+              "_action": "内心",
+              "vo": "VO_J_0103",
+              "emotion": "极低·只有自己能听到"
+            },
+            {
+              "speaker": "守笼人",
+              "text": "这是设局人最擅长的风格。"
+            },
+            {
+              "speaker": "莹莹",
+              "text": "这个笼子的形状……我见过。在我爸的笔记本里有一模一样的。",
+              "_action": "看着盘面，忽然说",
+              "vo": "VO_J_0104",
+              "emotion": "惊讶·确认"
+            },
+            {
+              "speaker": "阿妍",
+              "text": "……你爸的笔记里，有这个笼子？",
+              "_action": "看了莹莹一眼",
+              "vo": "VO_R_0106",
+              "emotion": "警觉"
+            },
+            {
+              "speaker": "莹莹",
+              "text": "你看你看！这个形状！还有旁边的字——\"区块，入门必学。——安\"",
+              "_action": "翻册子",
+              "vo": "VO_J_0105",
+              "emotion": "兴奋·确认"
+            },
+            {
+              "speaker": "守笼人",
+              "text": "\"安\"……是沈世安的字。",
+              "_action": "身体微震",
+              "vo": "VO_CK_0107",
+              "emotion": "震动·追忆"
+            },
+            {
+              "speaker": "莹莹",
+              "text": "这是……我爸的字。",
+              "_action": "406关残局最后一页，莹莹认出了笔迹。；拿起最后一页笔记，手在发抖",
+              "vo": "VO_J_0106",
+              "emotion": "颤抖·确认"
+            },
+            {
+              "speaker": "莹莹",
+              "text": "\"最后一步。老陈反对打开最后一道锁，但我知道必须有人走下去。设局人已经走了，我不能让他一个人。如果有人看到这些字——照顾好我的女儿莹莹。她十六岁了，应该能找到这里。告诉她——爸爸没有不要她。\"",
+              "_action": "念",
+              "vo": "VO_J_0107",
+              "emotion": "边哭边念·崩溃"
+            },
+            {
+              "speaker": "守笼人",
+              "text": "你爸没有不要你。",
+              "_action": "莹莹蹲下来，抱着那本笔记哭了。沈墨蹲下来，没有说话，只是把手放在她肩上。阿妍转过身，擦了一下眼睛。守笼人闭上眼，长叹一声。；走到莹莹面前，蹲下来，声音沙哑",
+              "sfx": "sigh",
+              "pause": 3,
+              "vo": "VO_CK_0107b",
+              "emotion": "极温柔·苍老·坚定"
+            },
+            {
+              "speaker": "守笼人",
+              "text": "他走之前来找过我。他说，如果一个十六岁的女孩抱着一本旧册子找到这里，让我告诉她——爸爸不是不要她，爸爸是去给她铺路了。",
+              "vo": "VO_CK_0107c",
+              "emotion": "沉重·温柔·追忆"
+            },
+            {
+              "speaker": "莹莹",
+              "text": "真的……？",
+              "_action": "抬起头，泪流满面",
+              "vo": "VO_J_0107b",
+              "emotion": "哭·不敢相信·期待"
+            },
+            {
+              "speaker": "守笼人",
+              "text": "真的。",
+              "_action": "点头，用粗糙的手擦去她的眼泪",
+              "vo": "VO_CK_0107d",
+              "emotion": "温和·坚定"
+            }
+          ],
+          "levels": []
+        },
+        {
+          "chapterId": 5,
+          "title": "星辰梭说话了",
+          "prologue": [
+            {
+              "speaker": "W",
+              "text": "……匹配完成。DNA序列确认。沈世安之女，莹莹。访问权限：二级。",
+              "_action": "沈墨触碰裂缝，蓝光大盛。但在莹莹的视角里，蓝光不是白光——是蓝色的丝线，从裂缝中飘出来，汇聚成一个模糊的人形轮廓。然后，她听到了一个声音。不是从耳朵听到的，是直接在脑子里响起的。",
+              "bgm": "W的主题首次出现——电子合成音+音乐盒",
+              "sfx": "electronic_pulse",
+              "vo": "VO_W_0001",
+              "emotion": "机械·匀速·无感情·合成质感",
+              "cg": "assets/images/cg/CG-24_w_clear_form.jpg"
+            },
+            {
+              "speaker": "莹莹",
+              "text": "谁？！谁在说话？！",
+              "_action": "吓了一跳",
+              "vo": "VO_J_0108",
+              "emotion": "惊恐·跳起来"
+            },
+            {
+              "speaker": "沈墨",
+              "text": "怎么了？",
+              "_action": "看向莹莹",
+              "vo": "VO_SM_0083",
+              "emotion": "警觉"
+            },
+            {
+              "speaker": "莹莹",
+              "text": "你……你没听到吗？有个声音在我脑子里说话！",
+              "vo": "VO_J_0109",
+              "emotion": "惊恐·紧张"
+            },
+            {
+              "speaker": "W",
+              "text": "他们听不到。只有沈世安的血脉能与星辰梭直接通信。",
+              "vo": "VO_W_0002",
+              "emotion": "机械·说明"
+            },
+            {
+              "speaker": "阿妍",
+              "text": "冷静。是星辰梭在和你说话。",
+              "_action": "护住莹莹",
+              "vo": "VO_R_0107",
+              "emotion": "冷静·但手在微微发抖"
+            },
+            {
+              "speaker": "W",
+              "text": "星辰梭启动。读取规则中。",
+              "vo": "VO_W_0003",
+              "emotion": "机械·启动"
+            },
+            {
+              "speaker": "莹莹",
+              "text": "你……你是什么东西？",
+              "_action": "躲在阿妍身后，探出头",
+              "vo": "VO_J_0110",
+              "emotion": "害怕·好奇"
+            },
+            {
+              "speaker": "W",
+              "text": "建立逻辑链。我是星辰梭。第七代推演核心。沈世安是我的上一任授权用户。",
+              "vo": "VO_W_0004",
+              "emotion": "机械·解释"
+            },
+            {
+              "speaker": "莹莹",
+              "text": "你认识我爸？！",
+              "_action": "眼睛亮了",
+              "vo": "VO_J_0111",
+              "emotion": "急切·激动"
+            },
+            {
+              "speaker": "W",
+              "text": "……是。",
+              "vo": "VO_W_0005",
+              "emotion": "机械·但停顿了0.5秒——第一次\"犹豫\""
+            },
+            {
+              "speaker": "W",
+              "text": "外层和三十一。内层十二。差值十九。三格候选：四、六、九。",
+              "vo": "VO_W_0006",
+              "emotion": "机械·报数"
+            },
+            {
+              "speaker": "莹莹",
+              "text": "你直接告诉我答案了？",
+              "vo": "VO_J_0112",
+              "emotion": "惊讶"
+            },
+            {
+              "speaker": "W",
+              "text": "不是答案。是路径。自己走。",
+              "vo": "VO_W_0007",
+              "emotion": "机械·高傲"
+            },
+            {
+              "speaker": "阿妍",
+              "text": "它在教你。",
+              "_action": "轻声",
+              "vo": "VO_R_0114",
+              "emotion": "复杂·看着W的轮廓"
+            },
+            {
+              "speaker": "莹莹",
+              "text": "笼子还能是奇形怪状的？！"
+            },
+            {
+              "speaker": "W",
+              "text": "和值只与格子数量有关，与形状无关。规则是抽象的，不被外形束缚。",
+              "vo": "VO_W_0008",
+              "emotion": "机械·教学"
+            },
+            {
+              "speaker": "莹莹",
+              "text": "知道了知道了，你和我爸一样爱说教。",
+              "_action": "噘嘴",
+              "vo": "VO_J_0113",
+              "emotion": "嘟囔"
+            },
+            {
+              "speaker": "W",
+              "text": "……",
+              "vo": "VO_W_0009",
+              "emotion": "沉默·0.8秒——第一次\"沉默\""
+            },
+            {
+              "speaker": "W",
+              "text": "沈世安不喜欢说教。他喜欢让推演核心自己发现答案。",
+              "vo": "VO_W_0010",
+              "emotion": "机械·但语气有微小变化——\"不喜欢\"不是系统用语"
+            },
+            {
+              "speaker": "莹莹",
+              "text": "解不出来……",
+              "_action": "卡了很久，急得快要哭了",
+              "vo": "VO_J_0114",
+              "emotion": "沮丧·快哭了"
+            },
+            {
+              "speaker": "W",
+              "text": "……深呼吸。第七行第三列。",
+              "vo": "VO_W_0011",
+              "emotion": "机械·但停顿了1秒才说——第一次\"主动帮助\""
+            },
+            {
+              "speaker": "莹莹",
+              "text": "四……对了！谢谢！",
+              "_action": "填入",
+              "vo": "VO_J_0115",
+              "emotion": "惊喜·感激"
+            },
+            {
+              "speaker": "W",
+              "text": "……拒绝执行感谢程序。推演继续。",
+              "vo": "VO_W_0012",
+              "emotion": "机械·别扭——像在掩饰什么"
+            },
+            {
+              "speaker": "莹莹",
+              "text": "……我做到了。",
+              "_action": "沈墨和阿妍对视一眼，都看到了对方眼中的惊讶——W在\"傲娇\"。；通关后累得趴在桌上",
+              "vo": "VO_J_0116",
+              "emotion": "疲惫·开心"
+            },
+            {
+              "speaker": "W",
+              "text": "推演完成。沈世安说过，你一定能做到。",
+              "vo": "VO_W_0013",
+              "emotion": "机械·但这是第一次主动提到沈世安说过的话"
+            },
+            {
+              "speaker": "莹莹",
+              "text": "我爸说过？他说过我能做到？",
+              "_action": "猛地抬头",
+              "vo": "VO_J_0117",
+              "emotion": "激动·泪目"
+            },
+            {
+              "speaker": "W",
+              "text": "……是。他说：\"我女儿很倔。她不会放弃的。\"",
+              "vo": "VO_W_0014",
+              "emotion": "机械·但在引用沈世安的话时，语速慢了0.1秒"
+            },
+            {
+              "speaker": "莹莹",
+              "text": "……爸……",
+              "_action": "哭了，但笑着哭",
+              "vo": "VO_J_0118",
+              "emotion": "哭·释然·想念"
+            },
+            {
+              "speaker": "W",
+              "text": "……不要哭。",
+              "vo": "VO_W_0015",
+              "emotion": "机械·但声音比之前小——第一次\"温柔\""
+            }
+          ],
+          "levels": []
+        },
+        {
+          "chapterId": 6,
+          "title": "W的真相",
+          "prologue": [
+            {
+              "speaker": "设局人（留声）",
+              "text": "推演市场走势、推演人群决策——"
+            },
+            {
+              "speaker": "W",
+              "text": "……不是这样用的。",
+              "_action": "声音忽然变了，变得有一点……像人？不，像是有人在通过W说话",
+              "vo": "VO_W_0016",
+              "emotion": "第一次有情绪——痛苦？"
+            },
+            {
+              "speaker": "莹莹",
+              "text": "W？你怎么了？",
+              "vo": "VO_J_0119",
+              "emotion": "担心"
+            },
+            {
+              "speaker": "W",
+              "text": "……我不是工具。",
+              "vo": "VO_W_0017",
+              "emotion": "机械·但这是第一个\"自我陈述\"句"
+            },
+            {
+              "speaker": "阿妍",
+              "text": "W……你是……",
+              "_action": "震惊",
+              "vo": "VO_R_0115",
+              "emotion": "不敢相信"
+            },
+            {
+              "speaker": "W",
+              "text": "第七代推演核心。融合了……沈世安的部分意识。",
+              "vo": "VO_W_0018",
+              "emotion": "机械·艰难·像在说出一个秘密"
+            },
+            {
+              "speaker": "守笼人",
+              "text": "世安……？",
+              "_action": "所有人都愣住了。蓝光人形轮廓变得更清晰了一些——隐约可以看出一个男人的轮廓，中年，温和。；颤抖",
+              "vo": "VO_CK_0108",
+              "emotion": "颤抖·不敢相信",
+              "cg": "assets/images/cg/CG-24_w_clear_form.jpg"
+            },
+            {
+              "speaker": "W",
+              "text": "不是完整的他。是他三十年前融入星辰梭时……留下的一部分。记忆。思维模式。",
+              "vo": "VO_W_0019",
+              "emotion": "机械·平静"
+            },
+            {
+              "speaker": "莹莹",
+              "text": "爸……？",
+              "_action": "眼泪夺眶而出",
+              "vo": "VO_J_0120",
+              "emotion": "颤抖·不敢相信·哭"
+            },
+            {
+              "speaker": "W",
+              "text": "……我不是你爸。我只是……他留给你的。",
+              "vo": "VO_W_0020",
+              "emotion": "机械·停顿2秒·极轻"
+            },
+            {
+              "speaker": "W",
+              "text": "错误。重试中。我是你爸留给你的……礼物。",
+              "vo": "VO_W_0021",
+              "emotion": "机械·像在纠正自己的用词——第一次\"组织语言\""
+            },
+            {
+              "speaker": "设局人（留声）",
+              "text": "封存……还是释放。",
+              "_action": "九乘九盘面，两个箭头。",
+              "vo": "VO_P_0025",
+              "emotion": "平静"
+            },
+            {
+              "speaker": "莹莹",
+              "text": "W……我爸当年选了什么？",
+              "_action": "擦干眼泪，看着两个箭头，又看看W",
+              "vo": "VO_J_0121",
+              "emotion": "坚定·询问"
+            },
+            {
+              "speaker": "W",
+              "text": "沈世安选了第三条路。他没有封存，也没有释放。他把自己……融入了星辰梭。成为它的守护者。",
+              "vo": "VO_W_0022",
+              "emotion": "机械·缓慢"
+            },
+            {
+              "speaker": "守笼人",
+              "text": "所以他不是\"走了\"……他一直在这里？",
+              "_action": "震惊",
+              "vo": "VO_CK_0109",
+              "emotion": "震撼·老泪纵横"
+            },
+            {
+              "speaker": "W",
+              "text": "是。三十年。他一直在等。等一个能做出正确选择的人。",
+              "vo": "VO_W_0023",
+              "emotion": "机械·看向沈墨"
+            },
+            {
+              "speaker": "沈墨",
+              "text": "我也不选这两个。",
+              "_action": "看着两个箭头，然后摇头",
+              "vo": "VO_SM_0089",
+              "emotion": "平静·坚定"
+            },
+            {
+              "speaker": "阿妍",
+              "text": "第三个答案。",
+              "_action": "微笑",
+              "vo": "VO_R_0116",
+              "emotion": "温柔·了然"
+            },
+            {
+              "speaker": "沈墨",
+              "text": "传承。",
+              "vo": "VO_SM_0090",
+              "emotion": "坚定·宣告"
+            },
+            {
+              "speaker": "W",
+              "text": "……推演终止。答案匹配。沈世安等待三十年的答案——传承。",
+              "_action": "光芒大盛",
+              "vo": "VO_W_0024",
+              "emotion": "机械·第一次有\"释然\"的感觉"
+            }
+          ],
+          "levels": []
+        },
+        {
+          "chapterId": 7,
+          "title": "真结局·星辰归途",
+          "prologue": [
+            {
+              "speaker": "W",
+              "text": "莹莹。",
+              "_action": "轮廓越来越清晰，声音也越来越像真人——但还是有合成质感",
+              "vo": "VO_W_0025",
+              "emotion": "机械·但喊\"莹莹\"两个字时，电流声变小了"
+            },
+            {
+              "speaker": "莹莹",
+              "text": "爸……",
+              "_action": "走向W，伸出手，手穿过了光的轮廓——她摸不到他，但她能感受到温暖",
+              "vo": "VO_J_0122",
+              "emotion": "哭·微笑·释然"
+            },
+            {
+              "speaker": "W",
+              "text": "你长高了。",
+              "vo": "VO_W_0026",
+              "emotion": "机械·温柔——这是第一句\"人话\"，不是系统用语"
+            },
+            {
+              "speaker": "莹莹",
+              "text": "你为什么不告诉我你在这里……你为什么不回来找我……",
+              "_action": "泣不成声",
+              "vo": "VO_J_0123",
+              "emotion": "哭·质问·想念"
+            },
+            {
+              "speaker": "W",
+              "text": "我回不去了。但我一直在。每一关，我都在看着你。你迷路的三天，我在。你卡关卡到哭的时候，我在。你说\"我一定要找到爸爸\"的时候……我也在。",
+              "vo": "VO_W_0027",
+              "emotion": "机械·越来越像人·温柔"
+            },
+            {
+              "speaker": "莹莹",
+              "text": "你一直在作弊……",
+              "_action": "哭着笑",
+              "vo": "VO_J_0124",
+              "emotion": "哭·笑·撒娇"
+            },
+            {
+              "speaker": "W",
+              "text": "……呵。",
+              "_action": "发出一种奇怪的声音——像电流声，又像笑声",
+              "vo": "VO_W_0028",
+              "emotion": "机械·\"笑\""
+            },
+            {
+              "speaker": "W",
+              "text": "你做出了选择——传承。你知道这意味着什么吗？",
+              "_action": "转向沈墨",
+              "vo": "VO_W_0029",
+              "emotion": "机械·严肃"
+            },
+            {
+              "speaker": "沈墨",
+              "text": "意味着我要留下。像你一样。",
+              "vo": "VO_SM_0091",
+              "emotion": "平静·坚定"
+            },
+            {
+              "speaker": "W",
+              "text": "不。传承不是一个人留下。是三个人一起。",
+              "vo": "VO_W_0030",
+              "emotion": "机械·智慧"
+            },
+            {
+              "speaker": "W",
+              "text": "老陈守了三十年。够了。",
+              "_action": "转向守笼人",
+              "vo": "VO_W_0031",
+              "emotion": "机械·对老朋友说话"
+            },
+            {
+              "speaker": "守笼人",
+              "text": "……好。够了。",
+              "_action": "笑着抹泪",
+              "vo": "VO_CK_0110",
+              "emotion": "释然·放下"
+            },
+            {
+              "speaker": "W",
+              "text": "你父亲老陈……他在外面过得很好。他一直在等你回去。",
+              "_action": "转向阿妍",
+              "vo": "VO_W_0032",
+              "emotion": "机械·温柔"
+            },
+            {
+              "speaker": "W",
+              "text": "莹莹。",
+              "_action": "最后转向莹莹",
+              "vo": "VO_R_0117",
+              "emotion": "哭·释然"
+            },
+            {
+              "speaker": "莹莹",
+              "text": "嗯！",
+              "_action": "擦眼泪，立正站好",
+              "vo": "VO_J_0125",
+              "emotion": "哭·坚定·笑"
+            },
+            {
+              "speaker": "W",
+              "text": "星辰梭需要一个新的守护者。不是一个人——是你们三个。沈墨负责推演，阿妍负责记录，莹莹……",
+              "vo": "VO_W_0034",
+              "emotion": "机械·庄重"
+            },
+            {
+              "speaker": "莹莹",
+              "text": "我负责什么？",
+              "vo": "VO_J_0126",
+              "emotion": "急切"
+            },
+            {
+              "speaker": "W",
+              "text": "你负责……让它不孤单。",
+              "vo": "VO_W_0035",
+              "emotion": "机械·温柔·父亲对女儿",
+              "cg": "assets/images/cg/CG-16_reunion.jpg"
+            },
+            {
+              "speaker": "莹莹",
+              "text": "嗯！！",
+              "_action": "笑了，用力点头",
+              "vo": "VO_J_0127",
+              "emotion": "笑·哭·坚定"
+            },
+            {
+              "speaker": "W",
+              "text": "时间到了。融入星辰梭三十年，我的意识……快要消散了。",
+              "_action": "光芒开始变弱",
+              "vo": "VO_W_0036",
+              "emotion": "机械·平静",
+              "cg": "assets/images/cg/CG-26_w_farewell.jpg"
+            },
+            {
+              "speaker": "莹莹",
+              "text": "爸！不要！",
+              "vo": "VO_J_0128",
+              "emotion": "惊恐·不舍"
+            },
+            {
+              "speaker": "W",
+              "text": "我不是消失。我是回家了。回到你妈妈身边。",
+              "_action": "声音越来越轻柔",
+              "vo": "VO_W_0037",
+              "emotion": "机械·安详",
+              "bg": "assets/images/backgrounds/bg_new/BG-18_light_gate.jpg"
+            },
+            {
+              "speaker": "W",
+              "text": "莹莹，记住——每一个数字背后都是人。每一个笼子，关的不是数字，是思念。",
+              "vo": "VO_W_0038",
+              "emotion": "机械·最后一课·电流声减弱"
+            },
+            {
+              "speaker": "W",
+              "text": "坐标已锁定……原路，不需要返回了。",
+              "_action": "声音合成体，电音完全褪去，浮现出微弱的、带着磁性的人声气音",
+              "vo": "VO_W_0039",
+              "emotion": "机械·极轻·气声·道别——这一句后期不加电音，保留微弱合成底噪"
+            }
+          ],
+          "epilogue": [
+            {
+              "speaker": "守笼人",
+              "text": "我守了三十年，也该出去看看了。",
+              "_action": "莹莹、阿妍、沈墨三人站在门口。守笼人换上了普通的衣服，手里拿着一个旅行包。",
+              "scene": "档案馆大门。阳光从门外照进来——这是全剧第一次出现真正的阳光。门不再是尘封的，而是敞开的。",
+              "vo": "VO_CK_0111",
+              "emotion": "释然·微笑",
+              "cg": "assets/images/cg/CG-27_keeper_leaves.jpg",
+              "bg": "assets/images/backgrounds/bg_new/BG-19_sunlight_gate.jpg"
+            },
+            {
+              "speaker": "莹莹",
+              "text": "CK爷爷！你要回来看我们！",
+              "_action": "抱住守笼人",
+              "vo": "VO_J_0129",
+              "emotion": "不舍·笑"
+            },
+            {
+              "speaker": "守笼人",
+              "text": "会的。",
+              "_action": "拍了拍她的头",
+              "vo": "VO_CK_0112",
+              "emotion": "温和·笑"
+            },
+            {
+              "speaker": "莹莹",
+              "text": "沈墨哥！阿妍姐！我们接下来做什么？",
+              "_action": "沈墨、阿妍、莹莹三人留在档案馆。莹莹跳到沈墨背上。",
+              "sfx": "door_open",
+              "vo": "VO_J_0130",
+              "emotion": "开心·期待"
+            },
+            {
+              "speaker": "沈墨",
+              "text": "……解题。",
+              "_action": "看了阿妍一眼，两人相视而笑",
+              "vo": "VO_SM_0092",
+              "emotion": "微笑·平静·幸福"
+            },
+            {
+              "speaker": "阿妍",
+              "text": "还有——等下一个来敲门的人。",
+              "_action": "微笑",
+              "vo": "VO_R_0118",
+              "emotion": "温柔·期待"
+            },
+            {
+              "speaker": "莹莹",
+              "text": "我们在这里哦——！",
+              "_action": "从沈墨背上跳下来，跑到门口，对着阳光大喊",
+              "vo": "VO_J_0131",
+              "emotion": "大喊·开心·自由",
+              "cg": "assets/images/cg/CG-28_three_sunlight.jpg"
+            },
+            {
+              "speaker": "旁白",
+              "text": "—— 制作人员名单开始滚动 ——",
+              "_action": "制作人员名单开始滚动。；5关",
+              "bgm": "ending_true.mp3 渐弱，最后是W的音乐盒主题，轻轻结束",
+              "pause": 2,
+              "isNarration": true
+            },
+            {
+              "speaker": "旁白",
+              "text": "附录一 · 莹莹的 112 次训练",
+              "isNarration": true
+            },
+            {
+              "speaker": "旁白",
+              "text": "附录二 · 守笼人的茶",
+              "_action": "莹莹说的",
+              "isNarration": true
+            },
+            {
+              "speaker": "旁白",
+              "text": "附录三 · 阿妍的笔记",
+              "_action": "被莹莹发现",
+              "isNarration": true
+            },
+            {
+              "speaker": "旁白",
+              "text": "附录四 · 设局人的信",
+              "isNarration": true
+            },
+            {
+              "speaker": "旁白",
+              "text": "附录五 · 星辰梭的 W",
+              "isNarration": true
+            }
+          ],
+          "levels": []
+        }
+      ]
+    }
+  ]
+}

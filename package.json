@@ -1,0 +1,11 @@
+﻿{
+  "name": "cagemaster4",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "migrate": "node scripts/migrate-v3-to-v4.js",
+    "test:ai": "node scripts/ai-tester.js",
+    "validate": "node scripts/validate-levels.js",
+    "dev": "node -e \"console.log('Run with a local server')\""
+  }
+}

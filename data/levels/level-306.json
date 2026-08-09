@@ -1,0 +1,1234 @@
+{
+  "levelId": 306,
+  "title": "第6关：组合运用",
+  "gridSize": 9,
+  "difficulty": "困难",
+  "teachingGoal": "组合运用：区块排除法与并蒂锁的结合使用，加上星衡法则，多技巧联合解题。",
+  "features": {
+    "allowDraft": true,
+    "assistant45": false,
+    "showHints": true,
+    "perspectiveMode": true,
+    "highlightRow": true,
+    "highlightCol": true,
+    "highlightBox": true,
+    "highlightNumber": true,
+    "highlightCage": true,
+    "autoFillCandidates": false
+  },
+  "triggers": [
+    {
+      "id": "t306_s",
+      "condition": "onLevelStart",
+      "type": "popup_hint",
+      "position": "top",
+      "text": "组合运用关！这一关需要你同时使用区块排除和数对——技巧之间会互相触发，连锁反应！",
+      "once": true
+    },
+    {
+      "id": "t306_f1",
+      "condition": "onFirstNumberFilled",
+      "type": "popup_hint",
+      "position": "top",
+      "text": "不错！第一个突破点找到了，接下来的连锁反应会越来越顺！",
+      "once": true
+    },
+    {
+      "id": "t306_b",
+      "condition": "onFillCountReached",
+      "count": 54,
+      "type": "enter_phase",
+      "phase": "breakthrough",
+      "once": true
+    },
+    {
+      "id": "t306_bt",
+      "condition": "onFillCountReached",
+      "count": 54,
+      "type": "popup_hint",
+      "position": "top",
+      "text": "⚡ 破局时刻！数对+区块的组合拳打出了效果，盘面开始崩塌！",
+      "once": true,
+      "delay": 400
+    },
+    {
+      "id": "t306_st20",
+      "condition": "onStuckForSeconds",
+      "seconds": 20,
+      "type": "popup_hint",
+      "position": "top",
+      "text": "💡 卡住了？先找数对锁定候选，再用区块排除删除更多候选，交替使用两种技巧！",
+      "once": false
+    },
+    {
+      "id": "t306_st40",
+      "condition": "onStuckForSeconds",
+      "seconds": 40,
+      "type": "popup_hint",
+      "position": "top",
+      "text": "💡 别忘了星衡法则和笼子组合！基础技巧永远不过时，它们经常是连锁的起点！",
+      "once": false,
+      "delay": 300
+    },
+    {
+      "id": "t306_ag",
+      "condition": "onConflict",
+      "type": "popup_hint",
+      "position": "top",
+      "text": "⚠️ 一步错步步错！每填入一个数字前，确认它通过了所有约束条件！",
+      "once": false
+    },
+    {
+      "id": "t306_fi",
+      "condition": "onFillCountReached",
+      "count": 70,
+      "type": "enter_phase",
+      "phase": "finishing",
+      "once": true
+    },
+    {
+      "id": "t306_fit",
+      "condition": "onFillCountReached",
+      "count": 70,
+      "type": "popup_hint",
+      "position": "top",
+      "text": "✨ 收官！多技巧协同作战，最后几格尽收囊中！",
+      "once": true,
+      "delay": 400
+    },
+    {
+      "id": "t306_c",
+      "condition": "onLevelComplete",
+      "type": "popup_hint",
+      "position": "top",
+      "text": "🎉 组合运用纯熟！你已经可以灵活切换多种推理技巧了！",
+      "once": true
+    }
+  ],
+  "boardData": [
+    [
+      7,
+      9,
+      1,
+      4,
+      6,
+      2,
+      5,
+      8,
+      3
+    ],
+    [
+      0,
+      0,
+      6,
+      0,
+      0,
+      3,
+      4,
+      7,
+      0
+    ],
+    [
+      8,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      9,
+      0
+    ],
+    [
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      5,
+      0
+    ],
+    [
+      0,
+      8,
+      0,
+      0,
+      0,
+      0,
+      0,
+      3,
+      0
+    ],
+    [
+      0,
+      7,
+      0,
+      0,
+      5,
+      0,
+      0,
+      0,
+      2
+    ],
+    [
+      9,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      3,
+      0,
+      9,
+      0,
+      0,
+      0,
+      2,
+      8
+    ],
+    [
+      0,
+      2,
+      0,
+      0,
+      4,
+      0,
+      7,
+      6,
+      0
+    ]
+  ],
+  "cages": [
+    {
+      "id": 1,
+      "sum": 24,
+      "cells": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "id": 2,
+      "sum": 19,
+      "cells": [
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          4
+        ]
+      ]
+    },
+    {
+      "id": 3,
+      "sum": 5,
+      "cells": [
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          5
+        ]
+      ]
+    },
+    {
+      "id": 4,
+      "sum": 9,
+      "cells": [
+        [
+          0,
+          6
+        ],
+        [
+          1,
+          6
+        ]
+      ]
+    },
+    {
+      "id": 5,
+      "sum": 12,
+      "cells": [
+        [
+          0,
+          7
+        ],
+        [
+          0,
+          8
+        ],
+        [
+          1,
+          8
+        ]
+      ]
+    },
+    {
+      "id": 6,
+      "sum": 16,
+      "cells": [
+        [
+          1,
+          7
+        ],
+        [
+          2,
+          7
+        ]
+      ]
+    },
+    {
+      "id": 7,
+      "sum": 16,
+      "cells": [
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          2
+        ]
+      ]
+    },
+    {
+      "id": 8,
+      "sum": 6,
+      "cells": [
+        [
+          1,
+          2
+        ]
+      ]
+    },
+    {
+      "id": 9,
+      "sum": 20,
+      "cells": [
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          3,
+          2
+        ]
+      ]
+    },
+    {
+      "id": 10,
+      "sum": 4,
+      "cells": [
+        [
+          2,
+          4
+        ],
+        [
+          3,
+          4
+        ]
+      ]
+    },
+    {
+      "id": 11,
+      "sum": 9,
+      "cells": [
+        [
+          2,
+          5
+        ],
+        [
+          2,
+          6
+        ]
+      ]
+    },
+    {
+      "id": 12,
+      "sum": 19,
+      "cells": [
+        [
+          2,
+          8
+        ],
+        [
+          3,
+          8
+        ],
+        [
+          4,
+          8
+        ],
+        [
+          5,
+          8
+        ]
+      ]
+    },
+    {
+      "id": 13,
+      "sum": 14,
+      "cells": [
+        [
+          3,
+          7
+        ],
+        [
+          3,
+          6
+        ]
+      ]
+    },
+    {
+      "id": 14,
+      "sum": 23,
+      "cells": [
+        [
+          3,
+          5
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          4,
+          6
+        ]
+      ]
+    },
+    {
+      "id": 15,
+      "sum": 8,
+      "cells": [
+        [
+          3,
+          3
+        ],
+        [
+          4,
+          3
+        ]
+      ]
+    },
+    {
+      "id": 16,
+      "sum": 5,
+      "cells": [
+        [
+          3,
+          0
+        ],
+        [
+          4,
+          0
+        ]
+      ]
+    },
+    {
+      "id": 17,
+      "sum": 16,
+      "cells": [
+        [
+          4,
+          1
+        ],
+        [
+          5,
+          1
+        ],
+        [
+          6,
+          1
+        ]
+      ]
+    },
+    {
+      "id": 18,
+      "sum": 20,
+      "cells": [
+        [
+          4,
+          2
+        ],
+        [
+          5,
+          2
+        ],
+        [
+          5,
+          3
+        ]
+      ]
+    },
+    {
+      "id": 19,
+      "sum": 7,
+      "cells": [
+        [
+          4,
+          4
+        ],
+        [
+          5,
+          4
+        ]
+      ]
+    },
+    {
+      "id": 20,
+      "sum": 12,
+      "cells": [
+        [
+          4,
+          7
+        ],
+        [
+          5,
+          7
+        ],
+        [
+          5,
+          6
+        ]
+      ]
+    },
+    {
+      "id": 21,
+      "sum": 13,
+      "cells": [
+        [
+          5,
+          5
+        ],
+        [
+          6,
+          5
+        ],
+        [
+          6,
+          6
+        ]
+      ]
+    },
+    {
+      "id": 22,
+      "sum": 23,
+      "cells": [
+        [
+          5,
+          0
+        ],
+        [
+          6,
+          0
+        ],
+        [
+          7,
+          0
+        ],
+        [
+          8,
+          0
+        ]
+      ]
+    },
+    {
+      "id": 23,
+      "sum": 20,
+      "cells": [
+        [
+          6,
+          2
+        ],
+        [
+          7,
+          2
+        ],
+        [
+          7,
+          3
+        ]
+      ]
+    },
+    {
+      "id": 24,
+      "sum": 17,
+      "cells": [
+        [
+          6,
+          3
+        ],
+        [
+          6,
+          4
+        ],
+        [
+          7,
+          4
+        ]
+      ]
+    },
+    {
+      "id": 25,
+      "sum": 17,
+      "cells": [
+        [
+          6,
+          7
+        ],
+        [
+          6,
+          8
+        ],
+        [
+          7,
+          8
+        ]
+      ]
+    },
+    {
+      "id": 26,
+      "sum": 24,
+      "cells": [
+        [
+          7,
+          7
+        ],
+        [
+          8,
+          7
+        ],
+        [
+          8,
+          8
+        ],
+        [
+          8,
+          6
+        ]
+      ]
+    },
+    {
+      "id": 27,
+      "sum": 6,
+      "cells": [
+        [
+          7,
+          6
+        ],
+        [
+          7,
+          5
+        ]
+      ]
+    },
+    {
+      "id": 28,
+      "sum": 5,
+      "cells": [
+        [
+          7,
+          1
+        ],
+        [
+          8,
+          1
+        ]
+      ]
+    },
+    {
+      "id": 29,
+      "sum": 15,
+      "cells": [
+        [
+          8,
+          2
+        ],
+        [
+          8,
+          3
+        ],
+        [
+          8,
+          4
+        ]
+      ]
+    },
+    {
+      "id": 30,
+      "sum": 1,
+      "cells": [
+        [
+          8,
+          5
+        ]
+      ]
+    }
+  ],
+  "solution": [
+    [
+      7,
+      9,
+      1,
+      4,
+      6,
+      2,
+      5,
+      8,
+      3
+    ],
+    [
+      2,
+      5,
+      6,
+      8,
+      9,
+      3,
+      4,
+      7,
+      1
+    ],
+    [
+      8,
+      4,
+      3,
+      5,
+      1,
+      7,
+      2,
+      9,
+      6
+    ],
+    [
+      1,
+      6,
+      2,
+      7,
+      3,
+      8,
+      9,
+      5,
+      4
+    ],
+    [
+      4,
+      8,
+      5,
+      1,
+      2,
+      9,
+      6,
+      3,
+      7
+    ],
+    [
+      3,
+      7,
+      9,
+      6,
+      5,
+      4,
+      8,
+      1,
+      2
+    ],
+    [
+      9,
+      1,
+      7,
+      2,
+      8,
+      6,
+      3,
+      4,
+      5
+    ],
+    [
+      6,
+      3,
+      4,
+      9,
+      7,
+      5,
+      1,
+      2,
+      8
+    ],
+    [
+      5,
+      2,
+      8,
+      3,
+      4,
+      1,
+      7,
+      6,
+      9
+    ]
+  ],
+  "preDialog": [
+    {
+      "speaker": "旁白",
+      "text": "沈墨推开402房门。书桌上放着一本翻开的练习册，翻到最后一页，用铅笔写着四个字：“他还没来。”",
+      "isNarration": true
+    },
+    {
+      "speaker": "沈墨 CHIBI",
+      "text": "……她等过谁。她把这句话留在纸上，是为了让后来的人看到。",
+      "side": "left",
+      "emotion": "thinking",
+      "effect": 0
+    },
+    {
+      "speaker": "薇拉",
+      "text": "你母亲等的人，是你父亲。他来了，但他没有走进那扇门。",
+      "side": "right",
+      "emotion": "calm",
+      "effect": 0
+    }
+  ],
+  "clearDialog": [
+    {
+      "speaker": "旁白",
+      "text": "沈墨在练习册的页脚发现了另一行字，字迹更淡：“11月15日。我不能再等了。”",
+      "isNarration": true
+    },
+    {
+      "speaker": "沈墨 CHIBI",
+      "text": "……她和父亲在同一天离开。但一个走了，一个留了下来。",
+      "side": "left",
+      "emotion": "thinking",
+      "effect": 0
+    },
+    {
+      "speaker": "老师（留声）",
+      "text": "组合运用——把已经学过的所有技巧放在同一道题里。你不能只用一种方法。",
+      "side": "right",
+      "emotion": "calm",
+      "effect": 0
+    }
+  ],
+  "mode": "full",
+  "coreMove": {
+    "row": 7,
+    "col": 7,
+    "value": 9
+  },
+  "totalSteps": 82,
+  "nakedSingleRatio": 0.744,
+  "techCount": {
+    "nakedSingle": 61,
+    "rule45": 4,
+    "hiddenSingle": 9,
+    "cageUnique": 7,
+    "nakedPair": 1
+  },
+  "maxTechLevel": 5,
+  "threeAct": {
+    "opening": [
+      [
+        1,
+        6
+      ],
+      [
+        2,
+        4
+      ],
+      [
+        2,
+        7
+      ],
+      [
+        0,
+        7
+      ],
+      [
+        0,
+        3
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        8
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        3
+      ],
+      [
+        1,
+        4
+      ],
+      [
+        1,
+        8
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        2,
+        5
+      ],
+      [
+        2,
+        6
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        3,
+        6
+      ],
+      [
+        4,
+        0
+      ],
+      [
+        4,
+        4
+      ],
+      [
+        4,
+        6
+      ],
+      [
+        4,
+        5
+      ],
+      [
+        6,
+        1
+      ],
+      [
+        6,
+        7
+      ],
+      [
+        8,
+        0
+      ],
+      [
+        8,
+        5
+      ],
+      [
+        8,
+        8
+      ]
+    ],
+    "breakthrough": [
+      [
+        6,
+        5
+      ],
+      [
+        6,
+        6
+      ],
+      [
+        6,
+        3
+      ],
+      [
+        6,
+        8
+      ],
+      [
+        6,
+        4
+      ],
+      [
+        6,
+        2
+      ],
+      [
+        7,
+        2
+      ],
+      [
+        7,
+        0
+      ],
+      [
+        8,
+        3
+      ]
+    ],
+    "avalanche": [
+      [
+        2,
+        2
+      ],
+      [
+        2,
+        8
+      ],
+      [
+        3,
+        1
+      ],
+      [
+        3,
+        2
+      ],
+      [
+        3,
+        3
+      ],
+      [
+        3,
+        5
+      ],
+      [
+        3,
+        8
+      ],
+      [
+        4,
+        3
+      ],
+      [
+        4,
+        2
+      ],
+      [
+        4,
+        8
+      ],
+      [
+        5,
+        0
+      ],
+      [
+        5,
+        2
+      ],
+      [
+        5,
+        3
+      ],
+      [
+        5,
+        5
+      ],
+      [
+        5,
+        7
+      ],
+      [
+        5,
+        6
+      ],
+      [
+        7,
+        4
+      ],
+      [
+        7,
+        6
+      ],
+      [
+        7,
+        5
+      ],
+      [
+        8,
+        2
+      ]
+    ]
+  },
+  "lessonPlan": {
+    "newSkill": "combo_306",
+    "skillName": "组合运用",
+    "isFirstLesson": false,
+    "skippable": true,
+    "prerequisite": [
+      "pointingRow",
+      "pointingCol",
+      "pointingBox",
+      "nakedPair"
+    ],
+    "phases": {
+      "intro": {
+        "text": "组合运用：区块排除、并蒂锁、星衡法则混合登场。先找到锁定结构的钥匙，再用排除法收网。",
+        "speaker": "守笼人",
+        "voiceId": "CK_03",
+        "duration": 4000
+      },
+      "demo": {
+        "steps": [
+          {
+            "action": "highlightRow",
+            "target": 2,
+            "duration": 1400,
+            "text": "看第 3 行。c4 和 c6 这两格的候选都是 5、7。"
+          },
+          {
+            "action": "focusCell",
+            "target": [
+              2,
+              3
+            ],
+            "duration": 1200,
+            "text": "c4：候选 5、7。"
+          },
+          {
+            "action": "focusCell",
+            "target": [
+              2,
+              5
+            ],
+            "duration": 1200,
+            "text": "c6：候选也是 5、7。"
+          },
+          {
+            "action": "highlightRow",
+            "target": 2,
+            "duration": 1800,
+            "text": "它们又是一把并蒂锁——5 和 7 锁在这两格里，这一行的其他格都不能再填 5 或 7。"
+          },
+          {
+            "action": "focusCell",
+            "target": [
+              2,
+              1
+            ],
+            "duration": 1600,
+            "text": "看 c2：候选本来是 4、5——并蒂锁把 5 排除，只剩 4，只能填 4！"
+          },
+          {
+            "action": "highlightBox",
+            "target": 0,
+            "duration": 1400,
+            "text": "这就是组合运用：并蒂锁缩小范围，再配合行列宫排除与星衡法则收网。"
+          }
+        ]
+      },
+      "guided": {
+        "targetCell": [
+          2,
+          1
+        ],
+        "correctValue": 4,
+        "interactionType": "NUMBER",
+        "maxAttempts": 2,
+        "autoRevealAfter": 2,
+        "autoRevealText": "直接填入数字 4。",
+        "methodText": "组合运用：先找并蒂锁、区块等锁定结构，再用排除法（配合星衡法则）一步步收网。",
+        "hintText": "轮到你了：c4、c6 锁定了 5、7——c2 的候选 4、5 排除 5 后只剩几？试试看。",
+        "failHint": "等等——c4、c6 是并蒂锁，锁住 5 和 7，所以 c2 不能填 5。c2 的候选 4、5，排除后只剩 4。",
+        "failVoiceId": "CK_05",
+        "successText": "答对了！并蒂锁开锁，组合技巧显威力。",
+        "successVoiceId": "J_03",
+        "successNext": [
+          {
+            "cell": [
+              1,
+              1
+            ],
+            "hintText": "很好！再看 b2 格：行里有 6、3、4、7，列里有 9、8、7、3、2，宫里还有 7、9、1、6、8——排除之后只剩 5，填 5！"
+          },
+          {
+            "cell": [
+              1,
+              0
+            ],
+            "hintText": "再来！填好 b2 后看 b1 格：候选是 2、5，行里已有 5——排除后只剩 2，填 2！"
+          }
+        ]
+      },
+      "semiAuto": {
+        "enabled": true,
+        "targetCount": 2,
+        "interactionType": "NUMBER",
+        "hintText": "组合运用各种技巧，再找出两个数字。",
+        "hintVoiceId": "R_07",
+        "watchCells": [
+          [
+            1,
+            8
+          ],
+          [
+            2,
+            8
+          ]
+        ]
+      },
+      "free": {
+        "enabled": true,
+        "unlockText": "剩下的交给你了。"
+      }
+    }
+  },
+  "difficultyLevel": 6
+}

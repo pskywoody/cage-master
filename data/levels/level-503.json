@@ -1,0 +1,1227 @@
+{
+  "levelId": 503,
+  "title": "第3关：复合笼组合",
+  "gridSize": 9,
+  "difficulty": "专家",
+  "teachingGoal": "复合笼组合：多个笼子交叉重叠，利用它们共享的格子作为桥梁，联立方程求解。",
+  "features": {
+    "allowDraft": true,
+    "assistant45": false,
+    "showHints": true,
+    "perspectiveMode": true,
+    "highlightRow": true,
+    "highlightCol": true,
+    "highlightBox": true,
+    "highlightNumber": true,
+    "highlightCage": true,
+    "autoFillCandidates": false
+  },
+  "triggers": [
+    {
+      "id": "t503_s",
+      "condition": "onLevelStart",
+      "type": "popup_hint",
+      "position": "top",
+      "text": "第三关：复合笼组合！多个笼子交叉在一起，共享一些格子——把它们的和值关系列出来，像解方程一样！",
+      "once": true
+    },
+    {
+      "id": "t503_f1",
+      "condition": "onFirstNumberFilled",
+      "type": "popup_hint",
+      "position": "top",
+      "text": "漂亮！两个笼子的和值关系被你发现了——共享格子是关键的桥梁！",
+      "once": true
+    },
+    {
+      "id": "t503_b",
+      "condition": "onFillCountReached",
+      "count": 51,
+      "type": "enter_phase",
+      "phase": "breakthrough",
+      "once": true
+    },
+    {
+      "id": "t503_bt",
+      "condition": "onFillCountReached",
+      "count": 51,
+      "type": "popup_hint",
+      "position": "top",
+      "text": "⚡ 破局时刻！复合笼的方程组被你解出，关键数字确定！",
+      "once": true,
+      "delay": 400
+    },
+    {
+      "id": "t503_st20",
+      "condition": "onStuckForSeconds",
+      "seconds": 20,
+      "type": "popup_hint",
+      "position": "top",
+      "text": "💡 卡住了？找两个有重叠格子的笼子，把它们的和值加加减减，往往能消掉共享格子，算出独立部分！",
+      "once": false
+    },
+    {
+      "id": "t503_st40",
+      "condition": "onStuckForSeconds",
+      "seconds": 40,
+      "type": "popup_hint",
+      "position": "top",
+      "text": "💡 复合笼数学：笼A和=X，笼B和=Y，它们共享k个格子（和为S），则笼A独有+S=X，笼B独有+S=Y，两式相减消去S！",
+      "once": false,
+      "delay": 300
+    },
+    {
+      "id": "t503_ag",
+      "condition": "onConflict",
+      "type": "popup_hint",
+      "position": "top",
+      "text": "⚠️ 共享格子数清楚了吗？加减消元时算错一个数就全错了！",
+      "once": false
+    },
+    {
+      "id": "t503_fi",
+      "condition": "onFillCountReached",
+      "count": 69,
+      "type": "enter_phase",
+      "phase": "finishing",
+      "once": true
+    },
+    {
+      "id": "t503_fit",
+      "condition": "onFillCountReached",
+      "count": 69,
+      "type": "popup_hint",
+      "position": "top",
+      "text": "✨ 收官！复合体被你拆解完毕，所有笼格水落石出！",
+      "once": true,
+      "delay": 400
+    },
+    {
+      "id": "t503_c",
+      "condition": "onLevelComplete",
+      "type": "popup_hint",
+      "position": "top",
+      "text": "🎉 复合笼组合已掌握！你开始用数学思维看待笼局了！",
+      "once": true
+    }
+  ],
+  "boardData": [
+    [
+      5,
+      9,
+      2,
+      1,
+      4,
+      0,
+      6,
+      8,
+      0
+    ],
+    [
+      4,
+      8,
+      7,
+      0,
+      6,
+      0,
+      0,
+      0,
+      5
+    ],
+    [
+      3,
+      1,
+      6,
+      0,
+      0,
+      8,
+      0,
+      0,
+      9
+    ],
+    [
+      9,
+      6,
+      0,
+      0,
+      0,
+      2,
+      7,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      5,
+      0
+    ],
+    [
+      0,
+      4,
+      1,
+      0,
+      9,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      7,
+      0,
+      3,
+      0,
+      0
+    ],
+    [
+      2,
+      0,
+      9,
+      3,
+      0,
+      0,
+      0,
+      6,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  ],
+  "cages": [
+    {
+      "id": 1,
+      "sum": 9,
+      "cells": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          0
+        ]
+      ]
+    },
+    {
+      "id": 2,
+      "sum": 16,
+      "cells": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ]
+      ]
+    },
+    {
+      "id": 3,
+      "sum": 25,
+      "cells": [
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          3
+        ]
+      ]
+    },
+    {
+      "id": 4,
+      "sum": 14,
+      "cells": [
+        [
+          0,
+          6
+        ],
+        [
+          0,
+          7
+        ]
+      ]
+    },
+    {
+      "id": 5,
+      "sum": 17,
+      "cells": [
+        [
+          0,
+          8
+        ],
+        [
+          1,
+          8
+        ],
+        [
+          1,
+          7
+        ],
+        [
+          2,
+          7
+        ]
+      ]
+    },
+    {
+      "id": 6,
+      "sum": 12,
+      "cells": [
+        [
+          1,
+          6
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          3,
+          6
+        ]
+      ]
+    },
+    {
+      "id": 7,
+      "sum": 16,
+      "cells": [
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          2,
+          1
+        ]
+      ]
+    },
+    {
+      "id": 8,
+      "sum": 12,
+      "cells": [
+        [
+          2,
+          0
+        ],
+        [
+          3,
+          0
+        ]
+      ]
+    },
+    {
+      "id": 9,
+      "sum": 13,
+      "cells": [
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          4
+        ]
+      ]
+    },
+    {
+      "id": 10,
+      "sum": 11,
+      "cells": [
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          4,
+          5
+        ]
+      ]
+    },
+    {
+      "id": 11,
+      "sum": 17,
+      "cells": [
+        [
+          2,
+          8
+        ],
+        [
+          3,
+          8
+        ]
+      ]
+    },
+    {
+      "id": 12,
+      "sum": 11,
+      "cells": [
+        [
+          3,
+          7
+        ],
+        [
+          4,
+          7
+        ],
+        [
+          5,
+          7
+        ],
+        [
+          5,
+          6
+        ]
+      ]
+    },
+    {
+      "id": 13,
+      "sum": 7,
+      "cells": [
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          3
+        ]
+      ]
+    },
+    {
+      "id": 14,
+      "sum": 13,
+      "cells": [
+        [
+          3,
+          2
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          5,
+          2
+        ],
+        [
+          6,
+          2
+        ]
+      ]
+    },
+    {
+      "id": 15,
+      "sum": 15,
+      "cells": [
+        [
+          3,
+          1
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          4,
+          0
+        ]
+      ]
+    },
+    {
+      "id": 16,
+      "sum": 23,
+      "cells": [
+        [
+          4,
+          3
+        ],
+        [
+          4,
+          4
+        ],
+        [
+          5,
+          4
+        ]
+      ]
+    },
+    {
+      "id": 17,
+      "sum": 9,
+      "cells": [
+        [
+          4,
+          6
+        ]
+      ]
+    },
+    {
+      "id": 18,
+      "sum": 12,
+      "cells": [
+        [
+          4,
+          8
+        ],
+        [
+          5,
+          8
+        ],
+        [
+          6,
+          8
+        ]
+      ]
+    },
+    {
+      "id": 19,
+      "sum": 24,
+      "cells": [
+        [
+          5,
+          5
+        ],
+        [
+          6,
+          5
+        ],
+        [
+          7,
+          5
+        ],
+        [
+          8,
+          5
+        ]
+      ]
+    },
+    {
+      "id": 20,
+      "sum": 15,
+      "cells": [
+        [
+          5,
+          3
+        ],
+        [
+          6,
+          3
+        ]
+      ]
+    },
+    {
+      "id": 21,
+      "sum": 13,
+      "cells": [
+        [
+          5,
+          1
+        ],
+        [
+          5,
+          0
+        ],
+        [
+          6,
+          0
+        ]
+      ]
+    },
+    {
+      "id": 22,
+      "sum": 15,
+      "cells": [
+        [
+          6,
+          1
+        ],
+        [
+          7,
+          1
+        ],
+        [
+          8,
+          1
+        ]
+      ]
+    },
+    {
+      "id": 23,
+      "sum": 18,
+      "cells": [
+        [
+          6,
+          4
+        ],
+        [
+          7,
+          4
+        ],
+        [
+          8,
+          4
+        ],
+        [
+          8,
+          3
+        ],
+        [
+          7,
+          3
+        ]
+      ]
+    },
+    {
+      "id": 24,
+      "sum": 18,
+      "cells": [
+        [
+          6,
+          6
+        ],
+        [
+          6,
+          7
+        ],
+        [
+          7,
+          7
+        ]
+      ]
+    },
+    {
+      "id": 25,
+      "sum": 12,
+      "cells": [
+        [
+          7,
+          8
+        ],
+        [
+          8,
+          8
+        ],
+        [
+          8,
+          7
+        ]
+      ]
+    },
+    {
+      "id": 26,
+      "sum": 13,
+      "cells": [
+        [
+          7,
+          6
+        ],
+        [
+          8,
+          6
+        ]
+      ]
+    },
+    {
+      "id": 27,
+      "sum": 17,
+      "cells": [
+        [
+          7,
+          2
+        ],
+        [
+          8,
+          2
+        ]
+      ]
+    },
+    {
+      "id": 28,
+      "sum": 8,
+      "cells": [
+        [
+          7,
+          0
+        ],
+        [
+          8,
+          0
+        ]
+      ]
+    }
+  ],
+  "solution": [
+    [
+      5,
+      9,
+      2,
+      1,
+      4,
+      7,
+      6,
+      8,
+      3
+    ],
+    [
+      4,
+      8,
+      7,
+      9,
+      6,
+      3,
+      1,
+      2,
+      5
+    ],
+    [
+      3,
+      1,
+      6,
+      5,
+      2,
+      8,
+      4,
+      7,
+      9
+    ],
+    [
+      9,
+      6,
+      5,
+      4,
+      3,
+      2,
+      7,
+      1,
+      8
+    ],
+    [
+      7,
+      2,
+      3,
+      6,
+      8,
+      1,
+      9,
+      5,
+      4
+    ],
+    [
+      8,
+      4,
+      1,
+      7,
+      9,
+      5,
+      2,
+      3,
+      6
+    ],
+    [
+      1,
+      5,
+      4,
+      8,
+      7,
+      6,
+      3,
+      9,
+      2
+    ],
+    [
+      2,
+      7,
+      9,
+      3,
+      5,
+      4,
+      8,
+      6,
+      1
+    ],
+    [
+      6,
+      3,
+      8,
+      2,
+      1,
+      9,
+      5,
+      4,
+      7
+    ]
+  ],
+  "preDialog": [
+    {
+      "speaker": "旁白",
+      "text": "403房的桌面上放着一只铁匣，匣盖内侧贴着一张纸条：“这道题你母亲解了一半。另一半留给你。”",
+      "isNarration": true
+    },
+    {
+      "speaker": "沈墨 CHIBI",
+      "text": "……她解了一半，然后停下了。她在等一个答案，但那个答案没有来。",
+      "side": "left",
+      "emotion": "thinking",
+      "effect": 0
+    },
+    {
+      "speaker": "老师（留声）",
+      "text": "复合笼组合——多组笼格重叠交叉，共享同一批格子。拆开每一组笼格各自的约束，再让它们在共享格的位置合并。",
+      "side": "right",
+      "emotion": "calm",
+      "effect": 0
+    }
+  ],
+  "clearDialog": [
+    {
+      "speaker": "旁白",
+      "text": "沈墨解完那道题。铁匣底部浮出一行字：“你母亲不是病逝的。她离开了上海。”",
+      "isNarration": true
+    },
+    {
+      "speaker": "沈墨 CHIBI",
+      "text": "……她不是被带走，也不是被迫离开。她是自己走的。",
+      "side": "left",
+      "emotion": "thinking",
+      "effect": 0
+    },
+    {
+      "speaker": "薇拉",
+      "text": "你母亲走的那天，你在账房里对账。她没有告诉你，是因为她不确定自己还能不能回来。",
+      "side": "right",
+      "emotion": "calm",
+      "effect": 0
+    }
+  ],
+  "mode": "full",
+  "coreMove": {
+    "row": 6,
+    "col": 8,
+    "value": 3
+  },
+  "totalSteps": 81,
+  "nakedSingleRatio": 0.667,
+  "techCount": {
+    "nakedSingle": 54,
+    "cageUnique": 19,
+    "hiddenSingle": 6,
+    "rule45": 1,
+    "nakedPair": 1
+  },
+  "maxTechLevel": 5,
+  "threeAct": {
+    "opening": [
+      [
+        0,
+        6
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        3
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        2,
+        2
+      ],
+      [
+        3,
+        0
+      ],
+      [
+        3,
+        5
+      ],
+      [
+        3,
+        8
+      ],
+      [
+        4,
+        2
+      ],
+      [
+        3,
+        2
+      ],
+      [
+        3,
+        3
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        3,
+        7
+      ],
+      [
+        4,
+        4
+      ],
+      [
+        4,
+        0
+      ],
+      [
+        4,
+        1
+      ],
+      [
+        4,
+        3
+      ],
+      [
+        4,
+        6
+      ],
+      [
+        5,
+        0
+      ],
+      [
+        5,
+        3
+      ],
+      [
+        5,
+        6
+      ],
+      [
+        1,
+        6
+      ],
+      [
+        5,
+        7
+      ],
+      [
+        1,
+        3
+      ],
+      [
+        6,
+        3
+      ],
+      [
+        6,
+        7
+      ],
+      [
+        7,
+        6
+      ],
+      [
+        8,
+        0
+      ],
+      [
+        8,
+        2
+      ],
+      [
+        8,
+        6
+      ]
+    ],
+    "breakthrough": [
+      [
+        6,
+        8
+      ],
+      [
+        7,
+        1
+      ],
+      [
+        7,
+        8
+      ],
+      [
+        2,
+        4
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        8,
+        1
+      ],
+      [
+        8,
+        3
+      ],
+      [
+        8,
+        4
+      ],
+      [
+        8,
+        5
+      ],
+      [
+        8,
+        7
+      ],
+      [
+        8,
+        8
+      ]
+    ],
+    "avalanche": [
+      [
+        4,
+        8
+      ],
+      [
+        5,
+        5
+      ],
+      [
+        2,
+        6
+      ],
+      [
+        1,
+        7
+      ],
+      [
+        1,
+        5
+      ],
+      [
+        0,
+        5
+      ],
+      [
+        0,
+        8
+      ],
+      [
+        2,
+        7
+      ],
+      [
+        5,
+        8
+      ],
+      [
+        6,
+        0
+      ],
+      [
+        6,
+        1
+      ],
+      [
+        6,
+        2
+      ],
+      [
+        6,
+        5
+      ],
+      [
+        7,
+        5
+      ],
+      [
+        7,
+        4
+      ]
+    ]
+  },
+  "difficultyLevel": 7,
+  "lessonPlan": {
+    "newSkill": "compoundCage_503",
+    "skillName": "复合笼组合",
+    "isFirstLesson": false,
+    "skippable": true,
+    "prerequisite": [
+      "nestedCage_501",
+      "irregularCage_502",
+      "cageUnique"
+    ],
+    "phases": {
+      "intro": {
+        "text": "复合笼——多组笼格重叠交叉，共享同一批格子。先拆每一组笼的约束，再在共享格位置合并。",
+        "speaker": "老师（留声）",
+        "duration": 3200
+      },
+      "demo": {
+        "steps": [
+          {
+            "action": "spotlightOn",
+            "target": 0.35,
+            "duration": 400
+          },
+          {
+            "action": "highlightCage",
+            "target": 21,
+            "duration": 1500,
+            "text": "看笼 21，和值 13。它已填了 (5,1)=4——所以剩下的 (5,0)+(6,0) 之和必须是 9。"
+          },
+          {
+            "action": "highlightCell",
+            "target": [
+              5,
+              1
+            ],
+            "duration": 1100,
+            "text": "4 就是联立的支点：笼 21 的和值约束立刻缩减到两格。"
+          },
+          {
+            "action": "focusCell",
+            "target": [
+              6,
+              0
+            ],
+            "duration": 1600,
+            "text": "看 (6,0)：行 6、列 0、宫三重排除后，候选只有 {1,6,8}；而 (5,0) 的候选只有 {7,8}。两个候选要和成 9——只有 8+1，所以 (6,0)=1、(5,0)=8。"
+          },
+          {
+            "action": "highlightCage",
+            "target": 24,
+            "duration": 1500,
+            "text": "笼 24 也一样：和值 18，已填 (6,6)=3 和 (7,7)=6。"
+          },
+          {
+            "action": "focusCell",
+            "target": [
+              6,
+              7
+            ],
+            "duration": 1300,
+            "text": "18 − 3 − 6 = 9，(6,7) 填 9！多笼和值联立，一格定、格格松。"
+          }
+        ]
+      },
+      "guided": {
+        "targetCell": [
+          6,
+          0
+        ],
+        "correctValue": 1,
+        "interactionType": "NUMBER",
+        "maxAttempts": 3,
+        "autoRevealAfter": 3,
+        "methodText": "复合笼联立：笼和 − 已知格和 = 剩余格和；剩余格再结合行列宫的候选排除，锁到唯一组合。",
+        "hintText": "轮到你了：笼 21 和值 13，已填 4，剩 (5,0)+(6,0)=9；(6,0) 候选 {1,6,8}、(5,0) 候选 {7,8}——(6,0) 试试看。",
+        "failHint": "再想想：能和成 9 的候选组合只有 8+1，(5,0) 只能是 8，所以 (6,0) 是 1。",
+        "failConflictCell": [
+          5,
+          0
+        ],
+        "failVoiceId": "CK_05",
+        "successText": "正确！复合笼的和值约束被你联立起来了。",
+        "successVoiceId": "J_03",
+        "successNext": [
+          {
+            "cell": [
+              3,
+              8
+            ],
+            "hintText": "很好！继续联立：和值 17 的笼已填 9，剩这一格——填 8！"
+          },
+          {
+            "cell": [
+              6,
+              7
+            ],
+            "hintText": "再来！和值 18 的笼已填 3 和 6，这一格填 9！"
+          }
+        ],
+        "autoRevealText": "直接填入数字 1。"
+      },
+      "semiAuto": {
+        "enabled": true,
+        "targetCount": 2,
+        "hintText": "继续用笼和联立，再找出两个格子。",
+        "hintVoiceId": "R_07",
+        "watchCells": [
+          [
+            6,
+            1
+          ],
+          [
+            0,
+            5
+          ]
+        ],
+        "interactionType": "NUMBER"
+      },
+      "free": {
+        "enabled": true,
+        "unlockText": "复合笼组合已掌握——用数学的头脑去看笼局吧。"
+      }
+    }
+  }
+}

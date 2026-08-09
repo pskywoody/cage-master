@@ -1,0 +1,1063 @@
+{
+ "level": 109,
+ "gridSize": 6,
+ "params": {
+  "cooldown": 5,
+  "siegeMs": 2000,
+  "focusGain": 1,
+  "player": "ying",
+  "spawn": "yan"
+ },
+ "board": [
+  [
+   0,
+   0,
+   1,
+   3,
+   2,
+   6
+  ],
+  [
+   3,
+   6,
+   0,
+   0,
+   0,
+   5
+  ],
+  [
+   5,
+   0,
+   3,
+   6,
+   1,
+   0
+  ],
+  [
+   0,
+   0,
+   4,
+   0,
+   0,
+   2
+  ],
+  [
+   0,
+   0,
+   0,
+   2,
+   6,
+   0
+  ],
+  [
+   2,
+   0,
+   6,
+   0,
+   5,
+   1
+  ]
+ ],
+ "solution": [
+  [
+   4,
+   5,
+   1,
+   3,
+   2,
+   6
+  ],
+  [
+   3,
+   6,
+   2,
+   1,
+   4,
+   5
+  ],
+  [
+   5,
+   2,
+   3,
+   6,
+   1,
+   4
+  ],
+  [
+   6,
+   1,
+   4,
+   5,
+   3,
+   2
+  ],
+  [
+   1,
+   4,
+   5,
+   2,
+   6,
+   3
+  ],
+  [
+   2,
+   3,
+   6,
+   4,
+   5,
+   1
+  ]
+ ],
+ "cages": [
+  {
+   "sum": 15,
+   "cells": [
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ]
+   ]
+  },
+  {
+   "sum": 6,
+   "cells": [
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ]
+   ]
+  },
+  {
+   "sum": 11,
+   "cells": [
+    [
+     0,
+     3
+    ],
+    [
+     0,
+     4
+    ],
+    [
+     0,
+     5
+    ]
+   ]
+  },
+  {
+   "sum": 15,
+   "cells": [
+    [
+     1,
+     5
+    ],
+    [
+     2,
+     5
+    ],
+    [
+     3,
+     5
+    ],
+    [
+     4,
+     5
+    ],
+    [
+     5,
+     5
+    ]
+   ]
+  },
+  {
+   "sum": 5,
+   "cells": [
+    [
+     1,
+     4
+    ],
+    [
+     2,
+     4
+    ]
+   ]
+  },
+  {
+   "sum": 7,
+   "cells": [
+    [
+     1,
+     3
+    ],
+    [
+     2,
+     3
+    ]
+   ]
+  },
+  {
+   "sum": 12,
+   "cells": [
+    [
+     2,
+     0
+    ],
+    [
+     3,
+     0
+    ],
+    [
+     3,
+     1
+    ]
+   ]
+  },
+  {
+   "sum": 5,
+   "cells": [
+    [
+     2,
+     1
+    ],
+    [
+     2,
+     2
+    ]
+   ]
+  },
+  {
+   "sum": 10,
+   "cells": [
+    [
+     3,
+     4
+    ],
+    [
+     3,
+     3
+    ],
+    [
+     4,
+     3
+    ]
+   ]
+  },
+  {
+   "sum": 18,
+   "cells": [
+    [
+     3,
+     2
+    ],
+    [
+     4,
+     2
+    ],
+    [
+     5,
+     2
+    ],
+    [
+     5,
+     1
+    ]
+   ]
+  },
+  {
+   "sum": 7,
+   "cells": [
+    [
+     4,
+     0
+    ],
+    [
+     5,
+     0
+    ],
+    [
+     4,
+     1
+    ]
+   ]
+  },
+  {
+   "sum": 11,
+   "cells": [
+    [
+     4,
+     4
+    ],
+    [
+     5,
+     4
+    ]
+   ]
+  },
+  {
+   "sum": 4,
+   "cells": [
+    [
+     5,
+     3
+    ]
+   ]
+  }
+ ],
+ "result": {
+  "winner": "ying",
+  "yingCount": 16,
+  "aiCount": 0,
+  "totalEmpty": 17,
+  "totalFrames": 38
+ },
+ "summary": {
+  "yingCorrect": 16,
+  "aiCorrect": 0,
+  "deathblows": 0,
+  "bestCombo": 14
+ },
+ "frames": [
+  {
+   "step": 1,
+   "turn": 0,
+   "player": "ying",
+   "row": 1,
+   "col": 3,
+   "num": 1,
+   "correct": true,
+   "event": "intercept",
+   "eventDetail": "拦截 (1,3)",
+   "yingCount": 0,
+   "aiCount": 1,
+   "combo": 0,
+   "bestCombo": 0,
+   "focusBar": 0.5,
+   "interceptCooldown": 5,
+   "underSiege": null
+  },
+  {
+   "step": 2,
+   "turn": 1,
+   "player": "ayan",
+   "row": 1,
+   "col": 4,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 0,
+   "aiCount": 2,
+   "combo": 0,
+   "bestCombo": 0,
+   "focusBar": 0.5,
+   "interceptCooldown": 5,
+   "underSiege": null
+  },
+  {
+   "step": 3,
+   "turn": 0,
+   "player": "ying",
+   "row": 1,
+   "col": 4,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 1,
+   "aiCount": 1,
+   "combo": 1,
+   "bestCombo": 1,
+   "focusBar": 0.08823529411764705,
+   "interceptCooldown": 4,
+   "underSiege": null
+  },
+  {
+   "step": 4,
+   "turn": 1,
+   "player": "ayan",
+   "row": 5,
+   "col": 3,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 1,
+   "aiCount": 1,
+   "combo": 1,
+   "bestCombo": 1,
+   "focusBar": 0.08823529411764705,
+   "interceptCooldown": 4,
+   "underSiege": {
+    "r": 5,
+    "c": 3
+   }
+  },
+  {
+   "step": 5,
+   "turn": 0,
+   "player": "ying",
+   "row": 5,
+   "col": 3,
+   "num": 0,
+   "correct": true,
+   "event": "siege_start",
+   "eventDetail": "蓄力锁定 (5,3)",
+   "yingCount": 1,
+   "aiCount": 1,
+   "combo": 1,
+   "bestCombo": 1,
+   "focusBar": 0.08823529411764705,
+   "interceptCooldown": 4,
+   "underSiege": {
+    "r": 5,
+    "c": 3
+   }
+  },
+  {
+   "step": 6,
+   "turn": 0,
+   "player": "ying",
+   "row": 1,
+   "col": 3,
+   "num": 1,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 2,
+   "aiCount": 0,
+   "combo": 0,
+   "bestCombo": 2,
+   "focusBar": 0.1764705882352941,
+   "interceptCooldown": 3,
+   "underSiege": {
+    "r": 5,
+    "c": 3
+   }
+  },
+  {
+   "step": 7,
+   "turn": 1,
+   "player": "ayan",
+   "row": 3,
+   "col": 4,
+   "num": 3,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 2,
+   "aiCount": 1,
+   "combo": 0,
+   "bestCombo": 2,
+   "focusBar": 0.1764705882352941,
+   "interceptCooldown": 3,
+   "underSiege": {
+    "r": 5,
+    "c": 3
+   }
+  },
+  {
+   "step": 8,
+   "turn": 0,
+   "player": "ying",
+   "row": 5,
+   "col": 3,
+   "num": 2,
+   "correct": false,
+   "event": "parry",
+   "eventDetail": "招架成功",
+   "yingCount": 2,
+   "aiCount": 1,
+   "combo": 0,
+   "bestCombo": 2,
+   "focusBar": 0.1764705882352941,
+   "interceptCooldown": 3,
+   "underSiege": null
+  },
+  {
+   "step": 9,
+   "turn": 1,
+   "player": "ayan",
+   "row": 3,
+   "col": 3,
+   "num": 5,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 2,
+   "aiCount": 2,
+   "combo": 0,
+   "bestCombo": 2,
+   "focusBar": 0.1764705882352941,
+   "interceptCooldown": 3,
+   "underSiege": null
+  },
+  {
+   "step": 10,
+   "turn": 0,
+   "player": "ying",
+   "row": 0,
+   "col": 1,
+   "num": 5,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 3,
+   "aiCount": 2,
+   "combo": 1,
+   "bestCombo": 2,
+   "focusBar": 0.2647058823529412,
+   "interceptCooldown": 2,
+   "underSiege": null
+  },
+  {
+   "step": 11,
+   "turn": 1,
+   "player": "ayan",
+   "row": 2,
+   "col": 5,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 3,
+   "aiCount": 3,
+   "combo": 1,
+   "bestCombo": 2,
+   "focusBar": 0.2647058823529412,
+   "interceptCooldown": 2,
+   "underSiege": null
+  },
+  {
+   "step": 12,
+   "turn": 0,
+   "player": "ying",
+   "row": 5,
+   "col": 1,
+   "num": 3,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 4,
+   "aiCount": 3,
+   "combo": 2,
+   "bestCombo": 2,
+   "focusBar": 0.3529411764705882,
+   "interceptCooldown": 1,
+   "underSiege": null
+  },
+  {
+   "step": 13,
+   "turn": 1,
+   "player": "ayan",
+   "row": 4,
+   "col": 5,
+   "num": 3,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 4,
+   "aiCount": 4,
+   "combo": 2,
+   "bestCombo": 2,
+   "focusBar": 0.3529411764705882,
+   "interceptCooldown": 1,
+   "underSiege": null
+  },
+  {
+   "step": 14,
+   "turn": 0,
+   "player": "ying",
+   "row": 4,
+   "col": 2,
+   "num": 5,
+   "correct": true,
+   "event": "combo",
+   "eventDetail": "3连击！",
+   "yingCount": 5,
+   "aiCount": 4,
+   "combo": 3,
+   "bestCombo": 3,
+   "focusBar": 0.4411764705882353,
+   "interceptCooldown": 0,
+   "underSiege": null
+  },
+  {
+   "step": 15,
+   "turn": 1,
+   "player": "ayan",
+   "row": 1,
+   "col": 2,
+   "num": 2,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 5,
+   "aiCount": 4,
+   "combo": 3,
+   "bestCombo": 3,
+   "focusBar": 0.4411764705882353,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 1,
+    "c": 2
+   }
+  },
+  {
+   "step": 16,
+   "turn": 0,
+   "player": "ying",
+   "row": 1,
+   "col": 2,
+   "num": 0,
+   "correct": true,
+   "event": "siege_start",
+   "eventDetail": "蓄力锁定 (1,2)",
+   "yingCount": 5,
+   "aiCount": 4,
+   "combo": 3,
+   "bestCombo": 3,
+   "focusBar": 0.4411764705882353,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 1,
+    "c": 2
+   }
+  },
+  {
+   "step": 17,
+   "turn": 0,
+   "player": "ying",
+   "row": 3,
+   "col": 3,
+   "num": 5,
+   "correct": true,
+   "event": "combo",
+   "eventDetail": "4连击！",
+   "yingCount": 6,
+   "aiCount": 3,
+   "combo": 4,
+   "bestCombo": 4,
+   "focusBar": 0.5294117647058824,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 1,
+    "c": 2
+   }
+  },
+  {
+   "step": 18,
+   "turn": 1,
+   "player": "ayan",
+   "row": 1,
+   "col": 2,
+   "num": 2,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 6,
+   "aiCount": 4,
+   "combo": 4,
+   "bestCombo": 4,
+   "focusBar": 0.5294117647058824,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 1,
+    "c": 2
+   }
+  },
+  {
+   "step": 19,
+   "turn": 0,
+   "player": "ying",
+   "row": 1,
+   "col": 2,
+   "num": 2,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 3,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": null
+  },
+  {
+   "step": 20,
+   "turn": 1,
+   "player": "ayan",
+   "row": 3,
+   "col": 1,
+   "num": 1,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 7,
+   "aiCount": 3,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 1
+   }
+  },
+  {
+   "step": 21,
+   "turn": 0,
+   "player": "ying",
+   "row": 3,
+   "col": 1,
+   "num": 0,
+   "correct": true,
+   "event": "siege_start",
+   "eventDetail": "蓄力锁定 (3,1)",
+   "yingCount": 7,
+   "aiCount": 3,
+   "combo": 5,
+   "bestCombo": 5,
+   "focusBar": 0.6176470588235294,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 1
+   }
+  },
+  {
+   "step": 22,
+   "turn": 0,
+   "player": "ying",
+   "row": 3,
+   "col": 4,
+   "num": 3,
+   "correct": true,
+   "event": "combo",
+   "eventDetail": "6连击！",
+   "yingCount": 8,
+   "aiCount": 2,
+   "combo": 6,
+   "bestCombo": 6,
+   "focusBar": 0.7058823529411764,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 1
+   }
+  },
+  {
+   "step": 23,
+   "turn": 1,
+   "player": "ayan",
+   "row": 3,
+   "col": 1,
+   "num": 1,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 8,
+   "aiCount": 3,
+   "combo": 6,
+   "bestCombo": 6,
+   "focusBar": 0.7058823529411764,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 1
+   }
+  },
+  {
+   "step": 24,
+   "turn": 0,
+   "player": "ying",
+   "row": 0,
+   "col": 0,
+   "num": 4,
+   "correct": true,
+   "event": "combo",
+   "eventDetail": "7连击！",
+   "yingCount": 9,
+   "aiCount": 3,
+   "combo": 7,
+   "bestCombo": 7,
+   "focusBar": 0.7941176470588236,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 1
+   }
+  },
+  {
+   "step": 25,
+   "turn": 1,
+   "player": "ayan",
+   "row": 3,
+   "col": 0,
+   "num": 6,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 9,
+   "aiCount": 4,
+   "combo": 7,
+   "bestCombo": 7,
+   "focusBar": 0.7941176470588236,
+   "interceptCooldown": 0,
+   "underSiege": {
+    "r": 3,
+    "c": 1
+   }
+  },
+  {
+   "step": 26,
+   "turn": 0,
+   "player": "ying",
+   "row": 3,
+   "col": 1,
+   "num": 1,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 10,
+   "aiCount": 3,
+   "combo": 8,
+   "bestCombo": 8,
+   "focusBar": 0.8823529411764706,
+   "interceptCooldown": 0,
+   "underSiege": null
+  },
+  {
+   "step": 27,
+   "turn": 1,
+   "player": "ayan",
+   "row": 2,
+   "col": 1,
+   "num": 2,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 10,
+   "aiCount": 4,
+   "combo": 8,
+   "bestCombo": 8,
+   "focusBar": 0.8823529411764706,
+   "interceptCooldown": 0,
+   "underSiege": null
+  },
+  {
+   "step": 28,
+   "turn": 0,
+   "player": "ying",
+   "row": 3,
+   "col": 0,
+   "num": 6,
+   "correct": true,
+   "event": "combo",
+   "eventDetail": "9连击！",
+   "yingCount": 11,
+   "aiCount": 3,
+   "combo": 9,
+   "bestCombo": 9,
+   "focusBar": 0.9705882352941178,
+   "interceptCooldown": 0,
+   "underSiege": null
+  },
+  {
+   "step": 29,
+   "turn": 1,
+   "player": "ayan",
+   "row": 4,
+   "col": 1,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 11,
+   "aiCount": 4,
+   "combo": 9,
+   "bestCombo": 9,
+   "focusBar": 0.9705882352941178,
+   "interceptCooldown": 0,
+   "underSiege": null
+  },
+  {
+   "step": 30,
+   "turn": 0,
+   "player": "ying",
+   "row": 2,
+   "col": 1,
+   "num": 2,
+   "correct": true,
+   "event": "combo",
+   "eventDetail": "10连击！",
+   "yingCount": 12,
+   "aiCount": 3,
+   "combo": 10,
+   "bestCombo": 10,
+   "focusBar": 1,
+   "interceptCooldown": 0,
+   "underSiege": null
+  },
+  {
+   "step": 31,
+   "turn": 1,
+   "player": "ayan",
+   "row": 4,
+   "col": 0,
+   "num": 1,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 12,
+   "aiCount": 4,
+   "combo": 10,
+   "bestCombo": 10,
+   "focusBar": 1,
+   "interceptCooldown": 0,
+   "underSiege": null
+  },
+  {
+   "step": 32,
+   "turn": 0,
+   "player": "ying",
+   "row": 2,
+   "col": 5,
+   "num": 4,
+   "correct": true,
+   "event": "combo",
+   "eventDetail": "11连击！",
+   "yingCount": 13,
+   "aiCount": 3,
+   "combo": 11,
+   "bestCombo": 11,
+   "focusBar": 1,
+   "interceptCooldown": 0,
+   "underSiege": null
+  },
+  {
+   "step": 33,
+   "turn": 1,
+   "player": "ayan",
+   "row": 4,
+   "col": 0,
+   "num": 1,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 13,
+   "aiCount": 3,
+   "combo": 11,
+   "bestCombo": 11,
+   "focusBar": 1,
+   "interceptCooldown": 0,
+   "underSiege": null
+  },
+  {
+   "step": 34,
+   "turn": 0,
+   "player": "ying",
+   "row": 4,
+   "col": 5,
+   "num": 3,
+   "correct": true,
+   "event": "combo",
+   "eventDetail": "12连击！",
+   "yingCount": 14,
+   "aiCount": 2,
+   "combo": 12,
+   "bestCombo": 12,
+   "focusBar": 1,
+   "interceptCooldown": 0,
+   "underSiege": null
+  },
+  {
+   "step": 35,
+   "turn": 1,
+   "player": "ayan",
+   "row": 4,
+   "col": 0,
+   "num": 1,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 14,
+   "aiCount": 2,
+   "combo": 12,
+   "bestCombo": 12,
+   "focusBar": 1,
+   "interceptCooldown": 0,
+   "underSiege": null
+  },
+  {
+   "step": 36,
+   "turn": 0,
+   "player": "ying",
+   "row": 4,
+   "col": 0,
+   "num": 1,
+   "correct": true,
+   "event": "combo",
+   "eventDetail": "13连击！",
+   "yingCount": 15,
+   "aiCount": 1,
+   "combo": 13,
+   "bestCombo": 13,
+   "focusBar": 1,
+   "interceptCooldown": 0,
+   "underSiege": null
+  },
+  {
+   "step": 37,
+   "turn": 1,
+   "player": "ayan",
+   "row": 4,
+   "col": 1,
+   "num": 4,
+   "correct": true,
+   "event": null,
+   "eventDetail": null,
+   "yingCount": 15,
+   "aiCount": 1,
+   "combo": 13,
+   "bestCombo": 13,
+   "focusBar": 1,
+   "interceptCooldown": 0,
+   "underSiege": null
+  },
+  {
+   "step": 38,
+   "turn": 0,
+   "player": "ying",
+   "row": 4,
+   "col": 1,
+   "num": 4,
+   "correct": true,
+   "event": "combo",
+   "eventDetail": "14连击！",
+   "yingCount": 16,
+   "aiCount": 0,
+   "combo": 14,
+   "bestCombo": 14,
+   "focusBar": 1,
+   "interceptCooldown": 0,
+   "underSiege": null
+  }
+ ]
+}

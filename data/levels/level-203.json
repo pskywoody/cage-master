@@ -1,0 +1,650 @@
+{
+  "levelId": 203,
+  "title": "第3关：宫的星衡",
+  "gridSize": 6,
+  "difficulty": "普通",
+  "teachingGoal": "宫的星衡法则 + 基础笼子",
+  "features": {
+    "allowDraft": true,
+    "assistant45": true,
+    "showHints": true,
+    "perspectiveMode": true,
+    "highlightRow": true,
+    "highlightCol": true,
+    "highlightBox": true,
+    "highlightNumber": true,
+    "highlightCage": true,
+    "autoFillCandidates": false
+  },
+  "triggers": [
+    {
+      "id": "t203_start",
+      "condition": "onLevelStart",
+      "type": "freeze_mask",
+      "targetCell": [
+        0,
+        0
+      ],
+      "targetType": "box",
+      "text": "宫也不例外！每个2×3的宫，总和也是21。看这个宫：1+2+6+5=14，21-14=7，剩下两格加起来等于7～",
+      "once": true
+    },
+    {
+      "id": "t203_calc",
+      "condition": "onFirstNumberFilled",
+      "type": "popup_hint",
+      "position": "top",
+      "text": "笼子也回来了！用黄铜算珠（右上角「45」按钮）可以算出笼子里可能的数字组合～",
+      "once": true
+    },
+    {
+      "id": "t203_b",
+      "condition": "onFillCountReached",
+      "count": 29,
+      "type": "enter_phase",
+      "phase": "breakthrough",
+      "once": true
+    },
+    {
+      "id": "t203_bt",
+      "condition": "onFillCountReached",
+      "count": 29,
+      "type": "popup_hint",
+      "position": "top",
+      "text": "⚡ 破局时刻！宫星衡+笼格双重推理已启动，你已真正进入杀手数独的领域！",
+      "once": true,
+      "delay": 400
+    },
+    {
+      "id": "t203_st20",
+      "condition": "onStuckForSeconds",
+      "seconds": 20,
+      "type": "popup_hint",
+      "position": "top",
+      "text": "💡 卡住了？先看每个2×3宫——宫和21，减一减就能找到单格答案！再看笼子的和值，双管齐下！",
+      "once": false
+    },
+    {
+      "id": "t203_st40",
+      "condition": "onStuckForSeconds",
+      "seconds": 40,
+      "type": "popup_hint",
+      "position": "top",
+      "text": "💡 笼子和值是关键！比如和值为3的两格笼一定是1+2，和值为4一定是1+3，再结合宫的星衡法则排除！",
+      "once": false,
+      "delay": 300
+    },
+    {
+      "id": "t203_ag",
+      "condition": "onConflict",
+      "type": "popup_hint",
+      "position": "top",
+      "text": "⚠️ 检查一下！笼子和值对吗？宫里面有没有重复？星衡数字是不会骗人的～",
+      "once": false
+    },
+    {
+      "id": "t203_fi",
+      "condition": "onFillCountReached",
+      "count": 33,
+      "type": "enter_phase",
+      "phase": "finishing",
+      "once": true
+    },
+    {
+      "id": "t203_fit",
+      "condition": "onFillCountReached",
+      "count": 33,
+      "type": "popup_hint",
+      "position": "top",
+      "text": "✨ 收官！笼子、行、列、宫四重验证，最后几步稳住！",
+      "once": true,
+      "delay": 400
+    },
+    {
+      "id": "t203_c",
+      "condition": "onLevelComplete",
+      "type": "popup_hint",
+      "position": "top",
+      "text": "🎉 宫的星衡和基础笼格都掌握了！你已经学会了杀手数独三大和值武器！",
+      "once": true
+    }
+  ],
+  "boardData": [
+    [
+      0,
+      1,
+      2,
+      0,
+      6,
+      5
+    ],
+    [
+      6,
+      5,
+      0,
+      4,
+      2,
+      0
+    ],
+    [
+      2,
+      0,
+      5,
+      1,
+      0,
+      4
+    ],
+    [
+      0,
+      4,
+      1,
+      0,
+      5,
+      2
+    ],
+    [
+      5,
+      3,
+      0,
+      2,
+      1,
+      0
+    ],
+    [
+      1,
+      0,
+      6,
+      5,
+      0,
+      3
+    ]
+  ],
+  "cages": [
+    {
+      "id": 1,
+      "sum": 5,
+      "cells": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ]
+      ]
+    },
+    {
+      "id": 2,
+      "sum": 5,
+      "cells": [
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ]
+      ]
+    },
+    {
+      "id": 3,
+      "sum": 11,
+      "cells": [
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          5
+        ]
+      ]
+    },
+    {
+      "id": 4,
+      "sum": 11,
+      "cells": [
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          1
+        ]
+      ]
+    },
+    {
+      "id": 5,
+      "sum": 7,
+      "cells": [
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ]
+      ]
+    },
+    {
+      "id": 6,
+      "sum": 3,
+      "cells": [
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          5
+        ]
+      ]
+    },
+    {
+      "id": 7,
+      "sum": 8,
+      "cells": [
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          1
+        ]
+      ]
+    },
+    {
+      "id": 8,
+      "sum": 6,
+      "cells": [
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          3
+        ]
+      ]
+    },
+    {
+      "id": 9,
+      "sum": 7,
+      "cells": [
+        [
+          2,
+          4
+        ],
+        [
+          2,
+          5
+        ]
+      ]
+    },
+    {
+      "id": 10,
+      "sum": 7,
+      "cells": [
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          1
+        ]
+      ]
+    },
+    {
+      "id": 11,
+      "sum": 7,
+      "cells": [
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          3
+        ]
+      ]
+    },
+    {
+      "id": 12,
+      "sum": 7,
+      "cells": [
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          5
+        ]
+      ]
+    },
+    {
+      "id": 13,
+      "sum": 8,
+      "cells": [
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          1
+        ]
+      ]
+    },
+    {
+      "id": 14,
+      "sum": 6,
+      "cells": [
+        [
+          4,
+          2
+        ],
+        [
+          4,
+          3
+        ]
+      ]
+    },
+    {
+      "id": 15,
+      "sum": 7,
+      "cells": [
+        [
+          4,
+          4
+        ],
+        [
+          4,
+          5
+        ]
+      ]
+    },
+    {
+      "id": 16,
+      "sum": 3,
+      "cells": [
+        [
+          5,
+          0
+        ],
+        [
+          5,
+          1
+        ]
+      ]
+    },
+    {
+      "id": 17,
+      "sum": 11,
+      "cells": [
+        [
+          5,
+          2
+        ],
+        [
+          5,
+          3
+        ]
+      ]
+    },
+    {
+      "id": 18,
+      "sum": 7,
+      "cells": [
+        [
+          5,
+          4
+        ],
+        [
+          5,
+          5
+        ]
+      ]
+    }
+  ],
+  "solution": [
+    [
+      4,
+      1,
+      2,
+      3,
+      6,
+      5
+    ],
+    [
+      6,
+      5,
+      3,
+      4,
+      2,
+      1
+    ],
+    [
+      2,
+      6,
+      5,
+      1,
+      3,
+      4
+    ],
+    [
+      3,
+      4,
+      1,
+      6,
+      5,
+      2
+    ],
+    [
+      5,
+      3,
+      4,
+      2,
+      1,
+      6
+    ],
+    [
+      1,
+      2,
+      6,
+      5,
+      4,
+      3
+    ]
+  ],
+  "preDialog": [
+    {
+      "speaker": "守笼人",
+      "text": "每个宫的和也是二十一。横、纵、宫三重星衡同时生效。",
+      "side": "right",
+      "emotion": "严肃·教学",
+      "voiceId": "VO_CK_0026"
+    },
+    {
+      "speaker": "阿妍",
+      "text": "用宫来排除，有时候比行列更快。",
+      "side": "right",
+      "emotion": "冷静·提示",
+      "voiceId": "VO_R_0028"
+    },
+    {
+      "speaker": "沈墨",
+      "text": "这个宫的右上角，只剩一个数了。",
+      "side": "left",
+      "emotion": "发现",
+      "voiceId": "VO_SM_0020",
+      "pause": 0.3,
+      "_action": "观察盘面，指着一个格子"
+    },
+    {
+      "speaker": "沈墨",
+      "text": "六。",
+      "side": "left",
+      "emotion": "确认",
+      "voiceId": "VO_SM_0021",
+      "pause": 0.5
+    },
+    {
+      "speaker": "沈墨",
+      "text": "我看到了它该在的地方。",
+      "side": "left",
+      "emotion": "沉静·领悟",
+      "voiceId": "VO_SM_0022"
+    },
+    {
+      "speaker": "阿妍",
+      "text": "……是等一个人，还是等一种人？",
+      "side": "right",
+      "emotion": "低沉·试探",
+      "voiceId": "VO_R_0029",
+      "_action": "微微眯眼"
+    }
+  ],
+  "clearDialog": [
+    {
+      "speaker": "阿妍",
+      "text": "没什么。继续。",
+      "side": "right",
+      "emotion": "平静·收尾",
+      "voiceId": "VO_R_0030"
+    }
+  ],
+  "mode": "full",
+  "threeAct": {
+    "opening": [
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        3
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        1,
+        5
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        2,
+        4
+      ],
+      [
+        3,
+        0
+      ],
+      [
+        3,
+        3
+      ],
+      [
+        4,
+        2
+      ],
+      [
+        4,
+        5
+      ],
+      [
+        5,
+        1
+      ],
+      [
+        5,
+        4
+      ]
+    ],
+    "breakthrough": [],
+    "avalanche": []
+  },
+  "difficultyLevel": 3,
+  "lessonPlan": {
+    "newSkill": "rule45_203",
+    "skillName": "宫的星衡",
+    "isFirstLesson": false,
+    "skippable": true,
+    "prerequisite": [
+      "rule45"
+    ],
+    "phases": {
+      "intro": {
+        "text": "宫也不例外！每个 2×3 的宫，总和也是 21。宫、行、列都遵循星衡法则。",
+        "speaker": "守笼人",
+        "duration": 3200
+      },
+      "demo": {
+        "steps": [
+          {
+            "action": "highlightBox",
+            "target": 1,
+            "duration": 1600,
+            "text": "看右上这个宫（第2行宫）：6、5、4、2 已经填了四个数。每个 2×3 宫的和恒为 21——所以剩下 a4 和 b6 两格的和是 4，只能是 1 和 3。"
+          },
+          {
+            "action": "focusCell",
+            "target": [
+              0,
+              3
+            ],
+            "duration": 1600,
+            "text": "再看 a 行：1、2、6、5 都已出现，a4 只能是 3 或 4。结合宫里 a4 只能是 1 或 3——交集就是 3！a4 填 3，这就是「宫的星衡法则」。"
+          }
+        ]
+      },
+      "guided": {
+        "targetCell": [
+          0,
+          3
+        ],
+        "correctValue": 3,
+        "interactionType": "NUMBER",
+        "autoRevealText": "直接填入数字 3。",
+        "methodText": "「宫的星衡」：每个 2×3 宫总和恒为 21。右上宫已有 6、5、4、2，剩下 a4 和 b6 的和是 4（只能 1 和 3）；再看 a 行已有 1、2、6、5，a4 只能是 3 或 4——交集就是 3！",
+        "maxAttempts": 3,
+        "failHint": "看右上这个宫：6+5+4+2=17，21-17=4，剩下 a4 和 b6 的和是 4。再看 a 行已有 1、2、6、5，a4 只能是 3 或 4——交集就是 3！",
+        "autoRevealAfter": 3,
+        "successText": "正确！宫的星衡法则帮我们锁定了答案。",
+        "successVoiceId": null
+      },
+      "semiAuto": {
+        "enabled": true,
+        "targetCount": 2,
+        "hintText": "再用星衡法则找两个格子。",
+        "hintVoiceId": null,
+        "watchCells": [
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            5
+          ]
+        ],
+        "interactionType": "NUMBER"
+      },
+      "free": {
+        "enabled": true,
+        "unlockText": "星衡法则已掌握，继续自由填数吧。"
+      }
+    }
+  }
+}

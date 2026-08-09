@@ -1,0 +1,1472 @@
+{
+  "levelId": 704,
+  "title": "第4关：二连纵横阵构型",
+  "gridSize": 9,
+  "difficulty": "地狱",
+  "teachingGoal": "学习二连纵横阵（二连纵横阵构型）：若某个数字在两行中都仅可能出现在相同的两列，则这两列其他位置可排除该数字。",
+  "features": {
+    "allowDraft": true,
+    "assistant45": true,
+    "showHints": true,
+    "perspectiveMode": true,
+    "highlightRow": true,
+    "highlightCol": true,
+    "highlightBox": true,
+    "highlightNumber": true,
+    "highlightCage": true,
+    "autoFillCandidates": false
+  },
+  "triggers": [
+    {
+      "condition": "onLevelStart",
+      "type": "freeze_mask",
+      "highlight": "full",
+      "text": "提示：二连纵横阵不会立刻显现——它需要候选数收敛后才成形。先用你掌握的排除法推进盘面，当某个数字在行/列中的位置开始收窄，矩形的四个角就会出现！",
+      "once": true,
+      "id": "t704_auto_0",
+      "targetR": 0,
+      "targetC": 0,
+      "targetType": "cell",
+      "highlightShape": "circle"
+    },
+    {
+      "condition": "onStuckForSeconds",
+      "seconds": 45,
+      "type": "popup_hint",
+      "position": "top",
+      "text": "💡 二连纵横阵检查清单：①选一个数字 ②逐行标记该数字能填的位置 ③找两行共享相同两列 ④排除这两列其他位置。也可以从列出发找行。",
+      "delay": 500,
+      "id": "t704_auto_1"
+    },
+    {
+      "id": "t704_f1",
+      "condition": "onFirstNumberFilled",
+      "type": "popup_hint",
+      "position": "top",
+      "text": "好的，继续推进！现在盘面还很开阔，先填确定的数，让候选数逐渐收敛——二连纵横阵正在成形中。",
+      "once": true
+    },
+    {
+      "id": "t704_b",
+      "condition": "onFillCountReached",
+      "count": 53,
+      "type": "enter_phase",
+      "phase": "breakthrough",
+      "once": true
+    },
+    {
+      "id": "t704_bt",
+      "condition": "onFillCountReached",
+      "count": 53,
+      "type": "popup_hint",
+      "position": "top",
+      "text": "⚡ 破局时刻！二连纵横阵的翅膀展开了，同列其他位置的该数字被全部排除！",
+      "once": true,
+      "delay": 400
+    },
+    {
+      "id": "t704_st20",
+      "condition": "onStuckForSeconds",
+      "seconds": 20,
+      "type": "popup_hint",
+      "position": "top",
+      "text": "💡 卡住了？二连纵横阵找法：选一个数字，找两行中这个数字都恰好只能出现在相同两列的位置——这四个格子形成矩形！",
+      "once": false
+    },
+    {
+      "id": "t704_ag",
+      "condition": "onConflict",
+      "type": "popup_hint",
+      "position": "top",
+      "text": "⚠️ 二连纵横阵要求这两行里这个数字只能出现在这两列（不能有第三列），否则就不是二连纵横阵！",
+      "once": false
+    },
+    {
+      "id": "t704_fi",
+      "condition": "onFillCountReached",
+      "count": 70,
+      "type": "enter_phase",
+      "phase": "finishing",
+      "once": true
+    },
+    {
+      "id": "t704_fit",
+      "condition": "onFillCountReached",
+      "count": 70,
+      "type": "popup_hint",
+      "position": "top",
+      "text": "✨ 收官！二连纵横阵构型的威力完全释放，最后几格一览无余！",
+      "once": true,
+      "delay": 400
+    },
+    {
+      "id": "t704_c",
+      "condition": "onLevelComplete",
+      "type": "popup_hint",
+      "position": "top",
+      "text": "🎉 二连纵横阵已掌握！你正式进入了构型推理的领域！",
+      "once": true
+    },
+    {
+      "id": "t704_pre",
+      "condition": "onFillCountReached",
+      "count": 38,
+      "type": "popup_hint",
+      "position": "top",
+      "text": "🔍 注意观察！候选数开始收敛了——选一个数字，标记它在每行能去的位置。如果发现有两行都只能去相同的两列，二连纵横阵的矩形就浮现了！",
+      "once": true,
+      "delay": 300
+    }
+  ],
+  "boardData": [
+    [
+      8,
+      1,
+      0,
+      0,
+      0,
+      2,
+      4,
+      0,
+      0
+    ],
+    [
+      0,
+      6,
+      2,
+      8,
+      0,
+      4,
+      3,
+      1,
+      0
+    ],
+    [
+      0,
+      0,
+      3,
+      0,
+      6,
+      1,
+      0,
+      0,
+      0
+    ],
+    [
+      6,
+      0,
+      4,
+      0,
+      3,
+      5,
+      0,
+      0,
+      0
+    ],
+    [
+      3,
+      0,
+      0,
+      0,
+      2,
+      0,
+      1,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      8,
+      9,
+      6,
+      0,
+      2
+    ],
+    [
+      0,
+      5,
+      9,
+      0,
+      0,
+      0,
+      2,
+      7,
+      0
+    ],
+    [
+      4,
+      0,
+      0,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      5,
+      0,
+      3
+    ]
+  ],
+  "cages": [
+    {
+      "id": 1,
+      "sum": 15,
+      "cells": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ]
+    },
+    {
+      "id": 2,
+      "sum": 24,
+      "cells": [
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          4
+        ]
+      ]
+    },
+    {
+      "id": 3,
+      "sum": 6,
+      "cells": [
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          5
+        ]
+      ]
+    },
+    {
+      "id": 4,
+      "sum": 7,
+      "cells": [
+        [
+          0,
+          6
+        ],
+        [
+          1,
+          6
+        ]
+      ]
+    },
+    {
+      "id": 5,
+      "sum": 20,
+      "cells": [
+        [
+          0,
+          7
+        ],
+        [
+          0,
+          8
+        ],
+        [
+          1,
+          8
+        ]
+      ]
+    },
+    {
+      "id": 6,
+      "sum": 11,
+      "cells": [
+        [
+          1,
+          7
+        ],
+        [
+          2,
+          7
+        ],
+        [
+          2,
+          6
+        ]
+      ]
+    },
+    {
+      "id": 7,
+      "sum": 17,
+      "cells": [
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          3,
+          2
+        ]
+      ]
+    },
+    {
+      "id": 8,
+      "sum": 22,
+      "cells": [
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          3,
+          1
+        ]
+      ]
+    },
+    {
+      "id": 9,
+      "sum": 15,
+      "cells": [
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          2,
+          4
+        ]
+      ]
+    },
+    {
+      "id": 10,
+      "sum": 12,
+      "cells": [
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          4,
+          5
+        ]
+      ]
+    },
+    {
+      "id": 11,
+      "sum": 22,
+      "cells": [
+        [
+          2,
+          8
+        ],
+        [
+          3,
+          8
+        ],
+        [
+          4,
+          8
+        ],
+        [
+          5,
+          8
+        ]
+      ]
+    },
+    {
+      "id": 12,
+      "sum": 31,
+      "cells": [
+        [
+          3,
+          7
+        ],
+        [
+          3,
+          6
+        ],
+        [
+          4,
+          6
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          5,
+          5
+        ]
+      ]
+    },
+    {
+      "id": 13,
+      "sum": 14,
+      "cells": [
+        [
+          3,
+          0
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          5,
+          0
+        ]
+      ]
+    },
+    {
+      "id": 14,
+      "sum": 16,
+      "cells": [
+        [
+          4,
+          1
+        ],
+        [
+          5,
+          1
+        ]
+      ]
+    },
+    {
+      "id": 15,
+      "sum": 18,
+      "cells": [
+        [
+          4,
+          2
+        ],
+        [
+          5,
+          2
+        ],
+        [
+          6,
+          2
+        ]
+      ]
+    },
+    {
+      "id": 16,
+      "sum": 28,
+      "cells": [
+        [
+          4,
+          3
+        ],
+        [
+          5,
+          3
+        ],
+        [
+          6,
+          3
+        ],
+        [
+          7,
+          3
+        ],
+        [
+          8,
+          3
+        ]
+      ]
+    },
+    {
+      "id": 17,
+      "sum": 10,
+      "cells": [
+        [
+          4,
+          4
+        ],
+        [
+          5,
+          4
+        ]
+      ]
+    },
+    {
+      "id": 18,
+      "sum": 8,
+      "cells": [
+        [
+          4,
+          7
+        ],
+        [
+          5,
+          7
+        ]
+      ]
+    },
+    {
+      "id": 19,
+      "sum": 16,
+      "cells": [
+        [
+          6,
+          0
+        ],
+        [
+          6,
+          1
+        ],
+        [
+          7,
+          1
+        ],
+        [
+          7,
+          2
+        ]
+      ]
+    },
+    {
+      "id": 20,
+      "sum": 17,
+      "cells": [
+        [
+          6,
+          4
+        ],
+        [
+          7,
+          4
+        ],
+        [
+          8,
+          4
+        ],
+        [
+          8,
+          5
+        ]
+      ]
+    },
+    {
+      "id": 21,
+      "sum": 25,
+      "cells": [
+        [
+          6,
+          5
+        ],
+        [
+          7,
+          5
+        ],
+        [
+          7,
+          6
+        ],
+        [
+          8,
+          6
+        ]
+      ]
+    },
+    {
+      "id": 22,
+      "sum": 9,
+      "cells": [
+        [
+          6,
+          6
+        ],
+        [
+          6,
+          7
+        ]
+      ]
+    },
+    {
+      "id": 23,
+      "sum": 12,
+      "cells": [
+        [
+          6,
+          8
+        ],
+        [
+          7,
+          8
+        ],
+        [
+          8,
+          8
+        ]
+      ]
+    },
+    {
+      "id": 24,
+      "sum": 10,
+      "cells": [
+        [
+          7,
+          7
+        ],
+        [
+          8,
+          7
+        ]
+      ]
+    },
+    {
+      "id": 25,
+      "sum": 14,
+      "cells": [
+        [
+          7,
+          0
+        ],
+        [
+          8,
+          0
+        ],
+        [
+          8,
+          1
+        ]
+      ]
+    },
+    {
+      "id": 26,
+      "sum": 6,
+      "cells": [
+        [
+          8,
+          2
+        ]
+      ]
+    }
+  ],
+  "solution": [
+    [
+      8,
+      1,
+      5,
+      3,
+      7,
+      2,
+      4,
+      9,
+      6
+    ],
+    [
+      7,
+      6,
+      2,
+      8,
+      9,
+      4,
+      3,
+      1,
+      5
+    ],
+    [
+      9,
+      4,
+      3,
+      5,
+      6,
+      1,
+      8,
+      2,
+      7
+    ],
+    [
+      6,
+      2,
+      4,
+      1,
+      3,
+      5,
+      7,
+      8,
+      9
+    ],
+    [
+      3,
+      9,
+      8,
+      7,
+      2,
+      6,
+      1,
+      5,
+      4
+    ],
+    [
+      5,
+      7,
+      1,
+      4,
+      8,
+      9,
+      6,
+      3,
+      2
+    ],
+    [
+      1,
+      5,
+      9,
+      6,
+      4,
+      3,
+      2,
+      7,
+      8
+    ],
+    [
+      4,
+      3,
+      7,
+      2,
+      5,
+      8,
+      9,
+      6,
+      1
+    ],
+    [
+      2,
+      8,
+      6,
+      9,
+      1,
+      7,
+      5,
+      4,
+      3
+    ]
+  ],
+  "preDialog": [
+    {
+      "speaker": "旁白",
+      "text": "沈墨走进路路通旧址所在的巷子。楼已经空了，但一楼的窗台内侧，有一只铁盒被粗棉绳交叉绑定在栏杆上。",
+      "isNarration": true
+    },
+    {
+      "speaker": "沈墨 CHIBI",
+      "text": "……绳结的样式和她六月的做法一样。她离开之前，把最后一批题面留在了这里。",
+      "side": "left",
+      "emotion": "thinking",
+      "effect": 0
+    },
+    {
+      "speaker": "老师（留声）",
+      "text": "二连纵横阵——两行两列，四个端点形成一个矩形。当某个数字在两行中都只能出现在相同的两列时，其余位置全部排除。",
+      "side": "right",
+      "emotion": "calm",
+      "effect": 0
+    }
+  ],
+  "clearDialog": [
+    {
+      "speaker": "旁白",
+      "text": "沈墨拆开棉绳，打开铁盒。盒内是一沓纸——每一张上都印着一道数独题，和他在藏书楼地下见过的那七道同一种格式。",
+      "isNarration": true
+    },
+    {
+      "speaker": "沈墨 CHIBI",
+      "text": "……这些题面是她在1941年春就完成的。她离开了，但题面留在了这里——她是想让后来的人知道，她走过的路，可以被接上。",
+      "side": "left",
+      "emotion": "thinking",
+      "effect": 0
+    },
+    {
+      "speaker": "薇拉",
+      "text": "那批题面是老师离开上海之前最后完成的。她把它留在这里，没有带走，也没有销毁——她在等你来取。",
+      "side": "right",
+      "emotion": "calm",
+      "effect": 0
+    }
+  ],
+  "isBoss": false,
+  "mode": "endgame",
+  "coreMove": {
+    "row": 7,
+    "col": 7,
+    "value": 5,
+    "cascadeCount": 40,
+    "cascadeSequence": [
+      {
+        "row": 7,
+        "col": 3,
+        "value": 6,
+        "cellId": 66
+      },
+      {
+        "row": 3,
+        "col": 3,
+        "value": 3,
+        "cellId": 30
+      },
+      {
+        "row": 3,
+        "col": 7,
+        "value": 8,
+        "cellId": 34
+      },
+      {
+        "row": 3,
+        "col": 5,
+        "value": 9,
+        "cellId": 32
+      },
+      {
+        "row": 4,
+        "col": 7,
+        "value": 6,
+        "cellId": 43
+      },
+      {
+        "row": 0,
+        "col": 7,
+        "value": 9,
+        "cellId": 7
+      },
+      {
+        "row": 4,
+        "col": 6,
+        "value": 7,
+        "cellId": 42
+      },
+      {
+        "row": 4,
+        "col": 0,
+        "value": 8,
+        "cellId": 36
+      },
+      {
+        "row": 0,
+        "col": 0,
+        "value": 3,
+        "cellId": 0
+      },
+      {
+        "row": 0,
+        "col": 6,
+        "value": 6,
+        "cellId": 6
+      },
+      {
+        "row": 0,
+        "col": 1,
+        "value": 8,
+        "cellId": 1
+      },
+      {
+        "row": 1,
+        "col": 6,
+        "value": 4,
+        "cellId": 15
+      },
+      {
+        "row": 2,
+        "col": 6,
+        "value": 3,
+        "cellId": 24
+      },
+      {
+        "row": 5,
+        "col": 1,
+        "value": 9,
+        "cellId": 46
+      },
+      {
+        "row": 5,
+        "col": 3,
+        "value": 7,
+        "cellId": 48
+      },
+      {
+        "row": 2,
+        "col": 3,
+        "value": 5,
+        "cellId": 21
+      },
+      {
+        "row": 1,
+        "col": 5,
+        "value": 7,
+        "cellId": 14
+      },
+      {
+        "row": 1,
+        "col": 8,
+        "value": 1,
+        "cellId": 17
+      },
+      {
+        "row": 1,
+        "col": 0,
+        "value": 5,
+        "cellId": 9
+      },
+      {
+        "row": 1,
+        "col": 1,
+        "value": 6,
+        "cellId": 10
+      },
+      {
+        "row": 2,
+        "col": 7,
+        "value": 7,
+        "cellId": 25
+      },
+      {
+        "row": 3,
+        "col": 4,
+        "value": 6,
+        "cellId": 31
+      },
+      {
+        "row": 5,
+        "col": 5,
+        "value": 8,
+        "cellId": 50
+      },
+      {
+        "row": 5,
+        "col": 7,
+        "value": 3,
+        "cellId": 52
+      },
+      {
+        "row": 6,
+        "col": 0,
+        "value": 1,
+        "cellId": 54
+      },
+      {
+        "row": 2,
+        "col": 0,
+        "value": 4,
+        "cellId": 18
+      },
+      {
+        "row": 2,
+        "col": 1,
+        "value": 2,
+        "cellId": 19
+      },
+      {
+        "row": 2,
+        "col": 2,
+        "value": 1,
+        "cellId": 20
+      },
+      {
+        "row": 3,
+        "col": 0,
+        "value": 7,
+        "cellId": 27
+      },
+      {
+        "row": 6,
+        "col": 2,
+        "value": 5,
+        "cellId": 56
+      },
+      {
+        "row": 3,
+        "col": 2,
+        "value": 4,
+        "cellId": 29
+      },
+      {
+        "row": 3,
+        "col": 1,
+        "value": 5,
+        "cellId": 28
+      },
+      {
+        "row": 7,
+        "col": 0,
+        "value": 9,
+        "cellId": 63
+      },
+      {
+        "row": 7,
+        "col": 1,
+        "value": 4,
+        "cellId": 64
+      },
+      {
+        "row": 7,
+        "col": 2,
+        "value": 2,
+        "cellId": 65
+      },
+      {
+        "row": 7,
+        "col": 4,
+        "value": 7,
+        "cellId": 67
+      },
+      {
+        "row": 8,
+        "col": 5,
+        "value": 5,
+        "cellId": 77
+      },
+      {
+        "row": 8,
+        "col": 6,
+        "value": 9,
+        "cellId": 78
+      },
+      {
+        "row": 8,
+        "col": 7,
+        "value": 1,
+        "cellId": 79
+      },
+      {
+        "row": 8,
+        "col": 8,
+        "value": 7,
+        "cellId": 80
+      }
+    ]
+  },
+  "isClassic": true,
+  "breakPointIndex": 19,
+  "totalSteps": 60,
+  "targetTechnique": "xWing",
+  "threeAct": {
+    "opening": [
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        1,
+        3
+      ],
+      [
+        1,
+        5
+      ],
+      [
+        0,
+        5
+      ],
+      [
+        1,
+        6
+      ],
+      [
+        0,
+        6
+      ],
+      [
+        2,
+        5
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        3,
+        3
+      ],
+      [
+        3,
+        7
+      ],
+      [
+        2,
+        7
+      ],
+      [
+        2,
+        6
+      ],
+      [
+        3,
+        6
+      ],
+      [
+        3,
+        8
+      ],
+      [
+        2,
+        8
+      ],
+      [
+        0,
+        8
+      ],
+      [
+        4,
+        5
+      ],
+      [
+        4,
+        7
+      ],
+      [
+        4,
+        1
+      ],
+      [
+        5,
+        0
+      ],
+      [
+        5,
+        1
+      ],
+      [
+        5,
+        3
+      ],
+      [
+        5,
+        7
+      ],
+      [
+        6,
+        0
+      ],
+      [
+        8,
+        2
+      ]
+    ],
+    "breakthrough": [
+      [
+        6,
+        8
+      ],
+      [
+        6,
+        5
+      ],
+      [
+        7,
+        5
+      ],
+      [
+        7,
+        1
+      ],
+      [
+        7,
+        2
+      ],
+      [
+        7,
+        7
+      ],
+      [
+        7,
+        4
+      ],
+      [
+        8,
+        0
+      ],
+      [
+        8,
+        1
+      ],
+      [
+        8,
+        3
+      ],
+      [
+        8,
+        4
+      ],
+      [
+        8,
+        5
+      ],
+      [
+        8,
+        7
+      ]
+    ],
+    "avalanche": [
+      [
+        1,
+        8
+      ],
+      [
+        0,
+        7
+      ],
+      [
+        0,
+        4
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        0,
+        3
+      ],
+      [
+        1,
+        4
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        0
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        3,
+        1
+      ],
+      [
+        4,
+        8
+      ],
+      [
+        4,
+        3
+      ],
+      [
+        4,
+        2
+      ],
+      [
+        5,
+        2
+      ],
+      [
+        6,
+        3
+      ],
+      [
+        6,
+        4
+      ],
+      [
+        7,
+        6
+      ],
+      [
+        7,
+        8
+      ]
+    ]
+  },
+  "difficultyLevel": 9,
+  "lessonPlan": {
+    "newSkill": "xwing_704",
+    "skillName": "二连纵横阵（X-Wing）",
+    "isFirstLesson": false,
+    "skippable": true,
+    "prerequisite": [
+      "nakedTriple"
+    ],
+    "phases": {
+      "intro": {
+        "text": "二连纵横阵——两行两列，四个端点形成一个矩形。当某个数字在两行中都只能出现在相同的两列时，其余位置全部排除。四个角定了，中间的路就通了。",
+        "speaker": "老师（留声）",
+        "duration": 4000
+      },
+      "demo": {
+        "steps": [
+          {
+            "action": "spotlightOn",
+            "target": 0.35,
+            "duration": 400
+          },
+          {
+            "action": "highlightRow",
+            "target": 4,
+            "duration": 1600,
+            "text": "选一个数字，比如 6。先逐行标记：数字 6 在每一行只能去哪几格？"
+          },
+          {
+            "action": "highlightCell",
+            "target": [
+              4,
+              3
+            ],
+            "duration": 1200,
+            "text": "第 4 行里，数字 6 只能放在 (4,3) 或 (4,5)。"
+          },
+          {
+            "action": "highlightCell",
+            "target": [
+              4,
+              5
+            ],
+            "duration": 1200,
+            "text": "再看 (4,5)——第 4 行的 6 就藏在这两格之间。"
+          },
+          {
+            "action": "highlightRow",
+            "target": 6,
+            "duration": 1600,
+            "text": "看第 7 行：数字 6 也恰好只能放在 (6,3) 或 (6,5)——和上一行完全相同的两列！"
+          },
+          {
+            "action": "highlightCol",
+            "target": 3,
+            "duration": 1500,
+            "text": "两行共享的列出现了：c3、c5。"
+          },
+          {
+            "action": "highlightCol",
+            "target": 5,
+            "duration": 1500,
+            "text": "四个角 (4,3)、(4,5)、(6,3)、(6,5) 组成矩形——这就是二连纵横阵（X-Wing）！"
+          },
+          {
+            "action": "focusCell",
+            "target": [
+              4,
+              5
+            ],
+            "duration": 1600,
+            "text": "数字 6 被锁进这个矩形：要么在 (4,3)、(6,5)，要么在 (4,5)、(6,3)。结合行、列、宫的排除，e5 格（(4,5)）的 6 就此落定——填 6！"
+          }
+        ]
+      },
+      "guided": {
+        "targetCell": [
+          4,
+          5
+        ],
+        "correctValue": 6,
+        "interactionType": "NUMBER",
+        "maxAttempts": 2,
+        "autoRevealAfter": 2,
+        "methodText": "二连纵横阵检查清单：①选一个数字 ②逐行标记该数字能填的位置 ③找两行共享相同两列 ④在这两列的其它行排除该数字。也可以从列出发找行。",
+        "hintText": "轮到你了：数字 6 被二连纵横阵锁在 e、g 两行的 c3、c5 四角。看 e5 格（(4,5)）——结合行、列、宫的排除，6 只能落在这里。试试看。",
+        "failHint": "再想想：6 只能出现在 (4,3)、(4,5)、(6,3)、(6,5) 四个角里。看 e5 格所在的行、列、宫，排除其它数字后 6 就是答案。",
+        "failConflictCell": [
+          4,
+          3
+        ],
+        "failVoiceId": "CK_05",
+        "successText": "答对了！二连纵横阵的翅膀展开了——锁住两行两列，其它位置的该数字全部让路！",
+        "successVoiceId": "J_03",
+        "autoRevealText": "直接填入数字 6。",
+        "successNext": [
+          {
+            "cell": [
+              6,
+              3
+            ],
+            "hintText": "很好！矩形的对角也定了：g3 格（(6,3)）同样是 6——试试看。"
+          },
+          {
+            "cell": [
+              4,
+              3
+            ],
+            "hintText": "再来！e3 格（(4,3)）：既然 6 已经定位，它排除之后只剩 7——试试看。"
+          }
+        ]
+      },
+      "semiAuto": {
+        "enabled": true,
+        "targetCount": 2,
+        "interactionType": "NUMBER",
+        "hintText": "继续用二连纵横阵的思路（选数字→逐行标记→找矩形），再确定两个数字。",
+        "hintVoiceId": "R_07",
+        "watchCells": [
+          [
+            5,
+            1
+          ],
+          [
+            6,
+            0
+          ]
+        ]
+      },
+      "free": {
+        "enabled": true,
+        "unlockText": "二连纵横阵已掌握！你正式进入了构型推理的领域。"
+      }
+    }
+  }
+}

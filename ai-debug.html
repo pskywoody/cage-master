@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 调试面板 · CageMaster4</title>
+<style>
+  :root {
+    --bg: #14100c; --panel: #241b12; --panel2: #2e2418; --border: #4a3a28;
+    --text: #f0e8da; --muted: #a99a86; --gold: #e0b45e; --green: #4ade80; --red: #ef4444;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font: 13px/1.5 "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; padding: 16px; }
+  header { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 14px; }
+  header h1 { font-size: 17px; color: var(--gold); letter-spacing: 1px; }
+  .badge { font-size: 11px; padding: 3px 10px; border-radius: 20px; border: 1px solid var(--border); color: var(--muted); }
+  .badge.on { color: var(--green); border-color: var(--green); }
+  .badge.off { color: var(--red); border-color: var(--red); }
+  .controls { margin-left: auto; display: flex; gap: 8px; }
+  button {
+    background: var(--panel2); color: var(--text); border: 1px solid var(--border);
+    border-radius: 6px; padding: 6px 12px; cursor: pointer; font-size: 12px;
+  }
+  button:hover { border-color: var(--gold); color: var(--gold); }
+  button.on { background: var(--gold); color: #14100c; border-color: var(--gold); }
+  .grid-wrap { display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 16px; }
+  .card { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; }
+  .card h2 { font-size: 13px; color: var(--gold); margin-bottom: 8px; letter-spacing: 1px; }
+  table { border-collapse: collapse; width: 100%; }
+  th, td { border: 1px solid var(--border); padding: 4px 8px; text-align: left; font-size: 12px; }
+  th { background: var(--panel2); color: var(--gold); font-weight: 600; white-space: nowrap; }
+  td.k { color: var(--muted); white-space: nowrap; }
+  .mono { font-family: Consolas, monospace; font-size: 12px; }
+  .board { border-collapse: collapse; }
+  .board td { width: 30px; height: 30px; text-align: center; font-size: 14px; font-weight: 600; padding: 0; }
+  .board td.rowlabel { color: var(--muted); font-size: 12px; font-weight: 400; border: none; }
+  .board td.collabel { color: var(--muted); font-size: 12px; font-weight: 400; border: none; }
+  .board td.fixed { color: var(--gold); }
+  .board td.empty { color: var(--muted); }
+  .board td.box-t { border-top: 2px solid var(--gold); }
+  .board td.box-l { border-left: 2px solid var(--gold); }
+  .board td.grid { background: #1b140d; }
+  .notes { font-size: 8px; color: #8a7a66; font-weight: 400; line-height: 1.15; }
+  .sections { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px; }
+  .stat-ok { color: var(--green); } .stat-err { color: var(--red); }
+  #status { margin-top: 14px; padding-top: 10px; border-top: 1px solid var(--border); color: var(--muted); font-size: 12px; }
+  pre#jsonBox {
+    background: #0d0a06; border: 1px solid var(--border); border-radius: 8px;
+    padding: 10px; max-height: 260px; overflow: auto; font-size: 11px; white-space: pre-wrap;
+    word-break: break-all; margin-top: 8px;
+  }
+  .hidden { display: none; }
+</style>
+</head>
+<body>
+<header>
+  <h1>AI 调试面板</h1>
+  <span id="connBadge" class="badge off">未连接</span>
+  <span id="updateBadge" class="badge off">暂停中</span>
+  <div class="controls">
+    <button id="btnPause">暂停更新</button>
+    <button id="btnDiag" title="生成省 token 的紧凑诊断文本，复制后发给 AI 即可定位问题">生成诊断文本</button>
+    <button id="btnCopy">复制完整 JSON</button>
+  </div>
+</header>
+
+<div class="grid-wrap">
+  <div class="card">
+    <h2>盘面 (行标 a-i · 列标 1-9)</h2>
+    <div id="boardBox"></div>
+  </div>
+  <div class="card" style="flex:1; min-width:260px;">
+    <h2>统计</h2>
+    <table id="statsTable"><tbody></tbody></table>
+  </div>
+</div>
+
+<div class="sections">
+  <div class="card"><h2>教学状态</h2><table id="teachTable"><tbody></tbody></table></div>
+  <div class="card"><h2>UI 状态</h2><table id="uiTable"><tbody></tbody></table></div>
+  <div class="card"><h2>音频状态</h2><table id="audioTable"><tbody></tbody></table></div>
+  <div class="card"><h2>最后交互</h2><table id="interactTable"><tbody></tbody></table></div>
+</div>
+
+<div class="card" style="margin-top:12px;">
+  <h2>关卡记录（AI 可读）</h2>
+  <table style="width:auto;margin-bottom:10px;"><tbody id="recordSummary"></tbody></table>
+  <h2 style="margin-top:6px;">玩家填数历史</h2>
+  <table style="width:auto;"><thead><tr><th>#</th><th>操作</th><th>格子</th><th>数字</th><th>结果</th><th>耗时</th></tr></thead><tbody id="movesTable"></tbody></table>
+  <h2 style="margin-top:6px;">教学事件</h2>
+  <table style="width:auto;"><thead><tr><th>#</th><th>类型</th><th>阶段</th><th>内容</th><th>格子</th><th>耗时</th></tr></thead><tbody id="lessonTable"></tbody></table>
+  <h2 style="margin-top:6px;">前置对话（preDialog）</h2>
+  <table style="width:auto;"><thead><tr><th>#</th><th>角色</th><th>内容</th></tr></thead><tbody id="preDialogTable"></tbody></table>
+  <h2 style="margin-top:6px;">玩家与角色互动</h2>
+  <table style="width:auto;"><thead><tr><th>#</th><th>类型</th><th>内容</th><th>耗时</th></tr></thead><tbody id="interactTable2"></tbody></table>
+  <h2 style="margin-top:6px;">当前视觉元素（Q16 统一编号）</h2>
+  <table style="width:auto;"><thead><tr><th>编号</th><th>名称</th><th>来源</th><th>参数</th></tr></thead><tbody id="visualTable"></tbody></table>
+</div>
+
+<div class="card" style="margin-top:12px;">
+  <h2>原始 JSON</h2>
+  <pre id="jsonBox">等待数据…</pre>
+</div>
+
+<div id="protoWarn" class="hidden" style="margin:10px 0;padding:10px 12px;background:rgba(239,68,68,0.12);border:1px solid var(--red);border-radius:8px;color:var(--red);font-size:12px;line-height:1.7;">
+  <b>连接失败原因：file:// 协议。</b>当前页面是通过文件直接打开的（file://），浏览器禁止 file:// 与 http:// 页面之间的 BroadcastChannel 通信。<br>
+  请改用服务器地址打开本面板：<code>http://localhost:8765/ai-debug.html</code>（或在游戏页顶部点击「AI调试」按钮自动打开）。
+</div>
+
+<div id="status">提示：请打开 <code>game.html</code>（建议通过 <code>http://localhost:8765/game.html</code>）并进入关卡，本面板会自动通过 BroadcastChannel 接收状态。</div>
+
+<script>
+(function () {
+  'use strict';
+  const CHANNEL = 'cagemaster4-ai-state';
+  const connBadge = document.getElementById('connBadge');
+  const updateBadge = document.getElementById('updateBadge');
+  const btnPause = document.getElementById('btnPause');
+  const btnCopy = document.getElementById('btnCopy');
+  const jsonBox = document.getElementById('jsonBox');
+  let paused = false;
+  let lastState = null;
+  let lastJson = '';
+
+  function conn(on) {
+    connBadge.textContent = on ? '已连接' : '未连接';
+    connBadge.className = 'badge ' + (on ? 'on' : 'off');
+  }
+  function renderPause() {
+    updateBadge.textContent = paused ? '已暂停' : '实时更新';
+    updateBadge.className = 'badge ' + (paused ? 'off' : 'on');
+    btnPause.textContent = paused ? '恢复更新' : '暂停更新';
+    btnPause.classList.toggle('on', paused);
+  }
+
+  btnPause.addEventListener('click', function () { paused = !paused; renderPause(); });
+  btnCopy.addEventListener('click', function () {
+    if (!lastJson) return;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(lastJson).then(function () { flashCopy(); });
+    } else {
+      const ta = document.createElement('textarea');
+      ta.value = lastJson; document.body.appendChild(ta); ta.select();
+      document.execCommand('copy'); document.body.removeChild(ta); flashCopy();
+    }
+  });
+  function flashCopy() {
+    const old = btnCopy.textContent;
+    btnCopy.textContent = '已复制 ✓';
+    setTimeout(function () { btnCopy.textContent = old; }, 1200);
+  }
+
+  // ============ Q9：生成省 token 的紧凑诊断文本 ============
+  // 把完整 state 压缩成 AI 能一眼判断问题的格式：
+  // 错误列表 → 关卡/阶段 → 关键状态 → 最近操作 → 异常标记
+  const btnDiag = document.getElementById('btnDiag');
+  btnDiag.addEventListener('click', function () {
+    if (!lastState) { toast('暂无数据，请先打开游戏并进入关卡'); return; }
+    const txt = buildDiagText(lastState);
+    // 展示 + 复制
+    const box = document.getElementById('jsonBox');
+    box.textContent = txt;
+    box.scrollTop = 0;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(txt).then(function () {
+        btnDiag.textContent = '已生成+复制 ✓';
+        setTimeout(function () { btnDiag.textContent = '生成诊断文本'; }, 1500);
+      });
+    } else {
+      const ta = document.createElement('textarea');
+      ta.value = txt; document.body.appendChild(ta); ta.select();
+      document.execCommand('copy'); document.body.removeChild(ta);
+      btnDiag.textContent = '已生成+复制 ✓';
+      setTimeout(function () { btnDiag.textContent = '生成诊断文本'; }, 1500);
+    }
+    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+  });
+  function toast(msg) {
+    const d = document.createElement('div');
+    d.textContent = msg;
+    d.style.cssText = 'position:fixed;top:20px;left:50%;transform:translateX(-50%);background:#2e2418;border:1px solid var(--gold);color:var(--text);padding:8px 16px;border-radius:8px;font-size:12px;z-index:99;';
+    document.body.appendChild(d);
+    setTimeout(function () { d.remove(); }, 2000);
+  }
+  function cellName(r, c) {
+    try {
+      const rr = typeof r === 'number' ? String.fromCharCode(97 + r) : r;
+      return rr + (typeof c === 'number' ? (c + 1) : c);
+    } catch (e) { return (r || '') + '' + (c || ''); }
+  }
+  function buildDiagText(s) {
+    const L = [];
+    const st = s.stats || {};
+    const rec = (s && s.record) || {};
+    L.push('【CageMaster4 诊断 v' + (s.aiVersion || '?') + '】');
+
+    // 1. 运行时错误（最重要，优先输出）
+    const errs = (s.aiErrors || []).slice(-10);
+    if (errs.length) {
+      L.push('[错误] ' + errs.length + ' 条:');
+      errs.forEach(function (e) {
+        const t = e.t ? new Date(e.t).toLocaleTimeString() : '';
+        L.push('  ' + t + ' [' + (e.lv || '?') + '] ' + (e.m || ''));
+      });
+    } else {
+      L.push('[错误] 无');
+    }
+
+    // 2. 关卡与阶段
+    L.push('[关卡] #' + (st.levelId != null ? st.levelId : '—') + ' ' + ((rec.meta && rec.meta.title) || '') +
+      ' 第' + (st.chapterId != null ? st.chapterId + '章' : '—') + ' ' + (st.gridSize || rec.gridSize || '?') + 'x' + (st.gridSize || rec.gridSize || '?'));
+    const teach = s.teaching || {};
+    L.push('[教学] 阶段:' + (teach.phase || 'idle') + ' 等待:' + (teach.isWaitingInput ? 'Y' : 'N') +
+      (teach.targetCell ? ' 目标:' + cellName(teach.targetCell.row, teach.targetCell.col) + '=' + (teach.expectedValue != null ? teach.expectedValue : '?') : '') +
+      ' 尝试:' + (teach.attempts || 0) + '/' + (teach.maxAttempts || '—'));
+
+    // 3. 关键状态
+    L.push('[盘面] 已填 ' + (st.filledCount || 0) + ' 错误 ' + (st.errorCount || 0) + ' 用时 ' + (st.elapsedSeconds || 0) + 's');
+    const ui = s.ui || {};
+    L.push('[UI] 选中:' + (ui.selectedCell ? cellName(ui.selectedCell.row, ui.selectedCell.col) : '—') +
+      ' 模式:' + (ui.mode || 'number') +
+      (ui.bubbleText ? ' 气泡:"' + String(ui.bubbleText).slice(0, 40) + '"' : ''));
+    if (ui.highlights) {
+      const h = ui.highlights;
+      const hlist = [];
+      if (h.rows && h.rows.length) hlist.push('行' + h.rows.join(','));
+      if (h.cols && h.cols.length) hlist.push('列' + h.cols.join(','));
+      if (h.boxes && h.boxes.length) hlist.push('宫' + h.boxes.join(','));
+      if (h.cells && h.cells.length) hlist.push('格' + h.cells.map(function (c) { return cellName(c.row, c.col); }).join(','));
+      if (hlist.length) L.push('[高亮] ' + hlist.join(' | '));
+    }
+
+    // 4. 最近操作（玩家最近 8 步，判断操作序列问题）
+    const moves = (rec.moves || []).slice(-8);
+    if (moves.length) {
+      L.push('[操作] 最近' + moves.length + '步:');
+      moves.forEach(function (mv) {
+        const cn = mv.cell ? cellName(mv.cell.row, mv.cell.col) : '—';
+        const t = mv.type === 'fill' ? '填' : (mv.type === 'note' ? '笔' : (mv.type === 'erase' ? '擦' : mv.type));
+        const r = mv.type === 'fill' ? (mv.correct ? '✓' : '✗') : '';
+        L.push('  ' + cn + t + (mv.num || '') + r);
+      });
+    }
+
+    // 5. 最近互动（提示/教学事件）
+    const its = (rec.interactions || []).slice(-5);
+    if (its.length) {
+      L.push('[互动] ' + its.map(function (it) {
+        const lbl = it.type === 'hint' ? '提示:' + (it.technique || '?') : it.type;
+        return lbl;
+      }).join(' | '));
+    }
+
+    // 6. 异常标记（供 AI 快速判断）
+    const flags = [];
+    if (st.errorCount > 0) flags.push('盘面有红叉');
+    if (teach.attempts && teach.maxAttempts && teach.attempts >= teach.maxAttempts) flags.push('教学尝试耗尽');
+    if (s.audio && s.audio.isMuted) flags.push('静音');
+    if (errs.length) flags.push(errs.length + '条JS错误');
+    L.push('[标记] ' + (flags.length ? flags.join(' / ') : '无异常'));
+    L.push('【如需更多细节请附上完整 JSON】');
+    return L.join('\n');
+  }
+
+  function renderBoard(s) {
+    const box = document.getElementById('boardBox');
+    if (!s || !Array.isArray(s.cells)) { box.innerHTML = '<span style="color:var(--muted)">无数据</span>'; return; }
+    const n = s.gridSize || s.cells.length;
+    const boxN = n <= 4 ? 2 : 3;
+    let html = '<table class="board"><tr><td class="rowlabel"></td>';
+    for (let c = 0; c < n; c++) html += '<td class="collabel">' + (c + 1) + '</td>';
+    html += '</tr>';
+    for (let r = 0; r < n; r++) {
+      html += '<tr><td class="rowlabel">' + String.fromCharCode(97 + r) + '</td>';
+      for (let c = 0; c < n; c++) {
+        const cell = s.cells[r] && s.cells[r][c] ? s.cells[r][c] : {};
+        const cls = [];
+        cls.push('grid');
+        if (r % boxN === 0) cls.push('box-t');
+        if (c % boxN === 0) cls.push('box-l');
+        if (cell.fixed) cls.push('fixed');
+        let content;
+        if (cell.value) {
+          content = '<span>' + cell.value + '</span>';
+        } else if (cell.notes && cell.notes.length) {
+          const dim = n <= 4 ? 2 : 3;
+          const bits = [];
+          for (let i = 1; i <= n; i++) {
+            bits.push('<span style="display:inline-block;width:' + (100 / dim) + '%">' +
+              (cell.notes.indexOf(i) >= 0 ? i : '·') + '</span>');
+          }
+          content = '<span class="notes">' + bits.join('') + '</span>';
+        } else {
+          content = '<span class="empty">·</span>';
+        }
+        html += '<td class="' + cls.join(' ') + '">' + content + '</td>';
+      }
+      html += '</tr>';
+    }
+    html += '</table>';
+    box.innerHTML = html;
+  }
+
+  function kv(rows, k, v, cls) {
+    rows.push('<tr><td class="k">' + k + '</td><td' + (cls ? ' class="' + cls + '"' : '') + '>' + (v === null || v === undefined ? '<span style="color:var(--muted)">null</span>' : v) + '</td></tr>');
+  }
+
+  function renderTables(s) {
+    // Q16：视觉元素清单
+    const vt = document.querySelector('#visualTable tbody');
+    const av = (s.activeVisuals || []);
+    if (!av.length) {
+      vt.innerHTML = '<tr><td colspan="4" style="color:var(--muted)">无激活视觉元素</td></tr>';
+    } else {
+      vt.innerHTML = av.map(function (v) {
+        return '<tr><td class="mono">' + (v.id || '?') + '</td><td>' + (v.name || '—') +
+          '</td><td>' + (v.src || '—') + '</td><td class="mono">' + (v.detail || '') + '</td></tr>';
+      }).join('');
+    }
+
+    // stats
+    const st = document.querySelector('#statsTable tbody');
+    let rows = '';
+    kv(rows = [], '关卡', '#' + (s.stats && s.stats.levelId != null ? s.stats.levelId : '—'));
+    kv(rows, '章节', s.stats && s.stats.chapterId != null ? '第' + s.stats.chapterId + '章' : '—');
+    kv(rows, '已填格', (s.stats && s.stats.filledCount) || 0);
+    kv(rows, '错误数', (s.stats && s.stats.errorCount) || 0, (s.stats && s.stats.errorCount) ? 'stat-err' : 'stat-ok');
+    const sec = (s.stats && s.stats.elapsedSeconds) || 0;
+    kv(rows, '用时', Math.floor(sec / 60) + ':' + String(sec % 60).padStart(2, '0'));
+    st.innerHTML = rows.join('');
+
+    // teaching
+    const tt = document.querySelector('#teachTable tbody');
+    const t = s.teaching || {};
+    rows = [];
+    kv(rows, '阶段', t.phase || 'idle');
+    kv(rows, '等待输入', t.isWaitingInput ? '是' : '否', t.isWaitingInput ? 'stat-ok' : '');
+    kv(rows, '目标格', t.targetCell ? (t.targetCell.row + t.targetCell.col) : '—');
+    kv(rows, '预期值', t.expectedValue != null ? t.expectedValue : '—');
+    kv(rows, '预期笔记', (t.expectedNotes && t.expectedNotes.length) ? t.expectedNotes.join(', ') : '—');
+    kv(rows, '尝试次数', (t.attempts || 0) + ' / ' + (t.maxAttempts || '—'));
+    tt.innerHTML = rows.join('');
+
+    // ui
+    const ut = document.querySelector('#uiTable tbody');
+    const u = s.ui || {};
+    rows = [];
+    kv(rows, '选中格', u.selectedCell ? (u.selectedCell.row + u.selectedCell.col) : '—');
+    kv(rows, '模式', u.mode || 'number');
+    kv(rows, '气泡', u.bubbleText || '—');
+    kv(rows, '高亮行', (u.highlights && u.highlights.rows && u.highlights.rows.length) ? u.highlights.rows.join(', ') : '—');
+    kv(rows, '高亮列', (u.highlights && u.highlights.cols && u.highlights.cols.length) ? u.highlights.cols.join(', ') : '—');
+    kv(rows, '高亮宫', (u.highlights && u.highlights.boxes && u.highlights.boxes.length) ? u.highlights.boxes.join(', ') : '—');
+    kv(rows, '高亮格', (u.highlights && u.highlights.cells && u.highlights.cells.length)
+      ? u.highlights.cells.map(function (c) { return c.row + c.col; }).join(', ') : '—');
+    ut.innerHTML = rows.join('');
+
+    // audio
+    const at = document.querySelector('#audioTable tbody');
+    const a = s.audio || {};
+    rows = [];
+    kv(rows, 'BGM', a.bgmId || '—');
+    kv(rows, '音量', a.volume != null ? Math.round(a.volume * 100) + '%' : '—');
+    kv(rows, '静音', a.isMuted ? '是' : '否', a.isMuted ? 'stat-err' : 'stat-ok');
+    at.innerHTML = rows.join('');
+
+    // last interaction
+    const it = document.querySelector('#interactTable tbody');
+    const li = s.lastInteraction || {};
+    rows = [];
+    kv(rows, '类型', li.type || '—');
+    kv(rows, '坐标', li.cell ? (li.cell.row + li.cell.col) : '—');
+    kv(rows, '按钮', li.buttonId || '—');
+    kv(rows, '结果', li.result || '—', li.result === 'error' || li.result === 'blocked' ? 'stat-err' : (li.result === 'success' ? 'stat-ok' : ''));
+    kv(rows, '消息', li.message || '—');
+    kv(rows, '时间', li.timestamp ? new Date(li.timestamp).toLocaleTimeString() : '—');
+    it.innerHTML = rows.join('');
+  }
+
+  function renderRecord(s) {
+    const rs = document.querySelector('#recordSummary tbody');
+    const rec = (s && s.record) || {};
+    let rows = '';
+    try {
+      kv(rows = [], '关卡', '#' + (rec.levelId != null ? rec.levelId : '—'));
+      kv(rows, '棋盘', (rec.gridSize || '—') + ' x ' + (rec.gridSize || '—'));
+      kv(rows, '开始时间', rec.startedAt ? new Date(rec.startedAt).toLocaleTimeString() : '—');
+      kv(rows, '完成时间', rec.completedAt ? new Date(rec.completedAt).toLocaleTimeString() : '进行中');
+      const initFilled = (rec.initialBoard || []).reduce(function (n, row) {
+        return n + row.filter(function (cl) { return cl && cl.fixed; }).length;
+      }, 0);
+      kv(rows, '预填格数', initFilled + ' 个');
+      kv(rows, '笼子数', (rec.cages && rec.cages.length) || 0);
+      kv(rows, '玩家操作数', (rec.moves && rec.moves.length) || 0);
+      kv(rows, '教学事件数', (rec.lessonEvents && rec.lessonEvents.length) || 0);
+      kv(rows, '互动记录数', (rec.interactions && rec.interactions.length) || 0);
+      if (rec.meta) {
+        kv(rows, '关卡名', rec.meta.title || '—');
+        kv(rows, '教学目标', rec.meta.teachingGoal || '—');
+      }
+      kv(rows, '前置对话', ((rec.preDialog && rec.preDialog.length) || 0) + ' 句');
+      kv(rows, '通关对话', ((rec.clearDialog && rec.clearDialog.length) || 0) + ' 句');
+      rs.innerHTML = rows.join('');
+    } catch (e) { rs.innerHTML = rows.join(''); console.warn('[ai-debug] recordSummary render:', e); }
+
+    // 填数历史表
+    const mt = document.querySelector('#movesTable tbody');
+    try {
+      const moves = (rec.moves || []).slice(-50); // 只显示最近 50 条
+      if (!moves.length) { mt.innerHTML = '<tr><td colspan="6" style="color:var(--muted)">尚无操作</td></tr>'; }
+      else {
+        let html = '';
+        moves.forEach(function (mv, i) {
+          const cellName = mv.cell ? (mv.cell.row + mv.cell.col) : '—';
+          const typeLabel = mv.type === 'fill' ? '填数' : (mv.type === 'note' ? '笔记' : (mv.type === 'erase' ? '擦除' : mv.type));
+          const resultCls = mv.type === 'fill' ? (mv.correct ? 'stat-ok' : 'stat-err') : '';
+          const resultTxt = mv.type === 'fill' ? (mv.correct ? '正确' : '错误') : (mv.type === 'note' ? (mv.added ? '添加' : '移除') : '—');
+          const sec = (mv.elapsedMs != null) ? (mv.elapsedMs / 1000).toFixed(1) + 's' : '—';
+          html += '<tr><td>' + (moves.length - i) + '</td><td>' + typeLabel + '</td><td>' + cellName +
+            '</td><td>' + (mv.num || '—') + '</td><td class="' + resultCls + '">' + resultTxt + '</td><td>' + sec + '</td></tr>';
+        });
+        mt.innerHTML = html;
+      }
+    } catch (e) { mt.innerHTML = '<tr><td colspan="6" style="color:var(--muted)">渲染异常</td></tr>'; console.warn('[ai-debug] moves render:', e); }
+
+    // 教学事件表（2026-08-04）
+    const lt = document.querySelector('#lessonTable tbody');
+    try {
+      const events = (rec.lessonEvents || []).slice(-80); // 只显示最近 80 条
+      if (!events.length) { lt.innerHTML = '<tr><td colspan="6" style="color:var(--muted)">尚无教学事件（非教学关卡或教学未启动）</td></tr>'; }
+      else {
+        const evLabels = { phase: '阶段切换', bubble: '气泡', guided: '引导提示', fail: '填错', reveal: '自动揭示', watch: '引导格命中' };
+        let ehtml = '';
+        events.forEach(function (ev, i) {
+          const cellName = ev.cell ? (Array.isArray(ev.cell) ? String.fromCharCode(97 + ev.cell[0]) + (ev.cell[1] + 1) : ev.cell) : '—';
+          let content = '—';
+          if (ev.type === 'phase') content = (ev.from || '—') + ' → ' + (ev.to || '—');
+          else if (ev.type === 'bubble') content = ev.text || '—';
+          else if (ev.type === 'guided') content = (ev.hintText || '') + (ev.value != null ? ' [期望=' + ev.value + ']' : '');
+          else if (ev.type === 'fail') content = '填 ' + ev.wrongNum + ' 错误（' + ev.attempts + '/' + ev.maxAttempts + ' 次）';
+          else if (ev.type === 'reveal') content = ev.value != null ? '揭示答案 ' + ev.value : '揭示笔记';
+          else if (ev.type === 'watch') content = (ev.correct ? '命中正确 ' : '命中错误 ') + (ev.num != null ? ev.num : '') + (ev.note ? '（笔记）' : '');
+          if (content.length > 60) content = content.slice(0, 60) + '…';
+          const sec = (ev.elapsedMs != null) ? (ev.elapsedMs / 1000).toFixed(1) + 's' : '—';
+          ehtml += '<tr><td>' + (events.length - i) + '</td><td>' + (evLabels[ev.type] || ev.type) +
+            '</td><td>' + (ev.phase || '—') + '</td><td>' + content + '</td><td>' + cellName + '</td><td>' + sec + '</td></tr>';
+        });
+        lt.innerHTML = ehtml;
+      }
+    } catch (e) { lt.innerHTML = '<tr><td colspan="6" style="color:var(--muted)">渲染异常</td></tr>'; console.warn('[ai-debug] lesson render:', e); }
+
+    // 前置对话表（2026-08-04）
+    const pdt = document.querySelector('#preDialogTable tbody');
+    try {
+      const pd = (rec.preDialog || []).slice(-50);
+      if (!pd.length) { pdt.innerHTML = '<tr><td colspan="3" style="color:var(--muted)">无前置对话</td></tr>'; }
+      else {
+        let phtml = '';
+        pd.forEach(function (line, i) {
+          const spk = line.isNarration ? '旁白' : (line.speaker || '—');
+          const txt = (line.text || '').slice(0, 80);
+          phtml += '<tr><td>' + (i + 1) + '</td><td>' + spk + '</td><td>' + txt + '</td></tr>';
+        });
+        pdt.innerHTML = phtml;
+      }
+    } catch (e) { pdt.innerHTML = '<tr><td colspan="3" style="color:var(--muted)">渲染异常</td></tr>'; console.warn('[ai-debug] preDialog render:', e); }
+
+    // 玩家与角色互动表（2026-08-04）
+    const i2t = document.querySelector('#interactTable2 tbody');
+    try {
+      const its = (rec.interactions || []).slice(-50);
+      if (!its.length) { i2t.innerHTML = '<tr><td colspan="4" style="color:var(--muted)">尚无互动记录</td></tr>'; }
+      else {
+        const itLabels = { hint: '提示', lesson_skip: '跳过教学', pre_dialog: '前置对话播放', clear_dialog: '通关对话', level_complete: '关卡完成' };
+        let ihtml = '';
+        its.forEach(function (it2, i) {
+          let content = '—';
+          if (it2.type === 'hint') content = (it2.technique || '通用') + '：「' + (it2.text || '').slice(0, 50) + '」';
+          else if (it2.type === 'pre_dialog' || it2.type === 'clear_dialog') content = '关卡 #' + (it2.levelId != null ? it2.levelId : '—');
+          if (content.length > 60) content = content.slice(0, 60) + '…';
+          const sec = (it2.elapsedMs != null) ? (it2.elapsedMs / 1000).toFixed(1) + 's' : '—';
+          ihtml += '<tr><td>' + (its.length - i) + '</td><td>' + (itLabels[it2.type] || it2.type) +
+            '</td><td>' + content + '</td><td>' + sec + '</td></tr>';
+        });
+        i2t.innerHTML = ihtml;
+      }
+    } catch (e) { i2t.innerHTML = '<tr><td colspan="4" style="color:var(--muted)">渲染异常</td></tr>'; console.warn('[ai-debug] interactions render:', e); }
+  }
+
+  function handleState(msg) {
+    if (!msg || !msg.state) return;
+    lastState = msg.state;
+    lastJson = JSON.stringify(msg.state, null, 2);
+    if (paused) return;
+    renderBoard(msg.state);
+    renderTables(msg.state);
+    renderRecord(msg.state);
+    jsonBox.textContent = lastJson;
+    // 自动滚动到底部（最新状态可见）
+    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+  }
+
+  let ch = null;
+  try {
+    ch = new BroadcastChannel(CHANNEL);
+    ch.onmessage = function (ev) {
+      if (ev.data && ev.data.type === 'state') {
+        conn(true);
+        handleState(ev.data);
+      }
+    };
+  } catch (e) {
+    conn(false);
+  }
+  // file:// 协议检测：无法与 http 游戏页通信，直接提示
+  if (window.location.protocol === 'file:') {
+    document.getElementById('protoWarn').classList.remove('hidden');
+    conn(false);
+  }
+
+  // 心跳检测连接：若 8 秒无消息视为断开
+  let connTimer = null;
+  function refreshConn() {
+    conn(lastState ? true : false);
+  }
+  setInterval(refreshConn, 4000);
+  let firstWait = setTimeout(function () {
+    if (!lastState) {
+      conn(false);
+      document.getElementById('status').textContent =
+        '尚未收到游戏状态。请确认：1) 游戏页与调试页必须同一来源（都通过 http://localhost:8765 打开）；2) 游戏页已进入关卡；3) 点击游戏页顶部「AI调试」按钮可确保同源打开。';
+    }
+  }, 6000);
+
+  renderPause();
+})();
+</script>
+</body>
+</html>

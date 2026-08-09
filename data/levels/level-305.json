@@ -1,0 +1,1580 @@
+{
+  "levelId": 305,
+  "title": "第5关：数对初探",
+  "gridSize": 9,
+  "difficulty": "中等",
+  "teachingGoal": "并蒂锁（Naked Pair）入门：同一行/列/宫内两个格子恰好只能填相同的两个数字，可排除区域内其他格子的这两个数字。",
+  "features": {
+    "allowDraft": true,
+    "assistant45": false,
+    "showHints": true,
+    "perspectiveMode": true,
+    "highlightRow": true,
+    "highlightCol": true,
+    "highlightBox": true,
+    "highlightNumber": true,
+    "highlightCage": true,
+    "autoFillCandidates": false
+  },
+  "triggers": [
+    {
+      "id": "t305_s",
+      "condition": "onLevelStart",
+      "type": "popup_hint",
+      "position": "top",
+      "text": "新技巧：并蒂锁！如果一行里有两个空格都恰好只能填相同的两个数字（比如3和7），那这两个格子就占了3和7，同行其他格子可以排除3和7！",
+      "once": true
+    },
+    {
+      "id": "t305_f1",
+      "condition": "onFirstNumberFilled",
+      "type": "popup_hint",
+      "position": "top",
+      "text": "好眼力！你发现了第一个数对！这就是「Naked Pair」——两个格子赤裸裸地只可能是两个数！",
+      "once": true
+    },
+    {
+      "id": "t305_b",
+      "condition": "onFillCountReached",
+      "count": 54,
+      "type": "enter_phase",
+      "phase": "breakthrough",
+      "once": true
+    },
+    {
+      "id": "t305_bt",
+      "condition": "onFillCountReached",
+      "count": 54,
+      "type": "popup_hint",
+      "position": "top",
+      "text": "⚡ 破局时刻！数对排除了大片笔记，盘面豁然开朗！",
+      "once": true,
+      "delay": 400
+    },
+    {
+      "id": "t305_st20",
+      "condition": "onStuckForSeconds",
+      "seconds": 20,
+      "type": "popup_hint",
+      "position": "top",
+      "text": "💡 卡住了？打开✏️笔记笔记，标记所有空格的可能数字，然后找那些恰好有两个相同笔记的格子对！",
+      "once": false
+    },
+    {
+      "id": "t305_st40",
+      "condition": "onStuckForSeconds",
+      "seconds": 40,
+      "type": "popup_hint",
+      "position": "top",
+      "text": "💡 数对不一定在同行——同列或同宫也可以！只要在同一个区域（行/列/宫）里，两个格子恰有相同两个笔记就是数对！",
+      "once": false,
+      "delay": 300
+    },
+    {
+      "id": "t305_ag",
+      "condition": "onConflict",
+      "type": "popup_hint",
+      "position": "top",
+      "text": "⚠️ 数对判断要谨慎——两个格子必须恰好只有这两个笔记，多一个都不算！",
+      "once": false
+    },
+    {
+      "id": "t305_fi",
+      "condition": "onFillCountReached",
+      "count": 70,
+      "type": "enter_phase",
+      "phase": "finishing",
+      "once": true
+    },
+    {
+      "id": "t305_fit",
+      "condition": "onFillCountReached",
+      "count": 70,
+      "type": "popup_hint",
+      "position": "top",
+      "text": "✨ 收官！数对的力量让最后的数字一一浮现！",
+      "once": true,
+      "delay": 400
+    },
+    {
+      "id": "t305_c",
+      "condition": "onLevelComplete",
+      "type": "popup_hint",
+      "position": "top",
+      "text": "🎉 并蒂锁已掌握！这是高阶推理的第一块多米诺骨牌！",
+      "once": true
+    }
+  ],
+  "boardData": [
+    [
+      7,
+      9,
+      8,
+      0,
+      0,
+      0,
+      5,
+      4,
+      6
+    ],
+    [
+      6,
+      2,
+      5,
+      0,
+      0,
+      4,
+      0,
+      0,
+      3
+    ],
+    [
+      3,
+      4,
+      1,
+      0,
+      0,
+      6,
+      0,
+      0,
+      7
+    ],
+    [
+      0,
+      7,
+      0,
+      9,
+      0,
+      1,
+      3,
+      0,
+      0
+    ],
+    [
+      1,
+      0,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      4
+    ],
+    [
+      0,
+      8,
+      0,
+      0,
+      0,
+      0,
+      0,
+      7,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      1,
+      0,
+      8,
+      0,
+      0,
+      9
+    ],
+    [
+      0,
+      3,
+      4,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      5,
+      7,
+      0,
+      0,
+      0,
+      0
+    ]
+  ],
+  "cages": [
+    {
+      "id": 1,
+      "sum": 20,
+      "cells": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          1
+        ]
+      ]
+    },
+    {
+      "id": 2,
+      "sum": 22,
+      "cells": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ]
+      ]
+    },
+    {
+      "id": 3,
+      "sum": 11,
+      "cells": [
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          0,
+          6
+        ]
+      ]
+    },
+    {
+      "id": 4,
+      "sum": 13,
+      "cells": [
+        [
+          0,
+          7
+        ],
+        [
+          0,
+          8
+        ],
+        [
+          1,
+          8
+        ]
+      ]
+    },
+    {
+      "id": 5,
+      "sum": 15,
+      "cells": [
+        [
+          1,
+          7
+        ],
+        [
+          2,
+          7
+        ],
+        [
+          3,
+          7
+        ]
+      ]
+    },
+    {
+      "id": 6,
+      "sum": 20,
+      "cells": [
+        [
+          1,
+          6
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          2,
+          6
+        ]
+      ]
+    },
+    {
+      "id": 7,
+      "sum": 25,
+      "cells": [
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          2
+        ]
+      ]
+    },
+    {
+      "id": 8,
+      "sum": 2,
+      "cells": [
+        [
+          1,
+          1
+        ]
+      ]
+    },
+    {
+      "id": 9,
+      "sum": 24,
+      "cells": [
+        [
+          2,
+          4
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          4
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          3,
+          5
+        ]
+      ]
+    },
+    {
+      "id": 10,
+      "sum": 13,
+      "cells": [
+        [
+          2,
+          8
+        ],
+        [
+          3,
+          8
+        ],
+        [
+          4,
+          8
+        ]
+      ]
+    },
+    {
+      "id": 11,
+      "sum": 11,
+      "cells": [
+        [
+          3,
+          6
+        ],
+        [
+          4,
+          6
+        ]
+      ]
+    },
+    {
+      "id": 12,
+      "sum": 26,
+      "cells": [
+        [
+          3,
+          3
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          5,
+          3
+        ],
+        [
+          5,
+          4
+        ],
+        [
+          5,
+          5
+        ]
+      ]
+    },
+    {
+      "id": 13,
+      "sum": 13,
+      "cells": [
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          1
+        ]
+      ]
+    },
+    {
+      "id": 14,
+      "sum": 21,
+      "cells": [
+        [
+          3,
+          0
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          5,
+          1
+        ],
+        [
+          5,
+          2
+        ]
+      ]
+    },
+    {
+      "id": 15,
+      "sum": 2,
+      "cells": [
+        [
+          4,
+          2
+        ]
+      ]
+    },
+    {
+      "id": 16,
+      "sum": 24,
+      "cells": [
+        [
+          4,
+          7
+        ],
+        [
+          5,
+          7
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          6,
+          6
+        ]
+      ]
+    },
+    {
+      "id": 17,
+      "sum": 18,
+      "cells": [
+        [
+          5,
+          8
+        ],
+        [
+          6,
+          8
+        ],
+        [
+          6,
+          7
+        ],
+        [
+          7,
+          8
+        ]
+      ]
+    },
+    {
+      "id": 18,
+      "sum": 14,
+      "cells": [
+        [
+          5,
+          0
+        ],
+        [
+          6,
+          0
+        ]
+      ]
+    },
+    {
+      "id": 19,
+      "sum": 10,
+      "cells": [
+        [
+          6,
+          1
+        ],
+        [
+          7,
+          1
+        ],
+        [
+          8,
+          1
+        ]
+      ]
+    },
+    {
+      "id": 20,
+      "sum": 14,
+      "cells": [
+        [
+          6,
+          2
+        ],
+        [
+          7,
+          2
+        ],
+        [
+          7,
+          3
+        ],
+        [
+          6,
+          3
+        ]
+      ]
+    },
+    {
+      "id": 21,
+      "sum": 10,
+      "cells": [
+        [
+          6,
+          4
+        ],
+        [
+          7,
+          4
+        ]
+      ]
+    },
+    {
+      "id": 22,
+      "sum": 24,
+      "cells": [
+        [
+          6,
+          5
+        ],
+        [
+          7,
+          5
+        ],
+        [
+          8,
+          5
+        ],
+        [
+          8,
+          6
+        ]
+      ]
+    },
+    {
+      "id": 23,
+      "sum": 15,
+      "cells": [
+        [
+          7,
+          7
+        ],
+        [
+          8,
+          7
+        ],
+        [
+          8,
+          8
+        ]
+      ]
+    },
+    {
+      "id": 24,
+      "sum": 7,
+      "cells": [
+        [
+          7,
+          6
+        ]
+      ]
+    },
+    {
+      "id": 25,
+      "sum": 10,
+      "cells": [
+        [
+          7,
+          0
+        ],
+        [
+          8,
+          0
+        ]
+      ]
+    },
+    {
+      "id": 26,
+      "sum": 14,
+      "cells": [
+        [
+          8,
+          2
+        ],
+        [
+          8,
+          3
+        ]
+      ]
+    },
+    {
+      "id": 27,
+      "sum": 7,
+      "cells": [
+        [
+          8,
+          4
+        ]
+      ]
+    }
+  ],
+  "solution": [
+    [
+      7,
+      9,
+      8,
+      3,
+      1,
+      2,
+      5,
+      4,
+      6
+    ],
+    [
+      6,
+      2,
+      5,
+      7,
+      9,
+      4,
+      1,
+      8,
+      3
+    ],
+    [
+      3,
+      4,
+      1,
+      8,
+      5,
+      6,
+      9,
+      2,
+      7
+    ],
+    [
+      4,
+      7,
+      6,
+      9,
+      8,
+      1,
+      3,
+      5,
+      2
+    ],
+    [
+      1,
+      5,
+      2,
+      6,
+      3,
+      7,
+      8,
+      9,
+      4
+    ],
+    [
+      9,
+      8,
+      3,
+      4,
+      2,
+      5,
+      6,
+      7,
+      1
+    ],
+    [
+      5,
+      6,
+      7,
+      1,
+      4,
+      8,
+      2,
+      3,
+      9
+    ],
+    [
+      8,
+      3,
+      4,
+      2,
+      6,
+      9,
+      7,
+      1,
+      5
+    ],
+    [
+      2,
+      1,
+      9,
+      5,
+      7,
+      3,
+      4,
+      6,
+      8
+    ]
+  ],
+  "preDialog": [
+    {
+      "speaker": "旁白",
+      "text": "沈墨在404房的墙面上发现了一张旧照片。照片里是一个女人的背影，站在轮船舷边，手里提着一只旧皮箱。",
+      "isNarration": true
+    },
+    {
+      "speaker": "沈墨 CHIBI",
+      "text": "……是她。她走之前，把这张照片留在了这里。",
+      "side": "left",
+      "emotion": "thinking",
+      "effect": 0
+    },
+    {
+      "speaker": "老师（留声）",
+      "text": "并蒂锁——两个数字被锁在同一对格子里。它们互相依附，无法分开。你找到其中一格，另一格就会自己出现。",
+      "side": "right",
+      "emotion": "calm",
+      "effect": 0
+    }
+  ],
+  "clearDialog": [
+    {
+      "speaker": "旁白",
+      "text": "沈墨把照片翻过来。背面有一行字：“1941年11月15日。我改签了。不去香港。去符拉迪沃斯托克。”",
+      "isNarration": true
+    },
+    {
+      "speaker": "沈墨 CHIBI",
+      "text": "……她改了航线。她走的时候，没有告诉任何人她真正要去的地方。",
+      "side": "left",
+      "emotion": "thinking",
+      "effect": 0
+    },
+    {
+      "speaker": "薇拉",
+      "text": "你母亲的选择，和你父亲走的是同一条路。只是她没有回来。",
+      "side": "right",
+      "emotion": "calm",
+      "effect": 0
+    }
+  ],
+  "mode": "full",
+  "coreMove": {
+    "row": 6,
+    "col": 8,
+    "value": 9,
+    "cascadeCount": 63,
+    "cascadeSequence": [
+      {
+        "row": 6,
+        "col": 7,
+        "value": 8,
+        "cellId": 61
+      },
+      {
+        "row": 5,
+        "col": 6,
+        "value": 8,
+        "cellId": 51
+      },
+      {
+        "row": 3,
+        "col": 7,
+        "value": 9,
+        "cellId": 34
+      },
+      {
+        "row": 0,
+        "col": 0,
+        "value": 9,
+        "cellId": 0
+      },
+      {
+        "row": 0,
+        "col": 6,
+        "value": 7,
+        "cellId": 6
+      },
+      {
+        "row": 2,
+        "col": 6,
+        "value": 9,
+        "cellId": 24
+      },
+      {
+        "row": 1,
+        "col": 4,
+        "value": 9,
+        "cellId": 13
+      },
+      {
+        "row": 2,
+        "col": 5,
+        "value": 6,
+        "cellId": 23
+      },
+      {
+        "row": 6,
+        "col": 3,
+        "value": 6,
+        "cellId": 57
+      },
+      {
+        "row": 4,
+        "col": 7,
+        "value": 7,
+        "cellId": 43
+      },
+      {
+        "row": 0,
+        "col": 8,
+        "value": 2,
+        "cellId": 8
+      },
+      {
+        "row": 0,
+        "col": 5,
+        "value": 4,
+        "cellId": 5
+      },
+      {
+        "row": 0,
+        "col": 2,
+        "value": 3,
+        "cellId": 2
+      },
+      {
+        "row": 0,
+        "col": 1,
+        "value": 1,
+        "cellId": 1
+      },
+      {
+        "row": 2,
+        "col": 4,
+        "value": 2,
+        "cellId": 22
+      },
+      {
+        "row": 1,
+        "col": 0,
+        "value": 2,
+        "cellId": 9
+      },
+      {
+        "row": 1,
+        "col": 1,
+        "value": 5,
+        "cellId": 10
+      },
+      {
+        "row": 2,
+        "col": 1,
+        "value": 4,
+        "cellId": 19
+      },
+      {
+        "row": 2,
+        "col": 2,
+        "value": 7,
+        "cellId": 20
+      },
+      {
+        "row": 1,
+        "col": 2,
+        "value": 6,
+        "cellId": 11
+      },
+      {
+        "row": 2,
+        "col": 3,
+        "value": 3,
+        "cellId": 21
+      },
+      {
+        "row": 1,
+        "col": 3,
+        "value": 7,
+        "cellId": 12
+      },
+      {
+        "row": 1,
+        "col": 5,
+        "value": 1,
+        "cellId": 14
+      },
+      {
+        "row": 2,
+        "col": 7,
+        "value": 1,
+        "cellId": 25
+      },
+      {
+        "row": 4,
+        "col": 2,
+        "value": 8,
+        "cellId": 38
+      },
+      {
+        "row": 8,
+        "col": 2,
+        "value": 9,
+        "cellId": 74
+      },
+      {
+        "row": 8,
+        "col": 1,
+        "value": 8,
+        "cellId": 73
+      },
+      {
+        "row": 5,
+        "col": 7,
+        "value": 2,
+        "cellId": 52
+      },
+      {
+        "row": 4,
+        "col": 5,
+        "value": 2,
+        "cellId": 41
+      },
+      {
+        "row": 5,
+        "col": 5,
+        "value": 9,
+        "cellId": 50
+      },
+      {
+        "row": 4,
+        "col": 1,
+        "value": 9,
+        "cellId": 37
+      },
+      {
+        "row": 7,
+        "col": 6,
+        "value": 2,
+        "cellId": 69
+      },
+      {
+        "row": 3,
+        "col": 1,
+        "value": 2,
+        "cellId": 28
+      },
+      {
+        "row": 6,
+        "col": 6,
+        "value": 1,
+        "cellId": 60
+      },
+      {
+        "row": 6,
+        "col": 0,
+        "value": 4,
+        "cellId": 54
+      },
+      {
+        "row": 6,
+        "col": 1,
+        "value": 7,
+        "cellId": 55
+      },
+      {
+        "row": 5,
+        "col": 1,
+        "value": 6,
+        "cellId": 46
+      },
+      {
+        "row": 7,
+        "col": 1,
+        "value": 3,
+        "cellId": 64
+      },
+      {
+        "row": 8,
+        "col": 0,
+        "value": 5,
+        "cellId": 72
+      },
+      {
+        "row": 7,
+        "col": 0,
+        "value": 6,
+        "cellId": 63
+      },
+      {
+        "row": 3,
+        "col": 0,
+        "value": 7,
+        "cellId": 27
+      },
+      {
+        "row": 3,
+        "col": 6,
+        "value": 3,
+        "cellId": 33
+      },
+      {
+        "row": 1,
+        "col": 6,
+        "value": 4,
+        "cellId": 15
+      },
+      {
+        "row": 1,
+        "col": 7,
+        "value": 3,
+        "cellId": 16
+      },
+      {
+        "row": 3,
+        "col": 5,
+        "value": 5,
+        "cellId": 32
+      },
+      {
+        "row": 3,
+        "col": 2,
+        "value": 4,
+        "cellId": 29
+      },
+      {
+        "row": 3,
+        "col": 8,
+        "value": 1,
+        "cellId": 35
+      },
+      {
+        "row": 3,
+        "col": 4,
+        "value": 6,
+        "cellId": 31
+      },
+      {
+        "row": 5,
+        "col": 2,
+        "value": 5,
+        "cellId": 47
+      },
+      {
+        "row": 5,
+        "col": 8,
+        "value": 4,
+        "cellId": 53
+      },
+      {
+        "row": 5,
+        "col": 3,
+        "value": 1,
+        "cellId": 48
+      },
+      {
+        "row": 4,
+        "col": 3,
+        "value": 4,
+        "cellId": 39
+      },
+      {
+        "row": 4,
+        "col": 4,
+        "value": 3,
+        "cellId": 40
+      },
+      {
+        "row": 4,
+        "col": 0,
+        "value": 1,
+        "cellId": 36
+      },
+      {
+        "row": 5,
+        "col": 0,
+        "value": 3,
+        "cellId": 45
+      },
+      {
+        "row": 5,
+        "col": 4,
+        "value": 7,
+        "cellId": 49
+      },
+      {
+        "row": 6,
+        "col": 4,
+        "value": 5,
+        "cellId": 58
+      },
+      {
+        "row": 6,
+        "col": 5,
+        "value": 3,
+        "cellId": 59
+      },
+      {
+        "row": 7,
+        "col": 4,
+        "value": 4,
+        "cellId": 67
+      },
+      {
+        "row": 7,
+        "col": 7,
+        "value": 5,
+        "cellId": 70
+      },
+      {
+        "row": 8,
+        "col": 4,
+        "value": 1,
+        "cellId": 76
+      },
+      {
+        "row": 8,
+        "col": 7,
+        "value": 4,
+        "cellId": 79
+      },
+      {
+        "row": 8,
+        "col": 8,
+        "value": 3,
+        "cellId": 80
+      }
+    ]
+  },
+  "breakPointIndex": 17,
+  "totalSteps": 82,
+  "nakedSingleRatio": 0.6829268292682927,
+  "targetTechnique": "nakedPair",
+  "threeAct": {
+    "opening": [
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        0,
+        8
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        2,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        1,
+        3
+      ],
+      [
+        1,
+        4
+      ],
+      [
+        3,
+        2
+      ],
+      [
+        3,
+        8
+      ],
+      [
+        4,
+        1
+      ],
+      [
+        3,
+        0
+      ],
+      [
+        4,
+        6
+      ],
+      [
+        1,
+        6
+      ],
+      [
+        1,
+        7
+      ],
+      [
+        5,
+        0
+      ],
+      [
+        5,
+        2
+      ],
+      [
+        6,
+        0
+      ],
+      [
+        6,
+        1
+      ],
+      [
+        6,
+        2
+      ],
+      [
+        7,
+        6
+      ],
+      [
+        8,
+        2
+      ]
+    ],
+    "breakthrough": [
+      [
+        7,
+        0
+      ],
+      [
+        7,
+        4
+      ],
+      [
+        7,
+        7
+      ],
+      [
+        7,
+        8
+      ],
+      [
+        8,
+        0
+      ],
+      [
+        8,
+        5
+      ],
+      [
+        8,
+        6
+      ],
+      [
+        8,
+        7
+      ],
+      [
+        8,
+        8
+      ]
+    ],
+    "avalanche": [
+      [
+        2,
+        6
+      ],
+      [
+        2,
+        7
+      ],
+      [
+        2,
+        4
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        3,
+        7
+      ],
+      [
+        5,
+        6
+      ],
+      [
+        4,
+        7
+      ],
+      [
+        5,
+        8
+      ],
+      [
+        6,
+        6
+      ],
+      [
+        6,
+        7
+      ],
+      [
+        6,
+        4
+      ],
+      [
+        5,
+        4
+      ],
+      [
+        5,
+        3
+      ],
+      [
+        5,
+        5
+      ],
+      [
+        4,
+        3
+      ],
+      [
+        4,
+        4
+      ],
+      [
+        0,
+        4
+      ],
+      [
+        4,
+        5
+      ],
+      [
+        7,
+        3
+      ],
+      [
+        0,
+        3
+      ],
+      [
+        0,
+        5
+      ],
+      [
+        7,
+        5
+      ],
+      [
+        8,
+        1
+      ]
+    ]
+  },
+  "lessonPlan": {
+    "newSkill": "nakedPair_305",
+    "skillName": "并蒂锁",
+    "isFirstLesson": false,
+    "skippable": true,
+    "prerequisite": [
+      "pointingRow",
+      "pointingCol",
+      "pointingBox"
+    ],
+    "phases": {
+      "intro": {
+        "text": "并蒂锁（Naked Pair）：同一行、列或宫里，两个格子恰好只能填相同的两个数字，那么这两个数字就被它们锁住，其他格子都不能再填。",
+        "speaker": "守笼人",
+        "voiceId": "CK_03",
+        "duration": 4000
+      },
+      "demo": {
+        "steps": [
+          {
+            "action": "highlightRow",
+            "target": 0,
+            "duration": 1400,
+            "text": "看第 1 行。这一行只剩三个空格：a4、a5、a6。"
+          },
+          {
+            "action": "focusCell",
+            "target": [
+              0,
+              3
+            ],
+            "duration": 1200,
+            "text": "a4 的候选是 2、3。"
+          },
+          {
+            "action": "focusCell",
+            "target": [
+              0,
+              5
+            ],
+            "duration": 1200,
+            "text": "a6 的候选也是 2、3！"
+          },
+          {
+            "action": "highlightRow",
+            "target": 0,
+            "duration": 1800,
+            "text": "这两个格子组成了『并蒂锁』（Naked Pair）：2 和 3 被它们俩牢牢锁住，这一行的其他格子都不能再填 2 或 3。"
+          },
+          {
+            "action": "focusCell",
+            "target": [
+              0,
+              4
+            ],
+            "duration": 1600,
+            "text": "所以 a5 绝不可能填 2 或 3——排除之后只剩 1，只能填 1！"
+          }
+        ]
+      },
+      "guided": {
+        "targetCell": [
+          0,
+          4
+        ],
+        "correctValue": 1,
+        "interactionType": "NUMBER",
+        "maxAttempts": 2,
+        "autoRevealAfter": 2,
+        "autoRevealText": "直接填入数字 1。",
+        "methodText": "并蒂锁三步：在同一区域找两个候选完全相同的格子；锁定那两个数字；把这两个数字从区域内的其他格子排除。",
+        "hintText": "轮到你了：a4 和 a6 的候选都是 2、3，组成了并蒂锁——a5 排除 2、3 后只剩几？试试看。",
+        "failHint": "等等——a4、a6 锁定了 2 和 3，所以 a5 不能填 2 或 3。a5 的候选是 1、2、3，排除后只剩 1。",
+        "failVoiceId": "CK_05",
+        "successText": "答对了！这就是并蒂锁——两格锁两数，周围全排除。",
+        "successVoiceId": "J_03",
+        "successNext": [
+          {
+            "cell": [
+              8,
+              1
+            ],
+            "hintText": "很好！再看第 2 列：e2 和 g2 的候选都是 5、6，又是一把并蒂锁。i2 的候选 1、6 排除 6——只剩 1，填 1！"
+          },
+          {
+            "cell": [
+              2,
+              3
+            ],
+            "hintText": "再来！c4 的候选是 2、8。右上宫里数字 2 只能放在 c7、c8（都在第 c 行）——行区块排除 c 行宫外的 2，c4 只剩 8，填 8！"
+          }
+        ]
+      },
+      "semiAuto": {
+        "enabled": true,
+        "targetCount": 2,
+        "interactionType": "NUMBER",
+        "hintText": "用并蒂锁和区块排除，再找出两个数字。",
+        "hintVoiceId": "R_07",
+        "watchCells": [
+          [
+            3,
+            2
+          ],
+          [
+            0,
+            3
+          ]
+        ]
+      },
+      "free": {
+        "enabled": true,
+        "unlockText": "剩下的交给你了。"
+      }
+    }
+  },
+  "difficultyLevel": 6
+}

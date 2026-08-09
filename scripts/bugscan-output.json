@@ -1,0 +1,360 @@
+{
+  "summary": {
+    "高": 7,
+    "中": 11,
+    "低": 24
+  },
+  "byType": {
+    "关卡逻辑断层": 7,
+    "教学文案重复": 16,
+    "情绪字段": 17,
+    "叙事定位": 2
+  },
+  "findings": [
+    {
+      "loc": "scripts.json→L209",
+      "sev": "高",
+      "type": "关卡逻辑断层",
+      "msg": "剧本引用关卡 209 但 data/levels/ 无对应 boardData 文件（叙事有、盘面无）",
+      "fix": "补建 level-209.json 或移除剧本引用"
+    },
+    {
+      "loc": "scripts.json→L299",
+      "sev": "高",
+      "type": "关卡逻辑断层",
+      "msg": "剧本引用关卡 299 但 data/levels/ 无对应 boardData 文件（叙事有、盘面无）",
+      "fix": "补建 level-299.json 或移除剧本引用"
+    },
+    {
+      "loc": "scripts.json→L399",
+      "sev": "高",
+      "type": "关卡逻辑断层",
+      "msg": "剧本引用关卡 399 但 data/levels/ 无对应 boardData 文件（叙事有、盘面无）",
+      "fix": "补建 level-399.json 或移除剧本引用"
+    },
+    {
+      "loc": "scripts.json→L499",
+      "sev": "高",
+      "type": "关卡逻辑断层",
+      "msg": "剧本引用关卡 499 但 data/levels/ 无对应 boardData 文件（叙事有、盘面无）",
+      "fix": "补建 level-499.json 或移除剧本引用"
+    },
+    {
+      "loc": "scripts.json→L599",
+      "sev": "高",
+      "type": "关卡逻辑断层",
+      "msg": "剧本引用关卡 599 但 data/levels/ 无对应 boardData 文件（叙事有、盘面无）",
+      "fix": "补建 level-599.json 或移除剧本引用"
+    },
+    {
+      "loc": "scripts.json→L699",
+      "sev": "高",
+      "type": "关卡逻辑断层",
+      "msg": "剧本引用关卡 699 但 data/levels/ 无对应 boardData 文件（叙事有、盘面无）",
+      "fix": "补建 level-699.json 或移除剧本引用"
+    },
+    {
+      "loc": "BOSS_MAP→L801",
+      "sev": "高",
+      "type": "关卡逻辑断层",
+      "msg": "BOSS_LEVEL_MAP 含 801 但 level-801.json 不存在",
+      "fix": "补建缺失 Boss 关 boardData"
+    },
+    {
+      "loc": "教学文案",
+      "sev": "中",
+      "type": "教学文案重复",
+      "msg": "完全相同的提示文案跨 2 关重复: 「用同样的方法，再找出两个数字。…」 出现于 L101/L107",
+      "fix": "改为每关定制化引导文案"
+    },
+    {
+      "loc": "教学文案",
+      "sev": "中",
+      "type": "教学文案重复",
+      "msg": "完全相同的提示文案跨 8 关重复: 「再用星衡法则找两个格子。…」 出现于 L201/L202/L203/L204/L205/L206/L207/L208",
+      "fix": "改为每关定制化引导文案"
+    },
+    {
+      "loc": "教学文案",
+      "sev": "中",
+      "type": "教学文案重复",
+      "msg": "完全相同的提示文案跨 3 关重复: 「正确！继续用星衡法则推进。…」 出现于 L204/L206/L207",
+      "fix": "改为每关定制化引导文案"
+    },
+    {
+      "loc": "教学文案",
+      "sev": "中",
+      "type": "教学文案重复",
+      "msg": "完全相同的提示文案跨 2 关重复: 「……是她。她走之前，把这张照片留在了这里。…」 出现于 L305/L504",
+      "fix": "改为每关定制化引导文案"
+    },
+    {
+      "loc": "教学文案",
+      "sev": "中",
+      "type": "教学文案重复",
+      "msg": "完全相同的提示文案跨 2 关重复: 「沈墨把照片翻过来。背面有一行字：“1941年11月15日。我…」 出现于 L305/L504",
+      "fix": "改为每关定制化引导文案"
+    },
+    {
+      "loc": "教学文案",
+      "sev": "中",
+      "type": "教学文案重复",
+      "msg": "完全相同的提示文案跨 2 关重复: 「……她改了航线。她走的时候，没有告诉任何人她真正要去的地方。…」 出现于 L305/L504",
+      "fix": "改为每关定制化引导文案"
+    },
+    {
+      "loc": "教学文案",
+      "sev": "中",
+      "type": "教学文案重复",
+      "msg": "完全相同的提示文案跨 2 关重复: 「沈墨在练习册的页脚发现了另一行字，字迹更淡：“11月15日。…」 出现于 L306/L502",
+      "fix": "改为每关定制化引导文案"
+    },
+    {
+      "loc": "教学文案",
+      "sev": "中",
+      "type": "教学文案重复",
+      "msg": "完全相同的提示文案跨 2 关重复: 「……她解了一半，然后停下了。她在等一个答案，但那个答案没有来…」 出现于 L307/L503",
+      "fix": "改为每关定制化引导文案"
+    },
+    {
+      "loc": "教学文案",
+      "sev": "中",
+      "type": "教学文案重复",
+      "msg": "完全相同的提示文案跨 2 关重复: 「答对了！双曜的意义不在填数，而在排除——锁定一对数字，其它候…」 出现于 L403/L702",
+      "fix": "改为每关定制化引导文案"
+    },
+    {
+      "loc": "教学文案",
+      "sev": "中",
+      "type": "教学文案重复",
+      "msg": "完全相同的提示文案跨 2 关重复: 「继续用「逐对扫描」的方法找双曜，再确定两个数字。…」 出现于 L403/L702",
+      "fix": "改为每关定制化引导文案"
+    },
+    {
+      "loc": "教学文案",
+      "sev": "中",
+      "type": "教学文案重复",
+      "msg": "完全相同的提示文案跨 2 关重复: 「继续寻找三子法结构，再确定两个数字。…」 出现于 L404/L703",
+      "fix": "改为每关定制化引导文案"
+    },
+    {
+      "loc": "教学文案",
+      "sev": "低",
+      "type": "教学文案重复",
+      "msg": "模板化短语「再找出两个数字」在 15 关重复出现 (L101/L107/L301/L302/L303/L304/L305/L306/L402/L601/L602/L603/L604/L605/L701)",
+      "fix": "替换为具体数字/格子坐标引导"
+    },
+    {
+      "loc": "教学文案",
+      "sev": "低",
+      "type": "教学文案重复",
+      "msg": "模板化短语「用同样的方法，再」在 4 关重复出现 (L101/L102/L107/L109)",
+      "fix": "替换为具体数字/格子坐标引导"
+    },
+    {
+      "loc": "教学文案",
+      "sev": "低",
+      "type": "教学文案重复",
+      "msg": "模板化短语「继续用」在 16 关重复出现 (L199/L204/L206/L207/L402/L403/L405/L501/L502/L503/L601/L602/L605/L702/L704/L706)",
+      "fix": "替换为具体数字/格子坐标引导"
+    },
+    {
+      "loc": "教学文案",
+      "sev": "低",
+      "type": "教学文案重复",
+      "msg": "模板化短语「再用星衡法则找两个格子」在 8 关重复出现 (L201/L202/L203/L204/L205/L206/L207/L208)",
+      "fix": "替换为具体数字/格子坐标引导"
+    },
+    {
+      "loc": "教学文案",
+      "sev": "低",
+      "type": "教学文案重复",
+      "msg": "模板化短语「再确定两个数字」在 8 关重复出现 (L403/L404/L405/L702/L703/L704/L705/L799)",
+      "fix": "替换为具体数字/格子坐标引导"
+    },
+    {
+      "loc": "cyc1/ch1.prologue[1]",
+      "sev": "低",
+      "type": "情绪字段",
+      "msg": "emotion「温和·留声」不在 EMOTION_ZH_MAP，将静默回退默认立绘/语速",
+      "fix": "在 story-engine EMOTION_ZH_MAP 增加「温和·留声」映射"
+    },
+    {
+      "loc": "cyc1/ch1.prologue[4]",
+      "sev": "低",
+      "type": "情绪字段",
+      "msg": "emotion「回忆·低语」不在 EMOTION_ZH_MAP，将静默回退默认立绘/语速",
+      "fix": "在 story-engine EMOTION_ZH_MAP 增加「回忆·低语」映射"
+    },
+    {
+      "loc": "cyc1/ch1.prologue[5]",
+      "sev": "低",
+      "type": "情绪字段",
+      "msg": "emotion「温和·教学」不在 EMOTION_ZH_MAP，将静默回退默认立绘/语速",
+      "fix": "在 story-engine EMOTION_ZH_MAP 增加「温和·教学」映射"
+    },
+    {
+      "loc": "cyc1/ch1/L101.preDialog[2]",
+      "sev": "低",
+      "type": "情绪字段",
+      "msg": "emotion「低语」不在 EMOTION_ZH_MAP，将静默回退默认立绘/语速",
+      "fix": "在 story-engine EMOTION_ZH_MAP 增加「低语」映射"
+    },
+    {
+      "loc": "cyc1/ch1/L102.preDialog[3]",
+      "sev": "低",
+      "type": "情绪字段",
+      "msg": "emotion「思考·回忆」不在 EMOTION_ZH_MAP，将静默回退默认立绘/语速",
+      "fix": "在 story-engine EMOTION_ZH_MAP 增加「思考·回忆」映射"
+    },
+    {
+      "loc": "cyc1/ch1/L102.clearDialog[1]",
+      "sev": "低",
+      "type": "情绪字段",
+      "msg": "emotion「思考·回忆」不在 EMOTION_ZH_MAP，将静默回退默认立绘/语速",
+      "fix": "在 story-engine EMOTION_ZH_MAP 增加「思考·回忆」映射"
+    },
+    {
+      "loc": "cyc1/ch1/L103.preDialog[2]",
+      "sev": "低",
+      "type": "情绪字段",
+      "msg": "emotion「思考·回忆」不在 EMOTION_ZH_MAP，将静默回退默认立绘/语速",
+      "fix": "在 story-engine EMOTION_ZH_MAP 增加「思考·回忆」映射"
+    },
+    {
+      "loc": "cyc1/ch1/L104.preDialog[1]",
+      "sev": "低",
+      "type": "情绪字段",
+      "msg": "emotion「轻声」不在 EMOTION_ZH_MAP，将静默回退默认立绘/语速",
+      "fix": "在 story-engine EMOTION_ZH_MAP 增加「轻声」映射"
+    },
+    {
+      "loc": "cyc1/ch1/L104.preDialog[2]",
+      "sev": "低",
+      "type": "情绪字段",
+      "msg": "emotion「低语」不在 EMOTION_ZH_MAP，将静默回退默认立绘/语速",
+      "fix": "在 story-engine EMOTION_ZH_MAP 增加「低语」映射"
+    },
+    {
+      "loc": "cyc1/ch1/L104.preDialog[3]",
+      "sev": "低",
+      "type": "情绪字段",
+      "msg": "emotion「思考·回忆」不在 EMOTION_ZH_MAP，将静默回退默认立绘/语速",
+      "fix": "在 story-engine EMOTION_ZH_MAP 增加「思考·回忆」映射"
+    },
+    {
+      "loc": "cyc1/ch1/L105.preDialog[2]",
+      "sev": "低",
+      "type": "情绪字段",
+      "msg": "emotion「思考·回忆」不在 EMOTION_ZH_MAP，将静默回退默认立绘/语速",
+      "fix": "在 story-engine EMOTION_ZH_MAP 增加「思考·回忆」映射"
+    },
+    {
+      "loc": "cyc1/ch1/L106.preDialog[2]",
+      "sev": "低",
+      "type": "情绪字段",
+      "msg": "emotion「低语」不在 EMOTION_ZH_MAP，将静默回退默认立绘/语速",
+      "fix": "在 story-engine EMOTION_ZH_MAP 增加「低语」映射"
+    },
+    {
+      "loc": "cyc1/ch1/L107.preDialog[2]",
+      "sev": "低",
+      "type": "情绪字段",
+      "msg": "emotion「思考·回忆」不在 EMOTION_ZH_MAP，将静默回退默认立绘/语速",
+      "fix": "在 story-engine EMOTION_ZH_MAP 增加「思考·回忆」映射"
+    },
+    {
+      "loc": "cyc1/ch1/L108.preDialog[2]",
+      "sev": "低",
+      "type": "情绪字段",
+      "msg": "emotion「低语」不在 EMOTION_ZH_MAP，将静默回退默认立绘/语速",
+      "fix": "在 story-engine EMOTION_ZH_MAP 增加「低语」映射"
+    },
+    {
+      "loc": "cyc1/ch1/L109.preDialog[2]",
+      "sev": "低",
+      "type": "情绪字段",
+      "msg": "emotion「思考·回忆」不在 EMOTION_ZH_MAP，将静默回退默认立绘/语速",
+      "fix": "在 story-engine EMOTION_ZH_MAP 增加「思考·回忆」映射"
+    },
+    {
+      "loc": "cyc1/ch1/L199.preDialog[1]",
+      "sev": "低",
+      "type": "情绪字段",
+      "msg": "emotion「思考」不在 EMOTION_ZH_MAP，将静默回退默认立绘/语速",
+      "fix": "在 story-engine EMOTION_ZH_MAP 增加「思考」映射"
+    },
+    {
+      "loc": "cyc1/ch1/L199.preDialog[2]",
+      "sev": "低",
+      "type": "情绪字段",
+      "msg": "emotion「温和·展望」不在 EMOTION_ZH_MAP，将静默回退默认立绘/语速",
+      "fix": "在 story-engine EMOTION_ZH_MAP 增加「温和·展望」映射"
+    },
+    {
+      "loc": "cyc1/ch1/L102.preDialog[2]",
+      "sev": "低",
+      "type": "叙事定位",
+      "msg": "角色「vera」(来自「薇拉」) 未在 CHAR_SIDE 登记站位（当前回退 right）",
+      "fix": "在 CHAR_SIDE 增加 'vera':'right'"
+    },
+    {
+      "loc": "cyc1/ch1/L102.clearDialog[0]",
+      "sev": "低",
+      "type": "叙事定位",
+      "msg": "角色「vera」(来自「薇拉」) 未在 CHAR_SIDE 登记站位（当前回退 right）",
+      "fix": "在 CHAR_SIDE 增加 'vera':'right'"
+    }
+  ],
+  "fookByKw": {
+    "薇拉": [
+      {
+        "kw": "薇拉",
+        "path": "scripts.json.cycles[0].chapters[0].levels[1].preDialog[1].text",
+        "snippet": "巷子深处一间不起眼的旧书铺，铺窗木沿之上，刻着一道一模一样的短横。记号老旧，被风霜磨得浅淡。沈墨推开门，铃铛响了一声——"
+      },
+      {
+        "kw": "薇拉",
+        "path": "scripts.json.cycles[0].chapters[0].levels[1].preDialog[2].speaker",
+        "snippet": "薇拉"
+      },
+      {
+        "kw": "薇拉",
+        "path": "scripts.json.cycles[0].chapters[0].levels[1].clearDialog[0].speaker",
+        "snippet": "薇拉"
+      }
+    ],
+    "苏晚": [
+      {
+        "kw": "苏晚",
+        "path": "scripts.json.cycles[0].chapters[0].levels[3].title",
+        "snippet": "访客苏晚"
+      },
+      {
+        "kw": "苏晚",
+        "path": "scripts.json.cycles[0].chapters[0].levels[3].preDialog[0].text",
+        "snippet": "沈墨折返家中，屋内灯火未熄。苏晚已经等候在此。她知晓近日城内风声险恶，见他满身夜露，眉宇间藏着担忧。她没有追问信件来历，"
+      },
+      {
+        "kw": "苏晚",
+        "path": "scripts.json.cycles[0].chapters[0].levels[3].preDialog[1].speaker",
+        "snippet": "苏晚"
+      },
+      {
+        "kw": "苏晚",
+        "path": "scripts.json.cycles[0].chapters[0].levels[3].clearDialog[0].text",
+        "snippet": "访客苏晚，完成。碎片 4/9。苏晚认得这地下密语，主动替你掩盖行踪——而风险，仍在升高。"
+      }
+    ]
+  },
+  "missingReferenced": [
+    209,
+    299,
+    399,
+    499,
+    599,
+    699
+  ],
+  "levelFileCount": 51,
+  "referencedCount": 55
+}

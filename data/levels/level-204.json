@@ -1,0 +1,1176 @@
+{
+  "levelId": 204,
+  "title": "第4关：九域星图",
+  "gridSize": 9,
+  "difficulty": "普通",
+  "teachingGoal": "9×9盘面 + 星衡法则入门",
+  "features": {
+    "allowDraft": true,
+    "assistant45": true,
+    "showHints": true,
+    "perspectiveMode": true,
+    "highlightRow": true,
+    "highlightCol": true,
+    "highlightBox": true,
+    "highlightNumber": true,
+    "highlightCage": false,
+    "autoFillCandidates": false
+  },
+  "triggers": [
+    {
+      "id": "t204_start",
+      "condition": "onLevelStart",
+      "type": "freeze_mask",
+      "targetCell": [
+        0,
+        0
+      ],
+      "targetType": "row",
+      "text": "📜 大师手记：「欢迎来到九域星图。从今天起，你面对的是真正的9×9标准盘面。1到9，每一行的和都是45。」",
+      "once": true
+    },
+    {
+      "id": "t204_story2",
+      "condition": "onLevelStart",
+      "type": "popup_hint",
+      "position": "top",
+      "text": "📜 「星衡法则——这是我毕生演算的核心。记住它，它会是你最锋利的推理武器。」",
+      "once": true,
+      "delay": 3000
+    },
+    {
+      "id": "t204_45",
+      "condition": "onFirstNumberFilled",
+      "type": "popup_hint",
+      "position": "top",
+      "text": "📜 「很好，第一步走得很稳。黄铜算珠你可以随意使用，它不会替你思考，但能帮你计算。」",
+      "once": true
+    },
+    {
+      "id": "t204_b",
+      "condition": "onFillCountReached",
+      "count": 69,
+      "type": "enter_phase",
+      "phase": "breakthrough",
+      "once": true
+    },
+    {
+      "id": "t204_bt",
+      "condition": "onFillCountReached",
+      "count": 69,
+      "type": "popup_hint",
+      "position": "top",
+      "text": "⚡ 📜 「破局时刻。你已领悟星衡法则的精髓——从此，九域星图在你眼中不再是谜。」",
+      "once": true,
+      "delay": 400
+    },
+    {
+      "id": "t204_st20",
+      "condition": "onStuckForSeconds",
+      "seconds": 20,
+      "type": "popup_hint",
+      "position": "top",
+      "text": "💡 📜 「45是九域的星衡基数。找空格最少的行、列或3×3宫，45减去已知数，答案自现。」",
+      "once": false
+    },
+    {
+      "id": "t204_st40",
+      "condition": "onStuckForSeconds",
+      "seconds": 40,
+      "type": "popup_hint",
+      "position": "top",
+      "text": "💡 📜 「莫要急于求成。九域星图讲究纵观全局——先扫一遍所有行/列/宫，找突破口比盲目填数更重要。」",
+      "once": false,
+      "delay": 300
+    },
+    {
+      "id": "t204_ag",
+      "condition": "onConflict",
+      "type": "popup_hint",
+      "position": "top",
+      "text": "⚠️ 📜 「差之毫厘，谬以千里。检查行/列/宫的和是否为45，再思。」",
+      "once": false
+    },
+    {
+      "id": "t204_fi",
+      "condition": "onFillCountReached",
+      "count": 76,
+      "type": "enter_phase",
+      "phase": "finishing",
+      "once": true
+    },
+    {
+      "id": "t204_fit",
+      "condition": "onFillCountReached",
+      "count": 76,
+      "type": "popup_hint",
+      "position": "top",
+      "text": "✨ 📜 「收官了。九域星图即将完成，感受星衡法则的力量吧。」",
+      "once": true,
+      "delay": 400
+    },
+    {
+      "id": "t204_c",
+      "condition": "onLevelComplete",
+      "type": "popup_hint",
+      "position": "top",
+      "text": "🎉 📜 「九域星图已解。你正式成为星衡法则的传人——继续前行，更大的谜题在等你。」",
+      "once": true
+    }
+  ],
+  "boardData": [
+    [
+      0,
+      2,
+      5,
+      8,
+      0,
+      3,
+      1,
+      6,
+      7
+    ],
+    [
+      1,
+      6,
+      3,
+      5,
+      0,
+      0,
+      8,
+      9,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      9,
+      5,
+      0,
+      2
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      7,
+      8,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      8,
+      6,
+      0,
+      0,
+      5,
+      0,
+      0,
+      0
+    ],
+    [
+      7,
+      0,
+      4,
+      6,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      3,
+      0,
+      0,
+      0,
+      2,
+      0
+    ],
+    [
+      0,
+      3,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      9
+    ],
+    [
+      5,
+      0,
+      0,
+      0,
+      8,
+      4,
+      0,
+      0,
+      0
+    ]
+  ],
+  "cages": [
+    {
+      "id": 1,
+      "sum": 20,
+      "cells": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          2,
+          1
+        ]
+      ]
+    },
+    {
+      "id": 2,
+      "sum": 10,
+      "cells": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ]
+      ]
+    },
+    {
+      "id": 3,
+      "sum": 13,
+      "cells": [
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          3
+        ]
+      ]
+    },
+    {
+      "id": 4,
+      "sum": 13,
+      "cells": [
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          2,
+          3
+        ]
+      ]
+    },
+    {
+      "id": 5,
+      "sum": 10,
+      "cells": [
+        [
+          0,
+          5
+        ],
+        [
+          0,
+          6
+        ],
+        [
+          0,
+          7
+        ]
+      ]
+    },
+    {
+      "id": 6,
+      "sum": 11,
+      "cells": [
+        [
+          0,
+          8
+        ],
+        [
+          1,
+          8
+        ]
+      ]
+    },
+    {
+      "id": 7,
+      "sum": 12,
+      "cells": [
+        [
+          1,
+          7
+        ],
+        [
+          2,
+          7
+        ]
+      ]
+    },
+    {
+      "id": 8,
+      "sum": 29,
+      "cells": [
+        [
+          1,
+          6
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          2,
+          6
+        ]
+      ]
+    },
+    {
+      "id": 9,
+      "sum": 11,
+      "cells": [
+        [
+          2,
+          0
+        ],
+        [
+          3,
+          0
+        ]
+      ]
+    },
+    {
+      "id": 10,
+      "sum": 17,
+      "cells": [
+        [
+          2,
+          2
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          3
+        ]
+      ]
+    },
+    {
+      "id": 11,
+      "sum": 19,
+      "cells": [
+        [
+          2,
+          8
+        ],
+        [
+          3,
+          8
+        ],
+        [
+          3,
+          7
+        ],
+        [
+          4,
+          7
+        ]
+      ]
+    },
+    {
+      "id": 12,
+      "sum": 16,
+      "cells": [
+        [
+          3,
+          6
+        ],
+        [
+          4,
+          6
+        ],
+        [
+          4,
+          5
+        ]
+      ]
+    },
+    {
+      "id": 13,
+      "sum": 18,
+      "cells": [
+        [
+          3,
+          5
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          4
+        ]
+      ]
+    },
+    {
+      "id": 14,
+      "sum": 13,
+      "cells": [
+        [
+          3,
+          1
+        ],
+        [
+          4,
+          1
+        ]
+      ]
+    },
+    {
+      "id": 15,
+      "sum": 22,
+      "cells": [
+        [
+          4,
+          0
+        ],
+        [
+          5,
+          0
+        ],
+        [
+          5,
+          1
+        ],
+        [
+          5,
+          2
+        ]
+      ]
+    },
+    {
+      "id": 16,
+      "sum": 10,
+      "cells": [
+        [
+          4,
+          2
+        ],
+        [
+          4,
+          3
+        ]
+      ]
+    },
+    {
+      "id": 17,
+      "sum": 23,
+      "cells": [
+        [
+          4,
+          8
+        ],
+        [
+          5,
+          8
+        ],
+        [
+          6,
+          8
+        ],
+        [
+          7,
+          8
+        ]
+      ]
+    },
+    {
+      "id": 18,
+      "sum": 15,
+      "cells": [
+        [
+          5,
+          7
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          6,
+          6
+        ]
+      ]
+    },
+    {
+      "id": 19,
+      "sum": 9,
+      "cells": [
+        [
+          5,
+          5
+        ],
+        [
+          6,
+          5
+        ],
+        [
+          7,
+          5
+        ]
+      ]
+    },
+    {
+      "id": 20,
+      "sum": 15,
+      "cells": [
+        [
+          5,
+          4
+        ],
+        [
+          6,
+          4
+        ],
+        [
+          7,
+          4
+        ]
+      ]
+    },
+    {
+      "id": 21,
+      "sum": 17,
+      "cells": [
+        [
+          5,
+          3
+        ],
+        [
+          6,
+          3
+        ],
+        [
+          6,
+          2
+        ]
+      ]
+    },
+    {
+      "id": 22,
+      "sum": 14,
+      "cells": [
+        [
+          6,
+          0
+        ],
+        [
+          7,
+          0
+        ],
+        [
+          7,
+          1
+        ],
+        [
+          6,
+          1
+        ]
+      ]
+    },
+    {
+      "id": 23,
+      "sum": 17,
+      "cells": [
+        [
+          6,
+          7
+        ],
+        [
+          7,
+          7
+        ],
+        [
+          8,
+          7
+        ],
+        [
+          8,
+          6
+        ]
+      ]
+    },
+    {
+      "id": 24,
+      "sum": 4,
+      "cells": [
+        [
+          7,
+          6
+        ]
+      ]
+    },
+    {
+      "id": 25,
+      "sum": 21,
+      "cells": [
+        [
+          7,
+          3
+        ],
+        [
+          8,
+          3
+        ],
+        [
+          8,
+          4
+        ],
+        [
+          8,
+          5
+        ]
+      ]
+    },
+    {
+      "id": 26,
+      "sum": 18,
+      "cells": [
+        [
+          7,
+          2
+        ],
+        [
+          8,
+          2
+        ],
+        [
+          8,
+          1
+        ]
+      ]
+    },
+    {
+      "id": 27,
+      "sum": 5,
+      "cells": [
+        [
+          8,
+          0
+        ]
+      ]
+    },
+    {
+      "id": 28,
+      "sum": 3,
+      "cells": [
+        [
+          8,
+          8
+        ]
+      ]
+    }
+  ],
+  "solution": [
+    [
+      9,
+      2,
+      5,
+      8,
+      4,
+      3,
+      1,
+      6,
+      7
+    ],
+    [
+      1,
+      6,
+      3,
+      5,
+      2,
+      7,
+      8,
+      9,
+      4
+    ],
+    [
+      8,
+      4,
+      7,
+      1,
+      6,
+      9,
+      5,
+      3,
+      2
+    ],
+    [
+      3,
+      5,
+      1,
+      9,
+      7,
+      8,
+      2,
+      4,
+      6
+    ],
+    [
+      2,
+      8,
+      6,
+      4,
+      3,
+      5,
+      9,
+      7,
+      1
+    ],
+    [
+      7,
+      9,
+      4,
+      6,
+      1,
+      2,
+      3,
+      5,
+      8
+    ],
+    [
+      4,
+      1,
+      8,
+      3,
+      9,
+      6,
+      7,
+      2,
+      5
+    ],
+    [
+      6,
+      3,
+      2,
+      7,
+      5,
+      1,
+      4,
+      8,
+      9
+    ],
+    [
+      5,
+      7,
+      9,
+      2,
+      8,
+      4,
+      6,
+      1,
+      3
+    ]
+  ],
+  "preDialog": [
+    {
+      "speaker": "守笼人",
+      "text": "这些笼型的排布手法，正是设局人当年最擅长的风格。",
+      "side": "right",
+      "emotion": "低沉·复杂",
+      "voiceId": "VO_CK_0027",
+      "sfx": "electronic_pulse",
+      "bg": "assets/images/backgrounds/bg_new/BG-01_archive_hall.jpg",
+      "_action": "盘面灯光变暗，设局人的留声装置开始嗡鸣。"
+    },
+    {
+      "speaker": "设局人",
+      "text": "只会死守二十一星衡，你永远破不开我完整的九域笼局。",
+      "side": "right",
+      "emotion": "沧桑·傲慢·戏弄",
+      "voiceId": "VO_P_0001",
+      "sfx": "thunder",
+      "_action": "P_02_残影态立绘 闪入effect:3，全屏微震。"
+    },
+    {
+      "speaker": "阿妍",
+      "text": "……设局人。",
+      "side": "right",
+      "emotion": "严肃·确认",
+      "voiceId": "VO_R_0031",
+      "_action": "握紧了笔，声音沉了一点"
+    },
+    {
+      "speaker": "沈墨",
+      "text": "藏的不是答案。藏的是——指向答案的路。",
+      "side": "left",
+      "emotion": "领悟·坚定",
+      "voiceId": "VO_SM_0023",
+      "pause": 1
+    }
+  ],
+  "clearDialog": [
+    {
+      "speaker": "设局人（留声）",
+      "text": "四十五只是最表层的障眼法。真正的笼局玄机，藏在差值之中。",
+      "side": "right",
+      "emotion": "神秘·戏弄",
+      "voiceId": "VO_P_0002",
+      "sfx": "success"
+    },
+    {
+      "speaker": "守笼人",
+      "text": "吃透四十五法则，才有资格拆解设局人留下的差值笼。",
+      "side": "right",
+      "emotion": "低沉·复杂",
+      "voiceId": "VO_CK_0028",
+      "_action": "沉默了一瞬"
+    }
+  ],
+  "mode": "full",
+  "coreMove": {
+    "row": 2,
+    "col": 2,
+    "value": 8
+  },
+  "totalSteps": 81,
+  "nakedSingleRatio": 0.741,
+  "techCount": {
+    "nakedSingle": 60,
+    "rule45": 5,
+    "hiddenSingle": 5,
+    "cageUnique": 11
+  },
+  "maxTechLevel": 4,
+  "threeAct": {
+    "opening": [
+      [
+        0,
+        3
+      ],
+      [
+        0,
+        6
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        4
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        4
+      ],
+      [
+        1,
+        5
+      ],
+      [
+        1,
+        8
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        2,
+        0
+      ],
+      [
+        2,
+        2
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        2,
+        4
+      ],
+      [
+        2,
+        7
+      ],
+      [
+        3,
+        0
+      ],
+      [
+        3,
+        1
+      ],
+      [
+        4,
+        3
+      ],
+      [
+        4,
+        4
+      ],
+      [
+        5,
+        5
+      ],
+      [
+        6,
+        1
+      ],
+      [
+        6,
+        2
+      ],
+      [
+        6,
+        5
+      ],
+      [
+        7,
+        3
+      ],
+      [
+        7,
+        6
+      ],
+      [
+        8,
+        8
+      ]
+    ],
+    "breakthrough": [
+      [
+        5,
+        8
+      ],
+      [
+        6,
+        8
+      ],
+      [
+        6,
+        4
+      ],
+      [
+        7,
+        0
+      ],
+      [
+        7,
+        4
+      ],
+      [
+        7,
+        7
+      ],
+      [
+        8,
+        6
+      ],
+      [
+        8,
+        7
+      ]
+    ],
+    "avalanche": [
+      [
+        4,
+        0
+      ],
+      [
+        4,
+        8
+      ],
+      [
+        3,
+        7
+      ],
+      [
+        3,
+        8
+      ],
+      [
+        4,
+        7
+      ],
+      [
+        4,
+        6
+      ],
+      [
+        3,
+        6
+      ],
+      [
+        3,
+        3
+      ],
+      [
+        3,
+        2
+      ],
+      [
+        5,
+        1
+      ],
+      [
+        5,
+        4
+      ],
+      [
+        5,
+        6
+      ],
+      [
+        6,
+        0
+      ],
+      [
+        6,
+        6
+      ],
+      [
+        5,
+        7
+      ],
+      [
+        7,
+        5
+      ],
+      [
+        8,
+        1
+      ],
+      [
+        8,
+        2
+      ],
+      [
+        8,
+        3
+      ]
+    ]
+  },
+  "difficultyLevel": 4,
+  "lessonPlan": {
+    "newSkill": "rule45_204",
+    "skillName": "9×9 星衡入门",
+    "isFirstLesson": false,
+    "skippable": true,
+    "prerequisite": [
+      "rule45"
+    ],
+    "phases": {
+      "intro": {
+        "text": "盘面变成 9×9 了！每一行、每一列、每一宫的和都是 45。用 45 减去已知数，剩下的就是答案。",
+        "speaker": "守笼人",
+        "duration": 3200
+      },
+      "demo": {
+        "steps": [
+          {
+            "action": "highlightRow",
+            "target": 1,
+            "duration": 1100
+          },
+          {
+            "action": "focusCell",
+            "target": [
+              1,
+              5
+            ],
+            "duration": 1300
+          }
+        ]
+      },
+      "guided": {
+        "targetCell": [
+          1,
+          5
+        ],
+        "correctValue": 7,
+        "interactionType": "NUMBER",
+        "autoRevealText": "直接填入数字 7。",
+        "maxAttempts": 3,
+        "failHint": "看这一行（或列、宫）：45 减去已知数的总和，就是空格的值。",
+        "autoRevealAfter": 3,
+        "successText": "正确！继续用星衡法则推进。",
+        "successVoiceId": null
+      },
+      "semiAuto": {
+        "enabled": true,
+        "targetCount": 2,
+        "hintText": "再用星衡法则找两个格子。",
+        "hintVoiceId": null,
+        "watchCells": [
+          [
+            0,
+            4
+          ],
+          [
+            1,
+            8
+          ]
+        ],
+        "interactionType": "NUMBER"
+      },
+      "free": {
+        "enabled": true,
+        "unlockText": "星衡法则已掌握，继续自由填数吧。"
+      }
+    }
+  }
+}

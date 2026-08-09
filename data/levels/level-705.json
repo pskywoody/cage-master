@@ -1,0 +1,1487 @@
+{
+  "levelId": 705,
+  "title": "第5关：三才游鱼阵",
+  "gridSize": 9,
+  "difficulty": "传说",
+  "teachingGoal": "学习Swordfish（三才游鱼阵）：二连纵横阵的三行三列推广——若某个数字在三行中都仅可能出现在相同的三列，则这些列其他位置可排除该数字。",
+  "features": {
+    "allowDraft": true,
+    "assistant45": true,
+    "showHints": true,
+    "perspectiveMode": true,
+    "highlightRow": true,
+    "highlightCol": true,
+    "highlightBox": true,
+    "highlightNumber": true,
+    "highlightCage": true,
+    "autoFillCandidates": false
+  },
+  "triggers": [
+    {
+      "condition": "onLevelStart",
+      "type": "freeze_mask",
+      "highlight": "full",
+      "text": "提示：三才游鱼阵是二连纵横阵的三行版。找法：选一个数字→看每行的候选位置→如果三行的候选恰好分布在三列中→排除这三列其他位置的该数字。",
+      "once": true,
+      "id": "t705_auto_0",
+      "targetR": 6,
+      "targetC": 4,
+      "targetType": "cell",
+      "highlightShape": "circle"
+    },
+    {
+      "condition": "onStuckForSeconds",
+      "seconds": 50,
+      "type": "popup_hint",
+      "position": "top",
+      "text": "💡 三才游鱼阵比二连纵横阵更难找。建议用草稿纸逐行记录候选位置，寻找三行三列的覆盖模式。别灰心——这是最难的技巧之一！",
+      "delay": 500,
+      "id": "t705_auto_1"
+    },
+    {
+      "id": "t705_f1",
+      "condition": "onFirstNumberFilled",
+      "type": "popup_hint",
+      "position": "top",
+      "text": "好眼力！三才游鱼阵的三行三列轮廓开始显现了！",
+      "once": true
+    },
+    {
+      "id": "t705_b",
+      "condition": "onFillCountReached",
+      "count": 53,
+      "type": "enter_phase",
+      "phase": "breakthrough",
+      "once": true
+    },
+    {
+      "id": "t705_bt",
+      "condition": "onFillCountReached",
+      "count": 53,
+      "type": "popup_hint",
+      "position": "top",
+      "text": "⚡ 破局时刻！三才游鱼阵被你发现，三列中其他位置的该数字被全部清除！",
+      "once": true,
+      "delay": 400
+    },
+    {
+      "id": "t705_st20",
+      "condition": "onStuckForSeconds",
+      "seconds": 20,
+      "type": "popup_hint",
+      "position": "top",
+      "text": "💡 卡住了？三才游鱼阵是二连纵横阵的三行版：找一个数字，在三行中都只能出现在相同的三列里——九个格子形成网状！",
+      "once": false
+    },
+    {
+      "id": "t705_st40",
+      "condition": "onStuckForSeconds",
+      "seconds": 40,
+      "type": "popup_hint",
+      "position": "top",
+      "text": "💡 三才游鱼阵不要求每一行都有三个位置——每行只要有2-3个，且全部落在相同三列内即可！逐数字耐心扫描！",
+      "once": false,
+      "delay": 300
+    },
+    {
+      "id": "t705_ag",
+      "condition": "onConflict",
+      "type": "popup_hint",
+      "position": "top",
+      "text": "⚠️ 三才游鱼阵复杂——确认这三行中该数字的所有可能位置确实都在这三列里，一个都不能漏到第四列！",
+      "once": false
+    },
+    {
+      "id": "t705_fi",
+      "condition": "onFillCountReached",
+      "count": 70,
+      "type": "enter_phase",
+      "phase": "finishing",
+      "once": true
+    },
+    {
+      "id": "t705_fit",
+      "condition": "onFillCountReached",
+      "count": 70,
+      "type": "popup_hint",
+      "position": "top",
+      "text": "✨ 收官！三才游鱼阵入海，最后的谜题随之瓦解！",
+      "once": true,
+      "delay": 400
+    },
+    {
+      "id": "t705_c",
+      "condition": "onLevelComplete",
+      "type": "popup_hint",
+      "position": "top",
+      "text": "🎉 三才游鱼阵已征服！你掌握了最强大的高级构型之一！",
+      "once": true
+    }
+  ],
+  "boardData": [
+    [
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      8,
+      5
+    ],
+    [
+      6,
+      5,
+      0,
+      0,
+      0,
+      0,
+      0,
+      3,
+      4
+    ],
+    [
+      8,
+      4,
+      7,
+      3,
+      2,
+      5,
+      1,
+      6,
+      9
+    ],
+    [
+      5,
+      0,
+      0,
+      0,
+      4,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      2,
+      3,
+      8,
+      0,
+      0,
+      0,
+      0,
+      5,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      6,
+      0,
+      9,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      5,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      3,
+      0,
+      0,
+      4,
+      0,
+      0,
+      5,
+      0,
+      7
+    ],
+    [
+      0,
+      1,
+      0,
+      8,
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  ],
+  "cages": [
+    {
+      "id": 1,
+      "sum": 15,
+      "cells": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          0
+        ]
+      ]
+    },
+    {
+      "id": 2,
+      "sum": 23,
+      "cells": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          2
+        ]
+      ]
+    },
+    {
+      "id": 3,
+      "sum": 20,
+      "cells": [
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          5
+        ]
+      ]
+    },
+    {
+      "id": 4,
+      "sum": 27,
+      "cells": [
+        [
+          0,
+          6
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          3
+        ]
+      ]
+    },
+    {
+      "id": 5,
+      "sum": 13,
+      "cells": [
+        [
+          0,
+          7
+        ],
+        [
+          0,
+          8
+        ]
+      ]
+    },
+    {
+      "id": 6,
+      "sum": 19,
+      "cells": [
+        [
+          1,
+          8
+        ],
+        [
+          2,
+          8
+        ],
+        [
+          2,
+          7
+        ]
+      ]
+    },
+    {
+      "id": 7,
+      "sum": 3,
+      "cells": [
+        [
+          1,
+          7
+        ]
+      ]
+    },
+    {
+      "id": 8,
+      "sum": 28,
+      "cells": [
+        [
+          2,
+          1
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          4,
+          3
+        ]
+      ]
+    },
+    {
+      "id": 9,
+      "sum": 9,
+      "cells": [
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          3,
+          4
+        ]
+      ]
+    },
+    {
+      "id": 10,
+      "sum": 14,
+      "cells": [
+        [
+          2,
+          5
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          3,
+          6
+        ]
+      ]
+    },
+    {
+      "id": 11,
+      "sum": 10,
+      "cells": [
+        [
+          3,
+          8
+        ],
+        [
+          4,
+          8
+        ],
+        [
+          5,
+          8
+        ]
+      ]
+    },
+    {
+      "id": 12,
+      "sum": 14,
+      "cells": [
+        [
+          3,
+          7
+        ],
+        [
+          4,
+          7
+        ],
+        [
+          5,
+          7
+        ]
+      ]
+    },
+    {
+      "id": 13,
+      "sum": 20,
+      "cells": [
+        [
+          3,
+          5
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          5,
+          5
+        ]
+      ]
+    },
+    {
+      "id": 14,
+      "sum": 7,
+      "cells": [
+        [
+          3,
+          0
+        ],
+        [
+          4,
+          0
+        ]
+      ]
+    },
+    {
+      "id": 15,
+      "sum": 23,
+      "cells": [
+        [
+          4,
+          1
+        ],
+        [
+          5,
+          1
+        ],
+        [
+          5,
+          0
+        ],
+        [
+          6,
+          0
+        ]
+      ]
+    },
+    {
+      "id": 16,
+      "sum": 9,
+      "cells": [
+        [
+          4,
+          2
+        ],
+        [
+          5,
+          2
+        ]
+      ]
+    },
+    {
+      "id": 17,
+      "sum": 7,
+      "cells": [
+        [
+          4,
+          4
+        ],
+        [
+          5,
+          4
+        ]
+      ]
+    },
+    {
+      "id": 18,
+      "sum": 24,
+      "cells": [
+        [
+          4,
+          6
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          6,
+          6
+        ],
+        [
+          7,
+          6
+        ]
+      ]
+    },
+    {
+      "id": 19,
+      "sum": 18,
+      "cells": [
+        [
+          5,
+          3
+        ],
+        [
+          6,
+          3
+        ],
+        [
+          7,
+          3
+        ],
+        [
+          8,
+          3
+        ]
+      ]
+    },
+    {
+      "id": 20,
+      "sum": 13,
+      "cells": [
+        [
+          6,
+          1
+        ],
+        [
+          7,
+          1
+        ],
+        [
+          7,
+          0
+        ]
+      ]
+    },
+    {
+      "id": 21,
+      "sum": 11,
+      "cells": [
+        [
+          6,
+          2
+        ],
+        [
+          7,
+          2
+        ]
+      ]
+    },
+    {
+      "id": 22,
+      "sum": 10,
+      "cells": [
+        [
+          6,
+          4
+        ],
+        [
+          6,
+          5
+        ]
+      ]
+    },
+    {
+      "id": 23,
+      "sum": 19,
+      "cells": [
+        [
+          6,
+          7
+        ],
+        [
+          6,
+          8
+        ],
+        [
+          7,
+          8
+        ]
+      ]
+    },
+    {
+      "id": 24,
+      "sum": 12,
+      "cells": [
+        [
+          7,
+          7
+        ],
+        [
+          8,
+          7
+        ],
+        [
+          8,
+          8
+        ]
+      ]
+    },
+    {
+      "id": 25,
+      "sum": 8,
+      "cells": [
+        [
+          7,
+          5
+        ],
+        [
+          8,
+          5
+        ]
+      ]
+    },
+    {
+      "id": 26,
+      "sum": 14,
+      "cells": [
+        [
+          7,
+          4
+        ],
+        [
+          8,
+          4
+        ]
+      ]
+    },
+    {
+      "id": 27,
+      "sum": 8,
+      "cells": [
+        [
+          8,
+          0
+        ],
+        [
+          8,
+          1
+        ]
+      ]
+    },
+    {
+      "id": 28,
+      "sum": 4,
+      "cells": [
+        [
+          8,
+          2
+        ]
+      ]
+    },
+    {
+      "id": 29,
+      "sum": 3,
+      "cells": [
+        [
+          8,
+          6
+        ]
+      ]
+    }
+  ],
+  "solution": [
+    [
+      1,
+      9,
+      3,
+      6,
+      7,
+      4,
+      2,
+      8,
+      5
+    ],
+    [
+      6,
+      5,
+      2,
+      9,
+      8,
+      1,
+      7,
+      3,
+      4
+    ],
+    [
+      8,
+      4,
+      7,
+      3,
+      2,
+      5,
+      1,
+      6,
+      9
+    ],
+    [
+      5,
+      6,
+      9,
+      2,
+      4,
+      3,
+      8,
+      7,
+      1
+    ],
+    [
+      2,
+      3,
+      8,
+      7,
+      1,
+      9,
+      4,
+      5,
+      6
+    ],
+    [
+      4,
+      7,
+      1,
+      5,
+      6,
+      8,
+      9,
+      2,
+      3
+    ],
+    [
+      9,
+      2,
+      5,
+      1,
+      3,
+      7,
+      6,
+      4,
+      8
+    ],
+    [
+      3,
+      8,
+      6,
+      4,
+      9,
+      2,
+      5,
+      1,
+      7
+    ],
+    [
+      7,
+      1,
+      4,
+      8,
+      5,
+      6,
+      3,
+      9,
+      2
+    ]
+  ],
+  "preDialog": [
+    {
+      "speaker": "旁白",
+      "text": "沈墨在深夜再次走进藏书楼地下。发报机还在原处，但电源线已经被截断了——切口整齐，不是意外，是有人刻意关停了它。",
+      "isNarration": true
+    },
+    {
+      "speaker": "沈墨 CHIBI",
+      "text": "……他来过这里。他确认我发完之后，把这台机器关掉了。他不是在销毁它——他是在封存它。",
+      "side": "left",
+      "emotion": "thinking",
+      "effect": 0
+    },
+    {
+      "speaker": "老师（留声）",
+      "text": "三才游鱼阵——三行三列交错成网。九格的位置相互锁定，形成一个完整的封闭结构。当网收拢时，所有多余的路都被封住了。",
+      "side": "right",
+      "emotion": "calm",
+      "effect": 0
+    }
+  ],
+  "clearDialog": [
+    {
+      "speaker": "旁白",
+      "text": "沈墨蹲下身，确认了电源线的断口——用钳子剪断的，干净利落。他在底座侧面摸到了一个极浅的刻痕：“已确认关闭。”",
+      "isNarration": true
+    },
+    {
+      "speaker": "沈墨 CHIBI",
+      "text": "……他截断了电源线，然后留下了这句话。他不是在提醒我——他是在确认自己能封好这条路。",
+      "side": "left",
+      "emotion": "thinking",
+      "effect": 0
+    },
+    {
+      "speaker": "薇拉",
+      "text": "他截断电源线是在你发完电文之后。不是为了阻止你——是为了让那台机器不可能被任何人使用。通道已经关闭了。",
+      "side": "right",
+      "emotion": "calm",
+      "effect": 0
+    }
+  ],
+  "isBoss": false,
+  "mode": "endgame",
+  "coreMove": {
+    "row": 8,
+    "col": 0,
+    "value": 3,
+    "cascadeCount": 36,
+    "cascadeSequence": [
+      {
+        "row": 6,
+        "col": 8,
+        "value": 3,
+        "cellId": 62
+      },
+      {
+        "row": 3,
+        "col": 8,
+        "value": 9,
+        "cellId": 35
+      },
+      {
+        "row": 4,
+        "col": 8,
+        "value": 7,
+        "cellId": 44
+      },
+      {
+        "row": 4,
+        "col": 1,
+        "value": 9,
+        "cellId": 37
+      },
+      {
+        "row": 2,
+        "col": 1,
+        "value": 4,
+        "cellId": 19
+      },
+      {
+        "row": 0,
+        "col": 0,
+        "value": 5,
+        "cellId": 0
+      },
+      {
+        "row": 0,
+        "col": 8,
+        "value": 4,
+        "cellId": 8
+      },
+      {
+        "row": 1,
+        "col": 0,
+        "value": 6,
+        "cellId": 9
+      },
+      {
+        "row": 1,
+        "col": 2,
+        "value": 9,
+        "cellId": 11
+      },
+      {
+        "row": 1,
+        "col": 4,
+        "value": 4,
+        "cellId": 13
+      },
+      {
+        "row": 1,
+        "col": 6,
+        "value": 1,
+        "cellId": 15
+      },
+      {
+        "row": 1,
+        "col": 8,
+        "value": 5,
+        "cellId": 17
+      },
+      {
+        "row": 2,
+        "col": 4,
+        "value": 9,
+        "cellId": 22
+      },
+      {
+        "row": 5,
+        "col": 8,
+        "value": 1,
+        "cellId": 53
+      },
+      {
+        "row": 3,
+        "col": 7,
+        "value": 4,
+        "cellId": 34
+      },
+      {
+        "row": 3,
+        "col": 2,
+        "value": 6,
+        "cellId": 29
+      },
+      {
+        "row": 3,
+        "col": 6,
+        "value": 3,
+        "cellId": 33
+      },
+      {
+        "row": 2,
+        "col": 6,
+        "value": 7,
+        "cellId": 24
+      },
+      {
+        "row": 2,
+        "col": 7,
+        "value": 3,
+        "cellId": 25
+      },
+      {
+        "row": 3,
+        "col": 3,
+        "value": 5,
+        "cellId": 30
+      },
+      {
+        "row": 3,
+        "col": 1,
+        "value": 1,
+        "cellId": 28
+      },
+      {
+        "row": 4,
+        "col": 0,
+        "value": 4,
+        "cellId": 36
+      },
+      {
+        "row": 4,
+        "col": 3,
+        "value": 3,
+        "cellId": 39
+      },
+      {
+        "row": 4,
+        "col": 5,
+        "value": 1,
+        "cellId": 41
+      },
+      {
+        "row": 4,
+        "col": 7,
+        "value": 5,
+        "cellId": 43
+      },
+      {
+        "row": 5,
+        "col": 1,
+        "value": 5,
+        "cellId": 46
+      },
+      {
+        "row": 5,
+        "col": 5,
+        "value": 4,
+        "cellId": 50
+      },
+      {
+        "row": 5,
+        "col": 7,
+        "value": 6,
+        "cellId": 52
+      },
+      {
+        "row": 6,
+        "col": 0,
+        "value": 1,
+        "cellId": 54
+      },
+      {
+        "row": 6,
+        "col": 1,
+        "value": 6,
+        "cellId": 55
+      },
+      {
+        "row": 6,
+        "col": 2,
+        "value": 7,
+        "cellId": 56
+      },
+      {
+        "row": 7,
+        "col": 6,
+        "value": 4,
+        "cellId": 69
+      },
+      {
+        "row": 7,
+        "col": 7,
+        "value": 1,
+        "cellId": 70
+      },
+      {
+        "row": 8,
+        "col": 2,
+        "value": 4,
+        "cellId": 74
+      },
+      {
+        "row": 8,
+        "col": 6,
+        "value": 6,
+        "cellId": 78
+      },
+      {
+        "row": 8,
+        "col": 7,
+        "value": 7,
+        "cellId": 79
+      }
+    ]
+  },
+  "isClassic": true,
+  "breakPointIndex": 22,
+  "totalSteps": 59,
+  "targetTechnique": "swordfish",
+  "threeAct": {
+    "opening": [
+      [
+        0,
+        8
+      ],
+      [
+        2,
+        7
+      ],
+      [
+        2,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        2,
+        6
+      ],
+      [
+        2,
+        5
+      ],
+      [
+        3,
+        0
+      ],
+      [
+        4,
+        4
+      ],
+      [
+        4,
+        8
+      ],
+      [
+        5,
+        1
+      ],
+      [
+        5,
+        0
+      ],
+      [
+        5,
+        2
+      ],
+      [
+        5,
+        3
+      ],
+      [
+        5,
+        7
+      ],
+      [
+        3,
+        7
+      ],
+      [
+        4,
+        6
+      ],
+      [
+        6,
+        7
+      ],
+      [
+        6,
+        8
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        7,
+        2
+      ],
+      [
+        7,
+        4
+      ],
+      [
+        8,
+        0
+      ],
+      [
+        8,
+        2
+      ],
+      [
+        8,
+        4
+      ],
+      [
+        8,
+        6
+      ]
+    ],
+    "breakthrough": [
+      [
+        3,
+        5
+      ],
+      [
+        6,
+        4
+      ],
+      [
+        6,
+        5
+      ],
+      [
+        7,
+        1
+      ],
+      [
+        7,
+        7
+      ],
+      [
+        8,
+        5
+      ],
+      [
+        8,
+        7
+      ],
+      [
+        8,
+        8
+      ]
+    ],
+    "avalanche": [
+      [
+        3,
+        6
+      ],
+      [
+        5,
+        8
+      ],
+      [
+        3,
+        8
+      ],
+      [
+        5,
+        5
+      ],
+      [
+        6,
+        0
+      ],
+      [
+        6,
+        6
+      ],
+      [
+        6,
+        1
+      ],
+      [
+        0,
+        4
+      ],
+      [
+        0,
+        3
+      ],
+      [
+        0,
+        5
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        0,
+        6
+      ],
+      [
+        1,
+        3
+      ],
+      [
+        1,
+        4
+      ],
+      [
+        1,
+        5
+      ],
+      [
+        1,
+        6
+      ],
+      [
+        3,
+        1
+      ],
+      [
+        3,
+        2
+      ],
+      [
+        3,
+        3
+      ],
+      [
+        4,
+        3
+      ],
+      [
+        4,
+        5
+      ],
+      [
+        7,
+        5
+      ]
+    ]
+  },
+  "difficultyLevel": 9,
+  "lessonPlan": {
+    "newSkill": "swordfish_705",
+    "skillName": "三才游鱼阵（Swordfish）",
+    "isFirstLesson": false,
+    "skippable": true,
+    "prerequisite": [
+      "xwing"
+    ],
+    "phases": {
+      "intro": {
+        "text": "三才游鱼阵——三行三列交错成网。当网收拢时，所有多余的路都被封住了。九格相互锁定，形成一个完整的封闭结构。",
+        "speaker": "老师（留声）",
+        "duration": 4000
+      },
+      "demo": {
+        "steps": [
+          {
+            "action": "spotlightOn",
+            "target": 0.35,
+            "duration": 400
+          },
+          {
+            "action": "highlightRow",
+            "target": 3,
+            "duration": 1600,
+            "text": "三才游鱼阵是二连纵横阵的三行版。选一个数字，比如 3，逐行标记它只能去的位置。"
+          },
+          {
+            "action": "highlightCell",
+            "target": [
+              3,
+              5
+            ],
+            "duration": 1200,
+            "text": "第 4 行里，数字 3 只能落在 (3,5) 所在的这组位置——都在第 4、5、8 列里。"
+          },
+          {
+            "action": "highlightRow",
+            "target": 5,
+            "duration": 1600,
+            "text": "第 6 行：数字 3 也只能放在相同的三列（c4、c5、c8）。"
+          },
+          {
+            "action": "highlightCell",
+            "target": [
+              5,
+              8
+            ],
+            "duration": 1200,
+            "text": "看 (5,8)——数字 3 在这一行的落点之一。"
+          },
+          {
+            "action": "highlightRow",
+            "target": 6,
+            "duration": 1600,
+            "text": "第 7 行：数字 3 依旧只能放在这三列！三行三列交错成网。"
+          },
+          {
+            "action": "highlightCell",
+            "target": [
+              6,
+              4
+            ],
+            "duration": 1200,
+            "text": "(6,4) 也是网里的一个角。"
+          },
+          {
+            "action": "highlightCol",
+            "target": 4,
+            "duration": 1200,
+            "text": "三列中的第一列：c4。"
+          },
+          {
+            "action": "highlightCol",
+            "target": 5,
+            "duration": 1200,
+            "text": "第二列：c5。"
+          },
+          {
+            "action": "highlightCol",
+            "target": 8,
+            "duration": 1200,
+            "text": "第三列：c8。三行三列组成网状——三才游鱼阵（Swordfish）成形！"
+          },
+          {
+            "action": "focusCell",
+            "target": [
+              3,
+              5
+            ],
+            "duration": 1600,
+            "text": "数字 3 被这张网兜住，只能出现在这三行的三列里。看 d5 格（(3,5)）：结合网与行、列、宫的排除，3 在此落定——填 3！"
+          }
+        ]
+      },
+      "guided": {
+        "targetCell": [
+          3,
+          5
+        ],
+        "correctValue": 3,
+        "interactionType": "NUMBER",
+        "maxAttempts": 2,
+        "autoRevealAfter": 2,
+        "methodText": "三才游鱼阵找法：选一个数字，逐行记录候选位置；如果三行的候选恰好分布在同一组三列里（每行 2-3 个位置），就锁住这三列，把该数字从三列其它行排除。",
+        "hintText": "轮到你了：数字 3 被三才游鱼阵锁在 d、f、g 三行的 c4、c5、c8 三列。看 d5 格（(3,5)）——结合行、列、宫的排除，试试看。",
+        "failHint": "再想想：3 只能出现在 d、f、g 三行的 c4、c5、c8 列里。看 d5 格所在的行、列、宫，排除其它数字后 3 就是答案。",
+        "failConflictCell": [
+          3,
+          4
+        ],
+        "failVoiceId": "CK_05",
+        "successText": "答对了！三才游鱼阵入海——三行三列的网一旦成形，整片海域的该数字都被清除！",
+        "successVoiceId": "J_03",
+        "autoRevealText": "直接填入数字 3。",
+        "successNext": [
+          {
+            "cell": [
+              6,
+              4
+            ],
+            "hintText": "很好！网的另一角也定了：g4 格（(6,4)）——试试看。"
+          },
+          {
+            "cell": [
+              5,
+              8
+            ],
+            "hintText": "再来！f8 格（(5,8)）：三才游鱼阵的第三个角，试试看。"
+          }
+        ]
+      },
+      "semiAuto": {
+        "enabled": true,
+        "targetCount": 2,
+        "interactionType": "NUMBER",
+        "hintText": "继续逐数字扫描，寻找三行三列的覆盖模式，再确定两个数字。",
+        "hintVoiceId": "R_07",
+        "watchCells": [
+          [
+            5,
+            1
+          ],
+          [
+            7,
+            4
+          ]
+        ]
+      },
+      "free": {
+        "enabled": true,
+        "unlockText": "三才游鱼阵已征服！你掌握了最强大的高级构型之一。"
+      }
+    }
+  }
+}

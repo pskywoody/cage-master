@@ -1,0 +1,1148 @@
+{
+  "levelId": 206,
+  "title": "第6关：差值之术",
+  "gridSize": 9,
+  "difficulty": "中等",
+  "teachingGoal": "多格差值 + 笼子组合计算器",
+  "features": {
+    "allowDraft": true,
+    "assistant45": true,
+    "showHints": true,
+    "perspectiveMode": true,
+    "highlightRow": true,
+    "highlightCol": true,
+    "highlightBox": true,
+    "highlightNumber": true,
+    "highlightCage": true,
+    "autoFillCandidates": false
+  },
+  "triggers": [
+    {
+      "id": "t206_start",
+      "condition": "onLevelStart",
+      "type": "popup_hint",
+      "position": "top",
+      "text": "这次笼子更大了！有时候差值不止一个格子，需要算出几格的和，再推理里面的数字～",
+      "once": true
+    },
+    {
+      "id": "t206_combo",
+      "condition": "onFirstNumberFilled",
+      "type": "popup_hint",
+      "position": "top",
+      "text": "笼子组合计算器解锁了！点击工具栏的「组合」按钮，可以查看n格笼有哪些可能的数字组合～",
+      "once": true
+    },
+    {
+      "id": "t206_b",
+      "condition": "onFillCountReached",
+      "count": 68,
+      "type": "enter_phase",
+      "phase": "breakthrough",
+      "once": true
+    },
+    {
+      "id": "t206_bt",
+      "condition": "onFillCountReached",
+      "count": 68,
+      "type": "popup_hint",
+      "position": "top",
+      "text": "⚡ 破局时刻！多格差值+组合计算器，双重火力全开！",
+      "once": true,
+      "delay": 400
+    },
+    {
+      "id": "t206_st20",
+      "condition": "onStuckForSeconds",
+      "seconds": 20,
+      "type": "popup_hint",
+      "position": "top",
+      "text": "💡 卡住了？先找跨宫笼子，用45减出伸出部分的和值，再用组合计算器看哪些数字组合能凑出这个和！",
+      "once": false
+    },
+    {
+      "id": "t206_st40",
+      "condition": "onStuckForSeconds",
+      "seconds": 40,
+      "type": "popup_hint",
+      "position": "top",
+      "text": "💡 组合计算器用法：点击「45」按钮→输入格子数和和值→它会列出所有可能的组合，再结合排除法筛选！",
+      "once": false,
+      "delay": 300
+    },
+    {
+      "id": "t206_ag",
+      "condition": "onConflict",
+      "type": "popup_hint",
+      "position": "top",
+      "text": "⚠️ 填入前先验证——这个数字在组合里吗？行/列/宫有重复吗？",
+      "once": false
+    },
+    {
+      "id": "t206_fi",
+      "condition": "onFillCountReached",
+      "count": 75,
+      "type": "enter_phase",
+      "phase": "finishing",
+      "once": true
+    },
+    {
+      "id": "t206_fit",
+      "condition": "onFillCountReached",
+      "count": 75,
+      "type": "popup_hint",
+      "position": "top",
+      "text": "✨ 收官阶段！组合范围越缩越小，最后几格呼之欲出！",
+      "once": true,
+      "delay": 400
+    },
+    {
+      "id": "t206_c",
+      "condition": "onLevelComplete",
+      "type": "popup_hint",
+      "position": "top",
+      "text": "🎉 多格差值与组合计算器双剑合璧！你又多了一件神器！",
+      "once": true
+    }
+  ],
+  "boardData": [
+    [
+      0,
+      3,
+      0,
+      0,
+      2,
+      1,
+      4,
+      6,
+      9
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      5,
+      6,
+      2,
+      1,
+      8
+    ],
+    [
+      0,
+      6,
+      0,
+      0,
+      0,
+      0,
+      5,
+      7,
+      3
+    ],
+    [
+      0,
+      0,
+      0,
+      1,
+      4,
+      0,
+      0,
+      5,
+      0
+    ],
+    [
+      4,
+      1,
+      0,
+      0,
+      0,
+      0,
+      9,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      9,
+      0,
+      0,
+      4,
+      7
+    ],
+    [
+      3,
+      5,
+      0,
+      9,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      7,
+      0,
+      0,
+      0,
+      6,
+      8,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      5,
+      3,
+      0,
+      0,
+      0,
+      0
+    ]
+  ],
+  "cages": [
+    {
+      "id": 1,
+      "sum": 18,
+      "cells": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          0
+        ]
+      ]
+    },
+    {
+      "id": 2,
+      "sum": 19,
+      "cells": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          1
+        ]
+      ]
+    },
+    {
+      "id": 3,
+      "sum": 14,
+      "cells": [
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          3
+        ]
+      ]
+    },
+    {
+      "id": 4,
+      "sum": 7,
+      "cells": [
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          4
+        ]
+      ]
+    },
+    {
+      "id": 5,
+      "sum": 7,
+      "cells": [
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          5
+        ]
+      ]
+    },
+    {
+      "id": 6,
+      "sum": 11,
+      "cells": [
+        [
+          0,
+          6
+        ],
+        [
+          0,
+          7
+        ],
+        [
+          1,
+          7
+        ]
+      ]
+    },
+    {
+      "id": 7,
+      "sum": 27,
+      "cells": [
+        [
+          0,
+          8
+        ],
+        [
+          1,
+          8
+        ],
+        [
+          2,
+          8
+        ],
+        [
+          2,
+          7
+        ]
+      ]
+    },
+    {
+      "id": 8,
+      "sum": 7,
+      "cells": [
+        [
+          1,
+          6
+        ],
+        [
+          2,
+          6
+        ]
+      ]
+    },
+    {
+      "id": 9,
+      "sum": 15,
+      "cells": [
+        [
+          2,
+          1
+        ],
+        [
+          3,
+          1
+        ]
+      ]
+    },
+    {
+      "id": 10,
+      "sum": 10,
+      "cells": [
+        [
+          2,
+          2
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          3
+        ]
+      ]
+    },
+    {
+      "id": 11,
+      "sum": 12,
+      "cells": [
+        [
+          2,
+          4
+        ],
+        [
+          3,
+          4
+        ]
+      ]
+    },
+    {
+      "id": 12,
+      "sum": 20,
+      "cells": [
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          3,
+          6
+        ]
+      ]
+    },
+    {
+      "id": 13,
+      "sum": 14,
+      "cells": [
+        [
+          3,
+          8
+        ],
+        [
+          3,
+          7
+        ],
+        [
+          4,
+          7
+        ]
+      ]
+    },
+    {
+      "id": 14,
+      "sum": 15,
+      "cells": [
+        [
+          3,
+          0
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          5,
+          1
+        ]
+      ]
+    },
+    {
+      "id": 15,
+      "sum": 21,
+      "cells": [
+        [
+          4,
+          2
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          4,
+          4
+        ]
+      ]
+    },
+    {
+      "id": 16,
+      "sum": 28,
+      "cells": [
+        [
+          4,
+          5
+        ],
+        [
+          5,
+          5
+        ],
+        [
+          6,
+          5
+        ],
+        [
+          7,
+          5
+        ],
+        [
+          7,
+          4
+        ]
+      ]
+    },
+    {
+      "id": 17,
+      "sum": 16,
+      "cells": [
+        [
+          4,
+          6
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          6,
+          6
+        ]
+      ]
+    },
+    {
+      "id": 18,
+      "sum": 13,
+      "cells": [
+        [
+          4,
+          8
+        ],
+        [
+          5,
+          8
+        ],
+        [
+          5,
+          7
+        ]
+      ]
+    },
+    {
+      "id": 19,
+      "sum": 18,
+      "cells": [
+        [
+          5,
+          4
+        ],
+        [
+          5,
+          3
+        ],
+        [
+          5,
+          2
+        ]
+      ]
+    },
+    {
+      "id": 20,
+      "sum": 21,
+      "cells": [
+        [
+          5,
+          0
+        ],
+        [
+          6,
+          0
+        ],
+        [
+          7,
+          0
+        ],
+        [
+          8,
+          0
+        ]
+      ]
+    },
+    {
+      "id": 21,
+      "sum": 22,
+      "cells": [
+        [
+          6,
+          1
+        ],
+        [
+          6,
+          2
+        ],
+        [
+          6,
+          3
+        ]
+      ]
+    },
+    {
+      "id": 22,
+      "sum": 1,
+      "cells": [
+        [
+          6,
+          4
+        ]
+      ]
+    },
+    {
+      "id": 23,
+      "sum": 25,
+      "cells": [
+        [
+          6,
+          7
+        ],
+        [
+          7,
+          7
+        ],
+        [
+          8,
+          7
+        ],
+        [
+          8,
+          8
+        ],
+        [
+          7,
+          8
+        ]
+      ]
+    },
+    {
+      "id": 24,
+      "sum": 4,
+      "cells": [
+        [
+          6,
+          8
+        ]
+      ]
+    },
+    {
+      "id": 25,
+      "sum": 14,
+      "cells": [
+        [
+          7,
+          6
+        ],
+        [
+          8,
+          6
+        ],
+        [
+          8,
+          5
+        ]
+      ]
+    },
+    {
+      "id": 26,
+      "sum": 20,
+      "cells": [
+        [
+          7,
+          3
+        ],
+        [
+          8,
+          3
+        ],
+        [
+          8,
+          4
+        ],
+        [
+          8,
+          2
+        ],
+        [
+          7,
+          2
+        ]
+      ]
+    },
+    {
+      "id": 27,
+      "sum": 6,
+      "cells": [
+        [
+          7,
+          1
+        ],
+        [
+          8,
+          1
+        ]
+      ]
+    }
+  ],
+  "solution": [
+    [
+      8,
+      3,
+      5,
+      7,
+      2,
+      1,
+      4,
+      6,
+      9
+    ],
+    [
+      9,
+      7,
+      4,
+      3,
+      5,
+      6,
+      2,
+      1,
+      8
+    ],
+    [
+      1,
+      6,
+      2,
+      4,
+      8,
+      9,
+      5,
+      7,
+      3
+    ],
+    [
+      2,
+      9,
+      7,
+      1,
+      4,
+      3,
+      8,
+      5,
+      6
+    ],
+    [
+      4,
+      1,
+      6,
+      8,
+      7,
+      5,
+      9,
+      3,
+      2
+    ],
+    [
+      5,
+      8,
+      3,
+      6,
+      9,
+      2,
+      1,
+      4,
+      7
+    ],
+    [
+      3,
+      5,
+      8,
+      9,
+      1,
+      7,
+      6,
+      2,
+      4
+    ],
+    [
+      7,
+      4,
+      1,
+      2,
+      6,
+      8,
+      3,
+      9,
+      5
+    ],
+    [
+      6,
+      2,
+      9,
+      5,
+      3,
+      4,
+      7,
+      8,
+      1
+    ]
+  ],
+  "preDialog": [
+    {
+      "speaker": "守笼人",
+      "text": "差值。一个笼的和减去它所覆盖行/列的已知部分，剩下的就是它在其他行/列贡献的值。",
+      "side": "right",
+      "emotion": "严肃·教学",
+      "voiceId": "VO_CK_0030"
+    },
+    {
+      "speaker": "阿妍",
+      "text": "没那么难。整行总和减掉已知的数，剩下的格子直接算出来。",
+      "side": "right",
+      "emotion": "冷静·教学",
+      "voiceId": "VO_R_0034"
+    },
+    {
+      "speaker": "沈墨",
+      "text": "差值……不是加法。是减法。",
+      "side": "left",
+      "emotion": "领悟",
+      "voiceId": "VO_SM_0027",
+      "_action": "试了一下，填入数字"
+    }
+  ],
+  "clearDialog": [
+    {
+      "speaker": "设局人（留声）",
+      "text": "依靠工具投机取巧，永远读不懂笼局背后的星辰逻辑。",
+      "side": "right",
+      "emotion": "轻蔑·傲慢",
+      "voiceId": "VO_P_0003"
+    }
+  ],
+  "mode": "full",
+  "coreMove": {
+    "row": 0,
+    "col": 2,
+    "value": 4
+  },
+  "totalSteps": 83,
+  "nakedSingleRatio": 0.711,
+  "techCount": {
+    "nakedSingle": 59,
+    "cageUnique": 12,
+    "rule45": 4,
+    "hiddenSingle": 5,
+    "nakedPair": 3
+  },
+  "maxTechLevel": 5,
+  "threeAct": {
+    "opening": [
+      [
+        0,
+        7
+      ],
+      [
+        0,
+        6
+      ],
+      [
+        0,
+        8
+      ],
+      [
+        1,
+        4
+      ],
+      [
+        1,
+        5
+      ],
+      [
+        1,
+        6
+      ],
+      [
+        1,
+        7
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        4
+      ],
+      [
+        0,
+        3
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        1,
+        3
+      ],
+      [
+        2,
+        2
+      ],
+      [
+        2,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        2,
+        5
+      ],
+      [
+        3,
+        0
+      ],
+      [
+        3,
+        1
+      ],
+      [
+        3,
+        8
+      ],
+      [
+        4,
+        8
+      ],
+      [
+        5,
+        1
+      ],
+      [
+        6,
+        2
+      ],
+      [
+        6,
+        4
+      ],
+      [
+        6,
+        8
+      ]
+    ],
+    "breakthrough": [
+      [
+        1,
+        2
+      ],
+      [
+        6,
+        6
+      ],
+      [
+        6,
+        7
+      ],
+      [
+        7,
+        6
+      ],
+      [
+        7,
+        7
+      ],
+      [
+        7,
+        2
+      ],
+      [
+        7,
+        8
+      ],
+      [
+        8,
+        0
+      ],
+      [
+        8,
+        2
+      ],
+      [
+        8,
+        5
+      ],
+      [
+        8,
+        6
+      ],
+      [
+        8,
+        7
+      ],
+      [
+        8,
+        8
+      ]
+    ],
+    "avalanche": [
+      [
+        3,
+        2
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        3,
+        5
+      ],
+      [
+        3,
+        6
+      ],
+      [
+        4,
+        4
+      ],
+      [
+        4,
+        7
+      ],
+      [
+        4,
+        5
+      ],
+      [
+        4,
+        2
+      ],
+      [
+        4,
+        3
+      ],
+      [
+        5,
+        0
+      ],
+      [
+        5,
+        2
+      ],
+      [
+        5,
+        3
+      ],
+      [
+        5,
+        5
+      ],
+      [
+        5,
+        6
+      ],
+      [
+        6,
+        5
+      ],
+      [
+        7,
+        3
+      ],
+      [
+        7,
+        1
+      ],
+      [
+        8,
+        1
+      ]
+    ]
+  },
+  "difficultyLevel": 5,
+  "lessonPlan": {
+    "newSkill": "rule45_206",
+    "skillName": "差值之术",
+    "isFirstLesson": false,
+    "skippable": true,
+    "prerequisite": [
+      "rule45"
+    ],
+    "phases": {
+      "intro": {
+        "text": "两个笼子互相嵌套时，用差值推：两个笼和的差，就是重叠格子的差。",
+        "speaker": "守笼人",
+        "duration": 3200
+      },
+      "demo": {
+        "steps": [
+          {
+            "action": "highlightRow",
+            "target": 2,
+            "duration": 1100
+          },
+          {
+            "action": "focusCell",
+            "target": [
+              2,
+              4
+            ],
+            "duration": 1300
+          }
+        ]
+      },
+      "guided": {
+        "targetCell": [
+          2,
+          4
+        ],
+        "correctValue": 8,
+        "interactionType": "NUMBER",
+        "autoRevealText": "直接填入数字 8。",
+        "maxAttempts": 3,
+        "failHint": "比较两个笼子的和，差值会指向重叠格子里能确定的数字。",
+        "autoRevealAfter": 3,
+        "successText": "正确！继续用星衡法则推进。",
+        "successVoiceId": null
+      },
+      "semiAuto": {
+        "enabled": true,
+        "targetCount": 2,
+        "hintText": "再用星衡法则找两个格子。",
+        "hintVoiceId": null,
+        "watchCells": [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "interactionType": "NUMBER"
+      },
+      "free": {
+        "enabled": true,
+        "unlockText": "星衡法则已掌握，继续自由填数吧。"
+      }
+    }
+  }
+}

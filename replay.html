@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>对战回放 · 笼中密码</title>
+<style>
+  :root {
+    --bg: #150e08; --panel: #241a12; --gold: #f5c542; --muted: #c9b696;
+    --ok: #4ade80; --err: #f87171; --text: #e8dcc0;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg); color: var(--text);
+    font-family: "Microsoft YaHei", sans-serif;
+    min-height: 100vh; display: flex; flex-direction: column; align-items: center;
+    padding: 24px 16px;
+  }
+  h1 { color: var(--gold); font-size: 22px; margin-bottom: 4px; }
+  .sub { color: var(--muted); font-size: 13px; margin-bottom: 16px; }
+  #boardWrap { background: var(--panel); padding: 14px; border-radius: 10px; border: 1px solid rgba(224,180,94,0.3); }
+  canvas { display: block; background: #0d0a07; border-radius: 4px; }
+  .controls { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; justify-content: center; }
+  .controls button {
+    background: var(--panel); color: var(--gold); border: 1px solid rgba(224,180,94,0.4);
+    padding: 8px 18px; border-radius: 6px; font-size: 14px; cursor: pointer;
+  }
+  .controls button:hover { background: rgba(224,180,94,0.15); }
+  .controls button.primary { background: var(--gold); color: #1a1410; border-color: var(--gold); font-weight: 700; }
+  #status { margin-top: 12px; color: var(--muted); font-size: 14px; min-height: 20px; text-align: center; }
+  #legend { margin-top: 10px; font-size: 12px; color: var(--muted); display: flex; gap: 14px; }
+  #error { color: var(--err); margin-top: 20px; text-align: center; line-height: 1.8; }
+  .move-line { color: var(--muted); font-size: 12px; margin-top: 8px; max-width: 560px; text-align: center; word-break: break-all; }
+</style>
+</head>
+<body>
+  <h1>⚔ 对战回放</h1>
+  <div class="sub" id="meta">正在解析回放码…</div>
+  <div id="boardWrap">
+    <canvas id="board" width="480" height="480"></canvas>
+  </div>
+  <div class="controls">
+    <button id="btnPlay" class="primary">播放</button>
+    <button id="btnPause">暂停</button>
+    <button id="btnPrev">上一步</button>
+    <button id="btnNext">下一步</button>
+    <button id="btnReset">重置</button>
+  </div>
+  <div id="status"></div>
+  <div id="legend"><span style="color:var(--ok)">■ 玩家填对</span><span style="color:var(--err)">■ 玩家填错</span><span style="color:#8b7d5c">■ 初始固定</span></div>
+  <div class="move-line" id="moves"></div>
+  <div id="error" class="hidden"></div>
+
+<script>
+// ================= 回放码解码 =================
+// 格式：levelId-bossId-走棋序列
+// 每步：['X'] + base36(r) + base36(c) + base36(num)
+function parseCode(code) {
+  if (!code) return null;
+  const parts = code.split('-');
+  if (parts.length < 3) return null;
+  const levelId = parseInt(parts[0], 10);
+  const bossId = parts[1];
+  const enc = parts.slice(2).join('-');
+  const moves = [];
+  let i = 0;
+  while (i < enc.length) {
+    let correct = true;
+    if (enc[i] === 'X') { correct = false; i++; }
+    if (i + 2 >= enc.length + (enc[i + 2] !== undefined ? 0 : 1)) break;
+    const r = parseInt(enc[i], 36);
+    const c = parseInt(enc[i + 1], 36);
+    const num = parseInt(enc[i + 2], 36);
+    if (isNaN(r) || isNaN(c) || isNaN(num)) break;
+    moves.push({ r: r, c: c, num: num, correct: correct });
+    i += 3;
+  }
+  if (moves.length === 0) return null;
+  return { levelId: levelId, bossId: bossId, moves: moves };
+}
+
+// ================= 关卡加载 =================
+const state = { levelData: null, fixed: [], filled: [], moves: [], idx: 0, playing: false, timer: null, size: 0 };
+
+async function loadLevel(levelId) {
+  const resp = await fetch('data/levels/level-' + levelId + '.json');
+  if (!resp.ok) throw new Error('关卡 ' + levelId + ' 不存在');
+  return resp.json();
+}
+
+// ================= 渲染 =================
+const canvas = document.getElementById('board');
+const ctx = canvas.getContext('2d');
+
+function render() {
+  const size = state.size || 6;
+  const cell = canvas.width / size;
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  // 网格
+  ctx.strokeStyle = '#3a2f20';
+  ctx.lineWidth = 1;
+  for (let i = 0; i <= size; i++) {
+    ctx.beginPath(); ctx.moveTo(i * cell, 0); ctx.lineTo(i * cell, canvas.height); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(0, i * cell); ctx.lineTo(canvas.width, i * cell); ctx.stroke();
+  }
+  // 宫线加粗
+  const box = Math.sqrt(size) | 0;
+  ctx.strokeStyle = '#c9b696';
+  ctx.lineWidth = 2;
+  for (let i = 0; i <= size; i += box) {
+    ctx.beginPath(); ctx.moveTo(i * cell, 0); ctx.lineTo(i * cell, canvas.height); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(0, i * cell); ctx.lineTo(canvas.width, i * cell); ctx.stroke();
+  }
+  // 格子
+  ctx.font = 'bold ' + Math.floor(cell * 0.55) + 'px "Microsoft YaHei", sans-serif';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  for (let r = 0; r < size; r++) {
+    for (let c = 0; c < size; c++) {
+      const fx = (state.fixed[r] && state.fixed[r][c]) || 0;
+      const fl = (state.filled[r] && state.filled[r][c]) || 0;
+      if (fl) {
+        ctx.fillStyle = fl.correct ? 'rgba(74, 222, 128, 0.22)' : 'rgba(248, 113, 113, 0.25)';
+        ctx.fillRect(c * cell + 1, r * cell + 1, cell - 2, cell - 2);
+        ctx.fillStyle = fl.correct ? '#4ade80' : '#f87171';
+        ctx.fillText(fl.num, c * cell + cell / 2, r * cell + cell / 2);
+      } else if (fx) {
+        ctx.fillStyle = '#8b7d5c';
+        ctx.fillText(fx, c * cell + cell / 2, r * cell + cell / 2);
+      }
+    }
+  }
+  // 当前步高亮
+  const cur = state.moves[state.idx];
+  if (cur && state.idx < state.moves.length) {
+    ctx.strokeStyle = '#f5c542';
+    ctx.lineWidth = 3;
+    ctx.strokeRect(cur.c * cell + 1.5, cur.r * cell + 1.5, cell - 3, cell - 3);
+  }
+}
+
+// ================= 步进控制 =================
+function applyStep(move) {
+  if (!state.filled[move.r]) state.filled[move.r] = [];
+  state.filled[move.r][move.c] = { num: move.num, correct: move.correct !== false };
+}
+
+function stepTo(idx) {
+  state.idx = idx;
+  // 重建盘面
+  state.filled = [];
+  for (let i = 0; i <= idx && i < state.moves.length; i++) applyStep(state.moves[i]);
+  render();
+  updateStatus();
+}
+
+function updateStatus() {
+  const total = state.moves.length;
+  if (state.idx >= total) {
+    document.getElementById('status').textContent = '回放结束（共 ' + total + ' 步）';
+  } else {
+    const m = state.moves[state.idx];
+    const name = 'abcdefghij'[m.r] + (m.c + 1);
+    document.getElementById('status').textContent =
+      '第 ' + (state.idx + 1) + '/' + total + ' 步：' + name + ' = ' + m.num + (m.correct === false ? '（填错了）' : '');
+  }
+  document.getElementById('moves').textContent = '走棋序列：' +
+    state.moves.map((m, i) => (i === state.idx ? '【' : '') + 'abcdefghij'[m.r] + (m.c + 1) + '=' + m.num + (m.correct === false ? '✗' : '') + (i === state.idx ? '】' : '')).join(' ');
+}
+
+function play() {
+  if (state.playing) return;
+  if (state.idx >= state.moves.length) { stepTo(0); }
+  state.playing = true;
+  document.getElementById('btnPlay').textContent = '播放中…';
+  state.timer = setInterval(() => {
+    if (state.idx >= state.moves.length - 1) { pause(); return; }
+    stepTo(state.idx + 1);
+  }, 700);
+}
+
+function pause() {
+  state.playing = false;
+  document.getElementById('btnPlay').textContent = '播放';
+  if (state.timer) { clearInterval(state.timer); state.timer = null; }
+}
+
+// ================= 事件 =================
+document.getElementById('btnPlay').addEventListener('click', play);
+document.getElementById('btnPause').addEventListener('click', pause);
+document.getElementById('btnNext').addEventListener('click', () => { pause(); if (state.idx < state.moves.length - 1) stepTo(state.idx + 1); });
+document.getElementById('btnPrev').addEventListener('click', () => { pause(); if (state.idx > 0) stepTo(state.idx - 1); });
+document.getElementById('btnReset').addEventListener('click', () => { pause(); stepTo(0); });
+
+// ================= 初始化 =================
+(async function init() {
+  try {
+    const code = new URLSearchParams(location.search).get('code');
+    const parsed = parseCode(code);
+    if (!parsed) {
+      document.getElementById('meta').textContent = '无效的回放码';
+      document.getElementById('error').classList.remove('hidden');
+      document.getElementById('error').textContent = '请在游戏结算页点击"复制回放码"后打开本链接。';
+      return;
+    }
+    const level = await loadLevel(parsed.levelId);
+    state.levelData = level;
+    state.size = level.gridSize || 6;
+    state.moves = parsed.moves;
+    state.fixed = level.boardData.map((row) => row.slice());
+    // 按盘面尺寸调整画布
+    const cellPx = 480 / state.size;
+    canvas.width = 480;
+    canvas.height = state.size * cellPx;
+    const bossName = { yingying: '莹莹', yan: '阿妍', cagekeeper: '守笼人', shenmo: '沈墨' }[parsed.bossId] || parsed.bossId;
+    document.getElementById('meta').textContent = '第 ' + parsed.levelId + ' 关 vs ' + bossName + ' · 共 ' + parsed.moves.length + ' 步';
+    stepTo(0);
+  } catch (e) {
+    console.error(e);
+    document.getElementById('meta').textContent = '加载失败';
+    document.getElementById('error').classList.remove('hidden');
+    document.getElementById('error').textContent = e.message;
+  }
+})();
+</script>
+</body>
+</html>

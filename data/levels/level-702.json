@@ -1,0 +1,1465 @@
+{
+  "levelId": 702,
+  "title": "第2关：隐性之钥",
+  "gridSize": 9,
+  "difficulty": "大师",
+  "teachingGoal": "学习双曜（Hidden Pair）：当两个数字在某区域内只能出现在相同的两个格子中时，这两个格子只可能是这两个数字，可以排除其他候选。",
+  "features": {
+    "allowDraft": true,
+    "assistant45": true,
+    "showHints": true,
+    "perspectiveMode": true,
+    "highlightRow": true,
+    "highlightCol": true,
+    "highlightBox": true,
+    "highlightNumber": true,
+    "highlightCage": true,
+    "autoFillCandidates": false
+  },
+  "triggers": [
+    {
+      "condition": "onLevelStart",
+      "type": "freeze_mask",
+      "highlight": "full",
+      "text": "提示：双曜不容易直接看到。尝试逐个数字检查——某个数字在该行/列/宫中只出现在两个位置？如果另一个数字也恰好只在这两个位置，那就是双曜！",
+      "once": true,
+      "id": "t702_auto_0",
+      "targetR": 0,
+      "targetC": 0,
+      "targetType": "cell",
+      "highlightShape": "circle"
+    },
+    {
+      "condition": "onStuckForSeconds",
+      "seconds": 35,
+      "type": "popup_hint",
+      "position": "top",
+      "text": "💡 双曜的关键：不是看格子有什么候选，而是看数字能去哪里。",
+      "delay": 500,
+      "id": "t702_auto_1"
+    },
+    {
+      "id": "t702_f1",
+      "condition": "onFirstNumberFilled",
+      "type": "popup_hint",
+      "position": "top",
+      "text": "对了！双曜被你发现了——虽然格子有多个候选，但2和7只能在这两格！",
+      "once": true
+    },
+    {
+      "id": "t702_b",
+      "condition": "onFillCountReached",
+      "count": 59,
+      "type": "enter_phase",
+      "phase": "breakthrough",
+      "once": true
+    },
+    {
+      "id": "t702_bt",
+      "condition": "onFillCountReached",
+      "count": 59,
+      "type": "popup_hint",
+      "position": "top",
+      "text": "⚡ 破局时刻！双曜被你揪出，多余候选一扫而空！",
+      "once": true,
+      "delay": 400
+    },
+    {
+      "id": "t702_st20",
+      "condition": "onStuckForSeconds",
+      "seconds": 20,
+      "type": "popup_hint",
+      "position": "top",
+      "text": "💡 卡住了？双曜要「看数字不看格」：找两个数字，看它们在某行/列/宫里的可能位置，如果恰好是相同两格，就是双曜！",
+      "once": false
+    },
+    {
+      "id": "t702_ag",
+      "condition": "onConflict",
+      "type": "popup_hint",
+      "position": "top",
+      "text": "⚠️ 双曜要确认这两个数字真的只在这两个格子里——漏掉一个位置就会错删候选！",
+      "once": false
+    },
+    {
+      "id": "t702_fi",
+      "condition": "onFillCountReached",
+      "count": 72,
+      "type": "enter_phase",
+      "phase": "finishing",
+      "once": true
+    },
+    {
+      "id": "t702_fit",
+      "condition": "onFillCountReached",
+      "count": 72,
+      "type": "popup_hint",
+      "position": "top",
+      "text": "✨ 收官！隐性之钥打开了通往答案的最后一道门！",
+      "once": true,
+      "delay": 400
+    },
+    {
+      "id": "t702_c",
+      "condition": "onLevelComplete",
+      "type": "popup_hint",
+      "position": "top",
+      "text": "🎉 双曜已掌握！「显看格，隐看数」——数对的两种形态尽在掌握！",
+      "once": true
+    }
+  ],
+  "boardData": [
+    [
+      2,
+      5,
+      0,
+      9,
+      0,
+      0,
+      0,
+      3,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      7,
+      5,
+      3,
+      4,
+      0,
+      0
+    ],
+    [
+      0,
+      3,
+      0,
+      8,
+      0,
+      0,
+      1,
+      0,
+      0
+    ],
+    [
+      5,
+      0,
+      0,
+      0,
+      0,
+      2,
+      0,
+      7,
+      0
+    ],
+    [
+      8,
+      4,
+      3,
+      1,
+      6,
+      7,
+      0,
+      2,
+      0
+    ],
+    [
+      0,
+      0,
+      2,
+      5,
+      8,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      8,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      7
+    ],
+    [
+      7,
+      0,
+      1,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      6,
+      0,
+      0,
+      0,
+      4,
+      0
+    ]
+  ],
+  "cages": [
+    {
+      "id": 1,
+      "sum": 7,
+      "cells": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ]
+      ]
+    },
+    {
+      "id": 2,
+      "sum": 22,
+      "cells": [
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          1
+        ]
+      ]
+    },
+    {
+      "id": 3,
+      "sum": 21,
+      "cells": [
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          4
+        ]
+      ]
+    },
+    {
+      "id": 4,
+      "sum": 26,
+      "cells": [
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          0,
+          6
+        ],
+        [
+          0,
+          7
+        ],
+        [
+          1,
+          7
+        ]
+      ]
+    },
+    {
+      "id": 5,
+      "sum": 28,
+      "cells": [
+        [
+          0,
+          8
+        ],
+        [
+          1,
+          8
+        ],
+        [
+          2,
+          8
+        ],
+        [
+          2,
+          7
+        ],
+        [
+          3,
+          7
+        ]
+      ]
+    },
+    {
+      "id": 6,
+      "sum": 8,
+      "cells": [
+        [
+          1,
+          6
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          6
+        ]
+      ]
+    },
+    {
+      "id": 7,
+      "sum": 16,
+      "cells": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          0
+        ]
+      ]
+    },
+    {
+      "id": 8,
+      "sum": 17,
+      "cells": [
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          4
+        ]
+      ]
+    },
+    {
+      "id": 9,
+      "sum": 29,
+      "cells": [
+        [
+          3,
+          8
+        ],
+        [
+          4,
+          8
+        ],
+        [
+          5,
+          8
+        ],
+        [
+          6,
+          8
+        ],
+        [
+          7,
+          8
+        ]
+      ]
+    },
+    {
+      "id": 10,
+      "sum": 16,
+      "cells": [
+        [
+          3,
+          6
+        ],
+        [
+          4,
+          6
+        ],
+        [
+          4,
+          7
+        ],
+        [
+          5,
+          7
+        ]
+      ]
+    },
+    {
+      "id": 11,
+      "sum": 19,
+      "cells": [
+        [
+          3,
+          5
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          4,
+          4
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          4,
+          2
+        ]
+      ]
+    },
+    {
+      "id": 12,
+      "sum": 14,
+      "cells": [
+        [
+          3,
+          3
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          1
+        ]
+      ]
+    },
+    {
+      "id": 13,
+      "sum": 30,
+      "cells": [
+        [
+          3,
+          0
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          5,
+          1
+        ],
+        [
+          5,
+          0
+        ]
+      ]
+    },
+    {
+      "id": 14,
+      "sum": 20,
+      "cells": [
+        [
+          5,
+          6
+        ],
+        [
+          5,
+          5
+        ],
+        [
+          5,
+          4
+        ]
+      ]
+    },
+    {
+      "id": 15,
+      "sum": 20,
+      "cells": [
+        [
+          5,
+          3
+        ],
+        [
+          6,
+          3
+        ],
+        [
+          6,
+          4
+        ],
+        [
+          6,
+          5
+        ],
+        [
+          6,
+          6
+        ]
+      ]
+    },
+    {
+      "id": 16,
+      "sum": 8,
+      "cells": [
+        [
+          5,
+          2
+        ],
+        [
+          6,
+          2
+        ]
+      ]
+    },
+    {
+      "id": 17,
+      "sum": 25,
+      "cells": [
+        [
+          6,
+          0
+        ],
+        [
+          7,
+          0
+        ],
+        [
+          7,
+          1
+        ],
+        [
+          8,
+          1
+        ],
+        [
+          8,
+          0
+        ]
+      ]
+    },
+    {
+      "id": 18,
+      "sum": 8,
+      "cells": [
+        [
+          6,
+          1
+        ]
+      ]
+    },
+    {
+      "id": 19,
+      "sum": 19,
+      "cells": [
+        [
+          6,
+          7
+        ],
+        [
+          7,
+          7
+        ],
+        [
+          7,
+          6
+        ]
+      ]
+    },
+    {
+      "id": 20,
+      "sum": 22,
+      "cells": [
+        [
+          7,
+          5
+        ],
+        [
+          8,
+          5
+        ],
+        [
+          8,
+          6
+        ]
+      ]
+    },
+    {
+      "id": 21,
+      "sum": 12,
+      "cells": [
+        [
+          7,
+          4
+        ],
+        [
+          7,
+          3
+        ],
+        [
+          7,
+          2
+        ],
+        [
+          8,
+          2
+        ]
+      ]
+    },
+    {
+      "id": 22,
+      "sum": 13,
+      "cells": [
+        [
+          8,
+          3
+        ],
+        [
+          8,
+          4
+        ]
+      ]
+    },
+    {
+      "id": 23,
+      "sum": 5,
+      "cells": [
+        [
+          8,
+          7
+        ],
+        [
+          8,
+          8
+        ]
+      ]
+    }
+  ],
+  "solution": [
+    [
+      2,
+      5,
+      4,
+      9,
+      1,
+      6,
+      7,
+      3,
+      8
+    ],
+    [
+      1,
+      6,
+      8,
+      7,
+      5,
+      3,
+      4,
+      9,
+      2
+    ],
+    [
+      9,
+      3,
+      7,
+      8,
+      2,
+      4,
+      1,
+      6,
+      5
+    ],
+    [
+      5,
+      1,
+      9,
+      4,
+      3,
+      2,
+      8,
+      7,
+      6
+    ],
+    [
+      8,
+      4,
+      3,
+      1,
+      6,
+      7,
+      5,
+      2,
+      9
+    ],
+    [
+      6,
+      7,
+      2,
+      5,
+      8,
+      9,
+      3,
+      1,
+      4
+    ],
+    [
+      4,
+      8,
+      6,
+      3,
+      9,
+      1,
+      2,
+      5,
+      7
+    ],
+    [
+      7,
+      9,
+      1,
+      2,
+      4,
+      5,
+      6,
+      8,
+      3
+    ],
+    [
+      3,
+      2,
+      5,
+      6,
+      7,
+      8,
+      9,
+      4,
+      1
+    ]
+  ],
+  "preDialog": [
+    {
+      "speaker": "旁白",
+      "text": "沈墨在清晨走到霞飞路。书店的门锁着，门缝里没有光。窗台上放着一本书——书脊朝外，和六月他第一次来的时候一模一样。",
+      "isNarration": true
+    },
+    {
+      "speaker": "沈墨 CHIBI",
+      "text": "……书还在。但她已经不在了。她把书留在这里，是为了让我知道——题面已经销毁了。",
+      "side": "left",
+      "emotion": "thinking",
+      "effect": 0
+    },
+    {
+      "speaker": "老师（留声）",
+      "text": "隐曜深化——当一个数字在行、列、宫中只剩一个位置时，它就是答案。在整条链路中，当所有痕迹都被清理之后，剩下的那个痕迹就是最关键的。",
+      "side": "right",
+      "emotion": "calm",
+      "effect": 0
+    }
+  ],
+  "clearDialog": [
+    {
+      "speaker": "旁白",
+      "text": "沈墨翻开窗台上那本书。书页之间夹着一条纸条：“你走的路是对的。”没有署名。",
+      "isNarration": true
+    },
+    {
+      "speaker": "沈墨 CHIBI",
+      "text": "……是她放的。她不在上海了，但她在离开之前把这句话留在了这里。",
+      "side": "left",
+      "emotion": "thinking",
+      "effect": 0
+    },
+    {
+      "speaker": "薇拉",
+      "text": "她留下的那条纸条，是你最后一次确认链路安全的凭证。她会确保那条路在关闭时不会留下任何可被追踪的痕迹。",
+      "side": "right",
+      "emotion": "calm",
+      "effect": 0
+    }
+  ],
+  "isBoss": false,
+  "mode": "endgame",
+  "coreMove": {
+    "row": 0,
+    "col": 6,
+    "value": 3,
+    "cascadeCount": 45,
+    "cascadeSequence": [
+      {
+        "row": 7,
+        "col": 7,
+        "value": 4,
+        "cellId": 70
+      },
+      {
+        "row": 1,
+        "col": 8,
+        "value": 4,
+        "cellId": 17
+      },
+      {
+        "row": 1,
+        "col": 2,
+        "value": 3,
+        "cellId": 11
+      },
+      {
+        "row": 1,
+        "col": 1,
+        "value": 1,
+        "cellId": 10
+      },
+      {
+        "row": 2,
+        "col": 1,
+        "value": 7,
+        "cellId": 19
+      },
+      {
+        "row": 4,
+        "col": 1,
+        "value": 2,
+        "cellId": 37
+      },
+      {
+        "row": 4,
+        "col": 0,
+        "value": 1,
+        "cellId": 36
+      },
+      {
+        "row": 5,
+        "col": 4,
+        "value": 2,
+        "cellId": 49
+      },
+      {
+        "row": 0,
+        "col": 4,
+        "value": 4,
+        "cellId": 4
+      },
+      {
+        "row": 4,
+        "col": 4,
+        "value": 7,
+        "cellId": 40
+      },
+      {
+        "row": 3,
+        "col": 3,
+        "value": 9,
+        "cellId": 30
+      },
+      {
+        "row": 3,
+        "col": 5,
+        "value": 6,
+        "cellId": 32
+      },
+      {
+        "row": 3,
+        "col": 0,
+        "value": 7,
+        "cellId": 27
+      },
+      {
+        "row": 4,
+        "col": 5,
+        "value": 4,
+        "cellId": 41
+      },
+      {
+        "row": 4,
+        "col": 2,
+        "value": 9,
+        "cellId": 38
+      },
+      {
+        "row": 2,
+        "col": 2,
+        "value": 4,
+        "cellId": 20
+      },
+      {
+        "row": 2,
+        "col": 0,
+        "value": 9,
+        "cellId": 18
+      },
+      {
+        "row": 5,
+        "col": 2,
+        "value": 6,
+        "cellId": 47
+      },
+      {
+        "row": 0,
+        "col": 2,
+        "value": 8,
+        "cellId": 2
+      },
+      {
+        "row": 0,
+        "col": 0,
+        "value": 6,
+        "cellId": 0
+      },
+      {
+        "row": 5,
+        "col": 1,
+        "value": 3,
+        "cellId": 46
+      },
+      {
+        "row": 5,
+        "col": 0,
+        "value": 4,
+        "cellId": 45
+      },
+      {
+        "row": 6,
+        "col": 2,
+        "value": 7,
+        "cellId": 56
+      },
+      {
+        "row": 7,
+        "col": 0,
+        "value": 3,
+        "cellId": 63
+      },
+      {
+        "row": 7,
+        "col": 1,
+        "value": 6,
+        "cellId": 64
+      },
+      {
+        "row": 7,
+        "col": 8,
+        "value": 9,
+        "cellId": 71
+      },
+      {
+        "row": 5,
+        "col": 8,
+        "value": 1,
+        "cellId": 53
+      },
+      {
+        "row": 5,
+        "col": 6,
+        "value": 9,
+        "cellId": 51
+      },
+      {
+        "row": 6,
+        "col": 8,
+        "value": 5,
+        "cellId": 62
+      },
+      {
+        "row": 6,
+        "col": 0,
+        "value": 8,
+        "cellId": 54
+      },
+      {
+        "row": 8,
+        "col": 0,
+        "value": 5,
+        "cellId": 72
+      },
+      {
+        "row": 8,
+        "col": 4,
+        "value": 6,
+        "cellId": 76
+      },
+      {
+        "row": 8,
+        "col": 5,
+        "value": 1,
+        "cellId": 77
+      },
+      {
+        "row": 2,
+        "col": 5,
+        "value": 2,
+        "cellId": 23
+      },
+      {
+        "row": 0,
+        "col": 3,
+        "value": 1,
+        "cellId": 3
+      },
+      {
+        "row": 0,
+        "col": 5,
+        "value": 9,
+        "cellId": 5
+      },
+      {
+        "row": 0,
+        "col": 7,
+        "value": 2,
+        "cellId": 7
+      },
+      {
+        "row": 2,
+        "col": 7,
+        "value": 1,
+        "cellId": 25
+      },
+      {
+        "row": 6,
+        "col": 3,
+        "value": 2,
+        "cellId": 57
+      },
+      {
+        "row": 6,
+        "col": 6,
+        "value": 1,
+        "cellId": 60
+      },
+      {
+        "row": 7,
+        "col": 3,
+        "value": 7,
+        "cellId": 66
+      },
+      {
+        "row": 7,
+        "col": 6,
+        "value": 2,
+        "cellId": 69
+      },
+      {
+        "row": 8,
+        "col": 3,
+        "value": 4,
+        "cellId": 75
+      },
+      {
+        "row": 8,
+        "col": 6,
+        "value": 7,
+        "cellId": 78
+      },
+      {
+        "row": 8,
+        "col": 8,
+        "value": 3,
+        "cellId": 80
+      }
+    ]
+  },
+  "isClassic": true,
+  "breakPointIndex": 6,
+  "totalSteps": 54,
+  "targetTechnique": "hiddenPair",
+  "threeAct": {
+    "opening": [
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        3
+      ],
+      [
+        1,
+        5
+      ],
+      [
+        4,
+        0
+      ],
+      [
+        4,
+        5
+      ],
+      [
+        3,
+        5
+      ],
+      [
+        4,
+        2
+      ],
+      [
+        4,
+        3
+      ],
+      [
+        5,
+        0
+      ],
+      [
+        3,
+        2
+      ],
+      [
+        3,
+        1
+      ],
+      [
+        3,
+        3
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        2,
+        5
+      ],
+      [
+        0,
+        4
+      ],
+      [
+        0,
+        5
+      ],
+      [
+        0,
+        6
+      ],
+      [
+        0,
+        8
+      ],
+      [
+        2,
+        4
+      ],
+      [
+        5,
+        1
+      ],
+      [
+        5,
+        6
+      ],
+      [
+        6,
+        2
+      ],
+      [
+        6,
+        3
+      ],
+      [
+        8,
+        4
+      ],
+      [
+        8,
+        8
+      ]
+    ],
+    "breakthrough": [
+      [
+        3,
+        8
+      ],
+      [
+        6,
+        0
+      ],
+      [
+        6,
+        4
+      ],
+      [
+        6,
+        6
+      ],
+      [
+        6,
+        7
+      ],
+      [
+        7,
+        1
+      ],
+      [
+        7,
+        6
+      ],
+      [
+        7,
+        7
+      ],
+      [
+        7,
+        5
+      ],
+      [
+        7,
+        8
+      ],
+      [
+        8,
+        1
+      ],
+      [
+        8,
+        5
+      ],
+      [
+        8,
+        6
+      ]
+    ],
+    "avalanche": [
+      [
+        0,
+        2
+      ],
+      [
+        1,
+        7
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        1,
+        8
+      ],
+      [
+        2,
+        0
+      ],
+      [
+        2,
+        2
+      ],
+      [
+        2,
+        8
+      ],
+      [
+        2,
+        7
+      ],
+      [
+        3,
+        6
+      ],
+      [
+        4,
+        6
+      ],
+      [
+        4,
+        8
+      ],
+      [
+        5,
+        5
+      ],
+      [
+        5,
+        7
+      ],
+      [
+        5,
+        8
+      ],
+      [
+        7,
+        4
+      ],
+      [
+        8,
+        0
+      ],
+      [
+        8,
+        2
+      ]
+    ]
+  },
+  "difficultyLevel": 8,
+  "lessonPlan": {
+    "newSkill": "hiddenPair_702",
+    "skillName": "双曜（隐性之钥）",
+    "isFirstLesson": false,
+    "skippable": true,
+    "prerequisite": [
+      "nakedPair"
+    ],
+    "phases": {
+      "intro": {
+        "text": "隐曜深化——扫数字。当一个数字在行、列、宫中只剩一个位置时，它就是答案。当痕迹被清理到只剩一条时，那条痕迹就是最关键的。",
+        "speaker": "老师（留声）",
+        "duration": 4000
+      },
+      "demo": {
+        "steps": [
+          {
+            "action": "spotlightOn",
+            "target": 0.35,
+            "duration": 400
+          },
+          {
+            "action": "highlightCol",
+            "target": 5,
+            "duration": 1600,
+            "text": "看第 5 列。双曜要『看数字，不看格』：逐个数字扫描，看它在这一列能去哪几格。"
+          },
+          {
+            "action": "highlightCell",
+            "target": [
+              7,
+              5
+            ],
+            "duration": 1200,
+            "text": "数字 5：在第 5 列里只能放在 (7,5) 和 (8,5) 这两格。"
+          },
+          {
+            "action": "highlightCell",
+            "target": [
+              8,
+              5
+            ],
+            "duration": 1200,
+            "text": "数字 8：也恰好只能放在 (7,5) 和 (8,5) 这两格！两个数字、相同两格——双曜（Hidden Pair）出现！"
+          },
+          {
+            "action": "highlightCell",
+            "target": [
+              7,
+              5
+            ],
+            "duration": 1500,
+            "text": "5 和 8 被锁进这两格：它们只可能是 5、8，别的候选再也挤不进来。"
+          },
+          {
+            "action": "focusCell",
+            "target": [
+              5,
+              5
+            ],
+            "duration": 1600,
+            "text": "再看第 5 列剩下的格子：数字 9 还能去哪？(0,5) 只剩 {4,6}，(2,5) 是 4——只有 (5,5) 能放 9。填 9！"
+          }
+        ]
+      },
+      "guided": {
+        "targetCell": [
+          5,
+          5
+        ],
+        "correctValue": 9,
+        "interactionType": "NUMBER",
+        "maxAttempts": 2,
+        "autoRevealAfter": 2,
+        "methodText": "找双曜的方法：逐对数字扫描。选两个数字，看它们在某个行/列/宫里各自只能放在哪几格——如果恰好都落在相同的两个格子，这对数字就被锁定，可从这两格删掉其它候选。",
+        "hintText": "轮到你了：双曜把 5、8 锁进 (7,5) 与 (8,5)。第 5 列里数字 9 只能进哪个格子？试试看。",
+        "failHint": "再想想：第 5 列中 5 和 8 只可能在 (7,5)、(8,5)，所以 9 不可能在这两格；排除 (0,5) 的 {4,6} 后，9 只剩 (5,5) 一个位置。",
+        "failConflictCell": [
+          7,
+          5
+        ],
+        "failVoiceId": "CK_05",
+        "successText": "答对了！双曜的意义不在填数，而在排除——锁定一对数字，其它候选全部让路！",
+        "successVoiceId": "J_03",
+        "autoRevealText": "直接填入数字 9。",
+        "successNext": [
+          {
+            "cell": [
+              4,
+              6
+            ],
+            "hintText": "很好！第 4 行只剩两个空格，恰好是 {5,9}——试试看。"
+          },
+          {
+            "cell": [
+              4,
+              8
+            ],
+            "hintText": "双曜的另一半也定了：第 4 行余下的 (4,8)——试试看。"
+          }
+        ]
+      },
+      "semiAuto": {
+        "enabled": true,
+        "targetCount": 2,
+        "interactionType": "NUMBER",
+        "hintText": "继续用「逐对扫描」的方法找双曜，再确定两个数字。",
+        "hintVoiceId": "R_07",
+        "watchCells": [
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            5
+          ]
+        ]
+      },
+      "free": {
+        "enabled": true,
+        "unlockText": "双曜已掌握！数对的两种形态——并蒂锁与双曜——都已收入囊中。"
+      }
+    }
+  }
+}

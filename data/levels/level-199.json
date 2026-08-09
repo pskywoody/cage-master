@@ -1,0 +1,450 @@
+{
+  "levelId": 199,
+  "title": "隐藏关：笼中密信",
+  "isHidden": true,
+  "hiddenUnlockType": "all_s_chapter",
+  "gridSize": 4,
+  "difficulty": "入门",
+  "teachingGoal": "隐藏关：综合运用所有4x4技巧，发现设局人留下的第一封密信。",
+  "features": {
+    "allowDraft": true,
+    "assistant45": true,
+    "showHints": true,
+    "highlightRow": true,
+    "highlightCol": true,
+    "highlightBox": true,
+    "highlightNumber": true,
+    "highlightCage": true,
+    "autoFillCandidates": false
+  },
+  "boardData": [
+    [
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      2
+    ],
+    [
+      0,
+      0,
+      3,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0
+    ]
+  ],
+  "solution": [
+    [
+      2,
+      4,
+      1,
+      3
+    ],
+    [
+      1,
+      3,
+      4,
+      2
+    ],
+    [
+      4,
+      2,
+      3,
+      1
+    ],
+    [
+      3,
+      1,
+      2,
+      4
+    ]
+  ],
+  "cages": [
+    {
+      "id": 0,
+      "sum": 10,
+      "cells": [
+        [
+          2,
+          1
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          2,
+          0
+        ]
+      ]
+    },
+    {
+      "id": 1,
+      "sum": 9,
+      "cells": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ]
+      ]
+    },
+    {
+      "id": 2,
+      "sum": 3,
+      "cells": [
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "id": 3,
+      "sum": 10,
+      "cells": [
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          3
+        ]
+      ]
+    },
+    {
+      "id": 4,
+      "sum": 3,
+      "cells": [
+        [
+          0,
+          3
+        ]
+      ]
+    },
+    {
+      "id": 5,
+      "sum": 5,
+      "cells": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ]
+      ]
+    }
+  ],
+  "preDialog": [
+    {
+      "speaker": "旁白",
+      "text": "沈墨在整理那本《战争与和平》时，发现书脊内侧有一道压痕——像是有人写过字，又擦掉了。",
+      "cg": "assets/images/chapter1/cg/CG-CH1-07_handwritten_puzzle.jpg",
+      "isNarration": true
+    },
+    {
+      "speaker": "老师（留声）",
+      "text": "如果你看到了这一页，说明你已经不用再翻后面的书了。你走在一条可以自己判断的路上。",
+      "side": "right",
+      "emotion": "calm",
+      "effect": 0
+    },
+    {
+      "speaker": "沈墨 CHIBI",
+      "text": "……她走之前就知道我会来翻这一页。",
+      "side": "left",
+      "emotion": "thinking",
+      "effect": 0
+    }
+  ],
+  "lessonPlan": {
+    "newSkill": "hidden_letter_199",
+    "skillName": "密信解锁",
+    "isFirstLesson": false,
+    "skippable": true,
+    "prerequisite": [
+      "row_col_rule",
+      "box_rule",
+      "cage_combo",
+      "hidden_single",
+      "combo_mastery",
+      "rule_of_ten"
+    ],
+    "phases": {
+      "intro": {
+        "text": "这是隐藏关「无字之笼」——没有任何提示数字，全凭笼和推导。要综合 4×4 的全部技巧：孤星（单格笼直接填笼和）、唯一组合（小和值笼的固定配对）、隐曜（行、列、宫内唯一缺失的数字）、10法则（4×4 每行、每列、每宫总和恒为 10）。找出设局人留下的第一封密信吧。",
+        "voiceId": "CK_10",
+        "duration": 6000
+      },
+      "demo": {
+        "steps": [
+          {
+            "action": "spotlightOn",
+            "target": 0.35,
+            "duration": 400
+          },
+          {
+            "action": "highlightCage",
+            "target": 4,
+            "duration": 1400,
+            "text": "无字之笼没有提示数，先从最特殊的笼子入手——这是一个单格笼。"
+          },
+          {
+            "action": "focusCell",
+            "target": [
+              0,
+              3
+            ],
+            "duration": 1300,
+            "text": "「孤星」：单格笼直接填笼和——a4 = 3。"
+          },
+          {
+            "action": "highlightCage",
+            "target": 5,
+            "duration": 1300,
+            "text": "「唯一组合」：这个两格笼和是 5，只有 1+4 或 2+3 两种可能。"
+          },
+          {
+            "action": "highlightRow",
+            "target": 0,
+            "duration": 1200,
+            "text": "但这一行已经有 3 了，2+3 不可能——这两格只能是 1 和 4。"
+          },
+          {
+            "action": "focusCell",
+            "target": [
+              1,
+              1
+            ],
+            "duration": 1200,
+            "text": "再看这个三格笼：和是 9，b4 已是 2，剩下两格和是 7——只能是 3 和 4。"
+          },
+          {
+            "action": "focusCell",
+            "target": [
+              1,
+              0
+            ],
+            "duration": 1400,
+            "text": "「隐曜」：第二行已有 2、3、4，唯独缺 1——b1 = 1。"
+          },
+          {
+            "action": "focusCell",
+            "target": [
+              0,
+              0
+            ],
+            "duration": 1200,
+            "text": "那和 3 的笼里另一格就是 2——a1 = 2。"
+          },
+          {
+            "action": "focusCell",
+            "target": [
+              0,
+              1
+            ],
+            "duration": 1400,
+            "text": "左上宫还缺 3、4，而 a2 只能是 1 或 4——所以 a2 = 4。"
+          },
+          {
+            "action": "focusCell",
+            "target": [
+              0,
+              2
+            ],
+            "duration": 1400,
+            "text": "「10法则」：第一行总和恒为 10，2 + 4 + 3 = 9，10 - 9 = 1——a3 = 1。"
+          },
+          {
+            "action": "focusCell",
+            "target": [
+              2,
+              0
+            ],
+            "duration": 1400,
+            "text": "「隐曜」收尾：这一列已有 1、2，还缺 3、4；而这一行已经有 3——所以 c1 = 4。"
+          }
+        ]
+      },
+      "guided": {
+        "targetCell": [
+          0,
+          3
+        ],
+        "correctValue": 3,
+        "interactionType": "NUMBER",
+        "autoRevealText": "直接填入数字 3。",
+        "maxAttempts": 2,
+        "autoRevealAfter": 2,
+        "methodText": "单格笼「孤星」：笼里只有一个格，笼和是多少，这一格就填多少。",
+        "hintText": "轮到你了：a4 这一格所在的笼只有它自己，笼和是 3——试试看。",
+        "failHint": "孤星：单格笼直接填笼和。这个笼和是 3，试试填 3。",
+        "failVoiceId": "CK_05",
+        "successText": "第一枚数字破译——密信的锁，松动了。",
+        "successVoiceId": "J_03",
+        "successNext": [
+          {
+            "cell": [
+              1,
+              0
+            ],
+            "hintText": "接力「隐曜」：第二行已有 2，三格笼推得 b2、b3 是 3、4——第二行只剩 1，填 b1 = 1试试看。"
+          },
+          {
+            "cell": [
+              0,
+              1
+            ],
+            "hintText": "再来！左上宫缺 3、4，而 a2 只能是 1 或 4——填 a2 = 4试试看。"
+          }
+        ]
+      },
+      "semiAuto": {
+        "enabled": true,
+        "targetCount": 3,
+        "hintText": "继续用笼和、行列排除和十则，再找出三个数字。",
+        "hintVoiceId": "R_07",
+        "watchCells": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            0
+          ]
+        ],
+        "interactionType": "NUMBER"
+      },
+      "free": {
+        "enabled": true,
+        "unlockText": "密信已经近在眼前，剩下的交给你。"
+      }
+    }
+  },
+  "clearDialog": [
+    {
+      "speaker": "旁白",
+      "text": "沈墨把书合上。那行字已经消失了——他触碰过的纸面恢复了平整。",
+      "isNarration": true
+    },
+    {
+      "speaker": "老师（留声）",
+      "text": "你已经不需要我了。",
+      "side": "right",
+      "emotion": "calm",
+      "effect": 0
+    },
+    {
+      "speaker": "沈墨 CHIBI",
+      "text": "……她留下的最后一句话，不是告别——是确认。",
+      "side": "left",
+      "emotion": "calm",
+      "effect": 0
+    }
+  ],
+  "threeAct": {
+    "opening": [
+      [
+        0,
+        3
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        2,
+        3
+      ]
+    ],
+    "breakthrough": [
+      [
+        3,
+        0
+      ],
+      [
+        3,
+        1
+      ],
+      [
+        3,
+        2
+      ]
+    ],
+    "avalanche": [
+      [
+        2,
+        0
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        3,
+        3
+      ]
+    ]
+  }
+}

@@ -1,0 +1,7358 @@
+{
+  "VO_CK_0001": {
+    "file": "assets/audio/voice/CK/VO_CK_0001.mp3",
+    "char": "守笼人",
+    "text": "欢迎来到数字档案馆。我是守笼人。这里记录着所有被锁住的数字，也记录着被锁住的过去。",
+    "duration": 14.15
+  },
+  "VO_CK_0002": {
+    "file": "assets/audio/voice/CK/VO_CK_0002.mp3",
+    "char": "守笼人",
+    "text": "无论你们各自抱着什么目的而来，在这间档案馆里，规则是第一位的。",
+    "duration": 9.36
+  },
+  "VO_CK_0003": {
+    "file": "assets/audio/voice/CK/VO_CK_0003.mp3",
+    "char": "守笼人",
+    "text": "第一道档案锁遵循行规则：同一横排数字1-4不可重复。",
+    "duration": 9.54
+  },
+  "VO_CK_0004": {
+    "file": "assets/audio/voice/CK/VO_CK_0004.mp3",
+    "char": "守笼人",
+    "text": "解开它们，你就能找到真相。",
+    "duration": 5.54
+  },
+  "VO_N_0001": {
+    "file": "assets/audio/voice/N/VO_N_0001.mp3",
+    "char": "旁白",
+    "text": "你推开尘封三十年的档案馆大门，空气中弥漫着旧纸张的气息。一封匿名信带你来到这里——信上只有一行字：\"档案编号K-734。如果你能解开这一局，就能找到我。\"",
+    "duration": 24.66
+  },
+  "VO_SM_0001": {
+    "file": "assets/audio/voice/SM/VO_SM_0001.mp3",
+    "char": "沈墨",
+    "text": "好。",
+    "duration": 2.05
+  },
+  "VO_CK_0005": {
+    "file": "assets/audio/voice/CK/VO_CK_0005.mp3",
+    "char": "守笼人",
+    "text": "欢迎来到数字档案馆。我是守笼人。这里记录着所有被锁住的数字，也记录着被锁住的过去。",
+    "duration": 14.15
+  },
+  "VO_J_0001": {
+    "file": "assets/audio/voice/J/VO_J_0001.mp3",
+    "char": "莹莹",
+    "text": "哇！来新人啦！我叫莹莹，比你早到两个月！",
+    "duration": 7.52
+  },
+  "VO_J_0002": {
+    "file": "assets/audio/voice/J/VO_J_0002.mp3",
+    "char": "莹莹",
+    "text": "这地方特——别——大——我第一天来的时候为了找厕所，在里面迷路了三天三夜！",
+    "duration": 9.97
+  },
+  "VO_R_0001": {
+    "file": "assets/audio/voice/R/VO_R_0001.mp3",
+    "char": "阿妍",
+    "text": "阿妍。比你早来三周。",
+    "duration": 4.46
+  },
+  "VO_R_0002": {
+    "file": "assets/audio/voice/R/VO_R_0002.mp3",
+    "char": "阿妍",
+    "text": "在看你的资料。委托人信上的内容，我已经确认过了——是真的。这间档案馆确实藏着什么。",
+    "duration": 13.03
+  },
+  "VO_CK_0006": {
+    "file": "assets/audio/voice/CK/VO_CK_0006.mp3",
+    "char": "守笼人",
+    "text": "无论你们各自抱着什么目的而来，在这间档案馆里，规则是第一位的。",
+    "duration": 9.36
+  },
+  "VO_CK_0007": {
+    "file": "assets/audio/voice/CK/VO_CK_0007.mp3",
+    "char": "守笼人",
+    "text": "从今天起，你们将从最基础的4×4盘面学起。每行、每列、每个2×2小宫格里，数字只能出现一次。",
+    "duration": 17.75
+  },
+  "VO_J_0003": {
+    "file": "assets/audio/voice/J/VO_J_0003.mp3",
+    "char": "莹莹",
+    "text": "报告！我已经能背了！第二项：每行每列数字不重复！第三项：2×2宫格数字不重复！",
+    "duration": 14.26
+  },
+  "VO_CK_0008": {
+    "file": "assets/audio/voice/CK/VO_CK_0008.mp3",
+    "char": "守笼人",
+    "text": "准备好了吗？",
+    "duration": 3.06
+  },
+  "VO_CK_0009": {
+    "file": "assets/audio/voice/CK/VO_CK_0009.mp3",
+    "char": "守笼人",
+    "text": "第一道档案锁遵循行规则：同一横排数字1-4不可重复。",
+    "duration": 9.54
+  },
+  "VO_CK_0010": {
+    "file": "assets/audio/voice/CK/VO_CK_0010.mp3",
+    "char": "守笼人",
+    "text": "解开它们，你就能找到真相。",
+    "duration": 5.54
+  },
+  "VO_CK_0011": {
+    "file": "assets/audio/voice/CK/VO_CK_0011.mp3",
+    "char": "守笼人",
+    "text": "基础铁律你已吃透。接下来，真正的笼锁谜题即将出现。",
+    "duration": 10.76
+  },
+  "VO_CK_0012": {
+    "file": "assets/audio/voice/CK/VO_CK_0012.mp3",
+    "char": "守笼人",
+    "text": "能解开基础行锁，说明你至少具备了最基本的观察力。",
+    "duration": 8.24
+  },
+  "VO_CK_0013": {
+    "file": "assets/audio/voice/CK/VO_CK_0013.mp3",
+    "char": "守笼人",
+    "text": "双格笼是最基础的笼型，可直接根据和值锁定仅有的数字组合。记住——三取一二，四取一三，六取二四，七取三四。",
+    "duration": 19.48
+  },
+  "VO_CK_0014": {
+    "file": "assets/audio/voice/CK/VO_CK_0014.mp3",
+    "char": "守笼人",
+    "text": "多重笼格交错时，需要同时兼顾行、列、宫与笼和四条约束。记住——“群曜遮目，一光独隐”。",
+    "duration": 16.85
+  },
+  "VO_CK_0015": {
+    "file": "assets/audio/voice/CK/VO_CK_0015.mp3",
+    "char": "守笼人",
+    "text": "本章最终考核，检验你所有基础笼局推理能力——孤星、隐曜、并蒂锁、三子法、十则之术。",
+    "duration": 15.23
+  },
+  "VO_R_0003": {
+    "file": "assets/audio/voice/R/VO_R_0003.mp3",
+    "char": "阿妍",
+    "text": "阿妍。比你早来三周。",
+    "duration": 4.46
+  },
+  "VO_R_0004": {
+    "file": "assets/audio/voice/R/VO_R_0004.mp3",
+    "char": "阿妍",
+    "text": "缺哪个数，就是哪个。",
+    "duration": 3.96
+  },
+  "VO_CK_0016": {
+    "file": "assets/audio/voice/CK/VO_CK_0016.mp3",
+    "char": "守笼人",
+    "text": "能解开基础行锁，说明你至少具备了最基本的观察力。",
+    "duration": 8.24
+  },
+  "VO_CK_0017": {
+    "file": "assets/audio/voice/CK/VO_CK_0017.mp3",
+    "char": "守笼人",
+    "text": "多重笼格交错时，需要同时兼顾行、列、宫与笼和四条约束。记住——“群曜遮目，一光独隐”。",
+    "duration": 16.85
+  },
+  "VO_CK_0018": {
+    "file": "assets/audio/voice/CK/VO_CK_0018.mp3",
+    "char": "守笼人",
+    "text": "看来，是时候考验你真正的实力了。",
+    "duration": 6.95
+  },
+  "VO_CK_0019": {
+    "file": "assets/audio/voice/CK/VO_CK_0019.mp3",
+    "char": "守笼人",
+    "text": "作为你的导师，我不会手下留情。",
+    "duration": 5.8
+  },
+  "VO_CK_0020": {
+    "file": "assets/audio/voice/CK/VO_CK_0020.mp3",
+    "char": "守笼人",
+    "text": "你……竟然做到了这一步。",
+    "duration": 4.97
+  },
+  "VO_CK_0021": {
+    "file": "assets/audio/voice/CK/VO_CK_0021.mp3",
+    "char": "守笼人",
+    "text": "很好，你已经超越了我。去揭开真相吧。",
+    "duration": 7.74
+  },
+  "VO_PS_0001": {
+    "file": "assets/audio/voice/PS/VO_PS_0001.mp3",
+    "char": "设局人残影",
+    "text": "你以为……这就是真相？",
+    "duration": 4.97
+  },
+  "VO_PS_0002": {
+    "file": "assets/audio/voice/PS/VO_PS_0002.mp3",
+    "char": "设局人残影",
+    "text": "我留下的残影，只是开始。",
+    "duration": 5.36
+  },
+  "VO_PS_0003": {
+    "file": "assets/audio/voice/PS/VO_PS_0003.mp3",
+    "char": "设局人残影",
+    "text": "残影被看穿了？",
+    "duration": 3.56
+  },
+  "VO_PS_0004": {
+    "file": "assets/audio/voice/PS/VO_PS_0004.mp3",
+    "char": "设局人残影",
+    "text": "有意思。继续往前走吧……",
+    "duration": 5.62
+  },
+  "VO_RE_0001": {
+    "file": "assets/audio/voice/RE/VO_RE_0001.mp3",
+    "char": "残局守护者",
+    "text": "残局已激活。",
+    "duration": 4.28
+  },
+  "VO_RE_0002": {
+    "file": "assets/audio/voice/RE/VO_RE_0002.mp3",
+    "char": "残局守护者",
+    "text": "验证开始。",
+    "duration": 3.6
+  },
+  "VO_W_0001": {
+    "file": "assets/audio/voice/W/VO_W_0001.mp3",
+    "char": "星辰梭",
+    "text": "我就是星辰梭。",
+    "duration": 2.63
+  },
+  "VO_W_0002": {
+    "file": "assets/audio/voice/W/VO_W_0002.mp3",
+    "char": "星辰梭",
+    "text": "穿梭于逻辑之间的织网者。",
+    "duration": 3.85
+  },
+  "VO_CK_0022": {
+    "file": "assets/audio/voice/CK/VO_CK_0022.mp3",
+    "char": "守笼人",
+    "text": "我没想到……他竟然会走到那一步。",
+    "duration": 6.12
+  },
+  "VO_SS_0001": {
+    "file": "assets/audio/voice/SS/VO_SS_0001.mp3",
+    "char": "设局人（秘术）",
+    "text": "尘埃落定之时，星辰梭的光芒将再次显现。",
+    "duration": 8.1
+  },
+  "VO_SS_0002": {
+    "file": "assets/audio/voice/SS/VO_SS_0002.mp3",
+    "char": "设局人（秘术）",
+    "text": "当年我布下这道题，就是想问守笼人一个问题——如果一道题有两个正确答案，你选哪一个？",
+    "duration": 12.42
+  },
+  "VO_R_0005": {
+    "file": "assets/audio/voice/R/VO_R_0005.mp3",
+    "char": "阿妍",
+    "text": "你哪关不是哭着过的。",
+    "duration": 3.71
+  },
+  "VO_SS_0003": {
+    "file": "assets/audio/voice/SS/VO_SS_0003.mp3",
+    "char": "设局人（秘术）",
+    "text": "这不是教学卷。这是我三十年前为自己设下的终极考验——一道需要同时运用并蒂锁、三子法、二连纵横阵和三才游鱼阵才能解开的笼局。",
+    "duration": 23.11
+  },
+  "VO_SS_0004": {
+    "file": "assets/audio/voice/SS/VO_SS_0004.mp3",
+    "char": "设局人（秘术）",
+    "text": "我花了三天三夜才解开它。如果你能独立完成——你就不再是我的学生，而是与我并列的设局者。",
+    "duration": 15.23
+  },
+  "VO_R_0006": {
+    "file": "assets/audio/voice/R/VO_R_0006.mp3",
+    "char": "阿妍",
+    "text": "阿妍。比你早来三周。",
+    "duration": 4.46
+  },
+  "VO_R_0007": {
+    "file": "assets/audio/voice/R/VO_R_0007.mp3",
+    "char": "阿妍",
+    "text": "缺哪个数，就是哪个。",
+    "duration": 3.96
+  },
+  "VO_R_0008": {
+    "file": "assets/audio/voice/R/VO_R_0008.mp3",
+    "char": "阿妍",
+    "text": "不错。继续。",
+    "duration": 3.53
+  },
+  "VO_R_0009": {
+    "file": "assets/audio/voice/R/VO_R_0009.mp3",
+    "char": "阿妍",
+    "text": "设局人。",
+    "duration": 2.45
+  },
+  "VO_R_0010": {
+    "file": "assets/audio/voice/R/VO_R_0010.mp3",
+    "char": "阿妍",
+    "text": "走了。",
+    "duration": 1.91
+  },
+  "VO_R_0011": {
+    "file": "assets/audio/voice/R/VO_R_0011.mp3",
+    "char": "阿妍",
+    "text": "你父亲是这里的档案员？",
+    "duration": 3.82
+  },
+  "VO_R_0012": {
+    "file": "assets/audio/voice/R/VO_R_0012.mp3",
+    "char": "阿妍",
+    "text": "嗯。看到了。",
+    "duration": 3.38
+  },
+  "VO_R_0013": {
+    "file": "assets/audio/voice/R/VO_R_0013.mp3",
+    "char": "阿妍",
+    "text": "高不高手，还早。",
+    "duration": 3.24
+  },
+  "VO_R_0014": {
+    "file": "assets/audio/voice/R/VO_R_0014.mp3",
+    "char": "阿妍",
+    "text": "算你厉害……",
+    "duration": 2.45
+  },
+  "VO_R_0015": {
+    "file": "assets/audio/voice/R/VO_R_0015.mp3",
+    "char": "阿妍",
+    "text": "后面还有更难的！",
+    "duration": 3.38
+  },
+  "VO_CK_0024": {
+    "file": "assets/audio/voice/CK/VO_CK_0024.mp3",
+    "char": "守笼人",
+    "text": "一个曾经和我站在一起的人。他的名字，已被从所有档案里抹去了。",
+    "duration": 10.69
+  },
+  "VO_RE_0003": {
+    "file": "assets/audio/voice/RE/VO_RE_0003.mp3",
+    "char": "残局守护者",
+    "text": "残局已激活。",
+    "duration": 4.28
+  },
+  "VO_RE_0004": {
+    "file": "assets/audio/voice/RE/VO_RE_0004.mp3",
+    "char": "残局守护者",
+    "text": "验证开始。",
+    "duration": 3.6
+  },
+  "VO_RE_0005": {
+    "file": "assets/audio/voice/RE/VO_RE_0005.mp3",
+    "char": "残局守护者",
+    "text": "检测到异常逻辑输入。",
+    "duration": 4.79
+  },
+  "VO_RE_0006": {
+    "file": "assets/audio/voice/RE/VO_RE_0006.mp3",
+    "char": "残局守护者",
+    "text": "拒绝。",
+    "duration": 3.1
+  },
+  "VO_RE_0007": {
+    "file": "assets/audio/voice/RE/VO_RE_0007.mp3",
+    "char": "残局守护者",
+    "text": "残局……被破解。",
+    "duration": 4.97
+  },
+  "VO_RE_0008": {
+    "file": "assets/audio/voice/RE/VO_RE_0008.mp3",
+    "char": "残局守护者",
+    "text": "逻辑崩塌中……",
+    "duration": 3.89
+  },
+  "VO_W_0003": {
+    "file": "assets/audio/voice/W/VO_W_0003.mp3",
+    "char": "星辰梭",
+    "text": "我就是星辰梭。",
+    "duration": 2.63
+  },
+  "VO_W_0004": {
+    "file": "assets/audio/voice/W/VO_W_0004.mp3",
+    "char": "星辰梭",
+    "text": "穿梭于逻辑之间的织网者。",
+    "duration": 3.85
+  },
+  "VO_W_0005": {
+    "file": "assets/audio/voice/W/VO_W_0005.mp3",
+    "char": "星辰梭",
+    "text": "你以为这就结束了？",
+    "duration": 2.92
+  },
+  "VO_W_0006": {
+    "file": "assets/audio/voice/W/VO_W_0006.mp3",
+    "char": "星辰梭",
+    "text": "远着呢。",
+    "duration": 1.91
+  },
+  "VO_W_0007": {
+    "file": "assets/audio/voice/W/VO_W_0007.mp3",
+    "char": "星辰梭",
+    "text": "有趣……",
+    "duration": 1.73
+  },
+  "VO_W_0008": {
+    "file": "assets/audio/voice/W/VO_W_0008.mp3",
+    "char": "星辰梭",
+    "text": "你居然能看穿这层结构。",
+    "duration": 3.6
+  },
+  "VO_W_0009": {
+    "file": "assets/audio/voice/W/VO_W_0009.mp3",
+    "char": "星辰梭",
+    "text": "别得意。",
+    "duration": 1.84
+  },
+  "VO_W_0010": {
+    "file": "assets/audio/voice/W/VO_W_0010.mp3",
+    "char": "星辰梭",
+    "text": "我还没有用出真正的杀招。",
+    "duration": 3.74
+  },
+  "VO_W_0011": {
+    "file": "assets/audio/voice/W/VO_W_0011.mp3",
+    "char": "星辰梭",
+    "text": "你赢了。",
+    "duration": 1.8
+  },
+  "VO_CK_0025": {
+    "file": "assets/audio/voice/CK/VO_CK_0025.mp3",
+    "char": "守笼人",
+    "text": "我没想到……他竟然会走到那一步。",
+    "duration": 6.12
+  },
+  "VO_P_0004": {
+    "file": "assets/audio/voice/P/VO_P_0004.mp3",
+    "char": "设局人",
+    "text": "四十五只是最表层的障眼法。真正的笼局玄机，藏在差值之中。",
+    "duration": 12.89
+  },
+  "VO_P_0005": {
+    "file": "assets/audio/voice/P/VO_P_0005.mp3",
+    "char": "设局人",
+    "text": "依靠工具投机取巧，永远读不懂笼局背后的星辰逻辑。",
+    "duration": 9.58
+  },
+  "VO_P_0006": {
+    "file": "assets/audio/voice/P/VO_P_0006.mp3",
+    "char": "设局人",
+    "text": "能闯过星衡试炼，勉强有资格直面我真正的笼局。",
+    "duration": 9.18
+  },
+  "VO_P_0007": {
+    "file": "assets/audio/voice/P/VO_P_0007.mp3",
+    "char": "设局人",
+    "text": "道不同不相为谋。你守着你的档案馆，我布我的局。",
+    "duration": 9.76
+  },
+  "VO_P_0008": {
+    "file": "assets/audio/voice/P/VO_P_0008.mp3",
+    "char": "设局人",
+    "text": "真正的「笼中密码」。",
+    "duration": 4.36
+  },
+  "VO_P_0009": {
+    "file": "assets/audio/voice/P/VO_P_0009.mp3",
+    "char": "设局人",
+    "text": "第一道笼局，是我和守笼人第一次见面时的对局。那年我十七岁，他二十。",
+    "duration": 12.89
+  },
+  "VO_P_0011": {
+    "file": "assets/audio/voice/P/VO_P_0011.mp3",
+    "char": "设局人",
+    "text": "你……你居然……",
+    "duration": 4.43
+  },
+  "VO_P_0012": {
+    "file": "assets/audio/voice/P/VO_P_0012.mp3",
+    "char": "设局人",
+    "text": "结束了。",
+    "duration": 3.1
+  },
+  "VO_SS_0005": {
+    "file": "assets/audio/voice/SS/VO_SS_0005.mp3",
+    "char": "设局人（秘术）",
+    "text": "不是我写的。是另一个人。但那封信，是我让她写的。",
+    "duration": 10.58
+  },
+  "VO_SS_0006": {
+    "file": "assets/audio/voice/SS/VO_SS_0006.mp3",
+    "char": "设局人（秘术）",
+    "text": "你做到了。",
+    "duration": 3.02
+  },
+  "VO_SS_0007": {
+    "file": "assets/audio/voice/SS/VO_SS_0007.mp3",
+    "char": "设局人（秘术）",
+    "text": "星辰梭的奥义，从来不是某一种构型、某一条规则。它是一种信念——在混沌的数字迷雾中，永远存在着秩序，等待被发现。",
+    "duration": 18.83
+  },
+  "VO_SS_0008": {
+    "file": "assets/audio/voice/SS/VO_SS_0008.mp3",
+    "char": "设局人（秘术）",
+    "text": "从今以后，你就是新的设局人。档案馆、星辰梭、还有这六卷秘术——都交给你了。",
+    "duration": 14.08
+  },
+  "VO_SS_0009": {
+    "file": "assets/audio/voice/SS/VO_SS_0009.mp3",
+    "char": "设局人（秘术）",
+    "text": "等你问这个问题，等了很久。",
+    "duration": 5.58
+  },
+  "VO_SS_0010": {
+    "file": "assets/audio/voice/SS/VO_SS_0010.mp3",
+    "char": "设局人（秘术）",
+    "text": "你终于看到这里了。",
+    "duration": 3.82
+  },
+  "VO_R_0016": {
+    "file": "assets/audio/voice/R/VO_R_0016.mp3",
+    "char": "阿妍",
+    "text": "我们赢了？！我们真的赢了设局人完全体？！",
+    "duration": 6.19
+  },
+  "VO_SS_0011": {
+    "file": "assets/audio/voice/SS/VO_SS_0011.mp3",
+    "char": "设局人（秘术）",
+    "text": "不必叫我老师。当你能看懂三才游鱼阵的那一刻，你已经超越了我当年的水平。",
+    "duration": 14.04
+  },
+  "VO_CK_0026": {
+    "file": "assets/audio/voice/CK/VO_CK_0026.mp3",
+    "char": "守笼人",
+    "text": "恭喜你，真正的大师。",
+    "duration": 4.79
+  },
+  "VO_SS_0012": {
+    "file": "assets/audio/voice/SS/VO_SS_0012.mp3",
+    "char": "设局人（秘术）",
+    "text": "但记住——技巧是死的，洞察是活的。星辰梭的真正奥义，从来不是某一种固定的构型，而是在混沌中看见秩序的眼睛。",
+    "duration": 19.44
+  },
+  "VO_CK_0027": {
+    "file": "assets/audio/voice/CK/VO_CK_0027.mp3",
+    "char": "守笼人",
+    "text": "七卷秘术已全部传承。档案之道，薪火不息。",
+    "duration": 9.5
+  },
+  "VO_R_0017": {
+    "file": "assets/audio/voice/R/VO_R_0017.mp3",
+    "char": "阿妍",
+    "text": "长按数字可以连填。省事。",
+    "duration": 5.33
+  },
+  "VO_S_0001": {
+    "file": "assets/audio/voice/S/VO_S_0001.mp3",
+    "char": "系统",
+    "text": "恭喜通关。",
+    "duration": 2.41
+  },
+  "VO_S_0002": {
+    "file": "assets/audio/voice/S/VO_S_0002.mp3",
+    "char": "系统",
+    "text": "异议あり！",
+    "duration": 1.84
+  },
+  "VO_S_0003": {
+    "file": "assets/audio/voice/S/VO_S_0003.mp3",
+    "char": "系统",
+    "text": "档案碎片已收集。",
+    "duration": 3.35
+  },
+  "VO_S_0004": {
+    "file": "assets/audio/voice/S/VO_S_0004.mp3",
+    "char": "系统",
+    "text": "恭喜通关。",
+    "duration": 2.41
+  },
+  "VO_S_0005": {
+    "file": "assets/audio/voice/S/VO_S_0005.mp3",
+    "char": "系统",
+    "text": "恭喜通关。",
+    "duration": 2.41
+  },
+  "VO_R_0018": {
+    "file": "assets/audio/voice/R/VO_R_0018.mp3",
+    "char": "阿妍",
+    "text": "你父亲是这里的档案员？",
+    "duration": 3.82
+  },
+  "VO_R_0019": {
+    "file": "assets/audio/voice/R/VO_R_0019.mp3",
+    "char": "阿妍",
+    "text": "嗯。看到了。",
+    "duration": 3.38
+  },
+  "VO_R_0020": {
+    "file": "assets/audio/voice/R/VO_R_0020.mp3",
+    "char": "阿妍",
+    "text": "你父亲是这里的档案员？",
+    "duration": 3.82
+  },
+  "VO_R_0021": {
+    "file": "assets/audio/voice/R/VO_R_0021.mp3",
+    "char": "阿妍",
+    "text": "嗯。看到了。",
+    "duration": 3.38
+  },
+  "VO_P_0013": {
+    "file": "assets/audio/voice/P/VO_P_0013.mp3",
+    "char": "设局人",
+    "text": "只会死守二十一星衡，你永远破不开我完整的九域笼局。",
+    "duration": 10.12
+  },
+  "VO_R_0022": {
+    "file": "assets/audio/voice/R/VO_R_0022.mp3",
+    "char": "阿妍",
+    "text": "设局人。",
+    "duration": 2.45
+  },
+  "VO_R_0023": {
+    "file": "assets/audio/voice/R/VO_R_0023.mp3",
+    "char": "阿妍",
+    "text": "你父亲是这里的档案员？",
+    "duration": 3.82
+  },
+  "VO_R_0024": {
+    "file": "assets/audio/voice/R/VO_R_0024.mp3",
+    "char": "阿妍",
+    "text": "嗯。看到了。",
+    "duration": 3.38
+  },
+  "VO_P_0014": {
+    "file": "assets/audio/voice/P/VO_P_0014.mp3",
+    "char": "设局人",
+    "text": "四十五只是最表层的障眼法。真正的笼局玄机，藏在差值之中。",
+    "duration": 12.89
+  },
+  "VO_R_0025": {
+    "file": "assets/audio/voice/R/VO_R_0025.mp3",
+    "char": "阿妍",
+    "text": "你父亲是这里的档案员？",
+    "duration": 3.82
+  },
+  "VO_SM_0002": {
+    "file": "assets/audio/voice/SM/VO_SM_0002.mp3",
+    "char": "沈墨",
+    "text": "外层31。内层12。差值是19。这三格——只能是4、6、9。",
+    "duration": 13.46
+  },
+  "VO_R_0026": {
+    "file": "assets/audio/voice/R/VO_R_0026.mp3",
+    "char": "阿妍",
+    "text": "嗯。看到了。",
+    "duration": 3.38
+  },
+  "VO_R_0027": {
+    "file": "assets/audio/voice/R/VO_R_0027.mp3",
+    "char": "阿妍",
+    "text": "你父亲是这里的档案员？",
+    "duration": 3.82
+  },
+  "VO_SM_0003": {
+    "file": "assets/audio/voice/SM/VO_SM_0003.mp3",
+    "char": "沈墨",
+    "text": "2。她是对的。",
+    "duration": 4.1
+  },
+  "VO_R_0028": {
+    "file": "assets/audio/voice/R/VO_R_0028.mp3",
+    "char": "阿妍",
+    "text": "嗯。看到了。",
+    "duration": 3.38
+  },
+  "VO_R_0029": {
+    "file": "assets/audio/voice/R/VO_R_0029.mp3",
+    "char": "阿妍",
+    "text": "你父亲是这里的档案员？",
+    "duration": 3.82
+  },
+  "VO_P_0015": {
+    "file": "assets/audio/voice/P/VO_P_0015.mp3",
+    "char": "设局人",
+    "text": "道不同不相为谋。你守着你的档案馆，我布我的局。",
+    "duration": 9.76
+  },
+  "VO_R_0030": {
+    "file": "assets/audio/voice/R/VO_R_0030.mp3",
+    "char": "阿妍",
+    "text": "嗯。看到了。",
+    "duration": 3.38
+  },
+  "VO_R_0031": {
+    "file": "assets/audio/voice/R/VO_R_0031.mp3",
+    "char": "阿妍",
+    "text": "不错。继续。",
+    "duration": 3.53
+  },
+  "VO_R_0032": {
+    "file": "assets/audio/voice/R/VO_R_0032.mp3",
+    "char": "阿妍",
+    "text": "阿妍。比你早来三周。",
+    "duration": 4.46
+  },
+  "VO_R_0033": {
+    "file": "assets/audio/voice/R/VO_R_0033.mp3",
+    "char": "阿妍",
+    "text": "你父亲是这里的档案员？",
+    "duration": 3.82
+  },
+  "VO_R_0034": {
+    "file": "assets/audio/voice/R/VO_R_0034.mp3",
+    "char": "阿妍",
+    "text": "设局人。",
+    "duration": 2.45
+  },
+  "VO_R_0035": {
+    "file": "assets/audio/voice/R/VO_R_0035.mp3",
+    "char": "阿妍",
+    "text": "你父亲是这里的档案员？",
+    "duration": 3.82
+  },
+  "VO_R_0036": {
+    "file": "assets/audio/voice/R/VO_R_0036.mp3",
+    "char": "阿妍",
+    "text": "嗯。看到了。",
+    "duration": 3.38
+  },
+  "VO_R_0037": {
+    "file": "assets/audio/voice/R/VO_R_0037.mp3",
+    "char": "阿妍",
+    "text": "你父亲是这里的档案员？",
+    "duration": 3.82
+  },
+  "VO_R_0038": {
+    "file": "assets/audio/voice/R/VO_R_0038.mp3",
+    "char": "阿妍",
+    "text": "走了。",
+    "duration": 1.91
+  },
+  "VO_R_0039": {
+    "file": "assets/audio/voice/R/VO_R_0039.mp3",
+    "char": "阿妍",
+    "text": "你父亲是这里的档案员？",
+    "duration": 3.82
+  },
+  "VO_R_0040": {
+    "file": "assets/audio/voice/R/VO_R_0040.mp3",
+    "char": "阿妍",
+    "text": "嗯。看到了。",
+    "duration": 3.38
+  },
+  "VO_R_0041": {
+    "file": "assets/audio/voice/R/VO_R_0041.mp3",
+    "char": "阿妍",
+    "text": "阿妍。比你早来三周。",
+    "duration": 4.46
+  },
+  "VO_R_0042": {
+    "file": "assets/audio/voice/R/VO_R_0042.mp3",
+    "char": "阿妍",
+    "text": "你父亲是这里的档案员？",
+    "duration": 3.82
+  },
+  "VO_J_0004": {
+    "file": "assets/audio/voice/J/VO_J_0004.mp3",
+    "char": "莹莹",
+    "text": "笼锁……终于来了。我爸留下的那些图，全都是这种虚线框。",
+    "duration": 8.35
+  },
+  "VO_R_0043": {
+    "file": "assets/audio/voice/R/VO_R_0043.mp3",
+    "char": "阿妍",
+    "text": "缺哪个数，就是哪个。",
+    "duration": 3.96
+  },
+  "VO_R_0044": {
+    "file": "assets/audio/voice/R/VO_R_0044.mp3",
+    "char": "阿妍",
+    "text": "你父亲是这里的档案员？",
+    "duration": 3.82
+  },
+  "VO_R_0045": {
+    "file": "assets/audio/voice/R/VO_R_0045.mp3",
+    "char": "阿妍",
+    "text": "嗯。看到了。",
+    "duration": 3.38
+  },
+  "VO_R_0046": {
+    "file": "assets/audio/voice/R/VO_R_0046.mp3",
+    "char": "阿妍",
+    "text": "嗯。看到了。",
+    "duration": 3.38
+  },
+  "VO_J_0005": {
+    "file": "assets/audio/voice/J/VO_J_0005.mp3",
+    "char": "莹莹",
+    "text": "笼锁……终于来了。我爸留下的那些图，全都是这种虚线框。",
+    "duration": 8.35
+  },
+  "VO_R_0047": {
+    "file": "assets/audio/voice/R/VO_R_0047.mp3",
+    "char": "阿妍",
+    "text": "你父亲是这里的档案员？",
+    "duration": 3.82
+  },
+  "VO_R_0048": {
+    "file": "assets/audio/voice/R/VO_R_0048.mp3",
+    "char": "阿妍",
+    "text": "长按数字可以连填。省事。",
+    "duration": 5.33
+  },
+  "VO_R_0049": {
+    "file": "assets/audio/voice/R/VO_R_0049.mp3",
+    "char": "阿妍",
+    "text": "你父亲是这里的档案员？",
+    "duration": 3.82
+  },
+  "VO_R_0050": {
+    "file": "assets/audio/voice/R/VO_R_0050.mp3",
+    "char": "阿妍",
+    "text": "嗯。看到了。",
+    "duration": 3.38
+  },
+  "VO_R_0051": {
+    "file": "assets/audio/voice/R/VO_R_0051.mp3",
+    "char": "阿妍",
+    "text": "不错。继续。",
+    "duration": 3.53
+  },
+  "VO_R_0052": {
+    "file": "assets/audio/voice/R/VO_R_0052.mp3",
+    "char": "阿妍",
+    "text": "走了。",
+    "duration": 1.91
+  },
+  "VO_R_0053": {
+    "file": "assets/audio/voice/R/VO_R_0053.mp3",
+    "char": "阿妍",
+    "text": "你父亲是这里的档案员？",
+    "duration": 3.82
+  },
+  "VO_R_0054": {
+    "file": "assets/audio/voice/R/VO_R_0054.mp3",
+    "char": "阿妍",
+    "text": "嗯。看到了。",
+    "duration": 3.38
+  },
+  "VO_R_0055": {
+    "file": "assets/audio/voice/R/VO_R_0055.mp3",
+    "char": "阿妍",
+    "text": "你父亲是这里的档案员？",
+    "duration": 3.82
+  },
+  "VO_R_0056": {
+    "file": "assets/audio/voice/R/VO_R_0056.mp3",
+    "char": "阿妍",
+    "text": "嗯。看到了。",
+    "duration": 3.38
+  },
+  "VO_J_0006": {
+    "file": "assets/audio/voice/J/VO_J_0006.mp3",
+    "char": "莹莹",
+    "text": "笼锁……终于来了。我爸留下的那些图，全都是这种虚线框。",
+    "duration": 8.35
+  },
+  "VO_J_0007": {
+    "file": "assets/audio/voice/J/VO_J_0007.mp3",
+    "char": "莹莹",
+    "text": "爸。我又来了。",
+    "duration": 3.49
+  },
+  "VO_J_0008": {
+    "file": "assets/audio/voice/J/VO_J_0008.mp3",
+    "char": "莹莹",
+    "text": "5。应该是5。",
+    "duration": 3.53
+  },
+  "VO_J_0009": {
+    "file": "assets/audio/voice/J/VO_J_0009.mp3",
+    "char": "莹莹",
+    "text": "笼锁……终于来了。我爸留下的那些图，全都是这种虚线框。",
+    "duration": 8.35
+  },
+  "VO_J_0010": {
+    "file": "assets/audio/voice/J/VO_J_0010.mp3",
+    "char": "莹莹",
+    "text": "爸。我又来了。",
+    "duration": 3.49
+  },
+  "VO_J_0011": {
+    "file": "assets/audio/voice/J/VO_J_0011.mp3",
+    "char": "莹莹",
+    "text": "笼锁……终于来了。我爸留下的那些图，全都是这种虚线框。",
+    "duration": 8.35
+  },
+  "VO_J_0012": {
+    "file": "assets/audio/voice/J/VO_J_0012.mp3",
+    "char": "莹莹",
+    "text": "加油！考完这关就能解锁档案馆深处的完整卷宗！",
+    "duration": 7.42
+  },
+  "VO_J_0013": {
+    "file": "assets/audio/voice/J/VO_J_0013.mp3",
+    "char": "莹莹",
+    "text": "爸。我又来了。",
+    "duration": 3.49
+  },
+  "VO_J_0014": {
+    "file": "assets/audio/voice/J/VO_J_0014.mp3",
+    "char": "莹莹",
+    "text": "加油！考完这关就能解锁档案馆深处的完整卷宗！",
+    "duration": 7.42
+  },
+  "VO_J_0015": {
+    "file": "assets/audio/voice/J/VO_J_0015.mp3",
+    "char": "莹莹",
+    "text": "哇！你过了！我当年卡这关卡了快半个钟头！",
+    "duration": 7.31
+  },
+  "VO_R_0057": {
+    "file": "assets/audio/voice/R/VO_R_0057.mp3",
+    "char": "阿妍",
+    "text": "阿妍。比你早来三周。",
+    "duration": 4.46
+  },
+  "VO_J_0016": {
+    "file": "assets/audio/voice/J/VO_J_0016.mp3",
+    "char": "莹莹",
+    "text": "爸。我又来了。",
+    "duration": 3.49
+  },
+  "VO_J_0017": {
+    "file": "assets/audio/voice/J/VO_J_0017.mp3",
+    "char": "莹莹",
+    "text": "爸。我又来了。",
+    "duration": 3.49
+  },
+  "VO_J_0018": {
+    "file": "assets/audio/voice/J/VO_J_0018.mp3",
+    "char": "莹莹",
+    "text": "5。应该是5。",
+    "duration": 3.53
+  },
+  "VO_J_0019": {
+    "file": "assets/audio/voice/J/VO_J_0019.mp3",
+    "char": "莹莹",
+    "text": "爸。我又来了。",
+    "duration": 3.49
+  },
+  "VO_J_0020": {
+    "file": "assets/audio/voice/J/VO_J_0020.mp3",
+    "char": "莹莹",
+    "text": "笼锁……终于来了。我爸留下的那些图，全都是这种虚线框。",
+    "duration": 8.35
+  },
+  "VO_J_0021": {
+    "file": "assets/audio/voice/J/VO_J_0021.mp3",
+    "char": "莹莹",
+    "text": "爸。我又来了。",
+    "duration": 3.49
+  },
+  "VO_J_0022": {
+    "file": "assets/audio/voice/J/VO_J_0022.mp3",
+    "char": "莹莹",
+    "text": "笼锁……终于来了。我爸留下的那些图，全都是这种虚线框。",
+    "duration": 8.35
+  },
+  "VO_J_0023": {
+    "file": "assets/audio/voice/J/VO_J_0023.mp3",
+    "char": "莹莹",
+    "text": "爸。我又来了。",
+    "duration": 3.49
+  },
+  "VO_J_0024": {
+    "file": "assets/audio/voice/J/VO_J_0024.mp3",
+    "char": "莹莹",
+    "text": "笼锁……终于来了。我爸留下的那些图，全都是这种虚线框。",
+    "duration": 8.35
+  },
+  "VO_J_0025": {
+    "file": "assets/audio/voice/J/VO_J_0025.mp3",
+    "char": "莹莹",
+    "text": "爸。我又来了。",
+    "duration": 3.49
+  },
+  "VO_J_0026": {
+    "file": "assets/audio/voice/J/VO_J_0026.mp3",
+    "char": "莹莹",
+    "text": "他一直在等我。现在，我找到他了。",
+    "duration": 5.76
+  },
+  "VO_SS_0013": {
+    "file": "assets/audio/voice/SS/VO_SS_0013.mp3",
+    "char": "设局人（秘术）",
+    "text": "尘埃落定之时，星辰梭的光芒将再次显现。",
+    "duration": 8.1
+  },
+  "VO_SS_0014": {
+    "file": "assets/audio/voice/SS/VO_SS_0014.mp3",
+    "char": "设局人（秘术）",
+    "text": "星辰梭的奥义，从来不是某一种构型、某一条规则。它是一种信念——在混沌的数字迷雾中，永远存在着秩序，等待被发现。",
+    "duration": 18.83
+  },
+  "VO_SS_0015": {
+    "file": "assets/audio/voice/SS/VO_SS_0015.mp3",
+    "char": "设局人（秘术）",
+    "text": "星辰梭的奥义，从来不是某一种构型、某一条规则。它是一种信念——在混沌的数字迷雾中，永远存在着秩序，等待被发现。",
+    "duration": 18.83
+  },
+  "VO_SS_0016": {
+    "file": "assets/audio/voice/SS/VO_SS_0016.mp3",
+    "char": "设局人（秘术）",
+    "text": "从今以后，你就是新的设局人。档案馆、星辰梭、还有这六卷秘术——都交给你了。",
+    "duration": 14.08
+  },
+  "VO_SS_0017": {
+    "file": "assets/audio/voice/SS/VO_SS_0017.mp3",
+    "char": "设局人（秘术）",
+    "text": "不必叫我老师。当你能看懂三才游鱼阵的那一刻，你已经超越了我当年的水平。",
+    "duration": 14.04
+  },
+  "VO_J_0027": {
+    "file": "assets/audio/voice/J/VO_J_0027.mp3",
+    "char": "莹莹",
+    "text": "他一直在等我。现在，我找到他了。",
+    "duration": 5.76
+  },
+  "VO_SS_0018": {
+    "file": "assets/audio/voice/SS/VO_SS_0018.mp3",
+    "char": "设局人（秘术）",
+    "text": "你终于看到这里了。",
+    "duration": 3.82
+  },
+  "VO_SS_0019": {
+    "file": "assets/audio/voice/SS/VO_SS_0019.mp3",
+    "char": "设局人（秘术）",
+    "text": "你来了。就够了。",
+    "duration": 4.86
+  },
+  "VO_J_0028": {
+    "file": "assets/audio/voice/J/VO_J_0028.mp3",
+    "char": "莹莹",
+    "text": "笼锁……终于来了。我爸留下的那些图，全都是这种虚线框。",
+    "duration": 8.35
+  },
+  "VO_R_0058": {
+    "file": "assets/audio/voice/R/VO_R_0058.mp3",
+    "char": "阿妍",
+    "text": "嗯。看到了。",
+    "duration": 3.38
+  },
+  "VO_J_0029": {
+    "file": "assets/audio/voice/J/VO_J_0029.mp3",
+    "char": "莹莹",
+    "text": "他一直在等我。现在，我找到他了。",
+    "duration": 5.76
+  },
+  "VO_R_0059": {
+    "file": "assets/audio/voice/R/VO_R_0059.mp3",
+    "char": "阿妍",
+    "text": "不错。继续。",
+    "duration": 3.53
+  },
+  "VO_J_0030": {
+    "file": "assets/audio/voice/J/VO_J_0030.mp3",
+    "char": "莹莹",
+    "text": "他一直在等我。现在，我找到他了。",
+    "duration": 5.76
+  },
+  "VO_SM_0004": {
+    "file": "assets/audio/voice/SM/VO_SM_0004.mp3",
+    "char": "沈墨",
+    "text": "嗯。",
+    "duration": 2.09
+  },
+  "VO_J_0031": {
+    "file": "assets/audio/voice/J/VO_J_0031.mp3",
+    "char": "莹莹",
+    "text": "笼锁……终于来了。我爸留下的那些图，全都是这种虚线框。",
+    "duration": 8.35
+  },
+  "VO_R_0060": {
+    "file": "assets/audio/voice/R/VO_R_0060.mp3",
+    "char": "阿妍",
+    "text": "嗯。看到了。",
+    "duration": 3.38
+  },
+  "VO_J_0032": {
+    "file": "assets/audio/voice/J/VO_J_0032.mp3",
+    "char": "莹莹",
+    "text": "加油！考完这关就能解锁档案馆深处的完整卷宗！",
+    "duration": 7.42
+  },
+  "VO_J_0033": {
+    "file": "assets/audio/voice/J/VO_J_0033.mp3",
+    "char": "莹莹",
+    "text": "笼锁……终于来了。我爸留下的那些图，全都是这种虚线框。",
+    "duration": 8.35
+  },
+  "VO_J_0034": {
+    "file": "assets/audio/voice/J/VO_J_0034.mp3",
+    "char": "莹莹",
+    "text": "爸。我又来了。",
+    "duration": 3.49
+  },
+  "VO_J_0035": {
+    "file": "assets/audio/voice/J/VO_J_0035.mp3",
+    "char": "莹莹",
+    "text": "哇！你过了！我当年卡这关卡了快半个钟头！",
+    "duration": 7.31
+  },
+  "VO_R_0061": {
+    "file": "assets/audio/voice/R/VO_R_0061.mp3",
+    "char": "阿妍",
+    "text": "阿妍。比你早来三周。",
+    "duration": 4.46
+  },
+  "VO_J_0036": {
+    "file": "assets/audio/voice/J/VO_J_0036.mp3",
+    "char": "莹莹",
+    "text": "哇！来新人啦！我叫莹莹，比你早到两个月！",
+    "duration": 7.52
+  },
+  "VO_R_0062": {
+    "file": "assets/audio/voice/R/VO_R_0062.mp3",
+    "char": "阿妍",
+    "text": "嗯。看到了。",
+    "duration": 3.38
+  },
+  "VO_J_0037": {
+    "file": "assets/audio/voice/J/VO_J_0037.mp3",
+    "char": "莹莹",
+    "text": "爸。我又来了。",
+    "duration": 3.49
+  },
+  "VO_CK_0028": {
+    "file": "assets/audio/voice/CK/VO_CK_0028.mp3",
+    "char": "守笼人",
+    "text": "第一道档案锁遵循行规则：同一横排数字1-4不可重复。",
+    "duration": 9.54
+  },
+  "VO_J_0038": {
+    "file": "assets/audio/voice/J/VO_J_0038.mp3",
+    "char": "莹莹",
+    "text": "简单说就是——横着一排里1、2、3、4各出现一次！缺什么填什么！",
+    "duration": 10.58
+  },
+  "VO_R_0063": {
+    "file": "assets/audio/voice/R/VO_R_0063.mp3",
+    "char": "阿妍",
+    "text": "缺哪个数，就是哪个。",
+    "duration": 3.96
+  },
+  "VO_CK_0029": {
+    "file": "assets/audio/voice/CK/VO_CK_0029.mp3",
+    "char": "守笼人",
+    "text": "第一道档案锁遵循行规则：同一横排数字1-4不可重复。",
+    "duration": 9.54
+  },
+  "VO_J_0039": {
+    "file": "assets/audio/voice/J/VO_J_0039.mp3",
+    "char": "莹莹",
+    "text": "啊！这个我熟！我在这道关吃了大亏——横着全对了，竖着一看，三个3挤在一起！",
+    "duration": 11.88
+  },
+  "VO_R_0064": {
+    "file": "assets/audio/voice/R/VO_R_0064.mp3",
+    "char": "阿妍",
+    "text": "缺哪个数，就是哪个。",
+    "duration": 3.96
+  },
+  "VO_CK_0030": {
+    "file": "assets/audio/voice/CK/VO_CK_0030.mp3",
+    "char": "守笼人",
+    "text": "第一道档案锁遵循行规则：同一横排数字1-4不可重复。",
+    "duration": 9.54
+  },
+  "VO_J_0040": {
+    "file": "assets/audio/voice/J/VO_J_0040.mp3",
+    "char": "莹莹",
+    "text": "简单说就是——横着一排里1、2、3、4各出现一次！缺什么填什么！",
+    "duration": 10.58
+  },
+  "VO_R_0065": {
+    "file": "assets/audio/voice/R/VO_R_0065.mp3",
+    "char": "阿妍",
+    "text": "长按数字可以连填。省事。",
+    "duration": 5.33
+  },
+  "VO_SM_0005": {
+    "file": "assets/audio/voice/SM/VO_SM_0005.mp3",
+    "char": "沈墨",
+    "text": "这样快一些。",
+    "duration": 3.02
+  },
+  "VO_CK_0031": {
+    "file": "assets/audio/voice/CK/VO_CK_0031.mp3",
+    "char": "守笼人",
+    "text": "基础铁律你已吃透。接下来，真正的笼锁谜题即将出现。",
+    "duration": 10.76
+  },
+  "VO_J_0041": {
+    "file": "assets/audio/voice/J/VO_J_0041.mp3",
+    "char": "莹莹",
+    "text": "简单说就是——横着一排里1、2、3、4各出现一次！缺什么填什么！",
+    "duration": 10.58
+  },
+  "VO_R_0066": {
+    "file": "assets/audio/voice/R/VO_R_0066.mp3",
+    "char": "阿妍",
+    "text": "缺哪个数，就是哪个。",
+    "duration": 3.96
+  },
+  "VO_CK_0032": {
+    "file": "assets/audio/voice/CK/VO_CK_0032.mp3",
+    "char": "守笼人",
+    "text": "双格笼是最基础的笼型，可直接根据和值锁定仅有的数字组合。记住——三取一二，四取一三，六取二四，七取三四。",
+    "duration": 19.48
+  },
+  "VO_J_0042": {
+    "file": "assets/audio/voice/J/VO_J_0042.mp3",
+    "char": "莹莹",
+    "text": "简单说就是——横着一排里1、2、3、4各出现一次！缺什么填什么！",
+    "duration": 10.58
+  },
+  "VO_R_0067": {
+    "file": "assets/audio/voice/R/VO_R_0067.mp3",
+    "char": "阿妍",
+    "text": "缺哪个数，就是哪个。",
+    "duration": 3.96
+  },
+  "VO_SM_0006": {
+    "file": "assets/audio/voice/SM/VO_SM_0006.mp3",
+    "char": "沈墨",
+    "text": "“三取一二，四取一三。”",
+    "duration": 4.86
+  },
+  "VO_CK_0033": {
+    "file": "assets/audio/voice/CK/VO_CK_0033.mp3",
+    "char": "守笼人",
+    "text": "多重笼格交错时，需要同时兼顾行、列、宫与笼和四条约束。记住——“群曜遮目，一光独隐”。",
+    "duration": 16.85
+  },
+  "VO_J_0043": {
+    "file": "assets/audio/voice/J/VO_J_0043.mp3",
+    "char": "莹莹",
+    "text": "笼锁……终于来了。我爸留下的那些图，全都是这种虚线框。",
+    "duration": 8.35
+  },
+  "VO_R_0068": {
+    "file": "assets/audio/voice/R/VO_R_0068.mp3",
+    "char": "阿妍",
+    "text": "你父亲是这里的档案员？",
+    "duration": 3.82
+  },
+  "VO_R_0069": {
+    "file": "assets/audio/voice/R/VO_R_0069.mp3",
+    "char": "阿妍",
+    "text": "高不高手，还早。",
+    "duration": 3.24
+  },
+  "VO_SM_0007": {
+    "file": "assets/audio/voice/SM/VO_SM_0007.mp3",
+    "char": "沈墨",
+    "text": "2。她是对的。",
+    "duration": 4.1
+  },
+  "VO_CK_0034": {
+    "file": "assets/audio/voice/CK/VO_CK_0034.mp3",
+    "char": "守笼人",
+    "text": "第一道档案锁遵循行规则：同一横排数字1-4不可重复。",
+    "duration": 9.54
+  },
+  "VO_J_0044": {
+    "file": "assets/audio/voice/J/VO_J_0044.mp3",
+    "char": "莹莹",
+    "text": "简单说就是——横着一排里1、2、3、4各出现一次！缺什么填什么！",
+    "duration": 10.58
+  },
+  "VO_R_0070": {
+    "file": "assets/audio/voice/R/VO_R_0070.mp3",
+    "char": "阿妍",
+    "text": "长按数字可以连填。省事。",
+    "duration": 5.33
+  },
+  "VO_SM_0008": {
+    "file": "assets/audio/voice/SM/VO_SM_0008.mp3",
+    "char": "沈墨",
+    "text": "2。她是对的。",
+    "duration": 4.1
+  },
+  "VO_CK_0035": {
+    "file": "assets/audio/voice/CK/VO_CK_0035.mp3",
+    "char": "守笼人",
+    "text": "基础铁律你已吃透。接下来，真正的笼锁谜题即将出现。",
+    "duration": 10.76
+  },
+  "VO_J_0045": {
+    "file": "assets/audio/voice/J/VO_J_0045.mp3",
+    "char": "莹莹",
+    "text": "简单说就是——横着一排里1、2、3、4各出现一次！缺什么填什么！",
+    "duration": 10.58
+  },
+  "VO_R_0071": {
+    "file": "assets/audio/voice/R/VO_R_0071.mp3",
+    "char": "阿妍",
+    "text": "嗯。看到了。",
+    "duration": 3.38
+  },
+  "VO_SM_0009": {
+    "file": "assets/audio/voice/SM/VO_SM_0009.mp3",
+    "char": "沈墨",
+    "text": "“十。每一行都是十。”",
+    "duration": 4.75
+  },
+  "VO_CK_0036": {
+    "file": "assets/audio/voice/CK/VO_CK_0036.mp3",
+    "char": "守笼人",
+    "text": "本章最终考核，检验你所有基础笼局推理能力——孤星、隐曜、并蒂锁、三子法、十则之术。",
+    "duration": 15.23
+  },
+  "VO_J_0046": {
+    "file": "assets/audio/voice/J/VO_J_0046.mp3",
+    "char": "莹莹",
+    "text": "加油！考完这关就能解锁档案馆深处的完整卷宗！",
+    "duration": 7.42
+  },
+  "VO_R_0072": {
+    "file": "assets/audio/voice/R/VO_R_0072.mp3",
+    "char": "阿妍",
+    "text": "不错。继续。",
+    "duration": 3.53
+  },
+  "VO_SM_0010": {
+    "file": "assets/audio/voice/SM/VO_SM_0010.mp3",
+    "char": "沈墨",
+    "text": "嗯。",
+    "duration": 2.09
+  },
+  "VO_CK_0037": {
+    "file": "assets/audio/voice/CK/VO_CK_0037.mp3",
+    "char": "守笼人",
+    "text": "第一道档案锁遵循行规则：同一横排数字1-4不可重复。",
+    "duration": 9.54
+  },
+  "VO_J_0047": {
+    "file": "assets/audio/voice/J/VO_J_0047.mp3",
+    "char": "莹莹",
+    "text": "简单说就是——横着一排里1、2、3、4各出现一次！缺什么填什么！",
+    "duration": 10.58
+  },
+  "VO_R_0073": {
+    "file": "assets/audio/voice/R/VO_R_0073.mp3",
+    "char": "阿妍",
+    "text": "长按数字可以连填。省事。",
+    "duration": 5.33
+  },
+  "VO_SM_0011": {
+    "file": "assets/audio/voice/SM/VO_SM_0011.mp3",
+    "char": "沈墨",
+    "text": "第二行第四列。5。",
+    "duration": 4.79
+  },
+  "VO_CK_0038": {
+    "file": "assets/audio/voice/CK/VO_CK_0038.mp3",
+    "char": "守笼人",
+    "text": "第一道档案锁遵循行规则：同一横排数字1-4不可重复。",
+    "duration": 9.54
+  },
+  "VO_J_0048": {
+    "file": "assets/audio/voice/J/VO_J_0048.mp3",
+    "char": "莹莹",
+    "text": "简单说就是——横着一排里1、2、3、4各出现一次！缺什么填什么！",
+    "duration": 10.58
+  },
+  "VO_R_0074": {
+    "file": "assets/audio/voice/R/VO_R_0074.mp3",
+    "char": "阿妍",
+    "text": "缺哪个数，就是哪个。",
+    "duration": 3.96
+  },
+  "VO_SM_0012": {
+    "file": "assets/audio/voice/SM/VO_SM_0012.mp3",
+    "char": "沈墨",
+    "text": "第二行第四列。5。",
+    "duration": 4.79
+  },
+  "VO_CK_0039": {
+    "file": "assets/audio/voice/CK/VO_CK_0039.mp3",
+    "char": "守笼人",
+    "text": "基础铁律你已吃透。接下来，真正的笼锁谜题即将出现。",
+    "duration": 10.76
+  },
+  "VO_J_0049": {
+    "file": "assets/audio/voice/J/VO_J_0049.mp3",
+    "char": "莹莹",
+    "text": "简单说就是——横着一排里1、2、3、4各出现一次！缺什么填什么！",
+    "duration": 10.58
+  },
+  "VO_R_0075": {
+    "file": "assets/audio/voice/R/VO_R_0075.mp3",
+    "char": "阿妍",
+    "text": "你父亲是这里的档案员？",
+    "duration": 3.82
+  },
+  "VO_SM_0013": {
+    "file": "assets/audio/voice/SM/VO_SM_0013.mp3",
+    "char": "沈墨",
+    "text": "2。她是对的。",
+    "duration": 4.1
+  },
+  "VO_SM_0014": {
+    "file": "assets/audio/voice/SM/VO_SM_0014.mp3",
+    "char": "沈墨",
+    "text": "2。她是对的。",
+    "duration": 4.1
+  },
+  "VO_CK_0040": {
+    "file": "assets/audio/voice/CK/VO_CK_0040.mp3",
+    "char": "守笼人",
+    "text": "基础铁律你已吃透。接下来，真正的笼锁谜题即将出现。",
+    "duration": 10.76
+  },
+  "VO_J_0050": {
+    "file": "assets/audio/voice/J/VO_J_0050.mp3",
+    "char": "莹莹",
+    "text": "简单说就是——横着一排里1、2、3、4各出现一次！缺什么填什么！",
+    "duration": 10.58
+  },
+  "VO_P_0016": {
+    "file": "assets/audio/voice/P/VO_P_0016.mp3",
+    "char": "设局人",
+    "text": "四十五只是最表层的障眼法。真正的笼局玄机，藏在差值之中。",
+    "duration": 12.89
+  },
+  "VO_R_0076": {
+    "file": "assets/audio/voice/R/VO_R_0076.mp3",
+    "char": "阿妍",
+    "text": "嗯。看到了。",
+    "duration": 3.38
+  },
+  "VO_R_0077": {
+    "file": "assets/audio/voice/R/VO_R_0077.mp3",
+    "char": "阿妍",
+    "text": "你父亲是这里的档案员？",
+    "duration": 3.82
+  },
+  "VO_SM_0015": {
+    "file": "assets/audio/voice/SM/VO_SM_0015.mp3",
+    "char": "沈墨",
+    "text": "藏的不是答案。藏的是——指向答案的路。",
+    "duration": 7.13
+  },
+  "VO_CK_0041": {
+    "file": "assets/audio/voice/CK/VO_CK_0041.mp3",
+    "char": "守笼人",
+    "text": "第一道档案锁遵循行规则：同一横排数字1-4不可重复。",
+    "duration": 9.54
+  },
+  "VO_J_0051": {
+    "file": "assets/audio/voice/J/VO_J_0051.mp3",
+    "char": "莹莹",
+    "text": "简单说就是——横着一排里1、2、3、4各出现一次！缺什么填什么！",
+    "duration": 10.58
+  },
+  "VO_R_0078": {
+    "file": "assets/audio/voice/R/VO_R_0078.mp3",
+    "char": "阿妍",
+    "text": "缺哪个数，就是哪个。",
+    "duration": 3.96
+  },
+  "VO_SM_0016": {
+    "file": "assets/audio/voice/SM/VO_SM_0016.mp3",
+    "char": "沈墨",
+    "text": "第二行第四列。5。",
+    "duration": 4.79
+  },
+  "VO_CK_0042": {
+    "file": "assets/audio/voice/CK/VO_CK_0042.mp3",
+    "char": "守笼人",
+    "text": "第一道档案锁遵循行规则：同一横排数字1-4不可重复。",
+    "duration": 9.54
+  },
+  "VO_J_0052": {
+    "file": "assets/audio/voice/J/VO_J_0052.mp3",
+    "char": "莹莹",
+    "text": "笼锁……终于来了。我爸留下的那些图，全都是这种虚线框。",
+    "duration": 8.35
+  },
+  "VO_R_0079": {
+    "file": "assets/audio/voice/R/VO_R_0079.mp3",
+    "char": "阿妍",
+    "text": "缺哪个数，就是哪个。",
+    "duration": 3.96
+  },
+  "VO_P_0017": {
+    "file": "assets/audio/voice/P/VO_P_0017.mp3",
+    "char": "设局人",
+    "text": "依靠工具投机取巧，永远读不懂笼局背后的星辰逻辑。",
+    "duration": 9.58
+  },
+  "VO_R_0080": {
+    "file": "assets/audio/voice/R/VO_R_0080.mp3",
+    "char": "阿妍",
+    "text": "你父亲是这里的档案员？",
+    "duration": 3.82
+  },
+  "VO_CK_0043": {
+    "file": "assets/audio/voice/CK/VO_CK_0043.mp3",
+    "char": "守笼人",
+    "text": "第一道档案锁遵循行规则：同一横排数字1-4不可重复。",
+    "duration": 9.54
+  },
+  "VO_J_0053": {
+    "file": "assets/audio/voice/J/VO_J_0053.mp3",
+    "char": "莹莹",
+    "text": "简单说就是——横着一排里1、2、3、4各出现一次！缺什么填什么！",
+    "duration": 10.58
+  },
+  "VO_R_0081": {
+    "file": "assets/audio/voice/R/VO_R_0081.mp3",
+    "char": "阿妍",
+    "text": "你父亲是这里的档案员？",
+    "duration": 3.82
+  },
+  "VO_SM_0017": {
+    "file": "assets/audio/voice/SM/VO_SM_0017.mp3",
+    "char": "沈墨",
+    "text": "你看这样是不是清楚一点。",
+    "duration": 4.61
+  },
+  "VO_CK_0044": {
+    "file": "assets/audio/voice/CK/VO_CK_0044.mp3",
+    "char": "守笼人",
+    "text": "本章最终考核，检验你所有基础笼局推理能力——孤星、隐曜、并蒂锁、三子法、十则之术。",
+    "duration": 15.23
+  },
+  "VO_J_0054": {
+    "file": "assets/audio/voice/J/VO_J_0054.mp3",
+    "char": "莹莹",
+    "text": "加油！考完这关就能解锁档案馆深处的完整卷宗！",
+    "duration": 7.42
+  },
+  "VO_R_0082": {
+    "file": "assets/audio/voice/R/VO_R_0082.mp3",
+    "char": "阿妍",
+    "text": "长按数字可以连填。省事。",
+    "duration": 5.33
+  },
+  "VO_SM_0018": {
+    "file": "assets/audio/voice/SM/VO_SM_0018.mp3",
+    "char": "沈墨",
+    "text": "第二行第四列。5。",
+    "duration": 4.79
+  },
+  "VO_CK_0045": {
+    "file": "assets/audio/voice/CK/VO_CK_0045.mp3",
+    "char": "守笼人",
+    "text": "第一道档案锁遵循行规则：同一横排数字1-4不可重复。",
+    "duration": 9.54
+  },
+  "VO_J_0055": {
+    "file": "assets/audio/voice/J/VO_J_0055.mp3",
+    "char": "莹莹",
+    "text": "简单说就是——横着一排里1、2、3、4各出现一次！缺什么填什么！",
+    "duration": 10.58
+  },
+  "VO_R_0083": {
+    "file": "assets/audio/voice/R/VO_R_0083.mp3",
+    "char": "阿妍",
+    "text": "缺哪个数，就是哪个。",
+    "duration": 3.96
+  },
+  "VO_CK_0046": {
+    "file": "assets/audio/voice/CK/VO_CK_0046.mp3",
+    "char": "守笼人",
+    "text": "第一道档案锁遵循行规则：同一横排数字1-4不可重复。",
+    "duration": 9.54
+  },
+  "VO_J_0056": {
+    "file": "assets/audio/voice/J/VO_J_0056.mp3",
+    "char": "莹莹",
+    "text": "简单说就是——横着一排里1、2、3、4各出现一次！缺什么填什么！",
+    "duration": 10.58
+  },
+  "VO_R_0084": {
+    "file": "assets/audio/voice/R/VO_R_0084.mp3",
+    "char": "阿妍",
+    "text": "缺哪个数，就是哪个。",
+    "duration": 3.96
+  },
+  "VO_CK_0047": {
+    "file": "assets/audio/voice/CK/VO_CK_0047.mp3",
+    "char": "守笼人",
+    "text": "基础铁律你已吃透。接下来，真正的笼锁谜题即将出现。",
+    "duration": 10.76
+  },
+  "VO_J_0057": {
+    "file": "assets/audio/voice/J/VO_J_0057.mp3",
+    "char": "莹莹",
+    "text": "简单说就是——横着一排里1、2、3、4各出现一次！缺什么填什么！",
+    "duration": 10.58
+  },
+  "VO_R_0085": {
+    "file": "assets/audio/voice/R/VO_R_0085.mp3",
+    "char": "阿妍",
+    "text": "你父亲是这里的档案员？",
+    "duration": 3.82
+  },
+  "VO_SM_0019": {
+    "file": "assets/audio/voice/SM/VO_SM_0019.mp3",
+    "char": "沈墨",
+    "text": "他布的局，不是让人看不见答案。是让人看不见自己走过了几条线。",
+    "duration": 10.51
+  },
+  "VO_CK_0048": {
+    "file": "assets/audio/voice/CK/VO_CK_0048.mp3",
+    "char": "守笼人",
+    "text": "基础铁律你已吃透。接下来，真正的笼锁谜题即将出现。",
+    "duration": 10.76
+  },
+  "VO_J_0058": {
+    "file": "assets/audio/voice/J/VO_J_0058.mp3",
+    "char": "莹莹",
+    "text": "简单说就是——横着一排里1、2、3、4各出现一次！缺什么填什么！",
+    "duration": 10.58
+  },
+  "VO_R_0086": {
+    "file": "assets/audio/voice/R/VO_R_0086.mp3",
+    "char": "阿妍",
+    "text": "缺哪个数，就是哪个。",
+    "duration": 3.96
+  },
+  "VO_J_0059": {
+    "file": "assets/audio/voice/J/VO_J_0059.mp3",
+    "char": "莹莹",
+    "text": "笼锁……终于来了。我爸留下的那些图，全都是这种虚线框。",
+    "duration": 8.35
+  },
+  "VO_R_0087": {
+    "file": "assets/audio/voice/R/VO_R_0087.mp3",
+    "char": "阿妍",
+    "text": "你父亲是这里的档案员？",
+    "duration": 3.82
+  },
+  "VO_SM_0020": {
+    "file": "assets/audio/voice/SM/VO_SM_0020.mp3",
+    "char": "沈墨",
+    "text": "就像人一样。",
+    "duration": 2.99
+  },
+  "VO_CK_0049": {
+    "file": "assets/audio/voice/CK/VO_CK_0049.mp3",
+    "char": "守笼人",
+    "text": "基础铁律你已吃透。接下来，真正的笼锁谜题即将出现。",
+    "duration": 10.76
+  },
+  "VO_J_0060": {
+    "file": "assets/audio/voice/J/VO_J_0060.mp3",
+    "char": "莹莹",
+    "text": "哇！你过了！我当年卡这关卡了快半个钟头！",
+    "duration": 7.31
+  },
+  "VO_R_0088": {
+    "file": "assets/audio/voice/R/VO_R_0088.mp3",
+    "char": "阿妍",
+    "text": "缺哪个数，就是哪个。",
+    "duration": 3.96
+  },
+  "VO_P_0018": {
+    "file": "assets/audio/voice/P/VO_P_0018.mp3",
+    "char": "设局人",
+    "text": "能闯过星衡试炼，勉强有资格直面我真正的笼局。",
+    "duration": 9.18
+  },
+  "VO_R_0089": {
+    "file": "assets/audio/voice/R/VO_R_0089.mp3",
+    "char": "阿妍",
+    "text": "嗯。看到了。",
+    "duration": 3.38
+  },
+  "VO_CK_0050": {
+    "file": "assets/audio/voice/CK/VO_CK_0050.mp3",
+    "char": "守笼人",
+    "text": "第一道档案锁遵循行规则：同一横排数字1-4不可重复。",
+    "duration": 9.54
+  },
+  "VO_J_0061": {
+    "file": "assets/audio/voice/J/VO_J_0061.mp3",
+    "char": "莹莹",
+    "text": "简单说就是——横着一排里1、2、3、4各出现一次！缺什么填什么！",
+    "duration": 10.58
+  },
+  "VO_R_0090": {
+    "file": "assets/audio/voice/R/VO_R_0090.mp3",
+    "char": "阿妍",
+    "text": "你父亲是这里的档案员？",
+    "duration": 3.82
+  },
+  "VO_CK_0051": {
+    "file": "assets/audio/voice/CK/VO_CK_0051.mp3",
+    "char": "守笼人",
+    "text": "本章最终考核，检验你所有基础笼局推理能力——孤星、隐曜、并蒂锁、三子法、十则之术。",
+    "duration": 15.23
+  },
+  "VO_J_0062": {
+    "file": "assets/audio/voice/J/VO_J_0062.mp3",
+    "char": "莹莹",
+    "text": "加油！考完这关就能解锁档案馆深处的完整卷宗！",
+    "duration": 7.42
+  },
+  "VO_R_0091": {
+    "file": "assets/audio/voice/R/VO_R_0091.mp3",
+    "char": "阿妍",
+    "text": "长按数字可以连填。省事。",
+    "duration": 5.33
+  },
+  "VO_CK_0052": {
+    "file": "assets/audio/voice/CK/VO_CK_0052.mp3",
+    "char": "守笼人",
+    "text": "基础铁律你已吃透。接下来，真正的笼锁谜题即将出现。",
+    "duration": 10.76
+  },
+  "VO_J_0063": {
+    "file": "assets/audio/voice/J/VO_J_0063.mp3",
+    "char": "莹莹",
+    "text": "笼锁……终于来了。我爸留下的那些图，全都是这种虚线框。",
+    "duration": 8.35
+  },
+  "VO_R_0092": {
+    "file": "assets/audio/voice/R/VO_R_0092.mp3",
+    "char": "阿妍",
+    "text": "你父亲是这里的档案员？",
+    "duration": 3.82
+  },
+  "VO_J_0064": {
+    "file": "assets/audio/voice/J/VO_J_0064.mp3",
+    "char": "莹莹",
+    "text": "笼锁……终于来了。我爸留下的那些图，全都是这种虚线框。",
+    "duration": 8.35
+  },
+  "VO_R_0093": {
+    "file": "assets/audio/voice/R/VO_R_0093.mp3",
+    "char": "阿妍",
+    "text": "缺哪个数，就是哪个。",
+    "duration": 3.96
+  },
+  "VO_SM_0021": {
+    "file": "assets/audio/voice/SM/VO_SM_0021.mp3",
+    "char": "沈墨",
+    "text": "区块排除。第三步。",
+    "duration": 4.93
+  },
+  "VO_CK_0053": {
+    "file": "assets/audio/voice/CK/VO_CK_0053.mp3",
+    "char": "守笼人",
+    "text": "第一道档案锁遵循行规则：同一横排数字1-4不可重复。",
+    "duration": 9.54
+  },
+  "VO_J_0065": {
+    "file": "assets/audio/voice/J/VO_J_0065.mp3",
+    "char": "莹莹",
+    "text": "简单说就是——横着一排里1、2、3、4各出现一次！缺什么填什么！",
+    "duration": 10.58
+  },
+  "VO_R_0094": {
+    "file": "assets/audio/voice/R/VO_R_0094.mp3",
+    "char": "阿妍",
+    "text": "你父亲是这里的档案员？",
+    "duration": 3.82
+  },
+  "VO_CK_0054": {
+    "file": "assets/audio/voice/CK/VO_CK_0054.mp3",
+    "char": "守笼人",
+    "text": "基础铁律你已吃透。接下来，真正的笼锁谜题即将出现。",
+    "duration": 10.76
+  },
+  "VO_J_0066": {
+    "file": "assets/audio/voice/J/VO_J_0066.mp3",
+    "char": "莹莹",
+    "text": "简单说就是——横着一排里1、2、3、4各出现一次！缺什么填什么！",
+    "duration": 10.58
+  },
+  "VO_R_0095": {
+    "file": "assets/audio/voice/R/VO_R_0095.mp3",
+    "char": "阿妍",
+    "text": "你父亲是这里的档案员？",
+    "duration": 3.82
+  },
+  "VO_CK_0055": {
+    "file": "assets/audio/voice/CK/VO_CK_0055.mp3",
+    "char": "守笼人",
+    "text": "基础铁律你已吃透。接下来，真正的笼锁谜题即将出现。",
+    "duration": 10.76
+  },
+  "VO_J_0067": {
+    "file": "assets/audio/voice/J/VO_J_0067.mp3",
+    "char": "莹莹",
+    "text": "简单说就是——横着一排里1、2、3、4各出现一次！缺什么填什么！",
+    "duration": 10.58
+  },
+  "VO_R_0096": {
+    "file": "assets/audio/voice/R/VO_R_0096.mp3",
+    "char": "阿妍",
+    "text": "你父亲是这里的档案员？",
+    "duration": 3.82
+  },
+  "VO_SM_0022": {
+    "file": "assets/audio/voice/SM/VO_SM_0022.mp3",
+    "char": "沈墨",
+    "text": "这三个数，可以交换位置。但它们不会离开这三个格子。",
+    "duration": 9.22
+  },
+  "VO_CK_0056": {
+    "file": "assets/audio/voice/CK/VO_CK_0056.mp3",
+    "char": "守笼人",
+    "text": "本章最终考核，检验你所有基础笼局推理能力——孤星、隐曜、并蒂锁、三子法、十则之术。",
+    "duration": 15.23
+  },
+  "VO_J_0068": {
+    "file": "assets/audio/voice/J/VO_J_0068.mp3",
+    "char": "莹莹",
+    "text": "笼锁……终于来了。我爸留下的那些图，全都是这种虚线框。",
+    "duration": 8.35
+  },
+  "VO_P_0019": {
+    "file": "assets/audio/voice/P/VO_P_0019.mp3",
+    "char": "设局人",
+    "text": "依靠工具投机取巧，永远读不懂笼局背后的星辰逻辑。",
+    "duration": 9.58
+  },
+  "VO_R_0097": {
+    "file": "assets/audio/voice/R/VO_R_0097.mp3",
+    "char": "阿妍",
+    "text": "设局人。",
+    "duration": 2.45
+  },
+  "VO_R_0098": {
+    "file": "assets/audio/voice/R/VO_R_0098.mp3",
+    "char": "阿妍",
+    "text": "嗯。看到了。",
+    "duration": 3.38
+  },
+  "VO_CK_0057": {
+    "file": "assets/audio/voice/CK/VO_CK_0057.mp3",
+    "char": "守笼人",
+    "text": "本章最终考核，检验你所有基础笼局推理能力——孤星、隐曜、并蒂锁、三子法、十则之术。",
+    "duration": 15.23
+  },
+  "VO_J_0069": {
+    "file": "assets/audio/voice/J/VO_J_0069.mp3",
+    "char": "莹莹",
+    "text": "加油！考完这关就能解锁档案馆深处的完整卷宗！",
+    "duration": 7.42
+  },
+  "VO_R_0099": {
+    "file": "assets/audio/voice/R/VO_R_0099.mp3",
+    "char": "阿妍",
+    "text": "你父亲是这里的档案员？",
+    "duration": 3.82
+  },
+  "VO_J_0070": {
+    "file": "assets/audio/voice/J/VO_J_0070.mp3",
+    "char": "莹莹",
+    "text": "笼锁……终于来了。我爸留下的那些图，全都是这种虚线框。",
+    "duration": 8.35
+  },
+  "VO_R_0100": {
+    "file": "assets/audio/voice/R/VO_R_0100.mp3",
+    "char": "阿妍",
+    "text": "设局人。",
+    "duration": 2.45
+  },
+  "VO_CK_0058": {
+    "file": "assets/audio/voice/CK/VO_CK_0058.mp3",
+    "char": "守笼人",
+    "text": "基础铁律你已吃透。接下来，真正的笼锁谜题即将出现。",
+    "duration": 10.76
+  },
+  "VO_J_0071": {
+    "file": "assets/audio/voice/J/VO_J_0071.mp3",
+    "char": "莹莹",
+    "text": "笼锁……终于来了。我爸留下的那些图，全都是这种虚线框。",
+    "duration": 8.35
+  },
+  "VO_R_0101": {
+    "file": "assets/audio/voice/R/VO_R_0101.mp3",
+    "char": "阿妍",
+    "text": "你父亲是这里的档案员？",
+    "duration": 3.82
+  },
+  "VO_P_0020": {
+    "file": "assets/audio/voice/P/VO_P_0020.mp3",
+    "char": "设局人",
+    "text": "只会死守二十一星衡，你永远破不开我完整的九域笼局。",
+    "duration": 10.12
+  },
+  "VO_R_0102": {
+    "file": "assets/audio/voice/R/VO_R_0102.mp3",
+    "char": "阿妍",
+    "text": "嗯。看到了。",
+    "duration": 3.38
+  },
+  "VO_SM_0023": {
+    "file": "assets/audio/voice/SM/VO_SM_0023.mp3",
+    "char": "沈墨",
+    "text": "外层31。内层12。差值是19。这三格——只能是4、6、9。",
+    "duration": 13.46
+  },
+  "VO_CK_0059": {
+    "file": "assets/audio/voice/CK/VO_CK_0059.mp3",
+    "char": "守笼人",
+    "text": "第一道档案锁遵循行规则：同一横排数字1-4不可重复。",
+    "duration": 9.54
+  },
+  "VO_J_0072": {
+    "file": "assets/audio/voice/J/VO_J_0072.mp3",
+    "char": "莹莹",
+    "text": "简单说就是——横着一排里1、2、3、4各出现一次！缺什么填什么！",
+    "duration": 10.58
+  },
+  "VO_R_0103": {
+    "file": "assets/audio/voice/R/VO_R_0103.mp3",
+    "char": "阿妍",
+    "text": "你父亲是这里的档案员？",
+    "duration": 3.82
+  },
+  "VO_CK_0060": {
+    "file": "assets/audio/voice/CK/VO_CK_0060.mp3",
+    "char": "守笼人",
+    "text": "基础铁律你已吃透。接下来，真正的笼锁谜题即将出现。",
+    "duration": 10.76
+  },
+  "VO_J_0073": {
+    "file": "assets/audio/voice/J/VO_J_0073.mp3",
+    "char": "莹莹",
+    "text": "哇！你过了！我当年卡这关卡了快半个钟头！",
+    "duration": 7.31
+  },
+  "VO_R_0104": {
+    "file": "assets/audio/voice/R/VO_R_0104.mp3",
+    "char": "阿妍",
+    "text": "你父亲是这里的档案员？",
+    "duration": 3.82
+  },
+  "VO_CK_0061": {
+    "file": "assets/audio/voice/CK/VO_CK_0061.mp3",
+    "char": "守笼人",
+    "text": "第一道档案锁遵循行规则：同一横排数字1-4不可重复。",
+    "duration": 9.54
+  },
+  "VO_J_0074": {
+    "file": "assets/audio/voice/J/VO_J_0074.mp3",
+    "char": "莹莹",
+    "text": "笼锁……终于来了。我爸留下的那些图，全都是这种虚线框。",
+    "duration": 8.35
+  },
+  "VO_R_0105": {
+    "file": "assets/audio/voice/R/VO_R_0105.mp3",
+    "char": "阿妍",
+    "text": "你父亲是这里的档案员？",
+    "duration": 3.82
+  },
+  "VO_SM_0024": {
+    "file": "assets/audio/voice/SM/VO_SM_0024.mp3",
+    "char": "沈墨",
+    "text": "外层31。内层12。差值是19。这三格——只能是4、6、9。",
+    "duration": 13.46
+  },
+  "VO_CK_0062": {
+    "file": "assets/audio/voice/CK/VO_CK_0062.mp3",
+    "char": "守笼人",
+    "text": "本章最终考核，检验你所有基础笼局推理能力——孤星、隐曜、并蒂锁、三子法、十则之术。",
+    "duration": 15.23
+  },
+  "VO_J_0075": {
+    "file": "assets/audio/voice/J/VO_J_0075.mp3",
+    "char": "莹莹",
+    "text": "笼锁……终于来了。我爸留下的那些图，全都是这种虚线框。",
+    "duration": 8.35
+  },
+  "VO_P_0021": {
+    "file": "assets/audio/voice/P/VO_P_0021.mp3",
+    "char": "设局人",
+    "text": "四十五只是最表层的障眼法。真正的笼局玄机，藏在差值之中。",
+    "duration": 12.89
+  },
+  "VO_R_0106": {
+    "file": "assets/audio/voice/R/VO_R_0106.mp3",
+    "char": "阿妍",
+    "text": "嗯。看到了。",
+    "duration": 3.38
+  },
+  "VO_R_0107": {
+    "file": "assets/audio/voice/R/VO_R_0107.mp3",
+    "char": "阿妍",
+    "text": "长按数字可以连填。省事。",
+    "duration": 5.33
+  },
+  "VO_CK_0063": {
+    "file": "assets/audio/voice/CK/VO_CK_0063.mp3",
+    "char": "守笼人",
+    "text": "本章最终考核，检验你所有基础笼局推理能力——孤星、隐曜、并蒂锁、三子法、十则之术。",
+    "duration": 15.23
+  },
+  "VO_J_0076": {
+    "file": "assets/audio/voice/J/VO_J_0076.mp3",
+    "char": "莹莹",
+    "text": "加油！考完这关就能解锁档案馆深处的完整卷宗！",
+    "duration": 7.42
+  },
+  "VO_R_0108": {
+    "file": "assets/audio/voice/R/VO_R_0108.mp3",
+    "char": "阿妍",
+    "text": "走了。",
+    "duration": 1.91
+  },
+  "VO_CK_0064": {
+    "file": "assets/audio/voice/CK/VO_CK_0064.mp3",
+    "char": "守笼人",
+    "text": "本章最终考核，检验你所有基础笼局推理能力——孤星、隐曜、并蒂锁、三子法、十则之术。",
+    "duration": 15.23
+  },
+  "VO_P_0022": {
+    "file": "assets/audio/voice/P/VO_P_0022.mp3",
+    "char": "设局人",
+    "text": "第一道笼局，是我和守笼人第一次见面时的对局。那年我十七岁，他二十。",
+    "duration": 12.89
+  },
+  "VO_J_0077": {
+    "file": "assets/audio/voice/J/VO_J_0077.mp3",
+    "char": "莹莹",
+    "text": "哇！你过了！我当年卡这关卡了快半个钟头！",
+    "duration": 7.31
+  },
+  "VO_R_0109": {
+    "file": "assets/audio/voice/R/VO_R_0109.mp3",
+    "char": "阿妍",
+    "text": "长按数字可以连填。省事。",
+    "duration": 5.33
+  },
+  "VO_P_0023": {
+    "file": "assets/audio/voice/P/VO_P_0023.mp3",
+    "char": "设局人",
+    "text": "第一道笼局，是我和守笼人第一次见面时的对局。那年我十七岁，他二十。",
+    "duration": 12.89
+  },
+  "VO_J_0078": {
+    "file": "assets/audio/voice/J/VO_J_0078.mp3",
+    "char": "莹莹",
+    "text": "笼锁……终于来了。我爸留下的那些图，全都是这种虚线框。",
+    "duration": 8.35
+  },
+  "VO_R_0110": {
+    "file": "assets/audio/voice/R/VO_R_0110.mp3",
+    "char": "阿妍",
+    "text": "嗯。看到了。",
+    "duration": 3.38
+  },
+  "VO_P_0024": {
+    "file": "assets/audio/voice/P/VO_P_0024.mp3",
+    "char": "设局人",
+    "text": "依靠工具投机取巧，永远读不懂笼局背后的星辰逻辑。",
+    "duration": 9.58
+  },
+  "VO_R_0111": {
+    "file": "assets/audio/voice/R/VO_R_0111.mp3",
+    "char": "阿妍",
+    "text": "缺哪个数，就是哪个。",
+    "duration": 3.96
+  },
+  "VO_P_0025": {
+    "file": "assets/audio/voice/P/VO_P_0025.mp3",
+    "char": "设局人",
+    "text": "能闯过星衡试炼，勉强有资格直面我真正的笼局。",
+    "duration": 9.18
+  },
+  "VO_J_0079": {
+    "file": "assets/audio/voice/J/VO_J_0079.mp3",
+    "char": "莹莹",
+    "text": "笼锁……终于来了。我爸留下的那些图，全都是这种虚线框。",
+    "duration": 8.35
+  },
+  "VO_R_0112": {
+    "file": "assets/audio/voice/R/VO_R_0112.mp3",
+    "char": "阿妍",
+    "text": "嗯。看到了。",
+    "duration": 3.38
+  },
+  "VO_J_0080": {
+    "file": "assets/audio/voice/J/VO_J_0080.mp3",
+    "char": "莹莹",
+    "text": "笼锁……终于来了。我爸留下的那些图，全都是这种虚线框。",
+    "duration": 8.35
+  },
+  "VO_P_0026": {
+    "file": "assets/audio/voice/P/VO_P_0026.mp3",
+    "char": "设局人",
+    "text": "道不同不相为谋。你守着你的档案馆，我布我的局。",
+    "duration": 9.76
+  },
+  "VO_P_0027": {
+    "file": "assets/audio/voice/P/VO_P_0027.mp3",
+    "char": "设局人",
+    "text": "道不同不相为谋。你守着你的档案馆，我布我的局。",
+    "duration": 9.76
+  },
+  "VO_P_0028": {
+    "file": "assets/audio/voice/P/VO_P_0028.mp3",
+    "char": "设局人",
+    "text": "第一道笼局，是我和守笼人第一次见面时的对局。那年我十七岁，他二十。",
+    "duration": 12.89
+  },
+  "VO_J_0081": {
+    "file": "assets/audio/voice/J/VO_J_0081.mp3",
+    "char": "莹莹",
+    "text": "笼锁……终于来了。我爸留下的那些图，全都是这种虚线框。",
+    "duration": 8.35
+  },
+  "VO_CK_0065": {
+    "file": "assets/audio/voice/CK/VO_CK_0065.mp3",
+    "char": "守笼人",
+    "text": "一个曾经和我站在一起的人。他的名字，已被从所有档案里抹去了。",
+    "duration": 10.69
+  },
+  "VO_R_0113": {
+    "file": "assets/audio/voice/R/VO_R_0113.mp3",
+    "char": "阿妍",
+    "text": "嗯。看到了。",
+    "duration": 3.38
+  },
+  "VO_P_0029": {
+    "file": "assets/audio/voice/P/VO_P_0029.mp3",
+    "char": "设局人",
+    "text": "第一道笼局，是我和守笼人第一次见面时的对局。那年我十七岁，他二十。",
+    "duration": 12.89
+  },
+  "VO_J_0082": {
+    "file": "assets/audio/voice/J/VO_J_0082.mp3",
+    "char": "莹莹",
+    "text": "笼锁……终于来了。我爸留下的那些图，全都是这种虚线框。",
+    "duration": 8.35
+  },
+  "VO_P_0030": {
+    "file": "assets/audio/voice/P/VO_P_0030.mp3",
+    "char": "设局人",
+    "text": "道不同不相为谋。你守着你的档案馆，我布我的局。",
+    "duration": 9.76
+  },
+  "VO_R_0114": {
+    "file": "assets/audio/voice/R/VO_R_0114.mp3",
+    "char": "阿妍",
+    "text": "不错。继续。",
+    "duration": 3.53
+  },
+  "VO_CK_0066": {
+    "file": "assets/audio/voice/CK/VO_CK_0066.mp3",
+    "char": "守笼人",
+    "text": "一个曾经和我站在一起的人。他的名字，已被从所有档案里抹去了。",
+    "duration": 10.69
+  },
+  "VO_SM_0025": {
+    "file": "assets/audio/voice/SM/VO_SM_0025.mp3",
+    "char": "沈墨",
+    "text": "三十年。不算晚。",
+    "duration": 4.5
+  },
+  "VO_CK_0067": {
+    "file": "assets/audio/voice/CK/VO_CK_0067.mp3",
+    "char": "守笼人",
+    "text": "本章最终考核，检验你所有基础笼局推理能力——孤星、隐曜、并蒂锁、三子法、十则之术。",
+    "duration": 15.23
+  },
+  "VO_J_0083": {
+    "file": "assets/audio/voice/J/VO_J_0083.mp3",
+    "char": "莹莹",
+    "text": "笼锁……终于来了。我爸留下的那些图，全都是这种虚线框。",
+    "duration": 8.35
+  },
+  "VO_P_0031": {
+    "file": "assets/audio/voice/P/VO_P_0031.mp3",
+    "char": "设局人",
+    "text": "道不同不相为谋。你守着你的档案馆，我布我的局。",
+    "duration": 9.76
+  },
+  "VO_R_0115": {
+    "file": "assets/audio/voice/R/VO_R_0115.mp3",
+    "char": "阿妍",
+    "text": "嗯。看到了。",
+    "duration": 3.38
+  },
+  "VO_R_0116": {
+    "file": "assets/audio/voice/R/VO_R_0116.mp3",
+    "char": "阿妍",
+    "text": "不错。继续。",
+    "duration": 3.53
+  },
+  "VO_CK_0068": {
+    "file": "assets/audio/voice/CK/VO_CK_0068.mp3",
+    "char": "守笼人",
+    "text": "基础铁律你已吃透。接下来，真正的笼锁谜题即将出现。",
+    "duration": 10.76
+  },
+  "VO_J_0084": {
+    "file": "assets/audio/voice/J/VO_J_0084.mp3",
+    "char": "莹莹",
+    "text": "简单说就是——横着一排里1、2、3、4各出现一次！缺什么填什么！",
+    "duration": 10.58
+  },
+  "VO_R_0117": {
+    "file": "assets/audio/voice/R/VO_R_0117.mp3",
+    "char": "阿妍",
+    "text": "你父亲是这里的档案员？",
+    "duration": 3.82
+  },
+  "VO_CK_0069": {
+    "file": "assets/audio/voice/CK/VO_CK_0069.mp3",
+    "char": "守笼人",
+    "text": "基础铁律你已吃透。接下来，真正的笼锁谜题即将出现。",
+    "duration": 10.76
+  },
+  "VO_SM_0026": {
+    "file": "assets/audio/voice/SM/VO_SM_0026.mp3",
+    "char": "沈墨",
+    "text": "外层31。内层12。差值是19。这三格——只能是4、6、9。",
+    "duration": 13.46
+  },
+  "VO_CK_0070": {
+    "file": "assets/audio/voice/CK/VO_CK_0070.mp3",
+    "char": "守笼人",
+    "text": "基础铁律你已吃透。接下来，真正的笼锁谜题即将出现。",
+    "duration": 10.76
+  },
+  "VO_J_0085": {
+    "file": "assets/audio/voice/J/VO_J_0085.mp3",
+    "char": "莹莹",
+    "text": "简单说就是——横着一排里1、2、3、4各出现一次！缺什么填什么！",
+    "duration": 10.58
+  },
+  "VO_R_0118": {
+    "file": "assets/audio/voice/R/VO_R_0118.mp3",
+    "char": "阿妍",
+    "text": "你父亲是这里的档案员？",
+    "duration": 3.82
+  },
+  "VO_CK_0071": {
+    "file": "assets/audio/voice/CK/VO_CK_0071.mp3",
+    "char": "守笼人",
+    "text": "基础铁律你已吃透。接下来，真正的笼锁谜题即将出现。",
+    "duration": 10.76
+  },
+  "VO_CK_0072": {
+    "file": "assets/audio/voice/CK/VO_CK_0072.mp3",
+    "char": "守笼人",
+    "text": "基础铁律你已吃透。接下来，真正的笼锁谜题即将出现。",
+    "duration": 10.76
+  },
+  "VO_J_0086": {
+    "file": "assets/audio/voice/J/VO_J_0086.mp3",
+    "char": "莹莹",
+    "text": "简单说就是——横着一排里1、2、3、4各出现一次！缺什么填什么！",
+    "duration": 10.58
+  },
+  "VO_R_0119": {
+    "file": "assets/audio/voice/R/VO_R_0119.mp3",
+    "char": "阿妍",
+    "text": "你父亲是这里的档案员？",
+    "duration": 3.82
+  },
+  "VO_CK_0073": {
+    "file": "assets/audio/voice/CK/VO_CK_0073.mp3",
+    "char": "守笼人",
+    "text": "基础铁律你已吃透。接下来，真正的笼锁谜题即将出现。",
+    "duration": 10.76
+  },
+  "VO_SM_0027": {
+    "file": "assets/audio/voice/SM/VO_SM_0027.mp3",
+    "char": "沈墨",
+    "text": "外层31。内层12。差值是19。这三格——只能是4、6、9。",
+    "duration": 13.46
+  },
+  "VO_CK_0074": {
+    "file": "assets/audio/voice/CK/VO_CK_0074.mp3",
+    "char": "守笼人",
+    "text": "基础铁律你已吃透。接下来，真正的笼锁谜题即将出现。",
+    "duration": 10.76
+  },
+  "VO_J_0087": {
+    "file": "assets/audio/voice/J/VO_J_0087.mp3",
+    "char": "莹莹",
+    "text": "哇！你过了！我当年卡这关卡了快半个钟头！",
+    "duration": 7.31
+  },
+  "VO_R_0120": {
+    "file": "assets/audio/voice/R/VO_R_0120.mp3",
+    "char": "阿妍",
+    "text": "你父亲是这里的档案员？",
+    "duration": 3.82
+  },
+  "VO_CK_0075": {
+    "file": "assets/audio/voice/CK/VO_CK_0075.mp3",
+    "char": "守笼人",
+    "text": "一个曾经和我站在一起的人。他的名字，已被从所有档案里抹去了。",
+    "duration": 10.69
+  },
+  "VO_CK_0076": {
+    "file": "assets/audio/voice/CK/VO_CK_0076.mp3",
+    "char": "守笼人",
+    "text": "基础铁律你已吃透。接下来，真正的笼锁谜题即将出现。",
+    "duration": 10.76
+  },
+  "VO_J_0088": {
+    "file": "assets/audio/voice/J/VO_J_0088.mp3",
+    "char": "莹莹",
+    "text": "哇！你过了！我当年卡这关卡了快半个钟头！",
+    "duration": 7.31
+  },
+  "VO_R_0121": {
+    "file": "assets/audio/voice/R/VO_R_0121.mp3",
+    "char": "阿妍",
+    "text": "你父亲是这里的档案员？",
+    "duration": 3.82
+  },
+  "VO_CK_0077": {
+    "file": "assets/audio/voice/CK/VO_CK_0077.mp3",
+    "char": "守笼人",
+    "text": "基础铁律你已吃透。接下来，真正的笼锁谜题即将出现。",
+    "duration": 10.76
+  },
+  "VO_SM_0028": {
+    "file": "assets/audio/voice/SM/VO_SM_0028.mp3",
+    "char": "沈墨",
+    "text": "网撒下去的时候，鱼已经不在水里了。",
+    "duration": 6.19
+  },
+  "VO_SS_0020": {
+    "file": "assets/audio/voice/SS/VO_SS_0020.mp3",
+    "char": "设局人（秘术）",
+    "text": "尘埃落定之时，星辰梭的光芒将再次显现。",
+    "duration": 8.1
+  },
+  "VO_R_0122": {
+    "file": "assets/audio/voice/R/VO_R_0122.mp3",
+    "char": "阿妍",
+    "text": "嗯。看到了。",
+    "duration": 3.38
+  },
+  "VO_SS_0021": {
+    "file": "assets/audio/voice/SS/VO_SS_0021.mp3",
+    "char": "设局人（秘术）",
+    "text": "这不是教学卷。这是我三十年前为自己设下的终极考验——一道需要同时运用并蒂锁、三子法、二连纵横阵和三才游鱼阵才能解开的笼局。",
+    "duration": 23.11
+  },
+  "VO_SS_0022": {
+    "file": "assets/audio/voice/SS/VO_SS_0022.mp3",
+    "char": "设局人（秘术）",
+    "text": "我花了三天三夜才解开它。如果你能独立完成——你就不再是我的学生，而是与我并列的设局者。",
+    "duration": 15.23
+  },
+  "VO_J_0089": {
+    "file": "assets/audio/voice/J/VO_J_0089.mp3",
+    "char": "莹莹",
+    "text": "笼锁……终于来了。我爸留下的那些图，全都是这种虚线框。",
+    "duration": 8.35
+  },
+  "VO_R_0123": {
+    "file": "assets/audio/voice/R/VO_R_0123.mp3",
+    "char": "阿妍",
+    "text": "长按数字可以连填。省事。",
+    "duration": 5.33
+  },
+  "VO_SM_0029": {
+    "file": "assets/audio/voice/SM/VO_SM_0029.mp3",
+    "char": "沈墨",
+    "text": "这封信，是你写的吗？",
+    "duration": 4.68
+  },
+  "VO_SS_0023": {
+    "file": "assets/audio/voice/SS/VO_SS_0023.mp3",
+    "char": "设局人（秘术）",
+    "text": "不是我写的。是另一个人。但那封信，是我让她写的。",
+    "duration": 10.58
+  },
+  "VO_CK_0078": {
+    "file": "assets/audio/voice/CK/VO_CK_0078.mp3",
+    "char": "守笼人",
+    "text": "能解开基础行锁，说明你至少具备了最基本的观察力。",
+    "duration": 8.24
+  },
+  "VO_J_0090": {
+    "file": "assets/audio/voice/J/VO_J_0090.mp3",
+    "char": "莹莹",
+    "text": "哇！你过了！我当年卡这关卡了快半个钟头！",
+    "duration": 7.31
+  },
+  "VO_R_0124": {
+    "file": "assets/audio/voice/R/VO_R_0124.mp3",
+    "char": "阿妍",
+    "text": "不错。继续。",
+    "duration": 3.53
+  },
+  "VO_CK_0079": {
+    "file": "assets/audio/voice/CK/VO_CK_0079.mp3",
+    "char": "守笼人",
+    "text": "能解开基础行锁，说明你至少具备了最基本的观察力。",
+    "duration": 8.24
+  },
+  "VO_J_0091": {
+    "file": "assets/audio/voice/J/VO_J_0091.mp3",
+    "char": "莹莹",
+    "text": "哇！你过了！我当年卡这关卡了快半个钟头！",
+    "duration": 7.31
+  },
+  "VO_R_0125": {
+    "file": "assets/audio/voice/R/VO_R_0125.mp3",
+    "char": "阿妍",
+    "text": "嗯。看到了。",
+    "duration": 3.38
+  },
+  "VO_CK_0080": {
+    "file": "assets/audio/voice/CK/VO_CK_0080.mp3",
+    "char": "守笼人",
+    "text": "基础铁律你已吃透。接下来，真正的笼锁谜题即将出现。",
+    "duration": 10.76
+  },
+  "VO_J_0092": {
+    "file": "assets/audio/voice/J/VO_J_0092.mp3",
+    "char": "莹莹",
+    "text": "笼锁……终于来了。我爸留下的那些图，全都是这种虚线框。",
+    "duration": 8.35
+  },
+  "VO_R_0126": {
+    "file": "assets/audio/voice/R/VO_R_0126.mp3",
+    "char": "阿妍",
+    "text": "你父亲是这里的档案员？",
+    "duration": 3.82
+  },
+  "VO_R_0127": {
+    "file": "assets/audio/voice/R/VO_R_0127.mp3",
+    "char": "阿妍",
+    "text": "嗯。看到了。",
+    "duration": 3.38
+  },
+  "VO_CK_0081": {
+    "file": "assets/audio/voice/CK/VO_CK_0081.mp3",
+    "char": "守笼人",
+    "text": "能解开基础行锁，说明你至少具备了最基本的观察力。",
+    "duration": 8.24
+  },
+  "VO_J_0093": {
+    "file": "assets/audio/voice/J/VO_J_0093.mp3",
+    "char": "莹莹",
+    "text": "哇！你过了！我当年卡这关卡了快半个钟头！",
+    "duration": 7.31
+  },
+  "VO_R_0128": {
+    "file": "assets/audio/voice/R/VO_R_0128.mp3",
+    "char": "阿妍",
+    "text": "高不高手，还早。",
+    "duration": 3.24
+  },
+  "VO_SM_0030": {
+    "file": "assets/audio/voice/SM/VO_SM_0030.mp3",
+    "char": "沈墨",
+    "text": "你刚才说“我爸留下的图”。你父亲是这里的档案员？",
+    "duration": 8.21
+  },
+  "VO_SM_0031": {
+    "file": "assets/audio/voice/SM/VO_SM_0031.mp3",
+    "char": "沈墨",
+    "text": "不认识。但我收到过一封信。署名是“一个被困在数字里的人”。",
+    "duration": 10.22
+  },
+  "VO_R_0129": {
+    "file": "assets/audio/voice/R/VO_R_0129.mp3",
+    "char": "阿妍",
+    "text": "你父亲是这里的档案员？",
+    "duration": 3.82
+  },
+  "VO_CK_0082": {
+    "file": "assets/audio/voice/CK/VO_CK_0082.mp3",
+    "char": "守笼人",
+    "text": "能解开基础行锁，说明你至少具备了最基本的观察力。",
+    "duration": 8.24
+  },
+  "VO_J_0094": {
+    "file": "assets/audio/voice/J/VO_J_0094.mp3",
+    "char": "莹莹",
+    "text": "哇！你过了！我当年卡这关卡了快半个钟头！",
+    "duration": 7.31
+  },
+  "VO_R_0130": {
+    "file": "assets/audio/voice/R/VO_R_0130.mp3",
+    "char": "阿妍",
+    "text": "嗯。看到了。",
+    "duration": 3.38
+  },
+  "VO_SM_0032": {
+    "file": "assets/audio/voice/SM/VO_SM_0032.mp3",
+    "char": "沈墨",
+    "text": "也许。但如果通关了，我就得走了。",
+    "duration": 6.73
+  },
+  "VO_CK_0083": {
+    "file": "assets/audio/voice/CK/VO_CK_0083.mp3",
+    "char": "守笼人",
+    "text": "基础铁律你已吃透。接下来，真正的笼锁谜题即将出现。",
+    "duration": 10.76
+  },
+  "VO_J_0095": {
+    "file": "assets/audio/voice/J/VO_J_0095.mp3",
+    "char": "莹莹",
+    "text": "笼锁……终于来了。我爸留下的那些图，全都是这种虚线框。",
+    "duration": 8.35
+  },
+  "VO_CK_0084": {
+    "file": "assets/audio/voice/CK/VO_CK_0084.mp3",
+    "char": "守笼人",
+    "text": "能解开基础行锁，说明你至少具备了最基本的观察力。",
+    "duration": 8.24
+  },
+  "VO_J_0096": {
+    "file": "assets/audio/voice/J/VO_J_0096.mp3",
+    "char": "莹莹",
+    "text": "笼锁……终于来了。我爸留下的那些图，全都是这种虚线框。",
+    "duration": 8.35
+  },
+  "VO_R_0131": {
+    "file": "assets/audio/voice/R/VO_R_0131.mp3",
+    "char": "阿妍",
+    "text": "你哪关不是哭着过的。",
+    "duration": 3.71
+  },
+  "VO_R_0132": {
+    "file": "assets/audio/voice/R/VO_R_0132.mp3",
+    "char": "阿妍",
+    "text": "走了。",
+    "duration": 1.91
+  },
+  "VO_CK_0085": {
+    "file": "assets/audio/voice/CK/VO_CK_0085.mp3",
+    "char": "守笼人",
+    "text": "能解开基础行锁，说明你至少具备了最基本的观察力。",
+    "duration": 8.24
+  },
+  "VO_J_0097": {
+    "file": "assets/audio/voice/J/VO_J_0097.mp3",
+    "char": "莹莹",
+    "text": "又近了一步！我当初数过——训练关一共112次！",
+    "duration": 7.63
+  },
+  "VO_R_0133": {
+    "file": "assets/audio/voice/R/VO_R_0133.mp3",
+    "char": "阿妍",
+    "text": "嗯。看到了。",
+    "duration": 3.38
+  },
+  "VO_J_0098": {
+    "file": "assets/audio/voice/J/VO_J_0098.mp3",
+    "char": "莹莹",
+    "text": "笼锁……终于来了。我爸留下的那些图，全都是这种虚线框。",
+    "duration": 8.35
+  },
+  "VO_CK_0086": {
+    "file": "assets/audio/voice/CK/VO_CK_0086.mp3",
+    "char": "守笼人",
+    "text": "能解开基础行锁，说明你至少具备了最基本的观察力。",
+    "duration": 8.24
+  },
+  "VO_J_0099": {
+    "file": "assets/audio/voice/J/VO_J_0099.mp3",
+    "char": "莹莹",
+    "text": "笼锁……终于来了。我爸留下的那些图，全都是这种虚线框。",
+    "duration": 8.35
+  },
+  "VO_CK_0087": {
+    "file": "assets/audio/voice/CK/VO_CK_0087.mp3",
+    "char": "守笼人",
+    "text": "一个曾经和我站在一起的人。他的名字，已被从所有档案里抹去了。",
+    "duration": 10.69
+  },
+  "VO_R_0134": {
+    "file": "assets/audio/voice/R/VO_R_0134.mp3",
+    "char": "阿妍",
+    "text": "设局人。",
+    "duration": 2.45
+  },
+  "VO_R_0135": {
+    "file": "assets/audio/voice/R/VO_R_0135.mp3",
+    "char": "阿妍",
+    "text": "你父亲是这里的档案员？",
+    "duration": 3.82
+  },
+  "VO_SM_0033": {
+    "file": "assets/audio/voice/SM/VO_SM_0033.mp3",
+    "char": "沈墨",
+    "text": "他一直在等我们找到这里。",
+    "duration": 4.61
+  },
+  "VO_CK_0088": {
+    "file": "assets/audio/voice/CK/VO_CK_0088.mp3",
+    "char": "守笼人",
+    "text": "能解开基础行锁，说明你至少具备了最基本的观察力。",
+    "duration": 8.24
+  },
+  "VO_J_0100": {
+    "file": "assets/audio/voice/J/VO_J_0100.mp3",
+    "char": "莹莹",
+    "text": "哇！你过了！我当年卡这关卡了快半个钟头！",
+    "duration": 7.31
+  },
+  "VO_CK_0089": {
+    "file": "assets/audio/voice/CK/VO_CK_0089.mp3",
+    "char": "守笼人",
+    "text": "基础铁律你已吃透。接下来，真正的笼锁谜题即将出现。",
+    "duration": 10.76
+  },
+  "VO_P_0032": {
+    "file": "assets/audio/voice/P/VO_P_0032.mp3",
+    "char": "设局人",
+    "text": "只会死守二十一星衡，你永远破不开我完整的九域笼局。",
+    "duration": 10.12
+  },
+  "VO_J_0101": {
+    "file": "assets/audio/voice/J/VO_J_0101.mp3",
+    "char": "莹莹",
+    "text": "笼锁……终于来了。我爸留下的那些图，全都是这种虚线框。",
+    "duration": 8.35
+  },
+  "VO_CK_0090": {
+    "file": "assets/audio/voice/CK/VO_CK_0090.mp3",
+    "char": "守笼人",
+    "text": "一个曾经和我站在一起的人。他的名字，已被从所有档案里抹去了。",
+    "duration": 10.69
+  },
+  "VO_R_0136": {
+    "file": "assets/audio/voice/R/VO_R_0136.mp3",
+    "char": "阿妍",
+    "text": "你父亲是这里的档案员？",
+    "duration": 3.82
+  },
+  "VO_R_0137": {
+    "file": "assets/audio/voice/R/VO_R_0137.mp3",
+    "char": "阿妍",
+    "text": "嗯。看到了。",
+    "duration": 3.38
+  },
+  "VO_SM_0034": {
+    "file": "assets/audio/voice/SM/VO_SM_0034.mp3",
+    "char": "沈墨",
+    "text": "是等一个人，还是等一种人？",
+    "duration": 5.58
+  },
+  "VO_CK_0091": {
+    "file": "assets/audio/voice/CK/VO_CK_0091.mp3",
+    "char": "守笼人",
+    "text": "能解开基础行锁，说明你至少具备了最基本的观察力。",
+    "duration": 8.24
+  },
+  "VO_J_0102": {
+    "file": "assets/audio/voice/J/VO_J_0102.mp3",
+    "char": "莹莹",
+    "text": "笼锁……终于来了。我爸留下的那些图，全都是这种虚线框。",
+    "duration": 8.35
+  },
+  "VO_R_0138": {
+    "file": "assets/audio/voice/R/VO_R_0138.mp3",
+    "char": "阿妍",
+    "text": "缺哪个数，就是哪个。",
+    "duration": 3.96
+  },
+  "VO_R_0139": {
+    "file": "assets/audio/voice/R/VO_R_0139.mp3",
+    "char": "阿妍",
+    "text": "长按数字可以连填。省事。",
+    "duration": 5.33
+  },
+  "VO_CK_0092": {
+    "file": "assets/audio/voice/CK/VO_CK_0092.mp3",
+    "char": "守笼人",
+    "text": "能解开基础行锁，说明你至少具备了最基本的观察力。",
+    "duration": 8.24
+  },
+  "VO_J_0103": {
+    "file": "assets/audio/voice/J/VO_J_0103.mp3",
+    "char": "莹莹",
+    "text": "哇！你过了！我当年卡这关卡了快半个钟头！",
+    "duration": 7.31
+  },
+  "VO_R_0140": {
+    "file": "assets/audio/voice/R/VO_R_0140.mp3",
+    "char": "阿妍",
+    "text": "长按数字可以连填。省事。",
+    "duration": 5.33
+  },
+  "VO_CK_0093": {
+    "file": "assets/audio/voice/CK/VO_CK_0093.mp3",
+    "char": "守笼人",
+    "text": "基础铁律你已吃透。接下来，真正的笼锁谜题即将出现。",
+    "duration": 10.76
+  },
+  "VO_R_0141": {
+    "file": "assets/audio/voice/R/VO_R_0141.mp3",
+    "char": "阿妍",
+    "text": "你父亲是这里的档案员？",
+    "duration": 3.82
+  },
+  "VO_J_0104": {
+    "file": "assets/audio/voice/J/VO_J_0104.mp3",
+    "char": "莹莹",
+    "text": "笼锁……终于来了。我爸留下的那些图，全都是这种虚线框。",
+    "duration": 8.35
+  },
+  "VO_R_0142": {
+    "file": "assets/audio/voice/R/VO_R_0142.mp3",
+    "char": "阿妍",
+    "text": "嗯。看到了。",
+    "duration": 3.38
+  },
+  "VO_CK_0094": {
+    "file": "assets/audio/voice/CK/VO_CK_0094.mp3",
+    "char": "守笼人",
+    "text": "能解开基础行锁，说明你至少具备了最基本的观察力。",
+    "duration": 8.24
+  },
+  "VO_J_0105": {
+    "file": "assets/audio/voice/J/VO_J_0105.mp3",
+    "char": "莹莹",
+    "text": "哇！你过了！我当年卡这关卡了快半个钟头！",
+    "duration": 7.31
+  },
+  "VO_R_0143": {
+    "file": "assets/audio/voice/R/VO_R_0143.mp3",
+    "char": "阿妍",
+    "text": "你哪关不是哭着过的。",
+    "duration": 3.71
+  },
+  "VO_CK_0095": {
+    "file": "assets/audio/voice/CK/VO_CK_0095.mp3",
+    "char": "守笼人",
+    "text": "能解开基础行锁，说明你至少具备了最基本的观察力。",
+    "duration": 8.24
+  },
+  "VO_P_0033": {
+    "file": "assets/audio/voice/P/VO_P_0033.mp3",
+    "char": "设局人",
+    "text": "能闯过星衡试炼，勉强有资格直面我真正的笼局。",
+    "duration": 9.18
+  },
+  "VO_J_0106": {
+    "file": "assets/audio/voice/J/VO_J_0106.mp3",
+    "char": "莹莹",
+    "text": "加油！考完这关就能解锁档案馆深处的完整卷宗！",
+    "duration": 7.42
+  },
+  "VO_R_0144": {
+    "file": "assets/audio/voice/R/VO_R_0144.mp3",
+    "char": "阿妍",
+    "text": "不错。继续。",
+    "duration": 3.53
+  },
+  "VO_CK_0096": {
+    "file": "assets/audio/voice/CK/VO_CK_0096.mp3",
+    "char": "守笼人",
+    "text": "能解开基础行锁，说明你至少具备了最基本的观察力。",
+    "duration": 8.24
+  },
+  "VO_P_0034": {
+    "file": "assets/audio/voice/P/VO_P_0034.mp3",
+    "char": "设局人",
+    "text": "依靠工具投机取巧，永远读不懂笼局背后的星辰逻辑。",
+    "duration": 9.58
+  },
+  "VO_R_0145": {
+    "file": "assets/audio/voice/R/VO_R_0145.mp3",
+    "char": "阿妍",
+    "text": "嗯。看到了。",
+    "duration": 3.38
+  },
+  "VO_SM_0035": {
+    "file": "assets/audio/voice/SM/VO_SM_0035.mp3",
+    "char": "沈墨",
+    "text": "他丢下的每一片，都困了人很久。",
+    "duration": 5.62
+  },
+  "VO_CK_0097": {
+    "file": "assets/audio/voice/CK/VO_CK_0097.mp3",
+    "char": "守笼人",
+    "text": "能解开基础行锁，说明你至少具备了最基本的观察力。",
+    "duration": 8.24
+  },
+  "VO_J_0107": {
+    "file": "assets/audio/voice/J/VO_J_0107.mp3",
+    "char": "莹莹",
+    "text": "哇！你过了！我当年卡这关卡了快半个钟头！",
+    "duration": 7.31
+  },
+  "VO_R_0146": {
+    "file": "assets/audio/voice/R/VO_R_0146.mp3",
+    "char": "阿妍",
+    "text": "嗯。看到了。",
+    "duration": 3.38
+  },
+  "VO_CK_0098": {
+    "file": "assets/audio/voice/CK/VO_CK_0098.mp3",
+    "char": "守笼人",
+    "text": "基础铁律你已吃透。接下来，真正的笼锁谜题即将出现。",
+    "duration": 10.76
+  },
+  "VO_J_0108": {
+    "file": "assets/audio/voice/J/VO_J_0108.mp3",
+    "char": "莹莹",
+    "text": "笼锁……终于来了。我爸留下的那些图，全都是这种虚线框。",
+    "duration": 8.35
+  },
+  "VO_CK_0099": {
+    "file": "assets/audio/voice/CK/VO_CK_0099.mp3",
+    "char": "守笼人",
+    "text": "一个曾经和我站在一起的人。他的名字，已被从所有档案里抹去了。",
+    "duration": 10.69
+  },
+  "VO_R_0147": {
+    "file": "assets/audio/voice/R/VO_R_0147.mp3",
+    "char": "阿妍",
+    "text": "嗯。看到了。",
+    "duration": 3.38
+  },
+  "VO_CK_0100": {
+    "file": "assets/audio/voice/CK/VO_CK_0100.mp3",
+    "char": "守笼人",
+    "text": "能解开基础行锁，说明你至少具备了最基本的观察力。",
+    "duration": 8.24
+  },
+  "VO_J_0109": {
+    "file": "assets/audio/voice/J/VO_J_0109.mp3",
+    "char": "莹莹",
+    "text": "哇！你过了！我当年卡这关卡了快半个钟头！",
+    "duration": 7.31
+  },
+  "VO_R_0148": {
+    "file": "assets/audio/voice/R/VO_R_0148.mp3",
+    "char": "阿妍",
+    "text": "你父亲是这里的档案员？",
+    "duration": 3.82
+  },
+  "VO_CK_0101": {
+    "file": "assets/audio/voice/CK/VO_CK_0101.mp3",
+    "char": "守笼人",
+    "text": "一个曾经和我站在一起的人。他的名字，已被从所有档案里抹去了。",
+    "duration": 10.69
+  },
+  "VO_J_0110": {
+    "file": "assets/audio/voice/J/VO_J_0110.mp3",
+    "char": "莹莹",
+    "text": "笼锁……终于来了。我爸留下的那些图，全都是这种虚线框。",
+    "duration": 8.35
+  },
+  "VO_CK_0102": {
+    "file": "assets/audio/voice/CK/VO_CK_0102.mp3",
+    "char": "守笼人",
+    "text": "一个曾经和我站在一起的人。他的名字，已被从所有档案里抹去了。",
+    "duration": 10.69
+  },
+  "VO_R_0149": {
+    "file": "assets/audio/voice/R/VO_R_0149.mp3",
+    "char": "阿妍",
+    "text": "设局人。",
+    "duration": 2.45
+  },
+  "VO_CK_0103": {
+    "file": "assets/audio/voice/CK/VO_CK_0103.mp3",
+    "char": "守笼人",
+    "text": "一个曾经和我站在一起的人。他的名字，已被从所有档案里抹去了。",
+    "duration": 10.69
+  },
+  "VO_CK_0104": {
+    "file": "assets/audio/voice/CK/VO_CK_0104.mp3",
+    "char": "守笼人",
+    "text": "能解开基础行锁，说明你至少具备了最基本的观察力。",
+    "duration": 8.24
+  },
+  "VO_J_0111": {
+    "file": "assets/audio/voice/J/VO_J_0111.mp3",
+    "char": "莹莹",
+    "text": "哇！你过了！我当年卡这关卡了快半个钟头！",
+    "duration": 7.31
+  },
+  "VO_R_0150": {
+    "file": "assets/audio/voice/R/VO_R_0150.mp3",
+    "char": "阿妍",
+    "text": "你父亲是这里的档案员？",
+    "duration": 3.82
+  },
+  "VO_CK_0105": {
+    "file": "assets/audio/voice/CK/VO_CK_0105.mp3",
+    "char": "守笼人",
+    "text": "能解开基础行锁，说明你至少具备了最基本的观察力。",
+    "duration": 8.24
+  },
+  "VO_J_0112": {
+    "file": "assets/audio/voice/J/VO_J_0112.mp3",
+    "char": "莹莹",
+    "text": "哇！你过了！我当年卡这关卡了快半个钟头！",
+    "duration": 7.31
+  },
+  "VO_R_0151": {
+    "file": "assets/audio/voice/R/VO_R_0151.mp3",
+    "char": "阿妍",
+    "text": "嗯。看到了。",
+    "duration": 3.38
+  },
+  "VO_J_0113": {
+    "file": "assets/audio/voice/J/VO_J_0113.mp3",
+    "char": "莹莹",
+    "text": "笼锁……终于来了。我爸留下的那些图，全都是这种虚线框。",
+    "duration": 8.35
+  },
+  "VO_R_0152": {
+    "file": "assets/audio/voice/R/VO_R_0152.mp3",
+    "char": "阿妍",
+    "text": "走了。",
+    "duration": 1.91
+  },
+  "VO_CK_0106": {
+    "file": "assets/audio/voice/CK/VO_CK_0106.mp3",
+    "char": "守笼人",
+    "text": "能解开基础行锁，说明你至少具备了最基本的观察力。",
+    "duration": 8.24
+  },
+  "VO_J_0114": {
+    "file": "assets/audio/voice/J/VO_J_0114.mp3",
+    "char": "莹莹",
+    "text": "笼锁……终于来了。我爸留下的那些图，全都是这种虚线框。",
+    "duration": 8.35
+  },
+  "VO_R_0153": {
+    "file": "assets/audio/voice/R/VO_R_0153.mp3",
+    "char": "阿妍",
+    "text": "你父亲是这里的档案员？",
+    "duration": 3.82
+  },
+  "VO_CK_0107": {
+    "file": "assets/audio/voice/CK/VO_CK_0107.mp3",
+    "char": "守笼人",
+    "text": "能解开基础行锁，说明你至少具备了最基本的观察力。",
+    "duration": 8.24
+  },
+  "VO_J_0115": {
+    "file": "assets/audio/voice/J/VO_J_0115.mp3",
+    "char": "莹莹",
+    "text": "哇！你过了！我当年卡这关卡了快半个钟头！",
+    "duration": 7.31
+  },
+  "VO_R_0154": {
+    "file": "assets/audio/voice/R/VO_R_0154.mp3",
+    "char": "阿妍",
+    "text": "你父亲是这里的档案员？",
+    "duration": 3.82
+  },
+  "VO_CK_0108": {
+    "file": "assets/audio/voice/CK/VO_CK_0108.mp3",
+    "char": "守笼人",
+    "text": "一个曾经和我站在一起的人。他的名字，已被从所有档案里抹去了。",
+    "duration": 10.69
+  },
+  "VO_R_0155": {
+    "file": "assets/audio/voice/R/VO_R_0155.mp3",
+    "char": "阿妍",
+    "text": "嗯。看到了。",
+    "duration": 3.38
+  },
+  "VO_J_0116": {
+    "file": "assets/audio/voice/J/VO_J_0116.mp3",
+    "char": "莹莹",
+    "text": "笼锁……终于来了。我爸留下的那些图，全都是这种虚线框。",
+    "duration": 8.35
+  },
+  "VO_R_0156": {
+    "file": "assets/audio/voice/R/VO_R_0156.mp3",
+    "char": "阿妍",
+    "text": "长按数字可以连填。省事。",
+    "duration": 5.33
+  },
+  "VO_CK_0109": {
+    "file": "assets/audio/voice/CK/VO_CK_0109.mp3",
+    "char": "守笼人",
+    "text": "能解开基础行锁，说明你至少具备了最基本的观察力。",
+    "duration": 8.24
+  },
+  "VO_J_0117": {
+    "file": "assets/audio/voice/J/VO_J_0117.mp3",
+    "char": "莹莹",
+    "text": "哇！你过了！我当年卡这关卡了快半个钟头！",
+    "duration": 7.31
+  },
+  "VO_R_0157": {
+    "file": "assets/audio/voice/R/VO_R_0157.mp3",
+    "char": "阿妍",
+    "text": "你父亲是这里的档案员？",
+    "duration": 3.82
+  },
+  "VO_CK_0110": {
+    "file": "assets/audio/voice/CK/VO_CK_0110.mp3",
+    "char": "守笼人",
+    "text": "一个曾经和我站在一起的人。他的名字，已被从所有档案里抹去了。",
+    "duration": 10.69
+  },
+  "VO_J_0118": {
+    "file": "assets/audio/voice/J/VO_J_0118.mp3",
+    "char": "莹莹",
+    "text": "笼锁……终于来了。我爸留下的那些图，全都是这种虚线框。",
+    "duration": 8.35
+  },
+  "VO_P_0035": {
+    "file": "assets/audio/voice/P/VO_P_0035.mp3",
+    "char": "设局人",
+    "text": "道不同不相为谋。你守着你的档案馆，我布我的局。",
+    "duration": 9.76
+  },
+  "VO_CK_0111": {
+    "file": "assets/audio/voice/CK/VO_CK_0111.mp3",
+    "char": "守笼人",
+    "text": "一个曾经和我站在一起的人。他的名字，已被从所有档案里抹去了。",
+    "duration": 10.69
+  },
+  "VO_R_0158": {
+    "file": "assets/audio/voice/R/VO_R_0158.mp3",
+    "char": "阿妍",
+    "text": "嗯。看到了。",
+    "duration": 3.38
+  },
+  "VO_CK_0112": {
+    "file": "assets/audio/voice/CK/VO_CK_0112.mp3",
+    "char": "守笼人",
+    "text": "能解开基础行锁，说明你至少具备了最基本的观察力。",
+    "duration": 8.24
+  },
+  "VO_J_0119": {
+    "file": "assets/audio/voice/J/VO_J_0119.mp3",
+    "char": "莹莹",
+    "text": "哇！你过了！我当年卡这关卡了快半个钟头！",
+    "duration": 7.31
+  },
+  "VO_SS_0024": {
+    "file": "assets/audio/voice/SS/VO_SS_0024.mp3",
+    "char": "设局人（秘术）",
+    "text": "尘埃落定之时，星辰梭的光芒将再次显现。",
+    "duration": 8.1
+  },
+  "VO_R_0159": {
+    "file": "assets/audio/voice/R/VO_R_0159.mp3",
+    "char": "阿妍",
+    "text": "走了。",
+    "duration": 1.91
+  },
+  "VO_SM_0036": {
+    "file": "assets/audio/voice/SM/VO_SM_0036.mp3",
+    "char": "沈墨",
+    "text": "嗯。",
+    "duration": 2.09
+  },
+  "VO_CK_0113": {
+    "file": "assets/audio/voice/CK/VO_CK_0113.mp3",
+    "char": "守笼人",
+    "text": "基础铁律你已吃透。接下来，真正的笼锁谜题即将出现。",
+    "duration": 10.76
+  },
+  "VO_J_0120": {
+    "file": "assets/audio/voice/J/VO_J_0120.mp3",
+    "char": "莹莹",
+    "text": "哇！你过了！我当年卡这关卡了快半个钟头！",
+    "duration": 7.31
+  },
+  "VO_P_0036": {
+    "file": "assets/audio/voice/P/VO_P_0036.mp3",
+    "char": "设局人",
+    "text": "四十五只是最表层的障眼法。真正的笼局玄机，藏在差值之中。",
+    "duration": 12.89
+  },
+  "VO_R_0160": {
+    "file": "assets/audio/voice/R/VO_R_0160.mp3",
+    "char": "阿妍",
+    "text": "嗯。看到了。",
+    "duration": 3.38
+  },
+  "VO_CK_0114": {
+    "file": "assets/audio/voice/CK/VO_CK_0114.mp3",
+    "char": "守笼人",
+    "text": "能解开基础行锁，说明你至少具备了最基本的观察力。",
+    "duration": 8.24
+  },
+  "VO_J_0121": {
+    "file": "assets/audio/voice/J/VO_J_0121.mp3",
+    "char": "莹莹",
+    "text": "哇！你过了！我当年卡这关卡了快半个钟头！",
+    "duration": 7.31
+  },
+  "VO_R_0161": {
+    "file": "assets/audio/voice/R/VO_R_0161.mp3",
+    "char": "阿妍",
+    "text": "你父亲是这里的档案员？",
+    "duration": 3.82
+  },
+  "VO_J_0122": {
+    "file": "assets/audio/voice/J/VO_J_0122.mp3",
+    "char": "莹莹",
+    "text": "笼锁……终于来了。我爸留下的那些图，全都是这种虚线框。",
+    "duration": 8.35
+  },
+  "VO_R_0162": {
+    "file": "assets/audio/voice/R/VO_R_0162.mp3",
+    "char": "阿妍",
+    "text": "你父亲是这里的档案员？",
+    "duration": 3.82
+  },
+  "VO_J_0123": {
+    "file": "assets/audio/voice/J/VO_J_0123.mp3",
+    "char": "莹莹",
+    "text": "笼锁……终于来了。我爸留下的那些图，全都是这种虚线框。",
+    "duration": 8.35
+  },
+  "VO_R_0163": {
+    "file": "assets/audio/voice/R/VO_R_0163.mp3",
+    "char": "阿妍",
+    "text": "长按数字可以连填。省事。",
+    "duration": 5.33
+  },
+  "VO_CK_0115": {
+    "file": "assets/audio/voice/CK/VO_CK_0115.mp3",
+    "char": "守笼人",
+    "text": "能解开基础行锁，说明你至少具备了最基本的观察力。",
+    "duration": 8.24
+  },
+  "VO_J_0124": {
+    "file": "assets/audio/voice/J/VO_J_0124.mp3",
+    "char": "莹莹",
+    "text": "哇！你过了！我当年卡这关卡了快半个钟头！",
+    "duration": 7.31
+  },
+  "VO_R_0164": {
+    "file": "assets/audio/voice/R/VO_R_0164.mp3",
+    "char": "阿妍",
+    "text": "你父亲是这里的档案员？",
+    "duration": 3.82
+  },
+  "VO_P_0037": {
+    "file": "assets/audio/voice/P/VO_P_0037.mp3",
+    "char": "设局人",
+    "text": "能闯过星衡试炼，勉强有资格直面我真正的笼局。",
+    "duration": 9.18
+  },
+  "VO_CK_0116": {
+    "file": "assets/audio/voice/CK/VO_CK_0116.mp3",
+    "char": "守笼人",
+    "text": "一个曾经和我站在一起的人。他的名字，已被从所有档案里抹去了。",
+    "duration": 10.69
+  },
+  "VO_R_0165": {
+    "file": "assets/audio/voice/R/VO_R_0165.mp3",
+    "char": "阿妍",
+    "text": "设局人。",
+    "duration": 2.45
+  },
+  "VO_P_0038": {
+    "file": "assets/audio/voice/P/VO_P_0038.mp3",
+    "char": "设局人",
+    "text": "道不同不相为谋。你守着你的档案馆，我布我的局。",
+    "duration": 9.76
+  },
+  "VO_CK_0117": {
+    "file": "assets/audio/voice/CK/VO_CK_0117.mp3",
+    "char": "守笼人",
+    "text": "能解开基础行锁，说明你至少具备了最基本的观察力。",
+    "duration": 8.24
+  },
+  "VO_J_0125": {
+    "file": "assets/audio/voice/J/VO_J_0125.mp3",
+    "char": "莹莹",
+    "text": "哇！你过了！我当年卡这关卡了快半个钟头！",
+    "duration": 7.31
+  },
+  "VO_R_0166": {
+    "file": "assets/audio/voice/R/VO_R_0166.mp3",
+    "char": "阿妍",
+    "text": "嗯。看到了。",
+    "duration": 3.38
+  },
+  "VO_J_0126": {
+    "file": "assets/audio/voice/J/VO_J_0126.mp3",
+    "char": "莹莹",
+    "text": "笼锁……终于来了。我爸留下的那些图，全都是这种虚线框。",
+    "duration": 8.35
+  },
+  "VO_R_0167": {
+    "file": "assets/audio/voice/R/VO_R_0167.mp3",
+    "char": "阿妍",
+    "text": "设局人。",
+    "duration": 2.45
+  },
+  "VO_SM_0037": {
+    "file": "assets/audio/voice/SM/VO_SM_0037.mp3",
+    "char": "沈墨",
+    "text": "他一直在这里。不是作为谜题。是作为终点。",
+    "duration": 8.53
+  },
+  "VO_P_0039": {
+    "file": "assets/audio/voice/P/VO_P_0039.mp3",
+    "char": "设局人",
+    "text": "第一道笼局，是我和守笼人第一次见面时的对局。那年我十七岁，他二十。",
+    "duration": 12.89
+  },
+  "VO_J_0127": {
+    "file": "assets/audio/voice/J/VO_J_0127.mp3",
+    "char": "莹莹",
+    "text": "哇！你过了！我当年卡这关卡了快半个钟头！",
+    "duration": 7.31
+  },
+  "VO_R_0168": {
+    "file": "assets/audio/voice/R/VO_R_0168.mp3",
+    "char": "阿妍",
+    "text": "不错。继续。",
+    "duration": 3.53
+  },
+  "VO_CK_0118": {
+    "file": "assets/audio/voice/CK/VO_CK_0118.mp3",
+    "char": "守笼人",
+    "text": "能解开基础行锁，说明你至少具备了最基本的观察力。",
+    "duration": 8.24
+  },
+  "VO_J_0128": {
+    "file": "assets/audio/voice/J/VO_J_0128.mp3",
+    "char": "莹莹",
+    "text": "哇！你过了！我当年卡这关卡了快半个钟头！",
+    "duration": 7.31
+  },
+  "VO_SS_0025": {
+    "file": "assets/audio/voice/SS/VO_SS_0025.mp3",
+    "char": "设局人（秘术）",
+    "text": "尘埃落定之时，星辰梭的光芒将再次显现。",
+    "duration": 8.1
+  },
+  "VO_R_0169": {
+    "file": "assets/audio/voice/R/VO_R_0169.mp3",
+    "char": "阿妍",
+    "text": "嗯。看到了。",
+    "duration": 3.38
+  },
+  "VO_R_0170": {
+    "file": "assets/audio/voice/R/VO_R_0170.mp3",
+    "char": "阿妍",
+    "text": "长按数字可以连填。省事。",
+    "duration": 5.33
+  },
+  "VO_SS_0026": {
+    "file": "assets/audio/voice/SS/VO_SS_0026.mp3",
+    "char": "设局人（秘术）",
+    "text": "你做到了。",
+    "duration": 3.02
+  },
+  "VO_SS_0027": {
+    "file": "assets/audio/voice/SS/VO_SS_0027.mp3",
+    "char": "设局人（秘术）",
+    "text": "星辰梭的奥义，从来不是某一种构型、某一条规则。它是一种信念——在混沌的数字迷雾中，永远存在着秩序，等待被发现。",
+    "duration": 18.83
+  },
+  "VO_SS_0028": {
+    "file": "assets/audio/voice/SS/VO_SS_0028.mp3",
+    "char": "设局人（秘术）",
+    "text": "从今以后，你就是新的设局人。档案馆、星辰梭、还有这六卷秘术——都交给你了。",
+    "duration": 14.08
+  },
+  "VO_R_0171": {
+    "file": "assets/audio/voice/R/VO_R_0171.mp3",
+    "char": "阿妍",
+    "text": "嗯。看到了。",
+    "duration": 3.38
+  },
+  "VO_SS_0029": {
+    "file": "assets/audio/voice/SS/VO_SS_0029.mp3",
+    "char": "设局人（秘术）",
+    "text": "等你问这个问题，等了很久。",
+    "duration": 5.58
+  },
+  "VO_J_0129": {
+    "file": "assets/audio/voice/J/VO_J_0129.mp3",
+    "char": "莹莹",
+    "text": "笼锁……终于来了。我爸留下的那些图，全都是这种虚线框。",
+    "duration": 8.35
+  },
+  "VO_R_0172": {
+    "file": "assets/audio/voice/R/VO_R_0172.mp3",
+    "char": "阿妍",
+    "text": "你父亲是这里的档案员？",
+    "duration": 3.82
+  },
+  "VO_CK_0119": {
+    "file": "assets/audio/voice/CK/VO_CK_0119.mp3",
+    "char": "守笼人",
+    "text": "能解开基础行锁，说明你至少具备了最基本的观察力。",
+    "duration": 8.24
+  },
+  "VO_R_0173": {
+    "file": "assets/audio/voice/R/VO_R_0173.mp3",
+    "char": "阿妍",
+    "text": "嗯。看到了。",
+    "duration": 3.38
+  },
+  "VO_SM_0038": {
+    "file": "assets/audio/voice/SM/VO_SM_0038.mp3",
+    "char": "沈墨",
+    "text": "好。",
+    "duration": 2.05
+  },
+  "VO_CK_0120": {
+    "file": "assets/audio/voice/CK/VO_CK_0120.mp3",
+    "char": "守笼人",
+    "text": "欢迎来到数字档案馆。我是守笼人。这里记录着所有被锁住的数字，也记录着被锁住的过去。",
+    "duration": 14.15
+  },
+  "VO_J_0130": {
+    "file": "assets/audio/voice/J/VO_J_0130.mp3",
+    "char": "莹莹",
+    "text": "哇！来新人啦！我叫莹莹，比你早到两个月！",
+    "duration": 7.52
+  },
+  "VO_R_0174": {
+    "file": "assets/audio/voice/R/VO_R_0174.mp3",
+    "char": "阿妍",
+    "text": "阿妍。比你早来三周。",
+    "duration": 4.46
+  },
+  "VO_CK_0121": {
+    "file": "assets/audio/voice/CK/VO_CK_0121.mp3",
+    "char": "守笼人",
+    "text": "无论你们各自抱着什么目的而来，在这间档案馆里，规则是第一位的。",
+    "duration": 9.36
+  },
+  "VO_CK_0122": {
+    "file": "assets/audio/voice/CK/VO_CK_0122.mp3",
+    "char": "守笼人",
+    "text": "基础铁律你已吃透。接下来，真正的笼锁谜题即将出现。",
+    "duration": 10.76
+  },
+  "VO_J_0131": {
+    "file": "assets/audio/voice/J/VO_J_0131.mp3",
+    "char": "莹莹",
+    "text": "哇！你过了！我当年卡这关卡了快半个钟头！",
+    "duration": 7.31
+  },
+  "VO_R_0175": {
+    "file": "assets/audio/voice/R/VO_R_0175.mp3",
+    "char": "阿妍",
+    "text": "走了。",
+    "duration": 1.91
+  },
+  "VO_J_0132": {
+    "file": "assets/audio/voice/J/VO_J_0132.mp3",
+    "char": "莹莹",
+    "text": "阿妍姐——等等我！",
+    "duration": 3.02
+  },
+  "VO_SM_0039": {
+    "file": "assets/audio/voice/SM/VO_SM_0039.mp3",
+    "char": "沈墨",
+    "text": "“档案编号K-734。如果你能解开这一局，就能找到我。”……我不是来解开这一局的。我是来找到你的。",
+    "duration": 16.81
+  },
+  "VO_CK_0123": {
+    "file": "assets/audio/voice/CK/VO_CK_0123.mp3",
+    "char": "守笼人",
+    "text": "基础铁律你已吃透。接下来，真正的笼锁谜题即将出现。",
+    "duration": 10.76
+  },
+  "VO_J_0133": {
+    "file": "assets/audio/voice/J/VO_J_0133.mp3",
+    "char": "莹莹",
+    "text": "简单说就是——横着一排里1、2、3、4各出现一次！缺什么填什么！",
+    "duration": 10.58
+  },
+  "VO_R_0176": {
+    "file": "assets/audio/voice/R/VO_R_0176.mp3",
+    "char": "阿妍",
+    "text": "你父亲是这里的档案员？",
+    "duration": 3.82
+  },
+  "VO_R_0177": {
+    "file": "assets/audio/voice/R/VO_R_0177.mp3",
+    "char": "阿妍",
+    "text": "你父亲是这里的档案员？",
+    "duration": 3.82
+  },
+  "VO_CK_0124": {
+    "file": "assets/audio/voice/CK/VO_CK_0124.mp3",
+    "char": "守笼人",
+    "text": "能解开基础行锁，说明你至少具备了最基本的观察力。",
+    "duration": 8.24
+  },
+  "VO_J_0134": {
+    "file": "assets/audio/voice/J/VO_J_0134.mp3",
+    "char": "莹莹",
+    "text": "哇！你过了！我当年卡这关卡了快半个钟头！",
+    "duration": 7.31
+  },
+  "VO_R_0178": {
+    "file": "assets/audio/voice/R/VO_R_0178.mp3",
+    "char": "阿妍",
+    "text": "走了。",
+    "duration": 1.91
+  },
+  "VO_J_0135": {
+    "file": "assets/audio/voice/J/VO_J_0135.mp3",
+    "char": "莹莹",
+    "text": "笼锁……终于来了。我爸留下的那些图，全都是这种虚线框。",
+    "duration": 8.35
+  },
+  "VO_R_0179": {
+    "file": "assets/audio/voice/R/VO_R_0179.mp3",
+    "char": "阿妍",
+    "text": "你父亲是这里的档案员？",
+    "duration": 3.82
+  },
+  "VO_CK_0125": {
+    "file": "assets/audio/voice/CK/VO_CK_0125.mp3",
+    "char": "守笼人",
+    "text": "一个曾经和我站在一起的人。他的名字，已被从所有档案里抹去了。",
+    "duration": 10.69
+  },
+  "VO_CK_0126": {
+    "file": "assets/audio/voice/CK/VO_CK_0126.mp3",
+    "char": "守笼人",
+    "text": "基础铁律你已吃透。接下来，真正的笼锁谜题即将出现。",
+    "duration": 10.76
+  },
+  "VO_J_0136": {
+    "file": "assets/audio/voice/J/VO_J_0136.mp3",
+    "char": "莹莹",
+    "text": "笼锁……终于来了。我爸留下的那些图，全都是这种虚线框。",
+    "duration": 8.35
+  },
+  "VO_R_0180": {
+    "file": "assets/audio/voice/R/VO_R_0180.mp3",
+    "char": "阿妍",
+    "text": "你父亲是这里的档案员？",
+    "duration": 3.82
+  },
+  "VO_J_0137": {
+    "file": "assets/audio/voice/J/VO_J_0137.mp3",
+    "char": "莹莹",
+    "text": "笼锁……终于来了。我爸留下的那些图，全都是这种虚线框。",
+    "duration": 8.35
+  },
+  "VO_P_0040": {
+    "file": "assets/audio/voice/P/VO_P_0040.mp3",
+    "char": "设局人",
+    "text": "依靠工具投机取巧，永远读不懂笼局背后的星辰逻辑。",
+    "duration": 9.58
+  },
+  "VO_J_0138": {
+    "file": "assets/audio/voice/J/VO_J_0138.mp3",
+    "char": "莹莹",
+    "text": "笼锁……终于来了。我爸留下的那些图，全都是这种虚线框。",
+    "duration": 8.35
+  },
+  "VO_R_0181": {
+    "file": "assets/audio/voice/R/VO_R_0181.mp3",
+    "char": "阿妍",
+    "text": "长按数字可以连填。省事。",
+    "duration": 5.33
+  },
+  "VO_CK_0127": {
+    "file": "assets/audio/voice/CK/VO_CK_0127.mp3",
+    "char": "守笼人",
+    "text": "能解开基础行锁，说明你至少具备了最基本的观察力。",
+    "duration": 8.24
+  },
+  "VO_P_0041": {
+    "file": "assets/audio/voice/P/VO_P_0041.mp3",
+    "char": "设局人",
+    "text": "依靠工具投机取巧，永远读不懂笼局背后的星辰逻辑。",
+    "duration": 9.58
+  },
+  "VO_J_0139": {
+    "file": "assets/audio/voice/J/VO_J_0139.mp3",
+    "char": "莹莹",
+    "text": "笼锁……终于来了。我爸留下的那些图，全都是这种虚线框。",
+    "duration": 8.35
+  },
+  "VO_CK_0128": {
+    "file": "assets/audio/voice/CK/VO_CK_0128.mp3",
+    "char": "守笼人",
+    "text": "一个曾经和我站在一起的人。他的名字，已被从所有档案里抹去了。",
+    "duration": 10.69
+  },
+  "VO_P_0042": {
+    "file": "assets/audio/voice/P/VO_P_0042.mp3",
+    "char": "设局人",
+    "text": "道不同不相为谋。你守着你的档案馆，我布我的局。",
+    "duration": 9.76
+  },
+  "VO_CK_0129": {
+    "file": "assets/audio/voice/CK/VO_CK_0129.mp3",
+    "char": "守笼人",
+    "text": "一个曾经和我站在一起的人。他的名字，已被从所有档案里抹去了。",
+    "duration": 10.69
+  },
+  "VO_R_0182": {
+    "file": "assets/audio/voice/R/VO_R_0182.mp3",
+    "char": "阿妍",
+    "text": "长按数字可以连填。省事。",
+    "duration": 5.33
+  },
+  "VO_SM_0040": {
+    "file": "assets/audio/voice/SM/VO_SM_0040.mp3",
+    "char": "沈墨",
+    "text": "最后一局。不是她的。是他的。",
+    "duration": 7.13
+  },
+  "VO_CK_0130": {
+    "file": "assets/audio/voice/CK/VO_CK_0130.mp3",
+    "char": "守笼人",
+    "text": "基础铁律你已吃透。接下来，真正的笼锁谜题即将出现。",
+    "duration": 10.76
+  },
+  "VO_J_0140": {
+    "file": "assets/audio/voice/J/VO_J_0140.mp3",
+    "char": "莹莹",
+    "text": "笼锁……终于来了。我爸留下的那些图，全都是这种虚线框。",
+    "duration": 8.35
+  },
+  "VO_R_0183": {
+    "file": "assets/audio/voice/R/VO_R_0183.mp3",
+    "char": "阿妍",
+    "text": "你父亲是这里的档案员？",
+    "duration": 3.82
+  },
+  "VO_J_0141": {
+    "file": "assets/audio/voice/J/VO_J_0141.mp3",
+    "char": "莹莹",
+    "text": "笼锁……终于来了。我爸留下的那些图，全都是这种虚线框。",
+    "duration": 8.35
+  },
+  "VO_CK_0131": {
+    "file": "assets/audio/voice/CK/VO_CK_0131.mp3",
+    "char": "守笼人",
+    "text": "一个曾经和我站在一起的人。他的名字，已被从所有档案里抹去了。",
+    "duration": 10.69
+  },
+  "VO_J_0142": {
+    "file": "assets/audio/voice/J/VO_J_0142.mp3",
+    "char": "莹莹",
+    "text": "阿妍姐——等等我！",
+    "duration": 3.02
+  },
+  "VO_J_0143": {
+    "file": "assets/audio/voice/J/VO_J_0143.mp3",
+    "char": "莹莹",
+    "text": "笼锁……终于来了。我爸留下的那些图，全都是这种虚线框。",
+    "duration": 8.35
+  },
+  "VO_CK_0132": {
+    "file": "assets/audio/voice/CK/VO_CK_0132.mp3",
+    "char": "守笼人",
+    "text": "一个曾经和我站在一起的人。他的名字，已被从所有档案里抹去了。",
+    "duration": 10.69
+  },
+  "VO_P_0043": {
+    "file": "assets/audio/voice/P/VO_P_0043.mp3",
+    "char": "设局人",
+    "text": "道不同不相为谋。你守着你的档案馆，我布我的局。",
+    "duration": 9.76
+  },
+  "VO_CK_0133": {
+    "file": "assets/audio/voice/CK/VO_CK_0133.mp3",
+    "char": "守笼人",
+    "text": "本章最终考核，检验你所有基础笼局推理能力——孤星、隐曜、并蒂锁、三子法、十则之术。",
+    "duration": 15.23
+  },
+  "VO_R_0184": {
+    "file": "assets/audio/voice/R/VO_R_0184.mp3",
+    "char": "阿妍",
+    "text": "嗯。看到了。",
+    "duration": 3.38
+  },
+  "VO_CK_0134": {
+    "file": "assets/audio/voice/CK/VO_CK_0134.mp3",
+    "char": "守笼人",
+    "text": "基础铁律你已吃透。接下来，真正的笼锁谜题即将出现。",
+    "duration": 10.76
+  },
+  "VO_J_0144": {
+    "file": "assets/audio/voice/J/VO_J_0144.mp3",
+    "char": "莹莹",
+    "text": "哇！你过了！我当年卡这关卡了快半个钟头！",
+    "duration": 7.31
+  },
+  "VO_P_0044": {
+    "file": "assets/audio/voice/P/VO_P_0044.mp3",
+    "char": "设局人",
+    "text": "只会死守二十一星衡，你永远破不开我完整的九域笼局。",
+    "duration": 10.12
+  },
+  "VO_R_0185": {
+    "file": "assets/audio/voice/R/VO_R_0185.mp3",
+    "char": "阿妍",
+    "text": "你父亲是这里的档案员？",
+    "duration": 3.82
+  },
+  "VO_CK_0135": {
+    "file": "assets/audio/voice/CK/VO_CK_0135.mp3",
+    "char": "守笼人",
+    "text": "能解开基础行锁，说明你至少具备了最基本的观察力。",
+    "duration": 8.24
+  },
+  "VO_P_0045": {
+    "file": "assets/audio/voice/P/VO_P_0045.mp3",
+    "char": "设局人",
+    "text": "只会死守二十一星衡，你永远破不开我完整的九域笼局。",
+    "duration": 10.12
+  },
+  "VO_J_0145": {
+    "file": "assets/audio/voice/J/VO_J_0145.mp3",
+    "char": "莹莹",
+    "text": "笼锁……终于来了。我爸留下的那些图，全都是这种虚线框。",
+    "duration": 8.35
+  },
+  "VO_P_0046": {
+    "file": "assets/audio/voice/P/VO_P_0046.mp3",
+    "char": "设局人",
+    "text": "四十五只是最表层的障眼法。真正的笼局玄机，藏在差值之中。",
+    "duration": 12.89
+  },
+  "VO_R_0186": {
+    "file": "assets/audio/voice/R/VO_R_0186.mp3",
+    "char": "阿妍",
+    "text": "走了。",
+    "duration": 1.91
+  },
+  "VO_R_0187": {
+    "file": "assets/audio/voice/R/VO_R_0187.mp3",
+    "char": "阿妍",
+    "text": "不错。继续。",
+    "duration": 3.53
+  },
+  "VO_SM_0041": {
+    "file": "assets/audio/voice/SM/VO_SM_0041.mp3",
+    "char": "沈墨",
+    "text": "嗯。",
+    "duration": 2.09
+  },
+  "VO_CK_0136": {
+    "file": "assets/audio/voice/CK/VO_CK_0136.mp3",
+    "char": "守笼人",
+    "text": "本章最终考核，检验你所有基础笼局推理能力——孤星、隐曜、并蒂锁、三子法、十则之术。",
+    "duration": 15.23
+  },
+  "VO_J_0146": {
+    "file": "assets/audio/voice/J/VO_J_0146.mp3",
+    "char": "莹莹",
+    "text": "加油！考完这关就能解锁档案馆深处的完整卷宗！",
+    "duration": 7.42
+  },
+  "VO_P_0047": {
+    "file": "assets/audio/voice/P/VO_P_0047.mp3",
+    "char": "设局人",
+    "text": "只会死守二十一星衡，你永远破不开我完整的九域笼局。",
+    "duration": 10.12
+  },
+  "VO_R_0188": {
+    "file": "assets/audio/voice/R/VO_R_0188.mp3",
+    "char": "阿妍",
+    "text": "嗯。看到了。",
+    "duration": 3.38
+  },
+  "VO_R_0189": {
+    "file": "assets/audio/voice/R/VO_R_0189.mp3",
+    "char": "阿妍",
+    "text": "长按数字可以连填。省事。",
+    "duration": 5.33
+  },
+  "VO_J_0147": {
+    "file": "assets/audio/voice/J/VO_J_0147.mp3",
+    "char": "莹莹",
+    "text": "笼锁……终于来了。我爸留下的那些图，全都是这种虚线框。",
+    "duration": 8.35
+  },
+  "VO_CK_0137": {
+    "file": "assets/audio/voice/CK/VO_CK_0137.mp3",
+    "char": "守笼人",
+    "text": "本章最终考核，检验你所有基础笼局推理能力——孤星、隐曜、并蒂锁、三子法、十则之术。",
+    "duration": 15.23
+  },
+  "VO_SS_0030": {
+    "file": "assets/audio/voice/SS/VO_SS_0030.mp3",
+    "char": "设局人（秘术）",
+    "text": "当年我布下这道题，就是想问守笼人一个问题——如果一道题有两个正确答案，你选哪一个？",
+    "duration": 12.42
+  },
+  "VO_CK_0138": {
+    "file": "assets/audio/voice/CK/VO_CK_0138.mp3",
+    "char": "守笼人",
+    "text": "一个曾经和我站在一起的人。他的名字，已被从所有档案里抹去了。",
+    "duration": 10.69
+  },
+  "VO_J_0148": {
+    "file": "assets/audio/voice/J/VO_J_0148.mp3",
+    "char": "莹莹",
+    "text": "笼锁……终于来了。我爸留下的那些图，全都是这种虚线框。",
+    "duration": 8.35
+  },
+  "VO_R_0190": {
+    "file": "assets/audio/voice/R/VO_R_0190.mp3",
+    "char": "阿妍",
+    "text": "不错。继续。",
+    "duration": 3.53
+  },
+  "VO_SS_0031": {
+    "file": "assets/audio/voice/SS/VO_SS_0031.mp3",
+    "char": "设局人（秘术）",
+    "text": "尘埃落定之时，星辰梭的光芒将再次显现。",
+    "duration": 8.1
+  },
+  "VO_R_0191": {
+    "file": "assets/audio/voice/R/VO_R_0191.mp3",
+    "char": "阿妍",
+    "text": "不错。继续。",
+    "duration": 3.53
+  },
+  "VO_J_0149": {
+    "file": "assets/audio/voice/J/VO_J_0149.mp3",
+    "char": "莹莹",
+    "text": "笼锁……终于来了。我爸留下的那些图，全都是这种虚线框。",
+    "duration": 8.35
+  },
+  "VO_R_0192": {
+    "file": "assets/audio/voice/R/VO_R_0192.mp3",
+    "char": "阿妍",
+    "text": "你父亲是这里的档案员？",
+    "duration": 3.82
+  },
+  "VO_J_0150": {
+    "file": "assets/audio/voice/J/VO_J_0150.mp3",
+    "char": "莹莹",
+    "text": "哇！你过了！我当年卡这关卡了快半个钟头！",
+    "duration": 7.31
+  },
+  "VO_CK_0139": {
+    "file": "assets/audio/voice/CK/VO_CK_0139.mp3",
+    "char": "守笼人",
+    "text": "一个曾经和我站在一起的人。他的名字，已被从所有档案里抹去了。",
+    "duration": 10.69
+  },
+  "VO_R_0193": {
+    "file": "assets/audio/voice/R/VO_R_0193.mp3",
+    "char": "阿妍",
+    "text": "你父亲是这里的档案员？",
+    "duration": 3.82
+  },
+  "VO_R_0194": {
+    "file": "assets/audio/voice/R/VO_R_0194.mp3",
+    "char": "阿妍",
+    "text": "嗯。看到了。",
+    "duration": 3.38
+  },
+  "VO_J_0151": {
+    "file": "assets/audio/voice/J/VO_J_0151.mp3",
+    "char": "莹莹",
+    "text": "笼锁……终于来了。我爸留下的那些图，全都是这种虚线框。",
+    "duration": 8.35
+  },
+  "VO_R_0195": {
+    "file": "assets/audio/voice/R/VO_R_0195.mp3",
+    "char": "阿妍",
+    "text": "你父亲是这里的档案员？",
+    "duration": 3.82
+  },
+  "VO_CK_0140": {
+    "file": "assets/audio/voice/CK/VO_CK_0140.mp3",
+    "char": "守笼人",
+    "text": "欢迎来到数字档案馆。我是这里的守笼人，管理着馆内所有笼局档案。",
+    "duration": 10.91
+  },
+  "VO_R_0196": {
+    "file": "assets/audio/voice/R/VO_R_0196.mp3",
+    "char": "阿妍",
+    "text": "哇，你就是守笼人？我叫阿妍，比你早来几天的实习侦探！后面这位是新来的吧？",
+    "duration": 12.2
+  },
+  "VO_CK_0141": {
+    "file": "assets/audio/voice/CK/VO_CK_0141.mp3",
+    "char": "守笼人",
+    "text": "嗯。从今天起，你们将从最基础的4×4盘面学起，逐步掌握杀手数独的全部技巧。",
+    "duration": 15.12
+  },
+  "VO_R_0197": {
+    "file": "assets/audio/voice/R/VO_R_0197.mp3",
+    "char": "阿妍",
+    "text": "别紧张，我会在旁边帮你翻译大师的话——他老人家说话总是文绉绉的！",
+    "duration": 9.11
+  },
+  "VO_CK_0142": {
+    "file": "assets/audio/voice/CK/VO_CK_0142.mp3",
+    "char": "守笼人",
+    "text": "第一卷卷宗在前台。记住三条铁律：每行、每列、每个2×2小宫格里，数字只能出现一次。准备好了吗？",
+    "duration": 19.08
+  },
+  "VO_CK_0143": {
+    "file": "assets/audio/voice/CK/VO_CK_0143.mp3",
+    "char": "守笼人",
+    "text": "不错。你已掌握杀手数独最基础的三件武器——规则、笼子、和值。",
+    "duration": 13.07
+  },
+  "VO_R_0198": {
+    "file": "assets/audio/voice/R/VO_R_0198.mp3",
+    "char": "阿妍",
+    "text": "太棒了！我当初可是花了两倍时间才通关的！",
+    "duration": 6.84
+  },
+  "VO_CK_0144": {
+    "file": "assets/audio/voice/CK/VO_CK_0144.mp3",
+    "char": "守笼人",
+    "text": "记住一个秘密：4×4盘面每行每列每宫总和永远是10。6×6是21，9×9是45——我们管这叫「星衡」法则。",
+    "duration": 19.44
+  },
+  "VO_R_0199": {
+    "file": "assets/audio/voice/R/VO_R_0199.mp3",
+    "char": "阿妍",
+    "text": "星衡法则？听起来好厉害！",
+    "duration": 5.11
+  },
+  "VO_CK_0145": {
+    "file": "assets/audio/voice/CK/VO_CK_0145.mp3",
+    "char": "守笼人",
+    "text": "这是打开复杂笼局的钥匙。下一卷档案，我们将进入更大的盘面。去领取你的徽章吧。",
+    "duration": 13.18
+  },
+  "VO_CK_0146": {
+    "file": "assets/audio/voice/CK/VO_CK_0146.mp3",
+    "char": "守笼人",
+    "text": "欢迎来到数字档案馆。这是第一关——试着填满所有空格吧。",
+    "duration": 9.94
+  },
+  "VO_CK_0147": {
+    "file": "assets/audio/voice/CK/VO_CK_0147.mp3",
+    "char": "守笼人",
+    "text": "记住：每行、每列，数字1到4各出现一次。",
+    "duration": 8.6
+  },
+  "VO_CK_0148": {
+    "file": "assets/audio/voice/CK/VO_CK_0148.mp3",
+    "char": "守笼人",
+    "text": "能解开基础行锁，说明你至少具备了最基本的观察力。记住了——每一行，1到4各一次。",
+    "duration": 13.57
+  },
+  "VO_J_0152": {
+    "file": "assets/audio/voice/J/VO_J_0152.mp3",
+    "char": "莹莹",
+    "text": "哇！你过了！我当年卡这关卡了快半个钟头！",
+    "duration": 7.31
+  },
+  "VO_N_0003": {
+    "file": "assets/audio/voice/N/VO_N_0003.mp3",
+    "char": "旁白",
+    "text": "阿妍依然没有靠近棋盘，但声音比之前低了一点",
+    "duration": 7.27
+  },
+  "VO_R_0200": {
+    "file": "assets/audio/voice/R/VO_R_0200.mp3",
+    "char": "阿妍",
+    "text": "不错。继续。",
+    "duration": 3.53
+  },
+  "VO_N_0004": {
+    "file": "assets/audio/voice/N/VO_N_0004.mp3",
+    "char": "旁白",
+    "text": "沈墨放下笔，抬头看了一眼守笼人。没有笑，但目光里有一种确认感。",
+    "duration": 12.02
+  },
+  "VO_SM_0042": {
+    "file": "assets/audio/voice/SM/VO_SM_0042.mp3",
+    "char": "沈墨",
+    "text": "嗯。",
+    "duration": 2.09
+  },
+  "VO_CK_0149": {
+    "file": "assets/audio/voice/CK/VO_CK_0149.mp3",
+    "char": "守笼人",
+    "text": "每行每列数字不重复。来试试吧。",
+    "duration": 7.09
+  },
+  "VO_CK_0150": {
+    "file": "assets/audio/voice/CK/VO_CK_0150.mp3",
+    "char": "守笼人",
+    "text": "很好。继续填完所有空格吧。",
+    "duration": 6.12
+  },
+  "VO_CK_0151": {
+    "file": "assets/audio/voice/CK/VO_CK_0151.mp3",
+    "char": "守笼人",
+    "text": "每行每列数字不重复。来试试吧。",
+    "duration": 7.09
+  },
+  "VO_CK_0152": {
+    "file": "assets/audio/voice/CK/VO_CK_0152.mp3",
+    "char": "守笼人",
+    "text": "很好。继续填完所有空格吧。",
+    "duration": 6.12
+  },
+  "VO_CK_0153": {
+    "file": "assets/audio/voice/CK/VO_CK_0153.mp3",
+    "char": "守笼人",
+    "text": "竖列为档案第二重约束。现在横竖交叉，数字1-4在每一列也不能重复。",
+    "duration": 12.85
+  },
+  "VO_J_0153": {
+    "file": "assets/audio/voice/J/VO_J_0153.mp3",
+    "char": "莹莹",
+    "text": "啊！这个我熟！我在这道关吃了大亏——横着全对了，竖着一看，三个3挤在一起！",
+    "duration": 11.88
+  },
+  "VO_R_0201": {
+    "file": "assets/audio/voice/R/VO_R_0201.mp3",
+    "char": "阿妍",
+    "text": "横竖交叉才是真正的校验。单看一条线不够。",
+    "duration": 7.09
+  },
+  "VO_CK_0154": {
+    "file": "assets/audio/voice/CK/VO_CK_0154.mp3",
+    "char": "守笼人",
+    "text": "提示数比上一关少了。多出来的空格，需要靠行和列一起确认。",
+    "duration": 9.79
+  },
+  "VO_N_0005": {
+    "file": "assets/audio/voice/N/VO_N_0005.mp3",
+    "char": "旁白",
+    "text": "沈墨已经在第二列落笔，比上一关稍快——像是找到了某种节奏。",
+    "duration": 8.96
+  },
+  "VO_R_0202": {
+    "file": "assets/audio/voice/R/VO_R_0202.mp3",
+    "char": "阿妍",
+    "text": "列通了。还有行。",
+    "duration": 3.92
+  },
+  "VO_CK_0155": {
+    "file": "assets/audio/voice/CK/VO_CK_0155.mp3",
+    "char": "守笼人",
+    "text": "纵横交错，纹丝不乱。不错。",
+    "duration": 7.13
+  },
+  "VO_J_0154": {
+    "file": "assets/audio/voice/J/VO_J_0154.mp3",
+    "char": "莹莹",
+    "text": "他过了！阿妍姐你看到了吗？比我的记录快好多！",
+    "duration": 7.27
+  },
+  "VO_N_0006": {
+    "file": "assets/audio/voice/N/VO_N_0006.mp3",
+    "char": "旁白",
+    "text": "阿妍正在翻书，没有抬头，但嘴角微微动了一下",
+    "duration": 7.99
+  },
+  "VO_R_0203": {
+    "file": "assets/audio/voice/R/VO_R_0203.mp3",
+    "char": "阿妍",
+    "text": "嗯。看到了。",
+    "duration": 3.38
+  },
+  "VO_N_0007": {
+    "file": "assets/audio/voice/N/VO_N_0007.mp3",
+    "char": "旁白",
+    "text": "沈墨放下笔，没有急着去下一关。看了一眼棋盘上填满的数字，像是在确认自己真的填完了。",
+    "duration": 14.11
+  },
+  "VO_SM_0043": {
+    "file": "assets/audio/voice/SM/VO_SM_0043.mp3",
+    "char": "沈墨",
+    "text": "三条都过了。",
+    "duration": 3.38
+  },
+  "VO_CK_0156": {
+    "file": "assets/audio/voice/CK/VO_CK_0156.mp3",
+    "char": "守笼人",
+    "text": "第三重约束——宫。每个2×2小方格内，数字1-4也不能重复。",
+    "duration": 11.74
+  },
+  "VO_J_0155": {
+    "file": "assets/audio/voice/J/VO_J_0155.mp3",
+    "char": "莹莹",
+    "text": "行、列、宫——三重限制！这一关要把三个规则一起看了！",
+    "duration": 8.42
+  },
+  "VO_R_0204": {
+    "file": "assets/audio/voice/R/VO_R_0204.mp3",
+    "char": "阿妍",
+    "text": "横、竖、框。三个方向一起约束。",
+    "duration": 6.55
+  },
+  "VO_CK_0157": {
+    "file": "assets/audio/voice/CK/VO_CK_0157.mp3",
+    "char": "守笼人",
+    "text": "注意——从这一关起，错一步，后面的格子都会跟着错。所以要反复验证。",
+    "duration": 12.6
+  },
+  "VO_N_0008": {
+    "file": "assets/audio/voice/N/VO_N_0008.mp3",
+    "char": "旁白",
+    "text": "沈墨看向棋盘，没有急于落笔。目光依次扫过行、列、小宫格的位置后，才开始填数。",
+    "duration": 14.18
+  },
+  "VO_CK_0158": {
+    "file": "assets/audio/voice/CK/VO_CK_0158.mp3",
+    "char": "守笼人",
+    "text": "宫通了。",
+    "duration": 2.52
+  },
+  "VO_CK_0159": {
+    "file": "assets/audio/voice/CK/VO_CK_0159.mp3",
+    "char": "守笼人",
+    "text": "行、列、宫，三锁齐开。",
+    "duration": 6.62
+  },
+  "VO_J_0156": {
+    "file": "assets/audio/voice/J/VO_J_0156.mp3",
+    "char": "莹莹",
+    "text": "三条规则一起看果然比单看难多了……",
+    "duration": 4.79
+  },
+  "VO_N_0009": {
+    "file": "assets/audio/voice/N/VO_N_0009.mp3",
+    "char": "旁白",
+    "text": "阿妍看了一眼棋盘，微微点头",
+    "duration": 5.51
+  },
+  "VO_R_0205": {
+    "file": "assets/audio/voice/R/VO_R_0205.mp3",
+    "char": "阿妍",
+    "text": "三条线都对齐了。",
+    "duration": 3.49
+  },
+  "VO_SM_0044": {
+    "file": "assets/audio/voice/SM/VO_SM_0044.mp3",
+    "char": "沈墨",
+    "text": "三条。",
+    "duration": 2.56
+  },
+  "VO_CK_0160": {
+    "file": "assets/audio/voice/CK/VO_CK_0160.mp3",
+    "char": "守笼人",
+    "text": "虚线围起的区域便是「笼」，左上角数字代表笼内所有数字相加的总和。",
+    "duration": 11.34
+  },
+  "VO_J_0157": {
+    "file": "assets/audio/voice/J/VO_J_0157.mp3",
+    "char": "莹莹",
+    "text": "虚线框=笼子，左上角=笼子里所有数字加起来的结果！而且不能重复！",
+    "duration": 10.55
+  },
+  "VO_R_0206": {
+    "file": "assets/audio/voice/R/VO_R_0206.mp3",
+    "char": "阿妍",
+    "text": "虚线里的数加起来等于左上角那个数。不重。就这两条。",
+    "duration": 8.53
+  },
+  "VO_CK_0161": {
+    "file": "assets/audio/voice/CK/VO_CK_0161.mp3",
+    "char": "守笼人",
+    "text": "这一关，提示数很少。你要靠笼和来推断，而不是等格子自己亮起来。",
+    "duration": 11.99
+  },
+  "VO_N_0011": {
+    "file": "assets/audio/voice/N/VO_N_0011.mp3",
+    "char": "旁白",
+    "text": "沈墨没有像之前那样先观察再动笔，直接落笔。一边填数，一边轻声重复",
+    "duration": 12.74
+  },
+  "VO_SM_0045": {
+    "file": "assets/audio/voice/SM/VO_SM_0045.mp3",
+    "char": "沈墨",
+    "text": "“不重。就两条。”",
+    "duration": 4.36
+  },
+  "VO_R_0207": {
+    "file": "assets/audio/voice/R/VO_R_0207.mp3",
+    "char": "阿妍",
+    "text": "笼和通了。",
+    "duration": 2.56
+  },
+  "VO_CK_0162": {
+    "file": "assets/audio/voice/CK/VO_CK_0162.mp3",
+    "char": "守笼人",
+    "text": "笼格认知已初步建立。",
+    "duration": 4.82
+  },
+  "VO_J_0158": {
+    "file": "assets/audio/voice/J/VO_J_0158.mp3",
+    "char": "莹莹",
+    "text": "你真的好快……阿妍姐，我们是不是遇到高手了？",
+    "duration": 6.01
+  },
+  "VO_R_0208": {
+    "file": "assets/audio/voice/R/VO_R_0208.mp3",
+    "char": "阿妍",
+    "text": "高不高手，还早。",
+    "duration": 3.24
+  },
+  "VO_N_0013": {
+    "file": "assets/audio/voice/N/VO_N_0013.mp3",
+    "char": "旁白",
+    "text": "沈墨他抬起头，看向莹莹。没有笑，但语气里有一种温和的肯定",
+    "duration": 11.41
+  },
+  "VO_SM_0046": {
+    "file": "assets/audio/voice/SM/VO_SM_0046.mp3",
+    "char": "沈墨",
+    "text": "你刚才说的那些纸片。你父亲是这里的档案员？",
+    "duration": 8.1
+  },
+  "VO_J_0159": {
+    "file": "assets/audio/voice/J/VO_J_0159.mp3",
+    "char": "莹莹",
+    "text": "嗯。他叫沈世安。你认识他？",
+    "duration": 5.58
+  },
+  "VO_N_0014": {
+    "file": "assets/audio/voice/N/VO_N_0014.mp3",
+    "char": "旁白",
+    "text": "沈墨摇了摇头",
+    "duration": 3.6
+  },
+  "VO_SM_0047": {
+    "file": "assets/audio/voice/SM/VO_SM_0047.mp3",
+    "char": "沈墨",
+    "text": "不认识。但我收到过一封信。署名是“一个被困在数字里的人”。",
+    "duration": 10.22
+  },
+  "VO_N_0015": {
+    "file": "assets/audio/voice/N/VO_N_0015.mp3",
+    "char": "旁白",
+    "text": "阿妍语气平得像湖面，但目光很深",
+    "duration": 6.48
+  },
+  "VO_R_0209": {
+    "file": "assets/audio/voice/R/VO_R_0209.mp3",
+    "char": "阿妍",
+    "text": "你收到的信？",
+    "duration": 2.63
+  },
+  "VO_SM_0048": {
+    "file": "assets/audio/voice/SM/VO_SM_0048.mp3",
+    "char": "沈墨",
+    "text": "嗯。在你们任何人到达之前，我就收到了。",
+    "duration": 7.74
+  },
+  "VO_CK_0163": {
+    "file": "assets/audio/voice/CK/VO_CK_0163.mp3",
+    "char": "守笼人",
+    "text": "双格笼是最基础的笼型，可直接根据和值锁定仅有的数字组合。记住——三取一二，四取一三，六取二四，七取三四。",
+    "duration": 19.48
+  },
+  "VO_J_0160": {
+    "file": "assets/audio/voice/J/VO_J_0160.mp3",
+    "char": "莹莹",
+    "text": "两个格子相加等于左上角数字，比如和为3只能是1+2！",
+    "duration": 8.5
+  },
+  "VO_R_0210": {
+    "file": "assets/audio/voice/R/VO_R_0210.mp3",
+    "char": "阿妍",
+    "text": "和3——1和2。和4——1和3。和6——2和4。和7——3和4。记住了，后面用得上。",
+    "duration": 14.22
+  },
+  "VO_CK_0164": {
+    "file": "assets/audio/voice/CK/VO_CK_0164.mp3",
+    "char": "守笼人",
+    "text": "这一关的提示数只剩下两个。大部分格子要靠口诀来锁定。",
+    "duration": 10.66
+  },
+  "VO_N_0016": {
+    "file": "assets/audio/voice/N/VO_N_0016.mp3",
+    "char": "旁白",
+    "text": "沈墨已经把口诀默念了一遍",
+    "duration": 4.75
+  },
+  "VO_SM_0049": {
+    "file": "assets/audio/voice/SM/VO_SM_0049.mp3",
+    "char": "沈墨",
+    "text": "“三取一二，四取一三。”",
+    "duration": 4.86
+  },
+  "VO_CK_0165": {
+    "file": "assets/audio/voice/CK/VO_CK_0165.mp3",
+    "char": "守笼人",
+    "text": "口诀对了。",
+    "duration": 2.95
+  },
+  "VO_CK_0166": {
+    "file": "assets/audio/voice/CK/VO_CK_0166.mp3",
+    "char": "守笼人",
+    "text": "口诀已入心。可以进入下一层了。",
+    "duration": 6.41
+  },
+  "VO_J_0161": {
+    "file": "assets/audio/voice/J/VO_J_0161.mp3",
+    "char": "莹莹",
+    "text": "你又过了！阿妍姐你说他会不会一路把七章全部通关？",
+    "duration": 7.6
+  },
+  "VO_N_0017": {
+    "file": "assets/audio/voice/N/VO_N_0017.mp3",
+    "char": "旁白",
+    "text": "阿妍微微侧过头，看向沈墨",
+    "duration": 5.44
+  },
+  "VO_R_0211": {
+    "file": "assets/audio/voice/R/VO_R_0211.mp3",
+    "char": "阿妍",
+    "text": "会。",
+    "duration": 1.91
+  },
+  "VO_N_0018": {
+    "file": "assets/audio/voice/N/VO_N_0018.mp3",
+    "char": "旁白",
+    "text": "沈墨站在棋盘边，沉默了片刻，然后轻声说",
+    "duration": 7.85
+  },
+  "VO_SM_0050": {
+    "file": "assets/audio/voice/SM/VO_SM_0050.mp3",
+    "char": "沈墨",
+    "text": "但如果通关了，写信的那个人，就不会再等我了。",
+    "duration": 8.14
+  },
+  "VO_J_0162": {
+    "file": "assets/audio/voice/J/VO_J_0162.mp3",
+    "char": "莹莹",
+    "text": "那封信里写的？谁啊？",
+    "duration": 4.28
+  },
+  "VO_N_0019": {
+    "file": "assets/audio/voice/N/VO_N_0019.mp3",
+    "char": "旁白",
+    "text": "沈墨没有回答。只是把目光移向了书架上那些更高处的卷宗",
+    "duration": 9.58
+  },
+  "VO_SM_0051": {
+    "file": "assets/audio/voice/SM/VO_SM_0051.mp3",
+    "char": "沈墨",
+    "text": "还不知道。",
+    "duration": 2.77
+  },
+  "VO_CK_0167": {
+    "file": "assets/audio/voice/CK/VO_CK_0167.mp3",
+    "char": "守笼人",
+    "text": "多重笼格交错时，需要同时兼顾行、列、宫与笼和四条约束。记住——“群曜遮目，一光独隐”。",
+    "duration": 16.85
+  },
+  "VO_J_0163": {
+    "file": "assets/audio/voice/J/VO_J_0163.mp3",
+    "char": "莹莹",
+    "text": "群曜遮目，一光独隐……什么意思？",
+    "duration": 4.86
+  },
+  "VO_CK_0168": {
+    "file": "assets/audio/voice/CK/VO_CK_0168.mp3",
+    "char": "守笼人",
+    "text": "当一个数字在某区域中只能出现在唯一一格时，它便是“隐曜”。它藏在暗处，但一直都在。",
+    "duration": 13.57
+  },
+  "VO_R_0212": {
+    "file": "assets/audio/voice/R/VO_R_0212.mp3",
+    "char": "阿妍",
+    "text": "四条线同时收束。踩对一步，全线松绑；踩错一步，全线崩断。",
+    "duration": 10.4
+  },
+  "VO_CK_0169": {
+    "file": "assets/audio/voice/CK/VO_CK_0169.mp3",
+    "char": "守笼人",
+    "text": "这一关只有一个提示数。剩下的，要靠你从“隐曜”里找出来。",
+    "duration": 9.36
+  },
+  "VO_N_0020": {
+    "file": "assets/audio/voice/N/VO_N_0020.mp3",
+    "char": "旁白",
+    "text": "莹莹盯着棋盘，忽然开口",
+    "duration": 5.18
+  },
+  "VO_J_0164": {
+    "file": "assets/audio/voice/J/VO_J_0164.mp3",
+    "char": "莹莹",
+    "text": "阿妍姐……你看第三行那个空位，是不是只能填2？",
+    "duration": 6.41
+  },
+  "VO_N_0021": {
+    "file": "assets/audio/voice/N/VO_N_0021.mp3",
+    "char": "旁白",
+    "text": "阿妍眼神微微一变",
+    "duration": 3.74
+  },
+  "VO_R_0213": {
+    "file": "assets/audio/voice/R/VO_R_0213.mp3",
+    "char": "阿妍",
+    "text": "你看出来了？",
+    "duration": 2.52
+  },
+  "VO_J_0165": {
+    "file": "assets/audio/voice/J/VO_J_0165.mp3",
+    "char": "莹莹",
+    "text": "我也不知道为什么，就是感觉它该在那儿。",
+    "duration": 5.72
+  },
+  "VO_N_0022": {
+    "file": "assets/audio/voice/N/VO_N_0022.mp3",
+    "char": "旁白",
+    "text": "沈墨一直在看莹莹指的那个位置。片刻后，他轻声确认",
+    "duration": 9.14
+  },
+  "VO_SM_0052": {
+    "file": "assets/audio/voice/SM/VO_SM_0052.mp3",
+    "char": "沈墨",
+    "text": "2。她是对的。",
+    "duration": 4.1
+  },
+  "VO_CK_0170": {
+    "file": "assets/audio/voice/CK/VO_CK_0170.mp3",
+    "char": "守笼人",
+    "text": "这种交错笼的排布手法……我只在多年前一批匿名送来的档案中见过。",
+    "duration": 10.26
+  },
+  "VO_J_0166": {
+    "file": "assets/audio/voice/J/VO_J_0166.mp3",
+    "char": "莹莹",
+    "text": "匿名档案？我爸的笔记里也提到过。他说那些档案“不是从这间馆子里长出来的”。",
+    "duration": 10.73
+  },
+  "VO_N_0023": {
+    "file": "assets/audio/voice/N/VO_N_0023.mp3",
+    "char": "旁白",
+    "text": "阿妍没有说话，但目光落在了书架最上层的某个位置",
+    "duration": 7.78
+  },
+  "VO_N_0024": {
+    "file": "assets/audio/voice/N/VO_N_0024.mp3",
+    "char": "旁白",
+    "text": "沈墨顺着阿妍的目光看向那个位置。没有说话，但他记住了那本书的位置。",
+    "duration": 11.16
+  },
+  "VO_CK_0171": {
+    "file": "assets/audio/voice/CK/VO_CK_0171.mp3",
+    "char": "守笼人",
+    "text": "第七道锁——笔记模式。遇到不确定的空格，可以把候选数字记下来，辅助推理。",
+    "duration": 12.71
+  },
+  "VO_CK_0172": {
+    "file": "assets/audio/voice/CK/VO_CK_0172.mp3",
+    "char": "守笼人",
+    "text": "选中一个格子，在数字键盘上向上滑动，就能把数字记入笔记。也可以滑动选择多个格子，批量标记。",
+    "duration": 15.98
+  },
+  "VO_J_0167": {
+    "file": "assets/audio/voice/J/VO_J_0167.mp3",
+    "char": "莹莹",
+    "text": "选中的格子会亮黄灯！这样你就知道哪些格子正在被编辑！",
+    "duration": 8.53
+  },
+  "VO_R_0214": {
+    "file": "assets/audio/voice/R/VO_R_0214.mp3",
+    "char": "阿妍",
+    "text": "笔记是工具。不是答案本身。",
+    "duration": 5.08
+  },
+  "VO_N_0025": {
+    "file": "assets/audio/voice/N/VO_N_0025.mp3",
+    "char": "旁白",
+    "text": "沈墨已经打开了笔记模式，在空格里标了几个候选数字，声音很低",
+    "duration": 9.36
+  },
+  "VO_SM_0053": {
+    "file": "assets/audio/voice/SM/VO_SM_0053.mp3",
+    "char": "沈墨",
+    "text": "像在画地图。",
+    "duration": 3.17
+  },
+  "VO_N_0026": {
+    "file": "assets/audio/voice/N/VO_N_0026.mp3",
+    "char": "旁白",
+    "text": "莹莹好奇",
+    "duration": 3.2
+  },
+  "VO_J_0168": {
+    "file": "assets/audio/voice/J/VO_J_0168.mp3",
+    "char": "莹莹",
+    "text": "画地图？",
+    "duration": 2.05
+  },
+  "VO_N_0027": {
+    "file": "assets/audio/voice/N/VO_N_0027.mp3",
+    "char": "旁白",
+    "text": "沈墨没有抬头，继续标注",
+    "duration": 5.04
+  },
+  "VO_SM_0054": {
+    "file": "assets/audio/voice/SM/VO_SM_0054.mp3",
+    "char": "沈墨",
+    "text": "把可能的路都标出来。然后走剩下那一条。",
+    "duration": 7.52
+  },
+  "VO_CK_0173": {
+    "file": "assets/audio/voice/CK/VO_CK_0173.mp3",
+    "char": "守笼人",
+    "text": "来，试一次。选中任意空格，向上滑动数字键盘，标一个候选数。",
+    "duration": 12.38
+  },
+  "VO_N_0028": {
+    "file": "assets/audio/voice/N/VO_N_0028.mp3",
+    "char": "旁白",
+    "text": "【UI强制高亮：盘面上一个特定空格闪烁提示】",
+    "duration": 7.78
+  },
+  "VO_N_0029": {
+    "file": "assets/audio/voice/N/VO_N_0029.mp3",
+    "char": "旁白",
+    "text": "【玩家操作：必须在该空格填入一个候选笔记，否则对话不推进】",
+    "duration": 10.15
+  },
+  "VO_CK_0174": {
+    "file": "assets/audio/voice/CK/VO_CK_0174.mp3",
+    "char": "守笼人",
+    "text": "笔记已成器。现在……这个空格就是靠笔记锁定的。",
+    "duration": 9.54
+  },
+  "VO_J_0169": {
+    "file": "assets/audio/voice/J/VO_J_0169.mp3",
+    "char": "莹莹",
+    "text": "你马上就要见到第一章的最后一关了。那关……我当时是哭着过的。",
+    "duration": 8.35
+  },
+  "VO_N_0030": {
+    "file": "assets/audio/voice/N/VO_N_0030.mp3",
+    "char": "旁白",
+    "text": "阿妍第一次对莹莹说了句带温度的话",
+    "duration": 5.76
+  },
+  "VO_R_0215": {
+    "file": "assets/audio/voice/R/VO_R_0215.mp3",
+    "char": "阿妍",
+    "text": "你哪关不是哭着过的。",
+    "duration": 3.71
+  },
+  "VO_N_0031": {
+    "file": "assets/audio/voice/N/VO_N_0031.mp3",
+    "char": "旁白",
+    "text": "莹莹愣住",
+    "duration": 2.92
+  },
+  "VO_J_0170": {
+    "file": "assets/audio/voice/J/VO_J_0170.mp3",
+    "char": "莹莹",
+    "text": "阿妍姐你……你也会开玩笑？",
+    "duration": 3.92
+  },
+  "VO_R_0216": {
+    "file": "assets/audio/voice/R/VO_R_0216.mp3",
+    "char": "阿妍",
+    "text": "走了。",
+    "duration": 1.91
+  },
+  "VO_N_0033": {
+    "file": "assets/audio/voice/N/VO_N_0033.mp3",
+    "char": "旁白",
+    "text": "沈墨放下笔，看了一眼棋盘",
+    "duration": 5.26
+  },
+  "VO_SM_0055": {
+    "file": "assets/audio/voice/SM/VO_SM_0055.mp3",
+    "char": "沈墨",
+    "text": "笔记已成器。",
+    "duration": 3.1
+  },
+  "VO_CK_0175": {
+    "file": "assets/audio/voice/CK/VO_CK_0175.mp3",
+    "char": "守笼人",
+    "text": "4×4盘面里，每一行、每一列、每个宫格的总和都恒为十——是谓“十则”。",
+    "duration": 12.92
+  },
+  "VO_J_0171": {
+    "file": "assets/audio/voice/J/VO_J_0171.mp3",
+    "char": "莹莹",
+    "text": "十！十！十！我把它刻脑门上了——后来洗脸洗掉了，又忘了三次！",
+    "duration": 10.84
+  },
+  "VO_R_0217": {
+    "file": "assets/audio/voice/R/VO_R_0217.mp3",
+    "char": "阿妍",
+    "text": "记住就行了。不用刻。",
+    "duration": 4.25
+  },
+  "VO_CK_0176": {
+    "file": "assets/audio/voice/CK/VO_CK_0176.mp3",
+    "char": "守笼人",
+    "text": "提示数比上一关多了一些，但有陷阱。你能找到它吗？不要只看和值——要验证每一条线。",
+    "duration": 14.11
+  },
+  "VO_CK_0177": {
+    "file": "assets/audio/voice/CK/VO_CK_0177.mp3",
+    "char": "守笼人",
+    "text": "看到了吗？表面是对的，但验证后发现不对。十则不是终点——是起点。",
+    "duration": 13.03
+  },
+  "VO_N_0034": {
+    "file": "assets/audio/voice/N/VO_N_0034.mp3",
+    "char": "旁白",
+    "text": "沈墨已经把行、列、宫各自的和默算了一遍，轻声说",
+    "duration": 9.32
+  },
+  "VO_SM_0056": {
+    "file": "assets/audio/voice/SM/VO_SM_0056.mp3",
+    "char": "沈墨",
+    "text": "“十。每一行都是十。”",
+    "duration": 4.75
+  },
+  "VO_CK_0178": {
+    "file": "assets/audio/voice/CK/VO_CK_0178.mp3",
+    "char": "守笼人",
+    "text": "十则之术已破。你离真正的笼局又近了一步。",
+    "duration": 8.78
+  },
+  "VO_J_0172": {
+    "file": "assets/audio/voice/J/VO_J_0172.mp3",
+    "char": "莹莹",
+    "text": "又近了一步！我当初数过——训练关一共112次！",
+    "duration": 7.63
+  },
+  "VO_N_0035": {
+    "file": "assets/audio/voice/N/VO_N_0035.mp3",
+    "char": "旁白",
+    "text": "阿妍第一次对莹莹的话有了直接回应",
+    "duration": 5.87
+  },
+  "VO_R_0218": {
+    "file": "assets/audio/voice/R/VO_R_0218.mp3",
+    "char": "阿妍",
+    "text": "112次。你还数了。",
+    "duration": 4.79
+  },
+  "VO_J_0173": {
+    "file": "assets/audio/voice/J/VO_J_0173.mp3",
+    "char": "莹莹",
+    "text": "当然！我爸说过——每一步都算数。",
+    "duration": 5.51
+  },
+  "VO_CK_0179": {
+    "file": "assets/audio/voice/CK/VO_CK_0179.mp3",
+    "char": "守笼人",
+    "text": "本章最终考核，检验你所有基础笼局推理能力——行、列、宫、笼和、隐曜、十则。",
+    "duration": 15.34
+  },
+  "VO_J_0174": {
+    "file": "assets/audio/voice/J/VO_J_0174.mp3",
+    "char": "莹莹",
+    "text": "加油！考完这关就能解锁档案馆深处的完整卷宗！",
+    "duration": 7.42
+  },
+  "VO_N_0036": {
+    "file": "assets/audio/voice/N/VO_N_0036.mp3",
+    "char": "旁白",
+    "text": "阿妍靠在窗边，没有看棋盘，声音平静但清晰",
+    "duration": 8.14
+  },
+  "VO_R_0219": {
+    "file": "assets/audio/voice/R/VO_R_0219.mp3",
+    "char": "阿妍",
+    "text": "提示数又少了。不过这关没有新东西——全是你会了的。",
+    "duration": 8.42
+  },
+  "VO_N_0037": {
+    "file": "assets/audio/voice/N/VO_N_0037.mp3",
+    "char": "旁白",
+    "text": "沈墨看向阿妍。两人目光短暂交汇。然后他低下头，拿起笔。声音很轻",
+    "duration": 14.26
+  },
+  "VO_SM_0057": {
+    "file": "assets/audio/voice/SM/VO_SM_0057.mp3",
+    "char": "沈墨",
+    "text": "嗯。",
+    "duration": 2.09
+  },
+  "VO_CK_0180": {
+    "file": "assets/audio/voice/CK/VO_CK_0180.mp3",
+    "char": "守笼人",
+    "text": "前半程全部正确。后半程也一样——你已经会了。",
+    "duration": 8.68
+  },
+  "VO_CK_0181": {
+    "file": "assets/audio/voice/CK/VO_CK_0181.mp3",
+    "char": "守笼人",
+    "text": "基础笼局逻辑你已全部掌握。接下来等待你的，是那人留下的全套谜题。",
+    "duration": 12.02
+  },
+  "VO_J_0175": {
+    "file": "assets/audio/voice/J/VO_J_0175.mp3",
+    "char": "莹莹",
+    "text": "那人？你说的是谁？设计这些笼子的人吗？",
+    "duration": 7.09
+  },
+  "VO_CK_0182": {
+    "file": "assets/audio/voice/CK/VO_CK_0182.mp3",
+    "char": "守笼人",
+    "text": "一个曾经和我站在一起的人。他的名字，已被从所有档案里抹去了。",
+    "duration": 10.69
+  },
+  "VO_N_0038": {
+    "file": "assets/audio/voice/N/VO_N_0038.mp3",
+    "char": "旁白",
+    "text": "阿妍从窗边转过身来，声音很轻",
+    "duration": 5.76
+  },
+  "VO_R_0220": {
+    "file": "assets/audio/voice/R/VO_R_0220.mp3",
+    "char": "阿妍",
+    "text": "设局人。",
+    "duration": 2.45
+  },
+  "VO_J_0176": {
+    "file": "assets/audio/voice/J/VO_J_0176.mp3",
+    "char": "莹莹",
+    "text": "阿妍姐你怎么知道？！",
+    "duration": 2.88
+  },
+  "VO_N_0039": {
+    "file": "assets/audio/voice/N/VO_N_0039.mp3",
+    "char": "旁白",
+    "text": "阿妍看向守笼人",
+    "duration": 3.56
+  },
+  "VO_R_0221": {
+    "file": "assets/audio/voice/R/VO_R_0221.mp3",
+    "char": "阿妍",
+    "text": "因为他留下的所有谜题，都有同一个签名。",
+    "duration": 6.48
+  },
+  "VO_N_0040": {
+    "file": "assets/audio/voice/N/VO_N_0040.mp3",
+    "char": "旁白",
+    "text": "沈墨从口袋里取出那封信，看了一眼——信封上没有署名。但信纸背面，有一行极淡的铅笔字：如果你看到了这一页，说明你已经不需要我了。他合上信，放回口袋，轻声说",
+    "duration": 25.24
+  },
+  "VO_SM_0058": {
+    "file": "assets/audio/voice/SM/VO_SM_0058.mp3",
+    "char": "沈墨",
+    "text": "他一直在等我们找到这里。",
+    "duration": 4.61
+  },
+  "VO_N_0041": {
+    "file": "assets/audio/voice/N/VO_N_0041.mp3",
+    "char": "旁白",
+    "text": "画面淡出，进入第1章结尾",
+    "duration": 5.18
+  },
+  "VO_CK_0183": {
+    "file": "assets/audio/voice/CK/VO_CK_0183.mp3",
+    "char": "守笼人",
+    "text": "你找到了。这是设局人藏在第一章档案里的密信。他说，只有全S级通关的人，才有资格看到。",
+    "duration": 15.41
+  },
+  "VO_R_0222": {
+    "file": "assets/audio/voice/R/VO_R_0222.mp3",
+    "char": "阿妍",
+    "text": "密信？",
+    "duration": 2.09
+  },
+  "VO_CK_0184": {
+    "file": "assets/audio/voice/CK/VO_CK_0184.mp3",
+    "char": "守笼人",
+    "text": "这道笼局，没有任何提示数字。全凭笼格的和值来推导。他称之为——「无字之笼」。",
+    "duration": 14.54
+  },
+  "VO_J_0177": {
+    "file": "assets/audio/voice/J/VO_J_0177.mp3",
+    "char": "莹莹",
+    "text": "哇！一个提示数字都没有？！这能解吗？！",
+    "duration": 6.98
+  },
+  "VO_CK_0185": {
+    "file": "assets/audio/voice/CK/VO_CK_0185.mp3",
+    "char": "守笼人",
+    "text": "星衡法则，加上唯一组合——已经足够了。试试看吧。",
+    "duration": 9.83
+  },
+  "VO_N_0042": {
+    "file": "assets/audio/voice/N/VO_N_0042.mp3",
+    "char": "旁白",
+    "text": "盘面全部填满的那一刻，棋盘中央浮现出一行极淡的小字",
+    "duration": 9.36
+  },
+  "VO_SM_0059": {
+    "file": "assets/audio/voice/SM/VO_SM_0059.mp3",
+    "char": "沈墨",
+    "text": "「当你看到这封信的时候，说明你已经找到了第一把钥匙。但真正的锁，在最后。」",
+    "duration": 12.02
+  },
+  "VO_R_0223": {
+    "file": "assets/audio/voice/R/VO_R_0223.mp3",
+    "char": "阿妍",
+    "text": "最后一把锁。",
+    "duration": 2.81
+  },
+  "VO_CK_0186": {
+    "file": "assets/audio/voice/CK/VO_CK_0186.mp3",
+    "char": "守笼人",
+    "text": "七章档案，每一章都藏着一封密信。全部找到的人，才能看到……真正的结局。",
+    "duration": 13.43
+  },
+  "VO_CK_0187": {
+    "file": "assets/audio/voice/CK/VO_CK_0187.mp3",
+    "char": "守笼人",
+    "text": "这里是手稿室。从本章开始，你将接触六阶与九阶盘面。",
+    "duration": 10.62
+  },
+  "VO_R_0224": {
+    "file": "assets/audio/voice/R/VO_R_0224.mp3",
+    "char": "阿妍",
+    "text": "六阶每行和是二十一，九阶直接变四十五——记牢这两个基数，后面算笼子全靠它！",
+    "duration": 11.88
+  },
+  "VO_R_0225": {
+    "file": "assets/audio/voice/R/VO_R_0225.mp3",
+    "char": "阿妍",
+    "text": "对了，上一章你说的那个设计笼局的人，到底是谁？",
+    "duration": 6.7
+  },
+  "VO_CK_0188": {
+    "file": "assets/audio/voice/CK/VO_CK_0188.mp3",
+    "char": "守笼人",
+    "text": "他曾与我一同研习笼局推演。我们称他为「设局人」。",
+    "duration": 8.39
+  },
+  "VO_CK_0189": {
+    "file": "assets/audio/voice/CK/VO_CK_0189.mp3",
+    "char": "守笼人",
+    "text": "他另辟歧路，留下满室谜题便消失了多年。小心——他的留声印记可能出现在任何笼局中。",
+    "duration": 14.98
+  },
+  "VO_CK_0190": {
+    "file": "assets/audio/voice/CK/VO_CK_0190.mp3",
+    "char": "守笼人",
+    "text": "你已吃透星衡全部基础，设局人留下的深层档案即将解锁。",
+    "duration": 9.97
+  },
+  "VO_P_0048": {
+    "file": "assets/audio/voice/P/VO_P_0048.mp3",
+    "char": "设局人",
+    "text": "能闯过星衡试炼，勉强有资格直面我真正的笼局。",
+    "duration": 9.18
+  },
+  "VO_R_0226": {
+    "file": "assets/audio/voice/R/VO_R_0226.mp3",
+    "char": "阿妍",
+    "text": "我一定要解开所有谜题，搞懂你和守笼人当年到底发生了什么！",
+    "duration": 8.32
+  },
+  "VO_CK_0191": {
+    "file": "assets/audio/voice/CK/VO_CK_0191.mp3",
+    "char": "守笼人",
+    "text": "第三章的笼局，藏着设局人与我决裂的全部真相。",
+    "duration": 8.14
+  },
+  "VO_CK_0192": {
+    "file": "assets/audio/voice/CK/VO_CK_0192.mp3",
+    "char": "守笼人",
+    "text": "六阶档案遵循星衡基础：每行六数相加，总和恒为二十一。",
+    "duration": 10.62
+  },
+  "VO_J_0178": {
+    "file": "assets/audio/voice/J/VO_J_0178.mp3",
+    "char": "莹莹",
+    "text": "横竖都要凑二十一，双重约束一叠加，能填的数字一下就少了！",
+    "duration": 8.14
+  },
+  "VO_R_0227": {
+    "file": "assets/audio/voice/R/VO_R_0227.mp3",
+    "char": "阿妍",
+    "text": "填完一行减一下。不对就回头。",
+    "duration": 5.18
+  },
+  "VO_SM_0060": {
+    "file": "assets/audio/voice/SM/VO_SM_0060.mp3",
+    "char": "沈墨",
+    "text": "第二行第四列。5。",
+    "duration": 4.79
+  },
+  "VO_CK_0193": {
+    "file": "assets/audio/voice/CK/VO_CK_0193.mp3",
+    "char": "守笼人",
+    "text": "二十一。对。",
+    "duration": 4.61
+  },
+  "VO_CK_0194": {
+    "file": "assets/audio/voice/CK/VO_CK_0194.mp3",
+    "char": "守笼人",
+    "text": "星衡逻辑掌握得愈发熟练。",
+    "duration": 5.11
+  },
+  "VO_J_0179": {
+    "file": "assets/audio/voice/J/VO_J_0179.mp3",
+    "char": "莹莹",
+    "text": "吃透这套和值法则，再乱的笼子看着都清晰多了！",
+    "duration": 6.88
+  },
+  "VO_SM_0061": {
+    "file": "assets/audio/voice/SM/VO_SM_0061.mp3",
+    "char": "沈墨",
+    "text": "二十一。",
+    "duration": 2.52
+  },
+  "VO_CK_0195": {
+    "file": "assets/audio/voice/CK/VO_CK_0195.mp3",
+    "char": "守笼人",
+    "text": "竖列同样遵循星衡平衡，每列数字相加，恒等于二十一。",
+    "duration": 9.9
+  },
+  "VO_J_0180": {
+    "file": "assets/audio/voice/J/VO_J_0180.mp3",
+    "char": "莹莹",
+    "text": "横竖都要凑二十一！",
+    "duration": 3.06
+  },
+  "VO_R_0228": {
+    "file": "assets/audio/voice/R/VO_R_0228.mp3",
+    "char": "阿妍",
+    "text": "行列交叉验证。单一维度不可靠。",
+    "duration": 5.94
+  },
+  "VO_SM_0062": {
+    "file": "assets/audio/voice/SM/VO_SM_0062.mp3",
+    "char": "沈墨",
+    "text": "第一列第六行。3。",
+    "duration": 4.75
+  },
+  "VO_R_0229": {
+    "file": "assets/audio/voice/R/VO_R_0229.mp3",
+    "char": "阿妍",
+    "text": "你算得很快。",
+    "duration": 2.63
+  },
+  "VO_SM_0063": {
+    "file": "assets/audio/voice/SM/VO_SM_0063.mp3",
+    "char": "沈墨",
+    "text": "习惯了。",
+    "duration": 2.63
+  },
+  "VO_CK_0196": {
+    "file": "assets/audio/voice/CK/VO_CK_0196.mp3",
+    "char": "守笼人",
+    "text": "行列双衡，已入正轨。",
+    "duration": 5.47
+  },
+  "VO_J_0181": {
+    "file": "assets/audio/voice/J/VO_J_0181.mp3",
+    "char": "莹莹",
+    "text": "用行和列互相校验，准确率高了好多！",
+    "duration": 5.54
+  },
+  "VO_R_0230": {
+    "file": "assets/audio/voice/R/VO_R_0230.mp3",
+    "char": "阿妍",
+    "text": "嗯。",
+    "duration": 1.84
+  },
+  "VO_SM_0064": {
+    "file": "assets/audio/voice/SM/VO_SM_0064.mp3",
+    "char": "沈墨",
+    "text": "二十一。列也是。",
+    "duration": 4.36
+  },
+  "VO_CK_0197": {
+    "file": "assets/audio/voice/CK/VO_CK_0197.mp3",
+    "char": "守笼人",
+    "text": "六宫小方格亦满足星衡平衡。手稿中首次出现基础笼格。",
+    "duration": 10.8
+  },
+  "VO_J_0182": {
+    "file": "assets/audio/voice/J/VO_J_0182.mp3",
+    "char": "莹莹",
+    "text": "六阶总和二十一，九阶四十五，千万别记混！",
+    "duration": 6.23
+  },
+  "VO_R_0231": {
+    "file": "assets/audio/voice/R/VO_R_0231.mp3",
+    "char": "阿妍",
+    "text": "宫与笼同时作用。注意它们重叠的地方。",
+    "duration": 6.23
+  },
+  "VO_SM_0065": {
+    "file": "assets/audio/voice/SM/VO_SM_0065.mp3",
+    "char": "沈墨",
+    "text": "这个宫的右上角。只剩一个数了。",
+    "duration": 6.48
+  },
+  "VO_J_0183": {
+    "file": "assets/audio/voice/J/VO_J_0183.mp3",
+    "char": "莹莹",
+    "text": "哪个？",
+    "duration": 1.76
+  },
+  "VO_SM_0066": {
+    "file": "assets/audio/voice/SM/VO_SM_0066.mp3",
+    "char": "沈墨",
+    "text": "6。",
+    "duration": 1.94
+  },
+  "VO_CK_0198": {
+    "file": "assets/audio/voice/CK/VO_CK_0198.mp3",
+    "char": "守笼人",
+    "text": "这些笼型的排布手法，正是设局人当年最擅长的风格。",
+    "duration": 9.07
+  },
+  "VO_P_0049": {
+    "file": "assets/audio/voice/P/VO_P_0049.mp3",
+    "char": "设局人",
+    "text": "只会死守二十一星衡，你永远破不开我完整的九域笼局。",
+    "duration": 10.12
+  },
+  "VO_J_0184": {
+    "file": "assets/audio/voice/J/VO_J_0184.mp3",
+    "char": "莹莹",
+    "text": "谁？！谁在说话？！",
+    "duration": 3.67
+  },
+  "VO_CK_0199": {
+    "file": "assets/audio/voice/CK/VO_CK_0199.mp3",
+    "char": "守笼人",
+    "text": "是他留下的留声印记。",
+    "duration": 4.32
+  },
+  "VO_R_0232": {
+    "file": "assets/audio/voice/R/VO_R_0232.mp3",
+    "char": "阿妍",
+    "text": "留声印记。他把自己的声音留在了笼局里。",
+    "duration": 6.88
+  },
+  "VO_J_0185": {
+    "file": "assets/audio/voice/J/VO_J_0185.mp3",
+    "char": "莹莹",
+    "text": "为什么？",
+    "duration": 1.84
+  },
+  "VO_R_0233": {
+    "file": "assets/audio/voice/R/VO_R_0233.mp3",
+    "char": "阿妍",
+    "text": "因为他在等人听见。",
+    "duration": 4.0
+  },
+  "VO_SM_0067": {
+    "file": "assets/audio/voice/SM/VO_SM_0067.mp3",
+    "char": "沈墨",
+    "text": "是等一个人，还是等一种人？",
+    "duration": 5.58
+  },
+  "VO_CK_0200": {
+    "file": "assets/audio/voice/CK/VO_CK_0200.mp3",
+    "char": "守笼人",
+    "text": "九个数加起来永远是四十五。这是所有笼局的根。",
+    "duration": 8.17
+  },
+  "VO_J_0186": {
+    "file": "assets/audio/voice/J/VO_J_0186.mp3",
+    "char": "莹莹",
+    "text": "六阶二十一、九阶四十五！",
+    "duration": 4.03
+  },
+  "VO_P_0050": {
+    "file": "assets/audio/voice/P/VO_P_0050.mp3",
+    "char": "设局人",
+    "text": "四十五只是最表层的障眼法。真正的笼局玄机，藏在差值之中。",
+    "duration": 12.89
+  },
+  "VO_R_0234": {
+    "file": "assets/audio/voice/R/VO_R_0234.mp3",
+    "char": "阿妍",
+    "text": "差值。",
+    "duration": 2.27
+  },
+  "VO_R_0235": {
+    "file": "assets/audio/voice/R/VO_R_0235.mp3",
+    "char": "阿妍",
+    "text": "他用差值藏了最后的答案。",
+    "duration": 4.32
+  },
+  "VO_SM_0068": {
+    "file": "assets/audio/voice/SM/VO_SM_0068.mp3",
+    "char": "沈墨",
+    "text": "藏的不是答案。藏的是——指向答案的路。",
+    "duration": 7.13
+  },
+  "VO_CK_0201": {
+    "file": "assets/audio/voice/CK/VO_CK_0201.mp3",
+    "char": "守笼人",
+    "text": "吃透四十五法则，才有资格拆解设局人留下的差值笼。",
+    "duration": 8.53
+  },
+  "VO_J_0187": {
+    "file": "assets/audio/voice/J/VO_J_0187.mp3",
+    "char": "莹莹",
+    "text": "差值笼……听起来好难。",
+    "duration": 3.6
+  },
+  "VO_R_0236": {
+    "file": "assets/audio/voice/R/VO_R_0236.mp3",
+    "char": "阿妍",
+    "text": "差值就是减法。两层笼子的数相减，剩下的就是那几格该填的。",
+    "duration": 9.76
+  },
+  "VO_J_0188": {
+    "file": "assets/audio/voice/J/VO_J_0188.mp3",
+    "char": "莹莹",
+    "text": "你说得好简单。",
+    "duration": 2.56
+  },
+  "VO_R_0237": {
+    "file": "assets/audio/voice/R/VO_R_0237.mp3",
+    "char": "阿妍",
+    "text": "因为本来就不复杂。",
+    "duration": 3.28
+  },
+  "VO_SM_0069": {
+    "file": "assets/audio/voice/SM/VO_SM_0069.mp3",
+    "char": "沈墨",
+    "text": "四十五。",
+    "duration": 2.56
+  },
+  "VO_CK_0202": {
+    "file": "assets/audio/voice/CK/VO_CK_0202.mp3",
+    "char": "守笼人",
+    "text": "用九域总和四十五减去其余笼格数字，可直接推导单独空格数值。",
+    "duration": 10.69
+  },
+  "VO_J_0189": {
+    "file": "assets/audio/voice/J/VO_J_0189.mp3",
+    "char": "莹莹",
+    "text": "整行总和减掉已知的数，剩下的格子直接算出来！",
+    "duration": 6.98
+  },
+  "VO_R_0238": {
+    "file": "assets/audio/voice/R/VO_R_0238.mp3",
+    "char": "阿妍",
+    "text": "整行减掉已知的，剩下一个，就是它。",
+    "duration": 5.76
+  },
+  "VO_SM_0070": {
+    "file": "assets/audio/voice/SM/VO_SM_0070.mp3",
+    "char": "沈墨",
+    "text": "第七行第三列。4。",
+    "duration": 5.08
+  },
+  "VO_CK_0203": {
+    "file": "assets/audio/voice/CK/VO_CK_0203.mp3",
+    "char": "守笼人",
+    "text": "单格推演已通。",
+    "duration": 3.6
+  },
+  "VO_J_0190": {
+    "file": "assets/audio/voice/J/VO_J_0190.mp3",
+    "char": "莹莹",
+    "text": "你算得比我快多了……",
+    "duration": 2.84
+  },
+  "VO_R_0239": {
+    "file": "assets/audio/voice/R/VO_R_0239.mp3",
+    "char": "阿妍",
+    "text": "熟悉了公式就快。",
+    "duration": 3.17
+  },
+  "VO_CK_0204": {
+    "file": "assets/audio/voice/CK/VO_CK_0204.mp3",
+    "char": "守笼人",
+    "text": "多笼交错时，利用两组笼的和值差值锁定数字区间。",
+    "duration": 9.29
+  },
+  "VO_J_0191": {
+    "file": "assets/audio/voice/J/VO_J_0191.mp3",
+    "char": "莹莹",
+    "text": "差值……听起来好难。",
+    "duration": 3.35
+  },
+  "VO_R_0240": {
+    "file": "assets/audio/voice/R/VO_R_0240.mp3",
+    "char": "阿妍",
+    "text": "差值不是概念，是操作。两层相减，剩下的就是你要填的。",
+    "duration": 9.43
+  },
+  "VO_P_0051": {
+    "file": "assets/audio/voice/P/VO_P_0051.mp3",
+    "char": "设局人",
+    "text": "你拦不住我。因为工具从不会犯错，只有人才会。",
+    "duration": 9.58
+  },
+  "VO_R_0241": {
+    "file": "assets/audio/voice/R/VO_R_0241.mp3",
+    "char": "阿妍",
+    "text": "工具是效率载体。不改变底层逻辑。",
+    "duration": 5.94
+  },
+  "VO_CK_0205": {
+    "file": "assets/audio/voice/CK/VO_CK_0205.mp3",
+    "char": "守笼人",
+    "text": "差值只是中段技巧。他真正的杀招，是内外嵌套的交错笼局。",
+    "duration": 10.69
+  },
+  "VO_R_0242": {
+    "file": "assets/audio/voice/R/VO_R_0242.mp3",
+    "char": "阿妍",
+    "text": "嵌套笼——外层笼和内层笼共享部分格子。拆外层，才能看到内层。",
+    "duration": 10.19
+  },
+  "VO_CK_0206": {
+    "file": "assets/audio/voice/CK/VO_CK_0206.mp3",
+    "char": "守笼人",
+    "text": "内外重叠笼格会互相限制数字范围，需要同时拆分多层笼分别计算差值。",
+    "duration": 11.09
+  },
+  "VO_J_0192": {
+    "file": "assets/audio/voice/J/VO_J_0192.mp3",
+    "char": "莹莹",
+    "text": "一层一层拆开，分别套四十五差值……",
+    "duration": 5.22
+  },
+  "VO_R_0243": {
+    "file": "assets/audio/voice/R/VO_R_0243.mp3",
+    "char": "阿妍",
+    "text": "解法顺序由外向内。外层和值减去内层和值，余下为中间层边界。",
+    "duration": 10.87
+  },
+  "VO_SM_0071": {
+    "file": "assets/audio/voice/SM/VO_SM_0071.mp3",
+    "char": "沈墨",
+    "text": "你看这样是不是清楚一点。",
+    "duration": 4.61
+  },
+  "VO_CK_0207": {
+    "file": "assets/audio/voice/CK/VO_CK_0207.mp3",
+    "char": "守笼人",
+    "text": "内外皆通，方见全局。",
+    "duration": 5.11
+  },
+  "VO_J_0193": {
+    "file": "assets/audio/voice/J/VO_J_0193.mp3",
+    "char": "莹莹",
+    "text": "拆完一层还有一层……像剥洋葱！",
+    "duration": 4.46
+  },
+  "VO_R_0244": {
+    "file": "assets/audio/voice/R/VO_R_0244.mp3",
+    "char": "阿妍",
+    "text": "不是洋葱。是套娃。",
+    "duration": 4.28
+  },
+  "VO_CK_0208": {
+    "file": "assets/audio/voice/CK/VO_CK_0208.mp3",
+    "char": "守笼人",
+    "text": "本章全部星衡、笼格推演技巧融合在此，检验你能否抵御设局人的谜题陷阱。",
+    "duration": 12.46
+  },
+  "VO_J_0194": {
+    "file": "assets/audio/voice/J/VO_J_0194.mp3",
+    "char": "莹莹",
+    "text": "这一关把二十一、四十五、差值、嵌套笼全堆一起了！",
+    "duration": 7.88
+  },
+  "VO_R_0245": {
+    "file": "assets/audio/voice/R/VO_R_0245.mp3",
+    "char": "阿妍",
+    "text": "开始吧。",
+    "duration": 2.2
+  },
+  "VO_SM_0072": {
+    "file": "assets/audio/voice/SM/VO_SM_0072.mp3",
+    "char": "沈墨",
+    "text": "第一行第六列。2。",
+    "duration": 4.64
+  },
+  "VO_CK_0209": {
+    "file": "assets/audio/voice/CK/VO_CK_0209.mp3",
+    "char": "守笼人",
+    "text": "你已吃透星衡全部基础。设局人留下的深层档案即将解锁。",
+    "duration": 10.44
+  },
+  "VO_P_0052": {
+    "file": "assets/audio/voice/P/VO_P_0052.mp3",
+    "char": "设局人",
+    "text": "能闯过星衡试炼，勉强有资格直面我真正的笼局。",
+    "duration": 9.18
+  },
+  "VO_J_0195": {
+    "file": "assets/audio/voice/J/VO_J_0195.mp3",
+    "char": "莹莹",
+    "text": "我一定要解开所有谜题，搞懂你和守笼人当年到底发生了什么！",
+    "duration": 8.03
+  },
+  "VO_R_0246": {
+    "file": "assets/audio/voice/R/VO_R_0246.mp3",
+    "char": "阿妍",
+    "text": "会的。",
+    "duration": 2.09
+  },
+  "VO_CK_0210": {
+    "file": "assets/audio/voice/CK/VO_CK_0210.mp3",
+    "char": "守笼人",
+    "text": "档案室深层的笼局，不再能靠简单星衡破解。你需要学会区块排除、数对法、二连纵横阵等进阶技巧。",
+    "duration": 16.96
+  },
+  "VO_R_0247": {
+    "file": "assets/audio/voice/R/VO_R_0247.mp3",
+    "char": "阿妍",
+    "text": "哇，这里的书架好高……感觉气氛都不一样了。",
+    "duration": 6.95
+  },
+  "VO_P_0053": {
+    "file": "assets/audio/voice/P/VO_P_0053.mp3",
+    "char": "设局人",
+    "text": "终于敢走进深层了？我还以为你会永远停留在二十一星衡的孩童游戏里。",
+    "duration": 12.13
+  },
+  "VO_R_0248": {
+    "file": "assets/audio/voice/R/VO_R_0248.mp3",
+    "char": "阿妍",
+    "text": "！！设局人？他居然直接说话了？",
+    "duration": 5.51
+  },
+  "VO_CK_0211": {
+    "file": "assets/audio/voice/CK/VO_CK_0211.mp3",
+    "char": "守笼人",
+    "text": "从本章开始，他会频繁出现。做好心理准备。",
+    "duration": 8.53
+  },
+  "VO_CK_0212": {
+    "file": "assets/audio/voice/CK/VO_CK_0212.mp3",
+    "char": "守笼人",
+    "text": "你已具备拆解设局人标准笼局的能力。",
+    "duration": 6.77
+  },
+  "VO_P_0054": {
+    "file": "assets/audio/voice/P/VO_P_0054.mp3",
+    "char": "设局人",
+    "text": "标准笼局？呵，你看到的不过是我三十年前的习作。",
+    "duration": 11.56
+  },
+  "VO_R_0249": {
+    "file": "assets/audio/voice/R/VO_R_0249.mp3",
+    "char": "阿妍",
+    "text": "三十年前？！这些谜题居然是三十年前的？",
+    "duration": 7.09
+  },
+  "VO_CK_0213": {
+    "file": "assets/audio/voice/CK/VO_CK_0213.mp3",
+    "char": "守笼人",
+    "text": "三十年前，我与他因星辰梭的用途产生分歧。他想用星辰梭制造无解笼局，我认为笼局的意义是引导人思考。",
+    "duration": 18.04
+  },
+  "VO_P_0055": {
+    "file": "assets/audio/voice/P/VO_P_0055.mp3",
+    "char": "设局人",
+    "text": "道不同不相为谋。你守着你的档案馆，我布我的局。",
+    "duration": 9.76
+  },
+  "VO_CK_0214": {
+    "file": "assets/audio/voice/CK/VO_CK_0214.mp3",
+    "char": "守笼人",
+    "text": "第四章的残局档案，记录了我们决裂那天的最后一局。",
+    "duration": 8.03
+  },
+  "VO_CK_0215": {
+    "file": "assets/audio/voice/CK/VO_CK_0215.mp3",
+    "char": "守笼人",
+    "text": "区块排除——当某数字仅可能出现在某一宫的特定行或列时，可排除该行该列其他位置的可能性。",
+    "duration": 14.04
+  },
+  "VO_J_0196": {
+    "file": "assets/audio/voice/J/VO_J_0196.mp3",
+    "char": "莹莹",
+    "text": "就是说——数字在某个小框框里只能在某一行出现，那这一行其他地方就没它的事了！",
+    "duration": 10.91
+  },
+  "VO_R_0250": {
+    "file": "assets/audio/voice/R/VO_R_0250.mp3",
+    "char": "阿妍",
+    "text": "行内排除。压缩候选空间的基本手段。",
+    "duration": 6.44
+  },
+  "VO_CK_0216": {
+    "file": "assets/audio/voice/CK/VO_CK_0216.mp3",
+    "char": "守笼人",
+    "text": "区块排除是破所有高阶笼局的钥匙。",
+    "duration": 6.34
+  },
+  "VO_P_0056": {
+    "file": "assets/audio/voice/P/VO_P_0056.mp3",
+    "char": "设局人",
+    "text": "钥匙？这不过是我当年随手丢下的一枚废铜片罢了。",
+    "duration": 10.22
+  },
+  "VO_R_0251": {
+    "file": "assets/audio/voice/R/VO_R_0251.mp3",
+    "char": "阿妍",
+    "text": "废铜片。",
+    "duration": 2.45
+  },
+  "VO_SM_0073": {
+    "file": "assets/audio/voice/SM/VO_SM_0073.mp3",
+    "char": "沈墨",
+    "text": "他丢下的每一片，都困了人很久。",
+    "duration": 5.62
+  },
+  "VO_CK_0217": {
+    "file": "assets/audio/voice/CK/VO_CK_0217.mp3",
+    "char": "守笼人",
+    "text": "当行与列的区块限制叠加时，可进一步缩小数字范围。",
+    "duration": 8.75
+  },
+  "VO_J_0197": {
+    "file": "assets/audio/voice/J/VO_J_0197.mp3",
+    "char": "莹莹",
+    "text": "横着排除一遍，竖着再排除一遍！",
+    "duration": 4.72
+  },
+  "VO_R_0252": {
+    "file": "assets/audio/voice/R/VO_R_0252.mp3",
+    "char": "阿妍",
+    "text": "行列叠加，双重锁定。候选范围缩小约一半。",
+    "duration": 7.45
+  },
+  "VO_CK_0218": {
+    "file": "assets/audio/voice/CK/VO_CK_0218.mp3",
+    "char": "守笼人",
+    "text": "区块逻辑愈发纯熟。",
+    "duration": 4.46
+  },
+  "VO_J_0198": {
+    "file": "assets/audio/voice/J/VO_J_0198.mp3",
+    "char": "莹莹",
+    "text": "用区块排除一下，思路瞬间清晰多了！",
+    "duration": 5.33
+  },
+  "VO_R_0253": {
+    "file": "assets/audio/voice/R/VO_R_0253.mp3",
+    "char": "阿妍",
+    "text": "嗯。",
+    "duration": 1.84
+  },
+  "VO_CK_0219": {
+    "file": "assets/audio/voice/CK/VO_CK_0219.mp3",
+    "char": "守笼人",
+    "text": "多个区块同时作用时，需要综合判断，这是设局人最擅长的布局手法。",
+    "duration": 11.05
+  },
+  "VO_J_0199": {
+    "file": "assets/audio/voice/J/VO_J_0199.mp3",
+    "char": "莹莹",
+    "text": "好几个区块叠在一起看着乱，一个一个拆开来分析就清楚了。",
+    "duration": 7.56
+  },
+  "VO_R_0254": {
+    "file": "assets/audio/voice/R/VO_R_0254.mp3",
+    "char": "阿妍",
+    "text": "他喜欢把多条线索叠在一起。然后在交叉点埋下陷阱。",
+    "duration": 8.21
+  },
+  "VO_SM_0074": {
+    "file": "assets/audio/voice/SM/VO_SM_0074.mp3",
+    "char": "沈墨",
+    "text": "他布的局，不是让人看不见答案。是让人看不见自己走过了几条线。",
+    "duration": 10.51
+  },
+  "VO_CK_0220": {
+    "file": "assets/audio/voice/CK/VO_CK_0220.mp3",
+    "char": "守笼人",
+    "text": "这种多区块交错的笼型，正是当年他最得意的作品。",
+    "duration": 8.03
+  },
+  "VO_J_0200": {
+    "file": "assets/audio/voice/J/VO_J_0200.mp3",
+    "char": "莹莹",
+    "text": "当年……你和设局人当年到底发生了什么？",
+    "duration": 5.65
+  },
+  "VO_CK_0221": {
+    "file": "assets/audio/voice/CK/VO_CK_0221.mp3",
+    "char": "守笼人",
+    "text": "当年我们曾是同门，一起研究星辰梭推演笼局的极限。",
+    "duration": 8.5
+  },
+  "VO_R_0255": {
+    "file": "assets/audio/voice/R/VO_R_0255.mp3",
+    "char": "阿妍",
+    "text": "研究了多久？",
+    "duration": 2.77
+  },
+  "VO_CK_0222": {
+    "file": "assets/audio/voice/CK/VO_CK_0222.mp3",
+    "char": "守笼人",
+    "text": "十三年。",
+    "duration": 2.95
+  },
+  "VO_CK_0223": {
+    "file": "assets/audio/voice/CK/VO_CK_0223.mp3",
+    "char": "守笼人",
+    "text": "隐曜——群曜遮目，一光独隐。当某两个数字在某区域内只能放在相同的两个格子里时，这两个格子便被暗中标定。",
+    "duration": 18.25
+  },
+  "VO_J_0201": {
+    "file": "assets/audio/voice/J/VO_J_0201.mp3",
+    "char": "莹莹",
+    "text": "就是两个数偷偷约好只出现在两个格子里！",
+    "duration": 5.65
+  },
+  "VO_R_0256": {
+    "file": "assets/audio/voice/R/VO_R_0256.mp3",
+    "char": "阿妍",
+    "text": "它们不是约好的。是被挤到那里去的。",
+    "duration": 5.9
+  },
+  "VO_SM_0075": {
+    "file": "assets/audio/voice/SM/VO_SM_0075.mp3",
+    "char": "沈墨",
+    "text": "就像人一样。",
+    "duration": 2.99
+  },
+  "VO_CK_0224": {
+    "file": "assets/audio/voice/CK/VO_CK_0224.mp3",
+    "char": "守笼人",
+    "text": "隐曜已通。",
+    "duration": 3.06
+  },
+  "VO_J_0202": {
+    "file": "assets/audio/voice/J/VO_J_0202.mp3",
+    "char": "莹莹",
+    "text": "原来藏在候选数里的数字才是关键！",
+    "duration": 5.11
+  },
+  "VO_R_0257": {
+    "file": "assets/audio/voice/R/VO_R_0257.mp3",
+    "char": "阿妍",
+    "text": "隐性数对比显性更难发现。但一旦找到，就打开了一片区域。",
+    "duration": 9.07
+  },
+  "VO_CK_0225": {
+    "file": "assets/audio/voice/CK/VO_CK_0225.mp3",
+    "char": "守笼人",
+    "text": "两行两列形成一个矩形。找到四个角，就能排除其余。",
+    "duration": 10.08
+  },
+  "VO_J_0203": {
+    "file": "assets/audio/voice/J/VO_J_0203.mp3",
+    "char": "莹莹",
+    "text": "听起来像X形！",
+    "duration": 2.99
+  },
+  "VO_R_0258": {
+    "file": "assets/audio/voice/R/VO_R_0258.mp3",
+    "char": "阿妍",
+    "text": "就是X形。四个顶点。两种可能。排除一切。",
+    "duration": 8.89
+  },
+  "VO_P_0057": {
+    "file": "assets/audio/voice/P/VO_P_0057.mp3",
+    "char": "设局人",
+    "text": "能看懂二连纵横阵，勉强算摸到了星辰梭的门槛。",
+    "duration": 8.75
+  },
+  "VO_R_0259": {
+    "file": "assets/audio/voice/R/VO_R_0259.mp3",
+    "char": "阿妍",
+    "text": "嗯。",
+    "duration": 1.84
+  },
+  "VO_CK_0226": {
+    "file": "assets/audio/voice/CK/VO_CK_0226.mp3",
+    "char": "守笼人",
+    "text": "当年，我就是用二连纵横阵为基础，推演出了第一套星辰梭笼局模型。",
+    "duration": 10.69
+  },
+  "VO_J_0204": {
+    "file": "assets/audio/voice/J/VO_J_0204.mp3",
+    "char": "莹莹",
+    "text": "你们当年……到底为什么决裂？",
+    "duration": 3.96
+  },
+  "VO_CK_0227": {
+    "file": "assets/audio/voice/CK/VO_CK_0227.mp3",
+    "char": "守笼人",
+    "text": "因为他走到了我不敢走的路。",
+    "duration": 4.54
+  },
+  "VO_R_0260": {
+    "file": "assets/audio/voice/R/VO_R_0260.mp3",
+    "char": "阿妍",
+    "text": "道不同。",
+    "duration": 2.16
+  },
+  "VO_CK_0228": {
+    "file": "assets/audio/voice/CK/VO_CK_0228.mp3",
+    "char": "守笼人",
+    "text": "第四章的残局档案，记录了我们决裂那天的最后一局。",
+    "duration": 8.03
+  },
+  "VO_CK_0229": {
+    "file": "assets/audio/voice/CK/VO_CK_0229.mp3",
+    "char": "守笼人",
+    "text": "本题融合区块排除、并蒂锁、二连纵横阵多种技巧，需要灵活组合运用。",
+    "duration": 11.99
+  },
+  "VO_J_0205": {
+    "file": "assets/audio/voice/J/VO_J_0205.mp3",
+    "char": "莹莹",
+    "text": "各种方法混着来，哪条路能走通就走哪条！",
+    "duration": 5.94
+  },
+  "VO_R_0261": {
+    "file": "assets/audio/voice/R/VO_R_0261.mp3",
+    "char": "阿妍",
+    "text": "组合技巧验证的前提是——各自的判定条件互不冲突。",
+    "duration": 7.7
+  },
+  "VO_CK_0230": {
+    "file": "assets/audio/voice/CK/VO_CK_0230.mp3",
+    "char": "守笼人",
+    "text": "区块、数对、二连纵横阵——三者已融会贯通。",
+    "duration": 9.11
+  },
+  "VO_J_0206": {
+    "file": "assets/audio/voice/J/VO_J_0206.mp3",
+    "char": "莹莹",
+    "text": "混着用感觉更顺手了！",
+    "duration": 3.6
+  },
+  "VO_R_0262": {
+    "file": "assets/audio/voice/R/VO_R_0262.mp3",
+    "char": "阿妍",
+    "text": "多种方法联合验证，排除范围扩展至全局。",
+    "duration": 6.73
+  },
+  "VO_CK_0231": {
+    "file": "assets/audio/voice/CK/VO_CK_0231.mp3",
+    "char": "守笼人",
+    "text": "本章最终试炼，所有区块技巧融会贯通。提示数降至三十一，是设局人当年的标准出题难度。",
+    "duration": 14.98
+  },
+  "VO_J_0207": {
+    "file": "assets/audio/voice/J/VO_J_0207.mp3",
+    "char": "莹莹",
+    "text": "提示数少了这么多……加油！",
+    "duration": 4.0
+  },
+  "VO_R_0263": {
+    "file": "assets/audio/voice/R/VO_R_0263.mp3",
+    "char": "阿妍",
+    "text": "数少了，但要推的步数多了。",
+    "duration": 4.57
+  },
+  "VO_CK_0232": {
+    "file": "assets/audio/voice/CK/VO_CK_0232.mp3",
+    "char": "守笼人",
+    "text": "区块排除法，你已融会贯通。",
+    "duration": 6.37
+  },
+  "VO_J_0208": {
+    "file": "assets/audio/voice/J/VO_J_0208.mp3",
+    "char": "莹莹",
+    "text": "原来藏在区块里的数字才是破局关键！",
+    "duration": 5.69
+  },
+  "VO_R_0264": {
+    "file": "assets/audio/voice/R/VO_R_0264.mp3",
+    "char": "阿妍",
+    "text": "我在档案分类索引里看到的。第六章，残局编号F-6。",
+    "duration": 8.68
+  },
+  "VO_J_0209": {
+    "file": "assets/audio/voice/J/VO_J_0209.mp3",
+    "char": "莹莹",
+    "text": "什么？",
+    "duration": 1.69
+  },
+  "VO_R_0265": {
+    "file": "assets/audio/voice/R/VO_R_0265.mp3",
+    "char": "阿妍",
+    "text": "最后的谜题。在第六章。",
+    "duration": 4.75
+  },
+  "VO_CK_0233": {
+    "file": "assets/audio/voice/CK/VO_CK_0233.mp3",
+    "char": "守笼人",
+    "text": "这一层的档案，记录着当年决裂事件的完整过程。大部分数字已模糊不可辨，你需要学会残局逆向推导。",
+    "duration": 16.06
+  },
+  "VO_R_0266": {
+    "file": "assets/audio/voice/R/VO_R_0266.mp3",
+    "char": "阿妍",
+    "text": "笔记都残缺成这样了还能推？感觉像侦探从碎纸片里拼真相一样！",
+    "duration": 9.83
+  },
+  "VO_CK_0234": {
+    "file": "assets/audio/voice/CK/VO_CK_0234.mp3",
+    "char": "守笼人",
+    "text": "这些笔记，是当年一位见证者留下的。他记录了那场对决的每一步。",
+    "duration": 10.04
+  },
+  "VO_R_0267": {
+    "file": "assets/audio/voice/R/VO_R_0267.mp3",
+    "char": "阿妍",
+    "text": "「最终手……守笼人认输了。他说，你赢了，但星辰梭不能用来做这种事。设局人说，没有什么能阻挡笼局的进化。然后他就走了，再也没有回来。」",
+    "duration": 20.09
+  },
+  "VO_R_0268": {
+    "file": "assets/audio/voice/R/VO_R_0268.mp3",
+    "char": "阿妍",
+    "text": "做什么事？星辰梭到底能用来做什么？",
+    "duration": 6.34
+  },
+  "VO_CK_0235": {
+    "file": "assets/audio/voice/CK/VO_CK_0235.mp3",
+    "char": "守笼人",
+    "text": "星辰梭不只是推演数独的工具。它可以推演任何有规则的系统——棋局、市场、甚至……人心。",
+    "duration": 16.38
+  },
+  "VO_P_0058": {
+    "file": "assets/audio/voice/P/VO_P_0058.mp3",
+    "char": "设局人",
+    "text": "他怕了。他怕星辰梭的力量失控，所以把它封存在了档案馆深处。",
+    "duration": 11.38
+  },
+  "VO_CK_0236": {
+    "file": "assets/audio/voice/CK/VO_CK_0236.mp3",
+    "char": "守笼人",
+    "text": "第五章的笼局，是星辰梭的核心。你要自己判断，它到底该被封存，还是被释放。",
+    "duration": 13.54
+  },
+  "VO_CK_0237": {
+    "file": "assets/audio/voice/CK/VO_CK_0237.mp3",
+    "char": "守笼人",
+    "text": "这是当年决裂那天留下的第一份残局档案。",
+    "duration": 7.42
+  },
+  "VO_J_0210": {
+    "file": "assets/audio/voice/J/VO_J_0210.mp3",
+    "char": "莹莹",
+    "text": "碎片拼真相……就像我爸留下的那些纸片。",
+    "duration": 5.65
+  },
+  "VO_R_0269": {
+    "file": "assets/audio/voice/R/VO_R_0269.mp3",
+    "char": "阿妍",
+    "text": "第三手。他用的是区块排除。",
+    "duration": 5.08
+  },
+  "VO_J_0211": {
+    "file": "assets/audio/voice/J/VO_J_0211.mp3",
+    "char": "莹莹",
+    "text": "你怎么知道是第三手？",
+    "duration": 3.24
+  },
+  "VO_R_0270": {
+    "file": "assets/audio/voice/R/VO_R_0270.mp3",
+    "char": "阿妍",
+    "text": "因为这份笔记的第一页只有三行字。",
+    "duration": 5.22
+  },
+  "VO_SM_0076": {
+    "file": "assets/audio/voice/SM/VO_SM_0076.mp3",
+    "char": "沈墨",
+    "text": "区块排除。第三步。",
+    "duration": 4.93
+  },
+  "VO_CK_0238": {
+    "file": "assets/audio/voice/CK/VO_CK_0238.mp3",
+    "char": "守笼人",
+    "text": "残局逆向推导——碎片摆在那，反推全局。",
+    "duration": 7.6
+  },
+  "VO_J_0212": {
+    "file": "assets/audio/voice/J/VO_J_0212.mp3",
+    "char": "莹莹",
+    "text": "从碎纸片里拼出真相……",
+    "duration": 3.64
+  },
+  "VO_R_0271": {
+    "file": "assets/audio/voice/R/VO_R_0271.mp3",
+    "char": "阿妍",
+    "text": "“第三手，他用了区块排除——守笼人愣了。”……写得很准。",
+    "duration": 8.17
+  },
+  "VO_CK_0239": {
+    "file": "assets/audio/voice/CK/VO_CK_0239.mp3",
+    "char": "守笼人",
+    "text": "跨区域残局需要同时逆向推导多个区块的数字分布，再互相验证。",
+    "duration": 10.12
+  },
+  "VO_J_0213": {
+    "file": "assets/audio/voice/J/VO_J_0213.mp3",
+    "char": "莹莹",
+    "text": "几个区域同时倒推，还要互相对一下能不能对上……",
+    "duration": 6.77
+  },
+  "VO_R_0272": {
+    "file": "assets/audio/voice/R/VO_R_0272.mp3",
+    "char": "阿妍",
+    "text": "跨区域残局的核心是交集。多个碎片重叠的地方，就是答案所在。",
+    "duration": 9.43
+  },
+  "VO_J_0214": {
+    "file": "assets/audio/voice/J/VO_J_0214.mp3",
+    "char": "莹莹",
+    "text": "倒着推虽然绕，但推出来的时候特别有成就感！",
+    "duration": 6.37
+  },
+  "VO_R_0273": {
+    "file": "assets/audio/voice/R/VO_R_0273.mp3",
+    "char": "阿妍",
+    "text": "倒着走一遍，才知道正着走对了没。",
+    "duration": 5.33
+  },
+  "VO_CK_0241": {
+    "file": "assets/audio/voice/CK/VO_CK_0241.mp3",
+    "char": "守笼人",
+    "text": "双星并蒂，闭户成局。两个数字在同一区域内被锁定到同一对格子时，其他候选便可排除。",
+    "duration": 14.69
+  },
+  "VO_J_0215": {
+    "file": "assets/audio/voice/J/VO_J_0215.mp3",
+    "char": "莹莹",
+    "text": "两个格子恰好只能填两个数——虽然不知道哪个填哪个，但其他数字肯定都不可能了！",
+    "duration": 10.66
+  },
+  "VO_R_0274": {
+    "file": "assets/audio/voice/R/VO_R_0274.mp3",
+    "char": "阿妍",
+    "text": "并蒂锁的意义不在于填数，而在于排除。",
+    "duration": 6.05
+  },
+  "VO_CK_0242": {
+    "file": "assets/audio/voice/CK/VO_CK_0242.mp3",
+    "char": "守笼人",
+    "text": "残缺笼和——永远不知道对面给你的信息是否完整。",
+    "duration": 8.39
+  },
+  "VO_R_0275": {
+    "file": "assets/audio/voice/R/VO_R_0275.mp3",
+    "char": "阿妍",
+    "text": "残缺信息下的决策，才是真正的考验。",
+    "duration": 5.9
+  },
+  "VO_J_0216": {
+    "file": "assets/audio/voice/J/VO_J_0216.mp3",
+    "char": "莹莹",
+    "text": "阿妍姐？",
+    "duration": 2.02
+  },
+  "VO_R_0276": {
+    "file": "assets/audio/voice/R/VO_R_0276.mp3",
+    "char": "阿妍",
+    "text": "继续。",
+    "duration": 2.09
+  },
+  "VO_CK_0243": {
+    "file": "assets/audio/voice/CK/VO_CK_0243.mp3",
+    "char": "守笼人",
+    "text": "三子连阵，锁数成局。三格共享三数时，可排除该区域其他格子的这三个数字。",
+    "duration": 13.64
+  },
+  "VO_J_0217": {
+    "file": "assets/audio/voice/J/VO_J_0217.mp3",
+    "char": "莹莹",
+    "text": "三个格子加起来只有三个数字！",
+    "duration": 4.5
+  },
+  "VO_R_0277": {
+    "file": "assets/audio/voice/R/VO_R_0277.mp3",
+    "char": "阿妍",
+    "text": "每一格不需要都有三个候选。只要它们共用三个数就行。",
+    "duration": 7.85
+  },
+  "VO_SM_0077": {
+    "file": "assets/audio/voice/SM/VO_SM_0077.mp3",
+    "char": "沈墨",
+    "text": "这三个数，可以交换位置。但它们不会离开这三个格子。",
+    "duration": 9.22
+  },
+  "VO_CK_0244": {
+    "file": "assets/audio/voice/CK/VO_CK_0244.mp3",
+    "char": "守笼人",
+    "text": "三子法已通。",
+    "duration": 3.46
+  },
+  "VO_J_0218": {
+    "file": "assets/audio/voice/J/VO_J_0218.mp3",
+    "char": "莹莹",
+    "text": "锁住三个格子，排除其他位置——感觉像在布阵！",
+    "duration": 6.62
+  },
+  "VO_R_0278": {
+    "file": "assets/audio/voice/R/VO_R_0278.mp3",
+    "char": "阿妍",
+    "text": "设局人布阵的时候，也是这样想的。",
+    "duration": 5.36
+  },
+  "VO_CK_0245": {
+    "file": "assets/audio/voice/CK/VO_CK_0245.mp3",
+    "char": "守笼人",
+    "text": "这是当年那场对决的倒数第三步，提示数仅剩二十九个。",
+    "duration": 8.96
+  },
+  "VO_J_0219": {
+    "file": "assets/audio/voice/J/VO_J_0219.mp3",
+    "char": "莹莹",
+    "text": "二十几个数字……真的能推出来吗？",
+    "duration": 4.54
+  },
+  "VO_P_0059": {
+    "file": "assets/audio/voice/P/VO_P_0059.mp3",
+    "char": "设局人",
+    "text": "当年他就是在这一步，第一次犹豫了。",
+    "duration": 6.59
+  },
+  "VO_R_0279": {
+    "file": "assets/audio/voice/R/VO_R_0279.mp3",
+    "char": "阿妍",
+    "text": "他不是犹豫。",
+    "duration": 2.77
+  },
+  "VO_R_0280": {
+    "file": "assets/audio/voice/R/VO_R_0280.mp3",
+    "char": "阿妍",
+    "text": "他在想，自己有没有资格走出这一步。",
+    "duration": 5.36
+  },
+  "VO_CK_0246": {
+    "file": "assets/audio/voice/CK/VO_CK_0246.mp3",
+    "char": "守笼人",
+    "text": "残局之下，每一步都是选择。",
+    "duration": 5.83
+  },
+  "VO_J_0220": {
+    "file": "assets/audio/voice/J/VO_J_0220.mp3",
+    "char": "莹莹",
+    "text": "“第十五手……守笼人落子很慢。他低声说——你真的要走到这一步吗？”",
+    "duration": 8.71
+  },
+  "VO_P_0060": {
+    "file": "assets/audio/voice/P/VO_P_0060.mp3",
+    "char": "设局人",
+    "text": "那天我告诉他，星辰梭的终极形态，是没有答案的笼局。",
+    "duration": 9.86
+  },
+  "VO_CK_0247": {
+    "file": "assets/audio/voice/CK/VO_CK_0247.mp3",
+    "char": "守笼人",
+    "text": "荒谬。笼局必有解。",
+    "duration": 5.72
+  },
+  "VO_R_0281": {
+    "file": "assets/audio/voice/R/VO_R_0281.mp3",
+    "char": "阿妍",
+    "text": "但有的时候，解不止一个。",
+    "duration": 4.28
+  },
+  "VO_CK_0248": {
+    "file": "assets/audio/voice/CK/VO_CK_0248.mp3",
+    "char": "守笼人",
+    "text": "这是当年对决的最后一步，也是笔记的最后一页。解完这道残局，你就会知道我们决裂的全部原因。",
+    "duration": 15.62
+  },
+  "VO_J_0221": {
+    "file": "assets/audio/voice/J/VO_J_0221.mp3",
+    "char": "莹莹",
+    "text": "终于要到结局了吗……",
+    "duration": 2.92
+  },
+  "VO_R_0282": {
+    "file": "assets/audio/voice/R/VO_R_0282.mp3",
+    "char": "阿妍",
+    "text": "“他们各自走进了一扇门。门关上时，我还站在原地。”",
+    "duration": 8.06
+  },
+  "VO_J_0222": {
+    "file": "assets/audio/voice/J/VO_J_0222.mp3",
+    "char": "莹莹",
+    "text": "阿妍姐。那是我爸笔记里的最后一句话。你怎么知道？",
+    "duration": 7.96
+  },
+  "VO_R_0283": {
+    "file": "assets/audio/voice/R/VO_R_0283.mp3",
+    "char": "阿妍",
+    "text": "因为我在手稿室的旧档案夹里，翻到过这本笔记的复本。它的背面，有设局人的签名。",
+    "duration": 11.48
+  },
+  "VO_CK_0249": {
+    "file": "assets/audio/voice/CK/VO_CK_0249.mp3",
+    "char": "守笼人",
+    "text": "候选笔记、隐曜、并蒂锁、三子法——尘封旧案的技巧，你已全部掌握。",
+    "duration": 12.71
+  },
+  "VO_J_0223": {
+    "file": "assets/audio/voice/J/VO_J_0223.mp3",
+    "char": "莹莹",
+    "text": "从一堆候选数里找出线索……像在旧档案里挖宝！",
+    "duration": 6.3
+  },
+  "VO_P_0061": {
+    "file": "assets/audio/voice/P/VO_P_0061.mp3",
+    "char": "设局人",
+    "text": "尘埃落定之时，星辰梭的光芒将再次显现。",
+    "duration": 8.68
+  },
+  "VO_R_0284": {
+    "file": "assets/audio/voice/R/VO_R_0284.mp3",
+    "char": "阿妍",
+    "text": "第五章了。",
+    "duration": 2.41
+  },
+  "VO_SM_0078": {
+    "file": "assets/audio/voice/SM/VO_SM_0078.mp3",
+    "char": "沈墨",
+    "text": "嗯。",
+    "duration": 2.09
+  },
+  "VO_CK_0250": {
+    "file": "assets/audio/voice/CK/VO_CK_0250.mp3",
+    "char": "守笼人",
+    "text": "欢迎来到星辰梭的核心区域。这里的笼局不再遵循常规形态——嵌套笼、异形笼、复合笼组，都是星辰梭的基础语言。",
+    "duration": 19.01
+  },
+  "VO_R_0285": {
+    "file": "assets/audio/voice/R/VO_R_0285.mp3",
+    "char": "阿妍",
+    "text": "笼子里面还能套笼子？这也太夸张了吧！",
+    "duration": 6.52
+  },
+  "VO_P_0062": {
+    "file": "assets/audio/voice/P/VO_P_0062.mp3",
+    "char": "设局人",
+    "text": "从外到内，层层剥离。这是星辰梭教给你的第一课。",
+    "duration": 10.01
+  },
+  "VO_CK_0251": {
+    "file": "assets/audio/voice/CK/VO_CK_0251.mp3",
+    "char": "守笼人",
+    "text": "你已掌握星辰梭的全部基础。接下来，你要面对的是设局人留下的终局——也是他毕生心血的结晶。",
+    "duration": 16.42
+  },
+  "VO_P_0063": {
+    "file": "assets/audio/voice/P/VO_P_0063.mp3",
+    "char": "设局人",
+    "text": "终局有六道笼局，一道比一道难。解完最后一道，你就会知道星辰梭真正的用途，以及——我是谁。",
+    "duration": 18.76
+  },
+  "VO_R_0286": {
+    "file": "assets/audio/voice/R/VO_R_0286.mp3",
+    "char": "阿妍",
+    "text": "你是谁？难道你不是……等等，你难道是……",
+    "duration": 6.44
+  },
+  "VO_P_0064": {
+    "file": "assets/audio/voice/P/VO_P_0064.mp3",
+    "char": "设局人",
+    "text": "别急。答案在最后。",
+    "duration": 5.54
+  },
+  "VO_CK_0252": {
+    "file": "assets/audio/voice/CK/VO_CK_0252.mp3",
+    "char": "守笼人",
+    "text": "这是星辰梭的基础形态——双层嵌套笼。大笼之中套着小笼，两层笼的和值与数字规则同时生效。",
+    "duration": 16.31
+  },
+  "VO_J_0224": {
+    "file": "assets/audio/voice/J/VO_J_0224.mp3",
+    "char": "莹莹",
+    "text": "先算外层还是先算内层？",
+    "duration": 4.18
+  },
+  "VO_R_0287": {
+    "file": "assets/audio/voice/R/VO_R_0287.mp3",
+    "char": "阿妍",
+    "text": "从外到内。先解外层，再拆内层。",
+    "duration": 6.16
+  },
+  "VO_P_0065": {
+    "file": "assets/audio/voice/P/VO_P_0065.mp3",
+    "char": "设局人",
+    "text": "从外到内，层层剥离。这是星辰梭教给你的第一课。",
+    "duration": 10.01
+  },
+  "VO_R_0288": {
+    "file": "assets/audio/voice/R/VO_R_0288.mp3",
+    "char": "阿妍",
+    "text": "你说过了。",
+    "duration": 2.34
+  },
+  "VO_SM_0079": {
+    "file": "assets/audio/voice/SM/VO_SM_0079.mp3",
+    "char": "沈墨",
+    "text": "外层31。内层12。差值是19。这三格——只能是4、6、9。",
+    "duration": 13.46
+  },
+  "VO_CK_0253": {
+    "file": "assets/audio/voice/CK/VO_CK_0253.mp3",
+    "char": "守笼人",
+    "text": "双层嵌套只是基础。真正的星辰梭笼局，可以有无数层。",
+    "duration": 9.97
+  },
+  "VO_J_0225": {
+    "file": "assets/audio/voice/J/VO_J_0225.mp3",
+    "char": "莹莹",
+    "text": "无数层？那岂不是永远解不完？",
+    "duration": 5.08
+  },
+  "VO_P_0066": {
+    "file": "assets/audio/voice/P/VO_P_0066.mp3",
+    "char": "设局人",
+    "text": "所以才有趣，不是吗？",
+    "duration": 5.26
+  },
+  "VO_R_0289": {
+    "file": "assets/audio/voice/R/VO_R_0289.mp3",
+    "char": "阿妍",
+    "text": "有趣。",
+    "duration": 2.12
+  },
+  "VO_CK_0254": {
+    "file": "assets/audio/voice/CK/VO_CK_0254.mp3",
+    "char": "守笼人",
+    "text": "三层嵌套笼，三层和值同时约束，需要从最外层逐步向内推导。",
+    "duration": 11.05
+  },
+  "VO_J_0226": {
+    "file": "assets/audio/voice/J/VO_J_0226.mp3",
+    "char": "莹莹",
+    "text": "一层一层往里剥，像剥洋葱！",
+    "duration": 4.32
+  },
+  "VO_R_0290": {
+    "file": "assets/audio/voice/R/VO_R_0290.mp3",
+    "char": "阿妍",
+    "text": "解法不变——外层决定内层范围。",
+    "duration": 5.29
+  },
+  "VO_CK_0255": {
+    "file": "assets/audio/voice/CK/VO_CK_0255.mp3",
+    "char": "守笼人",
+    "text": "星辰梭的逻辑，你已摸到门径。",
+    "duration": 6.16
+  },
+  "VO_J_0227": {
+    "file": "assets/audio/voice/J/VO_J_0227.mp3",
+    "char": "莹莹",
+    "text": "拆开来其实也没那么可怕！",
+    "duration": 3.89
+  },
+  "VO_R_0291": {
+    "file": "assets/audio/voice/R/VO_R_0291.mp3",
+    "char": "阿妍",
+    "text": "层层分解是核心方法。",
+    "duration": 4.1
+  },
+  "VO_CK_0256": {
+    "file": "assets/audio/voice/CK/VO_CK_0256.mp3",
+    "char": "守笼人",
+    "text": "星辰梭不局限于规则的方形笼。异形笼——不规则形状的笼格——才是它的真正威力。",
+    "duration": 13.64
+  },
+  "VO_J_0228": {
+    "file": "assets/audio/voice/J/VO_J_0228.mp3",
+    "char": "莹莹",
+    "text": "笼子还能是奇形怪状的？！",
+    "duration": 3.71
+  },
+  "VO_R_0292": {
+    "file": "assets/audio/voice/R/VO_R_0292.mp3",
+    "char": "阿妍",
+    "text": "形状不重要。重要的是它圈住了哪些格子。",
+    "duration": 7.16
+  },
+  "VO_J_0229": {
+    "file": "assets/audio/voice/J/VO_J_0229.mp3",
+    "char": "莹莹",
+    "text": "「星辰梭第三定律：笼的形态可以任意变化，唯有和值永恒不变。——设局人，记于二十四岁」……二十四岁？他那时候就研究出这个了？",
+    "duration": 17.75
+  },
+  "VO_R_0293": {
+    "file": "assets/audio/voice/R/VO_R_0293.mp3",
+    "char": "阿妍",
+    "text": "二十四岁。",
+    "duration": 2.59
+  },
+  "VO_CK_0257": {
+    "file": "assets/audio/voice/CK/VO_CK_0257.mp3",
+    "char": "守笼人",
+    "text": "多组嵌套笼同时分布在盘面中，互相制约，需要综合判断各组笼的数字范围。",
+    "duration": 12.02
+  },
+  "VO_J_0230": {
+    "file": "assets/audio/voice/J/VO_J_0230.mp3",
+    "char": "莹莹",
+    "text": "好几个套娃同时出现在盘面上……",
+    "duration": 4.75
+  },
+  "VO_R_0294": {
+    "file": "assets/audio/voice/R/VO_R_0294.mp3",
+    "char": "阿妍",
+    "text": "多个嵌套笼同时作用时，先解共享格最多的笼子。",
+    "duration": 7.38
+  },
+  "VO_SM_0080": {
+    "file": "assets/audio/voice/SM/VO_SM_0080.mp3",
+    "char": "沈墨",
+    "text": "这个笼子的共享格数最多。先解它。",
+    "duration": 7.13
+  },
+  "VO_CK_0258": {
+    "file": "assets/audio/voice/CK/VO_CK_0258.mp3",
+    "char": "守笼人",
+    "text": "全局视角已初步建立。",
+    "duration": 4.64
+  },
+  "VO_J_0231": {
+    "file": "assets/audio/voice/J/VO_J_0231.mp3",
+    "char": "莹莹",
+    "text": "先解共享格最多的笼子——这个思路好清晰！",
+    "duration": 6.05
+  },
+  "VO_R_0295": {
+    "file": "assets/audio/voice/R/VO_R_0295.mp3",
+    "char": "阿妍",
+    "text": "共享格最多——那里是突破口。",
+    "duration": 4.72
+  },
+  "VO_CK_0259": {
+    "file": "assets/audio/voice/CK/VO_CK_0259.mp3",
+    "char": "守笼人",
+    "text": "这是星辰梭的高阶形态——嵌套、异形、多组联动同时存在。提示数降至二十六个。",
+    "duration": 14.76
+  },
+  "VO_J_0232": {
+    "file": "assets/audio/voice/J/VO_J_0232.mp3",
+    "char": "莹莹",
+    "text": "二十六个……感觉整张盘都是空的！",
+    "duration": 4.82
+  },
+  "VO_P_0067": {
+    "file": "assets/audio/voice/P/VO_P_0067.mp3",
+    "char": "设局人",
+    "text": "空，才是星辰梭的本质。你以为你在填数字，其实你是在从无中创造有。",
+    "duration": 13.32
+  },
+  "VO_R_0296": {
+    "file": "assets/audio/voice/R/VO_R_0296.mp3",
+    "char": "阿妍",
+    "text": "你说过了。",
+    "duration": 2.34
+  },
+  "VO_R_0297": {
+    "file": "assets/audio/voice/R/VO_R_0297.mp3",
+    "char": "阿妍",
+    "text": "开始吧。",
+    "duration": 2.2
+  },
+  "VO_P_0068": {
+    "file": "assets/audio/voice/P/VO_P_0068.mp3",
+    "char": "设局人",
+    "text": "你解到这里，已经超越了当年的守笼人。他一辈子都不敢碰极限复合笼——他怕失控。",
+    "duration": 14.44
+  },
+  "VO_CK_0260": {
+    "file": "assets/audio/voice/CK/VO_CK_0260.mp3",
+    "char": "守笼人",
+    "text": "我不是怕失控。我是怕有人用它来做不该做的事。",
+    "duration": 9.25
+  },
+  "VO_R_0298": {
+    "file": "assets/audio/voice/R/VO_R_0298.mp3",
+    "char": "阿妍",
+    "text": "不该做的事……到底是什么事？",
+    "duration": 4.57
+  },
+  "VO_P_0069": {
+    "file": "assets/audio/voice/P/VO_P_0069.mp3",
+    "char": "设局人",
+    "text": "第六章的终局笼局里，有全部答案。你自己去看。",
+    "duration": 9.79
+  },
+  "VO_CK_0261": {
+    "file": "assets/audio/voice/CK/VO_CK_0261.mp3",
+    "char": "守笼人",
+    "text": "本章最终试炼，融合所有复合笼技巧。解完这一关，你就掌握了星辰梭的全部基础原理。",
+    "duration": 14.26
+  },
+  "VO_J_0233": {
+    "file": "assets/audio/voice/J/VO_J_0233.mp3",
+    "char": "莹莹",
+    "text": "二十五个数……这是最少的一次了！",
+    "duration": 4.39
+  },
+  "VO_R_0299": {
+    "file": "assets/audio/voice/R/VO_R_0299.mp3",
+    "char": "阿妍",
+    "text": "还剩一章。",
+    "duration": 2.45
+  },
+  "VO_CK_0262": {
+    "file": "assets/audio/voice/CK/VO_CK_0262.mp3",
+    "char": "守笼人",
+    "text": "嵌套笼、异形笼、复合笼——星辰梭的基础语言，你已掌握。",
+    "duration": 10.91
+  },
+  "VO_J_0234": {
+    "file": "assets/audio/voice/J/VO_J_0234.mp3",
+    "char": "莹莹",
+    "text": "层层剥开笼子的感觉，就像在解一个套娃谜题！",
+    "duration": 6.16
+  },
+  "VO_R_0300": {
+    "file": "assets/audio/voice/R/VO_R_0300.mp3",
+    "char": "阿妍",
+    "text": "最里面的那层，不是数字。",
+    "duration": 4.64
+  },
+  "VO_J_0235": {
+    "file": "assets/audio/voice/J/VO_J_0235.mp3",
+    "char": "莹莹",
+    "text": "那是什么？",
+    "duration": 2.05
+  },
+  "VO_R_0301": {
+    "file": "assets/audio/voice/R/VO_R_0301.mp3",
+    "char": "阿妍",
+    "text": "设局人。",
+    "duration": 2.45
+  },
+  "VO_SM_0081": {
+    "file": "assets/audio/voice/SM/VO_SM_0081.mp3",
+    "char": "沈墨",
+    "text": "他一直在这里。不是作为谜题。是作为终点。",
+    "duration": 8.53
+  },
+  "VO_R_0302": {
+    "file": "assets/audio/voice/R/VO_R_0302.mp3",
+    "char": "阿妍",
+    "text": "六道……感觉像闯关打BOSS一样！第一道，走起！",
+    "duration": 7.96
+  },
+  "VO_P_0070": {
+    "file": "assets/audio/voice/P/VO_P_0070.mp3",
+    "char": "设局人",
+    "text": "别急着冲。每一道笼局，都藏着一段往事。",
+    "duration": 8.86
+  },
+  "VO_R_0303": {
+    "file": "assets/audio/voice/R/VO_R_0303.mp3",
+    "char": "阿妍",
+    "text": "解……解出来了！可是……这道题的答案，好像和普通的数独不太一样？",
+    "duration": 10.01
+  },
+  "VO_CK_0264": {
+    "file": "assets/audio/voice/CK/VO_CK_0264.mp3",
+    "char": "守笼人",
+    "text": "你看出来了。这道终局笼局，有两个正确答案。",
+    "duration": 8.57
+  },
+  "VO_P_0071": {
+    "file": "assets/audio/voice/P/VO_P_0071.mp3",
+    "char": "设局人",
+    "text": "当年我布下这道题，就是想问守笼人一个问题——如果一道题有两个正确答案，你选哪一个？",
+    "duration": 13.32
+  },
+  "VO_CK_0265": {
+    "file": "assets/audio/voice/CK/VO_CK_0265.mp3",
+    "char": "守笼人",
+    "text": "当年我回答不出来。所以我认输了。",
+    "duration": 6.88
+  },
+  "VO_R_0304": {
+    "file": "assets/audio/voice/R/VO_R_0304.mp3",
+    "char": "阿妍",
+    "text": "那现在呢？现在有答案了吗？",
+    "duration": 4.93
+  },
+  "VO_P_0072": {
+    "file": "assets/audio/voice/P/VO_P_0072.mp3",
+    "char": "设局人",
+    "text": "现在我知道了。答案不是选出来的。答案是你自己走出来的。",
+    "duration": 10.37
+  },
+  "VO_CK_0266": {
+    "file": "assets/audio/voice/CK/VO_CK_0266.mp3",
+    "char": "守笼人",
+    "text": "你留下这些笼局，不是为了挑战我。是为了……找一个能理解星辰梭真正意义的人。",
+    "duration": 12.31
+  },
+  "VO_P_0073": {
+    "file": "assets/audio/voice/P/VO_P_0073.mp3",
+    "char": "设局人",
+    "text": "是。封存没有意义，滥用也没有意义。星辰梭该怎么用，该交给真正解过它的人来决定。",
+    "duration": 16.2
+  },
+  "VO_R_0305": {
+    "file": "assets/audio/voice/R/VO_R_0305.mp3",
+    "char": "阿妍",
+    "text": "所以……你是说，交给我？",
+    "duration": 4.79
+  },
+  "VO_P_0074": {
+    "file": "assets/audio/voice/P/VO_P_0074.mp3",
+    "char": "设局人",
+    "text": "交给你，也交给所有能走到这里的人。",
+    "duration": 6.34
+  },
+  "VO_CK_0267": {
+    "file": "assets/audio/voice/CK/VO_CK_0267.mp3",
+    "char": "守笼人",
+    "text": "恭喜你，正式成为档案馆的新任守笼人。",
+    "duration": 7.38
+  },
+  "VO_R_0306": {
+    "file": "assets/audio/voice/R/VO_R_0306.mp3",
+    "char": "阿妍",
+    "text": "等等等等——这就上任了？我还没准备好啊！",
+    "duration": 6.12
+  },
+  "VO_P_0075": {
+    "file": "assets/audio/voice/P/VO_P_0075.mp3",
+    "char": "设局人",
+    "text": "不用急。星辰梭的故事，才刚刚开始。",
+    "duration": 8.42
+  },
+  "VO_CK_0268": {
+    "file": "assets/audio/voice/CK/VO_CK_0268.mp3",
+    "char": "守笼人",
+    "text": "档案室深处，还有更多未解锁的笼局在等着你。",
+    "duration": 6.95
+  },
+  "VO_R_0307": {
+    "file": "assets/audio/voice/R/VO_R_0307.mp3",
+    "char": "阿妍",
+    "text": "更多？！好吧……那就，继续？",
+    "duration": 5.51
+  },
+  "VO_CK_0269": {
+    "file": "assets/audio/voice/CK/VO_CK_0269.mp3",
+    "char": "守笼人",
+    "text": "终局六道笼局，是设局人离开档案馆前留下的最后作品。",
+    "duration": 9.68
+  },
+  "VO_P_0076": {
+    "file": "assets/audio/voice/P/VO_P_0076.mp3",
+    "char": "设局人",
+    "text": "第一道笼局，是我和守笼人第一次见面时的对局。那年我十七岁，他二十。",
+    "duration": 12.89
+  },
+  "VO_J_0236": {
+    "file": "assets/audio/voice/J/VO_J_0236.mp3",
+    "char": "莹莹",
+    "text": "十七岁？！",
+    "duration": 2.12
+  },
+  "VO_R_0308": {
+    "file": "assets/audio/voice/R/VO_R_0308.mp3",
+    "char": "阿妍",
+    "text": "开始吧。",
+    "duration": 2.2
+  },
+  "VO_P_0077": {
+    "file": "assets/audio/voice/P/VO_P_0077.mp3",
+    "char": "设局人",
+    "text": "第一道笼局，是我和守笼人第一次见面时的对局。",
+    "duration": 7.81
+  },
+  "VO_J_0237": {
+    "file": "assets/audio/voice/J/VO_J_0237.mp3",
+    "char": "莹莹",
+    "text": "十七岁就这么厉害……",
+    "duration": 3.1
+  },
+  "VO_R_0309": {
+    "file": "assets/audio/voice/R/VO_R_0309.mp3",
+    "char": "阿妍",
+    "text": "起点高。但终点更重要。",
+    "duration": 4.79
+  },
+  "VO_P_0078": {
+    "file": "assets/audio/voice/P/VO_P_0078.mp3",
+    "char": "设局人",
+    "text": "第二道，是我们认识第三年的对局。那时候我们天天泡在档案馆里。",
+    "duration": 12.17
+  },
+  "VO_J_0238": {
+    "file": "assets/audio/voice/J/VO_J_0238.mp3",
+    "char": "莹莹",
+    "text": "听起来你们当年关系很好……",
+    "duration": 3.96
+  },
+  "VO_R_0310": {
+    "file": "assets/audio/voice/R/VO_R_0310.mp3",
+    "char": "阿妍",
+    "text": "关系越好，裂痕越深。",
+    "duration": 3.92
+  },
+  "VO_P_0079": {
+    "file": "assets/audio/voice/P/VO_P_0079.mp3",
+    "char": "设局人",
+    "text": "你倒是比守笼人看得透。",
+    "duration": 4.86
+  },
+  "VO_R_0311": {
+    "file": "assets/audio/voice/R/VO_R_0311.mp3",
+    "char": "阿妍",
+    "text": "陈述事实而已。",
+    "duration": 3.31
+  },
+  "VO_CK_0270": {
+    "file": "assets/audio/voice/CK/VO_CK_0270.mp3",
+    "char": "守笼人",
+    "text": "裂痕再深，也有被补上的一天。",
+    "duration": 5.65
+  },
+  "VO_R_0312": {
+    "file": "assets/audio/voice/R/VO_R_0312.mp3",
+    "char": "阿妍",
+    "text": "说得好像你补过似的。",
+    "duration": 3.71
+  },
+  "VO_P_0080": {
+    "file": "assets/audio/voice/P/VO_P_0080.mp3",
+    "char": "设局人",
+    "text": "第三道，是我们第一次吵架那天的对局。我发现星辰梭可以推演更复杂的系统，不只是数独。",
+    "duration": 15.84
+  },
+  "VO_CK_0271": {
+    "file": "assets/audio/voice/CK/VO_CK_0271.mp3",
+    "char": "守笼人",
+    "text": "推演市场走势、推演人群决策、推演……战争胜负。星辰梭的边界一旦打开，后果不堪设想。",
+    "duration": 15.73
+  },
+  "VO_J_0239": {
+    "file": "assets/audio/voice/J/VO_J_0239.mp3",
+    "char": "莹莹",
+    "text": "居然还能推演这些……",
+    "duration": 2.99
+  },
+  "VO_R_0313": {
+    "file": "assets/audio/voice/R/VO_R_0313.mp3",
+    "char": "阿妍",
+    "text": "它还能推演别的东西。",
+    "duration": 3.64
+  },
+  "VO_P_0081": {
+    "file": "assets/audio/voice/P/VO_P_0081.mp3",
+    "char": "设局人",
+    "text": "那一架吵了三天三夜。最后他说——如果你坚持走这条路，我们就不再是同门。",
+    "duration": 13.97
+  },
+  "VO_CK_0272": {
+    "file": "assets/audio/voice/CK/VO_CK_0272.mp3",
+    "char": "守笼人",
+    "text": "我曾以为，那样能拦住他。",
+    "duration": 5.04
+  },
+  "VO_P_0082": {
+    "file": "assets/audio/voice/P/VO_P_0082.mp3",
+    "char": "设局人",
+    "text": "你拦不住我。因为工具从不会犯错，只有人才会。",
+    "duration": 9.58
+  },
+  "VO_J_0240": {
+    "file": "assets/audio/voice/J/VO_J_0240.mp3",
+    "char": "莹莹",
+    "text": "哇——这么复杂的推理也能串起来！",
+    "duration": 4.97
+  },
+  "VO_SM_0082": {
+    "file": "assets/audio/voice/SM/VO_SM_0082.mp3",
+    "char": "沈墨",
+    "text": "一步错，步步错。还好，每一步都对了。",
+    "duration": 7.7
+  },
+  "VO_P_0083": {
+    "file": "assets/audio/voice/P/VO_P_0083.mp3",
+    "char": "设局人",
+    "text": "第四道，是决裂那天的最后一局。",
+    "duration": 6.73
+  },
+  "VO_J_0241": {
+    "file": "assets/audio/voice/J/VO_J_0241.mp3",
+    "char": "莹莹",
+    "text": "就是守笼人认输的那局吗？",
+    "duration": 3.82
+  },
+  "VO_CK_0273": {
+    "file": "assets/audio/voice/CK/VO_CK_0273.mp3",
+    "char": "守笼人",
+    "text": "我不是输在技巧上。我是输在……不敢像他那样，把星辰梭推到极限。",
+    "duration": 11.23
+  },
+  "VO_CK_0274": {
+    "file": "assets/audio/voice/CK/VO_CK_0274.mp3",
+    "char": "守笼人",
+    "text": "第四道了……越来越接近真相了。",
+    "duration": 5.54
+  },
+  "VO_R_0314": {
+    "file": "assets/audio/voice/R/VO_R_0314.mp3",
+    "char": "阿妍",
+    "text": "真相是什么，等我们填完最后一格再说。",
+    "duration": 5.83
+  },
+  "VO_P_0084": {
+    "file": "assets/audio/voice/P/VO_P_0084.mp3",
+    "char": "设局人",
+    "text": "第五道，是我三十年后重新布的局。这三十年里，我把星辰梭推到了连我自己都没想到的高度。",
+    "duration": 16.31
+  },
+  "VO_J_0242": {
+    "file": "assets/audio/voice/J/VO_J_0242.mp3",
+    "char": "莹莹",
+    "text": "三十年……你这三十年都去了哪里？",
+    "duration": 5.04
+  },
+  "VO_R_0326": {
+    "file": "assets/audio/voice/R/VO_R_0326.mp3",
+    "char": "阿妍",
+    "text": "二连纵横阵的核心是矩形结构。找到四个顶点，剩下的事情就交给排除法。",
+    "duration": 10.87
+  },
+  "VO_CK_0240": {
+    "file": "assets/audio/voice/CK/VO_CK_0240.mp3",
+    "char": "守笼人",
+    "text": "逆向思路逐渐清晰。",
+    "duration": 4.54
+  },
+  "VO_SM_0084": {
+    "file": "assets/audio/voice/SM/VO_SM_0084.mp3",
+    "char": "沈墨",
+    "text": "锁住两个数，排除掉其他地方。剩下的就是答案了。",
+    "duration": 8.6
+  },
+  "VO_R_0334": {
+    "file": "assets/audio/voice/R/VO_R_0334.mp3",
+    "char": "阿妍",
+    "text": "和你收到的那封信……有关系吗？",
+    "duration": 4.82
+  },
+  "VO_J_0257": {
+    "file": "assets/audio/voice/J/VO_J_0257.mp3",
+    "char": "莹莹",
+    "text": "爸？",
+    "duration": 1.51
+  },
+  "VO_R_0316": {
+    "file": "assets/audio/voice/R/VO_R_0316.mp3",
+    "char": "阿妍",
+    "text": "我学到了。",
+    "duration": 2.3
+  },
+  "VO_J_0259": {
+    "file": "assets/audio/voice/J/VO_J_0259.mp3",
+    "char": "莹莹",
+    "text": "爸——！",
+    "duration": 1.51
+  },
+  "VO_R_0324": {
+    "file": "assets/audio/voice/R/VO_R_0324.mp3",
+    "char": "阿妍",
+    "text": "隐性数对比显性数对更难发现。但一旦找到，就打开了一片区域。",
+    "duration": 9.47
+  },
+  "VO_N_0032": {
+    "file": "assets/audio/voice/N/VO_N_0032.mp3",
+    "char": "旁白",
+    "text": "阿妍已经转身走向下一扇门",
+    "duration": 4.79
+  },
+  "VO_P_0001": {
+    "file": "assets/audio/voice/P/VO_P_0001.mp3",
+    "char": "设局人",
+    "text": "只会死守二十一星衡，你永远破不开我完整的九域笼局。",
+    "duration": 10.12
+  },
+  "VO_P_0101": {
+    "file": "assets/audio/voice/P/VO_P_0101.mp3",
+    "char": "设局人",
+    "text": "你父亲是我最好的朋友。他走的时候，把你托付给了我。那封信——是我写的。",
+    "duration": 13.82
+  },
+  "VO_CK_0284": {
+    "file": "assets/audio/voice/CK/VO_CK_0284.mp3",
+    "char": "守笼人",
+    "text": "第二卷——隐曜。群曜遮目，一光独隐。两个数字被“暗中标定”在同一对格子里。",
+    "duration": 14.04
+  },
+  "VO_R_0329": {
+    "file": "assets/audio/voice/R/VO_R_0329.mp3",
+    "char": "阿妍",
+    "text": "最后一道了。开始吧。",
+    "duration": 4.32
+  },
+  "VO_SM_0094": {
+    "file": "assets/audio/voice/SM/VO_SM_0094.mp3",
+    "char": "沈墨",
+    "text": "为什么？",
+    "duration": 2.48
+  },
+  "VO_R_0318": {
+    "file": "assets/audio/voice/R/VO_R_0318.mp3",
+    "char": "阿妍",
+    "text": "最后一个数字。",
+    "duration": 2.88
+  },
+  "VO_SS_0033": {
+    "file": "assets/audio/voice/SS/VO_SS_0033.mp3",
+    "char": "设局人（秘术）",
+    "text": "三子法——三生万物。三格互锁，如影随形。",
+    "duration": 10.19
+  },
+  "VO_N_0043": {
+    "file": "assets/audio/voice/N/VO_N_0043.mp3",
+    "char": "旁白",
+    "text": "终极笼局结束后，你成为了新任守笼人。在整理档案时，你发现了一个被层层封锁的暗格。",
+    "duration": 14.47
+  },
+  "VO_N_0002": {
+    "file": "assets/audio/voice/N/VO_N_0002.mp3",
+    "char": "旁白",
+    "text": "你推开尘封三十年的档案馆大门，空气中弥漫着旧纸张的气息。",
+    "duration": 10.01
+  },
+  "VO_CK_0278": {
+    "file": "assets/audio/voice/CK/VO_CK_0278.mp3",
+    "char": "守笼人",
+    "text": "六道终局笼局，全部破解。你已具备成为守笼人的资格。",
+    "duration": 10.51
+  },
+  "VO_P_0088": {
+    "file": "assets/audio/voice/P/VO_P_0088.mp3",
+    "char": "设局人",
+    "text": "你来了。",
+    "duration": 3.06
+  },
+  "VO_W_0013": {
+    "file": "assets/audio/voice/W/VO_W_0013.mp3",
+    "char": "星辰梭",
+    "text": "三才游鱼阵——你已经摸到星辰梭的门了。",
+    "duration": 5.15
+  },
+  "VO_PS_0009": {
+    "file": "assets/audio/voice/PS/VO_PS_0009.mp3",
+    "char": "设局人（残影）",
+    "text": "「星辰之眼」。我这辈子布过的最难的一道笼局。也是……我留给她的最后一道题。",
+    "duration": 13.61
+  },
+  "VO_J_0244": {
+    "file": "assets/audio/voice/J/VO_J_0244.mp3",
+    "char": "莹莹",
+    "text": "二十三个……这也太少了吧。真的能解出来吗？",
+    "duration": 6.48
+  },
+  "VO_N_0051": {
+    "file": "assets/audio/voice/N/VO_N_0051.mp3",
+    "char": "旁白",
+    "text": "最后一个数字落下。整个大厅被金色的光芒笼罩。星辰之心，解开了。",
+    "duration": 11.99
+  },
+  "VO_SM_0086": {
+    "file": "assets/audio/voice/SM/VO_SM_0086.mp3",
+    "char": "沈墨",
+    "text": "隐曜之钥。原来如此。",
+    "duration": 5.22
+  },
+  "VO_P_0100": {
+    "file": "assets/audio/voice/P/VO_P_0100.mp3",
+    "char": "设局人",
+    "text": "还有你——沈墨。",
+    "duration": 4.68
+  },
+  "VO_N_0045": {
+    "file": "assets/audio/voice/N/VO_N_0045.mp3",
+    "char": "旁白",
+    "text": "最后一个数字落下的瞬间，星辰之眼骤然亮起——整个笼局化作一道光柱，直冲穹顶。",
+    "duration": 12.53
+  },
+  "VO_SM_0091": {
+    "file": "assets/audio/voice/SM/VO_SM_0091.mp3",
+    "char": "沈墨",
+    "text": "最后一道锁。",
+    "duration": 3.1
+  },
+  "VO_P_0010": {
+    "file": "assets/audio/voice/P/VO_P_0010.mp3",
+    "char": "设局人",
+    "text": "我设下的锁岂是你能解的？！",
+    "duration": 5.9
+  },
+  "VO_CK_0276": {
+    "file": "assets/audio/voice/CK/VO_CK_0276.mp3",
+    "char": "守笼人",
+    "text": "第五道笼局也破了。只剩最后一道了。",
+    "duration": 6.95
+  },
+  "VO_N_0012": {
+    "file": "assets/audio/voice/N/VO_N_0012.mp3",
+    "char": "旁白",
+    "text": "阿妍已经回到书架前，语气平淡",
+    "duration": 5.62
+  },
+  "VO_SM_0089": {
+    "file": "assets/audio/voice/SM/VO_SM_0089.mp3",
+    "char": "沈墨",
+    "text": "网撒下去的时候，鱼已经不在水里了。",
+    "duration": 6.19
+  },
+  "VO_P_0095": {
+    "file": "assets/audio/voice/P/VO_P_0095.mp3",
+    "char": "设局人",
+    "text": "等你问这个问题，等了很久。",
+    "duration": 5.98
+  },
+  "VO_PS_0015": {
+    "file": "assets/audio/voice/PS/VO_PS_0015.mp3",
+    "char": "设局人（残影）",
+    "text": "但这还不是结束。档案馆最深处，还有最后一道锁——那是我留给「真正的传人」的。如果你准备好了，就去找它吧。",
+    "duration": 17.06
+  },
+  "VO_J_0261": {
+    "file": "assets/audio/voice/J/VO_J_0261.mp3",
+    "char": "莹莹",
+    "text": "我准备好了。",
+    "duration": 2.3
+  },
+  "VO_CK_0286": {
+    "file": "assets/audio/voice/CK/VO_CK_0286.mp3",
+    "char": "守笼人",
+    "text": "第三卷——三子法。三子连阵，锁数成局。三格锁三数。",
+    "duration": 12.6
+  },
+  "VO_J_0248": {
+    "file": "assets/audio/voice/J/VO_J_0248.mp3",
+    "char": "莹莹",
+    "text": "三个格子加起来只有三个候选数！",
+    "duration": 4.68
+  },
+  "VO_CK_0275": {
+    "file": "assets/audio/voice/CK/VO_CK_0275.mp3",
+    "char": "守笼人",
+    "text": "你终于明白了。",
+    "duration": 3.38
+  },
+  "VO_J_0250": {
+    "file": "assets/audio/voice/J/VO_J_0250.mp3",
+    "char": "莹莹",
+    "text": "X形！",
+    "duration": 2.02
+  },
+  "VO_P_0097": {
+    "file": "assets/audio/voice/P/VO_P_0097.mp3",
+    "char": "设局人",
+    "text": "这只是一段记忆。但我的话，都是真的。",
+    "duration": 8.64
+  },
+  "VO_N_0048": {
+    "file": "assets/audio/voice/N/VO_N_0048.mp3",
+    "char": "旁白",
+    "text": "星光渐渐散去。设局人的身影也越来越淡。但在完全消失之前，他最后说了一句话——",
+    "duration": 13.82
+  },
+  "VO_J_0254": {
+    "file": "assets/audio/voice/J/VO_J_0254.mp3",
+    "char": "莹莹",
+    "text": "我……我想知道。",
+    "duration": 2.81
+  },
+  "VO_R_0331": {
+    "file": "assets/audio/voice/R/VO_R_0331.mp3",
+    "char": "阿妍",
+    "text": "不。我不认识他。我只是认识他留下来的所有东西。",
+    "duration": 8.06
+  },
+  "VO_CK_0281": {
+    "file": "assets/audio/voice/CK/VO_CK_0281.mp3",
+    "char": "守笼人",
+    "text": "档案馆的新时代开始了。走吧，新任守笼人——还有无数笼局等待你去破解。",
+    "duration": 12.82
+  },
+  "VO_P_0106": {
+    "file": "assets/audio/voice/P/VO_P_0106.mp3",
+    "char": "设局人",
+    "text": "这就是最后一道笼局——「星辰之心」。",
+    "duration": 7.2
+  },
+  "VO_SM_0087": {
+    "file": "assets/audio/voice/SM/VO_SM_0087.mp3",
+    "char": "沈墨",
+    "text": "它们可以换位置。但它们不会分开。",
+    "duration": 6.62
+  },
+  "VO_R_0328": {
+    "file": "assets/audio/voice/R/VO_R_0328.mp3",
+    "char": "阿妍",
+    "text": "来了。",
+    "duration": 1.98
+  },
+  "VO_U_0001": {
+    "file": "assets/audio/voice/U/VO_U_0001.mp3",
+    "char": "你",
+    "text": "设局人……不，老师。",
+    "duration": 4.32
+  },
+  "VO_CK_0290": {
+    "file": "assets/audio/voice/CK/VO_CK_0290.mp3",
+    "char": "守笼人",
+    "text": "二连纵横阵……当年，我就是在这一局上输给了设局人。",
+    "duration": 9.47
+  },
+  "VO_PS_0014": {
+    "file": "assets/audio/voice/PS/VO_PS_0014.mp3",
+    "char": "设局人（残影）",
+    "text": "你能走到这里，说明你已经成为了比我更优秀的人。我为你骄傲。",
+    "duration": 10.33
+  },
+  "VO_J_0255": {
+    "file": "assets/audio/voice/J/VO_J_0255.mp3",
+    "char": "莹莹",
+    "text": "爸？",
+    "duration": 1.51
+  },
+  "VO_SM_0092": {
+    "file": "assets/audio/voice/SM/VO_SM_0092.mp3",
+    "char": "沈墨",
+    "text": "嗯。",
+    "duration": 2.09
+  },
+  "VO_SM_0096": {
+    "file": "assets/audio/voice/SM/VO_SM_0096.mp3",
+    "char": "沈墨",
+    "text": "开始吧。",
+    "duration": 2.74
+  },
+  "VO_J_0256": {
+    "file": "assets/audio/voice/J/VO_J_0256.mp3",
+    "char": "莹莹",
+    "text": "走吧。我爸在等我。",
+    "duration": 3.96
+  },
+  "VO_PS_0005": {
+    "file": "assets/audio/voice/PS/VO_PS_0005.mp3",
+    "char": "设局人（残影）",
+    "text": "你终于看到这里了。",
+    "duration": 3.74
+  },
+  "VO_P_0092": {
+    "file": "assets/audio/voice/P/VO_P_0092.mp3",
+    "char": "设局人",
+    "text": "你做到了。",
+    "duration": 3.24
+  },
+  "VO_CK_0295": {
+    "file": "assets/audio/voice/CK/VO_CK_0295.mp3",
+    "char": "守笼人",
+    "text": "这是……禁地之门。他说过，只有「集齐所有钥匙的人」才能打开。",
+    "duration": 10.76
+  },
+  "VO_P_0102": {
+    "file": "assets/audio/voice/P/VO_P_0102.mp3",
+    "char": "设局人",
+    "text": "因为你和莹莹一样，都有资格继承星辰梭。你们的父亲，曾经共同守护着这个秘密。",
+    "duration": 13.32
+  },
+  "VO_R_0321": {
+    "file": "assets/audio/voice/R/VO_R_0321.mp3",
+    "char": "阿妍",
+    "text": "那我们岂不是第一批看到这些秘术的人？太酷了！快来看看第一卷写了什么！",
+    "duration": 11.05
+  },
+  "VO_R_0332": {
+    "file": "assets/audio/voice/R/VO_R_0332.mp3",
+    "char": "阿妍",
+    "text": "七章。",
+    "duration": 2.12
+  },
+  "VO_R_0319": {
+    "file": "assets/audio/voice/R/VO_R_0319.mp3",
+    "char": "阿妍",
+    "text": "开了。",
+    "duration": 2.09
+  },
+  "VO_P_0086": {
+    "file": "assets/audio/voice/P/VO_P_0086.mp3",
+    "char": "设局人",
+    "text": "你解了多少题不重要。重要的是——你变成了什么人。",
+    "duration": 10.37
+  },
+  "VO_CK_0289": {
+    "file": "assets/audio/voice/CK/VO_CK_0289.mp3",
+    "char": "守笼人",
+    "text": "当年，我就是用二连纵横阵为基础，推演出了第一套星辰梭笼局模型。",
+    "duration": 10.69
+  },
+  "VO_P_0091": {
+    "file": "assets/audio/voice/P/VO_P_0091.mp3",
+    "char": "设局人",
+    "text": "不是我写的。是另一个人。但那封信，是我让她写的。",
+    "duration": 11.34
+  },
+  "VO_CK_0292": {
+    "file": "assets/audio/voice/CK/VO_CK_0292.mp3",
+    "char": "守笼人",
+    "text": "剑鱼构型极其罕见，也极其强大。能在实战中发现它的人，已经是顶尖高手。",
+    "duration": 12.6
+  },
+  "VO_CK_0294": {
+    "file": "assets/audio/voice/CK/VO_CK_0294.mp3",
+    "char": "守笼人",
+    "text": "你从来没给我看过这道题。",
+    "duration": 4.25
+  },
+  "VO_J_0243": {
+    "file": "assets/audio/voice/J/VO_J_0243.mp3",
+    "char": "莹莹",
+    "text": "加油！最后一关冲呀！",
+    "duration": 4.14
+  },
+  "VO_CK_0297": {
+    "file": "assets/audio/voice/CK/VO_CK_0297.mp3",
+    "char": "守笼人",
+    "text": "这……这道题的难度——",
+    "duration": 5.22
+  },
+  "VO_CK_0263": {
+    "file": "assets/audio/voice/CK/VO_CK_0263.mp3",
+    "char": "守笼人",
+    "text": "终局六道笼局，是设局人离开档案馆前留下的最后作品。他说，这是他给这个世界的答案。",
+    "duration": 14.65
+  },
+  "VO_R_0322": {
+    "file": "assets/audio/voice/R/VO_R_0322.mp3",
+    "char": "阿妍",
+    "text": "他消失了……但我感觉他一直在看着我们。",
+    "duration": 6.16
+  },
+  "VO_CK_0287": {
+    "file": "assets/audio/voice/CK/VO_CK_0287.mp3",
+    "char": "守笼人",
+    "text": "三链数是数对的自然延伸。",
+    "duration": 5.69
+  },
+  "VO_SS_0032": {
+    "file": "assets/audio/voice/SS/VO_SS_0032.mp3",
+    "char": "设局人（秘术）",
+    "text": "并蒂锁——第一卷秘术。你学得很快。",
+    "duration": 7.34
+  },
+  "VO_P_0108": {
+    "file": "assets/audio/voice/P/VO_P_0108.mp3",
+    "char": "设局人",
+    "text": "你们做到了。",
+    "duration": 3.42
+  },
+  "VO_CK_0023": {
+    "file": "assets/audio/voice/CK/VO_CK_0023.mp3",
+    "char": "守笼人",
+    "text": "小心。这是他真正的实力，不要留手。",
+    "duration": 7.92
+  },
+  "VO_P_0090": {
+    "file": "assets/audio/voice/P/VO_P_0090.mp3",
+    "char": "设局人",
+    "text": "我花了三天三夜才解开它。如果你能独立完成——你就不再是我的学生，而是与我并列的设局者。",
+    "duration": 16.34
+  },
+  "VO_SM_0093": {
+    "file": "assets/audio/voice/SM/VO_SM_0093.mp3",
+    "char": "沈墨",
+    "text": "你认识我？",
+    "duration": 3.1
+  },
+  "VO_PS_0011": {
+    "file": "assets/audio/voice/PS/VO_PS_0011.mp3",
+    "char": "设局人（残影）",
+    "text": "那就解开它。解开星辰之眼，你会看到——我真正想对你说的话。",
+    "duration": 11.2
+  },
+  "VO_P_0002": {
+    "file": "assets/audio/voice/P/VO_P_0002.mp3",
+    "char": "设局人",
+    "text": "四十五只是最表层的障眼法。真正的笼局玄机，藏在差值之中。",
+    "duration": 12.89
+  },
+  "VO_R_0315": {
+    "file": "assets/audio/voice/R/VO_R_0315.mp3",
+    "char": "阿妍",
+    "text": "你终于明白了。",
+    "duration": 2.81
+  },
+  "VO_PS_0006": {
+    "file": "assets/audio/voice/PS/VO_PS_0006.mp3",
+    "char": "设局人（残影）",
+    "text": "不必叫我老师。当你能看懂三才游鱼阵的那一刻，你已经超越了我当年的水平。",
+    "duration": 13.75
+  },
+  "VO_P_0096": {
+    "file": "assets/audio/voice/P/VO_P_0096.mp3",
+    "char": "设局人",
+    "text": "欢迎来到星辰之心。",
+    "duration": 4.32
+  },
+  "VO_CK_0283": {
+    "file": "assets/audio/voice/CK/VO_CK_0283.mp3",
+    "char": "守笼人",
+    "text": "正是。数对是所有高阶技巧的基础。",
+    "duration": 7.09
+  },
+  "VO_P_0094": {
+    "file": "assets/audio/voice/P/VO_P_0094.mp3",
+    "char": "设局人",
+    "text": "从今以后，你就是新的设局人。档案馆、星辰梭、还有这六卷秘术——都交给你了。",
+    "duration": 15.12
+  },
+  "VO_R_0325": {
+    "file": "assets/audio/voice/R/VO_R_0325.mp3",
+    "char": "阿妍",
+    "text": "每一格不需要都有三个候选。只要它们共用三个数就行。",
+    "duration": 7.85
+  },
+  "VO_J_0246": {
+    "file": "assets/audio/voice/J/VO_J_0246.mp3",
+    "char": "莹莹",
+    "text": "我明白了！比如两个格子都只能是3和7！",
+    "duration": 6.44
+  },
+  "VO_J_0253": {
+    "file": "assets/audio/voice/J/VO_J_0253.mp3",
+    "char": "莹莹",
+    "text": "阿妍姐……你好像早就认识他。",
+    "duration": 4.18
+  },
+  "VO_CK_0293": {
+    "file": "assets/audio/voice/CK/VO_CK_0293.mp3",
+    "char": "守笼人",
+    "text": "恭喜你，秘术大师。七章全部完成。",
+    "duration": 7.31
+  },
+  "VO_R_0335": {
+    "file": "assets/audio/voice/R/VO_R_0335.mp3",
+    "char": "阿妍",
+    "text": "所以，我们现在是「星辰梭传人」了？",
+    "duration": 5.33
+  },
+  "VO_P_0093": {
+    "file": "assets/audio/voice/P/VO_P_0093.mp3",
+    "char": "设局人",
+    "text": "星辰梭的奥义，从来不是某一种构型、某一条规则。它是一种信念——在混沌的数字迷雾中，永远存在着秩序，等待被发现。",
+    "duration": 20.23
+  },
+  "VO_P_0098": {
+    "file": "assets/audio/voice/P/VO_P_0098.mp3",
+    "char": "设局人",
+    "text": "莹莹，我的女儿——对不起，爸爸没能陪在你身边。",
+    "duration": 9.0
+  },
+  "VO_CK_0296": {
+    "file": "assets/audio/voice/CK/VO_CK_0296.mp3",
+    "char": "守笼人",
+    "text": "不只是你们。是所有能走到这里的人。",
+    "duration": 6.55
+  },
+  "VO_N_0050": {
+    "file": "assets/audio/voice/N/VO_N_0050.mp3",
+    "char": "旁白",
+    "text": "门，在身后缓缓合上。但新的旅程，才刚刚开始。",
+    "duration": 9.79
+  },
+  "VO_R_0320": {
+    "file": "assets/audio/voice/R/VO_R_0320.mp3",
+    "char": "阿妍",
+    "text": "哇！这是什么？上面写着「秘术档案——非星辰梭传人不得开启」！",
+    "duration": 9.94
+  },
+  "VO_P_0104": {
+    "file": "assets/audio/voice/P/VO_P_0104.mp3",
+    "char": "设局人",
+    "text": "现在，这个使命——交给你们了。",
+    "duration": 6.91
+  },
+  "VO_P_0099": {
+    "file": "assets/audio/voice/P/VO_P_0099.mp3",
+    "char": "设局人",
+    "text": "但你要知道，爸爸所做的一切，都是为了让你能拥有选择的力量。星辰梭不是武器，也不是工具——它是「看见真相的眼睛」。",
+    "duration": 20.48
+  },
+  "VO_P_0085": {
+    "file": "assets/audio/voice/P/VO_P_0085.mp3",
+    "char": "设局人",
+    "text": "到处走。看了很多事，见了很多人。然后我发现——守笼人当年说的，可能是对的。",
+    "duration": 15.3
+  },
+  "VO_R_0336": {
+    "file": "assets/audio/voice/R/VO_R_0336.mp3",
+    "char": "阿妍",
+    "text": "那就——让我们看看，最后一道锁的后面，是什么。",
+    "duration": 7.27
+  },
+  "VO_R_0333": {
+    "file": "assets/audio/voice/R/VO_R_0333.mp3",
+    "char": "阿妍",
+    "text": "这是……什么？",
+    "duration": 3.1
+  },
+  "VO_N_0046": {
+    "file": "assets/audio/voice/N/VO_N_0046.mp3",
+    "char": "旁白",
+    "text": "当所有隐藏关全部破解，七封密信集齐的那一刻，档案馆最深处传来了低沉的嗡鸣。一扇从未有人见过的门，缓缓打开了。",
+    "duration": 18.54
+  },
+  "VO_J_0260": {
+    "file": "assets/audio/voice/J/VO_J_0260.mp3",
+    "char": "莹莹",
+    "text": "嗯！我爸留下的谜题——我要全部解开！",
+    "duration": 5.8
+  },
+  "VO_R_0323": {
+    "file": "assets/audio/voice/R/VO_R_0323.mp3",
+    "char": "阿妍",
+    "text": "并蒂锁的意义不在于填它们自己。而在于排除其他格子的可能性。",
+    "duration": 9.07
+  },
+  "VO_J_0249": {
+    "file": "assets/audio/voice/J/VO_J_0249.mp3",
+    "char": "莹莹",
+    "text": "三个格子锁在一起……好浪漫啊！",
+    "duration": 4.36
+  },
+  "VO_PS_0012": {
+    "file": "assets/audio/voice/PS/VO_PS_0012.mp3",
+    "char": "设局人（残影）",
+    "text": "你做到了。我的女儿。",
+    "duration": 5.36
+  },
+  "VO_SM_0095": {
+    "file": "assets/audio/voice/SM/VO_SM_0095.mp3",
+    "char": "沈墨",
+    "text": "那就继续吧。还有更多的笼局，等着我们去解开。",
+    "duration": 8.42
+  },
+  "VO_CK_0280": {
+    "file": "assets/audio/voice/CK/VO_CK_0280.mp3",
+    "char": "守笼人",
+    "text": "数对、三子法、二连纵横阵、三才游鱼阵……这些是比星衡法则更高阶的推演术。能掌握它们的人，整个数独界也屈指可数。",
+    "duration": 20.16
+  },
+  "VO_J_0245": {
+    "file": "assets/audio/voice/J/VO_J_0245.mp3",
+    "char": "莹莹",
+    "text": "这些题目也太疯狂了！但解出来的瞬间真的好爽！",
+    "duration": 7.24
+  },
+  "VO_P_0105": {
+    "file": "assets/audio/voice/P/VO_P_0105.mp3",
+    "char": "设局人",
+    "text": "莹莹，爸爸爱你。",
+    "duration": 4.36
+  },
+  "VO_SM_0085": {
+    "file": "assets/audio/voice/SM/VO_SM_0085.mp3",
+    "char": "沈墨",
+    "text": "这只是开始。",
+    "duration": 3.2
+  },
+  "VO_CK_0285": {
+    "file": "assets/audio/voice/CK/VO_CK_0285.mp3",
+    "char": "守笼人",
+    "text": "隐曜之钥，能解开看似无解的死局。",
+    "duration": 6.52
+  },
+  "VO_CK_0277": {
+    "file": "assets/audio/voice/CK/VO_CK_0277.mp3",
+    "char": "守笼人",
+    "text": "最后一道笼局，二十三个提示数，是设局人毕生的巅峰之作。",
+    "duration": 9.76
+  },
+  "VO_SM_0088": {
+    "file": "assets/audio/voice/SM/VO_SM_0088.mp3",
+    "char": "沈墨",
+    "text": "现在，你赢回来了。",
+    "duration": 4.54
+  },
+  "VO_CK_0288": {
+    "file": "assets/audio/voice/CK/VO_CK_0288.mp3",
+    "char": "守笼人",
+    "text": "第四卷——二连纵横阵。两纵两横，四角绞绳。矩形对角线，排除一切。",
+    "duration": 14.44
+  },
+  "VO_P_0109": {
+    "file": "assets/audio/voice/P/VO_P_0109.mp3",
+    "char": "设局人",
+    "text": "从今天起，星辰梭的秘密——由你们来守护。",
+    "duration": 8.39
+  },
+  "VO_J_0247": {
+    "file": "assets/audio/voice/J/VO_J_0247.mp3",
+    "char": "莹莹",
+    "text": "虽然格子看起来有很多候选，但其实只能填那两个数！",
+    "duration": 7.02
+  },
+  "VO_N_0010": {
+    "file": "assets/audio/voice/N/VO_N_0010.mp3",
+    "char": "旁白",
+    "text": "沈墨放下笔，安静地看了一眼棋盘",
+    "duration": 6.05
+  },
+  "VO_PS_0008": {
+    "file": "assets/audio/voice/PS/VO_PS_0008.mp3",
+    "char": "设局人（残影）",
+    "text": "你来了。比我预想的要快。",
+    "duration": 5.58
+  },
+  "VO_P_0107": {
+    "file": "assets/audio/voice/P/VO_P_0107.mp3",
+    "char": "设局人",
+    "text": "它不是最难的。但它是最「真」的。因为解开它的钥匙，不在规则里，不在技巧里——而在你自己心里。",
+    "duration": 17.28
+  },
+  "VO_R_0317": {
+    "file": "assets/audio/voice/R/VO_R_0317.mp3",
+    "char": "阿妍",
+    "text": "你也快学到了。",
+    "duration": 2.77
+  },
+  "VO_N_0044": {
+    "file": "assets/audio/voice/N/VO_N_0044.mp3",
+    "char": "旁白",
+    "text": "当你全S级通关第七章秘术档案后，暗格深处浮现出一个从未见过的笼局——它悬浮在半空中，中心闪烁着微光，像一只凝视着你的眼睛。",
+    "duration": 18.5
+  },
+  "VO_P_0089": {
+    "file": "assets/audio/voice/P/VO_P_0089.mp3",
+    "char": "设局人",
+    "text": "这不是教学卷。这是我三十年前为自己设下的终极考验——一道需要同时运用并蒂锁、三子法、二连纵横阵和三才游鱼阵才能解开的笼局。",
+    "duration": 24.8
+  },
+  "VO_R_0330": {
+    "file": "assets/audio/voice/R/VO_R_0330.mp3",
+    "char": "阿妍",
+    "text": "你等了多久？",
+    "duration": 2.59
+  },
+  "VO_SS_0034": {
+    "file": "assets/audio/voice/SS/VO_SS_0034.mp3",
+    "char": "设局人（秘术）",
+    "text": "六卷秘术，已得其五。最后一卷，等着你。",
+    "duration": 9.29
+  },
+  "VO_PS_0007": {
+    "file": "assets/audio/voice/PS/VO_PS_0007.mp3",
+    "char": "设局人（残影）",
+    "text": "但记住——技巧是死的，洞察是活的。星辰梭的真正奥义，从来不是某一种固定的构型，而是在混沌中看见秩序的眼睛。",
+    "duration": 19.01
+  },
+  "VO_J_0251": {
+    "file": "assets/audio/voice/J/VO_J_0251.mp3",
+    "char": "莹莹",
+    "text": "三行三列……像一张网！",
+    "duration": 3.71
+  },
+  "VO_CK_0279": {
+    "file": "assets/audio/voice/CK/VO_CK_0279.mp3",
+    "char": "守笼人",
+    "text": "这是……他当年留下的最后一批手稿。我以为这些东西已经和他一起消失了。",
+    "duration": 11.23
+  },
+  "VO_SM_0083": {
+    "file": "assets/audio/voice/SM/VO_SM_0083.mp3",
+    "char": "沈墨",
+    "text": "三十年。不算晚。",
+    "duration": 4.5
+  },
+  "VO_SM_0090": {
+    "file": "assets/audio/voice/SM/VO_SM_0090.mp3",
+    "char": "沈墨",
+    "text": "这封信，是你写的吗？",
+    "duration": 4.68
+  },
+  "VO_PS_0010": {
+    "file": "assets/audio/voice/PS/VO_PS_0010.mp3",
+    "char": "设局人（残影）",
+    "text": "因为你不需要解开它。但她需要——如果她真的想知道真相的话。",
+    "duration": 9.83
+  },
+  "VO_J_0258": {
+    "file": "assets/audio/voice/J/VO_J_0258.mp3",
+    "char": "莹莹",
+    "text": "我知道……我一直都知道。",
+    "duration": 3.74
+  },
+  "VO_PS_0013": {
+    "file": "assets/audio/voice/PS/VO_PS_0013.mp3",
+    "char": "设局人（残影）",
+    "text": "对不起。我不能亲自陪你长大。但我把我所有的智慧、所有的爱，都藏在了这些笼局里。",
+    "duration": 14.22
+  },
+  "VO_P_0087": {
+    "file": "assets/audio/voice/P/VO_P_0087.mp3",
+    "char": "设局人",
+    "text": "你终于走到了这里。接下来，你会看到星辰梭真正的样子。",
+    "duration": 10.44
+  },
+  "VO_N_0047": {
+    "file": "assets/audio/voice/N/VO_N_0047.mp3",
+    "char": "旁白",
+    "text": "门后是一间圆形的大厅。大厅中央，悬浮着一道巨大的笼局——它不是画在纸上，而是由星光编织而成。",
+    "duration": 15.16
+  },
+  "VO_CK_0291": {
+    "file": "assets/audio/voice/CK/VO_CK_0291.mp3",
+    "char": "守笼人",
+    "text": "第五卷——三才游鱼阵。三才合围，网断鱼飞。三行三列交错。",
+    "duration": 12.89
+  },
+  "VO_R_0327": {
+    "file": "assets/audio/voice/R/VO_R_0327.mp3",
+    "char": "阿妍",
+    "text": "三才游鱼阵的核心是覆盖。三行三列的位置被锁住后，其余区域都会被排除。",
+    "duration": 10.87
+  },
+  "VO_P_0003": {
+    "file": "assets/audio/voice/P/VO_P_0003.mp3",
+    "char": "设局人",
+    "text": "只会死守二十一星衡，你永远破不开我完整的九域笼局。",
+    "duration": 10.12
+  },
+  "VO_W_0012": {
+    "file": "assets/audio/voice/W/VO_W_0012.mp3",
+    "char": "星辰梭",
+    "text": "双曜之术——两星同耀，互为密钥。",
+    "duration": 4.9
+  },
+  "VO_CK_0282": {
+    "file": "assets/audio/voice/CK/VO_CK_0282.mp3",
+    "char": "守笼人",
+    "text": "第一卷——并蒂锁。双星并蒂，闭户成局。两个格子共享两个候选数时，它们形成一把“锁”。",
+    "duration": 15.7
+  },
+  "VO_J_0252": {
+    "file": "assets/audio/voice/J/VO_J_0252.mp3",
+    "char": "莹莹",
+    "text": "三天三夜？！这也太难了吧……",
+    "duration": 4.64
+  },
+  "VO_N_0049": {
+    "file": "assets/audio/voice/N/VO_N_0049.mp3",
+    "char": "旁白",
+    "text": "大厅陷入了长久的寂静。不知过了多久，阿妍第一个开口——",
+    "duration": 9.29
+  },
+  "VO_P_0103": {
+    "file": "assets/audio/voice/P/VO_P_0103.mp3",
+    "char": "设局人",
+    "text": "星辰梭的真正使命，不是解谜，而是「守护」。守护那些不该被遗忘的真相，守护那些需要被保护的人。",
+    "duration": 16.81
+  }
+}

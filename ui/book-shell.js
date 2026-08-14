@@ -322,13 +322,19 @@ function initOptionsPage() {
 
 // 目录"选项"启用 + 丝线书签 + 封底按钮
 (function initP1Shell() {
-  // 目录选项项：从"即将开放"改为可用
+  // V4.4.0：目录"选项"→ 直接打开游戏内设置面板（与汉堡菜单/暂停菜单同一 SettingsPanel），
+  // 不再翻到独立藏书票滑块页（旧 pageOptions 仅 4 个滑块，与完整设置不一致）
   const optItem = document.querySelector('#pageDirectory .dir-item[data-page="options"]');
   if (optItem) {
     optItem.classList.remove('dir-soon');
     optItem.querySelector('.dir-soon-tag')?.remove();
     optItem.querySelector('.dir-arrow')?.setAttribute('style', 'margin-left:auto;color:var(--color-ink-muted);');
-    optItem.addEventListener('click', () => bookFlipTo('options'));
+    optItem.addEventListener('click', () => {
+      try {
+        if (window.CM && CM.settings && typeof CM.settings.toggle === 'function') CM.settings.toggle();
+        else bookFlipTo('options'); // 降级：设置面板不可用时仍可翻到旧选项页
+      } catch (e) { bookFlipTo('options'); }
+    });
   }
   initOptionsPage();
   const closeBtn = document.getElementById('btnCloseBook');

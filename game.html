@@ -5955,7 +5955,7 @@ CM.pauseManager = new PauseManager({
     CM._comboPauseAt = 0;
   },
   onRestart: () => { if (CM.gameApp) CM.gameApp.restartLevel(); },
-  onOpenChapters: () => { openDrawer(); },
+  onOpenChapters: () => { try { goToChapterList(); } catch (e) { openDrawer(); } },
   onExitToHome: () => { window.location.href = 'index.html'; },
 })
 // v2.0：暂停按钮已并入汉堡菜单——pauseManager.init 传空 id（保留 ESC 键暂停），
@@ -8910,11 +8910,13 @@ async function init() {
   // 章节选择/设置按钮直接从 Start 页可用。URL 跳关（?level=）时跳过 Start 页直接进关。
   // v2.0（笔记本主题）：数据就绪后显示书壳壳层（书架→封面→扉页→目录→章节列表）
   // Q3：跳过书架着陆动画，直接进章节菜单（书壳仍保留，供翻页回览）
+  // V4.4.0：导航重构——启动先显示 Start 页（游戏封面），点"开始游戏"才进入游戏菜单（章节列表）。
+  // 书壳不再作启动页，仅作游戏菜单容器；书架/封面/扉页/目录等过程页保留但默认不展示。
   if (isNaN(want)) {
-    try {
-      showBookShell();
-      bookFlipTo('chapters');
-    } catch (e) { showStartPage(); }
+    // 默认：显示开始画面（封面），等待用户点"开始游戏"进入游戏菜单
+    try { showStartPage(); } catch (e) {}
+    // 预初始化书壳到"章节列表"页（游戏菜单），但暂不显示——点开始后 bookFlipTo('chapters') 即呈现
+    CM._bookCurPage = 'chapters';
     return;
   }
 
@@ -8958,6 +8960,8 @@ function _setGameCycle() {
 }
 
 // v2.0：Start 页控制——显示标题页；开始游戏走楔子 + 首个关卡
+// V4.4.0：导航重构——点"开始游戏"先进入游戏菜单（章节列表），由玩家自选关卡；
+// 不再自动进楔子/首关（避免"点开就直接进关卡"的跳层感）
 async function startFromStartPage() {
   hideStartPage();
   const startId = window.__pendingStartLevel;
@@ -8966,18 +8970,17 @@ async function startFromStartPage() {
     toast(I18n.t('ui.toast.loading'), 1800);
     return;
   }
-  // 重新计算周目（进度可能已变化）
-  _setGameCycle();
-  const startChId = CM.lm.getChapterOfLevel(startId);
-  if (startChId !== null && startChId !== CM.previousChapterId) {
-    await StoryOrchestrator.playPrologue(startChId);
-    CM.previousChapterId = startChId;
+  // 进入游戏菜单（书壳章节列表页）：书壳仅作菜单容器，跳过书架直接展示章节列表
+  try {
+    CM._bookFromGame = false;
+    CM._bookCurPage = 'chapters';
+    CM.levelSelect.refresh();
+    showBookShell();
+    bookFlipTo('chapters');
+  } catch (e) {
+    console.warn('[Start] 进入游戏菜单失败:', e);
+    try { openDrawer(); } catch (e2) {}
   }
-  await StoryOrchestrator.playPreDialog(startId);
-  const res = await CM.gameApp.startLevel(startId);
-  if (res && res.success) toast(I18n.t('ui.toast.levelLoaded', { id: startId }));
-  // 第12句：三周目进入游戏时触发
-  StoryOrchestrator.triggerLine12();
 }
 // Start 页按钮绑定（init 完成后可用；幂等防重复绑定）
 document.addEventListener('DOMContentLoaded', () => {
@@ -8989,9 +8992,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const b2 = document.getElementById('spChapters');
   if (b2 && !b2.dataset.bound) {
     b2.dataset.bound = '1';
-    // v2.0：打开章节抽屉——先隐藏 Start 页（抽屉 z-index 低于 Start 页），
-    // closeDrawer 未进关时经 __startPageVisible 回显 Start 页
-    b2.addEventListener('click', () => { hideStartPage(); openDrawer(); });
+    // V4.4.0：导航统一——"章节选择"与"开始游戏"一样进入游戏菜单（书壳章节列表），
+    // 不再打开旧章节抽屉（避免两套菜单并存）
+    b2.addEventListener('click', () => { try { startFromStartPage(); } catch (e) { console.warn('[Start] chapters:', e); } });
   }
   const b3 = document.getElementById('spSettings');
   if (b3 && !b3.dataset.bound) {

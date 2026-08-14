@@ -1,6 +1,7 @@
 // 自由模式（随机/计时/每日/无尽 + 全部关卡列表）— 重构阶段 1 从 game.html 拆出
 // 共享状态经 window.CM；壳层函数 import 自 ./book-shell.js
 import { bookFlipTo, showBookShell, hideBookShell, openGalleryInBook } from './book-shell.js';
+import I18n from '../i18n/i18n.js';
 
 const CM = window.CM || (window.CM = {});
 
@@ -16,13 +17,13 @@ function renderFreeplayList() {
     const status = done ? '✅' : (unlocked ? '➜' : '🔒');
     html += '<div class="fp-level-row' + (unlocked ? '' : ' locked') + '" data-id="' + id + '">' +
       '<span class="fp-lv-status">' + status + '</span>' +
-      '<span>关卡 #' + id + '</span></div>';
+      '<span>' + I18n.t('ui.freeplay.levelLabel', { id: id }) + '</span></div>';
   });
   box.innerHTML = html;
   box.querySelectorAll('.fp-level-row').forEach((row) => {
     row.addEventListener('click', () => {
       const id = parseInt(row.dataset.id, 10);
-      if (!CM.lm.isLevelUnlocked(id)) { CM.toast('该关卡尚未解锁', 1800); return; }
+      if (!CM.lm.isLevelUnlocked(id)) { CM.toast(I18n.t('ui.freeplay.locked'), 1800); return; }
       enterFreeplayLevel(id, 'random');
     });
   });
@@ -36,7 +37,7 @@ function enterFreeplayLevel(levelId, mode) {
   if (mode === 'timed') { startTimedMode(); }
   if (mode === 'endless') { startEndlessMode(); }
   CM.gameApp.startLevel(levelId).then((res) => {
-    if (res && !res.success) CM.toast('自由模式关卡启动失败');
+    if (res && !res.success) CM.toast(I18n.t('ui.freeplay.startFailed'));
   }).catch(() => {});
 }
 
@@ -55,7 +56,7 @@ function startRandomChallenge() {
   }
   // 兜底：现有关卡随机
   const ids = CM.lm.getAllLevelIds() || [];
-  if (!ids.length) { CM.toast('无可用关卡'); return; }
+  if (!ids.length) { CM.toast(I18n.t('ui.freeplay.noLevels')); return; }
   const id = ids[Math.floor(Math.random() * ids.length)];
   enterFreeplayLevel(id, 'random');
 }
@@ -65,9 +66,9 @@ function startDailyChallenge() {
   const d = new Date();
   const seed = parseInt(d.getFullYear() + String(d.getMonth() + 1).padStart(2, '0') + String(d.getDate()).padStart(2, '0'), 10);
   const ids = CM.lm.getAllLevelIds() || [];
-  if (!ids.length) { CM.toast('无可用关卡'); return; }
+  if (!ids.length) { CM.toast(I18n.t('ui.freeplay.noLevels')); return; }
   const id = ids[seed % ids.length];
-  CM.toast('📊 今日一题 · 关卡 #' + id, 2000);
+  CM.toast(I18n.t('ui.freeplay.dailyToast', { id: id }), 2000);
   enterFreeplayLevel(id, 'daily');
 }
 
@@ -114,7 +115,7 @@ function updateEndlessHud() {
   const r = document.getElementById('ehRun');
   if (t) t.textContent = mm + ':' + ss;
   if (m) m.textContent = String(CM._endlessMoves);
-  if (r) r.textContent = CM._freeplayMode === 'endless' ? ('第 ' + (CM._endlessRun + 1) + ' 局') : '计时中';
+  if (r) r.textContent = CM._freeplayMode === 'endless' ? I18n.t('ui.freeplay.runLabel', { run: CM._endlessRun + 1 }) : I18n.t('ui.freeplay.timing');
   // 同步无尽页状态栏
   const pt = document.getElementById('endlessTime');
   const pm = document.getElementById('endlessMoves');
@@ -162,7 +163,7 @@ function handleEndlessComplete() {
       trace.style.opacity = String(Math.min(0.35, CM._endlessRun * 0.001));
     }
   } catch (e) {}
-  CM.toast('🏆 第 ' + CM._endlessRun + ' 局完成！', 1600);
+  CM.toast(I18n.t('ui.freeplay.runComplete', { run: CM._endlessRun }), 1600);
   // 600ms 后自动下一局（新棋盘覆盖旧棋盘）
   setTimeout(() => { if (CM._freeplayMode === 'endless') nextEndlessLevel(); }, 600);
 }
@@ -175,10 +176,10 @@ function handleFreeplayComplete() {
     try {
       const best = parseInt(localStorage.getItem('cagemaster4_best_timed') || '999999', 10);
       if (sec < best) localStorage.setItem('cagemaster4_best_timed', String(sec));
-      CM.toast('⏱ 用时 ' + sec + 's' + (sec < best ? ' · 新纪录！' : ''), 2200);
+      CM.toast(I18n.t('ui.freeplay.timeUsed', { sec: sec }) + (sec < best ? I18n.t('ui.freeplay.newRecord') : ''), 2200);
     } catch (e) {}
   } else {
-    CM.toast('🏆 完成！', 1500);
+    CM.toast(I18n.t('ui.freeplay.complete'), 1500);
   }
   const mode = CM._freeplayMode;
   CM._freeplayMode = 'none';
@@ -218,7 +219,7 @@ function handleFreeplayComplete() {
         let i = 0;
         const iv = setInterval(() => {
           if (i < seq.length) { pg.textContent = seq[i]; i++; }
-          else { clearInterval(iv); pg.textContent = '附录-1'; }
+          else { clearInterval(iv); pg.textContent = I18n.t('ui.freeplay.appendix'); }
         }, 150);
       }, 700);
     });
@@ -236,7 +237,7 @@ function handleFreeplayComplete() {
       if (act === 'random') startRandomChallenge();
       else if (act === 'timed') {
         const ids = CM.lm.getAllLevelIds() || [];
-        if (!ids.length) { CM.toast('无可用关卡'); return; }
+        if (!ids.length) { CM.toast(I18n.t('ui.freeplay.noLevels')); return; }
         enterFreeplayLevel(ids[Math.floor(Math.random() * ids.length)], 'timed');
       } else if (act === 'daily') startDailyChallenge();
       else if (act === 'endless') bookFlipTo('endless');
@@ -252,7 +253,7 @@ function handleFreeplayComplete() {
   const se = document.getElementById('btnStartEndless');
   if (se) se.addEventListener('click', () => {
     const ids = CM.lm.getAllLevelIds() || [];
-    if (!ids.length) { CM.toast('无可用关卡'); return; }
+    if (!ids.length) { CM.toast(I18n.t('ui.freeplay.noLevels')); return; }
     enterFreeplayLevel(ids[Math.floor(Math.random() * ids.length)], 'endless');
   });
   const be = document.getElementById('btnBackFromEndless');

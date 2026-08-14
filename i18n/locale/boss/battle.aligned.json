@@ -1,0 +1,72 @@
+{
+  "boss.short_stroke.victory.01": {
+    "level": "level-109",
+    "boss_id": "short_stroke",
+    "type": "B",
+    "phase": "victory",
+    "zh-CN": "Boss 击败：短横（匿名寄信人）",
+    "en-US": "Boss Defeated: Short Stroke (Unknown Sender)",
+    "ja-JP": "ボス撃破：短横（匿名の差出人）",
+    "ko-KR": "보스 격파：단횡（익명의 발신자）"
+  },
+  "boss.shenshian.victory.01": {
+    "level": "level-209",
+    "boss_id": "shenshian",
+    "type": "B",
+    "phase": "victory",
+    "zh-CN": "Boss 击败：父亲·沈世安（未竟之路）",
+    "en-US": "Boss Defeated: Father·Shen Shi'an (The Unfinished Path)",
+    "ja-JP": "ボス撃破：父・沈世安（果たされぬ道）",
+    "ko-KR": "보스 격파：아버지・심세안（이루어지지 않은 길）"
+  },
+  "boss.ito_1.victory.01": {
+    "level": "level-309",
+    "boss_id": "ito_1",
+    "type": "B",
+    "phase": "victory",
+    "zh-CN": "Boss 击败：伊藤（第一次交锋）",
+    "en-US": "Boss Defeated: Ito (First Skirmish)",
+    "ja-JP": "ボス撃破：伊藤（初めての相撃）",
+    "ko-KR": "보스 격파：이토（첫 교전）"
+  },
+  "boss.yamada_tokko.victory.01": {
+    "level": "level-409",
+    "boss_id": "yamada_tokko",
+    "type": "B",
+    "phase": "victory",
+    "zh-CN": "Boss 击败：山田特高课（第一次交锋）",
+    "en-US": "Boss Defeated: Yamada's Tokkō (First Skirmish)",
+    "ja-JP": "ボス撃破：山田特高課（初めての相撃）",
+    "ko-KR": "보스 격파：야마다 특고과（첫 교전）"
+  },
+  "boss.df_unit.victory.01": {
+    "level": "level-509",
+    "boss_id": "df_unit",
+    "type": "B",
+    "phase": "victory",
+    "zh-CN": "Boss 击败：日军无线电测向队",
+    "en-US": "Boss Defeated: Japanese Radio Direction-Finding Unit",
+    "ja-JP": "ボス撃破：日本軍無線方位測定隊",
+    "ko-KR": "보스 격파：일본군 무선 방향 탐지대"
+  },
+  "boss.yamada_chief.victory.01": {
+    "level": "level-609",
+    "boss_id": "yamada_chief",
+    "type": "B",
+    "phase": "victory",
+    "zh-CN": "Boss 击败：山田课长（最终交锋）",
+    "en-US": "Boss Defeated: Chief Yamada (Final Skirmish)",
+    "ja-JP": "ボス撃破：山田課長（最終の相撃）",
+    "ko-KR": "보스 격파：야마다 과장（최종 교전）"
+  },
+  "boss.ito_final.victory.01": {
+    "level": "level-809",
+    "boss_id": "ito_final",
+    "type": "B",
+    "phase": "victory",
+    "zh-CN": "Boss 击败：伊藤（最终对决）",
+    "en-US": "Boss Defeated: Ito (Final Confrontation)",
+    "ja-JP": "ボス撃破：伊藤（最終対決）",
+    "ko-KR": "보스 격파：이토（최종 대결）"
+  }
+}

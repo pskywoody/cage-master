@@ -1,0 +1,1264 @@
+{
+  "generatedAt": "2026-08-09T19:23:45.560Z",
+  "config": {
+    "count": 24,
+    "targetStar": 4,
+    "seed": 20260810,
+    "attempts": 24
+  },
+  "tierTable": [
+    {
+      "name": "G1_基础门槛（出现 cage 推理）",
+      "pass": 24,
+      "passRatio": 100
+    },
+    {
+      "name": "G2_推理率门槛（ratio≥20%）",
+      "pass": 0,
+      "passRatio": 0
+    },
+    {
+      "name": "G3_四星完整规格（400-600 + 三技巧 + ratio>40%）",
+      "pass": 0,
+      "passRatio": 0
+    }
+  ],
+  "starDistribution": {
+    "3星": 24
+  },
+  "cage_reasoning": {
+    "used": 24,
+    "total": 24,
+    "avg_ratio": 0.113
+  },
+  "diagnosis": {
+    "g1_pass_ratio": 1,
+    "g3_pass_ratio": 0
+  },
+  "per_level": [
+    {
+      "levelId": "GEN-003",
+      "accepted": true,
+      "tierIndex": 0,
+      "acceptedTier": "G1_基础门槛（出现 cage 推理）",
+      "metrics": {
+        "solvable": true,
+        "score": 500,
+        "level": "3星",
+        "totalSteps": 71,
+        "remainingCells": 0,
+        "nonTrivialRatio": 0.197,
+        "techCount": {
+          "nakedSingle": 57,
+          "hiddenSingle": 5,
+          "cageUnique": 7,
+          "rule45": 1,
+          "hiddenPair": 1
+        },
+        "logic_required": [
+          "hiddenSingle",
+          "cageUnique",
+          "rule45",
+          "hiddenPair"
+        ],
+        "cage_reasoning_used": true,
+        "cage_reasoning_ratio": 0.11267605633802817,
+        "cage_reasoning_steps": 8
+      },
+      "gates": [
+        {
+          "name": "G1_基础门槛（出现 cage 推理）",
+          "passed": true,
+          "failed": []
+        },
+        {
+          "name": "G2_推理率门槛（ratio≥20%）",
+          "passed": false,
+          "failed": [
+            "cage_reasoning_ratio_low(11.3%<20%)"
+          ]
+        },
+        {
+          "name": "G3_四星完整规格（400-600 + 三技巧 + ratio>40%）",
+          "passed": false,
+          "failed": [
+            "cage_reasoning_ratio_low(11.3%<40%)"
+          ]
+        }
+      ]
+    },
+    {
+      "levelId": "GEN-013",
+      "accepted": true,
+      "tierIndex": 0,
+      "acceptedTier": "G1_基础门槛（出现 cage 推理）",
+      "metrics": {
+        "solvable": true,
+        "score": 500,
+        "level": "3星",
+        "totalSteps": 71,
+        "remainingCells": 0,
+        "nonTrivialRatio": 0.197,
+        "techCount": {
+          "nakedSingle": 57,
+          "hiddenSingle": 5,
+          "cageUnique": 7,
+          "rule45": 1,
+          "hiddenPair": 1
+        },
+        "logic_required": [
+          "hiddenSingle",
+          "cageUnique",
+          "rule45",
+          "hiddenPair"
+        ],
+        "cage_reasoning_used": true,
+        "cage_reasoning_ratio": 0.11267605633802817,
+        "cage_reasoning_steps": 8
+      },
+      "gates": [
+        {
+          "name": "G1_基础门槛（出现 cage 推理）",
+          "passed": true,
+          "failed": []
+        },
+        {
+          "name": "G2_推理率门槛（ratio≥20%）",
+          "passed": false,
+          "failed": [
+            "cage_reasoning_ratio_low(11.3%<20%)"
+          ]
+        },
+        {
+          "name": "G3_四星完整规格（400-600 + 三技巧 + ratio>40%）",
+          "passed": false,
+          "failed": [
+            "cage_reasoning_ratio_low(11.3%<40%)"
+          ]
+        }
+      ]
+    },
+    {
+      "levelId": "GEN-023",
+      "accepted": true,
+      "tierIndex": 0,
+      "acceptedTier": "G1_基础门槛（出现 cage 推理）",
+      "metrics": {
+        "solvable": true,
+        "score": 500,
+        "level": "3星",
+        "totalSteps": 71,
+        "remainingCells": 0,
+        "nonTrivialRatio": 0.197,
+        "techCount": {
+          "nakedSingle": 57,
+          "hiddenSingle": 5,
+          "cageUnique": 7,
+          "rule45": 1,
+          "hiddenPair": 1
+        },
+        "logic_required": [
+          "hiddenSingle",
+          "cageUnique",
+          "rule45",
+          "hiddenPair"
+        ],
+        "cage_reasoning_used": true,
+        "cage_reasoning_ratio": 0.11267605633802817,
+        "cage_reasoning_steps": 8
+      },
+      "gates": [
+        {
+          "name": "G1_基础门槛（出现 cage 推理）",
+          "passed": true,
+          "failed": []
+        },
+        {
+          "name": "G2_推理率门槛（ratio≥20%）",
+          "passed": false,
+          "failed": [
+            "cage_reasoning_ratio_low(11.3%<20%)"
+          ]
+        },
+        {
+          "name": "G3_四星完整规格（400-600 + 三技巧 + ratio>40%）",
+          "passed": false,
+          "failed": [
+            "cage_reasoning_ratio_low(11.3%<40%)"
+          ]
+        }
+      ]
+    },
+    {
+      "levelId": "GEN-033",
+      "accepted": true,
+      "tierIndex": 0,
+      "acceptedTier": "G1_基础门槛（出现 cage 推理）",
+      "metrics": {
+        "solvable": true,
+        "score": 500,
+        "level": "3星",
+        "totalSteps": 71,
+        "remainingCells": 0,
+        "nonTrivialRatio": 0.197,
+        "techCount": {
+          "nakedSingle": 57,
+          "hiddenSingle": 5,
+          "cageUnique": 7,
+          "rule45": 1,
+          "hiddenPair": 1
+        },
+        "logic_required": [
+          "hiddenSingle",
+          "cageUnique",
+          "rule45",
+          "hiddenPair"
+        ],
+        "cage_reasoning_used": true,
+        "cage_reasoning_ratio": 0.11267605633802817,
+        "cage_reasoning_steps": 8
+      },
+      "gates": [
+        {
+          "name": "G1_基础门槛（出现 cage 推理）",
+          "passed": true,
+          "failed": []
+        },
+        {
+          "name": "G2_推理率门槛（ratio≥20%）",
+          "passed": false,
+          "failed": [
+            "cage_reasoning_ratio_low(11.3%<20%)"
+          ]
+        },
+        {
+          "name": "G3_四星完整规格（400-600 + 三技巧 + ratio>40%）",
+          "passed": false,
+          "failed": [
+            "cage_reasoning_ratio_low(11.3%<40%)"
+          ]
+        }
+      ]
+    },
+    {
+      "levelId": "GEN-043",
+      "accepted": true,
+      "tierIndex": 0,
+      "acceptedTier": "G1_基础门槛（出现 cage 推理）",
+      "metrics": {
+        "solvable": true,
+        "score": 500,
+        "level": "3星",
+        "totalSteps": 71,
+        "remainingCells": 0,
+        "nonTrivialRatio": 0.197,
+        "techCount": {
+          "nakedSingle": 57,
+          "hiddenSingle": 5,
+          "cageUnique": 7,
+          "rule45": 1,
+          "hiddenPair": 1
+        },
+        "logic_required": [
+          "hiddenSingle",
+          "cageUnique",
+          "rule45",
+          "hiddenPair"
+        ],
+        "cage_reasoning_used": true,
+        "cage_reasoning_ratio": 0.11267605633802817,
+        "cage_reasoning_steps": 8
+      },
+      "gates": [
+        {
+          "name": "G1_基础门槛（出现 cage 推理）",
+          "passed": true,
+          "failed": []
+        },
+        {
+          "name": "G2_推理率门槛（ratio≥20%）",
+          "passed": false,
+          "failed": [
+            "cage_reasoning_ratio_low(11.3%<20%)"
+          ]
+        },
+        {
+          "name": "G3_四星完整规格（400-600 + 三技巧 + ratio>40%）",
+          "passed": false,
+          "failed": [
+            "cage_reasoning_ratio_low(11.3%<40%)"
+          ]
+        }
+      ]
+    },
+    {
+      "levelId": "GEN-053",
+      "accepted": true,
+      "tierIndex": 0,
+      "acceptedTier": "G1_基础门槛（出现 cage 推理）",
+      "metrics": {
+        "solvable": true,
+        "score": 500,
+        "level": "3星",
+        "totalSteps": 71,
+        "remainingCells": 0,
+        "nonTrivialRatio": 0.197,
+        "techCount": {
+          "nakedSingle": 57,
+          "hiddenSingle": 5,
+          "cageUnique": 7,
+          "rule45": 1,
+          "hiddenPair": 1
+        },
+        "logic_required": [
+          "hiddenSingle",
+          "cageUnique",
+          "rule45",
+          "hiddenPair"
+        ],
+        "cage_reasoning_used": true,
+        "cage_reasoning_ratio": 0.11267605633802817,
+        "cage_reasoning_steps": 8
+      },
+      "gates": [
+        {
+          "name": "G1_基础门槛（出现 cage 推理）",
+          "passed": true,
+          "failed": []
+        },
+        {
+          "name": "G2_推理率门槛（ratio≥20%）",
+          "passed": false,
+          "failed": [
+            "cage_reasoning_ratio_low(11.3%<20%)"
+          ]
+        },
+        {
+          "name": "G3_四星完整规格（400-600 + 三技巧 + ratio>40%）",
+          "passed": false,
+          "failed": [
+            "cage_reasoning_ratio_low(11.3%<40%)"
+          ]
+        }
+      ]
+    },
+    {
+      "levelId": "GEN-063",
+      "accepted": true,
+      "tierIndex": 0,
+      "acceptedTier": "G1_基础门槛（出现 cage 推理）",
+      "metrics": {
+        "solvable": true,
+        "score": 500,
+        "level": "3星",
+        "totalSteps": 71,
+        "remainingCells": 0,
+        "nonTrivialRatio": 0.197,
+        "techCount": {
+          "nakedSingle": 57,
+          "hiddenSingle": 5,
+          "cageUnique": 7,
+          "rule45": 1,
+          "hiddenPair": 1
+        },
+        "logic_required": [
+          "hiddenSingle",
+          "cageUnique",
+          "rule45",
+          "hiddenPair"
+        ],
+        "cage_reasoning_used": true,
+        "cage_reasoning_ratio": 0.11267605633802817,
+        "cage_reasoning_steps": 8
+      },
+      "gates": [
+        {
+          "name": "G1_基础门槛（出现 cage 推理）",
+          "passed": true,
+          "failed": []
+        },
+        {
+          "name": "G2_推理率门槛（ratio≥20%）",
+          "passed": false,
+          "failed": [
+            "cage_reasoning_ratio_low(11.3%<20%)"
+          ]
+        },
+        {
+          "name": "G3_四星完整规格（400-600 + 三技巧 + ratio>40%）",
+          "passed": false,
+          "failed": [
+            "cage_reasoning_ratio_low(11.3%<40%)"
+          ]
+        }
+      ]
+    },
+    {
+      "levelId": "GEN-073",
+      "accepted": true,
+      "tierIndex": 0,
+      "acceptedTier": "G1_基础门槛（出现 cage 推理）",
+      "metrics": {
+        "solvable": true,
+        "score": 500,
+        "level": "3星",
+        "totalSteps": 71,
+        "remainingCells": 0,
+        "nonTrivialRatio": 0.197,
+        "techCount": {
+          "nakedSingle": 57,
+          "hiddenSingle": 5,
+          "cageUnique": 7,
+          "rule45": 1,
+          "hiddenPair": 1
+        },
+        "logic_required": [
+          "hiddenSingle",
+          "cageUnique",
+          "rule45",
+          "hiddenPair"
+        ],
+        "cage_reasoning_used": true,
+        "cage_reasoning_ratio": 0.11267605633802817,
+        "cage_reasoning_steps": 8
+      },
+      "gates": [
+        {
+          "name": "G1_基础门槛（出现 cage 推理）",
+          "passed": true,
+          "failed": []
+        },
+        {
+          "name": "G2_推理率门槛（ratio≥20%）",
+          "passed": false,
+          "failed": [
+            "cage_reasoning_ratio_low(11.3%<20%)"
+          ]
+        },
+        {
+          "name": "G3_四星完整规格（400-600 + 三技巧 + ratio>40%）",
+          "passed": false,
+          "failed": [
+            "cage_reasoning_ratio_low(11.3%<40%)"
+          ]
+        }
+      ]
+    },
+    {
+      "levelId": "GEN-083",
+      "accepted": true,
+      "tierIndex": 0,
+      "acceptedTier": "G1_基础门槛（出现 cage 推理）",
+      "metrics": {
+        "solvable": true,
+        "score": 500,
+        "level": "3星",
+        "totalSteps": 71,
+        "remainingCells": 0,
+        "nonTrivialRatio": 0.197,
+        "techCount": {
+          "nakedSingle": 57,
+          "hiddenSingle": 5,
+          "cageUnique": 7,
+          "rule45": 1,
+          "hiddenPair": 1
+        },
+        "logic_required": [
+          "hiddenSingle",
+          "cageUnique",
+          "rule45",
+          "hiddenPair"
+        ],
+        "cage_reasoning_used": true,
+        "cage_reasoning_ratio": 0.11267605633802817,
+        "cage_reasoning_steps": 8
+      },
+      "gates": [
+        {
+          "name": "G1_基础门槛（出现 cage 推理）",
+          "passed": true,
+          "failed": []
+        },
+        {
+          "name": "G2_推理率门槛（ratio≥20%）",
+          "passed": false,
+          "failed": [
+            "cage_reasoning_ratio_low(11.3%<20%)"
+          ]
+        },
+        {
+          "name": "G3_四星完整规格（400-600 + 三技巧 + ratio>40%）",
+          "passed": false,
+          "failed": [
+            "cage_reasoning_ratio_low(11.3%<40%)"
+          ]
+        }
+      ]
+    },
+    {
+      "levelId": "GEN-093",
+      "accepted": true,
+      "tierIndex": 0,
+      "acceptedTier": "G1_基础门槛（出现 cage 推理）",
+      "metrics": {
+        "solvable": true,
+        "score": 500,
+        "level": "3星",
+        "totalSteps": 71,
+        "remainingCells": 0,
+        "nonTrivialRatio": 0.197,
+        "techCount": {
+          "nakedSingle": 57,
+          "hiddenSingle": 5,
+          "cageUnique": 7,
+          "rule45": 1,
+          "hiddenPair": 1
+        },
+        "logic_required": [
+          "hiddenSingle",
+          "cageUnique",
+          "rule45",
+          "hiddenPair"
+        ],
+        "cage_reasoning_used": true,
+        "cage_reasoning_ratio": 0.11267605633802817,
+        "cage_reasoning_steps": 8
+      },
+      "gates": [
+        {
+          "name": "G1_基础门槛（出现 cage 推理）",
+          "passed": true,
+          "failed": []
+        },
+        {
+          "name": "G2_推理率门槛（ratio≥20%）",
+          "passed": false,
+          "failed": [
+            "cage_reasoning_ratio_low(11.3%<20%)"
+          ]
+        },
+        {
+          "name": "G3_四星完整规格（400-600 + 三技巧 + ratio>40%）",
+          "passed": false,
+          "failed": [
+            "cage_reasoning_ratio_low(11.3%<40%)"
+          ]
+        }
+      ]
+    },
+    {
+      "levelId": "GEN-103",
+      "accepted": true,
+      "tierIndex": 0,
+      "acceptedTier": "G1_基础门槛（出现 cage 推理）",
+      "metrics": {
+        "solvable": true,
+        "score": 500,
+        "level": "3星",
+        "totalSteps": 71,
+        "remainingCells": 0,
+        "nonTrivialRatio": 0.197,
+        "techCount": {
+          "nakedSingle": 57,
+          "hiddenSingle": 5,
+          "cageUnique": 7,
+          "rule45": 1,
+          "hiddenPair": 1
+        },
+        "logic_required": [
+          "hiddenSingle",
+          "cageUnique",
+          "rule45",
+          "hiddenPair"
+        ],
+        "cage_reasoning_used": true,
+        "cage_reasoning_ratio": 0.11267605633802817,
+        "cage_reasoning_steps": 8
+      },
+      "gates": [
+        {
+          "name": "G1_基础门槛（出现 cage 推理）",
+          "passed": true,
+          "failed": []
+        },
+        {
+          "name": "G2_推理率门槛（ratio≥20%）",
+          "passed": false,
+          "failed": [
+            "cage_reasoning_ratio_low(11.3%<20%)"
+          ]
+        },
+        {
+          "name": "G3_四星完整规格（400-600 + 三技巧 + ratio>40%）",
+          "passed": false,
+          "failed": [
+            "cage_reasoning_ratio_low(11.3%<40%)"
+          ]
+        }
+      ]
+    },
+    {
+      "levelId": "GEN-113",
+      "accepted": true,
+      "tierIndex": 0,
+      "acceptedTier": "G1_基础门槛（出现 cage 推理）",
+      "metrics": {
+        "solvable": true,
+        "score": 500,
+        "level": "3星",
+        "totalSteps": 71,
+        "remainingCells": 0,
+        "nonTrivialRatio": 0.197,
+        "techCount": {
+          "nakedSingle": 57,
+          "hiddenSingle": 5,
+          "cageUnique": 7,
+          "rule45": 1,
+          "hiddenPair": 1
+        },
+        "logic_required": [
+          "hiddenSingle",
+          "cageUnique",
+          "rule45",
+          "hiddenPair"
+        ],
+        "cage_reasoning_used": true,
+        "cage_reasoning_ratio": 0.11267605633802817,
+        "cage_reasoning_steps": 8
+      },
+      "gates": [
+        {
+          "name": "G1_基础门槛（出现 cage 推理）",
+          "passed": true,
+          "failed": []
+        },
+        {
+          "name": "G2_推理率门槛（ratio≥20%）",
+          "passed": false,
+          "failed": [
+            "cage_reasoning_ratio_low(11.3%<20%)"
+          ]
+        },
+        {
+          "name": "G3_四星完整规格（400-600 + 三技巧 + ratio>40%）",
+          "passed": false,
+          "failed": [
+            "cage_reasoning_ratio_low(11.3%<40%)"
+          ]
+        }
+      ]
+    },
+    {
+      "levelId": "GEN-123",
+      "accepted": true,
+      "tierIndex": 0,
+      "acceptedTier": "G1_基础门槛（出现 cage 推理）",
+      "metrics": {
+        "solvable": true,
+        "score": 500,
+        "level": "3星",
+        "totalSteps": 71,
+        "remainingCells": 0,
+        "nonTrivialRatio": 0.197,
+        "techCount": {
+          "nakedSingle": 57,
+          "hiddenSingle": 5,
+          "cageUnique": 7,
+          "rule45": 1,
+          "hiddenPair": 1
+        },
+        "logic_required": [
+          "hiddenSingle",
+          "cageUnique",
+          "rule45",
+          "hiddenPair"
+        ],
+        "cage_reasoning_used": true,
+        "cage_reasoning_ratio": 0.11267605633802817,
+        "cage_reasoning_steps": 8
+      },
+      "gates": [
+        {
+          "name": "G1_基础门槛（出现 cage 推理）",
+          "passed": true,
+          "failed": []
+        },
+        {
+          "name": "G2_推理率门槛（ratio≥20%）",
+          "passed": false,
+          "failed": [
+            "cage_reasoning_ratio_low(11.3%<20%)"
+          ]
+        },
+        {
+          "name": "G3_四星完整规格（400-600 + 三技巧 + ratio>40%）",
+          "passed": false,
+          "failed": [
+            "cage_reasoning_ratio_low(11.3%<40%)"
+          ]
+        }
+      ]
+    },
+    {
+      "levelId": "GEN-133",
+      "accepted": true,
+      "tierIndex": 0,
+      "acceptedTier": "G1_基础门槛（出现 cage 推理）",
+      "metrics": {
+        "solvable": true,
+        "score": 500,
+        "level": "3星",
+        "totalSteps": 71,
+        "remainingCells": 0,
+        "nonTrivialRatio": 0.197,
+        "techCount": {
+          "nakedSingle": 57,
+          "hiddenSingle": 5,
+          "cageUnique": 7,
+          "rule45": 1,
+          "hiddenPair": 1
+        },
+        "logic_required": [
+          "hiddenSingle",
+          "cageUnique",
+          "rule45",
+          "hiddenPair"
+        ],
+        "cage_reasoning_used": true,
+        "cage_reasoning_ratio": 0.11267605633802817,
+        "cage_reasoning_steps": 8
+      },
+      "gates": [
+        {
+          "name": "G1_基础门槛（出现 cage 推理）",
+          "passed": true,
+          "failed": []
+        },
+        {
+          "name": "G2_推理率门槛（ratio≥20%）",
+          "passed": false,
+          "failed": [
+            "cage_reasoning_ratio_low(11.3%<20%)"
+          ]
+        },
+        {
+          "name": "G3_四星完整规格（400-600 + 三技巧 + ratio>40%）",
+          "passed": false,
+          "failed": [
+            "cage_reasoning_ratio_low(11.3%<40%)"
+          ]
+        }
+      ]
+    },
+    {
+      "levelId": "GEN-143",
+      "accepted": true,
+      "tierIndex": 0,
+      "acceptedTier": "G1_基础门槛（出现 cage 推理）",
+      "metrics": {
+        "solvable": true,
+        "score": 500,
+        "level": "3星",
+        "totalSteps": 71,
+        "remainingCells": 0,
+        "nonTrivialRatio": 0.197,
+        "techCount": {
+          "nakedSingle": 57,
+          "hiddenSingle": 5,
+          "cageUnique": 7,
+          "rule45": 1,
+          "hiddenPair": 1
+        },
+        "logic_required": [
+          "hiddenSingle",
+          "cageUnique",
+          "rule45",
+          "hiddenPair"
+        ],
+        "cage_reasoning_used": true,
+        "cage_reasoning_ratio": 0.11267605633802817,
+        "cage_reasoning_steps": 8
+      },
+      "gates": [
+        {
+          "name": "G1_基础门槛（出现 cage 推理）",
+          "passed": true,
+          "failed": []
+        },
+        {
+          "name": "G2_推理率门槛（ratio≥20%）",
+          "passed": false,
+          "failed": [
+            "cage_reasoning_ratio_low(11.3%<20%)"
+          ]
+        },
+        {
+          "name": "G3_四星完整规格（400-600 + 三技巧 + ratio>40%）",
+          "passed": false,
+          "failed": [
+            "cage_reasoning_ratio_low(11.3%<40%)"
+          ]
+        }
+      ]
+    },
+    {
+      "levelId": "GEN-153",
+      "accepted": true,
+      "tierIndex": 0,
+      "acceptedTier": "G1_基础门槛（出现 cage 推理）",
+      "metrics": {
+        "solvable": true,
+        "score": 500,
+        "level": "3星",
+        "totalSteps": 71,
+        "remainingCells": 0,
+        "nonTrivialRatio": 0.197,
+        "techCount": {
+          "nakedSingle": 57,
+          "hiddenSingle": 5,
+          "cageUnique": 7,
+          "rule45": 1,
+          "hiddenPair": 1
+        },
+        "logic_required": [
+          "hiddenSingle",
+          "cageUnique",
+          "rule45",
+          "hiddenPair"
+        ],
+        "cage_reasoning_used": true,
+        "cage_reasoning_ratio": 0.11267605633802817,
+        "cage_reasoning_steps": 8
+      },
+      "gates": [
+        {
+          "name": "G1_基础门槛（出现 cage 推理）",
+          "passed": true,
+          "failed": []
+        },
+        {
+          "name": "G2_推理率门槛（ratio≥20%）",
+          "passed": false,
+          "failed": [
+            "cage_reasoning_ratio_low(11.3%<20%)"
+          ]
+        },
+        {
+          "name": "G3_四星完整规格（400-600 + 三技巧 + ratio>40%）",
+          "passed": false,
+          "failed": [
+            "cage_reasoning_ratio_low(11.3%<40%)"
+          ]
+        }
+      ]
+    },
+    {
+      "levelId": "GEN-163",
+      "accepted": true,
+      "tierIndex": 0,
+      "acceptedTier": "G1_基础门槛（出现 cage 推理）",
+      "metrics": {
+        "solvable": true,
+        "score": 500,
+        "level": "3星",
+        "totalSteps": 71,
+        "remainingCells": 0,
+        "nonTrivialRatio": 0.197,
+        "techCount": {
+          "nakedSingle": 57,
+          "hiddenSingle": 5,
+          "cageUnique": 7,
+          "rule45": 1,
+          "hiddenPair": 1
+        },
+        "logic_required": [
+          "hiddenSingle",
+          "cageUnique",
+          "rule45",
+          "hiddenPair"
+        ],
+        "cage_reasoning_used": true,
+        "cage_reasoning_ratio": 0.11267605633802817,
+        "cage_reasoning_steps": 8
+      },
+      "gates": [
+        {
+          "name": "G1_基础门槛（出现 cage 推理）",
+          "passed": true,
+          "failed": []
+        },
+        {
+          "name": "G2_推理率门槛（ratio≥20%）",
+          "passed": false,
+          "failed": [
+            "cage_reasoning_ratio_low(11.3%<20%)"
+          ]
+        },
+        {
+          "name": "G3_四星完整规格（400-600 + 三技巧 + ratio>40%）",
+          "passed": false,
+          "failed": [
+            "cage_reasoning_ratio_low(11.3%<40%)"
+          ]
+        }
+      ]
+    },
+    {
+      "levelId": "GEN-173",
+      "accepted": true,
+      "tierIndex": 0,
+      "acceptedTier": "G1_基础门槛（出现 cage 推理）",
+      "metrics": {
+        "solvable": true,
+        "score": 500,
+        "level": "3星",
+        "totalSteps": 71,
+        "remainingCells": 0,
+        "nonTrivialRatio": 0.197,
+        "techCount": {
+          "nakedSingle": 57,
+          "hiddenSingle": 5,
+          "cageUnique": 7,
+          "rule45": 1,
+          "hiddenPair": 1
+        },
+        "logic_required": [
+          "hiddenSingle",
+          "cageUnique",
+          "rule45",
+          "hiddenPair"
+        ],
+        "cage_reasoning_used": true,
+        "cage_reasoning_ratio": 0.11267605633802817,
+        "cage_reasoning_steps": 8
+      },
+      "gates": [
+        {
+          "name": "G1_基础门槛（出现 cage 推理）",
+          "passed": true,
+          "failed": []
+        },
+        {
+          "name": "G2_推理率门槛（ratio≥20%）",
+          "passed": false,
+          "failed": [
+            "cage_reasoning_ratio_low(11.3%<20%)"
+          ]
+        },
+        {
+          "name": "G3_四星完整规格（400-600 + 三技巧 + ratio>40%）",
+          "passed": false,
+          "failed": [
+            "cage_reasoning_ratio_low(11.3%<40%)"
+          ]
+        }
+      ]
+    },
+    {
+      "levelId": "GEN-183",
+      "accepted": true,
+      "tierIndex": 0,
+      "acceptedTier": "G1_基础门槛（出现 cage 推理）",
+      "metrics": {
+        "solvable": true,
+        "score": 500,
+        "level": "3星",
+        "totalSteps": 71,
+        "remainingCells": 0,
+        "nonTrivialRatio": 0.197,
+        "techCount": {
+          "nakedSingle": 57,
+          "hiddenSingle": 5,
+          "cageUnique": 7,
+          "rule45": 1,
+          "hiddenPair": 1
+        },
+        "logic_required": [
+          "hiddenSingle",
+          "cageUnique",
+          "rule45",
+          "hiddenPair"
+        ],
+        "cage_reasoning_used": true,
+        "cage_reasoning_ratio": 0.11267605633802817,
+        "cage_reasoning_steps": 8
+      },
+      "gates": [
+        {
+          "name": "G1_基础门槛（出现 cage 推理）",
+          "passed": true,
+          "failed": []
+        },
+        {
+          "name": "G2_推理率门槛（ratio≥20%）",
+          "passed": false,
+          "failed": [
+            "cage_reasoning_ratio_low(11.3%<20%)"
+          ]
+        },
+        {
+          "name": "G3_四星完整规格（400-600 + 三技巧 + ratio>40%）",
+          "passed": false,
+          "failed": [
+            "cage_reasoning_ratio_low(11.3%<40%)"
+          ]
+        }
+      ]
+    },
+    {
+      "levelId": "GEN-193",
+      "accepted": true,
+      "tierIndex": 0,
+      "acceptedTier": "G1_基础门槛（出现 cage 推理）",
+      "metrics": {
+        "solvable": true,
+        "score": 500,
+        "level": "3星",
+        "totalSteps": 71,
+        "remainingCells": 0,
+        "nonTrivialRatio": 0.197,
+        "techCount": {
+          "nakedSingle": 57,
+          "hiddenSingle": 5,
+          "cageUnique": 7,
+          "rule45": 1,
+          "hiddenPair": 1
+        },
+        "logic_required": [
+          "hiddenSingle",
+          "cageUnique",
+          "rule45",
+          "hiddenPair"
+        ],
+        "cage_reasoning_used": true,
+        "cage_reasoning_ratio": 0.11267605633802817,
+        "cage_reasoning_steps": 8
+      },
+      "gates": [
+        {
+          "name": "G1_基础门槛（出现 cage 推理）",
+          "passed": true,
+          "failed": []
+        },
+        {
+          "name": "G2_推理率门槛（ratio≥20%）",
+          "passed": false,
+          "failed": [
+            "cage_reasoning_ratio_low(11.3%<20%)"
+          ]
+        },
+        {
+          "name": "G3_四星完整规格（400-600 + 三技巧 + ratio>40%）",
+          "passed": false,
+          "failed": [
+            "cage_reasoning_ratio_low(11.3%<40%)"
+          ]
+        }
+      ]
+    },
+    {
+      "levelId": "GEN-203",
+      "accepted": true,
+      "tierIndex": 0,
+      "acceptedTier": "G1_基础门槛（出现 cage 推理）",
+      "metrics": {
+        "solvable": true,
+        "score": 500,
+        "level": "3星",
+        "totalSteps": 71,
+        "remainingCells": 0,
+        "nonTrivialRatio": 0.197,
+        "techCount": {
+          "nakedSingle": 57,
+          "hiddenSingle": 5,
+          "cageUnique": 7,
+          "rule45": 1,
+          "hiddenPair": 1
+        },
+        "logic_required": [
+          "hiddenSingle",
+          "cageUnique",
+          "rule45",
+          "hiddenPair"
+        ],
+        "cage_reasoning_used": true,
+        "cage_reasoning_ratio": 0.11267605633802817,
+        "cage_reasoning_steps": 8
+      },
+      "gates": [
+        {
+          "name": "G1_基础门槛（出现 cage 推理）",
+          "passed": true,
+          "failed": []
+        },
+        {
+          "name": "G2_推理率门槛（ratio≥20%）",
+          "passed": false,
+          "failed": [
+            "cage_reasoning_ratio_low(11.3%<20%)"
+          ]
+        },
+        {
+          "name": "G3_四星完整规格（400-600 + 三技巧 + ratio>40%）",
+          "passed": false,
+          "failed": [
+            "cage_reasoning_ratio_low(11.3%<40%)"
+          ]
+        }
+      ]
+    },
+    {
+      "levelId": "GEN-213",
+      "accepted": true,
+      "tierIndex": 0,
+      "acceptedTier": "G1_基础门槛（出现 cage 推理）",
+      "metrics": {
+        "solvable": true,
+        "score": 500,
+        "level": "3星",
+        "totalSteps": 71,
+        "remainingCells": 0,
+        "nonTrivialRatio": 0.197,
+        "techCount": {
+          "nakedSingle": 57,
+          "hiddenSingle": 5,
+          "cageUnique": 7,
+          "rule45": 1,
+          "hiddenPair": 1
+        },
+        "logic_required": [
+          "hiddenSingle",
+          "cageUnique",
+          "rule45",
+          "hiddenPair"
+        ],
+        "cage_reasoning_used": true,
+        "cage_reasoning_ratio": 0.11267605633802817,
+        "cage_reasoning_steps": 8
+      },
+      "gates": [
+        {
+          "name": "G1_基础门槛（出现 cage 推理）",
+          "passed": true,
+          "failed": []
+        },
+        {
+          "name": "G2_推理率门槛（ratio≥20%）",
+          "passed": false,
+          "failed": [
+            "cage_reasoning_ratio_low(11.3%<20%)"
+          ]
+        },
+        {
+          "name": "G3_四星完整规格（400-600 + 三技巧 + ratio>40%）",
+          "passed": false,
+          "failed": [
+            "cage_reasoning_ratio_low(11.3%<40%)"
+          ]
+        }
+      ]
+    },
+    {
+      "levelId": "GEN-223",
+      "accepted": true,
+      "tierIndex": 0,
+      "acceptedTier": "G1_基础门槛（出现 cage 推理）",
+      "metrics": {
+        "solvable": true,
+        "score": 500,
+        "level": "3星",
+        "totalSteps": 71,
+        "remainingCells": 0,
+        "nonTrivialRatio": 0.197,
+        "techCount": {
+          "nakedSingle": 57,
+          "hiddenSingle": 5,
+          "cageUnique": 7,
+          "rule45": 1,
+          "hiddenPair": 1
+        },
+        "logic_required": [
+          "hiddenSingle",
+          "cageUnique",
+          "rule45",
+          "hiddenPair"
+        ],
+        "cage_reasoning_used": true,
+        "cage_reasoning_ratio": 0.11267605633802817,
+        "cage_reasoning_steps": 8
+      },
+      "gates": [
+        {
+          "name": "G1_基础门槛（出现 cage 推理）",
+          "passed": true,
+          "failed": []
+        },
+        {
+          "name": "G2_推理率门槛（ratio≥20%）",
+          "passed": false,
+          "failed": [
+            "cage_reasoning_ratio_low(11.3%<20%)"
+          ]
+        },
+        {
+          "name": "G3_四星完整规格（400-600 + 三技巧 + ratio>40%）",
+          "passed": false,
+          "failed": [
+            "cage_reasoning_ratio_low(11.3%<40%)"
+          ]
+        }
+      ]
+    },
+    {
+      "levelId": "GEN-233",
+      "accepted": true,
+      "tierIndex": 0,
+      "acceptedTier": "G1_基础门槛（出现 cage 推理）",
+      "metrics": {
+        "solvable": true,
+        "score": 500,
+        "level": "3星",
+        "totalSteps": 71,
+        "remainingCells": 0,
+        "nonTrivialRatio": 0.197,
+        "techCount": {
+          "nakedSingle": 57,
+          "hiddenSingle": 5,
+          "cageUnique": 7,
+          "rule45": 1,
+          "hiddenPair": 1
+        },
+        "logic_required": [
+          "hiddenSingle",
+          "cageUnique",
+          "rule45",
+          "hiddenPair"
+        ],
+        "cage_reasoning_used": true,
+        "cage_reasoning_ratio": 0.11267605633802817,
+        "cage_reasoning_steps": 8
+      },
+      "gates": [
+        {
+          "name": "G1_基础门槛（出现 cage 推理）",
+          "passed": true,
+          "failed": []
+        },
+        {
+          "name": "G2_推理率门槛（ratio≥20%）",
+          "passed": false,
+          "failed": [
+            "cage_reasoning_ratio_low(11.3%<20%)"
+          ]
+        },
+        {
+          "name": "G3_四星完整规格（400-600 + 三技巧 + ratio>40%）",
+          "passed": false,
+          "failed": [
+            "cage_reasoning_ratio_low(11.3%<40%)"
+          ]
+        }
+      ]
+    }
+  ]
+}

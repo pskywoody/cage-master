@@ -1,0 +1,176 @@
+{
+  "generatedAt": "2026-08-10T20:41:40.218Z",
+  "config": {
+    "count": 30,
+    "seed": 20260810,
+    "elapsedSeconds": 337.3
+  },
+  "frozen": {
+    "lambda": 25,
+    "growthBias": 0.4,
+    "shapeDiversityWeight": 0.2,
+    "objective": "enabled",
+    "suppressSingletons": true
+  },
+  "genre": "partition growth termination audit（纯测量）",
+  "totalAttempts": 19453,
+  "byLoop": {
+    "main": {
+      "attempts": 13885,
+      "accepted": 13820,
+      "rejected": 65,
+      "acceptedByFinalSize": {
+        "1": 920,
+        "2": 2570,
+        "3": 3557,
+        "4": 3334,
+        "5": 3439
+      }
+    },
+    "remaining": {
+      "attempts": 5568,
+      "accepted": 5568,
+      "rejected": 0,
+      "acceptedByFinalSize": {
+        "1": 2743,
+        "2": 730,
+        "3": 1734,
+        "4": 361
+      }
+    }
+  },
+  "finalCageBySize": {
+    "1": 3663,
+    "2": 3300,
+    "3": 5291,
+    "4": 3695,
+    "5": 3439
+  },
+  "size23Origin": {
+    "2": {
+      "count": 3300,
+      "intendedRatio": 0.68,
+      "prematureRatio": 0.32,
+      "byGrowthReason": {
+        "reached_target": {
+          "count": 2245,
+          "share": 0.68
+        },
+        "no_valid_neighbor": {
+          "count": 1055,
+          "share": 0.32
+        }
+      },
+      "byLoop": {
+        "main": {
+          "count": 2570,
+          "share": 0.779
+        },
+        "remaining": {
+          "count": 730,
+          "share": 0.221
+        }
+      },
+      "byTargetSize": {
+        "2": {
+          "count": 2245,
+          "share": 0.68
+        },
+        "3": {
+          "count": 984,
+          "share": 0.298
+        },
+        "4": {
+          "count": 66,
+          "share": 0.02
+        },
+        "5": {
+          "count": 5,
+          "share": 0.002
+        }
+      }
+    },
+    "3": {
+      "count": 5291,
+      "intendedRatio": 0.988,
+      "prematureRatio": 0.012,
+      "byGrowthReason": {
+        "reached_target": {
+          "count": 5225,
+          "share": 0.988
+        },
+        "no_valid_neighbor": {
+          "count": 66,
+          "share": 0.012
+        }
+      },
+      "byLoop": {
+        "main": {
+          "count": 3557,
+          "share": 0.672
+        },
+        "remaining": {
+          "count": 1734,
+          "share": 0.328
+        }
+      },
+      "byTargetSize": {
+        "3": {
+          "count": 5225,
+          "share": 0.988
+        },
+        "4": {
+          "count": 59,
+          "share": 0.011
+        },
+        "5": {
+          "count": 7,
+          "share": 0.001
+        }
+      }
+    }
+  },
+  "finalSizeDist": {
+    "1": {
+      "count": 21,
+      "share": 0.032
+    },
+    "2": {
+      "count": 90,
+      "share": 0.137
+    },
+    "3": {
+      "count": 157,
+      "share": 0.24
+    },
+    "4": {
+      "count": 177,
+      "share": 0.27
+    },
+    "5": {
+      "count": 210,
+      "share": 0.321
+    }
+  },
+  "weightBias": {
+    "weights": {
+      "1": 0.02,
+      "2": 0.1,
+      "3": 0.25,
+      "4": 0.3,
+      "5": 0.33
+    },
+    "targetCounts": {
+      "2": 4,
+      "3": 6,
+      "4": 5,
+      "5": 5
+    },
+    "totalTargetCells": 85,
+    "size2CellsPlanned": 8,
+    "size3CellsPlanned": 18,
+    "smallCellShare": 0.321,
+    "note": "star=4 的 weight 预算为 大笼偏置（size4+size5=0.63），size2/3 是其中被明确预算的两位，非隐藏约束"
+  },
+  "verdict": "Case A：size=2/3 是算法自然 bias（targetCounts 本就要求 2/3，reached_target 为主）"
+}

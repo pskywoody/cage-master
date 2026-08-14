@@ -1,0 +1,27 @@
+{
+  "branch": "B4",
+  "code": "B4-B",
+  "name": "Canonical Diversity",
+  "status": "todo",
+  "priority": 2,
+  "hypothesis": "不同 seed 常落入同一 topology family，产生 semantic duplicates。用 canonical fingerprint（board symmetry + cage partition signature + constraint graph）做生成期 canonical distance check，提过 semantic diversity（entropy 实质↑）。",
+  "frozen": {
+    "lambda": 25,
+    "ranking": "unchanged",
+    "objective": "unchanged",
+    "acceptance": "unchanged"
+  },
+  "variable": {
+    "canonicalCheck": {
+      "enabled": false,
+      "fingerprint": ["board_symmetry", "cage_partition", "constraint_graph"]
+    }
+  },
+  "acceptance": {
+    "entropy": "up (semantic)",
+    "top4Share": "not worse",
+    "complex": ">= baseline - 0.02",
+    "uniqueAll": true,
+    "score": "baseline +/- 30"
+  }
+}

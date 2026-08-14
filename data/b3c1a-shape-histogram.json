@@ -1,0 +1,149 @@
+{
+  "generatedAt": "2026-08-10T00:13:16.405Z",
+  "config": {
+    "count": 50,
+    "seed": 20260810,
+    "collected": 8,
+    "elapsedSeconds": 483.5
+  },
+  "totalCages": 1087,
+  "uniqueShapes": 21,
+  "entropyH": 2.644,
+  "top4Share": 0.515,
+  "top4Composition": [
+    {
+      "archetype": "L",
+      "count": 162,
+      "share": 0.14903403863845446
+    },
+    {
+      "archetype": "T",
+      "count": 155,
+      "share": 0.14259429622815087
+    },
+    {
+      "archetype": "domino",
+      "count": 125,
+      "share": 0.11499540018399264
+    },
+    {
+      "archetype": "straight",
+      "count": 118,
+      "share": 0.10855565777368906
+    }
+  ],
+  "complexShare": 0.373,
+  "singletonRatio": 0.03311867525298988,
+  "ratioMean": 0.205,
+  "avgScore": 533,
+  "uniqueAll": true,
+  "archetypeHistogram": [
+    {
+      "archetype": "T",
+      "count": 276,
+      "share": 0.25390984360625574
+    },
+    {
+      "archetype": "straight",
+      "count": 177,
+      "share": 0.16283348666053357
+    },
+    {
+      "archetype": "L",
+      "count": 162,
+      "share": 0.14903403863845446
+    },
+    {
+      "archetype": "hook",
+      "count": 148,
+      "share": 0.13615455381784727
+    },
+    {
+      "archetype": "domino",
+      "count": 125,
+      "share": 0.11499540018399264
+    },
+    {
+      "archetype": "zigzag",
+      "count": 88,
+      "share": 0.08095676172953081
+    },
+    {
+      "archetype": "rect",
+      "count": 69,
+      "share": 0.06347746090156393
+    },
+    {
+      "archetype": "singleton",
+      "count": 36,
+      "share": 0.03311867525298988
+    },
+    {
+      "archetype": "cross",
+      "count": 6,
+      "share": 0.005519779208831647
+    }
+  ],
+  "topShapes": [
+    {
+      "shapeID": "0,0|0,1|1,0",
+      "archetype": "L",
+      "count": 162,
+      "share": 0.14903403863845446
+    },
+    {
+      "shapeID": "0,0|0,1|0,2|1,0|1,1",
+      "archetype": "T",
+      "count": 155,
+      "share": 0.14259429622815087
+    },
+    {
+      "shapeID": "0,0|0,1",
+      "archetype": "domino",
+      "count": 125,
+      "share": 0.11499540018399264
+    },
+    {
+      "shapeID": "0,0|0,1|0,2",
+      "archetype": "straight",
+      "count": 118,
+      "share": 0.10855565777368906
+    },
+    {
+      "shapeID": "0,0|0,1|0,2|1,0",
+      "archetype": "hook",
+      "count": 106,
+      "share": 0.09751609935602576
+    },
+    {
+      "shapeID": "0,0|0,1|1,0|1,1",
+      "archetype": "rect",
+      "count": 69,
+      "share": 0.06347746090156393
+    },
+    {
+      "shapeID": "0,0|0,1|0,2|1,1",
+      "archetype": "T",
+      "count": 49,
+      "share": 0.045078196872125116
+    },
+    {
+      "shapeID": "0,0|0,1|0,2|0,3",
+      "archetype": "straight",
+      "count": 48,
+      "share": 0.04415823367065318
+    },
+    {
+      "shapeID": "0,0",
+      "archetype": "singleton",
+      "count": 36,
+      "share": 0.03311867525298988
+    },
+    {
+      "shapeID": "0,0|0,1|1,1|1,2",
+      "archetype": "zigzag",
+      "count": 34,
+      "share": 0.031278748850046
+    }
+  ]
+}

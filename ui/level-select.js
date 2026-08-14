@@ -17,6 +17,7 @@
 // ==========================================
 
 import { LevelManager } from '../core/level-manager.js';
+import I18n from '../i18n/i18n.js';
 
 export class LevelSelect {
   /**
@@ -50,7 +51,7 @@ export class LevelSelect {
     this._longPressMs = options.longPressMs || 3000;
 
     /** @type {string} */
-    this._emptyText = options.emptyText || '暂无章节数据，请先初始化章节。';
+    this._emptyText = options.emptyText || I18n.t('ui.levelSelect.empty');
 
     /** @type {boolean} 样式是否已注入 */
     this._stylesInjected = false;
@@ -132,7 +133,7 @@ export class LevelSelect {
       return html;
     } catch (e) {
       console.warn('[LevelSelect] render error:', e);
-      return '<div class="cm-level-select cm-empty">渲染异常</div>';
+      return '<div class="cm-level-select cm-empty">' + I18n.t('ui.levelSelect.renderError') + '</div>';
     }
   }
 
@@ -160,12 +161,16 @@ export class LevelSelect {
 
         parts.push('<section class="cm-chapter" data-chapter="' + chapter.chapterId + '">');
         parts.push('<header class="cm-chapter-header">');
-        parts.push('<h3 class="cm-chapter-title">第 ' + chapter.chapterId + ' 章 · ' +
-          this._escapeHtml(chapter.title || '未命名章节') + '</h3>');
+        // v2.1：章节标题/描述优先走 i18n 语言包（chapters.{id}.title / .description），缺省回退 chapters.json
+        const chTitle = I18n.t('chapters.' + chapter.chapterId + '.title');
+        const chTitleFinal = (chTitle && chTitle.indexOf('chapters.') !== 0) ? chTitle : (chapter.title || I18n.t('ui.levelSelect.unnamedChapter'));
+        parts.push('<h3 class="cm-chapter-title">' + I18n.t('ui.levelSelect.chapterTitle', { chapter: chapter.chapterId, title: this._escapeHtml(chTitleFinal) }) + '</h3>');
         parts.push('<span class="cm-chapter-progress">' + completedInChapter + '/' + visibleIds.length + '</span>');
         parts.push('</header>');
-        if (chapter.description) {
-          parts.push('<p class="cm-chapter-desc">' + this._escapeHtml(chapter.description) + '</p>');
+        const chDesc = I18n.t('chapters.' + chapter.chapterId + '.description');
+        const chDescFinal = (chDesc && chDesc.indexOf('chapters.') !== 0) ? chDesc : (chapter.description || '');
+        if (chDescFinal) {
+          parts.push('<p class="cm-chapter-desc">' + this._escapeHtml(chDescFinal) + '</p>');
         }
         parts.push('<div class="cm-level-grid">');
 
@@ -183,7 +188,7 @@ export class LevelSelect {
       return parts.join('');
     } catch (e) {
       console.warn('[LevelSelect] _buildHtml error:', e);
-      return '<div class="cm-level-select cm-empty">构建异常</div>';
+      return '<div class="cm-level-select cm-empty">' + I18n.t('ui.levelSelect.buildError') + '</div>';
     }
   }
 
@@ -198,7 +203,7 @@ export class LevelSelect {
     const statusClass = 'cm-level cm-level--' + status;
     const aria = status === 'locked' ? ' locked' : (status === 'completed' ? ' completed' : ' playable');
     return '<div class="' + statusClass + '" data-level="' + levelId + '" data-status="' + status +
-      '" role="button" tabindex="0" aria-label="关卡 ' + levelId + aria + '">' +
+      '" role="button" tabindex="0" aria-label="' + I18n.t('ui.levelSelect.ariaLevel', { level: levelId }) + aria + '">' +
       '<span class="cm-level-badge">' + this._escapeHtml(label) + '</span>' +
       '<span class="cm-level-status">' + this._statusText(status) + '</span>' +
       '</div>';
@@ -239,9 +244,9 @@ export class LevelSelect {
    */
   _statusText(status) {
     switch (status) {
-      case 'completed': return '已通关';
-      case 'playable': return '可玩';
-      default: return '锁定';
+      case 'completed': return I18n.t('ui.levelSelect.completed');
+      case 'playable': return I18n.t('ui.levelSelect.playable');
+      default: return I18n.t('ui.levelSelect.locked');
     }
   }
 
@@ -412,12 +417,12 @@ export class LevelSelect {
         }
         // Q5：明确提示前置关卡号（原"完成前置章节解锁"含糊；配合 toast 提升到
         // 抽屉之上，用户不再看到"点了没反应"）
-        let prevText = '完成前置章节解锁';
+        let prevText = I18n.t('ui.levelSelect.unlockPrev');
         try {
           const lm = this._levelManager;
           if (lm && typeof lm._getPrevLevel === 'function') {
             const prevId = lm._getPrevLevel(levelId);
-            if (prevId != null) prevText = '完成第 ' + prevId + ' 关后解锁';
+            if (prevId != null) prevText = I18n.t('ui.levelSelect.unlockLevel', { level: prevId });
           }
         } catch (e) {}
         this._toast(prevText, 1800);

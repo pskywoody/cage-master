@@ -1,1464 +1,1464 @@
 {
-  "levelId": 703,
-  "title": "第3关：三链之阵",
-  "gridSize": 9,
-  "difficulty": "地狱",
-  "teachingGoal": "学习三子法（Naked Triple）：同一区域内三个格子恰好只包含3个不同数字的组合，可以排除该区域其他格子中的这3个数字。",
-  "features": {
-    "allowDraft": true,
-    "assistant45": true,
-    "showHints": true,
-    "perspectiveMode": true,
-    "highlightRow": true,
-    "highlightCol": true,
-    "highlightBox": true,
-    "highlightNumber": true,
-    "highlightCage": true,
-    "autoFillCandidates": false
-  },
-  "triggers": [
-    {
-      "condition": "onLevelStart",
-      "type": "freeze_mask",
-      "highlight": "full",
-      "text": "提示：三子法的标志是三个格子，它们的笔记合起来恰好只有3个不同的数字。常见模式：{a,b},{b,c},{a,c} 或 {a,b,c},{a,b},{a,c} 等。",
-      "once": true,
-      "id": "t703_auto_0",
-      "targetR": 5,
-      "targetC": 4,
-      "targetType": "cell",
-      "highlightShape": "circle"
-    },
-    {
-      "condition": "onStuckForSeconds",
-      "seconds": 40,
-      "type": "popup_hint",
-      "position": "top",
-      "text": "💡 寻找三子法时，关注笔记较少的格子（2-3个候选），看看它们的「集合」是否恰好3个数字。",
-      "delay": 500,
-      "id": "t703_auto_1"
-    },
-    {
-      "id": "t703_f1",
-      "condition": "onFirstNumberFilled",
-      "type": "popup_hint",
-      "position": "top",
-      "text": "找到了！三个格子恰好包含三个数字——三子法锁定！",
-      "once": true
-    },
-    {
-      "id": "t703_b",
-      "condition": "onFillCountReached",
-      "count": 59,
-      "type": "enter_phase",
-      "phase": "breakthrough",
-      "once": true
-    },
-    {
-      "id": "t703_bt",
-      "condition": "onFillCountReached",
-      "count": 59,
-      "type": "popup_hint",
-      "position": "top",
-      "text": "⚡ 破局时刻！三子法被锁定，三个数字从同区域其他格子中全部排除！",
-      "once": true,
-      "delay": 400
-    },
-    {
-      "id": "t703_st20",
-      "condition": "onStuckForSeconds",
-      "seconds": 20,
-      "type": "popup_hint",
-      "position": "top",
-      "text": "💡 卡住了？找三个格子，它们的笔记合起来恰好是三个不同的数字（比如{3,5,8}的各种组合）！",
-      "once": false
-    },
-    {
-      "id": "t703_ag",
-      "condition": "onConflict",
-      "type": "popup_hint",
-      "position": "top",
-      "text": "⚠️ 三子法判断：如果三个格子合起来有四个或更多不同笔记，就不是三子法！",
-      "once": false
-    },
-    {
-      "id": "t703_fi",
-      "condition": "onFillCountReached",
-      "count": 72,
-      "type": "enter_phase",
-      "phase": "finishing",
-      "once": true
-    },
-    {
-      "id": "t703_fit",
-      "condition": "onFillCountReached",
-      "count": 72,
-      "type": "popup_hint",
-      "position": "top",
-      "text": "✨ 收官！三链之阵已破，最后的数字自然浮现！",
-      "once": true,
-      "delay": 400
-    },
-    {
-      "id": "t703_c",
-      "condition": "onLevelComplete",
-      "type": "popup_hint",
-      "position": "top",
-      "text": "🎉 三子法已精通！从数对到三链，你的模式识别能力更上一层楼！",
-      "once": true
-    }
-  ],
-  "boardData": [
-    [
-      0,
-      6,
-      0,
-      8,
-      0,
-      0,
-      0,
-      9,
-      1
-    ],
-    [
-      9,
-      3,
-      0,
-      0,
-      0,
-      0,
-      0,
-      6,
-      5
-    ],
-    [
-      1,
-      0,
-      8,
-      0,
-      9,
-      0,
-      0,
-      3,
-      0
-    ],
-    [
-      0,
-      0,
-      0,
-      7,
-      8,
-      0,
-      3,
-      1,
-      0
-    ],
-    [
-      0,
-      0,
-      9,
-      6,
-      0,
-      1,
-      4,
-      5,
-      0
-    ],
-    [
-      0,
-      0,
-      1,
-      9,
-      0,
-      4,
-      0,
-      0,
-      0
-    ],
-    [
-      0,
-      0,
-      6,
-      0,
-      7,
-      0,
-      0,
-      0,
-      0
-    ],
-    [
-      4,
-      0,
-      0,
-      0,
-      0,
-      9,
-      0,
-      0,
-      2
-    ],
-    [
-      0,
-      5,
-      3,
-      0,
-      4,
-      0,
-      0,
-      0,
-      0
-    ]
-  ],
-  "cages": [
-    {
-      "id": 1,
-      "sum": 17,
-      "cells": [
-        [
-          0,
-          0
-        ],
-        [
-          0,
-          1
-        ],
-        [
-          0,
-          2
-        ],
-        [
-          1,
-          2
-        ]
-      ]
-    },
-    {
-      "id": 2,
-      "sum": 26,
-      "cells": [
-        [
-          0,
-          3
-        ],
-        [
-          1,
-          3
-        ],
-        [
-          2,
-          3
-        ],
-        [
-          2,
-          4
-        ]
-      ]
-    },
-    {
-      "id": 3,
-      "sum": 13,
-      "cells": [
-        [
-          0,
-          4
-        ],
-        [
-          1,
-          4
-        ],
-        [
-          1,
-          5
-        ],
-        [
-          0,
-          5
-        ]
-      ]
-    },
-    {
-      "id": 4,
-      "sum": 20,
-      "cells": [
-        [
-          0,
-          6
-        ],
-        [
-          1,
-          6
-        ],
-        [
-          2,
-          6
-        ],
-        [
-          3,
-          6
-        ]
-      ]
-    },
-    {
-      "id": 5,
-      "sum": 20,
-      "cells": [
-        [
-          0,
-          7
-        ],
-        [
-          1,
-          7
-        ],
-        [
-          1,
-          8
-        ]
-      ]
-    },
-    {
-      "id": 6,
-      "sum": 1,
-      "cells": [
-        [
-          0,
-          8
-        ]
-      ]
-    },
-    {
-      "id": 7,
-      "sum": 13,
-      "cells": [
-        [
-          1,
-          1
-        ],
-        [
-          1,
-          0
-        ],
-        [
-          2,
-          0
-        ]
-      ]
-    },
-    {
-      "id": 8,
-      "sum": 19,
-      "cells": [
-        [
-          2,
-          1
-        ],
-        [
-          3,
-          1
-        ],
-        [
-          3,
-          0
-        ],
-        [
-          4,
-          1
-        ]
-      ]
-    },
-    {
-      "id": 9,
-      "sum": 29,
-      "cells": [
-        [
-          2,
-          2
-        ],
-        [
-          3,
-          2
-        ],
-        [
-          4,
-          2
-        ],
-        [
-          5,
-          2
-        ],
-        [
-          6,
-          2
-        ]
-      ]
-    },
-    {
-      "id": 10,
-      "sum": 24,
-      "cells": [
-        [
-          2,
-          5
-        ],
-        [
-          3,
-          5
-        ],
-        [
-          3,
-          4
-        ],
-        [
-          4,
-          4
-        ],
-        [
-          5,
-          4
-        ]
-      ]
-    },
-    {
-      "id": 11,
-      "sum": 9,
-      "cells": [
-        [
-          2,
-          7
-        ],
-        [
-          3,
-          7
-        ],
-        [
-          4,
-          7
-        ]
-      ]
-    },
-    {
-      "id": 12,
-      "sum": 21,
-      "cells": [
-        [
-          2,
-          8
-        ],
-        [
-          3,
-          8
-        ],
-        [
-          4,
-          8
-        ]
-      ]
-    },
-    {
-      "id": 13,
-      "sum": 22,
-      "cells": [
-        [
-          3,
-          3
-        ],
-        [
-          4,
-          3
-        ],
-        [
-          5,
-          3
-        ]
-      ]
-    },
-    {
-      "id": 14,
-      "sum": 10,
-      "cells": [
-        [
-          4,
-          0
-        ],
-        [
-          5,
-          0
-        ]
-      ]
-    },
-    {
-      "id": 15,
-      "sum": 5,
-      "cells": [
-        [
-          4,
-          5
-        ],
-        [
-          4,
-          6
-        ]
-      ]
-    },
-    {
-      "id": 16,
-      "sum": 24,
-      "cells": [
-        [
-          5,
-          8
-        ],
-        [
-          5,
-          7
-        ],
-        [
-          5,
-          6
-        ],
-        [
-          5,
-          5
-        ],
-        [
-          6,
-          5
-        ]
-      ]
-    },
-    {
-      "id": 17,
-      "sum": 28,
-      "cells": [
-        [
-          5,
-          1
-        ],
-        [
-          6,
-          1
-        ],
-        [
-          7,
-          1
-        ],
-        [
-          7,
-          2
-        ],
-        [
-          7,
-          3
-        ]
-      ]
-    },
-    {
-      "id": 18,
-      "sum": 22,
-      "cells": [
-        [
-          6,
-          0
-        ],
-        [
-          7,
-          0
-        ],
-        [
-          8,
-          0
-        ],
-        [
-          8,
-          1
-        ],
-        [
-          8,
-          2
-        ]
-      ]
-    },
-    {
-      "id": 19,
-      "sum": 32,
-      "cells": [
-        [
-          6,
-          3
-        ],
-        [
-          6,
-          4
-        ],
-        [
-          7,
-          4
-        ],
-        [
-          7,
-          5
-        ],
-        [
-          8,
-          5
-        ]
-      ]
-    },
-    {
-      "id": 20,
-      "sum": 10,
-      "cells": [
-        [
-          6,
-          6
-        ],
-        [
-          6,
-          7
-        ],
-        [
-          6,
-          8
-        ],
-        [
-          7,
-          8
-        ]
-      ]
-    },
-    {
-      "id": 21,
-      "sum": 15,
-      "cells": [
-        [
-          7,
-          7
-        ],
-        [
-          8,
-          7
-        ]
-      ]
-    },
-    {
-      "id": 22,
-      "sum": 14,
-      "cells": [
-        [
-          7,
-          6
-        ],
-        [
-          8,
-          6
-        ]
-      ]
-    },
-    {
-      "id": 23,
-      "sum": 5,
-      "cells": [
-        [
-          8,
-          3
-        ],
-        [
-          8,
-          4
-        ]
-      ]
-    },
-    {
-      "id": 24,
-      "sum": 6,
-      "cells": [
-        [
-          8,
-          8
-        ]
-      ]
-    }
-  ],
-  "solution": [
-    [
-      5,
-      6,
-      4,
-      8,
-      2,
-      3,
-      7,
-      9,
-      1
-    ],
-    [
-      9,
-      3,
-      2,
-      4,
-      1,
-      7,
-      8,
-      6,
-      5
-    ],
-    [
-      1,
-      7,
-      8,
-      5,
-      9,
-      6,
-      2,
-      3,
-      4
-    ],
-    [
-      6,
-      4,
-      5,
-      7,
-      8,
-      2,
-      3,
-      1,
-      9
-    ],
-    [
-      7,
-      2,
-      9,
-      6,
-      3,
-      1,
-      4,
-      5,
-      8
-    ],
-    [
-      3,
-      8,
-      1,
-      9,
-      5,
-      4,
-      6,
-      2,
-      7
-    ],
-    [
-      8,
-      9,
-      6,
-      2,
-      7,
-      5,
-      1,
-      4,
-      3
-    ],
-    [
-      4,
-      1,
-      7,
-      3,
-      6,
-      9,
-      5,
-      8,
-      2
-    ],
-    [
-      2,
-      5,
-      3,
-      1,
-      4,
-      8,
-      9,
-      7,
-      6
-    ]
-  ],
-  "preDialog": [
-    {
-      "speaker": "旁白",
-      "text": "沈墨在黄昏时分再次走到四号桥。桥洞下没有大衣，没有信封——但河岸铁桩的侧面，夹着一张折叠好的旧地图。",
-      "isNarration": true
-    },
-    {
-      "speaker": "沈墨 CHIBI",
-      "text": "……地图是1938年出版的。法租界的界线还在——他离开的时候，用的就是这张地图。",
-      "side": "left",
-      "emotion": "thinking",
-      "effect": 0
-    },
-    {
-      "speaker": "老师（留声）",
-      "text": "三子法深化——三格共享三数。当三组格子的候选合起来恰好是三个不同的数字时，这三个数字就被锁死。地图也是一样——三组坐标合在一起，形成一个唯一的交汇点。",
-      "side": "right",
-      "emotion": "calm",
-      "effect": 0
-    }
-  ],
-  "clearDialog": [
-    {
-      "speaker": "旁白",
-      "text": "沈墨展开旧地图。地图上有一个用铅笔画的小圈——圈住了苏州河以南的一条巷子，不是路路通茶馆的现址，是旧址。",
-      "isNarration": true
-    },
-    {
-      "speaker": "沈墨 CHIBI",
-      "text": "……他离开的时候，圈了一个他从来没有告诉过我的位置。他在等我自己发现它。",
-      "side": "left",
-      "emotion": "thinking",
-      "effect": 0
-    },
-    {
-      "speaker": "薇拉",
-      "text": "那张地图是你父亲留在上海的最后一件事物。他把它留在四号桥——因为他知道，你最终会走到这里。",
-      "side": "right",
-      "emotion": "calm",
-      "effect": 0
-    }
-  ],
-  "isBoss": false,
-  "mode": "endgame",
-  "coreMove": {
-    "row": 1,
-    "col": 3,
-    "value": 1,
-    "cascadeCount": 43,
-    "cascadeSequence": [
-      {
-        "row": 2,
-        "col": 8,
-        "value": 8,
-        "cellId": 26
-      },
-      {
-        "row": 1,
-        "col": 8,
-        "value": 7,
-        "cellId": 17
-      },
-      {
-        "row": 1,
-        "col": 0,
-        "value": 3,
-        "cellId": 9
-      },
-      {
-        "row": 2,
-        "col": 6,
-        "value": 2,
-        "cellId": 24
-      },
-      {
-        "row": 0,
-        "col": 8,
-        "value": 1,
-        "cellId": 8
-      },
-      {
-        "row": 0,
-        "col": 0,
-        "value": 5,
-        "cellId": 0
-      },
-      {
-        "row": 2,
-        "col": 3,
-        "value": 9,
-        "cellId": 21
-      },
-      {
-        "row": 3,
-        "col": 6,
-        "value": 7,
-        "cellId": 33
-      },
-      {
-        "row": 3,
-        "col": 7,
-        "value": 9,
-        "cellId": 34
-      },
-      {
-        "row": 3,
-        "col": 8,
-        "value": 2,
-        "cellId": 35
-      },
-      {
-        "row": 4,
-        "col": 0,
-        "value": 9,
-        "cellId": 36
-      },
-      {
-        "row": 6,
-        "col": 8,
-        "value": 9,
-        "cellId": 62
-      },
-      {
-        "row": 6,
-        "col": 5,
-        "value": 6,
-        "cellId": 59
-      },
-      {
-        "row": 1,
-        "col": 5,
-        "value": 4,
-        "cellId": 14
-      },
-      {
-        "row": 0,
-        "col": 4,
-        "value": 6,
-        "cellId": 4
-      },
-      {
-        "row": 0,
-        "col": 2,
-        "value": 4,
-        "cellId": 2
-      },
-      {
-        "row": 0,
-        "col": 5,
-        "value": 2,
-        "cellId": 5
-      },
-      {
-        "row": 0,
-        "col": 7,
-        "value": 3,
-        "cellId": 7
-      },
-      {
-        "row": 1,
-        "col": 4,
-        "value": 8,
-        "cellId": 13
-      },
-      {
-        "row": 1,
-        "col": 7,
-        "value": 6,
-        "cellId": 16
-      },
-      {
-        "row": 2,
-        "col": 5,
-        "value": 5,
-        "cellId": 23
-      },
-      {
-        "row": 2,
-        "col": 7,
-        "value": 4,
-        "cellId": 25
-      },
-      {
-        "row": 6,
-        "col": 1,
-        "value": 3,
-        "cellId": 55
-      },
-      {
-        "row": 4,
-        "col": 1,
-        "value": 5,
-        "cellId": 37
-      },
-      {
-        "row": 4,
-        "col": 2,
-        "value": 3,
-        "cellId": 38
-      },
-      {
-        "row": 6,
-        "col": 2,
-        "value": 7,
-        "cellId": 56
-      },
-      {
-        "row": 2,
-        "col": 2,
-        "value": 6,
-        "cellId": 20
-      },
-      {
-        "row": 2,
-        "col": 1,
-        "value": 1,
-        "cellId": 19
-      },
-      {
-        "row": 2,
-        "col": 0,
-        "value": 7,
-        "cellId": 18
-      },
-      {
-        "row": 6,
-        "col": 3,
-        "value": 8,
-        "cellId": 57
-      },
-      {
-        "row": 7,
-        "col": 2,
-        "value": 9,
-        "cellId": 65
-      },
-      {
-        "row": 7,
-        "col": 3,
-        "value": 2,
-        "cellId": 66
-      },
-      {
-        "row": 7,
-        "col": 1,
-        "value": 6,
-        "cellId": 64
-      },
-      {
-        "row": 7,
-        "col": 4,
-        "value": 4,
-        "cellId": 67
-      },
-      {
-        "row": 7,
-        "col": 5,
-        "value": 1,
-        "cellId": 68
-      },
-      {
-        "row": 7,
-        "col": 0,
-        "value": 8,
-        "cellId": 63
-      },
-      {
-        "row": 7,
-        "col": 7,
-        "value": 7,
-        "cellId": 70
-      },
-      {
-        "row": 8,
-        "col": 0,
-        "value": 1,
-        "cellId": 72
-      },
-      {
-        "row": 8,
-        "col": 1,
-        "value": 2,
-        "cellId": 73
-      },
-      {
-        "row": 8,
-        "col": 2,
-        "value": 5,
-        "cellId": 74
-      },
-      {
-        "row": 8,
-        "col": 3,
-        "value": 3,
-        "cellId": 75
-      },
-      {
-        "row": 8,
-        "col": 5,
-        "value": 9,
-        "cellId": 77
-      },
-      {
-        "row": 8,
-        "col": 7,
-        "value": 8,
-        "cellId": 79
-      }
-    ]
-  },
-  "isClassic": true,
-  "breakPointIndex": 11,
-  "totalSteps": 56,
-  "targetTechnique": "nakedTriplet",
-  "threeAct": {
-    "opening": [
-      [
-        0,
-        8
-      ],
-      [
-        2,
-        0
-      ],
-      [
-        1,
-        1
-      ],
-      [
-        3,
-        7
-      ],
-      [
-        4,
-        6
-      ],
-      [
-        5,
-        3
-      ],
-      [
-        6,
-        2
-      ],
-      [
-        3,
-        2
-      ],
-      [
-        3,
-        5
-      ],
-      [
-        1,
-        5
-      ],
-      [
-        0,
-        5
-      ],
-      [
-        0,
-        4
-      ],
-      [
-        0,
-        6
-      ],
-      [
-        0,
-        0
-      ],
-      [
-        0,
-        2
-      ],
-      [
-        1,
-        2
-      ],
-      [
-        1,
-        3
-      ],
-      [
-        2,
-        8
-      ],
-      [
-        3,
-        1
-      ],
-      [
-        4,
-        4
-      ],
-      [
-        6,
-        6
-      ],
-      [
-        7,
-        6
-      ],
-      [
-        7,
-        7
-      ],
-      [
-        8,
-        3
-      ],
-      [
-        8,
-        6
-      ],
-      [
-        8,
-        7
-      ],
-      [
-        8,
-        8
-      ]
-    ],
-    "breakthrough": [
-      [
-        6,
-        8
-      ],
-      [
-        6,
-        3
-      ],
-      [
-        6,
-        0
-      ],
-      [
-        7,
-        1
-      ],
-      [
-        7,
-        3
-      ],
-      [
-        7,
-        4
-      ],
-      [
-        8,
-        0
-      ],
-      [
-        8,
-        5
-      ]
-    ],
-    "avalanche": [
-      [
-        1,
-        4
-      ],
-      [
-        1,
-        6
-      ],
-      [
-        2,
-        1
-      ],
-      [
-        2,
-        3
-      ],
-      [
-        2,
-        5
-      ],
-      [
-        2,
-        6
-      ],
-      [
-        3,
-        0
-      ],
-      [
-        3,
-        8
-      ],
-      [
-        4,
-        1
-      ],
-      [
-        4,
-        8
-      ],
-      [
-        4,
-        0
-      ],
-      [
-        5,
-        0
-      ],
-      [
-        5,
-        1
-      ],
-      [
-        5,
-        4
-      ],
-      [
-        5,
-        6
-      ],
-      [
-        5,
-        8
-      ],
-      [
-        5,
-        7
-      ],
-      [
-        6,
-        5
-      ],
-      [
-        6,
-        1
-      ],
-      [
-        6,
-        7
-      ],
-      [
-        7,
-        2
-      ]
-    ]
-  },
-  "difficultyLevel": 8,
-  "lessonPlan": {
-    "newSkill": "nakedTriple_703",
-    "skillName": "三子法（三链之阵）",
-    "isFirstLesson": false,
-    "skippable": true,
-    "prerequisite": [
-      "hiddenPair"
-    ],
-    "phases": {
-      "intro": {
-        "text": "三子法深化——三格共享三数。当三组格子的候选合起来恰好是三个不同的数字时，这三个数字就被锁死。就像三组坐标合在一起，形成一个唯一的交汇点。",
-        "speaker": "老师（留声）",
-        "duration": 4000
-      },
-      "demo": {
-        "steps": [
-          {
-            "action": "spotlightOn",
-            "target": 0.35,
-            "duration": 400
-          },
-          {
-            "action": "highlightRow",
-            "target": 1,
-            "duration": 1600,
-            "text": "看第 2 行。标好笔记后找三子法：三个格子的候选合起来恰好是三个不同的数字。"
-          },
-          {
-            "action": "highlightCell",
-            "target": [
-              1,
-              2
-            ],
-            "duration": 1200,
-            "text": "(1,2) 的候选落在 {2、4、7} 里。"
-          },
-          {
-            "action": "highlightCell",
-            "target": [
-              1,
-              3
-            ],
-            "duration": 1200,
-            "text": "(1,3) 的候选也落在 {2、4、7} 里。"
-          },
-          {
-            "action": "highlightCell",
-            "target": [
-              1,
-              5
-            ],
-            "duration": 1200,
-            "text": "(1,5) 同样是 {2、4、7}——三格合起来恰好 2、4、7 三个数字，三子法（Naked Triple）成形！"
-          },
-          {
-            "action": "highlightCell",
-            "target": [
-              1,
-              4
-            ],
-            "duration": 1400,
-            "text": "2、4、7 被锁进这三格，第 2 行其它格子不能再含这三个数。看 (1,4)：原来候选里有 2，2 被三子法排除——只剩 1！"
-          },
-          {
-            "action": "focusCell",
-            "target": [
-              1,
-              4
-            ],
-            "duration": 1600,
-            "text": "填 1！三子法一次排除，一整排笔记被清扫。"
-          }
-        ]
-      },
-      "guided": {
-        "targetCell": [
-          1,
-          4
-        ],
-        "correctValue": 1,
-        "interactionType": "NUMBER",
-        "maxAttempts": 2,
-        "autoRevealAfter": 2,
-        "methodText": "找三子法：在行/列/宫里找三个格子，它们的候选数合起来恰好是三个不同数字（不要求每格都有三个候选）。锁定后，从区域其它格子中删除这三个数字。",
-        "hintText": "轮到你了：第 2 行里 {2、4、7} 被锁进 (1,2)、(1,3)、(1,5) 三格。找出被排除后只剩一个候选的格子——试试看。",
-        "failHint": "再观察：这一格原本候选里有 2，三子法把 2 排除了，剩下几？",
-        "failConflictCell": [
-          1,
-          2
-        ],
-        "failVoiceId": "CK_05",
-        "successText": "答对了！三子法把 2、4、7 锁死在三格里，其它格子的笔记被清扫干净。",
-        "successVoiceId": "J_03",
-        "autoRevealText": "直接填入数字 1。",
-        "successNext": [
-          {
-            "cell": [
-              1,
-              6
-            ],
-            "hintText": "连锁反应来了：同一行里，(1,6) 经行、列、宫排除只剩 8——试试看。"
-          },
-          {
-            "cell": [
-              2,
-              3
-            ],
-            "hintText": "再来！(2,3) 的候选收窄后只剩 5——试试看。"
-          }
-        ]
-      },
-      "semiAuto": {
-        "enabled": true,
-        "targetCount": 2,
-        "interactionType": "NUMBER",
-        "hintText": "继续寻找三子法结构，再确定两个数字。",
-        "hintVoiceId": "R_07",
-        "watchCells": [
-          [
-            7,
-            2
-          ],
-          [
-            0,
-            6
-          ]
-        ]
-      },
-      "free": {
-        "enabled": true,
-        "unlockText": "三子法已掌握！从数对到三数组，你的推理武器更丰富了。"
-      }
-    }
-  }
+    "levelId":  703,
+    "title":  "霞飞路旧书店",
+    "gridSize":  9,
+    "difficulty":  "地狱",
+    "teachingGoal":  "学习三子法（Naked Triple）：同一区域内三个格子恰好只包含3个不同数字的组合，可以排除该区域其他格子中的这3个数字。",
+    "features":  {
+                     "allowDraft":  true,
+                     "assistant45":  true,
+                     "showHints":  true,
+                     "perspectiveMode":  true,
+                     "highlightRow":  true,
+                     "highlightCol":  true,
+                     "highlightBox":  true,
+                     "highlightNumber":  true,
+                     "highlightCage":  true,
+                     "autoFillCandidates":  false
+                 },
+    "triggers":  [
+                     {
+                         "condition":  "onLevelStart",
+                         "type":  "freeze_mask",
+                         "highlight":  "full",
+                         "text":  "提示：三子法的标志是三个格子，它们的笔记合起来恰好只有3个不同的数字。常见模式：{a,b},{b,c},{a,c} 或 {a,b,c},{a,b},{a,c} 等。",
+                         "once":  true,
+                         "id":  "t703_auto_0",
+                         "targetR":  5,
+                         "targetC":  4,
+                         "targetType":  "cell",
+                         "highlightShape":  "circle"
+                     },
+                     {
+                         "condition":  "onStuckForSeconds",
+                         "seconds":  40,
+                         "type":  "popup_hint",
+                         "position":  "top",
+                         "text":  "💡 寻找三子法时，关注笔记较少的格子（2-3个候选），看看它们的「集合」是否恰好3个数字。",
+                         "delay":  500,
+                         "id":  "t703_auto_1"
+                     },
+                     {
+                         "id":  "t703_f1",
+                         "condition":  "onFirstNumberFilled",
+                         "type":  "popup_hint",
+                         "position":  "top",
+                         "text":  "找到了！三个格子恰好包含三个数字——三子法锁定！",
+                         "once":  true
+                     },
+                     {
+                         "id":  "t703_b",
+                         "condition":  "onFillCountReached",
+                         "count":  59,
+                         "type":  "enter_phase",
+                         "phase":  "breakthrough",
+                         "once":  true
+                     },
+                     {
+                         "id":  "t703_bt",
+                         "condition":  "onFillCountReached",
+                         "count":  59,
+                         "type":  "popup_hint",
+                         "position":  "top",
+                         "text":  "⚡ 破局时刻！三子法被锁定，三个数字从同区域其他格子中全部排除！",
+                         "once":  true,
+                         "delay":  400
+                     },
+                     {
+                         "id":  "t703_st20",
+                         "condition":  "onStuckForSeconds",
+                         "seconds":  20,
+                         "type":  "popup_hint",
+                         "position":  "top",
+                         "text":  "💡 卡住了？找三个格子，它们的笔记合起来恰好是三个不同的数字（比如{3,5,8}的各种组合）！",
+                         "once":  false
+                     },
+                     {
+                         "id":  "t703_ag",
+                         "condition":  "onConflict",
+                         "type":  "popup_hint",
+                         "position":  "top",
+                         "text":  "⚠️ 三子法判断：如果三个格子合起来有四个或更多不同笔记，就不是三子法！",
+                         "once":  false
+                     },
+                     {
+                         "id":  "t703_fi",
+                         "condition":  "onFillCountReached",
+                         "count":  72,
+                         "type":  "enter_phase",
+                         "phase":  "finishing",
+                         "once":  true
+                     },
+                     {
+                         "id":  "t703_fit",
+                         "condition":  "onFillCountReached",
+                         "count":  72,
+                         "type":  "popup_hint",
+                         "position":  "top",
+                         "text":  "✨ 收官！三链之阵已破，最后的数字自然浮现！",
+                         "once":  true,
+                         "delay":  400
+                     },
+                     {
+                         "id":  "t703_c",
+                         "condition":  "onLevelComplete",
+                         "type":  "popup_hint",
+                         "position":  "top",
+                         "text":  "🎉 三子法已精通！从数对到三链，你的模式识别能力更上一层楼！",
+                         "once":  true
+                     }
+                 ],
+    "boardData":  [
+                      [
+                          0,
+                          6,
+                          0,
+                          8,
+                          0,
+                          0,
+                          0,
+                          9,
+                          1
+                      ],
+                      [
+                          9,
+                          3,
+                          0,
+                          0,
+                          0,
+                          0,
+                          0,
+                          6,
+                          5
+                      ],
+                      [
+                          1,
+                          0,
+                          8,
+                          0,
+                          9,
+                          0,
+                          0,
+                          3,
+                          0
+                      ],
+                      [
+                          0,
+                          0,
+                          0,
+                          7,
+                          8,
+                          0,
+                          3,
+                          1,
+                          0
+                      ],
+                      [
+                          0,
+                          0,
+                          9,
+                          6,
+                          0,
+                          1,
+                          4,
+                          5,
+                          0
+                      ],
+                      [
+                          0,
+                          0,
+                          1,
+                          9,
+                          0,
+                          4,
+                          0,
+                          0,
+                          0
+                      ],
+                      [
+                          0,
+                          0,
+                          6,
+                          0,
+                          7,
+                          0,
+                          0,
+                          0,
+                          0
+                      ],
+                      [
+                          4,
+                          0,
+                          0,
+                          0,
+                          0,
+                          9,
+                          0,
+                          0,
+                          2
+                      ],
+                      [
+                          0,
+                          5,
+                          3,
+                          0,
+                          4,
+                          0,
+                          0,
+                          0,
+                          0
+                      ]
+                  ],
+    "cages":  [
+                  {
+                      "id":  1,
+                      "sum":  17,
+                      "cells":  [
+                                    [
+                                        0,
+                                        0
+                                    ],
+                                    [
+                                        0,
+                                        1
+                                    ],
+                                    [
+                                        0,
+                                        2
+                                    ],
+                                    [
+                                        1,
+                                        2
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  2,
+                      "sum":  26,
+                      "cells":  [
+                                    [
+                                        0,
+                                        3
+                                    ],
+                                    [
+                                        1,
+                                        3
+                                    ],
+                                    [
+                                        2,
+                                        3
+                                    ],
+                                    [
+                                        2,
+                                        4
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  3,
+                      "sum":  13,
+                      "cells":  [
+                                    [
+                                        0,
+                                        4
+                                    ],
+                                    [
+                                        1,
+                                        4
+                                    ],
+                                    [
+                                        1,
+                                        5
+                                    ],
+                                    [
+                                        0,
+                                        5
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  4,
+                      "sum":  20,
+                      "cells":  [
+                                    [
+                                        0,
+                                        6
+                                    ],
+                                    [
+                                        1,
+                                        6
+                                    ],
+                                    [
+                                        2,
+                                        6
+                                    ],
+                                    [
+                                        3,
+                                        6
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  5,
+                      "sum":  20,
+                      "cells":  [
+                                    [
+                                        0,
+                                        7
+                                    ],
+                                    [
+                                        1,
+                                        7
+                                    ],
+                                    [
+                                        1,
+                                        8
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  6,
+                      "sum":  1,
+                      "cells":  [
+                                    [
+                                        0,
+                                        8
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  7,
+                      "sum":  13,
+                      "cells":  [
+                                    [
+                                        1,
+                                        1
+                                    ],
+                                    [
+                                        1,
+                                        0
+                                    ],
+                                    [
+                                        2,
+                                        0
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  8,
+                      "sum":  19,
+                      "cells":  [
+                                    [
+                                        2,
+                                        1
+                                    ],
+                                    [
+                                        3,
+                                        1
+                                    ],
+                                    [
+                                        3,
+                                        0
+                                    ],
+                                    [
+                                        4,
+                                        1
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  9,
+                      "sum":  29,
+                      "cells":  [
+                                    [
+                                        2,
+                                        2
+                                    ],
+                                    [
+                                        3,
+                                        2
+                                    ],
+                                    [
+                                        4,
+                                        2
+                                    ],
+                                    [
+                                        5,
+                                        2
+                                    ],
+                                    [
+                                        6,
+                                        2
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  10,
+                      "sum":  24,
+                      "cells":  [
+                                    [
+                                        2,
+                                        5
+                                    ],
+                                    [
+                                        3,
+                                        5
+                                    ],
+                                    [
+                                        3,
+                                        4
+                                    ],
+                                    [
+                                        4,
+                                        4
+                                    ],
+                                    [
+                                        5,
+                                        4
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  11,
+                      "sum":  9,
+                      "cells":  [
+                                    [
+                                        2,
+                                        7
+                                    ],
+                                    [
+                                        3,
+                                        7
+                                    ],
+                                    [
+                                        4,
+                                        7
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  12,
+                      "sum":  21,
+                      "cells":  [
+                                    [
+                                        2,
+                                        8
+                                    ],
+                                    [
+                                        3,
+                                        8
+                                    ],
+                                    [
+                                        4,
+                                        8
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  13,
+                      "sum":  22,
+                      "cells":  [
+                                    [
+                                        3,
+                                        3
+                                    ],
+                                    [
+                                        4,
+                                        3
+                                    ],
+                                    [
+                                        5,
+                                        3
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  14,
+                      "sum":  10,
+                      "cells":  [
+                                    [
+                                        4,
+                                        0
+                                    ],
+                                    [
+                                        5,
+                                        0
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  15,
+                      "sum":  5,
+                      "cells":  [
+                                    [
+                                        4,
+                                        5
+                                    ],
+                                    [
+                                        4,
+                                        6
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  16,
+                      "sum":  24,
+                      "cells":  [
+                                    [
+                                        5,
+                                        8
+                                    ],
+                                    [
+                                        5,
+                                        7
+                                    ],
+                                    [
+                                        5,
+                                        6
+                                    ],
+                                    [
+                                        5,
+                                        5
+                                    ],
+                                    [
+                                        6,
+                                        5
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  17,
+                      "sum":  28,
+                      "cells":  [
+                                    [
+                                        5,
+                                        1
+                                    ],
+                                    [
+                                        6,
+                                        1
+                                    ],
+                                    [
+                                        7,
+                                        1
+                                    ],
+                                    [
+                                        7,
+                                        2
+                                    ],
+                                    [
+                                        7,
+                                        3
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  18,
+                      "sum":  22,
+                      "cells":  [
+                                    [
+                                        6,
+                                        0
+                                    ],
+                                    [
+                                        7,
+                                        0
+                                    ],
+                                    [
+                                        8,
+                                        0
+                                    ],
+                                    [
+                                        8,
+                                        1
+                                    ],
+                                    [
+                                        8,
+                                        2
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  19,
+                      "sum":  32,
+                      "cells":  [
+                                    [
+                                        6,
+                                        3
+                                    ],
+                                    [
+                                        6,
+                                        4
+                                    ],
+                                    [
+                                        7,
+                                        4
+                                    ],
+                                    [
+                                        7,
+                                        5
+                                    ],
+                                    [
+                                        8,
+                                        5
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  20,
+                      "sum":  10,
+                      "cells":  [
+                                    [
+                                        6,
+                                        6
+                                    ],
+                                    [
+                                        6,
+                                        7
+                                    ],
+                                    [
+                                        6,
+                                        8
+                                    ],
+                                    [
+                                        7,
+                                        8
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  21,
+                      "sum":  15,
+                      "cells":  [
+                                    [
+                                        7,
+                                        7
+                                    ],
+                                    [
+                                        8,
+                                        7
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  22,
+                      "sum":  14,
+                      "cells":  [
+                                    [
+                                        7,
+                                        6
+                                    ],
+                                    [
+                                        8,
+                                        6
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  23,
+                      "sum":  5,
+                      "cells":  [
+                                    [
+                                        8,
+                                        3
+                                    ],
+                                    [
+                                        8,
+                                        4
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  24,
+                      "sum":  6,
+                      "cells":  [
+                                    [
+                                        8,
+                                        8
+                                    ]
+                                ]
+                  }
+              ],
+    "solution":  [
+                     [
+                         5,
+                         6,
+                         4,
+                         8,
+                         2,
+                         3,
+                         7,
+                         9,
+                         1
+                     ],
+                     [
+                         9,
+                         3,
+                         2,
+                         4,
+                         1,
+                         7,
+                         8,
+                         6,
+                         5
+                     ],
+                     [
+                         1,
+                         7,
+                         8,
+                         5,
+                         9,
+                         6,
+                         2,
+                         3,
+                         4
+                     ],
+                     [
+                         6,
+                         4,
+                         5,
+                         7,
+                         8,
+                         2,
+                         3,
+                         1,
+                         9
+                     ],
+                     [
+                         7,
+                         2,
+                         9,
+                         6,
+                         3,
+                         1,
+                         4,
+                         5,
+                         8
+                     ],
+                     [
+                         3,
+                         8,
+                         1,
+                         9,
+                         5,
+                         4,
+                         6,
+                         2,
+                         7
+                     ],
+                     [
+                         8,
+                         9,
+                         6,
+                         2,
+                         7,
+                         5,
+                         1,
+                         4,
+                         3
+                     ],
+                     [
+                         4,
+                         1,
+                         7,
+                         3,
+                         6,
+                         9,
+                         5,
+                         8,
+                         2
+                     ],
+                     [
+                         2,
+                         5,
+                         3,
+                         1,
+                         4,
+                         8,
+                         9,
+                         7,
+                         6
+                     ]
+                 ],
+    "preDialog":  [
+                      {
+                          "speaker":  "旁白",
+                          "text":  "沈墨在黄昏时分再次走到四号桥。桥洞下没有大衣，没有信封——但河岸铁桩的侧面，夹着一张折叠好的旧地图。",
+                          "isNarration":  true
+                      },
+                      {
+                          "speaker":  "沈墨 CHIBI",
+                          "text":  "……地图是1938年出版的。法租界的界线还在——他离开的时候，用的就是这张地图。",
+                          "side":  "left",
+                          "emotion":  "thinking",
+                          "effect":  0
+                      },
+                      {
+                          "speaker":  "老师（留声）",
+                          "text":  "三子法深化——三格共享三数。当三组格子的候选合起来恰好是三个不同的数字时，这三个数字就被锁死。地图也是一样——三组坐标合在一起，形成一个唯一的交汇点。",
+                          "side":  "right",
+                          "emotion":  "calm",
+                          "effect":  0
+                      }
+                  ],
+    "clearDialog":  [
+                        {
+                            "speaker":  "旁白",
+                            "text":  "沈墨展开旧地图。地图上有一个用铅笔画的小圈——圈住了苏州河以南的一条巷子，不是路路通茶馆的现址，是旧址。",
+                            "isNarration":  true
+                        },
+                        {
+                            "speaker":  "沈墨 CHIBI",
+                            "text":  "……他离开的时候，圈了一个他从来没有告诉过我的位置。他在等我自己发现它。",
+                            "side":  "left",
+                            "emotion":  "thinking",
+                            "effect":  0
+                        },
+                        {
+                            "speaker":  "薇拉",
+                            "text":  "那张地图是你父亲留在上海的最后一件事物。他把它留在四号桥——因为他知道，你最终会走到这里。",
+                            "side":  "right",
+                            "emotion":  "calm",
+                            "effect":  0
+                        }
+                    ],
+    "isBoss":  false,
+    "mode":  "endgame",
+    "coreMove":  {
+                     "row":  1,
+                     "col":  3,
+                     "value":  1,
+                     "cascadeCount":  43,
+                     "cascadeSequence":  [
+                                             {
+                                                 "row":  2,
+                                                 "col":  8,
+                                                 "value":  8,
+                                                 "cellId":  26
+                                             },
+                                             {
+                                                 "row":  1,
+                                                 "col":  8,
+                                                 "value":  7,
+                                                 "cellId":  17
+                                             },
+                                             {
+                                                 "row":  1,
+                                                 "col":  0,
+                                                 "value":  3,
+                                                 "cellId":  9
+                                             },
+                                             {
+                                                 "row":  2,
+                                                 "col":  6,
+                                                 "value":  2,
+                                                 "cellId":  24
+                                             },
+                                             {
+                                                 "row":  0,
+                                                 "col":  8,
+                                                 "value":  1,
+                                                 "cellId":  8
+                                             },
+                                             {
+                                                 "row":  0,
+                                                 "col":  0,
+                                                 "value":  5,
+                                                 "cellId":  0
+                                             },
+                                             {
+                                                 "row":  2,
+                                                 "col":  3,
+                                                 "value":  9,
+                                                 "cellId":  21
+                                             },
+                                             {
+                                                 "row":  3,
+                                                 "col":  6,
+                                                 "value":  7,
+                                                 "cellId":  33
+                                             },
+                                             {
+                                                 "row":  3,
+                                                 "col":  7,
+                                                 "value":  9,
+                                                 "cellId":  34
+                                             },
+                                             {
+                                                 "row":  3,
+                                                 "col":  8,
+                                                 "value":  2,
+                                                 "cellId":  35
+                                             },
+                                             {
+                                                 "row":  4,
+                                                 "col":  0,
+                                                 "value":  9,
+                                                 "cellId":  36
+                                             },
+                                             {
+                                                 "row":  6,
+                                                 "col":  8,
+                                                 "value":  9,
+                                                 "cellId":  62
+                                             },
+                                             {
+                                                 "row":  6,
+                                                 "col":  5,
+                                                 "value":  6,
+                                                 "cellId":  59
+                                             },
+                                             {
+                                                 "row":  1,
+                                                 "col":  5,
+                                                 "value":  4,
+                                                 "cellId":  14
+                                             },
+                                             {
+                                                 "row":  0,
+                                                 "col":  4,
+                                                 "value":  6,
+                                                 "cellId":  4
+                                             },
+                                             {
+                                                 "row":  0,
+                                                 "col":  2,
+                                                 "value":  4,
+                                                 "cellId":  2
+                                             },
+                                             {
+                                                 "row":  0,
+                                                 "col":  5,
+                                                 "value":  2,
+                                                 "cellId":  5
+                                             },
+                                             {
+                                                 "row":  0,
+                                                 "col":  7,
+                                                 "value":  3,
+                                                 "cellId":  7
+                                             },
+                                             {
+                                                 "row":  1,
+                                                 "col":  4,
+                                                 "value":  8,
+                                                 "cellId":  13
+                                             },
+                                             {
+                                                 "row":  1,
+                                                 "col":  7,
+                                                 "value":  6,
+                                                 "cellId":  16
+                                             },
+                                             {
+                                                 "row":  2,
+                                                 "col":  5,
+                                                 "value":  5,
+                                                 "cellId":  23
+                                             },
+                                             {
+                                                 "row":  2,
+                                                 "col":  7,
+                                                 "value":  4,
+                                                 "cellId":  25
+                                             },
+                                             {
+                                                 "row":  6,
+                                                 "col":  1,
+                                                 "value":  3,
+                                                 "cellId":  55
+                                             },
+                                             {
+                                                 "row":  4,
+                                                 "col":  1,
+                                                 "value":  5,
+                                                 "cellId":  37
+                                             },
+                                             {
+                                                 "row":  4,
+                                                 "col":  2,
+                                                 "value":  3,
+                                                 "cellId":  38
+                                             },
+                                             {
+                                                 "row":  6,
+                                                 "col":  2,
+                                                 "value":  7,
+                                                 "cellId":  56
+                                             },
+                                             {
+                                                 "row":  2,
+                                                 "col":  2,
+                                                 "value":  6,
+                                                 "cellId":  20
+                                             },
+                                             {
+                                                 "row":  2,
+                                                 "col":  1,
+                                                 "value":  1,
+                                                 "cellId":  19
+                                             },
+                                             {
+                                                 "row":  2,
+                                                 "col":  0,
+                                                 "value":  7,
+                                                 "cellId":  18
+                                             },
+                                             {
+                                                 "row":  6,
+                                                 "col":  3,
+                                                 "value":  8,
+                                                 "cellId":  57
+                                             },
+                                             {
+                                                 "row":  7,
+                                                 "col":  2,
+                                                 "value":  9,
+                                                 "cellId":  65
+                                             },
+                                             {
+                                                 "row":  7,
+                                                 "col":  3,
+                                                 "value":  2,
+                                                 "cellId":  66
+                                             },
+                                             {
+                                                 "row":  7,
+                                                 "col":  1,
+                                                 "value":  6,
+                                                 "cellId":  64
+                                             },
+                                             {
+                                                 "row":  7,
+                                                 "col":  4,
+                                                 "value":  4,
+                                                 "cellId":  67
+                                             },
+                                             {
+                                                 "row":  7,
+                                                 "col":  5,
+                                                 "value":  1,
+                                                 "cellId":  68
+                                             },
+                                             {
+                                                 "row":  7,
+                                                 "col":  0,
+                                                 "value":  8,
+                                                 "cellId":  63
+                                             },
+                                             {
+                                                 "row":  7,
+                                                 "col":  7,
+                                                 "value":  7,
+                                                 "cellId":  70
+                                             },
+                                             {
+                                                 "row":  8,
+                                                 "col":  0,
+                                                 "value":  1,
+                                                 "cellId":  72
+                                             },
+                                             {
+                                                 "row":  8,
+                                                 "col":  1,
+                                                 "value":  2,
+                                                 "cellId":  73
+                                             },
+                                             {
+                                                 "row":  8,
+                                                 "col":  2,
+                                                 "value":  5,
+                                                 "cellId":  74
+                                             },
+                                             {
+                                                 "row":  8,
+                                                 "col":  3,
+                                                 "value":  3,
+                                                 "cellId":  75
+                                             },
+                                             {
+                                                 "row":  8,
+                                                 "col":  5,
+                                                 "value":  9,
+                                                 "cellId":  77
+                                             },
+                                             {
+                                                 "row":  8,
+                                                 "col":  7,
+                                                 "value":  8,
+                                                 "cellId":  79
+                                             }
+                                         ]
+                 },
+    "isClassic":  true,
+    "breakPointIndex":  11,
+    "totalSteps":  56,
+    "targetTechnique":  "nakedTriplet",
+    "threeAct":  {
+                     "opening":  [
+                                     [
+                                         0,
+                                         8
+                                     ],
+                                     [
+                                         2,
+                                         0
+                                     ],
+                                     [
+                                         1,
+                                         1
+                                     ],
+                                     [
+                                         3,
+                                         7
+                                     ],
+                                     [
+                                         4,
+                                         6
+                                     ],
+                                     [
+                                         5,
+                                         3
+                                     ],
+                                     [
+                                         6,
+                                         2
+                                     ],
+                                     [
+                                         3,
+                                         2
+                                     ],
+                                     [
+                                         3,
+                                         5
+                                     ],
+                                     [
+                                         1,
+                                         5
+                                     ],
+                                     [
+                                         0,
+                                         5
+                                     ],
+                                     [
+                                         0,
+                                         4
+                                     ],
+                                     [
+                                         0,
+                                         6
+                                     ],
+                                     [
+                                         0,
+                                         0
+                                     ],
+                                     [
+                                         0,
+                                         2
+                                     ],
+                                     [
+                                         1,
+                                         2
+                                     ],
+                                     [
+                                         1,
+                                         3
+                                     ],
+                                     [
+                                         2,
+                                         8
+                                     ],
+                                     [
+                                         3,
+                                         1
+                                     ],
+                                     [
+                                         4,
+                                         4
+                                     ],
+                                     [
+                                         6,
+                                         6
+                                     ],
+                                     [
+                                         7,
+                                         6
+                                     ],
+                                     [
+                                         7,
+                                         7
+                                     ],
+                                     [
+                                         8,
+                                         3
+                                     ],
+                                     [
+                                         8,
+                                         6
+                                     ],
+                                     [
+                                         8,
+                                         7
+                                     ],
+                                     [
+                                         8,
+                                         8
+                                     ]
+                                 ],
+                     "breakthrough":  [
+                                          [
+                                              6,
+                                              8
+                                          ],
+                                          [
+                                              6,
+                                              3
+                                          ],
+                                          [
+                                              6,
+                                              0
+                                          ],
+                                          [
+                                              7,
+                                              1
+                                          ],
+                                          [
+                                              7,
+                                              3
+                                          ],
+                                          [
+                                              7,
+                                              4
+                                          ],
+                                          [
+                                              8,
+                                              0
+                                          ],
+                                          [
+                                              8,
+                                              5
+                                          ]
+                                      ],
+                     "avalanche":  [
+                                       [
+                                           1,
+                                           4
+                                       ],
+                                       [
+                                           1,
+                                           6
+                                       ],
+                                       [
+                                           2,
+                                           1
+                                       ],
+                                       [
+                                           2,
+                                           3
+                                       ],
+                                       [
+                                           2,
+                                           5
+                                       ],
+                                       [
+                                           2,
+                                           6
+                                       ],
+                                       [
+                                           3,
+                                           0
+                                       ],
+                                       [
+                                           3,
+                                           8
+                                       ],
+                                       [
+                                           4,
+                                           1
+                                       ],
+                                       [
+                                           4,
+                                           8
+                                       ],
+                                       [
+                                           4,
+                                           0
+                                       ],
+                                       [
+                                           5,
+                                           0
+                                       ],
+                                       [
+                                           5,
+                                           1
+                                       ],
+                                       [
+                                           5,
+                                           4
+                                       ],
+                                       [
+                                           5,
+                                           6
+                                       ],
+                                       [
+                                           5,
+                                           8
+                                       ],
+                                       [
+                                           5,
+                                           7
+                                       ],
+                                       [
+                                           6,
+                                           5
+                                       ],
+                                       [
+                                           6,
+                                           1
+                                       ],
+                                       [
+                                           6,
+                                           7
+                                       ],
+                                       [
+                                           7,
+                                           2
+                                       ]
+                                   ]
+                 },
+    "difficultyLevel":  8,
+    "lessonPlan":  {
+                       "newSkill":  "nakedTriple_703",
+                       "skillName":  "三子法（三链之阵）",
+                       "isFirstLesson":  false,
+                       "skippable":  true,
+                       "prerequisite":  [
+                                            "hiddenPair"
+                                        ],
+                       "phases":  {
+                                      "intro":  {
+                                                    "text":  "三子法深化——三格共享三数。当三组格子的候选合起来恰好是三个不同的数字时，这三个数字就被锁死。就像三组坐标合在一起，形成一个唯一的交汇点。",
+                                                    "speaker":  "老师（留声）",
+                                                    "duration":  4000
+                                                },
+                                      "demo":  {
+                                                   "steps":  [
+                                                                 {
+                                                                     "action":  "spotlightOn",
+                                                                     "target":  0.35,
+                                                                     "duration":  400
+                                                                 },
+                                                                 {
+                                                                     "action":  "highlightRow",
+                                                                     "target":  1,
+                                                                     "duration":  1600,
+                                                                     "text":  "看第 2 行。标好笔记后找三子法：三个格子的候选合起来恰好是三个不同的数字。"
+                                                                 },
+                                                                 {
+                                                                     "action":  "highlightCell",
+                                                                     "target":  [
+                                                                                    1,
+                                                                                    2
+                                                                                ],
+                                                                     "duration":  1200,
+                                                                     "text":  "(1,2) 的候选落在 {2、4、7} 里。"
+                                                                 },
+                                                                 {
+                                                                     "action":  "highlightCell",
+                                                                     "target":  [
+                                                                                    1,
+                                                                                    3
+                                                                                ],
+                                                                     "duration":  1200,
+                                                                     "text":  "(1,3) 的候选也落在 {2、4、7} 里。"
+                                                                 },
+                                                                 {
+                                                                     "action":  "highlightCell",
+                                                                     "target":  [
+                                                                                    1,
+                                                                                    5
+                                                                                ],
+                                                                     "duration":  1200,
+                                                                     "text":  "(1,5) 同样是 {2、4、7}——三格合起来恰好 2、4、7 三个数字，三子法（Naked Triple）成形！"
+                                                                 },
+                                                                 {
+                                                                     "action":  "highlightCell",
+                                                                     "target":  [
+                                                                                    1,
+                                                                                    4
+                                                                                ],
+                                                                     "duration":  1400,
+                                                                     "text":  "2、4、7 被锁进这三格，第 2 行其它格子不能再含这三个数。看 (1,4)：原来候选里有 2，2 被三子法排除——只剩 1！"
+                                                                 },
+                                                                 {
+                                                                     "action":  "focusCell",
+                                                                     "target":  [
+                                                                                    1,
+                                                                                    4
+                                                                                ],
+                                                                     "duration":  1600,
+                                                                     "text":  "填 1！三子法一次排除，一整排笔记被清扫。"
+                                                                 }
+                                                             ]
+                                               },
+                                      "guided":  {
+                                                     "targetCell":  [
+                                                                        1,
+                                                                        4
+                                                                    ],
+                                                     "correctValue":  1,
+                                                     "interactionType":  "NUMBER",
+                                                     "maxAttempts":  2,
+                                                     "autoRevealAfter":  2,
+                                                     "methodText":  "找三子法：在行/列/宫里找三个格子，它们的候选数合起来恰好是三个不同数字（不要求每格都有三个候选）。锁定后，从区域其它格子中删除这三个数字。",
+                                                     "hintText":  "轮到你了：第 2 行里 {2、4、7} 被锁进 (1,2)、(1,3)、(1,5) 三格。找出被排除后只剩一个候选的格子——试试看。",
+                                                     "failHint":  "再观察：这一格原本候选里有 2，三子法把 2 排除了，剩下几？",
+                                                     "failConflictCell":  [
+                                                                              1,
+                                                                              2
+                                                                          ],
+                                                     "failVoiceId":  "CK_05",
+                                                     "successText":  "答对了！三子法把 2、4、7 锁死在三格里，其它格子的笔记被清扫干净。",
+                                                     "successVoiceId":  "J_03",
+                                                     "autoRevealText":  "直接填入数字 1。",
+                                                     "successNext":  [
+                                                                         {
+                                                                             "cell":  [
+                                                                                          1,
+                                                                                          6
+                                                                                      ],
+                                                                             "hintText":  "连锁反应来了：同一行里，(1,6) 经行、列、宫排除只剩 8——试试看。"
+                                                                         },
+                                                                         {
+                                                                             "cell":  [
+                                                                                          2,
+                                                                                          3
+                                                                                      ],
+                                                                             "hintText":  "再来！(2,3) 的候选收窄后只剩 5——试试看。"
+                                                                         }
+                                                                     ]
+                                                 },
+                                      "semiAuto":  {
+                                                       "enabled":  true,
+                                                       "targetCount":  2,
+                                                       "interactionType":  "NUMBER",
+                                                       "hintText":  "继续寻找三子法结构，再确定两个数字。",
+                                                       "hintVoiceId":  "R_07",
+                                                       "watchCells":  [
+                                                                          [
+                                                                              7,
+                                                                              2
+                                                                          ],
+                                                                          [
+                                                                              0,
+                                                                              6
+                                                                          ]
+                                                                      ]
+                                                   },
+                                      "free":  {
+                                                   "enabled":  true,
+                                                   "unlockText":  "三子法已掌握！从数对到三数组，你的推理武器更丰富了。"
+                                               }
+                                  }
+                   }
 }

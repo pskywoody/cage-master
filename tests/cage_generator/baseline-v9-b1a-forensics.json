@@ -1,0 +1,81 @@
+{
+  "baseline": "v9-b1a",
+  "supersedes": "v9-forensics (B3-0)",
+  "frozen_at": "2026-08-10T00:00:00.000Z",
+  "generator": {
+    "version": "v9",
+    "suppressSingletons": true,
+    "sample_seed": 20260810,
+    "sample_size": 25
+  },
+  "verdict": "Topology Skew (singleton corrected)",
+  "verdict_detail": "singleton mass 已清除。剩余 skew 是纯 shape concentration 问题：top shape 集中 + complex topology 不足。",
+  "old_verdict": "Topology Skew (B3-0)",
+  "metrics": {
+    "cage_size_distribution": {
+      "singleton": {
+        "before": 0.168,
+        "after": 0.034,
+        "status": "PASS",
+        "allowed_range": "3-5%",
+        "note": "极少量 singleton 是残局/边界/特殊 target 下的健康噪声，不追求 0%。若压到 0-1% 可能说明 merge 过强或人为修形。"
+      },
+      "sizeDistPct": {
+        "1": 0.034,
+        "2": 0.145,
+        "3": 0.257,
+        "4": 0.245,
+        "5": 0.319
+      }
+    },
+    "topology_diversity": {
+      "uniqueShapes": {
+        "before": 21,
+        "after": 21,
+        "note": "关键：B3-B1a 不是删除一种形状，而是减少一种低价值结构占比。diversity 未变。"
+      },
+      "entropyH": {
+        "before": 2.453,
+        "after": 2.507
+      }
+    },
+    "complexity": {
+      "complex_cross_house": {
+        "before": 0.262,
+        "after": 0.348,
+        "note": "非 B3-B1a 目标，是 singleton 空间释放后的自然副产物。不要算作 B3-B1b 功劳。"
+      },
+      "crossHouseShare": {
+        "before": 0.392,
+        "after": 0.5
+      }
+    },
+    "reasoning": {
+      "ratio_mean": {
+        "before": 0.18,
+        "after": 0.201
+      },
+      "ratio_median": {
+        "before": 0.177,
+        "after": 0.197
+      },
+      "ratio_ge_20": {
+        "before": 0.4,
+        "after": 0.48
+      }
+    },
+    "difficulty": {
+      "avgScore": {
+        "before": 503,
+        "after": 519
+      },
+      "uniqueAll": true
+    },
+    "top4Share": {
+      "value": 0.58,
+      "note": "残余问题，交给 B3-B1b（shape concentration）"
+    }
+  },
+  "problem_definition": "B3-B1a 已切掉第一层噪声 singleton inflation。剩余 skew = top shape concentration + insufficient complex topology。",
+  "regression_reference": "data/b3b1a-singleton-suppression.json (suppressed_on 字段)"
+}

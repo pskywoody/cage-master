@@ -1,0 +1,86 @@
+{
+  "generatedAt": "2026-08-09T22:05:17.216Z",
+  "config": {
+    "count": 20,
+    "seed": 20260810,
+    "lambdas": [
+      10,
+      25,
+      50
+    ]
+  },
+  "control_b1a": {
+    "levels": 20,
+    "totalCages": 442,
+    "uniqueShapes": 21,
+    "entropyH": 2.54,
+    "singletonRatio": 0.03619909502262444,
+    "top4Share": 0.5723981900452488,
+    "complexShare": 0.3416289592760181,
+    "ratio": {
+      "median": 0.19201754385964914,
+      "mean": 0.19351271914043672
+    },
+    "avgScore": 510,
+    "uniqueAll": true
+  },
+  "b1b": [
+    {
+      "lambda": 10,
+      "levels": 20,
+      "totalCages": 435,
+      "uniqueShapes": 21,
+      "entropyH": 2.536,
+      "singletonRatio": 0.034482758620689655,
+      "top4Share": 0.5655172413793104,
+      "complexShare": 0.3701149425287356,
+      "ratio": {
+        "median": 0.20945945945945948,
+        "mean": 0.2041967625144357
+      },
+      "avgScore": 515,
+      "uniqueAll": true
+    },
+    {
+      "lambda": 25,
+      "levels": 20,
+      "totalCages": 435,
+      "uniqueShapes": 21,
+      "entropyH": 2.576,
+      "singletonRatio": 0.034482758620689655,
+      "top4Share": 0.542528735632184,
+      "complexShare": 0.3816091954022989,
+      "ratio": {
+        "median": 0.2066145092460882,
+        "mean": 0.2065833938243435
+      },
+      "avgScore": 513.8,
+      "uniqueAll": true
+    },
+    {
+      "lambda": 50,
+      "levels": 20,
+      "totalCages": 435,
+      "uniqueShapes": 21,
+      "entropyH": 2.532,
+      "singletonRatio": 0.034482758620689655,
+      "top4Share": 0.5632183908045977,
+      "complexShare": 0.3632183908045977,
+      "ratio": {
+        "median": 0.19594594594594594,
+        "mean": 0.19553009584776898
+      },
+      "avgScore": 515,
+      "uniqueAll": true
+    }
+  ],
+  "best_lambda": 25,
+  "gates": {
+    "Gate2_top4_lt_45pct": false,
+    "Gate4_singleton_le_5pct": true,
+    "Gate4_ratio_no_regress": true,
+    "Gate4_unique": true,
+    "Gate4_score_stable": true
+  },
+  "verdict": "B3-B1b 验证：topologyScore（λ 小）只改 candidate ranking。Gate2 看 top4Share 58%→<45%；若 λ 增大才降但 difficulty/ratio 退化，说明需改 builder（进入 B3-B1b 第二阶段）。"
+}

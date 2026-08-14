@@ -1,0 +1,51 @@
+{
+  "boss.short_stroke.victory.01": {
+    "level": "level-109",
+    "boss_id": "short_stroke",
+    "type": "B",
+    "phase": "victory",
+    "text": "Boss Defeated: Short Stroke (Unknown Sender)"
+  },
+  "boss.shenshian.victory.01": {
+    "level": "level-209",
+    "boss_id": "shenshian",
+    "type": "B",
+    "phase": "victory",
+    "text": "Boss Defeated: Father·Shen Shi'an (The Unfinished Path)"
+  },
+  "boss.ito_1.victory.01": {
+    "level": "level-309",
+    "boss_id": "ito_1",
+    "type": "B",
+    "phase": "victory",
+    "text": "Boss Defeated: Ito (First Skirmish)"
+  },
+  "boss.yamada_tokko.victory.01": {
+    "level": "level-409",
+    "boss_id": "yamada_tokko",
+    "type": "B",
+    "phase": "victory",
+    "text": "Boss Defeated: Yamada's Tokkō (First Skirmish)"
+  },
+  "boss.df_unit.victory.01": {
+    "level": "level-509",
+    "boss_id": "df_unit",
+    "type": "B",
+    "phase": "victory",
+    "text": "Boss Defeated: Japanese Radio Direction-Finding Unit"
+  },
+  "boss.yamada_chief.victory.01": {
+    "level": "level-609",
+    "boss_id": "yamada_chief",
+    "type": "B",
+    "phase": "victory",
+    "text": "Boss Defeated: Chief Yamada (Final Skirmish)"
+  },
+  "boss.ito_final.victory.01": {
+    "level": "level-809",
+    "boss_id": "ito_final",
+    "type": "B",
+    "phase": "victory",
+    "text": "Boss Defeated: Ito (Final Confrontation)"
+  }
+}

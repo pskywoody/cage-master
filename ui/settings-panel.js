@@ -48,11 +48,11 @@ export class SettingsPanel {
       volumeBgm: 0.4,     // BGM 音量 0~1
       quality: 'high',    // 画质 high | medium | low
       noteMode: 'cycle',  // 笔记模式 cycle | toggle
-      language: 'zh',     // 语言（预留，仅 zh）
+      language: 'zh-CN', // 语言（v2.1：zh-CN / en-US / ja-JP / ko-KR）
       autoCandidates: false, // 自动候选笔记（默认关闭，2026-08-03）
       skipLesson: false, // 跳过教学（v2.0：默认关闭，开启后进入关卡自动跳过教学）
       heatmap: true, // 难度热区（v2.0：默认开启，绿/黄/红三色难度覆盖层；低画质自动关闭）
-      hintNarrator: '', // 提示讲解员（v2.0：默认空=跟随系统随机，可选守笼人/阿妍/莹莹/设局人/星辰梭，沈墨除外）
+      hintNarrator: '', // 提示讲解员（v2.0：默认空=跟随系统按章节分配，可选沈墨/苏晚/薇拉/伊藤）
       chibiChatter: true, // chibi 讲解（v2.0：默认开启；关闭后不听 chibi 聒噪，专心游戏——提示/教学不出角色气泡）
       muteAll: false, // 总静音（v2.0：默认关闭；开启后所有声音关闭）
     }, options.defaults || {});
@@ -77,11 +77,11 @@ export class SettingsPanel {
       },
       quality: (v) => ['high', 'medium', 'low'].indexOf(v) >= 0 ? v : this._defaults.quality,
       noteMode: (v) => ['cycle', 'toggle'].indexOf(v) >= 0 ? v : this._defaults.noteMode,
-      language: (v) => ['zh'].indexOf(v) >= 0 ? v : 'zh',
+      language: (v) => ['zh-CN', 'en-US', 'ja-JP', 'ko-KR'].indexOf(v) >= 0 ? v : 'zh-CN',
       autoCandidates: (v) => !!v,
       skipLesson: (v) => !!v,
       heatmap: (v) => !!v,
-      hintNarrator: (v) => ['', 'cagekeeper', 'ayan', 'ying', 'plotter', 'weaver'].indexOf(v) >= 0 ? v : '',
+      hintNarrator: (v) => ['', 'shenmo', 'suwan', 'vera', 'ito'].indexOf(v) >= 0 ? v : '',
       chibiChatter: (v) => !!v,
       muteAll: (v) => !!v,
     };
@@ -264,7 +264,7 @@ export class SettingsPanel {
 
     const header = document.createElement('div');
     header.className = 'cm-settings-header';
-    header.innerHTML = '<span class="cm-settings-title">\u2699 \u8BBE\u7F6E</span>';
+    header.innerHTML = '<span class="cm-settings-title">' + window.I18n.t('ui.settings.title') + '</span>';
 
     // v2.0：隐藏入口——连点 5 次版本号打开 AI 调试（原暂停菜单 AI 调试按钮已移除）
     // Q4：版本号 = 本次大改（纸墨化 P0-P3 + Q1-Q3 布局调整），设置面板可见即确认加载新版
@@ -283,7 +283,7 @@ export class SettingsPanel {
         // 首次点击提示：AI 调试入口
         try {
           const tip = document.createElement('div');
-          tip.textContent = '\u8FDE\u70B9 3 \u6B21\u6253\u5F00 AI \u8C03\u8BD5';
+          tip.textContent = window.I18n.t('ui.settings.aiDebugTip');
           tip.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(20,26,40,0.95);color:#e2e8f0;padding:10px 16px;border-radius:8px;border:1px solid rgba(251,191,36,0.4);font-size:13px;z-index:99999;box-shadow:0 4px 14px rgba(0,0,0,0.5);';
           document.body.appendChild(tip);
           setTimeout(() => { try { tip.remove(); } catch (eT) {} }, 1200);
@@ -312,102 +312,104 @@ export class SettingsPanel {
     panel.appendChild(header);
 
     // 音量
-    panel.appendChild(this._buildSlider('volume', '\u4E3B\u97F3\u91CF', 0, 100));
+    panel.appendChild(this._buildSlider('volume', window.I18n.t('ui.settings.volumeMaster'), 0, 100));
     // 音效音量
-    panel.appendChild(this._buildSlider('volumeSfx', '\u97F3\u6548\u97F3\u91CF', 0, 100));
+    panel.appendChild(this._buildSlider('volumeSfx', window.I18n.t('ui.settings.volumeSfx'), 0, 100));
     // 语音音量
-    panel.appendChild(this._buildSlider('volumeVoice', '\u8BED\u97F3\u97F3\u91CF', 0, 100));
+    panel.appendChild(this._buildSlider('volumeVoice', window.I18n.t('ui.settings.volumeVoice'), 0, 100));
     // BGM 音量
-    panel.appendChild(this._buildSlider('volumeBgm', 'BGM\u97F3\u91CF', 0, 100));
+    panel.appendChild(this._buildSlider('volumeBgm', window.I18n.t('ui.settings.volumeBgm'), 0, 100));
     // 画质
-    panel.appendChild(this._buildSelect('quality', '\u753B\u8D28', [
-      { value: 'high', label: '\u9AD8' },
-      { value: 'medium', label: '\u4E2D' },
-      { value: 'low', label: '\u4F4E' },
+    panel.appendChild(this._buildSelect('quality', window.I18n.t('ui.settings.quality'), [
+      { value: 'high', label: window.I18n.t('ui.settings.quality.high') },
+      { value: 'medium', label: window.I18n.t('ui.settings.quality.medium') },
+      { value: 'low', label: window.I18n.t('ui.settings.quality.low') },
     ]));
     // 笔记模式
-    panel.appendChild(this._buildSelect('noteMode', '\u7B14\u8BB0\u6A21\u5F0F', [
-      { value: 'cycle', label: '\u5FAA\u73AF\u5207\u6362' },
-      { value: 'toggle', label: '\u76F4\u63A5\u5207\u6362' },
+    panel.appendChild(this._buildSelect('noteMode', window.I18n.t('ui.settings.noteMode'), [
+      { value: 'cycle', label: window.I18n.t('ui.settings.noteMode.cycle') },
+      { value: 'toggle', label: window.I18n.t('ui.settings.noteMode.toggle') },
     ]));
-    // 语言（预留）
-    const langRow = this._buildSelect('language', '\u8BED\u8A00', [
-      { value: 'zh', label: '\u7B80\u4F53\u4E2D\u6587' },
+    // 语言（v2.1：四语切换）
+    const langRow = this._buildSelect('language', window.I18n.t('ui.settings.language'), [
+      { value: 'zh-CN', label: window.I18n.t('ui.settings.language.zhCN') },
+      { value: 'en-US', label: 'English' },
+      { value: 'ja-JP', label: window.I18n.t('ui.settings.language.jaJP') },
+      { value: 'ko-KR', label: window.I18n.t('ui.settings.language.koKR') },
     ]);
     if (langRow) {
       const hint = langRow.querySelector('.cm-settings-hint');
-      if (hint) hint.textContent = '\u66F4\u591A\u8BED\u8A00\u5C06\u5728\u540E\u7EED\u7248\u672C\u4E2D\u63A8\u51FA';
+      if (hint) hint.textContent = window.I18n.t('ui.settings.language.hint');
       panel.appendChild(langRow);
     }
 
     // 自动候选笔记开关（2026-08-03）：默认关闭，开启后自动填入引擎候选数
-    const autoCandRow = this._buildSelect('autoCandidates', '\u81EA\u52A8\u5019\u9009\u7B14\u8BB0', [
-      { value: false, label: '\u5173\u95ED\uFF08\u624B\u52A8\u8BB0\u7B14\u8BB0\uFF09' },
-      { value: true, label: '\u5F00\u542F\uFF08\u81EA\u52A8\u586B\u5165\u5019\u9009\u6570\uFF09' },
+    const autoCandRow = this._buildSelect('autoCandidates', window.I18n.t('ui.settings.autoCandidates'), [
+      { value: false, label: window.I18n.t('ui.settings.autoCandidates.off') },
+      { value: true, label: window.I18n.t('ui.settings.autoCandidates.on') },
     ]);
     if (autoCandRow) {
       const hint = autoCandRow.querySelector('.cm-settings-hint');
-      if (hint) hint.textContent = '\u9AD8\u7AEF\u5C40\u5EFA\u8BAE\u5173\u95ED\uFF0C\u624B\u52A8\u7B14\u8BB0\u66F4\u5229\u4E8E\u63A8\u7406\u8BAD\u7EC3';
+      if (hint) hint.textContent = window.I18n.t('ui.settings.autoCandidates.hint');
       panel.appendChild(autoCandRow);
     }
 
     // 跳过教学开关（v2.0）：默认关闭；开启后所有教学对话直接跳过
-    const skipLessonRow = this._buildSelect('skipLesson', '\u8DF3\u8FC7\u6559\u5B66', [
-      { value: false, label: '\u5173\u95ED\uFF08\u9ED8\u8BA4\uFF0C\u6B63\u5E38\u6559\u5B66\uFF09' },
-      { value: true, label: '\u5F00\u542F\uFF08\u8DF3\u8FC7\u6240\u6709\u6559\u5B66\u5BF9\u8BDD\uFF09' },
+    const skipLessonRow = this._buildSelect('skipLesson', window.I18n.t('ui.settings.skipLesson'), [
+      { value: false, label: window.I18n.t('ui.settings.skipLesson.off') },
+      { value: true, label: window.I18n.t('ui.settings.skipLesson.on') },
     ]);
     if (skipLessonRow) {
       const hint = skipLessonRow.querySelector('.cm-settings-hint');
-      if (hint) hint.textContent = '\u5F00\u542F\u540E\u8FDB\u5165\u5173\u5361\u65F6\u81EA\u52A8\u8DF3\u8FC7\u6559\u5B66\uFF0C\u76F4\u63A5\u81EA\u7531\u89E3\u9898';
+      if (hint) hint.textContent = window.I18n.t('ui.settings.skipLesson.hint');
       panel.appendChild(skipLessonRow);
     }
 
     // 难度热区开关（Q6）：实时推算"当前盘面可推格"——绿色=现在能填（深绿边框=高影响格），低画质自动关闭
-    const heatmapRow = this._buildSelect('heatmap', '\u96BE\u5EA6\u70ED\u533A', [
-      { value: true, label: '\u5F00\u542F\uFF08\u7EFF\u8272=\u5F53\u524D\u53EF\u63A8\u683C\uFF09' },
-      { value: false, label: '\u5173\u95ED\uFF08\u4E0D\u663E\u793A\u53EF\u63A8\u683C\uFF09' },
+    const heatmapRow = this._buildSelect('heatmap', window.I18n.t('ui.settings.heatmap'), [
+      { value: true, label: window.I18n.t('ui.settings.heatmap.on') },
+      { value: false, label: window.I18n.t('ui.settings.heatmap.off') },
     ]);
     if (heatmapRow) {
       const hint = heatmapRow.querySelector('.cm-settings-hint');
-      if (hint) hint.textContent = '\u5B9E\u65F6\u63A8\u7B97\uFF1A\u7EFF\u8272=\u5F53\u524D\u53EF\u63A8\u51FA\u7684\u683C\uFF0C\u6DF1\u7EFF\u8FB9\u6846=\u9AD8\u5F71\u54CD\u53EF\u63A8\u683C\uFF1B\u586B\u6570\u540E\u81EA\u52A8\u91CD\u7B97\uFF1B\u4F4E\u753B\u8D28\u81EA\u52A8\u5173\u95ED';
+      if (hint) hint.textContent = window.I18n.t('ui.settings.heatmap.hint');
       panel.appendChild(heatmapRow);
     }
 
-    // 提示讲解员（v2.0）：默认按技巧难度自动分配（1-3级莹莹/4-6级阿妍/7-9级守笼人/10-11级设局人），
-    // 选定后固定由该 chibi 角色讲解（沈墨除外）
-    const narratorRow = this._buildSelect('hintNarrator', '\u63D0\u793A\u8BB2\u89E3\u5458', [
-      { value: '', label: '\u81EA\u52A8\uFF08\u6309\u6280\u5DE7\u96BE\u5EA6\u5206\u914D\uFF09' },
-      { value: 'cagekeeper', label: '\u5B88\u7B3C\u4EBA' },
-      { value: 'ayan', label: '\u963F\u59ED' },
-      { value: 'ying', label: '\u83B9\u83B9' },
-      { value: 'plotter', label: '\u8BBE\u5C40\u4EBA' },
-      { value: 'weaver', label: '\u661F\u8FB0\u68AD' },
+    // 提示讲解员（v2.0）：默认按章节自动分配（第1章苏晚/第2章沈墨/第3章伊藤/第4章薇拉/第5章沈墨/第6-7章苏晚），
+    // 选定后固定由该 chibi 角色讲解
+    const narratorRow = this._buildSelect('hintNarrator', window.I18n.t('ui.settings.hintNarrator'), [
+      { value: '', label: window.I18n.t('ui.settings.hintNarrator.auto') },
+      { value: 'shenmo', label: window.I18n.t('ui.settings.hintNarrator.shenmo') },
+      { value: 'suwan', label: window.I18n.t('ui.settings.hintNarrator.suwan') },
+      { value: 'vera', label: window.I18n.t('ui.settings.hintNarrator.vera') },
+      { value: 'ito', label: window.I18n.t('ui.settings.hintNarrator.ito') },
     ]);
     if (narratorRow) {
       const hint = narratorRow.querySelector('.cm-settings-hint');
-      if (hint) hint.textContent = '\u9ED8\u8BA4\u81EA\u52A8\uFF1A1-3\u7EA7\u83B9\u83B9 / 4-6\u7EA7\u963F\u59ED / 7-9\u7EA7\u5B88\u7B3C\u4EBA / 10-11\u7EA7\u8BBE\u5C40\u4EBA\uFF1B\u9009\u5B9A\u540E\u56FA\u5B9A\u7531\u8BE5\u89D2\u8272\u8BB2\u89E3';
+      if (hint) hint.textContent = window.I18n.t('ui.settings.hintNarrator.hint');
       panel.appendChild(narratorRow);
     }
 
     // chibi 讲解开关（v2.0）：关闭后不听 chibi 聒噪，专心游戏
-    const chibiRow = this._buildSelect('chibiChatter', 'chibi\u8BB2\u89E3', [
-      { value: true, label: '\u5F00\u542F\uFF08\u9ED8\u8BA4\uFF0C\u63D0\u793A/\u6559\u5B66\u7531\u89D2\u8272\u8BB2\u89E3\uFF09' },
-      { value: false, label: '\u5173\u95ED\uFF08\u4E0D\u542C chibi \u5608\u566A\uFF0C\u4E13\u5FC3\u89E3\u9898\uFF09' },
+    const chibiRow = this._buildSelect('chibiChatter', window.I18n.t('ui.settings.chibiChatter'), [
+      { value: true, label: window.I18n.t('ui.settings.chibiChatter.on') },
+      { value: false, label: window.I18n.t('ui.settings.chibiChatter.off') },
     ]);
     if (chibiRow) {
       const hint = chibiRow.querySelector('.cm-settings-hint');
-      if (hint) hint.textContent = '\u5173\u95ED\u540E\u63D0\u793A\u4E0D\u51FA\u89D2\u8272\u6C14\u6CE1\uFF0C\u4F46\u52A8\u753B\u6F14\u793A\u4ECD\u6B63\u5E38';
+      if (hint) hint.textContent = window.I18n.t('ui.settings.chibiChatter.hint');
       panel.appendChild(chibiRow);
     }
 
     // 总静音开关（v2.0）：一键关闭所有声音
-    const muteRow = this._buildSelect('muteAll', '\u603B\u9759\u97F3', [
-      { value: false, label: '\u5173\u95ED\uFF08\u9ED8\u8BA4\uFF0C\u6B63\u5E38\u53D1\u58F0\uFF09' },
-      { value: true, label: '\u5F00\u542F\uFF08\u4E00\u952E\u9759\u97F3\u6240\u6709\u58F0\u97F3\uFF09' },
+    const muteRow = this._buildSelect('muteAll', window.I18n.t('ui.settings.muteAll'), [
+      { value: false, label: window.I18n.t('ui.settings.muteAll.off') },
+      { value: true, label: window.I18n.t('ui.settings.muteAll.on') },
     ]);
     if (muteRow) {
       const hint = muteRow.querySelector('.cm-settings-hint');
-      if (hint) hint.textContent = '\u5F00\u542F\u540E\u4E3B/\u97F3\u6548/\u8BED\u97F3/BGM \u5168\u90E8\u9759\u97F3\uFF0C\u4E0D\u5F71\u54CD\u6E38\u620F';
+      if (hint) hint.textContent = window.I18n.t('ui.settings.muteAll.hint');
       panel.appendChild(muteRow);
     }
 

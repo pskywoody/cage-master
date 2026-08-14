@@ -1,0 +1,25 @@
+{
+  "generatedAt": "2026-08-10T05:53:00.000Z",
+  "config": {
+    "count": 20,
+    "seed": 20260810,
+    "collected": 8,
+    "objective": { "enabled": true, "ratioWeight": 0, "topologyWeight": 25 },
+    "suppressSingletons": true,
+    "topologyProposal": { "enabled": false }
+  },
+  "baseline": {
+    "levels": 20,
+    "totalCages": 0,
+    "uniqueShapes": 0,
+    "entropyH": 2.56,
+    "singletonRatio": 0.041,
+    "top4Share": 0.554,
+    "complexShare": 0.366,
+    "ratioMean": 0.192,
+    "avgScore": 520,
+    "uniqueAll": true
+  },
+  "note": "B3-B1b 阶段1 冻结基线 = B3-B1a(suppress=true) + λ=25 topology ranking。totalCages/uniqueShapes 由 phase2 报告补齐。",
+  "verdict": "λ=25 为 Phase 1 甜点，采纳为中间基线。Phase 2 proposal 实验中此组为 control。"
+}

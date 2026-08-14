@@ -1,0 +1,81 @@
+{
+  "generatedAt": "2026-08-09T22:48:53.386Z",
+  "config": {
+    "count": 20,
+    "seed": 20260810,
+    "strengths": [
+      0.25,
+      0.4,
+      0.6
+    ],
+    "collected": 8
+  },
+  "control_phase1": {
+    "levels": 20,
+    "totalCages": 435,
+    "uniqueShapes": 21,
+    "entropyH": 2.568,
+    "singletonRatio": 0.0367816091954023,
+    "top4Share": 0.5517241379310345,
+    "complexShare": 0.36551724137931035,
+    "ratioMean": 0.19031703610731202,
+    "avgScore": 525,
+    "uniqueAll": true
+  },
+  "phase2_growthBias": [
+    {
+      "strength": 0.25,
+      "levels": 20,
+      "totalCages": 428,
+      "uniqueShapes": 21,
+      "entropyH": 2.617,
+      "singletonRatio": 0.028037383177570093,
+      "top4Share": 0.530373831775701,
+      "complexShare": 0.37616822429906543,
+      "ratioMean": 0.21697830569074447,
+      "avgScore": 498.8,
+      "uniqueAll": true
+    },
+    {
+      "strength": 0.4,
+      "levels": 20,
+      "totalCages": 429,
+      "uniqueShapes": 21,
+      "entropyH": 2.707,
+      "singletonRatio": 0.03496503496503497,
+      "top4Share": 0.49184149184149184,
+      "complexShare": 0.3986013986013986,
+      "ratioMean": 0.21814661347316328,
+      "avgScore": 518.8,
+      "uniqueAll": true
+    },
+    {
+      "strength": 0.6,
+      "levels": 20,
+      "totalCages": 444,
+      "uniqueShapes": 20,
+      "entropyH": 2.526,
+      "singletonRatio": 0.033783783783783786,
+      "top4Share": 0.5788288288288288,
+      "complexShare": 0.3738738738738739,
+      "ratioMean": 0.21502586895046338,
+      "avgScore": 497.5,
+      "uniqueAll": true
+    }
+  ],
+  "best": {
+    "strength": 0.4,
+    "top4Share": 0.49184149184149184,
+    "complexShare": 0.3986013986013986
+  },
+  "gates": {
+    "GateA_singleton_le_5pct": true,
+    "GateB_top4_lt_50pct": true,
+    "GateC_top4_lt_45pct": false,
+    "GateC_complex_gt_45pct": false,
+    "GateC_difficulty_pm5": true,
+    "Gate_ratio_no_regress": true,
+    "Gate_unique": true
+  },
+  "verdict": "B3-B2 验证：growth bias 能否改变 topology supply。Gate B 看 top4<50% 是否证明生长偏置有杠杆；若 top4 随 strength 单调下降 → 方向正确，可继续加 strength；若不动 → supply 瓶颈在更深处（targetSize/sizeWeights）。"
+}

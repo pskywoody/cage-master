@@ -4,8 +4,11 @@ node_modules/
 *.tmp
 *.bak
 *.bak701
+*.bak-ai
 __pycache__/
 *.pyc
 .trae-html-share-packages/
 .workbuddy-ai/
 reports/
+assets/archive/
+_tmp_inline_check.js

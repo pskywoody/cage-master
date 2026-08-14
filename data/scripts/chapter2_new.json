@@ -1,0 +1,322 @@
+{
+  "chapterId": 2,
+  "title": "第二章·屋（1941年11月·藏书楼地下）",
+  "prologue": [
+    {
+      "speaker": "旁白",
+      "text": "1941年11月，特高课对旧书、印刷品的搜查持续加码。沈墨的名字，悄然进入怀疑名单。他沿着父亲曾经走过的路径，向下深入藏书楼地下B1-B2层。层层物证，一点点揭开父辈的过往。",
+      "sfx": "ambient_wind",
+      "vo": "VO_N_0052",
+      "emotion": "旁白·低沉·讲故事",
+      "bg": "assets/images/chapter2/backgrounds/BG-CH2-01_b1_corridor.jpg"
+    },
+    {
+      "speaker": "沈墨 CHIBI",
+      "text": "（踏入B1回廊）父亲走过的路……我来走一遍。",
+      "vo": "VO_SC_0001",
+      "emotion": "沉静·决心"
+    }
+  ],
+  "levels": [
+    {
+      "levelId": 201,
+      "title": "B1回廊",
+      "preDialog": [
+        {
+          "speaker": "旁白",
+          "text": "铁门完全敞开，沈墨踏入B1回廊。空气干燥阴冷，一排排壁灯蒙着薄灰，勉强照亮石壁。两侧石壁密密麻麻布满刀尖刻下的数字序列，一道接着一道，绵延向走廊尽头。这是一条漫长的记忆长廊，无数谜题碎片被刻在石头之上。",
+          "emotion": "旁白·叙述",
+          "bg": "assets/images/chapter2/backgrounds/BG-CH2-01_b1_corridor.jpg"
+        },
+        {
+          "speaker": "旁白",
+          "text": "有的刻痕老旧，磨损近乎模糊；有的刻痕锋利，刻印时间并不遥远。父亲的痕迹，混杂在众多无名刻痕之间。",
+          "emotion": "旁白·叙述"
+        },
+        {
+          "speaker": "沈墨 CHIBI",
+          "text": "（指尖抚过石壁）属于父亲的那一组刻痕……在这里。",
+          "vo": "VO_SC_0002",
+          "emotion": "辨认·专注"
+        }
+      ],
+      "clearDialog": [
+        {
+          "speaker": "旁白",
+          "text": "B1回廊，完成。第二章档案碎片 1/9 解锁。石壁刻痕分属多个时期，父亲的路径可以被单独甄别。",
+          "emotion": "旁白·叙述"
+        }
+      ]
+    },
+    {
+      "levelId": 202,
+      "title": "岔路残简",
+      "preDialog": [
+        {
+          "speaker": "旁白",
+          "text": "回廊行至中段，道路一分为二。一条通路向着藏书楼本体下方延伸；另一条岔道，通向无人知晓的侧室。地面落着半张残破纸页，纸页边角已经腐朽。",
+          "emotion": "旁白·叙述",
+          "bg": "assets/images/chapter2/backgrounds/BG-CH2-02_branch.jpg"
+        },
+        {
+          "speaker": "旁白",
+          "text": "纸上残存1938的年份印记，还有半行模糊签名。1938，是诸多往事开始的年份。这张残简，不知道曾经属于谁。",
+          "emotion": "旁白·叙述"
+        },
+        {
+          "speaker": "沈墨 CHIBI",
+          "text": "（拾起残简）1938……父亲开始走这条路的那一年。",
+          "vo": "VO_SC_0003",
+          "emotion": "沉思"
+        }
+      ],
+      "clearDialog": [
+        {
+          "speaker": "旁白",
+          "text": "岔路残简，完成。档案碎片 2/9 解锁。排除错误岔路，锁定主通路方向；1938残简的身份依旧成谜。",
+          "emotion": "旁白·叙述"
+        }
+      ]
+    },
+    {
+      "levelId": 203,
+      "title": "桥洞一瞬",
+      "preDialog": [
+        {
+          "speaker": "旁白",
+          "text": "长时间滞留地下，需要返回地面补给。沈墨走出藏书楼，途经城外石桥。河水浑浊，桥洞阴影深重。一名身着灰布长衫的中年人立在阴影之中。",
+          "emotion": "旁白·叙述",
+          "bg": "assets/images/chapter2/backgrounds/BG-CH2-03_bridge_arch.jpg"
+        },
+        {
+          "speaker": "旁白",
+          "text": "二人擦肩而过，距离不过数步。对方没有开口，目光飞快扫过沈墨，随即转身消失在人流。没有留下只言片语——不知道是敌是友，是监视还是接应。",
+          "emotion": "旁白·叙述"
+        },
+        {
+          "speaker": "沈墨 CHIBI",
+          "text": "（目送人影消失）灰布长衫……不是特高课的做派。那会是谁？",
+          "vo": "VO_SC_0004",
+          "emotion": "警惕·疑惑"
+        }
+      ],
+      "clearDialog": [
+        {
+          "speaker": "旁白",
+          "text": "桥洞一瞬，完成。档案碎片 3/9 解锁。灰布长衫神秘人出场；我方或敌方监视已经近身。",
+          "emotion": "旁白·叙述"
+        }
+      ]
+    },
+    {
+      "levelId": 204,
+      "title": "72号旧居",
+      "preDialog": [
+        {
+          "speaker": "旁白",
+          "text": "循着线索，沈墨来到父亲从前居住的72号旧居。院落早已荒废，杂草漫过石阶。房屋空空荡荡，人早已离去。屋内桌椅蒙厚灰，没有活人居住的气息。",
+          "emotion": "旁白·叙述",
+          "bg": "assets/images/chapter2/backgrounds/BG-CH2-04_old_residence.jpg"
+        },
+        {
+          "speaker": "旁白",
+          "text": "墙角木柜锁孔，恰好适配那一枚编号3的黄铜钥匙。钥匙插入锁孔，轻轻转动，柜锁应声弹开。",
+          "sfx": "door_open",
+          "emotion": "旁白·叙述"
+        },
+        {
+          "speaker": "沈墨 CHIBI",
+          "text": "（打开木柜）父亲的遗物……都在这里。",
+          "vo": "VO_SC_0005",
+          "emotion": "低沉·怀念"
+        }
+      ],
+      "clearDialog": [
+        {
+          "speaker": "旁白",
+          "text": "72号旧居，完成。档案碎片 4/9 解锁。木柜开启，里面存放父亲遗留的文稿与数独底稿。",
+          "emotion": "旁白·叙述"
+        }
+      ]
+    },
+    {
+      "levelId": 205,
+      "title": "旧稿破译",
+      "preDialog": [
+        {
+          "speaker": "旁白",
+          "text": "木柜之内，一叠又一叠数独底稿静静躺着。有的完整，有的只写到一半便中断。沈墨一页页翻阅，看见父亲无数次演算、涂改的痕迹。",
+          "emotion": "旁白·叙述",
+          "bg": "assets/images/chapter2/backgrounds/BG-CH2-04_old_residence.jpg"
+        },
+        {
+          "speaker": "旁白",
+          "text": "很多盘面，同样卡在三分之二的位置，便不再往下书写。仿佛有一道无法逾越的界限横亘在他面前。父亲当年，同样被困在这一套谜题链上，没能走到终点。",
+          "emotion": "旁白·叙述"
+        },
+        {
+          "speaker": "沈墨 CHIBI",
+          "text": "（合上底稿）父亲知道地下密道的全部存在……却始终没能走完最后的段落。",
+          "vo": "VO_SC_0006",
+          "emotion": "领悟·沉重"
+        }
+      ],
+      "clearDialog": [
+        {
+          "speaker": "旁白",
+          "text": "旧稿破译，完成。档案碎片 5/9 解锁。父亲知晓藏书楼地下密道全部存在，但始终无法走完最后的段落。",
+          "emotion": "旁白·叙述"
+        }
+      ]
+    },
+    {
+      "levelId": 206,
+      "title": "返回地下",
+      "preDialog": [
+        {
+          "speaker": "旁白",
+          "text": "旧居线索全部读完，沈墨必须重返地下。城内风声一日紧过一日，街头特务盘查越来越频繁。苏晚在家中，替他抹除外出留下的痕迹，掩盖他长时间失踪的事实。",
+          "emotion": "旁白·叙述",
+          "bg": "assets/images/chapter2/backgrounds/BG-CH2-05_underground.jpg"
+        },
+        {
+          "speaker": "旁白",
+          "text": "再次推开那道砖石缝隙，阴冷地下气息扑面而来。地面世界危机渐浓，地下是避难所，也是囚笼。",
+          "emotion": "旁白·叙述"
+        },
+        {
+          "speaker": "沈墨 CHIBI",
+          "text": "（暗门在身后合拢）苏晚……辛苦你了。",
+          "vo": "VO_SC_0007",
+          "emotion": "低语·感念"
+        }
+      ],
+      "clearDialog": [
+        {
+          "speaker": "旁白",
+          "text": "返回地下，完成。档案碎片 6/9 解锁。暗门重新关上，隔绝地面灯火，再度沉入地下。",
+          "emotion": "旁白·叙述"
+        }
+      ]
+    },
+    {
+      "levelId": 207,
+      "title": "B2石室入口",
+      "preDialog": [
+        {
+          "speaker": "旁白",
+          "text": "走完漫长B1回廊，抵达通往B2的铁门。铁门远比之前的门扇更加厚重，锈迹爬满铸铁表面。整扇门板，就是一块巨大的数独锁。",
+          "emotion": "旁白·叙述",
+          "bg": "assets/images/chapter2/backgrounds/BG-CH2-06_b2_gate.jpg"
+        },
+        {
+          "speaker": "旁白",
+          "text": "石壁两侧，新旧刻痕交错。一部分属于父亲，另一部分，是来历不明的后来者。有人，在沈墨到来之前，就已经来过这里。",
+          "emotion": "旁白·叙述"
+        },
+        {
+          "speaker": "沈墨 CHIBI",
+          "text": "（审视刻痕）不是父亲的笔迹……有人先我一步，到过这里。",
+          "vo": "VO_SC_0008",
+          "emotion": "警觉"
+        }
+      ],
+      "clearDialog": [
+        {
+          "speaker": "旁白",
+          "text": "B2石室入口，完成。档案碎片 7/9 解锁。B2层正式开启；存在不明访客先于沈墨抵达。",
+          "emotion": "旁白·叙述"
+        }
+      ]
+    },
+    {
+      "levelId": 208,
+      "title": "B2空室",
+      "preDialog": [
+        {
+          "speaker": "旁白",
+          "text": "踏入B2主石室。空间比夹层宽大许多。墙角堆放旧木箱，地上散落废弃文稿。空气中混合纸张腐朽与岩石的寒气。",
+          "emotion": "旁白·叙述",
+          "bg": "assets/images/chapter2/backgrounds/BG-CH2-07_b2_room.jpg"
+        },
+        {
+          "speaker": "旁白",
+          "text": "桌面上有一处浅浅压痕，证明不久之前，确实有人在此落座。没有留下姓名，没有留下字条，人已经彻底离去。访客来去无踪，只余下物理痕迹，诉说曾经发生过的一切。",
+          "emotion": "旁白·叙述"
+        },
+        {
+          "speaker": "沈墨 CHIBI",
+          "text": "（从遗留碎片读出）B3确实存在……但向下的路径，被一套完整的谜题链封锁了。",
+          "vo": "VO_SC_0009",
+          "emotion": "推断·凝重"
+        }
+      ],
+      "clearDialog": [
+        {
+          "speaker": "旁白",
+          "text": "B2空室，完成。档案碎片 8/9 解锁。B3真实存在，但被谜题链封锁；不明访客曾经停留于此。",
+          "emotion": "旁白·叙述"
+        }
+      ]
+    },
+    {
+      "levelId": 209,
+      "title": "石室留痕",
+      "preDialog": [
+        {
+          "speaker": "旁白",
+          "text": "沈墨站在石壁之前。无数前人的印记遍布四壁。父亲、不知名访客，全部把自己的痕迹留在石头上。他取出炭笔，在石壁空白位置，留下属于自己的一道刻痕。不写名字，不写日期，只代表：我来过。",
+          "emotion": "旁白·叙述",
+          "bg": "assets/images/chapter2/backgrounds/BG-CH2-07_b2_room.jpg"
+        },
+        {
+          "speaker": "旁白",
+          "text": "到此，他走完父亲曾经踏遍的全部道路。但父亲没能抵达的终点，依旧还在更深处黑暗之中。",
+          "emotion": "旁白·叙述"
+        },
+        {
+          "speaker": "沈墨 CHIBI",
+          "text": "（在父亲最后一刀停下的地方，补了一刀）不是续写。是收尾。一道停了。一道没停。",
+          "vo": "VO_SC_0010",
+          "emotion": "平静·坚定"
+        }
+      ],
+      "clearDialog": [
+        {
+          "speaker": "旁白",
+          "text": "石室留痕，完成。第二章全部档案碎片 9/9 解锁。他走完了自己的路，停在了该停的地方。你走完了他的路，然后继续往前走。",
+          "emotion": "旁白·叙述"
+        }
+      ]
+    }
+  ],
+  "hiddenStory": [
+    {
+      "speaker": "旁白",
+      "text": "第二章的九枚档案碎片，拼合成一段完整的父辈轨迹。1938残简、石壁刻痕、编号3钥匙……城市旧居、桥洞、藏书楼B1-B2，父亲的路，沈墨走完了。",
+      "emotion": "旁白·叙述",
+      "bg": "assets/images/chapter2/backgrounds/BG-CH2-01_b1_corridor.jpg"
+    },
+    {
+      "speaker": "沈墨 CHIBI",
+      "text": "（看着石壁上的两道刻痕）一道停了。一道没停。而B3的门，还锁着。",
+      "vo": "VO_SC_0011",
+      "emotion": "沉思·领悟"
+    }
+  ],
+  "epilogue": [
+    {
+      "speaker": "旁白",
+      "text": "第二章·屋，结束。沈墨进入特务怀疑名单，神秘灰布长衫人登场。而B3的门，正等待被开启。",
+      "sfx": "seal_stamp",
+      "emotion": "旁白·叙述",
+      "bg": "assets/images/chapter2/backgrounds/BG-CH2-01_b1_corridor.jpg"
+    },
+    {
+      "speaker": "沈墨 CHIBI",
+      "text": "（望向更深处）第三章·门……",
+      "vo": "VO_SC_0012",
+      "emotion": "低语·前行"
+    }
+  ]
+}

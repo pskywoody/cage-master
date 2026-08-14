@@ -1,0 +1,8083 @@
+﻿Prologue · The Letter (101–109)
+Level 1 · Rain-Night Letter (level-101)
+
+[Scene] Shen Mo's dwelling, a cramped study. Rain taps against the wooden window. A dim kerosene lamp flickers in the darkness.
+
+[Portrait] Shen Mo, dressed in a plain linen gown, holds an unsigned old letter between his fingers.
+
+[CG] A rain-soaked street at night. A mailbox fades into the mist.
+
+[Scene Layer]
+
+Cold rain taps against the lattice window. Dampness seeps into the room.
+
+Shen Mo picks up an unsigned letter from the corner of his desk. The paper is aged and yellowed. The seal bears no official mark — only a short, delicate stroke carved into its surface.
+
+He is nothing more than an ordinary clerk, earning a living by copying manuscripts. In recent days, inspections throughout the city have grown increasingly strict.
+
+A letter from an unknown sender is rarely a good sign.
+
+He breaks the seal.
+
+Inside is not an ordinary letter, but a thin sheet bearing a partially completed 9×9 Sudoku grid.
+
+Only a handful of cells have been filled.
+
+Among them, the fourth cell of the third row appears strangely important — as if it were the key to the entire puzzle.
+
+[Dialogue · Wordless]
+
+Shen Mo's fingertips brush against the paper.
+
+The ink has long since dried.
+
+This is no pastime.
+
+Someone, somewhere among the countless people in this city, has sent him a puzzle — and expects him to understand it.
+
+[Board Appears]
+
+Board: level-101 boardData
+Board feature: Basic 9×9 Sudoku; the third-row, fourth-column cell serves as the verification anchor
+Ambient SFX: rain pattering outside the window; the soft crackle of the kerosene lamp
+
+[Interaction · Basic Sudoku Deduction]
+
+The player completes the initial analysis of the grid.
+
+[Feedback]
+
+SFX: a faint rustle of paper.
+
+Shen Mo confirms: this is not merely a puzzle.
+
+Hidden within it is a sealed clue.
+
+[Settlement]
+
+Level 1 · Rain-Night Letter complete
+
+Unlocked Archive Fragment 1/9
+
+Unlocked Investigation Thread:
+The anonymous sender; the short-stroke mark; the third-row, fourth-column cell as the verification anchor.
+
+Level 2 · Traces of the Old Bookshop (level-102)
+
+[Scene] Avenue Joffre (Xiafei Road), the old-bookshop district, dusk.
+
+[Portrait] Shen Mo walks beneath the shadows of street trees. Pedestrians hurry past him.
+
+[CG] Avenue Joffre street scene. Rows of old bookshops line the narrow lane.
+
+[Scene Layer]
+
+The rain has stopped. Puddles reflect the fading sky.
+
+Following the clues hidden within the letter, Shen Mo arrives at the old-bookshop district on Avenue Joffre.
+
+Many shops have hung wooden "Closed" signs outside their doors.
+
+Plainclothes agents from the Special Security Section linger nearby, watching everyone who enters or leaves the bookshops.
+
+He searches through one shop after another. Most shopkeepers know nothing.
+
+At last, deep within the lane, he finds an ordinary-looking old bookshop.
+
+Above the wooden window frame, a short stroke has been carved into the wood.
+
+The same mark as before.
+
+It is old, worn pale by years of wind and frost.
+
+Shen Mo almost misses it.
+
+[Dialogue · Wordless]
+
+The door is slightly ajar.
+
+No one is inside.
+
+On the windowsill rests a half-open, weathered old book. Tucked between its pages is a second puzzle sheet.
+
+[Board Appears]
+
+Board: level-102 boardData
+Board feature: Basic Cage Sudoku; introduces the Cage-Sum Delta mechanic
+Ambient SFX: a distant tram bell echoing through the lane; footsteps passing by
+
+[Interaction · Cage-Sum Delta Deduction]
+
+[Feedback]
+
+SFX: the faint rustle of turning pages.
+
+The clue points toward the old archive library on the western side of the city.
+
+[Settlement]
+
+Level 2 · Traces of the Old Bookshop complete
+
+Unlocked Archive Fragment 2/9
+
+Unlocked Investigation Thread:
+The short-stroke mark belongs to the contact as a personal sign; the clue points to the municipal archive library.
+
+Level 3 · Shadows of the Lanes (level-103)
+
+[Scene] The lanes of the French Concession, dusk fading into night.
+
+[Portrait] Shen Mo moves through the alley shadows. Plainclothes agents pass him several times.
+
+[CG] Deep within the lanes, dim streetlamps illuminate passing figures.
+
+[Scene Layer]
+
+Night slowly descends over the lanes.
+
+Plainclothes figures move between intersections, watching from the shadows.
+
+Shen Mo blends into the crowd. He changes routes, turns through unfamiliar alleys, and checks carefully for anyone following him.
+
+No one follows.
+
+The brick walls are weathered. Torn scraps of paper gather along the roadside.
+
+In a hidden corner, someone has drawn a fragment of a Sudoku grid onto the ground with charcoal.
+
+It is not a complete puzzle.
+
+Only a partial clue remains.
+
+[Dialogue · Wordless]
+
+Someone left this mark here temporarily, then disappeared.
+
+The charcoal lines have not yet been washed away by rain.
+
+They were left recently.
+
+[Board Appears]
+
+Board: level-103 boardData
+Board feature: Fragment assembly; partial Cage restoration
+Ambient SFX: a distant patrol whistle; a dog barking at the end of the lane
+
+[Interaction · Fragment Assembly]
+
+[Feedback]
+
+SFX: footsteps echoing across stone pavement.
+
+The location of the archive library becomes clearer.
+
+Warning:
+This area is under surveillance. Do not remain here for long.
+
+[Settlement]
+
+Level 3 · Shadows of the Lanes complete
+
+Unlocked Archive Fragment 3/9
+
+Unlocked Investigation Thread:
+Street contacts are constantly moving; surveillance coverage extends across Avenue Joffre.
+
+
+
+Level 4 · The Visitor: Su Wan (level-104)
+
+[Scene] Shen Mo's dwelling, deep into the night.
+
+[Portrait] Su Wan, wearing a plain qipao, stands calmly as she pushes open the door and steps inside.
+
+[CG] A single lonely lamp burns inside the room. The door remains half-open.
+
+[Scene Layer]
+
+Shen Mo returns home.
+
+The lamp is still burning.
+
+Su Wan is already waiting.
+
+She knows the city has grown dangerous. Seeing the traces of night mist still clinging to him, a hint of worry appears in her eyes.
+
+She does not ask where the letter came from.
+
+Instead, she quietly reminds him:
+
+"House-to-house inspections have already begun. You've been out these past few days. People will remember your face."
+
+On the table, the two Sudoku sheets lie open.
+
+Su Wan lowers her gaze and studies them carefully.
+
+She recognizes the cipher format — but does not touch the pages.
+
+[Dialogue]
+
+Su Wan:
+"Don't leave these things out in the open. If they find them during a search, no explanation will save you."
+
+Shen Mo says nothing.
+
+He folds the sheets and places them inside his inner pocket.
+
+[Board Appears]
+
+Board: level-104 boardData
+Board feature: Hidden Radiance introduction; elimination logic to identify key numbers
+Ambient SFX: silence inside the room; the distant sound of a watchman's wooden clapper
+
+[Interaction · Hidden Radiance Elimination]
+
+[Feedback]
+
+SFX: fabric rustling; paper slipping into an inner pocket.
+
+Shen Mo realizes he has been pulled into a game that offers no way back.
+
+[Settlement]
+
+Level 4 · The Visitor: Su Wan complete
+
+Unlocked Archive Fragment 4/9
+
+Unlocked Investigation Thread:
+Su Wan understands the underground cipher and helps conceal Shen Mo's involvement; the danger continues to rise.
+
+Level 5 · The Archive Library's Outer Wall (level-105)
+
+[Scene] The rear alley outside the municipal archive library, beneath a waning moon.
+
+[Portrait] Shen Mo stands beside an old brick wall, looking toward the library's dark silhouette.
+
+[CG] The archive library at midnight. The silent building stands without a single lit window.
+
+[Scene Layer]
+
+Late at night, Shen Mo circles around to the back alley of the archive library.
+
+The entire building is silent.
+
+The main entrance has long been locked.
+
+The high outer wall is covered with creeping vines.
+
+At one corner, a brick shows signs of movement.
+
+Wedged into the crack is a third puzzle sheet.
+
+The archive library appears ordinary from the outside.
+
+But beneath its quiet surface lies a secret waiting to be uncovered.
+
+[Dialogue · Wordless]
+
+The puzzle's solution points beyond the wall — toward a hidden entrance.
+
+[Board Appears]
+
+Board: level-105 boardData
+Board feature: Advanced Cage-Sum Delta mechanic
+Ambient SFX: insects chirping; night wind moving through the courtyard vines
+
+[Interaction · Cage-Sum Delta Calculation]
+
+[Feedback]
+
+SFX: the faint scrape of brick against stone.
+
+The puzzle is solved.
+
+It reveals the exact location of the loose brick.
+
+[Settlement]
+
+Level 5 · The Archive Library's Outer Wall complete
+
+Unlocked Archive Fragment 5/9
+
+Unlocked Investigation Thread:
+The archive library contains a hidden entrance; it is the central link in the chain of secret letters.
+
+Level 6 · The Brick-and-Stone Key (level-106)
+
+[Scene] The rear wall of the archive library, beside the hidden brick gap.
+
+[Portrait] Shen Mo presses his hand against the loose brick.
+
+[CG] The brick shifts aside, revealing a narrow opening.
+
+[Scene Layer]
+
+Following the coordinates revealed by the puzzle, Shen Mo places his fingers against the brick.
+
+Slowly, he pushes inward.
+
+The brick gives way.
+
+A narrow opening appears in the wall — just wide enough for one person to pass through sideways.
+
+Beyond it, a flight of stone steps descends into darkness.
+
+Cold, damp air rises from below.
+
+This is the beginning of the hidden passage.
+
+[Dialogue · Wordless]
+
+He cannot see how far the passage extends.
+
+No human voice answers from the darkness.
+
+The path ahead is completely unknown.
+
+[Board Appears]
+
+Board: level-106 boardData
+Board feature: Introduction to Nested Cage Sudoku
+Ambient SFX: the dull sound of shifting bricks; cold air echoing through the underground passage
+
+[Interaction · Nested Cage Deduction]
+
+[Feedback]
+
+SFX: the hidden passage opening.
+
+The entrance to the underground route has been unlocked.
+
+[Settlement]
+
+Level 6 · The Brick-and-Stone Key complete
+
+Unlocked Archive Fragment 6/9
+
+Unlocked Investigation Thread:
+The underground passage has been opened; it leads toward the lowest level of the archive library.
+
+
+
+Level 7 · First Steps Down the Hidden Stairs (level-107)
+
+[Scene] The stone steps of the hidden passage, descending underground.
+
+[Portrait] Shen Mo holds a short candle as he slowly makes his way downward. The flickering flame stretches his shadow across the stone walls.
+
+[CG] A narrow staircase disappearing into darkness. A faint candlelight barely illuminates the way ahead.
+
+[Scene Layer]
+
+Shen Mo descends one step at a time.
+
+The candle reveals only a small area ahead.
+
+Moisture beads along the stone walls. The air grows colder with every step.
+
+Numbers and fragments of Sudoku grids are carved into the walls — traces left behind by those who walked this path before him.
+
+Some carvings are ancient, their edges softened by years of dampness.
+
+Others are fresh, cut into the stone only recently.
+
+[Dialogue · Wordless]
+
+Every fragment is a mark left behind by someone who traveled this road before.
+
+[Board Appears]
+
+Board: level-107 boardData
+Board feature: Wall fragment restoration
+Ambient SFX: footsteps echoing through stone corridors; water dripping in the darkness
+
+[Interaction · Fragment Reassembly]
+
+[Feedback]
+
+SFX: a drop of water striking stone.
+
+The passage continues downward.
+
+The markings confirm that the route reaches Level B1.
+
+[Settlement]
+
+Level 7 · First Steps Down the Hidden Stairs complete
+
+Unlocked Archive Fragment 7/9
+
+Unlocked Investigation Thread:
+More than one person has used this passage; the carvings were left across different eras.
+
+Level 8 · Relics in the Mezzanine (level-108)
+
+[Scene] A narrow mezzanine chamber branching from the hidden passage.
+
+[Portrait] Candlelight illuminates the small stone chamber. Old wooden cases sit stacked in the corner.
+
+[CG] The cramped underground chamber. Dust-covered wooden cases rest against the wall.
+
+[Scene Layer]
+
+At the bottom of the stairs lies a small stone chamber built into the passage.
+
+Several old wooden cases sit inside, covered in a thin layer of dust.
+
+They are unlocked.
+
+Shen Mo lifts the lid of one case.
+
+Inside are no treasures.
+
+Only old manuscripts, handwritten notes, and a brass key marked with the number 3.
+
+The key is wrapped in yellowed silk paper.
+
+Written on the paper are several faint lines of handwriting.
+
+The handwriting belongs to his father.
+
+Years ago, his father had walked this same path.
+
+[Dialogue · Wordless]
+
+The old objects remain silent.
+
+They reveal no answers about what happened before or what lies ahead.
+
+Only a collection of puzzles waiting to be deciphered.
+
+[Board Appears]
+
+Board: level-108 boardData
+Board feature: Twin Lock introduction
+Ambient SFX: the candle flame crackles; old wooden boards creak softly
+
+[Interaction · Twin Lock Deduction]
+
+[Feedback]
+
+SFX: the brass key lightly striking the inside of the wooden case.
+
+Obtained Brass Key No. 3.
+
+A clue pointing toward a deeper path has been uncovered.
+
+[Settlement]
+
+Level 8 · Relics in the Mezzanine complete
+
+Unlocked Archive Fragment 8/9
+
+Unlocked Investigation Thread:
+Shen Mo's father once explored this underground passage; the purpose of Brass Key No. 3 remains unknown.
+
+Level 9 · Prologue Finale · The First Closure (level-109)
+
+[Scene] The mezzanine chamber. The candle flame slowly fading.
+
+[Portrait] Shen Mo holds the brass key, staring at the sealed iron door deep within the chamber.
+
+[CG] A massive iron door stands in the darkness. A complete 9×9 Sudoku grid is carved across its surface.
+
+[Scene Layer]
+
+At the end of the chamber stands a heavy iron door.
+
+A complete Sudoku grid has been carved directly into its surface.
+
+This is the final lock of the prologue.
+
+Shen Mo gathers every clue he has uncovered:
+
+The anonymous letter.
+
+The old bookshop.
+
+The carvings along the hidden passage.
+
+His father's forgotten belongings.
+
+Everything leads here.
+
+[Dialogue · Wordless]
+
+If he solves this puzzle, he may enter the deeper underground.
+But Shen Mo understands one thing:
+
+Once he opens this door, there will be no turning back.
+
+[Board Appears]
+
+Board: level-109 boardData
+Board feature: Prologue comprehensive final challenge; combines all learned mechanics; the third-row, fourth-column cell serves as the core verification anchor
+Ambient SFX: complete silence; only the candle flame burning softly
+
+[Interaction · Combined Puzzle]
+
+[Feedback]
+
+SFX: a deep, resonant hum.
+
+The lock inside the iron door turns.
+
+Slowly, the door opens inward.
+
+Beyond it lies an even deeper darkness.
+
+[Settlement]
+
+Level 9 · The First Closure complete
+
+Unlocked all Archive Fragments 9/9
+
+Unlocked:
+Prologue complete.
+Chapter Two · The Rooms begins.
+
+Prologue Summary
+
+Setting:
+From the city streets and old-bookshop lanes to the hidden entrance beneath the archive library.
+
+Encountered:
+An unknown sender and the unfinished mystery left behind by Shen Mo's father's generation.
+
+Core Action:
+Receive the anonymous cipher letter and gradually uncover the underground entrance hidden beneath the archive library.
+
+Key Symbols:
+The short-stroke mark; the third-row, fourth-column anchor; Brass Key No. 3.
+
+Crisis:
+As citywide inspections intensify, Shen Mo is unwillingly drawn deeper into a hidden intelligence game.
+
+
+Chapter Two · The Rooms (201–209)
+
+[Time] November 13, 1941 – November 27, 1941
+
+[Global Context]
+
+The Special Security Section's searches of old books and printed matter intensified without pause. Shen Mo's name quietly entered the list of suspects.
+
+Following the path his father had once walked, he descended deeper into Levels B1–B2. Layer by layer, physical evidence slowly brought the past of the previous generation to light.
+
+Beneath the bridge arch, he brushed past a stranger in a grey cloth gown — a middle-aged man who vanished without a word, leaving an unresolved thread behind.
+
+Level 1 · The B1 Corridor (level-201)
+
+[Scene] The B1 corridor beneath the archive library.
+
+[Portrait] Shen Mo steps into B1. Dim wall lamps cast a faint glow across the long stone corridor.
+
+[CG] A narrow B1 corridor. The stone walls are densely covered with carvings.
+
+[Scene Layer]
+
+The iron door stood fully open. Shen Mo stepped into the B1 corridor.
+
+The air was dry and cold. Rows of wall lamps, coated in thin dust, barely illuminated the stone walls.
+
+On both sides, the walls were densely covered with sequences of numbers carved by knife-tips — one after another, stretching toward the far end of the corridor.
+
+This was a long corridor of memory. Countless fragments of puzzles had been carved into the stone.
+
+[Dialogue · Wordless]
+
+Some carvings were old, worn nearly smooth by time. Others were sharp and fresh, carved not long ago.
+
+His father's traces were mixed among countless nameless carvings.
+
+[Board Appears]
+
+Board: level-201 boardData
+Board feature: Advanced Hidden Radiance
+Ambient SFX: a faint echo in the empty corridor
+
+[Interaction · Hidden Radiance Deduction]
+
+[Feedback]
+
+SFX: footsteps echoing off the stone.
+
+Sifting out the sequence of carvings that belonged to his father, Shen Mo confirmed the direction forward.
+
+[Settlement]
+
+Level 1 · The B1 Corridor complete
+
+Unlocked Chapter Two Archive Fragment 1/9
+
+Unlocked Investigation Thread:
+The carvings on the stone walls span multiple periods. His father's path can be distinguished on its own.
+
+Level 2 · The Forked Path Fragment (level-202)
+
+[Scene] The fork in the B1 corridor.
+
+[Portrait] Shen Mo stands between two branching passages. Two corridors stretch into different darknesses.
+
+[CG] A fork in the corridor. Two darknesses.
+
+[Scene Layer]
+
+Midway through the corridor, the path split in two.
+
+One passage continued beneath the archive library itself. The other branched toward a side chamber known to no one.
+
+On the ground lay half a torn sheet of paper, its edges already rotted.
+
+Faint traces of the year 1938 remained on the paper, along with half a blurred signature. The signature was too damaged to read in full.
+
+[Dialogue · Wordless]
+
+1938 — the year so many things began. Whose fragment this was, no one could say.
+
+[Board Appears]
+
+Board: level-202 boardData
+Board feature: Advanced Cage Sum and Difference
+Ambient SFX: the hollow sound of wind passing through the fork
+
+[Interaction · Difference Calculation]
+
+[Feedback]
+
+SFX: the paper trembling faintly.
+
+Eliminating the wrong passage, Shen Mo locked onto the main corridor. The identity behind the 1938 fragment remained a mystery.
+
+[Settlement]
+
+Level 2 · The Forked Path Fragment complete
+
+Unlocked Chapter Two Archive Fragment 2/9
+
+Unlocked Investigation Thread:
+The 1938 fragment; a figure with an unknown signature; an abandoned side passage.
+
+Level 3 · A Moment at the Bridge Arch (level-203)
+
+[Scene] Above ground, a stone bridge outside the city, in daylight.
+
+[Portrait] Shen Mo briefly returns to the surface and crosses the bridge. A middle-aged man in a grey cloth gown flashes through the shadow of the bridge arch. The two pass each other — no eye contact, no words.
+
+[CG] A river bridge arch. Water flows; a figure flashes by.
+
+[Scene Layer]
+
+Having lingered underground too long, Shen Mo needed to resupply above ground.
+
+He left the archive library and passed a stone bridge outside the city. The river was muddy; the shadow beneath the arch was deep.
+
+A middle-aged man in a grey cloth gown stood in the shadow.
+
+The two passed each other, only a few steps apart.
+
+The man did not speak. His gaze swept over Shen Mo in an instant, then he turned and vanished into the crowd. Not a single word was exchanged.
+
+[Dialogue · Wordless]
+
+A brief, silent encounter. Whether the man was friend or foe, watcher or contact, could not be known.
+
+[Board Appears]
+
+Board: level-203 boardData
+Board feature: Block Severance
+Ambient SFX: the river flowing; distant traffic and clamor
+
+[Interaction · Block Severance Deduction]
+
+[Feedback]
+
+SFX: the noise of passersby.
+
+Unable to confirm the man's identity, Shen Mo only noted this one brush-past.
+
+[Settlement]
+
+Level 3 · A Moment at the Bridge Arch complete
+
+Unlocked Chapter Two Archive Fragment 3/9
+
+Unlocked Investigation Thread:
+The mysterious man in the grey cloth gown appears; surveillance — friendly or hostile — has drawn close.
+
+Level 4 · The No. 72 Old Residence (level-204)
+
+[Scene] The No. 72 old residence — the courtyard where his father once lived, now empty and abandoned.
+
+[Portrait] Shen Mo steps into the empty courtyard. Weeds have overgrown the grounds.
+
+[CG] A desolate old courtyard. The doors and windows of the old house stand shut.
+
+[Scene Layer]
+
+Following the clues, Shen Mo arrived at the No. 72 old residence where his father had once lived.
+
+The courtyard had long been abandoned. Weeds climbed over the stone steps. The house stood empty; its people were long gone.
+
+Inside, the tables and chairs were thick with dust. No sign of any living occupant.
+
+The lock of a wooden cabinet in the corner happened to fit the brass key numbered 3.
+
+[Dialogue · Wordless]
+
+The key slid into the lock and turned gently. The cabinet lock sprang open with a click.
+
+[Board Appears]
+
+Board: level-204 boardData
+Board feature: Advanced Twin Lock
+Ambient SFX: wind rustling through the weeds of the courtyard
+
+[Interaction · Twin Lock Deduction]
+
+[Feedback]
+
+SFX: the light click of the wooden lock opening.
+
+The cabinet opened, revealing the manuscripts and Sudoku drafts his father had left behind.
+
+[Settlement]
+
+Level 4 · The No. 72 Old Residence complete
+
+Unlocked Chapter Two Archive Fragment 4/9
+
+Unlocked Investigation Thread:
+The No. 72 old residence; his father's remaining drafts are preserved here.
+
+Level 5 · Deciphering the Old Drafts (level-205)
+
+[Scene] Inside the No. 72 old residence.
+
+[Portrait] Shen Mo sits at a dust-covered table, leafing through stacks of his father's drafts.
+
+[CG] On the old table, layer upon layer of yellowed manuscript paper.
+
+[Scene Layer]
+
+Inside the wooden cabinet lay stack after stack of Sudoku drafts.
+
+Some were complete. Others stopped halfway, never finished.
+
+Shen Mo turned the pages one by one, seeing the countless traces of his father's calculations and corrections.
+
+Many grids were likewise stuck at the two-thirds mark, never written further. As if an insurmountable boundary stood before him.
+
+[Dialogue · Wordless]
+
+His father, too, had once been trapped on this same chain of puzzles, unable to reach the end.
+
+[Board Appears]
+
+Board: level-205 boardData
+Board feature: The Ten Rules of Secret Arts (the 45 Rule + Cage Sum and Difference)
+Ambient SFX: the rustle of turning pages
+
+[Interaction · Ten Rules of Secret Arts Deduction]
+
+[Feedback]
+
+SFX: manuscript pages turning.
+
+Reading the information: his father knew of every hidden passage beneath the archive library, yet could never walk the final stretch.
+
+[Settlement]
+
+Level 5 · Deciphering the Old Drafts complete
+
+Unlocked Chapter Two Archive Fragment 5/9
+
+Unlocked Investigation Thread:
+His father repeatedly charged at the final puzzle, only to abandon it halfway each time.
+
+Level 6 · Returning Underground (level-206)
+
+[Scene] The hidden entrance to the archive library passage, at dusk.
+
+[Portrait] Shen Mo returns before the hidden door. The sky is sinking into darkness.
+
+[CG] The back alley of the archive library as dusk falls.
+
+[Scene Layer]
+
+Having read every clue in the old residence, Shen Mo had to return underground.
+
+In the city, the situation grew more tense by the day. Street agents searched with increasing frequency.
+
+At home, Su Wan erased the traces of his movements, covering up the fact that he had been missing for so long.
+
+Once again he pushed open the crack in the brick wall. The cold breath of the underground rushed toward him.
+
+[Dialogue · Wordless]
+
+Above ground, danger was closing in. Underground was both a refuge and a cage.
+
+[Board Appears]
+
+Board: level-206 boardData
+Board feature: Advanced Nested Cage
+Ambient SFX: distant footsteps of patrol officers at the alley mouth; the echo of underground air currents
+
+[Interaction · Nested Cage Deduction]
+
+[Feedback]
+
+SFX: the dull thud of stone closing.
+
+The hidden door shut again, cutting off the lights of the surface world as he sank once more into the underground.
+
+[Settlement]
+
+Level 6 · Returning Underground complete
+
+Unlocked Chapter Two Archive Fragment 6/9
+
+Unlocked Investigation Thread:
+Su Wan continues to cover Shen Mo's movements; danger above ground continues to escalate.
+
+Level 7 · The B2 Chamber Entrance (level-207)
+
+[Scene] The end of the B1 corridor, the heavy iron door to B2.
+
+[Portrait] Shen Mo stands before the iron door. A large grid is carved across its surface.
+
+[CG] The B2 iron door, rusted and mottled, its surface covered in puzzles.
+
+[Scene Layer]
+
+Having walked the full length of the B1 corridor, Shen Mo reached the iron door leading to B2.
+
+The door was far heavier than any before it. Rust crawled across the cast-iron surface. The entire door was one massive Sudoku lock.
+
+On both sides of the stone walls, old and new carvings intermingled. Some belonged to his father. Others belonged to a later visitor of unknown origin.
+
+[Dialogue · Wordless]
+
+Someone had come here before Shen Mo arrived.
+
+[Board Appears]
+
+Board: level-207 boardData
+Board feature: Zero-clue introduction; deduction relying only on cage sum values
+Ambient SFX: the cold, dull echo of the iron door
+
+[Interaction · Zero-clue Grid Deduction]
+
+[Feedback]
+
+SFX: the lock core turning; the heavy iron door slowly opening.
+
+The door to the B2 chamber swung open.
+
+[Settlement]
+
+Level 7 · The B2 Chamber Entrance complete
+
+Unlocked Chapter Two Archive Fragment 7/9
+
+Unlocked Investigation Thread:
+The B2 level officially opens; an unknown visitor arrived before Shen Mo.
+
+Level 8 · The Empty B2 Chamber (level-208)
+
+[Scene] The main chamber of B2.
+
+[Portrait] Wall lamps illuminate the empty stone chamber. Old papers are scattered across the floor.
+
+[CG] A wide underground stone chamber. Old wooden crates are piled in the corners.
+
+[Scene Layer]
+
+Shen Mo stepped into the main chamber of B2.
+
+The space was far larger than the mezzanine. Old wooden crates stood in the corners. Discarded manuscripts lay scattered on the ground. The air mixed the rot of paper with the chill of stone.
+
+Shen Mo scanned the room carefully.
+
+On the table lay a shallow indentation — proof that someone had recently sat here. No name, no note. The person had already left completely.
+
+[Dialogue · Wordless]
+
+The visitor came and went without a trace, leaving only physical marks to tell of what had happened.
+
+[Board Appears]
+
+Board: level-208 boardData
+Board feature: Cage-internal Severance
+Ambient SFX: the emptiness of the chamber, echoes lingering
+
+[Interaction · Cage-internal Severance Deduction]
+
+[Feedback]
+
+SFX: the light rustle of paper brushed by fingertips.
+
+Reading from the scattered fragments: this passage led to a deeper level, B3. But the path downward was sealed by a complete chain of puzzles.
+
+[Settlement]
+
+Level 8 · The Empty B2 Chamber complete
+
+Unlocked Chapter Two Archive Fragment 8/9
+
+Unlocked Investigation Thread:
+B3 truly exists, but is sealed by a puzzle chain; an unknown visitor once lingered here.
+
+Level 9 · The Mark Left in the Chamber (level-209)
+
+[Scene] The B2 chamber, late at night.
+
+[Portrait] Shen Mo takes out a charcoal stick and, on a blank stretch of the stone wall, gently carves his own mark.
+
+[CG] A shallow new carving appears on the stone wall, mingling among countless old ones.
+
+[Scene Layer]
+
+Shen Mo stood before the stone wall.
+
+The marks of countless predecessors covered every wall. His father, an unknown visitor — all had left their traces on the stone.
+
+He took out a charcoal stick and, on a blank spot of the wall, left a mark of his own.
+
+No name. No date. Only the meaning: I was here.
+
+[Dialogue · Wordless]
+
+At this point, he had walked every road his father had ever trod. But the end his father could not reach still lay deeper in the darkness.
+
+[Board Appears]
+
+Board: level-209 boardData
+Board feature: Chapter Two comprehensive Boss level; fuses every mechanic of Chapter Two; the third-row, fourth-column cell serves as the verification cell
+Ambient SFX: a long, low hum, sharing its source with the level-109 sound
+
+[Interaction · Comprehensive Puzzle]
+
+[Feedback]
+
+SFX: a low resonant hum.
+
+Shen Mo stood before the stone wall. He had just carved his own short stroke.
+
+Beside it was his father's carving. Old. Weathered. It had stopped at a certain place.
+
+He counted. From B1 to B2, his father had left forty-three carvings in all. The last one stopped at this very spot.
+
+Shen Mo carved his own mark beside it. Even spacing. Even depth.
+
+But he did not stop.
+
+Where his father's final stroke had stopped, he added one more.
+
+Not a continuation. A closing.
+
+Then he stepped back and looked at the two carvings standing side by side on the stone wall.
+
+One had stopped. One had not.
+
+[Settlement]
+
+Level 9 · The Mark Left in the Chamber complete
+
+Unlocked all Chapter Two Archive Fragments 9/9
+
+He finished his own road and stopped where he should. You walked his road to its end, then kept going.
+
+Unlocked: Chapter Two complete. Chapter Three · The Doors opens.
+
+> Chapter Two Summary
+
+Setting:
+The city's old residence, the bridge arch, and the B1–B2 levels of the archive library.
+
+Encountered:
+The unfinished puzzle of the previous generation, and a passerby of unknown identity.
+
+Core Action:
+Walking every road his father had walked, confirming that B3 exists but remains sealed.
+
+Key Symbols:
+The 1938 fragment, the carvings on the stone wall, the key numbered 3.
+
+Crisis:
+Shen Mo enters the Special Security Section's list of suspects; the mysterious man in the grey cloth gown appears.
+Chapter Three · The Doors (301–309)
+
+[Time] November 28, 1941 – November 29, 1941
+[Global Context]
+
+The Japanese Combined Fleet departed from Hitokappu Bay.
+
+The countdown to the Pacific War had begun.
+
+Meanwhile, the Shanghai Special Security Section's searches reached their peak. Shen Mo's name quietly entered the list of suspects.
+
+On Avenue Joffre, Vera's shop was forced to close and disappear from public view, moving entirely underground.
+
+Deep beneath the archive library, the transmitter waited at the end of the entire chain.
+
+Only the one who completed the puzzle sequence left behind by the previous generation would earn the right to activate it.
+
+Descending through Levels B1–B3, Shen Mo entered a silent confrontation with Ito — a man who had walked this same passage only hours before him.
+
+A confrontation without words.
+
+A battle fought through traces.
+
+Level 1 · The Hidden Door (level-301)
+
+[Scene] Municipal Archive Library · First floor, hidden door behind the bookshelves.
+
+[Time] November 28, 1941 · Early morning.
+
+[Weather] Frost covers the ground. Each step breaks the thin ice with a faint crack.
+
+[Portrait] Shen Mo stands before the tall bookshelf. The hidden mechanism activates, revealing stone steps descending into darkness.
+
+[CG] The bookshelf slides aside. A dim underground passage appears.
+
+[Scene Layer]
+
+After leaving the B2 chamber, Shen Mo returned to the first floor of the archive library.
+
+On the back of the title page of War and Peace recovered from B2, he discovered a faint pencil impression — a mark left behind after the original writing had been erased.
+
+A message from those who came before.
+
+He carefully recorded the position of the pressure marks, restored the page, and closed the book.
+
+Just as he was about to descend the stone steps, something caught his attention.
+
+Inside the wooden frame of the hidden door was a tiny pencil stroke.
+
+Its shape was identical to the short-stroke mark found on the old windowsill of Avenue Joffre in the prologue.
+
+It was not left by his father.
+
+Someone else had already passed through this route before him.
+
+[Dialogue · Wordless]
+
+Shen Mo memorized the mark.
+
+Then he stepped onto the first stone stair.
+
+[Board Appears]
+
+Board: level-301 boardData
+Board feature: Ninth-order Nested Cage; large cages contain smaller cages, requiring layered deduction. The final solution reveals the time window when Ito passed through the hidden door.
+Ambient SFX: early morning frost wind outside; a faint cold echo rising from underground
+
+[Interaction · Nested Cage Deduction]
+
+[Feedback]
+
+SFX: a short, crisp click from within the hidden mechanism.
+
+The entrance to B1 is confirmed.
+
+Someone had walked this path before him.
+
+[Settlement]
+
+Level 1 · The Hidden Door complete
+
+Unlocked Chapter Three Archive Fragment 1/9
+
+Unlocked Investigation Thread:
+The short-stroke mark inside the hidden door; Ito's passage time has been determined.
+
+Mechanic Note:
+Exceeding the time limit triggers the bad ending [Hidden Door Exposed] — agents discover the moving bookshelf, expose the passage, and permanently seal the underground route.
+
+Level 2 · The B1 Corridor (level-302)
+
+[Scene] Archive Library underground · B1 corridor.
+
+[Time] November 28, 1941 · Morning.
+
+[Environment] No natural light reaches underground. Dust-covered wall lamps flicker weakly in the dry, heavy air.
+
+[Portrait] Shen Mo stands in the center of the corridor, studying the wall carvings. Faint muddy footprints glimmer beneath the lamplight.
+
+[CG] The narrow B1 corridor. Endless number carvings cover the stone walls. Faint footprints remain on the floor.
+
+[Scene Layer]
+
+The B1 corridor was even narrower than the entrance passage.
+
+On both stone walls, countless sequences of numbers carved with a knife tip stretched endlessly into the darkness.
+
+Shen Mo stopped before the seventh carving.
+
+The final three digits matched the ending of the note discovered inside the old coat in Chapter Two.
+
+Just as he continued examining the wall, another trace caught his attention.
+
+A half-dried muddy footprint.
+
+Fine grains of sand from the Suzhou Creek riverbank were embedded within it.
+
+The mark had not yet hardened.
+
+The grains still crumbled slightly beneath his touch.
+
+Shen Mo crouched and examined the edge of the print.
+
+Judging from the moisture and the condition of the sand, the person had passed through roughly six hours earlier.
+
+The shoes carried riverside sand.
+
+The footsteps were steady.
+
+There had been almost no hesitation.
+
+The person had headed directly toward the depths of B2.
+
+Shen Mo left the trace untouched.
+
+He simply memorized it together with the sequence of carvings.
+
+[Dialogue · Wordless]
+
+The person was long gone.
+
+Only the earth remained, quietly revealing where he had been.
+
+[Board Appears]
+
+Board: level-302 boardData
+Board feature: Advanced Ninth-order Hidden Radiance; scan each number to locate the unique position. The number sequence corresponds to the direction of the footprints.
+Ambient SFX: empty corridor silence; distant echoes of footsteps
+
+[Interaction · Hidden Radiance Advanced Deduction]
+
+[Feedback]
+
+SFX: distant footsteps fading deeper into the corridor.
+
+Confirmed.
+
+The visitor had already crossed B1 and entered the B2 chamber.
+
+[Settlement]
+
+Level 2 · The B1 Corridor complete
+
+Unlocked Archive Fragment 2/9
+
+Unlocked Investigation Thread:
+The muddy footprints reveal that the visitor passed through six hours earlier, carrying sand from the Suzhou Creek riverbank.
+
+Level 3 · The B2 Chamber (level-303)
+
+[Scene] Archive Library underground · B2 chamber.
+
+[Time] November 28, 1941 · Afternoon.
+
+[Environment] Deep underground. The air carries the mixed scent of rust and old paper.
+
+[Portrait] Shen Mo sits before the wooden desk. A kraft paper envelope lies open. A pen rests in his hand.
+
+[CG] The B2 chamber. A wooden desk stands at the center. Old wooden cases line the walls.
+
+[Scene Layer]
+
+Opening the iron door at the end of B1, Shen Mo entered the B2 chamber.
+
+The space was larger than he remembered.
+
+Four stone walls enclosed the chamber.
+
+Old wooden cases rested in the corners.
+
+At the center stood a wooden desk.
+
+A kraft paper envelope lay open upon it.
+
+Inside were seven Sudoku sheets, arranged from the simplest layer to the deepest.
+
+On the upper-right corner of the first sheet, a line had been written in pencil:
+
+"You have arrived. This is the teacher's second layer."
+
+Shen Mo recognized the handwriting immediately.
+
+It belonged to his teacher.
+
+He did not pick up the pen immediately.
+
+First, he examined the room.
+
+On the desk was a faint grey impression left by someone who had once sat there.
+
+Not him.
+
+Another person.
+
+The lid of one wooden case in the corner was slightly loose, revealing the edge of an old notebook.
+
+Shen Mo stepped forward and opened it.
+
+Inside was only a worn exercise book with a blank cover.
+
+Only when he examined the inner back page did he find a nearly invisible signature.
+
+Ito.
+
+He closed the notebook, returned it to the case, and replaced the lid.
+
+Only then did he sit at the desk and begin solving.
+
+While working through the third puzzle, he noticed that the notebook's spine was unusually thick.
+
+He silently recorded the suspicion.
+
+But he did not open the case again.
+
+[Dialogue · Wordless]
+
+The seven puzzles inside the envelope formed the complete sequence leading to B3.
+
+[Board Appears]
+
+Board: level-303 boardData
+Board feature: Ninth-order Twin Lock; two locked cells determine two separate number groups
+Ambient SFX: complete silence in the chamber; only the faint movement of paper
+
+[Interaction · Twin Lock Deduction]
+
+[Feedback]
+
+SFX: paper turning softly.
+
+The seven-puzzle sequence officially begins.
+
+[Settlement]
+
+Level 3 · The B2 Chamber complete
+
+Unlocked Archive Fragment 3/9
+
+Unlocked Investigation Thread:
+Ito's exercise book hidden inside the wooden case; the desk impression confirms that Ito once sat here.
+
+Level 4 · The Seven Puzzles · I (level-304)
+
+[Scene] Archive Library underground · B2 chamber.
+
+[Time] November 28, 1941 · Late afternoon.
+
+[Environment] The underground chamber remains unchanged. The kerosene lamp burns steadily.
+
+[Portrait] Shen Mo sits at the desk. The first puzzle sheet rests on the left side, while his hand pauses above the second sheet.
+
+[CG] Several puzzle sheets spread across the desk. The warm halo of the kerosene lamp covers the pages.
+
+[Scene Layer]
+
+Shen Mo pulled the first sheet from the kraft paper envelope.
+
+The first Sudoku contained only a small number of given cells, but its structure was precise and orderly.
+
+He solved it quickly.
+
+At the bottom of the page, a short line appeared:
+
+"Six more remain. No need to hurry — you still have time."
+
+He placed the completed sheet on the left side of the desk.
+
+At that moment, he noticed an extremely faint ink mark beneath it.
+
+A trace left by someone before him.
+
+Ink had seeped through the paper long ago, leaving a shallow impression on the wood.
+
+The direction of the mark pointed toward the wooden case in the corner — the same case that contained Ito's exercise book.
+
+Shen Mo did not stand to investigate.
+
+He simply recorded the connection between the mark and the case, stored the clue away, and continued to the second puzzle.
+
+[Dialogue · Wordless]
+
+Traces were everywhere.
+
+Yet the people who left them were nowhere to be found.
+
+[Board Appears]
+
+Board: level-304 boardData
+Board feature: Ninth-order Block Severance
+Ambient SFX: complete silence; only the faint scratching of pencil on paper
+
+[Interaction · Block Severance Deduction]
+
+[Feedback]
+
+SFX: the pencil lightly touches paper.
+
+The first puzzle is complete.
+
+[Settlement]
+
+Level 4 · The Seven Puzzles · I complete
+
+Unlocked Archive Fragment 4/9
+
+Level 5 · The Seven Puzzles · II (level-305)
+
+[Scene] Archive Library underground · B2 chamber.
+
+[Time] November 28, 1941 · Nightfall.
+
+[Environment] Underground night has no end. The kerosene lamp is half-burned, its flame weaker than before.
+
+[Portrait] Shen Mo remains beside the lamp. The second sheet is folded and placed on the right side of the desk.
+
+[CG] Dim yellow lamplight. A lone lamp illuminates the puzzle sheets.
+
+[Scene Layer]
+
+The second puzzle was far more complex.
+
+Cage lines overlapped layer upon layer.
+
+Multiple cross-house constraints intertwined, creating a structure far more difficult than the first.
+
+After completing the grid, Shen Mo found a line written at the bottom of the sheet.
+
+The teacher's handwriting:
+
+"Do you still remember the book from June? That puzzle was created by me. This one is as well."
+
+He turned the sheet over.
+
+Nothing.
+
+No additional message.
+
+He folded the second sheet twice, deliberately distinguishing it from the first sheet, which had been folded four times.
+
+His fingertips paused for a moment.
+
+Then he took out the third sheet and placed it at the center of the desk.
+
+[Dialogue · Wordless]
+
+Across the pages, he sees the distant figure of the teacher who left for another land long ago.
+
+[Board Appears]
+
+Board: level-305 boardData
+Board feature: Ninth-order Ten Arcane Arts; 45-rule combined with Cage-Sum Delta
+Ambient SFX: the faint crackle of burning lamp oil
+
+[Interaction · Ten Arcane Arts Deduction]
+
+[Feedback]
+
+SFX: paper turning softly.
+
+Confirmed.
+
+Both puzzles were created by the teacher.
+
+[Settlement]
+
+Level 5 · The Seven Puzzles · II complete
+
+Unlocked Archive Fragment 5/9
+
+Level 6 · The Seven Puzzles · III (level-306)
+
+[Scene] Archive Library underground · B2 chamber.
+
+[Time] November 29, 1941 · Early morning.
+
+[Environment] Outside, frost and melting snow mark the changing season. Deep underground, time seems frozen.
+
+[Portrait] Shen Mo places his hand against the edge of a narrow emergency door. The kerosene lamp burns behind him.
+
+[CG] A barely visible emergency door seam on the side wall. A faint thread of light leaks through.
+
+[Scene Layer]
+
+The third puzzle contained no given numbers.
+
+Only cage lines.
+
+Only sums.
+
+A pure zero-hint Sudoku.
+
+Under the dim lamp, Shen Mo exhausted every possible deduction and finally completed the board.
+
+The surface of the sheet appeared blank.
+
+But when he tilted it toward the light, faint pressure marks hidden within the paper emerged:
+
+"If you can solve this one, you can go deeper."
+
+Shen Mo did not immediately unfold the fourth sheet.
+
+Instead, he stood.
+
+His eyes turned toward the narrow emergency door on the side wall — a passage he had overlooked before.
+
+A faint line of light escaped through the seam.
+
+The door hinges had been maintained.
+
+When he pushed, they moved almost silently.
+
+Shen Mo turned sideways and stepped through the narrow opening.
+
+He did not look back at the B2 chamber.
+
+[Dialogue · Wordless]
+
+Three puzzles had opened the way to B3.
+
+[Board Appears]
+
+Board: level-306 boardData
+Board feature: Zero-Hint Sudoku; deduction relies entirely on cage-sum values
+Ambient SFX: the door hinge sliding almost silently
+
+[Interaction · Zero-Hint Deduction]
+
+[Feedback]
+
+SFX: paper closing softly.
+
+The entrance passage to B3 has been unlocked.
+
+[Settlement]
+
+Level 6 · The Seven Puzzles · III complete
+
+Unlocked Archive Fragment 6/9
+
+Mechanic Note:
+High-difficulty zero-hint level. Consuming archive fragments can unlock localized cage-cell hints.
+
+继续第三部分。
+
+---
+
+# Level 7 · The B3 Entrance (level-307)
+
+[Scene] Archive Library underground · B3 entrance, before the iron door.
+
+[Time] November 29, 1941 · Late morning.
+
+[Environment] The deepest layer underground. The air is still — no wind, no sound.
+
+[Portrait] Shen Mo stands before the chamber entrance, the father's letter open in his hand. Behind him, the heavy iron door remains half-open.
+
+[CG] The massive cast-iron door stands open, revealing a vast chamber hidden in darkness.
+
+---
+
+[Scene Layer]
+
+Beyond the narrow emergency passage was a short corridor of only ten steps.
+
+At its end stood a cast-iron door heavier than any he had encountered before.
+
+Fine rust covered its surface.
+
+At the center of the door was a Sudoku grid carved directly into the metal, more than half completed.
+
+Shen Mo crouched and examined the base of the doorframe.
+
+There were shallow scrape marks left by something heavy being dragged across the ground.
+
+The dust around them had not yet settled.
+
+The traces were from no earlier than the previous night.
+
+He pushed gently.
+
+The iron door was not locked.
+
+Beyond it was a chamber far larger than he expected — a vast hollow carved deep into the rock.
+
+At the far end stood a wooden desk.
+
+An unlit kerosene lamp rested upon it.
+
+Beside the lamp lay a letter.
+---
+
+Shen Mo opened the envelope.
+
+The handwriting belonged to his father.
+
+*"You have come this far. Farther than I ever did."*
+
+*"That puzzle — I completed only two-thirds. The remaining third was beyond me."*
+
+*"I hope you can finish what I could not."*
+
+---
+
+He folded the letter and placed it inside his coat.
+
+But he did not sit down immediately.
+
+His fingers brushed across the edge of the desk.
+
+A worn patch marked by years of repeated contact.
+
+Someone had sat here many times.
+
+He turned the letter over.
+
+On the back, smaller characters appeared:
+
+*"I left a record beforehand. The organization will send someone to revisit and verify this passage."*
+
+*"Ito has been here."*
+
+*"He arrived before you and confirmed that the transmitter remains operational."*
+
+The ink was old.
+
+Its color had already faded.
+
+---
+
+[Dialogue · Wordless]
+
+His father had failed to reach the end.
+
+But Ito had arrived there in his place.
+
+---
+
+[Board Appears]
+
+* Board: level-307 boardData
+* Board feature: Ninth-order Comprehensive Puzzle; two-thirds of the board is pre-filled, while the remaining section requires deduction
+* Ambient SFX: the heavy silence of the underground chamber; a deep echo from within the stone walls
+
+---
+
+[Interaction · Comprehensive Deduction]
+
+---
+
+[Feedback]
+
+SFX: a deep, prolonged resonance from inside the iron door.
+
+Confirmed.
+
+The father stopped here.
+
+Ito had reached B3 ahead of Shen Mo and verified the transmitter.
+
+---
+
+[Settlement]
+
+Level 7 · The B3 Entrance complete
+
+Unlocked Archive Fragment 7/9
+
+Unlocked Investigation Thread:
+The father completed only two-thirds of the puzzle; Ito arrived earlier to verify the transmitter; the worn mark on the desk reveals his presence.
+
+---
+
+> **Mechanic Note:**
+> Exceeding the time limit triggers the bad ending **[Underground Encirclement]** — agents begin searching downward, and the underground route collapses.
+
+---
+
+# Level 8 · The Transmitter (level-308)
+
+[Scene] Archive Library underground · B3 chamber, deepest point.
+
+[Time] November 29, 1941 · Afternoon.
+
+[Environment] The chamber is frozen in absolute stillness.
+
+[Portrait] Shen Mo crouches beside the desk, fingers brushing the carving inside the desk leg. The transmitter rests above, disconnected from power.
+
+[CG] An old radio transmitter sits on a wooden desk deep inside the stone chamber.
+
+---
+
+[Scene Layer]
+
+Shen Mo walked toward the deepest part of the chamber.
+
+An old radio transmitter sat on the wooden desk.
+
+The machine was powered off.
+
+Its cable had been disconnected.
+
+He did not touch the controls immediately.
+
+Instead, he examined the surroundings carefully.
+
+A clean outline remained on the desk where dust had been wiped away.
+
+The shape matched the exact base of the transmitter.
+
+Someone had lifted the machine.
+
+Inspected it.
+
+Then returned it to precisely the same position.
+
+---
+
+Shen Mo crouched and examined the inside of the desk leg.
+
+Carved into the wood was a shallow number:
+
+**3**
+
+The same number engraved on the brass key recovered from the old residence at No. 72.
+
+---
+
+He checked the transmitter's base carefully.
+
+The casing was intact.
+
+The power cable had not been cut.
+
+Nothing had been attached beneath it.
+
+Only after confirming everything did Shen Mo step back several paces, leaving the desk untouched.
+
+---
+
+[Dialogue · Wordless]
+
+The transmitter was intact.
+
+But the authority to activate it did not lie within the machine.
+
+It belonged to the unfinished puzzle.
+
+---
+
+[Board Appears]
+
+* Board: level-308 boardData
+* Board feature: Ninth-order Within-Cage Elimination; cage-sum constraints narrow possible values and reveal the time window when the transmitter was moved
+* Ambient SFX: absolute silence inside the chamber
+
+---
+
+[Interaction · Within-Cage Elimination Deduction]
+
+---
+
+[Feedback]
+
+SFX: paper unfolding softly.
+
+Confirmed.
+
+The transmitter remained functional.
+
+Ito had inspected it recently and returned it to its original position.
+
+---
+
+[Settlement]
+
+Level 8 · The Transmitter complete
+
+Unlocked Archive Fragment 8/9
+
+Unlocked Investigation Thread:
+The transmitter's movement trace; the desk-leg carving "3"; Ito's equipment inspection record; the transmitter's activation requires completion of the father's final puzzle.
+
+---
+
+Level 9 · The Door at the Deepest Point (level-309)
+[Scene Name]
+
+The B3 Stone Chamber Beneath the Archive Library · The Final Door
+
+[Time]
+
+November 29, 1941 · Evening
+
+[Environment]
+
+Deep underground, there is no distinction between day and night.
+
+Only one fact remains clear:
+
+This is the final door at the end of the hidden passage.
+
+[Scene Layer]
+
+At the deepest point of the B3 stone chamber stood a single narrow door.
+
+It was only wide enough for one person to pass through.
+
+The stone surrounding the frame was darker than the walls around it, as if countless years of silence had gathered there.
+
+Above the lintel, a single line had been carved:
+
+You have arrived.
+
+Beyond this door was the final layer.
+
+Shen Mo reached out and pushed gently.
+
+There was no lock.
+
+The door opened without resistance.
+
+Inside was a small, empty chamber.
+
+A single table.
+
+A single chair.
+
+And on the table—
+
+an iron case.
+
+Inside the lid was a note pasted neatly into place.
+
+This was left here for you.
+
+Shen Mo opened the case.
+
+There was only one thing inside:
+
+A single sheet of paper.
+
+The unfinished puzzle his father had left behind.
+
+The missing final third.
+
+The part his father had been unable to complete in B3.
+
+The blank spaces that had remained untouched for years were now laid before Shen Mo.
+
+For a long moment, he did not write.
+
+Instead, he carefully examined the entire structure of the board.
+
+Every cage.
+
+Every number relationship.
+
+Every hidden possibility.
+
+Only after confirming the complete logic did he lower his head and begin filling in the numbers.
+
+One by one.
+
+Cell by cell.
+
+When the final number was placed, Shen Mo did not immediately put down the pencil.
+
+At the bottom of the page, he wrote one final word:
+
+Done.
+
+No name.
+
+No date.
+
+Only that single word.
+
+[Portrait Layer]
+
+Shen Mo sits alone in the small chamber.
+
+The iron case rests open on the table.
+
+Under the dim lamplight, the final unfinished puzzle gradually becomes complete.
+
+[Dialogue · Wordless — Finale]
+
+Across decades of separation,
+
+he completes the puzzle his father left unfinished.
+
+[Board Layer · Formal Appears]
+
+The completed puzzle expands.
+
+A full 9×9 Sudoku board appears.
+
+Board info: level-309 boardData
+Board feature:
+Chapter Three Composite Boss Level
+Mechanics:
+All previously learned solving methods combined
+Core verification:
+Row 3 · Column 4
+Audio:
+Same source resonance as Level 109 and Level 309
+[Board Interaction · Full-Mechanic Composite Deduction]
+
+The player completes the final deduction.
+
+Every previous mechanism converges:
+
+Cage structures
+Hidden constraints
+Delta relationships
+Nested logic
+Verification patterns
+
+The final board matches the record preserved by his father.
+
+The permission check passes.
+
+[Feedback Layer · Clear]
+
+Audio:
+
+A deep, sustained resonance.
+
+The same low-frequency hum that has appeared since the earliest layers of the hidden passage.
+
+The puzzle is complete.
+
+But Shen Mo understands:
+
+The true purpose was never merely to solve it.
+
+The puzzle was a path.
+
+A path left behind by everyone who came before.
+
+[Scene Continues]
+
+Shen Mo places the pencil down.
+
+He closes the iron case.
+
+The lid clicks softly shut.
+
+Before leaving, he carefully checks the room once more.
+
+No extra marks.
+
+No misplaced objects.
+
+No trace of his presence.
+
+Then he turns and walks back through the underground passage.
+
+Through B3.
+
+Through B2.
+
+Through B1.
+
+Back toward the surface.
+
+When the hidden door of the Archive Library opens again, night has already fallen.
+
+The reading room on the first floor is empty.
+
+The lamps have long since gone out.
+
+Outside the library's rear entrance, a crack runs through the old stone wall beside the doorframe.
+
+Shen Mo stops.
+
+He reaches out with one fingernail.
+
+Slowly—
+
+he carves a short stroke into the hidden seam.
+
+The depth.
+
+The angle.
+
+The pressure.
+
+Everything matches the mark on Avenue Joffre.
+
+A mark only those who know where to look would ever notice.
+
+He closes the hidden door.
+
+[Interlude · Settlement — Extra Short Scene]
+
+That night, Shen Mo walks home.
+
+The lamp inside the house burns faintly.
+
+Su Wan does not ask where he has disappeared to.
+
+She does not ask what he found.
+
+She simply places a clean change of clothes beside him.
+
+After a moment, she speaks.
+
+Su Wan:
+"The patrols have reached our street."
+
+A pause.
+
+Su Wan:
+"If you keep leaving like this, we won't be able to hide it anymore."
+
+Shen Mo says nothing.
+
+He only places his father's letter from B3 safely against his chest.
+
+[Level Settlement]
+
+Level 9 · The Door at the Deepest Point — Complete
+
+Unlocked:
+
+All Chapter Three Archive Fragments 9/9
+Chapter Four · The Cord
+
+Hidden Threads Unlocked:
+
+Surveillance around Su Wan's residence is tightening
+The teacher's disappearance still leaves a distant clue
+The identity of the grey-clothed man from the bridge cave remains unknown
+The 1938 fragment's author remains unidentified
+Vera has gone underground; no contact signal has appeared
+Chapter Three Summary
+Space
+
+The complete underground system beneath the Archive Library:
+
+B1 → B2 → B3
+
+Adversary / Pressure
+
+The unseen confrontation with:
+
+Ito, who passed through the underground route before Shen Mo
+The father's unfinished final puzzle
+The increasingly dangerous surveillance network above ground
+
+Ito never appears directly.
+
+Only traces remain:
+
+footprints,
+
+marks,
+
+documents,
+
+and completed preparations.
+
+Core Action
+
+Shen Mo follows every path his father once walked.
+
+He enters the hidden underground system.
+
+He discovers the existence of B3.
+
+He completes the final missing section of his father's unfinished puzzle.
+
+And he obtains the prerequisite authority needed to activate the transmitter.
+
+Key Symbols
+The Short Stroke Mark
+
+A hidden signature connecting different locations and different generations.
+
+The Verification Cell
+
+Row 3 · Column 4
+
+The final confirmation point inside the puzzle chain.
+
+The Brass Key Marked "3"
+
+The physical key linking:
+
+No. 72 Residence
+The B3 chamber
+The transmitter system
+Final Chapter Three State
+The hidden passage is fully revealed.
+
+The transmitter is ready.
+
+The puzzle chain left by the previous generation is complete.
+
+But the final decision—
+
+whether to activate what lies beneath—
+
+belongs only to Shen Mo.
+
+明白，之前我理解错了。你的需求不是重新创作，而是**把 Chapter Four 401–409 做英文本地化润色（AVG Script polish）**，保持：
+
+* 原剧情、信息量、关卡结构不变
+* 保留 AVG 脚本格式（Scene / Portrait / CG / Board / Interaction / Settlement）
+* 英文更像商业 AVG 游戏文本，而不是直译
+* 强化悬疑、年代感、节奏感
+* 统一术语：
+
+  * Special Security Section / Tokkō / Archive Library / B1–B3
+  * Hidden Door / Transmitter / puzzle chain
+  * Ninth-Order Sudoku mechanics
+* 不擅自增加新剧情
+* 不提前引入 Vera DLC 等内容
+
+由于 Chapter Four 401–409 原文长度很大，我会分段处理，避免一次输出被截断。
+
+我会从：
+
+**Chapter Four · The Cord**
+→ **Level 1 · No. 94 East Yuhang Road (level-401)**
+
+开始。
+
+---
+
+## Chapter Four · The Cord
+
+### (December 1941 · AVG Script — Polished Localization Edition)
+
+---
+
+# Level 1 · No. 94 East Yuhang Road (level-401)
+
+### [Scene Name]
+
+East Yuhang Road · No. 94 · Back Alley
+
+### [Time]
+
+December 4, 1941 · Dusk
+
+### [Weather]
+
+Heavy clouds cover the sky. Night falls earlier than usual. Hemp ropes hanging between old buildings sway faintly in the cold wind.
+
+---
+
+## [Scene Layer]
+
+Dusk swallowed the streets.
+
+Avoiding the eyes of pedestrians near the main entrance, Shen Mo circled around to the back alley of No. 94 East Yuhang Road.
+
+The alley was silent.
+
+Between the brick seam of the third utility pole, a thin cotton thread had been pulled taut. It was tough, carefully placed, and clearly tied there only recently.
+
+Shen Mo crouched down and followed the thread with his fingers.
+
+At the end of it hung an old brass key.
+
+The teeth of the key had been worn smooth from years of use. On the bow, a single number had been carved with a knife:
+
+**4**
+
+He placed the key into his pocket.
+
+Then he pushed lightly against the back door of No. 94.
+
+It opened without resistance.
+
+No lock.
+
+No sound.
+
+The moment he stepped inside, his gaze immediately fell upon the inner edge of the doorframe.
+
+There was a short scratch carved into the wood.
+
+A mark made by a fingernail.
+
+Its depth, angle, and pressure were identical to the mark Shen Mo had left beside the hidden entrance of the Archive Library.
+
+His footsteps stopped for half a second.
+
+This mark was not his father's.
+
+Someone else had already walked this path before him.
+
+He memorized the position of the scratch and continued deeper into the corridor.
+
+He did not rush upstairs.
+
+First, he lowered his gaze.
+
+A faint shoeprint remained in the dust beneath the doorway. The edges had already dried and faded, but the trace itself was not old enough to have disappeared.
+
+He looked toward the staircase.
+
+At the far end of the corridor, hidden beneath the shadow of the window frame, was another fresh mark — a slight scrape left by friction.
+
+Someone had been here.
+
+Someone had searched this place before him.
+
+Layer by layer, the traces told the same story:
+
+No. 94 East Yuhang Road was never abandoned.
+
+---
+
+## [Portrait Layer]
+
+Shen Mo crouches beside the utility pole, his fingers lifting the thin thread and the brass key hidden within the brick seam.
+
+He rises slowly and pushes open the weathered back door of No. 94.
+
+The last light of dusk falls across his shoulders.
+
+---
+
+## [Dialogue · Wordless]
+
+---
+
+# [Board Layer · First Trigger]
+
+The scratch inside the doorframe enlarges.
+
+A complete **9×9 Sudoku board** emerges, engraved into a metal plate hidden beneath the wood.
+
+* Board data: level-401 boardData
+* Core mechanic:
+  **Ninth-Order Nested Cage**
+* Difficulty:
+  Introductory lock puzzle of Chapter Four
+
+### Mechanic Description
+
+A large cage contains smaller cages within it.
+
+The player must peel away each layer step by step, using overlapping constraints to reveal the final structure.
+
+The solved sequence corresponds exactly to the second-floor layout of No. 94 East Yuhang Road.
+
+The result identifies:
+
+**Room 402**
+
+as the location where Shen Mo's mother once lived.
+
+The deduction also reveals the time interval between Ito's visit and Shen Mo's arrival, proving:
+
+Ito had been here first.
+
+---
+
+# [Board Interaction · Ninth-Order Nested Cage]
+
+The player completes the puzzle.
+
+The hidden number sequence aligns with the building's internal structure.
+
+The second-floor route is reconstructed.
+
+Room 402 is confirmed.
+
+---
+
+# [Feedback Layer · Clear]
+
+**Audio:**
+
+A soft metallic click.
+
+The brass key turns inside the lock cylinder.
+
+---
+
+Shen Mo confirms Room 402's location.
+
+More importantly—
+
+he confirms that Ito walked this floor before him.
+
+---
+
+# [Level Settlement]
+
+**Level 1 · No. 94 East Yuhang Road — Complete**
+
+Unlocked:
+
+* Level 2 · Room 402
+* Chapter Four Archive Fragment 1/9
+
+Hidden Thread Unlocked:
+
+* The brass key marked "4"
+* The identical short-stroke mark
+* Ito's prior visit to the same location
+
+---
+
+Level 2 · Room 402 (level-402)
+[Scene Name]
+
+East Yuhang Road · No. 94 · Room 402
+
+[Time]
+
+December 4, 1941 · Nightfall
+
+[Weather]
+
+Night has fallen completely.
+
+The old furniture inside the room sinks into darkness, its outlines blurred beneath the weak streetlight outside.
+
+[Scene Layer]
+
+Room 402 faced south.
+
+The curtains were half drawn, cutting off the outside world and sealing the room in silence.
+
+There was little furniture:
+
+An iron-frame bed.
+
+An old wooden desk.
+
+A wooden chair.
+
+Everything remained frozen in place, as if the room's owner had only just stepped away.
+
+On the desk sat an empty kerosene lamp.
+
+Beside it lay an old exercise book, opened to its final page.
+
+Shen Mo stepped closer.
+
+Under the faint light, four characters appeared in soft pencil strokes:
+
+He has not come.
+
+The handwriting was his mother's.
+
+Beneath those words, another line had been added in smaller writing, hurried but restrained:
+
+I waited until November 15. I can wait no longer.
+
+Shen Mo did not touch the exercise book.
+
+His eyes moved slowly across the room.
+
+The iron bed remained untouched.
+
+The wardrobe was empty.
+
+No personal belongings.
+
+No unnecessary traces.
+
+Only the windowsill showed something unusual.
+
+A small area of dust had been carefully wiped clean, leaving a neat patch against the surrounding layer of dirt.
+
+Before leaving, his mother had arranged everything.
+
+She had erased her own presence.
+
+Leaving behind only one thing:
+
+A path forward.
+
+From the desk drawer, Shen Mo took out a neatly folded letter.
+
+At the center of the page was a Sudoku grid.
+
+In the corner, a short pencil note:
+
+If you can make it here — solve this, and you will know where I am.
+
+He sat down.
+
+Under the faint streetlight passing through the curtain gap, he began solving.
+
+[Portrait Layer]
+
+Shen Mo stands silently before the desk.
+
+The kerosene lamp remains unlit.
+
+A narrow beam of streetlight falls through the curtain gap, illuminating the exercise book and his mother's final words.
+
+[Dialogue · Wordless]
+[Board Layer · Formal Appears]
+
+The old letter enlarges.
+
+A complete 9×9 Sudoku board appears.
+
+Board info: level-402 boardData
+Board feature:
+Ninth-Order Irregular Cage
+Difficulty:
+Advanced
+Mechanic Description
+
+The cage structures cross traditional block boundaries.
+
+The player must abandon standard region assumptions and reconstruct the hidden relationships between irregular groups.
+
+[Board Interaction · Ninth-Order Irregular Cage]
+
+The player solves the puzzle.
+
+The final number sequence corresponds to the missing line count written beneath the exercise book.
+
+The hidden route is revealed:
+
+Room 403
+
+[Feedback Layer · Clear]
+
+Audio:
+
+The quiet rustle of paper turning in the darkness.
+
+Shen Mo confirms the next location his mother prepared.
+
+The trail continues.
+
+[Level Settlement]
+
+Level 2 · Room 402 — Complete
+
+Unlocked:
+
+Level 3 · Room 403
+Chapter Four Archive Fragment 2/9
+
+Hidden Thread Unlocked:
+
+The message left in the exercise book
+The mother's waiting deadline
+The hidden route toward Room 403
+Level 3 · Room 403 (level-403)
+[Scene Name]
+
+East Yuhang Road · No. 94 · Room 403
+
+[Time]
+
+December 4, 1941 · Late Night
+
+[Weather]
+
+A moonless night.
+
+Outside the window, there is only endless darkness.
+
+The entire building is silent.
+
+[Scene Layer]
+
+Room 403 was smaller than Room 402.
+
+There was no bed.
+
+Only a desk and a chair placed alone in the center of the room.
+
+On the desk sat a small iron casket.
+
+Its craftsmanship was finer than the iron case discovered beneath the Archive Library.
+
+The casket was unlocked.
+
+Inside the lid was a note written in a gentle hand:
+
+This puzzle your mother solved halfway. The rest is yours.
+
+Shen Mo opened it.
+
+Inside was a Ninth-Order Sudoku puzzle.
+
+The first half had already been completed.
+
+The second half remained completely blank.
+
+The layout.
+
+The logic.
+
+The structure.
+
+Everything matched the unfinished puzzle his father had left behind in B3.
+
+A pattern repeated across generations.
+
+One person began.
+
+Another continued.
+
+A third reached the end.
+
+Shen Mo sat down.
+
+He placed the casket on his lap and began solving beneath the faint lamp glow.
+
+When the final deduction was complete, the answer revealed a date:
+
+November 15, 1941.
+
+The day his mother left Shanghai.
+
+Before closing the casket, Shen Mo noticed something beneath the paper.
+
+A thin sheet of newspaper had been placed underneath as padding.
+
+Carefully lifting it, he read the faded print:
+
+November 5, 1941.
+
+Ten days earlier.
+
+Japan's Imperial Conference had finalized the southern expansion policy.
+
+Ten days later.
+
+His mother left Shanghai.
+
+The timeline aligned perfectly.
+
+This was not coincidence.
+
+It was another piece of the chain.
+
+Shen Mo memorized the date.
+
+Then he restored everything exactly as it was.
+
+No trace.
+
+No disturbance.
+
+[Portrait Layer]
+
+Shen Mo sits alone in the old chair.
+
+The iron casket rests on his knees.
+
+Half of the completed puzzle glows beneath the weak lamp, surrounded by the silence of the night.
+
+[Dialogue · Wordless]
+[Board Layer · Formal Appears]
+
+The casket opens wider.
+
+A complete 9×9 Sudoku board appears.
+
+Board info: level-403 boardData
+Board feature:
+Ninth-Order Composite Cage
+Mechanic Description
+
+Multiple cage groups overlap and intersect.
+
+The shared empty cells become the core of the deduction.
+
+[Board Interaction · Ninth-Order Composite Cage]
+
+The player completes the puzzle.
+
+The hidden sequence reveals:
+
+November 15, 1941
+
+The date of his mother's departure.
+
+[Feedback Layer · Clear]
+
+Audio:
+
+The faint sound of a pen moving across paper.
+
+Shen Mo confirms:
+
+His mother.
+
+His father.
+
+His teacher.
+All withdrew from Shanghai around the same period.
+
+The timelines converge.
+
+[Level Settlement]
+
+Level 3 · Room 403 — Complete
+
+Unlocked:
+
+Level 4 · Room 404
+Chapter Four Archive Fragment 3/9
+
+Hidden Thread Unlocked:
+
+The November 15 withdrawal date
+The newspaper fragment dated November 5
+The hidden connection between the three disappearances
+Level 4 · Room 404 (level-404)
+[Scene Name]
+
+East Yuhang Road · No. 94 · Room 404
+
+[Time]
+
+December 5, 1941 · Before Dawn
+
+[Weather]
+
+The darkest hour before sunrise.
+
+From far away comes the muffled sound of an early tram passing through the sleeping city.
+
+[Scene Layer]
+
+Room 404 stood at the very end of the corridor.
+
+It was the smallest room in the building.
+
+Empty.
+
+No desk.
+
+No chair.
+
+Nothing except an old photograph fixed to the center of the wall.
+
+The photograph showed the back of a woman standing on a ship's gangway.
+
+One hand carried an old suitcase.
+
+Her posture was straight.
+
+Determined.
+
+Leaving.
+
+Shen Mo stepped forward and carefully removed the photograph.
+
+On the back, written in his mother's handwriting:
+
+November 15, 1941. I changed my route. Not Hong Kong. Vladivostok.
+
+Behind the photograph was something unusual.
+
+A clean patch on the wall.
+
+The dust around it had remained untouched for years, but this small area had been deliberately cleared.
+
+In the center of that blank space was a faint pencil message:
+
+You found your way here.
+
+The mark was not old enough to belong to the original room.
+
+But it was not recent either.
+
+Someone had left it between the past and the present.
+
+Shen Mo stared at the words.
+
+He did not try to identify the writer.
+
+He simply memorized the message.
+
+The photograph.
+
+The route.
+
+The date.
+
+Before leaving, he searched the room once more.
+
+No new carvings.
+
+No footprints.
+
+No displaced objects.
+
+Nothing else remained.
+
+The first light of dawn entered through the curtain gap.
+
+It fell directly upon the pencil words.
+
+For a moment, the message became unmistakably clear.
+
+Shen Mo closed the door.
+
+Leaving the past behind.
+
+[Portrait Layer]
+
+Shen Mo stands in the empty room.
+
+The old photograph rests in his hand.
+
+The hidden writing on the wall emerges beneath the first light of dawn.
+
+[Dialogue · Wordless]
+[Board Layer · First Trigger]
+
+The blank wall enlarges.
+
+A complete 9×9 Sudoku board appears.
+
+Board info: level-404 boardData
+Board feature:
+Ninth-Order Multi-Block Star Balance
+Mechanic Description
+
+Multiple blocks are connected through sum relationships.
+
+The player must maintain global balance rather than solving individual sections separately.
+
+[Board Interaction · Ninth-Order Multi-Block Star Balance]
+
+The player solves the puzzle.
+
+The result verifies:
+
+The mother's final route
+The Vladivostok destination
+The November 15 departure date
+
+The loop closes.
+
+[Feedback Layer · Clear]
+
+Audio:
+
+The faint scraping sound of pencil against stone.
+
+The mother's path ends.
+
+Vladivostok.
+
+November 15.
+
+The final route is confirmed.
+
+[Level Settlement]
+
+Level 4 · Room 404 — Complete
+
+Unlocked:
+
+Level 5 · Pan Hanyu's Note
+Chapter Four Archive Fragment 4/9
+
+
+Level 5 · Pan Hanyu's Note (level-405)
+
+[Scene Name]
+East Yuhang Road · No. 94 · Beneath the Utility Pole
+
+[Time]
+December 5, 1941 · Early Morning
+
+[Weather]
+Full daylight. Morning sunlight cuts across the alley, catching tiny droplets on the damp brick surface. The cold air feels unusually clear.
+
+[Scene Layer]
+
+After leaving No. 94 East Yuhang Road, Shen Mo returns once more beneath the third utility pole.
+
+Deep inside a crack between the bricks rests a tightly folded piece of paper. It is dry, untouched by the morning moisture — a mark placed here only recently.
+
+He crouches and carefully removes it.
+
+The handwriting is unfamiliar.
+
+No signature.
+No address.
+No explanation.
+
+Only one precise line:
+
+French Concession · Avenue Joffre · Lulutong Teahouse · Second-floor private room.
+
+Shen Mo studies the fold marks.
+
+The paper was folded neatly, but the method is different from the habits of the teacher, his father, his mother, or even himself.
+
+This is the handwriting of someone new.
+
+Someone outside the original chain.
+
+He places the note together with the brass key marked "4" inside his coat.
+
+Before leaving, he scans the alley carefully.
+
+No footsteps.
+
+No watching eyes.
+
+No one waiting at the corner.
+
+Taking a longer route around Suzhou Creek, he repeatedly checks whether anyone is following him. Only after confirming he has not been tracked does he turn toward the French Concession.
+
+[Portrait Layer]
+
+Shen Mo stands beneath the utility pole in the morning light.
+
+The anonymous note rests open in his palm.
+
+His expression remains calm as he silently analyzes the origin of this new message.
+
+[Dialogue · Wordless]
+[Board Layer · First Trigger]
+The anonymous note enlarges.
+A complete 9×9 sudoku board appears.
+Board data matches level-405 boardData.
+
+Board Feature:
+Ninth-Order Composite Cage Setup — nested cages, irregular cages, and overlapping structures combined into a single deduction system.
+
+Ambient State:
+The alley is quiet. The morning wind is still. The streets feel strangely empty.
+
+[Board Interaction · Ninth-Order Composite Cage Setup]
+
+The player solves the puzzle.
+
+The completed sequence reveals no identity, no sender information, and no hidden signature.
+
+Only coordinates remain.
+
+A new meeting location is unlocked.
+
+[Feedback Layer · Clear]
+
+Audio:
+The soft sound of paper being folded back into place.
+
+Shen Mo confirms the next destination:
+
+The second-floor private room of Lulutong Teahouse on Avenue Joffre.
+
+[Level Settlement]
+
+Display:
+Level 5 · Pan Hanyu's Note — Complete
+
+Unlocked:
+Level 6 · Lulutong Teahouse
+
+Unlocked:
+Chapter Four archive fragment 5/9
+
+Hidden Thread Unlocked:
+
+The anonymous contact note.
+The unfamiliar communication method.
+The new Avenue Joffre meeting point.
+Level 6 · Lulutong Teahouse (level-406)
+
+[Scene Name]
+French Concession · Lulutong Teahouse · Second-floor Private Room
+
+[Time]
+December 5, 1941 · Afternoon
+
+[Weather]
+Clouds remain heavy throughout the day. Cold wind from the river moves through the streets, shaking the teahouse awning.
+
+[Scene Layer]
+
+Under the gray afternoon sky, Shen Mo arrives at Lulutong Teahouse.
+
+The second-floor private room door is slightly open.
+
+Not locked.
+
+Not forced.
+
+Simply waiting.
+
+He pushes it open.
+
+On the desk sits an old envelope.
+
+No name.
+
+No address.
+
+The seal carries a delicate Ninth-Order pattern identical to the anonymous letter that first drew him into this chain.
+
+Shen Mo breaks the seal.
+
+Inside are two sudoku grids placed side by side.
+
+The first:
+
+A complete standard Ninth-Order grid.
+
+The second:
+
+A blank cage-based grid.
+
+Only cage lines and sum values remain.
+
+At the bottom of the page:
+
+Solve the first. Use its key to solve the second.
+
+Shen Mo sits by the window.
+
+Using the plain pencil left on the desk, he begins.
+
+First, he completes the standard sudoku.
+
+The solved sequence becomes the key.
+
+Then, following that sequence exactly, he unlocks the second blank cage board.
+
+When the final number is placed, the second puzzle reveals a new location and time window.
+
+Shen Mo memorizes the information.
+
+He folds the envelope exactly as he found it.
+
+Nothing taken.
+
+Nothing moved.
+
+No trace left behind.
+
+As he leaves, he notices something downstairs.
+
+The gap between the envelope and the newspaper on the first-floor desk has changed.
+
+Someone moved them.
+
+Not enough to notice casually.
+
+Enough for someone who was watching.
+
+The teahouse has been under surveillance for some time.
+
+Shen Mo says nothing.
+
+He leaves.
+
+[Portrait Layer]
+
+Shen Mo sits beside the second-floor window.
+
+The double puzzle spreads across the desk.
+
+Outside, the cold wind moves faintly through the street.
+
+[Dialogue · Wordless]
+[Board Layer · First Trigger]
+The envelope enlarges.
+Two linked 9×9 sudoku boards appear.
+
+Board Feature:
+Ninth-Order Cage-Sum Delta — key-linked solving combined with cage-sum deduction.
+
+Ambient State:
+The teahouse below remains noisy, but the private room above is silent.
+
+[Board Interaction · Ninth-Order Cage-Sum Delta]
+
+The player first solves the standard sudoku.
+
+The obtained sequence becomes the only valid key for the second blank cage board.
+
+The second puzzle is unlocked.
+
+[Feedback Layer · Clear]
+
+Audio:
+Paper settling softly on the desk.
+
+Shen Mo obtains a new action coordinate and confirms:
+
+The old puzzle chain and the new contact system originate from the same hidden logic.
+
+The teahouse is being watched.
+
+[Level Settlement]
+
+Display:
+Level 6 · Lulutong Teahouse — Complete
+
+Unlocked:
+Level 7 · The Other Path
+
+Unlocked:
+Chapter Four archive fragment 6/9
+
+Hidden Thread Unlocked:
+
+The double-puzzle key mechanism.
+The connection between old and new puzzle systems.
+The existence of surveillance around the teahouse.
+Level 7 · The Other Path (level-407)
+
+[Scene Name]
+Avenue Joffre · Vera's Old Bookshop
+
+[Time]
+December 6, 1941 · Morning
+
+[Weather]
+Heavy clouds press over Shanghai.
+
+The air is heavy.
+
+Rain is approaching.
+
+[Scene Layer]
+
+After several days, Shen Mo returns to Avenue Joffre.
+
+Vera's bookshop is closed.
+
+No light.
+
+No movement.
+
+The windows are shut.
+
+The warmth that once filled the shop has disappeared completely.
+
+Only one object remains:
+
+A book without a title.
+
+It rests on the street-facing windowsill.
+
+Waiting.
+
+Shen Mo approaches.
+
+He opens the cover.
+
+Inside the title page is a message written in Vera's hand:
+
+The path you walk is correct.
+
+But there is another path.
+
+Between the pages lies a puzzle sheet.
+
+No given numbers.
+
+No starting clues.
+
+Only cage lines and sum values.
+
+A pure zero-hint sudoku.
+
+Shen Mo does not approach the shop.
+
+Instead, he crosses the street and sits beneath a streetlamp.
+
+The book rests on his knees.
+
+He begins solving.
+
+When the final deduction is complete, a string of numbers appears:
+
+December 8, 1941.
+
+At the corner of the paper, hidden writing gradually emerges:
+
+This is your final verification.
+
+The next time you walk through this door, it will no longer be a bookshop.
+
+Shen Mo leaves no mark.
+
+He closes the book exactly as found.
+
+Returns it to the windowsill.
+
+Then walks away.
+
+[Portrait Layer]
+
+Shen Mo sits across the street beneath the lamp.
+The old book rests on his knees.
+
+His pencil moves quietly.
+
+Above him, the storm clouds gather.
+
+[Dialogue · Wordless]
+[Board Layer · First Trigger]
+The book page enlarges.
+A complete zero-hint 9×9 sudoku appears.
+
+Board Feature:
+Ninth-Order Inner-Outer Mystery — overlapping inner and outer cage structures requiring offset deduction.
+
+Ambient State:
+The street is quiet.
+
+The storm is coming.
+
+[Board Interaction · Ninth-Order Inner-Outer Mystery]
+
+The player solves the zero-hint puzzle.
+
+The final time node is revealed:
+
+December 8, 1941.
+
+The ultimate countdown point is confirmed.
+
+[Feedback Layer · Clear]
+
+Audio:
+The sound of wind turning the pages of the book.
+
+Shen Mo confirms:
+
+The final verification is complete.
+
+[Level Settlement]
+
+Display:
+Level 7 · The Other Path — Complete
+
+Unlocked:
+Level 8 · The Backup Transmitter
+
+Unlocked:
+Chapter Four archive fragment 7/9
+
+Hidden Thread Unlocked:
+
+Vera's final verification.
+The December 8 countdown node.
+The coming end of the bookshop.
+
+Level 8 · The Backup Transmitter (level-408)
+
+[Scene Name]
+East Yuhang Road · No. 94 · Room 404 · Hidden Compartment
+
+[Time]
+December 6, 1941 · Nightfall
+
+[Weather]
+The night wind suddenly rises. It pushes through the window gap, lifting the curtain and bringing a chill into the empty room.
+
+[Scene Layer]
+
+Night falls over Shanghai.
+
+Shen Mo returns once more to No. 94 East Yuhang Road.
+
+Room 404 remains exactly as before.
+
+Empty.
+
+Silent.
+
+Untouched.
+
+Yet this time, as he searches beneath the old desk, his fingers discover something hidden.
+
+A concealed compartment.
+
+It is shallow — only large enough for a single hand.
+
+He carefully opens it.
+
+Inside:
+
+No transmitter.
+
+No weapon.
+
+No device.
+
+Only a yellowed piece of paper.
+
+An object sealed away for years.
+
+Shen Mo unfolds it.
+
+The handwriting is unfamiliar.
+
+No signature.
+
+No date.
+
+Only one sentence:
+
+The backup transmitter is where you last were.
+
+Archive Library basement, B3 — beneath the transmitter base.
+
+He reads the message silently.
+
+He does not attempt to identify the writer.
+
+He does not speculate about the source.
+
+He only memorizes the information.
+
+Then he folds the note exactly as he found it.
+
+Before leaving, he checks the compartment again.
+
+No damage.
+
+No forced opening.
+
+No trace of another hand.
+
+The windowsill dust remains smooth.
+
+The back door hinge still gives the same dry sound as before.
+
+Nothing has changed.
+
+Someone wanted him to find this.
+
+But wanted no evidence left behind.
+
+[Portrait Layer]
+
+Shen Mo crouches beneath the desk.
+
+The hidden compartment is open.
+
+The yellowed note rests between his fingers.
+
+Outside, the night wind moves through the empty room.
+
+[Dialogue · Wordless]
+[Board Layer · First Trigger]
+The hidden compartment note enlarges.
+A complete 9×9 sudoku board appears.
+Board data matches level-408 boardData.
+
+Board Feature:
+Ninth-Order Star Balance Trial — a complete Star Balance deduction system requiring a closed logical chain.
+
+Ambient State:
+Deep night.
+
+The room is empty.
+
+Only the sound of wind passing through the window remains.
+
+[Board Interaction · Ninth-Order Star Balance Trial]
+
+The player solves the puzzle.
+
+The completed structure reveals the exact location of the backup transmitter.
+
+The clue chain closes:
+
+Room 404 → Archive Library → B3 → transmitter base.
+
+[Feedback Layer · Clear]
+
+Audio:
+The quiet sound of paper being folded back into place.
+
+Shen Mo confirms:
+
+The backup transmitter is hidden beneath the original transmitter in the B3 chamber.
+
+The hidden passage has revealed its final layer.
+
+[Level Settlement]
+
+Display:
+Level 8 · The Backup Transmitter — Complete
+
+Unlocked:
+Level 9 · Triple Alignment
+
+Unlocked:
+Chapter Four archive fragment 8/9
+
+Hidden Thread Unlocked:
+
+The existence of the backup transmitter.
+The hidden mechanism beneath B3.
+The unidentified sender who prepared this clue.
+Level 9 · Triple Alignment (level-409)
+
+[Scene Name]
+Archive Library Basement · B3 Stone Chamber · Before the Transmitter
+
+[Time]
+December 6, 1941 · Deep Night
+
+[Weather]
+Rain falls above ground.
+
+The sound travels faintly through the ventilation shafts, making the underground chamber feel even more distant from the world.
+
+[Scene Layer]
+
+In the middle of the night rain, Shen Mo returns to the B3 chamber.
+
+The underground remains silent.
+
+Only the distant sound of water breaking the stillness.
+
+He kneels before the transmitter.
+
+Carefully, he lifts the machine base by several centimeters.
+
+Beneath it, attached to the underside, is a thin iron box.
+
+Hidden perfectly.
+
+He removes it.
+
+Inside lies only one sheet of paper.
+
+A Ninth-Order sudoku.
+
+Already completed.
+
+Every cell filled.
+
+No mistakes.
+
+No corrections.
+
+At the bottom of the page is a line written in Ito's handwriting:
+
+I have seen every puzzle you left behind.
+
+This one, I completed.
+
+Shen Mo stands motionless.
+
+He studies the completed board.
+
+No folding marks.
+
+No erased numbers.
+
+No additional notes.
+
+Only a perfect solution.
+
+Slowly, he understands.
+
+His father's unfinished puzzle.
+
+His mother's route.
+
+The teacher's preparation.
+
+Ito's final move.
+
+Every path.
+
+Every person.
+
+Every hidden intention.
+
+All converge here.
+
+The final puzzle was never waiting for him to solve it.
+
+His purpose was not to finish someone else's answer.
+
+His purpose was to reach the end.
+
+To see the entire design.
+
+To inherit what everyone had prepared.
+
+He folds the paper exactly as before.
+
+Returns it to the iron box.
+
+Restores the transmitter base.
+
+Every trace returns to its original state.
+
+Then he steps back.
+
+The transmitter's indicator light is glowing.
+
+A cold white point in the darkness.
+
+The machine is ready.
+
+Only the final activation command remains.
+
+Shen Mo does not touch it.
+
+He turns away.
+
+[Portrait Layer]
+
+Shen Mo stands before the transmitter.
+
+The cold indicator light illuminates the stone chamber.
+
+He understands everything.
+
+And still chooses not to activate it.
+
+[Dialogue · Wordless — Finale]
+[Board Layer · Formal Appears]
+The iron box enlarges.
+The completed ultimate 9×9 sudoku appears.
+Board data matches level-409 boardData.
+
+Board Feature:
+Ninth-Order Composite Boss — combines every sudoku mechanic introduced throughout the game.
+
+Shares the same verification logic and audio motif as levels 109 and 309.
+
+Ambient State:
+Deep underground.
+
+Distant rain.
+
+Absolute silence.
+
+[Board Interaction · Ninth-Order Composite Boss]
+
+The player solves the final puzzle.
+
+The solution confirms:
+
+Ito completed the final board beforehand.
+
+Shen Mo's final achievement was not solving the puzzle.
+
+It was understanding the entire chain.
+
+[Feedback Layer · Clear]
+
+Audio:
+A deep, low resonance.
+
+The same sound that echoed from the earliest hidden mechanisms.
+
+The final alignment is complete.
+
+[Scene Continues]
+
+Shen Mo leaves the B3 chamber.
+
+He climbs through the hidden passage.
+
+The Archive Library door opens into the rainy night.
+
+The streets are wet.
+
+The stone steps reflect a single distant lamp.
+
+Before leaving, he touches the short-stroke mark carved into the outer doorframe.
+
+Still hidden.
+
+Still undiscovered.
+
+Then he walks away.
+
+At home, the lamp is dim.
+
+Su Wan does not ask where he has been.
+
+She only places a bowl of warm congee on the table.
+
+No questions.
+
+No explanations.
+
+Shen Mo sits silently.
+
+The cold of the underground slowly fades.
+
+The entire chain has reached its conclusion.
+
+The cord binding everyone together has finally been pulled tight.
+
+[Level Settlement]
+
+Display:
+Level 9 · Triple Alignment — Complete
+
+Unlocked:
+All Chapter Four archive fragments 9/9
+
+Unlocked:
+Chapter Five · The Current
+
+Chapter Four Summary
+Space:
+
+East Yuhang Road No.94, Avenue Joffre, Lulutong Teahouse, Archive Library B3.
+
+Core Conflict:
+
+The final convergence of the father's legacy, the mother's withdrawal route, the teacher's hidden preparation, Vera's warning, and Ito's silent counter-move.
+
+Core Action:
+
+Shen Mo follows the remaining clues, confirms every hidden route, discovers the backup transmitter, and realizes the final puzzle was already completed before his arrival.
+
+Main Symbols:
+The brass key marked "4"
+The short-stroke mark
+November 15, 1941
+December 8, 1941
+The transmitter beneath B3
+The completed final sudoku
+Final Revelation:
+
+The entire chain was never built for one person to finish alone.
+
+Everyone had completed their part.
+
+Shen Mo was the one who reached the end and understood the whole design.
+
+Chapter Four Level Summary
+Level	Core Technique	Core Event	Information Alignment
+401	Ninth-Order Nested Cage	No.94 East Yuhang Road · obtain key "4"	Ito had already passed through this route
+402	Ninth-Order Irregular Cage	Room 402 · discover mother's message	Confirm mother's waiting deadline
+403	Ninth-Order Composite Cage	Room 403 · complete mother's half-puzzle	Lock collective withdrawal date: Nov.15
+404	Ninth-Order Multi-Block Star Balance	Room 404 · decode departure photo	Confirm Vladivostok route
+405	Ninth-Order Composite Cage Setup	Decode anonymous note	Obtain new meeting point
+406	Ninth-Order Cage-Sum Delta	Teahouse double puzzle	Connect old and new systems
+407	Ninth-Order Inner-Outer Mystery	Vera's final verification	Confirm Dec.8 countdown
+408	Ninth-Order Star Balance Trial	Discover backup transmitter clue	Locate hidden B3 device
+409	Ninth-Order Composite Boss	Triple Alignment finale	Ito completed the final puzzle; Shen Mo sees the entire chain
+
+
+Chapter Five · The Current
+Level 1 · Preparing the Transmitter (level-501)
+
+[Scene Name] Archive Library Basement · B3 Stone Chamber · Before the Transmitter
+[Time] December 7, 1941 · Before Dawn · Still Dark
+[Weather] Deep underground, the chamber is completely sealed and without light. The only illumination comes from the transmitter's power indicator — a cold white point piercing the darkness.
+
+[Scene Layer]
+
+Before dawn, the underground corridor lies in absolute silence.
+
+Shen Mo returns to the B3 chamber.
+
+Passing the end of the B1 corridor, he pauses briefly. The number carving on the stone wall remains untouched — uncovered, unchanged, exactly as it was during his previous inspection.
+
+He continues forward.
+
+The wooden door of the B2 chamber opens with a faint creak. Beyond it, the heavy iron gate of B3 stands unchanged. He crosses the narrow ten-step passage and finally stops before the transmitter.
+
+He lowers his gaze and begins a final inspection.
+
+The power cable is intact and firmly connected. Every dial remains at its original calibration. No switch has been moved. No component has been disturbed.
+
+Shen Mo crouches and carefully opens the iron box beneath the transmitter.
+
+Inside rests Ito's completed sudoku puzzle.
+
+He confirms the board remains untouched, then closes the box exactly as he found it.
+
+His fingertip brushes the flat iron container attached beneath the transmitter base. The sealing tape remains tight. The position is unchanged.
+
+He is not activating the mechanism.
+
+He is only confirming that everything remains exactly as planned.
+
+He looks up toward the ventilation shaft. The seal is intact. No scratches. No signs of tampering.
+
+Since his departure, no one has entered this chamber.
+
+Verification complete, Shen Mo does not begin transmission.
+
+Instead, he rises, steps back to the entrance, and waits silently against the wall.
+
+The transmitter's indicator continues to glow.
+
+A silent machine waiting for its appointed moment.
+
+[Portrait Layer]
+
+Shen Mo kneels before the transmitter, tracing the path of the power cable with his fingertips — checking, never touching beyond necessity.
+The cold indicator light falls across his face.
+
+His expression remains calm and solemn.
+
+[Dialogue · Wordless]
+
+[Board Layer · First Trigger]
+
+The transmitter base enlarges into view.
+A complete 9×9 sudoku board appears.
+Board data matches level-501 boardData.
+Board feature: Ninth-Order Nested Cage — the foundational puzzle of this chapter, designed to unlock the protective mechanism beneath the transmitter base.
+
+[Ambient State]
+
+The underground chamber is silent.
+
+No wind. No footsteps.
+
+Only the cold white glow of the standby indicator.
+
+A suffocating tension fills the darkness.
+
+[Board Interaction · Ninth-Order Nested Cage]
+
+The player solves the puzzle and derives the precise differential sequence required to unlock the transmitter base.
+
+The sequence determines the exclusive turning order of the three control knobs, preventing the device's internal lock mechanism from engaging.
+
+The protective cover enters safe standby mode, allowing contactless activation preparation.
+
+[Feedback Layer · Clear]
+
+Audio: a brief mechanical click from within the cover as the internal gears align.
+Shen Mo confirms the unlocking sequence and completes the calibration procedure.
+
+The transmitter returns to standby.
+
+[Level Settlement]
+
+Display: Level 1 · Preparing the Transmitter — Complete
+Unlocked: Level 2 · Power Cut
+Unlocked: Chapter Five archive fragment 1/9
+Hidden thread unlocked:
+the transmitter base protection system
+the three-knob unlocking sequence
+the device's standby condition
+Level 2 · Power Cut (level-502)
+
+[Scene Name] Archive Library Basement · B3 Stone Chamber · Before the Transmitter
+[Time] December 7, 1941 · Before Dawn · Still Dark
+[Weather] Darkness remains underground. From above comes a faint low-frequency mechanical vibration, penetrating through layers of earth.
+
+[Scene Layer]
+
+The protective cover has been unlocked.
+
+The transmitter is calibrated.
+
+But Shen Mo does not begin transmission.
+
+He performs one final inspection.
+
+The flat iron box beneath the transmitter remains sealed. No loosened tape. No movement. No pry marks.
+
+Everything remains under control.
+
+He withdraws his hand and sits beside the chamber desk.
+
+Then he hears it.
+
+A low mechanical vibration.
+
+Not footsteps.
+
+Not street noise.
+
+A vehicle.
+
+The sound continues for twenty seconds before stopping directly above the Archive Library.
+
+Shen Mo immediately understands.
+
+Japanese radio direction-finding vehicles.
+
+Equipped with retractable antenna systems, these vehicles are positioned throughout the French Concession, searching for unauthorized transmissions.
+
+He remains completely still.
+
+He does not touch the transmitter.
+
+He does not move.
+
+He waits.
+
+The engine vibration remains overhead, then slowly drifts away.
+
+The sound fades.
+
+The pressure disappears.
+
+Only after confirming the vehicle has withdrawn does Shen Mo rise and return before the transmitter.
+
+The transmission window has opened.
+
+[Portrait Layer]
+
+Shen Mo sits beside the chamber desk.
+
+The dim light cuts across his profile.
+
+The transmitter's cold glow briefly illuminates his collar and face.
+
+He waits patiently as danger passes.
+
+[Dialogue · Wordless]
+
+[Board Layer · First Trigger]
+
+The transmitter operation panel enlarges.
+A complete 9×9 sudoku board appears.
+Board data matches level-502 boardData.
+Board feature: Ninth-Order Grand-Cage Sum — using combination enumeration and cross-constraint deduction to calculate exact calibration parameters.
+
+[Ambient State]
+
+The direction-finding vehicle has withdrawn.
+
+The chamber becomes even quieter.
+
+The silence feels heavier than before.
+
+[Board Interaction · Ninth-Order Grand-Cage Sum]
+
+The player solves the puzzle.
+
+The solution generates the transmitter's exact calibration parameters.
+
+The correct frequency-switch sequence is established, preventing antenna deviation and accidental signal leakage.
+
+The transmitter safely transitions from initial frequency to standby frequency.
+
+[Feedback Layer · Clear]
+
+Audio: the control knob rotates smoothly, followed by a low mechanical engagement sound.
+Shen Mo completes the frequency calibration.
+
+The transmitter enters standby mode.
+
+[Level Settlement]
+
+Display: Level 2 · Power Cut — Complete
+Unlocked: Level 3 · The Direction-Finding Vehicle
+Unlocked: Chapter Five archive fragment 2/9
+Hidden thread unlocked:
+the direction-finding vehicle's surveillance window
+the transmitter's calibration parameters
+the standby-frequency state
+Level 3 · The Direction-Finding Vehicle (level-503)
+
+[Scene Name] Archive Library Basement · B3 Stone Chamber · Before the Transmitter
+[Time] December 7, 1941 · Morning
+[Weather] Cold rain falls above Shanghai. Water drips through the ventilation shaft, echoing faintly through the underground chamber.
+
+[Scene Layer]
+
+Rain covers the city.
+
+Shen Mo begins adjusting the antenna system.
+
+He draws out a thin copper wire, threads it through the ventilation shaft, and connects it to an external clothesline wire, creating a temporary directional antenna.
+
+The modification reduces lateral signal leakage and weakens enemy positioning accuracy.
+
+But the cost is precision.
+
+The transmission angle must be exact.
+
+A single deviation could expose the source.
+
+After securing the antenna, Shen Mo returns to the transmitter and begins drafting the first message.
+
+His handwriting remains steady.
+
+Then he stops.
+
+The engine sound returns.
+
+But this time there is more than one vehicle.
+
+Two direction-finders.
+
+One to the east.
+
+One to the west.
+
+A pincer formation.
+
+The Archive Library is being watched from both sides.
+
+Shen Mo calmly finishes the line he is writing.
+
+He checks the ventilation shaft.
+
+No visible light leakage.
+
+No exposed signal path.
+
+He extinguishes the kerosene lamp.
+
+The chamber falls into darkness.
+
+He shields the transmitter indicator and waits.
+
+Then—
+
+Footsteps.
+
+From the first floor.
+
+Slow.
+
+Controlled.
+
+Careful.
+
+They approach the bookshelf area.
+
+They stop.
+
+But they do not reach the hidden entrance.
+
+A long moment passes.
+
+Then the footsteps retreat.
+
+Disappear.
+
+Shen Mo counts silently.
+
+Six minutes.
+
+Only after confirming the search has ended does he relight the lamp.
+
+The draft remains untouched.
+
+The transmission window remains open.
+
+[Portrait Layer]
+
+The chamber is completely dark.
+
+The transmitter indicator is hidden.
+
+Shen Mo sits motionless in the shadows, holding his breath as surveillance pressure closes around him.
+
+[Dialogue · Wordless]
+
+[Board Layer · First Trigger]
+
+The message draft enlarges.
+A complete 9×9 sudoku board appears.
+Board data matches level-503 boardData.
+Board feature: Ninth-Order Extreme Deduction — designed for long-chain logical calculation under maximum pressure.
+
+[Ambient State]
+
+The city enters full surveillance mode.
+
+Two direction-finding vehicles lock the area.
+
+Risk reaches its peak.
+
+[Board Interaction · Ninth-Order Extreme Deduction]
+
+The player solves the puzzle.
+
+The solution verifies the complete first message content and calculates the optimal transmission angle.
+
+The antenna direction avoids the overlapping detection zones of both enemy vehicles.
+
+A safe transmission path is established.
+
+[Feedback Layer · Clear]
+
+Audio: the faint scratch of a pen moving across paper.
+Shen Mo confirms:
+message content is correct
+antenna angle is accurate
+transmission conditions are stable
+
+[Level Settlement]
+
+Display: Level 3 · The Direction-Finding Vehicle — Complete
+Unlocked: Level 4 · The First Message
+Unlocked: Chapter Five archive fragment 3/9
+Hidden thread unlocked:
+the dual direction-finding surveillance pattern
+the safe transmission angle
+the temporary directional antenna parameters
+
+
+Chapter Five · The Current
+Level 501 · Preparing the Transmitter
+
+[Level ID] level-501
+
+[Scene Name]
+
+Archive Library Basement · B3 Stone Chamber · Before the Transmitter
+
+[Time]
+
+December 7, 1941 · Before Dawn · Still Dark
+
+[Weather]
+
+Deep underground, the chamber is completely sealed from the outside world. No wind reaches this depth. No sound enters. The only visible presence is the transmitter's cold white indicator light, steady and unmoving in the darkness.
+
+[Scene Layer]
+
+Before dawn breaks, Shen Mo returns once more to the underground chamber beneath the Archive Library.
+
+The corridor is swallowed in darkness. Passing the end of the B1 passage, he stops briefly before the stone wall. The number carving remains untouched — its edges intact, its surface unchanged, no new marks, no signs of interference.
+
+He continues downward.
+
+The wooden door of the B2 chamber opens without resistance. Beyond it, the heavy iron gate of B3 stands exactly as before. Shen Mo passes through the narrow ten-step passage and finally reaches the transmitter.
+
+He lowers himself beside the machine and begins a silent inspection.
+
+The power cable is firmly connected.
+The control knobs remain at their original calibration.
+No component has been shifted.
+No mechanism has been disturbed.
+
+He opens the small iron compartment beneath the transmitter base.
+
+Inside rests Ito's completed sudoku puzzle.
+
+Shen Mo studies the finished grid once more. Every number remains unchanged. The paper shows no folds, no marks, no signs of tampering.
+
+He closes the compartment.
+
+His fingers then touch the flat iron box fixed beneath the transmitter base. The sealing tape remains tight. The position is exact. Nothing has moved.
+
+He is not here to activate anything.
+
+He is here only to confirm that everything remains exactly as everyone prepared it.
+
+Shen Mo raises his eyes toward the ventilation shaft above.
+
+The metal cover is intact.
+No scratches.
+No forced opening.
+No traces of intrusion.
+
+The underground chamber has remained untouched since his last departure.
+
+After completing the inspection, he does not approach the transmitter again.
+
+Instead, he steps back toward the entrance, leans against the stone wall, and waits.
+
+The machine's indicator continues to glow.
+
+The final moment has not yet arrived.
+
+[Portrait Layer]
+
+Shen Mo crouches beside the transmitter, tracing the power cable with his fingertip.
+
+He does not pull it.
+
+He does not reconnect it.
+
+He changes nothing.
+
+Only confirmation.
+
+The cold white light reflects across his face, revealing a calm and solemn expression.
+
+[Dialogue]
+
+Wordless
+
+[Board Layer · First Trigger]
+The transmitter base enlarges in view.
+A complete 9×9 sudoku board emerges.
+
+Board Data: Matches level-501 boardData
+
+Board Feature:
+Ninth-Order Nested Cage
+
+A foundational cage structure introducing the chapter's final puzzle language. Nested regions conceal layered constraints, corresponding to the transmitter's protective mechanism.
+
+Ambient State:
+
+Underground silence.
+No external sound.
+No wind.
+Only the constant glow of the standby indicator.
+[Board Interaction · Ninth-Order Nested Cage]
+
+The player solves the puzzle.
+
+The completed grid reveals a sequence of differential values.
+
+Those values correspond to the transmitter base's three locking controls, determining the only safe unlocking order.
+
+The sequence prevents the internal self-lock mechanism from activating and grants access to the protective cover without physically triggering the transmitter.
+
+[Feedback Layer · Clear]
+
+Audio:
+
+A short mechanical click.
+
+Inside the protective cover, hidden gears engage.
+
+Shen Mo confirms the unlocking sequence.
+
+The protective cover enters standby mode.
+
+The transmitter remains untouched.
+
+[Level Settlement]
+
+Display:
+Level 1 · Preparing the Transmitter — Complete
+
+Unlocked:
+
+Level 502 · Power Cut
+Chapter Five Archive Fragment 1/9
+
+Hidden Thread Unlocked:
+
+The transmitter's protective structure
+The exclusive three-knob unlocking sequence
+The device's dormant standby condition
+Chapter Five · The Current
+Level 502 · Power Cut
+
+[Level ID] level-502
+
+[Scene Name]
+
+Archive Library Basement · B3 Stone Chamber · Before the Transmitter
+
+[Time]
+
+December 7, 1941 · Before Dawn · Still Dark
+
+[Weather]
+
+The underground chamber remains silent.
+
+Above the ventilation shaft, a faint mechanical vibration begins to penetrate the earth.
+
+[Scene Layer]
+
+The protective cover has been unlocked.
+
+But Shen Mo does not activate the transmitter.
+
+He first checks the iron box beneath the machine again.
+
+The seal remains intact.
+
+No loosened tape.
+
+No shifted position.
+
+No pry marks.
+
+Everything remains within expectation.
+
+He withdraws his hand and sits beside the chamber desk.
+
+Then the sound arrives.
+
+A low-frequency mechanical vibration.
+
+Not footsteps.
+
+Not a passing vehicle.
+
+Not ordinary street noise.
+
+A specialized engine.
+
+Shen Mo immediately recognizes it.
+
+A Japanese radio direction-finding vehicle.
+
+Above the Archive Library.
+
+The sound continues for twenty seconds.
+
+Then stabilizes.
+
+The vehicle has stopped.
+
+Shen Mo remains motionless.
+He knows these vehicles carry retractable antenna arrays, capable of detecting abnormal radio emissions throughout the concession.
+
+A single transmission at the wrong moment could expose everything.
+
+So he waits.
+
+Minutes pass.
+
+The engine vibration slowly shifts.
+
+The sound moves away.
+
+Then disappears completely.
+
+Only after the city falls silent again does Shen Mo stand.
+
+He returns to the transmitter.
+
+The preparation continues.
+
+[Portrait Layer]
+
+Shen Mo sits beside the chamber desk.
+
+The dim underground light cuts across his face.
+
+The transmitter's cold glow reflects briefly against his collar.
+
+He waits patiently.
+
+Not afraid.
+
+Not hurried.
+
+Only measuring time.
+
+[Dialogue]
+
+Wordless
+
+[Board Layer · First Trigger]
+The transmitter operation panel enlarges.
+A complete 9×9 sudoku board appears.
+
+Board Data: Matches level-502 boardData
+
+Board Feature:
+Ninth-Order Grand-Cage Sum
+
+A large-scale cage calculation puzzle requiring combination enumeration and overlapping constraints.
+
+[Board Interaction · Ninth-Order Grand-Cage Sum]
+
+The player solves the puzzle.
+
+The solution generates the transmitter's exact calibration parameters.
+
+These parameters determine the exclusive frequency-switching order.
+
+Correct completion prevents:
+
+frequency deviation,
+antenna mismatch,
+accidental signal leakage.
+
+The transmitter safely transitions from initial configuration to standby frequency.
+
+[Feedback Layer · Clear]
+
+Audio:
+
+A smooth mechanical rotation.
+
+The control knob turns steadily.
+
+Shen Mo completes the calibration.
+
+The transmitter enters standby mode.
+
+[Level Settlement]
+
+Display:
+Level 2 · Power Cut — Complete
+
+Unlocked:
+
+Level 503 · The Direction-Finding Vehicle
+Chapter Five Archive Fragment 2/9
+
+Hidden Thread Unlocked:
+
+The direction-finding vehicle's monitoring window
+The transmitter's calibration parameters
+The standby-frequency state
+Chapter Five · The Current
+Level 503 · The Direction-Finding Vehicle
+
+[Level ID] level-503
+
+[Scene Name]
+
+Archive Library Basement · B3 Stone Chamber · Before the Transmitter
+
+[Time]
+
+December 7, 1941 · Morning
+
+[Weather]
+
+Cold rain falls over Shanghai.
+
+Water drips through the ventilation shaft above, creating a constant background rhythm inside the underground chamber.
+
+[Scene Layer]
+
+The rain begins.
+
+Shen Mo starts adjusting the antenna system.
+
+He takes out a thin copper wire and carefully threads it through the ventilation shaft.
+
+Using the external clothesline structure above, he creates a temporary directional antenna.
+
+This reduces lateral signal radiation and lowers the accuracy of enemy detection.
+
+But the adjustment demands absolute precision.
+
+The transmission angle must be exact.
+
+A slight deviation could expose the location.
+
+After securing the antenna, Shen Mo returns to the transmitter.
+
+He writes the first message draft.
+
+His handwriting remains steady.
+
+Until—
+
+The engine returns.
+
+This time there is more than one.
+
+Two direction-finding vehicles.
+
+One to the east.
+
+One to the west.
+
+The Archive Library is trapped inside a detection field.
+
+Shen Mo immediately stops writing.
+
+He checks the ventilation opening.
+
+No light leakage.
+
+No signal leakage.
+
+No visible trace.
+
+He extinguishes the kerosene lamp.
+
+The chamber falls completely dark.
+
+The transmitter indicator is covered.
+
+All unnecessary light disappears.
+
+He waits.
+
+Then—
+
+Footsteps.
+
+Above.
+
+On the first floor.
+
+Slow.
+
+Controlled.
+
+Careful.
+
+The sound approaches the bookshelf area.
+
+Stops.
+
+Not at the hidden entrance.
+
+Not below.
+
+Only above.
+
+A moment of unbearable silence.
+
+Then the footsteps retreat.
+
+Disappear.
+
+Shen Mo counts silently.
+
+Six minutes.
+
+Only after confirming the search has ended does he relight the lamp.
+
+The message draft remains untouched.
+
+The mission continues.
+
+[Portrait Layer]
+
+The chamber is completely dark.
+
+The transmitter light is hidden.
+
+Shen Mo sits motionless in the shadows.
+
+The entire world above him becomes a threat.
+
+Yet his breathing remains steady.
+
+[Dialogue]
+
+Wordless
+
+[Board Layer · First Trigger]
+The message draft enlarges.
+A complete 9×9 sudoku board appears.
+
+Board Data: Matches level-503 boardData
+
+Board Feature:
+Ninth-Order Extreme Deduction
+
+A long-chain deduction puzzle designed for precision under maximum pressure.
+
+[Board Interaction · Ninth-Order Extreme Deduction]
+
+The player solves the puzzle.
+
+The solution verifies:
+
+the complete first message content,
+the correct transmission parameters,
+the optimal antenna direction.
+
+The final transmit angle avoids the overlapping detection zones of both direction-finding vehicles.
+
+A safe transmission route is established.
+
+[Feedback Layer · Clear]
+
+Audio:
+
+A pencil lightly scratches across paper.
+
+Almost silent.
+
+Shen Mo confirms:
+
+Message content — correct.
+Transmission angle — correct.
+Risk window — calculated.
+
+Everything is ready.
+
+[Level Settlement]
+
+Display:
+Level 3 · The Direction-Finding Vehicle — Complete
+
+Unlocked:
+
+Level 504 · The First Message
+Chapter Five Archive Fragment 3/9
+
+Hidden Thread Unlocked:
+
+The dual direction-finding deployment
+The safe transmission angle
+The temporary antenna parameters
+
+Level 504 · The First Message
+
+[Level ID] level-504
+
+[Scene Name]
+
+Archive Library Basement · B3 Stone Chamber · Before the Transmitter
+
+[Time]
+
+December 7, 1941 · Afternoon
+
+[Weather]
+
+Cold rain continues to fall over Shanghai.
+
+Water seeps through the ventilation shaft above, creating a constant natural sound barrier that masks the faint mechanical noises beneath the Archive Library.
+
+[Scene Layer]
+
+The transmission window has arrived.
+
+Outside, the rain covers the city.
+
+Inside the underground chamber, Shen Mo sits before the transmitter.
+
+He presses the key.
+
+The first message begins.
+
+The transmission follows a strict rhythm.
+
+Three seconds between each segment.
+
+No single burst lasts longer than five seconds.
+
+Every interval is calculated.
+
+Every pause is deliberate.
+
+Between each transmission segment, Shen Mo checks the antenna.
+
+The copper wire remains fixed.
+
+The angle remains unchanged.
+
+No abnormal signal reflection.
+
+No visible leakage.
+
+The first message proceeds smoothly.
+
+No response signal comes from above.
+
+No interception.
+
+No warning.
+
+The chamber remains silent.
+
+Shen Mo pauses briefly.
+
+Then prepares the second transmission sequence.
+
+At that moment—
+
+Footsteps.
+
+Above.
+
+Not the vibration of machinery.
+
+Not a direction-finding vehicle.
+
+Human footsteps.
+
+Heavy leather soles.
+
+Slow.
+
+Controlled.
+
+Someone has entered the first-floor corridor.
+
+The footsteps stop.
+
+Still distant from the hidden entrance.
+
+They do not descend.
+
+They do not approach.
+
+Shen Mo does not move.
+
+His expression remains unchanged.
+
+The key continues to rise and fall.
+
+The first message completes.
+
+[Portrait Layer]
+
+Shen Mo sits before the transmitter.
+
+His fingers move steadily across the key.
+
+Each short mechanical click disappears into the rain above.
+
+The underground chamber remains still.
+
+Only the transmission continues.
+
+[Dialogue]
+
+Wordless
+
+[Board Layer · First Trigger]
+The transmitter key mechanism enlarges.
+A complete 9×9 sudoku board appears.
+
+Board Data: Matches level-504 boardData
+
+Board Feature:
+Ninth-Order Setter's Puzzle · One
+
+A hidden-rule construction puzzle focused on maintaining accuracy under covert pressure.
+
+[Board Interaction · Ninth-Order Setter's Puzzle · One]
+
+The player solves the puzzle.
+
+The completed grid verifies:
+
+transmission order,
+message segmentation,
+signal duration,
+data integrity.
+
+The first intelligence package is confirmed:
+
+No missing information.
+No distortion.
+No leakage.
+
+[Feedback Layer · Clear]
+
+Audio:
+
+The final key press echoes softly.
+
+Then silence.
+
+Shen Mo confirms the first message has been transmitted successfully.
+
+The first intelligence node closes.
+
+[Level Settlement]
+
+Display:
+Level 4 · The First Message — Complete
+
+Unlocked:
+
+Level 505 · The Second Message
+Chapter Five Archive Fragment 4/9
+
+Hidden Thread Unlocked:
+
+The unknown personnel on the first floor
+The exact transmission rhythm of the first message
+The concealed observation pressure inside the Archive Library
+Chapter Five · The Current
+Level 505 · The Second Message
+
+[Level ID] level-505
+
+[Scene Name]
+
+Archive Library Basement · B3 Stone Chamber · Before the Transmitter
+
+[Time]
+
+December 7, 1941 · Afternoon
+
+[Weather]
+
+The rain continues without pause.
+
+The constant dripping from the ventilation shaft creates a natural cover for the underground operation.
+
+[Scene Layer]
+
+The first transmission is complete.
+
+Shen Mo waits briefly.
+
+The transmitter cools.
+
+He rises and checks the external antenna again.
+
+The copper wire remains secure.
+
+The angle has not shifted.
+
+The rain has not damaged the structure.
+
+Everything remains within tolerance.
+
+He returns to the machine.
+
+The second message begins.
+
+This message is shorter.
+
+More compressed.
+
+But far more important.
+
+It carries the Pacific Fleet's core coordinates.
+
+The most critical intelligence of the entire operation.
+
+The transmission proceeds.
+
+One character at a time.
+
+Then—
+
+Footsteps.
+
+Closer.
+
+Much closer.
+
+The rhythm changes.
+
+No longer searching.
+
+No longer cautious.
+
+Someone is moving directly toward the underground entrance.
+
+The footsteps stop.
+
+Right beside the hidden door.
+
+Only one barrier separates them.
+
+The chamber becomes completely silent.
+
+Shen Mo's hand remains steady.
+
+No hesitation.
+
+No mistake.
+
+He continues the transmission.
+
+The final character is entered.
+
+The second message is complete.
+
+[Portrait Layer]
+
+Shen Mo sits before the machine.
+
+His fingers leave the key.
+
+They hover above the control panel.
+
+The movement stops there.
+
+A moment frozen between completion and danger.
+
+[Dialogue]
+
+Wordless
+
+[Board Layer · First Trigger]
+The transmission control panel enlarges.
+A complete 9×9 sudoku board appears.
+
+Board Data: Matches level-505 boardData
+
+Board Feature:
+Ninth-Order Setter's Puzzle · Two
+
+A progressive hidden-rule puzzle corresponding to extreme close-range pressure.
+
+[Board Interaction · Ninth-Order Setter's Puzzle · Two]
+
+The player solves the puzzle.
+
+The solution verifies:
+
+the second message transmission,
+the complete coordinate data,
+the final intelligence package.
+
+The Pacific Fleet coordinate information is confirmed.
+
+The intelligence chain reaches its critical verification point.
+
+[Feedback Layer · Clear]
+
+Audio:
+
+The final key press.
+
+Short.
+
+Precise.
+
+Decisive.
+
+Then absolute silence.
+
+Shen Mo confirms:
+
+The core intelligence has been delivered.
+
+The second message is complete.
+
+[Level Settlement]
+
+Display:
+Level 5 · The Second Message — Complete
+
+Unlocked:
+
+Level 506 · The Third Message
+Chapter Five Archive Fragment 5/9
+
+Hidden Thread Unlocked:
+
+The Pacific Fleet coordinate intelligence
+The close-range surveillance trace at the hidden entrance
+The final high-pressure transmission record
+Chapter Five · The Current
+Level 506 · The Third Message
+
+[Level ID] level-506
+
+[Scene Name]
+
+Archive Library Basement · B3 Stone Chamber · Before the Transmitter
+
+[Time]
+
+December 7, 1941 · Nightfall
+
+[Weather]
+
+The rain begins to weaken.
+
+The city's noise fades.
+
+Shanghai sinks gradually into silence.
+
+[Scene Layer]
+
+Two messages have already been sent.
+
+There is no turning back.
+
+Shen Mo knows the Japanese monitoring network has detected abnormal activity around the Archive Library.
+
+The search radius is narrowing.
+
+Step by step.
+
+Toward this chamber.
+
+He does not make any further adjustments.
+
+No unnecessary movement.
+
+No additional preparation.
+
+Only one final transmission remains.
+
+He touches the power cable lightly with his knuckle.
+
+A final confirmation.
+
+Then he begins.
+
+The closing message.
+
+As the final characters approach completion—
+
+Three knocks.
+
+From above.
+
+Short.
+
+Even.
+
+Equal intervals.
+
+A signal.
+
+A message hidden inside another message.
+
+Shen Mo hears it.
+
+But his hand does not stop.
+
+The final character is transmitted.
+
+The key returns.
+
+The indicator flickers once.
+
+Then stabilizes.
+
+The transmitter returns to standby.
+
+From inside his coat, Shen Mo removes a thin folded paper.
+
+He places it carefully on the transmitter base.
+
+He does not open it.
+
+He does not examine it.
+
+He does not alter anything.
+
+He simply leaves it there.
+
+A prepared reserve.
+
+[Portrait Layer]
+
+Shen Mo stands before the transmitter.
+
+His hand leaves the key.
+
+The machine returns to silence.
+
+The paper rests on the base.
+
+Everything waits.
+
+[Dialogue]
+
+Wordless
+
+[Board Layer · Formal Appears]
+The transmitter panel enlarges.
+A complete 9×9 sudoku board appears.
+
+Board Data: Matches level-506 boardData
+
+Board Feature:
+Ninth-Order Ultimate Cage Setup
+
+The final puzzle of the intelligence transmission phase.
+
+A synthesis of all chapter techniques.
+
+[Board Interaction · Ninth-Order Ultimate Cage Setup]
+
+The player solves the puzzle.
+
+The completed grid verifies:
+
+the third message,
+the final transmission sequence,
+all intelligence links,
+every verification node.
+
+The entire intelligence chain closes perfectly.
+
+No missing link.
+
+No error.
+
+No exposure.
+
+[Feedback Layer · Clear]
+
+Audio:
+
+A deep, low-frequency hum.
+
+The same source tone connected to the previous chapters.
+
+Then silence.
+
+Shen Mo confirms:
+
+Three messages.
+
+Three completed links.
+
+The entire transmission mission is finished.
+
+[Level Settlement]
+
+Display:
+Level 6 · The Third Message — Complete
+
+Unlocked:
+
+Level 507 · Withdrawal Before Dawn
+Chapter Five Archive Fragment 6/9
+
+Hidden Thread Unlocked:
+
+The unknown ground signal
+The complete three-message transmission record
+The closed intelligence chain
+
+Level 507 · Withdrawal Before Dawn
+
+[Level ID] level-507
+
+[Scene Name]
+
+Archive Library Basement · B3 Stone Chamber · Before the Transmitter
+
+[Time]
+
+December 7, 1941 · Deep Night
+
+[Weather]
+
+The rain has stopped.
+
+Above ground, Shanghai falls into complete silence.
+
+No vehicles.
+
+No voices.
+
+No footsteps.
+
+The entire city seems to be holding its breath.
+
+[Scene Layer]
+
+The final message has been transmitted.
+
+The mission is complete.
+
+But Shen Mo does not leave immediately.
+
+A successful transmission means nothing if the retreat leaves traces behind.
+
+He begins restoration.
+
+First:
+
+The transmitter is powered down.
+
+The control settings return to their original state.
+
+The temporary antenna is carefully removed from the ventilation shaft.
+
+The copper wire is folded and restored.
+
+Every operating trace is erased.
+
+The chamber returns to its original appearance.
+
+The indicator light disappears.
+
+Darkness returns.
+
+Shen Mo stands before the machine one last time.
+
+Nothing remains.
+
+No evidence of transmission.
+
+No sign that anyone was ever here.
+
+He walks back.
+
+Through B3.
+
+Through B2.
+
+Through the long B1 corridor.
+
+Every step is steady.
+
+Every movement measured.
+
+At the end of the corridor, he stops before the stone wall.
+
+The carved numbers remain unchanged.
+
+The edges are intact.
+
+No one has touched them.
+
+Satisfied, he continues upward.
+
+The hidden door opens.
+
+The first floor is completely dark.
+
+No lamps.
+
+No movement.
+
+The direction-finding vehicles are gone.
+
+The city has temporarily released its grip.
+
+Shen Mo steps outside the Archive Library.
+
+He closes the door quietly.
+
+He does not look back.
+
+He walks toward the counting house.
+
+[Portrait Layer]
+
+Outside the Archive Library's back entrance, pale moonlight falls across the doorframe.
+
+The short-stroke mark Shen Mo carved long ago remains clear.
+
+Untouched.
+
+Undiscovered.
+
+He lowers his eyes briefly.
+
+Then turns away.
+
+[Dialogue]
+
+Wordless
+
+[Additional Scene]
+
+Crossing the stone bridge over Suzhou Creek, Shen Mo walks alone.
+
+The river below is hidden in darkness.
+
+Only the quiet sound of flowing water remains.
+
+No one follows.
+
+No one watches.
+
+He continues forward.
+
+[Board Layer · First Trigger]
+The moonlit doorframe enlarges.
+A complete 9×9 sudoku board appears.
+
+Board Data: Matches level-507 boardData
+
+Board Feature:
+Ninth-Order Irregular Cage + Star Balance
+
+A final verification puzzle combining irregular structures with global balance logic.
+
+[Board Interaction · Ninth-Order Irregular Cage & Star Balance]
+
+The player solves the puzzle.
+
+The solution calculates the optimal withdrawal route.
+
+It verifies:
+
+no surveillance tail,
+no ambush point,
+no exposed trace,
+no abnormal movement along the path.
+
+The retreat route is confirmed completely safe.
+
+[Feedback Layer · Clear]
+
+Audio:
+
+A faint metallic sound from the doorframe.
+
+Almost impossible to notice.
+
+Then silence.
+
+Shen Mo confirms:
+
+The withdrawal is clean.
+
+The operation leaves no visible trace.
+
+[Level Settlement]
+
+Display:
+Level 7 · Withdrawal Before Dawn — Complete
+
+Unlocked:
+
+Level 508 · Yamada's File
+Chapter Five Archive Fragment 7/9
+
+Hidden Thread Unlocked:
+
+The safety verification of Shen Mo's doorframe mark
+The disappearance of Japanese monitoring vehicles
+The complete withdrawal route
+Chapter Five · The Current
+Level 508 · Yamada's File
+
+[Level ID] level-508
+
+[Scene Name]
+
+Triangle Market · The Counting House
+
+[Time]
+
+December 7, 1941 · Deep Night · Near Midnight
+
+[Weather]
+
+The night wind is cold.
+
+The streets are empty.
+Inside the counting house, a kerosene lamp burns quietly.
+
+[Scene Layer]
+
+Shen Mo returns safely.
+
+No interception.
+
+No surveillance.
+
+No pursuit.
+
+The counting house remains unchanged.
+
+By the stove, Su Wan has left a lamp burning.
+
+A small warmth in the darkness.
+
+She does not ask where he went.
+
+She does not ask what he carried.
+
+She does not ask why he returned so late.
+
+Shen Mo sits at the table.
+
+From inside his coat, he removes the transmission record.
+
+He does not read it.
+
+He does not verify it.
+
+He only places it flat on the table.
+
+Confirmation.
+
+Nothing more.
+
+Su Wan quietly places a bowl of warm congee beside him.
+
+Then she steps away.
+
+No questions.
+
+No words.
+
+After finishing, Shen Mo washes the bowl.
+
+He returns it to the windowsill.
+
+Then he adjusts its position.
+
+The mouth of the bowl faces east.
+
+A familiar safety signal.
+
+With his fingertip, he presses lightly against the base.
+
+A tiny short-stroke mark appears.
+
+A private confirmation.
+
+A silent message.
+
+He extinguishes the lamp.
+
+The room falls dark.
+
+Shen Mo sits alone.
+
+He replays the entire operation.
+
+Every puzzle.
+
+Every clue.
+
+Every person involved.
+
+The night passes.
+
+No abnormal vehicles stop outside.
+
+No footsteps return.
+
+The environment remains safe.
+
+Only then does he rise.
+
+The record returns to his pocket.
+
+The account book closes.
+
+The room returns to silence.
+
+[Portrait Layer]
+
+The final flame disappears.
+
+Shen Mo stands beside the windowsill.
+
+The porcelain bowl faces east.
+
+The tiny mark beneath it remains invisible to anyone else.
+
+[Dialogue]
+
+Wordless
+
+[Board Layer · First Trigger]
+The porcelain bowl enlarges.
+A complete 9×9 sudoku board appears.
+
+Board Data: Matches level-508 boardData
+
+Board Feature:
+Ninth-Order Cage-Sum Delta
+
+A deduction puzzle combining cage sums with hidden archive reconstruction.
+
+[Board Interaction · Ninth-Order Cage-Sum Delta]
+
+The player solves the puzzle.
+
+The hidden archive records are reconstructed layer by layer.
+
+The result reveals:
+
+Yamada's Tokkō file concerning Shen Mo was altered.
+
+One key entry was removed.
+
+But not completely.
+
+Someone deliberately left a remaining trace.
+
+Half-hidden.
+
+Half-exposed.
+
+The record was not erased.
+
+It was rewritten.
+
+[Feedback Layer · Clear]
+
+Audio:
+
+The porcelain bowl lightly touches the windowsill.
+
+A faint ceramic sound.
+
+Shen Mo understands.
+
+His identity remains a hidden risk.
+
+The danger was reduced.
+
+But never eliminated.
+
+[Level Settlement]
+
+Display:
+Level 8 · Yamada's File — Complete
+
+Unlocked:
+
+Level 509 · Daybreak
+Chapter Five Archive Fragment 8/9
+
+Hidden Thread Unlocked:
+
+Yamada's Tokkō investigation file
+Ito's secret alteration trace
+Shen Mo's remaining hidden risk
+Chapter Five · The Current
+Level 509 · Daybreak
+
+[Level ID] level-509
+
+[Scene Name]
+
+Triangle Market · The Counting House
+
+[Time]
+
+December 8, 1941 · Before Dawn to Daybreak
+
+[Weather]
+
+Night slowly fades.
+
+A pale blue-grey light spreads across Shanghai.
+
+The first morning of war arrives.
+
+[Scene Layer]
+
+Shen Mo has not slept.
+
+The entire night passes in silence.
+
+Then—
+
+Morning.
+
+Light enters through the window lattice.
+
+The darkness begins to retreat.
+
+Outside, hurried footsteps approach.
+
+A newsboy.
+
+But unlike every ordinary morning, he does not deliver papers normally.
+
+He runs through the wet stone street.
+
+His voice breaks the silence:
+
+"Extra! Extra! Japanese forces attack Hawaii! America declares war on Japan!"
+
+The words spread through the city.
+
+The world changes.
+
+Shen Mo stands beside the window.
+
+No surprise.
+
+No panic.
+
+No expression of shock.
+
+He already knew the moment was coming.
+
+Behind him, Su Wan stands quietly.
+
+Neither speaks.
+
+The stove burns softly.
+
+The city wakes.
+
+[Portrait Layer]
+
+Dawn light falls across Shen Mo's shoulder.
+
+The desk.
+
+The account book.
+
+The window.
+
+Everything becomes clear.
+
+The long road has reached its destination.
+
+[Dialogue]
+
+The newsboy's voice fades.
+
+The street becomes quiet again.
+
+Shen Mo returns to the desk.
+
+Su Wan walks over.
+
+She gently turns the porcelain bowl.
+
+Returning it to its normal position.
+
+The east-facing signal is no longer needed.
+
+The situation is settled.
+
+Shen Mo closes the account book.
+
+Locks it away.
+
+He adjusts the bowl back.
+
+Then moves toward the door.
+
+Before leaving—
+
+Su Wan speaks.
+
+Su Wan:
+"You're going out?"
+
+Shen Mo stops.
+
+His hand rests on the doorframe.
+
+The old short-stroke mark remains there.
+
+Clear.
+
+Untouched.
+
+Morning light crosses the threshold.
+
+He looks outside.
+
+Shen Mo:
+"Wait a little longer."
+
+A pause.
+
+Shen Mo:
+"After daybreak, there is still something to confirm."
+
+Another pause.
+
+Shen Mo:
+"And something still needs to be done."
+
+Su Wan asks nothing more.
+
+She returns to the stove.
+
+Waiting.
+
+[Board Layer · Formal Appears]
+The morning-lit doorframe enlarges.
+A complete 9×9 sudoku board appears.
+
+Board Data: Matches level-509 boardData
+
+Board Feature:
+Ninth-Order Composite Boss
+
+The ultimate synthesis puzzle.
+
+Combining:
+
+every chapter's solving technique,
+every hidden key sequence,
+every alignment mechanism.
+[Board Interaction · Ninth-Order Composite Boss]
+
+The player solves the final puzzle.
+
+Every sequence aligns.
+
+Every clue connects.
+
+From the sleeper order in June,
+
+to the puzzle network in March,
+
+to the hidden trails of April,
+
+to the intelligence transmission of December,
+
+Shen Mo's entire path closes.
+
+Every preparation.
+
+Every sacrifice.
+
+Every move.
+
+Finds its final position.
+
+[Feedback Layer · Clear]
+
+Audio:
+
+A deep, low-frequency hum.
+
+The same source tone as:
+
+Prologue Level 109
+Chapter Three Finale Level 409
+Chapter Four Finale Level 509
+
+The sound carries through the entire story.
+
+Shen Mo sees the whole game.
+
+The elders prepared the road.
+
+Ito completed the final step.
+
+Everyone's choices converge here.
+
+The mission is complete.
+
+The fate-line reaches its end.
+
+[Level Settlement]
+
+Display:
+Level 9 · Daybreak — Complete
+
+Unlocked:
+
+All Chapter Five Archive Fragments 9/9
+Chapter Six · The Net
+Chapter Five · Summary
+Level	Core Technique	Core Event	External Pressure
+501	Ninth-Order Nested Cage	Prepare transmitter; unlock protective mechanism	Silent standby
+502	Ninth-Order Grand-Cage Sum	Calibrate frequency parameters	Direction-finder vehicle overhead
+503	Ninth-Order Extreme Deduction	Build directional antenna; calculate safe angle	Two direction-finders surrounding area
+504	Ninth-Order Setter's Puzzle · One	Transmit first intelligence message	Unknown personnel searching above
+505	Ninth-Order Setter's Puzzle · Two	Transmit core coordinates	Hidden entrance under close surveillance
+506	Ninth-Order Ultimate Cage Setup	Complete final transmission	Unknown signal from above
+507	Irregular Cage + Star Balance	Withdraw without leaving traces	City-wide silence after operation
+508	Cage-Sum Delta	Recover Yamada's altered file	Sleeper identity risk remains
+509	Composite Boss	Complete final alignment	Pacific War begins
+
+
+Chapter Six · The Net
+Level 1 · The Counting House (level-601)
+
+[Scene Name] Triangle Market · The Counting House · Early Morning
+[Time] December 8, 1941 · Early Morning
+[Weather] Overcast skies. The morning light is pale and cold, stripped of its former warmth. The alley outside is unnaturally quiet, as if the entire city is holding its breath.
+
+[Scene Layer]
+
+The newsboy's urgent cries fade at the end of the lane. The news has already spread through every corner of Shanghai — there is no need to confirm it through a newspaper.
+
+Shen Mo remains standing by the window.
+
+A pale grey morning light slips through the doorway, casting a long, cold line across the floor, from the outer threshold to the edge of the stove. The light cuts through the room's darkness like a boundary between two eras.
+
+He does not leave to seek information. He does not rush to confirm what he already knows.
+
+After carrying the final intelligence through the night, he understands exactly what this moment means.
+
+The old world has ended.
+
+He returns to the desk and sits down. No lamp is lit. No object is touched. He simply allows the morning light to fall across the old account book and the antique abacus, silently observing the room's unchanged state.
+
+Beside the stove, Su Wan quietly prepares the fire and begins cooking.
+
+Her movements remain gentle and orderly. There is no panic, no question, no fear.
+
+She does not ask where Shen Mo disappeared to during the night.
+
+She does not ask about the underground chamber.
+
+She does not ask whether he will leave again today.
+
+In this new reality, some truths no longer require words.
+
+They simply stand between two people who already understand.
+
+[Portrait Layer]
+
+Shen Mo sits before the wooden desk. Cold morning light fills the room. Half of his figure rests in the pale glow, while the other half remains hidden in shadow.
+
+His palm rests lightly against the edge of the account book cover. His fingertip remains still.
+
+He does not open it.
+
+He does not touch it.
+
+He only waits and verifies.
+
+[Dialogue]
+
+The firewood beside the stove cracks softly.
+
+A small spark trembles and disappears.
+
+Su Wan's calm voice breaks the silence:
+
+"Armored vehicles passed this morning. Three of them."
+
+Shen Mo's fingertip does not move.
+
+"...Which direction?"
+
+"West. Toward the Suzhou Creek bridge."
+
+Silence follows.
+
+West of the Suzhou Creek bridge lies the boundary of the French Concession — the core zone of the Japanese blockade established overnight.
+
+Before dawn, Su Wan had already risen and watched the movement outside from the window.
+
+Neither speaks again.
+
+They both understand.
+
+The storm has arrived.
+
+[Board Layer · First Trigger]
+
+The morning-lit account book cover enlarges and becomes the center of focus.
+A complete 9×9 Sudoku board appears.
+Board data matches level-601 boardData.
+Board feature: Ninth-Order Twin Lock — a dual-line binding structure requiring simultaneous verification from two independent paths, suited for identity confirmation and hidden archive deduction.
+Ambient state: the streets remain silent. In the distance, the muted rumble of armored vehicles occasionally passes through the city.
+
+[Board Interaction · Ninth-Order Twin Lock]
+
+The player solves the puzzle, confirming the identity verification chain.
+
+Shen Mo's name does not appear in Yamada's latest search roster.
+
+For now, he remains outside the net.
+[Feedback Layer · Clear]
+
+Audio: paper folds softly beside the stove, a brief rustle disappearing into the quiet room.
+
+The file remains frozen before December 8.
+
+No new entry.
+
+No new mark.
+
+The barrier still holds.
+
+[Level Settlement]
+
+Display: Level 1 · The Counting House — Complete
+Unlocked: Level 2 · The Bookshop
+Unlocked: Chapter Six archive fragment 1/9
+Hidden thread unlocked:
+Morning-light identity verification
+Yamada's frozen file status
+Activation trace of the Concession-wide blockade
+Level 2 · The Bookshop (level-602)
+
+[Scene Name] Avenue Joffre · Old Bookshop · Rear Alley
+
+[Time] December 8, 1941 · Morning
+
+[Weather] Dark clouds cover the sky. Cold wind sweeps in from Suzhou Creek. The streets are empty, and the alley feels abandoned.
+
+[Scene Layer]
+
+Before noon, Shen Mo arrives alone at Avenue Joffre.
+
+The streets that once carried passing footsteps are now nearly deserted.
+
+Only the cold wind moves through the alley.
+
+The old bookshop remains closed.
+
+The wooden door is tightly shut. The seams are dark and sealed, showing no sign of activity.
+
+Shen Mo does not immediately approach.
+
+Instead, he lowers his gaze.
+
+At the inner edge of the threshold lies a familiar mark.
+
+A short stroke.
+
+The same method.
+
+The same depth.
+
+The same deliberate restraint.
+
+It matches the mark he left on the windowsill in June.
+
+After confirming it, he steps away from the entrance and circles around to the rear alley.
+
+The alley is silent.
+
+At the third utility pole, hidden within a crack in the brickwork, rests a neatly folded note.
+
+The folding style is unfamiliar.
+
+But the paper itself is not.
+
+Its texture and thickness match the secret intelligence material once received at Lulutong Teahouse.
+
+Shen Mo removes the note carefully.
+
+Inside, there is no signature.
+
+Only one sentence:
+
+"The bookshop's puzzle has been destroyed. The remaining materials are where you first met."
+
+He studies the message briefly.
+
+Then he folds it exactly as he found it.
+
+The note returns to the brick seam.
+
+No displacement.
+
+No trace.
+
+He waits.
+
+Listening.
+
+No footsteps.
+
+No patrol.
+
+No movement.
+
+Only after confirming the alley remains clear does he leave through the opposite end.
+
+At the street corner, two Japanese soldiers pass by.
+
+Their uniforms are neat.
+
+Their pace relaxed.
+
+Their eyes never turn toward the alley.
+
+Shen Mo presses himself against the wall and waits.
+
+Only after their footsteps disappear does he continue.
+
+[Portrait Layer]
+
+Shen Mo stands beside the rear alley utility pole.
+
+His fingertip has just left the brick seam.
+
+The note rests exactly as before.
+
+The cloudy daylight falls across his shoulders.
+
+His expression remains calm and unreadable.
+
+[Dialogue · Wordless]
+
+[Board Layer · First Trigger]
+
+The anonymous note under the alley's dim light becomes the focal point.
+A complete 9×9 Sudoku board appears.
+Board data matches level-602 boardData.
+Board feature: Ninth-Order Twin Luminary — hidden dual-track contrast logic, used to trace concealed origins through incomplete information.
+Ambient state: gloomy morning, sealed alley, occasional Japanese patrols nearby.
+
+[Board Interaction · Ninth-Order Twin Luminary]
+
+The player solves the puzzle.
+
+Through the hidden light-dark correspondence, the player confirms:
+
+The unsigned message originates from the same intelligence channel as the former Lulutong Teahouse transmissions.
+
+The sender remains unknown.
+
+But the source is verified.
+
+[Feedback Layer · Clear]
+
+Audio: the brick seam settles with a faint movement, immediately swallowed by the wind.
+
+Shen Mo confirms:
+
+The note remained hidden for a long period.
+
+The paper shows no fresh exposure marks.
+
+The sender completed the delivery.
+
+Only the remaining trace was left behind.
+
+[Level Settlement]
+
+Display: Level 2 · The Bookshop — Complete
+Unlocked: Level 3 · The Fourth Bridge
+Unlocked: Chapter Six archive fragment 2/9
+Hidden thread unlocked:
+Anonymous intelligence note
+Destruction record of the bookshop puzzle
+Hidden stronghold clue from the first meeting
+Level 3 · The Fourth Bridge (level-603)
+
+[Scene Name] The Fourth Bridge · Bridge-Cave Hollow
+
+[Time] December 8, 1941 · Afternoon
+
+[Weather] The clouds begin to clear. The river level has dropped sharply, exposing years of dried markings along the bridge pillars below the waterline.
+
+[Scene Layer]
+
+In the afternoon light, Shen Mo arrives at the Fourth Bridge.
+
+The river is quiet.
+
+The bridge cave is empty.
+
+Only the silence remains after the water has withdrawn.
+
+On the stone steps lies an old dark overcoat.
+
+It does not belong to Mr. Shen Shian.
+
+The color is deeper.
+
+The fabric heavier.
+
+At the cuff is a distinctive worn mark — the trace of something carried and used for years.
+
+Shen Mo crouches.
+
+He reaches into the coat pocket.
+
+Inside is an unsealed envelope.
+
+No letter.
+
+Only a folded map.
+
+A 1938 map of the Shanghai French Concession.
+
+A location has been circled in pencil.
+
+The mark is precise.
+
+Deliberate.
+
+It is not the current location of Lulutong Teahouse.
+
+It is the teahouse's former address before the 1939 relocation.
+
+Shen Mo studies the map in silence.
+
+Then he folds it carefully and places it away.
+
+Before leaving, he returns the overcoat exactly where it was.
+
+No adjustment.
+
+No disturbance.
+
+Nothing changed.
+
+[Portrait Layer]
+
+Shen Mo crouches beside the stone steps beneath the bridge.
+
+The old coat hangs neatly from the iron post.
+
+The map is secured inside his coat.
+
+Behind him, the exposed bridge pillars rise from the quiet river.
+
+The afternoon light falls across his face.
+
+Calm.
+
+Focused.
+
+Resolute.
+
+[Dialogue · Wordless]
+
+[Board Layer · First Trigger]
+
+The envelope beneath the bridge-cave light becomes the focal point.
+A complete 9×9 Sudoku board appears.
+Board data matches level-603 boardData.
+Board feature: Ninth-Order Three Seed Method — a three-chain verification structure linking time, location, and archive evidence.
+Ambient state: afternoon silence. The lower bridge cave remains dark. The river flows quietly.
+
+[Board Interaction · Ninth-Order Three Seed Method]
+
+The player solves the puzzle.
+
+Using three independent clue chains, the player confirms:
+
+The old Lulutong location was transferred in 1939.
+The new tenant information was intentionally hidden outside public records.
+Only the former address can be reliably traced through surviving evidence.
+
+The missing link is restored.
+
+[Feedback Layer · Clear]
+
+Audio: the old map unfolds with a soft, prolonged rustle.
+
+The old location matches the hidden archive trail.
+
+The gap is closed.
+
+[Level Settlement]
+
+Display: Level 3 · The Fourth Bridge — Complete
+Unlocked: Level 4 · The Old Lulutong Site
+Unlocked: Chapter Six archive fragment 3/9
+Hidden thread unlocked:
+1938 French Concession map
+Hidden property transfer record of old Lulutong site
+1939 relocation trail
+
+
+继续。
+
+以下为 **Chapter Six · The Net**
+**Level 604–606 英文本地化润色版**
+
+---
+
+# Level 4 · The Old Lulutong Site (level-604)
+
+[Scene Name] French Concession · Former Lulutong Site · First Floor
+[Time] December 8, 1941 · Dusk
+[Weather] Darkness falls quickly. Street lamps have not yet been lit. The narrow lane sinks into deep shadow, visibility fading by the minute.
+
+[Scene Layer]
+
+At the edge of dusk, Shen Mo enters the alley where the old Lulutong site once stood.
+
+The building is empty.
+
+No voices.
+
+No footsteps.
+
+No trace of its former warmth.
+
+The wooden door on the first floor hangs slightly open, untouched, allowing the fading light to spill through the gap.
+
+Shen Mo does not force it wider.
+
+He steps inside.
+
+The room is covered with a thin layer of dust. The furniture is gone. The silence feels heavier than abandonment.
+
+At the far end of the room, behind the window railing, sits an iron box.
+
+It is secured with thick cotton rope.
+
+The knot is precise.
+
+Neat.
+
+Familiar.
+
+The exact hidden-knot method he used in June.
+
+A mark left by a hand he knows.
+
+Shen Mo crouches.
+
+His fingers move carefully.
+
+He unties the rope without disturbing its structure.
+
+Inside the iron box lies a stack of documents.
+
+On top rests a single sheet of white paper.
+
+The handwriting is clear:
+
+*"You found the map. That means you have reached the final step."*
+
+*"This is the teacher's last original puzzle. She never finished sending it."*
+
+The remaining daylight continues to fade.
+
+Shen Mo lowers his eyes.
+
+Each document carries a Sudoku puzzle.
+
+The same format as those he decrypted inside the Archive Library basement.
+
+But different arrangements.
+
+Different positions.
+
+Different purposes.
+
+He follows the hidden rule.
+
+He does not take the entire stack.
+
+He removes only the top core puzzle sheet.
+
+The remaining clues must stay separated.
+
+Independent.
+
+Untouched.
+
+He stores the sheet inside his coat, closes the iron box, reties the rope, and restores everything exactly as found.
+
+[Portrait Layer]
+
+Shen Mo crouches beside the windowsill.
+
+The iron box is open.
+
+The cotton rope rests loose beside him.
+
+The pages inside curl slightly in the fading dusk.
+
+A faint trace of light falls across the paper.
+
+His expression remains calm.
+
+Focused.
+
+Respectful of the hidden order left behind.
+
+[Dialogue · Wordless]
+
+[Board Layer · First Trigger]
+
+* The puzzle sheet inside the iron box becomes the focal point.
+* A complete 9×9 Sudoku board appears.
+* Board data matches level-604 boardData.
+* Board feature: **Ninth-Order Twin Axis Formation** — a horizontal-vertical linkage structure used for sorting, mapping, and tracing multiple puzzle sequences.
+* Ambient state: dusk rapidly disappears; visibility is limited; the abandoned site provides perfect concealment.
+
+[Board Interaction · Ninth-Order Twin Axis Formation]
+
+The player solves the puzzle.
+
+Through the rank-file linkage logic, the player reconstructs the complete sequence:
+
+The teacher's original puzzles were arranged in spring 1941.
+
+The intelligence plan was interrupted after the Sorge case disrupted the original schedule.
+
+The batch Vera delivered on Avenue Joffre was not random — it was a reordered continuation of the original design.
+
+The long-standing blind spot in the puzzle chain is finally resolved.
+
+[Feedback Layer · Clear]
+
+* Audio: paper closes softly, a quiet rustle disappearing into the darkening room.
+
+The teacher's final arrangement survived.
+
+The plan was delayed.
+
+But never abandoned.
+
+[Level Settlement]
+
+* Display: Level 4 · The Old Lulutong Site — Complete
+* Unlocked: Level 5 · The Transmitter
+* Unlocked: Chapter Six archive fragment 4/9
+* Hidden thread unlocked:
+
+  * The teacher's remaining original puzzles
+  * Spring 1941 intelligence layout
+  * The Sorge-case delay
+  * The exclusive hidden-knot method
+
+---
+
+# Level 5 · The Transmitter (level-605)
+
+[Scene Name] Archive Library Basement · B3 Stone Chamber · Before the Transmitter
+[Time] December 8, 1941 · Nightfall
+[Weather] The underground chamber is completely sealed. No wind enters through the vent. No vehicles pass above. No voices remain.
+
+[Scene Layer]
+
+Deep into the night, Shen Mo returns to the underground chamber.
+
+He passes through the familiar B1 corridor.
+
+The B2 chamber.
+
+The heavy iron gate.
+
+The narrow ten-step passage.
+
+Everything remains exactly as before.
+
+Except one thing.
+
+The transmitter is no longer connected.
+
+The power cord has been cut.
+
+Cleanly.
+
+Precisely.
+
+The cut was made by a sharp tool.
+
+Not torn.
+
+Not damaged by force.
+
+Not his own action during withdrawal.
+
+Shen Mo does not investigate further.
+
+He does not touch the machine.
+
+He only crouches beside the transmitter base.
+
+His fingertip lightly touches the edge of the flat iron box.
+
+The box remains in its original position.
+
+The sealing tape is intact.
+
+No opening marks.
+
+No damage.
+
+But the edge has shifted slightly.
+
+Almost invisible.
+
+As if someone moved it aside briefly, then carefully returned it.
+Shen Mo confirms only the existence of the trace.
+
+He does not open the box.
+
+He does not disturb the scene.
+
+He withdraws his hand.
+
+Slowly rises.
+
+And leaves.
+
+At the entrance of the B3 chamber, he stops for a final glance.
+
+The transmitter indicator is dark.
+
+The machine is silent.
+
+The entire room has returned to absolute stillness.
+
+He memorizes the cut position.
+
+The angle.
+
+The trace.
+
+Then he turns away.
+
+[Portrait Layer]
+
+Shen Mo crouches beside the transmitter base.
+
+His fingertip rests lightly against the iron box edge.
+
+His movement is careful and restrained.
+
+After confirming the anomaly, he rises.
+
+His back remains calm and steady.
+
+He leaves without creating a single new trace.
+
+[Dialogue · Wordless]
+
+[Board Layer · First Trigger]
+
+* The dark iron box at the transmitter base becomes the focal point.
+* A complete 9×9 Sudoku board appears.
+* Board data matches level-605 boardData.
+* Board feature: **Ninth-Order Three-Talent Fish Formation** — three-path trajectory analysis used for reconstructing hidden operations and invisible timelines.
+* Ambient state: sealed underground chamber, complete darkness, silent equipment, unknown interference.
+
+[Board Interaction · Ninth-Order Three-Talent Fish Formation]
+
+The player solves the puzzle.
+
+Through three-route trace reconstruction, the player determines:
+
+The cut position matches the transmitter's power inlet perfectly.
+
+The workmanship is precise.
+
+The operation window falls strictly between Shen Mo's withdrawal last night and dawn.
+
+The person responsible possessed the same method used in previous traceless archive alterations.
+
+The hidden operator is confirmed.
+
+Ito.
+
+[Feedback Layer · Clear]
+
+* Audio: a faint metallic resonance comes from inside the iron box, lasting less than a second before disappearing.
+
+Shen Mo confirms:
+
+The power cut.
+
+The archive tampering.
+
+The silent removal of traces.
+
+All belong to the same hand.
+
+[Level Settlement]
+
+* Display: Level 5 · The Transmitter — Complete
+* Unlocked: Level 6 · The Mark
+* Unlocked: Chapter Six archive fragment 5/9
+* Hidden thread unlocked:
+
+  * Precise deep-night power cut
+  * Iron box displacement trace
+  * Ito's exclusive traceless operation method
+
+---
+
+# Level 6 · The Mark (level-606)
+
+[Scene Name] Archive Library Basement · B1 Corridor · Stone Carvings
+[Time] December 8, 1941 · Deep Night
+[Weather] Underground darkness. No lamp. No flame. Shen Mo moves through the corridor by memory alone.
+
+[Scene Layer]
+
+Shen Mo does not leave immediately.
+
+Halfway through the B1 corridor, he stops before the stone wall covered with old number carvings.
+
+In complete darkness, he does not need light.
+
+He remembers every position.
+
+Every mark.
+
+Every spacing.
+
+Every depth.
+
+The old carvings remain intact.
+
+No outsider has touched them.
+
+No mark has been added.
+
+No sequence has been broken.
+
+After confirming this, Shen Mo raises his hand.
+
+With his fingernail, he carves a new short stroke beside the existing marks.
+
+It is smaller.
+
+Shallower.
+
+More restrained.
+
+Its position and spacing follow the same hidden rule as the previous marks.
+
+It does not stand apart.
+
+It becomes part of the sequence.
+
+When finished, Shen Mo does not linger.
+
+He turns and walks back through the darkness.
+
+His footsteps remain even.
+
+His pace unchanged.
+
+At the underground hidden door, he closes the panel from inside.
+
+The old hinge makes no sound.
+
+The door disappears into the wall.
+
+No trace remains.
+
+On the first floor, he briefly checks the windowsill.
+
+The mark remains intact.
+
+The back door opens.
+
+The night receives him.
+
+[Portrait Layer]
+
+The corridor is completely dark.
+
+Shen Mo stands before the stone wall.
+
+His fingertip has just left the new mark.
+
+A moment later, he turns.
+
+His figure disappears into the endless darkness.
+
+Calm.
+
+Silent.
+
+Certain.
+
+[Dialogue · Wordless]
+
+[Board Layer · First Trigger]
+
+* The stone wall carvings become the focal point.
+* A complete 9×9 Sudoku board appears.
+* Board data matches level-606 boardData.
+* Board feature: **Arcane Master Precursor** — a multi-dimensional sequence alignment technique preparing the advanced composite logic of Chapter Seven.
+* Ambient state: underground darkness, sealed corridor, no external interference.
+
+[Board Interaction · Arcane Master Precursor]
+
+The player solves the puzzle.
+
+The three hidden marks align:
+
+* Shen Mo's new short stroke
+* The hidden-door outer-frame mark
+* His father's original carving at the B3 entrance
+
+Direction.
+
+Spacing.
+
+Timeline.
+
+All correspond perfectly.
+
+The father-son inherited intelligence route is restored.
+
+A private hidden-safety system is completed.
+
+[Feedback Layer · Clear]
+
+* Audio: a faint scrape of fingernail against stone, immediately swallowed by the darkness.
+
+Shen Mo completes the final alignment.
+
+Three locations.
+
+Three generations of traces.
+
+One continuous hidden route.
+
+[Level Settlement]
+
+* Display: Level 6 · The Mark — Complete
+* Unlocked: Level 7 · Yamada's Search
+* Unlocked: Chapter Six archive fragment 6/9
+* Hidden thread unlocked:
+
+  * Three-mark alignment
+  * Father-son inherited signal sequence
+  * Underground route loop completion
+
+Level 9 · Pan Hanyu (level-609)（续）
+
+[Board Interaction · Arcane Master Composite]
+
+The player solves the final composite puzzle, integrating every hidden logic chain established throughout this chapter:
+
+the Twin Lock verification of identity and archive status;
+the Twin Luminary tracing of the anonymous intelligence channel;
+the Three Seed Method reconstruction of time, location, and document links;
+the Twin Axis Formation ordering of the teacher's original puzzle sequence;
+the Three-Talent Fish Formation reconstruction of Ito's traceless operation;
+the Hidden Radiance reversal of concealed traces and forgotten timelines.
+
+Through the complete alignment of all clue systems, the player reconstructs the final missing timeline:
+
+On December 7, 1941, while Shen Mo remained beneath Shanghai transmitting the decisive intelligence, Shen Shian had already completed his withdrawal from the city.
+
+Following a concealed route through Vladivostok, he continued onward toward Moscow, leaving Shanghai before the city entered complete military control.
+
+The final hidden gap closes.
+
+The father did not disappear.
+
+He simply stepped onto another battlefield.
+
+[Feedback Layer · Clear]
+
+Audio: the map folds shut with a slow, deliberate rustle.
+The sound echoes with the same texture as the earlier archive closures, linking the entire investigation chain from the Prologue to Chapter Six.
+The last missing piece falls into place.
+
+Shen Mo lowers the map.
+
+For years, every trace seemed fragmented:
+a missing father,
+a destroyed puzzle,
+a silent archive,
+a hidden route,
+and countless marks left behind without explanation.
+
+Now the pattern is complete.
+
+The game was never about finding where his father disappeared.
+
+It was about understanding why he left.
+
+[Level Settlement]
+
+Display: Level 9 · Pan Hanyu — Complete
+Unlocked: Chapter Six Archive Fragments 9/9
+Unlocked: Chapter Seven · Finale · The Storeroom
+Chapter Six · Summary（Polished Version）
+Level	Core Technique	Core Event	External Pressure
+601	Ninth-Order Twin Lock	Morning identity verification; confirm Yamada's file remains frozen, with no new suspicion entry	Japanese forces begin sealing the Concessions; armored vehicles move into position
+602	Ninth-Order Twin Luminary	Trace the anonymous message; confirm the destroyed bookshop puzzle and recover the first-meeting stronghold clue	Japanese patrols appear throughout the streets; movement becomes restricted
+603	Ninth-Order Three Seed Method	Obtain the 1938 French Concession map and verify the hidden transfer history of the old Lulutong site	Blockade lines tighten around the Concession borders
+604	Ninth-Order Twin Axis Formation	Recover the teacher's original puzzle set and reconstruct the stalled Spring 1941 intelligence plan	Dusk falls; visibility decreases; hidden risks rise
+605	Ninth-Order Three-Talent Fish Formation	Analyze the transmitter anomaly and identify Ito's traceless operation method	A sealed underground chamber hides an unseen operator's presence
+606	Arcane Master Precursor	Add the final short-stroke mark and complete the inherited father-son hidden-mark sequence	Total darkness; every action must leave no trace
+607	Ninth-Order Twin Lock Deepened	Verify the Japanese search movement and confirm Ito removed Shen Mo's suspicion entry through archive desensitization	Japanese search teams sweep nearby districts before dawn
+608	Ninth-Order Hidden Radiance Deepened	Reverse the timeline and prove Shen Shian secretly returned before December 4 to retrieve the final hidden object	Pre-dawn darkness conceals critical traces
+609	Arcane Master Composite	Complete the final clue alignment and confirm Shen Shian's December 7 withdrawal route through Vladivostok toward Moscow	Shanghai enters a new era of occupation; the old intelligence world collapses
+Chapter Six Narrative Purpose（补充）
+
+Chapter Six is not a chapter about action.
+
+It is a chapter about reconstruction.
+
+After Chapter Five, Shen Mo believes the mission has ended.
+
+But the fall of Shanghai reveals another layer:
+
+The transmission was only one move.
+
+The real game had already been arranged long before.
+
+Through the destroyed bookshop, the abandoned Lulutong site, the altered archive, the silent transmitter, and the inherited marks left across generations, Shen Mo gradually realizes:
+
+Ito was never merely cleaning traces.
+His father was never simply missing.
+The puzzles were never only tests.
+
+Every remaining clue was a delayed message.
+
+Every disappearance was a controlled withdrawal.
+
+Every empty space contained an answer.
+
+By the end of Chapter Six, Shen Mo no longer searches for the past.
+
+He inherits it.
+
+
+Chapter Seven · Finale · The Storeroom
+Level 701 · The Western Suburbs Warehouse (Polished English Version)
+[Scene Name]
+
+Western Suburbs · Abandoned Warehouse · Outer Wall
+
+[Time]
+
+December 9, 1941 · Deep Night
+
+[Weather]
+
+Moonless and windless.
+
+The night hangs motionless. Scattered fires across the city are pressed beneath the heavy darkness, leaving the world utterly silent.
+
+[Scene Layer]
+
+At the deepest hour of the night, Shen Mo leaves the heart of Shanghai one final time.
+
+He has walked this route alone twice before.
+
+Through the unnoticed back lanes of the French Concession.
+
+Across the silent footbridge over Suzhou Creek.
+
+Along the abandoned railway tracks heading west.
+
+Twenty minutes later, he stands beneath the shadow of the abandoned western-suburbs warehouse.
+
+He does not approach the main entrance immediately.
+
+Instead, he stops outside the perimeter wall and carefully surveys the entire structure.
+
+No new openings.
+
+No fresh climbing marks.
+
+No signs of recent contact.
+
+Everything remains exactly as it was — silent, untouched, and undisturbed.
+
+Only after confirming the surroundings does Shen Mo move.
+
+He slips through an old gap in the side wall and enters the warehouse grounds.
+
+At the center of the warehouse floor lies a large washed-out area.
+
+The water mark is broader and deeper than before, covering the exact location where the iron case once stood.
+
+The original trace has been completely erased.
+
+Shen Mo does not linger.
+
+He does not search the empty ground.
+
+He simply follows the outer wall, returns to the entrance point, and crouches beside the old doorframe.
+
+At the base of the frame, a brand-new vertical scratch catches his attention.
+
+Its direction matches perfectly with the exclusive mark he left at the Archive Library back door in April.
+
+The line is straight.
+
+The pressure is firm.
+
+The cut is precise.
+
+But it was not made by his hand.
+
+Shen Mo's fingertip stops a fraction above the scratch.
+
+He does not touch it.
+
+Instead, he studies it from the air alone, memorizing its:
+
+depth,
+width,
+angle,
+and pressure pattern.
+
+Once every detail is confirmed, Shen Mo slowly rises.
+
+He does not look back.
+
+He does not remain.
+
+He simply retraces his route toward the city.
+
+Behind him, the warehouse floor grows quiet again.
+
+The water stain dries.
+
+The last traces of moisture disappear.
+
+The empty ground holds nothing.
+
+No iron case.
+
+No remaining evidence.
+
+Only the vertical scratch remains at the bottom of the doorframe.
+
+A final signature hidden in the darkness.
+
+A mark left behind by an operation that has already ended.
+
+After leaving the warehouse's control range, Shen Mo pauses briefly beside the railway tracks.
+
+He compares the new mark with the complete collection of traces he has gathered throughout the year.
+
+The spacing standard is identical.
+
+The format is identical.
+
+Only the execution differs.
+
+The pressure is heavier.
+
+The grain is wider.
+
+A familiar method.
+
+A different hand.
+
+Shen Mo needs no further confirmation.
+
+He turns away immediately.
+
+He never looks back at the warehouse entrance.
+
+[Portrait Layer]
+
+The abandoned warehouse doorframe disappears into the darkness.
+
+Shen Mo kneels outside, his fingertip hovering above the new scratch without touching it.
+
+The mark is deep and straight.
+
+It carries the same origin as his own signals, yet clearly belongs to another person.
+
+Light and shadow outline his calm profile.
+
+He stands.
+
+His figure merges into the night.
+
+No hesitation.
+
+No backward glance.
+
+[Dialogue]
+
+None.
+
+[Board Layer · First Trigger]
+
+The warehouse doorframe scratch enlarges beneath the night sky.
+
+A complete 9×9 Sudoku board appears.
+
+Board data matches level-701 boardData.
+[Board Feature]
+
+Ninth-Order Twin Lock Deepened
+
+The final application of the paired-lock system.
+
+Designed for:
+
+same-origin trace recognition,
+timeline displacement analysis,
+advanced operational reconstruction.[Ambient State]
+
+The moonless night surrounds the warehouse.
+
+The outer wall is buried in shadow.
+
+Every hidden trace is sealed away from outside interference.
+
+[Board Interaction · Ninth-Order Twin Lock Deepened]
+
+The player solves the puzzle through dual-line binding logic.
+
+The conclusion becomes clear:
+
+The vertical scratch on the warehouse doorframe was created:
+
+after the Archive Library transmitter line was cleared,
+before Shen Mo's final return to the warehouse,
+and within the same operational window as the short-stroke mark left at the B1 corridor.
+
+The technique, pressure, and pattern all point to the same source.
+
+[Feedback Layer · Clear]
+
+Audio:
+A faint sound of air passing over metal.
+
+Almost inaudible.
+
+It disappears immediately into the silence of the night.
+
+Shen Mo identifies the owner of the final mark.
+
+It was Ito.
+
+After cutting the transmitter line and completing the invisible cleanup operation, Ito returned here and left the final trace.
+
+The closing signature of the entire hidden game.
+
+[Level Settlement]
+
+Display:
+Level 1 · The Western Suburbs Warehouse — Complete
+
+Unlocked:
+Level 2 · No. 72 Dixiwei Road
+
+Unlocked:
+Chapter Seven Archive Fragment 1/9
+
+Hidden Thread Unlocked:
+
+Western-suburbs warehouse hidden scratch
+Ito's final operation trace
+The closed-loop record of the deep-night operation
+Level 702 · No. 72 Dixiwei Road
+[Scene Name]
+
+No. 72 Dixiwei Road · Third-Floor Study + First-Floor Corridor
+
+[Time]
+
+December 10, 1941 · Early Morning
+
+[Weather]
+
+Morning frost remains on the lane.
+
+The sky is pale, without sunlight.
+
+Cold clear light fills the old courtyard.
+
+[Scene Layer]
+
+At first light, before the frost has melted, Shen Mo returns to the old residence at No.72 Dixiwei Road.
+
+The third-floor study remains exactly as he left it.
+
+The door is slightly open.
+
+The hinges move smoothly.
+
+Nothing inside has changed.
+
+The desk remains in place.
+
+The hidden compartment is still open.
+
+The groove beside the wall is empty.
+
+No new object.
+
+No displaced item.
+
+No fresh trace.
+
+Shen Mo stops at the doorway.
+
+He does not enter.
+
+He does not touch anything.
+
+Only with his eyes does he inspect the entire room.
+
+No intruder.
+
+No alteration.
+
+No added clue.
+
+No missing evidence.
+
+Everything remains unchanged.
+
+Satisfied, he turns and walks downstairs.
+
+Halfway down the staircase—
+
+A faint sound comes from the first-floor wooden door.
+
+Not a knock.
+
+Not a movement.
+
+Only the quiet tremor of a door panel being gently pushed shut.
+
+The sound echoes clearly through the silent morning.
+
+Shen Mo's pace does not change.
+
+He continues down the remaining steps.
+
+At the end of the first-floor corridor stands Mrs. Zhou.
+
+She has clearly been waiting for some time.
+
+One hand rests lightly against the doorframe.
+
+Her back remains calm and still.
+
+Without turning, she speaks:
+
+"Your father left something with me before he departed."
+
+Her voice is steady.
+
+"He said — if one day you return, give this to him."
+
+Shen Mo stops.
+
+He does not approach.
+
+He simply waits.
+
+Mrs. Zhou slowly opens her hand.
+
+An old envelope rests on her palm.
+
+The paper is yellowed.
+
+The corners are worn.
+
+The seal remains intact.
+
+No opening.
+
+No tear.
+
+No sign of damage.
+
+Shen Mo takes it.
+
+Only then does Mrs. Zhou turn.
+
+Her eyes meet his.
+
+A moment of examination.
+
+Recognition.
+
+Relief.
+
+Then everything returns to silence.
+
+She withdraws her hand.
+
+Turns.
+
+And disappears into the shadow behind the staircase.
+
+Shen Mo does not open the envelope.
+
+He places it carefully beside the 1938 French Concession map inside his coat.
+
+Separate.
+
+Protected.
+
+Untouched.
+
+A moment later, he opens the courtyard gate.
+
+Pale morning light spills through the building gap.
+
+A long shadow falls across the lane.
+
+The gate closes behind him.
+
+[Portrait Layer]
+
+The frost-white corridor remains silent.
+
+Mrs. Zhou stands at the far end, half-hidden in shadow.
+
+Shen Mo stands midway through the corridor.
+
+The old sealed envelope rests in his hand.
+
+The paper texture is clearly visible.
+
+No fold.
+
+No tear.
+
+Perfectly preserved.
+
+Level 703 · The Old Bookshop on Avenue Joffre (level-703)
+[Scene Name]
+
+Avenue Joffre · Old Bookshop · Street Entrance
+
+[Time]
+
+December 10, 1941 · Morning
+
+[Weather]
+
+Overcast skies. Low clouds hang above the street. A cold wind moves through the empty road; few pedestrians pass.
+
+[Scene Layer]
+
+Beneath the gray morning sky, Shen Mo returns alone to the old bookshop on Avenue Joffre.
+
+The door that once concealed countless secrets is now firmly sealed from outside.
+
+A brand-new iron lock hangs in place.
+
+The wooden panels are tightly joined.
+
+No gap.
+
+No light.
+
+No sign of movement within.
+
+Shen Mo stands before the entrance.
+
+He does not push the door.
+
+He does not test the lock.
+
+He does not crouch to search for the old hidden key beneath the windowsill.
+
+He only observes.
+
+The lock model.
+
+The mounting position.
+
+The latch structure.
+
+Every detail is recorded silently.
+
+No forced entry.
+
+No tampering.
+
+No passage.
+
+The moment he turns to leave, something catches the edge of his vision.
+
+Inside the windowsill, on the old bookshelf panel, lies an extremely faint short-stroke mark.
+
+Its direction matches exactly with the exclusive signal he created in June.
+
+But the execution is different.
+
+The pressure is almost restrained to nothing.
+
+The cut is shallow.
+
+Far lighter than any previous mark.
+
+A signal made not to demand attention, but only to exist.
+
+Shen Mo pauses briefly.
+
+He does not approach.
+
+He does not verify it physically.
+
+He does not extend the chain.
+
+He simply remembers it.
+
+Then he continues walking.
+
+Leaving the place where he once obtained the hidden book, Shen Mo finally places the last endpoint he has spent half a year reconstructing.
+
+Beside the old windowsill mark, he leaves a single line of pencil-written coordinates.
+
+A clear address.
+
+A final destination.
+
+It rests quietly beside the previous signal.
+
+Not as an invitation.
+
+Not as a message waiting for a reply.
+
+Only as the completion of a route that has already been walked.
+
+No contact.
+
+No observer.
+
+No return.
+
+The hidden path closes exactly where it began.
+
+Shen Mo leaves the street without looking back.
+
+[Portrait Layer]
+
+The old bookshop stands beneath the cold gray sky.
+
+Shen Mo remains on the stone step, hands resting naturally at his sides.
+
+His eyes rest on the new lock, calmly confirming every detail.
+
+Once satisfied, he turns away.
+
+His figure disappears into the sparse morning crowd.
+
+No hesitation.
+
+No disturbance.
+
+[Dialogue · Wordless]
+[Board Layer · First Trigger]
+The faint windowsill scratch and pencil address enlarge beneath the overcast sky.
+A complete 9×9 Sudoku board appears.
+Board data corresponds with level-703 boardData.
+
+Board Feature:
+Ninth-Order Three Seed Method
+
+The finale application of the three-chain array.
+
+A three-line cross-verification structure used for endpoint placement and trajectory reconstruction.
+
+Suitable for confirming hidden coordinates, replacement loops, and completed routes.
+
+Ambient State:
+
+The street remains cold and quiet.
+
+The bookshop is sealed.
+
+No one approaches.
+
+No outside interference exists.
+
+[Board Interaction · Ninth-Order Three Seed Method]
+
+The player solves the puzzle through three-chain cross-verification.
+
+The deduction reveals:
+
+The address Shen Mo leaves beside the windowsill signal corresponds exactly with the hidden coordinate on the reverse side of the old Lulutong site map.
+
+The endpoint was never meant to summon a contact.
+
+It was never a waiting signal.
+
+It was the final placement of a route that had already completed its cycle.
+
+The hidden path closes.
+
+The coordinates remain.
+
+The chain is complete.
+
+[Feedback Layer · Clear]
+
+Audio:
+
+The paper settles lightly against the wooden windowsill.
+
+A quiet rustle.
+
+Then silence.
+
+The address remains unchanged.
+
+The mark remains untouched.
+
+The route closes without deviation.
+
+[Level Settlement]
+Display: Level 3 · The Old Bookshop on Avenue Joffre — Complete
+Unlocked: Level 4 · Suzhou Creek
+Unlocked: Chapter Seven Archive Fragment 3/9
+
+Hidden Thread Unlocked:
+
+Windowsill faint-mark signal · final coordinate placement · the completed route with no deviation.
+
+Level 704 · Suzhou Creek (level-704)
+[Scene Name]
+
+Suzhou Creek · Fourth Bridge Riverbank Stone Steps
+
+[Time]
+
+December 10, 1941 · Afternoon
+
+[Weather]
+
+Overcast skies. The river has returned to its normal level. The water is slightly cloudy, the surface almost motionless.
+
+[Scene Layer]
+
+In the quiet afternoon, Suzhou Creek flows slowly beneath the gray sky.
+
+Shen Mo walks to the Fourth Bridge.
+
+He does not cross.
+
+Instead, he descends the old stone steps beside the river and sits near the water.
+
+The current moves gently against the bridge pillar.
+
+The sound is low and steady.
+
+Different from the chaos of December's earlier days.
+
+The river is calmer now.
+
+Fallen leaves drift sparsely across the surface.
+
+Shen Mo takes out the yellowed envelope from inside his coat.
+
+He does not open it immediately.
+
+He places it quietly on his knee.
+
+Beside it, he unfolds the 1938 French Concession map.
+
+His eyes move to the hidden address written on its reverse side.
+
+Every character remains exactly as he remembers.
+
+No change.
+
+No error.
+
+No alteration.
+
+The opposite bank is empty.
+
+No boats pass.
+
+No pedestrians appear.
+
+Only the sound of water and his own breathing remain.
+
+After a long silence, Shen Mo finally opens the envelope.
+
+Inside is a neatly preserved letter.
+
+The paper edges are intact.
+
+No tear.
+
+No crease.
+
+Only one restrained line of handwriting appears:
+
+"Mo — I am your father. I left not because I did not wish to wait."
+
+Shen Mo reads it once.
+
+He does not read it again.
+
+He folds the letter carefully and returns it to the envelope.
+
+The movement is gentle.
+
+Controlled.
+
+Leaving no trace.
+
+The river continues flowing.
+The steps remain empty.
+
+No message.
+
+No mark.
+
+No hidden signal.
+
+After sitting a moment longer, Shen Mo rises.
+
+He brushes the dust from his coat.
+
+Then he walks away from the riverbank.
+
+At the final step, he pauses briefly and looks back at Suzhou Creek.
+
+Only once.
+
+Then he turns forward.
+
+[Portrait Layer]
+
+The gray afternoon riverbank is silent.
+
+Shen Mo sits beside the water, the sealed envelope resting on his knee.
+
+His gaze is distant.
+
+Not searching.
+
+Not questioning.
+
+Only accepting.
+
+The river flows quietly beside him.
+
+Everything settles.
+
+[Dialogue · Wordless]
+[Board Layer · First Trigger]
+The envelope resting beside the river enlarges.
+A complete 9×9 Sudoku board appears.
+Board data corresponds with level-704 boardData.
+
+Board Feature:
+Ninth-Order Twin Axis Formation
+
+The finale configuration.
+
+A horizontal-vertical dual-axis alignment structure.
+
+Designed for verifying timeline, clue placement, and trajectory consistency.
+
+Ambient State:
+
+The river is calm.
+
+The shore is empty.
+
+The environment is completely still.
+
+A perfect space for final clue reconstruction.
+
+[Board Interaction · Ninth-Order Twin Axis Formation]
+
+The player solves the puzzle through horizontal and vertical dual-line alignment.
+
+The deduction reveals:
+
+The father's letter matches the hidden address on the map.
+
+The signing date is:
+
+December 8, 1941.
+
+The same day Shen Mo completed the final transmission of the core intelligence.
+
+Only after confirming Shen Mo had completed his mission and safely entered the planned route did Shen Shian secretly withdraw from Shanghai.
+
+His route:
+
+Shanghai → Vladivostok → Moscow.
+
+Every line connects.
+
+[Feedback Layer · Clear]
+
+Audio:
+
+The envelope closes softly.
+
+A clean, final sound.
+
+Handwriting.
+
+Hidden coordinates.
+
+Withdrawal route.
+
+Three traces.
+
+One truth.
+
+[Level Settlement]
+Display: Level 4 · Suzhou Creek — Complete
+Unlocked: Level 5 · Vladivostok
+Unlocked: Chapter Seven Archive Fragment 4/9
+
+Hidden Thread Unlocked:
+
+Father's handwritten letter · December 8 withdrawal timeline · Moscow transit route.
+
+Level 705 · Vladivostok (level-705)
+[Scene Name]
+
+Shanghai · Huangpu River Wharf · The Jetty
+
+[Time]
+
+December 11, 1941 · Early Morning
+
+[Weather]
+
+Clear morning light. No heavy fog covers the river. The air is thin and clean; visibility is excellent.
+
+[Scene Layer]
+
+Before dawn fully arrives, Shen Mo reaches the Huangpu River wharf.
+
+The river is open beneath the morning sky.
+
+No dense fog.
+
+No violent waves.
+
+No gathered fleet.
+
+Only several freighters and passenger ships resting quietly offshore.
+
+He walks slowly to the end of the jetty and stands there.
+
+The wooden planks beneath his feet are worn by years of wind and water.
+
+Their faded surface carries the marks of time.
+
+The morning light spreads across the river.
+
+Small reflections shimmer on the water.
+
+Clear.
+
+Quiet.
+
+Unobstructed.
+
+After confirming the route environment, Shen Mo turns toward the wharf office.
+
+He asks only what is necessary.
+
+No unnecessary questions.
+
+No mention of destinations beyond what is required.
+
+No search for companions.
+
+No attempt to investigate.
+
+He simply purchases a ticket.
+
+The destination printed clearly:
+
+Vladivostok.
+
+He stores the ticket safely inside his coat.
+
+Together with the father's letter.
+
+Together with the old map.
+
+Together with every remaining clue.
+
+The pieces now confirm one another.
+
+Returning once more to the end of the jetty, Shen Mo pauses.
+
+A thin layer of frost covers the wooden surface.
+
+The rising sun turns it golden.
+
+He looks once at the open river.
+
+Then he turns away.
+
+And walks forward.
+
+
+Level 706 · The Counting House (level-706)
+[Scene Name]
+
+Triangle Market · The Counting House
+
+[Time]
+
+December 11, 1941 · Morning
+
+[Weather]
+
+Overcast and cool. The warmth of the early market has not yet faded; voices in the lane are sparse, and the neighborhood feels quieter than usual.
+
+[Scene Layer]
+
+In the soft morning light, Shen Mo returns once again to the familiar counting house.
+
+It has been only a day since he left.
+
+When the door opens, the room remains peaceful.
+
+Safe.
+
+Unchanged.
+
+Su Wan sits alone beside the stove on the low wooden stool.
+
+The white porcelain bowl on the windowsill remains where it has always been.
+
+Its opening faces east.
+
+Their final and most familiar peace signal.
+
+Seeing him return, Su Wan does not stand.
+
+She does not ask where he has been.
+
+She does not show surprise.
+
+She does not show fear.
+
+She simply lifts the lid from the pot, serves a bowl of warm congee, places it quietly on the desk, then returns to her seat beside the stove.
+
+The room falls silent again.
+
+Shen Mo eats slowly.
+
+When finished, he washes the bowl and chopsticks and returns them to their usual place.
+
+Every movement is familiar.
+
+Almost ordinary.
+
+Like all the mornings before.
+
+After a long silence, Su Wan finally speaks.
+
+"When are you leaving?"
+
+Shen Mo's fingers pause slightly.
+
+"...Tomorrow."
+
+"The ticket has been bought."
+
+It is not a question.
+
+She already knows.
+
+"...Yes."
+
+The answer is quiet.
+
+Complete.
+
+The conversation ends there.
+
+Su Wan does not ask when he will return.
+
+She does not ask where he is going.
+
+She does not ask whether they will meet again.
+
+She simply remains beside the stove, guarding this final moment of peace in a world already consumed by war.
+
+Shen Mo stands by the door.
+
+After a moment, he says softly:
+
+"The congee was warm."
+
+No answer comes.
+
+But neither of them needs one.
+
+Every concern.
+
+Every thought.
+
+Every farewell left unspoken.
+
+All of it remains between them.
+
+Before leaving, Shen Mo's hand rests briefly against the doorframe.
+
+Morning light enters through the gap, dividing the room inside from the uncertain world outside.
+
+He pauses.
+
+One final glance.
+
+The quiet mornings.
+
+The waiting.
+
+The bowl on the windowsill.
+
+The companionship that existed without promises.
+
+Before stepping away, he checks the old short-stroke mark on the outer doorframe.
+
+Still intact.
+
+Still uncovered.
+
+Still untouched by rain or dust.
+
+He does not add another mark.
+
+He leaves the space blank.
+
+A final closure.
+
+Then he steps across the threshold.
+
+The door closes softly behind him.
+
+At the end of the lane, Shen Mo looks back once.
+
+Su Wan stands behind the windowsill.
+
+She does not wave.
+
+She does not call out.
+
+The porcelain bowl continues facing east.
+
+The signal remains.
+
+Shen Mo turns away.
+
+And walks forward.
+
+[Portrait Layer]
+
+Soft morning light fills the counting-house doorway.
+
+Shen Mo stands between two worlds.
+
+Behind him:
+
+The warmth of the stove.
+
+The quiet companionship.
+
+The days they shared.
+
+Before him:
+
+The road ahead.
+
+The unknown.
+
+The mission waiting beyond Shanghai.
+
+Su Wan remains inside, calm and still.
+
+No farewell.
+
+Only understanding.
+
+[Dialogue · Wordless]
+[Board Layer · First Trigger]
+The white porcelain bowl beneath the morning light enlarges.
+A complete 9×9 Sudoku board appears.
+Board data corresponds with level-706 boardData.
+
+Board Feature:
+Arcane Master
+
+The ultimate composite precursor.
+
+A full-dimensional review structure combining every previous deduction method.
+
+Suitable for complete route confirmation and final trace closure.
+
+Ambient State:
+
+Warm morning light fills the counting house.
+
+The room is quiet.
+
+The farewell has already been understood.
+
+[Board Interaction · Arcane Master Composite]
+
+The player solves the puzzle through full-dimensional clue reconstruction.
+
+The deduction reveals:
+
+Before leaving, Shen Mo verifies once more the final coordinates and dates recorded at the corner of the account book.
+
+Every mark remains correct.
+
+Every position remains unchanged.
+
+Every unresolved clue has reached its proper ending.
+
+Nothing requires addition.
+
+Nothing requires correction.
+
+Nothing remains open.
+
+The entire hidden structure has completed its final loop.
+
+[Feedback Layer · Clear]
+
+Audio:
+
+The wooden door closes gently.
+
+A warm, familiar sound.
+
+The counting house returns to silence.
+
+The white porcelain bowl remains facing east.
+
+The peace signal remains.
+
+[Level Settlement]
+Display: Level 6 · The Counting House — Complete
+Unlocked: Level 7 · The Ship
+Unlocked: Chapter Seven Archive Fragment 6/9
+
+Hidden Thread Unlocked:
+
+Counting-house farewell · white porcelain bowl peace signal · the final closure of all hidden clues.
+
+Level 707 · The Ship (level-707)
+[Scene Name]
+
+Shanghai Wharf · Ship Deck · Rail Side
+
+[Time]
+
+December 12, 1941 · Early Morning
+
+[Weather]
+
+A thin mist covers the river. The morning light is clear. The sea wind is cold but steady. The ship slowly leaves the harbor.
+
+[Scene Layer]
+
+In the early mist, the ferry begins to move.
+
+The ropes are released.
+
+The engine deepens.
+
+The vessel slowly separates from the Shanghai wharf.
+
+Shen Mo stands beside the rail.
+
+Morning sunlight falls from the east, resting quietly on his shoulder.
+
+Behind him, Shanghai gradually disappears.
+
+The foreign buildings along the Bund.
+
+The bridges crossing Suzhou Creek.
+
+The endless warehouse roofs beside the river.
+
+One by one, they fade into the mist.
+
+Their outlines soften.
+
+Their distance grows.
+
+Until the entire city becomes only a gray shadow.
+
+Shen Mo stands motionless.
+
+He does not hold the railing.
+
+He does not wave goodbye.
+
+He does not look back.
+
+Inside his coat are everything he carries from the past:
+
+His father's handwritten letter.
+
+His mother's old photograph.
+
+The teacher's unfinished puzzle fragments.
+
+The 1938 French Concession map.
+Every clue.
+
+Every memory.
+
+Every unfinished responsibility.
+
+All preserved.
+
+All completed.
+
+The ship cuts through the quiet water.
+
+Ripples spread behind it.
+
+The river widens.
+
+The shore grows smaller.
+
+Shen Mo raises his eyes toward the direction ahead.
+
+His expression remains calm.
+
+Certain.
+
+Then he turns and enters the cabin.
+
+Shanghai remains behind.
+
+The cabin is quiet.
+
+He sits on the berth and arranges every paper clue one final time.
+
+He smooths each crease.
+
+Confirms every piece remains intact.
+
+Then stores them carefully against himself.
+
+Outside the window, a gull passes over the waves.
+
+The iron frame slowly captures the last fading image of Shanghai.
+
+The city disappears.
+
+The window closes.
+
+The past is sealed.
+
+[Portrait Layer]
+
+Morning mist covers the river.
+
+Shen Mo stands at the rail.
+
+Shanghai fades behind him.
+
+The sunlight rests on his shoulder.
+
+His posture remains steady.
+
+He faces forward.
+
+Not because he has forgotten the past.
+
+But because he has accepted it.
+
+[Dialogue · Wordless]
+[Board Layer · First Trigger]
+The cabin window frame in the mist enlarges.
+A complete 9×9 Sudoku board appears.
+Board data corresponds with level-707 boardData.
+
+Board Feature:
+Ninth-Order Composite
+
+The fusion of all previous techniques.
+
+A complete alignment of route, timeline, and character trajectory.
+
+Ambient State:
+
+The ship steadily leaves shore.
+
+The past fades behind.
+
+The road ahead opens.
+
+[Board Interaction · Ninth-Order Composite]
+
+The player solves the puzzle and reconstructs the final route.
+
+The deduction reveals:
+
+The ferry's northeast course matches the withdrawal paths established by previous generations.
+
+Father.
+
+Mother.
+
+And Shen Mo himself.
+
+Three journeys.
+
+Three eras.
+
+One direction.
+
+Their paths finally converge.
+
+[Feedback Layer · Clear]
+
+Audio:
+
+The paper clues settle quietly against his coat.
+
+A final, decisive movement.
+
+The past is secured.
+
+The road ahead is fixed.
+
+[Level Settlement]
+Display: Level 7 · The Ship — Complete
+Unlocked: Level 8 · The Fog
+Unlocked: Chapter Seven Archive Fragment 7/9
+
+Hidden Thread Unlocked:
+
+The ferry departing Shanghai · the northeast route · the three-generation forward path.
+
+Level 708 · The Fog (level-708)
+[Scene Name]
+
+Huangpu River Mouth · Open Sea
+
+[Time]
+
+December 12, 1941 · Morning
+
+[Weather]
+
+Sea fog moves across the water and slowly disperses. Visibility improves steadily. The sea becomes open and endless.
+
+[Scene Layer]
+
+After leaving Wusong Mouth, the ferry enters open water.
+
+The river merges with the sea.
+
+Layers of fog drift across the deck, then gradually thin.
+
+Behind the ship, a long white trail spreads across the water.
+
+Slowly.
+
+Quietly.
+
+It dissolves into the waves.
+
+Shanghai disappears completely.
+
+No skyline.
+
+No harbor.
+
+No trace.
+
+Shen Mo steps onto the deck.
+
+The sea stretches endlessly before him.
+
+From behind comes a faint sound.
+
+A footstep.
+
+Someone stops nearby.
+
+Watching.
+
+Waiting.
+
+Not approaching.
+
+Not speaking.
+
+Not leaving.
+
+Shen Mo does not turn.
+
+He does not investigate.
+
+His expression does not change.
+
+After a moment, the footsteps disappear into the sound of the wind and waves.
+
+The sea breeze grows stronger.
+
+A thin layer of moisture forms along the railing.
+
+Cold.
+
+Even.
+
+Silent.
+
+Shen Mo remains there for a long time.
+
+Then he turns.
+
+And walks back toward the cabin.
+
+The deck remains clean.
+
+No footprint.
+
+No mark.
+
+No trace.
+
+As always.
+
+The fog continues to retreat.
+
+Far ahead, the northern horizon slowly becomes visible.
+
+Not Shanghai.
+
+Not the past.
+
+A new coastline.
+
+A new road.
+
+An unknown future.
+
+[Portrait Layer]
+
+The sea fog surrounds the deck.
+
+Shen Mo stands beside the rail.
+
+His hands remain naturally at his sides.
+
+He does not search for the road behind him.
+
+He does not reach for what has already ended.
+
+The fog clears.
+
+The ship moves forward.
+
+Everything settles.
+
+Level 709 · The Storeroom
+[Scene Name]
+[Scene Name]
+Mid-Ocean Voyage · Ship Cabin Interior + Open Deck
+
+[Time]
+December 12, 1941 · Late Morning
+
+[Weather]
+The sea fog has completely dispersed.
+The sky is clear and endless.
+The ocean is calm beneath a vast blue horizon.
+
+[Scene Layer]
+
+The fog finally disappears.
+Transparent sunlight pours through the cabin window.
+Every object on the berth is clearly visible.
+
+Shen Mo sits at the edge of the bed and slowly lays out the things he has carried with him.
+
+The father's handwritten letter.
+The 1938 French Concession map.
+The outbound ticket.
+The teacher's remaining puzzle fragments.
+The hidden words written on the back of his mother's photograph.
+The final coordinates left behind by his father.
+
+One by one.
+
+Each object is worn by time.
+The edges are faded.
+The paper carries the traces of years, separation, and countless hidden struggles.
+
+They appear to be independent fragments.
+Separate clues.
+Different moments.
+Different hands.
+
+Yet every path has always pointed toward the same direction.
+
+From the very beginning until now, no one forced him forward.
+No one gave him the entire answer.
+No one walked the road for him.
+
+He discovered every route himself.
+He verified every mark himself.
+He completed every loop himself.
+
+Shen Mo does not reread the documents.
+He does not repeat the confirmations.
+
+He simply looks at them for a moment.
+Then he understands.
+
+He carefully arranges every item and stores them back inside his coat.
+
+Everything has been settled.
+Everything has been sealed.
+
+He rises and walks toward the cabin window.
+
+Beyond the glass lies an endless ocean.
+The horizon stretches without boundary.
+
+At this moment, he finally understands the meaning of the final storeroom door.
+
+It was never a door he needed to force open.
+
+He never opened it.
+
+Instead, by following every route, solving every clue, and completing every trace, he watched it close naturally.
+
+No explosion.
+No revelation.
+No final confrontation.
+
+Only silence.
+
+And that silence was the true ending.
+
+Shen Mo remains beside the window for a moment.
+Then he turns back.
+
+The cabin is clean.
+Nothing has been left behind.
+
+He opens the door and steps onto the deck.
+
+The ocean wind moves across his coat.
+The loose threads on his cuff.
+The folded line inside his collar.
+
+The coat holds the marks of every road he walked.
+
+The ship continues northeast.
+Shanghai has disappeared completely behind the horizon.
+
+Shen Mo stands beside the rail.
+The wind passes.
+The sunlight falls.
+
+He does not look back.
+
+The months of silence.
+The hidden deductions.
+The dangerous games beneath Shanghai's occupation.
+
+Everything ends here.
+
+Every door.
+Every road.
+Every mark.
+Every hidden game.
+
+All closed.
+
+[Portrait Layer]
+
+The fog has vanished.
+The sky stretches endlessly clear.
+
+Shen Mo stands alone on the open deck.
+The ocean surrounds him.
+The road ahead is vast.
+
+Behind him lies the turbulent age he has survived.
+Before him lies a new mission and an unknown future.
+
+He stands silently.
+Calm.
+Resolute.
+Moving forward.
+
+[Dialogue · Wordless]
+
+[Board Layer · Final Trigger]
+
+The cabin window frame under the clear morning light fills the screen.
+A complete 9×9 Sudoku board appears.
+
+Board data corresponds to Level-709 boardData.
+
+Core mechanic: Arcane Master Composite Finale
+
+Function: Final fusion of every deduction system, clue structure, signal sequence, and route logic from Prologue to Chapter Seven.
+
+[Board Interaction · Arcane Master Composite Finale]
+
+The player completes the final deduction.
+
+All hidden systems align:
+
+The initial signal from the Prologue.
+The layered operations of Chapter Six.
+The final closure of Chapter Seven.
+
+Every hidden mark.
+Every spatial clue.
+Every timeline connection.
+Every character trajectory.
+
+Everything reaches the same conclusion.
+
+Shen Mo no longer needs to search.
+He no longer needs to verify.
+He no longer needs to chase an unknown destination.
+
+The roads have already been walked.
+Every hidden route has returned to its beginning.
+
+[Feedback Layer · Clear]
+
+Audio:
+
+The faint sound of paper moving in the sea breeze.
+
+Then silence.
+A long, endless silence.
+
+The hidden routes of the entire journey finally complete their loop.
+
+Shen Mo has walked every step the era placed before him.
+He carries the perseverance of those who came before him.
+He inherits their unfinished hopes.
+He accepts their silent sacrifices.
+
+Nothing was lost.
+Nothing was forgotten.
+
+Everything has found its destination.
+
+[Finale · The Book Closes]
+
+The ocean wind stretches across the endless sea.
+A gull crosses the sky and disappears beyond the horizon.
+
+Shen Mo stands beside the rail.
+The paper in his hand moves slightly in the wind.
+He folds it into his coat.
+
+Behind him:
+A wounded Shanghai.
+A quiet room of companionship.
+A hidden war fought through traces, marks, and silence.
+
+Before him:
+The open ocean.
+A new road.
+An unfinished mission.
+
+He says nothing.
+He does not say goodbye.
+He does not turn back.
+
+The route is certain.
+The wind is steady.
+
+No final secret waits behind a locked door.
+That was never the point.
+
+[The End]
+
+Chapter Seven · Summary
+Level	Core Technique	Core Event	Finale Landing
+701	Ninth-Order Twin Lock Deepened	The western-suburbs warehouse confirms Ito's exclusive vertical scratch and identifies the enemy's final hidden operation trace.	The enemy's final move is revealed; the hidden operation closes silently.
+702	Ninth-Order Twin Luminary	No.72 Dixiwei Road delivers the father's entrusted envelope and confirms the object's complete chain of custody.	The elder generation's final clue reaches Shen Mo intact, without loss or alteration.
+703	Ninth-Order Three Seed Method	The Avenue Joffre bookshop preserves the final coordinate mark and connects it to the hidden route.	The final endpoint is placed; the long hidden route reaches its intended position.
+704	Ninth-Order Twin Axis Formation	At Suzhou Creek, Shen Mo reads his father's letter and confirms the withdrawal timeline.	Shen Shian successfully left Shanghai on December 8 and continued toward Moscow.
+705	Ninth-Order Three-Talent Fish Formation	At the Huangpu River wharf, Shen Mo obtains the Vladivostok ticket and confirms the forward route.	His personal journey aligns with the paths left behind by previous generations.
+706	Arcane Master	The counting house farewell completes the final review of all remaining clues and signals.	Every adjustable thread closes; nothing remains to be supplemented.
+707	Ninth-Order Composite	The ship departs Shanghai and follows the confirmed northeast route.	Three generations' forward journeys converge into the same direction.
+708	Ninth-Order Composite	The sea fog disperses and the voyage route is verified once more.	The forward path remains unchanged; the destination is certain.
+709	Arcane Master Composite Finale	The storeroom door closes silently as every clue, mark, route, and hidden game completes its final loop.	The entire book reaches closure; Shen Mo leaves the past behind and moves toward the future.
+
+Chapter Seven Final Theme
+
+The ending is not about discovering one final secret.
+
+It is about realizing that the secret was never waiting behind a locked door.
+
+Every person who came before him left a trace.
+
+Every trace became a road.
+
+Every road became a choice.
+
+And every choice brought Shen Mo to the same conclusion:
+
+The greatest closure is not opening the final door.
+
+It is knowing when the door has already closed.

@@ -1,6 +1,22 @@
 // ============================================================
 //  BattleManager - V4 章节Boss战系统（纯逻辑 ES Module）
 // ============================================================
+//  @deprecated
+//
+//  Legacy Combat Runtime Adapter（遗留战斗兼容层）。
+//  不要在战斗大脑上新增能力。
+//
+//  Production path（新战斗世界）：
+//    TplBattleController
+//      ├── BattleContext
+//      ├── Director
+//      ├── StrategyPool / StrategySelector
+//      ├── IntentObserver
+//      └── DramaEventManager
+//
+//  本文件仅保留 AIPlayerCore（Solver）供双 AI 对战/测试驱动复用，
+//  以及历史兼容调用。新能力一律走 TplBattleController + AI Pipeline。
+// ============================================================
 //  迁移自 cagemaster3/game/guide-battle.js（V3 GuideBattle 对象）
 //
 //  设计约束（对照迁移手册 sec2-4）：
@@ -27,6 +43,8 @@
 
 
 import { HeadlessEngine } from './headless-engine.js';
+import { Director } from './director.js';
+import { StrategySelector } from './strategy-selector.js';
 
 const IS_NODE = typeof process !== 'undefined' && process.versions && process.versions.node;
 
@@ -113,20 +131,20 @@ export const BATTLE_EVENTS = Object.freeze({
 //    preDialog、winDialog、warningLines、battleTuning 等）
 // ---------------------------------------------------------------------------
 export const BOSS_CONFIGS = {
-  // 第1章：莹莹 - 盲盒莽撞的实习侦探，玄学填数，喜剧效果
+  // 第1章：薇拉 - 冷静疏离的旧书铺店主，出题如设局
   // 试炼石Boss战：6×6杀手数独 + 机关锁格机制
-  // V4.3.21：Boss 从阿妍换成莹莹——阿妍定位资深专家型（压迫感强，留作后章），
-  // 第1章作为新手章用"盲盒莽撞"的莹莹（blind 人格：低技巧+随机犯错+看错行+盲盒猜格），
-  // 给玩家留出错空间，也更有喜剧传播点
+  // V4.3.21：Boss 定为薇拉——旧书铺店主、情报网联络员，
+  // 第1章作为新手章用"试探布局"的薇拉（blind 人格：低技巧+随机犯错+看错行+盲盒猜格），
+  // 给玩家留出错空间，也更有戏剧张力
   1: {
     id: 'yingying',
-    name: '莹莹',
-    portrait: 'R_02_冒失.png',
+    name: '薇拉',
+    portrait: 'ch1_vera_default.png',
     color: '#f59e0b',
     speedMin: 5500,
     speedMax: 10000,
     mistakeChance: 0.18,
-    personality: '盲盒莽撞的实习侦探，玄学填数，偶尔看错行，喜剧效果',
+    personality: '冷静疏离的旧书铺店主，出题如设局，言语克制',
 
     // ---- 试炼石Boss战专用关卡（6×6杀手数独） ----
     battleData: {
@@ -180,17 +198,17 @@ export const BOSS_CONFIGS = {
     },
 
     preDialog: [
-      { speaker: '莹莹', text: '嘿嘿，我可研究了一套「玄学填数法」，你怕不怕！', emotion: 'smile' },
-      { speaker: '莹莹', text: '反正都是猜，谁怕谁！看我先蒙一个——', emotion: 'confident' },
+      { speaker: '薇拉', text: '想进这扇门，先解我一道题。', emotion: 'serious' },
+      { speaker: '薇拉', text: '出题如设局——你最好跟得上。', emotion: 'confident' },
     ],
     winDialog: [
-      { speaker: '莹莹', text: '哇，你居然全填对了！我……我下次一定认真看行！', emotion: 'lose' },
-      { speaker: '莹莹', text: '等等，我是不是又看错行了……不跟你玩了！', emotion: 'serious' },
+      { speaker: '薇拉', text: '……解开了。你比我想象的更快。', emotion: 'surprised' },
+      { speaker: '薇拉', text: '这道题，算你过了。', emotion: 'smile' },
     ],
     warningLines: [
-      { speaker: '莹莹', text: '我好像……填错了好几个格子？不管了，继续蒙！', emotion: 'smile' },
+      { speaker: '薇拉', text: '别急。题，还没解完。', emotion: 'serious' },
     ],
-    // V4.3.20：杀手数独适配（原为阿妍时补的 battleTuning，莹莹沿用）——
+    // V4.3.20：杀手数独适配（薇拉沿用）——
     // isKiller=true：连击阈值 2、震慑基础 2000ms 上限 4s、拦截冷却 8s，适配 6×6 心算节奏。
     battleTuning: {
       isKiller: true,              // 标记为杀手数独关卡
@@ -203,17 +221,17 @@ export const BOSS_CONFIGS = {
       pulseEnabled: true,          // 候选数脉冲机制
     },
   },
-  // 第2章：守笼人 - 沉稳导师，不疾不徐
+  // 第2章：伊藤 - 特高课警官，与父亲相识，冷静克制
   // 杀手数独专属配置：大幅降低节奏，给玩家留足心算空间
   2: {
     id: 'cagekeeper',
-    name: '守笼人',
-    portrait: 'CK_01_庄重.png',
+    name: '伊藤',
+    portrait: 'ito_default.png',
     color: '#6366f1',
     speedMin: 5500,        // 杀手数独：大幅增加基础思考时间
     speedMax: 8500,        // 给玩家留足心算和组合拆分的时间
     mistakeChance: 0.08,
-    personality: '沉稳从容的导师，古风措辞，不疾不徐',
+    personality: '特高课警官，与父亲相识，言语克制冷静，暗中观察',
     // 杀手数独Boss战特殊调整：大幅降低压迫感，适配心算节奏
     aiDifficulty: {
       maxTechLevel: 4,         // 降到4级（只用到星衡法则级别）
@@ -234,27 +252,27 @@ export const BOSS_CONFIGS = {
       pulseEnabled: true,          // 启用候选数脉冲机制
     },
     preDialog: [
-      { speaker: '守笼人', text: '能走到这里，说明你已初窥门径。', emotion: 'serious' },
-      { speaker: '守笼人', text: '老夫便亲自下场，看看你的斤两。', emotion: 'serious' },
+      { speaker: '伊藤', text: '藏书楼地下，不是谁都能进来的。', emotion: 'serious' },
+      { speaker: '伊藤', text: '让我看看，你配不配走这条路。', emotion: 'serious' },
     ],
     winDialog: [
-      { speaker: '守笼人', text: '后生可畏……你的进步，超乎老夫预期。', emotion: 'smile' },
-      { speaker: '守笼人', text: '继续前行吧，更深处的谜题在等着你。', emotion: 'serious' },
+      { speaker: '伊藤', text: '……不错。你父亲当年，也是这个走法。', emotion: 'default' },
+      { speaker: '伊藤', text: '这条路，你走得下去。', emotion: 'serious' },
     ],
     warningLines: [
-      { speaker: '守笼人', text: '稳扎稳打，方为上策。', emotion: 'serious' },
+      { speaker: '伊藤', text: '稳一点。别急。', emotion: 'serious' },
     ],
   },
-  // 第3章：设局人残影 - 冷酷阴森，四面包抄
+  // 第3章：伊藤 - 特高课警官，在暗门与密室间布下考题
   3: {
     id: 'plotterShadow',
-    name: '设局人残影',
-    portrait: 'P_02_残影态.png',
+    name: '伊藤',
+    portrait: 'ito_default.png',
     color: '#ef4444',
     speedMin: 2500,
     speedMax: 4500,
     mistakeChance: 0.03,
-    personality: '冷酷阴森的残影，从四面包抄，语气嘲讽',
+    personality: '特高课警官，在暗门与密室间布下考题，冷静逼人',
     // 幻影格机制配置
     battleTuning: {
       focusGain: 5,                // 扫描最优(FOCUS_GAINS=5)：忍杀触发局占比 80-100%
@@ -266,27 +284,27 @@ export const BOSS_CONFIGS = {
       ],
     },
     preDialog: [
-      { speaker: '设局人残影', text: '呵呵……又一个自以为是的挑战者。', emotion: 'smirk' },
-      { speaker: '设局人残影', text: '让我看看，你能在我的阴影中撑多久。', emotion: 'smirk' },
+      { speaker: '伊藤', text: '暗门之后，每一道题都是一道门。', emotion: 'serious' },
+      { speaker: '伊藤', text: '你能推开几扇？', emotion: 'serious' },
     ],
     winDialog: [
-      { speaker: '设局人残影', text: '不可能……区区人类……怎么可能……', emotion: 'angry' },
-      { speaker: '设局人残影', text: '不过是残影罢了……真正的我，你还远远无法触及……', emotion: 'smirk' },
+      { speaker: '伊藤', text: '……七道题，你全解了。', emotion: 'default' },
+      { speaker: '伊藤', text: '最深处的门，你有资格推开。', emotion: 'serious' },
     ],
     warningLines: [
-      { speaker: '设局人残影', text: '绝望吧……你逃不出我的阴影。', emotion: 'smirk' },
+      { speaker: '伊藤', text: '门后还有门。你走不完的。', emotion: 'serious' },
     ],
   },
-  // 第4章：残局守护者 - 哀伤追忆的笔记残魂
+  // 第4章：伊藤 - 特高课警官，补全终题之人，言语间藏着深意
   4: {
     id: 'remnant',
-    name: '残局守护者',
-    portrait: 'remnant_default.png',
+    name: '伊藤',
+    portrait: 'ito_default.png',
     color: '#f97316',
     speedMin: 2000,
     speedMax: 3800,
     mistakeChance: 0.02,
-    personality: '旧笔记中沉睡的残留意念，哀伤、追忆、不属于这个时代',
+    personality: '特高课警官，补全终题之人，言语间藏着深意',
     // 三人联动锁机制：三区并蒂锁同步解锁 + 笔记浮现
     battleTuning: {
       focusGain: 5,                // 扫描最优(FOCUS_GAINS=5)：忍杀触发局占比 80-100%
@@ -298,27 +316,27 @@ export const BOSS_CONFIGS = {
       ],
     },
     preDialog: [
-      { speaker: '残局守护者', text: '……又是来解谜的人吗。', emotion: 'default' },
-      { speaker: '残局守护者', text: '这些残局……已经沉睡了很久很久……', emotion: 'stern' },
+      { speaker: '伊藤', text: '你所有的题，我都看过了。', emotion: 'default' },
+      { speaker: '伊藤', text: '这道，是我补的。', emotion: 'serious' },
     ],
     winDialog: [
-      { speaker: '残局守护者', text: '……你解开了。这么多年，你是第一个。', emotion: 'surprised' },
-      { speaker: '残局守护者', text: '……也许，是时候让这些残局安息了。谢谢你。', emotion: 'default' },
+      { speaker: '伊藤', text: '……你解开了。', emotion: 'default' },
+      { speaker: '伊藤', text: '三条路，在你这里对齐了。', emotion: 'serious' },
     ],
     warningLines: [
-      { speaker: '残局守护者', text: '……不要打扰这些沉睡的数字。', emotion: 'stern' },
+      { speaker: '伊藤', text: '对齐，不是那么容易的事。', emotion: 'serious' },
     ],
   },
-  // 第5章：星辰梭 - 冰冷的自动推演机器
+  // 第5章：山田 - 特高课搜查官，率测向车布控，冷硬紧逼
   5: {
     id: 'weaver',
-    name: '星辰梭',
-    portrait: 'weaver_default.png',
+    name: '山田',
+    portrait: 'yamada_default.png',
     color: '#a855f7',
     speedMin: 1500,
     speedMax: 2800,
     mistakeChance: 0.01,
-    personality: '冰冷的自动推演机器，无感情，机械运转，数据化措辞',
+    personality: '特高课搜查官，率测向车布控，言语冷硬，步步紧逼',
     // 嵌套笼坍缩机制：笼边界收缩 + 释放隐藏和值
     battleTuning: {
       focusGain: 5,                // 扫描最优(FOCUS_GAINS=5)：忍杀触发局占比 80-100%
@@ -333,62 +351,62 @@ export const BOSS_CONFIGS = {
       },
     },
     preDialog: [
-      { speaker: '星辰梭', text: '检测到挑战者。开始推演。', emotion: 'default' },
-      { speaker: '星辰梭', text: '胜率计算：玩家 12.7%。建议直接认输。', emotion: 'smirk' },
+      { speaker: '山田', text: '藏书楼上方，测向车已经就位。', emotion: 'serious' },
+      { speaker: '山田', text: '你发不出去的。', emotion: 'serious' },
     ],
     winDialog: [
-      { speaker: '星辰梭', text: '……错误。推演失败。玩家胜率超出计算范围。', emotion: 'angry' },
-      { speaker: '星辰梭', text: '重新校准中……你是值得记录的异常值。', emotion: 'surprised' },
+      { speaker: '山田', text: '……信号消失了。', emotion: 'angry' },
+      { speaker: '山田', text: '你赢了这一局。但别以为结束了。', emotion: 'serious' },
     ],
     warningLines: [
-      { speaker: '星辰梭', text: '进度：70%。玩家胜率降至 5.3%。', emotion: 'default' },
+      { speaker: '山田', text: '六分钟。你只有六分钟。', emotion: 'serious' },
     ],
   },
-  // 第6章：设局人本体 - 终局之敌，深不可测
+  // 第6章：山田 - 特高课搜查官，追查沈墨至茶馆，言语压迫
   6: {
     id: 'plotter',
-    name: '设局人',
-    portrait: 'P_01_常态.png',
+    name: '山田',
+    portrait: 'yamada_default.png',
     color: '#dc2626',
     speedMin: 1000,
     speedMax: 2000,
     mistakeChance: 0.005,
-    personality: '终局之敌，深不可测，从容优雅，一切尽在掌握的压迫感',
+    personality: '特高课搜查官，追查沈墨至茶馆，言语压迫，深不可测',
     preDialog: [
-      { speaker: '设局人', text: '你终于来了。我等这一天，已经等了很久。', emotion: 'smirk' },
-      { speaker: '设局人', text: '让我看看，你是否有资格……与我对弈。', emotion: 'confident' },
+      { speaker: '山田', text: '你的名字，在这份档案里。', emotion: 'serious' },
+      { speaker: '山田', text: '第三页。', emotion: 'serious' },
     ],
     winDialog: [
-      { speaker: '设局人', text: '……不错。你确实超出了我的预期。', emotion: 'surprised' },
-      { speaker: '设局人', text: '但这还不是结束。真正的棋局，才刚刚开始。', emotion: 'smirk' },
+      { speaker: '山田', text: '……我来确认你不值得抓。', emotion: 'serious' },
+      { speaker: '山田', text: '你确实，不值得。', emotion: 'default' },
     ],
     warningLines: [
-      { speaker: '设局人', text: '怎么，就这点本事吗？我还没认真呢。', emotion: 'smirk' },
+      { speaker: '山田', text: '我手下有人替你改过这一条。我没查出是谁。', emotion: 'serious' },
     ],
     battleTuning: {
       focusGain: 5,                // 扫描最优(FOCUS_GAINS=5)：忍杀触发局占比 80-100%
     },
   },
-  // 第7章：设局人·秘术 - 秘术全开完全体
+  // 第7章：伊藤 - 特高课警官，终局现身，言语平静如海面
   7: {
     id: 'setterSecret',
-    name: '设局人·秘术',
-    portrait: 'setter_secret_default.png',
+    name: '伊藤',
+    portrait: 'ito_default.png',
     color: '#a855f7',
     speedMin: 800,
     speedMax: 1600,
     mistakeChance: 0.003,
-    personality: '秘术全开的设局人，运用二连纵横阵、三才游鱼阵等高级技巧',
+    personality: '特高课警官，终局现身，言语平静，如海面般深不可测',
     preDialog: [
-      { speaker: '设局人·秘术', text: '既然你能走到这里，那我便不再留手。', emotion: 'confident' },
-      { speaker: '设局人·秘术', text: '见识一下吧，秘术全开的——真正的我。', emotion: 'smirk' },
+      { speaker: '伊藤', text: '你走完了。', emotion: 'default' },
+      { speaker: '伊藤', text: '我走得比你早。但我没有停下来过。', emotion: 'serious' },
     ],
     winDialog: [
-      { speaker: '设局人·秘术', text: '……不可能。我的秘术……竟然被破解了？', emotion: 'angry' },
-      { speaker: '设局人·秘术', text: '……你确实是特别的。也许，你能改变这一切。', emotion: 'surprised' },
+      { speaker: '伊藤', text: '你留了短横，我留了竖线。三代人。三种刻法。', emotion: 'default' },
+      { speaker: '伊藤', text: '你走到了最后。而我只是经过。', emotion: 'serious' },
     ],
     warningLines: [
-      { speaker: '设局人·秘术', text: '二连纵横阵。三才游鱼阵。你能跟上吗？', emotion: 'smirk' },
+      { speaker: '伊藤', text: '下一站，我下船。', emotion: 'default' },
     ],
     battleTuning: {
       focusGain: 5,                // 扫描最优(FOCUS_GAINS=5)：忍杀触发局占比 80-100%
@@ -402,14 +420,14 @@ export const BOSS_CONFIGS = {
 // ---------------------------------------------------------------------------
 const AI_PERSONALITIES = {
   // V4.3.35：六人格体系（完整配置）
-  //  莹莹=盲盒速冲（blind）、阿妍=全局控场（expert）、守笼人=教学陪练（mentor）
-  //  沈墨=后发爆发（prober）、设局人=假笔记误导（surround）、平均玩家=基准对照（average）
+  //  薇拉=试探布局（blind）、山田=全局控场（expert）、伊藤=冷静观察（mentor）
+  //  沈墨=后发爆发（prober）、伊藤=假笔记误导（surround）、平均玩家=基准对照（average）
   // 原 reckless/steady 保留历史兼容
 
-  // 盲盒/速冲型：莹莹 —— 高失误、冲城堡、莽
+  // 试探/布局型：薇拉 —— 高失误、冲城堡、莽
   blind: {
     name: 'blind',
-    displayName: '莹莹·盲盒速冲',
+    displayName: '薇拉·试探布局',
     maxTechLevel: 4,
     discoveryRate: { 1: 1.0, 2: 0.7, 3: 0.4, 4: 0.2 },
     selectionStrategy: 'humanLike',
@@ -439,10 +457,10 @@ const AI_PERSONALITIES = {
     burstInterval: 1.0,           // 爆发期间隔 1.0s
     burstThreshold: null,         // 无爆发阈值
   },
-  // 全局控场型：阿妍 —— 精准、低失误、双路径
+  // 全局控场型：山田 —— 精准、低失误、双路径
   expert: {
     name: 'expert',
-    displayName: '阿妍·全局控场',
+    displayName: '山田·全局控场',
     maxTechLevel: 10,
     discoveryRate: {
       1: 0.9, 2: 0.95, 3: 1.0, 4: 1.0, 5: 1.0, 6: 0.95, 7: 0.9, 8: 0.85, 9: 0.75, 10: 0.65,
@@ -460,7 +478,7 @@ const AI_PERSONALITIES = {
     stealPriority: 0.55,          // 扫描调参：0.7→0.55（压低抢格成功率，stealRate 朝 60-80% 甜区回拉）
     stealErrorRatePenalty: 0.15,  // 扫描调参：0.05→0.15（抢格时增加失误，stealRate 朝甜区回拉）
     // V4.3.35：三点连线人格参数
-    noteRate: 0.15,               // v2.0：0.05→0.15（阿妍也写可见笔记，只写高阶关联格）
+    noteRate: 0.15,               // v2.0：0.05→0.15（山田也写可见笔记，只写高阶关联格）
     fakeNoteRate: 0,              // 0% 假笔记
     noteTarget: 'nonHub',         // 只写高阶关联格
     hubWeight: 0.50,              // 开局 50/50 据点/全局
@@ -475,10 +493,10 @@ const AI_PERSONALITIES = {
     burstInterval: 1.4,
     burstThreshold: null,
   },
-  // 教学陪练型：守笼人 —— 慢、放水、示范
+  // 冷静观察型：伊藤 —— 慢、放水、示范
   mentor: {
     name: 'mentor',
-    displayName: '守笼人·教学陪练',
+    displayName: '伊藤·冷静观察',
     maxTechLevel: 8,
     discoveryRate: {
       1: 1.0, 2: 1.0, 3: 0.95, 4: 0.9, 5: 0.85, 6: 0.8, 7: 0.7, 8: 0.6,
@@ -623,10 +641,10 @@ const AI_PERSONALITIES = {
     stealErrorRatePenalty: 0.08,
     siegeTime: 5000,              // 扫描最优(SIEGE_MS=5000)：Boss 围攻时长
   },
-  // 假笔记误导型：设局人 —— 假笔记、声东击西
+  // 假笔记误导型：伊藤 —— 假笔记、声东击西
   surround: {
     name: 'surround',
-    displayName: '设局人·假笔记误导',
+    displayName: '伊藤·假笔记误导',
     maxTechLevel: 8,
     discoveryRate: {
       1: 1.0, 2: 0.98, 3: 0.95, 4: 0.9, 5: 0.85, 6: 0.8, 7: 0.75, 8: 0.7,
@@ -846,8 +864,11 @@ export class AIPlayerCore {
     this._tempDefenseWeight = 1.0;  // 对抗性防守权重
     this._tempHubWeight = 1.0;      // 策略模式据点权重系数
     // V4.3.42（V2）：人格差异化临时变量
-    this._tempFakeBoost = 1.0;      // 设局人假笔记率强化系数
-    this._tempObserveOnly = false;  // 守笼人放水/沈墨前期不响应
+    this._tempFakeBoost = 1.0;      // 假笔记率强化系数（伊藤·误导）
+    this._tempObserveOnly = false;  // 观察不利用（伊藤·放水）/沈墨前期不响应
+    // CM4-D1 步骤4：Director 笔记导演语言——phase 三态调制 noteCadence（null=用人格默认）
+    this._tempNoteRate = null;      // 覆盖人格 noteRate（调制模式下由 Director 决策下发）
+    this._tempFakeRate = null;      // 覆盖人格 fakeNoteRate
     // V4.3.23（Spec v1.2）：关键格抢格偏好（由 BattleManager 注入）
     this._hotspotPriority = 0;
     this._getHotspots = null;
@@ -877,6 +898,13 @@ export class AIPlayerCore {
     this._strategyCooldown = 0;        // 策略切换冷却（防抖）
     this._hubStateCounts = [];         // 各据点维度计数 [{id, player, boss, visible, occupiedBy}]
     this._migrationFailed = false;     // 迁移失败（全局解题策略触发条件）
+    // CM4-D1：对抗戏剧导演引擎（默认 Shadow 模式，不改行为）
+    this._director = null;             // Director 实例（可选注入）
+    this._directorShadow = true;       // 默认 Shadow：只记录建议，不改行为
+    this._directorDecision = null;     // 最近一次 Director 决策（供 HUD/调试）
+    this._dramaDirective = null;       // CM4-R7-A：Drama 指令（目标据点偏好，供 Director 消费）
+    // CM4-R6：Strategy Activation Layer——把 Director 意图安全钳制为 Solver 旋钮
+    this._strategySelector = new StrategySelector();
     // V4.3.35：笔记行为计数器
     this._noteWritten = 0;
     this._lastNoteStep = -10; // 最近写笔记的步数（初始设为负值避免限制）
@@ -919,6 +947,124 @@ export class AIPlayerCore {
    */
   _isAiOwned(r, c) {
     return this._aiOwned && this._aiOwned[r] && this._aiOwned[r][c] === true;
+  }
+
+  // ---- CM4-D1：对抗戏剧导演引擎注入 ----
+
+  /**
+   * 注入 Director（对抗戏剧导演）。默认 Shadow 模式：只记录 Director 建议，
+   * 不改 Solver 行为，用于校准双级 ε。
+   * @param {Director} director
+   * @param {boolean} [shadow=true] - true=只记录不改行为；false=启用调制
+   */
+  setDirector(director, shadow = true) {
+    this._director = director;
+    this._directorShadow = !!shadow;
+    // CM4-R6：shadow → selector 同步（shadow=1 时 selector 禁用，不激活）
+    if (this._strategySelector) this._strategySelector.setEnabled(!shadow);
+  }
+
+  /**
+   * CM4-R7-A：注入 Drama 指令（Drama Planner 产出的目标据点偏好）。
+   * 由控制器在 think() 前调用，Director 在 decide() 内消费。
+   * @param {Object|null} directive - { beat, targetHub, pressure } 或 null
+   */
+  setDramaDirective(directive) {
+    this._dramaDirective = directive || null;
+  }
+
+  /**
+   * CM4-R6：查询 Strategy Activation Layer 运行统计（供校准/调试）。
+   * @returns {{ enabled:boolean, activations:number, fallbacks:number, lastReason:string|null }}
+   */
+  getStrategySelectorStats() {
+    if (!this._strategySelector) return null;
+    const s = this._strategySelector;
+    return {
+      enabled: s.enabled,
+      activations: s.getStats().activations,
+      fallbacks: s.getStats().fallbacks,
+      lastReason: s.getLastReason(),
+    };
+  }
+
+  /**
+   * 获取最近一次 Director 决策（供 HUD/调试）
+   */
+  getDirectorDecision() {
+    return this._directorDecision ? { ...this._directorDecision } : null;
+  }
+
+  /**
+   * 将 Solver 实际策略（attack/defend/global/counter）映射为 Director 叙事近似 id，
+   * 供 Shadow 比对"建议 vs 实际"。
+   * @returns {string|null}
+   */
+  _mapActualStrategyToDirector() {
+    switch (this._currentStrategy) {
+      case 'attack': return 'pressure';
+      case 'defend': return 'fortify';
+      case 'counter': return 'steal';
+      case 'global': return 'probe';
+      default: return null;
+    }
+  }
+
+  /**
+   * 每步调用 Director 决策（Shadow 或调制）。
+   * 在 think() 开头由驱动链路调用。
+   */
+  _runDirector() {
+    if (!this._director) return null;
+    const decision = this._director.decide(
+      this._gameState,
+      { analysis: this._opponentAnalysis || null },
+      { stepCount: this._moveCount, shadow: this._directorShadow, actualStrategyId: this._mapActualStrategyToDirector(), drama: this._dramaDirective || null }
+    );
+    this._directorDecision = decision;
+    // Shadow 模式不下发调制参数
+    if (!this._directorShadow) {
+      this._applyDirectorParams(decision);
+    }
+    return decision;
+  }
+
+  /**
+   * CM4-R6：将 Director 决策经 Strategy Activation Layer 安全映射到 Solver 旋钮。
+   * 通过 StrategySelector 钳制到人格同源边界；若决策无效/越界 → 回退人格基线。
+   * @param {Object} decision - Director.decide() 返回
+   */
+  _applyDirectorParams(decision) {
+    if (!this._strategySelector) return;
+    const profile = this._strategySelector.resolve(decision);
+    if (!profile) return; // 回退：不覆盖任何旋钮，保持人格基线
+
+    // targetSource → 策略方向（Director 只选剧本方向，不选格子）
+    if (profile.targetStrategy) {
+      this._currentStrategy = profile.targetStrategy;
+    }
+    // hubWeight 倍数调制 tempHubWeight（现有旋钮）
+    if (profile.hubWeightMult != null) {
+      this._tempHubWeight = profile.hubWeightMult;
+    }
+    // stealLevel → 防守权重代理（保留现有旋钮）
+    if (profile.stealLevel != null) {
+      this._tempDefenseWeight = 0.5 + profile.stealLevel;
+    }
+    // 笔记导演语言——phase 三态 + 策略基调下发 noteCadence
+    if (profile.noteCadence) {
+      if (typeof profile.noteCadence.noteRate === 'number') this._tempNoteRate = profile.noteCadence.noteRate;
+      if (typeof profile.noteCadence.fakeRate === 'number') this._tempFakeRate = profile.noteCadence.fakeRate;
+    }
+    // CM4-R7-A：Drama 目标偏好——导演决定"施压哪一翼"，在进攻态势下覆盖目标据点。
+    // 只改现有 _targetHubIdx（目标偏好），非新权重轴；压力策略才生效。
+    if (decision.params && decision.params.targetHub != null && Number.isInteger(decision.params.targetHub)) {
+      const inPressure = profile.targetStrategy === 'attack' || this._currentStrategy === 'attack'
+        || this._currentStrategy === 'counter';
+      if (inPressure) {
+        this._targetHubIdx = decision.params.targetHub;
+      }
+    }
   }
 
   // ---- V4.3.35：三点连线人格系统 ----
@@ -1187,8 +1333,9 @@ export class AIPlayerCore {
    */
   _shouldWriteNote() {
     const p = this._personality;
-    const noteRate = p.noteRate || 0;
-    const fakeRate = p.fakeNoteRate || 0;
+    // CM4-D1 步骤4：Director 笔记导演语言优先于人格基准（调制模式下下发 _tempNoteRate/_tempFakeRate）
+    const noteRate = this._tempNoteRate != null ? this._tempNoteRate : (p.noteRate || 0);
+    const fakeRate = this._tempFakeRate != null ? this._tempFakeRate : (p.fakeNoteRate || 0);
     // V4.3.40：真/假笔记独立控制——fakeNoteRate>0 时也应写笔记（假笔记由 _isFakeNote 判定）
     if (noteRate <= 0 && fakeRate <= 0) return false;
 
@@ -1211,9 +1358,10 @@ export class AIPlayerCore {
    */
   _isFakeNote() {
     const p = this._personality;
-    let fakeRate = p.fakeNoteRate || 0;
+    // CM4-D1 步骤4：Director 调制 _tempFakeRate（如 Crisis 增假笔记 / Trap 诱导）
+    let fakeRate = this._tempFakeRate != null ? this._tempFakeRate : (p.fakeNoteRate || 0);
     if (fakeRate <= 0) return false;
-    // V4.3.42（V2）：设局人假笔记强化——热区检测到时假笔记率 ×1.5（误导对手）
+    // V4.3.42（V2）：假笔记强化——热区检测到时假笔记率 ×1.5（误导对手）
     fakeRate *= this._tempFakeBoost;
     return Math.random() < fakeRate;
   }
@@ -1307,7 +1455,7 @@ export class AIPlayerCore {
    * 真实笔记：从 TechRater 候选数中选，或随机删减
    * @param {number} r - 行
    * @param {number} c - 列
-   * @param {boolean} reduced - 是否随机删减（莹莹行为）
+   * @param {boolean} reduced - 是否随机删减（盲盒行为）
    * @returns {number[]} 笔记数字数组
    */
   _generateRealNotes(r, c, reduced = false) {
@@ -1327,7 +1475,7 @@ export class AIPlayerCore {
     }
 
     if (reduced && candidates.length > 2) {
-      // 随机删减（莹莹行为）
+      // 随机删减（盲盒行为）
       const shuffled = [...candidates].sort(() => Math.random() - 0.5);
       const keep = 1 + Math.floor(Math.random() * Math.min(candidates.length - 1, 2));
       return shuffled.slice(0, keep);
@@ -1352,7 +1500,7 @@ export class AIPlayerCore {
     if (isFake) {
       nums = this._generateFakeNotes(r, c);
     } else {
-      // 莹莹：随机删减；其他人：完整候选
+      // 盲盒：随机删减；其他人：完整候选
       const reduced = this._personality.name === 'blind' && Math.random() < 0.5;
       nums = this._generateRealNotes(r, c, reduced);
     }
@@ -1366,15 +1514,16 @@ export class AIPlayerCore {
     this._lastNoteStep = this._moveCount;
 
     // v2.0：AI 笔记写回棋盘 candidates（玩家可见）——真笔记写候选数，假笔记写不可能数
+    // C4（CM4-A2）：改为合并而非整体覆盖，保留玩家手记候选，避免 AI 笔记抹掉玩家已写笔记
     try {
       const cell = this._board.cells?.[r]?.[c];
       if (cell && !cell.fixedNum && !cell.fillNum && !cell.isAiFilled) {
-        if (cell.candidates instanceof Set) {
-          cell.candidates = new Set(nums);
-        } else {
-          cell.candidates = nums.slice();
-        }
-        // 标记：该格笔记是 AI 写的（渲染层可用不同颜色/风格区分）
+        const existing = cell.candidates instanceof Set
+          ? Array.from(cell.candidates)
+          : (Array.isArray(cell.candidates) ? cell.candidates.slice() : []);
+        const merged = Array.from(new Set([...existing, ...nums]));
+        cell.candidates = new Set(merged);
+        // 标记：该格存在 AI 笔记（渲染层可用不同颜色/风格区分）
         cell._aiNote = true;
       }
     } catch (e) { /* 笔记落盘失败不影响主流程 */ }
@@ -1573,6 +1722,11 @@ export class AIPlayerCore {
     // 让 AI 具备"区域聚焦"的阶段性目标（权重修正见 _getHubWeightFactor）
     this._determineStrategy();
 
+    // CM4-D1：对抗戏剧导演引擎——在 Solver 策略确定后运行。
+    // Shadow 模式：只记录 Director 建议 vs Solver 实际，不改行为（校准 ε）。
+    // 调制模式：将 Director 叙事意图映射到现有旋钮。
+    this._runDirector();
+
     // V4.3.35：三点连线人格——先判断是否写笔记（代替填数）
     if (this._shouldWriteNote()) {
       const noteResult = this._writeNote();
@@ -1594,14 +1748,14 @@ export class AIPlayerCore {
       }
     }
 
-    // V4.3.21：盲盒莽撞型（莹莹）——按 blindBoxChance 概率跳过推理直接"蒙"一个
+    // V4.3.21：盲盒莽撞型（薇拉）——按 blindBoxChance 概率跳过推理直接"蒙"一个
     if (this._personality.blindBoxChance && Math.random() < this._personality.blindBoxChance) {
       const guess = this._blindGuess();
       if (guess) return guess;
     }
 
     // V4.3.21：techDirection 决定找解方向——
-    //   lowest（默认/教学/盲盒）从低技巧起找，highest（专家型阿妍）从高技巧起找
+    //   lowest（默认/教学/盲盒）从低技巧起找，highest（专家型）从高技巧起找
     const direction = this._personality.techDirection || 'lowest';
     const allResultsByLevel = this._findAllVisibleResults(direction);
     if (allResultsByLevel.length === 0) {
@@ -1708,10 +1862,10 @@ export class AIPlayerCore {
   /**
    * V4.3.40：对手观察器——将分析结果换算为临时决策变量
    * V4.3.42（V2）：人格差异化响应——观察器是人格的放大器，而非统一模板
-   *   blind(莹莹)   热区争夺型：不避让、更猛攻、抢更快
-   *   expert(阿妍)  避让型：避开热区，但高阶技巧格（≥6）忽略避让"精准补刀"
-   *   mentor(守笼人) 观察但不利用（放水）
-   *   surround(设局人) 假笔记强化：热区写假笔记误导（_tempFakeBoost）
+   *   blind(薇拉)   热区争夺型：不避让、更猛攻、抢更快
+   *   expert(山田)  避让型：避开热区，但高阶技巧格（≥6）忽略避让"精准补刀"
+   *   mentor(伊藤) 观察但不利用（放水）
+   *   surround(伊藤) 假笔记强化：热区写假笔记误导（_tempFakeBoost）
    *   prober(沈墨)  观察但前期不响应（进度<50% 不动作），后期爆发
    *   average/其他  温和避让（0.8）
    */
@@ -1724,6 +1878,9 @@ export class AIPlayerCore {
     this._tempFakeBoost = 1.0;
     this._tempObserveOnly = false;
     this._tempIgnoreHubPenalty = false;
+    // CM4-D1 步骤4：每步重置 Director 笔记基调，由 _applyDirectorParams 决定是否覆盖
+    this._tempNoteRate = null;
+    this._tempFakeRate = null;
     if (!this._observer) return;
 
     this._opponentAnalysis = this._observer.getAnalysis();
@@ -1737,14 +1894,14 @@ export class AIPlayerCore {
     // 人格差异化响应
     switch (pName) {
       case 'blind':
-        // 莹莹：热区争夺型——对手越抢我越抢，节奏加快
+        // 薇拉：热区争夺型——对手越抢我越抢，节奏加快
         if (a.targetHub >= 0) this._tempHubWeight = lerp(1.3, 1.0);
         if (a.tempo === 'accelerating') this._tempSpeedScale = lerp(0.85, 1.0);
         if (a.aggression > 0.4) this._tempDefenseWeight = lerp(1.2, 1.0);
         break;
 
       case 'expert':
-        // 阿妍：避让型 + 高阶技巧补刀（_getHubWeightFactor 中按技巧等级覆盖）
+        // 山田：避让型 + 高阶技巧补刀（_getHubWeightFactor 中按技巧等级覆盖）
         if (a.targetHub >= 0) {
           this._tempHubPenalty = a.targetHub;
           this._tempHubWeight = lerp(0.7, 1.0);
@@ -1754,12 +1911,12 @@ export class AIPlayerCore {
         break;
 
       case 'mentor':
-        // 守笼人：观察但故意不利用（放水），保持教学陪练定位
+        // 伊藤：观察但故意不利用（放水），保持教学陪练定位
         this._tempObserveOnly = true;
         break;
 
       case 'surround':
-        // 设局人：假笔记强化——热区写假笔记误导对手
+        // 伊藤：假笔记强化——热区写假笔记误导对手
         if (a.targetHub >= 0) this._tempFakeBoost = lerp(1.5, 1.0);
         if (a.tempo === 'decelerating') this._tempSpeedScale = lerp(0.85, 1.0); // 趁机提速
         break;
@@ -1789,7 +1946,7 @@ export class AIPlayerCore {
     }
   }
 
-  // ---- 盲盒猜格（莹莹）：跳过推理直接蒙一个空格 ----
+  // ---- 盲盒猜格（薇拉）：跳过推理直接蒙一个空格 ----
   _blindGuess() {
     const empties = [];
     for (let r = 0; r < this._size; r++) {
@@ -1925,7 +2082,7 @@ export class AIPlayerCore {
             col: c,
             num: target.num,
             technique: 'dingShi',
-            techniqueName: '守笼人·定式',
+            techniqueName: '定式',
             techLevel: level,
             thinkTime: 0,
             isMistake: false,
@@ -1955,7 +2112,7 @@ export class AIPlayerCore {
         col: item.col,
         num: item.num,
         technique: 'quanTao',
-        techniqueName: '设局人·圈套',
+        techniqueName: '圈套',
         techLevel: item.level,
         thinkTime: 0,
         isMistake: Math.random() < (this._personality.baseErrorRate ?? 0.05) * 0.3,
@@ -1986,6 +2143,12 @@ export class AIPlayerCore {
           const raterValue = this._rater.grid ? this._rater.grid[r][c] : 0;
           if (raterValue === 0 || raterValue !== num) {
             this._rater._fillCell(r, c, num);
+            // I2（CM4-A2）：脚本驱动（tpl/duel）不调 execute()，_moveCount 恒为 0，
+            // 导致笔记节流（_shouldWriteNote）与思考时间进度（_calcThinkTime）冻结。
+            // 此处对"新同步的 AI 占领格"递增移动计数，解除冻结；只计 AI 格，避免把玩家落子算作 AI 步数。
+            if (boardCell.isAiFilled || this._isAiOwned(r, c)) {
+              this._moveCount++;
+            }
           }
         }
       }
@@ -1994,7 +2157,7 @@ export class AIPlayerCore {
 
   // ---- 内部：可见结果 ----
   // V4.3.21：direction 参数——'lowest' 从低技巧起找（默认/教学/盲盒），
-  // 'highest' 从高技巧起找（专家型阿妍，专挑高阶格解）
+  // 'highest' 从高技巧起找（专家型，专挑高阶格解）
   _findAllVisibleResults(direction) {
     const results = [];
     const techIds = this._getTechPriority();
@@ -2112,7 +2275,7 @@ export class AIPlayerCore {
       : 0;
     // V4.3.35：三点连线人格——据点权重因子（偏好/回避据点宫）
     let hubBonus = this._getHubWeightFactor(candidate.row, candidate.col);
-    // V4.3.42（V2）：阿妍"高阶技巧补刀"——避让区域中若存在高阶技巧格（≥hiddenPair），
+    // V4.3.42（V2）：山田"高阶技巧补刀"——避让区域中若存在高阶技巧格（≥hiddenPair），
     // 覆盖避让决定，精准一击（该格推理价值高，值得冒险）
     if (this._personality.name === 'expert' && this._tempHubPenalty >= 0
         && this._getHubBlockIndex(candidate.row, candidate.col) === this._tempHubPenalty
@@ -2305,7 +2468,7 @@ export class BattleManager {
     this._playerStunned = false;                 // 玩家被忍杀震慑中（禁止填数）
     this._deathblowAnimating = false;
 
-    // 假动作系统（设局人专属）
+    // 假动作系统（误导型人格专属）
     this._fakeMoves = [];
     this._fakeMoveTimer = null;
 
@@ -2616,7 +2779,7 @@ export class BattleManager {
       }
     }, 2000);
 
-    // 启动假动作系统（设局人/残影/秘术专属）
+    // 启动假动作系统（误导型人格专属）
     const bossId = this.opponent?.id;
     if (bossId === 'plotter' || bossId === 'plotterShadow' || bossId === 'setterSecret') {
       this._startFakeMoveSystem();
@@ -2849,6 +3012,29 @@ export class BattleManager {
 
       // 同步AI的推理状态（AI看到玩家填了这个数）
       if (this._aiPlayer) {
+        // I1（CM4-A2）：单机路径注入游戏状态 + 观察器。
+        // 此前 setGameState 仅定义从不被主类调用 → _gameState 恒默认，
+        // 动态错误率/领先落后调节/策略状态机在单机 Boss 战全部失效。
+        if (typeof this._aiPlayer.updateObserver === 'function') {
+          this._aiPlayer.updateObserver({ r, c });
+        }
+        if (typeof this._aiPlayer.setGameState === 'function') {
+          const filled = this.playerCount + this.aiCount;
+          const total = this.totalEmpty || filled || 1;
+          this._aiPlayer.setGameState({
+            isLeading: this.aiCount > this.playerCount ? true : (this.aiCount < this.playerCount ? false : null),
+            selfHubCount: this.aiCount,
+            opponentHubCount: this.playerCount,
+            progress: total > 0 ? filled / total : 0,
+            consecutiveErrors: this._playerMistakeCount || 0,
+            consecutiveCorrect: this._correctCount || 0,
+            isBurst: false,
+            hubBlocks: [],          // 单机无据点概念，保持空数组（策略退化为"进攻"）
+            castleHubIdx: -1,
+            hubOwnership: [],
+            playerDefense: {},
+          });
+        }
         this._aiPlayer.syncFromBoard(this._board);
       }
 
@@ -3064,10 +3250,13 @@ export class BattleManager {
   _getInterceptLines() {
     const bossId = this.opponent?.id;
     const linesMap = {
-      reckless: ['哈哈，被我抢先了！', '这格我先看到的~', '手快有手慢无！'],
+      yingying: ['想快我一步？', '这格，我先落了。', '手快，未必赢。'],
       cagekeeper: ['此格已有定数。', '先一步。', '稳。'],
-      plotter: ['你在看哪一格，我都知道。', '读心之术。', '被看穿了。'],
-      weaver: ['预测：玩家将填写该格。反制执行。', '拦截成功。'],
+      plotterShadow: ['门后还有门。', '你走不完的。', '被看穿了。'],
+      remnant: ['这一格，我补完了。', '对齐，不是那么容易。', '你慢了。'],
+      weaver: ['信号已锁定。', '你发不出去的。', '拦截成功。'],
+      plotter: ['你的名字，在这份档案里。', '第三页。', '你逃不掉。'],
+      setterSecret: ['你留了短横，我留了竖线。', '下一站，我下船。', '你走到了最后。'],
       shenmo: ['...', '你的思路，我很熟悉。'],
     };
     return linesMap[bossId] || ['被抢先了！'];
@@ -3102,14 +3291,13 @@ export class BattleManager {
   }
 
   /**
-   * 阿妍必杀：观局
-   * 找出全盘所有唯一可填格，显示提示但不填数
+   * 观局必杀：找出全盘所有唯一可填格，显示提示但不填数
    */
   _skillGuanJu() {
     if (!this._aiPlayer || typeof this._aiPlayer.useGuanJu !== 'function') return;
 
     const targets = this._aiPlayer.useGuanJu();
-    this._log('阿妍·观局 发现', targets.length, '个可填格');
+    this._log('观局 发现', targets.length, '个可填格');
 
     // 显示台词
     this._showBossBubble('让我看看全盘的局势…', 'thinking', 2000);
@@ -3125,8 +3313,7 @@ export class BattleManager {
   }
 
   /**
-   * 守笼人必杀：定式
-   * 直接推导并填入当前玩家凝视格子的答案
+   * 定式必杀：直接推导并填入当前玩家凝视格子的答案
    */
   _skillDingShi() {
     if (!this._aiPlayer || typeof this._aiPlayer.useDingShi !== 'function') return;
@@ -3157,7 +3344,7 @@ export class BattleManager {
       this._applyAiMove(result);
 
       // 显示台词
-      this._showBossBubble('定式。', 'confident', 2000);
+      this._showBossBubble('此格，已有定数。', 'confident', 2000);
 
       // 红光效果
       this._emit(BATTLE_EVENTS.WARNING_OVERLAY, { color: 'rgba(239,68,68,0.3)', duration: 600 });
@@ -3167,8 +3354,7 @@ export class BattleManager {
   }
 
   /**
-   * 设局人必杀：圈套
-   * 瞬间抢占3个边缘格子，形成包围圈
+   * 圈套必杀：瞬间抢占3个边缘格子，形成包围圈
    */
   _skillQuanTao() {
     if (!this._aiPlayer || typeof this._aiPlayer.useQuanTao !== 'function') return;
@@ -3177,7 +3363,7 @@ export class BattleManager {
     this._aiThinking = true;
 
     const results = this._aiPlayer.useQuanTao(3);
-    this._log('设局人·圈套 抢占', results.length, '格');
+    this._log('圈套 抢占', results.length, '格');
 
     // 逐个应用，制造连续抢占的视觉冲击
     let delay = 0;
@@ -3195,16 +3381,14 @@ export class BattleManager {
     });
 
     // 显示台词
-    this._showBossBubble('你已经在我的圈套里了。', 'smirk', 2500);
+    this._showBossBubble('这一局，你走不出去。', 'smirk', 2500);
 
     // 红光效果
     this._emit(BATTLE_EVENTS.WARNING_OVERLAY, { color: 'rgba(239,68,68,0.3)', duration: 800 });
   }
 
   /**
-   * 残局守护者必杀：追忆（回溯）
-   * 随机"回滚"玩家已占领的2个格子，让它们变回未占领状态
-   * 主题契合：沉睡的记忆会模糊、会倒退
+   * 追忆必杀：随机"回滚"玩家已占领的2个格子，让它们变回未占领状态
    */
   _skillZhuiXu() {
     if (!this._aiPlayer) return;
@@ -3225,7 +3409,7 @@ export class BattleManager {
     const shuffled = playerCells.sort(() => Math.random() - 0.5);
     const targets = shuffled.slice(0, 2);
 
-    this._showBossBubble('……这些记忆……模糊了。', 'stern', 2500);
+    this._showBossBubble('……这一笔，先收回。', 'stern', 2500);
 
     // 紫光效果（哀伤的感觉）
     this._emit(BATTLE_EVENTS.WARNING_OVERLAY, { color: 'rgba(168,85,247,0.3)', duration: 1000 });
@@ -3260,13 +3444,12 @@ export class BattleManager {
   }
 
   /**
-   * 星辰梭必杀：时间回流（时间缓流）
-   * 8秒内AI速度翻倍，连续快速填数，制造"机器超频"的压迫感
+   * 时间回流必杀：8秒内AI速度翻倍，连续快速填数，制造"测向车锁定"的压迫感
    */
   _skillShiJianHuanLiu() {
     if (!this._aiPlayer) return;
 
-    this._showBossBubble('超频模式：时间流速×2。', 'default', 2000);
+    this._showBossBubble('测向车已锁定。时间不多了。', 'default', 2000);
 
     // 蓝光效果（冰冷的科技感）
     this._emit(BATTLE_EVENTS.WARNING_OVERLAY, { color: 'rgba(59,130,246,0.35)', duration: 1500 });
@@ -3315,9 +3498,9 @@ export class BattleManager {
     // 暂停正常AI移动
     this._aiThinking = true;
 
-    // 用圈套的方法找4个格子（设局人是3个，沈墨是4个）
+    // 用圈套的方法找4个格子（普通圈套是3个，沈墨是4个）
     const results = this._aiPlayer.useQuanTao(4);
-    this._log('沈墨·天道推演 抢占', results.length, '格');
+    this._log('天道推演 抢占', results.length, '格');
 
     // 逐个应用，慢速但有力（每步400ms，体现"沉稳"）
     let delay = 0;
@@ -3476,18 +3659,18 @@ export class BattleManager {
   /**
    * 根据Boss ID返回对应的AI性格
    * V4.3.21：四角色人格体系——
-   *   莹莹=盲盒莽撞（blind）、阿妍=资深专家（expert，备用）、守笼人=平衡教学（mentor）、沈墨=沉稳试探（prober）
+   *   薇拉=盲盒莽撞（blind）、山田=资深专家（expert）、伊藤=平衡教学（mentor）、沈墨=沉稳试探（prober）
    */
   _getPersonalityForBoss(bossId) {
     const map = {
-      'yingying': 'blind',         // 莹莹：盲盒莽撞（第1章试炼石 Boss）
-      'yan': 'expert',             // 阿妍：资深专家（未来章节，压迫感强）
-      'cagekeeper': 'mentor',      // 守笼人：平衡教学，给玩家留空间
-      'plotterShadow': 'surround', // 设局人残影：包围型
-      'remnant': 'steady',         // 残局守护者：稳健型
-      'weaver': 'steady',          // 星辰梭：稳健型
-      'plotter': 'surround',       // 设局人：包围型
-      'setterSecret': 'surround',  // 秘之设局人：包围型
+      'yingying': 'blind',         // 薇拉：盲盒莽撞（第1章试炼石 Boss）
+      'yan': 'expert',             // 山田：资深专家（压迫感强）
+      'cagekeeper': 'mentor',      // 伊藤：平衡教学，给玩家留空间
+      'plotterShadow': 'surround', // 伊藤·残影：包围型
+      'remnant': 'steady',         // 伊藤·补题人：稳健型
+      'weaver': 'steady',          // 山田·搜查官：稳健型
+      'plotter': 'surround',       // 山田：包围型
+      'setterSecret': 'surround',  // 伊藤·终局：包围型
       'shenmo': 'prober',          // 沈墨：沉稳试探，前期慢后期爆发
     };
     return map[bossId] || 'steady';
@@ -3560,6 +3743,32 @@ export class BattleManager {
    */
   _applyAiMove(step) {
     if (!step || !this.active || this.ended) return false;
+
+    // I3（CM4-A2）：笔记步骤——单机路径不再静默丢弃。
+    // think() 返回 { type:'note', r, c, nums, isFake, isNote }，无 row/col/num，
+    // 原解构会使 row=undefined 而 cells[undefined] 为 undefined 直接 return false。
+    if (step.isNote || step.type === 'note') {
+      const r = step.r;
+      const c = step.c;
+      const cell = this._board.cells?.[r]?.[c];
+      if (cell && !cell.fixedNum && !cell.fillNum && !cell.isAiFilled) {
+        if (step.nums && step.nums.length > 0) {
+          if (cell.candidates instanceof Set) {
+            cell.candidates = new Set(step.nums);
+          } else {
+            cell.candidates = step.nums.slice();
+          }
+          cell._aiNote = true;
+        }
+      }
+      // 回显 AI 笔记动作（可读性：玩家看到 Boss 在"写笔记/骗人"）
+      this._emit(BATTLE_EVENTS.BOSS_BUBBLE, {
+        text: step.isFake ? '（假笔记）' : '（写笔记）',
+        name: this.opponent?.name || 'Boss',
+      });
+      this._emit(BATTLE_EVENTS.BOARD_CHANGED, { board: this._board });
+      return true;
+    }
 
     const { row, col, num, isMistake, techniqueName } = step;
 
@@ -3785,12 +3994,13 @@ export class BattleManager {
   _getMistakeLines() {
     const bossId = this.opponent?.id;
     const linesMap = {
-      yan: ['哎呀，好像算错了…', '唔，这格是不是不对？', '等等，让我再想想…'],
-      cagekeeper: ['嗯？似有不妥。', '这一格…容老夫再算。', '差矣。'],
-      plotter: ['哼，小失误罢了。', '故意试你的。', '你以为我算错了？'],
+      yingying: ['……算岔了。', '这格，我看错了。', '再来。'],
+      cagekeeper: ['嗯？似有不妥。', '这一格…再算。', '差矣。'],
+      plotter: ['哼，小失误罢了。', '档案里记下这一笔。', '你逃不掉的。'],
       plotterShadow: ['失误…是不可能的。', '哼。'],
-      weaver: ['警告：计算偏差。', '重新校准中…'],
+      weaver: ['信号偏差。', '重新校准。'],
       remnant: ['……记错了吗。', '……岁月太久了。'],
+      setterSecret: ['……', '下一站，我下船。'],
       shenmo: ['……', '失手了。'],
     };
     return linesMap[bossId] || ['……'];
@@ -3802,18 +4012,19 @@ export class BattleManager {
   _getSelfCorrectLines() {
     const bossId = this.opponent?.id;
     const linesMap = {
-      yan: ['啊，改过来改过来~', '嘿嘿，发现了！', '果然是这里错了！'],
+      yingying: ['……改过来。', '看错了，重来。', '果然是这里。'],
       cagekeeper: ['修正。', '果然如此。', '改之。'],
-      plotter: ['说了是故意的。', '你看，我又改回来了。', '激将法罢了。'],
+      plotter: ['档案里，划掉这一笔。', '你看，我又改回来了。', '记错了。'],
       weaver: ['修正完成。', '偏差已补偿。'],
       remnant: ['……想起来了。'],
+      setterSecret: ['……嗯。'],
       shenmo: ['……嗯。'],
     };
     return linesMap[bossId] || ['……'];
   }
 
   // ======================================================
-  //  假动作/误导系统（设局人专属）
+  //  假动作/误导系统（误导型人格专属）
   // ======================================================
 
   /**
@@ -3882,7 +4093,7 @@ export class BattleManager {
       }
     });
 
-    this._log('设局人·假动作', count, '格');
+    this._log('假动作', count, '格');
 
     // 触发渲染
     this._emit(BATTLE_EVENTS.BOARD_CHANGED, { board: this._board });
@@ -5529,9 +5740,9 @@ export class BattleManager {
 
         // Boss 气泡
         const regionLines = {
-          'left': '左区……封印松动了。',
-          'center': '中区……共鸣了。',
-          'right': '右区……也在回应。',
+          'left': '左区……锁松动了。',
+          'center': '中区……在回应。',
+          'right': '右区……也在动。',
         };
         const line = regionLines[lockState.region] || '一道锁……亮起了。';
         this._showBossBubble(line, 'focus');
@@ -5724,9 +5935,9 @@ export class BattleManager {
 
     // Boss 气泡台词
     const stageLines = [
-      '推演进度 30%。外层结构开始收缩。',
-      '推演进度 60%。外层和值：显现。',
-      '推演进度 90%。外层坍缩。内层核心暴露。',
+      '包围圈收拢 30%。外层开始收缩。',
+      '包围圈收拢 60%。外层和值：显现。',
+      '包围圈收拢 90%。外层坍缩。内层暴露。',
     ];
     const line = stageLines[stageIndex] || '结构变化中。';
     this._showBossBubble(line, 'default');

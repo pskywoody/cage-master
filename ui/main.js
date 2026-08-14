@@ -36,6 +36,8 @@ import { rowToIndex, indexToRow, colToIndex, indexToCol } from '../core/utils.js
 // 2026-08-04：AI 记录快照共用模块（浏览器与 Node 测试脚本同构）
 import { buildRecordSnapshot, buildLessonPlanSummary } from '../core/ai-record.js?v=51';
 
+import I18n from '../i18n/i18n.js';
+
 class GameApp {
   /**
    * @param {Object} options
@@ -125,6 +127,11 @@ class GameApp {
     this._lessonCage = null;
     this._lessonFrozen = false;
     this._lessonSpotlight = 0;
+
+    // ---------------- Investigation Interaction (Step 8) ----------------
+    // 玩家从 45 Panel 调查层点选证据/节点时，临时高亮对应笼（不粘滞）：
+    // 玩家随后点棋盘任意格即清除。与教学 _lessonCage 互斥，教学优先。
+    this._ivCage = null;
 
     // ---------------- 微型教学提示模式（2026-08-03） ----------------
     /** @type {boolean} 提示锁定模式是否激活 */
@@ -636,6 +643,9 @@ class GameApp {
       const size = this._getGridSize();
       if (r < 0 || r >= size || c < 0 || c >= size) return null;
 
+      // Step 8：玩家点棋盘任意格 → 清除调查高亮（不让笼高亮粘滞在棋盘上）
+      if (this._ivCage) { this._ivCage = null; }
+
       // 微型教学锁定：只有目标格可选中
       if (this._hintActive && this._hintTarget) {
         if (r !== this._hintTarget[0] || c !== this._hintTarget[1]) {
@@ -701,6 +711,34 @@ class GameApp {
       console.warn('[GameApp] handleCellClick error:', e);
       return null;
     }
+  }
+
+  /**
+   * Step 8：从 45 Panel 调查层高亮指定笼（临时不粘滞）。
+   * 后续玩家点棋盘任意格即清除（见 handleCellClick）。
+   * @param {number|string|null} cageId - 笼 id；null/undefined 清除高亮
+   */
+  focusInvestigationCage(cageId) {
+    try {
+      if (cageId == null) { this._ivCage = null; this.render(); return; }
+      if (this._levelData && Array.isArray(this._levelData.cages)) {
+        const found = this._levelData.cages.find((cg) => String(cg.id) === String(cageId));
+        this._ivCage = found || { id: cageId };
+      } else {
+        this._ivCage = { id: cageId };
+      }
+      this.render();
+    } catch (e) {
+      console.warn('[GameApp] focusInvestigationCage error:', e);
+    }
+  }
+
+  /**
+   * Step 8：清除调查高亮。
+   */
+  clearInvestigationFocus() {
+    this._ivCage = null;
+    this.render();
   }
 
   /**
@@ -772,7 +810,7 @@ class GameApp {
           const inWhatIf = this._whatIfManager && this._whatIfManager.isActive;
           if (!inWhatIf) {
             this.emitEvent('blockedInput', { reason: 'whatif-entry-required', r: r, c: c, num: num });
-            this.emitEvent('toast', { text: '请先点右侧「🧪 假设」浮条打开抽屉，点「＋」号进入假设模式，再尝试填数。', duration: 2200 });
+            this.emitEvent('toast', { text: I18n.t('ui.main.whatIfEntryRequired'), duration: 2200 });
             return { success: false, reason: 'whatif-entry-required' };
           }
         }
@@ -780,7 +818,7 @@ class GameApp {
         // （笔记模式下的数字键走 handleNoteToggle，不经过本方法）
         if (phase === 'guided' && it === 'NOTE_ONLY') {
           this.emitEvent('blockedInput', { reason: 'note-mode-required', r: r, c: c, num: num });
-          this.emitEvent('toast', { text: '请先按 N 键（或点「笔记」按钮）切换到笔记模式，再记笔记。', duration: 2200 });
+          this.emitEvent('toast', { text: I18n.t('ui.main.noteModeRequired'), duration: 2200 });
           return { success: false, reason: 'note-mode-required' };
         }
       }
@@ -803,7 +841,7 @@ class GameApp {
           && !(this._whatIfManager && this._whatIfManager.isActive)) {
         try { this._engine.eraseCell(r, c); } catch (eE) {}
         this.emitEvent('toast', {
-          text: '正常落笔不能错。先开「🧪 假设」模式验证路径——错了就回退，代价在脑子里付。',
+          text: I18n.t('ui.main.noErrorOutsideWhatIf'),
           duration: 2600
         });
         this.render();
@@ -1492,7 +1530,7 @@ class GameApp {
             this.emitEvent('lessonAction', {
               type: 'narration',
               text: action.text,
-              speaker: action.speaker || '守笼人',
+              speaker: action.speaker || I18n.t('ui.main.speakerIto'),
             });
           }
           if (action.mode === 'eliminate') {
@@ -1533,7 +1571,7 @@ class GameApp {
             this.emitEvent('lessonAction', {
               type: 'narration',
               text: action.text,
-              speaker: action.speaker || '守笼人',
+              speaker: action.speaker || I18n.t('ui.main.speakerIto'),
             });
           }
           break;
@@ -1799,6 +1837,8 @@ class GameApp {
       if (this._lessonBoxes && this._lessonBoxes.size > 0) renderState.highlights.boxes = Array.from(this._lessonBoxes);
       // 教学笼高亮（优先于选中格所在笼）
       if (this._lessonCage) renderState.highlights.selectedCage = this._lessonCage;
+      // Step 8：调查交互高亮（玩家从 45 Panel 点选证据/节点）——教学高亮优先，无教学时生效
+      if (!this._lessonCage && this._ivCage) renderState.highlights.selectedCage = this._ivCage;
       // V4.3.19：同数字格高亮（点击数字格 / 长按数字键）
       // Q15：提示动画中不叠加——残留的同数字高亮（黄铜 0.20）在聚光灯下也是一坨
       if (this._sameNumberCells && this._sameNumberCells.length > 0 &&
@@ -1855,6 +1895,26 @@ class GameApp {
               }
             } catch (e) { /* tpl 数据可选 */ }
           }
+          // CM4-R6.5B-1：据点污染层（冲突热度 → 闪烁/扭曲，Ghost 前置预警）
+          if (typeof bm.getPresentation === 'function') {
+            try {
+              const pres = bm.getPresentation();
+              if (pres && pres.pollution && pres.pollution.cells) {
+                renderState.pollution = pres.pollution;
+              }
+            } catch (e) { /* 污染层可选 */ }
+          }
+          // CM4-Battlefield：战场表观视觉状态 → renderer 绘制（归属角标/落子轨迹/争夺残影/连线/压力/据点状态/爆发）
+          try {
+            const viz = window.CM && window.CM.battleViz;
+            const tpl = typeof bm.getTpl === 'function' ? bm.getTpl() : null;
+            if (viz && tpl && typeof tpl.getHubState === 'function') {
+              const hubs = tpl.getHubState();
+              const pres2 = typeof bm.getPresentation === 'function' ? bm.getPresentation() : null;
+              const vizData = viz.build(hubs, pres2 && pres2.heat ? pres2.heat : null);
+              if (vizData) renderState.battlefield = vizData;
+            }
+          } catch (e) { /* 战场视觉可选 */ }
         }
       } catch (e) { /* Boss 战数据可选 */ }
 
@@ -1876,6 +1936,9 @@ class GameApp {
       try { this._vizActive = this._collectActiveVisuals(renderState); } catch (eV) { this._vizActive = []; }
 
       this._boardRenderer.render(renderState);
+
+      // Cage Resolution Layer (Step 2)：调试浮层节流刷新（内部按 ~400ms 限频，仅可见时计算）
+      try { if (window.CM && window.CM.cageDebug && window.CM.cageDebug.refresh) window.CM.cageDebug.refresh(); } catch (eC) {}
 
       // 特效层
       if (this._effectRenderer) {

@@ -22,30 +22,27 @@ const log = {
 };
 
 const NAME_TO_CHAR = {
-  '阿妍': 'ayan',
   '苏晚': 'suwan',
-  '守笼人': 'cagekeeper',
-  '莹莹': 'ying',
   '沈墨': 'shenmo',
-  '设局人': 'plotter',
-  '设局人残影': 'plotterShadow',
-  '设局人（残影）': 'plotterShadow',
-  '设局人（秘术）': 'setterSecret',
-  '星辰梭': 'weaver',
-  '残局守护者': 'remnant',
+  '薇拉': 'vera',
+  '周太太': 'zhou_taotai',
+  '潘汉年': 'pan_hanian',
+  '伊藤': 'ito',
+  '山田': 'yamada',
+  '老师': 'teacher',
+  '父亲': 'father',
 };
 
-// 章节默认剧情背景（2026-08-03 换用 bg_new 新美术）
-// 浅层（1-2章）暖金大厅 → 深层（3-5章）冷蓝石廊 → 终局（6-8章）圆厅/石门
+// 章节默认剧情背景（2026-08-14 新剧本《笼局·三岔口》逐章美术库）
+// 1信/2屋/3门/4绳/5电/6网/7终幕；1-7章已生成 chapter{N} 专属背景
 const CHAPTER_DEFAULT_BG = {
-  1: 'assets/images/backgrounds/bg_new/BG-01_archive_hall.jpg',
-  2: 'assets/images/backgrounds/bg_new/BG-01_archive_hall.jpg',
-  3: 'assets/images/backgrounds/bg_new/BG-05_stone_corridor.jpg',
-  4: 'assets/images/backgrounds/bg_new/BG-05_stone_corridor.jpg',
-  5: 'assets/images/backgrounds/bg_new/BG-06_stone_gate.jpg',
-  6: 'assets/images/backgrounds/bg_new/BG-13_final_circular_room.jpg',
-  7: 'assets/images/backgrounds/bg_new/BG-06_stone_gate.jpg',
-  8: 'assets/images/backgrounds/bg_new/BG-13_final_circular_room.jpg',
+  1: 'assets/images/chapter1/backgrounds/BG-CH1-01_accounting_room_night.jpg',
+  2: 'assets/images/chapter2/backgrounds/BG-CH2-01_b1_corridor.jpg',
+  3: 'assets/images/chapter3/backgrounds/BG-CH3-01_secret_door.jpg',
+  4: 'assets/images/chapter4/backgrounds/BG-CH4-01_unit94_backalley.jpg',
+  5: 'assets/images/chapter5/backgrounds/BG-CH5-01_telegraph_room.jpg',
+  6: 'assets/images/chapter6/backgrounds/BG-CH6-01_accounting.jpg',
+  7: 'assets/images/chapter7/backgrounds/BG-CH7-01_west_warehouse.jpg',
 };
 
 class StoryOrchestrator {
@@ -64,7 +61,7 @@ class StoryOrchestrator {
     this._setUIVisible = null;
     this._setInteractionLocked = null;
 
-    // 当前周目（1=第一周目沈墨，2=第二周目阿妍，3=第三周目莹莹）
+    // 当前周目（新剧本《笼局·三岔口》仅单周目：沈墨视角）
     this._currentCycle = 1;
   }
 

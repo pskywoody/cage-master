@@ -954,6 +954,31 @@ export class ThreePointLineManager {
     });
   }
 
+  /**
+   * CM4-R5：手动添加一个幽灵格（供 DramaEventManager 等外部系统使用）。
+   * 不会触发错误计数/连击等副作用，仅加入可抢占集合。
+   * @param {number} r
+   * @param {number} c
+   * @param {string} side - 'player' | 'boss'  幽灵归属于哪一方（对方可抢）
+   */
+  addGhostCell(r, c, side) {
+    const key = `${r},${c}`;
+    if (side === 'player') this._playerGhosts.add(key);
+    else this._aiGhosts.add(key);
+  }
+
+  /**
+   * CM4-R5：手动移除一个幽灵格（供 DramaEventManager 过期/清理使用）。
+   * @param {number} r
+   * @param {number} c
+   * @param {string} side - 'player' | 'boss'
+   */
+  removeGhostCell(r, c, side) {
+    const key = `${r},${c}`;
+    if (side === 'player') this._playerGhosts.delete(key);
+    else this._aiGhosts.delete(key);
+  }
+
   /** v2.0 4.3：玩家是否可在此格填数（AI 占领格仅红叉窗口可抢占） */
   canPlayerFillCell(r, c) {
     if (this._ended) return false;

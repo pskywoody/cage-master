@@ -1,0 +1,75 @@
+{
+  "generatedAt": "2026-08-09T21:46:16.321Z",
+  "config": {
+    "count": 25,
+    "seed": 20260810
+  },
+  "baseline_off": {
+    "levels": 25,
+    "totalCages": 638,
+    "uniqueShapes": 21,
+    "entropyH": 2.453,
+    "singletonRatio": 0.1677115987460815,
+    "top4Share": 0.567398119122257,
+    "complexShare": 0.2617554858934169,
+    "crossHouseShare": 0.39184952978056425,
+    "sizeDist": {
+      "1": 107,
+      "2": 80,
+      "3": 175,
+      "4": 147,
+      "5": 129
+    },
+    "sizeDistPct": {
+      "1": 0.168,
+      "2": 0.125,
+      "3": 0.274,
+      "4": 0.23,
+      "5": 0.202
+    },
+    "ratio": {
+      "median": 0.17647058823529413,
+      "mean": 0.18044614467182998,
+      "ge_20": 0.4
+    },
+    "avgScore": 503,
+    "uniqueAll": true
+  },
+  "suppressed_on": {
+    "levels": 25,
+    "totalCages": 552,
+    "uniqueShapes": 21,
+    "entropyH": 2.507,
+    "singletonRatio": 0.034420289855072464,
+    "top4Share": 0.5797101449275363,
+    "complexShare": 0.34782608695652173,
+    "crossHouseShare": 0.5,
+    "sizeDist": {
+      "1": 19,
+      "2": 80,
+      "3": 142,
+      "4": 135,
+      "5": 176
+    },
+    "sizeDistPct": {
+      "1": 0.034,
+      "2": 0.145,
+      "3": 0.257,
+      "4": 0.245,
+      "5": 0.319
+    },
+    "ratio": {
+      "median": 0.19736842105263158,
+      "mean": 0.2006933750885069,
+      "ge_20": 0.48
+    },
+    "avgScore": 519,
+    "uniqueAll": true
+  },
+  "gates": {
+    "Gate1_singleton_le_5pct": true,
+    "Gate2_top4_lt_40pct": false,
+    "Gate4_ratio_no_regress": true
+  },
+  "verdict": "B3-B1a 验证：singleton≤5% 说明抑制生效；top4<40% 说明 trivial mass 下降；ratio 不退化说明未伤及推理密度。未达 Gate 则需查残余单格 / merge 路径。"
+}

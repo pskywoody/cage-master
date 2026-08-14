@@ -15,6 +15,14 @@
 
 import { ThreePointLineManager, TPL_EVENTS } from './three-point-line-manager.js';
 import { AIPlayerCore } from './battle-manager.js';
+import { createBattleContext, toGameState, computeHubHeat, detectAIPressure, computePollution } from './battle-context.js';
+import { Director } from './director.js';
+import { IntentObserver } from './intent-observer.js';
+import { DramaEventManager, selectConflictCandidates, DRAMA_EVENTS, selectCandidatesForHub } from './drama-event-manager.js';
+import { DramaPlanner } from './drama-planner.js';
+import { PollutionGhostDriver } from './drama-pollution.js';
+import { getBossPack } from '../content/boss-content.js';
+import { selectBossLine, resolveLocale } from './boss-line-selector.js';
 
 // 兼容旧事件别名（UI 层 handleBattleEvent 复用）
 export const TPL_BATTLE_EVENTS = Object.assign({}, TPL_EVENTS, {
@@ -27,6 +35,7 @@ export const TPL_BATTLE_EVENTS = Object.assign({}, TPL_EVENTS, {
   WARNING_OVERLAY: 'tpl_warning_overlay',
   FOCUS_UPDATE: 'tpl_focus_update',
   STRATEGY_CHANGE: 'tpl_strategy_change', // v2.0：AI 策略切换（HUD 显示当前策略）
+  POLLUTION_WARNING: 'tpl_pollution_warning', // CM4-R7：据点污染 → 幽灵（战场危险可视化）
 });
 
 /**
@@ -51,6 +60,20 @@ export class TplBattleController {
     this._aiMoves = 0; // V4.3.32：AI 已落子次数（首次行动加速用）
     this._aiConsecutiveCorrect = 0; // v2.0：AI 连续填对数（动态错误率用）
     this._lastStrategy = null;       // v2.0：上次策略（切换检测）
+    this._context = null;            // CM4-R1：统一战斗上下文（BattleContext）
+    this._director = null;           // CM4-R2：对抗戏剧导演（shadow 模式，只记录不控制）
+    this._directorShadow = options.directorShadow !== false; // 默认开启 shadow
+    this._intentObserver = null;    // CM4-R4：意图观察器（从 OpponentObserver 升级）
+    this._drama = null;              // CM4-R5：戏剧事件管理器（幽灵等）
+    this._aiFocusStreak = [];        // CM4-R6.5-B：最近 N 步 AI 落子所在据点（Threat Preview 输入）
+    this._dramaPlanner = null;       // CM4-R7-A：戏剧节拍规划器（Pressure 节拍 → 目标据点偏好）
+    this._dramaDirective = null;     // CM4-R7-A：最近一次戏剧指令（供 Director/AI 消费）
+    this._pollutionDriver = null;    // CM4-R7：污染驱动的幽灵调度器（连续争夺 → 幽灵）
+    this._dramaActive = options.dramaActive !== false; // CM4-R7：战斗内自动触发冲突幽灵（默认开）
+    this._bossPack = null;         // CM4-R7：当前 Boss 内容包（台词/阶段/反馈）
+    this._lineLocale = options.locale || 'zh-CN'; // CM4-R7：台词语言（R8 接入 t() loader）
+    this._lineCursors = {};        // CM4-R7：各事件台词游标（round-robin 去重）
+    this._lastPhase = null;        // CM4-R7：阶段切换检测
   }
 
   /** 玩家手动连线触发绝杀（v2.0 6.1） */
@@ -119,8 +142,62 @@ export class TplBattleController {
         this._ai.setOwnershipGrids(tpl.getPlayerOwnedGrid(), tpl.getAIOwnedGrid());
       }
 
+      // CM4-R2：注入 Director（默认 Shadow 模式，只记录建议不改行为）。
+      // 由 AIPlayerCore._runDirector() 在 think() 内自动调用，此处只做装配。
+      if (this._directorShadow) {
+        const personalityKey = aiKey; // 与 AI 人格一致
+        this._director = new Director({ personality: personalityKey });
+        this._director.enableShadow();
+        if (typeof this._ai.setDirector === 'function') {
+          this._ai.setDirector(this._director, true);
+        }
+      }
+
+      // CM4-R4：实例化意图观察器（消费 AI 内置 OpponentObserver 的输出，
+      // 升级为高层意图：attackingHub/defendingHub/chasingLine/riskLevel）。
+      // 当前阶段：仅挂在 controller 上供 BattleContext/Director 使用，不改 AI 行为。
+      this._intentObserver = new IntentObserver({ intensity: 1.0 });
+
+      // CM4-R7-A：实例化戏剧节拍规划器（Pressure 节拍检测）。
+      // 消费 IntentObserver 的高层意图，产出 shift_pressure 指令 → 目标据点偏好。
+      this._dramaPlanner = new DramaPlanner({ threshold: 3, historyCap: 8 });
+      this._dramaDirective = null;
+
+      // CM4-R7：加载当前 Boss 内容包（台词/阶段/反馈），按 opponent.id 匹配，未配置回退通用包。
+      this._bossPack = getBossPack(this._opponent.id);
+      this._lineLocale = resolveLocale(this._opponent.locale || this._lineLocale);
+      this._lineCursors = {};
+      this._lastPhase = null;
+
+      // CM4-R5：戏剧事件管理器（GhostThreat 等）。
+      // 第一版默认禁用（相当于 shadow）——不主动生成幽灵，
+      // 仅提供 tryDramaGhost() 接口供 Director/调试调用。
+      this._drama = new DramaEventManager({
+        addGhost: (r, c, side) => {
+          if (tpl && typeof tpl.addGhostCell === 'function') {
+            tpl.addGhostCell(r, c, side);
+          }
+        },
+        removeGhost: (r, c, side) => {
+          if (tpl && typeof tpl.removeGhostCell === 'function') {
+            tpl.removeGhostCell(r, c, side);
+          }
+        },
+        onEvent: (event, data) => this._onEvent(event, data || {}),
+        cooldown: 4000,
+        maxGhosts: 2,
+      });
+      this._drama.setEnabled(false); // 默认 shadow：不自动生成
+      // CM4-R7：DramaEvent Active——启用污染驱动的冲突幽灵。
+      // 幽灵只在"连续争夺的污染据点"里生成（不是随机/AI 犯错），
+      // 成为战场危险状态的可视化。dramaActive=false 可关闭。
+      this._drama.setEnabled(this._dramaActive);
+      this._pollutionDriver = new PollutionGhostDriver({ minStage: 2, minTurns: 3 });
+      this._pollutionDriver.reset();
+
       this.active = true;
       this.ended = false;
+      this._aiFocusStreak = []; // R6.5-B：开局清空聚焦轨迹
 
       // 上报战斗开始
       this._onEvent(TPL_BATTLE_EVENTS.BATTLE_START, {
@@ -144,8 +221,8 @@ export class TplBattleController {
   /** bossId → AIPlayerCore 人格 key */
   _personalityKeyForBoss(bossId) {
     const map = {
-      'yingying': 'blind',       // 莹莹 → blind（AI_PERSONALITIES 无 'ying'，旧映射导致回退 steady 无 noteRate）
-      'yan': 'expert',           // 阿妍 → expert
+      'yingying': 'blind',       // 薇拉 → blind
+      'yan': 'expert',           // 山田 → expert
       'cagekeeper': 'mentor',
       'shenmo': 'prober',
       'plotter': 'average',
@@ -174,7 +251,14 @@ export class TplBattleController {
       if (cell && savedFill != null && !cell.fillNum) {
         cell.fillNum = savedFill;
       }
+      // I1/O1（CM4-A2）：tpl 路径补充观察器输入——玩家落子喂给 AI 对手分析
+      if (this._ai && typeof this._ai.updateObserver === 'function') {
+        const hubIdx = this._tpl.getHubBlockIndex ? this._tpl.getHubBlockIndex(r, c) : undefined;
+        this._ai.updateObserver({ r, c, hubIdx });
+      }
       this._syncAiState();
+      // CM4-R7：污染驱动的冲突幽灵调度（玩家落子也可能抬升争夺 → 幽灵）
+      this._drivePollutionGhost();
       return res;
     } catch (e) {
       console.warn('[TplBattle] onPlayerFill:', e);
@@ -209,6 +293,8 @@ export class TplBattleController {
   /** 停止战斗 */
   stop() {
     if (this._aiTimer) { clearTimeout(this._aiTimer); this._aiTimer = null; }
+    // CM4-R5：清理戏剧事件定时器
+    if (this._drama) { try { this._drama.clearAll(); } catch (e) {} }
     this.active = false;
     this.ended = true;
     this._ai = null;
@@ -244,6 +330,121 @@ export class TplBattleController {
     return this._tpl;
   }
 
+  /**
+   * CM4-R2：获取最近一次 Director 决策（HUD / 调试）。
+   * shadow 模式下仍返回建议值（不代表实际行为）。
+   * @returns {Object|null} { phase, strategyId, strategyName, params, lock, released }
+   */
+  getDirectorDecision() {
+    if (this._ai && typeof this._ai.getDirectorDecision === 'function') {
+      return this._ai.getDirectorDecision();
+    }
+    return null;
+  }
+
+  /**
+   * CM4-R2：获取 Director Shadow 校准汇总（建议 vs 实际策略分布）。
+   * 战斗结束后调用，输出 ε 校准所需的统计。
+   * @returns {Object|null} { total, recommendVsActual, gatedCount, phaseDist, perStrategy }
+   */
+  getDirectorShadowSummary() {
+    if (this._director && typeof this._director.summarizeShadow === 'function') {
+      return this._director.summarizeShadow();
+    }
+    return null;
+  }
+
+  /**
+   * CM4-R4：获取玩家意图推断（由 IntentObserver 基于对手观察器输出升级）。
+   * @returns {Object|null} { attackingHub, defendingHub, chasingLine, riskLevel, confidence, strategy }
+   */
+  getPlayerIntent() {
+    if (this._intentObserver) {
+      return this._intentObserver.getIntent();
+    }
+    return null;
+  }
+
+  /**
+   * CM4-R5：尝试触发一次戏剧幽灵事件（GhostThreat）。
+   * 从冲突最激烈的据点里选空格生成，不侵占玩家格。
+   * 默认禁用（shadow 模式），需先 setDramaEnabled(true) 开启。
+   *
+   * @param {Object} [params]
+   * @param {string} [params.side='boss'] - 'player' | 'boss' 幽灵归属于哪一方
+   * @param {string} [params.phase] - 阶段（默认从 context 读取）
+   * @param {number} [params.topKHubs=1] - 选冲突度前 K 的据点
+   * @returns {Object|null} 成功返回 { r, c, side, durationMs }
+   */
+  tryDramaGhost(params = {}) {
+    if (!this._drama || !this._tpl || !this._board) return null;
+    try {
+      const ctx = this.getContext();
+      const phase = params.phase || (ctx && ctx.drama && ctx.drama.phase) || 'development';
+      const side = params.side || 'boss';
+      const topKHubs = params.topKHubs || 1;
+      const candidates = selectConflictCandidates(this._tpl, this._board, topKHubs, 6);
+      return this._drama.trySpawnGhost({
+        side,
+        phase,
+        candidateCells: candidates,
+        durationMs: params.durationMs, // 透传自定义时长
+      });
+    } catch (e) {
+      console.warn('[TplBattle] tryDramaGhost:', e);
+      return null;
+    }
+  }
+
+  /** CM4-R5：启用/禁用戏剧事件生成（默认禁用） */
+  setDramaEnabled(enabled) {
+    if (this._drama) this._drama.setEnabled(enabled);
+  }
+
+  /** CM4-R5：获取戏剧事件管理器实例（调试/扩展用） */
+  getDramaManager() {
+    return this._drama || null;
+  }
+
+  /**
+   * CM4-R7：污染驱动的冲突幽灵调度（战场危险可视化）。
+   * 每步计算据点污染，由 PollutionGhostDriver 判定"连续争夺达到阈值"，
+   * 在污染据点内生成幽灵。幽灵只来自冲突、只占空格、不覆盖玩家。
+   * 从 getDramaManager 之外也可通过本方法单独驱动。
+   * @returns {Object|null} 成功生成返回 { r, c, hubIndex, stage, turns }；否则 null
+   */
+  _drivePollutionGhost() {
+    if (!this._drama || !this._drama.isEnabled()) return null;
+    if (!this._pollutionDriver || !this._tpl || !this._board) return null;
+    const ctx = this.getContext();
+    if (!ctx) return null;
+    const heat = computeHubHeat(ctx);
+    const pollution = computePollution(ctx, heat);
+    const target = this._pollutionDriver.tick(pollution);
+    if (!target) return null;
+    const phase = (ctx.drama && ctx.drama.phase) || 'development';
+    const cells = selectCandidatesForHub(this._tpl, this._board, target.hubIndex, 4);
+    const spawned = this._drama.trySpawnGhost({
+      side: 'boss',
+      phase,
+      candidateCells: cells,
+    });
+    if (spawned) {
+      this._onEvent(TPL_BATTLE_EVENTS.POLLUTION_WARNING, {
+        hubIndex: target.hubIndex,
+        stage: target.stage,
+        turns: target.turns,
+        r: spawned.r,
+        c: spawned.c,
+      });
+      // CM4-R7：污染事件台词（Boss 把"这里正在失控"说出来）
+      const pLine = this._bossEventLine('pollution');
+      if (pLine) this._bossSay(pLine.text);
+      return { r: spawned.r, c: spawned.c, hubIndex: target.hubIndex, stage: target.stage, turns: target.turns };
+    }
+    return null;
+  }
+
   /** V5 4.4：玩家是否可填此格（AI 占领格仅红叉窗口可抢占） */
   canPlayerFillCell(r, c) {
     try {
@@ -260,42 +461,116 @@ export class TplBattleController {
       if (typeof this._ai.setOwnershipGrids === 'function') {
         this._ai.setOwnershipGrids(this._tpl.getPlayerOwnedGrid(), this._tpl.getAIOwnedGrid());
       }
-      const progress = this._tpl.getHubProgress();
-      const hubOwnership = progress.map(p => p.occupiedBy || null);
-      const selfHubs = hubOwnership.filter(o => o === 'boss').length;
-      const oppHubs = hubOwnership.filter(o => o !== null && o !== 'boss').length;
-      // v2.0：玩家防守强度（各据点玩家维度占比）
-      const playerDefense = {};
-      for (let i = 0; i < progress.length; i++) {
-        const p = progress[i];
-        playerDefense[i] = p.playerDims / Math.max(p.playerDims + p.bossDims, 1);
+      // CM4-R1：经 BattleContext 统一构建状态（单一数据面），再投影为
+      // AIPlayerCore.setGameState 兼容的扁平对象。行为与原手拼一致。
+      this._context = createBattleContext({
+        tpl: this._tpl,
+        board: this._board,
+        solution: this._solution,
+        totalEmpty: this._totalEmpty,
+        aiConsecutiveCorrect: this._aiConsecutiveCorrect,
+        opponent: this._opponent,
+        step: this._aiMoves,
+      });
+      // CM4-R4：用 IntentObserver 推断玩家意图，写入 BattleContext.player.intent
+      // （当前阶段：只读，不改 AI 内部分析；供 Director/StrategyPool 消费）
+      if (this._intentObserver) {
+        const rawAnalysis = (typeof this._ai.getOpponentAnalysis === 'function')
+          ? this._ai.getOpponentAnalysis()
+          : null;
+        if (rawAnalysis) {
+          const intent = this._intentObserver.infer(rawAnalysis, this._context);
+          this._context.player.intent = intent;
+
+          // CM4-R7-A：Drama Planner 消费玩家意图 → 产出戏剧指令（Pressure 节拍）。
+          // 检测到玩家单翼胶着时产出 shift_pressure，给出目标据点偏好。
+          // 经 setDramaDirective 注入 AI，Director 在 decide() 内消费（shadow 或调制）。
+          if (this._dramaPlanner) {
+            const directive = this._dramaPlanner.plan(intent, this._context);
+            this._dramaDirective = directive;
+            if (directive && typeof this._ai.setDramaDirective === 'function') {
+              this._ai.setDramaDirective(directive);
+            }
+          }
+        }
       }
       if (typeof this._ai.setGameState === 'function') {
-        this._ai.setGameState({
-          isLeading: selfHubs > oppHubs ? true : (selfHubs < oppHubs ? false : null),
-          selfHubCount: selfHubs,
-          opponentHubCount: oppHubs,
-          progress: this._totalEmpty > 0 ? (this._countFilled() / this._totalEmpty) : 0,
-          consecutiveErrors: 0,
-          consecutiveCorrect: this._aiConsecutiveCorrect, // v2.0：动态错误率（连对3次×0.8）
-          isBurst: false,
-          hubBlocks: this._tpl.getHubBlocks(),
-          castleHubIdx: this._tpl.getCastleHubIdx(),
-          hubOwnership,
-          playerDefense,
-          // v2.0：策略状态机输入
-          hubCounts: typeof this._tpl.getHubCounts === 'function' ? this._tpl.getHubCounts() : progress,
-          migrationFailed: typeof this._tpl.isMigrationFailed === 'function' ? this._tpl.isMigrationFailed() : false,
-        });
+        this._ai.setGameState(toGameState(this._context));
       }
       this._ai.syncFromBoard(this._board);
       // v2.0：策略切换检测——变化时发 BOSS_BUBBLE（AI 意图可视化）
       this._checkStrategyChange();
+      // CM4-R7：阶段切换检测——变化时发阶段台词（Boss 描述战局走向）
+      this._checkPhaseChange();
     } catch (e) {}
   }
 
   /**
-   * v2.0：AI 策略切换 → 台词气泡（Boss 意图让玩家可感知）
+   * CM4-R1：获取当前统一战斗上下文（供 Director/StrategyPool/Observer 消费）。
+   * 若尚未构建（战斗未开始/同步前），返回创建一个基于当前 tpl 的实时上下文。
+   * @returns {Object} BattleContext
+   */
+  getContext() {
+    if (!this._context) {
+      this._syncAiState();
+    }
+    return this._context || null;
+  }
+
+  /**
+   * CM4-R6.5：把 AI 内部状态翻译成 UI 可直接渲染的呈现视图。
+   * 不泄露具体落子，只暴露战场方向语言：
+   *   - heat     : 每个据点冲突热度分级（0-3，○/🔥/🔥🔥/🔥🔥🔥）
+   *   - threat   : AI 是否持续施压某据点（只提示战场方向，不提示格子）
+   *   - pollution: 据点污染分级（冲突热度 → 闪烁/扭曲，Ghost 前置预警层）
+   * @returns {Object|null} { heat, threat, pollution }
+   */
+  getPresentation() {
+    try {
+      const ctx = this.getContext();
+      if (!ctx) return null;
+      const heat = computeHubHeat(ctx);
+      const threat = detectAIPressure(ctx, this._aiFocusStreak);
+      const pollution = computePollution(ctx, heat);
+      return { heat, threat, pollution };
+    } catch (e) {
+      console.warn('[TplBattle] getPresentation:', e);
+      return null;
+    }
+  }
+
+  /**
+   * CM4-R7：从当前 Boss 内容包挑一句台词（事件驱动，round-robin 去重）。
+   * @param {string} event - 'phase'|'strategy'|'pollution'|'pressure'|'line_win'|'line_steal'|'playerWin'|'playerLose'|'draw'
+   * @param {Object} [extra] - { phase, strategy }
+   * @returns {{key:string, text:string}|null}
+   */
+  _bossEventLine(event, extra = {}) {
+    if (!this._bossPack) return null;
+    const sel = selectBossLine({
+      pack: this._bossPack,
+      event,
+      phase: extra.phase,
+      strategy: extra.strategy,
+      locale: this._lineLocale,
+      cursors: this._lineCursors,
+    });
+    if (!sel) return null;
+    this._lineCursors[event] = sel.nextCursor;
+    return { key: sel.key, text: sel.text };
+  }
+
+  /** CM4-R7：发 Boss 台词气泡 */
+  _bossSay(text, name) {
+    this._onEvent(TPL_BATTLE_EVENTS.BOSS_BUBBLE, {
+      text,
+      name: name || (this._opponent && this._opponent.name) || 'Boss',
+    });
+  }
+
+  /**
+   * v2.0 / CM4-R7：AI 策略切换 → 台词气泡（Boss 意图让玩家可感知）。
+   * 文案来自 Boss 内容包；未覆盖时回退内置缺省。
    */
   _checkStrategyChange() {
     try {
@@ -303,21 +578,35 @@ export class TplBattleController {
       const s = this._ai.getStrategy();
       if (s.strategy === this._lastStrategy) return;
       this._lastStrategy = s.strategy;
-      const name = this._opponent && this._opponent.name ? this._opponent.name : 'Boss';
-      const lines = {
+      const line = this._bossEventLine('strategy', { strategy: s.strategy });
+      const fallback = {
         attack: '这个据点我要定了！',
         defend: '先守住我的地盘！',
         global: '不管据点了，我先填满！',
         counter: '敢动我的据点？反击！',
       };
-      const text = lines[s.strategy] || '计划有变！';
-      this._onEvent(TPL_BATTLE_EVENTS.BOSS_BUBBLE, { text, name });
+      this._bossSay(line ? line.text : (fallback[s.strategy] || '计划有变！'));
       // 策略状态变化事件（HUD 显示当前策略）
       this._onEvent(TPL_BATTLE_EVENTS.STRATEGY_CHANGE, {
         strategy: s.strategy,
         label: s.label,
         targetHub: s.targetHub,
       });
+    } catch (e) {}
+  }
+
+  /**
+   * CM4-R7：阶段切换 → 台词（opening/development/crisis/climax）。
+   * 让"这场仗走到哪一步"第一次被 Boss 说出来。
+   */
+  _checkPhaseChange() {
+    try {
+      if (!this._context || !this._context.drama) return;
+      const phase = this._context.drama.phase;
+      if (!phase || phase === this._lastPhase) return;
+      this._lastPhase = phase;
+      const line = this._bossEventLine('phase', { phase });
+      if (line) this._bossSay(line.text);
     } catch (e) {}
   }
 
@@ -466,6 +755,13 @@ export class TplBattleController {
       cell._aiNum = this._solution?.[row]?.[col] ?? null;
       cell._aiMistake = cell._aiNum !== null && num !== cell._aiNum;
       this._aiMoves++; // V4.3.32：落子成功计数（首次行动加速判定）
+      // CM4-R6.5-B：记录本次 AI 落子所在据点（推进 Threat Preview 聚焦轨迹）
+      try {
+        const focusHub = (typeof this._tpl.getHubBlockIndex === 'function')
+          ? this._tpl.getHubBlockIndex(row, col) : -1;
+        this._aiFocusStreak.push({ hubIndex: focusHub });
+        if (this._aiFocusStreak.length > 8) this._aiFocusStreak.shift();
+      } catch (e) {}
       // 通知 UI 重绘（值对齐旧 BATTLE_EVENTS.BOARD_CHANGED='board_changed'）
       this._onEvent('board_changed', { board: this._board, aiFill: true, r: row, c: col });
 
@@ -473,6 +769,8 @@ export class TplBattleController {
       const isCorrect = this._solution?.[row]?.[col] === num;
       this._aiConsecutiveCorrect = isCorrect ? (this._aiConsecutiveCorrect + 1) : 0;
       this._syncAiState();
+      // CM4-R7：污染驱动的冲突幽灵调度（连续争夺 → 幽灵）
+      this._drivePollutionGhost();
       this._aiThinking = false;
 
       // 检查结束
@@ -533,6 +831,10 @@ export class TplBattleController {
     const stats = this._tpl.getStats();
     const result = winner === 'player' ? 'win' : (winner === 'boss' ? 'lose' : 'draw');
 
+    // CM4-R7：胜负反馈台词（Boss 内容包）
+    const fb = this._bossEventLine(result === 'win' ? 'playerWin' : (result === 'lose' ? 'playerLose' : 'draw'));
+    if (fb) this._bossSay(fb.text);
+
     this._onEvent(TPL_BATTLE_EVENTS.BATTLE_END, {
       winner,
       winPath: path,
@@ -541,6 +843,8 @@ export class TplBattleController {
       playerHubs: stats.playerHubs,
       aiHubs: stats.aiHubs,
       result,
+      // CM4-R2：Director Shadow 校准汇总（shadow 模式下仅记录，不改行为）
+      directorShadow: this.getDirectorShadowSummary(),
     });
 
     if (this._onEndCallback) {

@@ -1,0 +1,134 @@
+{
+  "generatedAt": "2026-08-10T17:37:51.908Z",
+  "config": {
+    "count": 3,
+    "seed": 20260810,
+    "elapsedSeconds": 31.8
+  },
+  "frozen": {
+    "lambda": 25,
+    "growthBias": 0.4,
+    "shapeDiversityWeight": 0.2,
+    "objective": "enabled",
+    "suppressSingletons": true
+  },
+  "variable": {
+    "none": "measurement only"
+  },
+  "result": {
+    "levels": 3,
+    "uniqueFamilyCount": 8,
+    "familyHistogram": {
+      "0,0|0,1|0,2|1,0|1,1": 3,
+      "0,0|0,1|0,2|1,1": 3,
+      "0,0|0,1|0,2": 3,
+      "0,0|0,1|1,0": 3,
+      "0,0|0,1": 3,
+      "0,0|0,1|0,2|1,1|2,1": 2,
+      "0,0|0,1|0,2|0,3|0,4": 1,
+      "0,0|0,1|0,2|0,3|1,1": 1
+    },
+    "concentration": {
+      "top1FamilyShare": 0.158,
+      "top4FamilyShare": 0.632,
+      "top8FamilyShare": 1
+    },
+    "entropy": {
+      "Hglobal": 2.004,
+      "Huniform": 2.079,
+      "ratio_H_to_Huniform": 0.964
+    },
+    "turnover": {
+      "perLevel": [
+        {
+          "level": 1,
+          "newFamilyCount": 6,
+          "reusedFamilyCount": 0,
+          "uniqueFamiliesInLevel": 6
+        },
+        {
+          "level": 2,
+          "newFamilyCount": 1,
+          "reusedFamilyCount": 6,
+          "uniqueFamiliesInLevel": 7
+        },
+        {
+          "level": 3,
+          "newFamilyCount": 1,
+          "reusedFamilyCount": 5,
+          "uniqueFamiliesInLevel": 6
+        }
+      ],
+      "avgNewFamily_FirstHalf": 6,
+      "avgNewFamily_SecondHalf": 1,
+      "newFamilyDeclining": true
+    },
+    "lifespan": [
+      {
+        "fam": "0,0|0,1|0,2|1,0|1,1",
+        "first": 0,
+        "last": 2,
+        "appearances": 3,
+        "blocks": [],
+        "maxConsecutiveLevels": 3
+      },
+      {
+        "fam": "0,0|0,1|0,2|1,1",
+        "first": 0,
+        "last": 2,
+        "appearances": 3,
+        "blocks": [],
+        "maxConsecutiveLevels": 3
+      },
+      {
+        "fam": "0,0|0,1|0,2",
+        "first": 0,
+        "last": 2,
+        "appearances": 3,
+        "blocks": [],
+        "maxConsecutiveLevels": 3
+      },
+      {
+        "fam": "0,0|0,1|1,0",
+        "first": 0,
+        "last": 2,
+        "appearances": 3,
+        "blocks": [],
+        "maxConsecutiveLevels": 3
+      },
+      {
+        "fam": "0,0|0,1",
+        "first": 0,
+        "last": 2,
+        "appearances": 3,
+        "blocks": [],
+        "maxConsecutiveLevels": 3
+      },
+      {
+        "fam": "0,0|0,1|0,2|1,1|2,1",
+        "first": 0,
+        "last": 1,
+        "appearances": 2,
+        "blocks": [],
+        "maxConsecutiveLevels": 2
+      },
+      {
+        "fam": "0,0|0,1|0,2|0,3|0,4",
+        "first": 1,
+        "last": 1,
+        "appearances": 1,
+        "blocks": [],
+        "maxConsecutiveLevels": 1
+      },
+      {
+        "fam": "0,0|0,1|0,2|0,3|1,1",
+        "first": 2,
+        "last": 2,
+        "appearances": 1,
+        "blocks": [],
+        "maxConsecutiveLevels": 1
+      }
+    ]
+  },
+  "verdict": "Case 待定：需人工复核（top4=0.632，Hglobal/Huniform=0.964，newFamily下降）。"
+}

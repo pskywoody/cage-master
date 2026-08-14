@@ -15,6 +15,7 @@
 // ==========================================
 
 import { DataStore } from '../core/data-store.js';
+import I18n from '../i18n/i18n.js';
 
 export class AchievementPanel {
   /**
@@ -23,16 +24,16 @@ export class AchievementPanel {
    */
   static get ACHIEVEMENTS() {
     return [
-      { id: 'hand_slippery',  name: '手滑了',   desc: '在一局中目睹AI失误5次以上',       icon: '🤷' },
-      { id: 'thief_king',     name: '盗圣',     desc: '单局从AI手中抢走10个格子',        icon: '🦹' },
-      { id: 'epic_comeback',  name: '史诗翻盘', desc: '落后10格以上反败为胜',            icon: '⚡' },
-      { id: 'blitzkrieg',     name: '闪电战',   desc: '60秒内击败Boss',                 icon: '💨' },
-      { id: 'noob_battle',    name: '菜鸡互啄', desc: '双方加起来失误10次以上',           icon: '🥚' },
-      { id: 'perfect_win',    name: '完美胜利', desc: '零失误击败Boss',                 icon: '👑' },
+      { id: 'hand_slippery',  name: I18n.t('ui.achievement.item.handSlippery.name'),   desc: I18n.t('ui.achievement.item.handSlippery.desc'),   icon: '🤷' },
+      { id: 'thief_king',     name: I18n.t('ui.achievement.item.thiefKing.name'),      desc: I18n.t('ui.achievement.item.thiefKing.desc'),      icon: '🦹' },
+      { id: 'epic_comeback',  name: I18n.t('ui.achievement.item.epicComeback.name'),   desc: I18n.t('ui.achievement.item.epicComeback.desc'),   icon: '⚡' },
+      { id: 'blitzkrieg',     name: I18n.t('ui.achievement.item.blitzkrieg.name'),     desc: I18n.t('ui.achievement.item.blitzkrieg.desc'),     icon: '💨' },
+      { id: 'noob_battle',    name: I18n.t('ui.achievement.item.noobBattle.name'),     desc: I18n.t('ui.achievement.item.noobBattle.desc'),     icon: '🥚' },
+      { id: 'perfect_win',    name: I18n.t('ui.achievement.item.perfectWin.name'),     desc: I18n.t('ui.achievement.item.perfectWin.desc'),     icon: '👑' },
       // v2.0：tpl 三点连线 Boss 战胜利路径成就
-      { id: 'tpl_line_win',   name: '三点连线绝杀', desc: '占领全部3个据点后连线绝杀获胜', icon: '⚡' },
-      { id: 'tpl_full_board', name: '全局解题',   desc: '放弃绝杀，按填满盘面比数获胜',    icon: '🎯' },
-      { id: 'tpl_force_settle', name: '僵局裁决', desc: '据点迁移失败后强制结算获胜',      icon: '⚖️' },
+      { id: 'tpl_line_win',   name: I18n.t('ui.achievement.item.tplLineWin.name'),     desc: I18n.t('ui.achievement.item.tplLineWin.desc'),     icon: '⚡' },
+      { id: 'tpl_full_board', name: I18n.t('ui.achievement.item.tplFullBoard.name'),   desc: I18n.t('ui.achievement.item.tplFullBoard.desc'),   icon: '🎯' },
+      { id: 'tpl_force_settle', name: I18n.t('ui.achievement.item.tplForceSettle.name'), desc: I18n.t('ui.achievement.item.tplForceSettle.desc'), icon: '⚖️' },
     ];
   }
 
@@ -214,7 +215,7 @@ export class AchievementPanel {
       header.className = 'cm-ach-header';
       const stats = this.getStats();
       header.innerHTML =
-        '<span class="cm-ach-title">🏆 成就</span>' +
+        '<span class="cm-ach-title">' + I18n.t('ui.achievement.title') + '</span>' +
         '<span class="cm-ach-count">' + stats.unlocked + '/' + stats.total +
         ' (' + stats.progress + '%)</span>';
       const closeBtn = document.createElement('button');
@@ -237,7 +238,7 @@ export class AchievementPanel {
     } catch (e) {
       console.warn('[AchievementPanel] _buildContent error:', e);
       const fb = document.createElement('div');
-      fb.textContent = '成就内容加载失败';
+      fb.textContent = I18n.t('ui.achievement.loadError');
       return fb;
     }
   }
@@ -265,7 +266,7 @@ export class AchievementPanel {
 
       const desc = document.createElement('div');
       desc.className = 'cm-ach-desc';
-      desc.textContent = item.unlocked ? item.desc : '完成对应条件即可解锁';
+      desc.textContent = item.unlocked ? item.desc : I18n.t('ui.achievement.lockedDesc');
 
       if (item.unlocked && item.unlockedAt) {
         const time = document.createElement('div');
@@ -292,7 +293,7 @@ export class AchievementPanel {
       console.warn('[AchievementPanel] _buildCard error:', e);
       const fb = document.createElement('div');
       fb.className = 'cm-ach-card';
-      fb.textContent = '卡片加载失败';
+      fb.textContent = I18n.t('ui.achievement.cardError');
       return fb;
     }
   }

@@ -1,0 +1,315 @@
+{
+  "generatedAt": "2026-08-10T17:44:42.759Z",
+  "config": {
+    "count": 30,
+    "seed": 20260810,
+    "elapsedSeconds": 399.5
+  },
+  "frozen": {
+    "lambda": 25,
+    "growthBias": 0.4,
+    "shapeDiversityWeight": 0.2,
+    "objective": "enabled",
+    "suppressSingletons": true
+  },
+  "variable": {
+    "none": "measurement only"
+  },
+  "result": {
+    "levels": 30,
+    "uniqueFamilyCount": 10,
+    "familyHistogram": {
+      "0,0|0,1|0,2|1,0|1,1": 30,
+      "0,0|0,1": 30,
+      "0,0|0,1|1,0": 29,
+      "0,0|0,1|0,2": 27,
+      "0,0|0,1|0,2|0,3": 16,
+      "0,0|0,1|0,2|0,3|1,1": 15,
+      "0,0|0,1|0,2|1,1": 13,
+      "0,0|0,1|0,2|1,1|2,1": 12,
+      "0,0|0,1|1,1|1,2|2,1": 12,
+      "0,0|0,1|0,2|0,3|0,4": 6
+    },
+    "concentration": {
+      "top1FamilyShare": 0.158,
+      "top4FamilyShare": 0.611,
+      "top8FamilyShare": 0.905
+    },
+    "entropy": {
+      "Hglobal": 2.197,
+      "Huniform": 2.303,
+      "ratio_H_to_Huniform": 0.954
+    },
+    "turnover": {
+      "perLevel": [
+        {
+          "level": 1,
+          "newFamilyCount": 6,
+          "reusedFamilyCount": 0,
+          "uniqueFamiliesInLevel": 6
+        },
+        {
+          "level": 2,
+          "newFamilyCount": 1,
+          "reusedFamilyCount": 6,
+          "uniqueFamiliesInLevel": 7
+        },
+        {
+          "level": 3,
+          "newFamilyCount": 1,
+          "reusedFamilyCount": 5,
+          "uniqueFamiliesInLevel": 6
+        },
+        {
+          "level": 4,
+          "newFamilyCount": 0,
+          "reusedFamilyCount": 6,
+          "uniqueFamiliesInLevel": 6
+        },
+        {
+          "level": 5,
+          "newFamilyCount": 1,
+          "reusedFamilyCount": 3,
+          "uniqueFamiliesInLevel": 4
+        },
+        {
+          "level": 6,
+          "newFamilyCount": 0,
+          "reusedFamilyCount": 7,
+          "uniqueFamiliesInLevel": 7
+        },
+        {
+          "level": 7,
+          "newFamilyCount": 0,
+          "reusedFamilyCount": 8,
+          "uniqueFamiliesInLevel": 8
+        },
+        {
+          "level": 8,
+          "newFamilyCount": 1,
+          "reusedFamilyCount": 7,
+          "uniqueFamiliesInLevel": 8
+        },
+        {
+          "level": 9,
+          "newFamilyCount": 0,
+          "reusedFamilyCount": 6,
+          "uniqueFamiliesInLevel": 6
+        },
+        {
+          "level": 10,
+          "newFamilyCount": 0,
+          "reusedFamilyCount": 6,
+          "uniqueFamiliesInLevel": 6
+        },
+        {
+          "level": 11,
+          "newFamilyCount": 0,
+          "reusedFamilyCount": 8,
+          "uniqueFamiliesInLevel": 8
+        },
+        {
+          "level": 12,
+          "newFamilyCount": 0,
+          "reusedFamilyCount": 6,
+          "uniqueFamiliesInLevel": 6
+        },
+        {
+          "level": 13,
+          "newFamilyCount": 0,
+          "reusedFamilyCount": 5,
+          "uniqueFamiliesInLevel": 5
+        },
+        {
+          "level": 14,
+          "newFamilyCount": 0,
+          "reusedFamilyCount": 5,
+          "uniqueFamiliesInLevel": 5
+        },
+        {
+          "level": 15,
+          "newFamilyCount": 0,
+          "reusedFamilyCount": 7,
+          "uniqueFamiliesInLevel": 7
+        },
+        {
+          "level": 16,
+          "newFamilyCount": 0,
+          "reusedFamilyCount": 4,
+          "uniqueFamiliesInLevel": 4
+        },
+        {
+          "level": 17,
+          "newFamilyCount": 0,
+          "reusedFamilyCount": 7,
+          "uniqueFamiliesInLevel": 7
+        },
+        {
+          "level": 18,
+          "newFamilyCount": 0,
+          "reusedFamilyCount": 7,
+          "uniqueFamiliesInLevel": 7
+        },
+        {
+          "level": 19,
+          "newFamilyCount": 0,
+          "reusedFamilyCount": 8,
+          "uniqueFamiliesInLevel": 8
+        },
+        {
+          "level": 20,
+          "newFamilyCount": 0,
+          "reusedFamilyCount": 8,
+          "uniqueFamiliesInLevel": 8
+        },
+        {
+          "level": 21,
+          "newFamilyCount": 0,
+          "reusedFamilyCount": 7,
+          "uniqueFamiliesInLevel": 7
+        },
+        {
+          "level": 22,
+          "newFamilyCount": 0,
+          "reusedFamilyCount": 4,
+          "uniqueFamiliesInLevel": 4
+        },
+        {
+          "level": 23,
+          "newFamilyCount": 0,
+          "reusedFamilyCount": 7,
+          "uniqueFamiliesInLevel": 7
+        },
+        {
+          "level": 24,
+          "newFamilyCount": 0,
+          "reusedFamilyCount": 7,
+          "uniqueFamiliesInLevel": 7
+        },
+        {
+          "level": 25,
+          "newFamilyCount": 0,
+          "reusedFamilyCount": 6,
+          "uniqueFamiliesInLevel": 6
+        },
+        {
+          "level": 26,
+          "newFamilyCount": 0,
+          "reusedFamilyCount": 7,
+          "uniqueFamiliesInLevel": 7
+        },
+        {
+          "level": 27,
+          "newFamilyCount": 0,
+          "reusedFamilyCount": 6,
+          "uniqueFamiliesInLevel": 6
+        },
+        {
+          "level": 28,
+          "newFamilyCount": 0,
+          "reusedFamilyCount": 6,
+          "uniqueFamiliesInLevel": 6
+        },
+        {
+          "level": 29,
+          "newFamilyCount": 0,
+          "reusedFamilyCount": 5,
+          "uniqueFamiliesInLevel": 5
+        },
+        {
+          "level": 30,
+          "newFamilyCount": 0,
+          "reusedFamilyCount": 6,
+          "uniqueFamiliesInLevel": 6
+        }
+      ],
+      "avgNewFamily_FirstHalf": 0.67,
+      "avgNewFamily_SecondHalf": 0,
+      "newFamilyDeclining": true
+    },
+    "lifespan": [
+      {
+        "fam": "0,0|0,1|0,2|1,0|1,1",
+        "first": 0,
+        "last": 29,
+        "appearances": 30,
+        "blocks": [],
+        "maxConsecutiveLevels": 30
+      },
+      {
+        "fam": "0,0|0,1",
+        "first": 0,
+        "last": 29,
+        "appearances": 30,
+        "blocks": [],
+        "maxConsecutiveLevels": 30
+      },
+      {
+        "fam": "0,0|0,1|1,0",
+        "first": 0,
+        "last": 29,
+        "appearances": 29,
+        "blocks": [],
+        "maxConsecutiveLevels": 20
+      },
+      {
+        "fam": "0,0|0,1|0,2",
+        "first": 0,
+        "last": 29,
+        "appearances": 27,
+        "blocks": [],
+        "maxConsecutiveLevels": 10
+      },
+      {
+        "fam": "0,0|0,1|0,2|0,3",
+        "first": 7,
+        "last": 27,
+        "appearances": 16,
+        "blocks": [],
+        "maxConsecutiveLevels": 6
+      },
+      {
+        "fam": "0,0|0,1|0,2|0,3|1,1",
+        "first": 2,
+        "last": 29,
+        "appearances": 15,
+        "blocks": [],
+        "maxConsecutiveLevels": 7
+      },
+      {
+        "fam": "0,0|0,1|0,2|1,1",
+        "first": 0,
+        "last": 29,
+        "appearances": 13,
+        "blocks": [],
+        "maxConsecutiveLevels": 4
+      },
+      {
+        "fam": "0,0|0,1|0,2|1,1|2,1",
+        "first": 0,
+        "last": 24,
+        "appearances": 12,
+        "blocks": [],
+        "maxConsecutiveLevels": 3
+      },
+      {
+        "fam": "0,0|0,1|1,1|1,2|2,1",
+        "first": 4,
+        "last": 26,
+        "appearances": 12,
+        "blocks": [],
+        "maxConsecutiveLevels": 5
+      },
+      {
+        "fam": "0,0|0,1|0,2|0,3|0,4",
+        "first": 1,
+        "last": 22,
+        "appearances": 6,
+        "blocks": [],
+        "maxConsecutiveLevels": 3
+      }
+    ],
+    "headFamilyLockCount": 4
+  },
+  "verdict": "Case B：family basin 收敛确认（top4=0.611 >50%，头部 family 锁死数=4（出现率≥80%），newFamily 后半段下降至0）→ 进入 B4-D1-1（跨关 family 罕见度）。"
+}

@@ -1,0 +1,143 @@
+{
+  "generatedAt": "2026-08-10T11:56:48.463Z",
+  "config": {
+    "count": 20,
+    "seed": 20260810,
+    "weights": [
+      0,
+      5,
+      10,
+      15,
+      20
+    ],
+    "collected": 8
+  },
+  "control": {
+    "levels": 20,
+    "totalCages": 433,
+    "uniqueShapes": 21,
+    "entropyH": 2.62,
+    "singletonRatio": 0.03926096997690531,
+    "top4Share": 0.5404157043879908,
+    "complexShare": 0.3741339491916859,
+    "ratioMean": 0.24228251554577426,
+    "avgScore": 520,
+    "meanShapePenalty": 0.815,
+    "uniqueAll": true
+  },
+  "rows": [
+    {
+      "weight": 0,
+      "levels": 20,
+      "totalCages": 433,
+      "uniqueShapes": 21,
+      "entropyH": 2.62,
+      "singletonRatio": 0.03926096997690531,
+      "top4Share": 0.5404157043879908,
+      "complexShare": 0.3741339491916859,
+      "ratioMean": 0.24228251554577426,
+      "avgScore": 520,
+      "meanShapePenalty": 0.815,
+      "uniqueAll": true
+    },
+    {
+      "weight": 5,
+      "levels": 20,
+      "totalCages": 432,
+      "uniqueShapes": 21,
+      "entropyH": 2.621,
+      "singletonRatio": 0.037037037037037035,
+      "top4Share": 0.5486111111111112,
+      "complexShare": 0.375,
+      "ratioMean": 0.242416947552513,
+      "avgScore": 523.8,
+      "meanShapePenalty": 0.815,
+      "uniqueAll": true
+    },
+    {
+      "weight": 10,
+      "levels": 20,
+      "totalCages": 432,
+      "uniqueShapes": 21,
+      "entropyH": 2.597,
+      "singletonRatio": 0.037037037037037035,
+      "top4Share": 0.5462962962962963,
+      "complexShare": 0.38657407407407407,
+      "ratioMean": 0.242925328786673,
+      "avgScore": 550,
+      "meanShapePenalty": 0.858,
+      "uniqueAll": true
+    },
+    {
+      "weight": 15,
+      "levels": 20,
+      "totalCages": 433,
+      "uniqueShapes": 21,
+      "entropyH": 2.569,
+      "singletonRatio": 0.03233256351039261,
+      "top4Share": 0.5565819861431871,
+      "complexShare": 0.3741339491916859,
+      "ratioMean": 0.23968539143739526,
+      "avgScore": 523.8,
+      "meanShapePenalty": 0.871,
+      "uniqueAll": true
+    },
+    {
+      "weight": 20,
+      "levels": 20,
+      "totalCages": 433,
+      "uniqueShapes": 21,
+      "entropyH": 2.586,
+      "singletonRatio": 0.03233256351039261,
+      "top4Share": 0.5542725173210161,
+      "complexShare": 0.371824480369515,
+      "ratioMean": 0.23885961486012341,
+      "avgScore": 523.8,
+      "meanShapePenalty": 0.871,
+      "uniqueAll": true
+    }
+  ],
+  "gates": {
+    "W0": {
+      "top4_lt_48": false,
+      "entropy_gt_275": false,
+      "complex_keep": true,
+      "singleton_lt_05": true,
+      "difficulty_pm5": true,
+      "unique": true
+    },
+    "W5": {
+      "top4_lt_48": false,
+      "entropy_gt_275": false,
+      "complex_keep": true,
+      "singleton_lt_05": true,
+      "difficulty_pm5": true,
+      "unique": true
+    },
+    "W10": {
+      "top4_lt_48": false,
+      "entropy_gt_275": false,
+      "complex_keep": true,
+      "singleton_lt_05": true,
+      "difficulty_pm5": true,
+      "unique": true
+    },
+    "W15": {
+      "top4_lt_48": false,
+      "entropy_gt_275": false,
+      "complex_keep": true,
+      "singleton_lt_05": true,
+      "difficulty_pm5": true,
+      "unique": true
+    },
+    "W20": {
+      "top4_lt_48": false,
+      "entropy_gt_275": false,
+      "complex_keep": true,
+      "singleton_lt_05": true,
+      "difficulty_pm5": true,
+      "unique": true
+    }
+  },
+  "verdict": "B3-C1b 验证：candidate ranking 层加 canonical 簇 shape diversity tax 能否降 top4Share/提 H。若 top4 降且 H 升、complex 不退化 → tax 有效；若 top4 不降 → 需结合 size 维度或转 supply 层；若 complex 明显退化 → tax 过重惩罚了 L/T（需收紧只罚 pure canonical）。"
+}

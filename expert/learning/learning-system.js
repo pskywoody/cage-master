@@ -216,7 +216,7 @@ export class LearningSystem {
       const { nonTrivialRatio = 0, maxTechLevel = 0, score = 0 } = rating || {};
 
       if (nonTrivialRatio < 0.15 && score < 300) {
-        return '单凭直觉便能冲破这档案室的死角...你到底是在解局，还是在凭本能撕裂这牢笼？';
+        return '单凭直觉便能冲破这藏书楼的死角...你到底是在解局，还是在凭本能撕裂这牢笼？';
       }
       if (maxTechLevel >= 8 && nonTrivialRatio > 0.3) {
         return '星衡法则，三才游鱼...你对这数理铁律的运筹，像极了当年在那枯坐通宵的那个人。';

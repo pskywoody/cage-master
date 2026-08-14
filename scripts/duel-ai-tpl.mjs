@@ -46,6 +46,8 @@ import path from 'path';
 import { AIPlayerCore } from '../core/battle-manager.js';
 import { HeadlessEngine } from '../core/headless-engine.js';
 import { ThreePointLineManager, TPL_EVENTS } from '../core/three-point-line-manager.js';
+import { Director, detectPhase } from '../core/director.js';
+import { DramaTracker } from '../core/drama-metrics.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(__dirname, '..');
@@ -72,6 +74,10 @@ const OBSERVER_WINDOW = (() => { const m = process.argv.find((a) => a.startsWith
 const OBSERVER_INTENSITY = (() => { const m = process.argv.find((a) => a.startsWith('--observerIntensity=')); return m ? Number(m.split('=')[1]) : null; })();
 // v2.0：AI 自动连线绝杀决策（默认开启；--noAutoLink 关闭）
 const AUTO_LINK = !process.argv.includes('--noAutoLink');
+// CM4-D1：Director Shadow Mode——注入 Director（只记录建议，不改行为），输出 ε 校准报告
+const DIRECTOR_SHADOW = process.argv.includes('--directorShadow');
+// CM4-R6：Director Active Mode——注入 Director 并启用 Strategy Activation Layer（调制 Solver 旋钮）
+const DIRECTOR_ACTIVE = process.argv.includes('--directorActive');
 
 // v2.0：命令行人格别名 → AI_PERSONALITIES 有效 key（'ying'/'yan' 在人格表不存在，会回退 steady 导致 noteRate=0）
 const PERSONALITY_ALIASES = {
@@ -197,6 +203,9 @@ async function playOnce() {
 
   // 事件计数器
   const evCount = {};
+  // CM4-D1 步骤5：戏剧质量指标采样器
+  const drama = new DramaTracker();
+  let currentProgress = 0; // 供 onEvent 记录决定性事件发生时的进度
 
   // ---- 创建三点连线管理器 ----
   const tplOptions = {};
@@ -211,6 +220,11 @@ async function playOnce() {
   tplOptions.headless = true;
   tplOptions.onEvent = (event, data) => {
     evCount[event] = (evCount[event] || 0) + 1;
+    // CM4-D1 步骤5：决定性事件采样（据点占领/迁移/连线威胁/绝杀——供 Climax Density）
+    if ([TPL_EVENTS.HUB_OCCUPIED, TPL_EVENTS.HUB_MIGRATED, TPL_EVENTS.HUB_MIGRATE_FAIL,
+      TPL_EVENTS.LINE_READY, TPL_EVENTS.THREE_POINT_LINE].indexOf(event) >= 0) {
+      drama.recordEvent(currentProgress);
+    }
     // 捕获连击里程碑事件（替代外部手动计算）
     if (event === TPL_EVENTS.COMBO_MILESTONE) {
       milestoneEvents.push({ step: stepN, ...data });
@@ -232,6 +246,17 @@ async function playOnce() {
     }, false, !NO_OBSERVER);
   const bossAI = new AIPlayerCore(board, resolvePersonality(SPAWN),
     (r, c) => null, false, !NO_OBSERVER);
+
+  // CM4-D1：Director Shadow Mode——注入 Director（只记录建议，不改行为）
+  // CM4-R6：directorActive 时 shadow=false，启用 Strategy Activation Layer（调制旋钮）
+  let playerDir = null, bossDir = null;
+  if (DIRECTOR_SHADOW || DIRECTOR_ACTIVE) {
+    const shadow = DIRECTOR_SHADOW && !DIRECTOR_ACTIVE; // active 优先级高于 shadow
+    playerDir = new Director({ personality: resolvePersonality(PLAYER) });
+    bossDir = new Director({ personality: resolvePersonality(SPAWN) });
+    if (typeof playerAI.setDirector === 'function') playerAI.setDirector(playerDir, shadow);
+    if (typeof bossAI.setDirector === 'function') bossAI.setDirector(bossDir, shadow);
+  }
 
   // V4.3.39：A/B 测试——运行时覆盖玩家/spawn 侧 AI 的笔记率与假笔记率
   if (typeof playerAI.getPersonality === 'function' && PLAYER_NOTE_RATE !== null) {
@@ -311,6 +336,18 @@ async function playOnce() {
       return c;
     })();
     const progress = totalEmpty > 0 ? filledSoFar / totalEmpty : 0;
+    currentProgress = progress;
+    // CM4-D1 步骤5：每步采样戏剧指标（Emotional Swing / Comeback Window）
+    {
+      const hubNow = tpl.getHubProgress();
+      const pHubs = hubNow.filter((h) => h.occupiedBy === 'player').length;
+      const bHubs = hubNow.filter((h) => h.occupiedBy === 'boss').length;
+      drama.recordStep({
+        step: stepN, progress,
+        selfHubCount: pHubs, opponentHubCount: bHubs,
+        phase: detectPhase({ progress, selfHubCount: pHubs, opponentHubCount: bHubs }),
+      });
+    }
 
     // 更新双方 AI 的 ownership 和游戏状态
     if (typeof playerAI.setOwnershipGrids === 'function') {
@@ -507,6 +544,9 @@ async function playOnce() {
     ai.syncFromBoard(board);
     opponentAI.syncFromBoard(board);
 
+    // CM4-D1 步骤5：记录本侧据点宫填数（供 Threat Readability 集中度）
+    drama.recordHubMove(side, _hubBlockIndexOf(tpl, board, row, col));
+
     trace.push({
       step: stepN, side, action: 'fill', r: row, c: col, num,
       correct: isCorrect, filled: tplResult.success,
@@ -556,6 +596,24 @@ async function playOnce() {
     hubState,
     traceLen: trace.length,
     steps: stepN,
+    // CM4-D1 步骤5：戏剧质量指标（结构代理）
+    dramaMetrics: drama.finalize(),
+    // CM4-D1：Director Shadow 汇总
+    directorShadow: DIRECTOR_SHADOW
+      ? {
+          player: playerDir ? playerDir.summarizeShadow() : null,
+          boss: bossDir ? bossDir.summarizeShadow() : null,
+        }
+      : null,
+    // CM4-R6：Strategy Activation Layer 运行统计（active 模式）
+    strategyActivation: DIRECTOR_ACTIVE
+      ? {
+          player: (playerAI && typeof playerAI.getStrategySelectorStats === 'function')
+            ? playerAI.getStrategySelectorStats() : null,
+          boss: (bossAI && typeof bossAI.getStrategySelectorStats === 'function')
+            ? bossAI.getStrategySelectorStats() : null,
+        }
+      : null,
   };
 }
 
@@ -656,6 +714,50 @@ async function playOnce() {
     },
     thinkNull: agg.nullStats,
     events: agg.events,
+    // CM4-D1：Director Shadow 汇总（校准双级 ε）
+    directorShadow: DIRECTOR_SHADOW ? (() => {
+      const acc = (key) => {
+        const total = results.reduce((a, r) => a + (r.directorShadow?.[key]?.total || 0), 0);
+        const same = results.reduce((a, r) => a + (r.directorShadow?.[key]?.recommendVsActual?.same || 0), 0);
+        const diff = results.reduce((a, r) => a + (r.directorShadow?.[key]?.recommendVsActual?.diff || 0), 0);
+        const gatedCount = results.reduce((a, r) => a + (r.directorShadow?.[key]?.gatedCount || 0), 0);
+        const perStrategy = {};
+        const phaseDist = {};
+        for (const r of results) {
+          const sh = r.directorShadow?.[key];
+          if (!sh) continue;
+          for (const [id, c] of Object.entries(sh.perStrategy || {})) perStrategy[id] = (perStrategy[id] || 0) + c;
+          for (const [ph, c] of Object.entries(sh.phaseDist || {})) phaseDist[ph] = (phaseDist[ph] || 0) + c;
+        }
+        return {
+          total, same, diff,
+          diffRatio: total ? ((diff / total) * 100).toFixed(1) + '%' : 'N/A',
+          gatedCount, perStrategy, phaseDist,
+        };
+      };
+      return { player: acc('player'), boss: acc('boss') };
+    })() : null,
+    // CM4-D1 步骤5：戏剧质量指标聚合（跨局均值）
+    dramaAvg: (() => {
+      const n = results.length;
+      const avg = (k) => n ? Number((results.reduce((a, r) => a + (r.dramaMetrics?.[k] || 0), 0) / n).toFixed(2)) : 0;
+      const threat = { player: 0, boss: 0 };
+      for (const r of results) {
+        const t = r.dramaMetrics?.threatReadability || {};
+        threat.player += t.player || 0;
+        threat.boss += t.boss || 0;
+      }
+      return {
+        emotionalSwing: avg('emotionalSwing'),
+        comebackWindow: avg('comebackWindow'),
+        climaxDensity: avg('climaxDensity'),
+        decisiveEventsPerRound: avg('decisiveEvents'),
+        threatReadabilityMean: n ? {
+          player: Number((threat.player / n).toFixed(3)),
+          boss: Number((threat.boss / n).toFixed(3)),
+        } : { player: 0, boss: 0 },
+      };
+    })(),
     milestoneAvg: (agg.milestoneTotal / ROUNDS).toFixed(1),
     avgOwned: {
       player: (agg.playerOwned / ROUNDS).toFixed(1),
@@ -704,6 +806,20 @@ async function playOnce() {
     perRound: results.map((r) =>
       `${r.winner}(${r.winPath || '?'}) 玩家${r.playerCount}:Boss${r.aiCount} 据点${r.playerHubs}:${r.aiHubs} 连击${r.playerCombo}:${r.aiCombo}`
     ),
+    // CM4-R6：Strategy Activation Layer 聚合（active 模式）
+    strategyActivation: DIRECTOR_ACTIVE ? (() => {
+      const acc = (key) => {
+        const items = results.map((r) => r.strategyActivation?.[key]).filter(Boolean);
+        return {
+          enabled: items[0]?.enabled ?? null,
+          activations: items.reduce((a, r) => a + (r.activations || 0), 0),
+          fallbacks: items.reduce((a, r) => a + (r.fallbacks || 0), 0),
+          lastReason: items[0]?.lastReason ?? null,
+          rounds: items.length,
+        };
+      };
+      return { player: acc('player'), boss: acc('boss') };
+    })() : null,
   };
 
   console.log(JSON.stringify(out, null, 1));

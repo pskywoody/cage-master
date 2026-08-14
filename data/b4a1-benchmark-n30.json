@@ -1,0 +1,76 @@
+{
+  "generatedAt": "2026-08-10T16:13:30.357Z",
+  "config": {
+    "count": 30,
+    "seed": 20260810
+  },
+  "frozen": {
+    "lambda": 25,
+    "growthBias": 0.4,
+    "shapeDiversityWeight": 0.2,
+    "suppressSingletons": true,
+    "objective": "enabled"
+  },
+  "variable": {
+    "topologyPrior": {
+      "enabled": true,
+      "templateBias": 0.5
+    }
+  },
+  "baseline": {
+    "levels": 30,
+    "totalCages": 659,
+    "uniqueShapes": 21,
+    "entropyH": 2.626,
+    "singletonRatio": 0.0409711684370258,
+    "top4Share": 0.5265553869499241,
+    "complexShare": 0.34749620637329287,
+    "ratioMean": 0.21820858996373793,
+    "avgScore": 530,
+    "uniqueAll": true,
+    "sizeShare": {
+      "1": 0.0409711684370258,
+      "2": 0.13505311077389984,
+      "3": 0.24279210925644917,
+      "4": 0.25796661608497723,
+      "5": 0.3232169954476479
+    },
+    "templateBirths": 0
+  },
+  "prior": {
+    "levels": 30,
+    "totalCages": 658,
+    "uniqueShapes": 21,
+    "entropyH": 2.602,
+    "singletonRatio": 0.0364741641337386,
+    "top4Share": 0.560790273556231,
+    "complexShare": 0.3404255319148936,
+    "ratioMean": 0.22438447272811202,
+    "avgScore": 499.2,
+    "uniqueAll": true,
+    "sizeShare": {
+      "1": 0.0364741641337386,
+      "2": 0.13677811550151975,
+      "3": 0.2613981762917933,
+      "4": 0.22796352583586627,
+      "5": 0.3373860182370821
+    },
+    "templateBirths": 0
+  },
+  "comparison": {
+    "top4ShareDelta": 0.034,
+    "entropyDelta": -0.024,
+    "complexDelta": -0.007,
+    "ratioDelta": 0.006,
+    "scoreDelta": -31
+  },
+  "gates": {
+    "top4_down": false,
+    "entropy_ge_260": true,
+    "complex_not_down": false,
+    "ratio_not_worse": true,
+    "score_stable": false,
+    "unique_all": true
+  },
+  "verdict": "FAIL：出生先验未带来健康改善。记录结果，不微调（B4-A1 原则）。"
+}

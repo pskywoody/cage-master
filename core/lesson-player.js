@@ -440,7 +440,7 @@ export class LessonPlayer {
             expectedNote: guided.expectedNote,
             hintText: next.hintText || guided.successText,
           });
-          this._showBubble(next.hintText || guided.successText, '守笼人', guided.successVoiceId || null);
+          this._showBubble(next.hintText || guided.successText, '伊藤', guided.successVoiceId || null);
           // 2026-08-04：遥测——链跳转后的新引导格
           this._recordLessonEvent('guided', {
             cell: this._activeGuidedCell.slice(),
@@ -452,7 +452,7 @@ export class LessonPlayer {
 
         // 全部填完：总结 + 进入半自动
         this._isWaitingInput = false;
-        this._showBubble(guided.successText || '答对了！', '守笼人', guided.successVoiceId || null);
+        this._showBubble(guided.successText || '答对了！', '伊藤', guided.successVoiceId || null);
         this._emit('onInputResult', 'success', { phase: 'guided', attempts: this._guidedAttempts });
         this._clearAllHighlights();
         this._delayThen(() => this._enterSemiAutoOrFree(), 1600); // 手感审计：1800→1600ms，成功提示停留略紧凑
@@ -497,12 +497,12 @@ export class LessonPlayer {
             this._emit('onAction', { type: 'highlightCell', r, c, enabled: false });
             const remaining = targetCount - this._semiAutoFilled;
             if (remaining > 0) {
-              this._showBubble('填对了！还剩 ' + remaining + ' 个引导格。', '守笼人', null);
+              this._showBubble('填对了！还剩 ' + remaining + ' 个引导格。', '伊藤', null);
             }
           } else if (!isCorrect) {
             // V4.3.29：semiAuto 填错 → 鼓励，不惩罚不卡死
             this._emit('onAction', { type: 'shakeCell', r, c });
-            this._showBubble('不对哦，再想想～每个引导格都能用学过的规则推出来。', '守笼人', null);
+            this._showBubble('不对哦，再想想～每个引导格都能用学过的规则推出来。', '伊藤', null);
           }
         } catch (e) {
           if (isCorrect) this._semiAutoFilled++;
@@ -560,7 +560,7 @@ export class LessonPlayer {
 
       if (allPresent) {
         this._isWaitingInput = false;
-        this._showBubble(guided.successText || '笔记记好了！', '守笼人', guided.successVoiceId || null);
+        this._showBubble(guided.successText || '笔记记好了！', '伊藤', guided.successVoiceId || null);
         this._emit('onInputResult', 'success', { phase: 'guided', noteComplete: true });
         this._clearAllHighlights();
         this._delayThen(() => this._enterSemiAutoOrFree(), 1500);
@@ -590,7 +590,7 @@ export class LessonPlayer {
         this._emit('onAction', { type: 'highlightCell', r, c, enabled: false });
         const remaining = targetCount - this._semiAutoFilled;
         if (remaining > 0) {
-          this._showBubble('记对了！还剩 ' + remaining + ' 个引导格。', '守笼人', null);
+          this._showBubble('记对了！还剩 ' + remaining + ' 个引导格。', '伊藤', null);
         }
       }
 
@@ -619,7 +619,7 @@ export class LessonPlayer {
 
       this._whatIfEntered = true;
       this._isWaitingInput = false;
-      this._showBubble(guided.successText || '进入假设模式试试吧。', '守笼人', guided.successVoiceId || null);
+      this._showBubble(guided.successText || '进入假设模式试试吧。', '伊藤', guided.successVoiceId || null);
       this._emit('onInputResult', 'success', { phase: 'guided', whatIfEntered: true });
       this._clearAllHighlights();
       this._delayThen(() => this._enterSemiAutoOrFree(), 1500);
@@ -659,12 +659,12 @@ export class LessonPlayer {
         const targetCount2 = semiAuto.targetCount || 3;
         const remaining = targetCount2 - this._semiAutoFilled;
         if (remaining > 0) {
-          this._showBubble('填对了！还剩 ' + remaining + ' 个引导格。', '守笼人', null);
+          this._showBubble('填对了！还剩 ' + remaining + ' 个引导格。', '伊藤', null);
         }
       } else if (!isCorrect) {
         // V4.3.29：semiAuto 填错 → 鼓励
         this._emit('onAction', { type: 'shakeCell', r, c });
-        this._showBubble('不对哦，再想想～每个引导格都能用学过的规则推出来。', '守笼人', null);
+        this._showBubble('不对哦，再想想～每个引导格都能用学过的规则推出来。', '伊藤', null);
       }
 
       const targetCount = semiAuto.targetCount || 3;
@@ -737,7 +737,7 @@ export class LessonPlayer {
         this._emit('onAction', { type: 'focusCell', r, c });
       }
 
-      this._showBubble(intro.text, intro.speaker || '守笼人', intro.voiceId || null);
+      this._showBubble(intro.text, intro.speaker || '伊藤', intro.voiceId || null);
       // 2026-08-03：intro 改为点击任意位置继续（不再自动消失）
     } catch (err) {
       console.error('[LessonPlayer] _playIntro 出错:', err);
@@ -797,7 +797,7 @@ export class LessonPlayer {
       const hintText = guided.hintText || guided.autoRevealText ||
         '点击右上角「假设」按钮（或按 W 键）进入假设模式，再尝试填入答案。';
       this._emit('onNeedInput', 'guided', { interactionType, hintText: hintText });
-      this._showBubble(hintText, '守笼人', guided.voiceId || null);
+      this._showBubble(hintText, '伊藤', guided.voiceId || null);
       this._recordLessonEvent('guided', { interactionType, hintText: hintText });
       if (guided.autoRevealAfter > 0 && guided.targetCell) {
         this._startGuidedTimeout(guided.targetCell, null, hintText);
@@ -817,7 +817,7 @@ export class LessonPlayer {
     if (guided.methodText) {
       this._guidedExplaining = true;
       this._isWaitingInput = false;
-      this._showBubble(guided.methodText, '守笼人', guided.voiceId || null);
+      this._showBubble(guided.methodText, '伊藤', guided.voiceId || null);
       // 2026-08-03：方法讲解等待玩家点击任意位置继续（advance() 处理跳转）
     } else {
       this._beginGuidedInput();
@@ -847,7 +847,7 @@ export class LessonPlayer {
     if (!target) {
       // 链上全部已填：直接总结进入下一阶段
       this._isWaitingInput = false;
-      this._showBubble(guided.successText || '答对了！', '守笼人', guided.successVoiceId || null);
+      this._showBubble(guided.successText || '答对了！', '伊藤', guided.successVoiceId || null);
       this._emit('onInputResult', 'success', { phase: 'guided', attempts: this._guidedAttempts });
       this._clearAllHighlights();
       this._delayThen(() => this._enterSemiAutoOrFree(), 1600); // 手感审计：1800→1600ms（与 458 行一致）
@@ -874,7 +874,7 @@ export class LessonPlayer {
     const hintText = guided.hintText || (guided.interactionType === 'NOTE_ONLY'
       ? '在目标格中记下候选数吧。'
       : '试试在这里填入正确的数字。');
-    this._showBubble(hintText, '守笼人', guided.voiceId || null);
+    this._showBubble(hintText, '伊藤', guided.voiceId || null);
     // 2026-08-04：遥测——引导提示（目标格 + 期望值）
     this._recordLessonEvent('guided', { cell: target.slice(), value: value, hintText: hintText });
 
@@ -903,7 +903,7 @@ export class LessonPlayer {
       this._guidedTimeoutTimer = null;
       if (!this._isActive || this._currentPhase !== 'guided' || !this._isWaitingInput) return;
       // 超时：仅弹一次提示鼓励玩家继续尝试（V4.3.29：不自动揭示，必须玩家亲手填）
-      this._showBubble(hintText, '守笼人', guided.voiceId || null);
+      this._showBubble(hintText, '伊藤', guided.voiceId || null);
       this._recordLessonEvent('timeout_hint', { cell: [r, c], text: hintText });
     }, timeoutMs);
   }
@@ -948,7 +948,7 @@ export class LessonPlayer {
     });
 
     const hintText = (ntf.hintText || guided?.hintText || '先在目标格中记下候选数，再填入正确答案。');
-    this._showBubble(hintText, '守笼人', ntf.voiceId || guided?.voiceId || null);
+    this._showBubble(hintText, '伊藤', ntf.voiceId || guided?.voiceId || null);
   }
 
   /**
@@ -975,7 +975,7 @@ export class LessonPlayer {
     if (allPresent) {
       // 笔记完成后，自动进入 semiAuto 阶段
       this._isWaitingInput = false;
-      this._showBubble(guided.successText || '笔记记好了！现在试试填入正确答案吧。', '守笼人', guided.successVoiceId || null);
+      this._showBubble(guided.successText || '笔记记好了！现在试试填入正确答案吧。', '伊藤', guided.successVoiceId || null);
       this._emit('onInputResult', 'success', { phase: 'noteToFill', noteComplete: true });
       this._emit('onAction', { type: 'highlightButton', button: 'note', highlight: false });
       this._clearAllHighlights();
@@ -1015,7 +1015,7 @@ export class LessonPlayer {
     const encourage = attemptExceeded
       ? '差一点！别灰心，再想想——' + (guided.failHint || '再试一次，你能行的。')
       : (guided.failHint || '不对哦，再看看。');
-    this._showBubble(encourage, '守笼人', null);
+    this._showBubble(encourage, '伊藤', null);
     // 2026-08-04：遥测——填错提示（failHint 触发）
     this._recordLessonEvent('fail', {
       cell: (Array.isArray(target) && target.length === 2) ? target.slice() : null,
@@ -1040,7 +1040,7 @@ export class LessonPlayer {
       // V4.3.27：修复卡死——揭示后保持等待玩家点击「假设」按钮，并重启超时提示
       this._isWaitingInput = true;
       this._guidedAttempts = 0;
-      this._showBubble(guided.autoRevealText || '看到右上角的"假设"按钮了吗？点击它进入假设模式试试吧。', '守笼人', null);
+      this._showBubble(guided.autoRevealText || '看到右上角的"假设"按钮了吗？点击它进入假设模式试试吧。', '伊藤', null);
       this._emit('onAction', { type: 'highlightButton', button: 'whatif', highlight: true });
       this._emit('onInputResult', 'auto_reveal_whatif', {});
       this._recordLessonEvent('reveal', { interactionType: 'WHAT_IF_ENTRY', autoReveal: true });
@@ -1061,13 +1061,13 @@ export class LessonPlayer {
       }
       this._emit('onAction', { type: 'highlightCell', r, c, mode: 'success' });
       const noteList = expectedNote.join('、');
-      this._showBubble('这里应该先记笔记：' + noteList + '。没关系，继续加油！', '守笼人', null);
+      this._showBubble('这里应该先记笔记：' + noteList + '。没关系，继续加油！', '伊藤', null);
       this._emit('onInputResult', 'auto_reveal_note', { cell: [r, c], notes: expectedNote });
     } else {
       // NUMBER 模式：自动填入正确答案
       this._engine.fillCell(r, c, guided.correctValue);
       this._emit('onAction', { type: 'highlightCell', r, c, mode: 'success' });
-      this._showBubble('这里应该填 ' + guided.correctValue + '。没关系，继续加油！', '守笼人', null);
+      this._showBubble('这里应该填 ' + guided.correctValue + '。没关系，继续加油！', '伊藤', null);
       this._emit('onInputResult', 'auto_reveal', { cell: [r, c], value: guided.correctValue });
     }
 
@@ -1113,7 +1113,7 @@ export class LessonPlayer {
     }
 
     const hintText = semiAuto.hintText || '试试用同样的思路，再找几个可以确定的数字。';
-    this._showBubble(hintText, '守笼人', semiAuto.voiceId || null);
+    this._showBubble(hintText, '伊藤', semiAuto.voiceId || null);
 
     if (semiAuto.watchCells && semiAuto.watchCells.length > 0) {
       this._clearAllHighlights();
@@ -1142,7 +1142,7 @@ export class LessonPlayer {
     this._setFreezeEnabled(false);
 
     if (free?.unlockText) {
-      this._showBubble(free.unlockText, '守笼人', null);
+      this._showBubble(free.unlockText, '伊藤', null);
     }
 
     // V4.3.31：进入自由模式后检查一次雪崩收尾（仅在剩余空格 ≤5 时触发，
@@ -1199,7 +1199,7 @@ export class LessonPlayer {
         }
 
         // 显示回退气泡
-        this._showBubble('教学出现了一点小问题，我们回到上一步重试。', '守笼人', null);
+        this._showBubble('教学出现了一点小问题，我们回到上一步重试。', '伊藤', null);
         return;
       }
     }
@@ -1209,7 +1209,7 @@ export class LessonPlayer {
     this._currentPhase = 'free';
     this._isActive = false;
     this._isWaitingInput = false;
-    this._showBubble('教学出现异常，已切换到自由模式，你可以继续游戏。', '守笼人', null);
+    this._showBubble('教学出现异常，已切换到自由模式，你可以继续游戏。', '伊藤', null);
     this._delayThen(() => {
       this._emit('onComplete');
     }, 1000);
@@ -1221,7 +1221,7 @@ export class LessonPlayer {
     const { action, target, text, voiceId } = step;
 
     if (text) {
-      this._showBubble(text, step.speaker || '守笼人', voiceId);
+      this._showBubble(text, step.speaker || '伊藤', voiceId);
     }
 
     switch (action) {

@@ -1,0 +1,51 @@
+{
+  "boss.short_stroke.victory.01": {
+    "level": "level-109",
+    "boss_id": "short_stroke",
+    "type": "B",
+    "phase": "victory",
+    "text": "보스 격파：단횡（익명의 발신자）"
+  },
+  "boss.shenshian.victory.01": {
+    "level": "level-209",
+    "boss_id": "shenshian",
+    "type": "B",
+    "phase": "victory",
+    "text": "보스 격파：아버지・심세안（이루어지지 않은 길）"
+  },
+  "boss.ito_1.victory.01": {
+    "level": "level-309",
+    "boss_id": "ito_1",
+    "type": "B",
+    "phase": "victory",
+    "text": "보스 격파：이토（첫 교전）"
+  },
+  "boss.yamada_tokko.victory.01": {
+    "level": "level-409",
+    "boss_id": "yamada_tokko",
+    "type": "B",
+    "phase": "victory",
+    "text": "보스 격파：야마다 특고과（첫 교전）"
+  },
+  "boss.df_unit.victory.01": {
+    "level": "level-509",
+    "boss_id": "df_unit",
+    "type": "B",
+    "phase": "victory",
+    "text": "보스 격파：일본군 무선 방향 탐지대"
+  },
+  "boss.yamada_chief.victory.01": {
+    "level": "level-609",
+    "boss_id": "yamada_chief",
+    "type": "B",
+    "phase": "victory",
+    "text": "보스 격파：야마다 과장（최종 교전）"
+  },
+  "boss.ito_final.victory.01": {
+    "level": "level-809",
+    "boss_id": "ito_final",
+    "type": "B",
+    "phase": "victory",
+    "text": "보스 격파：이토（최종 대결）"
+  }
+}

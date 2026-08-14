@@ -1,0 +1,2555 @@
+{
+  "snapshot": "v0",
+  "frozen_at": "2026-08-09T19:16:42.442Z",
+  "source_report": "data\\cage-audit-report.json",
+  "report": {
+    "generatedAt": "2026-08-09T19:16:16.464Z",
+    "scope": {
+      "gridSize": 9,
+      "totalLevels": 48
+    },
+    "thresholds": {
+      "largeCageMin": 4,
+      "largeCageRatioTarget": 0.15
+    },
+    "per_level": [
+      {
+        "levelId": 204,
+        "gridSize": 9,
+        "difficulty": "普通",
+        "difficultyLevel": 4,
+        "cageCount": 28,
+        "totalCells": 81,
+        "size_distribution": {
+          "1": 3,
+          "2": 6,
+          "3": 10,
+          "4": 9,
+          "5+": 0
+        },
+        "operation_distribution": {
+          "+": 28,
+          "-": 0,
+          "*": 0,
+          "/": 0
+        },
+        "maxCageSize": 4,
+        "bigCageCount": 9,
+        "bigCageRatio": 0.32142857142857145,
+        "bigCagePass": true,
+        "singleCellCageCount": 3,
+        "solvable": true,
+        "difficulty_score": -50,
+        "difficulty_norm": 0,
+        "difficulty_level": "1星",
+        "totalSteps": 49,
+        "nonTrivialRatio": 0,
+        "maxTechLevel": 1,
+        "remainingCells": 0,
+        "logic_required": [],
+        "techCount": {
+          "nakedSingle": 49
+        },
+        "cage_reasoning_used": false,
+        "cage_reasoning_ratio": 0
+      },
+      {
+        "levelId": 205,
+        "gridSize": 9,
+        "difficulty": "中等",
+        "difficultyLevel": 5,
+        "cageCount": 27,
+        "totalCells": 81,
+        "size_distribution": {
+          "1": 2,
+          "2": 7,
+          "3": 10,
+          "4": 5,
+          "5+": 3
+        },
+        "operation_distribution": {
+          "+": 27,
+          "-": 0,
+          "*": 0,
+          "/": 0
+        },
+        "maxCageSize": 5,
+        "bigCageCount": 8,
+        "bigCageRatio": 0.2962962962962963,
+        "bigCagePass": true,
+        "singleCellCageCount": 2,
+        "solvable": true,
+        "difficulty_score": -50,
+        "difficulty_norm": 0,
+        "difficulty_level": "1星",
+        "totalSteps": 49,
+        "nonTrivialRatio": 0,
+        "maxTechLevel": 1,
+        "remainingCells": 0,
+        "logic_required": [],
+        "techCount": {
+          "nakedSingle": 49
+        },
+        "cage_reasoning_used": false,
+        "cage_reasoning_ratio": 0
+      },
+      {
+        "levelId": 206,
+        "gridSize": 9,
+        "difficulty": "中等",
+        "difficultyLevel": 5,
+        "cageCount": 27,
+        "totalCells": 81,
+        "size_distribution": {
+          "1": 2,
+          "2": 6,
+          "3": 12,
+          "4": 4,
+          "5+": 3
+        },
+        "operation_distribution": {
+          "+": 27,
+          "-": 0,
+          "*": 0,
+          "/": 0
+        },
+        "maxCageSize": 5,
+        "bigCageCount": 7,
+        "bigCageRatio": 0.25925925925925924,
+        "bigCagePass": true,
+        "singleCellCageCount": 2,
+        "solvable": true,
+        "difficulty_score": -50,
+        "difficulty_norm": 0,
+        "difficulty_level": "1星",
+        "totalSteps": 49,
+        "nonTrivialRatio": 0,
+        "maxTechLevel": 1,
+        "remainingCells": 0,
+        "logic_required": [],
+        "techCount": {
+          "nakedSingle": 49
+        },
+        "cage_reasoning_used": false,
+        "cage_reasoning_ratio": 0
+      },
+      {
+        "levelId": 207,
+        "gridSize": 9,
+        "difficulty": "中等",
+        "difficultyLevel": 6,
+        "cageCount": 25,
+        "totalCells": 81,
+        "size_distribution": {
+          "1": 2,
+          "2": 3,
+          "3": 10,
+          "4": 7,
+          "5+": 3
+        },
+        "operation_distribution": {
+          "+": 25,
+          "-": 0,
+          "*": 0,
+          "/": 0
+        },
+        "maxCageSize": 5,
+        "bigCageCount": 10,
+        "bigCageRatio": 0.4,
+        "bigCagePass": true,
+        "singleCellCageCount": 2,
+        "solvable": true,
+        "difficulty_score": -50,
+        "difficulty_norm": 0,
+        "difficulty_level": "1星",
+        "totalSteps": 49,
+        "nonTrivialRatio": 0,
+        "maxTechLevel": 1,
+        "remainingCells": 0,
+        "logic_required": [],
+        "techCount": {
+          "nakedSingle": 49
+        },
+        "cage_reasoning_used": false,
+        "cage_reasoning_ratio": 0
+      },
+      {
+        "levelId": 208,
+        "gridSize": 9,
+        "difficulty": "中等",
+        "difficultyLevel": 7,
+        "cageCount": 28,
+        "totalCells": 81,
+        "size_distribution": {
+          "1": 3,
+          "2": 7,
+          "3": 10,
+          "4": 6,
+          "5+": 2
+        },
+        "operation_distribution": {
+          "+": 28,
+          "-": 0,
+          "*": 0,
+          "/": 0
+        },
+        "maxCageSize": 5,
+        "bigCageCount": 8,
+        "bigCageRatio": 0.2857142857142857,
+        "bigCagePass": true,
+        "singleCellCageCount": 3,
+        "solvable": true,
+        "difficulty_score": -50,
+        "difficulty_norm": 0,
+        "difficulty_level": "1星",
+        "totalSteps": 49,
+        "nonTrivialRatio": 0,
+        "maxTechLevel": 1,
+        "remainingCells": 0,
+        "logic_required": [],
+        "techCount": {
+          "nakedSingle": 49
+        },
+        "cage_reasoning_used": false,
+        "cage_reasoning_ratio": 0
+      },
+      {
+        "levelId": 301,
+        "gridSize": 9,
+        "difficulty": "普通",
+        "difficultyLevel": 4,
+        "cageCount": 26,
+        "totalCells": 81,
+        "size_distribution": {
+          "1": 2,
+          "2": 6,
+          "3": 8,
+          "4": 7,
+          "5+": 3
+        },
+        "operation_distribution": {
+          "+": 26,
+          "-": 0,
+          "*": 0,
+          "/": 0
+        },
+        "maxCageSize": 5,
+        "bigCageCount": 10,
+        "bigCageRatio": 0.38461538461538464,
+        "bigCagePass": true,
+        "singleCellCageCount": 2,
+        "solvable": true,
+        "difficulty_score": -50,
+        "difficulty_norm": 0,
+        "difficulty_level": "1星",
+        "totalSteps": 49,
+        "nonTrivialRatio": 0,
+        "maxTechLevel": 1,
+        "remainingCells": 0,
+        "logic_required": [],
+        "techCount": {
+          "nakedSingle": 49
+        },
+        "cage_reasoning_used": false,
+        "cage_reasoning_ratio": 0
+      },
+      {
+        "levelId": 302,
+        "gridSize": 9,
+        "difficulty": "普通",
+        "difficultyLevel": 4,
+        "cageCount": 29,
+        "totalCells": 81,
+        "size_distribution": {
+          "1": 1,
+          "2": 11,
+          "3": 11,
+          "4": 5,
+          "5+": 1
+        },
+        "operation_distribution": {
+          "+": 29,
+          "-": 0,
+          "*": 0,
+          "/": 0
+        },
+        "maxCageSize": 5,
+        "bigCageCount": 6,
+        "bigCageRatio": 0.20689655172413793,
+        "bigCagePass": true,
+        "singleCellCageCount": 1,
+        "solvable": true,
+        "difficulty_score": -50,
+        "difficulty_norm": 0,
+        "difficulty_level": "1星",
+        "totalSteps": 49,
+        "nonTrivialRatio": 0,
+        "maxTechLevel": 1,
+        "remainingCells": 0,
+        "logic_required": [],
+        "techCount": {
+          "nakedSingle": 49
+        },
+        "cage_reasoning_used": false,
+        "cage_reasoning_ratio": 0
+      },
+      {
+        "levelId": 303,
+        "gridSize": 9,
+        "difficulty": "中等",
+        "difficultyLevel": 5,
+        "cageCount": 28,
+        "totalCells": 81,
+        "size_distribution": {
+          "1": 2,
+          "2": 8,
+          "3": 9,
+          "4": 9,
+          "5+": 0
+        },
+        "operation_distribution": {
+          "+": 28,
+          "-": 0,
+          "*": 0,
+          "/": 0
+        },
+        "maxCageSize": 4,
+        "bigCageCount": 9,
+        "bigCageRatio": 0.32142857142857145,
+        "bigCagePass": true,
+        "singleCellCageCount": 2,
+        "solvable": true,
+        "difficulty_score": -50,
+        "difficulty_norm": 0,
+        "difficulty_level": "1星",
+        "totalSteps": 49,
+        "nonTrivialRatio": 0,
+        "maxTechLevel": 1,
+        "remainingCells": 0,
+        "logic_required": [],
+        "techCount": {
+          "nakedSingle": 49
+        },
+        "cage_reasoning_used": false,
+        "cage_reasoning_ratio": 0
+      },
+      {
+        "levelId": 304,
+        "gridSize": 9,
+        "difficulty": "中等",
+        "difficultyLevel": 5,
+        "cageCount": 23,
+        "totalCells": 81,
+        "size_distribution": {
+          "1": 1,
+          "2": 4,
+          "3": 6,
+          "4": 6,
+          "5+": 6
+        },
+        "operation_distribution": {
+          "+": 23,
+          "-": 0,
+          "*": 0,
+          "/": 0
+        },
+        "maxCageSize": 5,
+        "bigCageCount": 12,
+        "bigCageRatio": 0.5217391304347826,
+        "bigCagePass": true,
+        "singleCellCageCount": 1,
+        "solvable": true,
+        "difficulty_score": -50,
+        "difficulty_norm": 0,
+        "difficulty_level": "1星",
+        "totalSteps": 49,
+        "nonTrivialRatio": 0,
+        "maxTechLevel": 1,
+        "remainingCells": 0,
+        "logic_required": [],
+        "techCount": {
+          "nakedSingle": 49
+        },
+        "cage_reasoning_used": false,
+        "cage_reasoning_ratio": 0
+      },
+      {
+        "levelId": 305,
+        "gridSize": 9,
+        "difficulty": "中等",
+        "difficultyLevel": 6,
+        "cageCount": 27,
+        "totalCells": 81,
+        "size_distribution": {
+          "1": 4,
+          "2": 6,
+          "3": 6,
+          "4": 8,
+          "5+": 3
+        },
+        "operation_distribution": {
+          "+": 27,
+          "-": 0,
+          "*": 0,
+          "/": 0
+        },
+        "maxCageSize": 5,
+        "bigCageCount": 11,
+        "bigCageRatio": 0.4074074074074074,
+        "bigCagePass": true,
+        "singleCellCageCount": 4,
+        "solvable": true,
+        "difficulty_score": -50,
+        "difficulty_norm": 0,
+        "difficulty_level": "1星",
+        "totalSteps": 49,
+        "nonTrivialRatio": 0,
+        "maxTechLevel": 1,
+        "remainingCells": 0,
+        "logic_required": [],
+        "techCount": {
+          "nakedSingle": 49
+        },
+        "cage_reasoning_used": false,
+        "cage_reasoning_ratio": 0
+      },
+      {
+        "levelId": 306,
+        "gridSize": 9,
+        "difficulty": "困难",
+        "difficultyLevel": 6,
+        "cageCount": 30,
+        "totalCells": 81,
+        "size_distribution": {
+          "1": 2,
+          "2": 11,
+          "3": 12,
+          "4": 4,
+          "5+": 1
+        },
+        "operation_distribution": {
+          "+": 30,
+          "-": 0,
+          "*": 0,
+          "/": 0
+        },
+        "maxCageSize": 5,
+        "bigCageCount": 5,
+        "bigCageRatio": 0.16666666666666666,
+        "bigCagePass": true,
+        "singleCellCageCount": 2,
+        "solvable": true,
+        "difficulty_score": -50,
+        "difficulty_norm": 0,
+        "difficulty_level": "1星",
+        "totalSteps": 49,
+        "nonTrivialRatio": 0,
+        "maxTechLevel": 1,
+        "remainingCells": 0,
+        "logic_required": [],
+        "techCount": {
+          "nakedSingle": 49
+        },
+        "cage_reasoning_used": false,
+        "cage_reasoning_ratio": 0
+      },
+      {
+        "levelId": 307,
+        "gridSize": 9,
+        "difficulty": "困难",
+        "difficultyLevel": 7,
+        "cageCount": 24,
+        "totalCells": 81,
+        "size_distribution": {
+          "1": 1,
+          "2": 4,
+          "3": 7,
+          "4": 9,
+          "5+": 3
+        },
+        "operation_distribution": {
+          "+": 24,
+          "-": 0,
+          "*": 0,
+          "/": 0
+        },
+        "maxCageSize": 5,
+        "bigCageCount": 12,
+        "bigCageRatio": 0.5,
+        "bigCagePass": true,
+        "singleCellCageCount": 1,
+        "solvable": true,
+        "difficulty_score": -50,
+        "difficulty_norm": 0,
+        "difficulty_level": "1星",
+        "totalSteps": 49,
+        "nonTrivialRatio": 0,
+        "maxTechLevel": 1,
+        "remainingCells": 0,
+        "logic_required": [],
+        "techCount": {
+          "nakedSingle": 49
+        },
+        "cage_reasoning_used": false,
+        "cage_reasoning_ratio": 0
+      },
+      {
+        "levelId": 399,
+        "gridSize": 9,
+        "difficulty": "困难",
+        "difficultyLevel": null,
+        "cageCount": 43,
+        "totalCells": 81,
+        "size_distribution": {
+          "1": 19,
+          "2": 12,
+          "3": 10,
+          "4": 2,
+          "5+": 0
+        },
+        "operation_distribution": {
+          "+": 43,
+          "-": 0,
+          "*": 0,
+          "/": 0
+        },
+        "maxCageSize": 4,
+        "bigCageCount": 2,
+        "bigCageRatio": 0.046511627906976744,
+        "bigCagePass": false,
+        "singleCellCageCount": 19,
+        "solvable": true,
+        "difficulty_score": -50,
+        "difficulty_norm": 0,
+        "difficulty_level": "1星",
+        "totalSteps": 41,
+        "nonTrivialRatio": 0,
+        "maxTechLevel": 1,
+        "remainingCells": 0,
+        "logic_required": [],
+        "techCount": {
+          "nakedSingle": 41
+        },
+        "cage_reasoning_used": false,
+        "cage_reasoning_ratio": 0
+      },
+      {
+        "levelId": 401,
+        "gridSize": 9,
+        "difficulty": "困难",
+        "difficultyLevel": 5,
+        "cageCount": 28,
+        "totalCells": 81,
+        "size_distribution": {
+          "1": 1,
+          "2": 10,
+          "3": 10,
+          "4": 5,
+          "5+": 2
+        },
+        "operation_distribution": {
+          "+": 28,
+          "-": 0,
+          "*": 0,
+          "/": 0
+        },
+        "maxCageSize": 5,
+        "bigCageCount": 7,
+        "bigCageRatio": 0.25,
+        "bigCagePass": true,
+        "singleCellCageCount": 1,
+        "solvable": true,
+        "difficulty_score": -50,
+        "difficulty_norm": 0,
+        "difficulty_level": "1星",
+        "totalSteps": 49,
+        "nonTrivialRatio": 0,
+        "maxTechLevel": 1,
+        "remainingCells": 0,
+        "logic_required": [],
+        "techCount": {
+          "nakedSingle": 49
+        },
+        "cage_reasoning_used": false,
+        "cage_reasoning_ratio": 0
+      },
+      {
+        "levelId": 402,
+        "gridSize": 9,
+        "difficulty": "困难",
+        "difficultyLevel": 5,
+        "cageCount": 23,
+        "totalCells": 81,
+        "size_distribution": {
+          "1": 1,
+          "2": 3,
+          "3": 8,
+          "4": 5,
+          "5+": 6
+        },
+        "operation_distribution": {
+          "+": 23,
+          "-": 0,
+          "*": 0,
+          "/": 0
+        },
+        "maxCageSize": 5,
+        "bigCageCount": 11,
+        "bigCageRatio": 0.4782608695652174,
+        "bigCagePass": true,
+        "singleCellCageCount": 1,
+        "solvable": true,
+        "difficulty_score": -50,
+        "difficulty_norm": 0,
+        "difficulty_level": "1星",
+        "totalSteps": 49,
+        "nonTrivialRatio": 0,
+        "maxTechLevel": 1,
+        "remainingCells": 0,
+        "logic_required": [],
+        "techCount": {
+          "nakedSingle": 49
+        },
+        "cage_reasoning_used": false,
+        "cage_reasoning_ratio": 0
+      },
+      {
+        "levelId": 403,
+        "gridSize": 9,
+        "difficulty": "困难",
+        "difficultyLevel": 6,
+        "cageCount": 27,
+        "totalCells": 81,
+        "size_distribution": {
+          "1": 3,
+          "2": 7,
+          "3": 9,
+          "4": 3,
+          "5+": 5
+        },
+        "operation_distribution": {
+          "+": 27,
+          "-": 0,
+          "*": 0,
+          "/": 0
+        },
+        "maxCageSize": 5,
+        "bigCageCount": 8,
+        "bigCageRatio": 0.2962962962962963,
+        "bigCagePass": true,
+        "singleCellCageCount": 3,
+        "solvable": true,
+        "difficulty_score": -50,
+        "difficulty_norm": 0,
+        "difficulty_level": "1星",
+        "totalSteps": 49,
+        "nonTrivialRatio": 0,
+        "maxTechLevel": 1,
+        "remainingCells": 0,
+        "logic_required": [],
+        "techCount": {
+          "nakedSingle": 49
+        },
+        "cage_reasoning_used": false,
+        "cage_reasoning_ratio": 0
+      },
+      {
+        "levelId": 404,
+        "gridSize": 9,
+        "difficulty": "专家",
+        "difficultyLevel": 6,
+        "cageCount": 28,
+        "totalCells": 81,
+        "size_distribution": {
+          "1": 1,
+          "2": 10,
+          "3": 11,
+          "4": 3,
+          "5+": 3
+        },
+        "operation_distribution": {
+          "+": 28,
+          "-": 0,
+          "*": 0,
+          "/": 0
+        },
+        "maxCageSize": 5,
+        "bigCageCount": 6,
+        "bigCageRatio": 0.21428571428571427,
+        "bigCagePass": true,
+        "singleCellCageCount": 1,
+        "solvable": true,
+        "difficulty_score": -50,
+        "difficulty_norm": 0,
+        "difficulty_level": "1星",
+        "totalSteps": 49,
+        "nonTrivialRatio": 0,
+        "maxTechLevel": 1,
+        "remainingCells": 0,
+        "logic_required": [],
+        "techCount": {
+          "nakedSingle": 49
+        },
+        "cage_reasoning_used": false,
+        "cage_reasoning_ratio": 0
+      },
+      {
+        "levelId": 405,
+        "gridSize": 9,
+        "difficulty": "专家",
+        "difficultyLevel": 7,
+        "cageCount": 26,
+        "totalCells": 81,
+        "size_distribution": {
+          "1": 3,
+          "2": 1,
+          "3": 15,
+          "4": 4,
+          "5+": 3
+        },
+        "operation_distribution": {
+          "+": 26,
+          "-": 0,
+          "*": 0,
+          "/": 0
+        },
+        "maxCageSize": 5,
+        "bigCageCount": 7,
+        "bigCageRatio": 0.2692307692307692,
+        "bigCagePass": true,
+        "singleCellCageCount": 3,
+        "solvable": true,
+        "difficulty_score": -50,
+        "difficulty_norm": 0,
+        "difficulty_level": "1星",
+        "totalSteps": 49,
+        "nonTrivialRatio": 0,
+        "maxTechLevel": 1,
+        "remainingCells": 0,
+        "logic_required": [],
+        "techCount": {
+          "nakedSingle": 49
+        },
+        "cage_reasoning_used": false,
+        "cage_reasoning_ratio": 0
+      },
+      {
+        "levelId": 406,
+        "gridSize": 9,
+        "difficulty": "大师",
+        "difficultyLevel": 8,
+        "cageCount": 27,
+        "totalCells": 81,
+        "size_distribution": {
+          "1": 3,
+          "2": 8,
+          "3": 5,
+          "4": 8,
+          "5+": 3
+        },
+        "operation_distribution": {
+          "+": 27,
+          "-": 0,
+          "*": 0,
+          "/": 0
+        },
+        "maxCageSize": 5,
+        "bigCageCount": 11,
+        "bigCageRatio": 0.4074074074074074,
+        "bigCagePass": true,
+        "singleCellCageCount": 3,
+        "solvable": true,
+        "difficulty_score": -50,
+        "difficulty_norm": 0,
+        "difficulty_level": "1星",
+        "totalSteps": 49,
+        "nonTrivialRatio": 0,
+        "maxTechLevel": 1,
+        "remainingCells": 0,
+        "logic_required": [],
+        "techCount": {
+          "nakedSingle": 49
+        },
+        "cage_reasoning_used": false,
+        "cage_reasoning_ratio": 0
+      },
+      {
+        "levelId": 410,
+        "gridSize": 9,
+        "difficulty": "简单",
+        "difficultyLevel": null,
+        "cageCount": 27,
+        "totalCells": 81,
+        "size_distribution": {
+          "1": 3,
+          "2": 6,
+          "3": 8,
+          "4": 8,
+          "5+": 2
+        },
+        "operation_distribution": {
+          "+": 27,
+          "-": 0,
+          "*": 0,
+          "/": 0
+        },
+        "maxCageSize": 5,
+        "bigCageCount": 10,
+        "bigCageRatio": 0.37037037037037035,
+        "bigCagePass": true,
+        "singleCellCageCount": 3,
+        "solvable": true,
+        "difficulty_score": 325,
+        "difficulty_norm": 3.3,
+        "difficulty_level": "2星",
+        "totalSteps": 79,
+        "nonTrivialRatio": 0.28,
+        "maxTechLevel": 4,
+        "remainingCells": 0,
+        "logic_required": [
+          "rule45",
+          "cageUnique",
+          "hiddenSingle"
+        ],
+        "techCount": {
+          "nakedSingle": 57,
+          "rule45": 2,
+          "cageUnique": 12,
+          "hiddenSingle": 8
+        },
+        "cage_reasoning_used": true,
+        "cage_reasoning_ratio": 0.177
+      },
+      {
+        "levelId": 499,
+        "gridSize": 9,
+        "difficulty": "大师",
+        "difficultyLevel": null,
+        "cageCount": 39,
+        "totalCells": 81,
+        "size_distribution": {
+          "1": 18,
+          "2": 8,
+          "3": 5,
+          "4": 8,
+          "5+": 0
+        },
+        "operation_distribution": {
+          "+": 39,
+          "-": 0,
+          "*": 0,
+          "/": 0
+        },
+        "maxCageSize": 4,
+        "bigCageCount": 8,
+        "bigCageRatio": 0.20512820512820512,
+        "bigCagePass": true,
+        "singleCellCageCount": 18,
+        "solvable": true,
+        "difficulty_score": -50,
+        "difficulty_norm": 0,
+        "difficulty_level": "1星",
+        "totalSteps": 45,
+        "nonTrivialRatio": 0,
+        "maxTechLevel": 1,
+        "remainingCells": 0,
+        "logic_required": [],
+        "techCount": {
+          "nakedSingle": 45
+        },
+        "cage_reasoning_used": false,
+        "cage_reasoning_ratio": 0
+      },
+      {
+        "levelId": 501,
+        "gridSize": 9,
+        "difficulty": "困难",
+        "difficultyLevel": 6,
+        "cageCount": 30,
+        "totalCells": 81,
+        "size_distribution": {
+          "1": 4,
+          "2": 8,
+          "3": 12,
+          "4": 5,
+          "5+": 1
+        },
+        "operation_distribution": {
+          "+": 30,
+          "-": 0,
+          "*": 0,
+          "/": 0
+        },
+        "maxCageSize": 5,
+        "bigCageCount": 6,
+        "bigCageRatio": 0.2,
+        "bigCagePass": true,
+        "singleCellCageCount": 4,
+        "solvable": true,
+        "difficulty_score": -50,
+        "difficulty_norm": 0,
+        "difficulty_level": "1星",
+        "totalSteps": 49,
+        "nonTrivialRatio": 0,
+        "maxTechLevel": 1,
+        "remainingCells": 0,
+        "logic_required": [],
+        "techCount": {
+          "nakedSingle": 49
+        },
+        "cage_reasoning_used": false,
+        "cage_reasoning_ratio": 0
+      },
+      {
+        "levelId": 502,
+        "gridSize": 9,
+        "difficulty": "困难",
+        "difficultyLevel": 6,
+        "cageCount": 28,
+        "totalCells": 81,
+        "size_distribution": {
+          "1": 1,
+          "2": 11,
+          "3": 9,
+          "4": 4,
+          "5+": 3
+        },
+        "operation_distribution": {
+          "+": 28,
+          "-": 0,
+          "*": 0,
+          "/": 0
+        },
+        "maxCageSize": 5,
+        "bigCageCount": 7,
+        "bigCageRatio": 0.25,
+        "bigCagePass": true,
+        "singleCellCageCount": 1,
+        "solvable": true,
+        "difficulty_score": -50,
+        "difficulty_norm": 0,
+        "difficulty_level": "1星",
+        "totalSteps": 49,
+        "nonTrivialRatio": 0,
+        "maxTechLevel": 1,
+        "remainingCells": 0,
+        "logic_required": [],
+        "techCount": {
+          "nakedSingle": 49
+        },
+        "cage_reasoning_used": false,
+        "cage_reasoning_ratio": 0
+      },
+      {
+        "levelId": 503,
+        "gridSize": 9,
+        "difficulty": "专家",
+        "difficultyLevel": 7,
+        "cageCount": 28,
+        "totalCells": 81,
+        "size_distribution": {
+          "1": 1,
+          "2": 9,
+          "3": 11,
+          "4": 6,
+          "5+": 1
+        },
+        "operation_distribution": {
+          "+": 28,
+          "-": 0,
+          "*": 0,
+          "/": 0
+        },
+        "maxCageSize": 5,
+        "bigCageCount": 7,
+        "bigCageRatio": 0.25,
+        "bigCagePass": true,
+        "singleCellCageCount": 1,
+        "solvable": true,
+        "difficulty_score": -50,
+        "difficulty_norm": 0,
+        "difficulty_level": "1星",
+        "totalSteps": 49,
+        "nonTrivialRatio": 0,
+        "maxTechLevel": 1,
+        "remainingCells": 0,
+        "logic_required": [],
+        "techCount": {
+          "nakedSingle": 49
+        },
+        "cage_reasoning_used": false,
+        "cage_reasoning_ratio": 0
+      },
+      {
+        "levelId": 504,
+        "gridSize": 9,
+        "difficulty": "专家",
+        "difficultyLevel": 7,
+        "cageCount": 24,
+        "totalCells": 81,
+        "size_distribution": {
+          "1": 2,
+          "2": 4,
+          "3": 6,
+          "4": 7,
+          "5+": 5
+        },
+        "operation_distribution": {
+          "+": 24,
+          "-": 0,
+          "*": 0,
+          "/": 0
+        },
+        "maxCageSize": 5,
+        "bigCageCount": 12,
+        "bigCageRatio": 0.5,
+        "bigCagePass": true,
+        "singleCellCageCount": 2,
+        "solvable": true,
+        "difficulty_score": -50,
+        "difficulty_norm": 0,
+        "difficulty_level": "1星",
+        "totalSteps": 49,
+        "nonTrivialRatio": 0,
+        "maxTechLevel": 1,
+        "remainingCells": 0,
+        "logic_required": [],
+        "techCount": {
+          "nakedSingle": 49
+        },
+        "cage_reasoning_used": false,
+        "cage_reasoning_ratio": 0
+      },
+      {
+        "levelId": 505,
+        "gridSize": 9,
+        "difficulty": "大师",
+        "difficultyLevel": 8,
+        "cageCount": 26,
+        "totalCells": 81,
+        "size_distribution": {
+          "1": 0,
+          "2": 7,
+          "3": 12,
+          "4": 4,
+          "5+": 3
+        },
+        "operation_distribution": {
+          "+": 26,
+          "-": 0,
+          "*": 0,
+          "/": 0
+        },
+        "maxCageSize": 5,
+        "bigCageCount": 7,
+        "bigCageRatio": 0.2692307692307692,
+        "bigCagePass": true,
+        "singleCellCageCount": 0,
+        "solvable": true,
+        "difficulty_score": -50,
+        "difficulty_norm": 0,
+        "difficulty_level": "1星",
+        "totalSteps": 49,
+        "nonTrivialRatio": 0,
+        "maxTechLevel": 1,
+        "remainingCells": 0,
+        "logic_required": [],
+        "techCount": {
+          "nakedSingle": 49
+        },
+        "cage_reasoning_used": false,
+        "cage_reasoning_ratio": 0
+      },
+      {
+        "levelId": 506,
+        "gridSize": 9,
+        "difficulty": "大师",
+        "difficultyLevel": 9,
+        "cageCount": 25,
+        "totalCells": 81,
+        "size_distribution": {
+          "1": 2,
+          "2": 3,
+          "3": 11,
+          "4": 5,
+          "5+": 4
+        },
+        "operation_distribution": {
+          "+": 25,
+          "-": 0,
+          "*": 0,
+          "/": 0
+        },
+        "maxCageSize": 5,
+        "bigCageCount": 9,
+        "bigCageRatio": 0.36,
+        "bigCagePass": true,
+        "singleCellCageCount": 2,
+        "solvable": true,
+        "difficulty_score": -50,
+        "difficulty_norm": 0,
+        "difficulty_level": "1星",
+        "totalSteps": 49,
+        "nonTrivialRatio": 0,
+        "maxTechLevel": 1,
+        "remainingCells": 0,
+        "logic_required": [],
+        "techCount": {
+          "nakedSingle": 49
+        },
+        "cage_reasoning_used": false,
+        "cage_reasoning_ratio": 0
+      },
+      {
+        "levelId": 599,
+        "gridSize": 9,
+        "difficulty": "大师",
+        "difficultyLevel": null,
+        "cageCount": 35,
+        "totalCells": 81,
+        "size_distribution": {
+          "1": 9,
+          "2": 8,
+          "3": 16,
+          "4": 2,
+          "5+": 0
+        },
+        "operation_distribution": {
+          "+": 35,
+          "-": 0,
+          "*": 0,
+          "/": 0
+        },
+        "maxCageSize": 4,
+        "bigCageCount": 2,
+        "bigCageRatio": 0.05714285714285714,
+        "bigCagePass": false,
+        "singleCellCageCount": 9,
+        "solvable": true,
+        "difficulty_score": -50,
+        "difficulty_norm": 0,
+        "difficulty_level": "1星",
+        "totalSteps": 45,
+        "nonTrivialRatio": 0,
+        "maxTechLevel": 1,
+        "remainingCells": 0,
+        "logic_required": [],
+        "techCount": {
+          "nakedSingle": 45
+        },
+        "cage_reasoning_used": false,
+        "cage_reasoning_ratio": 0
+      },
+      {
+        "levelId": 601,
+        "gridSize": 9,
+        "difficulty": "专家",
+        "difficultyLevel": 6,
+        "cageCount": 26,
+        "totalCells": 81,
+        "size_distribution": {
+          "1": 2,
+          "2": 6,
+          "3": 9,
+          "4": 5,
+          "5+": 4
+        },
+        "operation_distribution": {
+          "+": 26,
+          "-": 0,
+          "*": 0,
+          "/": 0
+        },
+        "maxCageSize": 5,
+        "bigCageCount": 9,
+        "bigCageRatio": 0.34615384615384615,
+        "bigCagePass": true,
+        "singleCellCageCount": 2,
+        "solvable": true,
+        "difficulty_score": -50,
+        "difficulty_norm": 0,
+        "difficulty_level": "1星",
+        "totalSteps": 49,
+        "nonTrivialRatio": 0,
+        "maxTechLevel": 1,
+        "remainingCells": 0,
+        "logic_required": [],
+        "techCount": {
+          "nakedSingle": 49
+        },
+        "cage_reasoning_used": false,
+        "cage_reasoning_ratio": 0
+      },
+      {
+        "levelId": 602,
+        "gridSize": 9,
+        "difficulty": "专家",
+        "difficultyLevel": 6,
+        "cageCount": 25,
+        "totalCells": 81,
+        "size_distribution": {
+          "1": 1,
+          "2": 6,
+          "3": 8,
+          "4": 6,
+          "5+": 4
+        },
+        "operation_distribution": {
+          "+": 25,
+          "-": 0,
+          "*": 0,
+          "/": 0
+        },
+        "maxCageSize": 5,
+        "bigCageCount": 10,
+        "bigCageRatio": 0.4,
+        "bigCagePass": true,
+        "singleCellCageCount": 1,
+        "solvable": true,
+        "difficulty_score": -50,
+        "difficulty_norm": 0,
+        "difficulty_level": "1星",
+        "totalSteps": 49,
+        "nonTrivialRatio": 0,
+        "maxTechLevel": 1,
+        "remainingCells": 0,
+        "logic_required": [],
+        "techCount": {
+          "nakedSingle": 49
+        },
+        "cage_reasoning_used": false,
+        "cage_reasoning_ratio": 0
+      },
+      {
+        "levelId": 603,
+        "gridSize": 9,
+        "difficulty": "大师",
+        "difficultyLevel": 7,
+        "cageCount": 26,
+        "totalCells": 81,
+        "size_distribution": {
+          "1": 3,
+          "2": 6,
+          "3": 5,
+          "4": 9,
+          "5+": 3
+        },
+        "operation_distribution": {
+          "+": 26,
+          "-": 0,
+          "*": 0,
+          "/": 0
+        },
+        "maxCageSize": 5,
+        "bigCageCount": 12,
+        "bigCageRatio": 0.46153846153846156,
+        "bigCagePass": true,
+        "singleCellCageCount": 3,
+        "solvable": true,
+        "difficulty_score": -50,
+        "difficulty_norm": 0,
+        "difficulty_level": "1星",
+        "totalSteps": 49,
+        "nonTrivialRatio": 0,
+        "maxTechLevel": 1,
+        "remainingCells": 0,
+        "logic_required": [],
+        "techCount": {
+          "nakedSingle": 49
+        },
+        "cage_reasoning_used": false,
+        "cage_reasoning_ratio": 0
+      },
+      {
+        "levelId": 604,
+        "gridSize": 9,
+        "difficulty": "大师",
+        "difficultyLevel": 7,
+        "cageCount": 25,
+        "totalCells": 81,
+        "size_distribution": {
+          "1": 2,
+          "2": 6,
+          "3": 7,
+          "4": 4,
+          "5+": 6
+        },
+        "operation_distribution": {
+          "+": 25,
+          "-": 0,
+          "*": 0,
+          "/": 0
+        },
+        "maxCageSize": 5,
+        "bigCageCount": 10,
+        "bigCageRatio": 0.4,
+        "bigCagePass": true,
+        "singleCellCageCount": 2,
+        "solvable": true,
+        "difficulty_score": -50,
+        "difficulty_norm": 0,
+        "difficulty_level": "1星",
+        "totalSteps": 49,
+        "nonTrivialRatio": 0,
+        "maxTechLevel": 1,
+        "remainingCells": 0,
+        "logic_required": [],
+        "techCount": {
+          "nakedSingle": 49
+        },
+        "cage_reasoning_used": false,
+        "cage_reasoning_ratio": 0
+      },
+      {
+        "levelId": 605,
+        "gridSize": 9,
+        "difficulty": "地狱",
+        "difficultyLevel": 8,
+        "cageCount": 26,
+        "totalCells": 81,
+        "size_distribution": {
+          "1": 2,
+          "2": 6,
+          "3": 8,
+          "4": 7,
+          "5+": 3
+        },
+        "operation_distribution": {
+          "+": 26,
+          "-": 0,
+          "*": 0,
+          "/": 0
+        },
+        "maxCageSize": 5,
+        "bigCageCount": 10,
+        "bigCageRatio": 0.38461538461538464,
+        "bigCagePass": true,
+        "singleCellCageCount": 2,
+        "solvable": true,
+        "difficulty_score": -50,
+        "difficulty_norm": 0,
+        "difficulty_level": "1星",
+        "totalSteps": 49,
+        "nonTrivialRatio": 0,
+        "maxTechLevel": 1,
+        "remainingCells": 0,
+        "logic_required": [],
+        "techCount": {
+          "nakedSingle": 49
+        },
+        "cage_reasoning_used": false,
+        "cage_reasoning_ratio": 0
+      },
+      {
+        "levelId": 606,
+        "gridSize": 9,
+        "difficulty": "地狱",
+        "difficultyLevel": 9,
+        "cageCount": 26,
+        "totalCells": 81,
+        "size_distribution": {
+          "1": 1,
+          "2": 5,
+          "3": 11,
+          "4": 8,
+          "5+": 1
+        },
+        "operation_distribution": {
+          "+": 26,
+          "-": 0,
+          "*": 0,
+          "/": 0
+        },
+        "maxCageSize": 5,
+        "bigCageCount": 9,
+        "bigCageRatio": 0.34615384615384615,
+        "bigCagePass": true,
+        "singleCellCageCount": 1,
+        "solvable": true,
+        "difficulty_score": -50,
+        "difficulty_norm": 0,
+        "difficulty_level": "1星",
+        "totalSteps": 49,
+        "nonTrivialRatio": 0,
+        "maxTechLevel": 1,
+        "remainingCells": 0,
+        "logic_required": [],
+        "techCount": {
+          "nakedSingle": 49
+        },
+        "cage_reasoning_used": false,
+        "cage_reasoning_ratio": 0
+      },
+      {
+        "levelId": 699,
+        "gridSize": 9,
+        "difficulty": "地狱",
+        "difficultyLevel": null,
+        "cageCount": 36,
+        "totalCells": 81,
+        "size_distribution": {
+          "1": 10,
+          "2": 12,
+          "3": 9,
+          "4": 5,
+          "5+": 0
+        },
+        "operation_distribution": {
+          "+": 36,
+          "-": 0,
+          "*": 0,
+          "/": 0
+        },
+        "maxCageSize": 4,
+        "bigCageCount": 5,
+        "bigCageRatio": 0.1388888888888889,
+        "bigCagePass": false,
+        "singleCellCageCount": 10,
+        "solvable": true,
+        "difficulty_score": -50,
+        "difficulty_norm": 0,
+        "difficulty_level": "1星",
+        "totalSteps": 49,
+        "nonTrivialRatio": 0,
+        "maxTechLevel": 1,
+        "remainingCells": 0,
+        "logic_required": [],
+        "techCount": {
+          "nakedSingle": 49
+        },
+        "cage_reasoning_used": false,
+        "cage_reasoning_ratio": 0
+      },
+      {
+        "levelId": 701,
+        "gridSize": 9,
+        "difficulty": "大师",
+        "difficultyLevel": 7,
+        "cageCount": 27,
+        "totalCells": 81,
+        "size_distribution": {
+          "1": 3,
+          "2": 7,
+          "3": 10,
+          "4": 1,
+          "5+": 6
+        },
+        "operation_distribution": {
+          "+": 27,
+          "-": 0,
+          "*": 0,
+          "/": 0
+        },
+        "maxCageSize": 5,
+        "bigCageCount": 7,
+        "bigCageRatio": 0.25925925925925924,
+        "bigCagePass": true,
+        "singleCellCageCount": 3,
+        "solvable": true,
+        "difficulty_score": -50,
+        "difficulty_norm": 0,
+        "difficulty_level": "1星",
+        "totalSteps": 49,
+        "nonTrivialRatio": 0,
+        "maxTechLevel": 1,
+        "remainingCells": 0,
+        "logic_required": [],
+        "techCount": {
+          "nakedSingle": 49
+        },
+        "cage_reasoning_used": false,
+        "cage_reasoning_ratio": 0
+      },
+      {
+        "levelId": 702,
+        "gridSize": 9,
+        "difficulty": "大师",
+        "difficultyLevel": 8,
+        "cageCount": 23,
+        "totalCells": 81,
+        "size_distribution": {
+          "1": 1,
+          "2": 4,
+          "3": 7,
+          "4": 4,
+          "5+": 7
+        },
+        "operation_distribution": {
+          "+": 23,
+          "-": 0,
+          "*": 0,
+          "/": 0
+        },
+        "maxCageSize": 5,
+        "bigCageCount": 11,
+        "bigCageRatio": 0.4782608695652174,
+        "bigCagePass": true,
+        "singleCellCageCount": 1,
+        "solvable": true,
+        "difficulty_score": -50,
+        "difficulty_norm": 0,
+        "difficulty_level": "1星",
+        "totalSteps": 49,
+        "nonTrivialRatio": 0,
+        "maxTechLevel": 1,
+        "remainingCells": 0,
+        "logic_required": [],
+        "techCount": {
+          "nakedSingle": 49
+        },
+        "cage_reasoning_used": false,
+        "cage_reasoning_ratio": 0
+      },
+      {
+        "levelId": 703,
+        "gridSize": 9,
+        "difficulty": "地狱",
+        "difficultyLevel": 8,
+        "cageCount": 24,
+        "totalCells": 81,
+        "size_distribution": {
+          "1": 2,
+          "2": 5,
+          "3": 5,
+          "4": 6,
+          "5+": 6
+        },
+        "operation_distribution": {
+          "+": 24,
+          "-": 0,
+          "*": 0,
+          "/": 0
+        },
+        "maxCageSize": 5,
+        "bigCageCount": 12,
+        "bigCageRatio": 0.5,
+        "bigCagePass": true,
+        "singleCellCageCount": 2,
+        "solvable": true,
+        "difficulty_score": -50,
+        "difficulty_norm": 0,
+        "difficulty_level": "1星",
+        "totalSteps": 49,
+        "nonTrivialRatio": 0,
+        "maxTechLevel": 1,
+        "remainingCells": 0,
+        "logic_required": [],
+        "techCount": {
+          "nakedSingle": 49
+        },
+        "cage_reasoning_used": false,
+        "cage_reasoning_ratio": 0
+      },
+      {
+        "levelId": 704,
+        "gridSize": 9,
+        "difficulty": "地狱",
+        "difficultyLevel": 9,
+        "cageCount": 26,
+        "totalCells": 81,
+        "size_distribution": {
+          "1": 1,
+          "2": 7,
+          "3": 8,
+          "4": 8,
+          "5+": 2
+        },
+        "operation_distribution": {
+          "+": 26,
+          "-": 0,
+          "*": 0,
+          "/": 0
+        },
+        "maxCageSize": 5,
+        "bigCageCount": 10,
+        "bigCageRatio": 0.38461538461538464,
+        "bigCagePass": true,
+        "singleCellCageCount": 1,
+        "solvable": true,
+        "difficulty_score": -50,
+        "difficulty_norm": 0,
+        "difficulty_level": "1星",
+        "totalSteps": 49,
+        "nonTrivialRatio": 0,
+        "maxTechLevel": 1,
+        "remainingCells": 0,
+        "logic_required": [],
+        "techCount": {
+          "nakedSingle": 49
+        },
+        "cage_reasoning_used": false,
+        "cage_reasoning_ratio": 0
+      },
+      {
+        "levelId": 705,
+        "gridSize": 9,
+        "difficulty": "传说",
+        "difficultyLevel": 9,
+        "cageCount": 29,
+        "totalCells": 81,
+        "size_distribution": {
+          "1": 3,
+          "2": 9,
+          "3": 10,
+          "4": 5,
+          "5+": 2
+        },
+        "operation_distribution": {
+          "+": 29,
+          "-": 0,
+          "*": 0,
+          "/": 0
+        },
+        "maxCageSize": 5,
+        "bigCageCount": 7,
+        "bigCageRatio": 0.2413793103448276,
+        "bigCagePass": true,
+        "singleCellCageCount": 3,
+        "solvable": true,
+        "difficulty_score": -50,
+        "difficulty_norm": 0,
+        "difficulty_level": "1星",
+        "totalSteps": 49,
+        "nonTrivialRatio": 0,
+        "maxTechLevel": 1,
+        "remainingCells": 0,
+        "logic_required": [],
+        "techCount": {
+          "nakedSingle": 49
+        },
+        "cage_reasoning_used": false,
+        "cage_reasoning_ratio": 0
+      },
+      {
+        "levelId": 706,
+        "gridSize": 9,
+        "difficulty": "传说",
+        "difficultyLevel": 10,
+        "cageCount": 29,
+        "totalCells": 81,
+        "size_distribution": {
+          "1": 3,
+          "2": 9,
+          "3": 10,
+          "4": 5,
+          "5+": 2
+        },
+        "operation_distribution": {
+          "+": 29,
+          "-": 0,
+          "*": 0,
+          "/": 0
+        },
+        "maxCageSize": 5,
+        "bigCageCount": 7,
+        "bigCageRatio": 0.2413793103448276,
+        "bigCagePass": true,
+        "singleCellCageCount": 3,
+        "solvable": true,
+        "difficulty_score": -50,
+        "difficulty_norm": 0,
+        "difficulty_level": "1星",
+        "totalSteps": 49,
+        "nonTrivialRatio": 0,
+        "maxTechLevel": 1,
+        "remainingCells": 0,
+        "logic_required": [],
+        "techCount": {
+          "nakedSingle": 49
+        },
+        "cage_reasoning_used": false,
+        "cage_reasoning_ratio": 0
+      },
+      {
+        "levelId": 799,
+        "gridSize": 9,
+        "difficulty": "传说",
+        "difficultyLevel": 10,
+        "cageCount": 26,
+        "totalCells": 81,
+        "size_distribution": {
+          "1": 1,
+          "2": 6,
+          "3": 10,
+          "4": 7,
+          "5+": 2
+        },
+        "operation_distribution": {
+          "+": 26,
+          "-": 0,
+          "*": 0,
+          "/": 0
+        },
+        "maxCageSize": 5,
+        "bigCageCount": 9,
+        "bigCageRatio": 0.34615384615384615,
+        "bigCagePass": true,
+        "singleCellCageCount": 1,
+        "solvable": true,
+        "difficulty_score": -50,
+        "difficulty_norm": 0,
+        "difficulty_level": "1星",
+        "totalSteps": 49,
+        "nonTrivialRatio": 0,
+        "maxTechLevel": 1,
+        "remainingCells": 0,
+        "logic_required": [],
+        "techCount": {
+          "nakedSingle": 49
+        },
+        "cage_reasoning_used": false,
+        "cage_reasoning_ratio": 0
+      },
+      {
+        "levelId": 801,
+        "gridSize": 9,
+        "difficulty": "大师",
+        "difficultyLevel": null,
+        "cageCount": 37,
+        "totalCells": 81,
+        "size_distribution": {
+          "1": 7,
+          "2": 19,
+          "3": 8,
+          "4": 3,
+          "5+": 0
+        },
+        "operation_distribution": {
+          "+": 37,
+          "-": 0,
+          "*": 0,
+          "/": 0
+        },
+        "maxCageSize": 4,
+        "bigCageCount": 3,
+        "bigCageRatio": 0.08108108108108109,
+        "bigCagePass": false,
+        "singleCellCageCount": 7,
+        "solvable": false,
+        "difficulty_score": 150,
+        "difficulty_norm": 1.5,
+        "difficulty_level": "1星",
+        "totalSteps": 64,
+        "nonTrivialRatio": 0.09,
+        "maxTechLevel": 2,
+        "remainingCells": 4,
+        "logic_required": [
+          "cageUnique"
+        ],
+        "techCount": {
+          "nakedSingle": 58,
+          "cageUnique": 6
+        },
+        "cage_reasoning_used": true,
+        "cage_reasoning_ratio": 0.094
+      },
+      {
+        "levelId": 802,
+        "gridSize": 9,
+        "difficulty": "大师",
+        "difficultyLevel": null,
+        "cageCount": 33,
+        "totalCells": 81,
+        "size_distribution": {
+          "1": 4,
+          "2": 17,
+          "3": 5,
+          "4": 7,
+          "5+": 0
+        },
+        "operation_distribution": {
+          "+": 33,
+          "-": 0,
+          "*": 0,
+          "/": 0
+        },
+        "maxCageSize": 4,
+        "bigCageCount": 7,
+        "bigCageRatio": 0.21212121212121213,
+        "bigCagePass": true,
+        "singleCellCageCount": 4,
+        "solvable": false,
+        "difficulty_score": 200,
+        "difficulty_norm": 2,
+        "difficulty_level": "1星",
+        "totalSteps": 56,
+        "nonTrivialRatio": 0.18,
+        "maxTechLevel": 2,
+        "remainingCells": 12,
+        "logic_required": [
+          "cageUnique"
+        ],
+        "techCount": {
+          "nakedSingle": 46,
+          "cageUnique": 10
+        },
+        "cage_reasoning_used": true,
+        "cage_reasoning_ratio": 0.179
+      },
+      {
+        "levelId": 803,
+        "gridSize": 9,
+        "difficulty": "大师",
+        "difficultyLevel": null,
+        "cageCount": 34,
+        "totalCells": 81,
+        "size_distribution": {
+          "1": 6,
+          "2": 13,
+          "3": 11,
+          "4": 4,
+          "5+": 0
+        },
+        "operation_distribution": {
+          "+": 34,
+          "-": 0,
+          "*": 0,
+          "/": 0
+        },
+        "maxCageSize": 4,
+        "bigCageCount": 4,
+        "bigCageRatio": 0.11764705882352941,
+        "bigCagePass": false,
+        "singleCellCageCount": 6,
+        "solvable": false,
+        "difficulty_score": 150,
+        "difficulty_norm": 1.5,
+        "difficulty_level": "1星",
+        "totalSteps": 62,
+        "nonTrivialRatio": 0.08,
+        "maxTechLevel": 2,
+        "remainingCells": 3,
+        "logic_required": [
+          "cageUnique"
+        ],
+        "techCount": {
+          "nakedSingle": 57,
+          "cageUnique": 5
+        },
+        "cage_reasoning_used": true,
+        "cage_reasoning_ratio": 0.081
+      },
+      {
+        "levelId": 804,
+        "gridSize": 9,
+        "difficulty": "传说",
+        "difficultyLevel": null,
+        "cageCount": 34,
+        "totalCells": 81,
+        "size_distribution": {
+          "1": 7,
+          "2": 12,
+          "3": 10,
+          "4": 5,
+          "5+": 0
+        },
+        "operation_distribution": {
+          "+": 34,
+          "-": 0,
+          "*": 0,
+          "/": 0
+        },
+        "maxCageSize": 4,
+        "bigCageCount": 5,
+        "bigCageRatio": 0.14705882352941177,
+        "bigCagePass": false,
+        "singleCellCageCount": 7,
+        "solvable": false,
+        "difficulty_score": 225,
+        "difficulty_norm": 2.3,
+        "difficulty_level": "1星",
+        "totalSteps": 65,
+        "nonTrivialRatio": 0.23,
+        "maxTechLevel": 2,
+        "remainingCells": 2,
+        "logic_required": [
+          "cageUnique"
+        ],
+        "techCount": {
+          "nakedSingle": 50,
+          "cageUnique": 15
+        },
+        "cage_reasoning_used": true,
+        "cage_reasoning_ratio": 0.231
+      },
+      {
+        "levelId": 805,
+        "gridSize": 9,
+        "difficulty": "传说",
+        "difficultyLevel": null,
+        "cageCount": 32,
+        "totalCells": 81,
+        "size_distribution": {
+          "1": 5,
+          "2": 10,
+          "3": 12,
+          "4": 5,
+          "5+": 0
+        },
+        "operation_distribution": {
+          "+": 32,
+          "-": 0,
+          "*": 0,
+          "/": 0
+        },
+        "maxCageSize": 4,
+        "bigCageCount": 5,
+        "bigCageRatio": 0.15625,
+        "bigCagePass": true,
+        "singleCellCageCount": 5,
+        "solvable": true,
+        "difficulty_score": 100,
+        "difficulty_norm": 1,
+        "difficulty_level": "1星",
+        "totalSteps": 67,
+        "nonTrivialRatio": 0.15,
+        "maxTechLevel": 2,
+        "remainingCells": 0,
+        "logic_required": [
+          "cageUnique"
+        ],
+        "techCount": {
+          "nakedSingle": 57,
+          "cageUnique": 10
+        },
+        "cage_reasoning_used": true,
+        "cage_reasoning_ratio": 0.149
+      },
+      {
+        "levelId": 806,
+        "gridSize": 9,
+        "difficulty": "传说",
+        "difficultyLevel": null,
+        "cageCount": 34,
+        "totalCells": 81,
+        "size_distribution": {
+          "1": 4,
+          "2": 18,
+          "3": 7,
+          "4": 5,
+          "5+": 0
+        },
+        "operation_distribution": {
+          "+": 34,
+          "-": 0,
+          "*": 0,
+          "/": 0
+        },
+        "maxCageSize": 4,
+        "bigCageCount": 5,
+        "bigCageRatio": 0.14705882352941177,
+        "bigCagePass": false,
+        "singleCellCageCount": 4,
+        "solvable": false,
+        "difficulty_score": 150,
+        "difficulty_norm": 1.5,
+        "difficulty_level": "1星",
+        "totalSteps": 48,
+        "nonTrivialRatio": 0.06,
+        "maxTechLevel": 2,
+        "remainingCells": 19,
+        "logic_required": [
+          "cageUnique"
+        ],
+        "techCount": {
+          "nakedSingle": 45,
+          "cageUnique": 3
+        },
+        "cage_reasoning_used": true,
+        "cage_reasoning_ratio": 0.063
+      }
+    ],
+    "aggregate": {
+      "totalLevels": 48,
+      "size_distribution": {
+        "1": 164,
+        "2": 377,
+        "3": 439,
+        "4": 267,
+        "5+": 117
+      },
+      "operation_distribution": {
+        "+": 1364,
+        "-": 0,
+        "*": 0,
+        "/": 0
+      },
+      "operation_pct": {
+        "+": 100,
+        "-": 0,
+        "*": 0,
+        "/": 0
+      },
+      "bigCageRatio": {
+        "avg": 0.298,
+        "perLevel": [
+          0.32142857142857145,
+          0.2962962962962963,
+          0.25925925925925924,
+          0.4,
+          0.2857142857142857,
+          0.38461538461538464,
+          0.20689655172413793,
+          0.32142857142857145,
+          0.5217391304347826,
+          0.4074074074074074,
+          0.16666666666666666,
+          0.5,
+          0.046511627906976744,
+          0.25,
+          0.4782608695652174,
+          0.2962962962962963,
+          0.21428571428571427,
+          0.2692307692307692,
+          0.4074074074074074,
+          0.37037037037037035,
+          0.20512820512820512,
+          0.2,
+          0.25,
+          0.25,
+          0.5,
+          0.2692307692307692,
+          0.36,
+          0.05714285714285714,
+          0.34615384615384615,
+          0.4,
+          0.46153846153846156,
+          0.4,
+          0.38461538461538464,
+          0.34615384615384615,
+          0.1388888888888889,
+          0.25925925925925924,
+          0.4782608695652174,
+          0.5,
+          0.38461538461538464,
+          0.2413793103448276,
+          0.2413793103448276,
+          0.34615384615384615,
+          0.08108108108108109,
+          0.21212121212121213,
+          0.11764705882352941,
+          0.14705882352941177,
+          0.15625,
+          0.14705882352941177
+        ],
+        "passRatio": 85.4
+      },
+      "difficulty": {
+        "avg": -15.6,
+        "min": -50,
+        "max": 325,
+        "count": 48,
+        "bands": {
+          "1星": 47,
+          "2星": 1,
+          "3星": 0,
+          "4星": 0,
+          "5星": 0
+        }
+      },
+      "logic_required": {
+        "rule45": 1,
+        "cageUnique": 7,
+        "hiddenSingle": 1
+      },
+      "distinctLogic": [
+        {
+          "tech": "cageUnique",
+          "levels": 7
+        },
+        {
+          "tech": "rule45",
+          "levels": 1
+        },
+        {
+          "tech": "hiddenSingle",
+          "levels": 1
+        }
+      ],
+      "red_flags": [
+        "操作单一：仅加法(+ )笼，无 - / * 变体，Sudoku 价值有限",
+        "存在单格笼 164 个（纯裸单提示，Sudoku 价值低）",
+        "有 5 关需试错求解（纯演绎推不完，剩余格 4/12/3/2/19）",
+        "难度覆盖不足：47/48 关为 1星（纯裸单），无中高等难度梯度"
+      ],
+      "op_key": "op"
+    },
+    "generator_sample": {
+      "seed": 20260810,
+      "requested": 8,
+      "generated": 8,
+      "attempts": 8,
+      "per_level": [
+        {
+          "levelId": "GEN-003",
+          "gridSize": 9,
+          "difficulty": "普通",
+          "difficultyLevel": null,
+          "cageCount": 24,
+          "totalCells": 81,
+          "size_distribution": {
+            "1": 4,
+            "2": 1,
+            "3": 7,
+            "4": 6,
+            "5+": 6
+          },
+          "operation_distribution": {
+            "+": 24,
+            "-": 0,
+            "*": 0,
+            "/": 0
+          },
+          "maxCageSize": 5,
+          "bigCageCount": 12,
+          "bigCageRatio": 0.5,
+          "bigCagePass": true,
+          "singleCellCageCount": 4,
+          "solvable": true,
+          "difficulty_score": 500,
+          "difficulty_norm": 5,
+          "difficulty_level": "3星",
+          "totalSteps": 71,
+          "nonTrivialRatio": 0.2,
+          "maxTechLevel": 6,
+          "remainingCells": 0,
+          "logic_required": [
+            "hiddenSingle",
+            "cageUnique",
+            "rule45",
+            "hiddenPair"
+          ],
+          "techCount": {
+            "nakedSingle": 57,
+            "hiddenSingle": 5,
+            "cageUnique": 7,
+            "rule45": 1,
+            "hiddenPair": 1
+          },
+          "cage_reasoning_used": true,
+          "cage_reasoning_ratio": 0.113
+        },
+        {
+          "levelId": "GEN-013",
+          "gridSize": 9,
+          "difficulty": "普通",
+          "difficultyLevel": null,
+          "cageCount": 24,
+          "totalCells": 81,
+          "size_distribution": {
+            "1": 4,
+            "2": 1,
+            "3": 7,
+            "4": 6,
+            "5+": 6
+          },
+          "operation_distribution": {
+            "+": 24,
+            "-": 0,
+            "*": 0,
+            "/": 0
+          },
+          "maxCageSize": 5,
+          "bigCageCount": 12,
+          "bigCageRatio": 0.5,
+          "bigCagePass": true,
+          "singleCellCageCount": 4,
+          "solvable": true,
+          "difficulty_score": 500,
+          "difficulty_norm": 5,
+          "difficulty_level": "3星",
+          "totalSteps": 71,
+          "nonTrivialRatio": 0.2,
+          "maxTechLevel": 6,
+          "remainingCells": 0,
+          "logic_required": [
+            "hiddenSingle",
+            "cageUnique",
+            "rule45",
+            "hiddenPair"
+          ],
+          "techCount": {
+            "nakedSingle": 57,
+            "hiddenSingle": 5,
+            "cageUnique": 7,
+            "rule45": 1,
+            "hiddenPair": 1
+          },
+          "cage_reasoning_used": true,
+          "cage_reasoning_ratio": 0.113
+        },
+        {
+          "levelId": "GEN-023",
+          "gridSize": 9,
+          "difficulty": "普通",
+          "difficultyLevel": null,
+          "cageCount": 24,
+          "totalCells": 81,
+          "size_distribution": {
+            "1": 4,
+            "2": 1,
+            "3": 7,
+            "4": 6,
+            "5+": 6
+          },
+          "operation_distribution": {
+            "+": 24,
+            "-": 0,
+            "*": 0,
+            "/": 0
+          },
+          "maxCageSize": 5,
+          "bigCageCount": 12,
+          "bigCageRatio": 0.5,
+          "bigCagePass": true,
+          "singleCellCageCount": 4,
+          "solvable": true,
+          "difficulty_score": 500,
+          "difficulty_norm": 5,
+          "difficulty_level": "3星",
+          "totalSteps": 71,
+          "nonTrivialRatio": 0.2,
+          "maxTechLevel": 6,
+          "remainingCells": 0,
+          "logic_required": [
+            "hiddenSingle",
+            "cageUnique",
+            "rule45",
+            "hiddenPair"
+          ],
+          "techCount": {
+            "nakedSingle": 57,
+            "hiddenSingle": 5,
+            "cageUnique": 7,
+            "rule45": 1,
+            "hiddenPair": 1
+          },
+          "cage_reasoning_used": true,
+          "cage_reasoning_ratio": 0.113
+        },
+        {
+          "levelId": "GEN-033",
+          "gridSize": 9,
+          "difficulty": "普通",
+          "difficultyLevel": null,
+          "cageCount": 24,
+          "totalCells": 81,
+          "size_distribution": {
+            "1": 4,
+            "2": 1,
+            "3": 7,
+            "4": 6,
+            "5+": 6
+          },
+          "operation_distribution": {
+            "+": 24,
+            "-": 0,
+            "*": 0,
+            "/": 0
+          },
+          "maxCageSize": 5,
+          "bigCageCount": 12,
+          "bigCageRatio": 0.5,
+          "bigCagePass": true,
+          "singleCellCageCount": 4,
+          "solvable": true,
+          "difficulty_score": 500,
+          "difficulty_norm": 5,
+          "difficulty_level": "3星",
+          "totalSteps": 71,
+          "nonTrivialRatio": 0.2,
+          "maxTechLevel": 6,
+          "remainingCells": 0,
+          "logic_required": [
+            "hiddenSingle",
+            "cageUnique",
+            "rule45",
+            "hiddenPair"
+          ],
+          "techCount": {
+            "nakedSingle": 57,
+            "hiddenSingle": 5,
+            "cageUnique": 7,
+            "rule45": 1,
+            "hiddenPair": 1
+          },
+          "cage_reasoning_used": true,
+          "cage_reasoning_ratio": 0.113
+        },
+        {
+          "levelId": "GEN-043",
+          "gridSize": 9,
+          "difficulty": "普通",
+          "difficultyLevel": null,
+          "cageCount": 24,
+          "totalCells": 81,
+          "size_distribution": {
+            "1": 4,
+            "2": 1,
+            "3": 7,
+            "4": 6,
+            "5+": 6
+          },
+          "operation_distribution": {
+            "+": 24,
+            "-": 0,
+            "*": 0,
+            "/": 0
+          },
+          "maxCageSize": 5,
+          "bigCageCount": 12,
+          "bigCageRatio": 0.5,
+          "bigCagePass": true,
+          "singleCellCageCount": 4,
+          "solvable": true,
+          "difficulty_score": 500,
+          "difficulty_norm": 5,
+          "difficulty_level": "3星",
+          "totalSteps": 71,
+          "nonTrivialRatio": 0.2,
+          "maxTechLevel": 6,
+          "remainingCells": 0,
+          "logic_required": [
+            "hiddenSingle",
+            "cageUnique",
+            "rule45",
+            "hiddenPair"
+          ],
+          "techCount": {
+            "nakedSingle": 57,
+            "hiddenSingle": 5,
+            "cageUnique": 7,
+            "rule45": 1,
+            "hiddenPair": 1
+          },
+          "cage_reasoning_used": true,
+          "cage_reasoning_ratio": 0.113
+        },
+        {
+          "levelId": "GEN-053",
+          "gridSize": 9,
+          "difficulty": "普通",
+          "difficultyLevel": null,
+          "cageCount": 24,
+          "totalCells": 81,
+          "size_distribution": {
+            "1": 4,
+            "2": 1,
+            "3": 7,
+            "4": 6,
+            "5+": 6
+          },
+          "operation_distribution": {
+            "+": 24,
+            "-": 0,
+            "*": 0,
+            "/": 0
+          },
+          "maxCageSize": 5,
+          "bigCageCount": 12,
+          "bigCageRatio": 0.5,
+          "bigCagePass": true,
+          "singleCellCageCount": 4,
+          "solvable": true,
+          "difficulty_score": 500,
+          "difficulty_norm": 5,
+          "difficulty_level": "3星",
+          "totalSteps": 71,
+          "nonTrivialRatio": 0.2,
+          "maxTechLevel": 6,
+          "remainingCells": 0,
+          "logic_required": [
+            "hiddenSingle",
+            "cageUnique",
+            "rule45",
+            "hiddenPair"
+          ],
+          "techCount": {
+            "nakedSingle": 57,
+            "hiddenSingle": 5,
+            "cageUnique": 7,
+            "rule45": 1,
+            "hiddenPair": 1
+          },
+          "cage_reasoning_used": true,
+          "cage_reasoning_ratio": 0.113
+        },
+        {
+          "levelId": "GEN-063",
+          "gridSize": 9,
+          "difficulty": "普通",
+          "difficultyLevel": null,
+          "cageCount": 24,
+          "totalCells": 81,
+          "size_distribution": {
+            "1": 4,
+            "2": 1,
+            "3": 7,
+            "4": 6,
+            "5+": 6
+          },
+          "operation_distribution": {
+            "+": 24,
+            "-": 0,
+            "*": 0,
+            "/": 0
+          },
+          "maxCageSize": 5,
+          "bigCageCount": 12,
+          "bigCageRatio": 0.5,
+          "bigCagePass": true,
+          "singleCellCageCount": 4,
+          "solvable": true,
+          "difficulty_score": 500,
+          "difficulty_norm": 5,
+          "difficulty_level": "3星",
+          "totalSteps": 71,
+          "nonTrivialRatio": 0.2,
+          "maxTechLevel": 6,
+          "remainingCells": 0,
+          "logic_required": [
+            "hiddenSingle",
+            "cageUnique",
+            "rule45",
+            "hiddenPair"
+          ],
+          "techCount": {
+            "nakedSingle": 57,
+            "hiddenSingle": 5,
+            "cageUnique": 7,
+            "rule45": 1,
+            "hiddenPair": 1
+          },
+          "cage_reasoning_used": true,
+          "cage_reasoning_ratio": 0.113
+        },
+        {
+          "levelId": "GEN-073",
+          "gridSize": 9,
+          "difficulty": "普通",
+          "difficultyLevel": null,
+          "cageCount": 24,
+          "totalCells": 81,
+          "size_distribution": {
+            "1": 4,
+            "2": 1,
+            "3": 7,
+            "4": 6,
+            "5+": 6
+          },
+          "operation_distribution": {
+            "+": 24,
+            "-": 0,
+            "*": 0,
+            "/": 0
+          },
+          "maxCageSize": 5,
+          "bigCageCount": 12,
+          "bigCageRatio": 0.5,
+          "bigCagePass": true,
+          "singleCellCageCount": 4,
+          "solvable": true,
+          "difficulty_score": 500,
+          "difficulty_norm": 5,
+          "difficulty_level": "3星",
+          "totalSteps": 71,
+          "nonTrivialRatio": 0.2,
+          "maxTechLevel": 6,
+          "remainingCells": 0,
+          "logic_required": [
+            "hiddenSingle",
+            "cageUnique",
+            "rule45",
+            "hiddenPair"
+          ],
+          "techCount": {
+            "nakedSingle": 57,
+            "hiddenSingle": 5,
+            "cageUnique": 7,
+            "rule45": 1,
+            "hiddenPair": 1
+          },
+          "cage_reasoning_used": true,
+          "cage_reasoning_ratio": 0.113
+        }
+      ],
+      "aggregate": {
+        "totalLevels": 8,
+        "size_distribution": {
+          "1": 32,
+          "2": 8,
+          "3": 56,
+          "4": 48,
+          "5+": 48
+        },
+        "operation_distribution": {
+          "+": 192,
+          "-": 0,
+          "*": 0,
+          "/": 0
+        },
+        "operation_pct": {
+          "+": 100,
+          "-": 0,
+          "*": 0,
+          "/": 0
+        },
+        "bigCageRatio": {
+          "avg": 0.5,
+          "perLevel": [
+            0.5,
+            0.5,
+            0.5,
+            0.5,
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "passRatio": 100
+        },
+        "difficulty": {
+          "avg": 500,
+          "min": 500,
+          "max": 500,
+          "count": 8,
+          "bands": {
+            "1星": 0,
+            "2星": 0,
+            "3星": 8,
+            "4星": 0,
+            "5星": 0
+          }
+        },
+        "logic_required": {
+          "hiddenSingle": 8,
+          "cageUnique": 8,
+          "rule45": 8,
+          "hiddenPair": 8
+        },
+        "distinctLogic": [
+          {
+            "tech": "hiddenSingle",
+            "levels": 8
+          },
+          {
+            "tech": "cageUnique",
+            "levels": 8
+          },
+          {
+            "tech": "rule45",
+            "levels": 8
+          },
+          {
+            "tech": "hiddenPair",
+            "levels": 8
+          }
+        ],
+        "red_flags": [
+          "操作单一：仅加法(+ )笼，无 - / * 变体，Sudoku 价值有限",
+          "存在单格笼 32 个（纯裸单提示，Sudoku 价值低）"
+        ]
+      }
+    }
+  }
+}

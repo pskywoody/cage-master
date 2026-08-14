@@ -5,6 +5,8 @@
 // ==========================================
 'use strict';
 
+import I18n from '../i18n/i18n.js';
+
   // 连击里程碑定义（标准 9x9 模式）
   const MILESTONES = {
     3:  { key: 'combo_3',  label: '妙手',  sfx: 'combo_3' },
@@ -568,15 +570,17 @@
       this._ensureComboEl();
       const labelEl = this._comboEl.querySelector('.combo-label');
       const sealEl = this._comboEl.querySelector('.combo-seal');
-      labelEl.textContent = milestone.label;
+      labelEl.textContent = I18n.t('ui.combo.milestone.' + milestone.key);
       labelEl.style.animation = 'none';
       labelEl.offsetHeight;
       labelEl.style.animation = 'comboBounce 0.5s ease';
       // 朱砂印盖字：里程碑对应单字印（妙/韵/悟/极）
       if (sealEl) {
-        const sealChar = { 妙手: '妙', 连韵: '韵', EUREKA: '悟', MAX连击: '极' }[milestone.label] || '';
-        sealEl.textContent = sealChar;
-        sealEl.style.display = sealChar ? 'block' : 'none';
+        const sealKey = 'ui.combo.seal.' + milestone.key;
+        const sealChar = I18n.t(sealKey);
+        const sealText = (sealChar && sealChar !== sealKey) ? sealChar : '';
+        sealEl.textContent = sealText;
+        sealEl.style.display = sealText ? 'block' : 'none';
         sealEl.style.animation = 'none';
         sealEl.offsetHeight;
         sealEl.style.animation = 'sealStampDown 0.35s cubic-bezier(0.34, 1.56, 0.64, 1)';
@@ -639,7 +643,7 @@
 
       // 更新 label
       const labelEl = this._comboEl.querySelector('.combo-label');
-      labelEl.textContent = 'EUREKA!';
+      labelEl.textContent = I18n.t('ui.combo.milestone.eureka');
 
       // 显示大文字 EUREKA!
       this._showEurekaText();

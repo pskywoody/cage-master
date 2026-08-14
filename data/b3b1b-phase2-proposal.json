@@ -1,0 +1,82 @@
+{
+  "generatedAt": "2026-08-09T22:27:07.328Z",
+  "config": {
+    "count": 20,
+    "seed": 20260810,
+    "ratios": [
+      0.1,
+      0.2,
+      0.3
+    ],
+    "maxPer": 3,
+    "collected": 8
+  },
+  "control_phase1": {
+    "levels": 20,
+    "totalCages": 437,
+    "uniqueShapes": 21,
+    "entropyH": 2.56,
+    "singletonRatio": 0.041189931350114416,
+    "top4Share": 0.5537757437070938,
+    "complexShare": 0.36613272311212813,
+    "ratioMean": 0.19248948128477356,
+    "avgScore": 520,
+    "uniqueAll": true
+  },
+  "phase2": [
+    {
+      "ratio": 0.1,
+      "levels": 20,
+      "totalCages": 436,
+      "uniqueShapes": 21,
+      "entropyH": 2.556,
+      "singletonRatio": 0.0389908256880734,
+      "top4Share": 0.555045871559633,
+      "complexShare": 0.36926605504587157,
+      "ratioMean": 0.19353127650465096,
+      "avgScore": 526.3,
+      "uniqueAll": true
+    },
+    {
+      "ratio": 0.2,
+      "levels": 20,
+      "totalCages": 434,
+      "uniqueShapes": 21,
+      "entropyH": 2.536,
+      "singletonRatio": 0.03225806451612903,
+      "top4Share": 0.5576036866359447,
+      "complexShare": 0.37327188940092165,
+      "ratioMean": 0.19433082168223872,
+      "avgScore": 522.5,
+      "uniqueAll": true
+    },
+    {
+      "ratio": 0.3,
+      "levels": 20,
+      "totalCages": 432,
+      "uniqueShapes": 21,
+      "entropyH": 2.571,
+      "singletonRatio": 0.020833333333333332,
+      "top4Share": 0.5509259259259259,
+      "complexShare": 0.37037037037037035,
+      "ratioMean": 0.21142067564649963,
+      "avgScore": 518.8,
+      "uniqueAll": true
+    }
+  ],
+  "best": {
+    "ratio": 0.3,
+    "top4Share": 0.5509259259259259,
+    "complexShare": 0.37037037037037035
+  },
+  "gates": {
+    "GateA_singleton_le_5pct": true,
+    "GateB_top4_lt_50pct": false,
+    "GateC_top4_lt_45pct": false,
+    "GateC_complex_gt_45pct": false,
+    "GateC_difficulty_pm5": true,
+    "Gate_ratio_no_regress": true,
+    "Gate_unique": true
+  },
+  "verdict": "Phase2 验证：proposal 注入能否改变 topology supply。Gate B 看 top4<50% 是否证明 builder 有杠杆；若 top4 仍高但 complex 升，说明提案方向对但浓度需加强；若全不动，说明 reshape 未进入候选池（查 ratio/maxCollected）。"
+}

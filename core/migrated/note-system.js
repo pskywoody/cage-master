@@ -13,8 +13,8 @@
 //
 // 三视角配置：
 //   hero    - 主角：全手动，无自动展开
-//   yan     - 阿妍：微光态（关键格淡显）+ 全览手动开关
-//   ying    - 莹莹：隐藏态 + 限次全览爆发
+//   yan     - 山田：微光态（关键格淡显）+ 全览手动开关
+//   ying    - 薇拉：隐藏态 + 限次全览爆发
 //
 // 经典模式（向后兼容）：
 //   和原来一样，笔记模式下常开，不自动收回
@@ -36,7 +36,7 @@ class NoteSystem {
     // 笔记模式：breathing（呼吸模式）/ classic（经典模式）
     this.mode = options.mode || 'breathing';
 
-    // 当前显示状态：hidden / single / full / glow（微光，仅阿妍）
+    // 当前显示状态：hidden / single / full / glow（微光，仅山田）
     this.displayState = 'hidden';
 
     // 单格态的目标格子
@@ -45,7 +45,7 @@ class NoteSystem {
     // 全览态计时器
     this._fullTimer = null;
 
-    // 莹莹视角：本关已使用的全览次数
+    // 薇拉视角：本关已使用的全览次数
     this.yingFullExpandsUsed = 0;
 
     // 视角配置
@@ -95,7 +95,7 @@ class NoteSystem {
     this.perspective = perspective;
     this._resetToDefaultState();
 
-    // 阿妍视角：自动填入所有理论笔记（被动技能）
+    // 山田视角：自动填入所有理论笔记（被动技能）
     // 注意：此技能仅在二周目及以上生效
     if (perspective === 'yan' && this._isNewGamePlus()) {
       this._autoFillTheoreticalCandidates();
@@ -125,7 +125,7 @@ class NoteSystem {
   }
 
   /**
-   * 自动填入所有理论笔记（阿妍被动技能）
+   * 自动填入所有理论笔记（山田被动技能）
    */
   _autoFillTheoreticalCandidates() {
     if (typeof this.board.autoFillCandidates === 'function') {
@@ -134,7 +134,7 @@ class NoteSystem {
   }
 
   /**
-   * 玩家填数后，更新阿妍视角的笔记（保持同步）
+   * 玩家填数后，更新山田视角的笔记（保持同步）
    * 注意：此被动技能仅在二周目及以上生效
    */
   onNumberFilled() {
@@ -228,7 +228,7 @@ class NoteSystem {
     // 不允许全览
     if (!cfg.allowFullExpand) return false;
 
-    // 莹莹视角：检查次数
+    // 薇拉视角：检查次数
     if (this.perspective === 'ying') {
       if (this.yingFullExpandsUsed >= cfg.maxFullExpandsPerLevel) {
         return false; // 次数用完了
@@ -304,7 +304,7 @@ class NoteSystem {
         if (this.singleCell && this.singleCell.r === r && this.singleCell.c === c) {
           return { show: true, opacity: 1 };
         }
-        // 微光态叠加（阿妍视角下，单格态时其他关键格仍然微亮）
+        // 微光态叠加（山田视角下，单格态时其他关键格仍然微亮）
         if (this.perspective === 'yan') {
           const cell = this.board.cells[r]?.[c];
           if (cell && !cell.fixedNum && !cell.fillNum) {
@@ -338,7 +338,7 @@ class NoteSystem {
   }
 
   /**
-   * 获取莹莹视角剩余次数
+   * 获取薇拉视角剩余次数
    */
   getYingRemainingExpands() {
     const cfg = this.getConfig();

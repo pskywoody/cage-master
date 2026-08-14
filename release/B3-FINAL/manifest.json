@@ -1,0 +1,18 @@
+{
+  "release": "B3-FINAL",
+  "version": "3.0",
+  "poolSize": 100,
+  "generator": "CageMaster",
+  "config": {
+    "gb": 0.4,
+    "lambda": 25,
+    "W": 0.2,
+    "objective": true,
+    "ratioWeight": 100,
+    "maxCollected": 8
+  },
+  "acceptance": "PASS",
+  "created": "2026-08-10",
+  "sourcePool": "data/release-pool-b3final.json",
+  "seed": 20260810
+}

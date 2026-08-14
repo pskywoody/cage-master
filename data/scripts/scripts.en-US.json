@@ -1,0 +1,2577 @@
+{
+  "version": "5.1",
+  "cycles": [
+    {
+      "cycleId": 1,
+      "name": "第一周目·沈墨视角——寻局者",
+      "chapters": [
+        {
+          "chapterId": 1,
+          "title": "初识笼中密码（四乘四→六乘六）",
+          "prologue": [
+            {
+              "speaker": "Narrator",
+              "text": "Night. In the counting house, only a single kerosene lamp burns. Shen Mo sits at the desk, a letter in his hand — its edges worn thin, as though it has been opened and read many times over.",
+              "_action": "The counting house, deep in the night. From the lanes beyond the window drifts the far-off sound of water, like the Suzhou Creek.",
+              "sfx": "ambient_wind",
+              "vo": "VO_N_0001",
+              "emotion": "旁白·低沉·讲故事",
+              "bg": "assets/images/chapter1/backgrounds/BG-CH1-01_accounting_room_night.jpg"
+            },
+            {
+              "speaker": "Teacher (Recording)",
+              "text": "Mo, by the time you receive this letter, I will already be gone from Shanghai. But I have left you enough to walk the whole road — and it begins with an old notebook.",
+              "_action": "The handwriting on the paper — he knows it. The strokes are steady, yet the pen falls lightly.",
+              "vo": "VO_T_0001",
+              "emotion": "温和·留声"
+            },
+            {
+              "speaker": "Narrator",
+              "text": "From the very bottom of the drawer, Shen Mo draws out an old notebook. Its cover has grown brittle, its corners curled. He opens it to the first page.",
+              "_action": "He turns the pages of the old notebook. The paper rustles softly.",
+              "sfx": "paper_flip",
+              "vo": "VO_N_0002",
+              "emotion": "旁白·叙述"
+            },
+            {
+              "speaker": "Narrator",
+              "text": "On the first page is pasted a hand-drawn grid — four rows, four columns, with numbers already filled into a few of the cells. Beside it, in the teacher's hand: in every row and every column, the numbers 1 through 4 each appear exactly once.",
+              "_action": "A close-up of the hand-drawn grid. The pencil lines have begun to fade.",
+              "vo": "VO_N_0003",
+              "emotion": "旁白·叙述",
+              "bg": "assets/images/chapter1/backgrounds/BG-CH1-01_accounting_room_night.jpg"
+            },
+            {
+              "speaker": "Shen Mo CHIBI",
+              "text": "...This was the first puzzle I ever learned. Back then, it was he who taught me, sitting right beside me.",
+              "vo": "VO_SC_0001",
+              "emotion": "回忆·低语"
+            },
+            {
+              "speaker": "Teacher (Recording)",
+              "text": "Lesson one, the row rule: in a single horizontal line, the numbers 1 through 4 each appear exactly once — no repeats. The missing number is simply the one that's absent.",
+              "vo": "VO_T_0002",
+              "emotion": "温和·教学"
+            }
+          ],
+          "levels": [
+            {
+              "levelId": 101,
+              "title": "雨夜来信",
+              "preDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "Night. Cold rain taps against the lattice window, dampness seeping into the room. Shen Mo picks up the unsigned letter from the corner of his desk — the seal bears no stamp, only a hair-thin short stroke carved into it. He breaks the seal: inside is no ordinary message, but a partially completed 9×9 Sudoku grid. The fourth cell of the third row is the anchor of the entire puzzle.",
+                  "emotion": "旁白·低沉·讲故事",
+                  "bg": "assets/images/chapter1/backgrounds/BG-CH1-01_accounting_room_night.jpg",
+                  "cg": "assets/images/chapter1/cg/CG-CH1-01_letter_closeup.jpg"
+                },
+                {
+                  "speaker": "Narrator",
+                  "text": "Shen Mo's fingertips brush across the paper. The ink has long since dried. This is no pastime — this is a secret letter. Someone, across the vast sea of people, has delivered a puzzle into his hands.",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "Shen Mo CHIBI",
+                  "text": "(He presses his fingertip against the short stroke) A key... Hidden behind this puzzle lies a sealed clue.",
+                  "emotion": "低语",
+                  "cg": "assets/images/chapter1/cg/CG-CH1-02_shenmo_reading_letter.jpg"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "The Letter on the Rainy Night, complete. Archive Fragment 1/9 unlocked. The anonymous short-stroke mark, the unknown sender — the fourth cell of the third row is the verification anchor.",
+                  "emotion": "旁白·叙述"
+                }
+              ]
+            },
+            {
+              "levelId": 102,
+              "title": "旧书铺踪迹",
+              "preDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "The rain has stopped; puddles gleam with reflected light. Following the faint traces left in the letter, Shen Mo arrives at the old-bookshop lane on Avenue Joffre. Many shops have hung up their closed signs, and plainclothes agents of the Tokkō linger nearby, watching everyone who enters or leaves the bookshops.",
+                  "emotion": "旁白·叙述",
+                  "bg": "assets/images/chapter1/backgrounds/BG-CH1-02_bookstore_counter.jpg"
+                },
+                {
+                  "speaker": "Narrator",
+                  "text": "Deep in the lane stands an unremarkable old bookshop. On the wooden window frame is carved a short stroke exactly like the one on the letter. The mark is old, worn faint by wind and frost. Shen Mo pushes open the door; a bell rings once — the woman behind the counter does not look up. She is the owner of this shop: Vera.",
+                  "emotion": "旁白·叙述",
+                  "cg": "assets/images/chapter1/cg/CG-CH1-03_bookstore_first_meeting.jpg"
+                },
+                {
+                  "speaker": "Vera",
+                  "text": "Until you solve this puzzle, I will not tell you anything.",
+                  "emotion": "平静·陈述"
+                },
+                {
+                  "speaker": "Shen Mo CHIBI",
+                  "text": "(He stares at the short stroke, then looks at her) Exactly like the one on the letter... She recognizes this mark.",
+                  "emotion": "思考·回忆"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "Vera",
+                  "text": "Third shelf, on the left. Take it yourself.",
+                  "emotion": "平静·陈述"
+                },
+                {
+                  "speaker": "Shen Mo CHIBI",
+                  "text": "...She said \"until you solve this puzzle\" — there's something she hasn't said.",
+                  "emotion": "思考·回忆"
+                },
+                {
+                  "speaker": "Narrator",
+                  "text": "Traces of the Old Bookshop, complete. Fragment 2/9. Shen Mo walks to the bookshelf and, between the pages of that book, finds the next puzzle. The short-stroke mark is the contact's personal sign — the clue points to the old archive library in the west of the city.",
+                  "emotion": "旁白·叙述"
+                }
+              ]
+            },
+            {
+              "levelId": 103,
+              "title": "街巷阴影",
+              "preDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "Leaving the old bookshop, dusk swallows the lanes completely. Plainclothes figures drift back and forth at the crossroads. Shen Mo deliberately blends into the crowd, changing alleys again and again, making sure no one follows. The brick walls of the alley are mottled, scraps of paper scattered at their base; on the muddy ground in the corner, a partial Sudoku fragment is hastily sketched in charcoal.",
+                  "emotion": "旁白·叙述",
+                  "bg": "assets/images/chapter1/backgrounds/BG-CH1-04_alley_iron_gate.jpg"
+                },
+                {
+                  "speaker": "Narrator",
+                  "text": "Someone left a temporary hint here, then hurried away. The charcoal marks have not yet been washed clean by rain — they were made not long ago.",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "Shen Mo CHIBI",
+                  "text": "(He crouches to study the charcoal marks on the muddy ground) Freshly made... Someone got here before me, and was searching for a path too. This place is under surveillance. I can't stay long.",
+                  "emotion": "思考·回忆"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "Shadows of the Lanes, complete. Fragment 3/9. A mobile contact point on Avenue Joffre comes to light — the net of surveillance has quietly been cast.",
+                  "emotion": "旁白·叙述"
+                }
+              ]
+            },
+            {
+              "levelId": 104,
+              "title": "访客苏晚",
+              "preDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "Shen Mo returns home; the lamp inside is still burning. Su Wan is already waiting. She knows the city has grown dangerous of late, and seeing him drenched in night dew, worry hides in her brows. She does not ask where the letter came from, only reminds him softly: house-to-house inspections have begun on the streets, and after days of moving about, his face could easily be remembered. Two Sudoku puzzles lie quietly spread on the table. Su Wan glances down at the paper, recognizes this cipher format, yet does not touch the sheets.",
+                  "emotion": "旁白·叙述",
+                  "bg": "assets/images/chapter1/backgrounds/BG-CH1-01_accounting_room_night.jpg"
+                },
+                {
+                  "speaker": "Su Wan",
+                  "text": "(Softly) House-to-house inspections have already begun on the streets. After days of moving about, your face could easily be remembered. Don't leave these things out in the open — if they're found in a search, no explanation will save you.",
+                  "emotion": "轻声"
+                },
+                {
+                  "speaker": "Shen Mo CHIBI",
+                  "text": "(He tucks the sheets into his inner pocket) ...Thank you for still waiting here for me.",
+                  "emotion": "低语"
+                },
+                {
+                  "speaker": "Shen Mo CHIBI",
+                  "text": "(In a low voice) I've been drawn into a game. A game from which there is no escape.",
+                  "emotion": "思考·回忆"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "The Visitor: Su Wan, complete. Fragment 4/9. Su Wan recognizes this underground cipher and takes the initiative to cover your tracks — yet the danger continues to rise.",
+                  "emotion": "旁白·叙述"
+                }
+              ]
+            },
+            {
+              "levelId": 105,
+              "title": "藏书楼外墙",
+              "preDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "Late at night, Shen Mo circles to the back alley of the archive library. The whole building is deathly still; lending ended long ago, the gate is locked tight, the walls are tall and covered in vines. A brick in the corner shows signs of loosening, and wedged in its crevice is the third puzzle note. This library looks ordinary, yet within it hides a secret known to no one.",
+                  "emotion": "旁白·叙述",
+                  "bg": "assets/images/chapter1/backgrounds/BG-CH1-05_xiafei_road_night.jpg"
+                },
+                {
+                  "speaker": "Narrator",
+                  "text": "The puzzle on the note points to a hidden entrance behind the wall.",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "Shen Mo CHIBI",
+                  "text": "(He pulls the note from the brick crevice) There's a door behind the wall. This library hides a secret known to no one.",
+                  "emotion": "思考·回忆"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "The Archive Library's Outer Wall, complete. Fragment 5/9. The hidden entrance comes to light — this is the hub of the entire secret-letter chain.",
+                  "emotion": "旁白·叙述"
+                }
+              ]
+            },
+            {
+              "levelId": 106,
+              "title": "砖石秘钥",
+              "preDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "Following the coordinates given by the puzzle, Shen Mo presses his fingertip against that brick and slowly pushes it inward. The brick shifts with a sound, and the wall splits open a gap just wide enough for one person to pass sideways. Beyond the gap, dark stone steps descend into the depths, and a damp, cold draft rushes out. This is the beginning of the secret passage.",
+                  "emotion": "旁白·叙述",
+                  "bg": "assets/images/chapter1/backgrounds/BG-CH1-04_alley_iron_gate.jpg"
+                },
+                {
+                  "speaker": "Narrator",
+                  "text": "In the darkness, he cannot see how deep it goes, nor hear a single human sound. The road ahead is wholly unknown.",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "Shen Mo CHIBI",
+                  "text": "(He braces against the brick and pushes inward) It's open... There are stone steps below. The secret passage begins here.",
+                  "emotion": "低语"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "The Brick-and-Stone Key, complete. Fragment 6/9. The entrance to the secret passage is now revealed, descending toward the lowest level of the library.",
+                  "emotion": "旁白·叙述"
+                }
+              ]
+            },
+            {
+              "levelId": 107,
+              "title": "初入幽阶",
+              "preDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "Step by step downward, away from the night above ground. The candle's faint flame lights only a few steps ahead; the stone walls seep water and the air is cold. Broken strings of small numbers are carved into the walls — Sudoku remnants left by those who came before. Some are ancient, eroded faint by damp; some are freshly cut, not long made.",
+                  "emotion": "旁白·叙述",
+                  "bg": "assets/images/chapter1/backgrounds/BG-CH1-05_xiafei_road_night.jpg"
+                },
+                {
+                  "speaker": "Narrator",
+                  "text": "Every remnant mark is a trace left by someone who once walked this road.",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "Shen Mo CHIBI",
+                  "text": "(He raises the candle to the wall) These carvings... I'm not the only one who's walked here. Some are old, some new — they belong to different eras.",
+                  "emotion": "思考·回忆"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "First Steps Down the Hidden Stairs, complete. Fragment 7/9. The passage leads to B1, and the remnants on the walls were left by many hands from different times.",
+                  "emotion": "旁白·叙述"
+                }
+              ]
+            },
+            {
+              "levelId": 108,
+              "title": "夹层遗物",
+              "preDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "At the end of the stone steps lies a small mezzanine stone chamber, stacked with a few dusty old wooden cases, unlocked. Shen Mo lifts a lid: no gold or silver inside, only old manuscripts, handwritten notes, and a small brass key numbered 3 — wrapped in yellowed silk paper bearing a few faint lines of writing in his father's hand. Years ago, his father too had come here.",
+                  "emotion": "旁白·叙述",
+                  "bg": "assets/images/chapter1/backgrounds/BG-CH1-01_accounting_room_night.jpg"
+                },
+                {
+                  "speaker": "Narrator",
+                  "text": "The old relics are silent, offering no explanation, leaving only a pile of puzzles waiting to be deciphered.",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "Shen Mo CHIBI",
+                  "text": "(His fingertip touches the brass key) Number 3... Father's handwriting. So he came here too.",
+                  "emotion": "低语"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "Relics in the Mezzanine, complete. Fragment 8/9. Father's past surfaces — the brass key numbered 3, its purpose still a mystery.",
+                  "emotion": "旁白·叙述"
+                }
+              ]
+            },
+            {
+              "levelId": 109,
+              "title": "序章终局·第一重闭环",
+              "preDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "At the end of the stone chamber stands a heavy iron door; a complete Sudoku grid is carved directly into its surface. This is the final lock of the prologue. Shen Mo pieces together every clue gathered along the way — the anonymous letter, the old bookshop, the wall carvings, his father's relics — all converging here.",
+                  "emotion": "旁白·叙述",
+                  "bg": "assets/images/chapter1/backgrounds/BG-CH1-01_accounting_room_night.jpg"
+                },
+                {
+                  "speaker": "Narrator",
+                  "text": "Solve this puzzle and he can step into deeper underground. But he also knows that once he crosses this door, there is no turning back.",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "Shen Mo CHIBI",
+                  "text": "(He fits all the fragments together) The letter, the old bookshop, the wall, Father's relics... all converging here. Once I cross this door, there's no turning back.",
+                  "emotion": "思考·回忆"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "The First Closure, complete. All nine archive fragments of the prologue are unlocked. Behind the door lies endless darkness — and Chapter Two · The Rooms has quietly opened behind you.",
+                  "emotion": "旁白·叙述"
+                }
+              ]
+            }
+          ],
+          "hiddenStory": [
+            {
+              "speaker": "Teacher (Recording)",
+              "text": "Mo, you have gathered all nine fragments of the prologue. This letter is the door I left before your final departure. You have read my handwriting, and the handwriting of your father hidden in the lining — they are both waiting for you to piece this whole road into the true answer.",
+              "bg": "assets/images/chapter1/cg/CG-CH1-01_letter_closeup.jpg",
+              "emotion": "留声·温和"
+            },
+            {
+              "speaker": "Narrator",
+              "text": "The nine fragments assemble into a complete letter. On the back of the letter rests a faint short stroke — echoing, across the distance, the road your father walked and the road you yourself have walked.",
+              "emotion": "旁白·叙述"
+            }
+          ]
+        },
+        {
+          "chapterId": 2,
+          "title": "第二章·屋（1941年11月·藏书楼地下）",
+          "prologue": [
+            {
+              "speaker": "Narrator",
+              "text": "November 1941. The Tokkō's searches of old books and printed matter tighten without pause. Shen Mo's name quietly enters the list of suspects. He follows the path his father once walked, descending into the underground B1–B2 levels of the archive library. Layer by layer, the physical evidence begins to uncover the past of the previous generation.",
+              "sfx": "ambient_wind",
+              "vo": "VO_N_0052",
+              "emotion": "旁白·低沉·讲故事",
+              "bg": "assets/images/chapter2/backgrounds/BG-CH2-01_b1_corridor.jpg"
+            },
+            {
+              "speaker": "Shen Mo CHIBI",
+              "text": "(Stepping into the B1 corridor) The road my father walked... I'll walk it myself, once.",
+              "vo": "VO_SC_0001",
+              "emotion": "沉静·决心"
+            }
+          ],
+          "levels": [
+            {
+              "levelId": 201,
+              "title": "B1回廊",
+              "preDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "The iron door swings fully open, and Shen Mo steps into the B1 corridor. The air is dry and cold; rows of wall lamps, coated in thin dust, barely light the stone walls. Both walls are densely covered with sequences of numbers carved by knife points, one after another, stretching toward the end of the corridor. This is a long corridor of memory, countless puzzle fragments carved into stone.",
+                  "emotion": "旁白·叙述",
+                  "bg": "assets/images/chapter2/backgrounds/BG-CH2-01_b1_corridor.jpg"
+                },
+                {
+                  "speaker": "Narrator",
+                  "text": "Some carvings are old, worn nearly illegible; others are sharp, cut not long ago. Father's traces are mixed among countless nameless marks.",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "Shen Mo CHIBI",
+                  "text": "(His fingertip traces the wall) The set of carvings that belongs to Father... is here.",
+                  "vo": "VO_SC_0002",
+                  "emotion": "辨认·专注"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "The B1 Corridor, complete. Chapter Two Archive Fragment 1/9 unlocked. The wall carvings belong to several periods, and Father's path can be distinguished on its own.",
+                  "emotion": "旁白·叙述"
+                }
+              ]
+            },
+            {
+              "levelId": 202,
+              "title": "岔路残简",
+              "preDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "Halfway down the corridor, the road splits in two. One passage extends beneath the library itself; the other branches toward a side chamber known to no one. On the ground lies half a torn page, its edges already decayed.",
+                  "emotion": "旁白·叙述",
+                  "bg": "assets/images/chapter2/backgrounds/BG-CH2-02_branch.jpg"
+                },
+                {
+                  "speaker": "Narrator",
+                  "text": "The paper bears the remnant imprint of the year 1938, along with half a blurred signature. 1938 is the year when so many things began. No one knows to whom this fragment once belonged.",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "Shen Mo CHIBI",
+                  "text": "(He picks up the fragment) 1938... the year Father began walking this road.",
+                  "vo": "VO_SC_0003",
+                  "emotion": "沉思"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "The Forked Path Fragment, complete. Archive Fragment 2/9 unlocked. The wrong branch is ruled out and the main passage confirmed; the identity behind the 1938 fragment remains a mystery.",
+                  "emotion": "旁白·叙述"
+                }
+              ]
+            },
+            {
+              "levelId": 203,
+              "title": "桥洞一瞬",
+              "preDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "Having lingered underground too long, he needs to resupply above ground. Shen Mo leaves the library and passes the stone bridge outside the city. The river is murky, the shadow beneath the arch deep. A middle-aged man in a grey cloth gown stands in the shadow.",
+                  "emotion": "旁白·叙述",
+                  "bg": "assets/images/chapter2/backgrounds/BG-CH2-03_bridge_arch.jpg"
+                },
+                {
+                  "speaker": "Narrator",
+                  "text": "The two pass each other, only a few steps apart. The man says nothing; his gaze sweeps over Shen Mo in an instant, then he turns and vanishes into the crowd. Not a single word is exchanged — friend or foe, surveillance or contact, no one can tell.",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "Shen Mo CHIBI",
+                  "text": "(He watches the figure disappear) A grey cloth gown... not the Tokkō's style. Who could that be?",
+                  "vo": "VO_SC_0004",
+                  "emotion": "警惕·疑惑"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "A Moment at the Bridge Arch, complete. Archive Fragment 3/9 unlocked. The mysterious man in the grey cloth gown appears; surveillance, friend or foe, has drawn close.",
+                  "emotion": "旁白·叙述"
+                }
+              ]
+            },
+            {
+              "levelId": 204,
+              "title": "72号旧居",
+              "preDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "Following the clues, Shen Mo arrives at the No. 72 old residence where his father once lived. The courtyard has long been abandoned, weeds spilling over the stone steps. The house is empty; its occupant left long ago. The furniture inside is thick with dust, with no trace of a living person.",
+                  "emotion": "旁白·叙述",
+                  "bg": "assets/images/chapter2/backgrounds/BG-CH2-04_old_residence.jpg"
+                },
+                {
+                  "speaker": "Narrator",
+                  "text": "The lock on the wooden cabinet in the corner fits exactly the brass key numbered 3. The key slides into the lock and turns gently; the cabinet lock springs open with a click.",
+                  "sfx": "door_open",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "Shen Mo CHIBI",
+                  "text": "(He opens the cabinet) Father's keepsakes... all here.",
+                  "vo": "VO_SC_0005",
+                  "emotion": "低沉·怀念"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "The No. 72 Old Residence, complete. Archive Fragment 4/9 unlocked. The cabinet opens to reveal the manuscripts and Sudoku drafts Father left behind.",
+                  "emotion": "旁白·叙述"
+                }
+              ]
+            },
+            {
+              "levelId": 205,
+              "title": "旧稿破译",
+              "preDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "Inside the cabinet, stacks of Sudoku drafts lie quietly. Some are complete; others stop halfway. Shen Mo turns the pages one by one, seeing the traces of his father's countless calculations and corrections.",
+                  "emotion": "旁白·叙述",
+                  "bg": "assets/images/chapter2/backgrounds/BG-CH2-04_old_residence.jpg"
+                },
+                {
+                  "speaker": "Narrator",
+                  "text": "Many grids are likewise stuck at the two-thirds mark, never written further. As if an insurmountable boundary lay before him. Back then, Father too was trapped on this chain of puzzles, unable to reach the end.",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "Shen Mo CHIBI",
+                  "text": "(He closes the drafts) Father knew of every secret passage underground... yet he never managed to finish the final stretch.",
+                  "vo": "VO_SC_0006",
+                  "emotion": "领悟·沉重"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "Deciphering the Old Drafts, complete. Archive Fragment 5/9 unlocked. Father knew of every secret passage beneath the library, but could never finish the final stretch.",
+                  "emotion": "旁白·叙述"
+                }
+              ]
+            },
+            {
+              "levelId": 206,
+              "title": "返回地下",
+              "preDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "Having read every clue in the old residence, Shen Mo must return underground. The city grows more dangerous by the day; street agents' checks grow ever more frequent. At home, Su Wan erases the traces of his outings, covering up the fact that he has been missing for so long.",
+                  "emotion": "旁白·叙述",
+                  "bg": "assets/images/chapter2/backgrounds/BG-CH2-05_underground.jpg"
+                },
+                {
+                  "speaker": "Narrator",
+                  "text": "He pushes open the brick crevice again, and the cold underground air rushes out. The world above grows ever more perilous; underground is both refuge and cage.",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "Shen Mo CHIBI",
+                  "text": "(The hidden door closes behind him) Su Wan... thank you for your trouble.",
+                  "vo": "VO_SC_0007",
+                  "emotion": "低语·感念"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "Returning Underground, complete. Archive Fragment 6/9 unlocked. The hidden door closes again, sealing off the lights above, sinking once more underground.",
+                  "emotion": "旁白·叙述"
+                }
+              ]
+            },
+            {
+              "levelId": 207,
+              "title": "B2石室入口",
+              "preDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "Having walked the full length of the B1 corridor, he reaches the iron door to B2. It is far heavier than any door before, rust crawling over the cast-iron surface. The entire door is a single enormous Sudoku lock.",
+                  "emotion": "旁白·叙述",
+                  "bg": "assets/images/chapter2/backgrounds/BG-CH2-06_b2_gate.jpg"
+                },
+                {
+                  "speaker": "Narrator",
+                  "text": "On both walls, old and new carvings interweave. Some belong to Father; the rest, to a later visitor of unknown origin. Someone came here before Shen Mo arrived.",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "Shen Mo CHIBI",
+                  "text": "(He studies the carvings) Not Father's hand... Someone got here one step ahead of me.",
+                  "vo": "VO_SC_0008",
+                  "emotion": "警觉"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "The B2 Chamber Entrance, complete. Archive Fragment 7/9 unlocked. The B2 level officially opens; an unknown visitor arrived before Shen Mo.",
+                  "emotion": "旁白·叙述"
+                }
+              ]
+            },
+            {
+              "levelId": 208,
+              "title": "B2空室",
+              "preDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "He steps into the main B2 chamber. The space is far larger than the mezzanine. Old wooden cases are piled in the corner, discarded manuscripts scattered on the floor. The air mingles the decay of paper with the chill of rock.",
+                  "emotion": "旁白·叙述",
+                  "bg": "assets/images/chapter2/backgrounds/BG-CH2-07_b2_room.jpg"
+                },
+                {
+                  "speaker": "Narrator",
+                  "text": "A shallow impression on the desk proves that someone sat here not long ago. No name, no note — the person has left entirely. The visitor came and went without a trace, leaving only physical marks to tell of what happened.",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "Shen Mo CHIBI",
+                  "text": "(He reads from the leftover fragments) B3 does exist... but the path downward is sealed by a complete chain of puzzles.",
+                  "vo": "VO_SC_0009",
+                  "emotion": "推断·凝重"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "The Empty B2 Chamber, complete. Archive Fragment 8/9 unlocked. B3 truly exists but is sealed by a puzzle chain; an unknown visitor once lingered here.",
+                  "emotion": "旁白·叙述"
+                }
+              ]
+            },
+            {
+              "levelId": 209,
+              "title": "石室留痕",
+              "preDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "Shen Mo stands before the stone wall. The marks of countless predecessors cover all four walls. Father, and the nameless visitor, all left their traces on the stone. He takes out a charcoal stick and, in a blank spot on the wall, leaves a carving of his own. No name, no date — it means only: I was here.",
+                  "emotion": "旁白·叙述",
+                  "bg": "assets/images/chapter2/backgrounds/BG-CH2-07_b2_room.jpg"
+                },
+                {
+                  "speaker": "Narrator",
+                  "text": "Here, he has walked every road his father once trod. But the end his father never reached still lies deeper in the darkness.",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "Shen Mo CHIBI",
+                  "text": "(Where Father's last stroke stopped, he adds one of his own) Not a continuation. A finish. One stroke stopped. One did not.",
+                  "vo": "VO_SC_0010",
+                  "emotion": "平静·坚定"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "The Mark Left in the Chamber, complete. All Chapter Two archive fragments 9/9 unlocked. He finished his own road and stopped where he should. You finished his road, then kept going.",
+                  "emotion": "旁白·叙述"
+                }
+              ]
+            }
+          ],
+          "hiddenStory": [
+            {
+              "speaker": "Narrator",
+              "text": "The nine archive fragments of Chapter Two assemble into a complete record of the previous generation. The 1938 fragment, the carvings on the stone walls, the key numbered 3... the old residence in the city, the bridge arch, the B1–B2 levels of the archive library — Shen Mo has walked every step of his father's road.",
+              "emotion": "旁白·叙述",
+              "bg": "assets/images/chapter2/backgrounds/BG-CH2-01_b1_corridor.jpg"
+            },
+            {
+              "speaker": "Shen Mo CHIBI",
+              "text": "(Looking at the two carvings on the stone wall) One stopped. One did not. And the door to B3 is still locked.",
+              "vo": "VO_SC_0011",
+              "emotion": "沉思·领悟"
+            }
+          ],
+          "epilogue": [
+            {
+              "speaker": "Narrator",
+              "text": "Chapter Two · The Rooms, complete. Shen Mo enters the list of suspects; the mysterious man in the grey cloth gown makes his appearance. And the door to B3 waits to be opened.",
+              "sfx": "seal_stamp",
+              "emotion": "旁白·叙述",
+              "bg": "assets/images/chapter2/backgrounds/BG-CH2-01_b1_corridor.jpg"
+            },
+            {
+              "speaker": "Shen Mo CHIBI",
+              "text": "(Gazing into the deeper dark) Chapter Three · The Door...",
+              "vo": "VO_SC_0012",
+              "emotion": "低语·前行"
+            }
+          ]
+        },
+        {
+          "chapterId": 3,
+          "title": "第三章·门（1941年11月末·藏书楼地下B1-B3）",
+          "prologue": [
+            {
+              "speaker": "Narrator",
+              "text": "Late November 1941. The Japanese Combined Fleet steams out of Hitokappu Bay, and the countdown to the Pacific War begins. The Shanghai Tokkō's manhunt reaches its peak. Vera's shop is forced to close its doors and go underground. The transmitter beneath the archive library is the terminal of the entire chain — only one who completes the puzzle chain left by the previous generation is worthy of switching it on.",
+              "sfx": "ambient_wind",
+              "vo": "VO_N_0053",
+              "emotion": "旁白·低沉·讲故事",
+              "bg": "assets/images/chapter3/backgrounds/BG-CH3-01_secret_door.jpg"
+            },
+            {
+              "speaker": "Narrator",
+              "text": "Shen Mo descends through B1–B3, locked the whole way in a silent, unseen standoff with Ito — who walked the same passage only hours before him.",
+              "emotion": "旁白·叙述"
+            },
+            {
+              "speaker": "Shen Mo CHIBI",
+              "text": "(Standing before the hidden door) Ito... has already walked this whole passage, one step ahead of me.",
+              "vo": "VO_SC_0013",
+              "emotion": "沉静·警觉"
+            }
+          ],
+          "levels": [
+            {
+              "levelId": 301,
+              "title": "暗门",
+              "preDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "Leaving the B2 chamber, Shen Mo returns to the first floor of the library. Just as he is about to step down the stone stairs, his gaze sweeps over the inner frame of the hidden door — a fine pencil short stroke, quietly carved into the wood. The style of the mark is exactly the same as the one on the old windowsill on Avenue Joffre in the prologue.",
+                  "emotion": "旁白·叙述",
+                  "bg": "assets/images/chapter3/backgrounds/BG-CH3-01_secret_door.jpg"
+                },
+                {
+                  "speaker": "Narrator",
+                  "text": "It was not left by Father. Someone, before he arrived, had already traversed the entire secret passage.",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "Shen Mo CHIBI",
+                  "text": "(He memorizes the mark) Someone got here one step ahead of me... Ito.",
+                  "vo": "VO_SC_0014",
+                  "emotion": "辨认·警觉"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "The Hidden Door, complete. Chapter Three Archive Fragment 1/9 unlocked. The short-stroke mark inside the hidden door; the time when Ito passed through here is deduced.",
+                  "emotion": "旁白·叙述"
+                }
+              ]
+            },
+            {
+              "levelId": 302,
+              "title": "B1走廊",
+              "preDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "The B1 corridor is even narrower than the entrance steps. On both walls, strings of numbers carved by knife points stretch endlessly. Shen Mo stops before the seventh carving; its final three digits match exactly the end of the note in the old coat's inner pocket from Chapter Two.",
+                  "emotion": "旁白·叙述",
+                  "bg": "assets/images/chapter3/backgrounds/BG-CH3-01_secret_door.jpg"
+                },
+                {
+                  "speaker": "Narrator",
+                  "text": "A faint trace on the ground catches his eye — a half-dried mud print, embedded with the fine sand peculiar to the Suzhou Creek bank. About six hours earlier, someone wearing shoes stained with riverside sand passed through here, with even steps, heading straight into the depths of B2.",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "Shen Mo CHIBI",
+                  "text": "(He estimates the time) Six hours ago... Ito had already crossed B1 and entered the B2 chamber.",
+                  "vo": "VO_SC_0015",
+                  "emotion": "推断·凝重"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "The B1 Corridor, complete. Archive Fragment 2/9 unlocked. The mud print on the ground; a visitor passed here six hours ago; the soil came from the Suzhou Creek bank.",
+                  "emotion": "旁白·叙述"
+                }
+              ]
+            },
+            {
+              "levelId": 303,
+              "title": "B2密室",
+              "preDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "He pushes open the iron door at the end of B1 and steps into the B2 chamber. On the wooden table in the center sits an open kraft paper bag. Inside lies a stack of paper — seven Sudoku puzzles in all, arranged from easy to hard. In the upper-right corner of the top page, a line in pencil: You've arrived. This is the second layer left by your teacher.",
+                  "emotion": "旁白·叙述",
+                  "bg": "assets/images/chapter3/backgrounds/BG-CH3-02_b2_cellar.jpg"
+                },
+                {
+                  "speaker": "Narrator",
+                  "text": "The lid of the wooden case in the corner is not fully closed, a corner of paper peeking out. The case is empty, holding only an old exercise book with a completely blank cover. Only when he opens the inner depth of the flyleaf does he see a signature so faint it is almost invisible: Ito.",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "Shen Mo CHIBI",
+                  "text": "(He closes the exercise book) Ito... He sat at this desk too.",
+                  "vo": "VO_SC_0016",
+                  "emotion": "低沉·警觉"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "The B2 Chamber, complete. Archive Fragment 3/9 unlocked. Ito's exercise book is hidden inside the wooden case; the impression on the desk proves Ito once sat here.",
+                  "emotion": "旁白·叙述"
+                }
+              ]
+            },
+            {
+              "levelId": 304,
+              "title": "七道题·一",
+              "preDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "Shen Mo pulls the first sheet from the kraft paper bag. The first Sudoku has few givens, but the grid structure is clear and clean. He finishes the deduction quickly; at the end of the page, a line of small writing: Six more. No hurry — you need time.",
+                  "emotion": "旁白·叙述",
+                  "bg": "assets/images/chapter3/backgrounds/BG-CH3-02_b2_cellar.jpg"
+                },
+                {
+                  "speaker": "Narrator",
+                  "text": "The moment he sets down the sheet, he notices a very faint ink streak on the desk — a remnant left on the wood when someone before him wrote, ink soaking through the paper. The direction it points is exactly the wooden case in the corner holding the exercise book.",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "Shen Mo CHIBI",
+                  "text": "(He notes the clue) Traces everywhere, yet not a living soul to be seen.",
+                  "vo": "VO_SC_0017",
+                  "emotion": "沉思"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "The Seven Puzzles · I, complete. Archive Fragment 4/9 unlocked.",
+                  "emotion": "旁白·叙述"
+                }
+              ]
+            },
+            {
+              "levelId": 305,
+              "title": "七道题·二",
+              "preDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "The second puzzle's complexity rises sharply; cage lines interweave in layers, multiple cross-box cages entangling one another. When Shen Mo finishes the grid, at the bottom of the page is the teacher's handwriting: Do you remember that book from June? I made that puzzle. This one too.",
+                  "emotion": "旁白·叙述",
+                  "bg": "assets/images/chapter3/backgrounds/BG-CH3-02_b2_cellar.jpg"
+                },
+                {
+                  "speaker": "Narrator",
+                  "text": "He turns the sheet over — it is blank, no added words. Across the paper, he gazes at the teacher who left for a distant land.",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "Shen Mo CHIBI",
+                  "text": "(He folds the sheet) Teacher... You've been waiting for this day too.",
+                  "vo": "VO_SC_0018",
+                  "emotion": "感念·低语"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "The Seven Puzzles · II, complete. Archive Fragment 5/9 unlocked. Both puzzles are confirmed to be from the teacher's hand.",
+                  "emotion": "旁白·叙述"
+                }
+              ]
+            },
+            {
+              "levelId": 306,
+              "title": "七道题·三",
+              "preDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "The third is a zero-given Sudoku. The entire grid holds only cage lines and sums, with no pre-filled numbers. Under the lamp, Shen Mo exhausts his effort and finally completes the deduction.",
+                  "emotion": "旁白·叙述",
+                  "bg": "assets/images/chapter3/backgrounds/BG-CH3-02_b2_cellar.jpg"
+                },
+                {
+                  "speaker": "Narrator",
+                  "text": "The surface of the paper is blank; only when he tilts it toward the light does he see the embossed writing within the sheet: If you can solve this one, you can go deeper. Three puzzles, knocking open the door to B3.",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "Shen Mo CHIBI",
+                  "text": "(He looks toward the narrow emergency door on the chamber's side wall) B3... is right behind that door.",
+                  "vo": "VO_SC_0019",
+                  "emotion": "坚定·前行"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "The Seven Puzzles · III, complete. Archive Fragment 6/9 unlocked. The passage to the B3 entrance is unlocked.",
+                  "emotion": "旁白·叙述"
+                }
+              ]
+            },
+            {
+              "levelId": 307,
+              "title": "B3入口",
+              "preDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "Beyond the narrow door is a short ten-step corridor. At its end stands a cast-iron door far heavier than any before. In the center of the door is carved a Sudoku grid, most of it already filled.",
+                  "emotion": "旁白·叙述",
+                  "bg": "assets/images/chapter3/backgrounds/BG-CH3-03_b3_gate.jpg"
+                },
+                {
+                  "speaker": "Narrator",
+                  "text": "Deep in the stone chamber behind the door is a wooden table, on which lies a letter. It is in Father's handwriting: You've made it this far. Farther than I did back then. That puzzle, I only filled two-thirds. The remaining third, I could not finish. I hope you can.",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "Narrator",
+                  "text": "Small writing on the back of the letter: I left a record in advance; the organization will send someone to verify this passage. Ito has been here. He reached this place before you and confirmed the transmitter was in working order.",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "Shen Mo CHIBI",
+                  "text": "(He tucks away the letter) Father never reached the end... and Ito has already come in his place.",
+                  "vo": "VO_SC_0020",
+                  "emotion": "沉重·领悟"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "The B3 Entrance, complete. Archive Fragment 7/9 unlocked. Father completed only two-thirds of the grid; Ito arrived earlier to verify the transmitter.",
+                  "emotion": "旁白·叙述"
+                }
+              ]
+            },
+            {
+              "levelId": 308,
+              "title": "发报机",
+              "preDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "Shen Mo walks to the deepest point of the chamber. An old transmitter rests on the wooden table, powered off. He does not rashly touch the dials; first he carefully surveys the surroundings.",
+                  "emotion": "旁白·叙述",
+                  "bg": "assets/images/chapter3/backgrounds/BG-CH3-04_telegraph.jpg"
+                },
+                {
+                  "speaker": "Narrator",
+                  "text": "He crouches and looks at the inner side of the table leg. A shallow number is carved into the wood: 3. It matches exactly the number on the brass key taken from the No. 72 old residence. The machine is intact and usable. But the authority to start it lies not in the machine itself, but in that unfinished puzzle.",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "Shen Mo CHIBI",
+                  "text": "(He confirms the machine is intact) Ito inspected this machine... and put it back in place without a hair out of line.",
+                  "vo": "VO_SC_0021",
+                  "emotion": "推断·凝重"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "The Transmitter, complete. Archive Fragment 8/9 unlocked. The transmitter's movement trace; the \"3\" carved on the table leg; Ito's equipment inspection record.",
+                  "emotion": "旁白·叙述"
+                }
+              ]
+            },
+            {
+              "levelId": 309,
+              "title": "最深处的门",
+              "preDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "At the deepest point of the chamber stands a stone door just one person wide. Behind it is a tiny cell holding only a table and a chair. On the table rests an iron box. Inside the box is a single sheet — the last third of Father's puzzle at the B3 entrance, left blank.",
+                  "emotion": "旁白·叙述",
+                  "bg": "assets/images/chapter3/backgrounds/BG-CH3-03_b3_gate.jpg"
+                },
+                {
+                  "speaker": "Narrator",
+                  "text": "Before setting pen to paper, Shen Mo reads through the entire grid structure. Then he lowers his head and begins to fill in the numbers. When he fills the final cell, at the very end of the page he writes a single character: Done. No signature, no date — just that one word. Across time, he completes the puzzle his father left half-finished.",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "Shen Mo CHIBI",
+                  "text": "(He sets down the pencil) ...Done.",
+                  "vo": "VO_SC_0022",
+                  "emotion": "平静·释然"
+                },
+                {
+                  "speaker": "Narrator",
+                  "text": "He rises and walks toward the door of the cell. On the inner side of the door frame, someone has carved a new mark — a vertical line. Straight. Deliberate. Not his hand. From the end of the corridor comes a voice — calm, quiet, unhurried:",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "Ito",
+                  "text": "I thought you wouldn't make it.",
+                  "emotion": "平静·试探"
+                },
+                {
+                  "speaker": "Shen Mo",
+                  "text": "Ito.",
+                  "emotion": "平静·对峙"
+                },
+                {
+                  "speaker": "Ito",
+                  "text": "You worked it out yourself. I checked. Same result. But you didn't copy mine.",
+                  "emotion": "平静·审视"
+                },
+                {
+                  "speaker": "Shen Mo",
+                  "text": "I didn't need to.",
+                  "emotion": "平静·坚定"
+                },
+                {
+                  "speaker": "Ito",
+                  "text": "I'll clear the rest of the files. When they search, your name won't be on them.",
+                  "emotion": "平静·承诺"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "The Door at the Deepest Point, complete. All Chapter Three archive fragments 9/9 unlocked. He walked every road before you. He left his marks. But you walked on your own. He saw it. Then he stepped back.",
+                  "emotion": "旁白·叙述"
+                }
+              ]
+            }
+          ],
+          "hiddenStory": [
+            {
+              "speaker": "Narrator",
+              "text": "The nine archive fragments of Chapter Three assemble into the complete B1–B3 underground chain. The short-stroke mark, the verification cell at the fourth column of the third row, the key numbered 3... Shen Mo has walked the road the previous generation could not finish.",
+              "emotion": "旁白·叙述",
+              "bg": "assets/images/chapter3/backgrounds/BG-CH3-03_b3_gate.jpg"
+            },
+            {
+              "speaker": "Shen Mo CHIBI",
+              "text": "(Standing before the transmitter) The puzzle my father could not finish — I completed it. Ito... he stepped back.",
+              "vo": "VO_SC_0023",
+              "emotion": "沉思·领悟"
+            }
+          ],
+          "epilogue": [
+            {
+              "speaker": "Narrator",
+              "text": "Chapter Three · The Door, complete. The countdown to the Pacific War reaches its final moments, and the manhunt above ground closes in on Shen Mo's dwelling. And Chapter Four · The Cord is already in sight.",
+              "sfx": "seal_stamp",
+              "emotion": "旁白·叙述",
+              "bg": "assets/images/chapter3/backgrounds/BG-CH3-03_b3_gate.jpg"
+            },
+            {
+              "speaker": "Shen Mo CHIBI",
+              "text": "(Looking toward the surface) Vera... Su Wan... they are both still above ground.",
+              "vo": "VO_SC_0024",
+              "emotion": "低语·牵挂"
+            }
+          ]
+        },
+        {
+          "chapterId": 4,
+          "title": "第四章·绳（1941年12月·东余杭路94号至藏书楼B3）",
+          "prologue": [
+            {
+              "speaker": "Narrator",
+              "text": "December 4, 1941. War in the Pacific hangs on a hair-trigger. The U.S. Naval Intelligence archives the Japanese reconnaissance of Hawaii; the CCP intelligence officer Nakanishi Isamu locks onto the final window of Japan's southward advance from Shanghai — December 8, with the odds of war already nine in ten. The mood in Shanghai turns abruptly tense. Yamada's Tokkō spreads its search net wide, reaching all the way to the perimeter of the archive library. Vera closes her Avenue Joffre bookshop and vanishes fully underground; Ito, at the very heart of the Tokkō, finds his covert window of action narrowing by the day.",
+              "sfx": "ambient_wind",
+              "vo": "VO_N_0054",
+              "emotion": "旁白·低沉·讲故事",
+              "bg": "assets/images/chapter4/backgrounds/BG-CH4-01_unit94_backalley.jpg"
+            },
+            {
+              "speaker": "Narrator",
+              "text": "Shen Mo now holds the complete route through the secret passage, the full set of Sudoku puzzles, and every key that opens the way. The threads of fate binding the previous generation, the contacts, and the sleeper agents twist together — and everyone's time is racing down toward the end.",
+              "emotion": "旁白·叙述"
+            },
+            {
+              "speaker": "Shen Mo CHIBI",
+              "text": "(Standing in the back alley of No. 94 East Yuhang Road, dusk pressing down on the lanes) The previous generation, the contacts, the sleepers... three cords, twisted into one. Time is counting down.",
+              "vo": "VO_SC_0025",
+              "emotion": "沉静·警觉"
+            }
+          ],
+          "levels": [
+            {
+              "levelId": 401,
+              "title": "东余杭路94号",
+              "preDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "Dusk swallows the lanes. Avoiding the crowd at the front gate, Shen Mo circles to the back alley of No. 94 Dongyuhang Road. The alley is silent and empty. In the brick crevice of the third utility pole, a thin, tough cotton thread is stretched taut and straight — clearly tied recently. He bends down and follows the thread; at its end hangs an old brass key, its teeth worn smooth and shiny by years of use, with a clear number carved into the handle by a knife point: 4. Tucking the key away, he gently pushes the back door of No. 94 — it is unlocked and swings open silently.",
+                  "emotion": "旁白·叙述",
+                  "bg": "assets/images/chapter4/backgrounds/BG-CH4-01_unit94_backalley.jpg"
+                },
+                {
+                  "speaker": "Narrator",
+                  "text": "The moment he steps into the corridor, his gaze fixes on the inner side of the door frame — a short stroke scratched out with a fingernail, its depth, angle, and force exactly matching the mark he left outside the hidden door of the library. In the dust layer inside the threshold is a blurred shoe print, its edges dried pale; on the windowsill at the end of the corridor is a fresh rubbing mark, hidden in shadow and easy to miss. Layer upon layer of traces prove this place has not gone untouched.",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "Shen Mo CHIBI",
+                  "text": "(He silently memorizes the position of the scratch) The short stroke on the door frame... exactly like the one I left outside the library's hidden door. Someone came here one step ahead of me.",
+                  "vo": "VO_SC_0026",
+                  "emotion": "辨认·警觉"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "No. 94 Dongyuhang Road, complete. Chapter Four Archive Fragment 1/9 unlocked. The brass key numbered 4, the short-stroke scratch on the door frame from the same source, and traces of Ito's visit to the same floor.",
+                  "emotion": "旁白·叙述"
+                }
+              ]
+            },
+            {
+              "levelId": 402,
+              "title": "402房",
+              "preDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "Room 402 faces south, its curtains half-drawn, shutting out the night of the streets. The furnishings are minimal — an iron-framed bed, an old wooden table, a wooden chair, standing quietly in the gloom. On the table sits a kerosene lamp drained of oil; beside it lies an old exercise book, open to its last page. Shen Mo approaches slowly. The pencil writing on the page is faint yet resolute, four characters set down neatly: He hasn't come. It is his mother's hand.",
+                  "emotion": "旁白·叙述",
+                  "bg": "assets/images/chapter4/backgrounds/BG-CH4-02_room402.jpg"
+                },
+                {
+                  "speaker": "Narrator",
+                  "text": "Below the four characters, a line of smaller supplementary writing is added, hasty and restrained: I waited until November 15. I can wait no longer. He does not touch the exercise book; from the desk drawer he takes out a neatly folded old letter paper. In its center is printed a Sudoku puzzle, and in the corner a line of small pencil writing: If you can make it this far — solve it, and you'll know where I am. He sits down at the table and, by the faint streetlight leaking through the curtain gap, quietly works the puzzle.",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "Shen Mo CHIBI",
+                  "text": "(His fingertip hovers above the exercise book, not touching) He hasn't come... Mother waited until November 15, and could wait no longer.",
+                  "vo": "VO_SC_0027",
+                  "emotion": "低沉·怀念"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "Room 402, complete. Chapter Four Archive Fragment 2/9 unlocked. The writing left in the exercise book, Mother's time mark, and the clue to the hidden entrance of Room 403.",
+                  "emotion": "旁白·叙述"
+                }
+              ]
+            },
+            {
+              "levelId": 403,
+              "title": "403房",
+              "preDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "Room 403 is even smaller than 402. There is no bed; only a table and a chair stand alone in the center. At the center of the table sits a small iron casket, more refined in form than the iron box beneath the library. The casket has no lock. On the inner side of its lid is pasted a note in gentle handwriting: Your mother solved half of this puzzle. The other half is left for you. Shen Mo lifts the lid; inside lies a 9×9 Sudoku, its first half filled completely and neatly, its second half entirely blank. The structure and layout logic of the puzzle are exactly like the unfinished puzzle Father left in the library.",
+                  "emotion": "旁白·叙述",
+                  "bg": "assets/images/chapter4/backgrounds/BG-CH4-03_room403.jpg"
+                },
+                {
+                  "speaker": "Narrator",
+                  "text": "He sits upright in the chair, sets the casket lightly on his knee, and works the puzzle slowly by the faint light. When the puzzle is solved, the final sequence of numbers precisely locks onto a key date: November 15, 1941 — the day his mother left Shanghai for good. As the solving ends, he notices the bottom of the casket is lined with a neatly trimmed scrap of old newspaper; holding it to the light, he reads the printed type: November 5, 1941. Ten days before, the Imperial Conference had settled on the southward advance policy; ten days after, his mother resolutely left Shanghai. The timeline fits perfectly, hiding a deeper meaning.",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "Shen Mo CHIBI",
+                  "text": "(He puts the newspaper scrap back in place) November 5, the southward advance policy was settled. November 15, Mother left Shanghai. In those ten days... everyone moved.",
+                  "vo": "VO_SC_0028",
+                  "emotion": "领悟·沉重"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "Room 403, complete. Chapter Four Archive Fragment 3/9 unlocked. The collective evacuation date of November 15, the newspaper scrap in the casket, and the Japanese southward advance decision of November 5.",
+                  "emotion": "旁白·叙述"
+                }
+              ]
+            },
+            {
+              "levelId": 404,
+              "title": "404房",
+              "preDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "Room 404 sits at the end of the corridor, the smallest room in the whole building. It is empty — no table, no chair — only an old photograph firmly nailed to the center of the wall. The photo captures a woman's back, standing on a ship's gangplank, one hand holding an old suitcase, her posture straight, resolutely departing. Shen Mo steps forward and gently takes down the photo. On its back, a line in his mother's hand is clearly written: November 15, 1941. I changed my ticket. Not Hong Kong. Vladivostok.",
+                  "emotion": "旁白·叙述",
+                  "bg": "assets/images/chapter4/backgrounds/BG-CH4-04_room404.jpg"
+                },
+                {
+                  "speaker": "Narrator",
+                  "text": "With the photo removed, the wall reveals a clean, dust-free patch, out of place amid the grimy, mottled wallpaper around it. At the center of the clean patch, a line of pencil writing remains faintly: You found this place. The writing is neither old nor new — not left long ago, yet not freshly written. Shen Mo gazes at the words in silence, neither dating them nor asking who left them, quietly storing the line together with the route information behind it. The faint light of dawn pierces the curtain gap and falls exactly on that line of pencil writing, illuminating it clearly.",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "Shen Mo CHIBI",
+                  "text": "(He gently closes the door of Room 404) Not Hong Kong... Vladivostok. Mother changed her route, and rewrote everyone's expectations.",
+                  "vo": "VO_SC_0029",
+                  "emotion": "低沉·领悟"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "Room 404, complete. Chapter Four Archive Fragment 4/9 unlocked. Mother's final route after the rebooking and her evacuation date match perfectly the clues left in Father's B2 chamber — the thread closes into a loop.",
+                  "emotion": "旁白·叙述"
+                }
+              ]
+            },
+            {
+              "levelId": 405,
+              "title": "潘汉年的字条",
+              "preDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "Shen Mo steps out of the back door of No. 94 and returns to the third utility pole. Deep in the brick crevice is wedged a tiny folded note; the paper is dry, untouched by morning dew — a trace placed not long ago. He bends down, takes it out, and slowly unfolds it. The handwriting is unfamiliar, with no name and no signature — only a single precise address: French Concession · Avenue Joffre · Lu Lu Tong Teahouse · Second-floor private room.",
+                  "emotion": "旁白·叙述",
+                  "bg": "assets/images/chapter4/backgrounds/BG-CH4-01_unit94_backalley.jpg"
+                },
+                {
+                  "speaker": "Narrator",
+                  "text": "His fingertips trace the folds of the paper. The folding style is neat yet unfamiliar, wholly unlike the habits of his teacher, his mother, his elders, or himself — a brand-new, unknown contact's handwriting. Shen Mo tucks the note together with the brass key numbered 4 into his inner pocket, glances up and down the alley mouth to confirm no one is watching or lingering. Then he walks slowly along the wall, doubling back around the Suzhou Creek, repeatedly checking for anyone tailing him; only when he is sure it is safe does he turn toward the French Concession.",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "Shen Mo CHIBI",
+                  "text": "(He tucks away the note) No name, no signature... a brand-new contact method. Lu Lu Tong Teahouse, second-floor private room. Will this be a new contact, or a new trap?",
+                  "vo": "VO_SC_0030",
+                  "emotion": "警惕·甄别"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "Pan Hanyu's Note, complete. Chapter Four Archive Fragment 5/9 unlocked. The unknown anonymous note, the new meeting point on Avenue Joffre, and the unfamiliar contact method.",
+                  "emotion": "旁白·叙述"
+                }
+              ]
+            },
+            {
+              "levelId": 406,
+              "title": "路路通茶馆",
+              "preDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "In the afternoon, shadowed gloom hangs over the Concession as Shen Mo walks slowly into the Lu Lu Tong Teahouse. The door of the second-floor private room is ajar, unlocked, leaving a gap just wide enough to slip through. He pushes the door open; at the center of the table sits an old envelope. No name, no address; the seal is embossed with a fine 9×9 grid pattern, its texture exactly the same as the anonymous secret letter that awakened him in the prologue. He breaks the seal: the paper bears two Sudoku puzzles side by side — on the left, a complete standard 9×9 grid; on the right, a blank cage grid with only cage lines and sums, no givens at all. At the bottom of the page is a line of guidance: Solve the first puzzle, then use its key to solve the second.",
+                  "emotion": "旁白·叙述",
+                  "bg": "assets/images/chapter4/backgrounds/BG-CH4-05_teahouse.jpg"
+                },
+                {
+                  "speaker": "Narrator",
+                  "text": "Shen Mo sits by the window, takes an unmarked pencil from the table, and calmly works the puzzles. First he completes the standard puzzle on the left, deriving a unique sequence of number keys; then, using that sequence as the sole index, he fills the blank grid on the right in strict order, without the slightest deviation. When both puzzles are done, the right-hand grid unlocks a new address and a precise time. As he descends the stairs, his peripheral vision sweeps the table on the first floor — the natural gap between the envelope and the old newspaper has vanished. Someone moved the objects without ever unsealing or touching the envelope. This teahouse has long been watched in secret.",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "Shen Mo CHIBI",
+                  "text": "(He turns and leaves without changing expression) The cage layout of the blank grid on the right... matches closely the hidden sequence inside the library's hidden door from March. Old and new traces, fully linked. And this teahouse — someone has long been watching it.",
+                  "vo": "VO_SC_0031",
+                  "emotion": "警觉·沉静"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "The Lu Lu Tong Teahouse, complete. Chapter Four Archive Fragment 6/9 unlocked. The linked two-puzzle key solution, the confirmation that old and new sequences share a source, and the traces of the teahouse being secretly watched.",
+                  "emotion": "旁白·叙述"
+                }
+              ]
+            },
+            {
+              "levelId": 407,
+              "title": "另一条路",
+              "preDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "Days later, Shen Mo returns to Avenue Joffre. Vera's bookshop is shut tight — no light through the door gap, the windows closed, all its former warmth gone, wholly in a posture of concealment. Only at the center of the street-facing windowsill lies an old book with no title, cover up, quietly waiting for its visitor. Shen Mo steps forward slowly, reaches out and opens the pages; on the flyleaf, a line of clear, neat handwriting — Vera's hand: The path you walk is right. But there is another path.",
+                  "emotion": "旁白·叙述",
+                  "bg": "assets/images/chapter6/backgrounds/BG-CH6-02_bookstore.jpg"
+                },
+                {
+                  "speaker": "Narrator",
+                  "text": "Wedged between the pages is a puzzle sheet with no givens at all — a pure zero-given Sudoku, its complete grid formed only by cage lines and sums. He does not approach the bookshop a single step; holding the book, he retreats to the base of a streetlamp across the street, sits down, lays the book flat on his knee, and calmly works the puzzle. When the puzzle is solved, a cold string of numbers and a date emerges: December 8, 1941. At the edge of the paper, a faint line gradually appears as the solving completes: This is your last verification. The next time you walk through this door, it will no longer be a bookshop.",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "Shen Mo CHIBI",
+                  "text": "(He closes the book and returns it to the windowsill exactly as it was) December 8... the day the war would end, now firmly set. The next time I walk through this door, it will no longer be a bookshop.",
+                  "vo": "VO_SC_0032",
+                  "emotion": "低沉·凝重"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "The Other Path, complete. Chapter Four Archive Fragment 7/9 unlocked. The December 8 outbreak date, the zero-given final verification puzzle, and the warning of the bookshop's complete end.",
+                  "emotion": "旁白·叙述"
+                }
+              ]
+            },
+            {
+              "levelId": 408,
+              "title": "备用电台",
+              "preDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "As night closes in, Shen Mo returns to No. 94 Dongyuhang Road and steps once more into the empty Room 404. Revisiting tonight, he feels beneath the desk and finds a hidden compartment he had not noticed before, just deep enough for a hand to reach in. He gently lifts the cover: inside is no radio, no equipment — only a yellowed note lying quietly, its folds worn by years, a relic sealed away long ago. He unfolds it; on the paper is a single line of unsigned writing: The backup radio is where you were last time. Beneath the library, B3, under the transmitter's base.",
+                  "emotion": "旁白·叙述",
+                  "bg": "assets/images/chapter4/backgrounds/BG-CH4-04_room404.jpg"
+                },
+                {
+                  "speaker": "Narrator",
+                  "text": "The handwriting is unfamiliar, untraceable, with no clue to its origin. Shen Mo reads it in silence, neither guessing the identity nor the source, only committing the clue firmly to memory, folding it back and tucking it into his inner pocket. He carefully resets the hidden compartment, confirming it closes flush with no sign of tampering. He rechecks the dust on the windowsill — smooth as before, untouched. Then he gently closes the door, walks slowly downstairs, and slips out through the back door. The back door's hinge is dry and unoiled; its opening sound is exactly as when he first came — no one has repaired or altered it.",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "Shen Mo CHIBI",
+                  "text": "(He tucks away the note) The backup radio... beneath the library, B3, under the transmitter's base. The secret-passage clues close into loops, layer upon layer, far beyond expectation.",
+                  "vo": "VO_SC_0033",
+                  "emotion": "推断·凝重"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "The Backup Transmitter, complete. Chapter Four Archive Fragment 8/9 unlocked. The hidden backup radio, the ultimate hiding place at the bottom of B3, and the old clue with no traceable origin.",
+                  "emotion": "旁白·叙述"
+                }
+              ]
+            },
+            {
+              "levelId": 409,
+              "title": "三重对齐",
+              "preDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "Late at night, rain falls as Shen Mo returns to the B3 stone chamber beneath the library. The silence is boundless; only the distant sound of rain drips slowly. He crouches before the transmitter, gently lifts its base three centimeters, and reaches his fingertips underneath, finding a flat iron box firmly fixed to the lower edge of the base with tape, hidden to the extreme. He detaches the box and lifts its lid: inside is only a single sheet. A 9×9 Sudoku is completely filled in — no blank cell, no error.",
+                  "emotion": "旁白·叙述",
+                  "bg": "assets/images/chapter3/backgrounds/BG-CH3-04_telegraph.jpg"
+                },
+                {
+                  "speaker": "Narrator",
+                  "text": "At the bottom of the page, a line of neat, cold handwriting — Ito's hand: I've seen all your puzzles. This one I completed. Shen Mo stands in the center of the chamber, quietly gazing at the complete grid. No fold marks, no corrections, no extra annotations — so clean it seems deliberate. He is silent for a long while, checking every number arrangement on the grid, until at last the whole picture is clear: Father's unfinished puzzle, Mother's trail, the teacher's clues, Ito's completion — everyone's paths, puzzles, and purposes, at this moment, align in a perfect triple.",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "Narrator",
+                  "text": "This final puzzle never needed him to complete it. His fate was never to finish a puzzle, but to reach the end, understand the whole picture, and carry the ending everyone had prepared. He folds the sheet back exactly as it was, returns the iron box, refastens the base, restoring every trace meticulously. He steps back and stands before the transmitter, watching quietly. The machine's power indicator lights up steadily, a cold white glow, burning endlessly in the dead chamber. Power is on, the equipment is ready — only the final startup command remains. He does not look at the grid a second time — what he looks at is another thing spread on the desk: a copy of Yamada's Tokkō investigation file, page three, line eleven — his name. Below it, a pencil annotation in Ito's hand: Reviewed. Recommend filing. Below that, someone has added a line with a finer pen point: Filing category: Unrelated.",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "Shen Mo CHIBI",
+                  "text": "(He stands before the transmitter, not touching the machine at all) This puzzle never needed me to complete it. My fate is not to finish a puzzle, but to reach the end, understand the whole picture, and carry the ending everyone prepared.",
+                  "vo": "VO_SC_0034",
+                  "emotion": "平静·领悟"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "Triple Alignment, complete. All Chapter Four archive fragments 9/9 unlocked. Ito completed the final puzzle, Shen Mo saw through the whole picture, and everyone's fates converge completely. Your name entered the file, but someone changed its category for you — the net is still there, but the mesh let you through.",
+                  "emotion": "旁白·叙述"
+                }
+              ]
+            }
+          ],
+          "hiddenStory": [
+            {
+              "speaker": "Narrator",
+              "text": "The nine archive fragments of Chapter Four assemble into one complete cord of fate. The brass key numbered 4, the matching short stroke on the door frame, the time-marks left by his mother, the collective departure of November 15, the rerouted course to Vladivostok, Pan Hanyu's anonymous note, the twin-puzzle key at the teahouse, the December 8 outbreak date, the hidden backup radio at B3... from No. 94 East Yuhang Road to the B3 of the archive library, Shen Mo has walked every road that others laid before him.",
+              "emotion": "旁白·叙述",
+              "bg": "assets/images/chapter4/backgrounds/BG-CH4-01_unit94_backalley.jpg"
+            },
+            {
+              "speaker": "Shen Mo CHIBI",
+              "text": "(Standing before the transmitter) My father's unfinished puzzle, my mother's trail, the teacher's clues, Ito's completion... every path, every puzzle, every purpose of everyone involved aligns perfectly at this moment. The cord has drawn tight.",
+              "vo": "VO_SC_0035",
+              "emotion": "沉思·领悟"
+            }
+          ],
+          "epilogue": [
+            {
+              "speaker": "Narrator",
+              "text": "Chapter Four · The Cord, complete. The power is on, the equipment is ready — only the final activation command remains. The countdown to the Pacific War reaches its last night. And Chapter Five · The Current is already in sight.",
+              "sfx": "seal_stamp",
+              "emotion": "旁白·叙述",
+              "bg": "assets/images/chapter4/backgrounds/BG-CH4-05_teahouse.jpg"
+            },
+            {
+              "speaker": "Shen Mo CHIBI",
+              "text": "(Gazing toward the archive library) The cord has drawn tight; the current is about to flow. The next step... is the current.",
+              "vo": "VO_SC_0036",
+              "emotion": "低语·前行"
+            }
+          ]
+        },
+        {
+          "chapterId": 5,
+          "title": "第五章·电（1941年12月7日·藏书楼地下B3石室）",
+          "prologue": [
+            {
+              "speaker": "Narrator",
+              "text": "In the small hours of December 7, 1941, the Japanese Combined Fleet closes on Kaua'i, Hawaii, and the battle of Pearl Harbor enters its final countdown. Across Shanghai, control tightens without warning. Every Japanese radio-monitoring vehicle is on the air, weaving a dense blockade across the city's airwaves — signal-detection precision and sweep intensity reach their peak.",
+              "sfx": "ambient_wind",
+              "vo": "VO_N_0055",
+              "emotion": "旁白·低沉·讲故事",
+              "bg": "assets/images/chapter5/backgrounds/BG-CH5-01_telegraph_room.jpg"
+            },
+            {
+              "speaker": "Narrator",
+              "text": "Before dawn breaks, Shen Mo steps into the underground chamber of the archive library for the last time. A storm is gathering over the city; the clouds hang low, ready to fall, and a cold rain is slowly closing in on the Shanghai waterfront. But he, who has weathered layer upon layer of gambits and retraced every clue, no longer cares when the storm ends or when the night recedes — he simply waits for the final mission to land.",
+              "emotion": "旁白·叙述"
+            },
+            {
+              "speaker": "Shen Mo CHIBI",
+              "text": "(Standing before the transmitter) This is the last time. Before dawn, all three transmissions must go out.",
+              "vo": "VO_SC_0037",
+              "emotion": "沉静·坚定"
+            }
+          ],
+          "levels": [
+            {
+              "levelId": 501,
+              "title": "发报机的准备",
+              "preDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "Before dawn, deep darkness shrouds the underground corridor. Shen Mo returns to the B3 stone chamber beneath the library. Passing the end of the B1 corridor, he pauses — the number carvings left on the wall are intact, no covering, no alteration, no new marks, exactly as when he last examined them.",
+                  "emotion": "旁白·叙述",
+                  "bg": "assets/images/chapter5/backgrounds/BG-CH5-01_telegraph_room.jpg"
+                },
+                {
+                  "speaker": "Narrator",
+                  "text": "He continues deeper, pushes open the wooden door of the B2 chamber, passes through the heavy iron door of B3, walks the ten-step narrow dark passage, and finally stands before the transmitter. He lowers his gaze and verifies carefully — the power cord is connected firmly with no looseness, all dials on the machine remain at their initial calibrated positions, and the complete Sudoku Ito completed inside the iron box is back in place, untouched by anyone.",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "Shen Mo CHIBI",
+                  "text": "(His fingertip lightly touches the flat iron box on the lower edge of the base) The equipment is intact, no one has set foot here. ...The puzzle Ito completed still lies in the box exactly as it was.",
+                  "vo": "VO_SC_0038",
+                  "emotion": "低沉·警觉"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "Preparing the Transmitter, complete. Chapter Five Archive Fragment 1/9 unlocked. The structure of the transmitter base's protective cover, the unique three-dial unlock sequence, and the equipment's standby power state.",
+                  "emotion": "旁白·叙述"
+                }
+              ]
+            },
+            {
+              "levelId": 502,
+              "title": "断电",
+              "preDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "With the protective cover unlocked and calibrated, Shen Mo does not rush to operate the transmitter. He rechecks the flat iron box on the base — the tape seal is intact, no loosening, no shifting, no prying marks; all the groundwork is stable and under control.",
+                  "emotion": "旁白·叙述",
+                  "bg": "assets/images/chapter5/backgrounds/BG-CH5-01_telegraph_room.jpg"
+                },
+                {
+                  "speaker": "Narrator",
+                  "text": "He withdraws his hand, moves to the table in the chamber, and sits quietly to wait. Above, a sustained low-frequency mechanical tremor seeps down layer by layer — not the sound of human movement, not the noise of the streets, but the distinctive operating sound of the Japanese radio direction-finding vehicle. After twenty seconds, it comes to a steady halt directly above the library.",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "Shen Mo CHIBI",
+                  "text": "(He sits by the table, motionless) A direction-finding vehicle... parked at a fixed point, silently scanning the city's radio waves. At this moment, there must be no movement at all.",
+                  "vo": "VO_SC_0039",
+                  "emotion": "屏息·警觉"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "Power Cut, complete. Chapter Five Archive Fragment 2/9 unlocked. The direction-finding vehicle's stationary monitoring period, the precise tuning parameters of the transmitting antenna, and the equipment's standby frequency state.",
+                  "emotion": "旁白·叙述"
+                }
+              ]
+            },
+            {
+              "levelId": 503,
+              "title": "测向车",
+              "preDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "Rain envelops all of Shanghai. Shen Mo draws out a fine copper wire, threads it through the vent, and uses the iron wire of an outdoor clothesline to rig a temporary directional antenna — it can weaken lateral signal radiation and greatly reduce the Japanese direction-finding vehicles' positioning accuracy. The only cost: the transmitting angle and signal direction must be perfectly precise, with not a hair's breadth of deviation.",
+                  "emotion": "旁白·叙述",
+                  "bg": "assets/images/chapter5/backgrounds/BG-CH5-02_direction_finder.jpg"
+                },
+                {
+                  "speaker": "Narrator",
+                  "text": "Once the antenna is secured, he steps back to the machine, takes a pencil, and drafts the first message at the desk. His writing is steady, but stops abruptly near the end — engine roars sound overhead again; two direction-finding vehicles take position simultaneously, one east and one west, precisely locking onto the library district. He extinguishes the kerosene lamp, covers the transmitter's indicator light, hides every source of light, and sits motionless in complete darkness.",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "Narrator",
+                  "text": "Moments later, clear footsteps sound in the first-floor corridor — even rhythm, cautious steps — slowly approaching the bookshelf area, finally stopping behind the shelves, never moving toward the underground hidden door. After a tense standoff, the footsteps slowly fade and vanish entirely. In the darkness, Shen Mo silently counts the time, precisely controlling the six-minute risk window; only when he confirms the perimeter search has fully ended does he relight the lamp.",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "Shen Mo CHIBI",
+                  "text": "(He sits in the darkness) Two vehicles, one east and one west... six minutes. Enough for me to finish verifying this message.",
+                  "vo": "VO_SC_0040",
+                  "emotion": "沉着·计算"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "The Direction-Finding Vehicle, complete. Chapter Five Archive Fragment 3/9 unlocked. The deployment points of the two direction-finding vehicles, the safe transmitting angle under high surveillance, and the adaptation parameters of the temporary directional antenna.",
+                  "emotion": "旁白·叙述"
+                }
+              ]
+            },
+            {
+              "levelId": 504,
+              "title": "第一组电文",
+              "preDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "The rain rustles, drowning out the small noises of the city — a perfect window for transmitting. Shen Mo raises his hand and presses the key, formally beginning the intelligence transmission. He strictly controls the rhythm, sending in segments at three-second intervals, each segment lasting no more than five seconds, safely avoiding the risk of prolonged signal exposure.",
+                  "emotion": "旁白·叙述",
+                  "bg": "assets/images/chapter5/backgrounds/BG-CH5-01_telegraph_room.jpg"
+                },
+                {
+                  "speaker": "Narrator",
+                  "text": "Between each segment, he immediately checks the antenna's state, ensuring no angle shift, no sway in the copper wire, no signal leakage. The first message transmits completely, and no response signal returns from above. He pauses briefly to rest, then prepares for the second transmission.",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "Shen Mo CHIBI",
+                  "text": "(His fingertip rises and falls on the key) First message... sent. The rain is still falling, the window is still open.",
+                  "vo": "VO_SC_0041",
+                  "emotion": "沉稳·专注"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "The First Message, complete. Chapter Five Archive Fragment 4/9 unlocked. The traces of an unknown person pausing on the first floor, and the precise duration and interval parameters of the first message's transmission.",
+                  "emotion": "旁白·叙述"
+                }
+              ]
+            },
+            {
+              "levelId": 505,
+              "title": "第二组电文",
+              "preDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "After the first round of transmission, Shen Mo pauses, waiting for the equipment to cool down. He rises to recheck the external antenna — the copper wire is firmly secured, not wet by rain, no angle shift; the transmission conditions are stable and controllable. Once confirmed, he returns to the machine and begins the second message.",
+                  "emotion": "旁白·叙述",
+                  "bg": "assets/images/chapter5/backgrounds/BG-CH5-01_telegraph_room.jpg"
+                },
+                {
+                  "speaker": "Narrator",
+                  "text": "The second message is shorter, with more streamlined data, but the Pacific Fleet coordinates it carries are more precise — core critical intelligence. Just as the final character is about to transmit, footsteps suddenly approach overhead — urgent rhythm, clear purpose — moving steadily forward from the first-floor corridor, finally stopping precisely near the entrance of the underground hidden door, only a step away. Crisis erupts.",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "Shen Mo CHIBI",
+                  "text": "(His fingertip leaves the key, hovering above the console) The footsteps outside... have stopped at the hidden door's entrance. The final character must be sent.",
+                  "vo": "VO_SC_0042",
+                  "emotion": "屏息·坚定"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "The Second Message, complete. Chapter Five Archive Fragment 5/9 unlocked. The second message's core coordinate intelligence, the traces of close surveillance at the hidden door's entrance, and the record of the high-pressure final transmission.",
+                  "emotion": "旁白·叙述"
+                }
+              ]
+            },
+            {
+              "levelId": 506,
+              "title": "第三组电文",
+              "preDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "With the first two messages sent, Shen Mo knows there is no turning back. The forces above have already precisely detected the anomalous radio waves beneath the library; the direction-finding vehicles are gradually tightening their monitoring range, step by step closing in on the core point.",
+                  "emotion": "旁白·叙述",
+                  "bg": "assets/images/chapter5/backgrounds/BG-CH5-01_telegraph_room.jpg"
+                },
+                {
+                  "speaker": "Narrator",
+                  "text": "He forgoes any extra adjustments, only lightly touching the power cord with the back of his hand to confirm the connection is secure, then begins the final transmission. Just as the message is about to end, three regular knocks sound overhead — short, even, at consistent intervals — a covert signal from above, hiding the meaning of an unknown game. Shen Mo's mind does not waver, his movements do not stop; his fingertip presses the key to the bottom and steadily sends the final character of intelligence.",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "Shen Mo CHIBI",
+                  "text": "(He takes a neatly folded thin paper from his inner pocket and lays it gently on the transmitter's base) Three knocks... someone knows I'm transmitting. This paper is for the one who is meant to see it.",
+                  "vo": "VO_SC_0043",
+                  "emotion": "沉静·笃定"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "The Third Message, complete. Chapter Five Archive Fragment 6/9 unlocked. The covert knocking signal from above, the complete record of all three message transmissions, and the traces verifying the closed intelligence chain.",
+                  "emotion": "旁白·叙述"
+                }
+              ]
+            },
+            {
+              "levelId": 507,
+              "title": "天亮前的撤离",
+              "preDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "With all the intelligence sent and the mission provisionally complete, Shen Mo does not rush to withdraw. He methodically finishes up — fully powering off the transmitter, unplugging the power cord, retrieving the external antenna from the vent, restoring all temporary equipment and operational traces.",
+                  "emotion": "旁白·叙述",
+                  "bg": "assets/images/chapter5/backgrounds/BG-CH5-01_telegraph_room.jpg"
+                },
+                {
+                  "speaker": "Narrator",
+                  "text": "After confirming the equipment is powered off, the antenna is back in place, and the indicator light is fully out, he rises steadily and retraces his route level by level. Through the B3 iron door, the B2 chamber, the B1 corridor — his pace calm and steady, leaving no trace of a hasty retreat. He pushes open the underground hidden door; the first floor is dark and unlit, the streets silent and empty, the engine sound of the direction-finding vehicles fully gone. The city's danger has temporarily receded.",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "Shen Mo CHIBI",
+                  "text": "(He steps out the back door of the library, gently closing it, without looking back) ...All sent. Now, back.",
+                  "vo": "VO_SC_0044",
+                  "emotion": "平静·释然"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "Withdrawal Before Dawn, complete. Chapter Five Archive Fragment 7/9 unlocked. The safety verification of the personal mark on the door frame, the traces of the Japanese direction-finding vehicles' full withdrawal, and the traceless evacuation route.",
+                  "emotion": "旁白·叙述"
+                }
+              ]
+            },
+            {
+              "levelId": 508,
+              "title": "山田的档案",
+              "preDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "Shen Mo returns safely along the Suzhou Creek, no one stopping him, no one watching, reaching the counting house without incident. By the stove, Su Wan has long left a kerosene lamp for him; its warm light pierces the darkness of the room, quietly awaiting his return. She remains silent throughout, never asking where he went out late at night, never probing the secrets on paper, only silently bringing a bowl of hot porridge, setting it gently at the edge of the stove, then stepping aside so as not to disturb him.",
+                  "emotion": "旁白·叙述",
+                  "bg": "assets/images/chapter5/backgrounds/BG-CH5-02_direction_finder.jpg"
+                },
+                {
+                  "speaker": "Narrator",
+                  "text": "Shen Mo sits quietly and finishes the porridge, washes the bowl and chopsticks and returns them to their place, then rises and moves to the windowsill. He gently turns the white porcelain bowl on the windowsill, precisely orienting its rim toward the east, then presses his fingertip against the bowl's base and carves a very shallow short-stroke mark, completing his personal safety signal. Finished, he raises his hand and blows out the kerosene lamp, sitting long in complete darkness, composing himself to review the night's game and the full intelligence transmission.",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "Shen Mo CHIBI",
+                  "text": "(His fingertip has just left the mark on the bowl's base; the porcelain bowl rests facing east) Rim facing east... that's the signal left for her. In Yamada's file, my name still remains.",
+                  "vo": "VO_SC_0045",
+                  "emotion": "低沉·警觉"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "Yamada's File, complete. Chapter Five Archive Fragment 8/9 unlocked. Yamada's Tokkō investigation file, Ito's covert alteration traces, the uncovered remaining entry, and the half-hidden security risk.",
+                  "emotion": "旁白·叙述"
+                }
+              ]
+            },
+            {
+              "levelId": 509,
+              "title": "天亮",
+              "preDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "Through the long night, Shen Mo sits in the counting house without a moment's sleep. The sky gradually brightens; grey-blue dawn light pierces the window lattice, breaking the thick darkness. From the street come the hurried footsteps of a newsboy — steps rushed, far more frantic than usual, shattering the morning stillness.",
+                  "emotion": "旁白·叙述",
+                  "bg": "assets/images/chapter5/backgrounds/BG-CH5-01_telegraph_room.jpg"
+                },
+                {
+                  "speaker": "Narrator",
+                  "text": "The newsboy does not follow his usual habit of slipping papers through doors; he only sprints through the wet stone alley, shouting at the top of his voice: \"Extra! Extra! The Japanese navy has attacked Hawaii! America has declared war on Japan!\" The thunderous news spreads through the streets. Shen Mo stands by the window, his body unmoving, his expression unchanged.",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "Narrator",
+                  "text": "The newsboy's footsteps fade, and the streets return to calm. Shen Mo slowly walks back to the table and sits down. Su Wan steps forward, standing by the table, only a breath away from him. She raises her hand and gently turns the porcelain bowl on the windowsill, returning the east-facing rim to its original position — rim facing east was their mutually understood safety signal, but today the situation is settled, and safety no longer needs a signal to prove it.",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "Narrator",
+                  "text": "Shen Mo lowers his gaze and glances at the reset bowl, but does not ask why. Morning light falls on the open ledger, its writing clear and bright. He reaches out and closes the ledger, puts it in the drawer and locks it, then raises his hand and turns the bowl back to its original position, and steps toward the door.",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "Su Wan",
+                  "text": "Are you going out?",
+                  "emotion": "沉静·温和"
+                },
+                {
+                  "speaker": "Shen Mo",
+                  "text": "Wait a little longer. After dawn there's still something to confirm, and something to handle.",
+                  "emotion": "平静·坚定"
+                },
+                {
+                  "speaker": "Narrator",
+                  "text": "Su Wan asks nothing more, silently retreating to the stove, lighting the fire and tidying up, waiting quietly. Shen Mo's palm rests lightly on the door frame — the short-stroke mark he carved here long ago is still clear; morning light cuts diagonally across the threshold, laying down a neat band of light, the dust even on both sides — no outsider entered all night, no unusual movement.",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "Shen Mo CHIBI",
+                  "text": "(He looks toward the first light of dawn) All three messages sent. The direction-finding unit chased the false signal away — I slipped out through that window. After dawn, there's still something to confirm.",
+                  "vo": "VO_SC_0046",
+                  "emotion": "沉静·笃定"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "Daybreak, complete. All Chapter Five archive fragments 9/9 unlocked. They surrounded you. But when you left, they went somewhere else. Pearl Harbor erupts; the Pacific war is fully ignited. Chapter Six · The Web is already in sight.",
+                  "emotion": "旁白·叙述"
+                }
+              ]
+            }
+          ],
+          "hiddenStory": [
+            {
+              "speaker": "Narrator",
+              "text": "The nine archive fragments of Chapter Five assemble into one complete chain of radio signals. All three transmissions land; the direction-finding teams chase a false signal elsewhere. In Yamada's Tokkō investigation file, Ito erases one critical entry — yet deliberately leaves another behind: Shen Mo's name, half-hidden, half-exposed.",
+              "emotion": "旁白·叙述",
+              "bg": "assets/images/chapter5/backgrounds/BG-CH5-01_telegraph_room.jpg"
+            },
+            {
+              "speaker": "Shen Mo CHIBI",
+              "text": "(His fingertips brush the folded locating record in his pocket) They surrounded me. But when I left, they had gone somewhere else. ...Ito, the record you left behind — it was meant for me to see.",
+              "vo": "VO_SC_0047",
+              "emotion": "低沉·领悟"
+            }
+          ],
+          "epilogue": [
+            {
+              "speaker": "Narrator",
+              "text": "Chapter Five · The Current, complete. On December 8, 1941, the thunderclap of the attack on Pearl Harbor sweeps across all of Shanghai, and the era of the lone island comes crashing down. Japanese armored columns roll into the International Settlement and the French Concession; a citywide curfew is imposed. The old, tangled web of international intelligence is swept clean and uprooted overnight. In the toppling storm, every one who had lain hidden stirs at the news of the upheaval, each holding his own small ground. Chapter Six · The Web is already in sight.",
+              "sfx": "seal_stamp",
+              "emotion": "旁白·叙述",
+              "bg": "assets/images/chapter5/backgrounds/BG-CH5-01_telegraph_room.jpg"
+            },
+            {
+              "speaker": "Shen Mo CHIBI",
+              "text": "(Gazing toward the lanes) Su Wan... is still above ground. After dawn, there is still work to be done.",
+              "vo": "VO_SC_0048",
+              "emotion": "低语·牵挂"
+            }
+          ]
+        },
+        {
+          "chapterId": 6,
+          "title": "第六章·网（1941年12月·上海）",
+          "prologue": [
+            {
+              "speaker": "Narrator",
+              "text": "December 8, 1941. The thunderclap of the attack on Pearl Harbor sweeps across all of Shanghai, and the era of the lone island comes crashing down. At dawn, Japanese armored columns roll into the International Settlement and the French Concession; the buffer that once rested on the protection of foreign powers collapses utterly. A citywide curfew is imposed at once. British and American residents are rounded up and taken into custody; the flags of every consulate come down. The old, tangled web of international intelligence is swept clean and uprooted overnight. In the toppling storm, every one who had lain hidden stirs at the news of the upheaval, each holding his own small ground — quietly placing his piece, laying his secret plan amid the shifting board.",
+              "sfx": "ambient_wind",
+              "vo": "VO_N_0056",
+              "emotion": "旁白·低沉·讲故事",
+              "bg": "assets/images/chapter6/backgrounds/BG-CH6-01_accounting.jpg"
+            },
+            {
+              "speaker": "Narrator",
+              "text": "Shen Mo, who spent last night lurking in the shadows and transmitting core intelligence, has long understood the full course and consequence of this upheaval. The morning light is grey and cold, stripped of its former warmth; the lanes are unnaturally still. He and Su Wan keep watch together in the counting house in silent accord — asking nothing of the past, probing no secrets, supporting each other through silence alone.",
+              "emotion": "旁白·叙述"
+            },
+            {
+              "speaker": "Shen Mo CHIBI",
+              "text": "(Standing by the window, gazing into the grey morning light) The lone island has fallen... everyone's road now runs through this web.",
+              "vo": "VO_SC_0049",
+              "emotion": "沉静·警觉"
+            }
+          ],
+          "levels": [
+            {
+              "levelId": 601,
+              "title": "账房",
+              "preDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "The newsboy's urgent cries at the mouth of the alley gradually fade; the earthshaking news has already spread through the streets. Shen Mo stands by the window; grey-white morning light cuts diagonally into the room, laying down a long narrow band of cold light that splits the dimness. He does not chase out to pick up a paper — having spent the night lurking and transmitting core intelligence, he already knows the full course and consequence of this upheaval. After a moment of silence, he slowly returns to the table and sits down, lighting no lamp, touching nothing, letting the pale morning light spread flat across the table, quietly covering the old ledger and the antique abacus. By the stove, Su Wan silently lights the fire and cooks, her movements gentle and orderly, asking no questions about his whereabouts — the two keep watch together in silent accord.",
+                  "emotion": "旁白·叙述",
+                  "bg": "assets/images/chapter6/backgrounds/BG-CH6-01_accounting.jpg"
+                },
+                {
+                  "speaker": "Su Wan",
+                  "text": "Military vehicles passed this morning. Three of them.",
+                  "emotion": "清淡·沉静"
+                },
+                {
+                  "speaker": "Shen Mo",
+                  "text": "...Which direction?",
+                  "emotion": "低沉·警觉"
+                },
+                {
+                  "speaker": "Su Wan",
+                  "text": "Westward. Toward the Suzhou River Bridge.",
+                  "emotion": "平稳·无波"
+                },
+                {
+                  "speaker": "Shen Mo CHIBI",
+                  "text": "(His fingertip rests lightly on the ledger's cover) West of the Suzhou River Bridge... exactly the boundary of the Concession, and the core area of the blockade line the Japanese set up overnight. Before dawn, she had already risen to stand by the window and seen the full movement of forces. In these troubled times, she guards this small patch of ground for me in silence.",
+                  "vo": "VO_SC_0050",
+                  "emotion": "低沉·警觉"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "The Counting House, complete. Chapter Six Archive Fragment 1/9 unlocked. Identity verified in the morning light; Yamada's Tokkō investigation file is fully frozen before the morning of December 8, with no new entries and no temporary marks — the wall of identity security is temporarily secure.",
+                  "emotion": "旁白·叙述"
+                }
+              ]
+            },
+            {
+              "levelId": 602,
+              "title": "书店",
+              "preDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "Before noon, Shen Mo goes alone to Avenue Joffre. The street, which once had a few scattered pedestrians, is now empty, leaving only the desolate sound of cold wind through the lane. The old bookshop's door is shut tight, the panels flush, the gap dark and lightless — no sign of life or movement. He stands before the shop, not rushing to push the door open; first he lowers his gaze to check the inner side of the threshold — a neat short-stroke carving is clearly visible, its technique, depth, and style exactly matching the personal mark he left on the windowsill in June.",
+                  "emotion": "旁白·叙述",
+                  "bg": "assets/images/chapter6/backgrounds/BG-CH6-02_bookstore.jpg"
+                },
+                {
+                  "speaker": "Narrator",
+                  "text": "After confirming the mark is correct, he sidesteps and circles to the shop's deserted back alley. In the brick crevice of the third utility pole is firmly wedged a neatly folded note. The folding method is novel and unique — a style he has never seen — but the paper's texture and thickness are exactly the same source as the secret intelligence material received at the Lu Lu Tong Teahouse. He reaches out, takes the note, and slowly unfolds it. There is no name or signature on the paper, only a single line of slender handwriting: The old bookshop's puzzle has been destroyed. The remaining materials are where you first met.",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "Narrator",
+                  "text": "Shen Mo gazes at it for a moment, folds the note back exactly as it was, and gently returns it to its original place in the brick crevice, precisely positioned with no deviation. On his way out, two Japanese soldiers in uniform pass slowly by the street corner, their steps casual, eyes straight ahead. He immediately presses against the wall to hide, waiting until the two have gone far and the sound has faded, then steadily turns out of the alley mouth and continues on.",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "Shen Mo CHIBI",
+                  "text": "(His fingertip has just left the brick crevice; the note is back in place) An unsigned note... yet from exactly the same source as the Lu Lu Tong intelligence. The old bookshop's puzzle has been destroyed — someone took the last step before me.",
+                  "vo": "VO_SC_0051",
+                  "emotion": "辨认·警觉"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "The Bookshop, complete. Chapter Six Archive Fragment 2/9 unlocked. The anonymous intelligence note; the record of the old bookshop's puzzle being destroyed; the note long resting in the brick crevice with no new sun damage and no new touch marks — the intelligence transfer is complete, and the recipient has taken the core information.",
+                  "emotion": "旁白·叙述"
+                }
+              ]
+            },
+            {
+              "levelId": 603,
+              "title": "四号桥",
+              "preDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "In the clear afternoon light, the river is calm. Shen Mo walks to the Fourth Bridge; beneath the arch there is no one, only the stillness and desolation left by the receding water. On the stone steps lies a dark old coat — not one of Shen Shi'an's belongings; its color is deeper, its cut heavier, and at the cuff is a clear wear mark, the unique imprint of long use.",
+                  "emotion": "旁白·叙述",
+                  "bg": "assets/images/chapter6/backgrounds/BG-CH6-03_fourth_bridge.jpg"
+                },
+                {
+                  "speaker": "Narrator",
+                  "text": "He steps forward slowly, crouches, reaches into the coat's side pocket, and draws out an unsealed envelope. Inside is no letter or message, only an old folded map — a precise map of Shanghai's French Concession published in 1938. The point circled in pencil on the paper is clear and striking, precise and unusual — not the current site of the Lu Lu Tong Teahouse he knows, but the old address number of the teahouse before its move in 1939.",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "Narrator",
+                  "text": "Shen Mo studies it in silence for a moment, tucks the map safely into his inner pocket, then hangs the old coat back on the iron post beneath the bridge arch exactly as it was, restoring it without a trace, altering nothing at the scene.",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "Shen Mo CHIBI",
+                  "text": "(He tucks away the map and looks toward the bridge arch) A 1938 map, circling the teahouse's old site... not Father's hand, yet it seems like a road paved for me.",
+                  "vo": "VO_SC_0052",
+                  "emotion": "沉思"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "The Fourth Bridge, complete. Chapter Six Archive Fragment 3/9 unlocked. The 1938 Concession map; the old site of the Lu Lu Tong Teahouse; the covert property change record of 1939, with the new tenant's information deliberately hidden from public files.",
+                  "emotion": "旁白·叙述"
+                }
+              ]
+            },
+            {
+              "levelId": 604,
+              "title": "路路通旧址",
+              "preDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "As dusk gathers, Shen Mo steps into the deep alley where the old Lu Lu Tong Teahouse stands. The whole building is empty and abandoned, silent and desolate, no longer holding its former warmth and voices. The wooden door on the ground floor is ajar, unlocked; dim dusk seals the door gap, and the light inside is so faint that the writing on paper can no longer be clearly read.",
+                  "emotion": "旁白·叙述",
+                  "bg": "assets/images/chapter6/backgrounds/BG-CH6-02_bookstore.jpg"
+                },
+                {
+                  "speaker": "Narrator",
+                  "text": "He pushes the door open sideways and walks in slowly; the room is covered in thin dust and empty. On the inner side of the windowsill in the room at the end of the first floor, an iron box is bound to the railing with coarse cotton rope in a cross pattern. The knot is neat and distinctive, exactly matching the covert knot style he handled in June — the mark of a familiar hand. Shen Mo probes with his fingertips, precisely unties the crossed knots, and carefully opens the iron box.",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "Narrator",
+                  "text": "Inside, a stack of paper files is neatly arranged. On the top sheet, clear writing: You've seen this map, which means you've reached the last step. This is the final original puzzle left by your teacher. She never sent it. Every sheet in the stack bears a unique Sudoku puzzle, its format from the same source as the seven puzzles deciphered beneath the library, yet entirely different in order and content. He abides by the code of secrecy, does not take the whole stack, only pulls out the core puzzle sheet on top, tucks it into his inner pocket, storing it separately from the map and envelope, then closes the iron box exactly as it was and restores it to its place.",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "Shen Mo CHIBI",
+                  "text": "(He tucks away the puzzle sheet) The last original puzzle left by my teacher... she never sent it. In the spring of 1941, the Sorge case broke suddenly and the situation changed drastically; the entire intelligence delivery plan was forced to be shelved. In the end, this puzzle still waited for me to take it up.",
+                  "vo": "VO_SC_0053",
+                  "emotion": "感念·低语"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "The Old Lu Lu Tong Site, complete. Chapter Six Archive Fragment 4/9 unlocked. The original puzzle left by the teacher; the spring 1941 intelligence plan shelved due to the sudden Sorge case; the personal covert knot technique confirming a familiar hand.",
+                  "emotion": "旁白·叙述"
+                }
+              ]
+            },
+            {
+              "levelId": 605,
+              "title": "发报机",
+              "preDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "In the dead of night, Shen Mo returns once more to the underground chamber beneath the library. Steadily deeper along the familiar B1 and B2 corridors, he pushes open the heavy iron door, walks the ten-step dark narrow passage, and again stands before the transmitter. The equipment still rests in place, unchanged in appearance, except that the power cord has come loose and been removed. The cut end of the cord is flat and clean — the trace of a precise cut by a fine tool, not damage from pulling, and not the result of his own withdrawal last night.",
+                  "emotion": "旁白·叙述",
+                  "bg": "assets/images/chapter6/backgrounds/BG-CH6-04_telegraph.jpg"
+                },
+                {
+                  "speaker": "Narrator",
+                  "text": "He does not probe the details of the cut, nor touch the equipment at all. He crouches, his fingertip lightly touching the flat iron box on the transmitter's base. The box is still in its original position, the sealing tape intact, no prying, no opening — only a slight shift at the box's edge, as if someone gently moved it from the side and then precisely returned it; the trace is extremely faint, easy to overlook.",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "Narrator",
+                  "text": "Shen Mo verifies the position and confirms the trace of disturbance only by the feel of his fingertips, never opening, touching, or altering anything. Retreating to the entrance of the B3 chamber, he pauses, silently looking back at the dark equipment area — the transmitter's indicator light is fully out, the control panel gathering no reflection in the boundless darkness, utterly silent. He firmly notes the precise position of the cut cord and the anomalous trace, lingers no longer, and steadily retraces his route to the surface.",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "Shen Mo CHIBI",
+                  "text": "(His fingertip lightly presses the edge of the iron box, verifying the trace) The power cord was precisely cut... the sealing tape intact, yet the box was shifted by someone. This method of traceless power-off and covert finishing — it's Ito.",
+                  "vo": "VO_SC_0054",
+                  "emotion": "推断·凝重"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "The Transmitter, complete. Chapter Six Archive Fragment 5/9 unlocked. The power cord precisely cut late at night; the slight shift of the iron box; the method exactly matching Ito's earlier style of traceless file-clearing and covert alteration in the library, identifying the covert operator.",
+                  "emotion": "旁白·叙述"
+                }
+              ]
+            },
+            {
+              "levelId": 606,
+              "title": "痕迹",
+              "preDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "Shen Mo does not withdraw directly by the shortest route; he pauses midway in the dim B1 corridor, stopping before the stone wall covered in number carvings. In the darkness, with no need for light, he verifies by memory alone the position, order, and depth of every carving, confirming that all past marks are intact — no covering, no alteration, no new traces from outsiders.",
+                  "emotion": "旁白·叙述",
+                  "bg": "assets/images/chapter6/backgrounds/BG-CH6-01_accounting.jpg"
+                },
+                {
+                  "speaker": "Narrator",
+                  "text": "Once confirmed, he raises his hand, slightly curling his fingertip, and with his nail gently scratches a new short stroke beside the existing carvings on the wall. The new mark is shorter and shallower than all past marks, low-key and restrained; its position, spacing, and depth strictly follow the chronological pattern of the past marks, fitting the overall sequence perfectly with nothing abrupt. Having made the mark, he lingers no longer, turns and steadily withdraws along his route, reaches the underground hidden door, and gently closes the panel from inside. The hinge, worn smooth by long use, makes no sound; the door closes flush, traceless and seamless.",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "Shen Mo CHIBI",
+                  "text": "(His fingertip has just left the new short-stroke carving) This one is shorter and shallower than Father's. The mark on the door frame outside the hidden door, the original carving at the B3 entrance... three marks in one line, father and son of one blood. This web — I've completed it for Father.",
+                  "vo": "VO_SC_0055",
+                  "emotion": "平静·坚定"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "The Mark, complete. Chapter Six Archive Fragment 6/9 unlocked. Three carvings align in a full line; the father-son inherited mark sequence runs in one vein; the underground trail closes into a complete loop.",
+                  "emotion": "旁白·叙述"
+                }
+              ]
+            },
+            {
+              "levelId": 607,
+              "title": "山田的搜查",
+              "preDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "In the early hours, Shen Mo quietly returns to the counting house. No lamp is lit inside; it is sunk in still darkness. Su Wan has not slept; she sits alone on the low stool by the stove, silently waiting for his return, her posture steady, her expression calm — no anxiety, no fear. Shen Mo sits silently at the table; in the darkness he deftly takes out the ledger, precisely turns to the page for November 15, and lightly touches the paper, confirming the lining is intact and the hidden object is safe. The moment he gently closes the ledger, heavy, orderly footsteps sound from the street outside — the regular march of a Japanese patrol formation, far exceeding the scale and force of routine patrols. The whole formation suddenly halts at the mouth of the alley, holding in place for a moment; the atmosphere tightens abruptly. Inside, the two remain motionless, holding their breath, letting the risk circle outside. After a moment, the footsteps sound again — not entering the alley, not approaching the counting house — heading straight away along the lane.",
+                  "emotion": "旁白·叙述",
+                  "bg": "assets/images/chapter6/backgrounds/BG-CH6-03_fourth_bridge.jpg"
+                },
+                {
+                  "speaker": "Su Wan",
+                  "text": "Someone stood at the mouth of the alley for a while.",
+                  "emotion": "清淡·沉静"
+                },
+                {
+                  "speaker": "Shen Mo",
+                  "text": "...They've passed?",
+                  "emotion": "低沉·警觉"
+                },
+                {
+                  "speaker": "Su Wan",
+                  "text": "They didn't enter the alley. They paused at the mouth, then turned and left.",
+                  "emotion": "平稳·无波"
+                },
+                {
+                  "speaker": "Shen Mo CHIBI",
+                  "text": "(He gently places the ledger in the drawer, not locking it) The one that halted at the alley mouth was a Japanese special patrol detachment... yet it did not search deeper. Ito, you already removed my name from that file late on the night of December 7.",
+                  "vo": "VO_SC_0056",
+                  "emotion": "低沉·警觉"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "Yamada's Search, complete. Chapter Six Archive Fragment 7/9 unlocked. The Japanese patrol halted briefly at the alley mouth with no intent to search deeper; Ito completed the file sanitization late at night, classifying Shen Mo's entry as unrelated to the library, covertly removing suspicion and fully clearing the short-term risk.",
+                  "emotion": "旁白·叙述"
+                }
+              ]
+            },
+            {
+              "levelId": 608,
+              "title": "沈世安的痕迹",
+              "preDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "Before dawn breaks, Shen Mo goes alone to No. 72 Dixiwei Road. The study door on the third floor is still ajar; a gentle push opens it, the hinge smooth and silent, with no sound of disturbance. The desk and furnishings inside remain as they were; the desk's hidden compartment is still open, exactly as when he last visited.",
+                  "emotion": "旁白·叙述",
+                  "bg": "assets/images/chapter6/backgrounds/BG-CH6-01_accounting.jpg"
+                },
+                {
+                  "speaker": "Narrator",
+                  "text": "His gaze falls on the desk, where he clearly sees a new, faint impression. The impression is not deep, its outline regular — the bottom mark left by a thin old book resting for a long time; after the book was taken away, the trace remained, faint but discernible. Following the direction of the impression, he reaches out and finds the hidden groove on the side of the desk against the wall — the groove is deeper than before, with clear fresh traces of being reopened and pressed. The groove is empty — no paper, no object, no residue. His fingertip lightly brushes the dust distribution inside the groove; its thickness, density, and points of deposit all follow a pattern, clearly confirming that this place was recently opened and used, and the object taken away was deliberately cleared and restored.",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "Narrator",
+                  "text": "He stands before the desk, neither searching nor probing the other corners, disturbing not a trace of the scene. Before leaving, he verifies the carving on the inner side of the door frame — the original mark is intact, with no covering, alteration, or new marks by anyone. Once confirmed, he gently closes the study door, walks slowly down the stairs, leaves the No. 72 residence, and departs quietly.",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "Shen Mo CHIBI",
+                  "text": "(His fingertip hovers, not touching the traces) A new mark on the desk, the hidden compartment reopened, the groove deliberately emptied... Father, before you left Shanghai, you came back and took the last thing. In early December, you arrived before me.",
+                  "vo": "VO_SC_0057",
+                  "emotion": "沉重·领悟"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "Shen Shi'an's Traces, complete. Chapter Six Archive Fragment 8/9 unlocked. The new book mark on the desk; the traces of the hidden compartment's second opening; Father's covert return to No. 72 in early December, taking the last core object, then finishing early and clearing all remaining clues.",
+                  "emotion": "旁白·叙述"
+                }
+              ]
+            },
+            {
+              "levelId": 609,
+              "title": "潘汉年",
+              "preDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "In the early morning light, Shen Mo walks steadily into the Lu Lu Tong Teahouse. The door of the second-floor private room is half open; inside sits a man in his thirties, wearing a plain grey cloth gown, a cup of clear tea before him untouched, his posture upright, his expression calm, as if he has been waiting a long while. Shen Mo pushes the door open and closes it behind him, shutting out the noise of the streets. The man rises and reaches out to shake hands; Shen Mo does not raise his hand in response, but sits directly across the table, gently pushing the teacup to the center of the tabletop, then takes the 1938 Concession map from his inner pocket and spreads it flat on the table.",
+                  "emotion": "旁白·叙述",
+                  "bg": "assets/images/chapter6/backgrounds/BG-CH6-02_bookstore.jpg"
+                },
+                {
+                  "speaker": "Shen Mo",
+                  "text": "Those puzzles in the old Lu Lu Tong site were fully set up in the spring of 1941. The people have passed through; the puzzles remain there. Now only one node has yet to fall into place.",
+                  "emotion": "平静·陈述"
+                },
+                {
+                  "speaker": "Pan Hanyu",
+                  "text": "That node is no longer in Shanghai.",
+                  "emotion": "淡然·沉静"
+                },
+                {
+                  "speaker": "Shen Mo",
+                  "text": "I know.",
+                  "emotion": "平静·坚定"
+                },
+                {
+                  "speaker": "Pan Hanyu",
+                  "text": "You know where he is. Can you walk the whole road alone?",
+                  "emotion": "沉声·试探"
+                },
+                {
+                  "speaker": "Shen Mo",
+                  "text": "Yes.",
+                  "emotion": "笃定·坚定"
+                },
+                {
+                  "speaker": "Narrator",
+                  "text": "The man raises his hand and moves the teacup to the corner of the table, walks toward the door, his fingertip on the handle, turns back and asks one final question in a low voice, then pushes the door open and leaves. Morning light floods in through the door gap, laying a long narrow band across the threshold. Shen Mo rises right after him and, following the direction of the light, walks slowly out of the private room and down the stairs. The teahouse staff downstairs have already resumed work, moving tables and chairs, sweeping the shop; the street, silent for days, finally regains a hint of its former life.",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "Narrator",
+                  "text": "Pedestrians grow more numerous on the street, their steps hurried; the newspaper stand reopens, and the whole city barely revives after the upheaval. Shen Mo pays no attention to the bustle. At a crossroads he stops, takes the old map from his inner pocket, and turns it over. In the blank space on the back of the map, a line of pencil writing is clearly revealed: December 7, 1941. He is waiting for you. The handwriting is unfamiliar — not any hand he knows — yet its finishing strokes are from exactly the same source as the numbered marks on the edge of the old newspaper at the Lu Lu Tong Teahouse, one vein running through both.",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "Shen Mo CHIBI",
+                  "text": "(He folds the map and tucks it into his inner pocket) December 7... on the same day I transmitted core intelligence late at night, Father left Shanghai, transiting through Vladivostok on his way to Moscow. He left; the puzzles stayed here. This web — at last it is fully woven.",
+                  "vo": "VO_SC_0058",
+                  "emotion": "平静·释然"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "Pan Hanyu, complete. All Chapter Six archive fragments 9/9 unlocked. Combining every technique, the ultimate loop of all the clues is closed: on December 7, 1941, the same day Shen Mo transmitted core intelligence late at night, Shen Shi'an successfully evacuated Shanghai, transiting through Vladivostok on his way to Moscow, covert and traceless throughout, escaping cleanly.",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "Narrator",
+                  "text": "When Shen Mo walks out of the teahouse, a man stands at the foot of the stairs. Grey suit, no sidearm. Behind him stand two in plain clothes, both below the stairs, not following up. The man in grey speaks: Shen Mo. Shen Mo stops. Yamada. The two are five steps apart. Yamada holds a file; Shen Mo recognizes the cover.",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "Yamada",
+                  "text": "Your name is in it. Page three. But I'm not sure why it appears on that page.",
+                  "emotion": "低沉·审视"
+                },
+                {
+                  "speaker": "Yamada",
+                  "text": "One of my men changed this entry for you. I couldn't find out who. But I know you're not alone in there.",
+                  "emotion": "低沉·审视"
+                },
+                {
+                  "speaker": "Shen Mo",
+                  "text": "Then why are you here?",
+                  "emotion": "平静·对峙"
+                },
+                {
+                  "speaker": "Yamada",
+                  "text": "I came to confirm you're not worth arresting.",
+                  "emotion": "平静·深沉"
+                },
+                {
+                  "speaker": "Narrator",
+                  "text": "Yamada is silent for a long time, then turns and walks down the stairs. At the last step, he says that one line. He leaves; the two in plain clothes follow. The teahouse staff don't know what happened and keep wiping the tables. Shen Mo stands at the top of the stairs on the second floor, his fingertip touching a folded map — Father's road. His road. Now aligned. He walks down the stairs and heads toward the street corner. Without looking back. — He came to find you. He left. He chose it himself.",
+                  "emotion": "旁白·叙述"
+                }
+              ]
+            }
+          ],
+          "hiddenStory": [
+            {
+              "speaker": "Narrator",
+              "text": "The nine archive fragments of Chapter Six assemble into one complete web. The identity check in the morning light, the anonymous intelligence note, the 1938 map of the concession, the teacher's original puzzles left behind, the transmitter silenced without a trace, the inherited father-son carvings, Ito's sanitization of the file, Father's covert return... Shen Mo has walked his father's road to its end, and woven this web to its close.",
+              "emotion": "旁白·叙述",
+              "bg": "assets/images/chapter6/backgrounds/BG-CH6-02_bookstore.jpg"
+            },
+            {
+              "speaker": "Shen Mo CHIBI",
+              "text": "(His fingertips trace the folded map) My father's road. Ito's road. My road. They are aligned now. The web is woven — and it is time for a man to set out.",
+              "vo": "VO_SC_0059",
+              "emotion": "沉思·领悟"
+            }
+          ],
+          "epilogue": [
+            {
+              "speaker": "Narrator",
+              "text": "Chapter Six · The Web, complete. The thunderclap of Pearl Harbor lands; the era of Shanghai's lone island draws to a close. Yamada's Tokkō investigation file is quietly sanitized by Ito, and Shen Mo's father, Shen Shi'an, has already slipped out of Shanghai in the deep night of December 7, transiting through Vladivostok on his way to Moscow. The final door of the storeroom hidden amid the chaos closes silently in the boundless dark. Chapter Seven · Finale · The Storeroom is already in sight.",
+              "sfx": "seal_stamp",
+              "emotion": "旁白·叙述",
+              "bg": "assets/images/chapter6/backgrounds/BG-CH6-02_bookstore.jpg"
+            },
+            {
+              "speaker": "Shen Mo CHIBI",
+              "text": "(Standing by the counting-house window, gazing into the eastern light) Through all the drift and fall of these times... she still keeps a lamp burning for me. Chapter Seven · The Storeroom... I'm coming.",
+              "vo": "VO_SC_0060",
+              "emotion": "低语·前行"
+            }
+          ]
+        },
+        {
+          "chapterId": 7,
+          "title": "第七章·库房（1941年12月·上海至远洋）",
+          "prologue": [
+            {
+              "speaker": "Narrator",
+              "text": "The thunderclap of Pearl Harbor lands; the era of Shanghai's lone island ends for good. The whole city falls under martial law, the streets held in a tight grip, the Japanese blockade impenetrable — the city sinks into a night of grim silence and crushing control. After Shen Mo takes the final intelligence from the Lu Lu Tong Teahouse and completes every covert trail of Chapter Six, each lingering question settles, each planted seed closes its loop. Yamada's Tokkō investigation file has long since been quietly marked sanitized by Ito, stripping him clean from the list of suspects. His father, Shen Shi'an, closed out every clue ahead of time and slipped out of Shanghai in the deep night of December 7, transiting through Vladivostok on his way to Moscow. The teacher's original puzzles, laid out over a lifetime, sit shelved and sealed in the old Lu Lu Tong site. And the transmitter line beneath the archive library has been cut with surgical precision — a clean, deliberate incision, the traceless hand of someone closing the books.",
+              "sfx": "ambient_wind",
+              "vo": "VO_N_0057",
+              "emotion": "旁白·低沉·讲故事",
+              "bg": "assets/images/chapter7/backgrounds/BG-CH7-01_west_warehouse.jpg"
+            },
+            {
+              "speaker": "Narrator",
+              "text": "The board of the times has been set; every move laid in advance has reached its end. The final door of the storeroom hidden amid the chaos closes silently in the boundless dark — and Shen Mo stands awake outside it, never drawn in, never caught in the game, only retracing every path in silence as he waits for the last road ahead to settle.",
+              "emotion": "旁白·叙述"
+            },
+            {
+              "speaker": "Shen Mo CHIBI",
+              "text": "(Standing still in the night, retracing every path) Every door, every road, every mark, every game... they all deserve an ending now. The door of the storeroom — I'm coming.",
+              "vo": "VO_SC_0061",
+              "emotion": "沉静·笃定"
+            }
+          ],
+          "levels": [
+            {
+              "levelId": 701,
+              "title": "西郊仓库",
+              "preDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "At the deepest hour of the night, Shen Mo leaves the heart of Shanghai one final time. He has walked this route alone twice before — through the unnoticed back lanes of the French Concession, across the silent footbridge over Suzhou Creek, along the abandoned railway tracks heading west. Twenty minutes later, he stands beneath the shadow of the abandoned western-suburbs warehouse. He does not approach the main entrance immediately; instead, he stops outside the perimeter wall and carefully surveys the entire structure. No new openings. No fresh climbing marks. No signs of recent contact. Everything remains exactly as it was — silent, untouched, undisturbed. Only after confirming the surroundings does he slip through an old gap in the side wall and enter the warehouse grounds.",
+                  "emotion": "旁白·叙述",
+                  "bg": "assets/images/chapter7/backgrounds/BG-CH7-01_west_warehouse.jpg"
+                },
+                {
+                  "speaker": "Narrator",
+                  "text": "At the center of the warehouse floor lies a large washed-out area. The water mark is broader and deeper than before, covering the exact location where the iron case once stood. The original trace has been completely erased. Shen Mo does not linger. He does not search the empty ground. He simply follows the outer wall, returns to the entrance point, and crouches beside the old doorframe.",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "Narrator",
+                  "text": "At the base of the frame, a brand-new vertical scratch catches his attention. Its direction matches perfectly with the exclusive mark he left at the Archive Library back door in April. The line is straight. The pressure is firm. The cut is precise. But it was not made by his hand. Shen Mo's fingertip stops a fraction above the scratch. He does not touch it. Instead, he studies it from the air alone, memorizing its depth, width, angle, and pressure pattern.",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "Shen Mo CHIBI",
+                  "text": "(His fingertip hovers above the scratch, not touching it) A vertical scratch... same origin as my exclusive mark, but different in form — deeper pressure, wider grain. This mark was made by another hand.",
+                  "vo": "VO_SC_0062",
+                  "emotion": "辨认·警觉"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "The Western Suburbs Warehouse, complete. Chapter Seven Archive Fragment 1/9 unlocked. Shen Mo has fully identified the mark's owner: this final scratch was made by Ito — after cutting the transmitter power line and completing the invisible cleanup in the dead of night, he came specially to the western-suburbs warehouse to leave this last hidden trace, sealing the entire covert game with a closing signature.",
+                  "emotion": "旁白·叙述"
+                }
+              ]
+            },
+            {
+              "levelId": 702,
+              "title": "狄思威路72号",
+              "preDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "At first light, before the frost has melted, Shen Mo returns to the old residence at No. 72 Dixiwei Road. The third-floor study remains exactly as he left it. The door is slightly open. The hinges move smoothly. Nothing inside has changed. The desk remains in place. The hidden compartment is still open. The groove beside the wall is empty. No new object. No displaced item. No fresh trace. Shen Mo stops at the doorway. He does not enter. He does not touch anything. Only with his eyes does he inspect the entire room — no intruder, no alteration, no added clue, no missing evidence. Everything remains unchanged. Satisfied, he turns and walks downstairs.",
+                  "emotion": "旁白·叙述",
+                  "bg": "assets/images/chapter7/backgrounds/BG-CH7-02_disiwei72.jpg"
+                },
+                {
+                  "speaker": "Narrator",
+                  "text": "Halfway down the staircase, a faint sound comes from the first-floor wooden door. Not a knock. Not a movement. Only the quiet tremor of a door panel being gently pushed shut. The sound echoes clearly through the silent morning. Shen Mo's pace does not change. He continues down the remaining steps. At the end of the first-floor corridor stands Mrs. Zhou. She has clearly been waiting for some time. One hand rests lightly against the doorframe. Her back remains calm and still. Without turning, she speaks.",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "Mrs. Zhou",
+                  "text": "Your father left something with me before he departed. He said — if one day he returns, give this to him.",
+                  "emotion": "清淡·平稳"
+                },
+                {
+                  "speaker": "Narrator",
+                  "text": "Shen Mo stops midway down the corridor. He does not approach. He simply waits. Mrs. Zhou slowly opens her hand. An old envelope rests on her palm — the paper yellowed, the corners worn, the seal intact. No opening. No tear. No sign of damage. Shen Mo takes it. Only then does Mrs. Zhou turn. Her eyes meet his — a moment of examination, recognition, relief. Then everything returns to silence. She withdraws her hand, turns, and disappears into the shadow behind the staircase.",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "Shen Mo CHIBI",
+                  "text": "(His fingertips brush the intact seal of the envelope, never opening it) The envelope entrusted by Father... the seal is perfectly intact — unopened, undamaged. Before he left, he came back specially to this room that had been sealed for three years.",
+                  "vo": "VO_SC_0063",
+                  "emotion": "沉静·感念"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "No. 72 Dixiwei Road, complete. Chapter Seven Archive Fragment 2/9 unlocked. The envelope's transfer was fully controlled, with no third party handling it; the core clue inside remains complete and intact, with no substitution, loss, or tampering.",
+                  "emotion": "旁白·叙述"
+                }
+              ]
+            },
+            {
+              "levelId": 703,
+              "title": "霞飞路旧书店",
+              "preDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "Beneath the gray morning sky, Shen Mo returns alone to the old bookshop on Avenue Joffre. The door that once concealed countless secrets is now firmly sealed from outside. A brand-new iron lock hangs in place. The wooden panels are tightly joined. No gap. No light. No sign of movement within. Shen Mo stands before the entrance. He does not push the door. He does not test the lock. He does not crouch to search for the old hidden key beneath the windowsill. He only observes — the lock model, the mounting position, the latch structure. Every detail is recorded silently. No forced entry. No tampering. No passage.",
+                  "emotion": "旁白·叙述",
+                  "bg": "assets/images/chapter6/backgrounds/BG-CH6-02_bookstore.jpg"
+                },
+                {
+                  "speaker": "Narrator",
+                  "text": "The moment he turns to leave, something catches the edge of his vision. Inside the windowsill, on the old bookshelf panel, lies an extremely faint short-stroke mark. Its direction matches exactly with the exclusive signal he created in June. But the execution is different. The pressure is almost restrained to nothing. The cut is shallow. Far lighter than any previous mark. A signal made not to demand attention, but only to exist. Shen Mo pauses briefly. He does not approach. He does not verify it physically. He simply remembers it. Leaving the place where he once obtained the hidden book, he finally places the last endpoint he has spent half a year reconstructing. Beside the old windowsill mark, he leaves a single line of pencil-written coordinates — a clear address, a final destination.",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "Shen Mo CHIBI",
+                  "text": "(His gaze lingers briefly, without stopping to investigate) A short-stroke mark... the pressure is almost restrained to nothing, the cut shallow — a signal deliberately subdued. The final address is placed in its original position. This long game should come to its close.",
+                  "vo": "VO_SC_0064",
+                  "emotion": "平静·释然"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "The Old Bookshop on Avenue Joffre, complete. Chapter Seven Archive Fragment 3/9 unlocked. The windowsill address remains intact — unmoved, uncovered, with no new pointing trace. The entire hidden clue chain closes cleanly, leaving no loose end.",
+                  "emotion": "旁白·叙述"
+                }
+              ]
+            },
+            {
+              "levelId": 704,
+              "title": "苏州河",
+              "preDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "In the quiet afternoon, Suzhou Creek flows slowly beneath the gray sky. Shen Mo walks to the Fourth Bridge. He does not cross. Instead, he descends the old stone steps beside the river and sits near the water. The current moves gently against the bridge pillar. The sound is low and steady — different from the chaos of December's earlier days. The river is calmer now. Fallen leaves drift sparsely across the surface. Shen Mo takes out the yellowed envelope from inside his coat. He does not open it immediately. He places it quietly on his knee. Beside it, he unfolds the 1938 French Concession map. His eyes move to the hidden address written on its reverse side. Every character remains exactly as he remembers. No change. No error. No alteration.",
+                  "emotion": "旁白·叙述",
+                  "bg": "assets/images/chapter7/backgrounds/BG-CH7-03_suzhou_river.jpg"
+                },
+                {
+                  "speaker": "Narrator",
+                  "text": "The opposite bank is empty. No boats pass. No pedestrians appear. Only the sound of water and his own breathing remain. After a long silence, Shen Mo finally opens the envelope. Inside is a neatly preserved letter. The paper edges are intact. No tear. No crease. Only one restrained line of handwriting appears: \"Mo — I am your father. I left not because I did not wish to wait.\"",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "Shen Mo CHIBI",
+                  "text": "(Reading it through at a glance, gathering all his emotions) My father's handwriting... \"I left not because I did not wish to wait.\" The signing date is December 8 — the very day I completed the final transmission of the core intelligence in the dead of night.",
+                  "vo": "VO_SC_0065",
+                  "emotion": "沉静·释然"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "Suzhou Creek, complete. Chapter Seven Archive Fragment 4/9 unlocked. My father's handwriting, the hidden address, and the withdrawal route — three threads converge into one. All the farewells foreshadowed and hidden trajectories are fully closed, and the road ahead is clear and certain.",
+                  "emotion": "旁白·叙述"
+                }
+              ]
+            },
+            {
+              "levelId": 705,
+              "title": "符拉迪沃斯托克",
+              "preDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "Before dawn fully arrives, Shen Mo reaches the Huangpu River wharf. The river is open beneath the morning sky. No dense fog. No violent waves. No gathered fleet. Only several freighters and passenger ships resting quietly offshore. He walks slowly to the end of the jetty and stands there. The wooden planks beneath his feet are worn by years of wind and water. Their faded surface carries the marks of time. The morning light spreads across the river. Small reflections shimmer on the water. Clear. Quiet. Unobstructed.",
+                  "emotion": "旁白·叙述",
+                  "bg": "assets/images/chapter7/backgrounds/BG-CH7-04_dock.jpg"
+                },
+                {
+                  "speaker": "Narrator",
+                  "text": "After confirming the route environment, Shen Mo turns toward the wharf office. He asks only what is necessary. No unnecessary questions. No mention of destinations beyond what is required. No search for companions. No attempt to investigate. He simply purchases a ticket. The destination printed clearly: Vladivostok. He stores the ticket safely inside his coat — together with the father's letter, together with the old map. The pieces now confirm one another.",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "Shen Mo CHIBI",
+                  "text": "(Pausing one last time at the end of the jetty, gazing at the open river) Vladivostok... exactly matching my father's withdrawal route, the direction marked on the letter, and the sea route preserved in my mother's photograph. Three generations of hidden paths finally converge on the same direction.",
+                  "vo": "VO_SC_0066",
+                  "emotion": "笃定·前行"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "Vladivostok, complete. Chapter Seven Archive Fragment 5/9 unlocked. The route is set, the direction certain — identical to the path taken by the previous generation. All scattered clues finally converge into a single road ahead.",
+                  "emotion": "旁白·叙述"
+                }
+              ]
+            },
+            {
+              "levelId": 706,
+              "title": "帐房",
+              "preDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "In the soft morning light, Shen Mo returns once again to the familiar counting house. It has been only a day since he left. When the door opens, the room remains peaceful. Safe. Unchanged. Su Wan sits alone beside the stove on the low wooden stool. The white porcelain bowl on the windowsill remains where it has always been. Its opening faces east — their final and most familiar peace signal. Seeing him return, Su Wan does not stand. She does not ask where he has been. She does not show surprise. She simply lifts the lid from the pot, serves a bowl of warm congee, places it quietly on the desk, then returns to her seat beside the stove.",
+                  "emotion": "旁白·叙述",
+                  "bg": "assets/images/chapter6/backgrounds/BG-CH6-01_accounting.jpg"
+                },
+                {
+                  "speaker": "Su Wan",
+                  "text": "When are you leaving?",
+                  "emotion": "清淡·无波"
+                },
+                {
+                  "speaker": "Shen Mo",
+                  "text": "...Tomorrow.",
+                  "emotion": "低沉·应答"
+                },
+                {
+                  "speaker": "Su Wan",
+                  "text": "The ticket has been bought.",
+                  "emotion": "笃定·了然"
+                },
+                {
+                  "speaker": "Shen Mo",
+                  "text": "...Yes.",
+                  "emotion": "轻声·落定"
+                },
+                {
+                  "speaker": "Shen Mo CHIBI",
+                  "text": "(Standing still for a moment, speaking softly) The congee was warm. Every concern, every thought, every farewell left unspoken — all of it remains between us. The white porcelain bowl on the windowsill faces east, steadily guarding the final peace and expectation.",
+                  "vo": "VO_SC_0067",
+                  "emotion": "温柔·不舍"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "The Counting House, complete. Chapter Seven Archive Fragment 6/9 unlocked. The white porcelain bowl on the windowsill steadily faces east; the peace signal remains. The warmth and steadiness of companionship in a turbulent age are all preserved here, becoming the firmest foundation for the road ahead.",
+                  "emotion": "旁白·叙述"
+                }
+              ]
+            },
+            {
+              "levelId": 707,
+              "title": "船",
+              "preDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "In the early mist, the ferry begins to move. The ropes are released. The engine deepens. The vessel slowly separates from the Shanghai wharf. Shen Mo stands beside the rail. Morning sunlight falls from the east, resting quietly on his shoulder. Behind him, Shanghai gradually disappears. The foreign buildings along the Bund. The bridges crossing Suzhou Creek. The endless warehouse roofs beside the river. One by one, they fade into the mist. Their outlines soften. Their distance grows. Until the entire city becomes only a gray shadow.",
+                  "emotion": "旁白·叙述",
+                  "bg": "assets/images/chapter7/backgrounds/BG-CH7-04_dock.jpg"
+                },
+                {
+                  "speaker": "Narrator",
+                  "text": "Shen Mo stands motionless. He does not hold the railing. He does not wave goodbye. He does not look back. Inside his coat are everything he carries from the past: his father's handwritten letter, his mother's old photograph, the teacher's unfinished puzzle fragments, the 1938 French Concession map. Every clue. Every memory. Every unfinished responsibility. All preserved. All completed.",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "Shen Mo CHIBI",
+                  "text": "(Raising his eyes toward the direction ahead) My father's handwritten letter, my mother's old photograph, the teacher's puzzle fragments, the 1938 map... every clue is safely stored. Shanghai is left behind.",
+                  "vo": "VO_SC_0068",
+                  "emotion": "沉静·笃定"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "The Ship, complete. Chapter Seven Archive Fragment 7/9 unlocked. The ferry steadily sails northeast, precisely toward Vladivostok — the route exactly matches the withdrawal paths taken by his father and mother in their time. Three generations of journeys and perseverance find their ultimate echo at this moment.",
+                  "emotion": "旁白·叙述"
+                }
+              ]
+            },
+            {
+              "levelId": 708,
+              "title": "雾",
+              "preDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "After leaving Wusong Mouth, the ferry enters open water. The river merges with the sea. Layers of fog drift across the deck, then gradually thin. Behind the ship, a long white trail spreads across the water. Slowly. Quietly. It dissolves into the waves. Shanghai disappears completely. No skyline. No harbor. No trace.",
+                  "emotion": "旁白·叙述",
+                  "bg": "assets/images/chapter7/backgrounds/BG-CH7-04_dock.jpg"
+                },
+                {
+                  "speaker": "Narrator",
+                  "text": "Shen Mo steps onto the deck. The sea stretches endlessly before him. From behind comes a faint sound. A footstep. Someone stops nearby. Watching. Waiting. Not approaching. Not speaking. Not leaving. Shen Mo does not turn. He does not investigate. His expression does not change. After a moment, the footsteps disappear into the sound of the wind and waves.",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "Shen Mo CHIBI",
+                  "text": "(Letting the sea breeze brush his face, the fog wrap around him) Someone paused briefly, watching in silence... coming and going without a trace, just like every hidden game of mine in the past. As the fog clears, the direction ahead has become clear.",
+                  "vo": "VO_SC_0069",
+                  "emotion": "平静·领悟"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "The Fog, complete. Chapter Seven Archive Fragment 8/9 unlocked. The course is constant, the heading unchanged. All the groundwork, all the journeys, all the forbearance steadily advance toward the single final destination.",
+                  "emotion": "旁白·叙述"
+                }
+              ]
+            },
+            {
+              "levelId": 709,
+              "title": "库房",
+              "preDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "The fog finally disappears. Transparent sunlight pours through the cabin window. Every object on the berth is clearly visible. Shen Mo sits at the edge of the bed and slowly lays out the things he has carried with him: the father's handwritten letter, the 1938 French Concession map, the outbound ticket, the teacher's remaining puzzle fragments, the hidden words written on the back of his mother's photograph, the final coordinates left behind by his father.",
+                  "emotion": "旁白·叙述",
+                  "bg": "assets/images/chapter7/backgrounds/BG-CH7-01_west_warehouse.jpg"
+                },
+                {
+                  "speaker": "Narrator",
+                  "text": "One by one. Each object is worn by time. The edges are faded. The paper carries the traces of years, separation, and countless hidden struggles. They appear to be independent fragments. Separate clues. Different moments. Different hands. Yet every path has always pointed toward the same direction. From the very beginning until now, no one forced him forward. No one gave him the entire answer. No one walked the road for him. He discovered every route himself. He verified every mark himself. He completed every loop himself.",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "Narrator",
+                  "text": "He finally understands: the storeroom door that ran through the entire book, always left unresolved, was never a door he needed to force open. He never opened it. Instead, by following every route, solving every clue, and completing every trace, he watched it close naturally. No explosion. No revelation. No final confrontation. Only silence. And that silence was the true ending.",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "Shen Mo CHIBI",
+                  "text": "(Standing beside the rail, the sea breeze against his face) Every door, every road, every mark, every hidden game — all closed in perfect completion. The storeroom door was never opened, yet it has quietly closed. I have walked it all.",
+                  "vo": "VO_SC_0070",
+                  "emotion": "平静·释然"
+                }
+              ],
+              "clearDialog": [
+                {
+                  "speaker": "Narrator",
+                  "text": "The deck. The sea stretches endlessly. The wind comes from the east. Shen Mo stands for a long time. The evidence in his coat has all aligned. His father's letter. His mother's photograph. The teacher's puzzle fragments. Yamada's file. The direction-finding team's records. He no longer needs to open them to look again. Footsteps sound behind him. One person. Unhurried. Steady. They stop three steps away. Shen Mo does not turn.",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "Ito",
+                  "text": "You have walked it all.",
+                  "emotion": "平静·无攻击"
+                },
+                {
+                  "speaker": "Shen Mo",
+                  "text": "So have you.",
+                  "emotion": "平静·回应"
+                },
+                {
+                  "speaker": "Ito",
+                  "text": "I started earlier than you. But I never truly stopped.",
+                  "emotion": "平静·陈述"
+                },
+                {
+                  "speaker": "Shen Mo",
+                  "text": "Ito.",
+                  "emotion": "平静·对峙"
+                },
+                {
+                  "speaker": "Ito",
+                  "text": "The vertical scratch at the western-suburbs warehouse — you left it. You left a short stroke; I left a vertical line. Your father's short stroke is in B3. Three generations. Three ways of marking. It took me three years to understand this rule. You took four months.",
+                  "emotion": "平静·审视"
+                },
+                {
+                  "speaker": "Shen Mo",
+                  "text": "You never killed anyone.",
+                  "emotion": "平静·陈述"
+                },
+                {
+                  "speaker": "Ito",
+                  "text": "No. I only rearranged things. Files. Routes. Numbers.",
+                  "emotion": "平静·坦然"
+                },
+                {
+                  "speaker": "Ito",
+                  "text": "This key is useless now. But keep it. I get off at the next stop.",
+                  "emotion": "平静·交代"
+                },
+                {
+                  "speaker": "Ito",
+                  "text": "You were right. I never truly stayed. You did. That is why you reached the end, while I only passed through.",
+                  "emotion": "平静·领悟"
+                },
+                {
+                  "speaker": "Narrator",
+                  "text": "He walked into the cabin door. He did not look back. He did not close the door. The key remained on the rail. The sea breeze blew for a while, then Shen Mo reached out, picked it up, and put it in his pocket. The ship continued east. The horizon had no end.",
+                  "emotion": "旁白·叙述"
+                },
+                {
+                  "speaker": "Narrator",
+                  "text": "The Storeroom, complete. All Chapter Seven Archive Fragments 9/9 unlocked. The final chapter of the book. The story ends. — He walked every road you walked before you. But on your road, he stopped. Then he left. Not defeat. It was simply time to get off the ship.",
+                  "emotion": "旁白·叙述"
+                }
+              ]
+            }
+          ],
+          "hiddenStory": [
+            {
+              "speaker": "Narrator",
+              "text": "The nine archive fragments of Chapter Seven assemble into one complete road home. The final carving at the western warehouse, the letter entrusted by his father, the final address on the windowsill, the letter in his father's hand by the Suzhou Creek, the ticket to Vladivostok, the farewell at the counting house, the old key left on the ship's rail... Shen Mo has walked his father's road to its end, and his own road as well.",
+              "emotion": "旁白·叙述",
+              "bg": "assets/images/chapter7/backgrounds/BG-CH7-04_dock.jpg"
+            },
+            {
+              "speaker": "Shen Mo CHIBI",
+              "text": "(The old key held in his palm) He walked every road you walked before you. But on your road, he stopped. Then he left. Not defeat. It was simply time to get off the ship.",
+              "vo": "VO_SC_0071",
+              "emotion": "沉思·领悟"
+            }
+          ],
+          "epilogue": [
+            {
+              "speaker": "Narrator",
+              "text": "Chapter Seven · The Storeroom, complete. The final chapter of the book. After Pearl Harbor, Shen Mo finishes the last of the closing work — confirming the files, destroying the puzzles, sealing the transmitter. Pan Hanyu confirms at the mouth of the lane that the road has been walked to its end, and Shen Mo steps onto the gangplank that carries him out of Shanghai. Every door, every road, every mark, every game — all closed in perfect loop.",
+              "sfx": "seal_stamp",
+              "emotion": "旁白·叙述",
+              "bg": "assets/images/chapter7/backgrounds/BG-CH7-04_dock.jpg"
+            },
+            {
+              "speaker": "Shen Mo CHIBI",
+              "text": "(Standing on the open-sea deck, the sea wind on his face) The ship sails on eastward. The horizon has no end. The road ahead is already beneath my feet.",
+              "vo": "VO_SC_0072",
+              "emotion": "低语·前行"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

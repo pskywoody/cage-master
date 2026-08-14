@@ -1,0 +1,17 @@
+{
+  "production": true,
+  "release": "B3-FINAL",
+  "version": "3.0",
+  "frozen": true,
+  "params": {
+    "gb": 0.4,
+    "lambda": 25,
+    "W": 0.2,
+    "objective": true,
+    "ratioWeight": 100,
+    "maxCollected": 8
+  },
+  "immutable": true,
+  "poolSource": "release/B3-FINAL/release-pool.json",
+  "note": "生产参数已锁定。禁止修改 gb / lambda / W / objective / fitness，除非进入 B4 研究分支。"
+}

@@ -1,0 +1,186 @@
+
+=== level-101  (2 refs) ===
+  L2     [hdr   ] Level 1 · Rain-Night Letter (level-101)
+  L558   [hdr   ] Level 1 · Rain-Night Letter (level-101)
+
+=== level-102  (2 refs) ===
+  L65    [hdr   ] Level 2 · Traces of the Old Bookshop (level-102)
+  L621   [hdr   ] Level 2 · Traces of the Old Bookshop (level-102)
+
+=== level-103  (2 refs) ===
+  L126   [hdr   ] Level 3 · Shadows of the Lanes (level-103)
+  L682   [hdr   ] Level 3 · Shadows of the Lanes (level-103)
+
+=== level-104  (2 refs) ===
+  L188   [hdr   ] Level 4 · The Visitor: Su Wan (level-104)
+  L748   [hdr   ] Level 4 · The Visitor: Su Wan (level-104)
+
+=== level-105  (2 refs) ===
+  L250   [hdr   ] Level 5 · The Archive Library's Outer Wall (level-105)
+  L810   [hdr   ] Level 5 · The Archive Library's Outer Wall (level-105)
+
+=== level-106  (2 refs) ===
+  L305   [hdr   ] Level 6 · The Brick-and-Stone Key (level-106)
+  L865   [hdr   ] Level 6 · The Brick-and-Stone Key (level-106)
+
+=== level-107  (2 refs) ===
+  L362   [hdr   ] Level 7 · First Steps Down the Hidden Stairs (level-107)
+  L926   [hdr   ] Level 7 · First Steps Down the Hidden Stairs (level-107)
+
+=== level-108  (2 refs) ===
+  L413   [hdr   ] Level 8 · Relics in the Mezzanine (level-108)
+  L977   [hdr   ] Level 8 · Relics in the Mezzanine (level-108)
+
+=== level-109  (2 refs) ===
+  L476   [hdr   ] Level 9 · Prologue Finale · The First Closure (level-109)
+  L1040  [hdr   ] Level 9 · Prologue Finale · The First Closure (level-109)
+
+=== level-301  (1 refs) ===
+  L1146  [hdr   ] Level 1 · The Hidden Door (level-301)
+
+=== level-302  (1 refs) ===
+  L1212  [hdr   ] Level 2 · The B1 Corridor (level-302)
+
+=== level-303  (1 refs) ===
+  L1291  [hdr   ] Level 3 · The B2 Chamber (level-303)
+
+=== level-304  (1 refs) ===
+  L1384  [hdr   ] Level 4 · The Seven Puzzles · I (level-304)
+
+=== level-305  (1 refs) ===
+  L1448  [hdr   ] Level 5 · The Seven Puzzles · II (level-305)
+
+=== level-306  (1 refs) ===
+  L1512  [hdr   ] Level 6 · The Seven Puzzles · III (level-306)
+
+=== level-307  (1 refs) ===
+  L1589  [hdr   ] # Level 7 · The B3 Entrance (level-307)
+
+=== level-308  (1 refs) ===
+  L1721  [hdr   ] # Level 8 · The Transmitter (level-308)
+
+=== level-309  (1 refs) ===
+  L1828  [hdr   ] Level 9 · The Door at the Deepest Point (level-309)
+
+=== level-401  (2 refs) ===
+  L2170  [paren ] → **Level 1 · No. 94 East Yuhang Road (level-401)**
+  L2182  [hdr   ] # Level 1 · No. 94 East Yuhang Road (level-401)
+
+=== level-402  (1 refs) ===
+  L2355  [hdr   ] Level 2 · Room 402 (level-402)
+
+=== level-403  (1 refs) ===
+  L2498  [hdr   ] Level 3 · Room 403 (level-403)
+
+=== level-404  (1 refs) ===
+  L2663  [hdr   ] Level 4 · Room 404 (level-404)
+
+=== level-405  (1 refs) ===
+  L2816  [hdr   ] Level 5 · Pan Hanyu's Note (level-405)
+
+=== level-406  (1 refs) ===
+  L2920  [hdr   ] Level 6 · Lulutong Teahouse (level-406)
+
+=== level-407  (1 refs) ===
+  L3063  [hdr   ] Level 7 · The Other Path (level-407)
+
+=== level-408  (1 refs) ===
+  L3205  [hdr   ] Level 8 · The Backup Transmitter (level-408)
+
+=== level-409  (1 refs) ===
+  L3355  [hdr   ] Level 9 · Triple Alignment (level-409)
+
+=== level-501  (3 refs) ===
+  L3606  [hdr   ] Level 1 · Preparing the Transmitter (level-501)
+  L3959  [lvXXX ] Level 501 · Preparing the Transmitter
+  L3961  [idtag ] [Level ID] level-501
+
+=== level-502  (4 refs) ===
+  L3703  [hdr   ] Level 2 · Power Cut (level-502)
+  L4089  [lvXXX ] Level 502 · Power Cut
+  L4098  [lvXXX ] Level 502 · Power Cut
+  L4100  [idtag ] [Level ID] level-502
+
+=== level-503  (4 refs) ===
+  L3814  [hdr   ] Level 3 · The Direction-Finding Vehicle (level-503)
+  L4248  [lvXXX ] Level 503 · The Direction-Finding Vehicle
+  L4257  [lvXXX ] Level 503 · The Direction-Finding Vehicle
+  L4259  [idtag ] [Level ID] level-503
+
+=== level-504  (3 refs) ===
+  L4437  [lvXXX ] Level 504 · The First Message
+  L4446  [lvXXX ] Level 504 · The First Message
+  L4448  [idtag ] [Level ID] level-504
+
+=== level-505  (3 refs) ===
+  L4609  [lvXXX ] Level 505 · The Second Message
+  L4618  [lvXXX ] Level 505 · The Second Message
+  L4620  [idtag ] [Level ID] level-505
+
+=== level-506  (3 refs) ===
+  L4776  [lvXXX ] Level 506 · The Third Message
+  L4785  [lvXXX ] Level 506 · The Third Message
+  L4787  [idtag ] [Level ID] level-506
+
+=== level-507  (3 refs) ===
+  L4952  [lvXXX ] Level 507 · Withdrawal Before Dawn
+  L4961  [lvXXX ] Level 507 · Withdrawal Before Dawn
+  L4963  [idtag ] [Level ID] level-507
+
+=== level-508  (3 refs) ===
+  L5148  [lvXXX ] Level 508 · Yamada's File
+  L5157  [lvXXX ] Level 508 · Yamada's File
+  L5159  [idtag ] [Level ID] level-508
+
+=== level-509  (3 refs) ===
+  L5341  [lvXXX ] Level 509 · Daybreak
+  L5350  [lvXXX ] Level 509 · Daybreak
+  L5352  [idtag ] [Level ID] level-509
+
+=== level-601  (1 refs) ===
+  L5589  [hdr   ] Level 1 · The Counting House (level-601)
+
+=== level-602  (1 refs) ===
+  L5702  [hdr   ] Level 2 · The Bookshop (level-602)
+
+=== level-603  (1 refs) ===
+  L5849  [hdr   ] Level 3 · The Fourth Bridge (level-603)
+
+=== level-604  (1 refs) ===
+  L5977  [hdr   ] # Level 4 · The Old Lulutong Site (level-604)
+
+=== level-605  (1 refs) ===
+  L6127  [hdr   ] # Level 5 · The Transmitter (level-605)
+
+=== level-606  (1 refs) ===
+  L6284  [hdr   ] # Level 6 · The Mark (level-606)
+
+=== level-609  (1 refs) ===
+  L6427  [hdr   ] Level 9 · Pan Hanyu (level-609)（续）
+
+=== level-701  (1 refs) ===
+  L6521  [lvXXX ] Level 701 · The Western Suburbs Warehouse (Polished English Version)
+
+=== level-702  (1 refs) ===
+  L6748  [lvXXX ] Level 702 · No. 72 Dixiwei Road
+
+=== level-703  (1 refs) ===
+  L6919  [hdr   ] Level 703 · The Old Bookshop on Avenue Joffre (level-703)
+
+=== level-704  (1 refs) ===
+  L7112  [hdr   ] Level 704 · Suzhou Creek (level-704)
+
+=== level-705  (1 refs) ===
+  L7311  [hdr   ] Level 705 · Vladivostok (level-705)
+
+=== level-706  (1 refs) ===
+  L7395  [hdr   ] Level 706 · The Counting House (level-706)
+
+=== level-707  (1 refs) ===
+  L7644  [hdr   ] Level 707 · The Ship (level-707)
+
+=== level-708  (1 refs) ===
+  L7835  [hdr   ] Level 708 · The Fog (level-708)
+
+=== level-709  (1 refs) ===
+  L7958  [lvXXX ] Level 709 · The Storeroom

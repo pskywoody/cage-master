@@ -15,8 +15,56 @@
 // ==========================================
 
 import { DataStore } from '../core/data-store.js';
+import I18n from '../i18n/i18n.js';
 
 export class GalleryPanel {
+  /**
+   * 图鉴条目显示文案翻译：item.id → i18n key 前缀
+   * 角色/印记/碎片/道具/周目继承 的 name/title/description/unlockedBy 均经此翻译。
+   * @private
+   */
+  _tItem(item, field) {
+    try {
+      const id = item && item.id ? String(item.id) : '';
+      let prefix = '';
+      const CHAR_MAP = {
+        char_shenmo: 'ui.gallery.char.shenmo',
+        char_vera: 'ui.gallery.char.vera',
+        char_2: 'ui.gallery.char.suwan',
+        char_3: 'ui.gallery.char.ito',
+        seal_1: 'ui.gallery.char.seal1',
+        char_4: 'ui.gallery.char.yamada',
+        seal_2: 'ui.gallery.char.seal2',
+        char_5: 'ui.gallery.char.zhoutaitai',
+      };
+      if (CHAR_MAP[id]) {
+        prefix = CHAR_MAP[id];
+      } else if (id.indexOf('frag_ch') === 0) {
+        // frag_ch1_1 → ui.gallery.frag.ch1.1
+        const m = id.match(/^frag_ch(\d+)_(\d+)$/);
+        if (m) prefix = 'ui.gallery.frag.ch' + m[1] + '.' + m[2];
+      } else if (id === 'key4_94') {
+        // 特殊 id：key4_94 不以 key_ 开头，单独映射
+        prefix = 'ui.gallery.prop.key4_94';
+      } else if (id.indexOf('key_') === 0 || id.indexOf('badge_') === 0 || id.indexOf('ito_') === 0 ||
+                 id.indexOf('photo_') === 0 || id.indexOf('letter_') === 0 || id.indexOf('scroll_') === 0 ||
+                 id.indexOf('chart_') === 0) {
+        // 关键道具：snake_case → camelCase
+        prefix = 'ui.gallery.prop.' + id.replace(/_([a-z])/g, (m2, c) => c.toUpperCase());
+      } else if (id.indexOf('coin_') === 0 || id.indexOf('note_') === 0) {
+        // 周目继承：snake_case → camelCase
+        prefix = 'ui.gallery.inherit.' + id.replace(/_([a-z])/g, (m2, c) => c.toUpperCase());
+      }
+      if (!prefix) return item[field];
+      const key = prefix + '.' + (field === 'description' ? 'desc' : field);
+      const val = I18n.t(key);
+      // 回退：key 无翻译时返回原 key，此时用原始文案
+      return val === key ? item[field] : val;
+    } catch (e) {
+      return item[field];
+    }
+  }
+
   /**
    * 内置示例图鉴数据：8 个章节角色条目
    * @returns {Array<Object>} 只读副本
@@ -29,28 +77,24 @@ export class GalleryPanel {
       { id: 'char_vera', type: 'character', name: '薇拉', title: '霞飞路旧书店店主·联络员',
         description: '白俄难民，十月革命后随家人流亡上海，在法租界霞飞路经营旧书店为生。表面是安分守己的异国店主，实为情报网的关键联络人。出题如设局，冷静疏离之下藏着炽热的信念。', chapter: 1, rarity: 'rare',
         icon: '📚', image: 'assets/images/portraits/ch1_vera_default.png', unlockedBy: '通过第 102 关' },
-      { id: 'char_2', type: 'character', name: '阿妍', title: '实习侦探',
-        description: '初来档案馆的实习侦探，与守笼人一同调查旧案。', chapter: 2, rarity: 'common',
-        icon: '🔍', image: 'assets/images/portraits/new/R_01_calm_default.png', unlockedBy: '完成第 2 章任意关卡' },
-      { id: 'char_3', type: 'character', name: '设局人', title: '谜之来信者',
-        description: '留下谜题与秘信的神秘人物，与守笼人曾是同门。', chapter: 3, rarity: 'rare',
-        icon: '📃', image: 'assets/images/portraits/new/P_01_normal_default.png', unlockedBy: '完成第 3 章任意关卡' },
+      { id: 'char_2', type: 'character', name: '苏晚', title: '帐房之妻 · 守望者',
+        description: '沈墨的妻子，以沉默为他守着这方寸阵地。乱世之中，她替他抹除外出的痕迹，在灶台边为他留一盏煤油灯，端一碗温热米粥。', chapter: 2, rarity: 'common',
+        icon: '🫖', image: 'assets/images/portraits/suwan_default.png', unlockedBy: '完成第 2 章任意关卡' },
+      { id: 'char_3', type: 'character', name: '伊藤', title: '特高课 · 物证对峙',
+        description: '身在特高课的伊藤，与父亲相识。他先期抵达核验发报机，在B3留下补全的题面——你所有的题我都看过了。这道是我补的。', chapter: 3, rarity: 'rare',
+        icon: '🗂️', image: 'assets/images/portraits/ito_default.png', unlockedBy: '完成第 3 章任意关卡' },
       { id: 'seal_1', type: 'seal', name: '星衡印记', title: '四十五星衡',
-        description: '记载星衡法则的印记，破解手稿室谜题后获得。', chapter: 4, rarity: 'epic',
+        description: '记载星衡法则的印记，破解藏书楼谜题后获得。', chapter: 4, rarity: 'epic',
         icon: '⭐', unlockedBy: '完成第 4 章任意关卡' },
-      { id: 'char_4', type: 'character', name: '档案员·零', title: '尘封旧案负责人',
-        description: '残卷中的故人，其遗物牵出当年的决裂真相。', chapter: 5, rarity: 'epic',
-        icon: '📖', image: 'assets/images/portraits/remnant_default.png', unlockedBy: '完成第 5 章任意关卡' },
-      { id: 'seal_2', type: 'seal', name: '星辰梭核心', title: '终局之钥',
-        description: '星辰梭的真正用途，与嵌套笼奥秘一同浮出水面。', chapter: 6, rarity: 'legendary',
-        icon: '🔮', image: 'assets/images/portraits/weaver_default.png', unlockedBy: '完成第 6 章任意关卡' },
-      { id: 'char_5', type: 'character', name: '秘术整理者', title: '秘术档案编纂人',
-        description: '将六卷秘术手稿整理成册的守秘人。', chapter: 7, rarity: 'rare',
-        icon: '📜', image: 'assets/images/portraits/setter_secret_default.png', unlockedBy: '完成第 7 章任意关卡' },
-      { id: 'seal_3', type: 'seal', name: '归途星印', title: '星辰归途',
-        description: '集齐七封密信方可开启的最终印记，通向档案馆最深处的答案。', chapter: 8, rarity: 'legendary',
-        icon: '🌟', unlockedBy: '完成第 8 章任意关卡' },
-
+      { id: 'char_4', type: 'character', name: '山田', title: '特高课 · 资深搜查官',
+        description: '山田的排查档案里，沈墨的名字被批注：归档类别：无关。测向车一东一西锁死藏书楼片区，而沈墨在黑暗中默数六分钟风险窗口。', chapter: 5, rarity: 'epic',
+        icon: '📡', image: 'assets/images/portraits/yamada_default.png', unlockedBy: '完成第 5 章任意关卡' },
+      { id: 'seal_2', type: 'seal', name: '三代刻痕', title: '短横与竖线',
+        description: '沈墨留短横，伊藤留竖线，父亲在B3留下更深的短横——三代人，三种刻法，同一条路。', chapter: 6, rarity: 'legendary',
+        icon: '✒️', unlockedBy: '完成第 6 章任意关卡' },
+      { id: 'char_5', type: 'character', name: '周太太', title: '狄思威路72号 · 守望者',
+        description: '你父亲走之前托过我一样东西。他说——如果有一天他回来了，把这个交给他。封口严丝合缝，无拆启痕迹。', chapter: 7, rarity: 'rare',
+        icon: '✉️', image: 'assets/images/portraits/zhou_taotai_default.png', unlockedBy: '完成第 7 章任意关卡' },
       // ===== 序章档案碎片（101-109，通关解锁，collectible）=====
       { id: 'frag_ch1_1', type: 'collectible', name: '档案碎片 · 壹', title: '雨夜来信',
         description: '无署名的信，封缄处只刻着一道极细的短横记号。拆开信封，内里是一道残缺的数独盘面。', chapter: 1, rarity: 'common',
@@ -81,209 +125,178 @@ export class GalleryPanel {
         icon: '🗝️', image: 'assets/images/chapter1/backgrounds/BG-CH1-05_xiafei_road_night.jpg', unlockedBy: '通关第 109 关' },
 
       // ===== 第2章档案碎片（9枚，collectible）=====
-      { id: 'frag_ch2_1', type: 'collectible', name: '档案碎片 · 壹', title: '天平初现',
-        description: '天平厅内，左右各悬四枚砝码，天平纹丝不动。四十五法则从这里开始被铭刻。', chapter: 2, rarity: 'common',
-        icon: '⚖️', unlockedBy: '通关第 201 关' },
-      { id: 'frag_ch2_2', type: 'collectible', name: '档案碎片 · 贰', title: '砝码之语',
-        description: '每一组砝码的和值都对应着一段密语——差值推演的法则，藏在砝码的起落之间。', chapter: 2, rarity: 'common',
+      { id: 'frag_ch2_1', type: 'collectible', name: '档案碎片 · 壹', title: 'B1回廊',
+        description: '铁门洞开，沈墨踏入藏书楼地下B1回廊。两侧石壁布满刀尖刻下的数字序列，绵延向走廊尽头——这是一条漫长的记忆长廊，无数谜题碎片被刻在石头之上。', chapter: 2, rarity: 'common',
+        icon: '🏛️', unlockedBy: '通关第 201 关' },
+      { id: 'frag_ch2_2', type: 'collectible', name: '档案碎片 · 贰', title: '岔路残简',
+        description: '回廊中段道路一分为二，地面落着半张腐朽残破的纸页。排除错误岔路，锁定主通路方向——1938年残简的身份依旧成谜。', chapter: 2, rarity: 'common',
         icon: '🧾', unlockedBy: '通关第 202 关' },
-      { id: 'frag_ch2_3', type: 'collectible', name: '档案碎片 · 叁', title: '星衡学徒',
-        description: '一枚黄铜算珠徽章落在石台上，这是四十五星衡的入门凭证。', chapter: 2, rarity: 'common',
-        icon: '🏅', unlockedBy: '通关第 203 关' },
-      { id: 'frag_ch2_4', type: 'collectible', name: '档案碎片 · 肆', title: '差值之网',
-        description: '差值推演的蛛网铺满整间房间——每个数字都像蛛网上的节点，牵一发而动全身。', chapter: 2, rarity: 'common',
-        icon: '🕸️', unlockedBy: '通关第 204 关' },
-      { id: 'frag_ch2_5', type: 'collectible', name: '档案碎片 · 伍', title: '隐曜初窥',
-        description: '某些数字被藏在笼子的阴影里，只有用差值法则才能让它们显形。', chapter: 2, rarity: 'common',
-        icon: '🌑', unlockedBy: '通关第 205 关' },
-      { id: 'frag_ch2_6', type: 'collectible', name: '档案碎片 · 陆', title: '星衡密信',
-        description: '一封封卷着的密信从天平底座的暗格滚落，每封上都刻着四十五的标记。', chapter: 2, rarity: 'common',
-        icon: '✉️', unlockedBy: '通关第 206 关' },
-      { id: 'frag_ch2_7', type: 'collectible', name: '档案碎片 · 柒', title: '特高课痕迹',
-        description: '从伊藤身上落下的纸条，字迹潦草，边缘被火焰烧去了一角。', chapter: 2, rarity: 'common',
-        icon: '📝', unlockedBy: '通关第 207 关' },
-      { id: 'frag_ch2_8', type: 'collectible', name: '档案碎片 · 捌', title: '学徒徽章',
-        description: '四十五星衡的徽章在掌心发烫——你正式成为了星衡学徒。', chapter: 2, rarity: 'common',
-        icon: '🎖️', unlockedBy: '通关第 208 关' },
-      { id: 'frag_ch2_9', type: 'collectible', name: '档案碎片 · 玖', title: '星衡闭环',
-        description: '天平、砝码、差值、隐曜——九枚碎片拼出完整的四十五星衡。', chapter: 2, rarity: 'common',
-        icon: '🔗', unlockedBy: '集齐本章八枚碎片后解锁' },
+      { id: 'frag_ch2_3', type: 'collectible', name: '档案碎片 · 叁', title: '桥洞一瞬',
+        description: '沈墨返回地面补给，途经城外石桥。桥洞阴影深重，一名身着灰布长衫的中年人立在阴影之中——我方或敌方监视，已经近身。', chapter: 2, rarity: 'common',
+        icon: '🌉', unlockedBy: '通关第 203 关' },
+      { id: 'frag_ch2_4', type: 'collectible', name: '档案碎片 · 肆', title: '72号旧居',
+        description: '循着线索来到父亲从前居住的72号旧居，院落早已荒废。屋内木柜开启，存放着父亲遗留的文稿与数独底稿。', chapter: 2, rarity: 'common',
+        icon: '🏚️', unlockedBy: '通关第 204 关' },
+      { id: 'frag_ch2_5', type: 'collectible', name: '档案碎片 · 伍', title: '旧稿破译',
+        description: '木柜之内一叠叠数独底稿静静躺着，有的完整，有的只写到一半便中断。父亲知晓藏书楼地下密道的全部存在，却始终无法走完最后的段落。', chapter: 2, rarity: 'common',
+        icon: '📜', unlockedBy: '通关第 205 关' },
+      { id: 'frag_ch2_6', type: 'collectible', name: '档案碎片 · 陆', title: '返回地下',
+        description: '旧居线索读完，沈墨必须重返地下。城内风声一日紧过一日，苏晚在家中替他抹除外出的痕迹，掩盖他长时间失踪的事实。', chapter: 2, rarity: 'common',
+        icon: '🕯️', unlockedBy: '通关第 206 关' },
+      { id: 'frag_ch2_7', type: 'collectible', name: '档案碎片 · 柒', title: 'B2石室入口',
+        description: '走完漫长B1回廊，抵达通往B2的厚重铁门。整扇门板就是一块巨大的数独锁——而存在不明访客，先于沈墨抵达。', chapter: 2, rarity: 'common',
+        icon: '🚪', unlockedBy: '通关第 207 关' },
+      { id: 'frag_ch2_8', type: 'collectible', name: '档案碎片 · 捌', title: 'B2空室',
+        description: '踏入B2主石室，墙角堆放旧木箱，地上散落废弃文稿。B3真实存在却被谜题链封锁——不明访客曾经停留于此。', chapter: 2, rarity: 'common',
+        icon: '🗄️', unlockedBy: '通关第 208 关' },
+      { id: 'frag_ch2_9', type: 'collectible', name: '档案碎片 · 玖', title: '石室留痕',
+        description: '无数前人的印记遍布四壁。沈墨取出炭笔，在石壁空白处留下属于自己的一道刻痕——不写名字，不写日期，只代表：我来过。', chapter: 2, rarity: 'common',
+        icon: '✏️', unlockedBy: '集齐本章八枚碎片后解锁' },
 
       // ===== 第3章档案碎片（9枚，collectible）=====
-      { id: 'frag_ch3_1', type: 'collectible', name: '档案碎片 · 壹', title: '旧书店回忆',
-        description: '旧书店的地板咯吱作响，薇拉从书架最深处抽出一本封皮磨旧的书——那是档案室的旧索引。', chapter: 3, rarity: 'common',
-        icon: '📚', unlockedBy: '通关第 301 关' },
-      { id: 'frag_ch3_2', type: 'collectible', name: '档案碎片 · 贰', title: '四号桥底',
-        description: '四号桥的桥墩下，潮湿的石壁上刻着三列数阵——行、列、宫区块的法则在此首次完整呈现。', chapter: 3, rarity: 'common',
-        icon: '🌉', unlockedBy: '通关第 302 关' },
-      { id: 'frag_ch3_3', type: 'collectible', name: '档案碎片 · 叁', title: '行块残影',
-        description: '行区块的残影沿着走廊延伸——每一段都像被刀削过一样整齐。', chapter: 3, rarity: 'common',
-        icon: '➡️', unlockedBy: '通关第 303 关' },
-      { id: 'frag_ch3_4', type: 'collectible', name: '档案碎片 · 肆', title: '列块回声',
-        description: '列区块的回声从穹顶落下——像是有人在头顶的另一层，用同样的节奏解题。', chapter: 3, rarity: 'common',
-        icon: '⬇️', unlockedBy: '通关第 304 关' },
-      { id: 'frag_ch3_5', type: 'collectible', name: '档案碎片 · 伍', title: '宫块重影',
-        description: '宫区块的重影在转角处叠加——三个宫块像三面镜子，照出同一个答案。', chapter: 3, rarity: 'common',
-        icon: '🔲', unlockedBy: '通关第 305 关' },
-      { id: 'frag_ch3_6', type: 'collectible', name: '档案碎片 · 陆', title: '东余杭路 94 号',
-        description: '一张泛黄的门牌照片——东余杭路94号。背面写着母亲的笔迹。', chapter: 3, rarity: 'common',
-        icon: '🏠', unlockedBy: '通关第 306 关' },
-      { id: 'frag_ch3_7', type: 'collectible', name: '档案碎片 · 柒', title: '母亲的照片',
-        description: '母亲年轻时的照片，夹在一本旧书里。照片背面写着一个日期：1938。', chapter: 3, rarity: 'common',
-        icon: '📷', unlockedBy: '通关第 307 关' },
-      { id: 'frag_ch3_8', type: 'collectible', name: '档案碎片 · 捌', title: '档案室平面图',
-        description: '档案室深层的平面图，标注着七条通道和九间密室。', chapter: 3, rarity: 'common',
-        icon: '🗺️', unlockedBy: '集齐本章前七枚碎片后解锁' },
-      { id: 'frag_ch3_9', type: 'collectible', name: '档案碎片 · 玖', title: '区块闭环',
-        description: '行、列、宫、平面图、母亲的线索——九枚碎片拼出档案室深层的完整地图。', chapter: 3, rarity: 'common',
-        icon: '🧩', unlockedBy: '通关本章最终关卡后解锁' },
+      { id: 'frag_ch3_1', type: 'collectible', name: '档案碎片 · 壹', title: '暗门',
+        description: '沈墨目光扫过暗门内侧门框——一道细细铅笔短横静静刻在木框之上，样式与序章霞飞路旧窗台上的标记一模一样。', chapter: 3, rarity: 'common',
+        icon: '🚪', unlockedBy: '通关第 301 关' },
+      { id: 'frag_ch3_2', type: 'collectible', name: '档案碎片 · 贰', title: 'B1走廊',
+        description: 'B1走廊逼仄，石壁刻痕连绵不绝。第七道刻痕末尾三位数字与旧大衣内袋纸条完全吻合——地面泥印来自苏州河岸，六小时前有访客途经此地。', chapter: 3, rarity: 'common',
+        icon: '👣', unlockedBy: '通关第 302 关' },
+      { id: 'frag_ch3_3', type: 'collectible', name: '档案碎片 · 叁', title: 'B2密室',
+        description: 'B2密室木桌摆着一只敞开的牛皮纸袋，内里七道数独由浅入深依次排开。最上方纸页一行铅笔字迹：你到了。这里是老师留下的第二层。', chapter: 3, rarity: 'common',
+        icon: '📦', unlockedBy: '通关第 303 关' },
+      { id: 'frag_ch3_4', type: 'collectible', name: '档案碎片 · 肆', title: '七道题·一',
+        description: '第一道数独提示数不多，盘面结构清晰利落。纸页末尾一行小字：还有六道。不用急——你需要时间。', chapter: 3, rarity: 'common',
+        icon: '📄', unlockedBy: '通关第 304 关' },
+      { id: 'frag_ch3_5', type: 'collectible', name: '档案碎片 · 伍', title: '七道题·二',
+        description: '第二道谜题复杂度陡升，笼线层层交错，多组跨宫笼互相纠缠。老师落笔：你还记得六月的那本书吗？那道题是我出的。这一道也是。', chapter: 3, rarity: 'common',
+        icon: '📄', unlockedBy: '通关第 305 关' },
+      { id: 'frag_ch3_6', type: 'collectible', name: '档案碎片 · 陆', title: '七道题·三',
+        description: '第三道是零提示数独——整张盘面只有笼格线条与和值，没有任何预先填写的数字。沈墨在灯下耗尽心力，终于推演完毕。', chapter: 3, rarity: 'common',
+        icon: '⬜', unlockedBy: '通关第 306 关' },
+      { id: 'frag_ch3_7', type: 'collectible', name: '档案碎片 · 柒', title: 'B3入口',
+        description: '走廊尽头矗立一扇远重于过往所有门扇的铸铁铁门，门板中央镌刻一道大半已填好的数独盘面——父亲仅完成三分之二，伊藤先期抵达核验发报机。', chapter: 3, rarity: 'common',
+        icon: '🗝️', unlockedBy: '通关第 307 关' },
+      { id: 'frag_ch3_8', type: 'collectible', name: '档案碎片 · 捌', title: '发报机',
+        description: '石室最深处，一台老式发报机安放在木桌之上，处于断电状态。发报机有移动痕迹，桌腿刻字"3"，伊藤完成设备检查记录。', chapter: 3, rarity: 'common',
+        icon: '📻', unlockedBy: '集齐本章前七枚碎片后解锁' },
+      { id: 'frag_ch3_9', type: 'collectible', name: '档案碎片 · 玖', title: '最深处的门',
+        description: '石室最深处立着一扇一人宽窄的石门，门后斗室只放一桌一椅，桌面安放一只铁皮箱。箱中只有一张纸——父亲B3入口那道谜题残留的最后三分之一空白。', chapter: 3, rarity: 'common',
+        icon: '🗃️', unlockedBy: '通关本章最终关卡后解锁' },
 
       // ===== 第4章档案碎片（9枚，collectible）=====
-      { id: 'frag_ch4_1', type: 'collectible', name: '档案碎片 · 壹', title: '藏书楼地下',
-        description: '藏书楼地下B1层的空气里弥漫着旧纸的味道。尘封的卷宗架上，每一卷都锁着一道题。', chapter: 4, rarity: 'common',
-        icon: '🏛️', unlockedBy: '通关第 401 关' },
-      { id: 'frag_ch4_2', type: 'collectible', name: '档案碎片 · 贰', title: 'B1 笔记',
-        description: '一本写满笔记的练习册——是设局人当年的草稿。字迹锋利，像在跟谁较劲。', chapter: 4, rarity: 'common',
+      { id: 'frag_ch4_1', type: 'collectible', name: '档案碎片 · 壹', title: '东余杭路94号',
+        description: '黄昏暮色中，沈墨绕行至东余杭路94号后巷。第三根电线杆的砖缝里绷着一根新系棉线，线尾拴着一枚齿痕磨亮的旧铜钥匙，柄处刻着数字4。门框内侧一道指甲刻出的短横划痕，与他留在藏书楼暗门外的标记一模一样——有人先他一步来过。', chapter: 4, rarity: 'common',
+        icon: '🔑', unlockedBy: '通关第 401 关' },
+      { id: 'frag_ch4_2', type: 'collectible', name: '档案碎片 · 贰', title: '402房',
+        description: '402房桌面摊开一本旧练习册，纸面铅笔字迹清浅笃定，四字落笔工整：他还没来。是母亲的笔迹。下方一行补写小字：我等到11月15日，不能再等了。抽屉里一封旧信，纸面印着一道数独题——解完它，就知道我在哪里。', chapter: 4, rarity: 'common',
         icon: '📒', unlockedBy: '通关第 402 关' },
-      { id: 'frag_ch4_3', type: 'collectible', name: '档案碎片 · 叁', title: '并蒂锁痕',
-        description: '显性数对的痕迹刻在石墙上——两个数字被牢牢锁在一起，其他地方再也容不下它们。', chapter: 4, rarity: 'common',
-        icon: '🔗', unlockedBy: '通关第 403 关' },
-      { id: 'frag_ch4_4', type: 'collectible', name: '档案碎片 · 肆', title: '三子法印',
-        description: '三格锁三数的印记在B2密室地面浮现——像三兄弟手牵着手，不分开。', chapter: 4, rarity: 'common',
-        icon: '🔢', unlockedBy: '通关第 404 关' },
-      { id: 'frag_ch4_5', type: 'collectible', name: '档案碎片 · 伍', title: '笼内排除',
-        description: '笼内的数字被逐一排除——剩下的那个，就是答案。', chapter: 4, rarity: 'common',
-        icon: '⛓️', unlockedBy: '通关第 405 关' },
-      { id: 'frag_ch4_6', type: 'collectible', name: '档案碎片 · 陆', title: '伊藤练习册',
-        description: 'B2密室的铁柜里，一本伊藤的练习册——上面画满了密密麻麻的笼局。', chapter: 4, rarity: 'common',
-        icon: '📓', unlockedBy: '通关第 406 关' },
-      { id: 'frag_ch4_7', type: 'collectible', name: '档案碎片 · 柒', title: '隐性唯一',
-        description: '藏得最深的那个数字，往往是最关键的。隐性唯一数，是黑暗里唯一的光。', chapter: 4, rarity: 'common',
-        icon: '✨', unlockedBy: '通关第 410 关' },
-      { id: 'frag_ch4_8', type: 'collectible', name: '档案碎片 · 捌', title: '父亲的信',
-        description: 'B3入口处，父亲止步的地方，压着一封信——信上说，他没有走完这条路。', chapter: 4, rarity: 'common',
-        icon: '💌', unlockedBy: '集齐本章前七枚碎片后解锁' },
-      { id: 'frag_ch4_9', type: 'collectible', name: '档案碎片 · 玖', title: '旧案闭环',
-        description: '笔记、练习册、父亲的信——九枚碎片拼出三十年前那场决裂的完整轮廓。', chapter: 4, rarity: 'common',
-        icon: '📜', unlockedBy: '通关本章最终关卡后解锁' },
+      { id: 'frag_ch4_3', type: 'collectible', name: '档案碎片 · 叁', title: '403房',
+        description: '403房中央一只无锁铁匣，匣盖内侧贴着纸条：这道题你母亲解了一半。另一半留给你。题解至终，末尾数字序列锁定一个关键日期——1941年11月15日，母亲彻底离开上海的日子。匣底垫着1941年11月5日的旧报纸残边：十日之前，日本御前会议敲定南进国策。', chapter: 4, rarity: 'common',
+        icon: '🗃️', unlockedBy: '通关第 403 关' },
+      { id: 'frag_ch4_4', type: 'collectible', name: '档案碎片 · 肆', title: '404房',
+        description: '404房墙面钉着一张旧照片——女人立于轮船跳板，身姿挺拔，决绝远行。照片背面一行母亲笔迹：1941年11月15日。我改签了。不去香港。去符拉迪沃斯托克。照片取下，墙上一行浅淡铅笔字：你找到这里了。', chapter: 4, rarity: 'common',
+        icon: '🚢', unlockedBy: '通关第 404 关' },
+      { id: 'frag_ch4_5', type: 'collectible', name: '档案碎片 · 伍', title: '潘汉年的字条',
+        description: '94号后门外的电线杆砖缝里，夹着一方折叠极小的纸条，纸面干燥，是刚刚放置的痕迹。无署名、无落款，仅单列一行精准地址：法租界·霞飞路·路路通茶馆·二楼雅间。折叠手法规整生疏，是全新的未知联络笔迹。', chapter: 4, rarity: 'common',
+        icon: '📝', unlockedBy: '通关第 405 关' },
+      { id: 'frag_ch4_6', type: 'collectible', name: '档案碎片 · 陆', title: '路路通茶馆',
+        description: '茶馆二楼雅间桌面静置一只旧信封，封口压印着细密九宫格暗纹，与序章唤醒他的匿名密信完全同源。纸面并排两道数独：解完第一道，用它的密钥去解第二道。双题推演落幕，右侧盘面解锁一组全新地址与精准时间。而茶馆，早已被人暗中盯守。', chapter: 4, rarity: 'common',
+        icon: '🫖', unlockedBy: '通关第 406 关' },
+      { id: 'frag_ch4_7', type: 'collectible', name: '档案碎片 · 柒', title: '另一条路',
+        description: '薇拉的书店大门紧闭，唯有临街窗台平放着一本无书名旧书，扉页是她的笔迹：你走的路是对的。但还有另一条路。书页夹缝是一张零提示数独，题解终局，一组冰冷日期赫然浮现——1941年12月8日。淡字显形：下一次你走进这扇门的时候，它就不再是书店了。', chapter: 4, rarity: 'common',
+        icon: '📖', unlockedBy: '通关第 407 关' },
+      { id: 'frag_ch4_8', type: 'collectible', name: '档案碎片 · 捌', title: '备用电台',
+        description: '404房书桌下方暗藏隔层，内里静静躺着一方泛黄纸条，折痕经年磨损：备用电台在你上次到过的地方。藏书楼地下，B3，发报机底座下。字迹陌生、无从溯源，密道线索层层闭环，远超预期。', chapter: 4, rarity: 'common',
+        icon: '📻', unlockedBy: '集齐本章前七枚碎片后解锁' },
+      { id: 'frag_ch4_9', type: 'collectible', name: '档案碎片 · 玖', title: '三重对齐',
+        description: '深夜雨落，沈墨重回藏书楼地下B3石室。发报机底座下拆下一只扁平铁盒，内里一张九阶数独完整填完，底端一行伊藤的笔迹：你所有的题我都看过了。这道是我补的。父亲残题、母亲轨迹、老师线索、伊藤补全——所有人的路径在此刻彻底三重对齐。山田的排查档案里，他的名字被批注：归档类别：无关。', chapter: 4, rarity: 'common',
+        icon: '⚙️', unlockedBy: '通关本章最终关卡后解锁' },
 
       // ===== 第5章档案碎片（9枚，collectible）=====
-      { id: 'frag_ch5_1', type: 'collectible', name: '档案碎片 · 壹', title: '钥匙 · 编号 4',
-        description: '匙柄刻着数字4的旧铜钥匙。它打开了东余杭路94号的门——那是嵌套笼关卡的入口。', chapter: 5, rarity: 'common',
-        icon: '🔑', unlockedBy: '通关第 501 关' },
-      { id: 'frag_ch5_2', type: 'collectible', name: '档案碎片 · 贰', title: '嵌套笼',
-        description: '笼子里套着笼子——就像俄罗斯套娃，每一层都有自己的规则，也有自己的答案。', chapter: 5, rarity: 'common',
-        icon: '🎁', unlockedBy: '通关第 502 关' },
-      { id: 'frag_ch5_3', type: 'collectible', name: '档案碎片 · 叁', title: '异形笼',
-        description: '笼子的形状不再规则——有的像星，有的像云，有的像一条蜿蜒的河。', chapter: 5, rarity: 'common',
-        icon: '☁️', unlockedBy: '通关第 503 关' },
-      { id: 'frag_ch5_4', type: 'collectible', name: '档案碎片 · 肆', title: '复合笼',
-        description: '多个笼子交织在一起——它们共享边界，共享数字，也共享秘密。', chapter: 5, rarity: 'common',
-        icon: '🔗', unlockedBy: '通关第 504 关' },
-      { id: 'frag_ch5_5', type: 'collectible', name: '档案碎片 · 伍', title: '多宫星衡',
-        description: '四十五法则在多个宫之间同时生效——像一张大网，把整个盘面都罩住了。', chapter: 5, rarity: 'common',
-        icon: '🌟', unlockedBy: '通关第 505 关' },
-      { id: 'frag_ch5_6', type: 'collectible', name: '档案碎片 · 陆', title: '母亲的航线',
-        description: '母亲的航线指向符拉迪沃斯托克——那条路，她一个人走了很远。', chapter: 5, rarity: 'common',
-        icon: '🧭', unlockedBy: '通关第 506 关' },
-      { id: 'frag_ch5_7', type: 'collectible', name: '档案碎片 · 柒', title: '父亲的足迹',
-        description: '父亲的足迹停在了东余杭路94号——那条路，他没有走完。', chapter: 5, rarity: 'common',
-        icon: '👣', unlockedBy: '集齐本章前六枚碎片后解锁' },
-      { id: 'frag_ch5_8', type: 'collectible', name: '档案碎片 · 捌', title: '星辰梭真相',
-        description: '星辰梭的真正用途浮出水面——它不是武器，不是工具，是选择。', chapter: 5, rarity: 'common',
-        icon: '💎', unlockedBy: '通关本章最终关卡后解锁' },
-      { id: 'frag_ch5_9', type: 'collectible', name: '档案碎片 · 玖', title: '星辰闭环',
-        description: '嵌套、异形、复合、多宫星衡——九枚碎片拼出星辰梭的完整核心。', chapter: 5, rarity: 'common',
-        icon: '💫', unlockedBy: '集齐本章全部碎片后解锁' },
+      { id: 'frag_ch5_1', type: 'collectible', name: '档案碎片 · 壹', title: '发报机的准备',
+        description: '黎明未至，沈墨重返藏书楼B3石室。电源线接驳完好、旋钮保持初始校准位置，伊藤补全的完整数独题面原样躺在铁盒里，无人踏足。设备完好，只待启动。', chapter: 5, rarity: 'common',
+        icon: '📻', unlockedBy: '通关第 501 关' },
+      { id: 'frag_ch5_2', type: 'collectible', name: '档案碎片 · 贰', title: '断电',
+        description: '头顶持续传来低频机械震颤——日军无线电测向车的专属运作声，稳稳停驻在藏书楼正上方。沈墨静坐桌边纹丝不动，屏息蛰伏。此刻，不能有任何动静。', chapter: 5, rarity: 'common',
+        icon: '🔇', unlockedBy: '通关第 502 关' },
+      { id: 'frag_ch5_3', type: 'collectible', name: '档案碎片 · 叁', title: '测向车',
+        description: '雨声笼罩全城，沈墨依托外置晾衣架铁丝搭建临时定向天线，削弱侧向信号辐射。两辆测向车一东一西同步就位，锁死藏书楼片区。他熄灭煤油灯，在全然黑暗中静坐，默数六分钟风险窗口期。', chapter: 5, rarity: 'common',
+        icon: '📡', unlockedBy: '通关第 503 关' },
+      { id: 'frag_ch5_4', type: 'collectible', name: '档案碎片 · 肆', title: '第一组电文',
+        description: '雨声簌簌，正是绝佳的发报窗口期。沈墨抬手按下电键，以三秒间隔分段发送，每段报文传输时长不超五秒。第一组电文完整传输完毕，上空未传回任何回应信号。', chapter: 5, rarity: 'common',
+        icon: '📶', unlockedBy: '通关第 504 关' },
+      { id: 'frag_ch5_5', type: 'collectible', name: '档案碎片 · 伍', title: '第二组电文',
+        description: '第二组报文篇幅更短，却承载着太平洋舰队坐标的核心关键情报。就在最后一个字符即将送出之际，头顶脚步声骤然逼近，精准停驻在地下暗门入口附近，咫尺之隔，危机骤生。', chapter: 5, rarity: 'common',
+        icon: '⚡', unlockedBy: '通关第 505 关' },
+      { id: 'frag_ch5_6', type: 'collectible', name: '档案碎片 · 陆', title: '第三组电文',
+        description: '前两组电文尽数送出，再无退路。第三组收尾电文行将终结之际，头顶传来三声规整敲击声——有人知道他在发报。沈墨心神不动，稳稳送出最后一个情报字符，从贴身衣袋取出一张折叠整齐的薄纸，轻轻平放于发报机底座：这张纸，留给该看到的人。', chapter: 5, rarity: 'common',
+        icon: '🕯️', unlockedBy: '通关第 506 关' },
+      { id: 'frag_ch5_7', type: 'collectible', name: '档案碎片 · 柒', title: '天亮前的撤离',
+        description: '情报尽数送出，沈墨有序收尾善后——彻底关闭发报机、拔除电源线、收回外置天线，将所有操作痕迹全部复原。沿原路逐层折返，步伐平缓沉稳，不留仓促撤离的痕迹。', chapter: 5, rarity: 'common',
+        icon: '🌅', unlockedBy: '集齐本章前六枚碎片后解锁' },
+      { id: 'frag_ch5_8', type: 'collectible', name: '档案碎片 · 捌', title: '山田的档案',
+        description: '沈墨沿苏州河安然折返帐房，灶台边苏晚早已为他留好一盏煤油灯，默默端来一碗热粥。他转动窗台上的白瓷碗，将碗口精准朝向东方，指尖轻抵碗底刻下一道极浅短横暗记。山田的档案里，还留着他的名字。', chapter: 5, rarity: 'common',
+        icon: '🍚', unlockedBy: '通关本章最终关卡后解锁' },
+      { id: 'frag_ch5_9', type: 'collectible', name: '档案碎片 · 玖', title: '天亮',
+        description: '报童飞奔过湿滑的石板弄堂，高声呼喊：号外！号外！日本海军袭击夏威夷！美国对日宣战！三段电文全部落地，测向队追着假信号走了——他趁那个窗口走了出来。珍珠港事件爆发，太平洋战局彻底引爆。', chapter: 5, rarity: 'common',
+        icon: '📰', unlockedBy: '集齐本章全部碎片后解锁' },
 
       // ===== 第6章档案碎片（9枚，collectible）=====
-      { id: 'frag_ch6_1', type: 'collectible', name: '档案碎片 · 壹', title: '终局入口',
-        description: '六道终局笼局的第一道门——设局人离开前留下的最后作品，就藏在这道门之后。', chapter: 6, rarity: 'common',
-        icon: '🚪', unlockedBy: '通关第 601 关' },
-      { id: 'frag_ch6_2', type: 'collectible', name: '档案碎片 · 贰', title: '极限推理',
-        description: '推演市场走势、推演人群决策、推演战争胜负——星辰梭的边界一旦打开，后果不堪设想。', chapter: 6, rarity: 'common',
-        icon: '🧠', unlockedBy: '通关第 602 关' },
-      { id: 'frag_ch6_3', type: 'collectible', name: '档案碎片 · 叁', title: '设局人谜题 · 一',
-        description: '设局人留声的第一问——「你知道为什么我能赢他吗？」', chapter: 6, rarity: 'common',
-        icon: '❓', unlockedBy: '通关第 603 关' },
-      { id: 'frag_ch6_4', type: 'collectible', name: '档案碎片 · 肆', title: '设局人谜题 · 二',
-        description: '设局人留声的第二问——封存，还是释放？', chapter: 6, rarity: 'common',
-        icon: '⚖️', unlockedBy: '通关第 604 关' },
-      { id: 'frag_ch6_5', type: 'collectible', name: '档案碎片 · 伍', title: '设局人谜题 · 三',
-        description: '设局人留声的第三问——网撒下去的时候，鱼已经不在水里了。', chapter: 6, rarity: 'common',
-        icon: '🕸️', unlockedBy: '通关第 605 关' },
-      { id: 'frag_ch6_6', type: 'collectible', name: '档案碎片 · 陆', title: '终极笼局',
-        description: '二十三个提示数——设局人毕生的巅峰之作。', chapter: 6, rarity: 'common',
-        icon: '👑', unlockedBy: '通关第 606 关' },
-      { id: 'frag_ch6_7', type: 'collectible', name: '档案碎片 · 柒', title: '封存与释放',
-        description: '两道箭头——一个指向封存，一个指向释放。选择，落在了沈墨手上。', chapter: 6, rarity: 'common',
-        icon: '🔒', unlockedBy: '集齐本章前六枚碎片后解锁' },
-      { id: 'frag_ch6_8', type: 'collectible', name: '档案碎片 · 捌', title: '那封信',
-        description: '信纸在蓝光中微微反光——「档案编号K七三四。如果你能解开这一局，就能找到我。」', chapter: 6, rarity: 'common',
-        icon: '💌', unlockedBy: '通关本章最终关卡后解锁' },
-      { id: 'frag_ch6_9', type: 'collectible', name: '档案碎片 · 玖', title: '终局闭环',
-        description: '六道终局、三个问题、两个选择、一封信——九枚碎片拼出终局笼局的完整答案。', chapter: 6, rarity: 'common',
-        icon: '🏁', unlockedBy: '集齐本章全部碎片后解锁' },
+      { id: 'frag_ch6_1', type: 'collectible', name: '档案碎片 · 壹', title: '账房',
+        description: '灰白晨光平铺桌面，覆在陈旧的账本与古朴的算盘之上。苏晚默然生火做饭，轻声开口：早上有兵车过去了。三辆。向西。苏河桥方向。乱世之中，她以沉默为他守着这方寸阵地。', chapter: 6, rarity: 'common',
+        icon: '🧮', unlockedBy: '通关第 601 关' },
+      { id: 'frag_ch6_2', type: 'collectible', name: '档案碎片 · 贰', title: '书店',
+        description: '旧书店大门紧闭，门槛内侧一道规整短横刻痕，与他六月留存的专属标记完全一致。书店无人后巷的第三根电线杆砖缝里，夹着一张折叠规整的纸条：旧书店的题面已经销毁。剩余材料在你们第一次见面的地方。有人，在他之前收走了最后一步。', chapter: 6, rarity: 'common',
+        icon: '📚', unlockedBy: '通关第 602 关' },
+      { id: 'frag_ch6_3', type: 'collectible', name: '档案碎片 · 叁', title: '四号桥',
+        description: '四号桥桥洞之下，石阶上静静搁置着一件深色旧大衣，袖口一道长期穿戴的磨损痕迹。侧袋里一只无封口水信封，内里叠放着一张1938年出版的上海法租界精准地图，铅笔圈注的点位并非茶馆现址，而是1939年搬迁前的旧址门牌号。', chapter: 6, rarity: 'common',
+        icon: '🧥', unlockedBy: '通关第 603 关' },
+      { id: 'frag_ch6_4', type: 'collectible', name: '档案碎片 · 肆', title: '路路通旧址',
+        description: '路路通茶馆旧址人去楼空，一楼尽头窗台内侧，一只铁盒被粗棉绳交叉绑定，绳结打法是专属熟人的标记手法。盒内最上方一张白纸：你看到了这张地图，说明你已经走到了最后一步。这是老师留下的最后一份原始题面。她没有发完。', chapter: 6, rarity: 'common',
+        icon: '📦', unlockedBy: '通关第 604 关' },
+      { id: 'frag_ch6_5', type: 'collectible', name: '档案碎片 · 伍', title: '发报机',
+        description: '深夜，沈墨再度折返藏书楼地下。发报机电源线已然脱落，断面平整利落，是精密工具精准剪断的痕迹。底座铁盒封存胶带完好，盒身边缘却有细微偏移。这种无痕断电、隐秘收尾的手法——是伊藤。', chapter: 6, rarity: 'common',
+        icon: '✂️', unlockedBy: '通关第 605 关' },
+      { id: 'frag_ch6_6', type: 'collectible', name: '档案碎片 · 陆', title: '痕迹',
+        description: '幽暗B1走廊，沈墨凭记忆核验满布石壁的数字刻痕，确认完好无损。随后指尖微屈，在原有刻痕旁轻轻划下一道全新短横——比父亲留下的更短、更浅。暗门外侧的门框标记、B3入口的原始刻痕……三处一线，父子一脉。这条网，他替父亲补完了。', chapter: 6, rarity: 'common',
+        icon: '✏️', unlockedBy: '通关第 606 关' },
+      { id: 'frag_ch6_7', type: 'collectible', name: '档案碎片 · 柒', title: '山田的搜查',
+        description: '凌晨，日军整队巡查的规整步伐在巷口骤然停驻，原地僵持片刻后沿巷远去，未深入弄堂、未靠近帐房。苏晚轻声开口：巷口有人站了一会儿。没有进弄堂。伊藤，你已经在12月7日深夜，把我的名字从那份档案里摘了出去。', chapter: 6, rarity: 'common',
+        icon: '🌙', unlockedBy: '集齐本章前六枚碎片后解锁' },
+      { id: 'frag_ch6_8', type: 'collectible', name: '档案碎片 · 捌', title: '沈世安的痕迹',
+        description: '狄思威路72号三楼书房，桌面一道全新浅淡压痕，是轻薄旧书长期静置留下的底面印记。靠墙隐秘凹槽较此前更深，有明显重新启用、按压触碰的新鲜痕迹，槽内却空空如也。父亲，你在撤离上海之前，回来取走了最后一件东西。12月初，你比我先到。', chapter: 6, rarity: 'common',
+        icon: '🪑', unlockedBy: '通关本章最终关卡后解锁' },
+      { id: 'frag_ch6_9', type: 'collectible', name: '档案碎片 · 玖', title: '潘汉年',
+        description: '路路通茶馆二楼雅间，一名身着素色灰布长衫的男子端坐等候。沈墨摊开1938年租界旧地图，地图背面一行铅笔字迹清晰显露：1941年12月7日。他在等你。那是他深夜发电、传递核心情报的同一天——父亲撤离上海，经符拉迪沃斯托克中转，辗转前往莫斯科。这张网，终于织完了。', chapter: 6, rarity: 'common',
+        icon: '🍵', unlockedBy: '集齐本章全部碎片后解锁' },
 
       // ===== 第7章档案碎片（9枚，collectible）=====
-      { id: 'frag_ch7_1', type: 'collectible', name: '档案碎片 · 壹', title: '并蒂锁卷',
-        description: '第一卷——并蒂锁。双星并蒂，闭户成局。', chapter: 7, rarity: 'common',
-        icon: '🔒', unlockedBy: '通关第 701 关' },
-      { id: 'frag_ch7_2', type: 'collectible', name: '档案碎片 · 贰', title: '隐曜卷',
-        description: '第二卷——隐曜。群曜遮目，一光独隐。', chapter: 7, rarity: 'common',
-        icon: '🌑', unlockedBy: '通关第 702 关' },
-      { id: 'frag_ch7_3', type: 'collectible', name: '档案碎片 · 叁', title: '三子卷',
-        description: '第三卷——三子法。三子连阵，锁数成局。', chapter: 7, rarity: 'common',
-        icon: '🔢', unlockedBy: '通关第 703 关' },
-      { id: 'frag_ch7_4', type: 'collectible', name: '档案碎片 · 肆', title: '剑鱼卷',
-        description: '第四卷——剑鱼。三行三列，网罗全局。', chapter: 7, rarity: 'common',
-        icon: '🐟', unlockedBy: '通关第 704 关' },
-      { id: 'frag_ch7_5', type: 'collectible', name: '档案碎片 · 伍', title: 'X 翼卷',
-        description: '第五卷——X翼。四角成阵，对角线锁。', chapter: 7, rarity: 'common',
-        icon: '✖️', unlockedBy: '通关第 705 关' },
-      { id: 'frag_ch7_6', type: 'collectible', name: '档案碎片 · 陆', title: 'XY 翼卷',
-        description: '第六卷——XY翼。三格联动，一翅定局。', chapter: 7, rarity: 'common',
-        icon: '🪽', unlockedBy: '通关第 706 关' },
-      { id: 'frag_ch7_7', type: 'collectible', name: '档案碎片 · 柒', title: '第七卷暗格',
-        description: '「非星辰梭传人不得开启」的暗格——第七卷，在里面。', chapter: 7, rarity: 'common',
-        icon: '📜', unlockedBy: '集齐本章前六枚碎片后解锁' },
-      { id: 'frag_ch7_8', type: 'collectible', name: '档案碎片 · 捌', title: '星辰之眼',
-        description: '隐藏关——星辰之眼。设局人毕生心血的结晶。', chapter: 7, rarity: 'common',
-        icon: '👁️', unlockedBy: '通关第 799 关' },
-      { id: 'frag_ch7_9', type: 'collectible', name: '档案碎片 · 玖', title: '秘术闭环',
-        description: '六卷秘术，一枚暗格，一道隐藏关——九枚碎片拼出秘术档案的全部秘密。', chapter: 7, rarity: 'common',
-        icon: '📚', unlockedBy: '通关本章最终关卡后解锁' },
-
-      // ===== 第8章档案碎片（9枚，collectible）=====
-      { id: 'frag_ch8_1', type: 'collectible', name: '档案碎片 · 壹', title: '门扉 · 壹',
-        description: '古铜门扉上的第一道锁——归途启程。', chapter: 8, rarity: 'common',
-        icon: '🚪', unlockedBy: '通关第 801 关' },
-      { id: 'frag_ch8_2', type: 'collectible', name: '档案碎片 · 贰', title: '门扉 · 贰',
-        description: '星印初现——星印中央的那枚数字，是整盘的关键。', chapter: 8, rarity: 'common',
-        icon: '⭐', unlockedBy: '通关第 802 关' },
-      { id: 'frag_ch8_3', type: 'collectible', name: '档案碎片 · 叁', title: '门扉 · 叁',
-        description: '守笼人之匙——三十年前，他在这里犹豫过。', chapter: 8, rarity: 'common',
-        icon: '🗝️', unlockedBy: '通关第 803 关' },
-      { id: 'frag_ch8_4', type: 'collectible', name: '档案碎片 · 肆', title: '门扉 · 肆',
-        description: '归途星印——设局人毕生所学凝聚的最后一枚印记。', chapter: 8, rarity: 'common',
-        icon: '🌟', unlockedBy: '通关第 804 关' },
-      { id: 'frag_ch8_5', type: 'collectible', name: '档案碎片 · 伍', title: '门扉 · 伍',
-        description: '门扉两抉——留下，还是离开？', chapter: 8, rarity: 'common',
-        icon: '🚪', unlockedBy: '通关第 805 关' },
-      { id: 'frag_ch8_6', type: 'collectible', name: '档案碎片 · 陆', title: '门扉 · 陆',
-        description: '星辰归途——最后一格，转了。门开了。', chapter: 8, rarity: 'common',
-        icon: '🌌', unlockedBy: '通关第 806 关' },
-      { id: 'frag_ch8_7', type: 'collectible', name: '档案碎片 · 柒', title: '门后之光',
-        description: '门后没有秘密。门后，只有你已经走完的、属于自己的路。', chapter: 8, rarity: 'common',
-        icon: '☀️', unlockedBy: '集齐本章前六枚碎片后解锁' },
-      { id: 'frag_ch8_8', type: 'collectible', name: '档案碎片 · 捌', title: '守笼人释然',
-        description: '我守了三十年的门，终于开了。', chapter: 8, rarity: 'common',
-        icon: '😊', unlockedBy: '通关本章最终关卡后解锁' },
-      { id: 'frag_ch8_9', type: 'collectible', name: '档案碎片 · 玖', title: '归途闭环',
-        description: '六道锁、一束光、三十年——九枚碎片拼出星辰归途的完整轮回。', chapter: 8, rarity: 'common',
-        icon: '🔄', unlockedBy: '集齐本章全部碎片后解锁' },
-
-      
+      { id: 'frag_ch7_1', type: 'collectible', name: '档案碎片 · 壹', title: '西郊仓库',
+        description: '夜色最深的时刻，沈墨最后一次踏出上海城区，伫立在废弃西郊仓库的外墙阴影之中。仓库中央地面留存着一片大面积水冲痕迹，彻底覆盖了昔日摆放铁皮箱的核心区域。门框外侧底端，一道崭新垂直刻痕清晰入目，与他四月留存的专属标记同源异形，力道更深、纹路更宽——出自另一人之手。', chapter: 7, rarity: 'common',
+        icon: '🏚️', unlockedBy: '通关第 701 关' },
+      { id: 'frag_ch7_2', type: 'collectible', name: '档案碎片 · 贰', title: '狄思威路72号',
+        description: '破晓时分，沈墨再度踏入狄思威路72号老宅。一楼走廊尽头，周太太静立良久，掌心摊开一只边角磨损、纸面泛黄的旧信封：你父亲走之前托过我一样东西。他说——如果有一天他回来了，把这个交给他。封口严丝合缝，无拆启痕迹。', chapter: 7, rarity: 'common',
+        icon: '✉️', unlockedBy: '通关第 702 关' },
+      { id: 'frag_ch7_3', type: 'collectible', name: '档案碎片 · 叁', title: '霞飞路旧书店',
+        description: '霞飞路旧书店的店门被全新铁锁从外部牢牢锁死。转身离去的刹那，沈墨余光捕捉到窗台内侧书架板面上一道浅淡至极的短横刻痕，与他六月留存的专属标记完全契合，只是力道极轻、入木极浅。他在当年取走秘藏书册的原位，落下了耗时半年拼凑出的最终终点——一行清晰的铅笔地址。', chapter: 7, rarity: 'common',
+        icon: '🔒', unlockedBy: '通关第 703 关' },
+      { id: 'frag_ch7_4', type: 'collectible', name: '档案碎片 · 肆', title: '苏州河',
+        description: '午后的苏州河面风平浪静，沈墨静坐临水阶前，取出那只泛黄信封。指尖轻启，内里平整信纸上一行沉敛字迹：墨——我是你父亲。我走了，不是因为我不想等。落款日期12月8日，正是他深夜完成发报、传递核心情报的同一天。', chapter: 7, rarity: 'common',
+        icon: '🌊', unlockedBy: '通关第 704 关' },
+      { id: 'frag_ch7_5', type: 'collectible', name: '档案碎片 · 伍', title: '符拉迪沃斯托克',
+        description: '破晓晨光漫洒黄浦江面，沈墨赶在天明之前抵达码头，走上栈桥尽头。码头管理站窗口前，他径直缴费购票——船票目的地清晰标注：符拉迪沃斯托克。与父亲撤离路线、信纸标注方向、母亲照片留存的航海轨迹完全重合。三代隐秘前路，终究归于同一方向。', chapter: 7, rarity: 'common',
+        icon: '🎫', unlockedBy: '通关第 705 关' },
+      { id: 'frag_ch7_6', type: 'collectible', name: '档案碎片 · 陆', title: '帐房',
+        description: '沈墨时隔一日重回帐房，苏晚独坐灶台边矮凳上，窗台那只白瓷碗碗口稳稳朝东，是二人默认的终极平安信号。她未曾起身问询，只掀开锅盖盛出一碗温热米粥，轻轻摆放在桌面。你什么时候走。……明天。船票买好了。……买好了。粥温了。', chapter: 7, rarity: 'common',
+        icon: '🥣', unlockedBy: '通关第 706 关' },
+      { id: 'frag_ch7_7', type: 'collectible', name: '档案碎片 · 柒', title: '船',
+        description: '清晨薄雾氤氲江面，轮渡缓缓起锚，挣脱岸线束缚，徐徐驶离上海码头。沈墨静立船舷之侧，不扶栏杆、不挥手道别、不回头眷恋。内袋贴身收纳着所有过往与期许：父亲的亲笔信、母亲的旧照片、老师留存的原始题面、1938年租界旧地图。上海，留在身后了。', chapter: 7, rarity: 'common',
+        icon: '🚢', unlockedBy: '集齐本章前六枚碎片后解锁' },
+      { id: 'frag_ch7_8', type: 'collectible', name: '档案碎片 · 捌', title: '雾',
+        description: '轮渡驶出吴淞口，江水接轨碧海，海雾层层翻涌。船尾拖出一条绵长淡白的水痕，彻底斩断与上海的过往牵连。身后甲板入口处，有人短暂驻足停留，静默观望，不靠近、不言语、不离去，暗藏一丝隐秘窥探。来去无痕，一如他过往所有隐秘博弈。', chapter: 7, rarity: 'common',
+        icon: '🌫️', unlockedBy: '通关第 708 关' },
+      { id: 'frag_ch7_9', type: 'collectible', name: '档案碎片 · 玖', title: '库房',
+        description: '海雾彻底褪去，沈墨静坐船舱，将贴身收纳的所有物件逐一平铺展开。身后传来脚步声，一人，在离他三步远的地方停了。伊藤：你走完了。西郊仓库那道竖痕，是你留的。你留了短横，我留了竖线。你父亲的短横在B3。三代人。三种刻法。船舷上留着那把钥匙。船继续向东。海平面没有尽头。', chapter: 7, rarity: 'common',
+        icon: '🗝️', unlockedBy: '通关本章最终关卡后解锁' },
 
       // ===== 关键剧情道具（108 夹层遗物 → 黄铜钥匙 · 编号3）=====
       { id: 'key_brass3', type: 'prop', name: '黄铜钥匙 · 编号3', title: '父亲的遗物',
@@ -292,38 +305,33 @@ export class GalleryPanel {
 
       // ===== 关键剧情道具（后续章节）=====
       { id: 'badge_abacus', type: 'prop', name: '徽章 · 星衡学徒', title: '黄铜算珠徽章',
-        description: '四十五星衡的入门凭证，边缘刻着一圈细密算珠纹。它是深入档案室深层的入场资格。', chapter: 2, rarity: 'rare',
+        description: '四十五星衡的入门凭证，边缘刻着一圈细密算珠纹。它是深入藏书楼地下的入场资格。', chapter: 2, rarity: 'rare',
         icon: '🏅', unlockedBy: '通过第 208 关' },
-      { id: 'key4_94', type: 'prop', name: '钥匙 · 编号4', title: '东余杭路 94 号',
-        description: '匙柄刻着数字4的旧铜钥匙。它能打开东余杭路94号的门——那是进入嵌套笼关卡的门。', chapter: 5, rarity: 'rare',
-        icon: '🔑', image: 'assets/images/items/item_key.jpg', unlockedBy: '通过第 501 关' },
-      { id: 'key_cagekeeper', type: 'prop', name: '守笼人的钥匙', title: '终章 · 待抉择',
-        description: '守笼人递来的古旧钥匙。「选择留下」或「不接」，将引向不同的结局。', chapter: 8, rarity: 'legendary',
-        icon: '🗝️', image: 'assets/images/items/item_key.jpg', unlockedBy: '通关终章剧情' },
-
-      // ===== 新增关键剧情道具（第3-7章补充）=====
-      { id: 'photo_mother', type: 'prop', name: '母亲的旧照片', title: '东余杭路 94 号',
-        description: '从档案室深处的卷宗里找到的母亲旧照，背面写着1938年的日期和一个地址。', chapter: 3, rarity: 'rare',
-        icon: '📷', unlockedBy: '通过第 307 关' },
       { id: 'ito_notebook', type: 'prop', name: '伊藤的练习册', title: 'B2 密室遗物',
-        description: '从藏书楼B2密室铁柜中找到的练习册，上面画满密密麻麻的笼局。伊藤当年也曾深入这里。', chapter: 4, rarity: 'rare',
-        icon: '📓', unlockedBy: '通过第 406 关' },
+        description: '从藏书楼B2密室铁柜中找到的练习册，上面画满密密麻麻的笼局。伊藤当年也曾深入这里。', chapter: 3, rarity: 'rare',
+        icon: '📓', unlockedBy: '通过第 303 关' },
+      { id: 'key4_94', type: 'prop', name: '钥匙 · 编号4', title: '东余杭路 94 号',
+        description: '匙柄刻着数字4的旧铜钥匙，齿痕磨亮。它能打开东余杭路94号的门——母亲留下的最后一扇门。', chapter: 4, rarity: 'rare',
+        icon: '🔑', image: 'assets/images/items/item_key.jpg', unlockedBy: '通过第 401 关' },
+      { id: 'photo_mother', type: 'prop', name: '母亲的旧照片', title: '404 房 · 决绝远行',
+        description: '404房墙面钉着的一张旧照片——女人立于轮船跳板，身姿挺拔，决绝远行。照片背面一行母亲笔迹：1941年11月15日。我改签了。不去香港。去符拉迪沃斯托克。', chapter: 4, rarity: 'rare',
+        icon: '📷', unlockedBy: '通过第 404 关' },
+      { id: 'letter_k734', type: 'prop', name: '老师的原始题面', title: '最后一份题面',
+        description: '路路通茶馆旧址铁盒内最上方的一张白纸：你看到了这张地图，说明你已经走到了最后一步。这是老师留下的最后一份原始题面。她没有发完。', chapter: 6, rarity: 'rare',
+        icon: '💌', unlockedBy: '通过第 604 关' },
+      { id: 'scroll_seven', type: 'prop', name: '父亲的亲笔信', title: '苏州河 · 落款12月8日',
+        description: '苏州河畔，沈墨静坐临水阶前，取出那只泛黄信封。指尖轻启，内里平整信纸上一行沉敛字迹：墨——我是你父亲。我走了，不是因为我不想等。落款日期12月8日。', chapter: 7, rarity: 'rare',
+        icon: '📜', unlockedBy: '通过第 704 关' },
       { id: 'chart_mother', type: 'prop', name: '母亲的航线图', title: '符拉迪沃斯托克方向',
-        description: '从东余杭路94号暗墙里取出的航线图，标注着母亲当年的去向——符拉迪沃斯托克。', chapter: 5, rarity: 'rare',
-        icon: '🗺️', unlockedBy: '通过第 506 关' },
-      { id: 'letter_k734', type: 'prop', name: '信 · 档案编号 K734', title: '设局人的邀请',
-        description: '从蓝光中浮现的信纸，上面写着「档案编号K七三四。如果你能解开这一局，就能找到我。」字迹与父亲信中一致，折法却不同。', chapter: 6, rarity: 'rare',
-        icon: '💌', unlockedBy: '通过第 606 关' },
-      { id: 'scroll_seven', type: 'prop', name: '第七卷秘术', title: '暗格中的秘卷',
-        description: '从「非星辰梭传人不得开启」的暗格中取出的第七卷秘术竹简，记载着设局人最深的秘术——星辰之眼。', chapter: 7, rarity: 'rare',
-        icon: '📜', unlockedBy: '通过第 706 关' },
+        description: '码头购票的船票目的地清晰标注：符拉迪沃斯托克。与父亲撤离路线、信纸标注方向、母亲照片留存的航海轨迹完全重合。', chapter: 7, rarity: 'rare',
+        icon: '🗺️', unlockedBy: '通过第 705 关' },
 
       // ===== 周目继承道具（跨周目保留）=====
       { id: 'coin_vera', type: 'inherit', name: '薇拉的硬币', title: '旧书铺之约',
-        description: '薇拉递出的一枚旧硬币，边缘已经磨损。二 / 三周目再访旧书铺时，这枚硬币会让她记起你。', chapter: 1, rarity: 'rare',
+        description: '薇拉递出的一枚旧硬币，边缘已经磨损。旧书铺之约的凭证。', chapter: 1, rarity: 'rare',
         icon: '🪙', unlockedBy: '周目继承 · 待定' },
       { id: 'note_ito', type: 'inherit', name: '伊藤的纸条', title: '特高课的痕迹',
-        description: '从伊藤身上落下的纸条，字迹潦草。二 / 三周目携带它，会牵出隐藏的新线索。', chapter: 2, rarity: 'rare',
+        description: '从伊藤身上落下的纸条，字迹潦草。特高课的痕迹。', chapter: 2, rarity: 'rare',
         icon: '📝', image: 'assets/images/items/item_unposted_letter.jpg', unlockedBy: '周目继承 · 待定' },
     ];
   }
@@ -358,7 +366,7 @@ export class GalleryPanel {
       404: 'frag_ch4_4',
       405: 'frag_ch4_5',
       406: 'frag_ch4_6',
-      410: 'frag_ch4_7',
+      407: 'frag_ch4_7',
       501: 'frag_ch5_1',
       502: 'frag_ch5_2',
       503: 'frag_ch5_3',
@@ -377,31 +385,27 @@ export class GalleryPanel {
       704: 'frag_ch7_4',
       705: 'frag_ch7_5',
       706: 'frag_ch7_6',
-      799: 'frag_ch7_8',
-      801: 'frag_ch8_1',
-      802: 'frag_ch8_2',
-      803: 'frag_ch8_3',
-      804: 'frag_ch8_4',
-      805: 'frag_ch8_5',
-      806: 'frag_ch8_6',
+      708: 'frag_ch7_8',
     };
   }
 
   /**
    * 关卡 → 关键剧情道具映射（通关解锁）
-   * 后续可扩展：208 → badge_abacus（星衡学徒徽章）、501 → key4_94（钥匙·编号4）
+   * 108 → key_brass3（黄铜钥匙·编号3）、303 → ito_notebook（伊藤练习册）、401 → key4_94（钥匙·编号4）、
+   * 404 → photo_mother（母亲旧照）、604 → letter_k734（老师原始题面）、704 → scroll_seven（父亲亲笔信）、
+   * 705 → chart_mother（母亲航线图）
    * @returns {Object<number,string>}
    */
   static get KEY_ITEM_BY_LEVEL() {
     return {
       108: 'key_brass3',
       208: 'badge_abacus',
-      501: 'key4_94',
-      307: 'photo_mother',
-      406: 'ito_notebook',
-      506: 'chart_mother',
-      606: 'letter_k734',
-      706: 'scroll_seven',
+      303: 'ito_notebook',
+      401: 'key4_94',
+      404: 'photo_mother',
+      604: 'letter_k734',
+      704: 'scroll_seven',
+      705: 'chart_mother',
     };
   }
 
@@ -440,11 +444,6 @@ export class GalleryPanel {
         { id: 'frag_ch7_7', type: 'collect_at_least', threshold: 6 },
         { id: 'frag_ch7_9', type: 'beat_last_level' },
       ],
-      8: [
-        { id: 'frag_ch8_7', type: 'collect_at_least', threshold: 6 },
-        { id: 'frag_ch8_8', type: 'beat_last_level' },
-        { id: 'frag_ch8_9', type: 'collect_at_least', threshold: 8 },
-      ],
     };
   }
 
@@ -453,12 +452,12 @@ export class GalleryPanel {
    */
   static get LAST_LEVEL_OF_CHAPTER() {
     return {
-      1: 109, 2: 208, 3: 307, 4: 410, 5: 506, 6: 606, 7: 706, 8: 806,
+      1: 109, 2: 209, 3: 309, 4: 409, 5: 509, 6: 609, 7: 709,
     };
   }
 
   static get KEY_ITEM_IDS() {
-    return ['key_brass3', 'badge_abacus', 'photo_mother', 'ito_notebook', 'key4_94', 'chart_mother', 'letter_k734', 'scroll_seven', 'key_cagekeeper'];
+    return ['key_brass3', 'badge_abacus', 'photo_mother', 'ito_notebook', 'key4_94', 'chart_mother', 'letter_k734', 'scroll_seven'];
   }
 
   /**
@@ -972,7 +971,7 @@ export class GalleryPanel {
       header.className = 'cm-gallery-header';
       const stats = this.getStats();
       header.innerHTML =
-        '<span class="cm-gallery-title">\uD83D\uDD0D \u56FE\u9274</span>' +
+        '<span class="cm-gallery-title">' + I18n.t('ui.gallery.title') + '</span>' +
         '<span class="cm-gallery-count">' + stats.unlocked + '/' + stats.total +
         ' (' + stats.progress + '%)</span>';
       const closeBtn = document.createElement('button');
@@ -986,10 +985,10 @@ export class GalleryPanel {
       const tabs = document.createElement('div');
       tabs.className = 'cm-gallery-tabs';
       const tabDefs = [
-        { key: 'all', label: '\u56FE\u9274' },
-        { key: 'prop', label: '\u5173\u952E\u9053\u5177' },
-        { key: 'fragment', label: '\u6536\u85CF\u788E\u7247' },
-        { key: 'inherit', label: '\u5468\u76EE\u7EE7\u627F' },
+        { key: 'all', label: I18n.t('ui.gallery.tab.all') },
+        { key: 'prop', label: I18n.t('ui.gallery.tab.prop') },
+        { key: 'fragment', label: I18n.t('ui.gallery.tab.fragment') },
+        { key: 'inherit', label: I18n.t('ui.gallery.tab.inherit') },
       ];
       tabDefs.forEach(def => {
         const btn = document.createElement('button');
@@ -1013,7 +1012,7 @@ export class GalleryPanel {
     } catch (e) {
       console.warn('[GalleryPanel] _buildContent error:', e);
       const fallback = document.createElement('div');
-      fallback.textContent = '图鉴内容加载失败';
+      fallback.textContent = I18n.t('ui.gallery.loadError');
       return fallback;
     }
   }
@@ -1040,7 +1039,7 @@ export class GalleryPanel {
     } catch (e) {
       console.warn('[GalleryPanel] _buildTabContent error:', e);
       const fallback = document.createElement('div');
-      fallback.textContent = '内容加载失败';
+      fallback.textContent = I18n.t('ui.gallery.contentError');
       return fallback;
     }
   }
@@ -1066,7 +1065,7 @@ export class GalleryPanel {
 
         const title = document.createElement('div');
         title.className = 'cm-gallery-section-title';
-        title.textContent = '\u7B2C' + ch + '\u7AE0 \u788E\u7247  ' + unlocked + '/' + list.length;
+        title.textContent = I18n.t('ui.gallery.chapterFragments', { chapter: ch, unlocked: unlocked, total: list.length });
         box.appendChild(title);
 
         const bar = document.createElement('div');
@@ -1103,7 +1102,7 @@ export class GalleryPanel {
     const wrap = document.createElement('div');
     try {
       const unlocked = list.filter(it => it.unlocked).length;
-      const label = tab === 'prop' ? '\u5173\u952E\u9053\u5177' : (tab === 'inherit' ? '\u5468\u76EE\u7EE7\u627F' : '\u6536\u85CF');
+      const label = tab === 'prop' ? I18n.t('ui.gallery.group.prop') : (tab === 'inherit' ? I18n.t('ui.gallery.group.inherit') : I18n.t('ui.gallery.group.collect'));
       const title = document.createElement('div');
       title.className = 'cm-gallery-section-title';
       title.textContent = label + '  ' + unlocked + '/' + list.length;
@@ -1147,19 +1146,19 @@ export class GalleryPanel {
 
       const name = document.createElement('div');
       name.className = 'cm-gallery-name';
-      name.textContent = item.unlocked ? item.name : '\u672A\u89E3\u9501';
+      name.textContent = item.unlocked ? this._tItem(item, 'name') : I18n.t('ui.gallery.locked');
 
       const title = document.createElement('div');
       title.className = 'cm-gallery-title-line';
-      title.textContent = item.unlocked ? item.title : '???';
+      title.textContent = item.unlocked ? this._tItem(item, 'title') : '???';
 
       const desc = document.createElement('div');
       desc.className = 'cm-gallery-desc';
-      desc.textContent = item.unlocked ? item.description : item.unlockedBy || '\u5B8C\u6210\u5BF9\u5E94\u5173\u5361\u5373\u53EF\u89E3\u9501';
+      desc.textContent = item.unlocked ? this._tItem(item, 'description') : (this._tItem(item, 'unlockedBy') || I18n.t('ui.gallery.unlockHint'));
 
       const meta = document.createElement('div');
       meta.className = 'cm-gallery-meta';
-      meta.textContent = '第 ' + item.chapter + ' 章 · ' + item.rarity;
+      meta.textContent = I18n.t('ui.gallery.meta', { chapter: item.chapter, rarity: item.rarity });
 
       info.appendChild(name);
       info.appendChild(title);
@@ -1172,7 +1171,7 @@ export class GalleryPanel {
       console.warn('[GalleryPanel] _buildCard error:', e);
       const fallback = document.createElement('div');
       fallback.className = 'cm-gallery-card';
-      fallback.textContent = '卡片加载失败';
+      fallback.textContent = I18n.t('ui.gallery.cardError');
       return fallback;
     }
   }

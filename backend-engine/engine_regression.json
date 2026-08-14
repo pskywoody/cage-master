@@ -1,0 +1,132 @@
+[
+  {
+    "case": "BND_P001_2999",
+    "category": "BOUNDARY",
+    "rule": "P001",
+    "desc": "dwell=2999 边界下沿，不命中 P001（>3000 严格）",
+    "fact": {
+      "current_word": "hello", "dwell_time_ms": 2999, "is_correct": true, "context": {},
+      "historical_behavior": {"repeated_errors": 0, "total_correct": 5}
+    },
+    "expect": {"matched_rules": []}
+  },
+  {
+    "case": "BND_P001_3000",
+    "category": "BOUNDARY",
+    "rule": "P001",
+    "desc": "dwell=3000 恰等阈值，不命中 P001（gt 严格大于）",
+    "fact": {
+      "current_word": "hello", "dwell_time_ms": 3000, "is_correct": true, "context": {},
+      "historical_behavior": {"repeated_errors": 0, "total_correct": 5}
+    },
+    "expect": {"matched_rules": []}
+  },
+  {
+    "case": "BND_P001_3001",
+    "category": "BOUNDARY",
+    "rule": "P001",
+    "desc": "dwell=3001 越过阈值，命中 P001 强弹窗",
+    "fact": {
+      "current_word": "hello", "dwell_time_ms": 3001, "is_correct": true, "context": {},
+      "historical_behavior": {"repeated_errors": 0, "total_correct": 5}
+    },
+    "expect": {"matched_rules": ["P001"], "show_popup": true, "tags": ["高频卡壳待观察"]}
+  },
+  {
+    "case": "BND_P002_1",
+    "category": "BOUNDARY",
+    "rule": "P002",
+    "desc": "repeated_errors=1 不命中 P002（>=2 门槛）",
+    "fact": {
+      "current_word": "hello", "dwell_time_ms": 1000, "is_correct": false, "context": {},
+      "historical_behavior": {"repeated_errors": 1, "total_correct": 5}
+    },
+    "expect": {"matched_rules": []}
+  },
+  {
+    "case": "BND_P002_2",
+    "category": "BOUNDARY",
+    "rule": "P002",
+    "desc": "repeated_errors=2 恰等门槛，命中 P002 顽固死角",
+    "fact": {
+      "current_word": "hello", "dwell_time_ms": 1000, "is_correct": false, "context": {},
+      "historical_behavior": {"repeated_errors": 2, "total_correct": 5}
+    },
+    "expect": {"matched_rules": ["P002"], "tags": ["顽固死角"], "add_to_weekend_pack": true}
+  },
+  {
+    "case": "BND_P003_2",
+    "category": "BOUNDARY",
+    "rule": "P003",
+    "desc": "total_correct=2 不命中 P003（<=1 门槛）",
+    "fact": {
+      "current_word": "hello", "dwell_time_ms": 1000, "is_correct": false, "context": {},
+      "historical_behavior": {"repeated_errors": 0, "total_correct": 2}
+    },
+    "expect": {"matched_rules": []}
+  },
+  {
+    "case": "BND_P003_1",
+    "category": "BOUNDARY",
+    "rule": "P003",
+    "desc": "total_correct=1 恰等门槛，命中 P003 需提频",
+    "fact": {
+      "current_word": "hello", "dwell_time_ms": 1000, "is_correct": false, "context": {},
+      "historical_behavior": {"repeated_errors": 0, "total_correct": 1}
+    },
+    "expect": {"matched_rules": ["P003"], "tags": ["需提频复习"]}
+  },
+  {
+    "case": "CASCADE_P1P2P3",
+    "category": "CASCADE",
+    "rule": "D001+S001+C001",
+    "desc": "P1(D001)+P2(S001)+P3(C001) 同时命中：主诊断/标签/调度/弹窗/强制复习全链路",
+    "fact": {
+      "current_word": "address", "dwell_time_ms": 1000, "is_correct": false,
+      "context": {"error_type": "POS_MISMATCH", "pos_after": "adv", "confusion_pair": "affect_effect"},
+      "historical_behavior": {"repeated_errors": 0, "total_correct": 5}
+    },
+    "expect": {
+      "matched_rules": ["D001", "S001", "C001"],
+      "show_popup": true,
+      "force_quiz": true,
+      "tags": ["形副转换薄弱", "多音词待巩固", "affect_effect混淆"],
+      "primary_contains": "副词修饰动词"
+    }
+  },
+  {
+    "case": "CASCADE_double_P1",
+    "category": "CASCADE",
+    "rule": "D001+P001+S001",
+    "desc": "双 P1(D001+P001)+P2(S001) 同时命中：仅列表首条 P1 生效，P001 标签被抑制（文档化行为）",
+    "fact": {
+      "current_word": "address", "dwell_time_ms": 3500, "is_correct": false,
+      "context": {"error_type": "POS_MISMATCH", "pos_after": "adj"},
+      "historical_behavior": {"repeated_errors": 0, "total_correct": 5}
+    },
+    "expect": {
+      "matched_rules": ["D001", "P001", "S001"],
+      "show_popup": true,
+      "force_quiz": true,
+      "tags": ["形副转换薄弱", "多音词待巩固"],
+      "primary_contains": "形容词修饰名词"
+    }
+  },
+  {
+    "case": "CONFLICT_SD",
+    "category": "CONFLICT",
+    "rule": "D003+S001",
+    "desc": "S 族 address + D 族 TENSE：命中 D003+S001，不误触 D001",
+    "fact": {
+      "current_word": "address", "dwell_time_ms": 1000, "is_correct": false,
+      "context": {"error_type": "TENSE"},
+      "historical_behavior": {"repeated_errors": 0, "total_correct": 5}
+    },
+    "expect": {
+      "matched_rules": ["D003", "S001"],
+      "force_quiz": true,
+      "tags": ["时态薄弱", "多音词待巩固"],
+      "must_not": ["D001"]
+    }
+  }
+]

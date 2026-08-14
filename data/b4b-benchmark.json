@@ -1,0 +1,78 @@
+{
+  "generatedAt": "2026-08-10T16:47:10.335Z",
+  "config": {
+    "count": 30,
+    "seed": 20260810
+  },
+  "frozen": {
+    "lambda": 25,
+    "growthBias": 0.4,
+    "shapeDiversityWeight": 0.2,
+    "objective": "enabled",
+    "suppressSingletons": true
+  },
+  "variable": {
+    "canonicalNoveltyWeight": [
+      0,
+      30
+    ]
+  },
+  "arms": {
+    "baseline": {
+      "levels": 30,
+      "totalCages": 662,
+      "uniqueShapes": 21,
+      "entropyH": 2.63,
+      "Hcanonical": 1.988,
+      "canonicalFamilyCount": 10,
+      "uniqueLevelFingerprints": 30,
+      "singletonRatio": 0.045317220543806644,
+      "top4Share": 0.5241691842900302,
+      "complexShare": 0.35196374622356497,
+      "ratioMean": 0.2112565452241512,
+      "avgScore": 528.3,
+      "uniqueAll": true,
+      "sizeShare": {
+        "1": 0.045317220543806644,
+        "2": 0.13746223564954682,
+        "3": 0.24018126888217523,
+        "4": 0.2552870090634441,
+        "5": 0.3217522658610272
+      },
+      "noveltyRankChanges": 0
+    },
+    "B4-B": {
+      "levels": 30,
+      "totalCages": 661,
+      "uniqueShapes": 21,
+      "entropyH": 2.607,
+      "Hcanonical": 1.983,
+      "canonicalFamilyCount": 10,
+      "uniqueLevelFingerprints": 30,
+      "singletonRatio": 0.04236006051437216,
+      "top4Share": 0.529500756429652,
+      "complexShare": 0.34493192133131617,
+      "ratioMean": 0.2130620612540764,
+      "avgScore": 521.7,
+      "uniqueAll": true,
+      "sizeShare": {
+        "1": 0.04236006051437216,
+        "2": 0.13161875945537066,
+        "3": 0.24508320726172467,
+        "4": 0.2692889561270802,
+        "5": 0.31164901664145234
+      },
+      "noveltyRankChanges": 0
+    }
+  },
+  "gates": {
+    "mechanism_engaged": false,
+    "top4_le_base_3pp": true,
+    "entropy_not_down_003": true,
+    "complex_not_down": false,
+    "ratio_no_drift": true,
+    "unique_all": true,
+    "Hcanonical_up": false
+  },
+  "verdict": "Case C：noveltyRankChanges=0 → selection-side canonical novelty 未进入有效路径，在当前 fitness landscape 下无效。B4-B FAIL，进 B4-D（multi-objective selection）。"
+}

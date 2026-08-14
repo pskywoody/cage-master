@@ -1,0 +1,402 @@
+{
+  "generatedAt": "2026-08-10T22:23:17.485Z",
+  "config": {
+    "count": 3,
+    "seed": 20260810,
+    "elapsedSeconds": 137.4
+  },
+  "frozen": {
+    "lambda": 25,
+    "growthBias": 0.4,
+    "shapeDiversityWeight": 0.2,
+    "objective": "enabled",
+    "suppressSingletons": true,
+    "canonicalProfile": true
+  },
+  "variable": "size weights (instance override) + size5BranchSuppress (branch bonus * (1-s))",
+  "baselineRef": {
+    "headRatio": 0.675,
+    "headLockPool": 10,
+    "complexShare": 0.354294,
+    "ratioMean": 0.227647,
+    "avgScore": 531.7,
+    "uniqueAll": true
+  },
+  "arms": {
+    "G1-A": {
+      "weights": {
+        "1": 0.02,
+        "2": 0.05,
+        "3": 0.15,
+        "4": 0.45,
+        "5": 0.33
+      },
+      "suppress": 0,
+      "note": "size2/3 ↓→size4（验证 size4 低-head sink）",
+      "levels": 3,
+      "totalCages": 64,
+      "headRatio": 0.656,
+      "Hcanonical": 1.965,
+      "canonicalFamilyCount": 9,
+      "top1FamilyShare": 0.286,
+      "top4FamilyShare": 0.738,
+      "top8FamilyShare": 0.976,
+      "headFamilyLockCount": 4,
+      "singletonRatio": 0.0625,
+      "complexShare": 0.453125,
+      "basinShare": {
+        "branch": 0.313,
+        "corner": 0.234,
+        "linear": 0.25,
+        "rect": 0.047,
+        "singleton": 0.063,
+        "complex": 0.094
+      },
+      "ratioMean": 0.2074074074074074,
+      "avgScore": 541.7,
+      "uniqueAll": true,
+      "sizeShare": {
+        "1": 0.063,
+        "2": 0.109,
+        "3": 0.188,
+        "4": 0.25,
+        "5": 0.391
+      },
+      "sizeBreakdown": {
+        "1": {
+          "total": 4,
+          "headRatio": 0,
+          "shareAllCages": 0.063,
+          "TcrossShare": 0,
+          "archetype": {
+            "singleton": 4
+          }
+        },
+        "2": {
+          "total": 7,
+          "headRatio": 1,
+          "shareAllCages": 0.109,
+          "TcrossShare": 0,
+          "archetype": {
+            "domino": 7
+          }
+        },
+        "3": {
+          "total": 12,
+          "headRatio": 1,
+          "shareAllCages": 0.188,
+          "TcrossShare": 0,
+          "archetype": {
+            "L": 7,
+            "straight": 5
+          }
+        },
+        "4": {
+          "total": 16,
+          "headRatio": 0.375,
+          "shareAllCages": 0.25,
+          "TcrossShare": 0.188,
+          "archetype": {
+            "T": 3,
+            "rect": 3,
+            "hook": 5,
+            "straight": 3,
+            "zigzag": 2
+          }
+        },
+        "5": {
+          "total": 25,
+          "headRatio": 0.68,
+          "shareAllCages": 0.391,
+          "TcrossShare": 0.68,
+          "archetype": {
+            "T": 16,
+            "hook": 3,
+            "straight": 1,
+            "cross": 1,
+            "zigzag": 4
+          }
+        }
+      },
+      "winnerFamilyRank": {
+        "0,0|0,1|0,2|1,0|1,1": 3,
+        "0,0|0,1|1,0": 3,
+        "0,0|0,1": 3,
+        "0,0|0,1|0,2": 3,
+        "0,0|0,1|0,2|1,1|2,1": 2,
+        "0,0|0,1|0,2|1,1": 2,
+        "0,0|0,1|0,2|0,3|1,1": 2,
+        "0,0|0,1|0,2|0,3": 2,
+        "0,0|0,1|0,2|0,3|0,4": 1
+      },
+      "pool": {
+        "uniqueFamiliesInPool": 10,
+        "uniqueFamilyCombosInPool": 14,
+        "headLockPool": 10,
+        "top1FamilyHitShare": 0.158,
+        "top4FamilyHitShare": 0.625,
+        "poolHfamilyMean": 1.634
+      },
+      "elapsed": 25
+    },
+    "G1-B": {
+      "weights": {
+        "1": 0.02,
+        "2": 0.1,
+        "3": 0.25,
+        "4": 0.3,
+        "5": 0.33
+      },
+      "suppress": 1,
+      "note": "保持 size 预算，size5 T/cross branch 加分全抑制",
+      "levels": 3,
+      "totalCages": 66,
+      "headRatio": 0.682,
+      "Hcanonical": 1.776,
+      "canonicalFamilyCount": 8,
+      "top1FamilyShare": 0.333,
+      "top4FamilyShare": 0.8,
+      "top8FamilyShare": 1,
+      "headFamilyLockCount": 5,
+      "singletonRatio": 0.030303030303030304,
+      "complexShare": 0.3787878787878788,
+      "basinShare": {
+        "complex": 0.121,
+        "corner": 0.379,
+        "branch": 0.242,
+        "linear": 0.212,
+        "singleton": 0.03,
+        "rect": 0.015
+      },
+      "ratioMean": 0.26281736281736284,
+      "avgScore": 558.3,
+      "uniqueAll": true,
+      "sizeShare": {
+        "1": 0.03,
+        "2": 0.121,
+        "3": 0.303,
+        "4": 0.227,
+        "5": 0.318
+      },
+      "sizeBreakdown": {
+        "1": {
+          "total": 2,
+          "headRatio": 0,
+          "shareAllCages": 0.03,
+          "TcrossShare": 0,
+          "archetype": {
+            "singleton": 2
+          }
+        },
+        "2": {
+          "total": 8,
+          "headRatio": 1,
+          "shareAllCages": 0.121,
+          "TcrossShare": 0,
+          "archetype": {
+            "domino": 8
+          }
+        },
+        "3": {
+          "total": 20,
+          "headRatio": 1,
+          "shareAllCages": 0.303,
+          "TcrossShare": 0,
+          "archetype": {
+            "straight": 5,
+            "L": 15
+          }
+        },
+        "4": {
+          "total": 15,
+          "headRatio": 0.333,
+          "shareAllCages": 0.227,
+          "TcrossShare": 0.333,
+          "archetype": {
+            "hook": 7,
+            "T": 5,
+            "zigzag": 2,
+            "rect": 1
+          }
+        },
+        "5": {
+          "total": 21,
+          "headRatio": 0.571,
+          "shareAllCages": 0.318,
+          "TcrossShare": 0.524,
+          "archetype": {
+            "zigzag": 6,
+            "hook": 3,
+            "T": 11,
+            "straight": 1
+          }
+        }
+      },
+      "winnerFamilyRank": {
+        "0,0|0,1|0,2|1,0|1,1": 3,
+        "0,0|0,1|0,2|1,1": 3,
+        "0,0|0,1|0,2": 3,
+        "0,0|0,1|1,0": 3,
+        "0,0|0,1": 3,
+        "0,0|0,1|0,2|1,1|2,1": 2,
+        "0,0|0,1|0,2|0,3|0,4": 1,
+        "0,0|0,1|0,2|0,3|1,1": 1
+      },
+      "pool": {
+        "uniqueFamiliesInPool": 10,
+        "uniqueFamilyCombosInPool": 19,
+        "headLockPool": 10,
+        "top1FamilyHitShare": 0.158,
+        "top4FamilyHitShare": 0.612,
+        "poolHfamilyMean": 1.65
+      },
+      "elapsed": 25.6
+    },
+    "G1-C": {
+      "weights": {
+        "1": 0.02,
+        "2": 0.05,
+        "3": 0.15,
+        "4": 0.45,
+        "5": 0.33
+      },
+      "suppress": 1,
+      "note": "组合：size4 增权 + size5 T 抑制（理论上限）",
+      "levels": 3,
+      "totalCages": 63,
+      "headRatio": 0.73,
+      "Hcanonical": 1.936,
+      "canonicalFamilyCount": 10,
+      "top1FamilyShare": 0.326,
+      "top4FamilyShare": 0.739,
+      "top8FamilyShare": 0.957,
+      "headFamilyLockCount": 4,
+      "singletonRatio": 0.047619047619047616,
+      "complexShare": 0.38095238095238093,
+      "basinShare": {
+        "branch": 0.365,
+        "complex": 0.095,
+        "corner": 0.222,
+        "rect": 0.063,
+        "linear": 0.206,
+        "singleton": 0.048
+      },
+      "ratioMean": 0.19929929929929932,
+      "avgScore": 500,
+      "uniqueAll": true,
+      "sizeShare": {
+        "1": 0.048,
+        "2": 0.095,
+        "3": 0.206,
+        "4": 0.254,
+        "5": 0.397
+      },
+      "sizeBreakdown": {
+        "1": {
+          "total": 3,
+          "headRatio": 0,
+          "shareAllCages": 0.048,
+          "TcrossShare": 0,
+          "archetype": {
+            "singleton": 3
+          }
+        },
+        "2": {
+          "total": 6,
+          "headRatio": 1,
+          "shareAllCages": 0.095,
+          "TcrossShare": 0,
+          "archetype": {
+            "domino": 6
+          }
+        },
+        "3": {
+          "total": 13,
+          "headRatio": 1,
+          "shareAllCages": 0.206,
+          "TcrossShare": 0,
+          "archetype": {
+            "L": 10,
+            "straight": 3
+          }
+        },
+        "4": {
+          "total": 16,
+          "headRatio": 0.375,
+          "shareAllCages": 0.254,
+          "TcrossShare": 0.188,
+          "archetype": {
+            "rect": 4,
+            "hook": 2,
+            "zigzag": 4,
+            "straight": 3,
+            "T": 3
+          }
+        },
+        "5": {
+          "total": 25,
+          "headRatio": 0.84,
+          "shareAllCages": 0.397,
+          "TcrossShare": 0.8,
+          "archetype": {
+            "T": 20,
+            "zigzag": 2,
+            "hook": 2,
+            "straight": 1
+          }
+        }
+      },
+      "winnerFamilyRank": {
+        "0,0|0,1|0,2|1,0|1,1": 3,
+        "0,0|0,1|1,0": 3,
+        "0,0|0,1": 3,
+        "0,0|0,1|0,2": 3,
+        "0,0|0,1|0,2|0,3|1,1": 2,
+        "0,0|0,1|0,2|0,3": 2,
+        "0,0|0,1|1,1|1,2|2,1": 1,
+        "0,0|0,1|0,2|0,3|0,4": 1,
+        "0,0|0,1|0,2|1,1|2,1": 1,
+        "0,0|0,1|0,2|1,1": 1
+      },
+      "pool": {
+        "uniqueFamiliesInPool": 10,
+        "uniqueFamilyCombosInPool": 10,
+        "headLockPool": 9,
+        "top1FamilyHitShare": 0.156,
+        "top4FamilyHitShare": 0.594,
+        "poolHfamilyMean": 1.664
+      },
+      "elapsed": 86.8
+    }
+  },
+  "verdict": [
+    {
+      "arm": "G1-A",
+      "headRatio": 0.656,
+      "headLockPool": 10,
+      "breakthrough": 0.656,
+      "breakthroughBelow065": false,
+      "b3Stable": true,
+      "headLockDown": false
+    },
+    {
+      "arm": "G1-B",
+      "headRatio": 0.682,
+      "headLockPool": 10,
+      "breakthrough": 0.682,
+      "breakthroughBelow065": false,
+      "b3Stable": false,
+      "headLockDown": false
+    },
+    {
+      "arm": "G1-C",
+      "headRatio": 0.73,
+      "headLockPool": 9,
+      "breakthrough": 0.73,
+      "breakthroughBelow065": false,
+      "b3Stable": false,
+      "headLockDown": true
+    }
+  ],
+  "decision": "FREEZE_B4"
+}

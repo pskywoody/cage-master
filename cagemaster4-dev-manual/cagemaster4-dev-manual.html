@@ -358,8 +358,8 @@ footer {
   <h1>CageMaster 4 开发手册</h1>
   <p class="subtitle">杀手数独叙事游戏 · 架构设计与开发指南</p>
   <div class="meta">
-    <span>版本 3.0</span>
-    <span>2026-08-09</span>
+    <span>版本 3.3</span>
+    <span>2026-08-10</span>
     <span>8 章 · 63 关</span>
     <span>ES Module</span>
   </div>
@@ -388,6 +388,9 @@ footer {
   <ul>
     <li><a href="#sec21"><span class="toc-num">A.1</span>2026-08-03 最新修复</a></li>
     <li><a href="#appendix-devlog"><span class="toc-num">A.2</span>开发日志（2026-08-03 → 2026-08-09）</a></li>
+    <li><a href="#sec-backend-engine"><span class="toc-num">A.3</span>Backend Engine v1 验收记录（2026-08-10）</a></li>
+    <li><a href="#sec-cage-audit"><span class="toc-num">A.4</span>Cage Generator 审计基线 v0（2026-08-10）</a></li>
+    <li><a href="#sec-cage-b3final"><span class="toc-num">A.5</span>Cage Generator B3-FINAL 冻结与 Release 记录（2026-08-10）</a></li>
   </ul>
 </nav>
 
@@ -1826,6 +1829,7 @@ if (!this._targetTechShown && this.preferredTechnique) {
   </ul>
   <h3>2026-08-09</h3>
   <ul>
+    <li><strong>剧本替换（新谍战叙事「笼局・三岔口」适配现有关卡）</strong>：经对比评估后放弃全盘替换（原方案替换代价极高、需废弃大量生产资产），改为方案 A——新剧本剧情映射到现有关卡，仅需改写 <code>scripts/scripts.json</code> 对话文本，关卡 JSON（teachingGoal/gridSize/difficulty 等）无需改动。核心动作：①人设映射——原角色体系（守笼人/莹莹/阿妍）替换为新角色（老师/薇拉/沈墨 CHIBI），保留原教学递进链（行列规则→笼概念→笔记→唯一组合→隐数→10 规则→笼排除→6×6 综合）；②逐关改写 preDialog/clearDialog/lessonPlan 文本对齐新叙事节点（接密信→旧书铺→甩开跟踪→信任考验→铁门脱逃）；③确认章节结构与映射规则，删除第八章及章节结尾纯叙事过渡关卡（209/299 等），形成 8 章 51 关最终结构；④保留核心谍战元素、删除部分原「笼局・三岔口」元素（苏晚/父亲遗物/图书馆暗道）。三周目剧本（沈墨/薇拉/伊藤）共用谜题、叙事分 POV 的设定同步确立。</li>
     <li><strong>美术资源重制（第一章 · 1941 上海谍战实景风格）</strong>：推翻原档案幻想风，按新叙事重制第一章资源。生成 6 张背景（开户专用：BG-CH1-01 会计室夜景 / BG-CH1-02 霞飞路旧书铺外景 / BG-CH1-03 旧书铺柜台 / BG-CH1-04 深夜小巷 / BG-CH1-05 路灯下 等）、6 张角色立绘（沈墨持不同表情 / 薇拉）、2 枚 chibi、7 张 CG 插图（接密信、旧书铺、甩开跟踪、信任考验、走出路灯、铁门脱逃等）。统一风格：1941 上海旧照片 / 黑白胶片颗粒 + 青调，深棕与青灰配色。薇拉按要求重塑为<b>白俄人</b>形象（浅金发、蓝灰眼、斯拉夫面容），修正原先误生成的中国妇女形象。</li>
     <li><strong>角色立绘抠图（rembg 自动化）</strong>：使用 rembg 对沈墨 / 薇拉 的立绘与 chibi 自动生成透明 PNG，置于 <code>assets/images/portraits/</code> 与 <code>assets/images/chibi/</code>；story-engine.js 注册 <code>vera</code> 独立角色并让 <code>shenmo</code> 指向新图。修复 101/102 关背景未更新、薇拉未出现的问题（scripts.json 对话优先级高于关卡 JSON，需同时更新两处）。</li>
     <li><strong>碎片收集系统落地（第一章 101–109 九枚碎片接入图鉴）</strong>：通关解锁对应关卡碎片（<code>FRAGMENT_BY_LEVEL</code> + <code>unlockFragmentByLevel</code>），集齐判定；修复 102 关缺失「碎片 2/9」导致的编号不连续，序列补全为 1/9–9/9。</li>
@@ -1842,11 +1846,180 @@ if (!this._targetTechShown && this.preferredTechnique) {
   </ul>
 </section>
 
+<section id="sec-backend-engine">
+  <h2>附录 C：Backend Engine v1 验收记录（2026-08-10）</h2>
+  <p>FastAPI 判题引擎（Rule Matcher · Judge API）已达可用状态。本记录为验收状态定稿，配套源码位于项目 <code>backend/</code> 目录（非本 Monorepo 前端）。</p>
 
+  <h3>架构与启动</h3>
+  <ul>
+    <li><strong>整体链路</strong>：<code>Backend Engine v1 → FastAPI → Rule Matcher (17 rules) → Judge API</code>。</li>
+    <li><strong>目录结构</strong>：<code>backend/src/</code> 下含 <code>main.py</code>、<code>rule_matcher.py</code> 等。</li>
+    <li><strong>正确启动入口（已修正）</strong>：<code>cd backend/src &amp;&amp; python -m uvicorn main:app --host 0.0.0.0 --port 8000</code>（非文档旧写法 <code>uvicorn backend.main:app</code>）。</li>
+    <li><strong>端口接管</strong>：清理旧 <code>python http.server</code>（PID 18604）后，uvicorn 于 <code>0.0.0.0:8000</code> 正常接管，消除 127.0.0.1:8000 返回 HTML 404 的问题。</li>
+  </ul>
+
+  <h3>API Contract</h3>
+  <table>
+    <tr><th>Endpoint</th><th>状态</th><th>说明</th></tr>
+    <tr><td><code>/health</code></td><td><span class="badge done">✅</span></td><td>健康检查</td></tr>
+    <tr><td><code>/docs</code></td><td><span class="badge done">✅</span></td><td>Swagger 文档</td></tr>
+    <tr><td><code>/api/v1/engine/judge</code></td><td><span class="badge done">✅</span></td><td>判题接口</td></tr>
+  </table>
+  <p><strong>Fact payload 兼容（alias）</strong>：原 <code>{"word": "address"}</code> 现兼容 <code>{"current_word": "address"}</code>，通过 alias 保持调用习惯、不破坏内部模型。</p>
+
+  <h3>实测样例</h3>
+  <pre><code>Input:  {"current_word": "address", "dwell_time": 3000}
+Output: {
+  "matched_rules": ["S001"],
+  "force_quiz": true,
+  "tag": "多音词待巩固",
+  "show_popup": false
+}</code></pre>
+  <p>逻辑符合预期：<code>address → S001 → 多音词弱点 → force_quiz=true</code>；<code>dwell_time=3000 &lt; 4000 → P001 popup=false</code>。</p>
+
+  <h3>冻结边界（不继续做）</h3>
+  <ul>
+    <li>❌ <code>--reload</code> 热重载</li>
+    <li>❌ 新规则扩展</li>
+    <li>❌ UI 接入</li>
+    <li>❌ 规则重构</li>
+  </ul>
+  <p>当前目标是验证 Engine 决策正确性，而非扩大运行复杂度。</p>
+
+  <h3>下一阶段建议（不立即执行）</h3>
+  <ul>
+    <li><strong>Step 1 · Rule Coverage Matrix</strong>：按 S/C/P/D 分类建立 规则→触发→期望动作→测试 覆盖矩阵，证明现有规则闭环而非新增规则。</li>
+    <li><strong>Step 2 · 批量 Judge Regression</strong>：建 <code>tests/engine_cases.json</code>，一次跑 input → judge → expected decision → pass/fail，防止改 matcher 破坏旧行为。</li>
+    <li><strong>Step 3 · 前端接入</strong>：待 Engine 稳定后接入 <code>Shemmo → Game Event → Judge API → Learning Decision → UI Feedback</code>，避免前端隐藏规则问题。</li>
+  </ul>
+</section>
+
+<section id="sec-cage-audit">
+  <h2>附录 D：Cage Generator 审计基线 v0（2026-08-10）</h2>
+  <p><strong>结论</strong>：Cage Generator 不是完全失效，而是「<strong>生产链路失控</strong>」——生成器能稳定产出 3 星关，但已发布 48 关里 47 关是 1 星。生成能力存在，内容生产没体现。这两类问题必须拆开处理。审计文档见 <code>docs/cage-generator-audit.md</code>。</p>
+
+  <h3>Baseline v0（指标契约）</h3>
+  <pre><code>dataset:  shipped_9x9_levels: 48
+generator: version v9 · sample_seed 20260810 · sample_size 8
+metrics:  cage_size_distribution / operation_distribution /
+          difficulty_distribution / logic_required / cage_reasoning_rate</code></pre>
+  <p>回归文件（冻结，只可被新 Baseline 覆盖）：<code>tests/cage_generator/baseline.json</code> + <code>audit_snapshot.json</code>。审计与冻结脚本：<code>scripts/cage-audit.cjs</code>、<code>scripts/freeze-cage-audit.cjs</code>。</p>
+
+  <h3>实测对比（存量 48 关 vs 新生成样本）</h3>
+  <table>
+    <tr><th>维度</th><th>存量 48 关</th><th>新生成（seed n=8）</th><th>判定</th></tr>
+    <tr><td>难度梯度</td><td>1星 ×47 / 2星 ×1</td><td>3星 ×8</td><td>生成有，生产无</td></tr>
+    <tr><td>笼推理率</td><td>2.0%（7 关命中）</td><td>11.3%（8 关全命中）</td><td>生成更接近 Killer 本质</td></tr>
+    <tr><td>操作变体</td><td>全 <code>+</code></td><td>全 <code>+</code></td><td>双端都缺（B3）</td></tr>
+    <tr><td>单格笼</td><td>164（≈12%）</td><td>32（16.7%）</td><td>双端偏高（B2）</td></tr>
+  </table>
+
+  <h3>Red Flags（4 项）</h3>
+  <ul>
+    <li>🔴 操作单一：仅加法笼，无 <code>-</code>/<code>×</code>/<code>÷</code> → <strong>Step B3</strong></li>
+    <li>⚠️ 单格笼 164 个（纯裸单提示）→ <strong>Step B2</strong></li>
+    <li>⚠️ 5 关需试错求解（剩余格 4/12/3/2/19）→ 需 acceptance 层拦截</li>
+    <li>🔴 难度覆盖不足：47/48 为 1 星 → 生产链路治理（B1 + 内容选库）</li>
+  </ul>
+
+  <h3>推进顺序（已确认，不插队改算法）</h3>
+  <ul>
+    <li><strong>Step A【已完成】</strong>：固化观察层 + 回归基线（本文档 + 冻结文件）。修复了 <code>cage_reasoning_used/ratio</code> 未导出到审计输出的 bug。</li>
+    <li><strong>Step B1【已完成】</strong>：Solver-aware Acceptance——不改生成算法，只改"什么结果能被接受"。新增 <code>core/solver-aware-acceptance.js</code>（纯函数判定层）+ <code>scripts/acceptance-gate-test.cjs</code>（驱动）。</li>
+  </ul>
+
+  <h3>Step B1 诊断结论</h3>
+  <p>用现有 generator（不改）跑三档 gate，两 seed（20260810 产 3 星、777 产 4 星）均测得：<code>G1（出现 cage 推理）100%</code>、<code>G2（ratio≥20%）0%</code>、<code>G3（4 星完整规格）0%</code>。</p>
+  <ul>
+    <li><strong>G1 100% → acceptance 层缺失（生产链路问题）</strong>：generator 能产出"玩家必须用 cage"的谜题，但链路把它释放成 1 星。</li>
+    <li><strong>G2/G3 0% → generator 笼推理密度不足（算法问题）</strong>：星档高低不影响推理率，被锁在 11–13%，远达不到 20%/40%。</li>
+    <li><strong>修正假定</strong>：不能只靠加 acceptance gate 就得到 Killer 完整体验，还需 generator 侧提升 <code>cageUnique</code>/<code>rule45</code> 命中密度（B1 之后、B2/B3 之前的真正算法点）。</li>
+  </ul>
+
+  <ul>
+    <li><strong>Step B2</strong>：单格笼治理，目标 <code>single_cell_ratio ≤ 5%</code>。</li>
+    <li><strong>Step B3</strong>：Operation 系统（<code>{sum,cells}</code> → <code>{operation,value,cells}</code>），solver/validator/generator 全链路升级，独立大版本。</li>
+  </ul>
+
+  <h3>回归纪律</h3>
+  <p>任何 generator / production 改动都必须回答：<strong>是真的提升，还是只是随机波动？</strong>用固定 seed 重跑 <code>cage-audit.cjs --sample 8</code>，与 <code>baseline.json</code> 逐项对比，系统性改善才可出 Baseline v1。</p>
+</section>
+
+<section id="sec-cage-b3final">
+  <h2>附录 E：Cage Generator B3-FINAL 冻结记录（2026-08-10）</h2>
+  <p><strong>结论</strong>：Cage Generator 参数空间已探索到边界，B3 系列冻结为生产 baseline。剩余 top4 canonical 集中度（~53%）属 <strong>generator birth distribution / cage topology prior</strong> 的结构性偏置，不值得继续用局部参数挖。完整审计见 <code>docs/cage-generator-audit.md</code>（§6.9–§6.13）。</p>
+
+  <h3>B3-FINAL 默认配置（已常驻化）</h3>
+  <p>生产默认不再依赖 experiment wrapper，<code>CageFixer</code> 默认构造即进入冻结基线（全部可 override）：</p>
+  <pre><code>objective = { enabled: true, ratioWeight: 100, topologyWeight: 25, maxCollected: 8 }
+growthBias               = 0.4
+shapeDiversityWeight     = 0.2
+topologyScoreVersion     = 1
+suppressSingletons       = true
+sizeWeights              = targetStar=4 默认（B3-C2 判非主因，不调）
+selection / uniqueness   = 不动</code></pre>
+  <p>保留 override：显式传 <code>objective.enabled:false</code> 可回退旧行为；<code>growthBias</code> / <code>shapeDiversityWeight</code> 可显式覆盖；实验脚本仍可覆盖参数做 ablation。不是删除实验能力，而是把最佳态提升为 production baseline。</p>
+
+  <h3>100-level Regression（默认构造验证，未手动传 B3 参数）</h3>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>Metric</th><th>Baseline(20级)</th><th>Regression(100级)</th><th>Result</th></tr></thead>
+    <tbody>
+      <tr><td>top4Share</td><td>51.6%</td><td>53.0%</td><td>✅ stable</td></tr>
+      <tr><td>entropy H</td><td>2.66</td><td>2.619</td><td>✅ pass</td></tr>
+      <tr><td>complex</td><td>37.4%</td><td>36.7%</td><td>✅ no regression</td></tr>
+      <tr><td>ratio.mean</td><td>24.5%</td><td>23.3%</td><td>✅ stable</td></tr>
+      <tr><td>score</td><td>528.8</td><td>525</td><td>✅ within range</td></tr>
+      <tr><td>singleton</td><td>2.8%</td><td>4.1%</td><td>✅ &lt;5%</td></tr>
+      <tr><td>uniqueAll</td><td>true</td><td>true</td><td>✅</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p><strong>结论</strong>：20-level B3-C1c 的 51.6% 不是偶然 sample spike。100-level 回归保持约 51–53% 区间，entropy 未塌缩、complexity 未下降、uniqueness 稳定。C1c 收益确认。回归脚本 <code>scripts/b3-final-regression.cjs</code>，数据 <code>data/b3-final-regression.json</code>。</p>
+
+  <h3>Freeze 判定</h3>
+  <ul>
+    <li>探索阶段 DONE · 参数搜索 DONE · C1c 验证 DONE · 默认化 DONE · 回归 PASS · 冻结 DONE</li>
+  </ul>
+  <p><strong>后续规则</strong>：不再调整 <code>shapeDiversityWeight</code> / <code>growthBias</code> / <code>topologyWeight</code> / objective 权重 / singleton pressure / uniqueness 逻辑。除非出现新的外部目标（新尺寸分布 / 新玩法约束 / 新 canonical policy），否则继续微调这些参数属于在 noise floor 上搜索。</p>
+
+  <h3>最终架构解释</h3>
+  <p>当前瓶颈已不是 selection / objective / topology weighting / shape diversity pressure，而是 <strong>generator birth distribution + cage topology prior</strong>。剩余约 47% 非 top4 分布不是调 λ/W/gb 能解决的问题。若未来目标突破 ~53%，应进入新阶段 <strong>B4: distribution redesign</strong>，而非继续 <strong>B3.x: parameter sweep</strong>。</p>
+
+  <p><strong>打 tag：B3-FINAL</strong>。作为后续所有 level generation 的 frozen baseline。<strong>版本标记落盘</strong>：本环境无 git CLI，故以不可变文件 <code>docs/B3-FINAL-manifest.md</code> 作为 B3-FINAL 标记（等价 <code>git tag B3-FINAL</code>）。</p>
+
+  <h3>产品化阶段（B3-FINAL 冻结后）</h3>
+  <p>冻结后进入产品化，不再调参。产物与流程：</p>
+  <ul>
+    <li><strong>正式 Level Pool</strong>：<code>scripts/generate-release-pool.cjs --count N --seed S</code>，用 B3-FINAL 默认构造生成 release candidate，输出 <code>data/release-pool-b3final.json</code>（含逐关 score/star/ratio/unique + 聚合 stats + gate 判定）。</li>
+    <li><strong>Release Acceptance Report</strong>：<code>scripts/release-acceptance.cjs --pool ...</code>，输出 <code>docs/B3-FINAL-acceptance-report.md</code>，含 Distribution / Quality / Diversity 三块 benchmark，作为以后每次改 generator 的对照基准。</li>
+    <li><strong>B3 实验冻结</strong>：<code>experiments/README-ARCHIVED.md</code> 标记 B3 实验为研究记录，非开发入口。</li>
+    <li><strong>B4 研究分支</strong>：<code>docs/cage-b4-research.md</code> 记录 birth distribution redesign 的 A/B/C 三方向（topology prior / canonical-aware / Pareto）。新实验统一进入 <code>B4-*</code> 命名空间，禁止 <code>B3-C1d/e/f</code>。</li>
+  </ul>
+
+  <h3>Release 阶段（R1–R5，已完成 2026-08-10）</h3>
+  <p>B3-FINAL 正式 RELEASED。发布对象从单个 JSON 升级为可审计 release artifact：</p>
+  <ul>
+    <li><strong>R1 发布包</strong>：<code>release/B3-FINAL/</code>（manifest / release-pool / acceptance-report / config-lock / pool.sha256 / README），由 <code>scripts/build-release.cjs</code> 一键打包。</li>
+    <li><strong>R2 配置锁</strong>：<code>config/production/B3-FINAL.json</code> 冻结 gb=0.4 / λ=25 / W=0.2 / objective / ratioWeight。</li>
+    <li><strong>R3 池密封</strong>：<code>release/B3-FINAL/release-pool.json</code> 已 readonly，<code>pool.sha256=<code>fa094aef…</code></code>，任何 level drift 可检测。</li>
+    <li><strong>R4 生产加载切换</strong>：<code>core/production-config.js</code> 判定生产/开发。生产 → 加载冻结池 <code>release/B3-FINAL/release-pool.json</code>；开发 → 允许生成（<code>data/pool-xwing-001.json</code>）。已接入 <code>game.html</code> 的 <code>initPoolManager</code>。</li>
+    <li><strong>R5 Release Note</strong>：<code>docs/releases/B3-FINAL-release-note.md</code>（What shipped / Frozen params / Acceptance / Limitations / B4 next）。</li>
+  </ul>
+  <p><strong>状态</strong>：<code>B3-FINAL → RELEASED</code>。下一步进入 <code>B4 research branch</code>（改 generator 分布能力，不改生产池）。</p>
+
+  <h3>B4 Research Branch（已开启 2026-08-10）</h3>
+  <p>B4 研究改变 level birth distribution，使自然生成空间更接近理想产品分布。<strong>不碰生产池 / λ / ranking / acceptance</strong>。对照基准唯一冻结于 <code>docs/B4/benchmark-baseline.md</code>（top4 53.0% / entropy 2.619 / ratio 23.3% / complex 36.7% / uniqueAll）。</p>
+  <ul>
+    <li><strong>分支结构</strong>：<code>docs/B4/</code>（README / benchmark-baseline / research-log）+ <code>experiments/B4/</code>（archived / active）+ <code>config/research/B4/B4-{A,B,C,D}.json</code>。</li>
+    <li><strong>执行顺序（严格）</strong>：B4-A topology prior → B4-B canonical diversity → B4-C birth redesign → B4-D pareto objective。</li>
+    <li><strong>当前</strong>：B4-A0 初始化完成，进入 B4-A1 topology prior prototype（N=100，λ=25 冻结）。</li>
+  </ul>
+</section>
 
 </div>
 <footer>
-  <p>CageMaster 4 开发手册 · 版本 3.0 · 2026-08-09</p>
+  <p>CageMaster 4 开发手册 · 版本 3.6 · 2026-08-10</p>
   <p style="font-size:0.75rem;margin-top:4px;">Generated by Trae Work</p>
 </footer>
 </body>

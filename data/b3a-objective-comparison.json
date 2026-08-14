@@ -1,0 +1,49 @@
+{
+  "generatedAt": "2026-08-09T20:39:23.120Z",
+  "config": {
+    "count": 100,
+    "seed": 20260810,
+    "weight": 150,
+    "maxCollected": 8
+  },
+  "baseline_off": {
+    "stats": {
+      "n": 100,
+      "min": 0.053,
+      "mean": 0.179,
+      "median": 0.173,
+      "p90": 0.247,
+      "max": 0.373,
+      "ge_20": 0.31,
+      "ge_30": 0.03,
+      "ge_40": 0
+    },
+    "avgScore": 504.8,
+    "minScore": 300,
+    "maxScore": 575,
+    "generated": 100
+  },
+  "objective_on": {
+    "stats": {
+      "n": 100,
+      "min": 0.046,
+      "mean": 0.206,
+      "median": 0.196,
+      "p90": 0.297,
+      "max": 0.409,
+      "ge_20": 0.49,
+      "ge_30": 0.09,
+      "ge_40": 0.01
+    },
+    "avgScore": 511.3,
+    "minScore": 150,
+    "maxScore": 650,
+    "generated": 100
+  },
+  "verdict": {
+    "median_pp": 0.02300000000000002,
+    "median_ratio_up": true,
+    "selection_effective": false,
+    "note": "median 提升 ≥3pp → selection 有效（B3-A 成功，可强化为 cageReasoningScore）。median 几乎不动 → 瓶颈在 cage topology distribution（进入 B3-B topology entropy audit）。"
+  }
+}

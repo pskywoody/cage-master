@@ -1,1224 +1,1224 @@
 {
-  "levelId": 501,
-  "title": "第1关：嵌套笼入门",
-  "gridSize": 9,
-  "difficulty": "困难",
-  "teachingGoal": "嵌套笼入门：笼子可以包含其他笼子，利用大笼和减去小笼和，推导中间层格子的值。",
-  "features": {
-    "allowDraft": true,
-    "assistant45": true,
-    "showHints": true,
-    "perspectiveMode": true,
-    "highlightRow": true,
-    "highlightCol": true,
-    "highlightBox": true,
-    "highlightNumber": true,
-    "highlightCage": true,
-    "autoFillCandidates": false
-  },
-  "triggers": [
-    {
-      "id": "t501_s",
-      "condition": "onLevelStart",
-      "type": "popup_hint",
-      "position": "top",
-      "text": "欢迎来到星辰梭核心！第一关：嵌套笼。注意观察盘面——有些笼子完全包含在另一个笼子里面，这就是嵌套结构！",
-      "once": true
-    },
-    {
-      "id": "t501_f1",
-      "condition": "onFirstNumberFilled",
-      "type": "popup_hint",
-      "position": "top",
-      "text": "对了！大笼和减去小笼和，就能算出中间层的数字！这是嵌套笼的基本推理方式！",
-      "once": true
-    },
-    {
-      "id": "t501_b",
-      "condition": "onFillCountReached",
-      "count": 52,
-      "type": "enter_phase",
-      "phase": "breakthrough",
-      "once": true
-    },
-    {
-      "id": "t501_bt",
-      "condition": "onFillCountReached",
-      "count": 52,
-      "type": "popup_hint",
-      "position": "top",
-      "text": "⚡ 破局时刻！嵌套笼的一层被你剥开，连锁反应开始了！",
-      "once": true,
-      "delay": 400
-    },
-    {
-      "id": "t501_st20",
-      "condition": "onStuckForSeconds",
-      "seconds": 20,
-      "type": "popup_hint",
-      "position": "top",
-      "text": "💡 卡住了？找那些一个套一个的笼子——大笼和值减去里面小笼的和值，差就是大笼独有的那些格子的和！",
-      "once": false
-    },
-    {
-      "id": "t501_st40",
-      "condition": "onStuckForSeconds",
-      "seconds": 40,
-      "type": "popup_hint",
-      "position": "top",
-      "text": "💡 嵌套笼技巧：先算最内层，再一层层向外推。就像剥洋葱，每一层都给你新的线索！",
-      "once": false,
-      "delay": 300
-    },
-    {
-      "id": "t501_ag",
-      "condition": "onConflict",
-      "type": "popup_hint",
-      "position": "top",
-      "text": "⚠️ 嵌套结构判断要仔细——确认哪些格子属于大笼但不属于小笼，数错了全盘皆错！",
-      "once": false
-    },
-    {
-      "id": "t501_fi",
-      "condition": "onFillCountReached",
-      "count": 69,
-      "type": "enter_phase",
-      "phase": "finishing",
-      "once": true
-    },
-    {
-      "id": "t501_fit",
-      "condition": "onFillCountReached",
-      "count": 69,
-      "type": "popup_hint",
-      "position": "top",
-      "text": "✨ 收官！层层嵌套全部解开，最后的数字就在眼前！",
-      "once": true,
-      "delay": 400
-    },
-    {
-      "id": "t501_c",
-      "condition": "onLevelComplete",
-      "type": "popup_hint",
-      "position": "top",
-      "text": "🎉 嵌套笼入门完成！你开始理解星辰梭的复杂结构了！",
-      "once": true
-    }
-  ],
-  "boardData": [
-    [
-      0,
-      4,
-      9,
-      1,
-      3,
-      7,
-      5,
-      2,
-      0
-    ],
-    [
-      0,
-      2,
-      5,
-      0,
-      0,
-      0,
-      0,
-      0,
-      1
-    ],
-    [
-      0,
-      7,
-      0,
-      0,
-      2,
-      6,
-      0,
-      9,
-      0
-    ],
-    [
-      2,
-      0,
-      3,
-      7,
-      0,
-      0,
-      0,
-      0,
-      0
-    ],
-    [
-      5,
-      0,
-      0,
-      0,
-      0,
-      0,
-      6,
-      0,
-      0
-    ],
-    [
-      0,
-      6,
-      0,
-      0,
-      5,
-      0,
-      0,
-      0,
-      0
-    ],
-    [
-      7,
-      0,
-      0,
-      2,
-      0,
-      0,
-      1,
-      6,
-      3
-    ],
-    [
-      0,
-      0,
-      2,
-      0,
-      0,
-      8,
-      0,
-      0,
-      9
-    ],
-    [
-      0,
-      0,
-      0,
-      3,
-      4,
-      1,
-      0,
-      0,
-      0
-    ]
-  ],
-  "cages": [
-    {
-      "id": 1,
-      "sum": 14,
-      "cells": [
-        [
-          0,
-          0
-        ],
-        [
-          1,
-          0
-        ]
-      ]
-    },
-    {
-      "id": 2,
-      "sum": 14,
-      "cells": [
-        [
-          0,
-          1
-        ],
-        [
-          0,
-          2
-        ],
-        [
-          0,
-          3
-        ]
-      ]
-    },
-    {
-      "id": 3,
-      "sum": 20,
-      "cells": [
-        [
-          0,
-          4
-        ],
-        [
-          1,
-          4
-        ],
-        [
-          1,
-          5
-        ]
-      ]
-    },
-    {
-      "id": 4,
-      "sum": 14,
-      "cells": [
-        [
-          0,
-          5
-        ],
-        [
-          0,
-          6
-        ],
-        [
-          0,
-          7
-        ]
-      ]
-    },
-    {
-      "id": 5,
-      "sum": 11,
-      "cells": [
-        [
-          0,
-          8
-        ],
-        [
-          1,
-          8
-        ],
-        [
-          2,
-          8
-        ]
-      ]
-    },
-    {
-      "id": 6,
-      "sum": 20,
-      "cells": [
-        [
-          1,
-          7
-        ],
-        [
-          2,
-          7
-        ],
-        [
-          2,
-          6
-        ]
-      ]
-    },
-    {
-      "id": 7,
-      "sum": 7,
-      "cells": [
-        [
-          1,
-          6
-        ]
-      ]
-    },
-    {
-      "id": 8,
-      "sum": 9,
-      "cells": [
-        [
-          1,
-          3
-        ],
-        [
-          2,
-          3
-        ]
-      ]
-    },
-    {
-      "id": 9,
-      "sum": 6,
-      "cells": [
-        [
-          1,
-          2
-        ],
-        [
-          2,
-          2
-        ]
-      ]
-    },
-    {
-      "id": 10,
-      "sum": 22,
-      "cells": [
-        [
-          1,
-          1
-        ],
-        [
-          2,
-          1
-        ],
-        [
-          2,
-          0
-        ],
-        [
-          3,
-          1
-        ],
-        [
-          4,
-          1
-        ]
-      ]
-    },
-    {
-      "id": 11,
-      "sum": 21,
-      "cells": [
-        [
-          2,
-          4
-        ],
-        [
-          2,
-          5
-        ],
-        [
-          3,
-          5
-        ],
-        [
-          3,
-          6
-        ]
-      ]
-    },
-    {
-      "id": 12,
-      "sum": 7,
-      "cells": [
-        [
-          3,
-          8
-        ],
-        [
-          4,
-          8
-        ]
-      ]
-    },
-    {
-      "id": 13,
-      "sum": 13,
-      "cells": [
-        [
-          3,
-          7
-        ],
-        [
-          4,
-          7
-        ],
-        [
-          5,
-          7
-        ]
-      ]
-    },
-    {
-      "id": 14,
-      "sum": 7,
-      "cells": [
-        [
-          3,
-          4
-        ],
-        [
-          4,
-          4
-        ]
-      ]
-    },
-    {
-      "id": 15,
-      "sum": 18,
-      "cells": [
-        [
-          3,
-          3
-        ],
-        [
-          3,
-          2
-        ],
-        [
-          4,
-          3
-        ]
-      ]
-    },
-    {
-      "id": 16,
-      "sum": 17,
-      "cells": [
-        [
-          3,
-          0
-        ],
-        [
-          4,
-          0
-        ],
-        [
-          5,
-          0
-        ],
-        [
-          5,
-          1
-        ]
-      ]
-    },
-    {
-      "id": 17,
-      "sum": 21,
-      "cells": [
-        [
-          4,
-          2
-        ],
-        [
-          5,
-          2
-        ],
-        [
-          6,
-          2
-        ],
-        [
-          7,
-          2
-        ]
-      ]
-    },
-    {
-      "id": 18,
-      "sum": 9,
-      "cells": [
-        [
-          4,
-          5
-        ],
-        [
-          4,
-          6
-        ]
-      ]
-    },
-    {
-      "id": 19,
-      "sum": 10,
-      "cells": [
-        [
-          5,
-          8
-        ],
-        [
-          6,
-          8
-        ]
-      ]
-    },
-    {
-      "id": 20,
-      "sum": 10,
-      "cells": [
-        [
-          5,
-          6
-        ],
-        [
-          5,
-          5
-        ],
-        [
-          5,
-          4
-        ]
-      ]
-    },
-    {
-      "id": 21,
-      "sum": 17,
-      "cells": [
-        [
-          5,
-          3
-        ],
-        [
-          6,
-          3
-        ],
-        [
-          7,
-          3
-        ]
-      ]
-    },
-    {
-      "id": 22,
-      "sum": 16,
-      "cells": [
-        [
-          6,
-          0
-        ],
-        [
-          7,
-          0
-        ],
-        [
-          7,
-          1
-        ],
-        [
-          8,
-          1
-        ]
-      ]
-    },
-    {
-      "id": 23,
-      "sum": 8,
-      "cells": [
-        [
-          6,
-          1
-        ]
-      ]
-    },
-    {
-      "id": 24,
-      "sum": 20,
-      "cells": [
-        [
-          6,
-          4
-        ],
-        [
-          7,
-          4
-        ],
-        [
-          8,
-          4
-        ]
-      ]
-    },
-    {
-      "id": 25,
-      "sum": 16,
-      "cells": [
-        [
-          6,
-          5
-        ],
-        [
-          6,
-          6
-        ],
-        [
-          6,
-          7
-        ],
-        [
-          7,
-          6
-        ]
-      ]
-    },
-    {
-      "id": 26,
-      "sum": 21,
-      "cells": [
-        [
-          7,
-          8
-        ],
-        [
-          7,
-          7
-        ],
-        [
-          8,
-          7
-        ]
-      ]
-    },
-    {
-      "id": 27,
-      "sum": 11,
-      "cells": [
-        [
-          7,
-          5
-        ],
-        [
-          8,
-          5
-        ],
-        [
-          8,
-          6
-        ]
-      ]
-    },
-    {
-      "id": 28,
-      "sum": 9,
-      "cells": [
-        [
-          8,
-          0
-        ]
-      ]
-    },
-    {
-      "id": 29,
-      "sum": 9,
-      "cells": [
-        [
-          8,
-          2
-        ],
-        [
-          8,
-          3
-        ]
-      ]
-    },
-    {
-      "id": 30,
-      "sum": 8,
-      "cells": [
-        [
-          8,
-          8
-        ]
-      ]
-    }
-  ],
-  "solution": [
-    [
-      8,
-      4,
-      9,
-      1,
-      3,
-      7,
-      5,
-      2,
-      6
-    ],
-    [
-      6,
-      2,
-      5,
-      4,
-      8,
-      9,
-      7,
-      3,
-      1
-    ],
-    [
-      3,
-      7,
-      1,
-      5,
-      2,
-      6,
-      8,
-      9,
-      4
-    ],
-    [
-      2,
-      1,
-      3,
-      7,
-      6,
-      4,
-      9,
-      8,
-      5
-    ],
-    [
-      5,
-      9,
-      7,
-      8,
-      1,
-      3,
-      6,
-      4,
-      2
-    ],
-    [
-      4,
-      6,
-      8,
-      9,
-      5,
-      2,
-      3,
-      1,
-      7
-    ],
-    [
-      7,
-      8,
-      4,
-      2,
-      9,
-      5,
-      1,
-      6,
-      3
-    ],
-    [
-      1,
-      3,
-      2,
-      6,
-      7,
-      8,
-      4,
-      5,
-      9
-    ],
-    [
-      9,
-      5,
-      6,
-      3,
-      4,
-      1,
-      2,
-      7,
-      8
-    ]
-  ],
-  "preDialog": [
-    {
-      "speaker": "旁白",
-      "text": "沈墨在黄昏时分走到东余杭路94号的后巷。第三根电线杆的砖缝里绷着一根细线，线的另一端系着一把旧铜钥匙。",
-      "isNarration": true
-    },
-    {
-      "speaker": "旁白",
-      "text": "他取出钥匙。钥匙柄上刻着一个数字——4。",
-      "isNarration": true
-    },
-    {
-      "speaker": "沈墨 CHIBI",
-      "text": "……这不是我的钥匙。但它能打开94号的门。他在告诉我，我应该从这里进去。",
-      "side": "left",
-      "emotion": "thinking",
-      "effect": 0
-    },
-    {
-      "speaker": "老师（留声）",
-      "text": "嵌套笼——大笼套着小笼。拆外层才能看到内层，拆内层才能看到整道题的骨架。你看到的那把钥匙，就是打开第一层笼的工具。",
-      "side": "right",
-      "emotion": "calm",
-      "effect": 0
-    }
-  ],
-  "clearDialog": [
-    {
-      "speaker": "旁白",
-      "text": "沈墨推开94号后门。门框内侧有一道短横刻痕——和他之前在藏书楼暗门外侧留下的标记方向一致。",
-      "isNarration": true
-    },
-    {
-      "speaker": "沈墨 CHIBI",
-      "text": "……有人在我之前到过这里。他来过，然后走了，但他在门框上留了一个记号——和我的标记一样。",
-      "side": "left",
-      "emotion": "thinking",
-      "effect": 0
-    },
-    {
-      "speaker": "薇拉",
-      "text": "东余杭路94号是你母亲在上海的最后一处住所。你父亲来过这里，但他没有敲门。",
-      "side": "right",
-      "emotion": "calm",
-      "effect": 0
-    }
-  ],
-  "mode": "full",
-  "coreMove": {
-    "row": 8,
-    "col": 3,
-    "value": 6
-  },
-  "totalSteps": 82,
-  "nakedSingleRatio": 0.744,
-  "techCount": {
-    "nakedSingle": 61,
-    "hiddenSingle": 4,
-    "rule45": 4,
-    "cageUnique": 11,
-    "nakedPair": 2
-  },
-  "maxTechLevel": 5,
-  "threeAct": {
-    "opening": [
-      [
-        0,
-        3
-      ],
-      [
-        0,
-        5
-      ],
-      [
-        0,
-        7
-      ],
-      [
-        1,
-        2
-      ],
-      [
-        1,
-        5
-      ],
-      [
-        1,
-        4
-      ],
-      [
-        1,
-        0
-      ],
-      [
-        0,
-        0
-      ],
-      [
-        0,
-        8
-      ],
-      [
-        1,
-        3
-      ],
-      [
-        1,
-        6
-      ],
-      [
-        1,
-        7
-      ],
-      [
-        2,
-        2
-      ],
-      [
-        2,
-        0
-      ],
-      [
-        2,
-        3
-      ],
-      [
-        2,
-        6
-      ],
-      [
-        2,
-        8
-      ],
-      [
-        3,
-        5
-      ],
-      [
-        3,
-        4
-      ],
-      [
-        3,
-        8
-      ],
-      [
-        4,
-        3
-      ],
-      [
-        4,
-        4
-      ],
-      [
-        4,
-        5
-      ],
-      [
-        4,
-        8
-      ],
-      [
-        5,
-        0
-      ],
-      [
-        5,
-        3
-      ],
-      [
-        5,
-        8
-      ],
-      [
-        6,
-        1
-      ],
-      [
-        6,
-        4
-      ],
-      [
-        6,
-        5
-      ],
-      [
-        7,
-        3
-      ],
-      [
-        7,
-        4
-      ],
-      [
-        8,
-        0
-      ],
-      [
-        8,
-        1
-      ],
-      [
-        8,
-        2
-      ],
-      [
-        8,
-        6
-      ],
-      [
-        8,
-        8
-      ]
-    ],
-    "breakthrough": [
-      [
-        4,
-        7
-      ],
-      [
-        5,
-        7
-      ],
-      [
-        6,
-        2
-      ],
-      [
-        7,
-        0
-      ],
-      [
-        7,
-        7
-      ],
-      [
-        7,
-        1
-      ],
-      [
-        8,
-        7
-      ]
-    ],
-    "avalanche": [
-      [
-        3,
-        6
-      ],
-      [
-        3,
-        1
-      ],
-      [
-        3,
-        7
-      ],
-      [
-        4,
-        1
-      ],
-      [
-        4,
-        2
-      ],
-      [
-        5,
-        2
-      ],
-      [
-        5,
-        5
-      ],
-      [
-        5,
-        6
-      ],
-      [
-        7,
-        6
-      ]
-    ]
-  },
-  "difficultyLevel": 6,
-  "lessonPlan": {
-    "newSkill": "nestedCage_501",
-    "skillName": "嵌套笼入门",
-    "isFirstLesson": true,
-    "skippable": true,
-    "prerequisite": [
-      "rule45",
-      "cageUnique",
-      "hiddenSingle"
-    ],
-    "phases": {
-      "intro": {
-        "text": "嵌套笼——大笼套小笼。先找到最内层的那一格。它确定了，外面那一层才能继续拆。钥匙4，是进入94号的起点。",
-        "speaker": "老师（留声）",
-        "duration": 3200
-      },
-      "demo": {
-        "steps": [
-          {
-            "action": "spotlightOn",
-            "target": 0.35,
-            "duration": 400
-          },
-          {
-            "action": "highlightCage",
-            "target": 7,
-            "duration": 1500,
-            "text": "先找最内层的笼——单格笼。它只有一格，笼子的和值就是这一格要填的数：和值 7，(1,6) 直接填 7。"
-          },
-          {
-            "action": "focusCell",
-            "target": [
-              1,
-              6
-            ],
-            "duration": 1300,
-            "text": "最内层先定值，就像剥洋葱先剥到芯。"
-          },
-          {
-            "action": "highlightCage",
-            "target": 9,
-            "duration": 1500,
-            "text": "再看它外面这一层的两格笼，和值 6。笼里已经填了 5——大笼和减内层已知和，剩下的就是中间层格的值。"
-          },
-          {
-            "action": "highlightCell",
-            "target": [
-              1,
-              2
-            ],
-            "duration": 1000,
-            "text": "这一格已填 5。"
-          },
-          {
-            "action": "focusCell",
-            "target": [
-              2,
-              2
-            ],
-            "duration": 1500,
-            "text": "6 − 5 = 1，(2,2) 只能填 1！层层剥离，中间层的值就出来了。"
-          }
-        ]
-      },
-      "guided": {
-        "targetCell": [
-          2,
-          2
-        ],
-        "correctValue": 1,
-        "interactionType": "NUMBER",
-        "maxAttempts": 3,
-        "autoRevealAfter": 3,
-        "methodText": "嵌套笼的推法：先找最内层（单格笼直接定值），再用「笼和 − 已知格和 = 剩余格值」逐层向外。",
-        "hintText": "轮到你了：和值 6 的两格笼里已填 5，剩下 (2,2) 试试看。",
-        "failHint": "再想想：这个笼和值是 6，里面已填 5，6 − 5 = 几？",
-        "failConflictCell": [
-          1,
-          2
-        ],
-        "failVoiceId": "CK_05",
-        "successText": "正确！你学会了大笼和减内层已知和——嵌套笼的核心推法。",
-        "successVoiceId": "J_03",
-        "successNext": [
-          {
-            "cell": [
-              4,
-              3
-            ],
-            "hintText": "很好！再试一个：和值 18 的笼已填 7 和 3，剩这一格——填几？"
-          },
-          {
-            "cell": [
-              5,
-              0
-            ],
-            "hintText": "再来！和值 17 的四格笼已填 2、5、6，最后一格填 4！"
-          }
-        ],
-        "autoRevealText": "直接填入数字 1。"
-      },
-      "semiAuto": {
-        "enabled": true,
-        "targetCount": 2,
-        "hintText": "继续用笼和差值法，再找出两个格子。",
-        "hintVoiceId": "R_07",
-        "watchCells": [
-          [
-            6,
-            4
-          ],
-          [
-            0,
-            0
-          ]
-        ],
-        "interactionType": "NUMBER"
-      },
-      "free": {
-        "enabled": true,
-        "unlockText": "嵌套笼已入门——剩下的笼子，一层层剥开吧。"
-      }
-    }
-  }
+    "levelId":  501,
+    "title":  "发报机的准备",
+    "gridSize":  9,
+    "difficulty":  "困难",
+    "teachingGoal":  "嵌套笼入门：笼子可以包含其他笼子，利用大笼和减去小笼和，推导中间层格子的值。",
+    "features":  {
+                     "allowDraft":  true,
+                     "assistant45":  true,
+                     "showHints":  true,
+                     "perspectiveMode":  true,
+                     "highlightRow":  true,
+                     "highlightCol":  true,
+                     "highlightBox":  true,
+                     "highlightNumber":  true,
+                     "highlightCage":  true,
+                     "autoFillCandidates":  false
+                 },
+    "triggers":  [
+                     {
+                         "id":  "t501_s",
+                         "condition":  "onLevelStart",
+                         "type":  "popup_hint",
+                         "position":  "top",
+                         "text":  "欢迎来到藏书楼核心！第一关：嵌套笼。注意观察盘面——有些笼子完全包含在另一个笼子里面，这就是嵌套结构！",
+                         "once":  true
+                     },
+                     {
+                         "id":  "t501_f1",
+                         "condition":  "onFirstNumberFilled",
+                         "type":  "popup_hint",
+                         "position":  "top",
+                         "text":  "对了！大笼和减去小笼和，就能算出中间层的数字！这是嵌套笼的基本推理方式！",
+                         "once":  true
+                     },
+                     {
+                         "id":  "t501_b",
+                         "condition":  "onFillCountReached",
+                         "count":  52,
+                         "type":  "enter_phase",
+                         "phase":  "breakthrough",
+                         "once":  true
+                     },
+                     {
+                         "id":  "t501_bt",
+                         "condition":  "onFillCountReached",
+                         "count":  52,
+                         "type":  "popup_hint",
+                         "position":  "top",
+                         "text":  "⚡ 破局时刻！嵌套笼的一层被你剥开，连锁反应开始了！",
+                         "once":  true,
+                         "delay":  400
+                     },
+                     {
+                         "id":  "t501_st20",
+                         "condition":  "onStuckForSeconds",
+                         "seconds":  20,
+                         "type":  "popup_hint",
+                         "position":  "top",
+                         "text":  "💡 卡住了？找那些一个套一个的笼子——大笼和值减去里面小笼的和值，差就是大笼独有的那些格子的和！",
+                         "once":  false
+                     },
+                     {
+                         "id":  "t501_st40",
+                         "condition":  "onStuckForSeconds",
+                         "seconds":  40,
+                         "type":  "popup_hint",
+                         "position":  "top",
+                         "text":  "💡 嵌套笼技巧：先算最内层，再一层层向外推。就像剥洋葱，每一层都给你新的线索！",
+                         "once":  false,
+                         "delay":  300
+                     },
+                     {
+                         "id":  "t501_ag",
+                         "condition":  "onConflict",
+                         "type":  "popup_hint",
+                         "position":  "top",
+                         "text":  "⚠️ 嵌套结构判断要仔细——确认哪些格子属于大笼但不属于小笼，数错了全盘皆错！",
+                         "once":  false
+                     },
+                     {
+                         "id":  "t501_fi",
+                         "condition":  "onFillCountReached",
+                         "count":  69,
+                         "type":  "enter_phase",
+                         "phase":  "finishing",
+                         "once":  true
+                     },
+                     {
+                         "id":  "t501_fit",
+                         "condition":  "onFillCountReached",
+                         "count":  69,
+                         "type":  "popup_hint",
+                         "position":  "top",
+                         "text":  "✨ 收官！层层嵌套全部解开，最后的数字就在眼前！",
+                         "once":  true,
+                         "delay":  400
+                     },
+                     {
+                         "id":  "t501_c",
+                         "condition":  "onLevelComplete",
+                         "type":  "popup_hint",
+                         "position":  "top",
+                         "text":  "🎉 嵌套笼入门完成！你开始理解档案的复杂结构了！",
+                         "once":  true
+                     }
+                 ],
+    "boardData":  [
+                      [
+                          0,
+                          4,
+                          9,
+                          1,
+                          3,
+                          7,
+                          5,
+                          2,
+                          0
+                      ],
+                      [
+                          0,
+                          2,
+                          5,
+                          0,
+                          0,
+                          0,
+                          0,
+                          0,
+                          1
+                      ],
+                      [
+                          0,
+                          7,
+                          0,
+                          0,
+                          2,
+                          6,
+                          0,
+                          9,
+                          0
+                      ],
+                      [
+                          2,
+                          0,
+                          3,
+                          7,
+                          0,
+                          0,
+                          0,
+                          0,
+                          0
+                      ],
+                      [
+                          5,
+                          0,
+                          0,
+                          0,
+                          0,
+                          0,
+                          6,
+                          0,
+                          0
+                      ],
+                      [
+                          0,
+                          6,
+                          0,
+                          0,
+                          5,
+                          0,
+                          0,
+                          0,
+                          0
+                      ],
+                      [
+                          7,
+                          0,
+                          0,
+                          2,
+                          0,
+                          0,
+                          1,
+                          6,
+                          3
+                      ],
+                      [
+                          0,
+                          0,
+                          2,
+                          0,
+                          0,
+                          8,
+                          0,
+                          0,
+                          9
+                      ],
+                      [
+                          0,
+                          0,
+                          0,
+                          3,
+                          4,
+                          1,
+                          0,
+                          0,
+                          0
+                      ]
+                  ],
+    "cages":  [
+                  {
+                      "id":  1,
+                      "sum":  14,
+                      "cells":  [
+                                    [
+                                        0,
+                                        0
+                                    ],
+                                    [
+                                        1,
+                                        0
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  2,
+                      "sum":  14,
+                      "cells":  [
+                                    [
+                                        0,
+                                        1
+                                    ],
+                                    [
+                                        0,
+                                        2
+                                    ],
+                                    [
+                                        0,
+                                        3
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  3,
+                      "sum":  20,
+                      "cells":  [
+                                    [
+                                        0,
+                                        4
+                                    ],
+                                    [
+                                        1,
+                                        4
+                                    ],
+                                    [
+                                        1,
+                                        5
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  4,
+                      "sum":  14,
+                      "cells":  [
+                                    [
+                                        0,
+                                        5
+                                    ],
+                                    [
+                                        0,
+                                        6
+                                    ],
+                                    [
+                                        0,
+                                        7
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  5,
+                      "sum":  11,
+                      "cells":  [
+                                    [
+                                        0,
+                                        8
+                                    ],
+                                    [
+                                        1,
+                                        8
+                                    ],
+                                    [
+                                        2,
+                                        8
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  6,
+                      "sum":  20,
+                      "cells":  [
+                                    [
+                                        1,
+                                        7
+                                    ],
+                                    [
+                                        2,
+                                        7
+                                    ],
+                                    [
+                                        2,
+                                        6
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  7,
+                      "sum":  7,
+                      "cells":  [
+                                    [
+                                        1,
+                                        6
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  8,
+                      "sum":  9,
+                      "cells":  [
+                                    [
+                                        1,
+                                        3
+                                    ],
+                                    [
+                                        2,
+                                        3
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  9,
+                      "sum":  6,
+                      "cells":  [
+                                    [
+                                        1,
+                                        2
+                                    ],
+                                    [
+                                        2,
+                                        2
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  10,
+                      "sum":  22,
+                      "cells":  [
+                                    [
+                                        1,
+                                        1
+                                    ],
+                                    [
+                                        2,
+                                        1
+                                    ],
+                                    [
+                                        2,
+                                        0
+                                    ],
+                                    [
+                                        3,
+                                        1
+                                    ],
+                                    [
+                                        4,
+                                        1
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  11,
+                      "sum":  21,
+                      "cells":  [
+                                    [
+                                        2,
+                                        4
+                                    ],
+                                    [
+                                        2,
+                                        5
+                                    ],
+                                    [
+                                        3,
+                                        5
+                                    ],
+                                    [
+                                        3,
+                                        6
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  12,
+                      "sum":  7,
+                      "cells":  [
+                                    [
+                                        3,
+                                        8
+                                    ],
+                                    [
+                                        4,
+                                        8
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  13,
+                      "sum":  13,
+                      "cells":  [
+                                    [
+                                        3,
+                                        7
+                                    ],
+                                    [
+                                        4,
+                                        7
+                                    ],
+                                    [
+                                        5,
+                                        7
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  14,
+                      "sum":  7,
+                      "cells":  [
+                                    [
+                                        3,
+                                        4
+                                    ],
+                                    [
+                                        4,
+                                        4
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  15,
+                      "sum":  18,
+                      "cells":  [
+                                    [
+                                        3,
+                                        3
+                                    ],
+                                    [
+                                        3,
+                                        2
+                                    ],
+                                    [
+                                        4,
+                                        3
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  16,
+                      "sum":  17,
+                      "cells":  [
+                                    [
+                                        3,
+                                        0
+                                    ],
+                                    [
+                                        4,
+                                        0
+                                    ],
+                                    [
+                                        5,
+                                        0
+                                    ],
+                                    [
+                                        5,
+                                        1
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  17,
+                      "sum":  21,
+                      "cells":  [
+                                    [
+                                        4,
+                                        2
+                                    ],
+                                    [
+                                        5,
+                                        2
+                                    ],
+                                    [
+                                        6,
+                                        2
+                                    ],
+                                    [
+                                        7,
+                                        2
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  18,
+                      "sum":  9,
+                      "cells":  [
+                                    [
+                                        4,
+                                        5
+                                    ],
+                                    [
+                                        4,
+                                        6
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  19,
+                      "sum":  10,
+                      "cells":  [
+                                    [
+                                        5,
+                                        8
+                                    ],
+                                    [
+                                        6,
+                                        8
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  20,
+                      "sum":  10,
+                      "cells":  [
+                                    [
+                                        5,
+                                        6
+                                    ],
+                                    [
+                                        5,
+                                        5
+                                    ],
+                                    [
+                                        5,
+                                        4
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  21,
+                      "sum":  17,
+                      "cells":  [
+                                    [
+                                        5,
+                                        3
+                                    ],
+                                    [
+                                        6,
+                                        3
+                                    ],
+                                    [
+                                        7,
+                                        3
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  22,
+                      "sum":  16,
+                      "cells":  [
+                                    [
+                                        6,
+                                        0
+                                    ],
+                                    [
+                                        7,
+                                        0
+                                    ],
+                                    [
+                                        7,
+                                        1
+                                    ],
+                                    [
+                                        8,
+                                        1
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  23,
+                      "sum":  8,
+                      "cells":  [
+                                    [
+                                        6,
+                                        1
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  24,
+                      "sum":  20,
+                      "cells":  [
+                                    [
+                                        6,
+                                        4
+                                    ],
+                                    [
+                                        7,
+                                        4
+                                    ],
+                                    [
+                                        8,
+                                        4
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  25,
+                      "sum":  16,
+                      "cells":  [
+                                    [
+                                        6,
+                                        5
+                                    ],
+                                    [
+                                        6,
+                                        6
+                                    ],
+                                    [
+                                        6,
+                                        7
+                                    ],
+                                    [
+                                        7,
+                                        6
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  26,
+                      "sum":  21,
+                      "cells":  [
+                                    [
+                                        7,
+                                        8
+                                    ],
+                                    [
+                                        7,
+                                        7
+                                    ],
+                                    [
+                                        8,
+                                        7
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  27,
+                      "sum":  11,
+                      "cells":  [
+                                    [
+                                        7,
+                                        5
+                                    ],
+                                    [
+                                        8,
+                                        5
+                                    ],
+                                    [
+                                        8,
+                                        6
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  28,
+                      "sum":  9,
+                      "cells":  [
+                                    [
+                                        8,
+                                        0
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  29,
+                      "sum":  9,
+                      "cells":  [
+                                    [
+                                        8,
+                                        2
+                                    ],
+                                    [
+                                        8,
+                                        3
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  30,
+                      "sum":  8,
+                      "cells":  [
+                                    [
+                                        8,
+                                        8
+                                    ]
+                                ]
+                  }
+              ],
+    "solution":  [
+                     [
+                         8,
+                         4,
+                         9,
+                         1,
+                         3,
+                         7,
+                         5,
+                         2,
+                         6
+                     ],
+                     [
+                         6,
+                         2,
+                         5,
+                         4,
+                         8,
+                         9,
+                         7,
+                         3,
+                         1
+                     ],
+                     [
+                         3,
+                         7,
+                         1,
+                         5,
+                         2,
+                         6,
+                         8,
+                         9,
+                         4
+                     ],
+                     [
+                         2,
+                         1,
+                         3,
+                         7,
+                         6,
+                         4,
+                         9,
+                         8,
+                         5
+                     ],
+                     [
+                         5,
+                         9,
+                         7,
+                         8,
+                         1,
+                         3,
+                         6,
+                         4,
+                         2
+                     ],
+                     [
+                         4,
+                         6,
+                         8,
+                         9,
+                         5,
+                         2,
+                         3,
+                         1,
+                         7
+                     ],
+                     [
+                         7,
+                         8,
+                         4,
+                         2,
+                         9,
+                         5,
+                         1,
+                         6,
+                         3
+                     ],
+                     [
+                         1,
+                         3,
+                         2,
+                         6,
+                         7,
+                         8,
+                         4,
+                         5,
+                         9
+                     ],
+                     [
+                         9,
+                         5,
+                         6,
+                         3,
+                         4,
+                         1,
+                         2,
+                         7,
+                         8
+                     ]
+                 ],
+    "preDialog":  [
+                      {
+                          "speaker":  "旁白",
+                          "text":  "沈墨在黄昏时分走到东余杭路94号的后巷。第三根电线杆的砖缝里绷着一根细线，线的另一端系着一把旧铜钥匙。",
+                          "isNarration":  true
+                      },
+                      {
+                          "speaker":  "旁白",
+                          "text":  "他取出钥匙。钥匙柄上刻着一个数字——4。",
+                          "isNarration":  true
+                      },
+                      {
+                          "speaker":  "沈墨 CHIBI",
+                          "text":  "……这不是我的钥匙。但它能打开94号的门。他在告诉我，我应该从这里进去。",
+                          "side":  "left",
+                          "emotion":  "thinking",
+                          "effect":  0
+                      },
+                      {
+                          "speaker":  "老师（留声）",
+                          "text":  "嵌套笼——大笼套着小笼。拆外层才能看到内层，拆内层才能看到整道题的骨架。你看到的那把钥匙，就是打开第一层笼的工具。",
+                          "side":  "right",
+                          "emotion":  "calm",
+                          "effect":  0
+                      }
+                  ],
+    "clearDialog":  [
+                        {
+                            "speaker":  "旁白",
+                            "text":  "沈墨推开94号后门。门框内侧有一道短横刻痕——和他之前在藏书楼暗门外侧留下的标记方向一致。",
+                            "isNarration":  true
+                        },
+                        {
+                            "speaker":  "沈墨 CHIBI",
+                            "text":  "……有人在我之前到过这里。他来过，然后走了，但他在门框上留了一个记号——和我的标记一样。",
+                            "side":  "left",
+                            "emotion":  "thinking",
+                            "effect":  0
+                        },
+                        {
+                            "speaker":  "薇拉",
+                            "text":  "东余杭路94号是你母亲在上海的最后一处住所。你父亲来过这里，但他没有敲门。",
+                            "side":  "right",
+                            "emotion":  "calm",
+                            "effect":  0
+                        }
+                    ],
+    "mode":  "full",
+    "coreMove":  {
+                     "row":  8,
+                     "col":  3,
+                     "value":  6
+                 },
+    "totalSteps":  82,
+    "nakedSingleRatio":  0.744,
+    "techCount":  {
+                      "nakedSingle":  61,
+                      "hiddenSingle":  4,
+                      "rule45":  4,
+                      "cageUnique":  11,
+                      "nakedPair":  2
+                  },
+    "maxTechLevel":  5,
+    "threeAct":  {
+                     "opening":  [
+                                     [
+                                         0,
+                                         3
+                                     ],
+                                     [
+                                         0,
+                                         5
+                                     ],
+                                     [
+                                         0,
+                                         7
+                                     ],
+                                     [
+                                         1,
+                                         2
+                                     ],
+                                     [
+                                         1,
+                                         5
+                                     ],
+                                     [
+                                         1,
+                                         4
+                                     ],
+                                     [
+                                         1,
+                                         0
+                                     ],
+                                     [
+                                         0,
+                                         0
+                                     ],
+                                     [
+                                         0,
+                                         8
+                                     ],
+                                     [
+                                         1,
+                                         3
+                                     ],
+                                     [
+                                         1,
+                                         6
+                                     ],
+                                     [
+                                         1,
+                                         7
+                                     ],
+                                     [
+                                         2,
+                                         2
+                                     ],
+                                     [
+                                         2,
+                                         0
+                                     ],
+                                     [
+                                         2,
+                                         3
+                                     ],
+                                     [
+                                         2,
+                                         6
+                                     ],
+                                     [
+                                         2,
+                                         8
+                                     ],
+                                     [
+                                         3,
+                                         5
+                                     ],
+                                     [
+                                         3,
+                                         4
+                                     ],
+                                     [
+                                         3,
+                                         8
+                                     ],
+                                     [
+                                         4,
+                                         3
+                                     ],
+                                     [
+                                         4,
+                                         4
+                                     ],
+                                     [
+                                         4,
+                                         5
+                                     ],
+                                     [
+                                         4,
+                                         8
+                                     ],
+                                     [
+                                         5,
+                                         0
+                                     ],
+                                     [
+                                         5,
+                                         3
+                                     ],
+                                     [
+                                         5,
+                                         8
+                                     ],
+                                     [
+                                         6,
+                                         1
+                                     ],
+                                     [
+                                         6,
+                                         4
+                                     ],
+                                     [
+                                         6,
+                                         5
+                                     ],
+                                     [
+                                         7,
+                                         3
+                                     ],
+                                     [
+                                         7,
+                                         4
+                                     ],
+                                     [
+                                         8,
+                                         0
+                                     ],
+                                     [
+                                         8,
+                                         1
+                                     ],
+                                     [
+                                         8,
+                                         2
+                                     ],
+                                     [
+                                         8,
+                                         6
+                                     ],
+                                     [
+                                         8,
+                                         8
+                                     ]
+                                 ],
+                     "breakthrough":  [
+                                          [
+                                              4,
+                                              7
+                                          ],
+                                          [
+                                              5,
+                                              7
+                                          ],
+                                          [
+                                              6,
+                                              2
+                                          ],
+                                          [
+                                              7,
+                                              0
+                                          ],
+                                          [
+                                              7,
+                                              7
+                                          ],
+                                          [
+                                              7,
+                                              1
+                                          ],
+                                          [
+                                              8,
+                                              7
+                                          ]
+                                      ],
+                     "avalanche":  [
+                                       [
+                                           3,
+                                           6
+                                       ],
+                                       [
+                                           3,
+                                           1
+                                       ],
+                                       [
+                                           3,
+                                           7
+                                       ],
+                                       [
+                                           4,
+                                           1
+                                       ],
+                                       [
+                                           4,
+                                           2
+                                       ],
+                                       [
+                                           5,
+                                           2
+                                       ],
+                                       [
+                                           5,
+                                           5
+                                       ],
+                                       [
+                                           5,
+                                           6
+                                       ],
+                                       [
+                                           7,
+                                           6
+                                       ]
+                                   ]
+                 },
+    "difficultyLevel":  6,
+    "lessonPlan":  {
+                       "newSkill":  "nestedCage_501",
+                       "skillName":  "嵌套笼入门",
+                       "isFirstLesson":  true,
+                       "skippable":  true,
+                       "prerequisite":  [
+                                            "rule45",
+                                            "cageUnique",
+                                            "hiddenSingle"
+                                        ],
+                       "phases":  {
+                                      "intro":  {
+                                                    "text":  "嵌套笼——大笼套小笼。先找到最内层的那一格。它确定了，外面那一层才能继续拆。钥匙4，是进入94号的起点。",
+                                                    "speaker":  "老师（留声）",
+                                                    "duration":  3200
+                                                },
+                                      "demo":  {
+                                                   "steps":  [
+                                                                 {
+                                                                     "action":  "spotlightOn",
+                                                                     "target":  0.35,
+                                                                     "duration":  400
+                                                                 },
+                                                                 {
+                                                                     "action":  "highlightCage",
+                                                                     "target":  7,
+                                                                     "duration":  1500,
+                                                                     "text":  "先找最内层的笼——单格笼。它只有一格，笼子的和值就是这一格要填的数：和值 7，(1,6) 直接填 7。"
+                                                                 },
+                                                                 {
+                                                                     "action":  "focusCell",
+                                                                     "target":  [
+                                                                                    1,
+                                                                                    6
+                                                                                ],
+                                                                     "duration":  1300,
+                                                                     "text":  "最内层先定值，就像剥洋葱先剥到芯。"
+                                                                 },
+                                                                 {
+                                                                     "action":  "highlightCage",
+                                                                     "target":  9,
+                                                                     "duration":  1500,
+                                                                     "text":  "再看它外面这一层的两格笼，和值 6。笼里已经填了 5——大笼和减内层已知和，剩下的就是中间层格的值。"
+                                                                 },
+                                                                 {
+                                                                     "action":  "highlightCell",
+                                                                     "target":  [
+                                                                                    1,
+                                                                                    2
+                                                                                ],
+                                                                     "duration":  1000,
+                                                                     "text":  "这一格已填 5。"
+                                                                 },
+                                                                 {
+                                                                     "action":  "focusCell",
+                                                                     "target":  [
+                                                                                    2,
+                                                                                    2
+                                                                                ],
+                                                                     "duration":  1500,
+                                                                     "text":  "6 − 5 = 1，(2,2) 只能填 1！层层剥离，中间层的值就出来了。"
+                                                                 }
+                                                             ]
+                                               },
+                                      "guided":  {
+                                                     "targetCell":  [
+                                                                        2,
+                                                                        2
+                                                                    ],
+                                                     "correctValue":  1,
+                                                     "interactionType":  "NUMBER",
+                                                     "maxAttempts":  3,
+                                                     "autoRevealAfter":  3,
+                                                     "methodText":  "嵌套笼的推法：先找最内层（单格笼直接定值），再用「笼和 − 已知格和 = 剩余格值」逐层向外。",
+                                                     "hintText":  "轮到你了：和值 6 的两格笼里已填 5，剩下 (2,2) 试试看。",
+                                                     "failHint":  "再想想：这个笼和值是 6，里面已填 5，6 − 5 = 几？",
+                                                     "failConflictCell":  [
+                                                                              1,
+                                                                              2
+                                                                          ],
+                                                     "failVoiceId":  "CK_05",
+                                                     "successText":  "正确！你学会了大笼和减内层已知和——嵌套笼的核心推法。",
+                                                     "successVoiceId":  "J_03",
+                                                     "successNext":  [
+                                                                         {
+                                                                             "cell":  [
+                                                                                          4,
+                                                                                          3
+                                                                                      ],
+                                                                             "hintText":  "很好！再试一个：和值 18 的笼已填 7 和 3，剩这一格——填几？"
+                                                                         },
+                                                                         {
+                                                                             "cell":  [
+                                                                                          5,
+                                                                                          0
+                                                                                      ],
+                                                                             "hintText":  "再来！和值 17 的四格笼已填 2、5、6，最后一格填 4！"
+                                                                         }
+                                                                     ],
+                                                     "autoRevealText":  "直接填入数字 1。"
+                                                 },
+                                      "semiAuto":  {
+                                                       "enabled":  true,
+                                                       "targetCount":  2,
+                                                       "hintText":  "继续用笼和差值法，再找出两个格子。",
+                                                       "hintVoiceId":  "R_07",
+                                                       "watchCells":  [
+                                                                          [
+                                                                              6,
+                                                                              4
+                                                                          ],
+                                                                          [
+                                                                              0,
+                                                                              0
+                                                                          ]
+                                                                      ],
+                                                       "interactionType":  "NUMBER"
+                                                   },
+                                      "free":  {
+                                                   "enabled":  true,
+                                                   "unlockText":  "嵌套笼已入门——剩下的笼子，一层层剥开吧。"
+                                               }
+                                  }
+                   }
 }

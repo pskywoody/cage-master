@@ -16,6 +16,8 @@
 //   - 纯 ES Module 语法；无模块顶层 DOM 访问（Node import 不报错）。
 // ==========================================
 
+import I18n from '../i18n/i18n.js';
+
 export class DialogSystem {
   /**
    * @param {Object} options
@@ -582,7 +584,7 @@ export class DialogSystem {
         // 显示"跳过"反馈
         if (this._textEl) {
           const origText = this._textEl.textContent;
-          this._textEl.textContent = '⏭ 已跳过';
+          this._textEl.textContent = I18n.t('ui.dialog.skipped');
           setTimeout(() => {
             if (this._textEl) this._textEl.textContent = origText;
           }, 300);

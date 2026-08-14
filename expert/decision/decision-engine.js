@@ -211,7 +211,7 @@ export class DecisionEngine {
   _selectCharForEvent(event, profile) {
     try {
       if (event === 'FRUSTRATED' || event === 'STUCK') {
-        // 挫败/卡顿时用温和角色（守笼人），除非玩家偏好
+        // 挫败/卡顿时用温和角色（伊藤），除非玩家偏好
         return (profile && profile.preferredCharacter) || 'cagekeeper';
       }
       if (event === 'FLOW' || event === 'EUREKA') return 'ying';

@@ -6,23 +6,24 @@
 //
 //  设计原则：
 //    - 纯本地数据 + 纯函数，零外部依赖
-//    - 与 hint-system.js 既有三角色（阿妍/守笼人/莹莹）人格对齐
+//    - 与 hint-system.js 四角色（沈墨/薇拉/苏晚/伊藤）人格对齐
 //    - 模板带证据占位符；无证据时由调用方回退旧文案
 //
 //  用法：
 //    import { renderHint } from './character-templates.js';
-//    const msg = renderHint('cagekeeper', 'cageUnique', evidence);
+//    const msg = renderHint('shenmo', 'cageUnique', evidence);
 //
 // ============================================================
 
 export const CHARACTER_TEMPLATES = {
-  ayan: {
-    id: 'ayan',
-    name: '阿妍',
-    tone: '冷静·逻辑',
-    start: '让我看看…',
-    target: '这个格子，试试这个数字。',
-    fail: '推错了，重新看行列。',
+  // ---- 沈墨：沉稳内敛，老师口吻 ----
+  shenmo: {
+    id: 'shenmo',
+    name: '沈墨',
+    tone: '沉稳·克制',
+    start: '老师当年教过——先看盘面。',
+    target: '这一格，可以确定。',
+    fail: '不对，换个思路。',
     eureka: '推理正确。继续。',
     hint: {
       nakedSingle: '排除到最后，只剩 {num}。',
@@ -39,14 +40,15 @@ export const CHARACTER_TEMPLATES = {
     },
   },
 
-  cagekeeper: {
-    id: 'cagekeeper',
-    name: '守笼人',
-    tone: '庄重·直接',
-    start: '观察一下盘面。',
-    target: '这里可以确定。',
-    fail: '再看看，你漏了某个排除。',
-    eureka: '不错，正是这条路径。',
+  // ---- 薇拉：白俄女子，直率明快 ----
+  vera: {
+    id: 'vera',
+    name: '薇拉',
+    tone: '直率·明快',
+    start: '让我瞧瞧这盘面。',
+    target: '就填这个数。',
+    fail: '不对，再想想。',
+    eureka: '不错，正是这条路。',
     hint: {
       nakedSingle: '这一格，只剩下 {num} 一个可能。',
       hiddenSingle: '{num} 在这一行/列/宫里只有这一个位置。',
@@ -62,26 +64,51 @@ export const CHARACTER_TEMPLATES = {
     },
   },
 
-  ying: {
-    id: 'ying',
-    name: '莹莹',
-    tone: '活泼·鼓励',
-    start: '我来看看！',
-    target: '这个格子是这个数！',
-    fail: '哎呀不对，换一条路试试！',
-    eureka: '太棒了！你发现啦！',
+  // ---- 苏晚：温柔知性，循循善诱 ----
+  suwan: {
+    id: 'suwan',
+    name: '苏晚',
+    tone: '温柔·耐心',
+    start: '我们一起来看这盘面吧。',
+    target: '这一格，可以填这个数。',
+    fail: '再想想，换个角度试试。',
+    eureka: '很好，你找到了。',
     hint: {
-      nakedSingle: '哇！这一格只剩 {num} 啦！',
-      hiddenSingle: '快看，{num} 在这行/列/宫里只有一个位置！',
-      cageUnique: '笼和 {sum}，已经有 {placed}，加起来就是 {num} 哦！',
-      rule45: '45 法则！这一算就出来 {num} 啦！',
-      nakedPair: '有两个格子都只能放 {num1} 和 {num2}！',
-      hiddenPair: '嘘——{num1}/{num2} 偷偷藏在这两格里！',
-      pointingClaiming: '看！这个宫里的 {num} 都在这行/列里！',
-      nakedTriplet: '三兄弟 {num1}/{num2}/{num3} 占住了这三格！',
-      xWing: '二连纵横阵！{num} 被锁在两条线里了！',
-      swordfish: '三才游鱼阵！好厉害的结构！',
-      default: '试试看这一格能填什么？',
+      nakedSingle: '这一格的候选数，只剩 {num} 一个了。',
+      hiddenSingle: '{num} 在这一行/列/宫里，只有一个容身之处。',
+      cageUnique: '笼和 {sum}，已有 {placed}，剩下的是 {num}。',
+      rule45: '星衡法则——全宫之和为 45，差值就是 {num}。',
+      nakedPair: '{num1}/{num2} 在这两格互相锁定，其他位置可以排除。',
+      hiddenPair: '{num1}/{num2} 藏在候选之间，只在这两格出现。',
+      pointingClaiming: '这个宫里的 {num} 只在这一行/列，可以排除其他位置。',
+      nakedTriplet: '三格共享 {num1}/{num2}/{num3}，锁住后其他格排除。',
+      xWing: '二连纵横阵——两行两列，{num} 被锁定了。',
+      swordfish: '三才游鱼阵——三行三列，{num} 的轨迹已经成形。',
+      default: '我们试试用排除法看这一格。',
+    },
+  },
+
+  // ---- 伊藤：严肃冷静，精准简洁 ----
+  ito: {
+    id: 'ito',
+    name: '伊藤',
+    tone: '严肃·精准',
+    start: '观察。',
+    target: '此处可定。',
+    fail: '误判。重来。',
+    eureka: '确认。',
+    hint: {
+      nakedSingle: '此格候选已尽，唯余 {num}。',
+      hiddenSingle: '{num} 在此行/列/宫中仅此一格。',
+      cageUnique: '笼和 {sum}，已录 {placed}，未录为 {num}。',
+      rule45: '45 法则。宫和恒为 45，差值即 {num}。',
+      nakedPair: '{num1}/{num2} 锁定此二格，其余排除。',
+      hiddenPair: '{num1}/{num2} 隐于候选，只在此二格。',
+      pointingClaiming: '宫中 {num} 仅指向此行/列，其余可排除。',
+      nakedTriplet: '{num1}/{num2}/{num3} 互锁三格，其余排除。',
+      xWing: '二连纵横阵。两行两列，{num} 被索引锁定。',
+      swordfish: '三才游鱼阵。三行三列，{num} 路径已闭合。',
+      default: '核查此格，可提取一条推理线索。',
     },
   },
 };
@@ -175,7 +202,7 @@ export const ARC_IDS = Object.keys(ARC_TEMPLATES);
 
 /**
  * 用证据链渲染角色提示（纯函数，无副作用）
- * @param {string} charId - 角色 id（ayan/cagekeeper/ying，未知回退 ayan）
+ * @param {string} charId - 角色 id（shenmo/vera/suwan/ito，未知回退 shenmo）
  * @param {string} technique - 技巧 id（nakedSingle/cageUnique/...）
  * @param {Object} [evidence] - TechRater 证据链（cageSum/filledNums/pairValues/num...）
  * @param {Object} [ctx] - 补充上下文（num 顶层值、arc 叙事弧等）
@@ -190,7 +217,7 @@ export function renderHint(charId, technique, evidence, ctx) {
   if (arc && arc.hint && (arc.hint[technique] || arc.hint.default)) {
     tpl = arc.hint[technique] || arc.hint.default;
   } else {
-    const char = CHARACTER_TEMPLATES[charId] || CHARACTER_TEMPLATES.ayan;
+    const char = CHARACTER_TEMPLATES[charId] || CHARACTER_TEMPLATES.shenmo;
     tpl = (char.hint && (char.hint[technique] || char.hint.default)) || null;
   }
   if (!tpl) return '';
@@ -218,13 +245,13 @@ export function renderHint(charId, technique, evidence, ctx) {
 }
 
 /**
- * 获取角色基础文案（start/fail/eureka），未知角色回退 ayan
+ * 获取角色基础文案（start/fail/eureka），未知角色回退 shenmo
  * @param {string} charId
  * @param {string} key - start | target | fail | eureka
  * @returns {string}
  */
 export function renderBase(charId, key) {
-  const char = CHARACTER_TEMPLATES[charId] || CHARACTER_TEMPLATES.ayan;
+  const char = CHARACTER_TEMPLATES[charId] || CHARACTER_TEMPLATES.shenmo;
   return char[key] || '';
 }
 
@@ -234,6 +261,6 @@ export function renderBase(charId, key) {
  * @returns {string}
  */
 export function characterName(charId) {
-  const char = CHARACTER_TEMPLATES[charId] || CHARACTER_TEMPLATES.ayan;
-  return char.name || '守笼人';
+  const char = CHARACTER_TEMPLATES[charId] || CHARACTER_TEMPLATES.shenmo;
+  return char.name || '沈墨';
 }

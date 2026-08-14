@@ -1,0 +1,136 @@
+{
+  "generatedAt": "2026-08-10T19:36:22.720Z",
+  "config": {
+    "count": 3,
+    "seed": 20260810,
+    "weight": 30,
+    "elapsedSeconds": 53.5
+  },
+  "frozen": {
+    "lambda": 25,
+    "growthBias": 0.4,
+    "shapeDiversityWeight": 0.2,
+    "objective": "enabled",
+    "suppressSingletons": true,
+    "canonicalProfile": true
+  },
+  "variable": {
+    "exploredHeadWeight": [
+      0,
+      30
+    ]
+  },
+  "arms": {
+    "baseline": {
+      "levels": 3,
+      "totalCages": 66,
+      "Hcanonical": 1.776,
+      "canonicalFamilyCount": 8,
+      "top1FamilyShare": 0.333,
+      "top4FamilyShare": 0.8,
+      "top8FamilyShare": 1,
+      "headFamilyLockCount": 5,
+      "singletonRatio": 0.030303030303030304,
+      "complexShare": 0.3787878787878788,
+      "basinShare": {
+        "complex": 0.121,
+        "corner": 0.379,
+        "branch": 0.242,
+        "linear": 0.212,
+        "singleton": 0.03,
+        "rect": 0.015
+      },
+      "ratioMean": 0.30141385404543297,
+      "avgScore": 533.3,
+      "uniqueAll": true,
+      "sizeShare": {
+        "1": 0.030303030303030304,
+        "2": 0.12121212121212122,
+        "3": 0.30303030303030304,
+        "4": 0.22727272727272727,
+        "5": 0.3181818181818182
+      },
+      "winnerFamilyRank": {
+        "0,0|0,1|0,2|1,0|1,1": 3,
+        "0,0|0,1|0,2|1,1": 3,
+        "0,0|0,1|0,2": 3,
+        "0,0|0,1|1,0": 3,
+        "0,0|0,1": 3,
+        "0,0|0,1|0,2|1,1|2,1": 2,
+        "0,0|0,1|0,2|0,3|0,4": 1,
+        "0,0|0,1|0,2|0,3|1,1": 1
+      },
+      "pool": {
+        "uniqueFamiliesInPool": 10,
+        "uniqueFamilyCombosInPool": 17,
+        "headLockPool": 10,
+        "top1FamilyHitShare": 0.16,
+        "top4FamilyHitShare": 0.624,
+        "poolHfamilyMean": 1.621
+      },
+      "headSimRankChanges": 0,
+      "elapsed": 25.5
+    },
+    "B4-E1": {
+      "levels": 3,
+      "totalCages": 66,
+      "Hcanonical": 1.776,
+      "canonicalFamilyCount": 8,
+      "top1FamilyShare": 0.333,
+      "top4FamilyShare": 0.8,
+      "top8FamilyShare": 1,
+      "headFamilyLockCount": 5,
+      "singletonRatio": 0.030303030303030304,
+      "complexShare": 0.3787878787878788,
+      "basinShare": {
+        "complex": 0.121,
+        "corner": 0.379,
+        "branch": 0.242,
+        "linear": 0.212,
+        "singleton": 0.03,
+        "rect": 0.015
+      },
+      "ratioMean": 0.30141385404543297,
+      "avgScore": 533.3,
+      "uniqueAll": true,
+      "sizeShare": {
+        "1": 0.030303030303030304,
+        "2": 0.12121212121212122,
+        "3": 0.30303030303030304,
+        "4": 0.22727272727272727,
+        "5": 0.3181818181818182
+      },
+      "winnerFamilyRank": {
+        "0,0|0,1|0,2|1,0|1,1": 3,
+        "0,0|0,1|0,2|1,1": 3,
+        "0,0|0,1|0,2": 3,
+        "0,0|0,1|1,0": 3,
+        "0,0|0,1": 3,
+        "0,0|0,1|0,2|1,1|2,1": 2,
+        "0,0|0,1|0,2|0,3|0,4": 1,
+        "0,0|0,1|0,2|0,3|1,1": 1
+      },
+      "pool": {
+        "uniqueFamiliesInPool": 10,
+        "uniqueFamilyCombosInPool": 17,
+        "headLockPool": 10,
+        "top1FamilyHitShare": 0.16,
+        "top4FamilyHitShare": 0.624,
+        "poolHfamilyMean": 1.621
+      },
+      "headSimRankChanges": 0,
+      "elapsed": 28
+    }
+  },
+  "gates": {
+    "mechanism_engaged": false,
+    "score_stable": true,
+    "ratio_no_drift": true,
+    "complex_not_down": true,
+    "unique_all": true,
+    "headLockPool_down_ge2": false,
+    "poolHfamily_not_down": true
+  },
+  "b3Stable": true,
+  "verdict": "FAIL：headSimRankChanges=0 → explored-head similarity repulsion 未进入 selection 路径（候选与历史 winner 相似度无差异或信号恒定）。记录，不扫权重。"
+}

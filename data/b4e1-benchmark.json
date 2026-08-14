@@ -1,0 +1,140 @@
+{
+  "generatedAt": "2026-08-10T19:56:48.343Z",
+  "config": {
+    "count": 30,
+    "seed": 20260810,
+    "weight": 30,
+    "elapsedSeconds": 717.2
+  },
+  "frozen": {
+    "lambda": 25,
+    "growthBias": 0.4,
+    "shapeDiversityWeight": 0.2,
+    "objective": "enabled",
+    "suppressSingletons": true,
+    "canonicalProfile": true
+  },
+  "variable": {
+    "exploredHeadWeight": [
+      0,
+      30
+    ]
+  },
+  "arms": {
+    "baseline": {
+      "levels": 30,
+      "totalCages": 655,
+      "Hcanonical": 2.002,
+      "canonicalFamilyCount": 10,
+      "top1FamilyShare": 0.221,
+      "top4FamilyShare": 0.763,
+      "top8FamilyShare": 0.95,
+      "headFamilyLockCount": 4,
+      "singletonRatio": 0.03358778625954199,
+      "complexShare": 0.3526717557251908,
+      "basinShare": {
+        "complex": 0.09,
+        "corner": 0.284,
+        "branch": 0.263,
+        "linear": 0.269,
+        "singleton": 0.034,
+        "rect": 0.061
+      },
+      "ratioMean": 0.22494142519233915,
+      "avgScore": 531.7,
+      "uniqueAll": true,
+      "sizeShare": {
+        "1": 0.03358778625954199,
+        "2": 0.13435114503816795,
+        "3": 0.24580152671755726,
+        "4": 0.26106870229007634,
+        "5": 0.3251908396946565
+      },
+      "winnerFamilyRank": {
+        "0,0|0,1|0,2|1,0|1,1": 30,
+        "0,0|0,1|1,0": 30,
+        "0,0|0,1": 30,
+        "0,0|0,1|0,2": 27,
+        "0,0|0,1|0,2|1,1": 16,
+        "0,0|0,1|0,2|0,3|1,1": 16,
+        "0,0|0,1|0,2|0,3": 15,
+        "0,0|0,1|0,2|1,1|2,1": 13,
+        "0,0|0,1|1,1|1,2|2,1": 13,
+        "0,0|0,1|0,2|0,3|0,4": 5
+      },
+      "pool": {
+        "uniqueFamiliesInPool": 10,
+        "uniqueFamilyCombosInPool": 62,
+        "headLockPool": 9,
+        "top1FamilyHitShare": 0.156,
+        "top4FamilyHitShare": 0.605,
+        "poolHfamilyMean": 1.619
+      },
+      "headSimRankChanges": 0,
+      "elapsed": 363.1
+    },
+    "B4-E1": {
+      "levels": 30,
+      "totalCages": 650,
+      "Hcanonical": 2.002,
+      "canonicalFamilyCount": 10,
+      "top1FamilyShare": 0.211,
+      "top4FamilyShare": 0.763,
+      "top8FamilyShare": 0.949,
+      "headFamilyLockCount": 4,
+      "singletonRatio": 0.03076923076923077,
+      "complexShare": 0.36,
+      "basinShare": {
+        "complex": 0.091,
+        "corner": 0.286,
+        "branch": 0.268,
+        "linear": 0.262,
+        "singleton": 0.031,
+        "rect": 0.063
+      },
+      "ratioMean": 0.22274358666505983,
+      "avgScore": 530.8,
+      "uniqueAll": true,
+      "sizeShare": {
+        "1": 0.03076923076923077,
+        "2": 0.13538461538461538,
+        "3": 0.2323076923076923,
+        "4": 0.2676923076923077,
+        "5": 0.33384615384615385
+      },
+      "winnerFamilyRank": {
+        "0,0|0,1|0,2|1,0|1,1": 30,
+        "0,0|0,1|1,0": 30,
+        "0,0|0,1": 30,
+        "0,0|0,1|0,2": 27,
+        "0,0|0,1|0,2|0,3|1,1": 16,
+        "0,0|0,1|0,2|1,1|2,1": 14,
+        "0,0|0,1|0,2|1,1": 14,
+        "0,0|0,1|1,1|1,2|2,1": 13,
+        "0,0|0,1|0,2|0,3": 13,
+        "0,0|0,1|0,2|0,3|0,4": 5
+      },
+      "pool": {
+        "uniqueFamiliesInPool": 10,
+        "uniqueFamilyCombosInPool": 63,
+        "headLockPool": 9,
+        "top1FamilyHitShare": 0.156,
+        "top4FamilyHitShare": 0.605,
+        "poolHfamilyMean": 1.615
+      },
+      "headSimRankChanges": 2,
+      "elapsed": 354.1
+    }
+  },
+  "gates": {
+    "mechanism_engaged": true,
+    "score_stable": true,
+    "ratio_no_drift": true,
+    "complex_not_down": true,
+    "unique_all": true,
+    "headLockPool_down_ge2": false,
+    "poolHfamily_not_down": false
+  },
+  "b3Stable": true,
+  "verdict": "FAIL（关键负结果）：headLockPool 未下降（9→9）但 repulsion 确实进入 selection（flips=2）→ 候选池无足够「非 head 替代」可被 repulsion 选中 → objective landscape 非根因，根因在 generation/search（候选 availability）。"
+}

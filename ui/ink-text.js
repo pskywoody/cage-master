@@ -2,63 +2,64 @@
 // ink-text.js - 涂黑文字叙事系统（13处手稿）
 // ==========================================
 // 负责：
-//   - 13 句设局人手稿的定义与解锁
-//   - 按周目/章节完成触发解锁
-//   - 笔迹视觉效果（设局人/守笼人/双笔迹/第三色/铅笔擦痕）
+//   - 13 句沈墨/老师/伊藤手稿的定义与解锁
+//   - 按章节完成触发解锁（单周目：新剧本《笼局·三岔口》）
+//   - 笔迹视觉效果（老师/伊藤/双笔迹/第三色/铅笔擦痕）
 //   - 渲染墨迹留言页面
 // ==========================================
 
 'use strict';
 
 import { DataStore } from '../core/data-store.js';
+import I18n from '../i18n/i18n.js';
 
 const CATEGORY = DataStore.INK_TEXT || 'ink_text';
 
 const SENTENCES = [
   {
     id: 1, text: '这本书不是写给所有人看的。',
-    speaker: 'shejuren', appearance: 'pen_clear',
+    speaker: 'teacher', appearance: 'pen_clear',
     trigger: { cycle: 1, chapter: 1 },
-    cssClass: 'ink-shejuren', color: '#1a3a5c', weight: 600,
-    desc: '设局人 · 笔迹清晰'
+    cssClass: 'ink-teacher', color: '#1a3a5c', weight: 600,
+    desc: '老师 · 笔迹清晰'
   },
   {
-    id: 2, text: '设局人从未离开过这个房间。',
-    speaker: 'shejuren', appearance: 'ink_bleed',
+    id: 2, text: '父亲从未离开过这座藏书楼。',
+    speaker: 'teacher', appearance: 'ink_bleed',
     trigger: { cycle: 1, chapter: 2 },
-    cssClass: 'ink-shejuren ink-bleed', color: '#1a3a5c', weight: 600,
-    desc: '设局人 · 开始渗墨'
+    cssClass: 'ink-teacher ink-bleed', color: '#1a3a5c', weight: 600,
+    desc: '老师 · 开始渗墨'
   },
   {
-    id: 3, text: '设局人把自己关起来，不是为了写书，是为了藏一样东西。',
-    speaker: 'shejuren', appearance: 'chaotic',
+    id: 3, text: '父亲把自己关起来，不是为了写书，是为了藏一样东西。',
+    speaker: 'teacher', appearance: 'chaotic',
     trigger: { cycle: 1, chapter: 3 },
-    cssClass: 'ink-shejuren ink-chaotic', color: '#1a3a5c', weight: 600,
-    desc: '设局人 · 字迹变乱'
+    cssClass: 'ink-teacher ink-chaotic', color: '#1a3a5c', weight: 600,
+    desc: '老师 · 字迹变乱'
   },
   {
-    id: 4, text: '守笼人是第一个读到这些的人，也是唯一一个。',
-    speaker: 'shoulongren', appearance: 'annotate',
+    id: 4, text: '伊藤是第一个读懂这些痕迹的人，也是唯一一个。',
+    speaker: 'ito', appearance: 'annotate',
     trigger: { cycle: 1, chapter: 4 },
-    cssClass: 'ink-shoulongren', color: '#8b4513', weight: 400, skew: 2,
-    desc: '守笼人 · 批注开始'
+    cssClass: 'ink-ito', color: '#8b4513', weight: 400, skew: 2,
+    desc: '伊藤 · 批注开始'
   },
   {
     id: 5, text: '他们之间的关系，比你想象的更近。',
-    speaker: 'shoulongren', appearance: 'emotional',
+    speaker: 'ito', appearance: 'emotional',
     trigger: { cycle: 1, chapter: 5 },
-    cssClass: 'ink-shoulongren ink-emotional', color: '#8b4513', weight: 400, skew: 2,
-    desc: '守笼人 · 情绪化'
+    cssClass: 'ink-ito ink-emotional', color: '#8b4513', weight: 400, skew: 2,
+    desc: '伊藤 · 情绪化'
   },
   {
-    id: 6, text: '设局人消失的那一天，守笼人开始批注。',
-    speaker: 'shoulongren', appearance: 'murmur',
+    id: 6, text: '父亲离开的那一天，伊藤开始留下竖线。',
+    speaker: 'ito', appearance: 'murmur',
     trigger: { cycle: 1, chapter: 6 },
-    cssClass: 'ink-shoulongren ink-murmur', color: '#8b4513', weight: 400, skew: 2,
-    desc: '守笼人 · 自言自语'
+    cssClass: 'ink-ito ink-murmur', color: '#8b4513', weight: 400, skew: 2,
+    desc: '伊藤 · 自言自语'
   },
   {
-    id: 7, text: '设局人和守笼人，其实是同一个人。',
+    id: 7, text: '你留了短横，我留了竖线——三代人，三种刻法。',
     speaker: 'double', appearance: 'intertwine',
     trigger: { cycle: 1, chapter: 7 },
     cssClass: 'ink-double', color: '#1a3a5c', weight: 600,
@@ -67,33 +68,33 @@ const SENTENCES = [
   {
     id: 8, text: '你读完了。但你没有读完。',
     speaker: 'fading', appearance: 'vanish',
-    trigger: { cycle: 1, chapter: 8 },
+    trigger: { cycle: 1, chapter: 7 },
     cssClass: 'ink-fading', color: '#1a3a5c', weight: 400,
     desc: '笔迹消失'
   },
   {
-    id: 9, text: '设局人没有消失。他换了一种方式继续写。',
-    speaker: 'shejuren', appearance: 'ink_heavy',
-    trigger: { cycle: 2, chapter: 1 },
-    cssClass: 'ink-shejuren ink-bleed ink-bleed-heavy', color: '#1a3a5c', weight: 600,
-    desc: '设局人 · 渗墨加重'
+    id: 9, text: '父亲没有消失。他换了一种方式继续写。',
+    speaker: 'teacher', appearance: 'ink_heavy',
+    trigger: { cycle: 1, chapter: 2 },
+    cssClass: 'ink-teacher ink-bleed ink-bleed-heavy', color: '#1a3a5c', weight: 600,
+    desc: '老师 · 渗墨加重'
   },
   {
-    id: 10, text: '守笼人批注的每一个字，都是设局人想对自己说的话。',
-    speaker: 'shoulongren', appearance: 'pen_deep',
-    trigger: { cycle: 2, chapter: 4 },
-    cssClass: 'ink-shoulongren ink-deep', color: '#6b3010', weight: 700, skew: 2,
-    desc: '守笼人 · 笔迹加深'
+    id: 10, text: '伊藤留下的每一条竖线，都是父亲想对自己说的话。',
+    speaker: 'ito', appearance: 'pen_deep',
+    trigger: { cycle: 1, chapter: 4 },
+    cssClass: 'ink-ito ink-deep', color: '#6b3010', weight: 700, skew: 2,
+    desc: '伊藤 · 笔迹加深'
   },
   {
-    id: 11, text: '这本书有两个作者，但只有一个读者。',
+    id: 11, text: '这条路上有三代人，但只有一个人走完了全程。',
     speaker: 'double', appearance: 'merge',
-    trigger: { cycle: 2, chapter: 8 },
+    trigger: { cycle: 1, chapter: 7 },
     cssClass: 'ink-double ink-merge', color: '#1a3a5c', weight: 600,
     desc: '双笔迹重合'
   },
   {
-    id: 12, text: '你是第13位读者。',
+    id: 12, text: '你是最后一个读者。',
     speaker: 'third', appearance: 'warm_gray',
     trigger: { cycle: 3, chapter: 0 }, // 三周目进入游戏时触发
     cssClass: 'ink-third', color: '#4a3a2a', weight: 300,
@@ -279,20 +280,20 @@ const InkText = {
 
     const label = document.createElement('div');
     label.className = 'ink-reveal-label';
-    label.textContent = sentence.desc;
+    label.textContent = I18n.t('ui.inkText.desc.' + sentence.id);
 
     const text = document.createElement('div');
     text.className = 'ink-reveal-text';
     // 对需要逐字渲染的，使用 _renderChars
     if (sentence.appearance === 'chaotic' || sentence.appearance === 'intertwine' || sentence.appearance === 'merge') {
-      text.innerHTML = _renderChars(sentence.text, sentence);
+      text.innerHTML = _renderChars(I18n.t('ui.inkText.sentence.' + sentence.id), sentence);
     } else {
-      text.textContent = sentence.text;
+      text.textContent = I18n.t('ui.inkText.sentence.' + sentence.id);
     }
 
     const hint = document.createElement('div');
     hint.className = 'ink-reveal-hint';
-    hint.textContent = '— 涂黑文字已解锁，查看墨迹留言页 —';
+    hint.textContent = I18n.t('ui.inkText.revealHint');
 
     inner.appendChild(label);
     inner.appendChild(text);
@@ -320,10 +321,11 @@ const InkText = {
  */
 function _renderText(s) {
   const cls = s.cssClass || '';
+  const t = I18n.t('ui.inkText.sentence.' + s.id);
   if (s.appearance === 'chaotic' || s.appearance === 'intertwine' || s.appearance === 'merge') {
-    return _renderChars(s.text, s);
+    return _renderChars(t, s);
   }
-  return '<span class="ink-text-inner">' + _escapeHtml(s.text) + '</span>';
+  return '<span class="ink-text-inner">' + _escapeHtml(t) + '</span>';
 }
 
 /**

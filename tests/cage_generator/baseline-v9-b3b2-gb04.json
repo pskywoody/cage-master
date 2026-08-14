@@ -1,0 +1,24 @@
+{
+  "generatedAt": "2026-08-10T06:20:00.000Z",
+  "config": {
+    "count": 20,
+    "seed": 20260810,
+    "collected": 8,
+    "objective": { "enabled": true, "ratioWeight": 0, "topologyWeight": 25 },
+    "suppressSingletons": true,
+    "growthBias": 0.4,
+    "topologyScoreVersion": 1
+  },
+  "baseline": {
+    "levels": 20,
+    "entropyH": 2.707,
+    "singletonRatio": 0.035,
+    "top4Share": 0.492,
+    "complexShare": 0.399,
+    "ratioMean": 0.218,
+    "avgScore": 518.8,
+    "uniqueAll": true
+  },
+  "note": "B3-B2 冻结基线 = B3-B1a(suppress=true) + λ=25 + growthBias=0.4（topology score v1）。Gate B(top4<50%) 已达成。",
+  "verdict": "growthBias=0.4 是 v1 评分下的甜点。B3-B3 在此基线上只升级 topology score v1→v2，gb 保持 0.4。"
+}

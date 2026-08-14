@@ -212,7 +212,7 @@ document.getElementById('btnReset').addEventListener('click', () => { pause(); s
     const cellPx = 480 / state.size;
     canvas.width = 480;
     canvas.height = state.size * cellPx;
-    const bossName = { yingying: '莹莹', yan: '阿妍', cagekeeper: '守笼人', shenmo: '沈墨' }[parsed.bossId] || parsed.bossId;
+    const bossName = { yingying: '薇拉', yan: '山田', cagekeeper: '伊藤', shenmo: '沈墨' }[parsed.bossId] || parsed.bossId;
     document.getElementById('meta').textContent = '第 ' + parsed.levelId + ' 关 vs ' + bossName + ' · 共 ' + parsed.moves.length + ' 步';
     stepTo(0);
   } catch (e) {

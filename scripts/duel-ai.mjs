@@ -222,6 +222,12 @@ async function playOnce(withIntercept) {
         s.ying.fallback++;
         trace.push({ step: stepN, side: 'ying', action: 'think_null', reason });
       }
+      // 笔记步骤防崩：莹莹写笔记（不落盘）时交回回合，不访问 step.row
+      if (step.isNote || step.type === 'note') {
+        s.ying.notes = (s.ying.notes || 0) + 1;
+        trace.push({ step: stepN, side: 'ying', action: 'note', r: step.r, c: step.c, fake: !!step.isFake });
+        turn = 1; continue;
+      }
       // 蓄力窗口：莹莹 think 是否选中蓄力格（盲区3）
       if (siegeActive && siegeCell) {
         if (step.row === siegeCell.r && step.col === siegeCell.c) {
@@ -285,6 +291,15 @@ async function playOnce(withIntercept) {
         step = { row: t.r, col: t.c, num: Math.random() < 0.98 ? correct : wrongNum(board.size, correct), techniqueName: '降级' };
         s.ayan.fallback++;
         trace.push({ step: stepN, side: 'ayan', action: 'think_null', reason });
+      }
+      // 笔记步骤防崩：AI 写笔记（不落盘）时交回回合，不访问 step.row
+      if (step.isNote || step.type === 'note') {
+        s.ayan.notes = (s.ayan.notes || 0) + 1;
+        trace.push({ step: stepN, side: 'ayan', action: 'note', r: step.r, c: step.c, fake: !!step.isFake });
+        bm._aiPlayer.syncFromBoard(board);
+        ying.syncFromBoard(board);
+        turn ^= 1;
+        continue;
       }
       const wasPlayer = bm.playerOwned[step.row][step.col];
       const applied = bm._applyAiMove(step);

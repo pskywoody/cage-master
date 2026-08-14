@@ -1,0 +1,285 @@
+{
+  "generatedAt": "2026-08-10T20:26:59.327Z",
+  "config": {
+    "count": 30,
+    "seed": 20260810,
+    "elapsedSeconds": 380.8
+  },
+  "frozen": {
+    "lambda": 25,
+    "growthBias": 0.4,
+    "shapeDiversityWeight": 0.2,
+    "objective": "enabled",
+    "suppressSingletons": true
+  },
+  "overall": {
+    "totalCages": 655,
+    "headCount": 443,
+    "nonHeadCount": 212,
+    "headRatio": 0.676,
+    "nonHeadRatio": 0.324
+  },
+  "sizeBuckets": {
+    "1": {
+      "count": 22,
+      "headCount": 0,
+      "nonHeadCount": 22,
+      "headRatio": 0,
+      "nonHeadRatio": 1,
+      "archetypeShare": {
+        "singleton": 1
+      },
+      "pHeadGivenSize": 0,
+      "pNonHeadGivenSize": 1
+    },
+    "2": {
+      "count": 88,
+      "headCount": 88,
+      "nonHeadCount": 0,
+      "headRatio": 1,
+      "nonHeadRatio": 0,
+      "archetypeShare": {
+        "domino": 1
+      },
+      "pHeadGivenSize": 1,
+      "pNonHeadGivenSize": 0
+    },
+    "3": {
+      "count": 161,
+      "headCount": 161,
+      "nonHeadCount": 0,
+      "headRatio": 1,
+      "nonHeadRatio": 0,
+      "archetypeShare": {
+        "L": 0.609,
+        "straight": 0.391
+      },
+      "pHeadGivenSize": 1,
+      "pNonHeadGivenSize": 0
+    },
+    "4": {
+      "count": 171,
+      "headCount": 45,
+      "nonHeadCount": 126,
+      "headRatio": 0.263,
+      "nonHeadRatio": 0.737,
+      "archetypeShare": {
+        "hook": 0.374,
+        "rect": 0.234,
+        "T": 0.146,
+        "zigzag": 0.129,
+        "straight": 0.117
+      },
+      "pHeadGivenSize": 0.263,
+      "pNonHeadGivenSize": 0.737
+    },
+    "5": {
+      "count": 213,
+      "headCount": 149,
+      "nonHeadCount": 64,
+      "headRatio": 0.7,
+      "nonHeadRatio": 0.3,
+      "archetypeShare": {
+        "T": 0.676,
+        "zigzag": 0.174,
+        "hook": 0.113,
+        "straight": 0.023,
+        "cross": 0.014
+      },
+      "pHeadGivenSize": 0.7,
+      "pNonHeadGivenSize": 0.3
+    }
+  },
+  "groupedBuckets": {
+    "2": {
+      "count": 88,
+      "headCount": 88,
+      "nonHeadCount": 0,
+      "headRatio": 1,
+      "nonHeadRatio": 0,
+      "archetypeShare": {
+        "domino": 1
+      },
+      "pHeadGivenSize": 1,
+      "pNonHeadGivenSize": 0
+    },
+    "3": {
+      "count": 161,
+      "headCount": 161,
+      "nonHeadCount": 0,
+      "headRatio": 1,
+      "nonHeadRatio": 0,
+      "archetypeShare": {
+        "L": 0.609,
+        "straight": 0.391
+      },
+      "pHeadGivenSize": 1,
+      "pNonHeadGivenSize": 0
+    },
+    ">=4": {
+      "count": 384,
+      "headCount": 194,
+      "nonHeadCount": 190,
+      "headRatio": 0.505,
+      "nonHeadRatio": 0.495,
+      "archetypeShare": {
+        "T": 0.44,
+        "hook": 0.229,
+        "zigzag": 0.154,
+        "rect": 0.104,
+        "straight": 0.065,
+        "cross": 0.008
+      },
+      "pHeadGivenSize": 0.505,
+      "pNonHeadGivenSize": 0.495
+    }
+  },
+  "headSource": {
+    "2": 0.199,
+    "3": 0.363,
+    ">=4": 0.438
+  },
+  "nonHeadSource": {
+    "2": 0,
+    "3": 0,
+    ">=4": 0.896
+  },
+  "shapeFamily": [
+    {
+      "family": "0,0|0,1|1,0",
+      "count": 98,
+      "sizeHist": {
+        "3": 98
+      },
+      "sharedOfHead": 0.221
+    },
+    {
+      "family": "0,0|0,1|0,2|1,0|1,1",
+      "count": 89,
+      "sizeHist": {
+        "5": 89
+      },
+      "sharedOfHead": 0.201
+    },
+    {
+      "family": "0,0|0,1",
+      "count": 88,
+      "sizeHist": {
+        "2": 88
+      },
+      "sharedOfHead": 0.199
+    },
+    {
+      "family": "0,0|0,1|0,2",
+      "count": 63,
+      "sizeHist": {
+        "3": 63
+      },
+      "sharedOfHead": 0.142
+    },
+    {
+      "family": "0,0|0,1|0,2|1,1",
+      "count": 25,
+      "sizeHist": {
+        "4": 25
+      },
+      "sharedOfHead": 0.056
+    },
+    {
+      "family": "0,0|0,1|0,2|0,3|1,1",
+      "count": 20,
+      "sizeHist": {
+        "5": 20
+      },
+      "sharedOfHead": 0.045
+    },
+    {
+      "family": "0,0|0,1|0,2|0,3",
+      "count": 20,
+      "sizeHist": {
+        "4": 20
+      },
+      "sharedOfHead": 0.045
+    },
+    {
+      "family": "0,0|0,1|1,1|1,2|2,1",
+      "count": 18,
+      "sizeHist": {
+        "5": 18
+      },
+      "sharedOfHead": 0.041
+    },
+    {
+      "family": "0,0|0,1|0,2|1,1|2,1",
+      "count": 17,
+      "sizeHist": {
+        "5": 17
+      },
+      "sharedOfHead": 0.038
+    },
+    {
+      "family": "0,0|0,1|0,2|0,3|0,4",
+      "count": 5,
+      "sizeHist": {
+        "5": 5
+      },
+      "sharedOfHead": 0.011
+    }
+  ],
+  "archetypeAnalysis": [
+    {
+      "archetype": "T",
+      "count": 169,
+      "share": 0.258,
+      "head": true
+    },
+    {
+      "archetype": "L",
+      "count": 98,
+      "share": 0.15,
+      "head": true
+    },
+    {
+      "archetype": "hook",
+      "count": 88,
+      "share": 0.134,
+      "head": false
+    },
+    {
+      "archetype": "straight",
+      "count": 88,
+      "share": 0.134,
+      "head": true
+    },
+    {
+      "archetype": "domino",
+      "count": 88,
+      "share": 0.134,
+      "head": true
+    },
+    {
+      "archetype": "zigzag",
+      "count": 59,
+      "share": 0.09,
+      "head": false
+    },
+    {
+      "archetype": "rect",
+      "count": 40,
+      "share": 0.061,
+      "head": false
+    },
+    {
+      "archetype": "singleton",
+      "count": 22,
+      "share": 0.034,
+      "head": false
+    },
+    {
+      "archetype": "cross",
+      "count": 3,
+      "share": 0.005,
+      "head": false
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "lock": "B3-FINAL",
+  "frozen": true,
+  "params": {
+    "gb": 0.4,
+    "lambda": 25,
+    "W": 0.2,
+    "objective": true,
+    "ratioWeight": 100,
+    "maxCollected": 8
+  },
+  "immutable": true,
+  "note": "生产参数已锁定。禁止修改 gb/λ/W/objective/fitness，除非进入 B4。"
+}

@@ -1,0 +1,28 @@
+{
+  "branch": "B4",
+  "code": "B4-C",
+  "name": "Birth Distribution Redesign",
+  "status": "todo",
+  "priority": 3,
+  "hypothesis": "生成器 natural distribution 不等于理想产品分布。把 birth → selection → final 改为 desired distribution → inverse sampling → birth，从目标难度/拓扑分布反推生成。",
+  "frozen": {
+    "lambda": 25,
+    "ranking": "unchanged",
+    "objective": "unchanged",
+    "acceptance": "unchanged"
+  },
+  "variable": {
+    "inverseSampling": {
+      "enabled": false,
+      "targetDifficulty": {
+        "1": 5, "2": 9, "3": 14, "4": 6, "5": 2
+      }
+    }
+  },
+  "acceptance": {
+    "difficultyCurve": "接近产品分布",
+    "top4Share": "not worse",
+    "entropy": ">= 2.60",
+    "uniqueAll": true
+  }
+}

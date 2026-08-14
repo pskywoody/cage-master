@@ -29,12 +29,14 @@ const TechRater = (typeof globalThis.TechRater !== 'undefined') ? globalThis.Tec
 import { renderHint } from './expression/character-templates.js';
 
 // ========================================================
-//  角色定义
+//  角色定义（2026-08-13：新剧本角色替换旧角色）
+//  沈墨教基础 / 薇拉教组合 / 苏晚教45法则与高级 / 伊藤教进阶
 // ========================================================
 const HINT_CHARACTERS = [
-  { id: 'ayan', name: '阿妍', weight: 0.6 },
-  { id: 'cagekeeper', name: '守笼人', weight: 0.3 },
-  { id: 'ying', name: '莹莹', weight: 0.1 },
+  { id: 'shenmo', name: '沈墨', weight: 0.4 },
+  { id: 'vera', name: '薇拉', weight: 0.3 },
+  { id: 'suwan', name: '苏晚', weight: 0.2 },
+  { id: 'ito', name: '伊藤', weight: 0.1 },
 ];
 
 // ========================================================
@@ -78,22 +80,22 @@ const TECHNIQUE_PRIORITY = [
 ];
 
 // ========================================================
-//  角色对话（基础 + 技巧专属
+//  角色对话（基础 + 技巧专属）
+//  2026-08-13：新剧本角色——沈墨/薇拉/苏晚/伊藤
 // ========================================================
 const HINT_DIALOGUES = {
-  ayan: {
-    // 基础对话（向后兼容）
-    start: '让我看看...',
-    target: '这个格子，试试这个数字。',
+  // ---- 沈墨：沉稳内敛，老师口吻，教基础 ----
+  shenmo: {
+    start: '老师当年教过——先看盘面。',
+    target: '这一格，可以确定。',
     wrong: '不对，换个思路。',
-    encouragement: '继续，你能行的。',
+    encouragement: '沉住气，答案就在眼前。',
 
-    // 技巧专属对话
     techniques: {
       nakedSingle: [
-        '这一格的候选数已经被排除得只剩一个了。',
+        '这一格的候选数被排除得只剩一个了。',
         '候选数只剩一个，答案就在眼前。',
-        '排除法到了极致——唯一剩下的数字就是答案。',
+        '排除法做到极致，剩下的就是答案。',
         '看看这一格的笔记，只剩一种可能。',
         '所有排除都指向同一个数字。',
       ],
@@ -136,7 +138,6 @@ const HINT_DIALOGUES = {
         '某宫中的某个数字被限制在同一行或列。',
         '区块排除——一个数字的位置指向了更大的范围。',
         '这个数字在这一宫里只能出现在这一行。',
-        '指对数对：从宫看向行/列，排除就在眼前。',
         '锁定区块，就能排除其他宫的可能。',
       ],
       nakedTriplet: [
@@ -160,31 +161,29 @@ const HINT_DIALOGUES = {
     },
   },
 
-  cagekeeper: {
-    // 基础对话（向后兼容）
-    start: '观察一下盘面。',
-    target: '这里可以确定。',
-    wrong: '再想想。',
-    encouragement: '基础要打牢。',
+  // ---- 薇拉：白俄女子，直率明快，教组合技巧 ----
+  vera: {
+    start: '让我瞧瞧这盘面。',
+    target: '就填这个数。',
+    wrong: '不对，再想想。',
+    encouragement: '别急，你能行的。',
 
-    // 技巧专属对话
     techniques: {
       nakedSingle: [
-        '这一格，只剩一个可能了。',
-        '基础的排除法，做到极致便是裸单。',
-        '候选数逐一排除，最后剩下的就是答案。',
-        '把笔记做扎实，裸单自然会出现。',
-        '这是最基础也最可靠的技巧。',
+        '这格只剩一个候选了，就是它。',
+        '排除干净了，答案自己就出来了。',
+        '笔记做扎实，裸单自然浮现。',
+        '这一格，没有别的可能了。',
       ],
       cageUnique: [
-        '笼子是有生命的，它的和值在诉说。',
-        '看看这个笼子还需要多少，思路就清晰了。',
-        '笼和约束是杀手数独的根基。',
-        '先算和，再排除，笼子会指引你。',
-        '每一个笼子都是一道小算术题。',
+        '笼子的和值，可是藏着大秘密。',
+        '算算笼子还差多少，范围一下就小了。',
+        '笼和约束——剩下的组合就那几种。',
+        '和值是笼子的语言，听懂它事半功倍。',
+        '用笼和反推，候选数刷刷地减少。',
       ],
       hiddenSingle: [
-        '某一行里，有个数字被藏起来了。',
+        '这一行里，有个数字被藏起来了。',
         '隐单——看起来复杂，其实只有一种可能。',
         '换个角度看，这一列里某个数字别无去处。',
         '不要只盯着单个格子，要看数字的位置。',
@@ -214,7 +213,7 @@ const HINT_DIALOGUES = {
         '区块排除是进阶的敲门砖。',
         '一个数字在宫内被限制在同一行。',
         '从宫中看向行，答案在排除之外。',
-        '指对数对：锁定区块，排除其他。',
+        '锁定区块，排除其他。',
         '这是从局部到整体的思维跳跃。',
       ],
       nakedTriplet: [
@@ -238,84 +237,147 @@ const HINT_DIALOGUES = {
     },
   },
 
-  ying: {
-    // 基础对话（向后兼容）
-    start: '我来看看！',
-    target: '这个格子是这个数！',
-    wrong: '诶？不对吗？',
-    encouragement: '加油加油！',
+  // ---- 苏晚：温柔知性，循循善诱，教45法则与高级 ----
+  suwan: {
+    start: '我们一起来看这盘面吧。',
+    target: '这一格，可以填这个数。',
+    wrong: '再想想，换个角度试试。',
+    encouragement: '慢慢来，你可以的。',
 
-    // 技巧专属对话
     techniques: {
       nakedSingle: [
-        '哇，这格只剩一个数字了！',
-        '答案就写在笔记里，只剩一个啦！',
-        '快看快看，这格的候选数只剩一个！',
-        '裸单裸单！就是这个数！',
-        '排除掉所有不可能，剩下的就是答案~',
+        '这一格的候选数，已经被排除得只剩一个了。',
+        '只剩一种可能，答案就在眼前。',
+        '把不可能的排除掉，剩下的就是答案。',
+        '看看笔记，这一格只有它了。',
       ],
       cageUnique: [
-        '算一下笼子还缺多少！',
-        '笼子的和值超好用的，能排除好多数！',
-        '哇，用笼和一算，候选数少了一半！',
-        '这个笼子加起来要等于那个数，所以...',
-        '笼和推导大法好！',
+        '笼子的和值，藏着很多信息呢。',
+        '算算这个笼子还差多少，答案就清楚了。',
+        '笼和约束——剩下的格子只能是这些组合。',
+        '和值是笼子的语言，听懂它就能缩小范围。',
       ],
       hiddenSingle: [
-        '这个数字只能在这里哦！',
-        '嘿嘿，我找到啦，它藏在这一行！',
-        '这个数字没地方可去了，只能在这！',
-        '隐单！看起来有很多候选，其实这个数被锁定了！',
-        '这一列里，这个数只能放那格~',
+        '这一行里，某个数字只有一个容身之处。',
+        '隐单——数字在暗中已经确定了位置。',
+        '仔细看，这个数字在这一列只能放在那里。',
+        '表面上候选很多，实际上某个数字别无选择。',
+        '宫的范围里，有一个数字被锁定了。',
       ],
       rule45: [
-        '45法则好神奇！一下就知道答案了！',
-        '哇塞，这就是45法则吗？太酷了！',
-        '用45减一减，答案就出来啦！',
-        '星衡法则！伸出宫的那个格子可以直接算！',
-        '内突外突我都学会啦~',
+        '星衡法则——这一宫的和，减去已知的数...',
+        '45是九宫的总和，内突外突由此而来。',
+        '伸出宫的那格，它的值可以用45法则算出。',
+        '这就是星衡法则的奥义：全宫之和为45。',
+        '内突之数，笼和减45可得。',
+        '外突之数，45减笼和即知。',
       ],
       nakedPair: [
-        '哇！这两个格子的候选数一模一样！',
-        '裸数对好好玩！两个格子锁定两个数字！',
-        '嘿嘿，找到啦！这两个格子都是这两个候选！',
-        '数对魔法！其他格子都不能有这两个数啦~',
-        '两颗双子星！它们就是一个小宇宙！',
+        '两个格子共享两个候选，它们就锁定了这两个数。',
+        '裸数对——同行同列中两个格子只剩相同的两个数。',
+        '这两个格子互相制约，其他格可以排除这两个数。',
+        '数对是数独的基础武器，掌握它事半功倍。',
       ],
       hiddenPair: [
-        '哇！隐数对好神秘！',
-        '两个数字藏在两格里，好酷！',
-        '嘿嘿，我发现了一对隐藏的数对！',
-        '隐数对魔法！它们偷偷锁定了数字~',
-        '藏起来的数对也逃不过我的眼睛！',
+        '隐数对——两个数字藏在同一组格子里。',
+        '表面上候选很多，其实有两个数字被锁定了。',
+        '两个数字、两格之地——隐数对的奥义。',
+        '把候选数倒过来看，隐数对就会浮现。',
       ],
       pointingClaiming: [
-        '这个数字只能在这一行出现哦！',
-        '区块排除好聪明！从宫看到行！',
-        '哇，一指就排除了好多数字！',
-        '指对数对！像箭一样指向答案！',
-        '这个数字被关在这一行里了~',
+        '某宫中的某个数字被限制在同一行或列。',
+        '区块排除——一个数字的位置指向了更大的范围。',
+        '这个数字在这一宫里只能出现在这一行。',
+        '锁定区块，就能排除其他宫的可能。',
       ],
       nakedTriplet: [
-        '哇！三个格子的候选数都一样！',
-        '裸三数组好厉害！三格锁定三个数！',
-        '嘿嘿，三子法！三个格子一个小团体！',
-        '三数组魔法！其他格子都不能有这三个数啦~',
-        '三颗星组成的小宇宙！',
+        '三个格子共享三个候选数，这就是裸三数组。',
+        '三子法——三格三数，锁定了整个区域。',
+        '这三格互相制约，其他格可以排除这三个数。',
+        '从数对到三数组，进阶的钥匙。',
       ],
       xWing: [
-        '哇！二连纵横阵听起来好酷！',
-        'X-Wing！像个大大的X！',
-        '四个格子组成矩形，好神奇！',
-        '高阶技巧我也学会啦~',
-        '二连纵横！像翅膀一样！',
+        '二连纵横阵——两行两列，构成一个矩形。',
+        'X-Wing的精髓：对角线上的数字互相锁定。',
+        '四个格子、两个数字、一个结论。',
+        '高级技巧的入门——二连纵横阵。',
       ],
       swordfish: [
-        '三才游鱼阵！听起来好厉害！',
-        '哇塞，Swordfish！像剑鱼一样！',
-        '三行三列的大阵法！',
-        '这是超级厉害的技巧诶！',
-        '游鱼游过三行三列~',
+        '三才游鱼阵——三行三列的高阶技巧。',
+        'Swordfish是X-Wing的进阶，三条鱼游过三行。',
+        '三个数字、三列，排除就在其中。',
+        '这是高阶技巧——三才游鱼阵。',
+      ],
+    },
+  },
+
+  // ---- 伊藤：严肃冷静，精准简洁，教进阶 ----
+  ito: {
+    start: '观察。',
+    target: '此处可定。',
+    wrong: '误判。重来。',
+    encouragement: '专注。',
+
+    techniques: {
+      nakedSingle: [
+        '此格候选已尽，唯余一数。',
+        '排除殆尽，答案自现。',
+        '笔记完备，裸单自明。',
+        '此格无他选。',
+      ],
+      cageUnique: [
+        '笼和已定，组合唯一。',
+        '核算笼差，范围立缩。',
+        '笼和约束，余者唯此组合。',
+        '笼和反推，候选骤减。',
+      ],
+      hiddenSingle: [
+        '此行此数，唯此一格。',
+        '隐单已现，位置已定。',
+        '此列此数，别无去处。',
+        '宫中此数，已被锁定。',
+      ],
+      rule45: [
+        '45法则。宫和恒为45。',
+        '内突外突，皆由45推得。',
+        '跨宫之格，其值可算。',
+        '星衡法则，差值即答案。',
+      ],
+      nakedPair: [
+        '两格两数，互相锁定。',
+        '裸数对。同行同列，唯此两格。',
+        '此二格互制，余格可除。',
+        '数对既定，排除立行。',
+      ],
+      hiddenPair: [
+        '隐数对。两数藏于两格。',
+        '候选虽多，二数已锁。',
+        '两数两格，隐对之奥义。',
+        '反观候选，隐对自现。',
+      ],
+      pointingClaiming: [
+        '宫中之数，限于此行。',
+        '区块排除。指向更大范围。',
+        '此数在宫中，唯此一行可居。',
+        '锁定区块，排除他宫。',
+      ],
+      nakedTriplet: [
+        '三格三数，裸三数组。',
+        '三子法。三格锁定三数。',
+        '此三格互制，余格可除。',
+        '数对进阶，三子为钥。',
+      ],
+      xWing: [
+        '二连纵横阵。两行两列成矩形。',
+        'X-Wing。对角之数互锁。',
+        '四格二数，一结论。',
+        '高阶之门，二连纵横。',
+      ],
+      swordfish: [
+        '三才游鱼阵。三行三列。',
+        'Swordfish。X-Wing之进阶。',
+        '三数三列，排除其中。',
+        '高阶之巅，三才游鱼。',
       ],
     },
   },
@@ -384,9 +446,9 @@ export class HintSystem {
       const target = this._findTargetCell();
       if (!target) {
         return {
-          character: 'cagekeeper',
-          characterName: '守笼人',
-          dialogue: HINT_DIALOGUES.cagekeeper.encouragement,
+          character: 'shenmo',
+          characterName: '沈墨',
+          dialogue: HINT_DIALOGUES.shenmo.encouragement,
           target: null,
           hintType: 'complete',
           hintLevel: 0,
@@ -1074,14 +1136,17 @@ export class HintSystem {
       }
     }
 
-    if (charId === 'ayan') {
+    if (charId === 'shenmo') {
       return regionHint ? `${charData.start}${regionHint}` : charData.start;
     }
-    if (charId === 'cagekeeper') {
-      return regionHint || charData.start;
+    if (charId === 'vera') {
+      return regionHint ? `嗯，${regionHint}` : charData.start;
     }
-    if (charId === 'ying') {
-      return regionHint ? `嘿！${regionHint}` : charData.start;
+    if (charId === 'suwan') {
+      return regionHint ? `你看，${regionHint}` : charData.start;
+    }
+    if (charId === 'ito') {
+      return regionHint ? `${regionHint}` : charData.start;
     }
     return charData.start;
   }
@@ -1098,14 +1163,17 @@ export class HintSystem {
       techLine = techniqueLines[idx];
     }
 
-    if (charId === 'ayan') {
+    if (charId === 'shenmo') {
       return techLine || `用${techName}来推导。`;
     }
-    if (charId === 'cagekeeper') {
-      return techLine || `试试${techName}。`;
+    if (charId === 'vera') {
+      return techLine || `用${techName}试试。`;
     }
-    if (charId === 'ying') {
-      return techLine || `用${techName}试试！`;
+    if (charId === 'suwan') {
+      return techLine || `我们试试${techName}吧。`;
+    }
+    if (charId === 'ito') {
+      return techLine || `用${techName}。`;
     }
     return techLine || charData.target;
   }
@@ -1132,14 +1200,17 @@ export class HintSystem {
         const pos1 = `第${cells[0].row + 1}行第${cells[0].col + 1}列`;
         const pos2 = `第${cells[1].row + 1}行第${cells[1].col + 1}列`;
         const pairType = technique === 'nakedPair' ? '裸数对' : '隐数对';
-        if (charId === 'ayan') {
+        if (charId === 'shenmo') {
           return `${leadIn}${pos1}和${pos2}构成${pairType}，候选数为${vals}。`;
         }
-        if (charId === 'cagekeeper') {
+        if (charId === 'vera') {
           return `${leadIn}${pos1}和${pos2}是${pairType}，数字${vals}只能在这两格。`;
         }
-        if (charId === 'ying') {
-          return `${leadIn}${pos1}和${pos2}都是${vals}，它们是${pairType}哦！`;
+        if (charId === 'suwan') {
+          return `${leadIn}${pos1}和${pos2}都是${vals}，它们是${pairType}哦。`;
+        }
+        if (charId === 'ito') {
+          return `${leadIn}${pos1}、${pos2}为${pairType}，${vals}。`;
         }
         return `${pairType}：${pos1}和${pos2} = ${vals}`;
       }
@@ -1150,14 +1221,17 @@ export class HintSystem {
       const dirLabel = deduction.pointingDirection === 'row'
         ? `第${deduction.pointingIndex + 1}行`
         : `第${deduction.pointingIndex + 1}列`;
-      if (charId === 'ayan') {
+      if (charId === 'shenmo') {
         return `${leadIn}数字${val}被锁定在${dirLabel}，可以排除其他位置。`;
       }
-      if (charId === 'cagekeeper') {
+      if (charId === 'vera') {
         return `${leadIn}${dirLabel}的数字${val}只能在这一宫内。`;
       }
-      if (charId === 'ying') {
-        return `${leadIn}${dirLabel}的${val}被关住啦，其他地方都不能有！`;
+      if (charId === 'suwan') {
+        return `${leadIn}${dirLabel}的${val}被锁定了，其他地方都不能有。`;
+      }
+      if (charId === 'ito') {
+        return `${leadIn}${dirLabel}之${val}，唯此宫可居。`;
       }
       return `区块排除：${dirLabel}的${val}`;
     }
@@ -1167,14 +1241,17 @@ export class HintSystem {
       const cells = deduction.targetCells;
       if (cells.length >= 2) {
         const pos1 = `第${cells[0].row + 1}行第${cells[0].col + 1}列`;
-        if (charId === 'ayan') {
+        if (charId === 'shenmo') {
           return `${leadIn}这三格构成裸三数组，候选数为${vals}。`;
         }
-        if (charId === 'cagekeeper') {
+        if (charId === 'vera') {
           return `${leadIn}三格三数，锁定了这一行。`;
         }
-        if (charId === 'ying') {
-          return `${leadIn}${pos1}附近有三个格子组成三子法！`;
+        if (charId === 'suwan') {
+          return `${leadIn}${pos1}附近有三个格子组成三子法。`;
+        }
+        if (charId === 'ito') {
+          return `${leadIn}三格三数，裸三数组，${vals}。`;
         }
         return `裸三数组：${vals}`;
       }
@@ -1185,42 +1262,51 @@ export class HintSystem {
       const comboStr = combos.slice(0, 3).map(c => Array.isArray(c) ? c.join('+') : c).join('、');
       const position = `第${cell.row + 1}行第${cell.col + 1}列`;
       const value = cell.value || '?';
-      if (charId === 'ayan') {
+      if (charId === 'shenmo') {
         return `${leadIn}${position}是${value}（笼子唯一组合）。`;
       }
-      if (charId === 'cagekeeper') {
+      if (charId === 'vera') {
         return `${leadIn}笼和限定了组合，${position}可以确定为${value}。`;
       }
-      if (charId === 'ying') {
-        return `${leadIn}${position}就是${value}啦！笼子告诉我的~`;
+      if (charId === 'suwan') {
+        return `${leadIn}${position}就是${value}，笼子告诉我们的。`;
+      }
+      if (charId === 'ito') {
+        return `${leadIn}${position}为${value}，笼和唯一。`;
       }
       return `笼子唯一组合：${position} = ${value}`;
     }
 
     if (technique === 'xWing') {
       const value = cell.value || '?';
-      if (charId === 'ayan') {
+      if (charId === 'shenmo') {
         return `${leadIn}二连纵横阵，数字${value}的X-Wing结构。`;
       }
-      if (charId === 'cagekeeper') {
+      if (charId === 'vera') {
         return `${leadIn}X-Wing结构，可以排除数字${value}。`;
       }
-      if (charId === 'ying') {
-        return `${leadIn}哇！二连纵横阵！数字${value}！`;
+      if (charId === 'suwan') {
+        return `${leadIn}二连纵横阵，数字${value}构成X形。`;
+      }
+      if (charId === 'ito') {
+        return `${leadIn}二连纵横阵。${value}之X-Wing。`;
       }
       return `二连纵横阵：数字${value}`;
     }
 
     if (technique === 'swordfish') {
       const value = cell.value || '?';
-      if (charId === 'ayan') {
+      if (charId === 'shenmo') {
         return `${leadIn}三才游鱼阵，数字${value}的Swordfish。`;
       }
-      if (charId === 'cagekeeper') {
+      if (charId === 'vera') {
         return `${leadIn}Swordfish结构，高阶技巧。`;
       }
-      if (charId === 'ying') {
-        return `${leadIn}哇塞！三才游鱼阵！好厉害！`;
+      if (charId === 'suwan') {
+        return `${leadIn}三才游鱼阵，数字${value}的高阶结构。`;
+      }
+      if (charId === 'ito') {
+        return `${leadIn}三才游鱼阵。${value}之Swordfish。`;
       }
       return `三才游鱼阵：数字${value}`;
     }
@@ -1229,14 +1315,17 @@ export class HintSystem {
     const value = cell.value || '?';
     const position = `第${cell.row + 1}行第${cell.col + 1}列`;
 
-    if (charId === 'ayan') {
+    if (charId === 'shenmo') {
       return `${leadIn}${position}是${value}。`;
     }
-    if (charId === 'cagekeeper') {
+    if (charId === 'vera') {
       return `${leadIn}${position}可以确定为${value}。`;
     }
-    if (charId === 'ying') {
-      return `${leadIn}${position}就是${value}啦！`;
+    if (charId === 'suwan') {
+      return `${leadIn}${position}就是${value}。`;
+    }
+    if (charId === 'ito') {
+      return `${leadIn}${position}为${value}。`;
     }
     return `${position} = ${value}`;
   }

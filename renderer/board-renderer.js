@@ -74,7 +74,7 @@ export class BoardRenderer {
       boxLine: '#1a1a1a',
       outerLine: '#1a1a1a',
       fixedNum: '#5a5a5a',   // 笔记本主题：淡墨印刷体（规格 #5a5a5a）
-      playerNum: '#1a3a5c',   // 笔记本主题：钢笔水（设局人）深蓝黑
+      playerNum: '#1a3a5c',   // 笔记本主题：钢笔水（老师）深蓝黑
       whatIfNum: '#8b5cf6',   // v2.0：假设模式填入数字（紫罗兰，P3 再书化）
       errorBg: 'rgba(163, 53, 42, 0.12)',  // P1：淡朱砂晕（原 #ffebee 粉红）
       errorNum: '#8e2c21',    // P1：深朱砂（原 #d32f2f 仅 4.39:1，加深后 ~5.5:1 达 AA）
@@ -171,6 +171,16 @@ export class BoardRenderer {
 
       // 4. 绘制错误格背景
       this._drawErrorBackground(this._ctx, state, cellSize, padding);
+
+      // 4.5 CM4-R6.5B-1：据点污染层（冲突热度 → 闪烁/扭曲，Ghost 前置预警）
+      if (state.pollution && state.pollution.cells) {
+        this._drawPollution(this._ctx, state, cellSize, padding);
+      }
+
+      // 4.6 CM4-Battlefield：战场表观层（归属格角标 / 落子轨迹 / 争夺残影 / 连线 / 压力 / 据点状态 / 爆发）
+      if (state.battlefield) {
+        this._drawBattlefieldViz(this._ctx, state, cellSize, padding);
+      }
 
       // 5. 绘制细网格线（普通格分隔线）
       this._drawThinGridLines(this._ctx, state, cellSize, padding);
@@ -927,6 +937,355 @@ export class BoardRenderer {
         }
       }
     }
+  }
+
+  /**
+   * CM4-R6.5B-1：据点污染层 —— 把冲突热度翻译成"战场被污染"的视觉。
+   * 由 getPresentation().pollution.cells（"r,c"→stage）驱动：
+   *   stage 1：中心格轻微闪烁（淡紫呼吸底色）——"这里要出事"
+   *   stage 2：整宫外溢 + 边缘波纹（更强底色 + 宫格边缘光）——"战场被污染"
+   * 仅画在空格上（不受玩家格/固定格影响），是 Ghost 出现前的前置预警。
+   * @private
+   */
+  _drawPollution(ctx, state, cellSize, padding) {
+    const cellsMap = state.pollution.cells || {};
+    if (!cellsMap || Object.keys(cellsMap).length === 0) return;
+    const now = Date.now();
+    const wave = (phase) => 0.5 + 0.5 * Math.sin((now % 1000) / 1000 * Math.PI * 2 + phase);
+    const size = state.size || state.gridSize || this._gridSize;
+
+    ctx.save();
+    // 污染格底色会盖住下面的宫/笼线，先垫一层透明让其浮在网格上，描边用更粗光晕
+    for (const key in cellsMap) {
+      const stage = cellsMap[key];
+      if (!stage) continue;
+      const parts = key.split(',');
+      const r = Number(parts[0]);
+      const c = Number(parts[1]);
+      if (r < 0 || r >= size || c < 0 || c >= size) continue;
+      const x = c * cellSize + padding;
+      const y = r * cellSize + padding;
+
+      if (stage === 1) {
+        // stage 1：中心格轻微闪烁（低透明度呼吸底色）
+        const a = 0.05 + 0.05 * wave(r * 0.7 + c * 0.3);
+        ctx.fillStyle = 'rgba(168, 85, 247, ' + a.toFixed(3) + ')';
+        ctx.fillRect(x, y, cellSize, cellSize);
+      } else {
+        // stage 2：整宫外溢——更强底染 + 宫格边缘波纹
+        const a = 0.10 + 0.08 * wave(r + c);
+        ctx.fillStyle = 'rgba(180, 60, 120, ' + a.toFixed(3) + ')';
+        ctx.fillRect(x, y, cellSize, cellSize);
+        const edgeA = 0.22 + 0.18 * wave(r * 1.3 + c);
+        ctx.strokeStyle = 'rgba(196, 96, 168, ' + edgeA.toFixed(3) + ')';
+        ctx.lineWidth = 1.5 + 0.6 * wave(c);
+        ctx.strokeRect(x + 0.75, y + 0.75, cellSize - 1.5, cellSize - 1.5);
+      }
+    }
+    ctx.restore();
+  }
+
+  /**
+   * CM4-Battlefield：战场表观层 —— 把三点连线对战从"棋盘"变成"战场"。
+   * 由状态对象 state.battlefield（BattlefieldViz.build 产出）驱动，纯视觉、无逻辑：
+   *   1. 格子状态：永久归属格（玩家青墨 / 敌方黄铜）左上角小角标
+   *   2. AI 轨迹：敌方最近落子残影轨迹（黄铜，淡出）
+   *   3. 玩家轨迹：己方反击路径轨迹（青墨，淡出）
+   *   4. 争夺残影：争夺据点核心格的"残影"（偏移 ghost 徽记）
+   *   5. 连线形成：三个据点核心格连成三角形，归属边点亮
+   *   6. 接近三连压力：某方占 2 据点 → 缺失点红压脉动
+   *   7. 据点状态：占领(扩张环)/争夺(双色叉)/失守(红闪环)
+   *   8. 爆发：连线绝杀的扩张三角爆发
+   * @private
+   */
+  _drawBattlefieldViz(ctx, state, cellSize, padding) {
+    const viz = state.battlefield;
+    if (!viz) return;
+    try {
+      const now = Date.now();
+      const px = (c) => c * cellSize + padding + cellSize / 2;
+      const py = (r) => r * cellSize + padding + cellSize / 2;
+
+      // ---- 1. 格子状态：永久归属格角标（左上角小三角） ----
+      this._drawOwnedCorners(ctx, viz, cellSize, padding);
+
+      // ---- 2+3. 落子轨迹（连线段 + 端点光点，淡出） ----
+      this._drawTrail(ctx, viz.trails.ai, 'rgba(212, 168, 83,', px, py, cellSize);
+      this._drawTrail(ctx, viz.trails.player, 'rgba(90, 158, 110,', px, py, cellSize);
+
+      // ---- 4. 争夺残影：争夺据点核心格偏移 ghost 徽记 ----
+      this._drawContestGhost(ctx, viz, cellSize, padding, now);
+
+      // ---- 5. 连线形成反馈（三角形边） ----
+      this._drawLineEdges(ctx, viz, cellSize, padding, now);
+
+      // ---- 6. 接近三连压力提示 ----
+      this._drawNearTriple(ctx, viz, cellSize, padding, now);
+
+      // ---- 7. 据点状态变化（占领/争夺/失守） ----
+      this._drawHubFx(ctx, viz, cellSize, padding, now);
+
+      // ---- 8. 连线爆发（扩张三角 + 光晕） ----
+      this._drawBurst(ctx, viz, cellSize, padding, now);
+    } catch (e) {
+      console.warn('[BoardRenderer] _drawBattlefieldViz error:', e);
+    }
+  }
+
+  /** 归属格角标：左上角小三角（玩家青墨 / 敌方黄铜） */
+  _drawOwnedCorners(ctx, viz, cellSize, padding) {
+    const owned = viz.ownedCells;
+    if (!owned || !Object.keys(owned).length) return;
+    const s = Math.max(5, cellSize * 0.22);
+    ctx.save();
+    for (const key in owned) {
+      const side = owned[key];
+      const parts = key.split(',');
+      const r = Number(parts[0]), c = Number(parts[1]);
+      const x = c * cellSize + padding;
+      const y = r * cellSize + padding;
+      ctx.fillStyle = side === 'player'
+        ? 'rgba(90, 158, 110, 0.85)'
+        : 'rgba(212, 168, 83, 0.85)';
+      ctx.beginPath();
+      ctx.moveTo(x, y);
+      ctx.lineTo(x + s, y);
+      ctx.lineTo(x, y + s);
+      ctx.closePath();
+      ctx.fill();
+    }
+    ctx.restore();
+  }
+
+  /** 落子轨迹：连接最近落子点成淡化折线 + 端点光点 */
+  _drawTrail(ctx, trail, colorPrefix, px, py, cellSize) {
+    if (!trail || trail.length < 2) return;
+    const pts = trail.filter((p) => p.alpha > 0.02);
+    if (pts.length < 2) return;
+    ctx.save();
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+    // 连线：按最旧点 alpha 淡出
+    const baseA = pts[0].alpha;
+    ctx.strokeStyle = colorPrefix + (0.28 * baseA).toFixed(3) + ')';
+    ctx.lineWidth = Math.max(1.5, cellSize * 0.06);
+    ctx.beginPath();
+    ctx.moveTo(px(pts[0].c), py(pts[0].r));
+    for (let i = 1; i < pts.length; i++) ctx.lineTo(px(pts[i].c), py(pts[i].r));
+    ctx.stroke();
+    // 端点光点：最新点最亮
+    for (let i = 0; i < pts.length; i++) {
+      const a = pts[i].alpha;
+      ctx.fillStyle = colorPrefix + (0.5 * a).toFixed(3) + ')';
+      ctx.beginPath();
+      ctx.arc(px(pts[i].c), py(pts[i].r), Math.max(1.5, cellSize * 0.05 * a), 0, Math.PI * 2);
+      ctx.fill();
+    }
+    ctx.restore();
+  }
+
+  /** 争夺残影：争夺据点核心格的偏移 ghost 徽记（残影/运动模糊感） */
+  _drawContestGhost(ctx, viz, cellSize, padding, now) {
+    const idxs = viz.contested || [];
+    if (!idxs.length) return;
+    const cores = viz.cores || [];
+    const t = now / 1000;
+    ctx.save();
+    for (const i of idxs) {
+      const core = cores[i];
+      if (!core) continue;
+      const cx = core.c * cellSize + padding + cellSize / 2;
+      const cy = core.r * cellSize + padding + cellSize / 2;
+      const drift = Math.sin(t * 2 + i * 1.7) * cellSize * 0.12;
+      const rad = cellSize * 0.34;
+      const a = 0.16 + 0.10 * Math.abs(Math.sin(t * 3 + i));
+      // 偏移的菱形（残影）
+      ctx.fillStyle = 'rgba(184, 134, 11, ' + (a * 0.5).toFixed(3) + ')';
+      ctx.beginPath();
+      ctx.moveTo(cx + drift, cy - rad);
+      ctx.lineTo(cx + rad + drift, cy);
+      ctx.lineTo(cx + drift, cy + rad);
+      ctx.lineTo(cx - rad + drift, cy);
+      ctx.closePath();
+      ctx.fill();
+      // 主菱形（青墨，轻微残影双影）
+      ctx.fillStyle = 'rgba(62, 110, 90, ' + (a * 0.6).toFixed(3) + ')';
+      ctx.beginPath();
+      ctx.moveTo(cx - drift, cy - rad);
+      ctx.lineTo(cx + rad - drift, cy);
+      ctx.lineTo(cx - drift, cy + rad);
+      ctx.lineTo(cx - rad - drift, cy);
+      ctx.closePath();
+      ctx.fill();
+    }
+    ctx.restore();
+  }
+
+  /** 连线形成：三个据点核心格连成三角形，归属边点亮 / 相争边闪烁 */
+  _drawLineEdges(ctx, viz, cellSize, padding, now) {
+    const line = viz.line;
+    if (!line || !line.edges) return;
+    const px = (c) => c * cellSize + padding + cellSize / 2;
+    const py = (r) => r * cellSize + padding + cellSize / 2;
+    const t = now / 1000;
+    ctx.save();
+    ctx.lineCap = 'round';
+    for (const e of line.edges) {
+      const x1 = px(e.a.c), y1 = py(e.a.r), x2 = px(e.b.c), y2 = py(e.b.r);
+      ctx.beginPath();
+      ctx.moveTo(x1, y1);
+      ctx.lineTo(x2, y2);
+      if (e.state === 'owned') {
+        // 同方占领：点亮该边
+        ctx.strokeStyle = (e.side === 'player')
+          ? 'rgba(90, 158, 110, 0.55)'
+          : 'rgba(212, 168, 83, 0.55)';
+        ctx.lineWidth = Math.max(2, cellSize * 0.09);
+        ctx.stroke();
+      } else if (e.state === 'clash') {
+        // 双方各占一端：红金相争闪烁
+        const a = 0.35 + 0.25 * Math.abs(Math.sin(t * 4));
+        ctx.strokeStyle = 'rgba(239, 68, 68, ' + a.toFixed(3) + ')';
+        ctx.setLineDash([cellSize * 0.18, cellSize * 0.12]);
+        ctx.lineWidth = Math.max(1.5, cellSize * 0.05);
+        ctx.stroke();
+        ctx.setLineDash([]);
+      } else {
+        // 开放边：极淡引导线
+        ctx.strokeStyle = 'rgba(120, 120, 120, 0.16)';
+        ctx.lineWidth = 1;
+        ctx.setLineDash([4, 6]);
+        ctx.stroke();
+        ctx.setLineDash([]);
+      }
+    }
+    ctx.restore();
+  }
+
+  /** 接近三连：某方占 2 据点 → 缺失点红压脉动 + 汇聚箭头 */
+  _drawNearTriple(ctx, viz, cellSize, padding, now) {
+    const line = viz.line;
+    const nt = line && line.nearTriple;
+    if (!nt) return;
+    const core = nt.missing;
+    if (!core) return;
+    const cx = core.c * cellSize + padding + cellSize / 2;
+    const cy = core.r * cellSize + padding + cellSize / 2;
+    const t = now / 1000;
+    const pulse = 0.5 + 0.5 * Math.sin(t * 5);
+    const color = nt.side === 'player'
+      ? 'rgba(90, 158, 110,'
+      : 'rgba(212, 168, 83,';
+    ctx.save();
+    // 缺失点红/青压环（呼吸放大）
+    const rad = cellSize * (0.35 + 0.18 * pulse);
+    ctx.strokeStyle = color + (0.5 + 0.3 * pulse).toFixed(3) + ')';
+    ctx.lineWidth = 2 + pulse * 1.5;
+    ctx.beginPath();
+    ctx.arc(cx, cy, rad, 0, Math.PI * 2);
+    ctx.stroke();
+    // 中心警示点
+    ctx.fillStyle = color + '0.55)';
+    ctx.beginPath();
+    ctx.arc(cx, cy, Math.max(2, cellSize * 0.09), 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
+  }
+
+  /** 据点状态变化：占领(扩张环) / 迁移失守(红闪环) / 显现(亮相光晕) */
+  _drawHubFx(ctx, viz, cellSize, padding, now) {
+    const fx = viz.hubFx;
+    if (!fx || !Object.keys(fx).length) return;
+    const cores = viz.cores || [];
+    ctx.save();
+    for (const k in fx) {
+      const i = Number(k);
+      const core = cores[i];
+      const f = fx[i];
+      if (!core || !f) continue;
+      const cx = core.c * cellSize + padding + cellSize / 2;
+      const cy = core.r * cellSize + padding + cellSize / 2;
+      const prog = 1 - f.alpha;
+      if (f.type === 'capture') {
+        // 占领：扩张环（青墨/黄铜）
+        const color = f.side === 'boss'
+          ? 'rgba(212, 168, 83,'
+          : 'rgba(90, 158, 110,';
+        const rad = cellSize * (0.3 + prog * 0.7);
+        ctx.strokeStyle = color + (f.alpha * 0.8).toFixed(3) + ')';
+        ctx.lineWidth = 3 * f.alpha;
+        ctx.beginPath();
+        ctx.arc(cx, cy, rad, 0, Math.PI * 2);
+        ctx.stroke();
+      } else if (f.type === 'loss') {
+        // 失守：红闪环
+        const rad = cellSize * (0.3 + prog * 0.6);
+        ctx.strokeStyle = 'rgba(239, 68, 68, ' + (f.alpha * 0.85).toFixed(3) + ')';
+        ctx.lineWidth = 2.5 * f.alpha;
+        ctx.beginPath();
+        ctx.arc(cx, cy, rad, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.fillStyle = 'rgba(239, 68, 68, ' + (f.alpha * 0.25).toFixed(3) + ')';
+        ctx.beginPath();
+        ctx.arc(cx, cy, cellSize * 0.3, 0, Math.PI * 2);
+        ctx.fill();
+      } else {
+        // 显现：淡金光晕
+        const rad = cellSize * (0.4 + prog * 0.5);
+        ctx.strokeStyle = 'rgba(245, 197, 66, ' + (f.alpha * 0.7).toFixed(3) + ')';
+        ctx.lineWidth = 2 * f.alpha;
+        ctx.beginPath();
+        ctx.arc(cx, cy, rad, 0, Math.PI * 2);
+        ctx.stroke();
+      }
+    }
+    ctx.restore();
+  }
+
+  /** 连线爆发：扩张三角 + 顶点光晕（绝杀完成） */
+  _drawBurst(ctx, viz, cellSize, padding, now) {
+    const burst = viz.burst;
+    if (!burst || !burst.cells || burst.cells.length < 3) return;
+    const px = (c) => c * cellSize + padding + cellSize / 2;
+    const py = (r) => r * cellSize + padding + cellSize / 2;
+    const agePts = burst.ts !== undefined ? (now - burst.ts) / 1400 : 1;
+    if (agePts <= 0 || agePts >= 1) return;
+    const prog = agePts; // 0→1
+    const pts = burst.cells.map((c) => ({ x: px(c.c), y: py(c.r) }));
+    const color = burst.side === 'player'
+      ? '90, 158, 110' : '212, 168, 83';
+    ctx.save();
+    // 扩张三角（从中心向外）
+    const sx = (pts[0].x + pts[1].x + pts[2].x) / 3;
+    const sy = (pts[0].y + pts[1].y + pts[2].y) / 3;
+    const k = 0.5 + prog * 1.6;
+    ctx.fillStyle = 'rgba(' + color + ', ' + (0.35 * (1 - prog)).toFixed(3) + ')';
+    ctx.beginPath();
+    ctx.moveTo(sx + (pts[0].x - sx) * k, sy + (pts[0].y - sy) * k);
+    ctx.lineTo(sx + (pts[1].x - sx) * k, sy + (pts[1].y - sy) * k);
+    ctx.lineTo(sx + (pts[2].x - sx) * k, sy + (pts[2].y - sy) * k);
+    ctx.closePath();
+    ctx.fill();
+    // 三角描边
+    ctx.strokeStyle = 'rgba(' + color + ', ' + (0.9 * (1 - prog)).toFixed(3) + ')';
+    ctx.lineWidth = 2 + (1 - prog) * 3;
+    ctx.beginPath();
+    ctx.moveTo(pts[0].x, pts[0].y);
+    ctx.lineTo(pts[1].x, pts[1].y);
+    ctx.lineTo(pts[2].x, pts[2].y);
+    ctx.closePath();
+    ctx.stroke();
+    // 顶点光晕
+    for (const p of pts) {
+      const g = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, cellSize * (0.5 + prog));
+      g.addColorStop(0, 'rgba(' + color + ', ' + (0.7 * (1 - prog)).toFixed(3) + ')');
+      g.addColorStop(1, 'rgba(' + color + ', 0)');
+      ctx.fillStyle = g;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, cellSize * (0.5 + prog), 0, Math.PI * 2);
+      ctx.fill();
+    }
+    ctx.restore();
   }
 
   /**

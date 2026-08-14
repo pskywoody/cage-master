@@ -16,12 +16,13 @@
   let VOICE_ENABLED = false;
 
   // v2.0：仅本周目主角沈墨从桌侧（左）出现且水平翻转（脸朝棋盘），
-  // 其余角色（含守笼人/设局人/莹莹/阿妍等）一律右侧出现不翻转
+  // 其余角色（含苏晚/薇拉/伊藤/山田/老师/父亲等）一律右侧出现不翻转
   const CHAR_SIDE = {
     shenmo: 'left',
-    plotter: 'right', plotterShadow: 'right',
-    remnant: 'right', setterSecret: 'right', cagekeeper: 'right',
-    ying: 'right', yingying: 'right', ayan: 'right', weaver: 'right', suwan: 'right',
+    suwan: 'right', vera: 'right',
+    zhou_taotai: 'right', pan_hanian: 'right',
+    ito: 'right', yamada: 'right', teacher: 'right',
+    father: 'right',
   };
 
   // Typewriter speed presets (ms per character)
@@ -81,7 +82,6 @@
     "元气·搞笑": "excited",
     "克制·鼓励": "smile",
     "兴奋": "excited",
-    "兴奋·但阿妍听出了底下的紧张": "excited",
     "兴奋·发现": "excited",
     "兴奋·教学": "teaching",
     "兴奋·期待": "excited",
@@ -233,7 +233,6 @@
     "机械·严肃": "serious",
     "机械·但停顿了0.5秒——第一次\"犹豫\"": "default",
     "机械·但停顿了1秒才说——第一次\"主动帮助\"": "default",
-    "机械·但喊\"莹莹\"两个字时，电流声变小了": "default",
     "机械·但在引用沈世安的话时，语速慢了0.1秒": "default",
     "机械·但声音比之前小——第一次\"温柔\"": "gentle",
     "机械·但语气有微小变化——\"不喜欢\"不是系统用语": "angry",
@@ -277,7 +276,6 @@
     "果断·冷静": "determined",
     "果断·分析": "default",
     "核心·坚定·比第一章更沉": "determined",
-    "核心·对阿妍说·温柔·坚定": "gentle",
     "核心·询问·确认": "think",
     "欣慰": "smile",
     "欣慰·复杂": "sad",
@@ -420,20 +418,15 @@
   // Portrait file mapping (emotion -> filename without extension)
   // 使用实际存在的PNG立绘文件（中文名+英文名混合）
   // ===== 新立绘映射（2026-08-03 接入 assets/images/portraits/new/）=====
-  // 英文命名新立绘：SM/R/J/CK 全套差分；设局人仅常态一张 P_01_normal_default
-  // （用户确认：设局人所有表情统一用常态）。缺位角色（残影/星辰梭/残局/秘术）保留旧中文立绘。
-  // ===== chibi Q 版映射（教学引导专用，2026-08-03 接入 assets/images/chibi/）=====
-  // 教学阶段显示当前教学者 Q 版头像；W 星辰梭含状态变体（三周目剧情）
+  // 英文命名新立绘：SM/R/J/CK 全套差分；老师仅常态一张 P_01_normal_default
+  // （用户确认：老师所有表情统一用常态）。缺位角色保留旧中文立绘。
+  // ===== chibi Q 版映射（教学引导专用，2026-08-13 重制：正面半身像、趴在棋盘上讲解）=====
+  // 教学阶段显示当前教学者 Q 版头像；差分：shenmo-thinking / vera-suwan-smile / ito-serious
   const CHIBI_MAP = {
-    shenmo:   { default: 'shenmo_c01_default' },
-    vera:     { default: 'vera_c01_default' },
-    ayan:     { default: 'R_c01_default_pushglasses' },
-    suwan:    { default: 'R_c01_default_pushglasses' },
-    ying:     { default: 'J_c01_default_curious', star_eyes: 'J_c02_star_eyes' },
-    cagekeeper: { default: 'CK_c01_default_solemn' },
-    plotter:  { default: 'P_c01_default_confident' },
-    weaver:   { default: 'W_c01_light_orb', stable: 'W_c01_stable', talking: 'W_c02_talking',
-                smile: 'W_c03_smile', dim: 'W_c04_dim', warm: 'W_c05_warm' },
+    shenmo:   { default: 'shenmo_c01_default', thinking: 'shenmo_c01_thinking' },
+    vera:     { default: 'vera_c01_default', smile: 'vera_c01_smile' },
+    suwan:    { default: 'suwan_c01_default', smile: 'suwan_c01_smile' },
+    ito:      { default: 'ito_c01_default', serious: 'ito_c01_serious' },
   };
 
   const PORTRAIT_MAP = {
@@ -448,7 +441,7 @@
       serious: 'ch1_shenmo_serious', angry: 'ch1_shenmo_serious',
       sad: 'ch1_shenmo_default', gentle: 'ch1_shenmo_default', lose: 'ch1_shenmo_default',
     },
-    // 薇拉（第一章新增，白俄人设，独立于阿妍）
+    // 薇拉（第一章新增，白俄人设）
     vera: {
       default: 'ch1_vera_default', calm: 'ch1_vera_default',
       mysterious: 'ch1_vera_default', teaching: 'ch1_vera_default',
@@ -459,111 +452,81 @@
       serious: 'ch1_vera_serious', stern: 'ch1_vera_serious',
       angry: 'ch1_vera_serious', determined: 'ch1_vera_serious',
     },
-    ayan: {
-      default: 'new/R_01_calm_default', calm: 'new/R_01_calm_default',
-      teaching: 'new/R_01_calm_default', mysterious: 'new/R_01_calm_default',
-      blushing: 'new/R_02_blushing',
-      sad: 'new/R_03_teary_eyed', crying: 'new/R_03_teary_eyed', lose: 'new/R_03_teary_eyed',
-      smile: 'new/R_04_true_smile', determined: 'new/R_04_true_smile',
-      confident: 'new/R_04_true_smile', smirk: 'new/R_04_true_smile',
-      surprised: 'new/R_05_direct_gaze', serious: 'new/R_05_direct_gaze',
-      stern: 'new/R_05_direct_gaze', think: 'new/R_05_direct_gaze',
-      thinking: 'new/R_05_direct_gaze', direct_gaze: 'new/R_05_direct_gaze',
-      cold: 'new/R_05_direct_gaze', angry: 'new/R_05_direct_gaze',
-    },
-    // 苏晚（新角色，暂复用阿妍立绘占位，待专属美术资源接入后替换）
+    // 苏晚（新角色，专属立绘 2026-08-13 国风厚涂·脸朝左）
     suwan: {
-      default: 'new/R_01_calm_default', calm: 'new/R_01_calm_default',
-      teaching: 'new/R_01_calm_default', mysterious: 'new/R_01_calm_default',
-      thinking: 'new/R_01_calm_default', think: 'new/R_01_calm_default',
-      serious: 'new/R_05_direct_gaze', direct_gaze: 'new/R_05_direct_gaze',
-      stern: 'new/R_05_direct_gaze', surprised: 'new/R_05_direct_gaze',
-      smile: 'new/R_04_true_smile', confident: 'new/R_04_true_smile',
-      determined: 'new/R_04_true_smile', gentle: 'new/R_05_direct_gaze',
-      sad: 'new/R_03_teary_eyed',
+      default: 'suwan_default', calm: 'suwan_default',
+      teaching: 'suwan_default', mysterious: 'suwan_default',
+      thinking: 'suwan_default', think: 'suwan_default',
+      surprised: 'suwan_serious', gentle: 'suwan_smile',
+      serious: 'suwan_serious', stern: 'suwan_serious',
+      direct_gaze: 'suwan_serious', determined: 'suwan_serious',
+      smile: 'suwan_smile', confident: 'suwan_smile',
+      sad: 'suwan_serious',
     },
-    ying: {
-      default: 'new/J_01_energetic_default', energetic: 'new/J_01_energetic_default',
-      calm: 'new/J_01_energetic_default', teaching: 'new/J_01_energetic_default',
-      serious: 'new/J_01_energetic_default', smile: 'new/J_01_energetic_default',
-      sad: 'new/J_02_holding_back_tears', lose: 'new/J_02_holding_back_tears',
-      surprised: 'new/J_03_shocked', think: 'new/J_03_shocked', thinking: 'new/J_03_shocked',
-      angry: 'new/J_04_crying', crying: 'new/J_04_crying',
-      star_eyes: 'new/J_06_star_eyes',
-      gentle: 'new/J_07_warm_smile', determined: 'new/J_07_warm_smile',
-      mysterious: 'new/J_07_warm_smile', confident: 'new/J_07_warm_smile',
+    // 周太太（第七·库房新角色，专属立绘 2026-08-13）
+    zhou_taotai: {
+      default: 'zhou_taotai_default', calm: 'zhou_taotai_default',
+      smile: 'zhou_taotai_smile', serious: 'zhou_taotai_serious',
+      stern: 'zhou_taotai_serious', angry: 'zhou_taotai_serious',
+      thinking: 'zhou_taotai_default', think: 'zhou_taotai_default',
+      surprised: 'zhou_taotai_serious', gentle: 'zhou_taotai_smile',
+      sad: 'zhou_taotai_serious',
     },
-    cagekeeper: {
-      default: 'new/CK_01_solemn_default', serious: 'new/CK_01_solemn_default',
-      calm: 'new/CK_01_solemn_default', teaching: 'new/CK_01_solemn_default',
-      mysterious: 'new/CK_01_solemn_default', solemn: 'new/CK_01_solemn_default',
-      smile: 'new/CK_02_bitter_smile', confident: 'new/CK_02_bitter_smile',
-      bitter_smile: 'new/CK_02_bitter_smile',
-      surprised: 'new/CK_03_shocked', think: 'new/CK_03_shocked',
-      lose: 'new/CK_03_shocked', thinking: 'new/CK_03_shocked', shocked: 'new/CK_03_shocked',
-      gentle: 'new/CK_04_gentle', determined: 'new/CK_04_gentle',
-      sad: 'new/CK_05_wiping_tears', crying: 'new/CK_05_wiping_tears',
-      // 严肃/警告用正面立绘（CK_06 为背影，仅特定场合用）
-      stern: 'new/CK_01_solemn_default', angry: 'new/CK_01_solemn_default',
+    // 潘汉年（第六·网接头人，专属立绘 2026-08-13）
+    pan_hanian: {
+      default: 'pan_hanian_default', calm: 'pan_hanian_default',
+      serious: 'pan_hanian_serious', stern: 'pan_hanian_serious',
+      angry: 'pan_hanian_serious', thinking: 'pan_hanian_default',
+      think: 'pan_hanian_default', smile: 'pan_hanian_smile',
+      confident: 'pan_hanian_smile', gentle: 'pan_hanian_smile',
+      surprised: 'pan_hanian_serious',
     },
-    plotter: {
-      default: 'new/P_01_normal_default', smirk: 'new/P_01_normal_default',
-      serious: 'new/P_01_normal_default', angry: 'new/P_01_normal_default',
-      surprised: 'new/P_01_normal_default', confident: 'new/P_01_normal_default',
-      calm: 'new/P_01_normal_default', smile: 'new/P_01_normal_default',
-      think: 'new/P_01_normal_default', sad: 'new/P_01_normal_default',
-      lose: 'new/P_01_normal_default', determined: 'new/P_01_normal_default',
-      mysterious: 'new/P_01_normal_default', teaching: 'new/P_01_normal_default',
-      thinking: 'new/P_01_normal_default', stern: 'new/P_01_normal_default',
-      shadow_default: 'new/P_01_normal_default', shadow_smirk: 'new/P_01_normal_default',
+    // 伊藤（第三章物证对峙，专属立绘 2026-08-13）
+    ito: {
+      default: 'ito_default', calm: 'ito_default',
+      serious: 'ito_serious', stern: 'ito_serious',
+      angry: 'ito_serious', thinking: 'ito_default',
+      think: 'ito_default', surprised: 'ito_serious',
+      smile: 'ito_default', confident: 'ito_default',
     },
-    plotterShadow: {
-      default: 'P_02_残影态', smirk: 'P_02_残影态', angry: 'P_02_残影态',
-      surprised: 'P_02_残影态', serious: 'P_02_残影态', calm: 'P_02_残影态',
-      smile: 'P_02_残影态', think: 'P_02_残影态', mysterious: 'P_02_残影态',
+    // 山田（第五·电特高课，专属立绘 2026-08-13）
+    yamada: {
+      default: 'yamada_default', calm: 'yamada_default',
+      serious: 'yamada_serious', stern: 'yamada_serious',
+      angry: 'yamada_angry', thinking: 'yamada_default',
+      think: 'yamada_default', surprised: 'yamada_serious',
+      smile: 'yamada_default', confident: 'yamada_default',
     },
-    weaver: {
-      default: 'weaver_default', surprised: 'weaver_surprised',
-      smirk: 'weaver_smirk', angry: 'weaver_angry',
-      calm: 'weaver_default', serious: 'weaver_default',
-      smile: 'weaver_default', think: 'weaver_default',
-      confident: 'weaver_smirk', mysterious: 'weaver_default',
-      lose: 'weaver_default', determined: 'weaver_default',
+    // 老师（留声/回忆，占位待专属美术）
+    teacher: {
+      default: 'ch1_shenmo_default', calm: 'ch1_shenmo_default',
+      smile: 'ch1_shenmo_smile', serious: 'ch1_shenmo_serious',
+      gentle: 'ch1_shenmo_default', thinking: 'ch1_shenmo_default',
+      surprised: 'ch1_shenmo_default',
     },
-    remnant: {
-      default: 'remnant_default', stern: 'remnant_stern',
-      surprised: 'remnant_surprised', serious: 'remnant_stern',
-      angry: 'remnant_stern', calm: 'remnant_default',
-      smile: 'remnant_default', think: 'remnant_default',
-      confident: 'remnant_default', mysterious: 'remnant_default',
-      lose: 'remnant_default',
-    },
-    setterSecret: {
-      default: 'setter_secret_default', smirk: 'setter_secret_smirk',
-      angry: 'setter_secret_angry', surprised: 'setter_secret_surprised',
-      confident: 'setter_secret_confident', think: 'setter_secret_default',
-      serious: 'setter_secret_default', calm: 'setter_secret_default',
-      smile: 'setter_secret_smirk', sad: 'setter_secret_surprised',
-      lose: 'setter_secret_angry', determined: 'setter_secret_confident',
-      mysterious: 'setter_secret_default',
+    // 父亲（沈世安，回忆/信，专属立绘 2026-08-13）
+    father: {
+      default: 'father_default', calm: 'father_default',
+      serious: 'father_serious', stern: 'father_serious',
+      gentle: 'father_smile', smile: 'father_smile',
+      confident: 'father_smile', thinking: 'father_default',
+      think: 'father_default', surprised: 'father_serious',
+      sad: 'father_serious',
     },
   };
 
   // Speaker alias mapping (supports nicknames and partial matching)
   const SPEAKER_ALIASES = {
     'shenmo': 'shenmo', '沈墨': 'shenmo', '沈墨君': 'shenmo', '小沈': 'shenmo',
-    'ayan': 'ayan', '阿妍': 'ayan', '妍': 'ayan',
     '苏晚': 'suwan', '苏晚（旧友）': 'suwan',
     '薇拉': 'vera', '薇拉（书信）': 'vera', '薇拉·陈': 'vera',
-    'ying': 'ying', '莹莹': 'ying', '小莹': 'ying', 'yingying': 'ying',
-    'cagekeeper': 'cagekeeper', '守笼人': 'cagekeeper', '笼守': 'cagekeeper',
-    '老师（留声）': 'cagekeeper', '老师': 'cagekeeper', '留声': 'cagekeeper',
+    '周太太': 'zhou_taotai', '房东太太': 'zhou_taotai',
+    '潘汉年': 'pan_hanian', '灰布长衫': 'pan_hanian', '接头人': 'pan_hanian',
+    '伊藤': 'ito', '伊藤（物证）': 'ito',
+    '山田': 'yamada', '山田特高课': 'yamada',
+    '老师': 'teacher', '老师（留声）': 'teacher', '留声': 'teacher',
+    '父亲': 'father', '父亲（回忆）': 'father', '沈世安': 'father',
     '沈墨 CHIBI': 'shenmo', '沈墨CHIBI': 'shenmo', '少年沈墨': 'shenmo',
-    'plotter': 'plotter', '设局人': 'plotter', '局中人': 'plotter',
-    'plotterShadow': 'plotterShadow', '设局人残影': 'plotterShadow', '设局人（残影）': 'plotterShadow',
-    'weaver': 'weaver', '星辰梭': 'weaver', '星': 'weaver',
-    'remnant': 'remnant', '残局守护者': 'remnant',
-    'setterSecret': 'setterSecret', '设局人（秘术）': 'setterSecret',
     'narrator': 'narrator', '旁白': 'narrator', '': 'narrator',
     'system': 'system', '系统': 'system',
   };
@@ -2763,8 +2726,8 @@
 
     /**
      * 显示教学 Q 版 chibi（角色 + 可选变体）
-     * @param {string} roleKey - shenmo/ayan/ying/cagekeeper/plotter/weaver
-     * @param {string} [variant] - 可选状态（如 weaver 的 talking/smile/dim/warm）
+     * @param {string} roleKey - shenmo/vera/suwan/ito
+     * @param {string} [variant] - 可选状态（如 shenmo 的 thinking/vera 的 smile）
      */
     showChibi(roleKey, variant) {
       try {

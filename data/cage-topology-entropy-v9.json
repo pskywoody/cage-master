@@ -1,0 +1,207 @@
+{
+  "generatedAt": "2026-08-09T21:36:24.121Z",
+  "config": {
+    "count": 100,
+    "seed": 20260810,
+    "elapsedSeconds": 670.7
+  },
+  "totalCages": 2527,
+  "uniqueShapes": 21,
+  "entropy": 3.643,
+  "top10Share": 0.881,
+  "highRatioShapeCount": 0,
+  "highRatioCageShare": 0,
+  "verdict": "Case 2: Topology 丰富但未偏向 reasoning topology → shape-aware weighting",
+  "shapeDistribution": [
+    {
+      "shapeID": "0,0|0,1|1,0",
+      "count": 423,
+      "avgSize": 3,
+      "avgEntropy": 2.407,
+      "crossHouseRate": 0.366,
+      "avgLevelRatio": 0.185,
+      "share": 0.167
+    },
+    {
+      "shapeID": "0,0",
+      "count": 409,
+      "avgSize": 1,
+      "avgEntropy": 0,
+      "crossHouseRate": 0,
+      "avgLevelRatio": 0.179,
+      "share": 0.162
+    },
+    {
+      "shapeID": "0,0|0,1",
+      "count": 305,
+      "avgSize": 2,
+      "avgEntropy": 1.399,
+      "crossHouseRate": 0.21,
+      "avgLevelRatio": 0.18,
+      "share": 0.121
+    },
+    {
+      "shapeID": "0,0|0,1|0,2",
+      "count": 272,
+      "avgSize": 3,
+      "avgEntropy": 2.479,
+      "crossHouseRate": 0.463,
+      "avgLevelRatio": 0.178,
+      "share": 0.108
+    },
+    {
+      "shapeID": "0,0|0,1|0,2|1,0|1,1",
+      "count": 224,
+      "avgSize": 5,
+      "avgEntropy": 2.901,
+      "crossHouseRate": 0.438,
+      "avgLevelRatio": 0.184,
+      "share": 0.089
+    },
+    {
+      "shapeID": "0,0|0,1|0,2|1,0",
+      "count": 217,
+      "avgSize": 4,
+      "avgEntropy": 2.887,
+      "crossHouseRate": 0.521,
+      "avgLevelRatio": 0.187,
+      "share": 0.086
+    },
+    {
+      "shapeID": "0,0|0,1|1,0|1,1",
+      "count": 126,
+      "avgSize": 4,
+      "avgEntropy": 2.784,
+      "crossHouseRate": 0.333,
+      "avgLevelRatio": 0.185,
+      "share": 0.05
+    },
+    {
+      "shapeID": "0,0|0,1|0,2|1,1",
+      "count": 92,
+      "avgSize": 4,
+      "avgEntropy": 2.901,
+      "crossHouseRate": 0.663,
+      "avgLevelRatio": 0.189,
+      "share": 0.036
+    },
+    {
+      "shapeID": "0,0|0,1|0,2|0,3",
+      "count": 82,
+      "avgSize": 4,
+      "avgEntropy": 2.918,
+      "crossHouseRate": 1,
+      "avgLevelRatio": 0.173,
+      "share": 0.032
+    },
+    {
+      "shapeID": "0,0|0,1|1,1|1,2",
+      "count": 77,
+      "avgSize": 4,
+      "avgEntropy": 2.95,
+      "crossHouseRate": 0.649,
+      "avgLevelRatio": 0.177,
+      "share": 0.03
+    },
+    {
+      "shapeID": "0,0|0,1|0,2|0,3|1,1",
+      "count": 60,
+      "avgSize": 5,
+      "avgEntropy": 2.937,
+      "crossHouseRate": 1,
+      "avgLevelRatio": 0.187,
+      "share": 0.024
+    },
+    {
+      "shapeID": "0,0|0,1|1,1|1,2|2,1",
+      "count": 41,
+      "avgSize": 5,
+      "avgEntropy": 3.123,
+      "crossHouseRate": 0.854,
+      "avgLevelRatio": 0.197,
+      "share": 0.016
+    },
+    {
+      "shapeID": "0,0|0,1|0,2|0,3|1,0",
+      "count": 38,
+      "avgSize": 5,
+      "avgEntropy": 3.033,
+      "crossHouseRate": 1,
+      "avgLevelRatio": 0.19,
+      "share": 0.015
+    },
+    {
+      "shapeID": "0,0|0,1|0,2|0,3|0,4",
+      "count": 29,
+      "avgSize": 5,
+      "avgEntropy": 2.925,
+      "crossHouseRate": 1,
+      "avgLevelRatio": 0.18,
+      "share": 0.011
+    },
+    {
+      "shapeID": "0,0|0,1|0,2|1,1|2,1",
+      "count": 27,
+      "avgSize": 5,
+      "avgEntropy": 2.815,
+      "crossHouseRate": 0.704,
+      "avgLevelRatio": 0.175,
+      "share": 0.011
+    },
+    {
+      "shapeID": "0,0|0,1|0,2|1,2|1,3",
+      "count": 24,
+      "avgSize": 5,
+      "avgEntropy": 2.932,
+      "crossHouseRate": 1,
+      "avgLevelRatio": 0.177,
+      "share": 0.009
+    },
+    {
+      "shapeID": "0,0|0,1|0,2|1,0|2,0",
+      "count": 23,
+      "avgSize": 5,
+      "avgEntropy": 3.089,
+      "crossHouseRate": 0.435,
+      "avgLevelRatio": 0.179,
+      "share": 0.009
+    },
+    {
+      "shapeID": "0,0|0,1|0,2|1,0|1,2",
+      "count": 22,
+      "avgSize": 5,
+      "avgEntropy": 2.863,
+      "crossHouseRate": 0.5,
+      "avgLevelRatio": 0.18,
+      "share": 0.009
+    },
+    {
+      "shapeID": "0,0|0,1|1,1|2,1|2,2",
+      "count": 16,
+      "avgSize": 5,
+      "avgEntropy": 2.978,
+      "crossHouseRate": 0.438,
+      "avgLevelRatio": 0.165,
+      "share": 0.006
+    },
+    {
+      "shapeID": "0,1|1,0|1,1|1,2|2,1",
+      "count": 11,
+      "avgSize": 5,
+      "avgEntropy": 3.202,
+      "crossHouseRate": 0.818,
+      "avgLevelRatio": 0.162,
+      "share": 0.004
+    },
+    {
+      "shapeID": "0,0|0,1|1,1|1,2|2,2",
+      "count": 9,
+      "avgSize": 5,
+      "avgEntropy": 2.451,
+      "crossHouseRate": 0.444,
+      "avgLevelRatio": 0.173,
+      "share": 0.004
+    }
+  ],
+  "highRatioShapes": []
+}

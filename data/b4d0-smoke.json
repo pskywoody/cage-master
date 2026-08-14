@@ -1,0 +1,31 @@
+{
+  "generatedAt": "2026-08-10T17:25:56.766Z",
+  "config": {
+    "count": 3,
+    "seed": 20260810,
+    "elapsedSeconds": 32.4
+  },
+  "frozen": {
+    "lambda": 25,
+    "growthBias": 0.4,
+    "shapeDiversityWeight": 0.2,
+    "objective": "enabled",
+    "canonicalNoveltyWeight": 0,
+    "suppressSingletons": true
+  },
+  "variable": {
+    "canonicalProfile": true
+  },
+  "result": {
+    "levels": 3,
+    "withPool": 3,
+    "poolHfamilyMean": 1.706,
+    "winnerHfamilyMean": 1.685,
+    "deltaPoolMinusWinner": 0.021,
+    "poolHighWinnerLow": 1,
+    "poolCollapsed": 0,
+    "poolCollapsedShare": 0,
+    "avgCandidatesPerLevel": 4.3
+  },
+  "verdict": "B4-D0 分叉 → 待定：候选池已丰富（poolH=1.706），但 winner 未显著更低（Δ=0.021）→ selection 未明显淘汰 diversity，需复查阈值。"
+}

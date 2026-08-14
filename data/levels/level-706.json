@@ -1,1166 +1,1166 @@
 {
-  "levelId": 706,
-  "title": "第6关：秘术大师",
-  "gridSize": 9,
-  "difficulty": "传说",
-  "teachingGoal": "综合运用所有高级技巧（数对、三子法、二连纵横阵、三才游鱼阵）破解设局人留下的终极秘术笼局。",
-  "features": {
-    "allowDraft": true,
-    "assistant45": true,
-    "showHints": true,
-    "perspectiveMode": true,
-    "highlightRow": true,
-    "highlightCol": true,
-    "highlightBox": true,
-    "highlightNumber": true,
-    "highlightCage": true,
-    "autoFillCandidates": false
-  },
-  "triggers": [
-    {
-      "condition": "onLevelStart",
-      "type": "freeze_mask",
-      "highlight": "full",
-      "text": "终极试炼：这道题需要综合运用你学到的所有高级技巧。从简单技巧开始（显单→隐曜→数对→三子法→二连纵横阵→三才游鱼阵），一步步推进。不要急，仔细观察。",
-      "once": true,
-      "id": "t706_auto_0",
-      "targetR": 2,
-      "targetC": 6,
-      "targetType": "cell",
-      "highlightShape": "circle"
-    },
-    {
-      "condition": "onStuckForSeconds",
-      "seconds": 60,
-      "type": "popup_hint",
-      "position": "top",
-      "text": "💡 遇到瓶颈时，回头检查是否漏掉了数对或三子法。高级技巧往往藏在基础排除之后。",
-      "delay": 500,
-      "id": "t706_auto_1"
-    },
-    {
-      "id": "t706_f1",
-      "condition": "onFirstNumberFilled",
-      "type": "popup_hint",
-      "position": "top",
-      "text": "秘术终极挑战的第一步！数对、三链、二连纵横阵、三才游鱼阵——全部用上！",
-      "once": true
-    },
-    {
-      "id": "t706_b",
-      "condition": "onFillCountReached",
-      "count": 53,
-      "type": "enter_phase",
-      "phase": "breakthrough",
-      "once": true
-    },
-    {
-      "id": "t706_bt",
-      "condition": "onFillCountReached",
-      "count": 53,
-      "type": "popup_hint",
-      "position": "top",
-      "text": "⚡ 破局时刻！五大秘术技巧协同发力，终极谜题开始崩塌！",
-      "once": true,
-      "delay": 400
-    },
-    {
-      "id": "t706_st20",
-      "condition": "onStuckForSeconds",
-      "seconds": 20,
-      "type": "popup_hint",
-      "position": "top",
-      "text": "💡 卡住了？按系统顺序排查：孤星→隐曜→并蒂锁→双曜→三子法→二连纵横阵→三才游鱼阵，层层递进！",
-      "once": false
-    },
-    {
-      "id": "t706_st40",
-      "condition": "onStuckForSeconds",
-      "seconds": 40,
-      "type": "popup_hint",
-      "position": "top",
-      "text": "💡 秘术大师的提示：高级盘面前期最容易遗漏的是隐曜（Hidden Single）！在找构型之前，先确保所有隐曜都已填出！",
-      "once": false,
-      "delay": 300
-    },
-    {
-      "id": "t706_ag",
-      "condition": "onConflict",
-      "type": "popup_hint",
-      "position": "top",
-      "text": "⚠️ 秘术终极考验容不得半点猜测！每一个构型都要严格验证，否则差之毫厘谬以千里！",
-      "once": false
-    },
-    {
-      "id": "t706_fi",
-      "condition": "onFillCountReached",
-      "count": 70,
-      "type": "enter_phase",
-      "phase": "finishing",
-      "once": true
-    },
-    {
-      "id": "t706_fit",
-      "condition": "onFillCountReached",
-      "count": 70,
-      "type": "popup_hint",
-      "position": "top",
-      "text": "✨ 收官！秘术大师徽章即将加冕，最后的真相就在眼前！",
-      "once": true,
-      "delay": 400
-    },
-    {
-      "id": "t706_c",
-      "condition": "onLevelComplete",
-      "type": "badge_award",
-      "text": "🎉 恭喜成为秘术大师！五大高级技巧——并蒂锁、双曜、三子法、二连纵横阵、三才游鱼阵——全部掌握！",
-      "once": true,
-      "badgeId": "badge_c7_master"
-    }
-  ],
-  "boardData": [
-    [
-      7,
-      5,
-      3,
-      6,
-      0,
-      2,
-      8,
-      0,
-      9
-    ],
-    [
-      0,
-      0,
-      4,
-      5,
-      0,
-      8,
-      0,
-      0,
-      0
-    ],
-    [
-      0,
-      1,
-      0,
-      0,
-      4,
-      0,
-      0,
-      0,
-      0
-    ],
-    [
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      6
-    ],
-    [
-      0,
-      7,
-      0,
-      0,
-      0,
-      1,
-      9,
-      2,
-      0
-    ],
-    [
-      0,
-      6,
-      2,
-      0,
-      0,
-      3,
-      0,
-      0,
-      0
-    ],
-    [
-      4,
-      8,
-      0,
-      0,
-      0,
-      7,
-      3,
-      0,
-      0
-    ],
-    [
-      5,
-      0,
-      0,
-      0,
-      3,
-      0,
-      0,
-      7,
-      0
-    ],
-    [
-      9,
-      3,
-      0,
-      0,
-      8,
-      6,
-      1,
-      0,
-      0
-    ]
-  ],
-  "cages": [
-    {
-      "id": 1,
-      "sum": 15,
-      "cells": [
-        [
-          0,
-          0
-        ],
-        [
-          0,
-          1
-        ],
-        [
-          0,
-          2
-        ]
-      ]
-    },
-    {
-      "id": 2,
-      "sum": 18,
-      "cells": [
-        [
-          0,
-          3
-        ],
-        [
-          1,
-          3
-        ],
-        [
-          1,
-          4
-        ]
-      ]
-    },
-    {
-      "id": 3,
-      "sum": 15,
-      "cells": [
-        [
-          0,
-          4
-        ],
-        [
-          0,
-          5
-        ],
-        [
-          0,
-          6
-        ],
-        [
-          0,
-          7
-        ]
-      ]
-    },
-    {
-      "id": 4,
-      "sum": 17,
-      "cells": [
-        [
-          0,
-          8
-        ],
-        [
-          1,
-          8
-        ],
-        [
-          2,
-          8
-        ]
-      ]
-    },
-    {
-      "id": 5,
-      "sum": 13,
-      "cells": [
-        [
-          1,
-          7
-        ],
-        [
-          1,
-          6
-        ],
-        [
-          1,
-          5
-        ]
-      ]
-    },
-    {
-      "id": 6,
-      "sum": 13,
-      "cells": [
-        [
-          1,
-          2
-        ],
-        [
-          2,
-          2
-        ],
-        [
-          2,
-          1
-        ]
-      ]
-    },
-    {
-      "id": 7,
-      "sum": 17,
-      "cells": [
-        [
-          1,
-          1
-        ],
-        [
-          1,
-          0
-        ],
-        [
-          2,
-          0
-        ]
-      ]
-    },
-    {
-      "id": 8,
-      "sum": 20,
-      "cells": [
-        [
-          2,
-          3
-        ],
-        [
-          3,
-          3
-        ],
-        [
-          3,
-          2
-        ]
-      ]
-    },
-    {
-      "id": 9,
-      "sum": 16,
-      "cells": [
-        [
-          2,
-          4
-        ],
-        [
-          3,
-          4
-        ],
-        [
-          4,
-          4
-        ],
-        [
-          4,
-          5
-        ],
-        [
-          5,
-          5
-        ]
-      ]
-    },
-    {
-      "id": 10,
-      "sum": 20,
-      "cells": [
-        [
-          2,
-          5
-        ],
-        [
-          2,
-          6
-        ],
-        [
-          2,
-          7
-        ]
-      ]
-    },
-    {
-      "id": 11,
-      "sum": 19,
-      "cells": [
-        [
-          3,
-          8
-        ],
-        [
-          4,
-          8
-        ],
-        [
-          4,
-          7
-        ],
-        [
-          5,
-          7
-        ]
-      ]
-    },
-    {
-      "id": 12,
-      "sum": 8,
-      "cells": [
-        [
-          3,
-          7
-        ],
-        [
-          3,
-          6
-        ]
-      ]
-    },
-    {
-      "id": 13,
-      "sum": 5,
-      "cells": [
-        [
-          3,
-          5
-        ]
-      ]
-    },
-    {
-      "id": 14,
-      "sum": 7,
-      "cells": [
-        [
-          3,
-          1
-        ],
-        [
-          3,
-          0
-        ]
-      ]
-    },
-    {
-      "id": 15,
-      "sum": 15,
-      "cells": [
-        [
-          4,
-          0
-        ],
-        [
-          4,
-          1
-        ]
-      ]
-    },
-    {
-      "id": 16,
-      "sum": 15,
-      "cells": [
-        [
-          4,
-          2
-        ],
-        [
-          5,
-          2
-        ],
-        [
-          5,
-          3
-        ],
-        [
-          6,
-          3
-        ]
-      ]
-    },
-    {
-      "id": 17,
-      "sum": 4,
-      "cells": [
-        [
-          4,
-          3
-        ]
-      ]
-    },
-    {
-      "id": 18,
-      "sum": 13,
-      "cells": [
-        [
-          4,
-          6
-        ],
-        [
-          5,
-          6
-        ]
-      ]
-    },
-    {
-      "id": 19,
-      "sum": 7,
-      "cells": [
-        [
-          5,
-          8
-        ],
-        [
-          6,
-          8
-        ]
-      ]
-    },
-    {
-      "id": 20,
-      "sum": 14,
-      "cells": [
-        [
-          5,
-          4
-        ],
-        [
-          6,
-          4
-        ]
-      ]
-    },
-    {
-      "id": 21,
-      "sum": 7,
-      "cells": [
-        [
-          5,
-          1
-        ],
-        [
-          5,
-          0
-        ]
-      ]
-    },
-    {
-      "id": 22,
-      "sum": 28,
-      "cells": [
-        [
-          6,
-          0
-        ],
-        [
-          7,
-          0
-        ],
-        [
-          8,
-          0
-        ],
-        [
-          8,
-          1
-        ],
-        [
-          8,
-          2
-        ]
-      ]
-    },
-    {
-      "id": 23,
-      "sum": 15,
-      "cells": [
-        [
-          6,
-          1
-        ],
-        [
-          6,
-          2
-        ],
-        [
-          7,
-          2
-        ]
-      ]
-    },
-    {
-      "id": 24,
-      "sum": 22,
-      "cells": [
-        [
-          6,
-          5
-        ],
-        [
-          7,
-          5
-        ],
-        [
-          7,
-          4
-        ],
-        [
-          8,
-          4
-        ]
-      ]
-    },
-    {
-      "id": 25,
-      "sum": 9,
-      "cells": [
-        [
-          6,
-          6
-        ],
-        [
-          7,
-          6
-        ]
-      ]
-    },
-    {
-      "id": 26,
-      "sum": 28,
-      "cells": [
-        [
-          6,
-          7
-        ],
-        [
-          7,
-          7
-        ],
-        [
-          7,
-          8
-        ],
-        [
-          8,
-          8
-        ]
-      ]
-    },
-    {
-      "id": 27,
-      "sum": 11,
-      "cells": [
-        [
-          7,
-          3
-        ],
-        [
-          8,
-          3
-        ]
-      ]
-    },
-    {
-      "id": 28,
-      "sum": 2,
-      "cells": [
-        [
-          7,
-          1
-        ]
-      ]
-    },
-    {
-      "id": 29,
-      "sum": 12,
-      "cells": [
-        [
-          8,
-          5
-        ],
-        [
-          8,
-          6
-        ],
-        [
-          8,
-          7
-        ]
-      ]
-    }
-  ],
-  "solution": [
-    [
-      7,
-      5,
-      3,
-      6,
-      1,
-      2,
-      8,
-      4,
-      9
-    ],
-    [
-      6,
-      9,
-      4,
-      5,
-      7,
-      8,
-      2,
-      3,
-      1
-    ],
-    [
-      2,
-      1,
-      8,
-      3,
-      4,
-      9,
-      5,
-      6,
-      7
-    ],
-    [
-      3,
-      4,
-      9,
-      8,
-      2,
-      5,
-      7,
-      1,
-      6
-    ],
-    [
-      8,
-      7,
-      5,
-      4,
-      6,
-      1,
-      9,
-      2,
-      3
-    ],
-    [
-      1,
-      6,
-      2,
-      7,
-      9,
-      3,
-      4,
-      8,
-      5
-    ],
-    [
-      4,
-      8,
-      6,
-      1,
-      5,
-      7,
-      3,
-      9,
-      2
-    ],
-    [
-      5,
-      2,
-      1,
-      9,
-      3,
-      4,
-      6,
-      7,
-      8
-    ],
-    [
-      9,
-      3,
-      7,
-      2,
-      8,
-      6,
-      1,
-      5,
-      4
-    ]
-  ],
-  "preDialog": [
-    {
-      "speaker": "旁白",
-      "text": "沈墨在路路通茶馆的二楼的窗边坐下。桌面上放着一杯茶，已经凉了。杯子底下压着一张纸条——上面只有一组地址。",
-      "isNarration": true
-    },
-    {
-      "speaker": "沈墨 CHIBI",
-      "text": "……这张纸条不是他留的。它出现在这里，说明有人在等我——而那个人不是薇拉，不是伊藤。",
-      "side": "left",
-      "emotion": "thinking",
-      "effect": 0
-    },
-    {
-      "speaker": "老师（留声）",
-      "text": "秘术大师——并蒂、双曜、三子、纵横、游鱼，五种构型全部融合在同一道题里。你不需要学新东西——只需要把五条路合在一起走完。",
-      "side": "right",
-      "emotion": "calm",
-      "effect": 0
-    }
-  ],
-  "clearDialog": [
-    {
-      "speaker": "旁白",
-      "text": "沈墨解完最后一题。他站起来，走到窗边——街对面的巷口，一个穿灰布长衫的中年人正站在那里，没有走进茶馆，只是看他一眼，然后转身消失在人流中。",
-      "isNarration": true
-    },
-    {
-      "speaker": "沈墨 CHIBI",
-      "text": "……他来了，然后他走了。他不需要确认我是不是他想找的人——他只需要知道，那道题被解开了。",
-      "side": "left",
-      "emotion": "thinking",
-      "effect": 0
-    },
-    {
-      "speaker": "薇拉",
-      "text": "你见到的那个灰布长衫的人，是潘汉年。他不是来引导你的——他只是来确认，那条路已经被你走完了。",
-      "side": "right",
-      "emotion": "calm",
-      "effect": 0
-    }
-  ],
-  "isBoss": true,
-  "mode": "endgame",
-  "isClassic": true,
-  "breakPointIndex": null,
-  "totalSteps": 55,
-  "targetTechnique": "mixed",
-  "threeAct": {
-    "opening": [
-      [
-        0,
-        0
-      ],
-      [
-        0,
-        1
-      ],
-      [
-        0,
-        3
-      ],
-      [
-        0,
-        5
-      ],
-      [
-        0,
-        4
-      ],
-      [
-        0,
-        7
-      ],
-      [
-        1,
-        4
-      ],
-      [
-        1,
-        6
-      ],
-      [
-        1,
-        0
-      ],
-      [
-        1,
-        1
-      ],
-      [
-        1,
-        7
-      ],
-      [
-        1,
-        8
-      ],
-      [
-        2,
-        0
-      ],
-      [
-        2,
-        2
-      ],
-      [
-        2,
-        5
-      ],
-      [
-        2,
-        3
-      ],
-      [
-        3,
-        1
-      ],
-      [
-        3,
-        0
-      ],
-      [
-        3,
-        4
-      ],
-      [
-        3,
-        5
-      ],
-      [
-        3,
-        6
-      ],
-      [
-        4,
-        0
-      ],
-      [
-        4,
-        2
-      ],
-      [
-        4,
-        3
-      ],
-      [
-        4,
-        4
-      ],
-      [
-        5,
-        0
-      ],
-      [
-        5,
-        4
-      ],
-      [
-        5,
-        6
-      ],
-      [
-        5,
-        7
-      ],
-      [
-        6,
-        3
-      ],
-      [
-        6,
-        2
-      ],
-      [
-        6,
-        4
-      ],
-      [
-        6,
-        7
-      ],
-      [
-        7,
-        1
-      ],
-      [
-        7,
-        5
-      ],
-      [
-        7,
-        6
-      ],
-      [
-        8,
-        2
-      ],
-      [
-        8,
-        7
-      ],
-      [
-        8,
-        8
-      ]
-    ],
-    "breakthrough": [
-      [
-        7,
-        3
-      ],
-      [
-        2,
-        6
-      ],
-      [
-        2,
-        7
-      ]
-    ],
-    "avalanche": [
-      [
-        2,
-        8
-      ],
-      [
-        3,
-        2
-      ],
-      [
-        3,
-        3
-      ],
-      [
-        3,
-        7
-      ],
-      [
-        4,
-        8
-      ],
-      [
-        5,
-        3
-      ],
-      [
-        5,
-        8
-      ],
-      [
-        6,
-        8
-      ],
-      [
-        7,
-        2
-      ],
-      [
-        7,
-        8
-      ],
-      [
-        8,
-        3
-      ]
-    ]
-  },
-  "difficultyLevel": 10,
-  "lessonPlan": {
-    "newSkill": "ch7_synthesis_706",
-    "skillName": "秘术大师（第七章综合）",
-    "isFirstLesson": false,
-    "skippable": true,
-    "prerequisite": [
-      "nakedPair",
-      "hiddenPair",
-      "nakedTriple",
-      "xwing",
-      "swordfish"
-    ],
-    "phases": {
-      "intro": {
-        "text": "秘术大师——并蒂、双曜、三子、纵横、游鱼，五种构型全部融合在同一道题里。不用学新东西，把五条路合在一起走完。最后一题，你会把所有技巧同时用到。",
-        "speaker": "老师（留声）",
-        "duration": 3200
-      },
-      "demo": {
-        "steps": [
-          {
-            "action": "highlightRow",
-            "target": 0,
-            "duration": 1100,
-            "text": "综合题没有单一技巧，从最直接的观察开始。看第 1 行。"
-          },
-          {
-            "action": "focusCell",
-            "target": [
-              0,
-              4
-            ],
-            "duration": 1300,
-            "text": "先找孤星：第 1 行与第 4 列、左上宫排除了 1 的其它位置，(0,4) 只剩一个候选——填 1。"
-          }
-        ]
-      },
-      "guided": {
-        "targetCell": [
-          0,
-          4
-        ],
-        "correctValue": 1,
-        "interactionType": "NUMBER",
-        "maxAttempts": 3,
-        "failHint": "从约束最紧的行、列、宫或笼开始，用学过的技巧一步步推。",
-        "autoRevealAfter": 3,
-        "successText": "正确！继续用五大秘术推进。",
-        "successVoiceId": null,
-        "autoRevealText": "直接填入数字 1。"
-      },
-      "semiAuto": {
-        "enabled": true,
-        "targetCount": 2,
-        "interactionType": "NUMBER",
-        "hintText": "再用秘术技巧找出两个格子。",
-        "hintVoiceId": null,
-        "watchCells": [
-          [
-            2,
-            5
-          ],
-          [
-            7,
-            1
-          ]
-        ]
-      },
-      "free": {
-        "enabled": true,
-        "unlockText": "秘术已齐，剩下的交给你了。"
-      }
-    }
-  }
+    "levelId":  706,
+    "title":  "帐房",
+    "gridSize":  9,
+    "difficulty":  "传说",
+    "teachingGoal":  "综合运用所有高级技巧（数对、三子法、二连纵横阵、三才游鱼阵）破解老师留下的终极秘术笼局。",
+    "features":  {
+                     "allowDraft":  true,
+                     "assistant45":  true,
+                     "showHints":  true,
+                     "perspectiveMode":  true,
+                     "highlightRow":  true,
+                     "highlightCol":  true,
+                     "highlightBox":  true,
+                     "highlightNumber":  true,
+                     "highlightCage":  true,
+                     "autoFillCandidates":  false
+                 },
+    "triggers":  [
+                     {
+                         "condition":  "onLevelStart",
+                         "type":  "freeze_mask",
+                         "highlight":  "full",
+                         "text":  "终极试炼：这道题需要综合运用你学到的所有高级技巧。从简单技巧开始（显单→隐曜→数对→三子法→二连纵横阵→三才游鱼阵），一步步推进。不要急，仔细观察。",
+                         "once":  true,
+                         "id":  "t706_auto_0",
+                         "targetR":  2,
+                         "targetC":  6,
+                         "targetType":  "cell",
+                         "highlightShape":  "circle"
+                     },
+                     {
+                         "condition":  "onStuckForSeconds",
+                         "seconds":  60,
+                         "type":  "popup_hint",
+                         "position":  "top",
+                         "text":  "💡 遇到瓶颈时，回头检查是否漏掉了数对或三子法。高级技巧往往藏在基础排除之后。",
+                         "delay":  500,
+                         "id":  "t706_auto_1"
+                     },
+                     {
+                         "id":  "t706_f1",
+                         "condition":  "onFirstNumberFilled",
+                         "type":  "popup_hint",
+                         "position":  "top",
+                         "text":  "秘术终极挑战的第一步！数对、三链、二连纵横阵、三才游鱼阵——全部用上！",
+                         "once":  true
+                     },
+                     {
+                         "id":  "t706_b",
+                         "condition":  "onFillCountReached",
+                         "count":  53,
+                         "type":  "enter_phase",
+                         "phase":  "breakthrough",
+                         "once":  true
+                     },
+                     {
+                         "id":  "t706_bt",
+                         "condition":  "onFillCountReached",
+                         "count":  53,
+                         "type":  "popup_hint",
+                         "position":  "top",
+                         "text":  "⚡ 破局时刻！五大秘术技巧协同发力，终极谜题开始崩塌！",
+                         "once":  true,
+                         "delay":  400
+                     },
+                     {
+                         "id":  "t706_st20",
+                         "condition":  "onStuckForSeconds",
+                         "seconds":  20,
+                         "type":  "popup_hint",
+                         "position":  "top",
+                         "text":  "💡 卡住了？按系统顺序排查：孤星→隐曜→并蒂锁→双曜→三子法→二连纵横阵→三才游鱼阵，层层递进！",
+                         "once":  false
+                     },
+                     {
+                         "id":  "t706_st40",
+                         "condition":  "onStuckForSeconds",
+                         "seconds":  40,
+                         "type":  "popup_hint",
+                         "position":  "top",
+                         "text":  "💡 秘术大师的提示：高级盘面前期最容易遗漏的是隐曜（Hidden Single）！在找构型之前，先确保所有隐曜都已填出！",
+                         "once":  false,
+                         "delay":  300
+                     },
+                     {
+                         "id":  "t706_ag",
+                         "condition":  "onConflict",
+                         "type":  "popup_hint",
+                         "position":  "top",
+                         "text":  "⚠️ 秘术终极考验容不得半点猜测！每一个构型都要严格验证，否则差之毫厘谬以千里！",
+                         "once":  false
+                     },
+                     {
+                         "id":  "t706_fi",
+                         "condition":  "onFillCountReached",
+                         "count":  70,
+                         "type":  "enter_phase",
+                         "phase":  "finishing",
+                         "once":  true
+                     },
+                     {
+                         "id":  "t706_fit",
+                         "condition":  "onFillCountReached",
+                         "count":  70,
+                         "type":  "popup_hint",
+                         "position":  "top",
+                         "text":  "✨ 收官！秘术大师徽章即将加冕，最后的真相就在眼前！",
+                         "once":  true,
+                         "delay":  400
+                     },
+                     {
+                         "id":  "t706_c",
+                         "condition":  "onLevelComplete",
+                         "type":  "badge_award",
+                         "text":  "🎉 恭喜成为秘术大师！五大高级技巧——并蒂锁、双曜、三子法、二连纵横阵、三才游鱼阵——全部掌握！",
+                         "once":  true,
+                         "badgeId":  "badge_c7_master"
+                     }
+                 ],
+    "boardData":  [
+                      [
+                          7,
+                          5,
+                          3,
+                          6,
+                          0,
+                          2,
+                          8,
+                          0,
+                          9
+                      ],
+                      [
+                          0,
+                          0,
+                          4,
+                          5,
+                          0,
+                          8,
+                          0,
+                          0,
+                          0
+                      ],
+                      [
+                          0,
+                          1,
+                          0,
+                          0,
+                          4,
+                          0,
+                          0,
+                          0,
+                          0
+                      ],
+                      [
+                          0,
+                          0,
+                          0,
+                          0,
+                          0,
+                          0,
+                          0,
+                          0,
+                          6
+                      ],
+                      [
+                          0,
+                          7,
+                          0,
+                          0,
+                          0,
+                          1,
+                          9,
+                          2,
+                          0
+                      ],
+                      [
+                          0,
+                          6,
+                          2,
+                          0,
+                          0,
+                          3,
+                          0,
+                          0,
+                          0
+                      ],
+                      [
+                          4,
+                          8,
+                          0,
+                          0,
+                          0,
+                          7,
+                          3,
+                          0,
+                          0
+                      ],
+                      [
+                          5,
+                          0,
+                          0,
+                          0,
+                          3,
+                          0,
+                          0,
+                          7,
+                          0
+                      ],
+                      [
+                          9,
+                          3,
+                          0,
+                          0,
+                          8,
+                          6,
+                          1,
+                          0,
+                          0
+                      ]
+                  ],
+    "cages":  [
+                  {
+                      "id":  1,
+                      "sum":  15,
+                      "cells":  [
+                                    [
+                                        0,
+                                        0
+                                    ],
+                                    [
+                                        0,
+                                        1
+                                    ],
+                                    [
+                                        0,
+                                        2
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  2,
+                      "sum":  18,
+                      "cells":  [
+                                    [
+                                        0,
+                                        3
+                                    ],
+                                    [
+                                        1,
+                                        3
+                                    ],
+                                    [
+                                        1,
+                                        4
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  3,
+                      "sum":  15,
+                      "cells":  [
+                                    [
+                                        0,
+                                        4
+                                    ],
+                                    [
+                                        0,
+                                        5
+                                    ],
+                                    [
+                                        0,
+                                        6
+                                    ],
+                                    [
+                                        0,
+                                        7
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  4,
+                      "sum":  17,
+                      "cells":  [
+                                    [
+                                        0,
+                                        8
+                                    ],
+                                    [
+                                        1,
+                                        8
+                                    ],
+                                    [
+                                        2,
+                                        8
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  5,
+                      "sum":  13,
+                      "cells":  [
+                                    [
+                                        1,
+                                        7
+                                    ],
+                                    [
+                                        1,
+                                        6
+                                    ],
+                                    [
+                                        1,
+                                        5
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  6,
+                      "sum":  13,
+                      "cells":  [
+                                    [
+                                        1,
+                                        2
+                                    ],
+                                    [
+                                        2,
+                                        2
+                                    ],
+                                    [
+                                        2,
+                                        1
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  7,
+                      "sum":  17,
+                      "cells":  [
+                                    [
+                                        1,
+                                        1
+                                    ],
+                                    [
+                                        1,
+                                        0
+                                    ],
+                                    [
+                                        2,
+                                        0
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  8,
+                      "sum":  20,
+                      "cells":  [
+                                    [
+                                        2,
+                                        3
+                                    ],
+                                    [
+                                        3,
+                                        3
+                                    ],
+                                    [
+                                        3,
+                                        2
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  9,
+                      "sum":  16,
+                      "cells":  [
+                                    [
+                                        2,
+                                        4
+                                    ],
+                                    [
+                                        3,
+                                        4
+                                    ],
+                                    [
+                                        4,
+                                        4
+                                    ],
+                                    [
+                                        4,
+                                        5
+                                    ],
+                                    [
+                                        5,
+                                        5
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  10,
+                      "sum":  20,
+                      "cells":  [
+                                    [
+                                        2,
+                                        5
+                                    ],
+                                    [
+                                        2,
+                                        6
+                                    ],
+                                    [
+                                        2,
+                                        7
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  11,
+                      "sum":  19,
+                      "cells":  [
+                                    [
+                                        3,
+                                        8
+                                    ],
+                                    [
+                                        4,
+                                        8
+                                    ],
+                                    [
+                                        4,
+                                        7
+                                    ],
+                                    [
+                                        5,
+                                        7
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  12,
+                      "sum":  8,
+                      "cells":  [
+                                    [
+                                        3,
+                                        7
+                                    ],
+                                    [
+                                        3,
+                                        6
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  13,
+                      "sum":  5,
+                      "cells":  [
+                                    [
+                                        3,
+                                        5
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  14,
+                      "sum":  7,
+                      "cells":  [
+                                    [
+                                        3,
+                                        1
+                                    ],
+                                    [
+                                        3,
+                                        0
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  15,
+                      "sum":  15,
+                      "cells":  [
+                                    [
+                                        4,
+                                        0
+                                    ],
+                                    [
+                                        4,
+                                        1
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  16,
+                      "sum":  15,
+                      "cells":  [
+                                    [
+                                        4,
+                                        2
+                                    ],
+                                    [
+                                        5,
+                                        2
+                                    ],
+                                    [
+                                        5,
+                                        3
+                                    ],
+                                    [
+                                        6,
+                                        3
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  17,
+                      "sum":  4,
+                      "cells":  [
+                                    [
+                                        4,
+                                        3
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  18,
+                      "sum":  13,
+                      "cells":  [
+                                    [
+                                        4,
+                                        6
+                                    ],
+                                    [
+                                        5,
+                                        6
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  19,
+                      "sum":  7,
+                      "cells":  [
+                                    [
+                                        5,
+                                        8
+                                    ],
+                                    [
+                                        6,
+                                        8
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  20,
+                      "sum":  14,
+                      "cells":  [
+                                    [
+                                        5,
+                                        4
+                                    ],
+                                    [
+                                        6,
+                                        4
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  21,
+                      "sum":  7,
+                      "cells":  [
+                                    [
+                                        5,
+                                        1
+                                    ],
+                                    [
+                                        5,
+                                        0
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  22,
+                      "sum":  28,
+                      "cells":  [
+                                    [
+                                        6,
+                                        0
+                                    ],
+                                    [
+                                        7,
+                                        0
+                                    ],
+                                    [
+                                        8,
+                                        0
+                                    ],
+                                    [
+                                        8,
+                                        1
+                                    ],
+                                    [
+                                        8,
+                                        2
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  23,
+                      "sum":  15,
+                      "cells":  [
+                                    [
+                                        6,
+                                        1
+                                    ],
+                                    [
+                                        6,
+                                        2
+                                    ],
+                                    [
+                                        7,
+                                        2
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  24,
+                      "sum":  22,
+                      "cells":  [
+                                    [
+                                        6,
+                                        5
+                                    ],
+                                    [
+                                        7,
+                                        5
+                                    ],
+                                    [
+                                        7,
+                                        4
+                                    ],
+                                    [
+                                        8,
+                                        4
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  25,
+                      "sum":  9,
+                      "cells":  [
+                                    [
+                                        6,
+                                        6
+                                    ],
+                                    [
+                                        7,
+                                        6
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  26,
+                      "sum":  28,
+                      "cells":  [
+                                    [
+                                        6,
+                                        7
+                                    ],
+                                    [
+                                        7,
+                                        7
+                                    ],
+                                    [
+                                        7,
+                                        8
+                                    ],
+                                    [
+                                        8,
+                                        8
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  27,
+                      "sum":  11,
+                      "cells":  [
+                                    [
+                                        7,
+                                        3
+                                    ],
+                                    [
+                                        8,
+                                        3
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  28,
+                      "sum":  2,
+                      "cells":  [
+                                    [
+                                        7,
+                                        1
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  29,
+                      "sum":  12,
+                      "cells":  [
+                                    [
+                                        8,
+                                        5
+                                    ],
+                                    [
+                                        8,
+                                        6
+                                    ],
+                                    [
+                                        8,
+                                        7
+                                    ]
+                                ]
+                  }
+              ],
+    "solution":  [
+                     [
+                         7,
+                         5,
+                         3,
+                         6,
+                         1,
+                         2,
+                         8,
+                         4,
+                         9
+                     ],
+                     [
+                         6,
+                         9,
+                         4,
+                         5,
+                         7,
+                         8,
+                         2,
+                         3,
+                         1
+                     ],
+                     [
+                         2,
+                         1,
+                         8,
+                         3,
+                         4,
+                         9,
+                         5,
+                         6,
+                         7
+                     ],
+                     [
+                         3,
+                         4,
+                         9,
+                         8,
+                         2,
+                         5,
+                         7,
+                         1,
+                         6
+                     ],
+                     [
+                         8,
+                         7,
+                         5,
+                         4,
+                         6,
+                         1,
+                         9,
+                         2,
+                         3
+                     ],
+                     [
+                         1,
+                         6,
+                         2,
+                         7,
+                         9,
+                         3,
+                         4,
+                         8,
+                         5
+                     ],
+                     [
+                         4,
+                         8,
+                         6,
+                         1,
+                         5,
+                         7,
+                         3,
+                         9,
+                         2
+                     ],
+                     [
+                         5,
+                         2,
+                         1,
+                         9,
+                         3,
+                         4,
+                         6,
+                         7,
+                         8
+                     ],
+                     [
+                         9,
+                         3,
+                         7,
+                         2,
+                         8,
+                         6,
+                         1,
+                         5,
+                         4
+                     ]
+                 ],
+    "preDialog":  [
+                      {
+                          "speaker":  "旁白",
+                          "text":  "沈墨在路路通茶馆的二楼的窗边坐下。桌面上放着一杯茶，已经凉了。杯子底下压着一张纸条——上面只有一组地址。",
+                          "isNarration":  true
+                      },
+                      {
+                          "speaker":  "沈墨 CHIBI",
+                          "text":  "……这张纸条不是他留的。它出现在这里，说明有人在等我——而那个人不是薇拉，不是伊藤。",
+                          "side":  "left",
+                          "emotion":  "thinking",
+                          "effect":  0
+                      },
+                      {
+                          "speaker":  "老师（留声）",
+                          "text":  "秘术大师——并蒂、双曜、三子、纵横、游鱼，五种构型全部融合在同一道题里。你不需要学新东西——只需要把五条路合在一起走完。",
+                          "side":  "right",
+                          "emotion":  "calm",
+                          "effect":  0
+                      }
+                  ],
+    "clearDialog":  [
+                        {
+                            "speaker":  "旁白",
+                            "text":  "沈墨解完最后一题。他站起来，走到窗边——街对面的巷口，一个穿灰布长衫的中年人正站在那里，没有走进茶馆，只是看他一眼，然后转身消失在人流中。",
+                            "isNarration":  true
+                        },
+                        {
+                            "speaker":  "沈墨 CHIBI",
+                            "text":  "……他来了，然后他走了。他不需要确认我是不是他想找的人——他只需要知道，那道题被解开了。",
+                            "side":  "left",
+                            "emotion":  "thinking",
+                            "effect":  0
+                        },
+                        {
+                            "speaker":  "薇拉",
+                            "text":  "你见到的那个灰布长衫的人，是潘汉年。他不是来引导你的——他只是来确认，那条路已经被你走完了。",
+                            "side":  "right",
+                            "emotion":  "calm",
+                            "effect":  0
+                        }
+                    ],
+    "isBoss":  true,
+    "mode":  "endgame",
+    "isClassic":  true,
+    "breakPointIndex":  null,
+    "totalSteps":  55,
+    "targetTechnique":  "mixed",
+    "threeAct":  {
+                     "opening":  [
+                                     [
+                                         0,
+                                         0
+                                     ],
+                                     [
+                                         0,
+                                         1
+                                     ],
+                                     [
+                                         0,
+                                         3
+                                     ],
+                                     [
+                                         0,
+                                         5
+                                     ],
+                                     [
+                                         0,
+                                         4
+                                     ],
+                                     [
+                                         0,
+                                         7
+                                     ],
+                                     [
+                                         1,
+                                         4
+                                     ],
+                                     [
+                                         1,
+                                         6
+                                     ],
+                                     [
+                                         1,
+                                         0
+                                     ],
+                                     [
+                                         1,
+                                         1
+                                     ],
+                                     [
+                                         1,
+                                         7
+                                     ],
+                                     [
+                                         1,
+                                         8
+                                     ],
+                                     [
+                                         2,
+                                         0
+                                     ],
+                                     [
+                                         2,
+                                         2
+                                     ],
+                                     [
+                                         2,
+                                         5
+                                     ],
+                                     [
+                                         2,
+                                         3
+                                     ],
+                                     [
+                                         3,
+                                         1
+                                     ],
+                                     [
+                                         3,
+                                         0
+                                     ],
+                                     [
+                                         3,
+                                         4
+                                     ],
+                                     [
+                                         3,
+                                         5
+                                     ],
+                                     [
+                                         3,
+                                         6
+                                     ],
+                                     [
+                                         4,
+                                         0
+                                     ],
+                                     [
+                                         4,
+                                         2
+                                     ],
+                                     [
+                                         4,
+                                         3
+                                     ],
+                                     [
+                                         4,
+                                         4
+                                     ],
+                                     [
+                                         5,
+                                         0
+                                     ],
+                                     [
+                                         5,
+                                         4
+                                     ],
+                                     [
+                                         5,
+                                         6
+                                     ],
+                                     [
+                                         5,
+                                         7
+                                     ],
+                                     [
+                                         6,
+                                         3
+                                     ],
+                                     [
+                                         6,
+                                         2
+                                     ],
+                                     [
+                                         6,
+                                         4
+                                     ],
+                                     [
+                                         6,
+                                         7
+                                     ],
+                                     [
+                                         7,
+                                         1
+                                     ],
+                                     [
+                                         7,
+                                         5
+                                     ],
+                                     [
+                                         7,
+                                         6
+                                     ],
+                                     [
+                                         8,
+                                         2
+                                     ],
+                                     [
+                                         8,
+                                         7
+                                     ],
+                                     [
+                                         8,
+                                         8
+                                     ]
+                                 ],
+                     "breakthrough":  [
+                                          [
+                                              7,
+                                              3
+                                          ],
+                                          [
+                                              2,
+                                              6
+                                          ],
+                                          [
+                                              2,
+                                              7
+                                          ]
+                                      ],
+                     "avalanche":  [
+                                       [
+                                           2,
+                                           8
+                                       ],
+                                       [
+                                           3,
+                                           2
+                                       ],
+                                       [
+                                           3,
+                                           3
+                                       ],
+                                       [
+                                           3,
+                                           7
+                                       ],
+                                       [
+                                           4,
+                                           8
+                                       ],
+                                       [
+                                           5,
+                                           3
+                                       ],
+                                       [
+                                           5,
+                                           8
+                                       ],
+                                       [
+                                           6,
+                                           8
+                                       ],
+                                       [
+                                           7,
+                                           2
+                                       ],
+                                       [
+                                           7,
+                                           8
+                                       ],
+                                       [
+                                           8,
+                                           3
+                                       ]
+                                   ]
+                 },
+    "difficultyLevel":  10,
+    "lessonPlan":  {
+                       "newSkill":  "ch7_synthesis_706",
+                       "skillName":  "秘术大师（第七章综合）",
+                       "isFirstLesson":  false,
+                       "skippable":  true,
+                       "prerequisite":  [
+                                            "nakedPair",
+                                            "hiddenPair",
+                                            "nakedTriple",
+                                            "xwing",
+                                            "swordfish"
+                                        ],
+                       "phases":  {
+                                      "intro":  {
+                                                    "text":  "秘术大师——并蒂、双曜、三子、纵横、游鱼，五种构型全部融合在同一道题里。不用学新东西，把五条路合在一起走完。最后一题，你会把所有技巧同时用到。",
+                                                    "speaker":  "老师（留声）",
+                                                    "duration":  3200
+                                                },
+                                      "demo":  {
+                                                   "steps":  [
+                                                                 {
+                                                                     "action":  "highlightRow",
+                                                                     "target":  0,
+                                                                     "duration":  1100,
+                                                                     "text":  "综合题没有单一技巧，从最直接的观察开始。看第 1 行。"
+                                                                 },
+                                                                 {
+                                                                     "action":  "focusCell",
+                                                                     "target":  [
+                                                                                    0,
+                                                                                    4
+                                                                                ],
+                                                                     "duration":  1300,
+                                                                     "text":  "先找孤星：第 1 行与第 4 列、左上宫排除了 1 的其它位置，(0,4) 只剩一个候选——填 1。"
+                                                                 }
+                                                             ]
+                                               },
+                                      "guided":  {
+                                                     "targetCell":  [
+                                                                        0,
+                                                                        4
+                                                                    ],
+                                                     "correctValue":  1,
+                                                     "interactionType":  "NUMBER",
+                                                     "maxAttempts":  3,
+                                                     "failHint":  "从约束最紧的行、列、宫或笼开始，用学过的技巧一步步推。",
+                                                     "autoRevealAfter":  3,
+                                                     "successText":  "正确！继续用五大秘术推进。",
+                                                     "successVoiceId":  null,
+                                                     "autoRevealText":  "直接填入数字 1。"
+                                                 },
+                                      "semiAuto":  {
+                                                       "enabled":  true,
+                                                       "targetCount":  2,
+                                                       "interactionType":  "NUMBER",
+                                                       "hintText":  "再用秘术技巧找出两个格子。",
+                                                       "hintVoiceId":  null,
+                                                       "watchCells":  [
+                                                                          [
+                                                                              2,
+                                                                              5
+                                                                          ],
+                                                                          [
+                                                                              7,
+                                                                              1
+                                                                          ]
+                                                                      ]
+                                                   },
+                                      "free":  {
+                                                   "enabled":  true,
+                                                   "unlockText":  "秘术已齐，剩下的交给你了。"
+                                               }
+                                  }
+                   }
 }

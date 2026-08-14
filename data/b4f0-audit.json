@@ -1,0 +1,137 @@
+{
+  "generatedAt": "2026-08-10T20:11:31.248Z",
+  "config": {
+    "count": 30,
+    "seed": 20260810,
+    "elapsedSeconds": 389.1
+  },
+  "frozen": {
+    "lambda": 25,
+    "growthBias": 0.4,
+    "shapeDiversityWeight": 0.2,
+    "objective": "enabled",
+    "suppressSingletons": true,
+    "canonicalProfile": true,
+    "candidateAudit": true
+  },
+  "winner": {
+    "levels": 30,
+    "totalCages": 655,
+    "Hcanonical": 2.002,
+    "canonicalFamilyCount": 10,
+    "top1FamilyShare": 0.221,
+    "top4FamilyShare": 0.763,
+    "top8FamilyShare": 0.95,
+    "headFamilyLockCount": 4,
+    "singletonRatio": 0.03358778625954199,
+    "complexShare": 0.3526717557251908,
+    "basinShare": {
+      "complex": 0.09,
+      "corner": 0.284,
+      "branch": 0.263,
+      "linear": 0.269,
+      "singleton": 0.034,
+      "rect": 0.061
+    },
+    "ratioMean": 0.22494142519233915,
+    "avgScore": 531.7,
+    "uniqueAll": true,
+    "sizeShare": {
+      "1": 0.03358778625954199,
+      "2": 0.13435114503816795,
+      "3": 0.24580152671755726,
+      "4": 0.26106870229007634,
+      "5": 0.3251908396946565
+    },
+    "winnerFamilyRank": {
+      "0,0|0,1|0,2|1,0|1,1": 30,
+      "0,0|0,1|1,0": 30,
+      "0,0|0,1": 30,
+      "0,0|0,1|0,2": 27,
+      "0,0|0,1|0,2|1,1": 16,
+      "0,0|0,1|0,2|0,3|1,1": 16,
+      "0,0|0,1|0,2|0,3": 15,
+      "0,0|0,1|0,2|1,1|2,1": 13,
+      "0,0|0,1|1,1|1,2|2,1": 13,
+      "0,0|0,1|0,2|0,3|0,4": 5
+    }
+  },
+  "pool": {
+    "uniqueFamiliesInPool": 10,
+    "uniqueFamilyCombosInPool": 65,
+    "headLockPool": 10,
+    "top1FamilyHitShare": 0.156,
+    "top4FamilyHitShare": 0.605,
+    "poolHfamilyMean": 1.63
+  },
+  "audit": {
+    "attempts": 732,
+    "rawCount": 732,
+    "validCount": 732,
+    "inRangeCount": 159,
+    "raw": {
+      "n": 732,
+      "totalCages": 16151,
+      "headCages": 11297,
+      "nonHeadCages": 4854,
+      "headRatio": 0.699,
+      "nonHeadRatio": 0.301,
+      "complexCages": 4160,
+      "crossHouseComplex": 5653,
+      "headFamilyCount": 10,
+      "avgScore": 0,
+      "avgRatio": 0,
+      "avgTopo": 0,
+      "avgShapePenalty": 0
+    },
+    "valid": {
+      "n": 732,
+      "totalCages": 16151,
+      "headCages": 11297,
+      "nonHeadCages": 4854,
+      "headRatio": 0.699,
+      "nonHeadRatio": 0.301,
+      "complexCages": 4160,
+      "crossHouseComplex": 5653,
+      "headFamilyCount": 10,
+      "avgScore": 147.60928961748633,
+      "avgRatio": 0.10680209323823894,
+      "avgTopo": 0,
+      "avgShapePenalty": 0
+    },
+    "inRange": {
+      "n": 159,
+      "totalCages": 3491,
+      "headCages": 2420,
+      "nonHeadCages": 1071,
+      "headRatio": 0.693,
+      "nonHeadRatio": 0.307,
+      "complexCages": 930,
+      "crossHouseComplex": 1222,
+      "headFamilyCount": 10,
+      "avgScore": 492.92452830188677,
+      "avgRatio": 0.1948990389673746,
+      "avgTopo": 0.46463598246617116,
+      "avgShapePenalty": 0.8907914845158492
+    },
+    "retentionValid": {
+      "head": 1,
+      "nonHead": 1
+    },
+    "retentionInRange": {
+      "head": 0.214,
+      "nonHead": 0.221
+    },
+    "relValid": {
+      "headCur": 0.699,
+      "headPrev": 0.699,
+      "deltaHeadRatio": 0
+    },
+    "relInRange": {
+      "headCur": 0.693,
+      "headPrev": 0.699,
+      "deltaHeadRatio": -0.006
+    },
+    "hitRate": 0.217
+  }
+}

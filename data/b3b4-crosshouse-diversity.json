@@ -1,0 +1,45 @@
+{
+  "generatedAt": "2026-08-09T23:14:10.166Z",
+  "config": {
+    "count": 20,
+    "seed": 20260810,
+    "growthBias": 0.4,
+    "topologyScoreVersion": 1,
+    "collected": 8
+  },
+  "control_v1": {
+    "levels": 20,
+    "totalCages": 429,
+    "uniqueShapes": 21,
+    "entropyH": 2.707,
+    "singletonRatio": 0.03496503496503497,
+    "top4Share": 0.49184149184149184,
+    "complexShare": 0.3986013986013986,
+    "ratioMean": 0.21783942882774338,
+    "avgScore": 522.5,
+    "uniqueAll": true
+  },
+  "experiment_diversity": {
+    "levels": 20,
+    "totalCages": 429,
+    "uniqueShapes": 21,
+    "entropyH": 2.597,
+    "singletonRatio": 0.018648018648018648,
+    "top4Share": 0.5501165501165501,
+    "complexShare": 0.3613053613053613,
+    "ratioMean": 0.19345379752077604,
+    "avgScore": 497.5,
+    "uniqueAll": true
+  },
+  "gates": {
+    "target_H_ge_275": false,
+    "target_top4_le_48": false,
+    "target_complex_ge_40": false,
+    "GateA_singleton_le_5pct": true,
+    "GateB_top4_lt_50pct": false,
+    "Gate_difficulty_pm5": true,
+    "Gate_ratio_no_regress": false,
+    "Gate_unique": true
+  },
+  "verdict": "B3-B4 目标：H≥2.75、top4≤48、complex≥40。若 div 提升 H 且 top4 降 → 多样性杠杆有效，可继续强化；若 H 不升或 complex 崩 → 局级浓度衰减不够/过强，需调衰减曲线或 size 杠杆。"
+}

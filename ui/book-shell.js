@@ -2,6 +2,7 @@
 // 共享状态经 window.CM；toast/onSelectLevel 由 game.html 挂载到 CM
 import { GalleryPanel } from './gallery-panel.js';
 import { DataStore } from '../core/data-store.js';
+import I18n from '../i18n/i18n.js';
 
 const CM = window.CM || (window.CM = {});
 
@@ -60,8 +61,8 @@ function calcRunMark() {
     let total = 0, done = 0;
     chapters.forEach((ch) => { (ch.levelIds || []).forEach((id) => { total++; if (CM.lm.isLevelCompleted(id)) done++; }); });
     if (total === 0) return '';
-    if (done >= total * 2) return '✦✦ 三周目 ✦✦';
-    if (done >= total) return '✦ 二周目 ✦';
+    if (done >= total * 2) return I18n.t('ui.bookShell.runMark3');
+    if (done >= total) return I18n.t('ui.bookShell.runMark2');
     return '';
   } catch (e) { return ''; }
 }
@@ -115,11 +116,12 @@ function allChaptersDone() {
   // 环境书：通关后点击显示彩蛋台词（规格：通关全部章节即可，非三周目）
   document.querySelectorAll('.env-book').forEach((b) => {
     b.addEventListener('click', () => {
-      const quote = b.dataset.quote || '';
+      const qk = b.dataset.quoteKey || '';
+      const quote = qk ? I18n.t(qk) : '';
       if (allChaptersDone()) {
         CM.toast('📖 ' + quote, 2600);
       } else {
-        CM.toast('通关全部章节后，才能读懂这本书', 2200);
+        CM.toast(I18n.t('ui.bookShell.lockedBook'), 2200);
       }
     });
   });
@@ -137,7 +139,7 @@ function allChaptersDone() {
   document.querySelectorAll('#pageDirectory .dir-item').forEach((item) => {
     item.addEventListener('click', () => {
       if (item.classList.contains('dir-soon')) {
-        CM.toast(item.dataset.soon || '即将开放', 1800);
+        CM.toast(item.dataset.soon || I18n.t('ui.bookShell.soon'), 1800);
         return;
       }
       const target = item.dataset.page;
@@ -186,7 +188,7 @@ function backToGameFromBook() {
   } catch (e) {}
   CM._bookFromGame = false;
   try { if (typeof window.layout === 'function') window.layout(); } catch (eL) {}
-  try { if (typeof CM.toast === 'function') CM.toast('已返回游戏'); } catch (eT) {}
+  try { if (typeof CM.toast === 'function') CM.toast(I18n.t('ui.bookShell.backToGame')); } catch (eT) {}
 }
 
 function enterBoardFromBook(levelId) {
@@ -198,17 +200,17 @@ function enterBoardFromBook(levelId) {
 // ============ P1：章节扉页 / 封底 / 丝线书签 / 选项页 / 45法则过渡 ============
 // 章节扉页数据：标题从 chapters.json 动态取，插画 emoji 按章节主题
 CM.CHAPTER_ART = {
-  1: '🔐', 2: '⚖️', 3: '🗄️', 4: '📜', 5: '🔮', 6: '♟️', 7: '🕯️', 8: '🌟',
+  1: '✉️', 2: '🏚️', 3: '🚪', 4: '🔑', 5: '📻', 6: '🕸️', 7: '🗝️', 8: '🌟',
 }
 CM.CHAPTER_QUOTES = {
-  1: '"设局人曾在这里写下第一个字。"',
-  2: '"四十五，是天平的两端。"',
-  3: '"档案室的灰尘下，藏着完整的答案。"',
-  4: '"尘封的旧案，等一个翻开的人。"',
-  5: '"星辰也有它的轨迹。"',
-  6: '"终局的笼，关不住想出去的人。"',
-  7: '"秘术不过是未被整理的推理。"',
-  8: '"星辰归途，是新一轮的起点。"',
+  1: '"雨夜来信，封缄处只刻着一道极细的短横。"',
+  2: '"父亲从未离开过这座藏书楼。"',
+  3: '"你到了。这里是老师留下的第二层。"',
+  4: '"解完它，就知道我在哪里。"',
+  5: '"三秒一段，五秒之内。"',
+  6: '"这条网，他替父亲补完了。"',
+  7: '"你留了短横，我留了竖线。"',
+  8: '"所有门、所有路、所有痕、所有局，全部闭环圆满。"',
 }
 CM.ROMAN = ['', 'i', 'ii', 'iii', 'iv', 'v', 'vi', 'vii', 'viii', 'ix', 'x', 'xi']
 function chapterPageNum(chId) {
@@ -224,10 +226,13 @@ function showChapterOpening(chId) {
     try {
       const chapters = CM.lm.getChapters() || [];
       const ch = chapters.find((c) => c.chapterId === chId);
-      const title = ch && ch.title ? ch.title : ('第' + chId + '章');
-      document.getElementById('choChap').textContent = '第 ' + chId + ' 章';
+      // v2.1：章节标题优先走 i18n 语言包（chapters.{id}.title），缺省回退 chapters.json
+      const i18nTitle = I18n.t('chapters.' + chId + '.title');
+      const title = (i18nTitle && i18nTitle.indexOf('chapters.') !== 0) ? i18nTitle : (ch && ch.title ? ch.title : I18n.t('ui.bookShell.chapterTitle', { chapter: chId }));
+      document.getElementById('choChap').textContent = I18n.t('ui.bookShell.chapterOpening', { chapter: chId });
       document.getElementById('choTitle').textContent = title;
-      document.getElementById('choQuote').textContent = CM.CHAPTER_QUOTES[chId] || '"设局人曾在这里写下第一个字。"';
+      const quote = I18n.t('ui.bookShell.quote.' + chId);
+      document.getElementById('choQuote').textContent = (quote && quote.indexOf('ui.bookShell.quote.') !== 0) ? quote : I18n.t('ui.bookShell.defaultQuote');
       document.getElementById('choIllustration').textContent = CM.CHAPTER_ART[chId] || '🌸';
       document.getElementById('choPageNum').textContent = chapterPageNum(chId);
     } catch (e) {}
@@ -275,7 +280,7 @@ function closeBookAndReturn() {
     // 三周目完成后显示"第 13 位读者"
     const r13 = document.getElementById('shelfReader13');
     if (r13) r13.classList.toggle('show', isThirdRunDone());
-    CM.toast('书本已放回书架');
+    CM.toast(I18n.t('ui.bookShell.bookReturned'));
   }, 800);
 }
 
@@ -345,7 +350,7 @@ function updateArtBook() {
   if (!ab) return;
   const revealed = isThirdRunDone();
   ab.classList.toggle('revealed', revealed);
-  ab.title = revealed ? '设定集 · 尚未编完（等销量决定）' : '设定集（预留位）';
+  ab.title = revealed ? I18n.t('ui.bookShell.artBookRevealed') : I18n.t('ui.bookShell.artBookPlaceholder');
 }
 
 // 目录"墨迹留言" + 设定集交互
@@ -360,7 +365,7 @@ function updateArtBook() {
   if (artBook) {
     artBook.addEventListener('click', () => {
       if (!artBook.classList.contains('revealed')) return;
-      CM.toast('设定集尚未编完——等销量决定吧。', 2400);
+      CM.toast(I18n.t('ui.bookShell.artBookToast'), 2400);
     });
   }
   updateArtBook();

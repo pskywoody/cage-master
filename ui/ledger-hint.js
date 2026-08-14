@@ -1,5 +1,7 @@
 // 45 法则账本提示卡（行/列/宫/笼恒和与组合）— 重构阶段 1 拆分（事故后重建）
 // 共享状态经 window.CM（CM.gameApp）；hookLedgerHint 由 game.html 在 gameApp 构造后调用
+import I18n from '../i18n/i18n.js';
+
 const CM = window.CM || (window.CM = {});
 
 /** 显示/隐藏 45 账本提示卡 */
@@ -148,7 +150,7 @@ function updateLedgerHintCard() {
   const sel = CM.gameApp.getSelectedCell ? CM.gameApp.getSelectedCell() : null;
   if (!sel) {
     el.style.display = 'block';
-    el.innerHTML = '<div class="ffh-guide">点选格子查看：行/列/宫/笼的已知数、和值与剩余差</div>';
+    el.innerHTML = '<div class="ffh-guide">' + I18n.t('ui.ledgerHint.guide') + '</div>';
     try { positionLedgerHintCard(); } catch (ePos) {}
     return;
   }
@@ -160,10 +162,10 @@ function updateLedgerHintCard() {
     cells = CM.gameApp.getEngine().getState().cells;
     cages = (CM.gameApp._levelData && CM.gameApp._levelData.cages) || [];
   } catch (e) {
-    el.innerHTML = '<div class="ffh-empty">棋盘数据不可用</div>';
+    el.innerHTML = '<div class="ffh-empty">' + I18n.t('ui.ledgerHint.noData') + '</div>';
     return;
   }
-  if (!cells) { el.innerHTML = '<div class="ffh-empty">棋盘数据不可用</div>'; return; }
+  if (!cells) { el.innerHTML = '<div class="ffh-empty">' + I18n.t('ui.ledgerHint.noData') + '</div>'; return; }
 
   const r = sel.r, c = sel.c;
   const total = size * (size + 1) / 2;
@@ -207,10 +209,10 @@ function updateLedgerHintCard() {
   // 不需要"本行和值 45，已知 X"单独提示行（信息已并入第一行）
   const segF = (k, sum, total, empty) =>
     '<span class="ffh-seg"><span class="ffh-k">' + k + ':</span> <b class="ffh-num">' + sum + '</b>/' + total +
-    ' <span class="ffh-diff">空 ' + empty + '</span></span>';
+    ' <span class="ffh-diff">' + I18n.t('ui.ledgerHint.empty', { n: empty }) + '</span></span>';
   const row1 = '<div class="ffh-row1">' +
-    segF('行' + (r + 1), rowSum, total, total - rowSum) +
-    segF('列' + (c + 1), colSum, total, total - colSum) +
+    segF(I18n.t('ui.ledgerHint.row') + (r + 1), rowSum, total, total - rowSum) +
+    segF(I18n.t('ui.ledgerHint.col') + (c + 1), colSum, total, total - colSum) +
     '</div>';
 
   let row2 = '';
@@ -252,8 +254,8 @@ function updateLedgerHintCard() {
     const remain = (myCage.sum || 0) - cageSum;
     // Q7：第二行 = 宫 + 笼 并排（规格：宫笼一排）；原实现有笼时只渲染笼、丢了宫
     row2 = '<div class="ffh-row2">' +
-      segF('宫' + (boxIndex + 1), boxSum, total, total - boxSum) +
-      segF('笼#' + (myCage.id != null ? myCage.id : ''), cageSum, (myCage.sum || 0), Math.max(0, remain)) +
+      segF(I18n.t('ui.ledgerHint.box') + (boxIndex + 1), boxSum, total, total - boxSum) +
+      segF(I18n.t('ui.ledgerHint.cage', { id: myCage.id != null ? myCage.id : '' }), cageSum, (myCage.sum || 0), Math.max(0, remain)) +
       '</div>';
     // 组合可行性：剩余格从 1..size 选互异数字，和为 remain，且每个数字都出现在对应格的候选中
     if (cageEmpty > 0 && remain > 0 && remain <= size * cageEmpty) {
@@ -262,17 +264,17 @@ function updateLedgerHintCard() {
       if (feas.length === 0) {
         // Q11：DFS 完备匹配确认后仍无解 = 盘面存在逻辑冲突（和值未超范围但分配无解，
         // 可能跨笼/跨行填入导致候选被占）。文案改为准确提示 + 醒目红色
-        comboHtml = '<div class="ffh-combo ffh-combo-none">可能的笼组合：无解</div>' +
-          '<div class="ffh-combo-why">盘面有冲突（撤销上一步 / 检查红叉）</div>';
+        comboHtml = '<div class="ffh-combo ffh-combo-none">' + I18n.t('ui.ledgerHint.noCombo') + '</div>' +
+          '<div class="ffh-combo-why">' + I18n.t('ui.ledgerHint.conflict') + '</div>';
       } else {
         const shown = feas.slice(0, 4).map((comb) => '[' + comb.join(',') + ']').join('');
-        const more = feas.length > 4 ? ' 等' + feas.length + '组' : '';
-        comboHtml = '<div class="ffh-combo">可能的笼组合：<b class="ffh-combo-nums">' + shown + '</b>' + more + '</div>';
+        const more = feas.length > 4 ? I18n.t('ui.ledgerHint.more', { n: feas.length }) : '';
+        comboHtml = '<div class="ffh-combo">' + I18n.t('ui.ledgerHint.combo') + '<b class="ffh-combo-nums">' + shown + '</b>' + more + '</div>';
       }
     }
   } else {
     // 无笼信息时第二行只显示宫
-    row2 = '<div class="ffh-row1">' + segF('宫' + (boxIndex + 1), boxNums, boxSum, total - boxSum) + '</div>';
+    row2 = '<div class="ffh-row1">' + segF(I18n.t('ui.ledgerHint.box') + (boxIndex + 1), boxNums, boxSum, total - boxSum) + '</div>';
   }
 
   el.innerHTML = row1 + row2 + comboHtml;

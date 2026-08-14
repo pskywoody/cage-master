@@ -1,611 +1,613 @@
 {
-  "levelId": 109,
-  "title": "第8关：档案馆初试",
-  "mode": "comprehensive",
-  "gridSize": 6,
-  "difficulty": "普通",
-  "teachingGoal": "综合运用：孤星、唯一组合、隐曜、10法则",
-  "features": {
-    "allowDraft": true,
-    "assistant45": true,
-    "showHints": true,
-    "highlightRow": true,
-    "highlightCol": true,
-    "highlightBox": true,
-    "highlightNumber": true,
-    "highlightCage": true,
-    "autoFillCandidates": false
-  },
-  "boardData": [
-    [
-      0,
-      0,
-      1,
-      3,
-      2,
-      6
-    ],
-    [
-      3,
-      6,
-      0,
-      0,
-      0,
-      5
-    ],
-    [
-      5,
-      0,
-      3,
-      6,
-      1,
-      0
-    ],
-    [
-      0,
-      0,
-      4,
-      0,
-      0,
-      2
-    ],
-    [
-      0,
-      0,
-      0,
-      2,
-      6,
-      0
-    ],
-    [
-      2,
-      0,
-      6,
-      0,
-      5,
-      1
-    ]
-  ],
-  "solution": [
-    [
-      4,
-      5,
-      1,
-      3,
-      2,
-      6
-    ],
-    [
-      3,
-      6,
-      2,
-      1,
-      4,
-      5
-    ],
-    [
-      5,
-      2,
-      3,
-      6,
-      1,
-      4
-    ],
-    [
-      6,
-      1,
-      4,
-      5,
-      3,
-      2
-    ],
-    [
-      1,
-      4,
-      5,
-      2,
-      6,
-      3
-    ],
-    [
-      2,
-      3,
-      6,
-      4,
-      5,
-      1
-    ]
-  ],
-  "cages": [
-    {
-      "id": 1,
-      "sum": 15,
-      "cells": [
-        [
-          0,
-          0
-        ],
-        [
-          1,
-          0
-        ],
-        [
-          1,
-          1
-        ],
-        [
-          1,
-          2
-        ]
-      ]
-    },
-    {
-      "id": 2,
-      "sum": 6,
-      "cells": [
-        [
-          0,
-          1
-        ],
-        [
-          0,
-          2
-        ]
-      ]
-    },
-    {
-      "id": 3,
-      "sum": 11,
-      "cells": [
-        [
-          0,
-          3
-        ],
-        [
-          0,
-          4
-        ],
-        [
-          0,
-          5
-        ]
-      ]
-    },
-    {
-      "id": 4,
-      "sum": 15,
-      "cells": [
-        [
-          1,
-          5
-        ],
-        [
-          2,
-          5
-        ],
-        [
-          3,
-          5
-        ],
-        [
-          4,
-          5
-        ],
-        [
-          5,
-          5
-        ]
-      ]
-    },
-    {
-      "id": 5,
-      "sum": 5,
-      "cells": [
-        [
-          1,
-          4
-        ],
-        [
-          2,
-          4
-        ]
-      ]
-    },
-    {
-      "id": 6,
-      "sum": 7,
-      "cells": [
-        [
-          1,
-          3
-        ],
-        [
-          2,
-          3
-        ]
-      ]
-    },
-    {
-      "id": 7,
-      "sum": 12,
-      "cells": [
-        [
-          2,
-          0
-        ],
-        [
-          3,
-          0
-        ],
-        [
-          3,
-          1
-        ]
-      ]
-    },
-    {
-      "id": 8,
-      "sum": 5,
-      "cells": [
-        [
-          2,
-          1
-        ],
-        [
-          2,
-          2
-        ]
-      ]
-    },
-    {
-      "id": 9,
-      "sum": 10,
-      "cells": [
-        [
-          3,
-          4
-        ],
-        [
-          3,
-          3
-        ],
-        [
-          4,
-          3
-        ]
-      ]
-    },
-    {
-      "id": 10,
-      "sum": 18,
-      "cells": [
-        [
-          3,
-          2
-        ],
-        [
-          4,
-          2
-        ],
-        [
-          5,
-          2
-        ],
-        [
-          5,
-          1
-        ]
-      ]
-    },
-    {
-      "id": 11,
-      "sum": 7,
-      "cells": [
-        [
-          4,
-          0
-        ],
-        [
-          5,
-          0
-        ],
-        [
-          4,
-          1
-        ]
-      ]
-    },
-    {
-      "id": 12,
-      "sum": 11,
-      "cells": [
-        [
-          4,
-          4
-        ],
-        [
-          5,
-          4
-        ]
-      ]
-    },
-    {
-      "id": 13,
-      "sum": 4,
-      "cells": [
-        [
-          5,
-          3
-        ]
-      ]
-    }
-  ],
-  "triggers": [
-    {
-      "id": "t108_s",
-      "condition": "onLevelStart",
-      "type": "freeze_mask",
-      "text": "第一章综合考验！运用所有技巧——孤星、唯一组合、隐曜、10法则！",
-      "once": true,
-      "targetR": 1,
-      "targetC": 1,
-      "targetType": "cell",
-      "highlightShape": "circle"
-    },
-    {
-      "id": "t108_b",
-      "condition": "onFillCountReached",
-      "count": 5,
-      "type": "enter_phase",
-      "phase": "breakthrough",
-      "once": true
-    },
-    {
-      "id": "t108_fi",
-      "condition": "onFillCountReached",
-      "count": 12,
-      "type": "enter_phase",
-      "phase": "finishing",
-      "once": true
-    }
-  ],
-  "preDialog": [
-    {
-      "speaker": "旁白",
-      "text": "沈墨回到书店时，门是关着的。门缝下方放着一只信封。",
-      "isNarration": true
-    },
-    {
-      "speaker": "薇拉",
-      "text": "解完这道题，你才算真正完成了六月的事。我在里面等你。",
-      "side": "right",
-      "emotion": "calm",
-      "effect": 0
-    },
-    {
-      "speaker": "老师（留声）",
-      "text": "6×6。行/列/宫，1到6各一次。你学过的所有东西都在里面——孤星、唯一组合、隐曜、十则。",
-      "side": "right",
-      "emotion": "calm",
-      "effect": 0
-    },
-    {
-      "speaker": "沈墨 CHIBI",
-      "text": "……她把所有技巧放在同一道题里了。这不是检验——是确认。",
-      "side": "left",
-      "emotion": "thinking",
-      "effect": 0
-    }
-  ],
-  "lessonPlan": {
-    "newSkill": "boss_synthesis_109",
-    "skillName": "档案馆综合试炼",
-    "isFirstLesson": false,
-    "skippable": true,
-    "prerequisite": [
-      "row_col_rule",
-      "box_rule",
-      "cage_combo",
-      "hidden_single",
-      "combo_mastery",
-      "rule_of_ten"
-    ],
-    "phases": {
-      "intro": {
-        "text": "6×6盘面。所有的技巧都在这一道题里——孤星、唯一组合、隐曜、十则。没有新东西。全是你已经学会的。",
-        "speaker": "沈墨 CHIBI",
-        "duration": 6000
-      },
-      "demo": {
-        "steps": [
-          {
-            "action": "spotlightOn",
-            "target": 0.35,
-            "duration": 400
-          },
-          {
-            "action": "highlightCage",
-            "target": 13,
-            "duration": 1600,
-            "text": "沈墨的目光扫过盘面——这个笼子是「孤星」：只有一格，笼和是4，这一格只能填4。这是他能立刻确定的格子。"
-          },
-          {
-            "action": "focusCell",
-            "target": [
-              5,
-              3
-            ],
-            "duration": 1500,
-            "text": "沈墨的目光扫过盘面……有一个单格笼，和值是4。他先填了它。这是起点。"
-          }
-        ]
-      },
-      "guided": {
-        "targetCell": [
-          5,
-          3
-        ],
-        "correctValue": 4,
-        "interactionType": "NUMBER",
-        "autoRevealText": "这个单格笼笼和是 4，填 4。",
-        "maxAttempts": 3,
-        "autoRevealAfter": 3,
-        "methodText": "单格笼「孤星」：笼子里只有一个空格，笼和是多少，这一格就填多少——先填它，这是起点。",
-        "hintText": "沈墨的笔尖停在开头的位置。……他不能从中间开始。要找到第一个确定的格子，然后一步一步推。",
-        "failHint": "沈墨重新验算了一遍……这个格子不可能填这个数。他回头看了一下行里的数字，发现少算了一个。",
-        "successText": "沈墨放下笔。6×6盘面完整闭合。所有线索在他手中走完了全程——从最初那道四宫格到这最后一道六宫格，每一步都连得上。",
-        "successNext": [
-          {
-            "cell": [
-              2,
-              1
-            ],
-            "hintText": "继续抢据点格：这个两格笼和是 5，右格已经是 3——左格填几？填对它，据点数 +1！"
-          },
-          {
-            "cell": [
-              1,
-              4
-            ],
-            "hintText": "再来！这个两格笼和是 5，下格是 1——填下这一格，把据点往你这边拉！"
-          }
-        ]
-      },
-      "semiAuto": {
-        "enabled": true,
-        "targetCount": 3,
-        "hintText": "用同样的方法，再找出三个确定的数字。",
-        "watchCells": [
-          [
-            1,
-            2
-          ],
-          [
-            0,
-            1
-          ],
-          [
-            4,
-            5
-          ]
-        ],
-        "interactionType": "NUMBER"
-      },
-      "free": {
-        "enabled": true,
-        "unlockText": "所有技巧都在盘面上。走完它，六月的事就真的结束了。"
-      }
-    }
-  },
-  "clearDialog": [
-    {
-      "speaker": "旁白",
-      "text": "沈墨推开门。薇拉坐在柜台后面，面前放着一杯已经凉透的茶。",
-      "cg": "assets/images/chapter1/cg/CG-CH1-05_bookstore_passed.jpg",
-      "isNarration": true
-    },
-    {
-      "speaker": "薇拉",
-      "text": "你通过了。六月的风已经送出去了。",
-      "side": "right",
-      "emotion": "calm",
-      "effect": 0
-    },
-    {
-      "speaker": "老师（留声）",
-      "text": "如果冬天还有第二次，你会是信使。",
-      "side": "right",
-      "emotion": "calm",
-      "effect": 0
-    },
-    {
-      "speaker": "沈墨 CHIBI",
-      "text": "……冬天。还有第二次。",
-      "side": "left",
-      "emotion": "thinking",
-      "effect": 0
-    },
-    {
-      "speaker": "旁白",
-      "text": "沈墨站在门口，没有跨进去。他在门槛上站了片刻，然后转身，走出了路灯的光。",
-      "isNarration": true
-    }
-  ],
-  "threeAct": {
-    "opening": [
-      [
-        0,
-        0
-      ],
-      [
-        0,
-        1
-      ],
-      [
-        1,
-        2
-      ],
-      [
-        1,
-        3
-      ],
-      [
-        1,
-        4
-      ],
-      [
-        2,
-        1
-      ],
-      [
-        2,
-        5
-      ],
-      [
-        3,
-        1
-      ],
-      [
-        3,
-        0
-      ],
-      [
-        3,
-        3
-      ],
-      [
-        3,
-        4
-      ],
-      [
-        4,
-        0
-      ],
-      [
-        4,
-        2
-      ],
-      [
-        4,
-        5
-      ],
-      [
-        5,
-        1
-      ],
-      [
-        5,
-        3
-      ]
-    ],
-    "breakthrough": [],
-    "avalanche": [
-      [
-        4,
-        1
-      ]
-    ]
-  },
-  "difficultyLevel": 3,
-  "isBoss": true
+    "levelId":  109,
+    "title":  "序章终局·第一重闭环",
+    "mode":  "comprehensive",
+    "gridSize":  6,
+    "difficulty":  "普通",
+    "teachingGoal":  "综合运用：孤星、唯一组合、隐曜、10法则",
+    "features":  {
+                     "allowDraft":  true,
+                     "assistant45":  true,
+                     "showHints":  true,
+                     "highlightRow":  true,
+                     "highlightCol":  true,
+                     "highlightBox":  true,
+                     "highlightNumber":  true,
+                     "highlightCage":  true,
+                     "autoFillCandidates":  false
+                 },
+    "boardData":  [
+                      [
+                          0,
+                          0,
+                          1,
+                          3,
+                          2,
+                          6
+                      ],
+                      [
+                          3,
+                          6,
+                          0,
+                          0,
+                          0,
+                          5
+                      ],
+                      [
+                          5,
+                          0,
+                          3,
+                          6,
+                          1,
+                          0
+                      ],
+                      [
+                          0,
+                          0,
+                          4,
+                          0,
+                          0,
+                          2
+                      ],
+                      [
+                          0,
+                          0,
+                          0,
+                          2,
+                          6,
+                          0
+                      ],
+                      [
+                          2,
+                          0,
+                          6,
+                          0,
+                          5,
+                          1
+                      ]
+                  ],
+    "solution":  [
+                     [
+                         4,
+                         5,
+                         1,
+                         3,
+                         2,
+                         6
+                     ],
+                     [
+                         3,
+                         6,
+                         2,
+                         1,
+                         4,
+                         5
+                     ],
+                     [
+                         5,
+                         2,
+                         3,
+                         6,
+                         1,
+                         4
+                     ],
+                     [
+                         6,
+                         1,
+                         4,
+                         5,
+                         3,
+                         2
+                     ],
+                     [
+                         1,
+                         4,
+                         5,
+                         2,
+                         6,
+                         3
+                     ],
+                     [
+                         2,
+                         3,
+                         6,
+                         4,
+                         5,
+                         1
+                     ]
+                 ],
+    "cages":  [
+                  {
+                      "id":  1,
+                      "sum":  15,
+                      "cells":  [
+                                    [
+                                        0,
+                                        0
+                                    ],
+                                    [
+                                        1,
+                                        0
+                                    ],
+                                    [
+                                        1,
+                                        1
+                                    ],
+                                    [
+                                        1,
+                                        2
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  2,
+                      "sum":  6,
+                      "cells":  [
+                                    [
+                                        0,
+                                        1
+                                    ],
+                                    [
+                                        0,
+                                        2
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  3,
+                      "sum":  11,
+                      "cells":  [
+                                    [
+                                        0,
+                                        3
+                                    ],
+                                    [
+                                        0,
+                                        4
+                                    ],
+                                    [
+                                        0,
+                                        5
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  4,
+                      "sum":  15,
+                      "cells":  [
+                                    [
+                                        1,
+                                        5
+                                    ],
+                                    [
+                                        2,
+                                        5
+                                    ],
+                                    [
+                                        3,
+                                        5
+                                    ],
+                                    [
+                                        4,
+                                        5
+                                    ],
+                                    [
+                                        5,
+                                        5
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  5,
+                      "sum":  5,
+                      "cells":  [
+                                    [
+                                        1,
+                                        4
+                                    ],
+                                    [
+                                        2,
+                                        4
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  6,
+                      "sum":  7,
+                      "cells":  [
+                                    [
+                                        1,
+                                        3
+                                    ],
+                                    [
+                                        2,
+                                        3
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  7,
+                      "sum":  12,
+                      "cells":  [
+                                    [
+                                        2,
+                                        0
+                                    ],
+                                    [
+                                        3,
+                                        0
+                                    ],
+                                    [
+                                        3,
+                                        1
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  8,
+                      "sum":  5,
+                      "cells":  [
+                                    [
+                                        2,
+                                        1
+                                    ],
+                                    [
+                                        2,
+                                        2
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  9,
+                      "sum":  10,
+                      "cells":  [
+                                    [
+                                        3,
+                                        4
+                                    ],
+                                    [
+                                        3,
+                                        3
+                                    ],
+                                    [
+                                        4,
+                                        3
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  10,
+                      "sum":  18,
+                      "cells":  [
+                                    [
+                                        3,
+                                        2
+                                    ],
+                                    [
+                                        4,
+                                        2
+                                    ],
+                                    [
+                                        5,
+                                        2
+                                    ],
+                                    [
+                                        5,
+                                        1
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  11,
+                      "sum":  7,
+                      "cells":  [
+                                    [
+                                        4,
+                                        0
+                                    ],
+                                    [
+                                        5,
+                                        0
+                                    ],
+                                    [
+                                        4,
+                                        1
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  12,
+                      "sum":  11,
+                      "cells":  [
+                                    [
+                                        4,
+                                        4
+                                    ],
+                                    [
+                                        5,
+                                        4
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  13,
+                      "sum":  4,
+                      "cells":  [
+                                    [
+                                        5,
+                                        3
+                                    ]
+                                ]
+                  }
+              ],
+    "triggers":  [
+                     {
+                         "id":  "t108_s",
+                         "condition":  "onLevelStart",
+                         "type":  "freeze_mask",
+                         "text":  "第一章综合考验！运用所有技巧——孤星、唯一组合、隐曜、10法则！",
+                         "once":  true,
+                         "targetR":  1,
+                         "targetC":  1,
+                         "targetType":  "cell",
+                         "highlightShape":  "circle"
+                     },
+                     {
+                         "id":  "t108_b",
+                         "condition":  "onFillCountReached",
+                         "count":  5,
+                         "type":  "enter_phase",
+                         "phase":  "breakthrough",
+                         "once":  true
+                     },
+                     {
+                         "id":  "t108_fi",
+                         "condition":  "onFillCountReached",
+                         "count":  12,
+                         "type":  "enter_phase",
+                         "phase":  "finishing",
+                         "once":  true
+                     }
+                 ],
+    "preDialog":  [
+                      {
+                          "speaker":  "旁白",
+                          "text":  "沈墨回到书店时，门是关着的。门缝下方放着一只信封。",
+                          "isNarration":  true
+                      },
+                      {
+                          "speaker":  "薇拉",
+                          "text":  "解完这道题，你才算真正完成了六月的事。我在里面等你。",
+                          "side":  "right",
+                          "emotion":  "calm",
+                          "effect":  0
+                      },
+                      {
+                          "speaker":  "老师（留声）",
+                          "text":  "6×6。行/列/宫，1到6各一次。你学过的所有东西都在里面——孤星、唯一组合、隐曜、十则。",
+                          "side":  "right",
+                          "emotion":  "calm",
+                          "effect":  0
+                      },
+                      {
+                          "speaker":  "沈墨 CHIBI",
+                          "text":  "……她把所有技巧放在同一道题里了。这不是检验——是确认。",
+                          "side":  "left",
+                          "emotion":  "thinking",
+                          "effect":  0
+                      }
+                  ],
+    "lessonPlan":  {
+                       "newSkill":  "boss_synthesis_109",
+                       "skillName":  "藏书楼综合试炼",
+                       "isFirstLesson":  false,
+                       "skippable":  true,
+                       "prerequisite":  [
+                                            "row_col_rule",
+                                            "box_rule",
+                                            "cage_combo",
+                                            "hidden_single",
+                                            "combo_mastery",
+                                            "rule_of_ten"
+                                        ],
+                       "phases":  {
+                                      "intro":  {
+                                                    "text":  "6×6盘面。所有的技巧都在这一道题里——孤星、唯一组合、隐曜、十则。没有新东西。全是你已经学会的。",
+                                                    "speaker":  "沈墨 CHIBI",
+                                                    "duration":  6000
+                                                },
+                                      "demo":  {
+                                                   "steps":  [
+                                                                 {
+                                                                     "action":  "spotlightOn",
+                                                                     "target":  0.35,
+                                                                     "duration":  400
+                                                                 },
+                                                                 {
+                                                                     "action":  "highlightCage",
+                                                                     "target":  13,
+                                                                     "duration":  1600,
+                                                                     "text":  "沈墨的目光扫过盘面——这个笼子是「孤星」：只有一格，笼和是4，这一格只能填4。这是他能立刻确定的格子。"
+                                                                 },
+                                                                 {
+                                                                     "action":  "focusCell",
+                                                                     "target":  [
+                                                                                    5,
+                                                                                    3
+                                                                                ],
+                                                                     "duration":  1500,
+                                                                     "text":  "沈墨的目光扫过盘面……有一个单格笼，和值是4。他先填了它。这是起点。"
+                                                                 }
+                                                             ]
+                                               },
+                                      "guided":  {
+                                                     "targetCell":  [
+                                                                        5,
+                                                                        3
+                                                                    ],
+                                                     "correctValue":  4,
+                                                     "interactionType":  "NUMBER",
+                                                     "autoRevealText":  "这个单格笼笼和是 4，填 4。",
+                                                     "maxAttempts":  3,
+                                                     "autoRevealAfter":  3,
+                                                     "methodText":  "单格笼「孤星」：笼子里只有一个空格，笼和是多少，这一格就填多少——先填它，这是起点。",
+                                                     "hintText":  "沈墨的笔尖停在开头的位置。……他不能从中间开始。要找到第一个确定的格子，然后一步一步推。",
+                                                     "failHint":  "沈墨重新验算了一遍……这个格子不可能填这个数。他回头看了一下行里的数字，发现少算了一个。",
+                                                     "successText":  "沈墨放下笔。6×6盘面完整闭合。所有线索在他手中走完了全程——从最初那道四宫格到这最后一道六宫格，每一步都连得上。",
+                                                     "successNext":  [
+                                                                         {
+                                                                             "cell":  [
+                                                                                          2,
+                                                                                          1
+                                                                                      ],
+                                                                             "hintText":  "继续抢据点格：这个两格笼和是 5，右格已经是 3——左格填几？填对它，据点数 +1！"
+                                                                         },
+                                                                         {
+                                                                             "cell":  [
+                                                                                          1,
+                                                                                          4
+                                                                                      ],
+                                                                             "hintText":  "再来！这个两格笼和是 5，下格是 1——填下这一格，把据点往你这边拉！"
+                                                                         }
+                                                                     ]
+                                                 },
+                                      "semiAuto":  {
+                                                       "enabled":  true,
+                                                       "targetCount":  3,
+                                                       "hintText":  "用同样的方法，再找出三个确定的数字。",
+                                                       "watchCells":  [
+                                                                          [
+                                                                              1,
+                                                                              2
+                                                                          ],
+                                                                          [
+                                                                              0,
+                                                                              1
+                                                                          ],
+                                                                          [
+                                                                              4,
+                                                                              5
+                                                                          ]
+                                                                      ],
+                                                       "interactionType":  "NUMBER"
+                                                   },
+                                      "free":  {
+                                                   "enabled":  true,
+                                                   "unlockText":  "所有技巧都在盘面上。走完它，六月的事就真的结束了。"
+                                               }
+                                  }
+                   },
+    "clearDialog":  [
+                        {
+                            "speaker":  "旁白",
+                            "text":  "沈墨推开门。薇拉坐在柜台后面，面前放着一杯已经凉透的茶。",
+                            "cg":  "assets/images/chapter1/cg/CG-CH1-05_bookstore_passed.jpg",
+                            "isNarration":  true
+                        },
+                        {
+                            "speaker":  "薇拉",
+                            "text":  "你通过了。六月的风已经送出去了。",
+                            "side":  "right",
+                            "emotion":  "calm",
+                            "effect":  0
+                        },
+                        {
+                            "speaker":  "老师（留声）",
+                            "text":  "如果冬天还有第二次，你会是信使。",
+                            "side":  "right",
+                            "emotion":  "calm",
+                            "effect":  0
+                        },
+                        {
+                            "speaker":  "沈墨 CHIBI",
+                            "text":  "……冬天。还有第二次。",
+                            "side":  "left",
+                            "emotion":  "thinking",
+                            "effect":  0
+                        },
+                        {
+                            "speaker":  "旁白",
+                            "text":  "沈墨站在门口，没有跨进去。他在门槛上站了片刻，然后转身，走出了路灯的光。",
+                            "isNarration":  true
+                        }
+                    ],
+    "threeAct":  {
+                     "opening":  [
+                                     [
+                                         0,
+                                         0
+                                     ],
+                                     [
+                                         0,
+                                         1
+                                     ],
+                                     [
+                                         1,
+                                         2
+                                     ],
+                                     [
+                                         1,
+                                         3
+                                     ],
+                                     [
+                                         1,
+                                         4
+                                     ],
+                                     [
+                                         2,
+                                         1
+                                     ],
+                                     [
+                                         2,
+                                         5
+                                     ],
+                                     [
+                                         3,
+                                         1
+                                     ],
+                                     [
+                                         3,
+                                         0
+                                     ],
+                                     [
+                                         3,
+                                         3
+                                     ],
+                                     [
+                                         3,
+                                         4
+                                     ],
+                                     [
+                                         4,
+                                         0
+                                     ],
+                                     [
+                                         4,
+                                         2
+                                     ],
+                                     [
+                                         4,
+                                         5
+                                     ],
+                                     [
+                                         5,
+                                         1
+                                     ],
+                                     [
+                                         5,
+                                         3
+                                     ]
+                                 ],
+                     "breakthrough":  [
+
+                                      ],
+                     "avalanche":  [
+                                       [
+                                           4,
+                                           1
+                                       ]
+                                   ]
+                 },
+    "difficultyLevel":  3,
+    "isBoss":  true
 }

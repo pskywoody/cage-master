@@ -28,6 +28,39 @@ const ScriptData = (() => {
   const _translations = {};
   const SCRIPTS_URL = 'data/scripts/scripts.json';
 
+  // v2.1：i18n——按语言加载剧本文件（scripts.{locale}.json，缺省回退 scripts.json）
+  const SUPPORTED_LOCALES = ['zh-CN', 'en-US', 'ja-JP', 'ko-KR'];
+
+  // v2.1：speaker 名称显示层映射（剧本数据中的中文残留 → 当前语言）
+  const SPEAKER_MAP = {
+    'en-US': {
+      '旁白': 'Narrator',
+      '老师（留声）': 'Teacher (Recording)',
+      '沈墨 CHIBI': 'Shen Mo CHIBI',
+    },
+    'ja-JP': {
+      '旁白': 'ナレーション',
+      '老师（留声）': '先生（録音）',
+    },
+    'ko-KR': {
+      '旁白': '나레이션',
+      '老师（留声）': '선생님（녹음）',
+      '沈墨 CHIBI': '심묵 CHIBI',
+    },
+  };
+
+  function _mapSpeaker(speaker) {
+    if (!speaker) return speaker;
+    const map = SPEAKER_MAP[_locale];
+    if (map && Object.prototype.hasOwnProperty.call(map, speaker)) return map[speaker];
+    return speaker;
+  }
+
+  function _scriptsUrlFor(locale) {
+    if (!locale || locale === 'zh-CN') return SCRIPTS_URL;
+    return `data/scripts/scripts.${locale}.json`;
+  }
+
   // ============================================================
   //  内部缓存
   // ============================================================
@@ -46,7 +79,7 @@ const ScriptData = (() => {
       return { text: line, isNarration: true };
     }
     const result = {
-      speaker: line.speaker || '',
+      speaker: _mapSpeaker(line.speaker || ''),
       text: line.text || '',
       emotion: line.emotion || 'default',
       voiceId: line.vo || line.voiceId || null,
@@ -111,16 +144,31 @@ const ScriptData = (() => {
     if (_loaded) return true;
     if (_loadingPromise) return _loadingPromise;
 
-    const url = (options && options.url) || SCRIPTS_URL;
+    // v2.1：页面加载时从 I18n 核心模块同步语言（语言切换后重载页面场景）
+    if (typeof window !== 'undefined' && window.I18n && typeof window.I18n.getLocale === 'function') {
+      const i18nLocale = window.I18n.getLocale();
+      if (i18nLocale && SUPPORTED_LOCALES.indexOf(i18nLocale) >= 0) _locale = i18nLocale;
+    }
+
+    const url = (options && options.url) || _scriptsUrlFor(_locale);
 
     _loadingPromise = (async () => {
       try {
         log.info('Loading scripts from:', url);
         const response = await fetch(url);
         if (!response.ok) {
-          throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+          // v2.1：目标语言剧本缺失时回退中文母本
+          if (url !== SCRIPTS_URL) {
+            log.warn('Locale scripts not found, falling back to zh-CN:', url);
+            const fb = await fetch(SCRIPTS_URL);
+            if (!fb.ok) throw new Error(`HTTP ${fb.status}: ${fb.statusText}`);
+            _rawData = await fb.json();
+          } else {
+            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+          }
+        } else {
+          _rawData = await response.json();
         }
-        _rawData = await response.json();
         _buildIndex();
         _loaded = true;
         log.info('Scripts loaded: version', _rawData.version);
@@ -140,6 +188,17 @@ const ScriptData = (() => {
 
   function isLoaded() {
     return _loaded;
+  }
+
+  /**
+   * v2.1：重新加载剧本（语言切换后调用）。
+   * 重置加载状态并按当前 _locale 重新 fetch。
+   */
+  async function reload() {
+    _loaded = false;
+    _rawData = null;
+    _loadingPromise = null;
+    return load();
   }
 
   // ============================================================
@@ -208,12 +267,13 @@ const ScriptData = (() => {
   }
 
   // ============================================================
-  //  i18n 国际化接口（预留）
+  //  i18n 国际化接口（v2.1：接入 I18n 核心模块）
   // ============================================================
 
   function setLocale(locale) {
-    _locale = locale;
-    log.info('Locale set to:', locale);
+    if (SUPPORTED_LOCALES.indexOf(locale) >= 0) _locale = locale;
+    else _locale = 'zh-CN';
+    log.info('Locale set to:', _locale);
   }
 
   function getLocale() {
@@ -221,6 +281,9 @@ const ScriptData = (() => {
   }
 
   function t(key, params) {
+    if (typeof window !== 'undefined' && window.I18n && typeof window.I18n.t === 'function') {
+      return window.I18n.t(key, params);
+    }
     return key;
   }
 
@@ -249,7 +312,7 @@ const ScriptData = (() => {
   // ============================================================
 
   return {
-    load, isLoaded,
+    load, isLoaded, reload,
     getDialogForLevel, getPreDialog, getClearDialog,
     getChapterPrologue, getChapterEpilogue, getChapterHiddenStory,
     getCycle, getAllCycles, getLevelTitle, getLevelScriptContext, getChapterBgm,

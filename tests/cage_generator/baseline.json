@@ -1,0 +1,99 @@
+{
+  "baseline": "v0",
+  "frozen_at": "2026-08-09T19:16:42.440Z",
+  "dataset": {
+    "shipped_9x9_levels": 48
+  },
+  "generator": {
+    "version": "v9",
+    "sample_seed": 20260810,
+    "sample_size": 8
+  },
+  "metrics": {
+    "cage_size_distribution": {
+      "1": 164,
+      "2": 377,
+      "3": 439,
+      "4": 267,
+      "5+": 117
+    },
+    "operation_distribution": {
+      "counts": {
+        "+": 1364,
+        "-": 0,
+        "*": 0,
+        "/": 0
+      },
+      "pct": {
+        "+": 100,
+        "-": 0,
+        "*": 0,
+        "/": 0
+      }
+    },
+    "difficulty_distribution": {
+      "score": {
+        "avg": -15.6,
+        "min": -50,
+        "max": 325
+      },
+      "stars": {
+        "1星": 47,
+        "2星": 1,
+        "3星": 0,
+        "4星": 0,
+        "5星": 0
+      }
+    },
+    "logic_required": {
+      "tech_hit_level_count": {
+        "rule45": 1,
+        "cageUnique": 7,
+        "hiddenSingle": 1
+      },
+      "distinct": [
+        {
+          "tech": "cageUnique",
+          "levels": 7
+        },
+        {
+          "tech": "rule45",
+          "levels": 1
+        },
+        {
+          "tech": "hiddenSingle",
+          "levels": 1
+        }
+      ]
+    },
+    "cage_reasoning_rate": {
+      "shipped": {
+        "used_level_count": 7,
+        "avg_ratio": 0.02
+      },
+      "generated_sample": {
+        "used_level_count": 8,
+        "avg_ratio": 0.113
+      },
+      "cage_reasoning_techs": [
+        "cageUnique",
+        "rule45"
+      ]
+    },
+    "constraints": {
+      "large_cage_min": 4,
+      "large_cage_ratio_target": 0.15,
+      "big_cage_ratio": {
+        "avg": 0.298,
+        "passRatio": 85.4
+      },
+      "single_cell_cages": 164
+    }
+  },
+  "red_flags": [
+    "操作单一：仅加法(+ )笼，无 - / * 变体，Sudoku 价值有限",
+    "存在单格笼 164 个（纯裸单提示，Sudoku 价值低）",
+    "有 5 关需试错求解（纯演绎推不完，剩余格 4/12/3/2/19）",
+    "难度覆盖不足：47/48 关为 1星（纯裸单），无中高等难度梯度"
+  ]
+}

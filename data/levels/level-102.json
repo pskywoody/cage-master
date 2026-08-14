@@ -1,420 +1,422 @@
 {
-  "levelId": 102,
-  "title": "第1关：初入档案馆",
-  "mode": "full",
-  "gridSize": 4,
-  "difficulty": "入门",
-  "teachingGoal": "认识「宫」：每个2×2的小宫格也是1-4不重复。行、列、宫三条规则一起用！",
-  "features": {
-    "allowDraft": false,
-    "assistant45": false,
-    "showHints": true,
-    "highlightRow": true,
-    "highlightCol": true,
-    "highlightBox": true,
-    "highlightNumber": false,
-    "highlightCage": false,
-    "autoFillCandidates": false
-  },
-  "boardData": [
-    [
-      0,
-      0,
-      0,
-      4
-    ],
-    [
-      0,
-      0,
-      2,
-      0
-    ],
-    [
-      0,
-      1,
-      3,
-      0
-    ],
-    [
-      0,
-      3,
-      0,
-      0
-    ]
-  ],
-  "solution": [
-    [
-      3,
-      2,
-      1,
-      4
-    ],
-    [
-      1,
-      4,
-      2,
-      3
-    ],
-    [
-      4,
-      1,
-      3,
-      2
-    ],
-    [
-      2,
-      3,
-      4,
-      1
-    ]
-  ],
-  "cages": [
-    {
-      "id": 1,
-      "sum": 5,
-      "cells": [
-        [
-          0,
-          0
-        ],
-        [
-          0,
-          1
-        ]
-      ]
-    },
-    {
-      "id": 2,
-      "sum": 10,
-      "cells": [
-        [
-          0,
-          2
-        ],
-        [
-          0,
-          3
-        ],
-        [
-          1,
-          3
-        ],
-        [
-          2,
-          3
-        ]
-      ]
-    },
-    {
-      "id": 3,
-      "sum": 5,
-      "cells": [
-        [
-          1,
-          2
-        ],
-        [
-          2,
-          2
-        ]
-      ]
-    },
-    {
-      "id": 4,
-      "sum": 5,
-      "cells": [
-        [
-          1,
-          1
-        ],
-        [
-          2,
-          1
-        ]
-      ]
-    },
-    {
-      "id": 5,
-      "sum": 5,
-      "cells": [
-        [
-          1,
-          0
-        ],
-        [
-          2,
-          0
-        ]
-      ]
-    },
-    {
-      "id": 6,
-      "sum": 10,
-      "cells": [
-        [
-          3,
-          3
-        ],
-        [
-          3,
-          2
-        ],
-        [
-          3,
-          1
-        ],
-        [
-          3,
-          0
-        ]
-      ]
-    }
-  ],
-  "triggers": [
-    {
-      "id": "t101_s",
-      "condition": "onLevelStart",
-      "type": "freeze_mask",
-      "text": "欢迎！灰色是提示数字。看空格旁的小数字（笔记），只剩1个的就是「孤星」，直接填！",
-      "once": true,
-      "targetR": 0,
-      "targetC": 2,
-      "targetType": "cell",
-      "highlightShape": "circle"
-    },
-    {
-      "id": "t101_f",
-      "condition": "onFirstNumberFilled",
-      "type": "popup_hint",
-      "position": "top",
-      "text": "答对了🎉 每行、每列、每个2×2宫，1-4各出现一次！",
-      "once": true
-    },
-    {
-      "id": "t101_h",
-      "condition": "onFillCountReached",
-      "count": 11,
-      "type": "enter_phase",
-      "phase": "finishing",
-      "once": true
-    },
-    {
-      "id": "t101_c",
-      "condition": "onConflict",
-      "type": "popup_hint",
-      "position": "top",
-      "text": "数字重复啦！检查行、列、小宫～",
-      "once": false
-    }
-  ],
-  "preDialog": [
-    {
-      "speaker": "旁白",
-      "text": "沈墨推开书店的门。铃铛响了一声。薇拉坐在柜台后面，没有抬头。",
-      "bg": "assets/images/chapter1/backgrounds/BG-CH1-02_bookstore_counter.jpg",
-      "isNarration": true
-    },
-    {
-      "speaker": "薇拉",
-      "text": "你解完这道题之前，我不会告诉你任何事。",
-      "cg": "assets/images/chapter1/cg/CG-CH1-03_bookstore_first_meeting.jpg",
-      "side": "right",
-      "emotion": "calm",
-      "effect": 0
-    },
-    {
-      "speaker": "沈墨 CHIBI",
-      "text": "……和六月一样。她在用题面验我。",
-      "side": "left",
-      "emotion": "thinking",
-      "effect": 0
-    }
-  ],
-  "clearDialog": [
-    {
-      "speaker": "薇拉",
-      "text": "四宫格，行/列/宫，1到4各一次。你解出来了。",
-      "bg": "assets/images/chapter1/backgrounds/BG-CH1-02_bookstore_counter.jpg",
-      "side": "right",
-      "emotion": "calm",
-      "effect": 0
-    },
-    {
-      "speaker": "沈墨 CHIBI",
-      "text": "……不止。她刚才说「解完这道题之前」——她还有话没说。",
-      "side": "left",
-      "emotion": "thinking",
-      "effect": 0
-    },
-    {
-      "speaker": "薇拉",
-      "text": "第三排书架，左手边。你自己拿。",
-      "side": "right",
-      "emotion": "calm",
-      "effect": 0
-    },
-    {
-      "speaker": "旁白",
-      "text": "沈墨走向书架。在那本书的书页之间，他看到了下一道题。",
-      "isNarration": true
-    }
-  ],
-  "lessonPlan": {
-    "newSkill": "box_rule",
-    "skillName": "宫规则",
-    "isFirstLesson": true,
-    "skippable": true,
-    "prerequisite": [
-      "row_col_rule"
-    ],
-    "phases": {
-      "intro": {
-        "text": "四宫格。每一行、每一列、每一个粗线框里，1到4各出现一次。",
-        "speaker": "沈墨 CHIBI",
-        "duration": 2800
-      },
-      "demo": {
-        "steps": [
-          {
-            "action": "highlightBox",
-            "target": 1,
-            "duration": 1500,
-            "text": "薇拉没有给他更多提示。他只能靠自己把四宫格的约束拼完整——粗线围起来的 2×2 叫「宫」，宫里 1 到 4 也各出现一次。"
-          },
-          {
-            "action": "focusCell",
-            "target": [
-              0,
-              2
-            ],
-            "duration": 900,
-            "text": "他看这一格 a3：在宫里。宫里已经有 4 和 2，所以 a3 只能是 1 或 3。"
-          },
-          {
-            "action": "focusCell",
-            "target": [
-              0,
-              3
-            ],
-            "duration": 900,
-            "text": "宫里的 4 在这里。"
-          },
-          {
-            "action": "focusCell",
-            "target": [
-              1,
-              3
-            ],
-            "duration": 900,
-            "text": "这一格是 2，a3 不可能是 2。"
-          },
-          {
-            "action": "highlightCol",
-            "target": 2,
-            "duration": 1500,
-            "text": "再看 a3 所在的这一列：下面已经有 2 和 3——a3 也不能填 3。"
-          },
-          {
-            "action": "focusCell",
-            "target": [
-              1,
-              2
-            ],
-            "duration": 1200,
-            "text": "宫里只剩 1 和 3，列又排除了 3——a3 只能填 1。宫规则：看宫看列，排除掉已有的数字。"
-          }
-        ]
-      },
-      "guided": {
-        "targetCell": [
-          0,
-          2
-        ],
-        "correctValue": 1,
-        "interactionType": "NUMBER",
-        "autoRevealText": "a3 在宫里：宫已有 4 和 2，还缺 1、3；这一列已有 3——所以 a3 只能填 1。",
-        "maxAttempts": 3,
-        "hintText": "沈墨的目光停在第二行。这一行缺的是哪几个数？它们在列里是不是已经被占用了？",
-        "failHint": "沈墨顿了一下……这一行已经有了这个数。他不能把同样的数字放在同一行里。",
-        "autoRevealAfter": 3,
-        "successText": "沈墨放下笔。四宫格的锁，开了。"
-      },
-      "semiAuto": {
-        "enabled": true,
-        "targetCount": 2,
-        "hintText": "用同样的方法，再看看这几个空格。",
-        "watchCells": [
-          [
-            3,
-            2
-          ],
-          [
-            1,
-            1
-          ],
-          [
-            2,
-            3
-          ]
-        ],
-        "interactionType": "NUMBER"
-      },
-      "free": {
-        "enabled": true,
-        "unlockText": "三条规则一起用。剩下的路，自己走。"
-      }
-    }
-  },
-  "threeAct": {
-    "opening": [
-      [
-        0,
-        1
-      ],
-      [
-        0,
-        0
-      ],
-      [
-        0,
-        2
-      ],
-      [
-        1,
-        1
-      ],
-      [
-        1,
-        0
-      ],
-      [
-        1,
-        3
-      ],
-      [
-        2,
-        0
-      ],
-      [
-        2,
-        3
-      ],
-      [
-        3,
-        0
-      ],
-      [
-        3,
-        2
-      ]
-    ],
-    "breakthrough": [],
-    "avalanche": [
-      [
-        3,
-        3
-      ]
-    ]
-  },
-  "difficultyLevel": 1
+    "levelId":  102,
+    "title":  "旧书铺踪迹",
+    "mode":  "full",
+    "gridSize":  4,
+    "difficulty":  "入门",
+    "teachingGoal":  "认识「宫」：每个2×2的小宫格也是1-4不重复。行、列、宫三条规则一起用！",
+    "features":  {
+                     "allowDraft":  false,
+                     "assistant45":  false,
+                     "showHints":  true,
+                     "highlightRow":  true,
+                     "highlightCol":  true,
+                     "highlightBox":  true,
+                     "highlightNumber":  false,
+                     "highlightCage":  false,
+                     "autoFillCandidates":  false
+                 },
+    "boardData":  [
+                      [
+                          0,
+                          0,
+                          0,
+                          4
+                      ],
+                      [
+                          0,
+                          0,
+                          2,
+                          0
+                      ],
+                      [
+                          0,
+                          1,
+                          3,
+                          0
+                      ],
+                      [
+                          0,
+                          3,
+                          0,
+                          0
+                      ]
+                  ],
+    "solution":  [
+                     [
+                         3,
+                         2,
+                         1,
+                         4
+                     ],
+                     [
+                         1,
+                         4,
+                         2,
+                         3
+                     ],
+                     [
+                         4,
+                         1,
+                         3,
+                         2
+                     ],
+                     [
+                         2,
+                         3,
+                         4,
+                         1
+                     ]
+                 ],
+    "cages":  [
+                  {
+                      "id":  1,
+                      "sum":  5,
+                      "cells":  [
+                                    [
+                                        0,
+                                        0
+                                    ],
+                                    [
+                                        0,
+                                        1
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  2,
+                      "sum":  10,
+                      "cells":  [
+                                    [
+                                        0,
+                                        2
+                                    ],
+                                    [
+                                        0,
+                                        3
+                                    ],
+                                    [
+                                        1,
+                                        3
+                                    ],
+                                    [
+                                        2,
+                                        3
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  3,
+                      "sum":  5,
+                      "cells":  [
+                                    [
+                                        1,
+                                        2
+                                    ],
+                                    [
+                                        2,
+                                        2
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  4,
+                      "sum":  5,
+                      "cells":  [
+                                    [
+                                        1,
+                                        1
+                                    ],
+                                    [
+                                        2,
+                                        1
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  5,
+                      "sum":  5,
+                      "cells":  [
+                                    [
+                                        1,
+                                        0
+                                    ],
+                                    [
+                                        2,
+                                        0
+                                    ]
+                                ]
+                  },
+                  {
+                      "id":  6,
+                      "sum":  10,
+                      "cells":  [
+                                    [
+                                        3,
+                                        3
+                                    ],
+                                    [
+                                        3,
+                                        2
+                                    ],
+                                    [
+                                        3,
+                                        1
+                                    ],
+                                    [
+                                        3,
+                                        0
+                                    ]
+                                ]
+                  }
+              ],
+    "triggers":  [
+                     {
+                         "id":  "t101_s",
+                         "condition":  "onLevelStart",
+                         "type":  "freeze_mask",
+                         "text":  "欢迎！灰色是提示数字。看空格旁的小数字（笔记），只剩1个的就是「孤星」，直接填！",
+                         "once":  true,
+                         "targetR":  0,
+                         "targetC":  2,
+                         "targetType":  "cell",
+                         "highlightShape":  "circle"
+                     },
+                     {
+                         "id":  "t101_f",
+                         "condition":  "onFirstNumberFilled",
+                         "type":  "popup_hint",
+                         "position":  "top",
+                         "text":  "答对了🎉 每行、每列、每个2×2宫，1-4各出现一次！",
+                         "once":  true
+                     },
+                     {
+                         "id":  "t101_h",
+                         "condition":  "onFillCountReached",
+                         "count":  11,
+                         "type":  "enter_phase",
+                         "phase":  "finishing",
+                         "once":  true
+                     },
+                     {
+                         "id":  "t101_c",
+                         "condition":  "onConflict",
+                         "type":  "popup_hint",
+                         "position":  "top",
+                         "text":  "数字重复啦！检查行、列、小宫～",
+                         "once":  false
+                     }
+                 ],
+    "preDialog":  [
+                      {
+                          "speaker":  "旁白",
+                          "text":  "沈墨推开书店的门。铃铛响了一声。薇拉坐在柜台后面，没有抬头。",
+                          "bg":  "assets/images/chapter1/backgrounds/BG-CH1-02_bookstore_counter.jpg",
+                          "isNarration":  true
+                      },
+                      {
+                          "speaker":  "薇拉",
+                          "text":  "你解完这道题之前，我不会告诉你任何事。",
+                          "cg":  "assets/images/chapter1/cg/CG-CH1-03_bookstore_first_meeting.jpg",
+                          "side":  "right",
+                          "emotion":  "calm",
+                          "effect":  0
+                      },
+                      {
+                          "speaker":  "沈墨 CHIBI",
+                          "text":  "……和六月一样。她在用题面验我。",
+                          "side":  "left",
+                          "emotion":  "thinking",
+                          "effect":  0
+                      }
+                  ],
+    "clearDialog":  [
+                        {
+                            "speaker":  "薇拉",
+                            "text":  "四宫格，行/列/宫，1到4各一次。你解出来了。",
+                            "bg":  "assets/images/chapter1/backgrounds/BG-CH1-02_bookstore_counter.jpg",
+                            "side":  "right",
+                            "emotion":  "calm",
+                            "effect":  0
+                        },
+                        {
+                            "speaker":  "沈墨 CHIBI",
+                            "text":  "……不止。她刚才说「解完这道题之前」——她还有话没说。",
+                            "side":  "left",
+                            "emotion":  "thinking",
+                            "effect":  0
+                        },
+                        {
+                            "speaker":  "薇拉",
+                            "text":  "第三排书架，左手边。你自己拿。",
+                            "side":  "right",
+                            "emotion":  "calm",
+                            "effect":  0
+                        },
+                        {
+                            "speaker":  "旁白",
+                            "text":  "沈墨走向书架。在那本书的书页之间，他看到了下一道题。",
+                            "isNarration":  true
+                        }
+                    ],
+    "lessonPlan":  {
+                       "newSkill":  "box_rule",
+                       "skillName":  "宫规则",
+                       "isFirstLesson":  true,
+                       "skippable":  true,
+                       "prerequisite":  [
+                                            "row_col_rule"
+                                        ],
+                       "phases":  {
+                                      "intro":  {
+                                                    "text":  "四宫格。每一行、每一列、每一个粗线框里，1到4各出现一次。",
+                                                    "speaker":  "沈墨 CHIBI",
+                                                    "duration":  2800
+                                                },
+                                      "demo":  {
+                                                   "steps":  [
+                                                                 {
+                                                                     "action":  "highlightBox",
+                                                                     "target":  1,
+                                                                     "duration":  1500,
+                                                                     "text":  "薇拉没有给他更多提示。他只能靠自己把四宫格的约束拼完整——粗线围起来的 2×2 叫「宫」，宫里 1 到 4 也各出现一次。"
+                                                                 },
+                                                                 {
+                                                                     "action":  "focusCell",
+                                                                     "target":  [
+                                                                                    0,
+                                                                                    2
+                                                                                ],
+                                                                     "duration":  900,
+                                                                     "text":  "他看这一格 a3：在宫里。宫里已经有 4 和 2，所以 a3 只能是 1 或 3。"
+                                                                 },
+                                                                 {
+                                                                     "action":  "focusCell",
+                                                                     "target":  [
+                                                                                    0,
+                                                                                    3
+                                                                                ],
+                                                                     "duration":  900,
+                                                                     "text":  "宫里的 4 在这里。"
+                                                                 },
+                                                                 {
+                                                                     "action":  "focusCell",
+                                                                     "target":  [
+                                                                                    1,
+                                                                                    3
+                                                                                ],
+                                                                     "duration":  900,
+                                                                     "text":  "这一格是 2，a3 不可能是 2。"
+                                                                 },
+                                                                 {
+                                                                     "action":  "highlightCol",
+                                                                     "target":  2,
+                                                                     "duration":  1500,
+                                                                     "text":  "再看 a3 所在的这一列：下面已经有 2 和 3——a3 也不能填 3。"
+                                                                 },
+                                                                 {
+                                                                     "action":  "focusCell",
+                                                                     "target":  [
+                                                                                    1,
+                                                                                    2
+                                                                                ],
+                                                                     "duration":  1200,
+                                                                     "text":  "宫里只剩 1 和 3，列又排除了 3——a3 只能填 1。宫规则：看宫看列，排除掉已有的数字。"
+                                                                 }
+                                                             ]
+                                               },
+                                      "guided":  {
+                                                     "targetCell":  [
+                                                                        0,
+                                                                        2
+                                                                    ],
+                                                     "correctValue":  1,
+                                                     "interactionType":  "NUMBER",
+                                                     "autoRevealText":  "a3 在宫里：宫已有 4 和 2，还缺 1、3；这一列已有 3——所以 a3 只能填 1。",
+                                                     "maxAttempts":  3,
+                                                     "hintText":  "沈墨的目光停在第二行。这一行缺的是哪几个数？它们在列里是不是已经被占用了？",
+                                                     "failHint":  "沈墨顿了一下……这一行已经有了这个数。他不能把同样的数字放在同一行里。",
+                                                     "autoRevealAfter":  3,
+                                                     "successText":  "沈墨放下笔。四宫格的锁，开了。"
+                                                 },
+                                      "semiAuto":  {
+                                                       "enabled":  true,
+                                                       "targetCount":  2,
+                                                       "hintText":  "用同样的方法，再看看这几个空格。",
+                                                       "watchCells":  [
+                                                                          [
+                                                                              3,
+                                                                              2
+                                                                          ],
+                                                                          [
+                                                                              1,
+                                                                              1
+                                                                          ],
+                                                                          [
+                                                                              2,
+                                                                              3
+                                                                          ]
+                                                                      ],
+                                                       "interactionType":  "NUMBER"
+                                                   },
+                                      "free":  {
+                                                   "enabled":  true,
+                                                   "unlockText":  "三条规则一起用。剩下的路，自己走。"
+                                               }
+                                  }
+                   },
+    "threeAct":  {
+                     "opening":  [
+                                     [
+                                         0,
+                                         1
+                                     ],
+                                     [
+                                         0,
+                                         0
+                                     ],
+                                     [
+                                         0,
+                                         2
+                                     ],
+                                     [
+                                         1,
+                                         1
+                                     ],
+                                     [
+                                         1,
+                                         0
+                                     ],
+                                     [
+                                         1,
+                                         3
+                                     ],
+                                     [
+                                         2,
+                                         0
+                                     ],
+                                     [
+                                         2,
+                                         3
+                                     ],
+                                     [
+                                         3,
+                                         0
+                                     ],
+                                     [
+                                         3,
+                                         2
+                                     ]
+                                 ],
+                     "breakthrough":  [
+
+                                      ],
+                     "avalanche":  [
+                                       [
+                                           3,
+                                           3
+                                       ]
+                                   ]
+                 },
+    "difficultyLevel":  1
 }

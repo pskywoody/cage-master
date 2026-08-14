@@ -1,0 +1,25 @@
+{
+  "branch": "B4",
+  "code": "B4-D",
+  "name": "Pareto Objective",
+  "status": "todo",
+  "priority": 4,
+  "hypothesis": "B3 是单目标 score optimization。B4-D 改造为多目标（quality + diversity − bias），用 Pareto 前沿选择，避免单标量 trade-off 被掩盖。最后才动核心 objective。",
+  "frozen": {
+    "lambda": 25,
+    "acceptance": "unchanged"
+  },
+  "variable": {
+    "pareto": {
+      "enabled": false,
+      "fitness": "a*quality + b*diversity - c*bias",
+      "objective": ["quality", "diversity", "bias"]
+    }
+  },
+  "acceptance": {
+    "paretoFront": "质量×难度×novelty×canonical spread 覆盖",
+    "top4Share": "not worse",
+    "entropy": ">= 2.60",
+    "uniqueAll": true
+  }
+}

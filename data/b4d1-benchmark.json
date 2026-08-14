@@ -1,0 +1,82 @@
+{
+  "generatedAt": "2026-08-10T18:06:23.607Z",
+  "config": {
+    "count": 30,
+    "seed": 20260810
+  },
+  "frozen": {
+    "lambda": 25,
+    "growthBias": 0.4,
+    "shapeDiversityWeight": 0.2,
+    "objective": "enabled",
+    "suppressSingletons": true
+  },
+  "variable": {
+    "familyNoveltyWeight": [
+      0,
+      3
+    ]
+  },
+  "arms": {
+    "baseline": {
+      "levels": 30,
+      "totalCages": 658,
+      "Hcanonical": 2.001,
+      "canonicalFamilyCount": 10,
+      "top1FamilyShare": 0.218,
+      "top4FamilyShare": 0.764,
+      "top8FamilyShare": 0.957,
+      "headFamilyLockCount": 4,
+      "singletonRatio": 0.044072948328267476,
+      "complexShare": 0.35106382978723405,
+      "ratioMean": 0.2150253258885739,
+      "avgScore": 515.8,
+      "uniqueAll": true,
+      "sizeShare": {
+        "1": 0.044072948328267476,
+        "2": 0.12310030395136778,
+        "3": 0.24316109422492402,
+        "4": 0.2750759878419453,
+        "5": 0.31458966565349544
+      },
+      "familyRankChanges": 0,
+      "elapsed": 431
+    },
+    "B4-D1": {
+      "levels": 30,
+      "totalCages": 657,
+      "Hcanonical": 1.993,
+      "canonicalFamilyCount": 10,
+      "top1FamilyShare": 0.219,
+      "top4FamilyShare": 0.77,
+      "top8FamilyShare": 0.952,
+      "headFamilyLockCount": 4,
+      "singletonRatio": 0.0426179604261796,
+      "complexShare": 0.350076103500761,
+      "ratioMean": 0.21739407682045767,
+      "avgScore": 530,
+      "uniqueAll": true,
+      "sizeShare": {
+        "1": 0.0426179604261796,
+        "2": 0.1293759512937595,
+        "3": 0.2389649923896499,
+        "4": 0.2648401826484018,
+        "5": 0.3242009132420091
+      },
+      "familyRankChanges": 1,
+      "elapsed": 378
+    }
+  },
+  "gates": {
+    "mechanism_engaged": true,
+    "score_stable": true,
+    "ratio_no_drift": true,
+    "complex_not_down": true,
+    "unique_all": true,
+    "Hcanonical_up": false,
+    "top4_down_3pp": false
+  },
+  "b3Stable": true,
+  "diversityUp": false,
+  "verdict": "Review：机制进入 selection 且 B3 稳定，但 Hcanonical/top4 未达阈值 → diversity 未提升，信号或权重不足。"
+}

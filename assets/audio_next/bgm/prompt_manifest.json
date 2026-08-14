@@ -1,0 +1,639 @@
+{
+  "generated_at": "2026-08-11 07:16:05",
+  "tool": "MiniMax (primary) / ACE-Step 1.5 (backup)",
+  "spec": "4-stem adaptive: bed/pulse/motif/tension per theme; 2-variant motif per character",
+  "stem_spec": {
+    "bed": "1941 Shanghai noir film score. Sustained harmonic BED only: warm low strings (cello and double bass), soft grand-piano chord stabs, distant reed/oboe pad. NO percussion, NO drums, NO lead melody. Slow, spacious, {emo}. Tempo around {bpm} BPM. Seamless loop, perfect crossfade at ends. Cinematic, melancholic Republican-era Shanghai spy atmosphere.",
+    "pulse": "1941 Shanghai noir RHYTHM layer only. Sparse ethnic/period percussion: woodblock, muffled taiko low tom, brushed snare, soft kick. NO melody, NO harmonic pad, NO strings. Steady minimalist pulse at {bpm} BPM, dry and tense, spy-thriller groove. Seamless loop. {emo}.",
+    "motif": "1941 Shanghai noir MELODY motif only. {instr} melody line over silence, NO drums, NO harmonic bed, NO backing. {emo} lyrical phrase, 8 to 16 bars, memorable and hummable. Seamless loop. Cinematic spy theme, tempo around {bpm} BPM.",
+    "tension": "1941 Shanghai noir TENSION/atmosphere layer only. Rising string swell, low dissonant drone, distant metallic shimmer, airy noise texture. NO beat, NO clear melody, NO percussion. Builds quiet unease, {emo}. Seamless swelling loop. Atmospheric spy suspense."
+  },
+  "bpm": {
+    "intro": 96,
+    "chapter_1": 100,
+    "chapter_2": 105,
+    "chapter_3": 108,
+    "chapter_4": 112,
+    "chapter_5": 116,
+    "chapter_6": 120,
+    "chapter_7": 124,
+    "outro": 100,
+    "victory": 128,
+    "fail": 84
+  },
+  "total_targets": 52,
+  "themes": {
+    "intro": {
+      "emo": "suspenseful yet restrained, a cold open",
+      "instr": "solo grand piano",
+      "note": "标题/序章：悬疑铺陈，克制中透出不安"
+    },
+    "chapter_1": {
+      "emo": "cold, observational, lonely",
+      "instr": "solo erhu (Chinese violin)",
+      "note": "第1章：克制。冷峻、观察、孤身"
+    },
+    "chapter_2": {
+      "emo": "tightening, watchful, low dread",
+      "instr": "solo clarinet",
+      "note": "第2章：收紧。暗处有人在看"
+    },
+    "chapter_3": {
+      "emo": "undercurrent, uneasy, slow burn",
+      "instr": "solo muted trumpet",
+      "note": "第3章：暗流。表面平静下的涌动"
+    },
+    "chapter_4": {
+      "emo": "accelerating, driven, restless",
+      "instr": "solo piano with light strings",
+      "note": "第4章：提速。节奏感上来"
+    },
+    "chapter_5": {
+      "emo": "high pressure, paranoid, claustrophobic",
+      "instr": "solo violin",
+      "note": "第5章：高压。偏执、窒息"
+    },
+    "chapter_6": {
+      "emo": "critical, brink, barely contained",
+      "instr": "solo cello",
+      "note": "第6章：临界。弦将断"
+    },
+    "chapter_7": {
+      "emo": "finale, fatal, resignation and resolve",
+      "instr": "full string section lead",
+      "note": "第7章：终局。命运收口"
+    },
+    "outro": {
+      "emo": "resigned resolution, bittersweet calm",
+      "instr": "solo piano + reed",
+      "note": "真结局收束：余烬般的平静"
+    },
+    "victory": {
+      "emo": "triumphant but weary, hard-won",
+      "instr": "rising string + brass",
+      "note": "通关：惨胜"
+    },
+    "fail": {
+      "emo": "despair, loop of regret, hollow",
+      "instr": "detuned piano",
+      "note": "失败/重试：空洞的循环"
+    }
+  },
+  "motifs": {
+    "shenmo": {
+      "name": "沈墨 SM",
+      "key": "D 小调",
+      "emo_calm": "decisive, grounded, \"I did it\"",
+      "emo_tense": "urgent, precise, closing in",
+      "instr": "low cello pizzicato + triangle cold accents",
+      "note": "小调下行三音 + 低音提琴拨奏 + 三角铁冷点；行动叙事"
+    },
+    "vera": {
+      "name": "薇拉 V",
+      "key": "降 B 大调",
+      "emo_calm": "warm-melancholic, reflective, \"I remember\"",
+      "emo_tense": "guarded, fractured memory",
+      "instr": "reed slow arpeggio + distant piano echo",
+      "note": "簧管慢琶音 + 远处钢琴回声（降六音暖凉）；记忆叙事"
+    },
+    "ito": {
+      "name": "伊藤 I",
+      "key": "g 小调",
+      "emo_calm": "bureaucratic stillness, \"evidence exists\"",
+      "emo_tense": "mechanical pressure, mounting file",
+      "instr": "typewriter/telegraph sample + long string tone + low-pass",
+      "note": "机械节拍(电报采样) + 弦乐长音 + 低通\"藏书楼\"感；存在叙事"
+    },
+    "cage": {
+      "name": "老师/笼(共享反派)",
+      "key": "扭曲笼式和声(45 法则动机)",
+      "emo_calm": "veiled, patient, watching",
+      "emo_tense": "closing trap, inevitability",
+      "instr": "distorted cage chord (45-rule motif) on low reed + piano",
+      "note": "plotter/山本场景复用；反派母动机"
+    }
+  },
+  "targets": [
+    {
+      "theme": "intro",
+      "stem": "bed",
+      "file": "intro_bed.mp3",
+      "prompt": "1941 Shanghai noir film score. Sustained harmonic BED only: warm low strings (cello and double bass), soft grand-piano chord stabs, distant reed/oboe pad. NO percussion, NO drums, NO lead melody. Slow, spacious, suspenseful yet restrained, a cold open. Tempo around 96 BPM. Seamless loop, perfect crossfade at ends. Cinematic, melancholic Republican-era Shanghai spy atmosphere.",
+      "bpm": 96,
+      "emo": "suspenseful yet restrained, a cold open",
+      "note": "标题/序章：悬疑铺陈，克制中透出不安",
+      "kind": "theme"
+    },
+    {
+      "theme": "intro",
+      "stem": "pulse",
+      "file": "intro_pulse.mp3",
+      "prompt": "1941 Shanghai noir RHYTHM layer only. Sparse ethnic/period percussion: woodblock, muffled taiko low tom, brushed snare, soft kick. NO melody, NO harmonic pad, NO strings. Steady minimalist pulse at 96 BPM, dry and tense, spy-thriller groove. Seamless loop. suspenseful yet restrained, a cold open.",
+      "bpm": 96,
+      "emo": "suspenseful yet restrained, a cold open",
+      "note": "标题/序章：悬疑铺陈，克制中透出不安",
+      "kind": "theme"
+    },
+    {
+      "theme": "intro",
+      "stem": "motif",
+      "file": "intro_motif.mp3",
+      "prompt": "1941 Shanghai noir MELODY motif only. solo grand piano melody line over silence, NO drums, NO harmonic bed, NO backing. suspenseful yet restrained, a cold open lyrical phrase, 8 to 16 bars, memorable and hummable. Seamless loop. Cinematic spy theme, tempo around 96 BPM.",
+      "bpm": 96,
+      "emo": "suspenseful yet restrained, a cold open",
+      "note": "标题/序章：悬疑铺陈，克制中透出不安",
+      "kind": "theme"
+    },
+    {
+      "theme": "intro",
+      "stem": "tension",
+      "file": "intro_tension.mp3",
+      "prompt": "1941 Shanghai noir TENSION/atmosphere layer only. Rising string swell, low dissonant drone, distant metallic shimmer, airy noise texture. NO beat, NO clear melody, NO percussion. Builds quiet unease, suspenseful yet restrained, a cold open. Seamless swelling loop. Atmospheric spy suspense.",
+      "bpm": 96,
+      "emo": "suspenseful yet restrained, a cold open",
+      "note": "标题/序章：悬疑铺陈，克制中透出不安",
+      "kind": "theme"
+    },
+    {
+      "theme": "chapter_1",
+      "stem": "bed",
+      "file": "chapter_1_bed.mp3",
+      "prompt": "1941 Shanghai noir film score. Sustained harmonic BED only: warm low strings (cello and double bass), soft grand-piano chord stabs, distant reed/oboe pad. NO percussion, NO drums, NO lead melody. Slow, spacious, cold, observational, lonely. Tempo around 100 BPM. Seamless loop, perfect crossfade at ends. Cinematic, melancholic Republican-era Shanghai spy atmosphere.",
+      "bpm": 100,
+      "emo": "cold, observational, lonely",
+      "note": "第1章：克制。冷峻、观察、孤身",
+      "kind": "theme"
+    },
+    {
+      "theme": "chapter_1",
+      "stem": "pulse",
+      "file": "chapter_1_pulse.mp3",
+      "prompt": "1941 Shanghai noir RHYTHM layer only. Sparse ethnic/period percussion: woodblock, muffled taiko low tom, brushed snare, soft kick. NO melody, NO harmonic pad, NO strings. Steady minimalist pulse at 100 BPM, dry and tense, spy-thriller groove. Seamless loop. cold, observational, lonely.",
+      "bpm": 100,
+      "emo": "cold, observational, lonely",
+      "note": "第1章：克制。冷峻、观察、孤身",
+      "kind": "theme"
+    },
+    {
+      "theme": "chapter_1",
+      "stem": "motif",
+      "file": "chapter_1_motif.mp3",
+      "prompt": "1941 Shanghai noir MELODY motif only. solo erhu (Chinese violin) melody line over silence, NO drums, NO harmonic bed, NO backing. cold, observational, lonely lyrical phrase, 8 to 16 bars, memorable and hummable. Seamless loop. Cinematic spy theme, tempo around 100 BPM.",
+      "bpm": 100,
+      "emo": "cold, observational, lonely",
+      "note": "第1章：克制。冷峻、观察、孤身",
+      "kind": "theme"
+    },
+    {
+      "theme": "chapter_1",
+      "stem": "tension",
+      "file": "chapter_1_tension.mp3",
+      "prompt": "1941 Shanghai noir TENSION/atmosphere layer only. Rising string swell, low dissonant drone, distant metallic shimmer, airy noise texture. NO beat, NO clear melody, NO percussion. Builds quiet unease, cold, observational, lonely. Seamless swelling loop. Atmospheric spy suspense.",
+      "bpm": 100,
+      "emo": "cold, observational, lonely",
+      "note": "第1章：克制。冷峻、观察、孤身",
+      "kind": "theme"
+    },
+    {
+      "theme": "chapter_2",
+      "stem": "bed",
+      "file": "chapter_2_bed.mp3",
+      "prompt": "1941 Shanghai noir film score. Sustained harmonic BED only: warm low strings (cello and double bass), soft grand-piano chord stabs, distant reed/oboe pad. NO percussion, NO drums, NO lead melody. Slow, spacious, tightening, watchful, low dread. Tempo around 105 BPM. Seamless loop, perfect crossfade at ends. Cinematic, melancholic Republican-era Shanghai spy atmosphere.",
+      "bpm": 105,
+      "emo": "tightening, watchful, low dread",
+      "note": "第2章：收紧。暗处有人在看",
+      "kind": "theme"
+    },
+    {
+      "theme": "chapter_2",
+      "stem": "pulse",
+      "file": "chapter_2_pulse.mp3",
+      "prompt": "1941 Shanghai noir RHYTHM layer only. Sparse ethnic/period percussion: woodblock, muffled taiko low tom, brushed snare, soft kick. NO melody, NO harmonic pad, NO strings. Steady minimalist pulse at 105 BPM, dry and tense, spy-thriller groove. Seamless loop. tightening, watchful, low dread.",
+      "bpm": 105,
+      "emo": "tightening, watchful, low dread",
+      "note": "第2章：收紧。暗处有人在看",
+      "kind": "theme"
+    },
+    {
+      "theme": "chapter_2",
+      "stem": "motif",
+      "file": "chapter_2_motif.mp3",
+      "prompt": "1941 Shanghai noir MELODY motif only. solo clarinet melody line over silence, NO drums, NO harmonic bed, NO backing. tightening, watchful, low dread lyrical phrase, 8 to 16 bars, memorable and hummable. Seamless loop. Cinematic spy theme, tempo around 105 BPM.",
+      "bpm": 105,
+      "emo": "tightening, watchful, low dread",
+      "note": "第2章：收紧。暗处有人在看",
+      "kind": "theme"
+    },
+    {
+      "theme": "chapter_2",
+      "stem": "tension",
+      "file": "chapter_2_tension.mp3",
+      "prompt": "1941 Shanghai noir TENSION/atmosphere layer only. Rising string swell, low dissonant drone, distant metallic shimmer, airy noise texture. NO beat, NO clear melody, NO percussion. Builds quiet unease, tightening, watchful, low dread. Seamless swelling loop. Atmospheric spy suspense.",
+      "bpm": 105,
+      "emo": "tightening, watchful, low dread",
+      "note": "第2章：收紧。暗处有人在看",
+      "kind": "theme"
+    },
+    {
+      "theme": "chapter_3",
+      "stem": "bed",
+      "file": "chapter_3_bed.mp3",
+      "prompt": "1941 Shanghai noir film score. Sustained harmonic BED only: warm low strings (cello and double bass), soft grand-piano chord stabs, distant reed/oboe pad. NO percussion, NO drums, NO lead melody. Slow, spacious, undercurrent, uneasy, slow burn. Tempo around 108 BPM. Seamless loop, perfect crossfade at ends. Cinematic, melancholic Republican-era Shanghai spy atmosphere.",
+      "bpm": 108,
+      "emo": "undercurrent, uneasy, slow burn",
+      "note": "第3章：暗流。表面平静下的涌动",
+      "kind": "theme"
+    },
+    {
+      "theme": "chapter_3",
+      "stem": "pulse",
+      "file": "chapter_3_pulse.mp3",
+      "prompt": "1941 Shanghai noir RHYTHM layer only. Sparse ethnic/period percussion: woodblock, muffled taiko low tom, brushed snare, soft kick. NO melody, NO harmonic pad, NO strings. Steady minimalist pulse at 108 BPM, dry and tense, spy-thriller groove. Seamless loop. undercurrent, uneasy, slow burn.",
+      "bpm": 108,
+      "emo": "undercurrent, uneasy, slow burn",
+      "note": "第3章：暗流。表面平静下的涌动",
+      "kind": "theme"
+    },
+    {
+      "theme": "chapter_3",
+      "stem": "motif",
+      "file": "chapter_3_motif.mp3",
+      "prompt": "1941 Shanghai noir MELODY motif only. solo muted trumpet melody line over silence, NO drums, NO harmonic bed, NO backing. undercurrent, uneasy, slow burn lyrical phrase, 8 to 16 bars, memorable and hummable. Seamless loop. Cinematic spy theme, tempo around 108 BPM.",
+      "bpm": 108,
+      "emo": "undercurrent, uneasy, slow burn",
+      "note": "第3章：暗流。表面平静下的涌动",
+      "kind": "theme"
+    },
+    {
+      "theme": "chapter_3",
+      "stem": "tension",
+      "file": "chapter_3_tension.mp3",
+      "prompt": "1941 Shanghai noir TENSION/atmosphere layer only. Rising string swell, low dissonant drone, distant metallic shimmer, airy noise texture. NO beat, NO clear melody, NO percussion. Builds quiet unease, undercurrent, uneasy, slow burn. Seamless swelling loop. Atmospheric spy suspense.",
+      "bpm": 108,
+      "emo": "undercurrent, uneasy, slow burn",
+      "note": "第3章：暗流。表面平静下的涌动",
+      "kind": "theme"
+    },
+    {
+      "theme": "chapter_4",
+      "stem": "bed",
+      "file": "chapter_4_bed.mp3",
+      "prompt": "1941 Shanghai noir film score. Sustained harmonic BED only: warm low strings (cello and double bass), soft grand-piano chord stabs, distant reed/oboe pad. NO percussion, NO drums, NO lead melody. Slow, spacious, accelerating, driven, restless. Tempo around 112 BPM. Seamless loop, perfect crossfade at ends. Cinematic, melancholic Republican-era Shanghai spy atmosphere.",
+      "bpm": 112,
+      "emo": "accelerating, driven, restless",
+      "note": "第4章：提速。节奏感上来",
+      "kind": "theme"
+    },
+    {
+      "theme": "chapter_4",
+      "stem": "pulse",
+      "file": "chapter_4_pulse.mp3",
+      "prompt": "1941 Shanghai noir RHYTHM layer only. Sparse ethnic/period percussion: woodblock, muffled taiko low tom, brushed snare, soft kick. NO melody, NO harmonic pad, NO strings. Steady minimalist pulse at 112 BPM, dry and tense, spy-thriller groove. Seamless loop. accelerating, driven, restless.",
+      "bpm": 112,
+      "emo": "accelerating, driven, restless",
+      "note": "第4章：提速。节奏感上来",
+      "kind": "theme"
+    },
+    {
+      "theme": "chapter_4",
+      "stem": "motif",
+      "file": "chapter_4_motif.mp3",
+      "prompt": "1941 Shanghai noir MELODY motif only. solo piano with light strings melody line over silence, NO drums, NO harmonic bed, NO backing. accelerating, driven, restless lyrical phrase, 8 to 16 bars, memorable and hummable. Seamless loop. Cinematic spy theme, tempo around 112 BPM.",
+      "bpm": 112,
+      "emo": "accelerating, driven, restless",
+      "note": "第4章：提速。节奏感上来",
+      "kind": "theme"
+    },
+    {
+      "theme": "chapter_4",
+      "stem": "tension",
+      "file": "chapter_4_tension.mp3",
+      "prompt": "1941 Shanghai noir TENSION/atmosphere layer only. Rising string swell, low dissonant drone, distant metallic shimmer, airy noise texture. NO beat, NO clear melody, NO percussion. Builds quiet unease, accelerating, driven, restless. Seamless swelling loop. Atmospheric spy suspense.",
+      "bpm": 112,
+      "emo": "accelerating, driven, restless",
+      "note": "第4章：提速。节奏感上来",
+      "kind": "theme"
+    },
+    {
+      "theme": "chapter_5",
+      "stem": "bed",
+      "file": "chapter_5_bed.mp3",
+      "prompt": "1941 Shanghai noir film score. Sustained harmonic BED only: warm low strings (cello and double bass), soft grand-piano chord stabs, distant reed/oboe pad. NO percussion, NO drums, NO lead melody. Slow, spacious, high pressure, paranoid, claustrophobic. Tempo around 116 BPM. Seamless loop, perfect crossfade at ends. Cinematic, melancholic Republican-era Shanghai spy atmosphere.",
+      "bpm": 116,
+      "emo": "high pressure, paranoid, claustrophobic",
+      "note": "第5章：高压。偏执、窒息",
+      "kind": "theme"
+    },
+    {
+      "theme": "chapter_5",
+      "stem": "pulse",
+      "file": "chapter_5_pulse.mp3",
+      "prompt": "1941 Shanghai noir RHYTHM layer only. Sparse ethnic/period percussion: woodblock, muffled taiko low tom, brushed snare, soft kick. NO melody, NO harmonic pad, NO strings. Steady minimalist pulse at 116 BPM, dry and tense, spy-thriller groove. Seamless loop. high pressure, paranoid, claustrophobic.",
+      "bpm": 116,
+      "emo": "high pressure, paranoid, claustrophobic",
+      "note": "第5章：高压。偏执、窒息",
+      "kind": "theme"
+    },
+    {
+      "theme": "chapter_5",
+      "stem": "motif",
+      "file": "chapter_5_motif.mp3",
+      "prompt": "1941 Shanghai noir MELODY motif only. solo violin melody line over silence, NO drums, NO harmonic bed, NO backing. high pressure, paranoid, claustrophobic lyrical phrase, 8 to 16 bars, memorable and hummable. Seamless loop. Cinematic spy theme, tempo around 116 BPM.",
+      "bpm": 116,
+      "emo": "high pressure, paranoid, claustrophobic",
+      "note": "第5章：高压。偏执、窒息",
+      "kind": "theme"
+    },
+    {
+      "theme": "chapter_5",
+      "stem": "tension",
+      "file": "chapter_5_tension.mp3",
+      "prompt": "1941 Shanghai noir TENSION/atmosphere layer only. Rising string swell, low dissonant drone, distant metallic shimmer, airy noise texture. NO beat, NO clear melody, NO percussion. Builds quiet unease, high pressure, paranoid, claustrophobic. Seamless swelling loop. Atmospheric spy suspense.",
+      "bpm": 116,
+      "emo": "high pressure, paranoid, claustrophobic",
+      "note": "第5章：高压。偏执、窒息",
+      "kind": "theme"
+    },
+    {
+      "theme": "chapter_6",
+      "stem": "bed",
+      "file": "chapter_6_bed.mp3",
+      "prompt": "1941 Shanghai noir film score. Sustained harmonic BED only: warm low strings (cello and double bass), soft grand-piano chord stabs, distant reed/oboe pad. NO percussion, NO drums, NO lead melody. Slow, spacious, critical, brink, barely contained. Tempo around 120 BPM. Seamless loop, perfect crossfade at ends. Cinematic, melancholic Republican-era Shanghai spy atmosphere.",
+      "bpm": 120,
+      "emo": "critical, brink, barely contained",
+      "note": "第6章：临界。弦将断",
+      "kind": "theme"
+    },
+    {
+      "theme": "chapter_6",
+      "stem": "pulse",
+      "file": "chapter_6_pulse.mp3",
+      "prompt": "1941 Shanghai noir RHYTHM layer only. Sparse ethnic/period percussion: woodblock, muffled taiko low tom, brushed snare, soft kick. NO melody, NO harmonic pad, NO strings. Steady minimalist pulse at 120 BPM, dry and tense, spy-thriller groove. Seamless loop. critical, brink, barely contained.",
+      "bpm": 120,
+      "emo": "critical, brink, barely contained",
+      "note": "第6章：临界。弦将断",
+      "kind": "theme"
+    },
+    {
+      "theme": "chapter_6",
+      "stem": "motif",
+      "file": "chapter_6_motif.mp3",
+      "prompt": "1941 Shanghai noir MELODY motif only. solo cello melody line over silence, NO drums, NO harmonic bed, NO backing. critical, brink, barely contained lyrical phrase, 8 to 16 bars, memorable and hummable. Seamless loop. Cinematic spy theme, tempo around 120 BPM.",
+      "bpm": 120,
+      "emo": "critical, brink, barely contained",
+      "note": "第6章：临界。弦将断",
+      "kind": "theme"
+    },
+    {
+      "theme": "chapter_6",
+      "stem": "tension",
+      "file": "chapter_6_tension.mp3",
+      "prompt": "1941 Shanghai noir TENSION/atmosphere layer only. Rising string swell, low dissonant drone, distant metallic shimmer, airy noise texture. NO beat, NO clear melody, NO percussion. Builds quiet unease, critical, brink, barely contained. Seamless swelling loop. Atmospheric spy suspense.",
+      "bpm": 120,
+      "emo": "critical, brink, barely contained",
+      "note": "第6章：临界。弦将断",
+      "kind": "theme"
+    },
+    {
+      "theme": "chapter_7",
+      "stem": "bed",
+      "file": "chapter_7_bed.mp3",
+      "prompt": "1941 Shanghai noir film score. Sustained harmonic BED only: warm low strings (cello and double bass), soft grand-piano chord stabs, distant reed/oboe pad. NO percussion, NO drums, NO lead melody. Slow, spacious, finale, fatal, resignation and resolve. Tempo around 124 BPM. Seamless loop, perfect crossfade at ends. Cinematic, melancholic Republican-era Shanghai spy atmosphere.",
+      "bpm": 124,
+      "emo": "finale, fatal, resignation and resolve",
+      "note": "第7章：终局。命运收口",
+      "kind": "theme"
+    },
+    {
+      "theme": "chapter_7",
+      "stem": "pulse",
+      "file": "chapter_7_pulse.mp3",
+      "prompt": "1941 Shanghai noir RHYTHM layer only. Sparse ethnic/period percussion: woodblock, muffled taiko low tom, brushed snare, soft kick. NO melody, NO harmonic pad, NO strings. Steady minimalist pulse at 124 BPM, dry and tense, spy-thriller groove. Seamless loop. finale, fatal, resignation and resolve.",
+      "bpm": 124,
+      "emo": "finale, fatal, resignation and resolve",
+      "note": "第7章：终局。命运收口",
+      "kind": "theme"
+    },
+    {
+      "theme": "chapter_7",
+      "stem": "motif",
+      "file": "chapter_7_motif.mp3",
+      "prompt": "1941 Shanghai noir MELODY motif only. full string section lead melody line over silence, NO drums, NO harmonic bed, NO backing. finale, fatal, resignation and resolve lyrical phrase, 8 to 16 bars, memorable and hummable. Seamless loop. Cinematic spy theme, tempo around 124 BPM.",
+      "bpm": 124,
+      "emo": "finale, fatal, resignation and resolve",
+      "note": "第7章：终局。命运收口",
+      "kind": "theme"
+    },
+    {
+      "theme": "chapter_7",
+      "stem": "tension",
+      "file": "chapter_7_tension.mp3",
+      "prompt": "1941 Shanghai noir TENSION/atmosphere layer only. Rising string swell, low dissonant drone, distant metallic shimmer, airy noise texture. NO beat, NO clear melody, NO percussion. Builds quiet unease, finale, fatal, resignation and resolve. Seamless swelling loop. Atmospheric spy suspense.",
+      "bpm": 124,
+      "emo": "finale, fatal, resignation and resolve",
+      "note": "第7章：终局。命运收口",
+      "kind": "theme"
+    },
+    {
+      "theme": "outro",
+      "stem": "bed",
+      "file": "outro_bed.mp3",
+      "prompt": "1941 Shanghai noir film score. Sustained harmonic BED only: warm low strings (cello and double bass), soft grand-piano chord stabs, distant reed/oboe pad. NO percussion, NO drums, NO lead melody. Slow, spacious, resigned resolution, bittersweet calm. Tempo around 100 BPM. Seamless loop, perfect crossfade at ends. Cinematic, melancholic Republican-era Shanghai spy atmosphere.",
+      "bpm": 100,
+      "emo": "resigned resolution, bittersweet calm",
+      "note": "真结局收束：余烬般的平静",
+      "kind": "theme"
+    },
+    {
+      "theme": "outro",
+      "stem": "pulse",
+      "file": "outro_pulse.mp3",
+      "prompt": "1941 Shanghai noir RHYTHM layer only. Sparse ethnic/period percussion: woodblock, muffled taiko low tom, brushed snare, soft kick. NO melody, NO harmonic pad, NO strings. Steady minimalist pulse at 100 BPM, dry and tense, spy-thriller groove. Seamless loop. resigned resolution, bittersweet calm.",
+      "bpm": 100,
+      "emo": "resigned resolution, bittersweet calm",
+      "note": "真结局收束：余烬般的平静",
+      "kind": "theme"
+    },
+    {
+      "theme": "outro",
+      "stem": "motif",
+      "file": "outro_motif.mp3",
+      "prompt": "1941 Shanghai noir MELODY motif only. solo piano + reed melody line over silence, NO drums, NO harmonic bed, NO backing. resigned resolution, bittersweet calm lyrical phrase, 8 to 16 bars, memorable and hummable. Seamless loop. Cinematic spy theme, tempo around 100 BPM.",
+      "bpm": 100,
+      "emo": "resigned resolution, bittersweet calm",
+      "note": "真结局收束：余烬般的平静",
+      "kind": "theme"
+    },
+    {
+      "theme": "outro",
+      "stem": "tension",
+      "file": "outro_tension.mp3",
+      "prompt": "1941 Shanghai noir TENSION/atmosphere layer only. Rising string swell, low dissonant drone, distant metallic shimmer, airy noise texture. NO beat, NO clear melody, NO percussion. Builds quiet unease, resigned resolution, bittersweet calm. Seamless swelling loop. Atmospheric spy suspense.",
+      "bpm": 100,
+      "emo": "resigned resolution, bittersweet calm",
+      "note": "真结局收束：余烬般的平静",
+      "kind": "theme"
+    },
+    {
+      "theme": "victory",
+      "stem": "bed",
+      "file": "victory_bed.mp3",
+      "prompt": "1941 Shanghai noir film score. Sustained harmonic BED only: warm low strings (cello and double bass), soft grand-piano chord stabs, distant reed/oboe pad. NO percussion, NO drums, NO lead melody. Slow, spacious, triumphant but weary, hard-won. Tempo around 128 BPM. Seamless loop, perfect crossfade at ends. Cinematic, melancholic Republican-era Shanghai spy atmosphere.",
+      "bpm": 128,
+      "emo": "triumphant but weary, hard-won",
+      "note": "通关：惨胜",
+      "kind": "theme"
+    },
+    {
+      "theme": "victory",
+      "stem": "pulse",
+      "file": "victory_pulse.mp3",
+      "prompt": "1941 Shanghai noir RHYTHM layer only. Sparse ethnic/period percussion: woodblock, muffled taiko low tom, brushed snare, soft kick. NO melody, NO harmonic pad, NO strings. Steady minimalist pulse at 128 BPM, dry and tense, spy-thriller groove. Seamless loop. triumphant but weary, hard-won.",
+      "bpm": 128,
+      "emo": "triumphant but weary, hard-won",
+      "note": "通关：惨胜",
+      "kind": "theme"
+    },
+    {
+      "theme": "victory",
+      "stem": "motif",
+      "file": "victory_motif.mp3",
+      "prompt": "1941 Shanghai noir MELODY motif only. rising string + brass melody line over silence, NO drums, NO harmonic bed, NO backing. triumphant but weary, hard-won lyrical phrase, 8 to 16 bars, memorable and hummable. Seamless loop. Cinematic spy theme, tempo around 128 BPM.",
+      "bpm": 128,
+      "emo": "triumphant but weary, hard-won",
+      "note": "通关：惨胜",
+      "kind": "theme"
+    },
+    {
+      "theme": "victory",
+      "stem": "tension",
+      "file": "victory_tension.mp3",
+      "prompt": "1941 Shanghai noir TENSION/atmosphere layer only. Rising string swell, low dissonant drone, distant metallic shimmer, airy noise texture. NO beat, NO clear melody, NO percussion. Builds quiet unease, triumphant but weary, hard-won. Seamless swelling loop. Atmospheric spy suspense.",
+      "bpm": 128,
+      "emo": "triumphant but weary, hard-won",
+      "note": "通关：惨胜",
+      "kind": "theme"
+    },
+    {
+      "theme": "fail",
+      "stem": "bed",
+      "file": "fail_bed.mp3",
+      "prompt": "1941 Shanghai noir film score. Sustained harmonic BED only: warm low strings (cello and double bass), soft grand-piano chord stabs, distant reed/oboe pad. NO percussion, NO drums, NO lead melody. Slow, spacious, despair, loop of regret, hollow. Tempo around 84 BPM. Seamless loop, perfect crossfade at ends. Cinematic, melancholic Republican-era Shanghai spy atmosphere.",
+      "bpm": 84,
+      "emo": "despair, loop of regret, hollow",
+      "note": "失败/重试：空洞的循环",
+      "kind": "theme"
+    },
+    {
+      "theme": "fail",
+      "stem": "pulse",
+      "file": "fail_pulse.mp3",
+      "prompt": "1941 Shanghai noir RHYTHM layer only. Sparse ethnic/period percussion: woodblock, muffled taiko low tom, brushed snare, soft kick. NO melody, NO harmonic pad, NO strings. Steady minimalist pulse at 84 BPM, dry and tense, spy-thriller groove. Seamless loop. despair, loop of regret, hollow.",
+      "bpm": 84,
+      "emo": "despair, loop of regret, hollow",
+      "note": "失败/重试：空洞的循环",
+      "kind": "theme"
+    },
+    {
+      "theme": "fail",
+      "stem": "motif",
+      "file": "fail_motif.mp3",
+      "prompt": "1941 Shanghai noir MELODY motif only. detuned piano melody line over silence, NO drums, NO harmonic bed, NO backing. despair, loop of regret, hollow lyrical phrase, 8 to 16 bars, memorable and hummable. Seamless loop. Cinematic spy theme, tempo around 84 BPM.",
+      "bpm": 84,
+      "emo": "despair, loop of regret, hollow",
+      "note": "失败/重试：空洞的循环",
+      "kind": "theme"
+    },
+    {
+      "theme": "fail",
+      "stem": "tension",
+      "file": "fail_tension.mp3",
+      "prompt": "1941 Shanghai noir TENSION/atmosphere layer only. Rising string swell, low dissonant drone, distant metallic shimmer, airy noise texture. NO beat, NO clear melody, NO percussion. Builds quiet unease, despair, loop of regret, hollow. Seamless swelling loop. Atmospheric spy suspense.",
+      "bpm": 84,
+      "emo": "despair, loop of regret, hollow",
+      "note": "失败/重试：空洞的循环",
+      "kind": "theme"
+    },
+    {
+      "theme": "motif_shenmo",
+      "stem": "calm",
+      "file": "motif_shenmo_calm.mp3",
+      "prompt": "1941 Shanghai noir CHARACTER MOTIF, short loopable phrase, 沈墨 SM (key: D 小调). low cello pizzicato + triangle cold accents, decisive, grounded, \"I did it\" Single clear identity, NO full drums, NO busy arrangement — a recognizable 8-16 bar motif that can sit under dialogue. Seamless loop.",
+      "bpm": 96,
+      "emo": "decisive, grounded, \"I did it\"",
+      "note": "小调下行三音 + 低音提琴拨奏 + 三角铁冷点；行动叙事",
+      "kind": "motif"
+    },
+    {
+      "theme": "motif_shenmo",
+      "stem": "tense",
+      "file": "motif_shenmo_tense.mp3",
+      "prompt": "1941 Shanghai noir CHARACTER MOTIF, short loopable phrase, 沈墨 SM (key: D 小调). low cello pizzicato + triangle cold accents, urgent, precise, closing in Single clear identity, NO full drums, NO busy arrangement — a recognizable 8-16 bar motif that can sit under dialogue. Seamless loop.",
+      "bpm": 96,
+      "emo": "urgent, precise, closing in",
+      "note": "小调下行三音 + 低音提琴拨奏 + 三角铁冷点；行动叙事",
+      "kind": "motif"
+    },
+    {
+      "theme": "motif_vera",
+      "stem": "calm",
+      "file": "motif_vera_calm.mp3",
+      "prompt": "1941 Shanghai noir CHARACTER MOTIF, short loopable phrase, 薇拉 V (key: 降 B 大调). reed slow arpeggio + distant piano echo, warm-melancholic, reflective, \"I remember\" Single clear identity, NO full drums, NO busy arrangement — a recognizable 8-16 bar motif that can sit under dialogue. Seamless loop.",
+      "bpm": 96,
+      "emo": "warm-melancholic, reflective, \"I remember\"",
+      "note": "簧管慢琶音 + 远处钢琴回声（降六音暖凉）；记忆叙事",
+      "kind": "motif"
+    },
+    {
+      "theme": "motif_vera",
+      "stem": "tense",
+      "file": "motif_vera_tense.mp3",
+      "prompt": "1941 Shanghai noir CHARACTER MOTIF, short loopable phrase, 薇拉 V (key: 降 B 大调). reed slow arpeggio + distant piano echo, guarded, fractured memory Single clear identity, NO full drums, NO busy arrangement — a recognizable 8-16 bar motif that can sit under dialogue. Seamless loop.",
+      "bpm": 96,
+      "emo": "guarded, fractured memory",
+      "note": "簧管慢琶音 + 远处钢琴回声（降六音暖凉）；记忆叙事",
+      "kind": "motif"
+    },
+    {
+      "theme": "motif_ito",
+      "stem": "calm",
+      "file": "motif_ito_calm.mp3",
+      "prompt": "1941 Shanghai noir CHARACTER MOTIF, short loopable phrase, 伊藤 I (key: g 小调). typewriter/telegraph sample + long string tone + low-pass, bureaucratic stillness, \"evidence exists\" Single clear identity, NO full drums, NO busy arrangement — a recognizable 8-16 bar motif that can sit under dialogue. Seamless loop.",
+      "bpm": 96,
+      "emo": "bureaucratic stillness, \"evidence exists\"",
+      "note": "机械节拍(电报采样) + 弦乐长音 + 低通\"藏书楼\"感；存在叙事",
+      "kind": "motif"
+    },
+    {
+      "theme": "motif_ito",
+      "stem": "tense",
+      "file": "motif_ito_tense.mp3",
+      "prompt": "1941 Shanghai noir CHARACTER MOTIF, short loopable phrase, 伊藤 I (key: g 小调). typewriter/telegraph sample + long string tone + low-pass, mechanical pressure, mounting file Single clear identity, NO full drums, NO busy arrangement — a recognizable 8-16 bar motif that can sit under dialogue. Seamless loop.",
+      "bpm": 96,
+      "emo": "mechanical pressure, mounting file",
+      "note": "机械节拍(电报采样) + 弦乐长音 + 低通\"藏书楼\"感；存在叙事",
+      "kind": "motif"
+    },
+    {
+      "theme": "motif_cage",
+      "stem": "calm",
+      "file": "motif_cage_calm.mp3",
+      "prompt": "1941 Shanghai noir CHARACTER MOTIF, short loopable phrase, 老师/笼(共享反派) (key: 扭曲笼式和声(45 法则动机)). distorted cage chord (45-rule motif) on low reed + piano, veiled, patient, watching Single clear identity, NO full drums, NO busy arrangement — a recognizable 8-16 bar motif that can sit under dialogue. Seamless loop.",
+      "bpm": 96,
+      "emo": "veiled, patient, watching",
+      "note": "plotter/山本场景复用；反派母动机",
+      "kind": "motif"
+    },
+    {
+      "theme": "motif_cage",
+      "stem": "tense",
+      "file": "motif_cage_tense.mp3",
+      "prompt": "1941 Shanghai noir CHARACTER MOTIF, short loopable phrase, 老师/笼(共享反派) (key: 扭曲笼式和声(45 法则动机)). distorted cage chord (45-rule motif) on low reed + piano, closing trap, inevitability Single clear identity, NO full drums, NO busy arrangement — a recognizable 8-16 bar motif that can sit under dialogue. Seamless loop.",
+      "bpm": 96,
+      "emo": "closing trap, inevitability",
+      "note": "plotter/山本场景复用；反派母动机",
+      "kind": "motif"
+    }
+  ],
+  "failed": []
+}

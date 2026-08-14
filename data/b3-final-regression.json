@@ -1,0 +1,55 @@
+{
+  "generatedAt": "2026-08-10T14:06:15.646Z",
+  "config": {
+    "count": 100,
+    "seed": 20260810,
+    "elapsedSeconds": 1331.9
+  },
+  "defaultsApplied": {
+    "growthBias": 0.4,
+    "shapeDiversityWeight": 0.2,
+    "objective": {
+      "enabled": true,
+      "ratioWeight": 100,
+      "topologyWeight": 25,
+      "maxCollected": 8
+    }
+  },
+  "frozenBaseline": {
+    "top4": 0.516,
+    "H": 2.66,
+    "complex": 0.374,
+    "ratio": 0.245,
+    "score": 528.8
+  },
+  "result": {
+    "levels": 100,
+    "totalCages": 2183,
+    "uniqueShapes": 21,
+    "entropyH": 2.619,
+    "singletonRatio": 0.04122766834631241,
+    "top4Share": 0.5295464956481906,
+    "complexShare": 0.3673843334860284,
+    "ratioMean": 0.23304276288193101,
+    "ratioMedian": 0.21621621621621623,
+    "avgScore": 525,
+    "uniqueAll": true,
+    "sizeShare": {
+      "1": 0.04122766834631241,
+      "2": 0.12230874942739349,
+      "3": 0.24644983967017867,
+      "4": 0.2647732478240953,
+      "5": 0.32524049473202016
+    }
+  },
+  "gates": {
+    "top4_515_525": true,
+    "entropy_ge_26": true,
+    "complex_not_down": true,
+    "ratio_not_below_baseline": true,
+    "difficulty_stable": true,
+    "singleton_lt_05": true,
+    "unique": true
+  },
+  "verdict": "B3-FINAL 冻结回归：若 top4 ∈[50,53]% 且 H≥2.60、complex/ratio/难度不退化、unique 全过 → 常驻化成功，C1c 收益非 sample noise。冻结配置 gb=0.4 + λ=25 + W=0.2 + objective enabled 已为 generator 默认。"
+}

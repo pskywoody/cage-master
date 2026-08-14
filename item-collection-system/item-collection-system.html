@@ -163,15 +163,15 @@
         <thead><tr><th>道具</th><th>分类</th><th>获取</th><th>作用</th><th>状态标志</th></tr></thead>
         <tbody>
           <tr><td>无署名密信</td><td><span class="tag k">关键</span></td><td>101 开场</td><td>主线起点，来自老师（留声）</td><td class="mono">hasLetter: true</td></tr>
-          <tr><td>黄铜算珠徽章「星衡学徒」</td><td><span class="tag k">关键</span></td><td>208</td><td>解锁<mark class="key">深层档案室</mark>入场资格</td><td class="mono">badge_abacus: true</td></tr>
+          <tr><td>黄铜算珠徽章「星衡学徒」</td><td><span class="tag k">关键</span></td><td>208</td><td>解锁<mark class="key">藏书楼地下</mark>入场资格</td><td class="mono">badge_abacus: true</td></tr>
           <tr><td>黄铜钥匙 · 编号3</td><td><span class="tag k">关键</span></td><td>108 夹层遗物</td><td>父亲的遗物，「用途仍是谜」→ 预留后续章节解锁点</td><td class="mono">key_brass3: true</td></tr>
-          <tr><td>钥匙 · 编号4</td><td><span class="tag k">关键</span></td><td>501</td><td>打开东余杭路 94 号门，进入嵌套笼关卡</td><td class="mono">key4_94: true</td></tr>
-          <tr><td>守笼人的钥匙</td><td><span class="tag k">关键</span></td><td>终章对白</td><td>「选择留下 / 不接」分支触发点</td><td class="mono">key_cagekeeper: bool</td></tr>
-          <tr><td>褪色照片</td><td><span class="tag o">可选</span></td><td>档案馆墙</td><td>触发两人回忆叙事</td><td class="mono">photo_archive: true</td></tr>
+          <tr><td>钥匙 · 编号4</td><td><span class="tag k">关键</span></td><td>501</td><td>打开东余杭路 94 号门，进入东余杭路94号</td><td class="mono">key4_94: true</td></tr>
+          <tr><td>伊藤的钥匙</td><td><span class="tag k">关键</span></td><td>终章对白</td><td>「选择留下 / 不接」分支触发点</td><td class="mono">key_cagekeeper: bool</td></tr>
+          <tr><td>褪色照片</td><td><span class="tag o">可选</span></td><td>藏书楼墙</td><td>触发两人回忆叙事</td><td class="mono">photo_archive: true</td></tr>
           <tr><td>8280 千赫频率条</td><td><span class="tag o">可选</span></td><td>待定</td><td>解锁一条额外发报路径（建议新增）</td><td class="mono">freq_8280: true</td></tr>
           <tr><td>9 枚档案碎片</td><td><span class="tag c">章节解锁</span></td><td>101–109 各 1 枚</td><td>集齐解锁第一章隐藏叙事（如「老师的视角」）</td><td class="mono">ch1_frag*: [1..9]</td></tr>
-          <tr><td>薇拉的硬币</td><td><span class="tag p">周目继承</span></td><td>待定</td><td>二 / 三周目触发新对话</td><td class="mono">coin_vera{persist}</td></tr>
-          <tr><td>伊藤的纸条</td><td><span class="tag p">周目继承</span></td><td>待定</td><td>二 / 三周目触发新线索</td><td class="mono">note_ito{persist}</td></tr>
+          <tr><td>薇拉的硬币</td><td><span class="tag p">周目继承</span></td><td>待定</td><td>后续周目触发新对话</td><td class="mono">coin_vera{persist}</td></tr>
+          <tr><td>伊藤的纸条</td><td><span class="tag p">周目继承</span></td><td>待定</td><td>后续周目触发新线索</td><td class="mono">note_ito{persist}</td></tr>
         </tbody>
       </table>
     </div>
@@ -194,11 +194,11 @@
       <div class="node"><div class="ic">🔓</div><div><div class="tt">集齐解锁</div><div class="dd">一章集满 9 枚 → 解锁该章隐藏叙事 / 可选关</div></div></div>
     </div>
 
-    <h3>三周目共享决策</h3>
-    <p>剧本为三周目结构（沈墨 → 阿妍 → 莹莹）。关于碎片进度是否共享，推荐：</p>
+    <h3>周目共享决策</h3>
+    <p>剧本为单周目结构（沈墨视角）。关于碎片进度是否共享，推荐：</p>
     <div class="callout">
-      <div class="t">推荐：三周目共享一套碎片收集进度</div>
-      理由：碎片是<b>叙事收藏品</b>，图鉴为全局解锁，共享可避免二 / 三周目重复劳动；周目差异化由<b>周目特定道具</b>（薇拉的硬币、伊藤的纸条）承担，而非碎片本身。这与现有 <span class="mono">DataStore.GALLERY</span> 全局解锁模型天然一致。
+      <div class="t">推荐：周目共享一套碎片收集进度</div>
+      理由：碎片是<b>叙事收藏品</b>，图鉴为全局解锁，共享可避免后续周目重复劳动；周目差异化由<b>周目特定道具</b>（薇拉的硬币、伊藤的纸条）承担，而非碎片本身。这与现有 <span class="mono">DataStore.GALLERY</span> 全局解锁模型天然一致。
     </div>
 
     <h3>规模口径</h3>
@@ -251,7 +251,7 @@
         </div>
         <div class="prow">
           <div class="pic">🏅</div>
-          <div class="info"><div class="nm">徽章 · 星衡学徒</div><div class="ds">深层档案室入场资格</div></div>
+          <div class="info"><div class="nm">徽章 · 星衡学徒</div><div class="ds">藏书楼地下入场资格</div></div>
           <div class="st have">已获得</div>
         </div>
         <div class="prow">
@@ -261,7 +261,7 @@
         </div>
         <div class="prow">
           <div class="pic">📜</div>
-          <div class="info"><div class="nm">守笼人的钥匙</div><div class="ds">终章 · 待抉择</div></div>
+          <div class="info"><div class="nm">伊藤的钥匙</div><div class="ds">终章 · 待抉择</div></div>
           <div class="st have">已获得</div>
         </div>
         <div class="prow">
@@ -295,10 +295,10 @@
     <div class="sec-head"><span class="sec-num">06</span><h2>实施路线</h2></div>
     <ol class="steps">
       <li><span class="idx">1</span><div><div class="ph">碎片追踪落地（低风险）</div><div class="pd">接入 101–109 九枚碎片到图鉴，通关解锁，集齐判定。改动集中、可回退。</div></div></li>
-      <li><span class="idx">2</span><div><div class="ph">关键道具标志接入</div><div class="pd">为已存在的关键道具（徽章、钥匙3、钥匙4、守笼人钥匙）建立 flags 与解锁时机。</div></div></li>
+      <li><span class="idx">2</span><div><div class="ph">关键道具标志接入</div><div class="pd">为已存在的关键道具（徽章、钥匙3、钥匙4、伊藤钥匙）建立 flags 与解锁时机。</div></div></li>
       <li><span class="idx">3</span><div><div class="ph">打包收集 UI</div><div class="pd">「清单 + 计数」面板：三类页签 + 数量 + 进度条（本章 wireframe）。</div></div></li>
       <li><span class="idx">4</span><div><div class="ph">分支与隐藏叙事</div><div class="pd">集齐碎片解锁隐藏叙事；持有道具触发额外对话分支。</div></div></li>
-      <li><span class="idx">5</span><div><div class="ph">周目继承道具</div><div class="pd">确认二 / 三周目剧本后，落地 persist 道具与新线索。</div></div></li>
+      <li><span class="idx">5</span><div><div class="ph">周目继承道具</div><div class="pd">确认后续周目剧本后，落地 persist 道具与新线索。</div></div></li>
     </ol>
   </section>
 

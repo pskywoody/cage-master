@@ -1,0 +1,254 @@
+[
+  {
+    "case": "D001_pos_mismatch",
+    "category": "D",
+    "rule": "D001",
+    "desc": "形副混淆·修饰对象",
+    "fact": {
+      "current_word": "competitive",
+      "correct_answer": "competitively",
+      "user_answer": "competitive",
+      "dwell_time_ms": 2000,
+      "is_correct": false,
+      "context": {"error_type": "POS_MISMATCH", "pos_after": "adj"}
+    },
+    "expect": {"matched_rules": ["D001"], "show_popup": true, "tags": ["形副转换薄弱"], "diag_contains": "adj"}
+  },
+  {
+    "case": "D002_article",
+    "category": "D",
+    "rule": "D002",
+    "desc": "冠词缺失/错用",
+    "fact": {
+      "current_word": "apple", "dwell_time_ms": 1500, "is_correct": false,
+      "context": {"error_type": "ARTICLE"}
+    },
+    "expect": {"matched_rules": ["D002"], "show_popup": true, "tags": ["冠词薄弱"]}
+  },
+  {
+    "case": "D003_tense",
+    "category": "D",
+    "rule": "D003",
+    "desc": "时态误用",
+    "fact": {
+      "current_word": "go", "dwell_time_ms": 1500, "is_correct": false,
+      "context": {"error_type": "TENSE"}
+    },
+    "expect": {"matched_rules": ["D003"], "show_popup": true, "tags": ["时态薄弱"]}
+  },
+  {
+    "case": "D004_subject_verb",
+    "category": "D",
+    "rule": "D004",
+    "desc": "主谓一致错误",
+    "fact": {
+      "current_word": "has", "dwell_time_ms": 1500, "is_correct": false,
+      "context": {"error_type": "SUBJECT_VERB"}
+    },
+    "expect": {"matched_rules": ["D004"], "show_popup": true, "tags": ["主谓一致薄弱"]}
+  },
+  {
+    "case": "D005_nonfinite",
+    "category": "D",
+    "rule": "D005",
+    "desc": "非谓语误用",
+    "fact": {
+      "current_word": "running", "dwell_time_ms": 1500, "is_correct": false,
+      "context": {"error_type": "NONFINITE"}
+    },
+    "expect": {"matched_rules": ["D005"], "show_popup": true, "tags": ["非谓语薄弱"]}
+  },
+  {
+    "case": "D006_preposition",
+    "category": "D",
+    "rule": "D006",
+    "desc": "介词搭配错误",
+    "fact": {
+      "current_word": "depend", "dwell_time_ms": 1500, "is_correct": false,
+      "context": {"error_type": "PREPOSITION"}
+    },
+    "expect": {"matched_rules": ["D006"], "show_popup": true, "tags": ["介词搭配薄弱"]}
+  },
+  {
+    "case": "S001_address",
+    "category": "S",
+    "rule": "S001",
+    "desc": "多音词 address 强制高频复习",
+    "fact": {
+      "current_word": "address", "dwell_time_ms": 1000, "is_correct": true, "context": {}
+    },
+    "expect": {"matched_rules": ["S001"], "force_quiz": true, "tags": ["多音词待巩固"]}
+  },
+  {
+    "case": "S002_record",
+    "category": "S",
+    "rule": "S002",
+    "desc": "多音词 record 强制高频复习",
+    "fact": {
+      "current_word": "record", "dwell_time_ms": 1000, "is_correct": true, "context": {}
+    },
+    "expect": {"matched_rules": ["S002"], "force_quiz": true, "tags": ["多音词待巩固"]}
+  },
+  {
+    "case": "S003_conduct",
+    "category": "S",
+    "rule": "S003",
+    "desc": "多音词 conduct 强制高频复习",
+    "fact": {
+      "current_word": "conduct", "dwell_time_ms": 1000, "is_correct": true, "context": {}
+    },
+    "expect": {"matched_rules": ["S003"], "force_quiz": true, "tags": ["多音词待巩固"]}
+  },
+  {
+    "case": "S004_present",
+    "category": "S",
+    "rule": "S004",
+    "desc": "多音词 present 强制高频复习",
+    "fact": {
+      "current_word": "present", "dwell_time_ms": 1000, "is_correct": true, "context": {}
+    },
+    "expect": {"matched_rules": ["S004"], "force_quiz": true, "tags": ["多音词待巩固"]}
+  },
+  {
+    "case": "C001_affect_effect",
+    "category": "C",
+    "rule": "C001",
+    "desc": "affect / effect 混淆",
+    "fact": {
+      "current_word": "affect", "correct_answer": "effect", "user_answer": "affect",
+      "dwell_time_ms": 1500, "is_correct": false, "context": {"confusion_pair": "affect_effect"}
+    },
+    "expect": {"matched_rules": ["C001"], "tags": ["affect_effect混淆"]}
+  },
+  {
+    "case": "C002_adapt_adopt",
+    "category": "C",
+    "rule": "C002",
+    "desc": "adapt / adopt 混淆",
+    "fact": {
+      "current_word": "adopt", "correct_answer": "adapt", "user_answer": "adopt",
+      "dwell_time_ms": 1500, "is_correct": false, "context": {"confusion_pair": "adapt_adopt"}
+    },
+    "expect": {"matched_rules": ["C002"], "tags": ["adapt_adopt混淆"]}
+  },
+  {
+    "case": "C003_quite_quiet",
+    "category": "C",
+    "rule": "C003",
+    "desc": "quite / quiet 混淆",
+    "fact": {
+      "current_word": "quiet", "correct_answer": "quite", "user_answer": "quiet",
+      "dwell_time_ms": 1500, "is_correct": false, "context": {"confusion_pair": "quite_quiet"}
+    },
+    "expect": {"matched_rules": ["C003"], "tags": ["quite_quiet混淆"]}
+  },
+  {
+    "case": "C004_lie_lay",
+    "category": "C",
+    "rule": "C004",
+    "desc": "lie / lay 混淆",
+    "fact": {
+      "current_word": "lay", "correct_answer": "lie", "user_answer": "lay",
+      "dwell_time_ms": 1500, "is_correct": false, "context": {"confusion_pair": "lie_lay"}
+    },
+    "expect": {"matched_rules": ["C004"], "tags": ["lie_lay混淆"]}
+  },
+  {
+    "case": "P001_dwell_3500",
+    "category": "P",
+    "rule": "P001",
+    "desc": "答题犹豫 dwell>3000（正向）",
+    "fact": {
+      "current_word": "hello", "dwell_time_ms": 3500, "is_correct": true, "context": {},
+      "historical_behavior": {"repeated_errors": 0, "total_correct": 5}
+    },
+    "expect": {"matched_rules": ["P001"], "show_popup": true, "tags": ["高频卡壳待观察"]}
+  },
+  {
+    "case": "P002_repeated_errors",
+    "category": "P",
+    "rule": "P002",
+    "desc": "重复错误 repeated_errors>=2",
+    "fact": {
+      "current_word": "hello", "dwell_time_ms": 1000, "is_correct": false, "context": {},
+      "historical_behavior": {"repeated_errors": 3, "total_correct": 5}
+    },
+    "expect": {"matched_rules": ["P002"], "tags": ["顽固死角"], "add_to_weekend_pack": true}
+  },
+  {
+    "case": "P003_total_correct_low",
+    "category": "P",
+    "rule": "P003",
+    "desc": "低频复习 total_correct<=1",
+    "fact": {
+      "current_word": "hello", "dwell_time_ms": 1000, "is_correct": false, "context": {},
+      "historical_behavior": {"repeated_errors": 0, "total_correct": 1}
+    },
+    "expect": {"matched_rules": ["P003"], "tags": ["需提频复习"]}
+  },
+  {
+    "case": "NEG_D_all",
+    "category": "NEG",
+    "rule": "D001-D006",
+    "desc": "负向：error_type=NONE 时不命中任何 D 规则",
+    "fact": {
+      "current_word": "hello", "dwell_time_ms": 1000, "is_correct": true,
+      "context": {"error_type": "NONE"}
+    },
+    "expect": {"matched_rules": []}
+  },
+  {
+    "case": "NEG_P001_boundary",
+    "category": "NEG",
+    "rule": "P001",
+    "desc": "负向：dwell_time=3000 边界不命中 P001",
+    "fact": {
+      "current_word": "hello", "dwell_time_ms": 3000, "is_correct": true, "context": {},
+      "historical_behavior": {"repeated_errors": 0, "total_correct": 5}
+    },
+    "expect": {"matched_rules": []}
+  },
+  {
+    "case": "NEG_P002",
+    "category": "NEG",
+    "rule": "P002",
+    "desc": "负向：repeated_errors=1 不命中 P002",
+    "fact": {
+      "current_word": "hello", "dwell_time_ms": 1000, "is_correct": false, "context": {},
+      "historical_behavior": {"repeated_errors": 1, "total_correct": 5}
+    },
+    "expect": {"matched_rules": []}
+  },
+  {
+    "case": "NEG_P003",
+    "category": "NEG",
+    "rule": "P003",
+    "desc": "负向：total_correct=5 不命中 P003",
+    "fact": {
+      "current_word": "hello", "dwell_time_ms": 1000, "is_correct": false, "context": {},
+      "historical_behavior": {"repeated_errors": 0, "total_correct": 5}
+    },
+    "expect": {"matched_rules": []}
+  },
+  {
+    "case": "NEG_S001_other_word",
+    "category": "NEG",
+    "rule": "S001",
+    "desc": "负向：word=hello 不命中 S001-S004",
+    "fact": {
+      "current_word": "hello", "dwell_time_ms": 1000, "is_correct": true, "context": {}
+    },
+    "expect": {"matched_rules": []}
+  },
+  {
+    "case": "NEG_C001_unknown_pair",
+    "category": "NEG",
+    "rule": "C001",
+    "desc": "负向：confusion_pair=unknown 不命中 C 规则",
+    "fact": {
+      "current_word": "hello", "dwell_time_ms": 1000, "is_correct": false,
+      "context": {"confusion_pair": "unknown_pair"}
+    },
+    "expect": {"matched_rules": []}
+  }
+]

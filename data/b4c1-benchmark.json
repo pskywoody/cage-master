@@ -1,0 +1,121 @@
+{
+  "generatedAt": "2026-08-10T19:04:03.795Z",
+  "config": {
+    "count": 30,
+    "seed": 20260810,
+    "weight": 0.4,
+    "elapsedSeconds": 705.6
+  },
+  "frozen": {
+    "lambda": 25,
+    "growthBias": 0.4,
+    "shapeDiversityWeight": 0.2,
+    "objective": "enabled",
+    "suppressSingletons": true,
+    "canonicalProfile": true
+  },
+  "variable": {
+    "familyBirthPressureWeight": [
+      0,
+      0.4
+    ]
+  },
+  "arms": {
+    "baseline": {
+      "levels": 30,
+      "totalCages": 656,
+      "Hcanonical": 1.999,
+      "canonicalFamilyCount": 10,
+      "top1FamilyShare": 0.216,
+      "top4FamilyShare": 0.768,
+      "top8FamilyShare": 0.955,
+      "headFamilyLockCount": 4,
+      "singletonRatio": 0.0350609756097561,
+      "complexShare": 0.3551829268292683,
+      "ratioMean": 0.21519338579212585,
+      "avgScore": 532.5,
+      "uniqueAll": true,
+      "sizeShare": {
+        "1": 0.0350609756097561,
+        "2": 0.13414634146341464,
+        "3": 0.24542682926829268,
+        "4": 0.2621951219512195,
+        "5": 0.3231707317073171
+      },
+      "winnerFamilyRank": {
+        "0,0|0,1|0,2|1,0|1,1": 30,
+        "0,0|0,1": 30,
+        "0,0|0,1|1,0": 29,
+        "0,0|0,1|0,2": 28,
+        "0,0|0,1|0,2|0,3|1,1": 17,
+        "0,0|0,1|0,2|1,1": 15,
+        "0,0|0,1|0,2|0,3": 15,
+        "0,0|0,1|1,1|1,2|2,1": 12,
+        "0,0|0,1|0,2|1,1|2,1": 11,
+        "0,0|0,1|0,2|0,3|0,4": 7
+      },
+      "pool": {
+        "uniqueFamiliesInPool": 10,
+        "uniqueFamilyCombosInPool": 58,
+        "headLockPool": 10,
+        "top1FamilyHitShare": 0.155,
+        "top4FamilyHitShare": 0.608,
+        "poolHfamilyMean": 1.627
+      },
+      "elapsed": 362.5
+    },
+    "B4-C1": {
+      "levels": 30,
+      "totalCages": 658,
+      "Hcanonical": 1.892,
+      "canonicalFamilyCount": 10,
+      "top1FamilyShare": 0.264,
+      "top4FamilyShare": 0.808,
+      "top8FamilyShare": 0.977,
+      "headFamilyLockCount": 4,
+      "singletonRatio": 0.03343465045592705,
+      "complexShare": 0.35714285714285715,
+      "ratioMean": 0.2418677161822439,
+      "avgScore": 514.2,
+      "uniqueAll": true,
+      "sizeShare": {
+        "1": 0.03343465045592705,
+        "2": 0.12917933130699089,
+        "3": 0.270516717325228,
+        "4": 0.24468085106382978,
+        "5": 0.3221884498480243
+      },
+      "winnerFamilyRank": {
+        "0,0|0,1|1,0": 30,
+        "0,0|0,1|0,2|1,0|1,1": 29,
+        "0,0|0,1|0,2": 29,
+        "0,0|0,1": 28,
+        "0,0|0,1|0,2|1,1": 20,
+        "0,0|0,1|0,2|0,3|1,1": 17,
+        "0,0|0,1|0,2|0,3": 12,
+        "0,0|0,1|0,2|1,1|2,1": 10,
+        "0,0|0,1|1,1|1,2|2,1": 7,
+        "0,0|0,1|0,2|0,3|0,4": 2
+      },
+      "pool": {
+        "uniqueFamiliesInPool": 10,
+        "uniqueFamilyCombosInPool": 53,
+        "headLockPool": 9,
+        "top1FamilyHitShare": 0.161,
+        "top4FamilyHitShare": 0.624,
+        "poolHfamilyMean": 1.588
+      },
+      "elapsed": 343.1
+    }
+  },
+  "gates": {
+    "score_stable": true,
+    "ratio_no_drift": true,
+    "complex_not_down": true,
+    "unique_all": true,
+    "headLockPool_down": true,
+    "poolHfamily_up": false
+  },
+  "b3Stable": true,
+  "verdict": "Review：b3Stable 但 headLockPool 仅降 10→9（<2，非「明显下降」）且 poolH 1.627→1.588 反降 → soft head-family avoidance 起效但不足以打破 basin。"
+}

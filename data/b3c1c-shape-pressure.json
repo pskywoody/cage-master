@@ -1,0 +1,137 @@
+{
+  "generatedAt": "2026-08-10T12:28:54.101Z",
+  "config": {
+    "count": 20,
+    "seed": 20260810,
+    "weights": [
+      0,
+      0.1,
+      0.2,
+      0.3,
+      0.5
+    ],
+    "collected": 8
+  },
+  "control": {
+    "levels": 20,
+    "totalCages": 433,
+    "uniqueShapes": 21,
+    "entropyH": 2.62,
+    "singletonRatio": 0.03926096997690531,
+    "top4Share": 0.5404157043879908,
+    "complexShare": 0.3741339491916859,
+    "ratioMean": 0.23934448135774006,
+    "avgScore": 525,
+    "uniqueAll": true
+  },
+  "rows": [
+    {
+      "weight": 0,
+      "levels": 20,
+      "totalCages": 433,
+      "uniqueShapes": 21,
+      "entropyH": 2.62,
+      "singletonRatio": 0.03926096997690531,
+      "top4Share": 0.5404157043879908,
+      "complexShare": 0.3741339491916859,
+      "ratioMean": 0.23934448135774006,
+      "avgScore": 525,
+      "uniqueAll": true
+    },
+    {
+      "weight": 0.1,
+      "levels": 20,
+      "totalCages": 436,
+      "uniqueShapes": 21,
+      "entropyH": 2.652,
+      "singletonRatio": 0.034403669724770644,
+      "top4Share": 0.5344036697247706,
+      "complexShare": 0.37155963302752293,
+      "ratioMean": 0.23977076928003477,
+      "avgScore": 516.3,
+      "uniqueAll": true
+    },
+    {
+      "weight": 0.2,
+      "levels": 20,
+      "totalCages": 436,
+      "uniqueShapes": 21,
+      "entropyH": 2.66,
+      "singletonRatio": 0.027522935779816515,
+      "top4Share": 0.5160550458715596,
+      "complexShare": 0.3738532110091743,
+      "ratioMean": 0.24470000909312248,
+      "avgScore": 528.8,
+      "uniqueAll": true
+    },
+    {
+      "weight": 0.3,
+      "levels": 20,
+      "totalCages": 438,
+      "uniqueShapes": 20,
+      "entropyH": 2.616,
+      "singletonRatio": 0.02968036529680365,
+      "top4Share": 0.5228310502283106,
+      "complexShare": 0.3401826484018265,
+      "ratioMean": 0.2330372815512664,
+      "avgScore": 525,
+      "uniqueAll": true
+    },
+    {
+      "weight": 0.5,
+      "levels": 20,
+      "totalCages": 436,
+      "uniqueShapes": 20,
+      "entropyH": 2.578,
+      "singletonRatio": 0.02981651376146789,
+      "top4Share": 0.5412844036697247,
+      "complexShare": 0.34174311926605505,
+      "ratioMean": 0.204693997059728,
+      "avgScore": 530,
+      "uniqueAll": true
+    }
+  ],
+  "gates": {
+    "W0": {
+      "top4_lt_48": false,
+      "entropy_gt_275": false,
+      "complex_keep": true,
+      "singleton_lt_05": true,
+      "difficulty_pm5": true,
+      "unique": true
+    },
+    "W0.1": {
+      "top4_lt_48": false,
+      "entropy_gt_275": false,
+      "complex_keep": true,
+      "singleton_lt_05": true,
+      "difficulty_pm5": true,
+      "unique": true
+    },
+    "W0.2": {
+      "top4_lt_48": false,
+      "entropy_gt_275": false,
+      "complex_keep": true,
+      "singleton_lt_05": true,
+      "difficulty_pm5": true,
+      "unique": true
+    },
+    "W0.3": {
+      "top4_lt_48": false,
+      "entropy_gt_275": false,
+      "complex_keep": false,
+      "singleton_lt_05": true,
+      "difficulty_pm5": true,
+      "unique": true
+    },
+    "W0.5": {
+      "top4_lt_48": false,
+      "entropy_gt_275": false,
+      "complex_keep": false,
+      "singleton_lt_05": true,
+      "difficulty_pm5": true,
+      "unique": true
+    }
+  },
+  "verdict": "B3-C1c 验证：growCage frontier pick 内加局级 shape usage soft pressure 能否降 top4Share/提 H。若 top4 降且 H 升、complex 不退化 → 有效，确立 supply 侧 diversity controller；若 top4 不降 → 1-step lookahead 无法改变最终 shape（需 depth-2 或改 target 形状选择）；若 complex 明显退化 → 压力误伤 L/T 复杂形（需收紧只罚 pure canonical）。"
+}

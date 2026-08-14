@@ -21,9 +21,9 @@
  *  - 【补丁5】封口计数器：笔记引导台词触发上限
  *
  *  角色阈值分配：
- *  - 阿妍：getDynamicThreshold(state)
- *  - 守笼人：getDynamicThreshold(state) * 1.3
- *  - 设局人：getDynamicThreshold(state) * 2.5
+ *  - 山田：getDynamicThreshold(state)
+ *  - 伊藤：getDynamicThreshold(state) * 1.3
+ *  - 老师：getDynamicThreshold(state) * 2.5
  *
  * ============================================================
  */
@@ -95,9 +95,9 @@ class DynamicThresholdCalculator {
   // ========================================================
 
   static CHARACTER_MULTIPLIERS = {
-    ray: 1.0,       // 阿妍：基础阈值
-    keeper: 1.3,    // 守笼人：1.3倍
-    plotter: 2.5,   // 设局人：2.5倍
+    ray: 1.0,       // 山田：基础阈值
+    keeper: 1.3,    // 伊藤：1.3倍
+    plotter: 2.5,   // 老师：2.5倍
   };
 
   // ========================================================
@@ -174,7 +174,7 @@ class DynamicThresholdCalculator {
     const multiplier = this.CHARACTER_MULTIPLIERS[character] || 1.0;
     const result = baseThreshold * multiplier;
 
-    // 设局人有额外上限（不能太夸张）
+    // 老师有额外上限（不能太夸张）
     if (character === 'plotter') {
       return Math.min(result, 300); // 最多5分钟
     }
@@ -221,7 +221,7 @@ class DynamicThresholdCalculator {
   static whichCharacterShouldTrigger(state, silenceDuration, cooldowns = {}) {
     const thresholds = this.getAllThresholds(state);
 
-    // 按优先级从低到高检查（阿妍→守笼人→设局人）
+    // 按优先级从低到高检查（山田→伊藤→老师）
     // 优先级低的先检查，如果满足且不在冷却中，就触发
     const order = ['ray', 'keeper', 'plotter'];
 

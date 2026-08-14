@@ -1,0 +1,40 @@
+{
+  "branch": "B4",
+  "code": "B4-A",
+  "name": "Topology Prior",
+  "status": "archived",
+  "priority": 1,
+  "hypothesis": "selection 已优化，但出生空间本身偏斜。在 candidate birth 阶段注入 topology prior，从源头减少 canonical 高频形状（L/T/domino/straight3），目标降低 top4Share。",
+  "frozen": {
+    "lambda": 25,
+    "ranking": "unchanged",
+    "objective": "unchanged",
+    "acceptance": "unchanged"
+  },
+  "variable": {
+    "topologyPrior": {
+      "enabled": true,
+      "templateBias": 0.5
+    }
+  },
+  "acceptance": {
+    "top4Share": "down",
+    "entropy": ">= 2.60",
+    "complex": ">= baseline - 0.02",
+    "uniqueAll": true,
+    "score": "baseline +/- 30"
+  },
+  "gates": {
+    "n": 30,
+    "lambda": "frozen 25"
+  },
+  "result": {
+    "verdict": "FAIL",
+    "date": "2026-08-10",
+    "baseline": { "top4Share": 0.527, "entropyH": 2.626, "complexShare": 0.347, "ratioMean": 0.218, "avgScore": 530, "uniqueAll": true },
+    "priorOn": { "top4Share": 0.561, "entropyH": 2.602, "complexShare": 0.34, "ratioMean": 0.224, "avgScore": 499.2, "uniqueAll": true },
+    "failure": "top4Share 反升 +3.4pp，complex 不升反降，score 下探出 ±30 边界。出生先验使 selection 需更多修正，与假说相反。",
+    "mechanism": "复杂模板笼碎片化棋盘，剩余空隙被 greedy 填成更多小 canonical 笼，净 canonical 占比上升；部分模板经 balance/merge 后未保留 complex 属性。",
+    "action": "不微调。机制本身未改善即记录失败。B4-A 方向止损，转 B4-B/C/D。"
+  }
+}

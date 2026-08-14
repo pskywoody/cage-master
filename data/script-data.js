@@ -36,16 +36,17 @@ const ScriptData = (() => {
     'en-US': {
       '旁白': 'Narrator',
       '老师（留声）': 'Teacher (Recording)',
-      '沈墨 CHIBI': 'Shen Mo CHIBI',
+      '沈墨': 'Shen Mo',
     },
     'ja-JP': {
       '旁白': 'ナレーション',
       '老师（留声）': '先生（録音）',
+      '沈墨': '沈墨',
     },
     'ko-KR': {
       '旁白': '나레이션',
       '老师（留声）': '선생님（녹음）',
-      '沈墨 CHIBI': '심묵 CHIBI',
+      '沈墨': '심묵',
     },
   };
 

@@ -42,7 +42,7 @@
               "bg": "assets/images/chapter1/backgrounds/BG-CH1-01_accounting_room_night.jpg"
             },
             {
-              "speaker": "Shen Mo CHIBI",
+              "speaker": "Shen Mo",
               "text": "...This was the first puzzle I ever learned. Back then, it was he who taught me, sitting right beside me.",
               "vo": "VO_SC_0001",
               "emotion": "回忆·低语"
@@ -72,7 +72,7 @@
                   "emotion": "旁白·叙述"
                 },
                 {
-                  "speaker": "Shen Mo CHIBI",
+                  "speaker": "Shen Mo",
                   "text": "(He presses his fingertip against the short stroke) A key... Hidden behind this puzzle lies a sealed clue.",
                   "emotion": "低语",
                   "cg": "assets/images/chapter1/cg/CG-CH1-02_shenmo_reading_letter.jpg"
@@ -108,7 +108,7 @@
                   "emotion": "平静·陈述"
                 },
                 {
-                  "speaker": "Shen Mo CHIBI",
+                  "speaker": "Shen Mo",
                   "text": "(He stares at the short stroke, then looks at her) Exactly like the one on the letter... She recognizes this mark.",
                   "emotion": "思考·回忆"
                 }
@@ -120,7 +120,7 @@
                   "emotion": "平静·陈述"
                 },
                 {
-                  "speaker": "Shen Mo CHIBI",
+                  "speaker": "Shen Mo",
                   "text": "...She said \"until you solve this puzzle\" — there's something she hasn't said.",
                   "emotion": "思考·回忆"
                 },
@@ -147,7 +147,7 @@
                   "emotion": "旁白·叙述"
                 },
                 {
-                  "speaker": "Shen Mo CHIBI",
+                  "speaker": "Shen Mo",
                   "text": "(He crouches to study the charcoal marks on the muddy ground) Freshly made... Someone got here before me, and was searching for a path too. This place is under surveillance. I can't stay long.",
                   "emotion": "思考·回忆"
                 }
@@ -176,12 +176,12 @@
                   "emotion": "轻声"
                 },
                 {
-                  "speaker": "Shen Mo CHIBI",
+                  "speaker": "Shen Mo",
                   "text": "(He tucks the sheets into his inner pocket) ...Thank you for still waiting here for me.",
                   "emotion": "低语"
                 },
                 {
-                  "speaker": "Shen Mo CHIBI",
+                  "speaker": "Shen Mo",
                   "text": "(In a low voice) I've been drawn into a game. A game from which there is no escape.",
                   "emotion": "思考·回忆"
                 }
@@ -210,7 +210,7 @@
                   "emotion": "旁白·叙述"
                 },
                 {
-                  "speaker": "Shen Mo CHIBI",
+                  "speaker": "Shen Mo",
                   "text": "(He pulls the note from the brick crevice) There's a door behind the wall. This library hides a secret known to no one.",
                   "emotion": "思考·回忆"
                 }
@@ -239,7 +239,7 @@
                   "emotion": "旁白·叙述"
                 },
                 {
-                  "speaker": "Shen Mo CHIBI",
+                  "speaker": "Shen Mo",
                   "text": "(He braces against the brick and pushes inward) It's open... There are stone steps below. The secret passage begins here.",
                   "emotion": "低语"
                 }
@@ -268,7 +268,7 @@
                   "emotion": "旁白·叙述"
                 },
                 {
-                  "speaker": "Shen Mo CHIBI",
+                  "speaker": "Shen Mo",
                   "text": "(He raises the candle to the wall) These carvings... I'm not the only one who's walked here. Some are old, some new — they belong to different eras.",
                   "emotion": "思考·回忆"
                 }
@@ -297,7 +297,7 @@
                   "emotion": "旁白·叙述"
                 },
                 {
-                  "speaker": "Shen Mo CHIBI",
+                  "speaker": "Shen Mo",
                   "text": "(His fingertip touches the brass key) Number 3... Father's handwriting. So he came here too.",
                   "emotion": "低语"
                 }
@@ -326,7 +326,7 @@
                   "emotion": "旁白·叙述"
                 },
                 {
-                  "speaker": "Shen Mo CHIBI",
+                  "speaker": "Shen Mo",
                   "text": "(He fits all the fragments together) The letter, the old bookshop, the wall, Father's relics... all converging here. Once I cross this door, there's no turning back.",
                   "emotion": "思考·回忆"
                 }
@@ -367,7 +367,7 @@
               "bg": "assets/images/chapter2/backgrounds/BG-CH2-01_b1_corridor.jpg"
             },
             {
-              "speaker": "Shen Mo CHIBI",
+              "speaker": "Shen Mo",
               "text": "(Stepping into the B1 corridor) The road my father walked... I'll walk it myself, once.",
               "vo": "VO_SC_0001",
               "emotion": "沉静·决心"
@@ -390,7 +390,7 @@
                   "emotion": "旁白·叙述"
                 },
                 {
-                  "speaker": "Shen Mo CHIBI",
+                  "speaker": "Shen Mo",
                   "text": "(His fingertip traces the wall) The set of carvings that belongs to Father... is here.",
                   "vo": "VO_SC_0002",
                   "emotion": "辨认·专注"
@@ -420,7 +420,7 @@
                   "emotion": "旁白·叙述"
                 },
                 {
-                  "speaker": "Shen Mo CHIBI",
+                  "speaker": "Shen Mo",
                   "text": "(He picks up the fragment) 1938... the year Father began walking this road.",
                   "vo": "VO_SC_0003",
                   "emotion": "沉思"
@@ -450,7 +450,7 @@
                   "emotion": "旁白·叙述"
                 },
                 {
-                  "speaker": "Shen Mo CHIBI",
+                  "speaker": "Shen Mo",
                   "text": "(He watches the figure disappear) A grey cloth gown... not the Tokkō's style. Who could that be?",
                   "vo": "VO_SC_0004",
                   "emotion": "警惕·疑惑"
@@ -481,7 +481,7 @@
                   "emotion": "旁白·叙述"
                 },
                 {
-                  "speaker": "Shen Mo CHIBI",
+                  "speaker": "Shen Mo",
                   "text": "(He opens the cabinet) Father's keepsakes... all here.",
                   "vo": "VO_SC_0005",
                   "emotion": "低沉·怀念"
@@ -511,7 +511,7 @@
                   "emotion": "旁白·叙述"
                 },
                 {
-                  "speaker": "Shen Mo CHIBI",
+                  "speaker": "Shen Mo",
                   "text": "(He closes the drafts) Father knew of every secret passage underground... yet he never managed to finish the final stretch.",
                   "vo": "VO_SC_0006",
                   "emotion": "领悟·沉重"
@@ -541,7 +541,7 @@
                   "emotion": "旁白·叙述"
                 },
                 {
-                  "speaker": "Shen Mo CHIBI",
+                  "speaker": "Shen Mo",
                   "text": "(The hidden door closes behind him) Su Wan... thank you for your trouble.",
                   "vo": "VO_SC_0007",
                   "emotion": "低语·感念"
@@ -571,7 +571,7 @@
                   "emotion": "旁白·叙述"
                 },
                 {
-                  "speaker": "Shen Mo CHIBI",
+                  "speaker": "Shen Mo",
                   "text": "(He studies the carvings) Not Father's hand... Someone got here one step ahead of me.",
                   "vo": "VO_SC_0008",
                   "emotion": "警觉"
@@ -601,7 +601,7 @@
                   "emotion": "旁白·叙述"
                 },
                 {
-                  "speaker": "Shen Mo CHIBI",
+                  "speaker": "Shen Mo",
                   "text": "(He reads from the leftover fragments) B3 does exist... but the path downward is sealed by a complete chain of puzzles.",
                   "vo": "VO_SC_0009",
                   "emotion": "推断·凝重"
@@ -631,7 +631,7 @@
                   "emotion": "旁白·叙述"
                 },
                 {
-                  "speaker": "Shen Mo CHIBI",
+                  "speaker": "Shen Mo",
                   "text": "(Where Father's last stroke stopped, he adds one of his own) Not a continuation. A finish. One stroke stopped. One did not.",
                   "vo": "VO_SC_0010",
                   "emotion": "平静·坚定"
@@ -654,7 +654,7 @@
               "bg": "assets/images/chapter2/backgrounds/BG-CH2-01_b1_corridor.jpg"
             },
             {
-              "speaker": "Shen Mo CHIBI",
+              "speaker": "Shen Mo",
               "text": "(Looking at the two carvings on the stone wall) One stopped. One did not. And the door to B3 is still locked.",
               "vo": "VO_SC_0011",
               "emotion": "沉思·领悟"
@@ -669,7 +669,7 @@
               "bg": "assets/images/chapter2/backgrounds/BG-CH2-01_b1_corridor.jpg"
             },
             {
-              "speaker": "Shen Mo CHIBI",
+              "speaker": "Shen Mo",
               "text": "(Gazing into the deeper dark) Chapter Three · The Door...",
               "vo": "VO_SC_0012",
               "emotion": "低语·前行"
@@ -694,7 +694,7 @@
               "emotion": "旁白·叙述"
             },
             {
-              "speaker": "Shen Mo CHIBI",
+              "speaker": "Shen Mo",
               "text": "(Standing before the hidden door) Ito... has already walked this whole passage, one step ahead of me.",
               "vo": "VO_SC_0013",
               "emotion": "沉静·警觉"
@@ -717,7 +717,7 @@
                   "emotion": "旁白·叙述"
                 },
                 {
-                  "speaker": "Shen Mo CHIBI",
+                  "speaker": "Shen Mo",
                   "text": "(He memorizes the mark) Someone got here one step ahead of me... Ito.",
                   "vo": "VO_SC_0014",
                   "emotion": "辨认·警觉"
@@ -747,7 +747,7 @@
                   "emotion": "旁白·叙述"
                 },
                 {
-                  "speaker": "Shen Mo CHIBI",
+                  "speaker": "Shen Mo",
                   "text": "(He estimates the time) Six hours ago... Ito had already crossed B1 and entered the B2 chamber.",
                   "vo": "VO_SC_0015",
                   "emotion": "推断·凝重"
@@ -777,7 +777,7 @@
                   "emotion": "旁白·叙述"
                 },
                 {
-                  "speaker": "Shen Mo CHIBI",
+                  "speaker": "Shen Mo",
                   "text": "(He closes the exercise book) Ito... He sat at this desk too.",
                   "vo": "VO_SC_0016",
                   "emotion": "低沉·警觉"
@@ -807,7 +807,7 @@
                   "emotion": "旁白·叙述"
                 },
                 {
-                  "speaker": "Shen Mo CHIBI",
+                  "speaker": "Shen Mo",
                   "text": "(He notes the clue) Traces everywhere, yet not a living soul to be seen.",
                   "vo": "VO_SC_0017",
                   "emotion": "沉思"
@@ -837,7 +837,7 @@
                   "emotion": "旁白·叙述"
                 },
                 {
-                  "speaker": "Shen Mo CHIBI",
+                  "speaker": "Shen Mo",
                   "text": "(He folds the sheet) Teacher... You've been waiting for this day too.",
                   "vo": "VO_SC_0018",
                   "emotion": "感念·低语"
@@ -867,7 +867,7 @@
                   "emotion": "旁白·叙述"
                 },
                 {
-                  "speaker": "Shen Mo CHIBI",
+                  "speaker": "Shen Mo",
                   "text": "(He looks toward the narrow emergency door on the chamber's side wall) B3... is right behind that door.",
                   "vo": "VO_SC_0019",
                   "emotion": "坚定·前行"
@@ -902,7 +902,7 @@
                   "emotion": "旁白·叙述"
                 },
                 {
-                  "speaker": "Shen Mo CHIBI",
+                  "speaker": "Shen Mo",
                   "text": "(He tucks away the letter) Father never reached the end... and Ito has already come in his place.",
                   "vo": "VO_SC_0020",
                   "emotion": "沉重·领悟"
@@ -932,7 +932,7 @@
                   "emotion": "旁白·叙述"
                 },
                 {
-                  "speaker": "Shen Mo CHIBI",
+                  "speaker": "Shen Mo",
                   "text": "(He confirms the machine is intact) Ito inspected this machine... and put it back in place without a hair out of line.",
                   "vo": "VO_SC_0021",
                   "emotion": "推断·凝重"
@@ -962,7 +962,7 @@
                   "emotion": "旁白·叙述"
                 },
                 {
-                  "speaker": "Shen Mo CHIBI",
+                  "speaker": "Shen Mo",
                   "text": "(He sets down the pencil) ...Done.",
                   "vo": "VO_SC_0022",
                   "emotion": "平静·释然"
@@ -1015,7 +1015,7 @@
               "bg": "assets/images/chapter3/backgrounds/BG-CH3-03_b3_gate.jpg"
             },
             {
-              "speaker": "Shen Mo CHIBI",
+              "speaker": "Shen Mo",
               "text": "(Standing before the transmitter) The puzzle my father could not finish — I completed it. Ito... he stepped back.",
               "vo": "VO_SC_0023",
               "emotion": "沉思·领悟"
@@ -1030,7 +1030,7 @@
               "bg": "assets/images/chapter3/backgrounds/BG-CH3-03_b3_gate.jpg"
             },
             {
-              "speaker": "Shen Mo CHIBI",
+              "speaker": "Shen Mo",
               "text": "(Looking toward the surface) Vera... Su Wan... they are both still above ground.",
               "vo": "VO_SC_0024",
               "emotion": "低语·牵挂"
@@ -1055,7 +1055,7 @@
               "emotion": "旁白·叙述"
             },
             {
-              "speaker": "Shen Mo CHIBI",
+              "speaker": "Shen Mo",
               "text": "(Standing in the back alley of No. 94 East Yuhang Road, dusk pressing down on the lanes) The previous generation, the contacts, the sleepers... three cords, twisted into one. Time is counting down.",
               "vo": "VO_SC_0025",
               "emotion": "沉静·警觉"
@@ -1078,7 +1078,7 @@
                   "emotion": "旁白·叙述"
                 },
                 {
-                  "speaker": "Shen Mo CHIBI",
+                  "speaker": "Shen Mo",
                   "text": "(He silently memorizes the position of the scratch) The short stroke on the door frame... exactly like the one I left outside the library's hidden door. Someone came here one step ahead of me.",
                   "vo": "VO_SC_0026",
                   "emotion": "辨认·警觉"
@@ -1108,7 +1108,7 @@
                   "emotion": "旁白·叙述"
                 },
                 {
-                  "speaker": "Shen Mo CHIBI",
+                  "speaker": "Shen Mo",
                   "text": "(His fingertip hovers above the exercise book, not touching) He hasn't come... Mother waited until November 15, and could wait no longer.",
                   "vo": "VO_SC_0027",
                   "emotion": "低沉·怀念"
@@ -1138,7 +1138,7 @@
                   "emotion": "旁白·叙述"
                 },
                 {
-                  "speaker": "Shen Mo CHIBI",
+                  "speaker": "Shen Mo",
                   "text": "(He puts the newspaper scrap back in place) November 5, the southward advance policy was settled. November 15, Mother left Shanghai. In those ten days... everyone moved.",
                   "vo": "VO_SC_0028",
                   "emotion": "领悟·沉重"
@@ -1168,7 +1168,7 @@
                   "emotion": "旁白·叙述"
                 },
                 {
-                  "speaker": "Shen Mo CHIBI",
+                  "speaker": "Shen Mo",
                   "text": "(He gently closes the door of Room 404) Not Hong Kong... Vladivostok. Mother changed her route, and rewrote everyone's expectations.",
                   "vo": "VO_SC_0029",
                   "emotion": "低沉·领悟"
@@ -1198,7 +1198,7 @@
                   "emotion": "旁白·叙述"
                 },
                 {
-                  "speaker": "Shen Mo CHIBI",
+                  "speaker": "Shen Mo",
                   "text": "(He tucks away the note) No name, no signature... a brand-new contact method. Lu Lu Tong Teahouse, second-floor private room. Will this be a new contact, or a new trap?",
                   "vo": "VO_SC_0030",
                   "emotion": "警惕·甄别"
@@ -1228,7 +1228,7 @@
                   "emotion": "旁白·叙述"
                 },
                 {
-                  "speaker": "Shen Mo CHIBI",
+                  "speaker": "Shen Mo",
                   "text": "(He turns and leaves without changing expression) The cage layout of the blank grid on the right... matches closely the hidden sequence inside the library's hidden door from March. Old and new traces, fully linked. And this teahouse — someone has long been watching it.",
                   "vo": "VO_SC_0031",
                   "emotion": "警觉·沉静"
@@ -1258,7 +1258,7 @@
                   "emotion": "旁白·叙述"
                 },
                 {
-                  "speaker": "Shen Mo CHIBI",
+                  "speaker": "Shen Mo",
                   "text": "(He closes the book and returns it to the windowsill exactly as it was) December 8... the day the war would end, now firmly set. The next time I walk through this door, it will no longer be a bookshop.",
                   "vo": "VO_SC_0032",
                   "emotion": "低沉·凝重"
@@ -1288,7 +1288,7 @@
                   "emotion": "旁白·叙述"
                 },
                 {
-                  "speaker": "Shen Mo CHIBI",
+                  "speaker": "Shen Mo",
                   "text": "(He tucks away the note) The backup radio... beneath the library, B3, under the transmitter's base. The secret-passage clues close into loops, layer upon layer, far beyond expectation.",
                   "vo": "VO_SC_0033",
                   "emotion": "推断·凝重"
@@ -1323,7 +1323,7 @@
                   "emotion": "旁白·叙述"
                 },
                 {
-                  "speaker": "Shen Mo CHIBI",
+                  "speaker": "Shen Mo",
                   "text": "(He stands before the transmitter, not touching the machine at all) This puzzle never needed me to complete it. My fate is not to finish a puzzle, but to reach the end, understand the whole picture, and carry the ending everyone prepared.",
                   "vo": "VO_SC_0034",
                   "emotion": "平静·领悟"
@@ -1346,7 +1346,7 @@
               "bg": "assets/images/chapter4/backgrounds/BG-CH4-01_unit94_backalley.jpg"
             },
             {
-              "speaker": "Shen Mo CHIBI",
+              "speaker": "Shen Mo",
               "text": "(Standing before the transmitter) My father's unfinished puzzle, my mother's trail, the teacher's clues, Ito's completion... every path, every puzzle, every purpose of everyone involved aligns perfectly at this moment. The cord has drawn tight.",
               "vo": "VO_SC_0035",
               "emotion": "沉思·领悟"
@@ -1361,7 +1361,7 @@
               "bg": "assets/images/chapter4/backgrounds/BG-CH4-05_teahouse.jpg"
             },
             {
-              "speaker": "Shen Mo CHIBI",
+              "speaker": "Shen Mo",
               "text": "(Gazing toward the archive library) The cord has drawn tight; the current is about to flow. The next step... is the current.",
               "vo": "VO_SC_0036",
               "emotion": "低语·前行"
@@ -1386,7 +1386,7 @@
               "emotion": "旁白·叙述"
             },
             {
-              "speaker": "Shen Mo CHIBI",
+              "speaker": "Shen Mo",
               "text": "(Standing before the transmitter) This is the last time. Before dawn, all three transmissions must go out.",
               "vo": "VO_SC_0037",
               "emotion": "沉静·坚定"
@@ -1409,7 +1409,7 @@
                   "emotion": "旁白·叙述"
                 },
                 {
-                  "speaker": "Shen Mo CHIBI",
+                  "speaker": "Shen Mo",
                   "text": "(His fingertip lightly touches the flat iron box on the lower edge of the base) The equipment is intact, no one has set foot here. ...The puzzle Ito completed still lies in the box exactly as it was.",
                   "vo": "VO_SC_0038",
                   "emotion": "低沉·警觉"
@@ -1439,7 +1439,7 @@
                   "emotion": "旁白·叙述"
                 },
                 {
-                  "speaker": "Shen Mo CHIBI",
+                  "speaker": "Shen Mo",
                   "text": "(He sits by the table, motionless) A direction-finding vehicle... parked at a fixed point, silently scanning the city's radio waves. At this moment, there must be no movement at all.",
                   "vo": "VO_SC_0039",
                   "emotion": "屏息·警觉"
@@ -1474,7 +1474,7 @@
                   "emotion": "旁白·叙述"
                 },
                 {
-                  "speaker": "Shen Mo CHIBI",
+                  "speaker": "Shen Mo",
                   "text": "(He sits in the darkness) Two vehicles, one east and one west... six minutes. Enough for me to finish verifying this message.",
                   "vo": "VO_SC_0040",
                   "emotion": "沉着·计算"
@@ -1504,7 +1504,7 @@
                   "emotion": "旁白·叙述"
                 },
                 {
-                  "speaker": "Shen Mo CHIBI",
+                  "speaker": "Shen Mo",
                   "text": "(His fingertip rises and falls on the key) First message... sent. The rain is still falling, the window is still open.",
                   "vo": "VO_SC_0041",
                   "emotion": "沉稳·专注"
@@ -1534,7 +1534,7 @@
                   "emotion": "旁白·叙述"
                 },
                 {
-                  "speaker": "Shen Mo CHIBI",
+                  "speaker": "Shen Mo",
                   "text": "(His fingertip leaves the key, hovering above the console) The footsteps outside... have stopped at the hidden door's entrance. The final character must be sent.",
                   "vo": "VO_SC_0042",
                   "emotion": "屏息·坚定"
@@ -1564,7 +1564,7 @@
                   "emotion": "旁白·叙述"
                 },
                 {
-                  "speaker": "Shen Mo CHIBI",
+                  "speaker": "Shen Mo",
                   "text": "(He takes a neatly folded thin paper from his inner pocket and lays it gently on the transmitter's base) Three knocks... someone knows I'm transmitting. This paper is for the one who is meant to see it.",
                   "vo": "VO_SC_0043",
                   "emotion": "沉静·笃定"
@@ -1594,7 +1594,7 @@
                   "emotion": "旁白·叙述"
                 },
                 {
-                  "speaker": "Shen Mo CHIBI",
+                  "speaker": "Shen Mo",
                   "text": "(He steps out the back door of the library, gently closing it, without looking back) ...All sent. Now, back.",
                   "vo": "VO_SC_0044",
                   "emotion": "平静·释然"
@@ -1624,7 +1624,7 @@
                   "emotion": "旁白·叙述"
                 },
                 {
-                  "speaker": "Shen Mo CHIBI",
+                  "speaker": "Shen Mo",
                   "text": "(His fingertip has just left the mark on the bowl's base; the porcelain bowl rests facing east) Rim facing east... that's the signal left for her. In Yamada's file, my name still remains.",
                   "vo": "VO_SC_0045",
                   "emotion": "低沉·警觉"
@@ -1679,7 +1679,7 @@
                   "emotion": "旁白·叙述"
                 },
                 {
-                  "speaker": "Shen Mo CHIBI",
+                  "speaker": "Shen Mo",
                   "text": "(He looks toward the first light of dawn) All three messages sent. The direction-finding unit chased the false signal away — I slipped out through that window. After dawn, there's still something to confirm.",
                   "vo": "VO_SC_0046",
                   "emotion": "沉静·笃定"
@@ -1702,7 +1702,7 @@
               "bg": "assets/images/chapter5/backgrounds/BG-CH5-01_telegraph_room.jpg"
             },
             {
-              "speaker": "Shen Mo CHIBI",
+              "speaker": "Shen Mo",
               "text": "(His fingertips brush the folded locating record in his pocket) They surrounded me. But when I left, they had gone somewhere else. ...Ito, the record you left behind — it was meant for me to see.",
               "vo": "VO_SC_0047",
               "emotion": "低沉·领悟"
@@ -1717,7 +1717,7 @@
               "bg": "assets/images/chapter5/backgrounds/BG-CH5-01_telegraph_room.jpg"
             },
             {
-              "speaker": "Shen Mo CHIBI",
+              "speaker": "Shen Mo",
               "text": "(Gazing toward the lanes) Su Wan... is still above ground. After dawn, there is still work to be done.",
               "vo": "VO_SC_0048",
               "emotion": "低语·牵挂"
@@ -1742,7 +1742,7 @@
               "emotion": "旁白·叙述"
             },
             {
-              "speaker": "Shen Mo CHIBI",
+              "speaker": "Shen Mo",
               "text": "(Standing by the window, gazing into the grey morning light) The lone island has fallen... everyone's road now runs through this web.",
               "vo": "VO_SC_0049",
               "emotion": "沉静·警觉"
@@ -1775,7 +1775,7 @@
                   "emotion": "平稳·无波"
                 },
                 {
-                  "speaker": "Shen Mo CHIBI",
+                  "speaker": "Shen Mo",
                   "text": "(His fingertip rests lightly on the ledger's cover) West of the Suzhou River Bridge... exactly the boundary of the Concession, and the core area of the blockade line the Japanese set up overnight. Before dawn, she had already risen to stand by the window and seen the full movement of forces. In these troubled times, she guards this small patch of ground for me in silence.",
                   "vo": "VO_SC_0050",
                   "emotion": "低沉·警觉"
@@ -1810,7 +1810,7 @@
                   "emotion": "旁白·叙述"
                 },
                 {
-                  "speaker": "Shen Mo CHIBI",
+                  "speaker": "Shen Mo",
                   "text": "(His fingertip has just left the brick crevice; the note is back in place) An unsigned note... yet from exactly the same source as the Lu Lu Tong intelligence. The old bookshop's puzzle has been destroyed — someone took the last step before me.",
                   "vo": "VO_SC_0051",
                   "emotion": "辨认·警觉"
@@ -1845,7 +1845,7 @@
                   "emotion": "旁白·叙述"
                 },
                 {
-                  "speaker": "Shen Mo CHIBI",
+                  "speaker": "Shen Mo",
                   "text": "(He tucks away the map and looks toward the bridge arch) A 1938 map, circling the teahouse's old site... not Father's hand, yet it seems like a road paved for me.",
                   "vo": "VO_SC_0052",
                   "emotion": "沉思"
@@ -1880,7 +1880,7 @@
                   "emotion": "旁白·叙述"
                 },
                 {
-                  "speaker": "Shen Mo CHIBI",
+                  "speaker": "Shen Mo",
                   "text": "(He tucks away the puzzle sheet) The last original puzzle left by my teacher... she never sent it. In the spring of 1941, the Sorge case broke suddenly and the situation changed drastically; the entire intelligence delivery plan was forced to be shelved. In the end, this puzzle still waited for me to take it up.",
                   "vo": "VO_SC_0053",
                   "emotion": "感念·低语"
@@ -1915,7 +1915,7 @@
                   "emotion": "旁白·叙述"
                 },
                 {
-                  "speaker": "Shen Mo CHIBI",
+                  "speaker": "Shen Mo",
                   "text": "(His fingertip lightly presses the edge of the iron box, verifying the trace) The power cord was precisely cut... the sealing tape intact, yet the box was shifted by someone. This method of traceless power-off and covert finishing — it's Ito.",
                   "vo": "VO_SC_0054",
                   "emotion": "推断·凝重"
@@ -1945,7 +1945,7 @@
                   "emotion": "旁白·叙述"
                 },
                 {
-                  "speaker": "Shen Mo CHIBI",
+                  "speaker": "Shen Mo",
                   "text": "(His fingertip has just left the new short-stroke carving) This one is shorter and shallower than Father's. The mark on the door frame outside the hidden door, the original carving at the B3 entrance... three marks in one line, father and son of one blood. This web — I've completed it for Father.",
                   "vo": "VO_SC_0055",
                   "emotion": "平静·坚定"
@@ -1985,7 +1985,7 @@
                   "emotion": "平稳·无波"
                 },
                 {
-                  "speaker": "Shen Mo CHIBI",
+                  "speaker": "Shen Mo",
                   "text": "(He gently places the ledger in the drawer, not locking it) The one that halted at the alley mouth was a Japanese special patrol detachment... yet it did not search deeper. Ito, you already removed my name from that file late on the night of December 7.",
                   "vo": "VO_SC_0056",
                   "emotion": "低沉·警觉"
@@ -2020,7 +2020,7 @@
                   "emotion": "旁白·叙述"
                 },
                 {
-                  "speaker": "Shen Mo CHIBI",
+                  "speaker": "Shen Mo",
                   "text": "(His fingertip hovers, not touching the traces) A new mark on the desk, the hidden compartment reopened, the groove deliberately emptied... Father, before you left Shanghai, you came back and took the last thing. In early December, you arrived before me.",
                   "vo": "VO_SC_0057",
                   "emotion": "沉重·领悟"
@@ -2080,7 +2080,7 @@
                   "emotion": "旁白·叙述"
                 },
                 {
-                  "speaker": "Shen Mo CHIBI",
+                  "speaker": "Shen Mo",
                   "text": "(He folds the map and tucks it into his inner pocket) December 7... on the same day I transmitted core intelligence late at night, Father left Shanghai, transiting through Vladivostok on his way to Moscow. He left; the puzzles stayed here. This web — at last it is fully woven.",
                   "vo": "VO_SC_0058",
                   "emotion": "平静·释然"
@@ -2133,7 +2133,7 @@
               "bg": "assets/images/chapter6/backgrounds/BG-CH6-02_bookstore.jpg"
             },
             {
-              "speaker": "Shen Mo CHIBI",
+              "speaker": "Shen Mo",
               "text": "(His fingertips trace the folded map) My father's road. Ito's road. My road. They are aligned now. The web is woven — and it is time for a man to set out.",
               "vo": "VO_SC_0059",
               "emotion": "沉思·领悟"
@@ -2148,7 +2148,7 @@
               "bg": "assets/images/chapter6/backgrounds/BG-CH6-02_bookstore.jpg"
             },
             {
-              "speaker": "Shen Mo CHIBI",
+              "speaker": "Shen Mo",
               "text": "(Standing by the counting-house window, gazing into the eastern light) Through all the drift and fall of these times... she still keeps a lamp burning for me. Chapter Seven · The Storeroom... I'm coming.",
               "vo": "VO_SC_0060",
               "emotion": "低语·前行"
@@ -2173,7 +2173,7 @@
               "emotion": "旁白·叙述"
             },
             {
-              "speaker": "Shen Mo CHIBI",
+              "speaker": "Shen Mo",
               "text": "(Standing still in the night, retracing every path) Every door, every road, every mark, every game... they all deserve an ending now. The door of the storeroom — I'm coming.",
               "vo": "VO_SC_0061",
               "emotion": "沉静·笃定"
@@ -2201,7 +2201,7 @@
                   "emotion": "旁白·叙述"
                 },
                 {
-                  "speaker": "Shen Mo CHIBI",
+                  "speaker": "Shen Mo",
                   "text": "(His fingertip hovers above the scratch, not touching it) A vertical scratch... same origin as my exclusive mark, but different in form — deeper pressure, wider grain. This mark was made by another hand.",
                   "vo": "VO_SC_0062",
                   "emotion": "辨认·警觉"
@@ -2241,7 +2241,7 @@
                   "emotion": "旁白·叙述"
                 },
                 {
-                  "speaker": "Shen Mo CHIBI",
+                  "speaker": "Shen Mo",
                   "text": "(His fingertips brush the intact seal of the envelope, never opening it) The envelope entrusted by Father... the seal is perfectly intact — unopened, undamaged. Before he left, he came back specially to this room that had been sealed for three years.",
                   "vo": "VO_SC_0063",
                   "emotion": "沉静·感念"
@@ -2271,7 +2271,7 @@
                   "emotion": "旁白·叙述"
                 },
                 {
-                  "speaker": "Shen Mo CHIBI",
+                  "speaker": "Shen Mo",
                   "text": "(His gaze lingers briefly, without stopping to investigate) A short-stroke mark... the pressure is almost restrained to nothing, the cut shallow — a signal deliberately subdued. The final address is placed in its original position. This long game should come to its close.",
                   "vo": "VO_SC_0064",
                   "emotion": "平静·释然"
@@ -2301,7 +2301,7 @@
                   "emotion": "旁白·叙述"
                 },
                 {
-                  "speaker": "Shen Mo CHIBI",
+                  "speaker": "Shen Mo",
                   "text": "(Reading it through at a glance, gathering all his emotions) My father's handwriting... \"I left not because I did not wish to wait.\" The signing date is December 8 — the very day I completed the final transmission of the core intelligence in the dead of night.",
                   "vo": "VO_SC_0065",
                   "emotion": "沉静·释然"
@@ -2331,7 +2331,7 @@
                   "emotion": "旁白·叙述"
                 },
                 {
-                  "speaker": "Shen Mo CHIBI",
+                  "speaker": "Shen Mo",
                   "text": "(Pausing one last time at the end of the jetty, gazing at the open river) Vladivostok... exactly matching my father's withdrawal route, the direction marked on the letter, and the sea route preserved in my mother's photograph. Three generations of hidden paths finally converge on the same direction.",
                   "vo": "VO_SC_0066",
                   "emotion": "笃定·前行"
@@ -2376,7 +2376,7 @@
                   "emotion": "轻声·落定"
                 },
                 {
-                  "speaker": "Shen Mo CHIBI",
+                  "speaker": "Shen Mo",
                   "text": "(Standing still for a moment, speaking softly) The congee was warm. Every concern, every thought, every farewell left unspoken — all of it remains between us. The white porcelain bowl on the windowsill faces east, steadily guarding the final peace and expectation.",
                   "vo": "VO_SC_0067",
                   "emotion": "温柔·不舍"
@@ -2406,7 +2406,7 @@
                   "emotion": "旁白·叙述"
                 },
                 {
-                  "speaker": "Shen Mo CHIBI",
+                  "speaker": "Shen Mo",
                   "text": "(Raising his eyes toward the direction ahead) My father's handwritten letter, my mother's old photograph, the teacher's puzzle fragments, the 1938 map... every clue is safely stored. Shanghai is left behind.",
                   "vo": "VO_SC_0068",
                   "emotion": "沉静·笃定"
@@ -2436,7 +2436,7 @@
                   "emotion": "旁白·叙述"
                 },
                 {
-                  "speaker": "Shen Mo CHIBI",
+                  "speaker": "Shen Mo",
                   "text": "(Letting the sea breeze brush his face, the fog wrap around him) Someone paused briefly, watching in silence... coming and going without a trace, just like every hidden game of mine in the past. As the fog clears, the direction ahead has become clear.",
                   "vo": "VO_SC_0069",
                   "emotion": "平静·领悟"
@@ -2471,7 +2471,7 @@
                   "emotion": "旁白·叙述"
                 },
                 {
-                  "speaker": "Shen Mo CHIBI",
+                  "speaker": "Shen Mo",
                   "text": "(Standing beside the rail, the sea breeze against his face) Every door, every road, every mark, every hidden game — all closed in perfect completion. The storeroom door was never opened, yet it has quietly closed. I have walked it all.",
                   "vo": "VO_SC_0070",
                   "emotion": "平静·释然"
@@ -2549,7 +2549,7 @@
               "bg": "assets/images/chapter7/backgrounds/BG-CH7-04_dock.jpg"
             },
             {
-              "speaker": "Shen Mo CHIBI",
+              "speaker": "Shen Mo",
               "text": "(The old key held in his palm) He walked every road you walked before you. But on your road, he stopped. Then he left. Not defeat. It was simply time to get off the ship.",
               "vo": "VO_SC_0071",
               "emotion": "沉思·领悟"
@@ -2564,7 +2564,7 @@
               "bg": "assets/images/chapter7/backgrounds/BG-CH7-04_dock.jpg"
             },
             {
-              "speaker": "Shen Mo CHIBI",
+              "speaker": "Shen Mo",
               "text": "(Standing on the open-sea deck, the sea wind on his face) The ship sails on eastward. The horizon has no end. The road ahead is already beneath my feet.",
               "vo": "VO_SC_0072",
               "emotion": "低语·前行"

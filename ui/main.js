@@ -274,6 +274,21 @@ class GameApp {
 
       this._levelData = levelData;
 
+      // 2026-08-14：lessonPlan 教学文案本地化——关卡 JSON 内嵌中文，按当前语言
+      // 用 levels.{id}.lesson.* 键覆盖（i18n/locale/{locale}/levels.json）。
+      // 仅非 zh-CN 生效；zh-CN 直接使用关卡内嵌文本（已是中文）。
+      try {
+        const lpl = levelData && levelData.lessonPlan;
+        if (lpl && typeof window !== 'undefined' && window.I18n && typeof window.I18n.getLocale === 'function') {
+          const loc = window.I18n.getLocale();
+          if (loc && loc !== 'zh-CN') {
+            this._localizeLessonPlan(levelData, lpl);
+          }
+        }
+      } catch (eL) {
+        console.warn('[GameApp] lessonPlan 本地化失败:', eL && eL.message);
+      }
+
       // 2026-08-04：直接从 boardData 生成准确初始盘面快照（固定格含数字）
       // 快照构建复用 core/ai-record.js（与 Node 测试驱动脚本同构）
       if (this._aiRecord) {
@@ -469,6 +484,39 @@ class GameApp {
       console.warn('[GameApp] advanceLesson error:', e);
       return false;
     }
+  }
+
+  /**
+   * 本地化 lessonPlan 教学文案（非 zh-CN）
+   * 用 i18n levels.{id}.lesson.{path} 键覆盖关卡 JSON 内嵌中文文本。
+   * 键缺失时回退关卡原文（不抛错）。
+   * @param {Object} levelData
+   * @param {Object} lpl
+   * @private
+   */
+  _localizeLessonPlan(levelData, lpl) {
+    const levelId = levelData.levelId || this._currentLevelId;
+    if (!levelId || !lpl || !lpl.phases) return;
+    const I = window.I18n;
+    const fullKey = (path) => 'levels.' + levelId + '.lesson.' + path;
+    const walk = (node, path) => {
+      if (!node || typeof node !== 'object') return;
+      for (const [k, v] of Object.entries(node)) {
+        const p = path ? path + '.' + k : k;
+        if (typeof v === 'string') {
+          // 只覆盖文本字段，跳过非文本字段（action/type/target 等）
+          if (/(text|Text|hintText|methodText|failHint|successText|unlockText|autoRevealText)$/.test(k)) {
+            // I18n.t 缺键时返回完整 key 字符串，须用 has() 精确判断是否有翻译
+            if (typeof I.has === 'function' && I.has(fullKey(p))) {
+              node[k] = I.t(fullKey(p));
+            }
+          }
+        } else if (v && typeof v === 'object') {
+          walk(v, p);
+        }
+      }
+    };
+    walk(lpl.phases, 'phases');
   }
 
   /**

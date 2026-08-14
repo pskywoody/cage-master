@@ -358,8 +358,8 @@ footer {
   <h1>CageMaster 4 开发手册</h1>
   <p class="subtitle">杀手数独叙事游戏 · 架构设计与开发指南</p>
   <div class="meta">
-    <span>版本 3.3</span>
-    <span>2026-08-10</span>
+    <span>版本 3.7</span>
+    <span>2026-08-14</span>
     <span>8 章 · 63 关</span>
     <span>ES Module</span>
   </div>
@@ -391,12 +391,13 @@ footer {
     <li><a href="#sec-backend-engine"><span class="toc-num">A.3</span>Backend Engine v1 验收记录（2026-08-10）</a></li>
     <li><a href="#sec-cage-audit"><span class="toc-num">A.4</span>Cage Generator 审计基线 v0（2026-08-10）</a></li>
     <li><a href="#sec-cage-b3final"><span class="toc-num">A.5</span>Cage Generator B3-FINAL 冻结与 Release 记录（2026-08-10）</a></li>
+    <li><a href="#appendix-f"><span class="toc-num">A.6</span>近期开发记录（2026-08-11 → 2026-08-14）</a></li>
   </ul>
 </nav>
 
 <section id="sec1">
   <h2>1. 项目概览</h2>
-  <p><strong>CageMaster 4</strong>（简称 V4）是《笼中密码》系列游戏的第四次架构重构版本。本游戏是一款融合 <strong>杀手数独（Killer Sudoku）</strong> 与 <strong>叙事解谜</strong> 的移动端 &amp; PC 端跨平台游戏，玩家扮演「守笼人」，通过破解数独谜题揭开「星辰梭」的秘密，与沈墨、阿妍、莹莹等多位角色共同推进剧情。</p>
+  <p><strong>CageMaster 4</strong>（简称 V4）是《笼中密码》系列游戏的第四次架构重构版本。本游戏是一款融合 <strong>杀手数独（Killer Sudoku）</strong> 与 <strong>叙事解谜</strong> 的移动端 &amp; PC 端跨平台游戏，玩家扮演「沈墨」，通过破解数独谜题揭开《笼局·三岔口》的真相，与薇拉、苏晚、伊藤、山田等多位角色共同推进剧情。</p>
 
   <div class="card-grid">
     <div class="card"><h4>63</h4><p>游戏关卡（8 章）</p></div>
@@ -425,7 +426,7 @@ footer {
   </ul>
   <div class="callout success">
     <strong>V4 新增（相比 V3）</strong>
-    三周目剧本（<code>data/scripts/</code> + ScriptData）、剧情编排器 StoryOrchestrator（序章/前置/通关/尾声）、i18n 接口预留、五段式教学桥梁阶段 noteToFill、纯逻辑 BattleManager、连击系统与暂停系统（第二阶段接入）、PC 双栏布局。
+    三周目剧本（<code>data/scripts/</code> + ScriptData）、剧情编排器 StoryOrchestrator（序章/前置/通关/尾声）、<strong>完整 i18n 四语国际化</strong>（中/英/日/韩）、五段式教学桥梁阶段 noteToFill、纯逻辑 BattleManager、连击系统与暂停系统（第二阶段接入）、PC 双栏布局。
   </div>
 
   <h3>1.2 架构总览</h3>
@@ -989,14 +990,14 @@ WhatIfManager.revert();               // 彻底回退到根快照</code></pre>
   <p>第 8 章「星辰归途」为终章，6 个唯一解杀手数独关卡（32–37 笼 / 13–16 提示），含序章、6 关对白、隐藏叙事与尾声，产出「归途」系 9 枚碎片。</p>
 
   <h3>6.5 ScriptData (script-data.js)</h3>
-  <p>剧本数据加载与缓存模块，提供 i18n 接口预留：</p>
-  <pre><code>await ScriptData.load();                       // 异步加载 scripts.json
+  <p>剧本数据加载与缓存模块，配合完整 i18n 四语体系：</p>
+  <pre><code>await ScriptData.load();                       // 异步加载 scripts.json（按当前语言）
 ScriptData.getStatus();                        // { loaded, version, cycles }
 ScriptData.getChapterBgm(chapterId);           // 章节 BGM
-ScriptData.t(key, params);                     // i18n 预留：文案查询（未命中回退 key）</code></pre>
+ScriptData.t(key, params);                     // 文案查询（未命中回退 key）</code></pre>
   <div class="callout info">
-    <strong>i18n 设计</strong>
-    <code>scripts.json</code> 对白字段使用 key 化结构（<code>text</code> 为中文默认值），未来可扩展 <code>text_en / text_ja</code> 字段；ScriptData 的 <code>t(key, params)</code> 接口已预留语言参数，配合 <code>setLocale / registerTranslations</code> 使用，未命中时回退 key。
+    <strong>i18n 实现</strong>
+    核心模块 <code>i18n/i18n.js</code> 提供翻译、语言切换、localStorage 持久化与 <code>cm4:localechange</code> 事件；语言包位于 <code>i18n/locale/{lang}/</code>（ui / chapters / levels / boss 四类，每语言 1,449 键）。切换语言后页面自动刷新并同步 <code>ScriptData</code> 加载对应语言剧本（<code>scripts.{lang}.json</code>），未命中时回退 zh-CN → key。
   </div>
 
   <h3>6.6 DataStore 九大分类</h3>
@@ -2017,9 +2018,53 @@ selection / uniqueness   = 不动</code></pre>
   </ul>
 </section>
 
+<section id="appendix-f">
+  <h2>附录 F：近期开发记录（2026-08-11 → 2026-08-14）</h2>
+  <p>以下为 2026-08-11 至 2026-08-14 期间的开发记录摘要，涵盖新剧本《笼局·三岔口》全量落地、i18n 四语国际化接入、新核心模块（战斗架构 + 证据调查系统）与 GitHub 仓库首次更新。</p>
+
+  <h3>F.1 新剧本《笼局·三岔口》全量落地（2026-08-11 → 2026-08-13）</h3>
+  <p>剧本从《笼中密信》切换为《笼局·三岔口》，角色体系全面更替，旧角色名与设定在运行时文件中清零。</p>
+  <ul>
+    <li><strong>角色映射</strong>：守笼人→伊藤、莹莹→薇拉、设局人→老师、阿妍→山田、星辰梭→档案；新登场角色含沈墨（主角）、薇拉、苏晚、伊藤、山田、潘汉年、周太太、父亲。</li>
+    <li><strong>章节提示讲解员分配</strong>：序章苏晚、第二章沈墨、第三章伊藤、第四章薇拉、第五章沈墨、第六章苏晚、第七章苏晚，并全部执行 chibi 与 BG 生成。</li>
+    <li><strong>chibi 立绘重制</strong>：8 张（<code>assets/images/chibi/</code>），含沈墨（default/thinking）、薇拉（default/smile）、苏晚（default/smile）、伊藤（default/serious）；经 rembg 抠图，构图修正为正面朝向观众、半身像（仅头部/肩膀/胸口）、吸附棋盘顶部并从上缘探出。</li>
+    <li><strong>第 2-7 章 BG 场景</strong>：26 张（第二章 7、第三章 4、第四章 5、第五章 2、第六章 4、第七章 4），<code>CHAPTER_DEFAULT_BG</code> 更新为章节专属背景，<code>scripts.json</code> 中 9 处 <code>bg_new/</code> 引用替换为新 BG。</li>
+    <li><strong>图鉴碎片描述重写</strong>：第 4-7 章 <code>ui/gallery-panel.js</code> 碎片标题直接使用新剧本关卡名（东余杭路94号 / 发报机的准备 / 账房 / 西郊仓库），描述压缩为核心剧情点。</li>
+    <li><strong>残留清理</strong>：修正 6 个关卡文件（level-109/406/501/505/506）"档案核心/档案馆"→"藏书楼"，更新 <code>prompt_manifest.json</code>（档案室→藏书楼、设局→老师），BOSS 显示名与台词池更新为新角色；87 个 JS 文件通过 <code>node --check</code> 语法检查。</li>
+    <li><strong>暂缓项</strong>：<code>assets/audio/voice/voice_index.json</code> 仍含旧角色名（语音资源未恢复，<code>VOICE_ENABLED = false</code>）。</li>
+  </ul>
+
+  <h3>F.2 i18n 四语国际化接入（2026-08-14）</h3>
+  <p>从"i18n 接口预留"升级为完整四语实现（简体中文 / English / 日本語 / 한국어），支持运行时切换与持久化。</p>
+  <ul>
+    <li><strong>核心模块</strong>：<code>i18n/i18n.js</code>（翻译、语言切换、localStorage 持久化、<code>cm4:localechange</code> 事件）；设置面板新增 4 语言选项，切换后自动刷新页面并同步 <code>ScriptData</code>。</li>
+    <li><strong>语言包体系</strong>：<code>i18n/locale/{lang}/</code> 下 ui / chapters / levels / boss 四类，每语言 1,449 键（ui 912、levels 516、chapters 14、boss 7）；回退链：当前语言 → zh-CN → key。</li>
+    <li><strong>内容本地化</strong>：309 行剧情对话翻译为英/日/韩；49 条章节级对话补齐；残留说话人中文名通过显示层映射解决。</li>
+    <li><strong>硬编码清理</strong>：补齐 200 个缺失键（toast / 错误提示 / 回放界面 / 书壳装饰 / Boss 战飘字），9 个静态元素加 <code>data-i18n</code> 属性（扉页引语/签名/日期、封底终言、5 处页码标记），3 处 JS 动态文本改 <code>I18n.t()</code>。</li>
+    <li><strong>验证</strong>：四语键结构一致、109 个 JS 文件语法检查通过、HTML 静态中文无缺失 <code>data-i18n</code>；完整报告见 <code>i18n-integration-report/i18n-integration-report.html</code>。</li>
+  </ul>
+
+  <h3>F.3 新核心模块（战斗架构 + 证据调查系统）</h3>
+  <p>新增一批 core/ 纯逻辑模块，遵循 ES Module 零 DOM 依赖约定，均含 try-catch / DOM 存在性检查 / 空实现降级。</p>
+  <ul>
+    <li><strong>战斗架构（R1-R9）</strong>：<code>battle-context.js</code>（统一 BattleContext：盘面/双方意图/TPL 规则/戏剧指标/meta）、<code>director.js</code>（剧本选择者，shadow 模式先行）、<code>strategy-selector.js</code>（多维度评分 + 钳制回退）、<code>intent-observer.js</code>（高层玩家意图分析）、<code>drama-event-manager.js</code> / <code>drama-planner.js</code> / <code>drama-metrics.js</code> / <code>drama-pollution.js</code>（戏剧事件与节拍规划）、<code>boss-line-selector.js</code>。</li>
+    <li><strong>证据调查系统</strong>：<code>evidence-graph.js</code> / <code>evidence-metadata.js</code> / <code>evidence-record.js</code> / <code>evidence-resolver.js</code>（置于 Game Engine 与 InvestigationState 之间，处理 CageResolvedEvent → confirmEvidence 等）、<code>investigation-state.js</code>（持久化仅含 levelId/graphId/discoveredEvidence/confirmedEvidence/currentClosureState）、<code>investigation-notes.js</code> / <code>investigation-rig.js</code> / <code>investigation-view-model.js</code>、<code>case-timeline.js</code>（调查叙事压缩层，非操作日志）。</li>
+    <li><strong>其他</strong>：<code>cage-analyzer.js</code> / <code>cage-analyzer-report.js</code>、<code>case-analyzer-report.js</code>、<code>learning-renderer.js</code>、<code>production-config.js</code>（生产/开发判定）、<code>solver-aware-acceptance.js</code>（B3 验收层）、<code>engine-adapter.js</code>。</li>
+  </ul>
+
+  <h3>F.4 GitHub 仓库更新（2026-08-14）</h3>
+  <p>项目首次全量推送到 GitHub，远程仓库与本地状态已同步。</p>
+  <ul>
+    <li><strong>仓库</strong>：<code>pskywoody/cage-master</code>，默认分支 <code>cagemaster4</code>。</li>
+    <li><strong>提交</strong>：<code>243a8a7</code> — <code>feat(i18n): 完整四语国际化接入（中/英/日/韩）+ 《笼局·三岔口》新剧本全量落地</code>；共 1,736 个文件变更（+285,641 / -67,826），仓库约 441MB。</li>
+    <li><strong>工具链</strong>：本机未安装 Git CLI，使用便携版 Git v2.55.0 完成提交与推送（<code>master → cagemaster4</code>），未改动系统环境。</li>
+    <li><strong>.gitignore 更新</strong>：新增排除 <code>assets/archive/</code>（旧素材备份 194MB）、<code>_tmp_inline_check.js</code>、<code>*.bak-ai</code>，避免仓库臃肿。</li>
+  </ul>
+</section>
+
 </div>
 <footer>
-  <p>CageMaster 4 开发手册 · 版本 3.6 · 2026-08-10</p>
+  <p>CageMaster 4 开发手册 · 版本 3.7 · 2026-08-14</p>
   <p style="font-size:0.75rem;margin-top:4px;">Generated by Trae Work</p>
 </footer>
 </body>

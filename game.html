@@ -3485,9 +3485,10 @@ CM.overlayRunning = false
 //   档位语义（2026-08-03 手感审计校准，勿随意改值）：
 //     story   1000ms/字 = 剧情对话（story-engine 的 normal 档，对标生化危机存档节奏）
 //     bubble  200ms/字  = 战斗台词/系统提示（DialogSystem 默认，接近朗读语速 5字/秒）
-//     lesson  400ms/字  = 教学讲解气泡（2.5字/秒，讲解节奏清晰）
+//     lesson  300ms/字  = 教学讲解气泡（3.3字/秒，讲解节奏；2026-08-14 用户反馈
+//                         400ms/字偏慢，加快至 300ms/字，仍可逐句点击暂停）
 //     hintFast 60ms/字  = hint 动画气泡瞬时档（动画步进 600ms/步，慢打会互相覆盖）
-CM.FEEL_TYPING = { story: 1000, bubble: 200, lesson: 400, hintFast: 60 };
+CM.FEEL_TYPING = { story: 1000, bubble: 200, lesson: 300, hintFast: 60 };
 CM.dialog = new DialogSystem({ type: 'bubble', typingSpeed: CM.FEEL_TYPING.bubble })
 
 // ---------------- LevelManager（DataStore 持久化） ----------------
@@ -6638,12 +6639,21 @@ function handleEvent(type, payload) {
       break;
     }
     case 'lessonFocusPulse':
-      // guided 目标格：持续粒子脉冲；demo 讲解格：一次性橙闪
+      // guided 目标格：持续粒子脉冲；demo 讲解格：1.6s 持续脉冲后自动熄灭
+      // 手感修复（P0）：原 demo 参考格一次性 340ms 橙闪瞬间消失，讲解"1/4/2
+      // 都被排除"时参考格无法同屏可见。改为 1.6s 持续脉冲（与提示系统多格
+      // 高亮一致），多个参考格在讲解期间同时亮起；focusCell 步骤会清空切换。
       if (payload && typeof payload.r === 'number' && typeof payload.c === 'number') {
         if (payload.sustained) {
           setTargetPulse(payload.r, payload.c, true);
         } else {
-          try { flashCell(payload.r, payload.c, 'rgba(255, 167, 38, 0.7)'); } catch (e) {}
+          setTargetPulse(payload.r, payload.c, true);
+          const pk = payload.r + ',' + payload.c;
+          setTimeout(() => {
+            try {
+              if (CM.targetPulseCells.has(pk)) setTargetPulse(payload.r, payload.c, false);
+            } catch (e) {}
+          }, 1600);
         }
       }
       // 聚光灯开启时同步移动圆孔到目标格

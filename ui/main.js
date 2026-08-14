@@ -513,7 +513,13 @@ class GameApp {
             this.emitEvent('lessonPulseRemove', { r: action.r, c: action.c });
             break;
           }
-          this._lessonFocusCell = { r: action.r, c: action.c };
+          // 手感修复（P0）：聚光灯圆孔只跟随"目标格"——focusCell 或 pulse 模式
+          // 的 highlightCell（guided/semiAuto 目标格）；普通 highlightCell（demo
+          // 阶段的参考格/排除格）不再移动聚光灯——原实现每高亮一个参考格就移动
+          // 圆孔，玩家看到聚光灯"追着参考格跑"偏离讲解目标格。
+          if (action.type === 'focusCell' || action.mode === 'pulse') {
+            this._lessonFocusCell = { r: action.r, c: action.c };
+          }
           if (this._boardRenderer && typeof this._boardRenderer.setHighlight === 'function') {
             this._boardRenderer.setHighlight(action.r, action.c, 'selected');
           }

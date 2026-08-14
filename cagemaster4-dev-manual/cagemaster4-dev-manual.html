@@ -1321,61 +1321,48 @@ commands.forEach(cmd => this.beat.enqueue(cmd, (item) => this.expression.enqueue
 </section>
 
 <section id="sec9">
-  <h2>9. 竖屏 / 横屏自适应</h2>
-  <p>游戏同时支持手机竖屏和 PC 横屏两种模式，通过 CSS 媒体查询和 JavaScript 动态布局实现。</p>
-  <h3>9.1 布局策略</h3>
+  <h2>9. 手机 9:16 / PC 16:9 自适应</h2>
+  <p>游戏按<strong>屏幕宽高比</strong>自动适配手机竖屏（9:16）与 PC 横屏（16:9），由 CSS 媒体查询 + JS 动态布局双轨实现（P0-3，2026-08-14 定稿）。</p>
+  <h3>9.1 布局判定策略</h3>
+  <p>PC 双栏判定在 <code>ui/pc-layout-manager.js</code>：<strong>宽度 ≥ 900px 且宽高比 ≥ 1.4</strong> 才激活双栏。阈值 1.4 覆盖 16:10 / 16:9 / 21:9 宽屏，排除 4:3 竖屏平板与折叠屏竖置。手机竖屏（9:16 及更窄）一律单栏，棋盘由 <code>game.html layout()</code> 按 <code>visualViewport</code> 高度动态计算。</p>
   <div class="table-wrap">
   <table>
-    <thead><tr><th>模式</th><th>布局</th><th>棋盘尺寸</th><th>UI 布局</th></tr></thead>
+    <thead><tr><th>模式</th><th>判定</th><th>布局</th><th>棋盘尺寸</th></tr></thead>
     <tbody>
-      <tr><td>手机竖屏（≤ 768px）</td><td>单列垂直布局</td><td>min(96vw, 54vh, 460px)</td><td>棋盘在上，工具栏/数字键盘在下</td></tr>
-      <tr><td>手机横屏（≤ 768px）</td><td>单列压缩布局</td><td>自适应高度</td><td>棋盘在左，控件在右</td></tr>
-      <tr><td>平板 / PC 横屏</td><td>双栏布局</td><td>540px (固定)</td><td>棋盘在左，右侧面板（45 笔记本、What If 快照、计时/提示）</td></tr>
+      <tr><td>手机竖屏（9:16）</td><td>宽高比 &lt; 1.4</td><td>单列垂直布局，一屏可见</td><td><code>layout()</code>：vh - 安全区 - topbar - status - bossHud - pad - 16</td></tr>
+      <tr><td>PC 横屏（16:9）</td><td>宽度 ≥ 900px 且宽高比 ≥ 1.4</td><td>双栏布局（棋盘 + 右侧信息面板）</td><td><code>--board-size: min(64vh, 600px)</code>（16:9 及更宽）</td></tr>
+      <tr><td>横屏窄屏（折叠屏横置）</td><td>宽度 &lt; 900px 且横屏</td><td>单列压缩</td><td><code>--board-size: min(72vh, 92vw)</code></td></tr>
     </tbody>
   </table>
   </div>
-  <h3>9.2 响应式断点</h3>
-  <pre><code>/* 移动端竖屏 */
-@media (max-width: 768px) and (orientation: portrait) {
-  #game-container { flex-direction: column; }
-  #board-area { width: 100%; }
-  #pc-right-panel { display: none; }
-  .mobile-bottom-sheet { display: block; }
+  <h3>9.2 屏幕比例定向媒体查询</h3>
+  <pre><code>/* 手机长屏（9:16 及更窄）：压缩顶栏留白，棋盘占满宽度 */
+@media (max-aspect-ratio: 9/16) {
+  #topbar { padding: 6px 10px; }
+  #app { padding: 6px 2px 14px; }
 }
-/* 移动端横屏 */
-@media (max-width: 768px) and (orientation: landscape) {
-  #game-container { flex-direction: row; }
-  #board-area { height: 100vh; }
-  #header { height: 28px; }
-}
-/* PC 双栏 */
-@media (min-width: 769px) {
-  #app { display: flex; gap: 28px; }
-  #pc-left-panel { flex: 1; }
-  #pc-right-panel { width: 320px; }
+/* PC 宽屏（16:9 及更宽）：双栏加宽，棋盘最大化 */
+@media (min-aspect-ratio: 16/9) and (min-width: 900px) {
+  .pc-layout-active #app { max-width: 1180px; }
+  .pc-layout-active #pc-right-panel { width: 300px; }
+  .pc-layout-active #board-container { --board-size: min(64vh, 600px); }
 }</code></pre>
-  <h3>9.3 画布分辨率自适应</h3>
-  <p>Canvas 渲染支持 <code>devicePixelRatio</code> 自适应，根据 PerformanceMonitor 质量等级动态调整分辨率缩放。</p>
-  <pre><code>function resizeCanvases() {
-  var rect = boardContainer.getBoundingClientRect();
-  var size = Math.min(rect.width, rect.height);
-  [boardCanvas, effectCanvas, uiCanvas].forEach(function(c) {
-    c.style.width = size + 'px';
-    c.style.height = size + 'px';
-    var dpr = window.devicePixelRatio || 1;
-    var scale = perfMon.getRenderScale(); // 1.0 / 0.75 / 0.5
-    c.width = Math.round(size * dpr * scale);
-    c.height = Math.round(size * dpr * scale);
-  });
-}</code></pre>
-  <h3>9.4 移动端优化</h3>
+  <h3>9.3 移动端动态视口与安全区</h3>
   <ul>
-    <li><strong>头部高度</strong>：移动端 header 固定 28px</li>
-    <li><strong>数字键盘</strong>：自适应窗口宽度，按钮更大更宽</li>
-    <li><strong>底部按钮</strong>：更大、位置更高，不与工具栏重叠</li>
+    <li><strong>viewport</strong>：<code>width=device-width, initial-scale=1.0, viewport-fit=cover</code>（刘海屏安全区生效）</li>
+    <li><strong>高度单位</strong>：<code>body</code> 用 <code>min-height: 100dvh</code>（回退 <code>100vh</code>），地址栏收起/展开时布局自适应</li>
+    <li><strong>动态视口</strong>：<code>layout()</code> 优先取 <code>window.visualViewport.height</code>，并监听 visualViewport resize 重算棋盘</li>
+    <li><strong>刘海屏</strong>：<code>body</code> 上下留白 <code>env(safe-area-inset-top/bottom)</code>；<code>layout()</code> 从可用高度中扣除安全区</li>
+  </ul>
+  <h3>9.4 画布分辨率自适应</h3>
+  <p>Canvas 渲染支持 <code>devicePixelRatio</code> 自适应，根据 PerformanceMonitor 质量等级动态调整分辨率缩放；<code>layout()</code> 在尺寸变化时同步重设三张 canvas 的物理像素（<code>width/height × dpr</code>）。</p>
+  <h3>9.5 移动端优化</h3>
+  <ul>
+    <li><strong>棋盘占宽</strong>：9:16 竖屏（390 宽）棋盘 386px，9×9 格子 ≈42px，笔记清晰可读</li>
+    <li><strong>一屏可见</strong>：棋盘 = 视口高 - 顶栏 - 状态行 - Boss HUD - 数字键盘 - 留白，Boss 战时自动计入 HUD 高度</li>
+    <li><strong>chibi 让位</strong>：chibi 不挤占棋盘尺寸，通过 margin-top 让位显示在棋盘上方</li>
     <li><strong>二级面板</strong>：设置/成就/画廊/技巧矩阵使用覆盖层（overlay）而非挤压棋盘</li>
-    <li><strong>弹窗样式</strong>：竖屏使用底部弹出（bottom sheet）或居中模态框</li>
-    <li><strong>剧情对白</strong>：隐藏 game-container 和 pc-left-panel，保持 pc-right-panel 显示</li>
+    <li><strong>验证</strong>：<code>scripts/test-p0-3-layout-aspect.mjs</code> 覆盖 12 种屏幕比例判定（9:16/16:9/16:10/21:9/4:3 等）</li>
   </ul>
 </section>
 

@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
 <!-- v2.0：禁缓存——手机 WebView 强缓存 HTML 导致 import ?v= 版本号不生效（曾出现"改了速度没变"：日志仍显示旧 v=24） -->
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
@@ -65,8 +65,12 @@
     background-color: var(--bg);
     color: var(--text);
     min-height: 100vh;
+    min-height: 100dvh; /* 移动端动态视口：地址栏收起/展开时高度自适应（dvh 不支持的浏览器回退 100vh） */
     user-select: none;
     overflow-x: hidden;
+    /* 刘海屏安全区：上下留白避免内容被刘海/底部横条遮挡 */
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
   }
 
   /* ---------------- 顶部栏 ---------------- */
@@ -1600,6 +1604,28 @@
     .pc-layout-active #board-container { --board-size: min(60vh, 560px); }
     .pc-layout-active #pad { --board-size: min(60vh, 560px); }
     .pc-layout-active #statusLine { --board-size: min(60vh, 560px); }
+  }
+
+  /* ---------------- 屏幕比例定向适配（P0-3：9:16 手机 / 16:9 PC） ----------------
+     判定优先用宽高比而非纯宽度：手机竖屏 9:16 与 PC 横屏 16:9 各得其所 */
+  /* 手机长屏（9:16 及更窄）：棋盘尽量占满宽度，压缩顶栏留白 */
+  @media (max-aspect-ratio: 9/16) {
+    #topbar { padding: 6px 10px; gap: 6px 8px; }
+    #app { padding: 6px 2px 14px; }
+    .brand h1 { font-size: 16px; }
+  }
+  /* PC 宽屏（16:9 及更宽）：棋盘保持方块最大化，双栏右侧面板加宽 */
+  @media (min-aspect-ratio: 16/9) and (min-width: 900px) {
+    .pc-layout-active #app { max-width: 1180px; }
+    .pc-layout-active #pc-right-panel { width: 300px; }
+    .pc-layout-active #board-container { --board-size: min(64vh, 600px); }
+    .pc-layout-active #pad { --board-size: min(64vh, 600px); }
+    .pc-layout-active #statusLine { --board-size: min(64vh, 600px); }
+  }
+  /* 横屏且窄（如折叠屏横置）：避免 16:9 规则把棋盘撑出屏 */
+  @media (max-width: 899px) and (orientation: landscape) {
+    #app { max-width: 92vw; }
+    #board-container { --board-size: min(72vh, 92vw); }
   }
 
   /* ---------------- 响应式 ---------------- */
@@ -3327,9 +3353,15 @@ CM.uiCanvas.addEventListener('touchcancel', (e) => {
 function layout() {
   // 2026-08-04：纵向布局一屏可见——按 gridSize + 视口高度动态计算棋盘尺寸
   // 仅移动端/竖屏生效（PC 双栏由 CSS --board-size: min(60vh,560px) 控制，JS 不覆盖）
+  // P0-3：视口高度优先取 visualViewport（移动端地址栏收起/展开自适应），回退 clientHeight/innerHeight；
+  //       计入刘海屏安全区（--safe-top/--safe-bottom，由 resizeObserver 注入），9:16 长屏棋盘更稳
   try {
     if (!document.body.classList.contains('pc-layout-active')) {
-      const vh = window.innerHeight || 800;
+      const vh = (window.visualViewport && window.visualViewport.height)
+        ? window.visualViewport.height
+        : (document.documentElement.clientHeight > 0 ? document.documentElement.clientHeight : (window.innerHeight || 800));
+      const safeT = CM.safeTop || 0;
+      const safeB = CM.safeBottom || 0;
       const topEl = document.getElementById('topbar');
       const topbarH = (topEl && topEl.offsetHeight) || 56;
       document.documentElement.style.setProperty('--topbar-h', topbarH + 'px');
@@ -3347,8 +3379,8 @@ function layout() {
       // 棋盘尺寸始终按无 chibi 计算保持最大；chibi 通过 margin-top 让位显示在
       // 棋盘上方（若视口不足，页面可滚动，教学结束自动恢复）
       // v2.0：顶部留白 16px（紧凑），一屏可见：
-      // 棋盘 = vh - topbar - status - bossHud - pad - 留白
-      const availH = vh - topbarH - statusH - bossH - padH - 16;
+      // 棋盘 = vh - 安全区 - topbar - status - bossHud - pad - 留白
+      const availH = vh - safeT - safeB - topbarH - statusH - bossH - padH - 16;
       // Q5：棋盘尽量占满手机宽度——原 innerWidth-20（390 屏只剩 370），
       // 9x9 格子仅 38.7px，比 easybrain 明显小一圈、笔记看不清。
       // 改为 -4（左右各 2px 呼吸边），390 屏棋盘 386px，格子 ≈42px
@@ -3380,6 +3412,40 @@ function drawPlaceholder() {
   ctx.fillText('加载关卡中…', CM.boardSize / 2, CM.boardSize / 2);
 }
 window.addEventListener('resize', layout);
+
+// ---------------- P0-3：安全区 + 动态视口适配 ----------------
+// 刘海屏安全区（iOS 刘海/底部横条）：读取 env(safe-area-inset-*)，供 layout() 计算棋盘可用高度
+CM.safeTop = 0;
+CM.safeBottom = 0;
+function updateSafeArea() {
+  try {
+    const cs = getComputedStyle(document.documentElement);
+    const top = parseFloat(cs.getPropertyValue('--safe-top')) || 0;
+    const bottom = parseFloat(cs.getPropertyValue('--safe-bottom')) || 0;
+    if (top !== CM.safeTop || bottom !== CM.safeBottom) {
+      CM.safeTop = top;
+      CM.safeBottom = bottom;
+      layout();
+    }
+  } catch (e) {}
+}
+// 注入安全区 CSS 变量（env() 在部分 WebView 中不注入到 JS getComputedStyle，双保险）
+(function initSafeArea() {
+  try {
+    const st = document.createElement('style');
+    st.textContent =
+      ':root{--safe-top:env(safe-area-inset-top,0px);--safe-bottom:env(safe-area-inset-bottom,0px);}' +
+      'body{padding-top:var(--safe-top);padding-bottom:var(--safe-bottom);}';
+    document.head.appendChild(st);
+    setTimeout(updateSafeArea, 120);
+  } catch (e) {}
+})();
+// 动态视口：visualViewport 变化（移动端地址栏收起/展开）→ 重算棋盘
+if (window.visualViewport) {
+  try {
+    window.visualViewport.addEventListener('resize', () => { layout(); }, { passive: true });
+  } catch (e) {}
+}
 
 // ---------------- 键盘操作 ----------------
 CM.lastWasAvalanche = false

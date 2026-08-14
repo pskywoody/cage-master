@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>AI 调试面板 · CageMaster4</title>
 <style>
   :root {
@@ -10,7 +10,12 @@
     --text: #f0e8da; --muted: #a99a86; --gold: #e0b45e; --green: #4ade80; --red: #ef4444;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { background: var(--bg); color: var(--text); font: 13px/1.5 "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; padding: 16px; }
+  body { background: var(--bg); color: var(--text); font: 13px/1.5 "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; padding: 16px; padding-top: max(16px, env(safe-area-inset-top)); padding-bottom: max(16px, env(safe-area-inset-bottom)); }
+  /* 手机长屏（9:16）：压缩留白，棋盘格缩小避免横向溢出 */
+  @media (max-aspect-ratio: 9/16) {
+    body { padding: 10px 6px; }
+    .board td { width: 24px; height: 24px; font-size: 12px; }
+  }
   header { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 14px; }
   header h1 { font-size: 17px; color: var(--gold); letter-spacing: 1px; }
   .badge { font-size: 11px; padding: 3px 10px; border-radius: 20px; border: 1px solid var(--border); color: var(--muted); }

@@ -34,13 +34,19 @@ export class PcLayoutManager {
   }
 
   /**
-   * 检测当前是否应使用 PC 双栏布局（宽度 >= 900px 且横屏）
+   * 检测当前是否应使用 PC 双栏布局。
+   * P0-3：改为按屏幕宽高比判定——宽度 >= 900px 且宽高比 >= 1.4（约 16:9 及更宽）
+   * 才激活双栏；9:16 竖屏手机 / 平板竖屏（宽高比 < 1.4）一律单栏。
+   * 1.4 阈值覆盖 16:10 (1.6)、16:9 (1.78)、21:9 (2.33) 等宽屏，
+   * 且排除 4:3 (1.33) 竖屏平板与折叠屏竖置。
    * @returns {boolean}
    */
   isPcLayoutActive() {
     try {
       if (!this._hasDom) return false;
-      return window.innerWidth >= 900 && window.innerWidth > window.innerHeight;
+      const w = window.innerWidth;
+      const h = window.innerHeight || 1;
+      return w >= 900 && (w / h) >= 1.4;
     } catch (e) {
       return false;
     }

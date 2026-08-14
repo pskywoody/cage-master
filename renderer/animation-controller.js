@@ -560,12 +560,19 @@ export class AnimationController {
       }
 
       // 定时播放下一步
+      // 手感修复：消费 PerformanceMonitor.getAnimationSmoothness()——低画质档
+      // （0.6/0.3）下无文本步骤等待按比例缩短，动画更紧凑、等待更少；
+      // high（1.0）保持 600ms 原节奏。
+      const smooth = (this._performanceMonitor
+        && typeof this._performanceMonitor.getAnimationSmoothness === 'function')
+        ? this._performanceMonitor.getAnimationSmoothness() : 1.0;
+      const stepWait = Math.max(240, Math.round(this._hintStepInterval * (0.4 + 0.6 * smooth)));
       this._hintTimer = setTimeout(() => {
         this._hintTimer = null;
         if (!this._hintSkipped) {
           this._playNextHintStep();
         }
-      }, this._hintStepInterval);
+      }, stepWait);
     } catch (e) {
       console.error('[AnimationController] _playNextHintStep error:', e);
     }

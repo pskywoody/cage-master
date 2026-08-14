@@ -2159,10 +2159,16 @@ export class AIPlayerCore {
   // V4.3.21：direction 参数——'lowest' 从低技巧起找（默认/教学/盲盒），
   // 'highest' 从高技巧起找（专家型，专挑高阶格解）
   _findAllVisibleResults(direction) {
+    // 手感修复：think() 时间预算——主线程同步推理时 xWing/swordfish 全盘扫描
+    // 可达数百 ms（AI 行动瞬间卡顿根因）。给整次收集设 28ms 预算：
+    // 超预算即停止继续扫描高级技巧（低级结果已足够支撑本次决策），
+    // 剩余技巧留到下一 AI 步再找，保证主线程不被长冻结。
+    const _budgetDeadline = performance.now() + 28;
     const results = [];
     const techIds = this._getTechPriority();
     const ordered = (direction === 'highest') ? techIds.slice().reverse() : techIds;
     for (const techId of ordered) {
+      if (performance.now() > _budgetDeadline) break; // 手感预算：超时停止扫描
       const level = TECH_LEVEL_MAP[techId] || 1;
       if (level > this._personality.maxTechLevel) continue;
       const discoveryRate = this._personality.discoveryRate ? (this._personality.discoveryRate[level] ?? 1.0) : 1.0;

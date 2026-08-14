@@ -1351,19 +1351,35 @@ export class HintSystem {
   _findTargetCell() {
     if (!this.board || !this.solution) return null;
 
+    // 手感修复（P0）：试数兜底选格优化——原实现返回"第一个空格"，可能选到
+    // 候选数极多的格（试数成功率低、玩家困惑）。改为优先选"候选数最少"的空格：
+    // 候选最少 = 最接近可推 → 试数路径最短、提示最有用；候选数相同时取行优先。
+    // 依赖 board.getCandidates（若存在），不可用时回退原"第一个空格"行为。
+    let best = null;
+    let bestCount = Infinity;
+    const hasCand = (typeof this.board.getCandidates === 'function');
     for (let r = 0; r < this.board.size; r++) {
       for (let c = 0; c < this.board.size; c++) {
         const cell = this.board.cells[r][c];
         if (cell.fixedNum || cell.fillNum) continue;
-
         const solutionNum = this.solution[r][c];
-        if (solutionNum) {
-          return { row: r, col: c, value: solutionNum };
+        if (!solutionNum) continue;
+        if (!hasCand) {
+          return { row: r, col: c, value: solutionNum }; // 原行为：第一个空格
+        }
+        let cnt = 0;
+        try {
+          const cands = this.board.getCandidates(r, c);
+          cnt = (cands && Array.isArray(cands)) ? cands.length : 1;
+        } catch (e) { cnt = 1; }
+        if (cnt < bestCount) {
+          bestCount = cnt;
+          best = { row: r, col: c, value: solutionNum };
+          if (cnt === 1) break; // 单候选即最优，提前结束
         }
       }
     }
-
-    return null;
+    return best;
   }
 
   /**

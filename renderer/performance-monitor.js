@@ -111,20 +111,46 @@ export class PerformanceMonitor {
 
   setAutoAdjust(enabled) { this._autoAdjust = enabled; }
 
+  /**
+   * 手感修复：animationSmoothness 消费出口——动画控制器可据此调整
+   * 动画平滑度（此前字段定义但无消费方，画质档位形同虚设）。
+   * @returns {number} 0.3~1.0
+   */
+  getAnimationSmoothness() {
+    return this._quality.animationSmoothness != null ? this._quality.animationSmoothness : 1.0;
+  }
+
   getRenderScale() {
     var dpr = (typeof window !== "undefined" && window.devicePixelRatio) || 1;
     return dpr * this._quality.resolutionScale;
   }
 
+  /**
+   * 手感修复：自动降级后可回升——原逻辑只降不升，低端机一次掉帧整局永久降档。
+   * 新逻辑：FPS 持续稳定在 50+ 达 3 个检查周期（~3s）时回升一档（low→medium→high），
+   * 让场景从高负载恢复（雪崩结束/切关）后画质自动回弹。
+   */
   _checkAutoAdjust() {
-    if (this._fps < this._adjustThreshold && this._level !== "low") {
-      var levels = ["high", "medium", "low"];
-      var currentIdx = levels.indexOf(this._level);
-      if (currentIdx < levels.length - 1) {
-        var nextLevel = levels[currentIdx + 1];
-        console.warn("[PerformanceMonitor] FPS " + this.getFps() + " below threshold, downgrading to " + nextLevel);
-        this.setLevel(nextLevel);
+    var levels = ["high", "medium", "low"];
+    var currentIdx = levels.indexOf(this._level);
+    if (this._fps < this._adjustThreshold && currentIdx < levels.length - 1) {
+      var nextLevel = levels[currentIdx + 1];
+      console.warn("[PerformanceMonitor] FPS " + this.getFps() + " below threshold, downgrading to " + nextLevel);
+      this._stableHighCount = 0;
+      this.setLevel(nextLevel);
+      return;
+    }
+    // 回升：仅当非 high 且 FPS 稳定 ≥50 时计数，连续 3 个周期（~3s）回升一档
+    if (currentIdx > 0 && this._fps >= 50) {
+      this._stableHighCount = (this._stableHighCount || 0) + 1;
+      if (this._stableHighCount >= 3) {
+        var upLevel = levels[currentIdx - 1];
+        console.log("[PerformanceMonitor] FPS " + this.getFps() + " stable, upgrading to " + upLevel);
+        this._stableHighCount = 0;
+        this.setLevel(upLevel);
       }
+    } else {
+      this._stableHighCount = 0;
     }
   }
 }

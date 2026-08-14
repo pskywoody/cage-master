@@ -3461,7 +3461,14 @@ CM.overlayCells = new Map() // key 'r,c' -> { r, c, color, until }
 CM.overlayRunning = false
 
 // ---------------- 教学气泡（DialogSystem） ----------------
-CM.dialog = new DialogSystem({ type: 'bubble', typingSpeed: 200 }) // 手感审计：52→200ms/字（5字/秒），战斗台词/系统提示接近朗读语速
+// 手感基准（P0）：统一打字机速度体系——所有调用点引用 CM.FEEL_TYPING，调参只改一处。
+//   档位语义（2026-08-03 手感审计校准，勿随意改值）：
+//     story   1000ms/字 = 剧情对话（story-engine 的 normal 档，对标生化危机存档节奏）
+//     bubble  200ms/字  = 战斗台词/系统提示（DialogSystem 默认，接近朗读语速 5字/秒）
+//     lesson  400ms/字  = 教学讲解气泡（2.5字/秒，讲解节奏清晰）
+//     hintFast 60ms/字  = hint 动画气泡瞬时档（动画步进 600ms/步，慢打会互相覆盖）
+CM.FEEL_TYPING = { story: 1000, bubble: 200, lesson: 400, hintFast: 60 };
+CM.dialog = new DialogSystem({ type: 'bubble', typingSpeed: CM.FEEL_TYPING.bubble })
 
 // ---------------- LevelManager（DataStore 持久化） ----------------
 CM.lm = new LevelManager({
@@ -5181,7 +5188,9 @@ function handleBattleEvent(eventType, data) {
         // 战绩统计：可用于图鉴/结算（此处仅日志）
         break;
       case BATTLE_EVENTS.BOARD_CHANGED:
-        if (CM.gameApp) CM.gameApp.render();
+        // 手感修复：不再同步 render()——GameApp 主 rAF 循环（autoLoop）每帧已在渲染，
+        // 此处同步 render 会造成同帧双重重绘（AI 落子瞬间卡顿来源之一）。
+        // 仅刷新 HUD（500ms 轮询外的事件驱动即时刷新）。
         updateBossHud();
         break;
       default:
@@ -5452,6 +5461,8 @@ function updateThreatPreview(pres) {
 
 // ---------------- Boss 幽灵格呼吸循环（V4.3.18） ----------------
 // 低频 rAF 驱动棋盘重绘，让 AI 占领格的呼吸边框/圆点持续动画
+// 手感修复：主 rAF 循环（autoLoop）每帧已在 render，幽灵循环不再叠加 render——
+// 仅保留 250ms 节流的相位重绘（呼吸动画需要独立相位推进时）
 CM.bossGhostRafId = null
 CM.bossGhostLastTs = 0
 function startBossGhostLoop() {
@@ -5459,8 +5470,8 @@ function startBossGhostLoop() {
   CM.bossGhostLastTs = 0;
   const tick = (ts) => {
     if (CM.bossGhostRafId === null) return;
-    // 约 8fps 重绘（呼吸周期 800ms → 每帧相位平滑）
-    if (ts - CM.bossGhostLastTs >= 125) {
+    // 约 4fps 相位推进（呼吸周期 800ms → 每帧相位平滑；渲染本身由主循环覆盖）
+    if (ts - CM.bossGhostLastTs >= 250) {
       CM.bossGhostLastTs = ts;
       if (CM.gameApp && CM.gameApp.render) { try { CM.gameApp.render(); } catch (e) {} }
     }
@@ -7150,7 +7161,8 @@ function showBubble(payload) {
   if (!payload || !payload.text) return;
   // Q5：hint 动画气泡 fast 模式（60ms/字 瞬时打完）——动画步进 600ms/步，
   // 慢速打字会互相覆盖；教学气泡仍走慢速（400ms/字 保持讲解节奏）
-  const typingSpeed = payload.fast ? 60 : 400;
+  // 手感基准（P0）：统一引用 CM.FEEL_TYPING
+  const typingSpeed = payload.fast ? CM.FEEL_TYPING.hintFast : CM.FEEL_TYPING.lesson;
   // v2.0：教学气泡播放前强制尝试解锁音频（autoplay 策略下若 AudioContext
   // 未解锁，打字机合成音静默无声——unlock 在已交互过的会话中会成功恢复）
   try {
@@ -7202,6 +7214,12 @@ function playAvalanche(payload) {
   if (!seq.length) return;
   CM.avalanchePlaying = true;
   let idx = 0;
+  // 手感修复（P0）：长序列节流——原固定 110ms/步，30+ 格序列总时长 3.3s+ 且
+  // 高亮(340ms)与步进重叠，结算弹窗被明显延后（玩家误以为卡死）。
+  // 改为自适应步进：目标总时长 ≤ 1.9s（下限 45ms/步），粒子随序列长度降档。
+  const targetTotal = Math.min(1900, seq.length * 110);
+  const stepMs = Math.max(45, Math.floor(targetTotal / seq.length));
+  const particleCount = seq.length > 40 ? 3 : (seq.length > 20 ? 5 : 8);
   const step = () => {
     if (idx >= seq.length) {
       CM.avalanchePlaying = false;
@@ -7212,10 +7230,10 @@ function playAvalanche(payload) {
     flashCell(s.r, s.c, 'rgba(255, 215, 0, 0.55)');
     try {
       const er = CM.gameApp.getEffectRenderer();
-      if (er && typeof er.spawnParticles === 'function') er.spawnParticles(s.c, s.r, '#ffd700', 8);
+      if (er && typeof er.spawnParticles === 'function') er.spawnParticles(s.c, s.r, '#ffd700', particleCount);
     } catch (e) { /* 忽略粒子异常 */ }
     idx++;
-    setTimeout(step, 110);
+    setTimeout(step, stepMs);
   };
   step();
 }
@@ -8495,7 +8513,7 @@ function teachLedger45IfNeeded() {
           '',
           {
             avatar: '',
-            typingSpeed: 400, // 手感审计：120→400ms/字，与教学气泡档一致
+            typingSpeed: CM.FEEL_TYPING.lesson, // 手感基准（P0）：教学档与教学气泡一致
             onComplete: () => { try { hideLessonChibi(); } catch (e) {} },
           }
         );

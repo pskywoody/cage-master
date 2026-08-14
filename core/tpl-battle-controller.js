@@ -74,6 +74,7 @@ export class TplBattleController {
     this._lineLocale = options.locale || 'zh-CN'; // CM4-R7：台词语言（R8 接入 t() loader）
     this._lineCursors = {};        // CM4-R7：各事件台词游标（round-robin 去重）
     this._lastPhase = null;        // CM4-R7：阶段切换检测
+    this._playerPollutionThrottleTs = null; // 手感修复：玩家路径污染计算节流时间戳
   }
 
   /** 玩家手动连线触发绝杀（v2.0 6.1） */
@@ -261,7 +262,14 @@ export class TplBattleController {
       }
       this._syncAiState();
       // CM4-R7：污染驱动的冲突幽灵调度（玩家落子也可能抬升争夺 → 幽灵）
-      this._drivePollutionGhost();
+      // 手感修复：玩家高频填数时对污染计算做 450ms 节流——computeHubHeat/
+      // computePollution 为同步全量计算，节流把玩家路径的同步负担降到 ~2次/秒；
+      // AI 落子路径（_aiMove 内）不受节流，保持节奏判定完整。
+      const _now = (typeof performance !== 'undefined') ? performance.now() : Date.now();
+      if (!this._playerPollutionThrottleTs || (_now - this._playerPollutionThrottleTs) >= 450) {
+        this._playerPollutionThrottleTs = _now;
+        this._drivePollutionGhost();
+      }
       return res;
     } catch (e) {
       console.warn('[TplBattle] onPlayerFill:', e);
@@ -647,7 +655,22 @@ export class TplBattleController {
     if (this._aiMoves === 0) {
       delay = Math.min(min, 600 + Math.random() * 700);
     } else {
-      delay = min + Math.random() * (max - min);
+      // 手感修复（P0）：Boss 战节奏动态化——消费 AIPlayerCore._calcDynamicInterval()，
+      // 让人格的速度曲线生效（爆发期提速 / 连错后提速 / 落后提速 / 节奏感知），
+      // 替代"固定区间随机"。以 BOSS_CONFIGS.speedMin/Max 为边界钳制动态值，
+      // 防止人格参数异常导致过慢/过快。
+      let dynMs = null;
+      try {
+        if (this._ai && typeof this._ai._calcDynamicInterval === 'function') {
+          const sec = this._ai._calcDynamicInterval();
+          if (typeof sec === 'number' && isFinite(sec)) dynMs = sec * 1000;
+        }
+      } catch (e) { dynMs = null; }
+      if (dynMs != null) {
+        delay = Math.max(min * 0.6, Math.min(dynMs, max * 1.4));
+      } else {
+        delay = min + Math.random() * (max - min);
+      }
     }
     this._aiTimer = setTimeout(() => {
       this._aiTimer = null;

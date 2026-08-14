@@ -1896,11 +1896,13 @@ class GameApp {
             } catch (e) { /* tpl 数据可选 */ }
           }
           // CM4-R6.5B-1：据点污染层（冲突热度 → 闪烁/扭曲，Ghost 前置预警）
+          // 手感修复：getPresentation() 单次计算、双处消费（污染层 + 战场视觉），消除每帧重复推理
+          let presCache = null;
           if (typeof bm.getPresentation === 'function') {
             try {
-              const pres = bm.getPresentation();
-              if (pres && pres.pollution && pres.pollution.cells) {
-                renderState.pollution = pres.pollution;
+              presCache = bm.getPresentation();
+              if (presCache && presCache.pollution && presCache.pollution.cells) {
+                renderState.pollution = presCache.pollution;
               }
             } catch (e) { /* 污染层可选 */ }
           }
@@ -1910,8 +1912,7 @@ class GameApp {
             const tpl = typeof bm.getTpl === 'function' ? bm.getTpl() : null;
             if (viz && tpl && typeof tpl.getHubState === 'function') {
               const hubs = tpl.getHubState();
-              const pres2 = typeof bm.getPresentation === 'function' ? bm.getPresentation() : null;
-              const vizData = viz.build(hubs, pres2 && pres2.heat ? pres2.heat : null);
+              const vizData = viz.build(hubs, presCache && presCache.heat ? presCache.heat : null);
               if (vizData) renderState.battlefield = vizData;
             }
           } catch (e) { /* 战场视觉可选 */ }

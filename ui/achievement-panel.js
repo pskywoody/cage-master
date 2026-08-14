@@ -141,11 +141,29 @@ export class AchievementPanel {
       if (content) this._panel.appendChild(content);
       this._panel.style.display = 'block';
       this._isOpen = true;
+      // 上线审计修复：Escape 关闭浮动面板
+      this._bindEscape();
       return true;
     } catch (e) {
       console.warn('[AchievementPanel] open error:', e);
       return false;
     }
+  }
+
+  /**
+   * 上线审计修复：Escape 关闭面板（单次绑定）
+   */
+  _bindEscape() {
+    try {
+      if (this._escapeBound) return;
+      this._escapeBound = true;
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && this._isOpen) {
+          e.preventDefault();
+          this.close();
+        }
+      });
+    } catch (e) { /* 忽略 */ }
   }
 
   /**
@@ -309,7 +327,8 @@ export class AchievementPanel {
     style.id = 'cm-achievement-style';
     style.textContent = [
       '/* P1：成就面板 = 档案页（旧纸底 + 纹理叠层 + 墨描边） */',
-      '.cm-achievement { position: fixed; right: 20px; top: 20px; width: 360px; max-height: 86vh;',
+      '.cm-achievement { position: fixed; right: 20px; top: 20px; width: 360px; max-width: calc(100vw - 24px);',
+      '  max-height: 86vh;',
       '  overflow-y: auto; z-index: 9500; background-color: #f5f0e0; background-image:',
       '  repeating-linear-gradient(45deg, rgba(200,190,170,.03) 0px, rgba(200,190,170,.03) 1px, transparent 1px, transparent 3px),',
       '  radial-gradient(ellipse at 20% 30%, rgba(184,168,136,.05) 0%, transparent 60%);',

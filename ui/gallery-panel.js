@@ -893,11 +893,29 @@ export class GalleryPanel {
       }
       this._panel.style.display = 'block';
       this._isOpen = true;
+      // 上线审计修复：Escape 关闭浮动面板
+      this._bindEscape();
       return true;
     } catch (e) {
       console.warn('[GalleryPanel] open error:', e);
       return false;
     }
+  }
+
+  /**
+   * 上线审计修复：Escape 关闭面板（单次绑定）
+   */
+  _bindEscape() {
+    try {
+      if (this._escapeBound) return;
+      this._escapeBound = true;
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && this._isOpen) {
+          e.preventDefault();
+          this.close();
+        }
+      });
+    } catch (e) { /* 忽略 */ }
   }
 
   /**
@@ -1188,7 +1206,8 @@ export class GalleryPanel {
     style.id = 'cm-gallery-style';
     style.textContent = [
       '/* P1：画廊面板 = 档案页（旧纸底 + 纹理叠层 + 墨描边） */',
-      '.cm-gallery { position: fixed; right: 20px; top: 20px; width: 380px; max-height: 86vh;',
+      '.cm-gallery { position: fixed; right: 20px; top: 20px; width: 380px; max-width: calc(100vw - 24px);',
+      '  max-height: 86vh;',
       '  overflow-y: auto; z-index: 9500; background-color: #f5f0e0; background-image:',
       '  repeating-linear-gradient(45deg, rgba(200,190,170,.03) 0px, rgba(200,190,170,.03) 1px, transparent 1px, transparent 3px),',
       '  radial-gradient(ellipse at 20% 30%, rgba(184,168,136,.05) 0%, transparent 60%);',
@@ -1214,12 +1233,12 @@ export class GalleryPanel {
       '.cm-gallery-name { font-size: 13px; font-weight: 600; color: #3a3229; }',
       '.cm-gallery-title-line { font-size: 11px; color: #8a5a3a; margin-bottom: 4px; }',
       '.cm-gallery-desc { font-size: 12px; color: var(--color-ink-muted); line-height: 1.5; margin-bottom: 6px; }',
-      '.cm-gallery-meta { font-size: 10px; color: #a08a70; }',
+      '.cm-gallery-meta { font-size: 10px; color: #6b4f33; }',
       '/* P1.1：页签栏 + 收集分组 + 进度条 */',
       '.cm-gallery-tabs { display: flex; gap: 6px; margin-bottom: 12px; flex-wrap: wrap; }',
       '.cm-gallery-tab { border: 1px solid rgba(90,70,40,.4); background: rgba(237,229,208,.5); color: #5a4630;',
       '  border-radius: 5px; padding: 4px 10px; font-size: 12px; cursor: pointer; }',
-      '.cm-gallery-tab--active { background: #b8860b; color: #f5f0e0; border-color: #b8860b; }',
+      '.cm-gallery-tab--active { background: #7d5b0e; color: #f7f3e6; border-color: #7d5b0e; }',
       '.cm-gallery-body { display: flex; flex-direction: column; gap: 12px; }',
       '.cm-gallery-section-title { font-size: 13px; font-weight: 700; color: #3a3229; margin-bottom: 6px; }',
       '.cm-gallery-progress { position: relative; height: 12px; border-radius: 6px; background: rgba(90,70,40,.18);',

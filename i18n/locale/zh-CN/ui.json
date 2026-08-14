@@ -806,6 +806,7 @@
   "ui.toast.enterLevelFirst": "请先进入关卡",
   "ui.toast.enterLevelFirst2": "请先进入关卡（章节选择里挑一关）",
   "ui.toast.levelLoadError": "关卡加载失败：{msg}",
+  "ui.toast.progressReset": "已清除全部关卡进度",
   "ui.toast.poolNotReady": "精选池尚未就绪，请稍候",
   "ui.toast.poolEmpty": "池子已用完",
   "ui.toast.poolChallenge": "高级挑战：X-Wing 池",
@@ -939,8 +940,6 @@
 
   "ui.whatIf.confirmAccept": "确定采纳当前盘面吗？",
   "ui.whatIf.confirmExit": "已无分支可回退，确定退出假设模式吗？",
-  "ui.game.on": "开",
-  "ui.game.off": "关",
 
   "ui.boss.float.parry": "招架!",
   "ui.boss.float.mislead": "误导成功!",

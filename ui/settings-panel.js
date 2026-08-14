@@ -205,11 +205,29 @@ export class SettingsPanel {
       this._syncControls();
       this._panel.style.display = 'block';
       this._isOpen = true;
+      // 上线审计修复：Escape 关闭浮动面板（此前仅有关闭按钮）
+      this._bindEscape();
       return true;
     } catch (e) {
       console.warn('[SettingsPanel] open error:', e);
       return false;
     }
+  }
+
+  /**
+   * 上线审计修复：Escape 关闭面板（单次绑定，避免重复监听）
+   */
+  _bindEscape() {
+    try {
+      if (this._escapeBound) return;
+      this._escapeBound = true;
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && this._isOpen) {
+          e.preventDefault();
+          this.close();
+        }
+      });
+    } catch (e) { /* 忽略 */ }
   }
 
   /**
@@ -560,7 +578,7 @@ export class SettingsPanel {
       '.cm-settings-control select { flex: 1; height: 30px; border: 1px solid rgba(90,70,40,.5); border-radius: 5px;',
       '  background: #f5f0e0; color: #3a3229; padding: 0 8px; font-size: 13px; }',
       '.cm-settings-value { font-size: 13px; color: var(--color-ink-muted); min-width: 40px; text-align: right; }',
-      '.cm-settings-hint { font-size: 12px; color: #a08a70; margin-top: 2px; }',
+      '.cm-settings-hint { font-size: 12px; color: #6b4f33; margin-top: 2px; }',
     ].join('\n');
     document.head.appendChild(style);
   }

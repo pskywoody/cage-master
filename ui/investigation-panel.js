@@ -97,6 +97,16 @@ export class InvestigationPanel {
   open() {
     this.el.classList.add('iv-open');
     this._refresh();
+    // 上线审计修复：Escape 关闭浮动面板（单次绑定）
+    if (!this._escapeBound) {
+      this._escapeBound = true;
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && this.isOpen()) {
+          e.preventDefault();
+          this.close();
+        }
+      });
+    }
   }
   close() {
     this.el.classList.remove('iv-open');

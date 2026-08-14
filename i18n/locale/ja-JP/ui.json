@@ -762,6 +762,7 @@
   "ui.toast.enterLevelFirst": "先にステージに入ってください",
   "ui.toast.enterLevelFirst2": "先にステージに入ってください（章選択から選んでください）",
   "ui.toast.levelLoadError": "ステージの読み込みに失敗しました：{msg}",
+  "ui.toast.progressReset": "全ステージの進捗をクリアしました",
   "ui.toast.poolNotReady": "プールの準備がまだできていません。しばらくお待ちください",
   "ui.toast.poolEmpty": "プールを使い切りました",
   "ui.toast.poolChallenge": "上級チャレンジ：X-Wing プール",

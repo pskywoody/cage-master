@@ -72,6 +72,9 @@
     padding-top: env(safe-area-inset-top);
     padding-bottom: env(safe-area-inset-bottom);
   }
+  /* 上线审计修复：body.modal-open 滚动锁定（PauseManager 添加/移除该类，
+     原 CSS 无对应规则导致暂停时背景仍可滚动） */
+  body.modal-open { overflow: hidden; }
 
   /* ---------------- 顶部栏 ---------------- */
   /* P0：顶栏 = 书脊压条——皮质渐变 + 上下压线，替代深色玻璃条 */
@@ -107,7 +110,7 @@
   .brand .subtitle { font-size: 12px; color: var(--muted); font-weight: 400; }
 
   .top-btn {
-    padding: 7px 16px;
+    padding: 10px 16px;
     border: 1px solid var(--border);
     border-radius: 8px;
     background: var(--panel2);
@@ -116,6 +119,7 @@
     font-weight: 600;
     cursor: pointer;
     transition: all 0.2s;
+    min-height: 36px;
   }
   .top-btn:hover { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(212,168,83,0.15); }
 
@@ -531,7 +535,7 @@
   }
   /* CM4-Board 战场表现增强：连线完成爆发闪光（三点绝杀时刻） */
   #battleBurstOverlay {
-    position: fixed; inset: 0; pointer-events: none; z-index: 360;
+    position: fixed; inset: 0; pointer-events: none; z-index: 8795;
     opacity: 0; visibility: hidden; overflow: hidden;
   }
   #battleBurstOverlay.show { opacity: 1; visibility: visible; }
@@ -566,7 +570,7 @@
   }
   /* CM4-Board 战场表现增强：接近三连压力暗角（兵临城下，红色脉动） */
   #battlePressVignette {
-    position: fixed; inset: 0; pointer-events: none; z-index: 340;
+    position: fixed; inset: 0; pointer-events: none; z-index: 8785;
     opacity: 0; visibility: hidden;
     background:
       radial-gradient(ellipse at center, rgba(0,0,0,0) 55%, rgba(180,30,20,0.32) 100%);
@@ -1080,7 +1084,7 @@
   #battleComboFloat {
     position: fixed; top: 30%; left: 50%;
     transform: translateX(-50%);
-    z-index: 8300;
+    z-index: 8780;
     font-size: 22px; font-weight: 800;
     text-shadow: 0 3px 12px rgba(0,0,0,0.55);
     opacity: 0; pointer-events: none;
@@ -1428,7 +1432,7 @@
   /* ---------------- 看破 COUNTER 全屏大字（2026-08-04）P3：朱砂大印 ---------------- */
   #counterOverlay {
     position: fixed; inset: 0; display: flex; align-items: center; justify-content: center;
-    pointer-events: none; z-index: 300; opacity: 0;
+    pointer-events: none; z-index: 8780; opacity: 0;
   }
   #counterOverlay .counter-text {
     font-family: 'ZCOOL XiaoWei', 'KaiTi', '楷体', serif; font-weight: 700; font-size: clamp(48px, 12vw, 120px);
@@ -1468,14 +1472,17 @@
   }
   .replay-compare .rc-row { display: flex; gap: 8px; align-items: baseline; border-bottom: 1px dashed rgba(90,70,40,0.35); padding: 3px 0; }
   .replay-compare .rc-step { min-width: 30px; font-size: 13px; color: var(--color-ink-muted); }
-  .replay-compare .rc-tech { color: var(--gold); min-width: 72px; }
+  /* 上线审计修复：技法名原用 --gold（#d4a853）在纸底上仅 1.76:1 对比度（不达标），
+     改深墨色（与行文字同色，对比度 ~11:1），并加粗保持可辨识 */
+  .replay-compare .rc-tech { color: #4a3520; font-weight: 600; min-width: 72px; }
   .replay-compare .rc-cell { font-weight: 700; min-width: 44px; font-variant-numeric: tabular-nums; }
   .replay-compare .rc-flag { margin-left: auto; white-space: nowrap; }
   .replay-compare .rc-flag.match { color: var(--ok); }
   .replay-compare .rc-flag.skip { color: var(--danger); }
   .replay-compare .rc-flag.extra { color: var(--gold); }
   .replay-controls { display: flex; gap: 6px; justify-content: center; flex-wrap: wrap; }
-  .replay-controls .modal-btn { height: 34px; font-size: 12px; padding: 0 10px; flex: 1; min-width: 60px; }
+  /* 上线审计修复：回放按钮 34px→40px（触摸目标下限） */
+  .replay-controls .modal-btn { height: 40px; font-size: 12px; padding: 0 10px; flex: 1; min-width: 60px; }
   .replay-status { text-align: center; font-size: 12px; color: var(--muted); margin: 8px 0 2px; }
   .replay-legend { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; font-size: 11px; color: var(--muted); margin-top: 8px; }
   .replay-legend .lg-opt { color: var(--gold); }
@@ -1628,6 +1635,18 @@
     #board-container { --board-size: min(72vh, 92vw); }
   }
 
+  /* ---------------- 动效偏好（上线审计：prefers-reduced-motion） ----------------
+     系统开启"减弱动态效果"时：翻书/弹窗/连击/雪崩等非必要动画全部收敛为
+     瞬时完成或静态显示，避免前庭不适（WCAG 2.3.3） */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
   /* ---------------- 响应式 ---------------- */
   @media (max-width: 480px) {
     #topbar { padding: 10px 12px; gap: 8px 10px; }
@@ -1679,7 +1698,8 @@
     border-color: #b5861f; color: #14100c;
   }
   .sp-btn.sp-primary:hover { filter: brightness(1.08); color: #14100c; }
-  .sp-hint { font-size: 11px; color: #6b6154; text-align: center; }
+  /* 上线审计修复：原 #6b6154 在深底 3.12:1 不达标（11px 需 4.5:1），改亮至 ~5:1 */
+  .sp-hint { font-size: 11px; color: #8d8272; text-align: center; }
 
   /* ================ 笔记本主题壳层（规格书 3/4 章） ================ */
   .hidden { display: none !important; }
@@ -2917,7 +2937,7 @@
     <p id="completeInfo"></p>
     <!-- V4.3.22：Boss 战报卡（梗图化结算，可保存分享） -->
     <div id="battleReportWrap" class="hidden">
-      <canvas id="battleReportCanvas" width="560" height="360" class="battle-report-canvas"></canvas>
+      <canvas id="battleReportCanvas" width="560" height="360" class="battle-report-canvas" aria-label="战报统计图"></canvas>
       <div class="report-actions">
         <button id="btnSaveReport" class="modal-btn" data-i18n="ui.complete.saveReport" data-i18n-title="ui.complete.saveReportTitle" title="保存战报卡为图片">保存战报</button>
         <!-- V4.3.22：回放码分享（长尾传播） -->
@@ -8524,6 +8544,25 @@ function teachLedger45IfNeeded() {
 
 $('btnCloseDrawer').addEventListener('click', closeDrawer);
 $('drawerBackdrop').addEventListener('click', closeDrawer);
+
+// 上线审计修复：btnResetAll（重置全部进度）此前有 DOM 无事件绑定——死按钮。
+// 补二次确认（与数据面板文案一致），确认后清空进度并刷新关卡列表。
+try {
+  $('btnResetAll').addEventListener('click', () => {
+    try {
+      const ok = window.confirm(I18n.t('ui.chapterDrawer.resetAllTitle'));
+      if (!ok) return;
+      if (typeof CM.lm !== 'undefined' && CM.lm && typeof CM.lm.resetAllProgress === 'function') {
+        CM.lm.resetAllProgress();
+        toast(I18n.t('ui.toast.progressReset'), 1600);
+        // 刷新关卡选择列表
+        try {
+          if (CM.levelSelect && typeof CM.levelSelect.refresh === 'function') CM.levelSelect.refresh();
+        } catch (e) {}
+      }
+    } catch (e) { console.warn('[ResetAll]', e); }
+  });
+} catch (e) { console.warn('[ResetAll] bind:', e); }
 
 function openDrawer() {
   $('chapterDrawer').classList.add('open');

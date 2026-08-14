@@ -762,6 +762,7 @@
   "ui.toast.enterLevelFirst": "Enter a level first",
   "ui.toast.enterLevelFirst2": "Enter a level first (pick one from the chapter select)",
   "ui.toast.levelLoadError": "Failed to load level: {msg}",
+  "ui.toast.progressReset": "All level progress cleared",
   "ui.toast.poolNotReady": "The challenge pool isn't ready yet, please wait",
   "ui.toast.poolEmpty": "The pool is exhausted",
   "ui.toast.poolChallenge": "Advanced challenge: X-Wing pool",

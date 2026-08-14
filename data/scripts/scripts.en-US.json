@@ -289,7 +289,7 @@
                   "speaker": "Narrator",
                   "text": "At the end of the stone steps lies a small mezzanine stone chamber, stacked with a few dusty old wooden cases, unlocked. Shen Mo lifts a lid: no gold or silver inside, only old manuscripts, handwritten notes, and a small brass key numbered 3 — wrapped in yellowed silk paper bearing a few faint lines of writing in his father's hand. Years ago, his father too had come here.",
                   "emotion": "旁白·叙述",
-                  "bg": "assets/images/chapter1/backgrounds/BG-CH1-01_accounting_room_night.jpg"
+                  "bg": "assets/images/chapter2/backgrounds/BG-CH2-07_b2_room.jpg"
                 },
                 {
                   "speaker": "Narrator",
@@ -318,7 +318,7 @@
                   "speaker": "Narrator",
                   "text": "At the end of the stone chamber stands a heavy iron door; a complete Sudoku grid is carved directly into its surface. This is the final lock of the prologue. Shen Mo pieces together every clue gathered along the way — the anonymous letter, the old bookshop, the wall carvings, his father's relics — all converging here.",
                   "emotion": "旁白·叙述",
-                  "bg": "assets/images/chapter1/backgrounds/BG-CH1-01_accounting_room_night.jpg"
+                  "bg": "assets/images/chapter2/backgrounds/BG-CH2-06_b2_gate.jpg"
                 },
                 {
                   "speaker": "Narrator",
@@ -739,7 +739,7 @@
                   "speaker": "Narrator",
                   "text": "The B1 corridor is even narrower than the entrance steps. On both walls, strings of numbers carved by knife points stretch endlessly. Shen Mo stops before the seventh carving; its final three digits match exactly the end of the note in the old coat's inner pocket from Chapter Two.",
                   "emotion": "旁白·叙述",
-                  "bg": "assets/images/chapter3/backgrounds/BG-CH3-01_secret_door.jpg"
+                  "bg": "assets/images/chapter2/backgrounds/BG-CH2-01_b1_corridor.jpg"
                 },
                 {
                   "speaker": "Narrator",
@@ -1616,7 +1616,7 @@
                   "speaker": "Narrator",
                   "text": "Shen Mo returns safely along the Suzhou Creek, no one stopping him, no one watching, reaching the counting house without incident. By the stove, Su Wan has long left a kerosene lamp for him; its warm light pierces the darkness of the room, quietly awaiting his return. She remains silent throughout, never asking where he went out late at night, never probing the secrets on paper, only silently bringing a bowl of hot porridge, setting it gently at the edge of the stove, then stepping aside so as not to disturb him.",
                   "emotion": "旁白·叙述",
-                  "bg": "assets/images/chapter5/backgrounds/BG-CH5-02_direction_finder.jpg"
+                  "bg": "assets/images/chapter6/backgrounds/BG-CH6-01_accounting.jpg"
                 },
                 {
                   "speaker": "Narrator",
@@ -1646,7 +1646,7 @@
                   "speaker": "Narrator",
                   "text": "Through the long night, Shen Mo sits in the counting house without a moment's sleep. The sky gradually brightens; grey-blue dawn light pierces the window lattice, breaking the thick darkness. From the street come the hurried footsteps of a newsboy — steps rushed, far more frantic than usual, shattering the morning stillness.",
                   "emotion": "旁白·叙述",
-                  "bg": "assets/images/chapter5/backgrounds/BG-CH5-01_telegraph_room.jpg"
+                  "bg": "assets/images/chapter6/backgrounds/BG-CH6-01_accounting.jpg"
                 },
                 {
                   "speaker": "Narrator",
@@ -1867,7 +1867,7 @@
                   "speaker": "Narrator",
                   "text": "As dusk gathers, Shen Mo steps into the deep alley where the old Lu Lu Tong Teahouse stands. The whole building is empty and abandoned, silent and desolate, no longer holding its former warmth and voices. The wooden door on the ground floor is ajar, unlocked; dim dusk seals the door gap, and the light inside is so faint that the writing on paper can no longer be clearly read.",
                   "emotion": "旁白·叙述",
-                  "bg": "assets/images/chapter6/backgrounds/BG-CH6-02_bookstore.jpg"
+                  "bg": "assets/images/chapter4/backgrounds/BG-CH4-05_teahouse.jpg"
                 },
                 {
                   "speaker": "Narrator",
@@ -1937,7 +1937,7 @@
                   "speaker": "Narrator",
                   "text": "Shen Mo does not withdraw directly by the shortest route; he pauses midway in the dim B1 corridor, stopping before the stone wall covered in number carvings. In the darkness, with no need for light, he verifies by memory alone the position, order, and depth of every carving, confirming that all past marks are intact — no covering, no alteration, no new traces from outsiders.",
                   "emotion": "旁白·叙述",
-                  "bg": "assets/images/chapter6/backgrounds/BG-CH6-01_accounting.jpg"
+                  "bg": "assets/images/chapter2/backgrounds/BG-CH2-01_b1_corridor.jpg"
                 },
                 {
                   "speaker": "Narrator",
@@ -1967,7 +1967,7 @@
                   "speaker": "Narrator",
                   "text": "In the early hours, Shen Mo quietly returns to the counting house. No lamp is lit inside; it is sunk in still darkness. Su Wan has not slept; she sits alone on the low stool by the stove, silently waiting for his return, her posture steady, her expression calm — no anxiety, no fear. Shen Mo sits silently at the table; in the darkness he deftly takes out the ledger, precisely turns to the page for November 15, and lightly touches the paper, confirming the lining is intact and the hidden object is safe. The moment he gently closes the ledger, heavy, orderly footsteps sound from the street outside — the regular march of a Japanese patrol formation, far exceeding the scale and force of routine patrols. The whole formation suddenly halts at the mouth of the alley, holding in place for a moment; the atmosphere tightens abruptly. Inside, the two remain motionless, holding their breath, letting the risk circle outside. After a moment, the footsteps sound again — not entering the alley, not approaching the counting house — heading straight away along the lane.",
                   "emotion": "旁白·叙述",
-                  "bg": "assets/images/chapter6/backgrounds/BG-CH6-03_fourth_bridge.jpg"
+                  "bg": "assets/images/chapter6/backgrounds/BG-CH6-01_accounting.jpg"
                 },
                 {
                   "speaker": "Su Wan",
@@ -2007,7 +2007,7 @@
                   "speaker": "Narrator",
                   "text": "Before dawn breaks, Shen Mo goes alone to No. 72 Dixiwei Road. The study door on the third floor is still ajar; a gentle push opens it, the hinge smooth and silent, with no sound of disturbance. The desk and furnishings inside remain as they were; the desk's hidden compartment is still open, exactly as when he last visited.",
                   "emotion": "旁白·叙述",
-                  "bg": "assets/images/chapter6/backgrounds/BG-CH6-01_accounting.jpg"
+                  "bg": "assets/images/chapter7/backgrounds/BG-CH7-02_disiwei72.jpg"
                 },
                 {
                   "speaker": "Narrator",
@@ -2042,7 +2042,7 @@
                   "speaker": "Narrator",
                   "text": "In the early morning light, Shen Mo walks steadily into the Lu Lu Tong Teahouse. The door of the second-floor private room is half open; inside sits a man in his thirties, wearing a plain grey cloth gown, a cup of clear tea before him untouched, his posture upright, his expression calm, as if he has been waiting a long while. Shen Mo pushes the door open and closes it behind him, shutting out the noise of the streets. The man rises and reaches out to shake hands; Shen Mo does not raise his hand in response, but sits directly across the table, gently pushing the teacup to the center of the tabletop, then takes the 1938 Concession map from his inner pocket and spreads it flat on the table.",
                   "emotion": "旁白·叙述",
-                  "bg": "assets/images/chapter6/backgrounds/BG-CH6-02_bookstore.jpg"
+                  "bg": "assets/images/chapter4/backgrounds/BG-CH4-05_teahouse.jpg"
                 },
                 {
                   "speaker": "Shen Mo",
@@ -2458,7 +2458,7 @@
                   "speaker": "Narrator",
                   "text": "The fog finally disappears. Transparent sunlight pours through the cabin window. Every object on the berth is clearly visible. Shen Mo sits at the edge of the bed and slowly lays out the things he has carried with him: the father's handwritten letter, the 1938 French Concession map, the outbound ticket, the teacher's remaining puzzle fragments, the hidden words written on the back of his mother's photograph, the final coordinates left behind by his father.",
                   "emotion": "旁白·叙述",
-                  "bg": "assets/images/chapter7/backgrounds/BG-CH7-01_west_warehouse.jpg"
+                  "bg": "assets/images/chapter7/backgrounds/BG-CH7-04_dock.jpg"
                 },
                 {
                   "speaker": "Narrator",

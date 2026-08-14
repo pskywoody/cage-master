@@ -289,7 +289,7 @@
                                                                                      "speaker":  "旁白",
                                                                                      "text":  "石阶尽头，是一处狭小夹层石室，室内堆放几只蒙尘旧木箱，没有上锁。沈墨掀开箱盖，箱中没有金银，只有旧文稿、手抄笔记，还有一把编号为3的黄铜小钥匙——包在泛黄绢纸之内，纸上几行模糊字迹，是他父亲的笔迹。多年以前，他的父亲，也曾来过这里。",
                                                                                      "emotion":  "旁白·叙述",
-                                                                                     "bg":  "assets/images/chapter1/backgrounds/BG-CH1-01_accounting_room_night.jpg"
+                                                                                     "bg": "assets/images/chapter2/backgrounds/BG-CH2-07_b2_room.jpg"
                                                                                  },
                                                                                  {
                                                                                      "speaker":  "旁白",
@@ -318,7 +318,7 @@
                                                                                      "speaker":  "旁白",
                                                                                      "text":  "石室尽头矗立一道厚重铁门，门板之上，直接镌刻完整数独盘面。这是序章最终的锁。沈墨将一路收集到的全部线索拼合——匿名信件、旧书铺、石壁刻痕、父亲遗物，在此全部汇合。",
                                                                                      "emotion":  "旁白·叙述",
-                                                                                     "bg":  "assets/images/chapter1/backgrounds/BG-CH1-01_accounting_room_night.jpg"
+                                                                                     "bg": "assets/images/chapter2/backgrounds/BG-CH2-06_b2_gate.jpg"
                                                                                  },
                                                                                  {
                                                                                      "speaker":  "旁白",
@@ -344,7 +344,7 @@
                                                                 {
                                                                     "speaker":  "老师（留声）",
                                                                     "text":  "墨，你已集齐序章的九枚碎片。这封信，是我留给你最后背影前面那道门。你读过我的字迹，也读过夹层里你父亲的笔迹——他们都在等你，把这一路拼成真正的答案。",
-                                                                    "bg":  "assets/images/chapter1/cg/CG-CH1-01_letter_closeup.jpg",
+                                                                    "bg": "assets/images/chapter2/backgrounds/BG-CH2-06_b2_gate.jpg",
                                                                     "emotion":  "留声·温和"
                                                                 },
                                                                 {
@@ -739,7 +739,7 @@
                                                                                      "speaker":  "旁白",
                                                                                      "text":  "B1走廊比入口石阶更加逼仄。两侧石壁，刀尖刻下的一串串数字连绵不绝。沈墨走到第七道刻痕跟前，刻痕末尾三位数字，和第二章旧大衣内袋纸条末尾完全吻合。",
                                                                                      "emotion":  "旁白·叙述",
-                                                                                     "bg":  "assets/images/chapter3/backgrounds/BG-CH3-01_secret_door.jpg"
+                                                                                     "bg": "assets/images/chapter2/backgrounds/BG-CH2-01_b1_corridor.jpg"
                                                                                  },
                                                                                  {
                                                                                      "speaker":  "旁白",
@@ -1616,7 +1616,7 @@
                                                                                      "speaker":  "旁白",
                                                                                      "text":  "沈墨沿苏州河安然折返，一路无人拦截、无人窥探，顺利回到帐房。灶台边，苏晚早已为他留好一盏煤油灯，暖光刺破屋内黑暗，安稳等候他归来。她全程静默，未问询他深夜外出的去向，未探究纸面隐秘，只默默端来一碗热粥，轻置灶台边缘，随即侧身避让，不扰他分毫。",
                                                                                      "emotion":  "旁白·叙述",
-                                                                                     "bg":  "assets/images/chapter5/backgrounds/BG-CH5-02_direction_finder.jpg"
+                                                                                     "bg": "assets/images/chapter6/backgrounds/BG-CH6-01_accounting.jpg"
                                                                                  },
                                                                                  {
                                                                                      "speaker":  "旁白",
@@ -1646,7 +1646,7 @@
                                                                                      "speaker":  "旁白",
                                                                                      "text":  "漫漫长夜，沈墨静坐帐房、未眠分毫。天边渐亮，灰蓝色晨光穿透窗棂，刺破浓稠夜色。街头传来报童急促的脚步声，步履匆匆、远超平日慌乱，打破清晨静谧。",
                                                                                      "emotion":  "旁白·叙述",
-                                                                                     "bg":  "assets/images/chapter5/backgrounds/BG-CH5-01_telegraph_room.jpg"
+                                                                                     "bg": "assets/images/chapter6/backgrounds/BG-CH6-01_accounting.jpg"
                                                                                  },
                                                                                  {
                                                                                      "speaker":  "旁白",
@@ -1699,7 +1699,7 @@
                                                                     "speaker":  "旁白",
                                                                     "text":  "第五章的九枚档案碎片，拼合成一条完整的电波链路。三段电文尽数落地，测向队追着假信号去了别处；山田特高课的排查档案里，伊藤抹去了一条关键条目，却刻意遗留另一条——沈墨的名字，半掩半露。",
                                                                     "emotion":  "旁白·叙述",
-                                                                    "bg":  "assets/images/chapter5/backgrounds/BG-CH5-01_telegraph_room.jpg"
+                                                                    "bg": "assets/images/chapter6/backgrounds/BG-CH6-01_accounting.jpg"
                                                                 },
                                                                 {
                                                                     "speaker":  "沈墨 CHIBI",
@@ -1867,7 +1867,7 @@
                                                                                      "speaker":  "旁白",
                                                                                      "text":  "黄昏暮色四合，沈墨步入路路通茶馆旧址所在的幽深小巷。整栋楼宇人去楼空，寂静荒芜，再无往日烟火与人声。底层木门虚掩，未上锁扣，昏沉暮色封堵门缝，屋内光线昏暗至极，已然无法清晰辨认纸面文字。",
                                                                                      "emotion":  "旁白·叙述",
-                                                                                     "bg":  "assets/images/chapter6/backgrounds/BG-CH6-02_bookstore.jpg"
+                                                                                     "bg": "assets/images/chapter4/backgrounds/BG-CH4-05_teahouse.jpg"
                                                                                  },
                                                                                  {
                                                                                      "speaker":  "旁白",
@@ -1937,7 +1937,7 @@
                                                                                      "speaker":  "旁白",
                                                                                      "text":  "沈墨并未沿最短原路直接撤离，于幽暗B1走廊中途驻足，停在满布数字刻痕的石壁前。黑暗之中，他无需光源，仅凭记忆核验所有刻痕位置、顺序、深浅，确认过往标记完好无损、无覆盖、无篡改、无新增外人痕迹。",
                                                                                      "emotion":  "旁白·叙述",
-                                                                                     "bg":  "assets/images/chapter6/backgrounds/BG-CH6-01_accounting.jpg"
+                                                                                     "bg": "assets/images/chapter2/backgrounds/BG-CH2-01_b1_corridor.jpg"
                                                                                  },
                                                                                  {
                                                                                      "speaker":  "旁白",
@@ -1967,7 +1967,7 @@
                                                                                      "speaker":  "旁白",
                                                                                      "text":  "凌晨时分，沈墨悄然折返帐房。屋内未燃灯火，深陷静谧黑暗。苏晚并未入眠，独坐灶台边矮凳上，静默等候他归来，身姿安稳、神色淡然，无焦灼、无惶恐。沈墨默然落座桌边，黑暗中熟稔取出账本，精准翻至11月15日页码，指尖轻触纸面，确认夹层完好、隐秘物件安然无损。他刚轻轻合拢账本，屋外街巷传来整齐厚重的脚步声，是日军整队巡查的规整步伐，远超日常巡逻的规模与气势。整队脚步声在巷口骤然停驻，原地僵持片刻，氛围骤然紧绷。屋内二人皆纹丝不动、屏息静待，任由屋外风险盘旋。片刻后，脚步声再度响起，未深入弄堂、未靠近帐房，沿巷径直远去。",
                                                                                      "emotion":  "旁白·叙述",
-                                                                                     "bg":  "assets/images/chapter6/backgrounds/BG-CH6-03_fourth_bridge.jpg"
+                                                                                     "bg": "assets/images/chapter6/backgrounds/BG-CH6-01_accounting.jpg"
                                                                                  },
                                                                                  {
                                                                                      "speaker":  "苏晚",
@@ -2007,7 +2007,7 @@
                                                                                      "speaker":  "旁白",
                                                                                      "text":  "黎明破晓之前，沈墨独身前往狄思威路72号。三楼书房房门依旧虚掩，轻推即开，门轴顺滑无声，无半点异动声响。屋内书桌、陈设皆维持原样，书桌暗格依旧敞开，与他上一次到访时的状态别无二致。",
                                                                                      "emotion":  "旁白·叙述",
-                                                                                     "bg":  "assets/images/chapter6/backgrounds/BG-CH6-01_accounting.jpg"
+                                                                                     "bg": "assets/images/chapter7/backgrounds/BG-CH7-02_disiwei72.jpg"
                                                                                  },
                                                                                  {
                                                                                      "speaker":  "旁白",
@@ -2042,7 +2042,7 @@
                                                                                      "speaker":  "旁白",
                                                                                      "text":  "清晨天光初亮，沈墨稳步走入路路通茶馆。二楼雅间房门半敞，屋内端坐一名三十余岁的男子，身着素色灰布长衫，面前清茶静置、未曾动过，身姿端正、神色沉静，似已等候许久。沈墨推门而入，反手合上门扉，隔绝外界街巷动静。男子起身欲伸手相握，沈墨并未抬手回应，径直在桌对面落座，将桌面茶杯轻轻推至台面正中，随后从内袋取出1938年租界旧地图，平铺桌面。",
                                                                                      "emotion":  "旁白·叙述",
-                                                                                     "bg":  "assets/images/chapter6/backgrounds/BG-CH6-02_bookstore.jpg"
+                                                                                     "bg": "assets/images/chapter4/backgrounds/BG-CH4-05_teahouse.jpg"
                                                                                  },
                                                                                  {
                                                                                      "speaker":  "沈墨",
@@ -2130,7 +2130,7 @@
                                                                     "speaker":  "旁白",
                                                                     "text":  "第六章的九枚档案碎片，拼合成一张完整的网。晨光身份核验、匿名情报纸条、1938年租界旧地图、老师遗留原始题面、发报机无痕断电、父子传承刻痕、伊藤档案脱敏、父亲隐秘返程……沈墨走完了父亲的路，也织完了这张网。",
                                                                     "emotion":  "旁白·叙述",
-                                                                    "bg":  "assets/images/chapter6/backgrounds/BG-CH6-02_bookstore.jpg"
+                                                                    "bg": "assets/images/chapter4/backgrounds/BG-CH4-05_teahouse.jpg"
                                                                 },
                                                                 {
                                                                     "speaker":  "沈墨 CHIBI",
@@ -2458,7 +2458,7 @@
                                                                                      "speaker":  "旁白",
                                                                                      "text":  "海雾彻底褪去，天光通透洒落，填满狭小的船舱窗口，光线清亮柔和，足以清晰映照掌心所有纸质线索。沈墨静坐床铺边缘，将贴身收纳的所有物件逐一平铺展开：父亲的亲笔信纸、1938年租界旧地图、出海船票、老师遗留的题面碎片、母亲照片背面的隐秘字迹、父亲手写的终局坐标。",
                                                                                      "emotion":  "旁白·叙述",
-                                                                                     "bg":  "assets/images/chapter7/backgrounds/BG-CH7-01_west_warehouse.jpg"
+                                                                                     "bg": "assets/images/chapter7/backgrounds/BG-CH7-04_dock.jpg"
                                                                                  },
                                                                                  {
                                                                                      "speaker":  "旁白",
@@ -2546,7 +2546,7 @@
                                                                     "speaker":  "旁白",
                                                                     "text":  "第七章的九枚档案碎片，拼合成一条完整的归途。西郊仓库的终局刻痕、父亲托付的信封、窗台终局地址、苏州河畔的亲笔信、符拉迪沃斯托克的船票、帐房的告别、船舷上的旧钥匙……沈墨走完了父亲的路，也走完了自己的路。",
                                                                     "emotion":  "旁白·叙述",
-                                                                    "bg":  "assets/images/chapter7/backgrounds/BG-CH7-04_dock.jpg"
+                                                                    "bg": "assets/images/chapter7/backgrounds/BG-CH7-04_dock.jpg"
                                                                 },
                                                                 {
                                                                     "speaker":  "沈墨 CHIBI",

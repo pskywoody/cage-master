@@ -289,7 +289,7 @@
                   "speaker": "ナレーション",
                   "text": "石段の果てに、狭い踊り場の石室がある。中に塵をかぶった古い木箱が幾つか積まれ、錠はかかっていない。沈墨が蓋を持ち上げると、中に金銀はない——古い稿本、手書きの書き付け、そして番号3の真鍮の鍵が一つ。黄ばんだ絹紙に包まれ、紙の上に数行のぼやけた文字——父の筆跡。何年も前、父もまたここに来ていた。",
                   "emotion": "旁白·叙述",
-                  "bg": "assets/images/chapter1/backgrounds/BG-CH1-01_accounting_room_night.jpg"
+                  "bg": "assets/images/chapter2/backgrounds/BG-CH2-07_b2_room.jpg"
                 },
                 {
                   "speaker": "ナレーション",
@@ -318,7 +318,7 @@
                   "speaker": "ナレーション",
                   "text": "石室の果てに、重い鉄扉が立っている。扉板に、完全な数独盤面がそのまま刻まれている。これが序章最後の錠だ。沈墨は道中で集めた手がかりをすべて繋ぎ合わせる——匿名の手紙、古書店、石壁の刻み、父の遺品——すべてがここに集まる。",
                   "emotion": "旁白·叙述",
-                  "bg": "assets/images/chapter1/backgrounds/BG-CH1-01_accounting_room_night.jpg"
+                  "bg": "assets/images/chapter2/backgrounds/BG-CH2-06_b2_gate.jpg"
                 },
                 {
                   "speaker": "ナレーション",
@@ -739,7 +739,7 @@
                   "speaker": "ナレーション",
                   "text": "B1 回廊は入口の石段よりはるかに狭い。両側の石壁に、刀先で刻まれた数字の列が果てしなく連なる。沈墨は七番目の刻みの前で立ち止まる。刻みの末尾三桁は、第二章の古い外套の内ポケットの書き置きの末尾と寸分違わず合う。",
                   "emotion": "旁白·叙述",
-                  "bg": "assets/images/chapter3/backgrounds/BG-CH3-01_secret_door.jpg"
+                  "bg": "assets/images/chapter2/backgrounds/BG-CH2-01_b1_corridor.jpg"
                 },
                 {
                   "speaker": "ナレーション",
@@ -1616,7 +1616,7 @@
                   "speaker": "ナレーション",
                   "text": "沈墨は蘇州河に沿って無事に戻る——遮る者も、窺う者もなく——計算場へ着く。竈の傍らで、蘇晩はとうに彼のために灯油ランプをともしており、暖かな光が室内の闇を破り、彼の帰りを安定して待っている。彼女は終始黙り、深夜の外出の行方を問わず、紙の秘密を探らず、ただ黙って一碗の温かいお粥を運び、竈の縁に置き、それから脇へ退き、彼を少しも邪魔しない。",
                   "emotion": "旁白·叙述",
-                  "bg": "assets/images/chapter5/backgrounds/BG-CH5-02_direction_finder.jpg"
+                  "bg": "assets/images/chapter6/backgrounds/BG-CH6-01_accounting.jpg"
                 },
                 {
                   "speaker": "ナレーション",
@@ -1646,7 +1646,7 @@
                   "speaker": "ナレーション",
                   "text": "長い夜を通じ、沈墨は計算場に静座し、一睡もせず。空が次第に明るむ。灰青の朝の光が窓の格子を刺し、濃い夜を破る。街頭から新聞売りの急ぐ足音が——ふだんの慌てをはるかに越え、朝の静けさを破る。",
                   "emotion": "旁白·叙述",
-                  "bg": "assets/images/chapter5/backgrounds/BG-CH5-01_telegraph_room.jpg"
+                  "bg": "assets/images/chapter6/backgrounds/BG-CH6-01_accounting.jpg"
                 },
                 {
                   "speaker": "ナレーション",
@@ -1867,7 +1867,7 @@
                   "speaker": "ナレーション",
                   "text": "黄昏の暮色が四合する。沈墨は陸路通茶館の旧址のある深い路地へ踏み入る。建物全体が人去り空き、静寂で荒れ果て、昔の煙火も人声もない。一階の木の戸は虚に開き、掛かりは外れている。昏い暮色が扉の隙を塞ぎ、室内の光は極めて薄く、もはや紙面の文字を明瞭に識別できない。",
                   "emotion": "旁白·叙述",
-                  "bg": "assets/images/chapter6/backgrounds/BG-CH6-02_bookstore.jpg"
+                  "bg": "assets/images/chapter4/backgrounds/BG-CH4-05_teahouse.jpg"
                 },
                 {
                   "speaker": "ナレーション",
@@ -1937,7 +1937,7 @@
                   "speaker": "ナレーション",
                   "text": "沈墨は最短の原路で直接退かず、暗いB1回廊の中途で立ち止まり、数字の刻みで満ちた石壁の前に止まる。闇のなか、彼は光源を要せず、記憶だけですべての刻みの位置、順序、深さを検証し、過去の刻みが無傷、覆われず、改められず、外部の者の新しい跡もないことを確かめる。",
                   "emotion": "旁白·叙述",
-                  "bg": "assets/images/chapter6/backgrounds/BG-CH6-01_accounting.jpg"
+                  "bg": "assets/images/chapter2/backgrounds/BG-CH2-01_b1_corridor.jpg"
                 },
                 {
                   "speaker": "ナレーション",
@@ -1967,7 +1967,7 @@
                   "speaker": "ナレーション",
                   "text": "夜明け前、沈墨はひそかに計算場へ戻る。室内は灯を点さず、深い静かな闇に沈む。蘇晩は眠らず、竈の傍らの低い腰掛けに独り座し、黙って彼の帰りを待つ——姿勢は安定、表情は淡々として、焦りも恐れもない。沈墨は黙って卓に座す。闇のなか、馴染みの帳簿を取り出し、精確に11月15日の頁へめくり、指先で紙面に軽く触れ、隠し棚が無傷、ひそかな品が安全であることを確かめる。彼がちょうど帳簿をそっと閉じたとき、屋外の街巷から整った重い足音が——日本軍の整隊の巡視の規整な歩調、規模も気勢も日常の巡視をはるかに越える。整隊の足音が路地口で突然止まり、その場でひととき膠着し、雰囲気が突然張り詰める。室内の二人は皆、微動だにせず、息を潜めて待つ。しばらくして足音が再び——路地の奥へ入らず、計算場に近づかず——路地に沿ってまっすぐ遠ざかる。",
                   "emotion": "旁白·叙述",
-                  "bg": "assets/images/chapter6/backgrounds/BG-CH6-03_fourth_bridge.jpg"
+                  "bg": "assets/images/chapter6/backgrounds/BG-CH6-01_accounting.jpg"
                 },
                 {
                   "speaker": "蘇晩",
@@ -2007,7 +2007,7 @@
                   "speaker": "ナレーション",
                   "text": "夜明けの破曉の前、沈墨は独り迪西衛路72号へ。三階の書斎の扉は依然として虚に開き、軽く押せば開き、扉軸は滑らかで音なく、少しの異動の音もない。室内の机、調度は皆元のまま、机の隠し棚は依然として開き、彼が前回訪れたときの状態と少しも違わない。",
                   "emotion": "旁白·叙述",
-                  "bg": "assets/images/chapter6/backgrounds/BG-CH6-01_accounting.jpg"
+                  "bg": "assets/images/chapter7/backgrounds/BG-CH7-02_disiwei72.jpg"
                 },
                 {
                   "speaker": "ナレーション",
@@ -2042,7 +2042,7 @@
                   "speaker": "ナレーション",
                   "text": "明け方の天光が初めて明るむ。沈墨は安定して陸路通茶館へ歩み入る。二階の個室の扉は半ば開き、室内に三十がらみの男が一人、質素な灰色の布衣を着て端座し、前の清茶は静置され、手を付けていない。姿勢はまっすぐ、表情は沈静——すでに長く待っていたかのようだ。沈墨は扉を押し入り、背後で扉を閉め、外界の街巷の動きを遮る。男は立ち上がり握手を求めようとするが、沈墨は手を挙げず、ただ机の向かいに直接座し、卓上の茶杯をそっと台面の中央へ押し、それから内ポケットから1938年の租界の古い地図を取り出し、卓上に平らに敷く。",
                   "emotion": "旁白·叙述",
-                  "bg": "assets/images/chapter6/backgrounds/BG-CH6-02_bookstore.jpg"
+                  "bg": "assets/images/chapter4/backgrounds/BG-CH4-05_teahouse.jpg"
                 },
                 {
                   "speaker": "沈墨",
@@ -2458,7 +2458,7 @@
                   "speaker": "ナレーション",
                   "text": "海霧は徹底的に褪せ、天光が透き通り降り注ぎ、狭い船室の窓を満たす。光は明瞭で柔らかく、掌のすべての紙の手がかりを明瞭に映すに足る。沈墨は寝台の縁に静座し、身に添えたすべての物を一つひとつ平らに広げる:父の直筆の手紙、1938年の租界の古い地図、外航の船票、師の遺した題面の破片、母の写真の裏のひそかな字、父の直筆の終局の座標。",
                   "emotion": "旁白·叙述",
-                  "bg": "assets/images/chapter7/backgrounds/BG-CH7-01_west_warehouse.jpg"
+                  "bg": "assets/images/chapter7/backgrounds/BG-CH7-04_dock.jpg"
                 },
                 {
                   "speaker": "ナレーション",

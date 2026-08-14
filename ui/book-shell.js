@@ -160,18 +160,35 @@ function allChaptersDone() {
   if (backGame2) backGame2.addEventListener('click', () => backToGameFromBook());
 })();
 
-// Q13：返回游戏按钮显隐——仅从游戏内进入书壳（_bookFromGame）时显示
+// 返回按钮显隐：
+//   _bookFromGame === true  → 显示"返回游戏"（从游戏内进书壳）
+//   _bookFromGame === false → 显示"返回封面"（从 Start 页进游戏菜单，需能回封面）
 function refreshBackToGameBtns() {
   try {
-    const show = CM._bookFromGame === true;
+    const fromGame = CM._bookFromGame === true;
     const b1 = document.getElementById('btnBackToGame');
     const b2 = document.getElementById('btnBackToGame2');
-    if (b1) b1.classList.toggle('hidden', !show);
-    if (b2) b2.classList.toggle('hidden', !show);
+    // 两个按钮均为"返回"入口，按来源切换文案与显隐
+    [b1, b2].forEach((b) => {
+      if (!b) return;
+      b.classList.toggle('hidden', false); // 菜单内始终提供返回入口（回游戏或回封面）
+      if (fromGame) {
+        b.textContent = I18n.t('ui.book.backToGame');
+      } else {
+        b.textContent = I18n.t('ui.book.backToCover');
+      }
+    });
   } catch (e) {}
 }
 
 function backToGameFromBook() {
+  // V4.4.1：区分来源——从 Start 页进入菜单（_bookFromGame=false）时"返回"回封面；
+  // 从游戏内进入（_bookFromGame=true）时返回当前关卡
+  if (CM._bookFromGame !== true) {
+    try { hideBookShell(); } catch (e) {}
+    try { showStartPage(); } catch (e2) {}
+    return;
+  }
   try { hideBookShell(); } catch (e) {}
   // 恢复棋盘相关 UI（goToChapterList 隐藏过）
   try {

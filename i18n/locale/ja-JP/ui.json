@@ -703,6 +703,7 @@
   "ui.book.shelfHint": "「籠中密信」をタップしてこの本を開く",
   "ui.book.backToDir": "← 目次に戻る",
   "ui.book.backToGame": "↩ ゲームに戻る",
+  "ui.book.backToCover": "↩ 表紙に戻る",
   "ui.book.backToFreeplay": "← フリープレイに戻る",
   "ui.book.movesWritten": "✏️ 記入数",
   "ui.book.bestRun": "⭐ 最高ラウンド",

@@ -8960,8 +8960,8 @@ function _setGameCycle() {
 }
 
 // v2.0：Start 页控制——显示标题页；开始游戏走楔子 + 首个关卡
-// V4.4.0：导航重构——点"开始游戏"先进入游戏菜单（章节列表），由玩家自选关卡；
-// 不再自动进楔子/首关（避免"点开就直接进关卡"的跳层感）
+// V4.4.1：导航重构——点"开始游戏"进入游戏菜单（书壳目录页：章节模式/画廊/自由模式/选项/墨迹留言），
+// 由玩家在菜单中自选"章节模式"进入章节列表再选关；不再自动进楔子/首关，也不直接跳章节列表
 async function startFromStartPage() {
   hideStartPage();
   const startId = window.__pendingStartLevel;
@@ -8970,13 +8970,12 @@ async function startFromStartPage() {
     toast(I18n.t('ui.toast.loading'), 1800);
     return;
   }
-  // 进入游戏菜单（书壳章节列表页）：书壳仅作菜单容器，跳过书架直接展示章节列表
+  // 进入游戏菜单（书壳目录页）：书壳仅作菜单容器，跳过书架直接展示目录（多入口）
   try {
     CM._bookFromGame = false;
-    CM._bookCurPage = 'chapters';
-    CM.levelSelect.refresh();
+    CM._bookCurPage = 'directory';
     showBookShell();
-    bookFlipTo('chapters');
+    bookFlipTo('directory');
   } catch (e) {
     console.warn('[Start] 进入游戏菜单失败:', e);
     try { openDrawer(); } catch (e2) {}

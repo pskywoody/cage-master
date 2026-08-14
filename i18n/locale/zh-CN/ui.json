@@ -736,6 +736,7 @@
   "ui.book.shelfHint": "点击《笼中密信》翻开这本书",
   "ui.book.backToDir": "← 返回目录",
   "ui.book.backToGame": "↩ 返回游戏",
+  "ui.book.backToCover": "↩ 返回封面",
   "ui.book.backToFreeplay": "← 返回自由模式",
   "ui.book.movesWritten": "✏️ 已写笔数",
   "ui.book.bestRun": "⭐ 最高局数",

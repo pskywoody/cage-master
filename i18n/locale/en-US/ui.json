@@ -703,6 +703,7 @@
   "ui.book.shelfHint": "Click the Caged Cipher Letter to open this book",
   "ui.book.backToDir": "← Back to Contents",
   "ui.book.backToGame": "↩ Back to Game",
+  "ui.book.backToCover": "↩ Back to Cover",
   "ui.book.backToFreeplay": "← Back to Free Play",
   "ui.book.movesWritten": "✏️ Moves Written",
   "ui.book.bestRun": "⭐ Best Run",

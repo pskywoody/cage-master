@@ -703,6 +703,7 @@
   "ui.book.shelfHint": "'케이지 속 밀서'를 클릭해 이 책을 펼치세요",
   "ui.book.backToDir": "← 목차로 돌아가기",
   "ui.book.backToGame": "↩ 게임으로 돌아가기",
+  "ui.book.backToCover": "↩ 표지로 돌아가기",
   "ui.book.backToFreeplay": "← 자유 모드로 돌아가기",
   "ui.book.movesWritten": "✏️ 입력 수",
   "ui.book.bestRun": "⭐ 최고 라운드",

@@ -142,14 +142,17 @@ export class TplBattleController {
         this._ai.setOwnershipGrids(tpl.getPlayerOwnedGrid(), tpl.getAIOwnedGrid());
       }
 
-      // CM4-R2：注入 Director（默认 Shadow 模式，只记录建议不改行为）。
+      // CM4-R2：注入 Director。shadow 仅决定"是否只记录建议"：
+      //   shadow=true  → enableShadow()，setDirector(director, true)，不改 AI 行为（默认，安全校准）
+      //   shadow=false → 不 enableShadow，setDirector(director, false)，Director 决策经
+      //                  StrategySelector 钳制后真正下发旋钮（戏剧导演激活，R6 完整链路）
       // 由 AIPlayerCore._runDirector() 在 think() 内自动调用，此处只做装配。
-      if (this._directorShadow) {
+      {
         const personalityKey = aiKey; // 与 AI 人格一致
         this._director = new Director({ personality: personalityKey });
-        this._director.enableShadow();
+        if (this._directorShadow) this._director.enableShadow();
         if (typeof this._ai.setDirector === 'function') {
-          this._ai.setDirector(this._director, true);
+          this._ai.setDirector(this._director, this._directorShadow);
         }
       }
 

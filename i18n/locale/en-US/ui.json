@@ -643,6 +643,7 @@
   "ui.boss.deathblowWord": "Deathblow!",
   "ui.boss.deathblowLine": "Three-point line!",
   "ui.boss.deathblowAi": "Deathblown!",
+  "ui.boss.pollutionWarning": "Hub {hub} is spiraling out of control — conflict ghosts closing in…",
   "ui.whatIf.branch": "🧪 What-If Branch",
   "ui.whatIf.accept": "☑️ Accept",
   "ui.whatIf.acceptTitle": "Accept the current board and exit What-If mode",

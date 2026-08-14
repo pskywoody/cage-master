@@ -371,6 +371,12 @@
   .boss-hub-badge.castle::after { content: ' ♛'; color: #d4a853; }
   .boss-hub-badge.hidden-hub { opacity: 0.55; }
   .boss-hub-badge.hidden-hub::after { content: ' ❓'; color: #d4a853; }
+  /* CM4-R7：污染预警脉冲（据点失控 → 冲突幽灵逼近） */
+  .boss-hub-badge.hub-warn-pulse { animation: hubWarnPulse 0.7s ease-in-out 2; border-color: rgba(212,165,116,0.95); }
+  @keyframes hubWarnPulse {
+    0%, 100% { box-shadow: inset 0 0 8px rgba(212,165,116,0.25); transform: scale(1); }
+    50% { box-shadow: inset 0 0 22px rgba(212,165,116,0.75); transform: scale(1.12); }
+  }
   /* CM4-R6.5-A：据点冲突热度分级（○/🔥/🔥🔥/🔥🔥🔥）—— 把内部状态翻译成战场语言 */
   .boss-hub-badge[data-heat='1'] { border-color: rgba(245,197,66,0.5); box-shadow: inset 0 0 6px rgba(245,197,66,0.18); }
   .boss-hub-badge[data-heat='2'] { border-color: rgba(245,158,11,0.75); box-shadow: inset 0 0 9px rgba(245,158,11,0.30); }
@@ -4406,8 +4412,11 @@ function startBossBattle(levelId, levelData) {
 
     // V4.3.31：Boss 战统一接入 tpl（三点连线）规则——ThreePointLineManager 为
     // 主线 Boss 战唯一核心（替代旧 BattleManager 的 Focus/Parry/Interception）
+    // P0-2：directorShadow=false → 激活戏剧导演（Director 决策经 StrategySelector
+    // 钳制后真正下发 AI 旋钮：hubWeight/stealLevel/noteCadence/targetHub）
     const controller = new TplBattleController({
       onEvent: (event, data) => handleBattleEvent(event, data),
+      directorShadow: false, // 激活 CM4-R2/R6 戏剧导演链路（shadow 仅记录、不控制）
     });
     CM.battleManager = controller;
     window.battleManager = CM.battleManager; // 调试/测试句柄
@@ -5014,6 +5023,20 @@ function handleBattleEvent(eventType, data) {
         if (data && data.text) {
           const sp = (data.name) || 'Boss';
           CM.dialog.show(data.text, sp, { avatar: avatarFor(sp), onComplete: null });
+        }
+        break;
+      case TPL_BATTLE_EVENTS.POLLUTION_WARNING:
+        // CM4-R7：据点污染 → 冲突幽灵预警（战场危险可视化）。
+        // 控制器已同时发 Boss 台词；此处补 UI 反馈：HUD 警告 + 据点徽章脉冲。
+        if (data && typeof data.hubIndex === 'number') {
+          setBossWarning(I18n.t('ui.boss.pollutionWarning', { hub: data.hubIndex + 1 }));
+          try {
+            const badge = document.querySelector('#tplHubList .boss-hub-badge[data-idx="' + data.hubIndex + '"]');
+            if (badge) {
+              badge.classList.add('hub-warn-pulse');
+              setTimeout(() => badge.classList.remove('hub-warn-pulse'), 1600);
+            }
+          } catch (e) {}
         }
         break;
       case TPL_BATTLE_EVENTS.STRATEGY_CHANGE:

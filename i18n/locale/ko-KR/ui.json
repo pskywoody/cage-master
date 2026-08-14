@@ -643,6 +643,7 @@
   "ui.boss.deathblowWord": "인살!",
   "ui.boss.deathblowLine": "3점 연결!",
   "ui.boss.deathblowAi": "인살당함!",
+  "ui.boss.pollutionWarning": "거점 {hub}이(가) 통제 불능 — 충돌 유령이 다가오고 있습니다…",
   "ui.whatIf.branch": "🧪 가정 분기",
   "ui.whatIf.accept": "☑️ 채택",
   "ui.whatIf.acceptTitle": "현재 판면을 채택하고 가정 모드 종료",

@@ -672,6 +672,7 @@
   "ui.boss.deathblowWord": "忍杀!",
   "ui.boss.deathblowLine": "三点连线!",
   "ui.boss.deathblowAi": "被忍杀!",
+  "ui.boss.pollutionWarning": "据点 {hub} 正在失控，冲突幽灵逼近…",
 
   "ui.whatIf.branch": "🧪 假设分支",
   "ui.whatIf.accept": "☑️ 采纳",

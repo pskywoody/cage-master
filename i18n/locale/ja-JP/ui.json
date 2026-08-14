@@ -643,6 +643,7 @@
   "ui.boss.deathblowWord": "忍殺!",
   "ui.boss.deathblowLine": "三点ライン!",
   "ui.boss.deathblowAi": "忍殺された!",
+  "ui.boss.pollutionWarning": "拠点 {hub} が制御不能に——紛争ゴーストが迫っている…",
   "ui.whatIf.branch": "🧪 仮定分岐",
   "ui.whatIf.accept": "☑️ 採用",
   "ui.whatIf.acceptTitle": "現在の盤面を採用し、仮定モードを終了",

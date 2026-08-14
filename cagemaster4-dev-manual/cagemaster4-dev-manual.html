@@ -895,7 +895,7 @@ WhatIfManager.revert();               // 彻底回退到根快照</code></pre>
     <li>内置视觉：连击数字、EUREKA 全屏闪光 + 粒子、心流光晕（cold/stale/flow/eureka 四态）</li>
   </ul>
   <h3>5.9 PcLayoutManager (pc-layout-manager.js)</h3>
-  <p>PC 双栏布局管理器，迁移自 V3 <code>ui/PcLayoutManager.js</code>。V3 版通过物理搬运 canvas 实现，V4 版改为 <strong>纯 CSS 双栏 + 右侧信息面板同步</strong>：检测宽屏（≥900px 且横屏）后给 body 加 <code>pc-layout-active</code> class，由 CSS 将 #app 切换为双栏；右侧 <code>#pc-right-panel</code> 显示关卡信息/计时/填数进度/选中格/三幕指示。</p>
+  <p>PC 双栏布局管理器，迁移自 V3 <code>ui/PcLayoutManager.js</code>。V3 版通过物理搬运 canvas 实现，V4 版改为 <strong>纯 CSS 双栏 + 右侧信息面板同步</strong>：检测宽屏（≥900px 且宽高比 ≥1.4）后给 body 加 <code>pc-layout-active</code> class；<strong>2026-08-14 重构为真双栏</strong>——body 变 flex-wrap 容器（topbar 占首行 100%，<code>#app</code> 左栏棋盘 + <code>#pc-right-panel</code> 右栏并排），棋盘尺寸由 <code>min(calc(100vh-250px), calc(100vw-420px), 880px)</code> 高度+宽度共同驱动（旧方案 600px 上限导致 16:9 宽度浪费），小盘面由 <code>layout()</code> 按 gridSize 收敛上限（9×9=880 / 6×6=700 / 4×4=560）。</p>
   <ul>
     <li><code>init()</code>：绑定 resize（150ms 防抖）/ orientationchange 监听</li>
     <li><code>syncToPc()</code>：从移动端元素同步数据到 PC 面板（幂等）</li>
@@ -1330,7 +1330,7 @@ commands.forEach(cmd => this.beat.enqueue(cmd, (item) => this.expression.enqueue
     <thead><tr><th>模式</th><th>判定</th><th>布局</th><th>棋盘尺寸</th></tr></thead>
     <tbody>
       <tr><td>手机竖屏（9:16）</td><td>宽高比 &lt; 1.4</td><td>单列垂直布局，一屏可见</td><td><code>layout()</code>：vh - 安全区 - topbar - status - bossHud - pad - 16</td></tr>
-      <tr><td>PC 横屏（16:9）</td><td>宽度 ≥ 900px 且宽高比 ≥ 1.4</td><td>双栏布局（棋盘 + 右侧信息面板）</td><td><code>--board-size: min(64vh, 600px)</code>（16:9 及更宽）</td></tr>
+      <tr><td>PC 横屏（16:9）</td><td>宽度 ≥ 900px 且宽高比 ≥ 1.4</td><td>真双栏（topbar 全宽 + 左棋盘右信息面板）</td><td><code>--board-size: min(calc(100vh-250px), calc(100vw-420px), 880px)</code>（16:9 及更宽，小盘面 JS 收敛）</td></tr>
       <tr><td>横屏窄屏（折叠屏横置）</td><td>宽度 &lt; 900px 且横屏</td><td>单列压缩</td><td><code>--board-size: min(72vh, 92vw)</code></td></tr>
     </tbody>
   </table>

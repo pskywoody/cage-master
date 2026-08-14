@@ -1546,15 +1546,69 @@
 
   .hidden { display: none !important; }
 
-  /* ---------------- PC 双栏布局 ---------------- */
+  /* ---------------- PC 双栏布局（2026-08-14 重构：真双栏并排 + 宽度充分利用） ----------------
+     旧方案缺陷：CSS 只把 #app 改 row，#pc-right-panel 是 #app 兄弟元素并未并排，
+     面板在 app 下方独立显示；棋盘 min(64vh,600px) 上限导致 16:9 宽度大量浪费。
+     新方案：body.pc-layout-active 变 flex column——topbar 首行全宽，
+     第二行 = 主区 flex row（#app 左栏棋盘 + #pc-right-panel 右栏），
+     棋盘尺寸由「可用高度与可用宽度」共同驱动，一屏显示不滚动。 */
   #pc-right-panel { display: none; }
+  body.pc-layout-active {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 0 24px;
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
+  }
+  body.pc-layout-active #topbar {
+    flex: 0 0 100%;
+    position: static;
+  }
+  body.pc-layout-active #app {
+    flex: 1 1 auto;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    max-width: none;
+    width: auto;
+    margin: 0;
+    padding: 10px 0 12px;
+    min-width: 0;
+  }
+  /* 左栏：棋盘 + 状态行 + 工具卷（保持纵向居中）
+     棋盘 = 100vh - topbar(56) - statusLine(24) - toolRoll(130) - padding/gap(40) ≈ -250 */
+  body.pc-layout-active #board-container {
+    --board-size: min(calc(100vh - 250px), calc(100vw - 460px), 860px);
+  }
+  body.pc-layout-active #statusLine {
+    --board-size: min(calc(100vh - 250px), calc(100vw - 460px), 860px);
+  }
+  body.pc-layout-active .tool-roll {
+    --board-size: min(calc(100vh - 250px), calc(100vw - 460px), 860px);
+  }
+  body.pc-layout-active #board-container,
+  body.pc-layout-active #statusLine,
+  body.pc-layout-active .tool-roll {
+    flex-shrink: 0;
+  }
+  /* Boss 战 HUD：PC 下与棋盘同宽居中（左栏内），保持一屏 */
+  body.pc-layout-active #bossHud {
+    width: min(calc(100vh - 250px), calc(100vw - 460px), 860px);
+    max-width: 92vw;
+  }
+  /* 右栏：信息面板 */
   .pc-layout-active #pc-right-panel {
     display: flex;
     flex-direction: column;
     gap: 12px;
-    width: 280px;
+    width: 300px;
     flex-shrink: 0;
-    align-self: flex-start;
+    align-self: center;
+    overflow-y: auto;
+    max-height: calc(100vh - 90px);
   }
   .pc-panel-card {
     background: var(--panel);
@@ -1600,17 +1654,14 @@
     font-weight: 700;
   }
   @media (min-width: 900px) and (orientation: landscape) {
-    .pc-layout-active #app {
-      flex-direction: row;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: flex-start;
-      gap: 20px;
-      max-width: 1080px;
+    /* 窄宽屏（900-1200px，如 1280×720）：主区仍双栏，棋盘受宽度约束为主 */
+    body.pc-layout-active #app { gap: 16px; padding: 10px 12px 12px; }
+    body.pc-layout-active #board-container,
+    body.pc-layout-active #statusLine,
+    body.pc-layout-active .tool-roll {
+      --board-size: min(calc(100vh - 240px), calc(100vw - 380px), 760px);
     }
-    .pc-layout-active #board-container { --board-size: min(60vh, 560px); }
-    .pc-layout-active #pad { --board-size: min(60vh, 560px); }
-    .pc-layout-active #statusLine { --board-size: min(60vh, 560px); }
+    .pc-layout-active #pc-right-panel { width: 260px; }
   }
 
   /* ---------------- 屏幕比例定向适配（P0-3：9:16 手机 / 16:9 PC） ----------------
@@ -1621,13 +1672,14 @@
     #app { padding: 6px 2px 14px; }
     .brand h1 { font-size: 16px; }
   }
-  /* PC 宽屏（16:9 及更宽）：棋盘保持方块最大化，双栏右侧面板加宽 */
+  /* PC 宽屏（16:9 及更宽）：双栏棋盘最大化——充分利用宽度与高度，一屏显示 */
   @media (min-aspect-ratio: 16/9) and (min-width: 900px) {
-    .pc-layout-active #app { max-width: 1180px; }
-    .pc-layout-active #pc-right-panel { width: 300px; }
-    .pc-layout-active #board-container { --board-size: min(64vh, 600px); }
-    .pc-layout-active #pad { --board-size: min(64vh, 600px); }
-    .pc-layout-active #statusLine { --board-size: min(64vh, 600px); }
+    body.pc-layout-active #board-container,
+    body.pc-layout-active #statusLine,
+    body.pc-layout-active .tool-roll {
+      --board-size: min(calc(100vh - 250px), calc(100vw - 420px), 880px);
+    }
+    .pc-layout-active #pc-right-panel { width: 320px; }
   }
   /* 横屏且窄（如折叠屏横置）：避免 16:9 规则把棋盘撑出屏 */
   @media (max-width: 899px) and (orientation: landscape) {
@@ -3376,7 +3428,15 @@ function layout() {
   // P0-3：视口高度优先取 visualViewport（移动端地址栏收起/展开自适应），回退 clientHeight/innerHeight；
   //       计入刘海屏安全区（--safe-top/--safe-bottom，由 resizeObserver 注入），9:16 长屏棋盘更稳
   try {
-    if (!document.body.classList.contains('pc-layout-active')) {
+    if (document.body.classList.contains('pc-layout-active')) {
+      // PC 双栏：CSS 已按视口算 --board-size，但小盘面（4x4/6x6）上限过高。
+      // 按 gridSize 收敛上限：9x9 用满 CSS 值，小盘面限 560/700px 避免格子过大。
+      const gs = (CM.gameApp && CM.gameApp._getGridSize) ? CM.gameApp._getGridSize() : 9;
+      const cap = gs >= 9 ? 880 : (gs >= 6 ? 700 : 560);
+      const rect0 = CM.boardContainer.getBoundingClientRect();
+      const base = Math.min(rect0.width, rect0.height) || 600;
+      document.documentElement.style.setProperty('--board-size', Math.min(base, cap) + 'px');
+    } else {
       const vh = (window.visualViewport && window.visualViewport.height)
         ? window.visualViewport.height
         : (document.documentElement.clientHeight > 0 ? document.documentElement.clientHeight : (window.innerHeight || 800));

@@ -1,0 +1,38 @@
+[
+  {
+    "personality": "blind",
+    "historySuccess": "attack|contest_hub|note",
+    "historyFailure": "attack|test_player_response|note",
+    "differs": true
+  },
+  {
+    "personality": "expert",
+    "historySuccess": "attack|contest_hub|pointingClaiming",
+    "historyFailure": "attack|contest_hub|pointingClaiming",
+    "differs": false
+  },
+  {
+    "personality": "mentor",
+    "historySuccess": "attack|contest_hub|nakedSingle",
+    "historyFailure": "attack|test_player_response|note",
+    "differs": true
+  },
+  {
+    "personality": "prober",
+    "historySuccess": "attack|contest_hub|nakedSingle",
+    "historyFailure": "attack|bait_player|nakedSingle",
+    "differs": true
+  },
+  {
+    "personality": "average",
+    "historySuccess": "attack|contest_hub|nakedSingle",
+    "historyFailure": "attack|test_player_response|nakedSingle",
+    "differs": true
+  },
+  {
+    "personality": "reckless",
+    "historySuccess": "attack|test_player_response|note",
+    "historyFailure": "attack|test_player_response|nakedSingle",
+    "differs": true
+  }
+]

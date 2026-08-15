@@ -45,6 +45,9 @@ export class LessonPlayer {
     // 2026-08-04：区分「未设置」（生产模式，用各调用点设计时长）与「0」（Node 测试同步模式）
     this._delay = (options.delay === undefined || options.delay === null) ? null : options.delay;
     this._callbacks = options.callbacks || {};
+    // 阶段 1：demo 复用提示动作 —— 注入外部 builder，失败时回退手写 demo.steps
+    this._demoStepsBuilder = options.demoStepsBuilder || null;
+    this._demoStepsCache = null;
 
     // 教学状态
     this._currentPhase = 'idle';   // idle | intro | demo | guided | noteToFill | semiAuto | free | done
@@ -747,8 +750,31 @@ export class LessonPlayer {
     }
   }
 
+  _getDemoSteps() {
+    if (this._demoStepsCache !== null) return this._demoStepsCache;
+
+    const demo = this._lessonPlan && this._lessonPlan.phases ? this._lessonPlan.phases.demo : null;
+    const legacy = (demo && Array.isArray(demo.steps)) ? demo.steps : [];
+
+    // 阶段 1：demo.auto 开启且注入 builder 时，优先用提示系统生成的动作序列。
+    if (demo && demo.auto === true && typeof this._demoStepsBuilder === 'function') {
+      try {
+        const generated = this._demoStepsBuilder({ engine: this._engine, levelData: this._levelData });
+        if (Array.isArray(generated) && generated.length > 0) {
+          this._demoStepsCache = generated;
+          return generated;
+        }
+      } catch (err) {
+        console.warn('[LessonPlayer] 自动 demo 生成失败，回退手写 demo.steps:', err);
+      }
+    }
+
+    this._demoStepsCache = legacy;
+    return legacy;
+  }
+
   _nextDemoStep() {
-    const steps = this._lessonPlan.phases.demo?.steps || [];
+    const steps = this._getDemoSteps();
 
     if (this._demoStepIndex >= steps.length) {
       this._clearAllHighlights();

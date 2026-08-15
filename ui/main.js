@@ -26,6 +26,7 @@
 
 import { HeadlessEngine } from '../core/headless-engine.js?v=51';
 import { LessonPlayer } from '../core/lesson-player.js?v=51';
+import { buildLessonDemoSteps } from '../core/lesson-demo-builder.js?v=51';
 import { LevelManager } from '../core/level-manager.js?v=51';
 import { BoardRenderer } from '../renderer/board-renderer.js?v=51';
 import { EffectRenderer } from '../renderer/effect-renderer.js?v=51';
@@ -433,6 +434,7 @@ class GameApp {
           levelData: this._levelData,
           callbacks: callbacks,
           delay: this._lessonDelay,
+          demoStepsBuilder: buildLessonDemoSteps,
         });
       } catch (e) {
         console.warn('[GameApp] LessonPlayer 构造失败，进入自由模式:', e);

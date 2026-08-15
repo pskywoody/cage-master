@@ -1,0 +1,182 @@
+[
+  {
+    "learner": "L001",
+    "policy": "mentor",
+    "before": {
+      "hiddenPair": "struggling"
+    },
+    "after": {
+      "hiddenPair": "independent"
+    },
+    "learningGain": 3,
+    "teachingEfficiency": 0.75,
+    "engagementDelta": 0.17,
+    "frustrationDelta": -0.19,
+    "recoveredToGuided": true
+  },
+  {
+    "learner": "L001",
+    "policy": "expert",
+    "before": {
+      "hiddenPair": "struggling"
+    },
+    "after": {
+      "hiddenPair": "guided"
+    },
+    "learningGain": 2,
+    "teachingEfficiency": 0.5,
+    "engagementDelta": 0.25,
+    "frustrationDelta": -0.15,
+    "recoveredToGuided": true
+  },
+  {
+    "learner": "L001",
+    "policy": "prober",
+    "before": {
+      "hiddenPair": "struggling"
+    },
+    "after": {
+      "hiddenPair": "struggling"
+    },
+    "learningGain": 0,
+    "teachingEfficiency": 0,
+    "engagementDelta": -0.37,
+    "frustrationDelta": 0.5,
+    "recoveredToGuided": false
+  },
+  {
+    "learner": "L002",
+    "policy": "mentor",
+    "before": {
+      "hiddenPair": "novice"
+    },
+    "after": {
+      "hiddenPair": "independent"
+    },
+    "learningGain": 2,
+    "teachingEfficiency": 0.5,
+    "engagementDelta": 0.16,
+    "frustrationDelta": -0.22,
+    "recoveredToGuided": true
+  },
+  {
+    "learner": "L002",
+    "policy": "expert",
+    "before": {
+      "hiddenPair": "novice"
+    },
+    "after": {
+      "hiddenPair": "guided"
+    },
+    "learningGain": 1,
+    "teachingEfficiency": 0.25,
+    "engagementDelta": 0.25,
+    "frustrationDelta": -0.25,
+    "recoveredToGuided": true
+  },
+  {
+    "learner": "L002",
+    "policy": "prober",
+    "before": {
+      "hiddenPair": "novice"
+    },
+    "after": {
+      "hiddenPair": "novice"
+    },
+    "learningGain": 0,
+    "teachingEfficiency": 0,
+    "engagementDelta": -0.32,
+    "frustrationDelta": 0.7,
+    "recoveredToGuided": false
+  },
+  {
+    "learner": "L003",
+    "policy": "mentor",
+    "before": {
+      "hiddenPair": "guided"
+    },
+    "after": {
+      "hiddenPair": "independent"
+    },
+    "learningGain": 1,
+    "teachingEfficiency": 0.25,
+    "engagementDelta": 0.12,
+    "frustrationDelta": -0.17,
+    "recoveredToGuided": true
+  },
+  {
+    "learner": "L003",
+    "policy": "expert",
+    "before": {
+      "hiddenPair": "guided"
+    },
+    "after": {
+      "hiddenPair": "guided"
+    },
+    "learningGain": 0,
+    "teachingEfficiency": 0,
+    "engagementDelta": 0.2,
+    "frustrationDelta": -0.2,
+    "recoveredToGuided": true
+  },
+  {
+    "learner": "L003",
+    "policy": "prober",
+    "before": {
+      "hiddenPair": "guided"
+    },
+    "after": {
+      "hiddenPair": "fluent"
+    },
+    "learningGain": 2,
+    "teachingEfficiency": 0.5,
+    "engagementDelta": 0.28,
+    "frustrationDelta": 0.1,
+    "recoveredToGuided": true
+  },
+  {
+    "learner": "L004",
+    "policy": "mentor",
+    "before": {
+      "hiddenPair": "independent"
+    },
+    "after": {
+      "hiddenPair": "independent"
+    },
+    "learningGain": 0,
+    "teachingEfficiency": 0,
+    "engagementDelta": 0.08,
+    "frustrationDelta": -0.1,
+    "recoveredToGuided": true
+  },
+  {
+    "learner": "L004",
+    "policy": "expert",
+    "before": {
+      "hiddenPair": "independent"
+    },
+    "after": {
+      "hiddenPair": "independent"
+    },
+    "learningGain": 0,
+    "teachingEfficiency": 0,
+    "engagementDelta": 0,
+    "frustrationDelta": 0,
+    "recoveredToGuided": true
+  },
+  {
+    "learner": "L004",
+    "policy": "prober",
+    "before": {
+      "hiddenPair": "independent"
+    },
+    "after": {
+      "hiddenPair": "fluent"
+    },
+    "learningGain": 1,
+    "teachingEfficiency": 0.25,
+    "engagementDelta": 0.2,
+    "frustrationDelta": 0,
+    "recoveredToGuided": true
+  }
+]

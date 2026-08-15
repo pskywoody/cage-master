@@ -66,32 +66,42 @@ export class LearnerModel {
 
   /**
    * 技能状态 + 置信 + 趋势（规则打分，可解释）。
+   * @param {number} [now]
    * @returns {{state:string, confidence:number, trend:string}}
    */
-  skillState(technique) {
+  skillState(technique, now = Date.now()) {
     const s = this._skills.get(technique);
-    if (!s || s.encounters === 0) return { state: SKILL_STATES.UNKNOWN, confidence: s ? 0.0 : 0.0, trend: 'flat' };
-    const independent = s.correct - s.guided;
-    const recent = this._recentSuccessRatio(technique, 3);
-    const hintRatio = s.correct + s.errors > 0 ? s.hinted / Math.max(1, s.correct + s.errors) : 0;
-    const repeated = this._recentErrorRatio(technique, 3);
+    if (!s || s.encounters === 0) return { state: SKILL_STATES.UNKNOWN, confidence: 0.0, trend: 'flat' };
+
+    const independent = Math.max(0, s.correct - s.guided);
+    const totalOutcomes = s.correct + s.errors;
+    const hintRatio = totalOutcomes > 0 ? s.hinted / Math.max(1, totalOutcomes) : 0;
+
+    const recent = this._recentOutcomes(technique, 4);
+    const recentCount = recent.length;
+    const recentSuccess = recent.filter((x) => x === 'success').length;
+    const recentRatio = recentCount ? recentSuccess / recentCount : 0;
+    const recentErrorRatio = recentCount ? (recentCount - recentSuccess) / recentCount : 0;
 
     let state;
     if (independent <= 0) {
-      state = hintRatio > 0 ? SKILL_STATES.GUIDED : SKILL_STATES.EXPOSED;
-    } else if (recent >= 0.66 && repeated <= 0.25) {
+      state = hintRatio > 0.2 ? SKILL_STATES.GUIDED : SKILL_STATES.EXPOSED;
+    } else if (independent >= 2 && recentRatio >= 0.6) {
       state = SKILL_STATES.MASTERED;
     } else {
-      state = independent >= 1 ? SKILL_STATES.INDEPENDENT : SKILL_STATES.GUIDED;
+      state = SKILL_STATES.INDEPENDENT;
     }
 
+    const m = this.mastery(technique, now);
     const n = Math.min(10, s.encounters);
-    const confidence = Math.min(0.95, 0.30 + n * 0.06 + (recent >= 0.5 ? 0.1 : -0.1));
+    let confidence = Math.min(0.95, 0.30 + n * 0.05 + (recentRatio >= 0.5 ? 0.1 : 0));
+    confidence = confidence * (0.5 + 0.5 * m); // 长期不用 → 置信随 master 衰减
 
-    const trend = recent > this._recentSuccessRatio(technique, 6) ? 'improving'
-      : (repeated > 0.5 ? 'struggling' : 'flat');
+    const overall = totalOutcomes > 0 ? s.correct / totalOutcomes : 0;
+    const trend = recentRatio > overall ? 'improving'
+      : (recentErrorRatio >= 0.5 ? 'struggling' : 'flat');
 
-    return { state, confidence: Math.max(0.0, confidence), trend };
+    return { state, confidence: Math.max(0.0, Math.min(0.95, confidence)), trend };
   }
 
   /**
@@ -131,18 +141,21 @@ export class LearnerModel {
       .sort((a, b) => b.score - a.score);
   }
 
-  _recentSuccessRatio(technique, k) {
+  _recentOutcomes(technique, k) {
     const s = this._skills.get(technique);
-    if (!s || s.successAt.length === 0) return 0;
-    const recent = s.successAt.slice(-k);
-    return recent.length / Math.max(k, s.successAt.length);
+    if (!s) return [];
+    const merged = [];
+    (s.successAt || []).forEach((t) => merged.push({ ts: t, v: 'success' }));
+    (s.errorAt || []).forEach((t) => merged.push({ ts: t, v: 'error' }));
+    merged.sort((a, b) => a.ts - b.ts);
+    return merged.slice(-k).map((x) => x.v);
   }
 
-  _recentErrorRatio(technique, k) {
+  _overallSuccessRatio(technique) {
     const s = this._skills.get(technique);
-    if (!s || s.errorAt.length === 0) return 0;
-    const recent = s.errorAt.slice(-k);
-    return recent.length / Math.max(k, s.errorAt.length);
+    if (!s) return 0;
+    const total = s.correct + s.errors;
+    return total > 0 ? s.correct / total : 0;
   }
 
   toJSON() {

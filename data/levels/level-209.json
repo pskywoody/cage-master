@@ -1,263 +1,263 @@
 {
-    "levelId":  209,
-    "title":  "石室留痕",
-    "gridSize":  6,
-    "difficulty":  "困难",
-    "teachingGoal":  "章末考核：四十五星衡总纲",
-    "features":  {
-                     "allowDraft":  true,
-                     "assistant45":  true,
-                     "showHints":  true,
-                     "highlightRow":  true,
-                     "highlightCol":  true,
-                     "highlightBox":  true,
-                     "highlightNumber":  true,
-                     "highlightCage":  true,
-                     "autoFillCandidates":  false
-                 },
-    "boardData":  [
-                      [
-                          0,
-                          2,
-                          0,
-                          0,
-                          5,
-                          6
-                      ],
-                      [
-                          3,
-                          0,
-                          5,
-                          0,
-                          0,
-                          2
-                      ],
-                      [
-                          0,
-                          1,
-                          4,
-                          0,
-                          6,
-                          0
-                      ],
-                      [
-                          5,
-                          0,
-                          1,
-                          2,
-                          0,
-                          4
-                      ],
-                      [
-                          4,
-                          3,
-                          0,
-                          5,
-                          2,
-                          0
-                      ],
-                      [
-                          0,
-                          5,
-                          0,
-                          0,
-                          0,
-                          3
-                      ]
-                  ],
-    "solution":  [
-                     [
-                         1,
-                         2,
-                         3,
-                         4,
-                         5,
-                         6
-                     ],
-                     [
-                         3,
-                         4,
-                         5,
-                         6,
-                         1,
-                         2
-                     ],
-                     [
-                         2,
-                         1,
-                         4,
-                         3,
-                         6,
-                         5
-                     ],
-                     [
-                         5,
-                         6,
-                         1,
-                         2,
-                         3,
-                         4
-                     ],
-                     [
-                         4,
-                         3,
-                         6,
-                         5,
-                         2,
-                         1
-                     ],
-                     [
-                         6,
-                         5,
-                         2,
-                         1,
-                         4,
-                         3
-                     ]
-                 ],
-    "cages":  [
-                  {
-                      "id":  0,
-                      "sum":  7,
-                      "cells":  [
-                                    [
-                                        0,
-                                        0
-                                    ],
-                                    [
-                                        0,
-                                        1
-                                    ],
-                                    [
-                                        1,
-                                        1
-                                    ]
-                                ]
-                  },
-                  {
-                      "id":  1,
-                      "sum":  3,
-                      "cells":  [
-                                    [
-                                        1,
-                                        0
-                                    ]
-                                ]
-                  },
-                  {
-                      "id":  2,
-                      "sum":  13,
-                      "cells":  [
-                                    [
-                                        0,
-                                        2
-                                    ],
-                                    [
-                                        0,
-                                        3
-                                    ],
-                                    [
-                                        1,
-                                        3
-                                    ]
-                                ]
-                  },
-                  {
-                      "id":  3,
-                      "sum":  5,
-                      "cells":  [
-                                    [
-                                        1,
-                                        2
-                                    ]
-                                ]
-                  },
-                  {
-                      "id":  4,
-                      "sum":  7,
-                      "cells":  [
-                                    [
-                                        2,
-                                        1
-                                    ],
-                                    [
-                                        3,
-                                        1
-                                    ]
-                                ]
-                  },
-                  {
-                      "id":  5,
-                      "sum":  7,
-                      "cells":  [
-                                    [
-                                        2,
-                                        0
-                                    ],
-                                    [
-                                        3,
-                                        0
-                                    ]
-                                ]
-                  },
-                  {
-                      "id":  6,
-                      "sum":  2,
-                      "cells":  [
-                                    [
-                                        3,
-                                        3
-                                    ]
-                                ]
-                  },
-                  {
-                      "id":  7,
-                      "sum":  5,
-                      "cells":  [
-                                    [
-                                        2,
-                                        2
-                                    ],
-                                    [
-                                        3,
-                                        2
-                                    ]
-                                ]
-                  },
-                  {
-                      "id":  8,
-                      "sum":  3,
-                      "cells":  [
-                                    [
-                                        2,
-                                        3
-                                    ]
-                                ]
-                  }
-              ],
-    "preDialog":  [
-                      {
-                          "speaker":  "伊藤",
-                          "text":  "本章最终试炼，检验你能否抵御老师的谜题陷阱。",
-                          "bgm":  "chapter_2.mp3 渐强",
-                          "vo":  "VO_CK_0035",
-                          "emotion":  "严肃"
-                      },
-                      {
-                          "speaker":  "老师",
-                          "text":  "继续。",
-                          "_action":  "只说了两个字",
-                          "vo":  "VO_R_0038",
-                          "emotion":  "冷静·推进"
-                      }
-                  ],
-    "clearDialog":  [
-                        {
-                            "speaker":  "伊藤",
-                            "text":  "星衡已通。前方是藏书楼深层。",
-                            "sfx":  "seal_stamp",
-                            "emotion":  "庄重·铺垫"
-                        }
-                    ],
-    "isBoss":  true
+  "levelId": 209,
+  "title": "石室留痕",
+  "gridSize": 6,
+  "difficulty": "困难",
+  "teachingGoal": "章末考核：二十一星衡总纲",
+  "features": {
+    "allowDraft": true,
+    "assistant45": true,
+    "showHints": true,
+    "highlightRow": true,
+    "highlightCol": true,
+    "highlightBox": true,
+    "highlightNumber": true,
+    "highlightCage": true,
+    "autoFillCandidates": false
+  },
+  "boardData": [
+    [
+      0,
+      2,
+      0,
+      0,
+      5,
+      6
+    ],
+    [
+      3,
+      0,
+      5,
+      0,
+      0,
+      2
+    ],
+    [
+      0,
+      1,
+      4,
+      0,
+      6,
+      0
+    ],
+    [
+      5,
+      0,
+      1,
+      2,
+      0,
+      4
+    ],
+    [
+      4,
+      3,
+      0,
+      5,
+      2,
+      0
+    ],
+    [
+      0,
+      5,
+      0,
+      0,
+      0,
+      3
+    ]
+  ],
+  "solution": [
+    [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    [
+      3,
+      4,
+      5,
+      6,
+      1,
+      2
+    ],
+    [
+      2,
+      1,
+      4,
+      3,
+      6,
+      5
+    ],
+    [
+      5,
+      6,
+      1,
+      2,
+      3,
+      4
+    ],
+    [
+      4,
+      3,
+      6,
+      5,
+      2,
+      1
+    ],
+    [
+      6,
+      5,
+      2,
+      1,
+      4,
+      3
+    ]
+  ],
+  "cages": [
+    {
+      "id": 0,
+      "sum": 7,
+      "cells": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ]
+    },
+    {
+      "id": 1,
+      "sum": 3,
+      "cells": [
+        [
+          1,
+          0
+        ]
+      ]
+    },
+    {
+      "id": 2,
+      "sum": 13,
+      "cells": [
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          3
+        ]
+      ]
+    },
+    {
+      "id": 3,
+      "sum": 5,
+      "cells": [
+        [
+          1,
+          2
+        ]
+      ]
+    },
+    {
+      "id": 4,
+      "sum": 7,
+      "cells": [
+        [
+          2,
+          1
+        ],
+        [
+          3,
+          1
+        ]
+      ]
+    },
+    {
+      "id": 5,
+      "sum": 7,
+      "cells": [
+        [
+          2,
+          0
+        ],
+        [
+          3,
+          0
+        ]
+      ]
+    },
+    {
+      "id": 6,
+      "sum": 2,
+      "cells": [
+        [
+          3,
+          3
+        ]
+      ]
+    },
+    {
+      "id": 7,
+      "sum": 5,
+      "cells": [
+        [
+          2,
+          2
+        ],
+        [
+          3,
+          2
+        ]
+      ]
+    },
+    {
+      "id": 8,
+      "sum": 3,
+      "cells": [
+        [
+          2,
+          3
+        ]
+      ]
+    }
+  ],
+  "preDialog": [
+    {
+      "speaker": "伊藤",
+      "text": "本章最终试炼，检验你能否抵御老师的谜题陷阱。",
+      "bgm": "chapter_2.mp3 渐强",
+      "vo": "VO_CK_0035",
+      "emotion": "严肃"
+    },
+    {
+      "speaker": "老师",
+      "text": "继续。",
+      "_action": "只说了两个字",
+      "vo": "VO_R_0038",
+      "emotion": "冷静·推进"
+    }
+  ],
+  "clearDialog": [
+    {
+      "speaker": "伊藤",
+      "text": "星衡已通。前方是藏书楼深层。",
+      "sfx": "seal_stamp",
+      "emotion": "庄重·铺垫"
+    }
+  ],
+  "isBoss": true
 }

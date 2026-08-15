@@ -1,432 +1,431 @@
 {
-    "levelId":  103,
-    "title":  "街巷阴影",
-    "mode":  "full",
-    "gridSize":  4,
-    "difficulty":  "入门",
-    "teachingGoal":  "认识笼子：虚线框是笼子，左上角数字是笼内总和。单格笼子，和值是几就填几！",
-    "allowPartialCages":  true,
-    "features":  {
-                     "allowDraft":  false,
-                     "assistant45":  false,
-                     "showHints":  true,
-                     "highlightRow":  true,
-                     "highlightCol":  true,
-                     "highlightBox":  true,
-                     "highlightNumber":  false,
-                     "highlightCage":  true,
-                     "autoFillCandidates":  false
-                 },
-    "boardData":  [
-                      [
-                          0,
-                          0,
-                          3,
-                          0
-                      ],
-                      [
-                          0,
-                          3,
-                          0,
-                          2
-                      ],
-                      [
-                          2,
-                          1,
-                          0,
-                          0
-                      ],
-                      [
-                          0,
-                          0,
-                          0,
-                          0
-                      ]
-                  ],
-    "solution":  [
-                     [
-                         1,
-                         2,
-                         3,
-                         4
-                     ],
-                     [
-                         4,
-                         3,
-                         1,
-                         2
-                     ],
-                     [
-                         2,
-                         1,
-                         4,
-                         3
-                     ],
-                     [
-                         3,
-                         4,
-                         2,
-                         1
-                     ]
-                 ],
-    "cages":  [
-                  {
-                      "id":  1,
-                      "sum":  7,
-                      "cells":  [
-                                    [
-                                        0,
-                                        0
-                                    ],
-                                    [
-                                        1,
-                                        0
-                                    ],
-                                    [
-                                        2,
-                                        0
-                                    ]
-                                ]
-                  },
-                  {
-                      "id":  2,
-                      "sum":  5,
-                      "cells":  [
-                                    [
-                                        0,
-                                        1
-                                    ],
-                                    [
-                                        0,
-                                        2
-                                    ]
-                                ]
-                  },
-                  {
-                      "id":  3,
-                      "sum":  7,
-                      "cells":  [
-                                    [
-                                        0,
-                                        3
-                                    ],
-                                    [
-                                        1,
-                                        3
-                                    ],
-                                    [
-                                        1,
-                                        2
-                                    ]
-                                ]
-                  },
-                  {
-                      "id":  4,
-                      "sum":  10,
-                      "cells":  [
-                                    [
-                                        1,
-                                        1
-                                    ],
-                                    [
-                                        2,
-                                        1
-                                    ],
-                                    [
-                                        2,
-                                        2
-                                    ],
-                                    [
-                                        3,
-                                        2
-                                    ]
-                                ]
-                  },
-                  {
-                      "id":  5,
-                      "sum":  4,
-                      "cells":  [
-                                    [
-                                        2,
-                                        3
-                                    ],
-                                    [
-                                        3,
-                                        3
-                                    ]
-                                ]
-                  },
-                  {
-                      "id":  6,
-                      "sum":  7,
-                      "cells":  [
-                                    [
-                                        3,
-                                        1
-                                    ],
-                                    [
-                                        3,
-                                        0
-                                    ]
-                                ]
-                  }
-              ],
-    "triggers":  [
-                     {
-                         "id":  "t102_s",
-                         "condition":  "onLevelStart",
-                         "type":  "freeze_mask",
-                         "text":  "看虚线框！这是「笼子」，左上角是笼内总和。1格的笼子，和值是几就填几！",
-                         "once":  true,
-                         "targetR":  0,
-                         "targetC":  0,
-                         "targetType":  "cell",
-                         "highlightShape":  "circle"
-                     },
-                     {
-                         "id":  "t102_f",
-                         "condition":  "onFirstNumberFilled",
-                         "type":  "popup_hint",
-                         "position":  "top",
-                         "text":  "对了！单格笼是送分题🎉",
-                         "once":  true
-                     },
-                     {
-                         "id":  "t102_b",
-                         "condition":  "onFillCountReached",
-                         "count":  8,
-                         "type":  "enter_phase",
-                         "phase":  "breakthrough",
-                         "once":  true
-                     },
-                     {
-                         "id":  "t102_fi",
-                         "condition":  "onFillCountReached",
-                         "count":  12,
-                         "type":  "enter_phase",
-                         "phase":  "finishing",
-                         "once":  true
-                     },
-                     {
-                         "id":  "t102_c",
-                         "condition":  "onConflict",
-                         "type":  "popup_hint",
-                         "position":  "top",
-                         "text":  "检查笼子和值哦～",
-                         "once":  false
-                     }
-                 ],
-    "preDialog":  [
-                      {
-                          "speaker":  "旁白",
-                          "text":  "沈墨回到帐房，翻开那本《战争与和平》。书页间夹着一张薄纸。",
-                          "isNarration":  true
-                      },
-                      {
-                          "speaker":  "老师（留声）",
-                          "text":  "第三行第四列是3。看到这个数字，你就能确认这封信是真的。",
-                          "side":  "right",
-                          "emotion":  "calm",
-                          "effect":  0
-                      },
-                      {
-                          "speaker":  "沈墨 CHIBI",
-                          "text":  "……第三行第四列。她留在字条上的锚点。",
-                          "side":  "left",
-                          "emotion":  "thinking",
-                          "effect":  0
-                      }
-                  ],
-    "clearDialog":  [
-                        {
-                            "speaker":  "旁白",
-                            "text":  "沈墨解完最后一道空格的刹那，第三行第四列的数字浮了出来：3。",
-                            "isNarration":  true
-                        },
-                        {
-                            "speaker":  "沈墨 CHIBI",
-                            "text":  "……是3。和老师字条上写的一样。这封信是真的。",
-                            "side":  "left",
-                            "emotion":  "calm",
-                            "effect":  0
-                        },
-                        {
-                            "speaker":  "老师（留声）",
-                            "text":  "你确认了。那就继续往下走吧。",
-                            "side":  "right",
-                            "emotion":  "smile",
-                            "effect":  0
-                        }
-                    ],
-    "lessonPlan":  {
-                       "newSkill":  "cage_sum_combo",
-                       "skillName":  "笼和组合",
-                       "isFirstLesson":  true,
-                       "skippable":  true,
-                       "prerequisite":  [
-                                            "box_rule"
-                                        ],
-                       "phases":  {
-                                      "intro":  {
-                                                    "text":  "四宫格加上笼格和值。虚线框里的数字加起来等于左上角的数。这是一道验证题——确认你拿到的东西是真的。",
-                                                    "speaker":  "沈墨 CHIBI",
-                                                    "duration":  3000
-                                                },
-                                      "demo":  {
-                                                   "steps":  [
-                                                                 {
-                                                                     "action":  "highlightCage",
-                                                                     "target":  4,
-                                                                     "duration":  1500,
-                                                                     "text":  "沈墨的目光落在虚线框上——它圈住4个格子，左上角的10，就是这4格相加的总和。"
-                                                                 },
-                                                                 {
-                                                                     "action":  "focusCell",
-                                                                     "target":  [
-                                                                                    1,
-                                                                                    1
-                                                                                ],
-                                                                     "duration":  900,
-                                                                     "text":  "框里是b2、c2、c3、d3。他一个个核对过去。"
-                                                                 },
-                                                                 {
-                                                                     "action":  "focusCell",
-                                                                     "target":  [
-                                                                                    2,
-                                                                                    1
-                                                                                ],
-                                                                     "duration":  900
-                                                                 },
-                                                                 {
-                                                                     "action":  "focusCell",
-                                                                     "target":  [
-                                                                                    2,
-                                                                                    2
-                                                                                ],
-                                                                     "duration":  900
-                                                                 },
-                                                                 {
-                                                                     "action":  "focusCell",
-                                                                     "target":  [
-                                                                                    3,
-                                                                                    2
-                                                                                ],
-                                                                     "duration":  900
-                                                                 },
-                                                                 {
-                                                                     "action":  "highlightRow",
-                                                                     "target":  2,
-                                                                     "duration":  1200,
-                                                                     "text":  "他又看c3所在的一行：第2行已经有2和1，那c3只可能是3或4。"
-                                                                 },
-                                                                 {
-                                                                     "action":  "highlightCol",
-                                                                     "target":  2,
-                                                                     "duration":  1200,
-                                                                     "text":  "再看这一列：已经有3，c3排除了3——只剩4！他逐格核对，不敢漏掉任何一格。"
-                                                                 },
-                                                                 {
-                                                                     "action":  "focusCell",
-                                                                     "target":  [
-                                                                                    2,
-                                                                                    2
-                                                                                ],
-                                                                     "duration":  1500
-                                                                 }
-                                                             ]
-                                               },
-                                      "guided":  {
-                                                     "targetCell":  [
-                                                                        2,
-                                                                        2
-                                                                    ],
-                                                     "correctValue":  4,
-                                                     "interactionType":  "NUMBER",
-                                                     "autoRevealText":  "c3 在虚线笼里：这一行已有 2 和 1，还缺 3、4；这一列已有 3——所以 c3 只能填 4。",
-                                                     "maxAttempts":  3,
-                                                     "hintText":  "沈墨的目光停在第三行第四列。老师留下的锚点在那里。他只需要让这个位置的数字变成3。",
-                                                     "failHint":  "沈墨重新验算了一遍……如果这个数字不对，整道题的合法性就不成立。",
-                                                     "autoRevealAfter":  3,
-                                                     "successText":  "数字7落定。验证通过。这本《战争与和平》确实是老师留下的路标。"
-                                                 },
-                                      "semiAuto":  {
-                                                       "enabled":  true,
-                                                       "targetCount":  2,
-                                                       "hintText":  "再看两个格子：b3 只剩数字 1；c4 和 d4 同笼，和为 4——列 3 有 2、行 2 有 1，排除后只剩 3。试试看。",
-                                                       "watchCells":  [
-                                                                          [
-                                                                              1,
-                                                                              2
-                                                                          ],
-                                                                          [
-                                                                              2,
-                                                                              3
-                                                                          ],
-                                                                          [
-                                                                              3,
-                                                                              1
-                                                                          ]
-                                                                      ],
-                                                       "interactionType":  "NUMBER"
-                                                   },
-                                      "free":  {
-                                                   "enabled":  true,
-                                                   "unlockText":  "笼和是把利器。剩下的路，自己走。"
-                                               }
-                                  }
-                   },
-    "threeAct":  {
-                     "opening":  [
-                                     [
-                                         0,
-                                         1
-                                     ],
-                                     [
-                                         2,
-                                         2
-                                     ],
-                                     [
-                                         1,
-                                         2
-                                     ],
-                                     [
-                                         0,
-                                         3
-                                     ],
-                                     [
-                                         0,
-                                         0
-                                     ],
-                                     [
-                                         1,
-                                         0
-                                     ],
-                                     [
-                                         2,
-                                         3
-                                     ],
-                                     [
-                                         3,
-                                         0
-                                     ],
-                                     [
-                                         3,
-                                         1
-                                     ]
-                                 ],
-                     "breakthrough":  [
-
-                                      ],
-                     "avalanche":  [
-                                       [
-                                           3,
-                                           2
-                                       ],
-                                       [
-                                           3,
-                                           3
-                                       ]
-                                   ]
-                 },
-    "difficultyLevel":  1
+  "levelId": 103,
+  "title": "街巷阴影",
+  "mode": "full",
+  "gridSize": 4,
+  "difficulty": "入门",
+  "teachingGoal": "认识笼子：虚线框是笼子，左上角数字是笼内总和。单格笼子，和值是几就填几！",
+  "allowPartialCages": true,
+  "features": {
+    "allowDraft": false,
+    "assistant45": false,
+    "showHints": true,
+    "highlightRow": true,
+    "highlightCol": true,
+    "highlightBox": true,
+    "highlightNumber": false,
+    "highlightCage": true,
+    "autoFillCandidates": false
+  },
+  "boardData": [
+    [
+      0,
+      0,
+      3,
+      0
+    ],
+    [
+      0,
+      3,
+      0,
+      2
+    ],
+    [
+      2,
+      1,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0
+    ]
+  ],
+  "solution": [
+    [
+      1,
+      2,
+      3,
+      4
+    ],
+    [
+      4,
+      3,
+      1,
+      2
+    ],
+    [
+      2,
+      1,
+      4,
+      3
+    ],
+    [
+      3,
+      4,
+      2,
+      1
+    ]
+  ],
+  "cages": [
+    {
+      "id": 1,
+      "sum": 7,
+      "cells": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          0
+        ]
+      ]
+    },
+    {
+      "id": 2,
+      "sum": 5,
+      "cells": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "id": 3,
+      "sum": 7,
+      "cells": [
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          2
+        ]
+      ]
+    },
+    {
+      "id": 4,
+      "sum": 10,
+      "cells": [
+        [
+          1,
+          1
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          3,
+          2
+        ]
+      ]
+    },
+    {
+      "id": 5,
+      "sum": 4,
+      "cells": [
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          3
+        ]
+      ]
+    },
+    {
+      "id": 6,
+      "sum": 7,
+      "cells": [
+        [
+          3,
+          1
+        ],
+        [
+          3,
+          0
+        ]
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "id": "t102_s",
+      "condition": "onLevelStart",
+      "type": "freeze_mask",
+      "text": "看虚线框！这是「笼子」，左上角是笼内总和。1格的笼子，和值是几就填几！",
+      "once": true,
+      "targetR": 0,
+      "targetC": 0,
+      "targetType": "cell",
+      "highlightShape": "circle"
+    },
+    {
+      "id": "t102_f",
+      "condition": "onFirstNumberFilled",
+      "type": "popup_hint",
+      "position": "top",
+      "text": "对了！单格笼是送分题🎉",
+      "once": true
+    },
+    {
+      "id": "t102_b",
+      "condition": "onFillCountReached",
+      "count": 8,
+      "type": "enter_phase",
+      "phase": "breakthrough",
+      "once": true
+    },
+    {
+      "id": "t102_fi",
+      "condition": "onFillCountReached",
+      "count": 12,
+      "type": "enter_phase",
+      "phase": "finishing",
+      "once": true
+    },
+    {
+      "id": "t102_c",
+      "condition": "onConflict",
+      "type": "popup_hint",
+      "position": "top",
+      "text": "检查笼子和值哦～",
+      "once": false
+    }
+  ],
+  "preDialog": [
+    {
+      "speaker": "旁白",
+      "text": "沈墨回到帐房，翻开那本《战争与和平》。书页间夹着一张薄纸。",
+      "isNarration": true
+    },
+    {
+      "speaker": "老师（留声）",
+      "text": "第三行第四列是3。看到这个数字，你就能确认这封信是真的。",
+      "side": "right",
+      "emotion": "calm",
+      "effect": 0
+    },
+    {
+      "speaker": "沈墨 CHIBI",
+      "text": "……第三行第四列。她留在字条上的锚点。",
+      "side": "left",
+      "emotion": "thinking",
+      "effect": 0
+    }
+  ],
+  "clearDialog": [
+    {
+      "speaker": "旁白",
+      "text": "沈墨解完最后一道空格的刹那，第三行第四列的数字浮了出来：3。",
+      "isNarration": true
+    },
+    {
+      "speaker": "沈墨 CHIBI",
+      "text": "……是3。和老师字条上写的一样。这封信是真的。",
+      "side": "left",
+      "emotion": "calm",
+      "effect": 0
+    },
+    {
+      "speaker": "老师（留声）",
+      "text": "你确认了。那就继续往下走吧。",
+      "side": "right",
+      "emotion": "smile",
+      "effect": 0
+    }
+  ],
+  "lessonPlan": {
+    "newSkill": "cage_sum_combo",
+    "skillName": "笼和组合",
+    "isFirstLesson": true,
+    "skippable": true,
+    "prerequisite": [
+      "box_rule"
+    ],
+    "phases": {
+      "intro": {
+        "text": "四宫格加上笼格和值。虚线框里的数字加起来等于左上角的数。这是一道验证题——确认你拿到的东西是真的。",
+        "speaker": "沈墨 CHIBI",
+        "duration": 3000
+      },
+      "demo": {
+        "steps": [
+          {
+            "action": "highlightCage",
+            "target": 4,
+            "duration": 1500,
+            "text": "沈墨的目光落在虚线框上——它圈住4个格子，左上角的10，就是这4格相加的总和。"
+          },
+          {
+            "action": "focusCell",
+            "target": [
+              1,
+              1
+            ],
+            "duration": 900,
+            "text": "框里是b2、c2、c3、d3。他一个个核对过去。"
+          },
+          {
+            "action": "focusCell",
+            "target": [
+              2,
+              1
+            ],
+            "duration": 900
+          },
+          {
+            "action": "focusCell",
+            "target": [
+              2,
+              2
+            ],
+            "duration": 900
+          },
+          {
+            "action": "focusCell",
+            "target": [
+              3,
+              2
+            ],
+            "duration": 900
+          },
+          {
+            "action": "highlightRow",
+            "target": 2,
+            "duration": 1200,
+            "text": "他又看c3所在的一行：第2行已经有2和1，那c3只可能是3或4。"
+          },
+          {
+            "action": "highlightCol",
+            "target": 2,
+            "duration": 1200,
+            "text": "再看这一列：已经有3，c3排除了3——只剩4！他逐格核对，不敢漏掉任何一格。"
+          },
+          {
+            "action": "focusCell",
+            "target": [
+              2,
+              2
+            ],
+            "duration": 1500
+          }
+        ]
+      },
+      "guided": {
+        "targetCell": [
+          2,
+          2
+        ],
+        "correctValue": 4,
+        "interactionType": "NUMBER",
+        "autoRevealText": "c3 在虚线笼里：这一行已有 2 和 1，还缺 3、4；这一列已有 3——所以 c3 只能填 4。",
+        "maxAttempts": 3,
+        "hintText": "沈墨的目光停在第三行第四列。老师留下的锚点在那里。他只需要让这个位置的数字变成3。",
+        "failHint": "沈墨重新验算了一遍……如果这个数字不对，整道题的合法性就不成立。",
+        "autoRevealAfter": 3,
+        "successText": "数字7落定。验证通过。这本《战争与和平》确实是老师留下的路标。"
+      },
+      "semiAuto": {
+        "enabled": true,
+        "targetCount": 2,
+        "hintText": "再看两个格子：b3 只剩数字 1；c4 和 d4 同笼，和为 4——列 3 有 2、行 2 有 1，排除后只剩 3。试试看。",
+        "watchCells": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            1
+          ]
+        ],
+        "interactionType": "NUMBER"
+      },
+      "free": {
+        "enabled": true,
+        "unlockText": "笼和是把利器。剩下的路，自己走。"
+      }
+    },
+    "technique": "cageUnique"
+  },
+  "threeAct": {
+    "opening": [
+      [
+        0,
+        1
+      ],
+      [
+        2,
+        2
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        0,
+        3
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        3,
+        0
+      ],
+      [
+        3,
+        1
+      ]
+    ],
+    "breakthrough": [],
+    "avalanche": [
+      [
+        3,
+        2
+      ],
+      [
+        3,
+        3
+      ]
+    ]
+  },
+  "difficultyLevel": 1
 }

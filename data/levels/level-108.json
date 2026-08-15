@@ -1,423 +1,422 @@
 {
-    "levelId":  108,
-    "title":  "夹层遗物",
-    "mode":  "full",
-    "gridSize":  4,
-    "difficulty":  "普通",
-    "ambience":  {
-                     "pressure":  "red",
-                     "label":  "⚠ 脚步声在逼近——解错，门不会开",
-                     "loopSfx":  "footstep_hall"
-                 },
-    "teachingGoal":  "认识「10法则」：4×4每行/列/宫总和都是10！",
-    "features":  {
-                     "allowDraft":  true,
-                     "assistant45":  true,
-                     "showHints":  true,
-                     "highlightRow":  true,
-                     "highlightCol":  true,
-                     "highlightBox":  true,
-                     "highlightNumber":  true,
-                     "highlightCage":  true,
-                     "autoFillCandidates":  false
-                 },
-    "boardData":  [
-                      [
-                          0,
-                          4,
-                          2,
-                          0
-                      ],
-                      [
-                          3,
-                          0,
-                          0,
-                          0
-                      ],
-                      [
-                          0,
-                          0,
-                          0,
-                          4
-                      ],
-                      [
-                          0,
-                          1,
-                          0,
-                          0
-                      ]
-                  ],
-    "solution":  [
-                     [
-                         1,
-                         4,
-                         2,
-                         3
-                     ],
-                     [
-                         3,
-                         2,
-                         4,
-                         1
-                     ],
-                     [
-                         2,
-                         3,
-                         1,
-                         4
-                     ],
-                     [
-                         4,
-                         1,
-                         3,
-                         2
-                     ]
-                 ],
-    "cages":  [
-                  {
-                      "id":  1,
-                      "sum":  6,
-                      "cells":  [
-                                    [
-                                        0,
-                                        0
-                                    ],
-                                    [
-                                        1,
-                                        0
-                                    ],
-                                    [
-                                        2,
-                                        0
-                                    ]
-                                ]
-                  },
-                  {
-                      "id":  2,
-                      "sum":  9,
-                      "cells":  [
-                                    [
-                                        0,
-                                        1
-                                    ],
-                                    [
-                                        1,
-                                        1
-                                    ],
-                                    [
-                                        2,
-                                        1
-                                    ]
-                                ]
-                  },
-                  {
-                      "id":  3,
-                      "sum":  6,
-                      "cells":  [
-                                    [
-                                        0,
-                                        2
-                                    ],
-                                    [
-                                        1,
-                                        2
-                                    ]
-                                ]
-                  },
-                  {
-                      "id":  4,
-                      "sum":  10,
-                      "cells":  [
-                                    [
-                                        0,
-                                        3
-                                    ],
-                                    [
-                                        1,
-                                        3
-                                    ],
-                                    [
-                                        2,
-                                        3
-                                    ],
-                                    [
-                                        3,
-                                        3
-                                    ]
-                                ]
-                  },
-                  {
-                      "id":  5,
-                      "sum":  4,
-                      "cells":  [
-                                    [
-                                        2,
-                                        2
-                                    ],
-                                    [
-                                        3,
-                                        2
-                                    ]
-                                ]
-                  },
-                  {
-                      "id":  6,
-                      "sum":  5,
-                      "cells":  [
-                                    [
-                                        3,
-                                        1
-                                    ],
-                                    [
-                                        3,
-                                        0
-                                    ]
-                                ]
-                  }
-              ],
-    "triggers":  [
-                     {
-                         "id":  "t107_s",
-                         "condition":  "onLevelStart",
-                         "type":  "freeze_mask",
-                         "text":  "大招来了！「10法则」：4×4每行/列/宫总和永远是10（1+2+3+4=10）！用10减已知数，就能算出剩下的！",
-                         "once":  true,
-                         "targetR":  0,
-                         "targetC":  0,
-                         "targetType":  "cell",
-                         "highlightShape":  "circle"
-                     },
-                     {
-                         "id":  "t107_b",
-                         "condition":  "onFillCountReached",
-                         "count":  6,
-                         "type":  "enter_phase",
-                         "phase":  "breakthrough",
-                         "once":  true
-                     },
-                     {
-                         "id":  "t107_st",
-                         "condition":  "onStuckForSeconds",
-                         "seconds":  25,
-                         "type":  "popup_hint",
-                         "position":  "top",
-                         "text":  "💡 看第一行！10-4-2=4，再看笼子和值是4，就知道两个数是1和3！",
-                         "once":  false
-                     },
-                     {
-                         "id":  "t107_fi",
-                         "condition":  "onFillCountReached",
-                         "count":  12,
-                         "type":  "enter_phase",
-                         "phase":  "finishing",
-                         "once":  true
-                     }
-                 ],
-    "preDialog":  [
-                      {
-                          "speaker":  "薇拉",
-                          "text":  "最后一道。4×4的每一行、每一列、每一宫，总和永远是10。",
-                          "side":  "right",
-                          "emotion":  "calm",
-                          "effect":  0
-                      },
-                      {
-                          "speaker":  "老师（留声）",
-                          "text":  "10法则是基石。它不只是规则，也是验证——如果你填完后某一行不等于10，说明前面一定漏了。",
-                          "side":  "right",
-                          "emotion":  "calm",
-                          "effect":  0
-                      },
-                      {
-                          "speaker":  "沈墨 CHIBI",
-                          "text":  "……用10减去已经有的数字，剩下的就是答案。她在看我能不能用减法和排在一起做判断。",
-                          "side":  "left",
-                          "emotion":  "thinking",
-                          "effect":  0
-                      }
-                  ],
-    "clearDialog":  [
-                        {
-                            "speaker":  "薇拉",
-                            "text":  "你解完了。1+2+3+4=10，每一行都是10。",
-                            "side":  "right",
-                            "emotion":  "smile",
-                            "effect":  0
-                        },
-                        {
-                            "speaker":  "沈墨 CHIBI",
-                            "text":  "……三道信任题，她都出了。她没有留漏洞给我。",
-                            "side":  "left",
-                            "emotion":  "calm",
-                            "effect":  0
-                        },
-                        {
-                            "speaker":  "旁白",
-                            "text":  "沈墨把卡纸折好放进口袋。他没有问「我通过了吗」。他已经知道答案了。",
-                            "isNarration":  true
-                        }
-                    ],
-    "lessonPlan":  {
-                       "newSkill":  "rule_of_ten",
-                       "skillName":  "十则秘术",
-                       "isFirstLesson":  true,
-                       "skippable":  true,
-                       "prerequisite":  [
-                                            "cage_combo",
-                                            "hidden_single"
-                                        ],
-                       "phases":  {
-                                      "intro":  {
-                                                    "text":  "4×4的每行、每列、每宫，数字总和永远是10。这是最底层的约束。也是你最后一道验证。",
-                                                    "speaker":  "沈墨 CHIBI",
-                                                    "duration":  3000
-                                                },
-                                      "demo":  {
-                                                   "steps":  [
-                                                                 {
-                                                                     "action":  "highlightRow",
-                                                                     "target":  0,
-                                                                     "duration":  1000
-                                                                 },
-                                                                 {
-                                                                     "action":  "focusCell",
-                                                                     "target":  [
-                                                                                    0,
-                                                                                    2
-                                                                                ],
-                                                                     "duration":  600
-                                                                 },
-                                                                 {
-                                                                     "action":  "focusCell",
-                                                                     "target":  [
-                                                                                    0,
-                                                                                    3
-                                                                                ],
-                                                                     "duration":  600
-                                                                 },
-                                                                 {
-                                                                     "action":  "highlightCage",
-                                                                     "target":  0,
-                                                                     "duration":  1200
-                                                                 },
-                                                                 {
-                                                                     "action":  "highlightCol",
-                                                                     "target":  0,
-                                                                     "duration":  1000
-                                                                 },
-                                                                 {
-                                                                     "action":  "focusCell",
-                                                                     "target":  [
-                                                                                    2,
-                                                                                    0
-                                                                                ],
-                                                                     "duration":  800
-                                                                 },
-                                                                 {
-                                                                     "action":  "focusCell",
-                                                                     "target":  [
-                                                                                    0,
-                                                                                    0
-                                                                                ],
-                                                                     "duration":  1500
-                                                                 }
-                                                             ]
-                                               },
-                                      "guided":  {
-                                                     "targetCell":  [
-                                                                        0,
-                                                                        0
-                                                                    ],
-                                                     "correctValue":  1,
-                                                     "interactionType":  "NUMBER",
-                                                     "autoRevealText":  "a1、b1、c1 三格笼和为 6，b1 已是 3——剩下两格和为 3，只能是 1 和 2；再看 a 行已有 a2=4、a3=2，所以 a1 只能填 1。",
-                                                     "maxAttempts":  3,
-                                                     "hintText":  "沈墨的笔尖停在那一行的空位上。用10减去已知数，剩下的就是这一格。",
-                                                     "failHint":  "沈墨算了一遍……行里已经有的数字加起来超过了10。他在前面的某一步一定填错了。",
-                                                     "autoRevealAfter":  3,
-                                                     "successText":  "整行加起来等于10。沈墨放下笔。他通过了全部三道信任题。",
-                                                     "isTrap":  true,
-                                                     "trapValue":  1,
-                                                     "trapText":  "笼和是对的——但别忘了检查行！a 行已经有 2 了。"
-                                                 },
-                                      "semiAuto":  {
-                                                       "enabled":  true,
-                                                       "targetCount":  2,
-                                                       "hintText":  "用十则和笼和，再找出两个确定的数字。",
-                                                       "watchCells":  [
-                                                                          [
-                                                                              1,
-                                                                              2
-                                                                          ],
-                                                                          [
-                                                                              3,
-                                                                              2
-                                                                          ],
-                                                                          [
-                                                                              2,
-                                                                              0
-                                                                          ]
-                                                                      ],
-                                                       "interactionType":  "NUMBER"
-                                                   },
-                                      "free":  {
-                                                   "enabled":  true,
-                                                   "unlockText":  "十则是总纲，也是验证的利器。剩下的路，自己走完。"
-                                               }
-                                  }
-                   },
-    "threeAct":  {
-                     "opening":  [
-                                     [
-                                         0,
-                                         0
-                                     ],
-                                     [
-                                         0,
-                                         3
-                                     ],
-                                     [
-                                         1,
-                                         1
-                                     ],
-                                     [
-                                         1,
-                                         2
-                                     ],
-                                     [
-                                         1,
-                                         3
-                                     ],
-                                     [
-                                         2,
-                                         0
-                                     ],
-                                     [
-                                         2,
-                                         1
-                                     ],
-                                     [
-                                         2,
-                                         2
-                                     ],
-                                     [
-                                         3,
-                                         0
-                                     ],
-                                     [
-                                         3,
-                                         2
-                                     ]
-                                 ],
-                     "breakthrough":  [
-
-                                      ],
-                     "avalanche":  [
-                                       [
-                                           3,
-                                           3
-                                       ]
-                                   ]
-                 },
-    "difficultyLevel":  3
+  "levelId": 108,
+  "title": "夹层遗物",
+  "mode": "full",
+  "gridSize": 4,
+  "difficulty": "普通",
+  "ambience": {
+    "pressure": "red",
+    "label": "⚠ 脚步声在逼近——解错，门不会开",
+    "loopSfx": "footstep_hall"
+  },
+  "teachingGoal": "认识「10法则」：4×4每行/列/宫总和都是10！",
+  "features": {
+    "allowDraft": true,
+    "assistant45": true,
+    "showHints": true,
+    "highlightRow": true,
+    "highlightCol": true,
+    "highlightBox": true,
+    "highlightNumber": true,
+    "highlightCage": true,
+    "autoFillCandidates": false
+  },
+  "boardData": [
+    [
+      0,
+      4,
+      2,
+      0
+    ],
+    [
+      3,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      4
+    ],
+    [
+      0,
+      1,
+      0,
+      0
+    ]
+  ],
+  "solution": [
+    [
+      1,
+      4,
+      2,
+      3
+    ],
+    [
+      3,
+      2,
+      4,
+      1
+    ],
+    [
+      2,
+      3,
+      1,
+      4
+    ],
+    [
+      4,
+      1,
+      3,
+      2
+    ]
+  ],
+  "cages": [
+    {
+      "id": 1,
+      "sum": 6,
+      "cells": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          0
+        ]
+      ]
+    },
+    {
+      "id": 2,
+      "sum": 9,
+      "cells": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          2,
+          1
+        ]
+      ]
+    },
+    {
+      "id": 3,
+      "sum": 6,
+      "cells": [
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ]
+      ]
+    },
+    {
+      "id": 4,
+      "sum": 10,
+      "cells": [
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          3
+        ]
+      ]
+    },
+    {
+      "id": 5,
+      "sum": 4,
+      "cells": [
+        [
+          2,
+          2
+        ],
+        [
+          3,
+          2
+        ]
+      ]
+    },
+    {
+      "id": 6,
+      "sum": 5,
+      "cells": [
+        [
+          3,
+          1
+        ],
+        [
+          3,
+          0
+        ]
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "id": "t107_s",
+      "condition": "onLevelStart",
+      "type": "freeze_mask",
+      "text": "大招来了！「10法则」：4×4每行/列/宫总和永远是10（1+2+3+4=10）！用10减已知数，就能算出剩下的！",
+      "once": true,
+      "targetR": 0,
+      "targetC": 0,
+      "targetType": "cell",
+      "highlightShape": "circle"
+    },
+    {
+      "id": "t107_b",
+      "condition": "onFillCountReached",
+      "count": 6,
+      "type": "enter_phase",
+      "phase": "breakthrough",
+      "once": true
+    },
+    {
+      "id": "t107_st",
+      "condition": "onStuckForSeconds",
+      "seconds": 25,
+      "type": "popup_hint",
+      "position": "top",
+      "text": "💡 看第一行！10-4-2=4，再看笼子和值是4，就知道两个数是1和3！",
+      "once": false
+    },
+    {
+      "id": "t107_fi",
+      "condition": "onFillCountReached",
+      "count": 12,
+      "type": "enter_phase",
+      "phase": "finishing",
+      "once": true
+    }
+  ],
+  "preDialog": [
+    {
+      "speaker": "薇拉",
+      "text": "最后一道。4×4的每一行、每一列、每一宫，总和永远是10。",
+      "side": "right",
+      "emotion": "calm",
+      "effect": 0
+    },
+    {
+      "speaker": "老师（留声）",
+      "text": "10法则是基石。它不只是规则，也是验证——如果你填完后某一行不等于10，说明前面一定漏了。",
+      "side": "right",
+      "emotion": "calm",
+      "effect": 0
+    },
+    {
+      "speaker": "沈墨 CHIBI",
+      "text": "……用10减去已经有的数字，剩下的就是答案。她在看我能不能用减法和排在一起做判断。",
+      "side": "left",
+      "emotion": "thinking",
+      "effect": 0
+    }
+  ],
+  "clearDialog": [
+    {
+      "speaker": "薇拉",
+      "text": "你解完了。1+2+3+4=10，每一行都是10。",
+      "side": "right",
+      "emotion": "smile",
+      "effect": 0
+    },
+    {
+      "speaker": "沈墨 CHIBI",
+      "text": "……三道信任题，她都出了。她没有留漏洞给我。",
+      "side": "left",
+      "emotion": "calm",
+      "effect": 0
+    },
+    {
+      "speaker": "旁白",
+      "text": "沈墨把卡纸折好放进口袋。他没有问「我通过了吗」。他已经知道答案了。",
+      "isNarration": true
+    }
+  ],
+  "lessonPlan": {
+    "newSkill": "rule_of_ten",
+    "skillName": "十则秘术",
+    "isFirstLesson": true,
+    "skippable": true,
+    "prerequisite": [
+      "cage_combo",
+      "hidden_single"
+    ],
+    "phases": {
+      "intro": {
+        "text": "4×4的每行、每列、每宫，数字总和永远是10。这是最底层的约束。也是你最后一道验证。",
+        "speaker": "沈墨 CHIBI",
+        "duration": 3000
+      },
+      "demo": {
+        "steps": [
+          {
+            "action": "highlightRow",
+            "target": 0,
+            "duration": 1000
+          },
+          {
+            "action": "focusCell",
+            "target": [
+              0,
+              2
+            ],
+            "duration": 600
+          },
+          {
+            "action": "focusCell",
+            "target": [
+              0,
+              3
+            ],
+            "duration": 600
+          },
+          {
+            "action": "highlightCage",
+            "target": 1,
+            "duration": 1200
+          },
+          {
+            "action": "highlightCol",
+            "target": 0,
+            "duration": 1000
+          },
+          {
+            "action": "focusCell",
+            "target": [
+              2,
+              0
+            ],
+            "duration": 800
+          },
+          {
+            "action": "focusCell",
+            "target": [
+              0,
+              0
+            ],
+            "duration": 1500
+          }
+        ]
+      },
+      "guided": {
+        "targetCell": [
+          0,
+          0
+        ],
+        "correctValue": 1,
+        "interactionType": "NUMBER",
+        "autoRevealText": "a1、b1、c1 三格笼和为 6，b1 已是 3——剩下两格和为 3，只能是 1 和 2；再看 a 行已有 a2=4、a3=2，所以 a1 只能填 1。",
+        "maxAttempts": 3,
+        "hintText": "沈墨的笔尖停在那一行的空位上。用10减去已知数，剩下的就是这一格。",
+        "failHint": "沈墨算了一遍……行里已经有的数字加起来超过了10。他在前面的某一步一定填错了。",
+        "autoRevealAfter": 3,
+        "successText": "整行加起来等于10。沈墨放下笔。他通过了全部三道信任题。",
+        "isTrap": true,
+        "trapValue": 1,
+        "trapText": "笼和是对的——但别忘了检查行！a 行已经有 2 了。"
+      },
+      "semiAuto": {
+        "enabled": true,
+        "targetCount": 2,
+        "hintText": "用十则和笼和，再找出两个确定的数字。",
+        "watchCells": [
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            2,
+            0
+          ]
+        ],
+        "interactionType": "NUMBER"
+      },
+      "free": {
+        "enabled": true,
+        "unlockText": "十则是总纲，也是验证的利器。剩下的路，自己走完。"
+      }
+    },
+    "technique": "rule45"
+  },
+  "threeAct": {
+    "opening": [
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        3
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        1,
+        3
+      ],
+      [
+        2,
+        0
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        2,
+        2
+      ],
+      [
+        3,
+        0
+      ],
+      [
+        3,
+        2
+      ]
+    ],
+    "breakthrough": [],
+    "avalanche": [
+      [
+        3,
+        3
+      ]
+    ]
+  },
+  "difficultyLevel": 3
 }

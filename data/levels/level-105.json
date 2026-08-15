@@ -1,385 +1,382 @@
 {
-    "levelId":  105,
-    "title":  "藏书楼外墙",
-    "mode":  "full",
-    "gridSize":  4,
-    "difficulty":  "简单",
-    "teachingGoal":  "2格笼和值3/4/6/7时组合唯一！口诀：3=1+2,4=1+3,6=2+4,7=3+4",
-    "features":  {
-                     "allowDraft":  true,
-                     "assistant45":  false,
-                     "showHints":  true,
-                     "highlightRow":  true,
-                     "highlightCol":  true,
-                     "highlightBox":  true,
-                     "highlightNumber":  true,
-                     "highlightCage":  true,
-                     "autoFillCandidates":  false
-                 },
-    "boardData":  [
-                      [
-                          0,
-                          0,
-                          0,
-                          2
-                      ],
-                      [
-                          0,
-                          0,
-                          0,
-                          4
-                      ],
-                      [
-                          3,
-                          0,
-                          0,
-                          0
-                      ],
-                      [
-                          2,
-                          0,
-                          0,
-                          0
-                      ]
-                  ],
-    "solution":  [
-                     [
-                         4,
-                         3,
-                         1,
-                         2
-                     ],
-                     [
-                         1,
-                         2,
-                         3,
-                         4
-                     ],
-                     [
-                         3,
-                         4,
-                         2,
-                         1
-                     ],
-                     [
-                         2,
-                         1,
-                         4,
-                         3
-                     ]
-                 ],
-    "cages":  [
-                  {
-                      "id":  1,
-                      "sum":  7,
-                      "cells":  [
-                                    [
-                                        0,
-                                        0
-                                    ],
-                                    [
-                                        1,
-                                        0
-                                    ],
-                                    [
-                                        1,
-                                        1
-                                    ]
-                                ]
-                  },
-                  {
-                      "id":  2,
-                      "sum":  4,
-                      "cells":  [
-                                    [
-                                        0,
-                                        1
-                                    ],
-                                    [
-                                        0,
-                                        2
-                                    ]
-                                ]
-                  },
-                  {
-                      "id":  3,
-                      "sum":  9,
-                      "cells":  [
-                                    [
-                                        0,
-                                        3
-                                    ],
-                                    [
-                                        1,
-                                        3
-                                    ],
-                                    [
-                                        1,
-                                        2
-                                    ]
-                                ]
-                  },
-                  {
-                      "id":  4,
-                      "sum":  10,
-                      "cells":  [
-                                    [
-                                        2,
-                                        0
-                                    ],
-                                    [
-                                        3,
-                                        0
-                                    ],
-                                    [
-                                        3,
-                                        1
-                                    ],
-                                    [
-                                        2,
-                                        1
-                                    ]
-                                ]
-                  },
-                  {
-                      "id":  5,
-                      "sum":  3,
-                      "cells":  [
-                                    [
-                                        2,
-                                        2
-                                    ],
-                                    [
-                                        2,
-                                        3
-                                    ]
-                                ]
-                  },
-                  {
-                      "id":  6,
-                      "sum":  7,
-                      "cells":  [
-                                    [
-                                        3,
-                                        3
-                                    ],
-                                    [
-                                        3,
-                                        2
-                                    ]
-                                ]
-                  }
-              ],
-    "triggers":  [
-                     {
-                         "id":  "t104_s",
-                         "condition":  "onLevelStart",
-                         "type":  "freeze_mask",
-                         "text":  "2格笼和值为3/4/6/7时数字唯一！口诀：3要1+2，4要1+3，6要2+4，7要3+4！",
-                         "once":  true,
-                         "targetR":  0,
-                         "targetC":  0,
-                         "targetType":  "cell",
-                         "highlightShape":  "circle"
-                     },
-                     {
-                         "id":  "t104_f",
-                         "condition":  "onFirstNumberFilled",
-                         "type":  "popup_hint",
-                         "position":  "top",
-                         "text":  "找到唯一组合了！这是杀手数独的第一把钥匙🎉",
-                         "once":  true
-                     },
-                     {
-                         "id":  "t104_b",
-                         "condition":  "onFillCountReached",
-                         "count":  6,
-                         "type":  "enter_phase",
-                         "phase":  "breakthrough",
-                         "once":  true
-                     },
-                     {
-                         "id":  "t104_st",
-                         "condition":  "onStuckForSeconds",
-                         "seconds":  20,
-                         "type":  "popup_hint",
-                         "position":  "top",
-                         "text":  "💡 看笼子！和值3=1+2，和值4=1+3，结合行列宫确定位置！",
-                         "once":  false
-                     },
-                     {
-                         "id":  "t104_fi",
-                         "condition":  "onFillCountReached",
-                         "count":  12,
-                         "type":  "enter_phase",
-                         "phase":  "finishing",
-                         "once":  true
-                     }
-                 ],
-    "preDialog":  [
-                      {
-                          "speaker":  "薇拉",
-                          "text":  "第一道。两个格子的笼和是7。告诉我那两格分别填什么。",
-                          "side":  "right",
-                          "emotion":  "calm",
-                          "effect":  0
-                      },
-                      {
-                          "speaker":  "沈墨 CHIBI",
-                          "text":  "……7，在4×4里只可能是3和4。她在考我能不能一眼看穿唯一组合。",
-                          "side":  "left",
-                          "emotion":  "thinking",
-                          "effect":  0
-                      }
-                  ],
-    "clearDialog":  [
-                        {
-                            "speaker":  "薇拉",
-                            "text":  "……你看到了唯一组合。3和4，没有第二种可能。",
-                            "side":  "right",
-                            "emotion":  "calm",
-                            "effect":  0
-                        },
-                        {
-                            "speaker":  "沈墨 CHIBI",
-                            "text":  "她不是在考我会不会算。她是在考我——看到她留下的题之后，是先犹豫还是先落笔。",
-                            "side":  "left",
-                            "emotion":  "thinking",
-                            "effect":  0
-                        }
-                    ],
-    "lessonPlan":  {
-                       "newSkill":  "cage_combo",
-                       "skillName":  "唯一组合",
-                       "isFirstLesson":  true,
-                       "skippable":  true,
-                       "prerequisite":  [
-                                            "cage_sum_combo"
-                                        ],
-                       "phases":  {
-                                      "intro":  {
-                                                    "text":  "两个格子的笼和值，在4×4里只有四种唯一组合。3=1+2，4=1+3，6=2+4，7=3+4。",
-                                                    "speaker":  "沈墨 CHIBI",
-                                                    "duration":  3500
-                                                },
-                                      "demo":  {
-                                                   "steps":  [
-                                                                 {
-                                                                     "action":  "highlightCage",
-                                                                     "target":  6,
-                                                                     "duration":  1500,
-                                                                     "text":  "沈墨一眼看穿这个两格笼：左上角是7，两数相加等于7，只能是3和4——口诀「七取三四」。"
-                                                                 },
-                                                                 {
-                                                                     "action":  "highlightCol",
-                                                                     "target":  3,
-                                                                     "duration":  1200,
-                                                                     "text":  "再看这两个格子所在的第4列：上面已有2和4，这列不能再放4——下面那格被排除。"
-                                                                 },
-                                                                 {
-                                                                     "action":  "focusCell",
-                                                                     "target":  [
-                                                                                    3,
-                                                                                    3
-                                                                                ],
-                                                                     "duration":  1600,
-                                                                     "text":  "口诀给的是3和4，列又排掉4——这一格只能是3！两格笼和值唯一，数字就唯一。沈墨直接落笔。"
-                                                                 }
-                                                             ]
-                                               },
-                                      "guided":  {
-                                                     "targetCell":  [
-                                                                        3,
-                                                                        3
-                                                                    ],
-                                                     "correctValue":  3,
-                                                     "interactionType":  "NUMBER",
-                                                     "autoRevealText":  "这个两格笼和是 7——口诀「七取三四」是 3 和 4；这一列已经有 4 了，所以填 3。",
-                                                     "maxAttempts":  3,
-                                                     "hintText":  "沈墨看到那个两格笼的和值是7。……3和4。没有其他选择。",
-                                                     "failHint":  "沈墨停了一下……这个笼和值还有其他组合吗？他重新数了一遍——没有。",
-                                                     "autoRevealAfter":  3,
-                                                     "successText":  "3和4落定。沈墨放下了笔。薇拉的第一道信任题，他通过了。"
-                                                 },
-                                      "semiAuto":  {
-                                                       "enabled":  true,
-                                                       "targetCount":  2,
-                                                       "hintText":  "再来：c4 的两格笼和为 3（三取一二），这一列有 2，所以 c4 填 1；d3 和 d4 同笼，和为 7，7−3=4，d3 填 4。",
-                                                       "watchCells":  [
-                                                                          [
-                                                                              2,
-                                                                              3
-                                                                          ],
-                                                                          [
-                                                                              3,
-                                                                              2
-                                                                          ]
-                                                                      ],
-                                                       "interactionType":  "NUMBER"
-                                                   },
-                                      "free":  {
-                                                   "enabled":  true,
-                                                   "unlockText":  "口诀记住了。后面的路，常常用到。"
-                                               }
-                                  }
-                   },
-    "threeAct":  {
-                     "opening":  [
-                                     [
-                                         1,
-                                         0
-                                     ],
-                                     [
-                                         0,
-                                         0
-                                     ],
-                                     [
-                                         0,
-                                         1
-                                     ],
-                                     [
-                                         0,
-                                         2
-                                     ],
-                                     [
-                                         1,
-                                         1
-                                     ],
-                                     [
-                                         1,
-                                         2
-                                     ],
-                                     [
-                                         2,
-                                         2
-                                     ],
-                                     [
-                                         2,
-                                         3
-                                     ],
-                                     [
-                                         2,
-                                         1
-                                     ],
-                                     [
-                                         3,
-                                         1
-                                     ],
-                                     [
-                                         3,
-                                         2
-                                     ],
-                                     [
-                                         3,
-                                         3
-                                     ]
-                                 ],
-                     "breakthrough":  [
-
-                                      ],
-                     "avalanche":  [
-
-                                   ]
-                 },
-    "difficultyLevel":  2
+  "levelId": 105,
+  "title": "藏书楼外墙",
+  "mode": "full",
+  "gridSize": 4,
+  "difficulty": "简单",
+  "teachingGoal": "2格笼和值3/4/6/7时组合唯一！口诀：3=1+2,4=1+3,6=2+4,7=3+4",
+  "features": {
+    "allowDraft": true,
+    "assistant45": false,
+    "showHints": true,
+    "highlightRow": true,
+    "highlightCol": true,
+    "highlightBox": true,
+    "highlightNumber": true,
+    "highlightCage": true,
+    "autoFillCandidates": false
+  },
+  "boardData": [
+    [
+      0,
+      0,
+      0,
+      2
+    ],
+    [
+      0,
+      0,
+      0,
+      4
+    ],
+    [
+      3,
+      0,
+      0,
+      0
+    ],
+    [
+      2,
+      0,
+      0,
+      0
+    ]
+  ],
+  "solution": [
+    [
+      4,
+      3,
+      1,
+      2
+    ],
+    [
+      1,
+      2,
+      3,
+      4
+    ],
+    [
+      3,
+      4,
+      2,
+      1
+    ],
+    [
+      2,
+      1,
+      4,
+      3
+    ]
+  ],
+  "cages": [
+    {
+      "id": 1,
+      "sum": 7,
+      "cells": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          1
+        ]
+      ]
+    },
+    {
+      "id": 2,
+      "sum": 4,
+      "cells": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "id": 3,
+      "sum": 9,
+      "cells": [
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          2
+        ]
+      ]
+    },
+    {
+      "id": 4,
+      "sum": 10,
+      "cells": [
+        [
+          2,
+          0
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          2,
+          1
+        ]
+      ]
+    },
+    {
+      "id": 5,
+      "sum": 3,
+      "cells": [
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          3
+        ]
+      ]
+    },
+    {
+      "id": 6,
+      "sum": 7,
+      "cells": [
+        [
+          3,
+          3
+        ],
+        [
+          3,
+          2
+        ]
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "id": "t104_s",
+      "condition": "onLevelStart",
+      "type": "freeze_mask",
+      "text": "2格笼和值为3/4/6/7时数字唯一！口诀：3要1+2，4要1+3，6要2+4，7要3+4！",
+      "once": true,
+      "targetR": 0,
+      "targetC": 0,
+      "targetType": "cell",
+      "highlightShape": "circle"
+    },
+    {
+      "id": "t104_f",
+      "condition": "onFirstNumberFilled",
+      "type": "popup_hint",
+      "position": "top",
+      "text": "找到唯一组合了！这是杀手数独的第一把钥匙🎉",
+      "once": true
+    },
+    {
+      "id": "t104_b",
+      "condition": "onFillCountReached",
+      "count": 6,
+      "type": "enter_phase",
+      "phase": "breakthrough",
+      "once": true
+    },
+    {
+      "id": "t104_st",
+      "condition": "onStuckForSeconds",
+      "seconds": 20,
+      "type": "popup_hint",
+      "position": "top",
+      "text": "💡 看笼子！和值3=1+2，和值4=1+3，结合行列宫确定位置！",
+      "once": false
+    },
+    {
+      "id": "t104_fi",
+      "condition": "onFillCountReached",
+      "count": 12,
+      "type": "enter_phase",
+      "phase": "finishing",
+      "once": true
+    }
+  ],
+  "preDialog": [
+    {
+      "speaker": "薇拉",
+      "text": "第一道。两个格子的笼和是7。告诉我那两格分别填什么。",
+      "side": "right",
+      "emotion": "calm",
+      "effect": 0
+    },
+    {
+      "speaker": "沈墨 CHIBI",
+      "text": "……7，在4×4里只可能是3和4。她在考我能不能一眼看穿唯一组合。",
+      "side": "left",
+      "emotion": "thinking",
+      "effect": 0
+    }
+  ],
+  "clearDialog": [
+    {
+      "speaker": "薇拉",
+      "text": "……你看到了唯一组合。3和4，没有第二种可能。",
+      "side": "right",
+      "emotion": "calm",
+      "effect": 0
+    },
+    {
+      "speaker": "沈墨 CHIBI",
+      "text": "她不是在考我会不会算。她是在考我——看到她留下的题之后，是先犹豫还是先落笔。",
+      "side": "left",
+      "emotion": "thinking",
+      "effect": 0
+    }
+  ],
+  "lessonPlan": {
+    "newSkill": "cage_combo",
+    "skillName": "唯一组合",
+    "isFirstLesson": true,
+    "skippable": true,
+    "prerequisite": [
+      "cage_sum_combo"
+    ],
+    "phases": {
+      "intro": {
+        "text": "两个格子的笼和值，在4×4里只有四种唯一组合。3=1+2，4=1+3，6=2+4，7=3+4。",
+        "speaker": "沈墨 CHIBI",
+        "duration": 3500
+      },
+      "demo": {
+        "steps": [
+          {
+            "action": "highlightCage",
+            "target": 6,
+            "duration": 1500,
+            "text": "沈墨一眼看穿这个两格笼：左上角是7，两数相加等于7，只能是3和4——口诀「七取三四」。"
+          },
+          {
+            "action": "highlightCol",
+            "target": 3,
+            "duration": 1200,
+            "text": "再看这两个格子所在的第4列：上面已有2和4，这列不能再放4——下面那格被排除。"
+          },
+          {
+            "action": "focusCell",
+            "target": [
+              3,
+              3
+            ],
+            "duration": 1600,
+            "text": "口诀给的是3和4，列又排掉4——这一格只能是3！两格笼和值唯一，数字就唯一。沈墨直接落笔。"
+          }
+        ]
+      },
+      "guided": {
+        "targetCell": [
+          3,
+          3
+        ],
+        "correctValue": 3,
+        "interactionType": "NUMBER",
+        "autoRevealText": "这个两格笼和是 7——口诀「七取三四」是 3 和 4；这一列已经有 4 了，所以填 3。",
+        "maxAttempts": 3,
+        "hintText": "沈墨看到那个两格笼的和值是7。……3和4。没有其他选择。",
+        "failHint": "沈墨停了一下……这个笼和值还有其他组合吗？他重新数了一遍——没有。",
+        "autoRevealAfter": 3,
+        "successText": "3和4落定。沈墨放下了笔。薇拉的第一道信任题，他通过了。"
+      },
+      "semiAuto": {
+        "enabled": true,
+        "targetCount": 2,
+        "hintText": "再来：c4 的两格笼和为 3（三取一二），这一列有 2，所以 c4 填 1；d3 和 d4 同笼，和为 7，7−3=4，d3 填 4。",
+        "watchCells": [
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            2
+          ]
+        ],
+        "interactionType": "NUMBER"
+      },
+      "free": {
+        "enabled": true,
+        "unlockText": "口诀记住了。后面的路，常常用到。"
+      }
+    },
+    "technique": "cageUnique"
+  },
+  "threeAct": {
+    "opening": [
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        2,
+        2
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        3,
+        1
+      ],
+      [
+        3,
+        2
+      ],
+      [
+        3,
+        3
+      ]
+    ],
+    "breakthrough": [],
+    "avalanche": []
+  },
+  "difficultyLevel": 2
 }

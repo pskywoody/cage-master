@@ -1,0 +1,161 @@
+{
+  "stats": {
+    "dim_actorClass": {
+      "n": 900,
+      "df": 15,
+      "chi2": 240.962,
+      "cramersV": 0.2987,
+      "colKeys": [
+        "note",
+        "solve",
+        "guess",
+        "misread"
+      ]
+    },
+    "dim_strategy": {
+      "n": 900,
+      "df": 5,
+      "chi2": 4.412,
+      "cramersV": 0.07,
+      "colKeys": [
+        "attack",
+        "defend"
+      ]
+    },
+    "dim_intent": {
+      "n": 900,
+      "df": 20,
+      "chi2": 284.65,
+      "cramersV": 0.2812,
+      "colKeys": [
+        "test_player_response",
+        "contest_hub",
+        "convert_advantage",
+        "protect_owned_hubs",
+        "bait_player"
+      ]
+    }
+  },
+  "dist": {
+    "intent": {
+      "blind": {
+        "test_player_response": 58,
+        "contest_hub": 53,
+        "convert_advantage": 24,
+        "protect_owned_hubs": 15
+      },
+      "expert": {
+        "test_player_response": 44,
+        "contest_hub": 65,
+        "protect_owned_hubs": 18,
+        "convert_advantage": 23
+      },
+      "mentor": {
+        "contest_hub": 56,
+        "test_player_response": 62,
+        "convert_advantage": 23,
+        "protect_owned_hubs": 9
+      },
+      "prober": {
+        "contest_hub": 41,
+        "bait_player": 51,
+        "test_player_response": 34,
+        "protect_owned_hubs": 13,
+        "convert_advantage": 11
+      },
+      "average": {
+        "contest_hub": 53,
+        "test_player_response": 62,
+        "convert_advantage": 18,
+        "protect_owned_hubs": 17
+      },
+      "reckless": {
+        "test_player_response": 53,
+        "contest_hub": 66,
+        "convert_advantage": 19,
+        "protect_owned_hubs": 12
+      }
+    },
+    "strategy": {
+      "blind": {
+        "attack": 135,
+        "defend": 15
+      },
+      "expert": {
+        "attack": 132,
+        "defend": 18
+      },
+      "mentor": {
+        "attack": 141,
+        "defend": 9
+      },
+      "prober": {
+        "attack": 137,
+        "defend": 13
+      },
+      "average": {
+        "attack": 133,
+        "defend": 17
+      },
+      "reckless": {
+        "attack": 138,
+        "defend": 12
+      }
+    },
+    "actionClass": {
+      "blind": {
+        "note": 46,
+        "solve": 60,
+        "guess": 40,
+        "misread": 4
+      },
+      "expert": {
+        "note": 47,
+        "solve": 103
+      },
+      "mentor": {
+        "note": 38,
+        "solve": 112
+      },
+      "prober": {
+        "solve": 129,
+        "note": 21
+      },
+      "average": {
+        "note": 46,
+        "solve": 99,
+        "misread": 3,
+        "guess": 2
+      },
+      "reckless": {
+        "solve": 114,
+        "note": 36
+      }
+    }
+  },
+  "techDist": {
+    "blind": {
+      "nakedSingle": 60,
+      "guess": 40,
+      "misread": 4
+    },
+    "expert": {
+      "pointingClaiming": 95,
+      "nakedPair": 8
+    },
+    "mentor": {
+      "nakedSingle": 112
+    },
+    "prober": {
+      "nakedSingle": 129
+    },
+    "average": {
+      "nakedSingle": 99,
+      "misread": 3,
+      "guess": 2
+    },
+    "reckless": {
+      "nakedSingle": 114
+    }
+  }
+}

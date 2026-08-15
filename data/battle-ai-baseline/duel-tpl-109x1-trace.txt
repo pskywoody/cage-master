@@ -1,0 +1,157 @@
+{"roundTrace":true,"level":109,"event":"cell_occupied","data":{"r":1,"c":2,"side":"player"},"ts":1786824947617}
+{"roundTrace":true,"level":109,"event":"cell_occupied","data":{"r":4,"c":0,"side":"boss"},"ts":1786824947623}
+{"roundTrace":true,"level":109,"event":"cell_error","data":{"r":5,"c":1,"side":"player","num":6,"correctValue":3,"lockDuration":0,"consecutiveErrors":1},"ts":1786824947624}
+{"roundTrace":true,"level":109,"event":"ghost_appeared","data":{"r":5,"c":1,"side":"boss"},"ts":1786824947624}
+{"roundTrace":true,"level":109,"event":"cell_occupied","data":{"r":0,"c":1,"side":"player"},"ts":1786824947625}
+{"roundTrace":true,"level":109,"event":"hub_dim_occupied","data":{"hubId":0,"dim":"box","side":"player","count":2,"empty":3},"ts":1786824947625}
+{"roundTrace":true,"level":109,"event":"cell_steal_success","data":{"r":5,"c":1,"attacker":"boss","defender":"player"},"ts":1786824947627}
+{"roundTrace":true,"level":109,"event":"cell_occupied","data":{"r":5,"c":1,"side":"boss"},"ts":1786824947627}
+{"roundTrace":true,"level":109,"event":"cell_error","data":{"r":0,"c":0,"side":"player","num":1,"correctValue":4,"lockDuration":0,"consecutiveErrors":1},"ts":1786824947627}
+{"roundTrace":true,"level":109,"event":"ghost_appeared","data":{"r":0,"c":0,"side":"boss"},"ts":1786824947627}
+{"roundTrace":true,"level":109,"event":"hub_revealed","data":{"hubId":1,"r":3,"c":4,"side":"player"},"ts":1786824947628}
+{"roundTrace":true,"level":109,"event":"cell_occupied","data":{"r":3,"c":4,"side":"player"},"ts":1786824947628}
+{"roundTrace":true,"level":109,"event":"cell_steal_success","data":{"r":0,"c":0,"attacker":"boss","defender":"player"},"ts":1786824947629}
+{"roundTrace":true,"level":109,"event":"cell_occupied","data":{"r":0,"c":0,"side":"boss"},"ts":1786824947629}
+{"roundTrace":true,"level":109,"event":"cell_occupied","data":{"r":3,"c":3,"side":"player"},"ts":1786824947630}
+{"roundTrace":true,"level":109,"event":"hub_dim_occupied","data":{"hubId":1,"dim":"box","side":"player","count":2,"empty":3},"ts":1786824947630}
+{"roundTrace":true,"level":109,"event":"hub_dim_occupied","data":{"hubId":1,"dim":"cage","side":"player","count":2,"empty":2},"ts":1786824947630}
+{"roundTrace":true,"level":109,"event":"cell_occupied","data":{"r":4,"c":5,"side":"boss"},"ts":1786824947631}
+{"roundTrace":true,"level":109,"event":"hub_revealed","data":{"hubId":2,"r":1,"c":4,"side":"player"},"ts":1786824947631}
+{"roundTrace":true,"level":109,"event":"cell_occupied","data":{"r":1,"c":4,"side":"player"},"ts":1786824947632}
+{"roundTrace":true,"level":109,"event":"hub_dim_occupied","data":{"hubId":0,"dim":"row","side":"player","count":2,"empty":3},"ts":1786824947632}
+{"roundTrace":true,"level":109,"event":"hub_dim_occupied","data":{"hubId":1,"dim":"col","side":"player","count":2,"empty":2},"ts":1786824947632}
+{"roundTrace":true,"level":109,"event":"hub_occupied","data":{"hubId":1,"side":"player"},"ts":1786824947632}
+{"roundTrace":true,"level":109,"event":"hub_dim_occupied","data":{"hubId":2,"dim":"cage","side":"player","count":1,"empty":1},"ts":1786824947632}
+{"roundTrace":true,"level":109,"event":"cell_occupied","data":{"r":2,"c":5,"side":"boss"},"ts":1786824947633}
+{"roundTrace":true,"level":109,"event":"cell_occupied","data":{"r":1,"c":3,"side":"player"},"ts":1786824947634}
+{"roundTrace":true,"level":109,"event":"hub_dim_occupied","data":{"hubId":2,"dim":"row","side":"player","count":2,"empty":3},"ts":1786824947634}
+{"roundTrace":true,"level":109,"event":"hub_dim_occupied","data":{"hubId":2,"dim":"box","side":"player","count":2,"empty":2},"ts":1786824947634}
+{"roundTrace":true,"level":109,"event":"hub_occupied","data":{"hubId":2,"side":"player"},"ts":1786824947634}
+{"roundTrace":true,"level":109,"event":"cell_occupied","data":{"r":4,"c":2,"side":"boss"},"ts":1786824947635}
+{"roundTrace":true,"level":109,"event":"cell_error","data":{"r":3,"c":1,"side":"player","num":2,"correctValue":1,"lockDuration":0,"consecutiveErrors":1},"ts":1786824947635}
+{"roundTrace":true,"level":109,"event":"ghost_appeared","data":{"r":3,"c":1,"side":"boss"},"ts":1786824947635}
+{"roundTrace":true,"level":109,"event":"cell_occupied","data":{"r":5,"c":3,"side":"player"},"ts":1786824947636}
+{"roundTrace":true,"level":109,"event":"cell_occupied","data":{"r":4,"c":1,"side":"boss"},"ts":1786824947636}
+{"roundTrace":true,"level":109,"event":"cell_occupied","data":{"r":2,"c":1,"side":"player"},"ts":1786824947637}
+{"roundTrace":true,"level":109,"event":"cell_steal_success","data":{"r":3,"c":1,"attacker":"boss","defender":"player"},"ts":1786824947637}
+{"roundTrace":true,"level":109,"event":"cell_occupied","data":{"r":3,"c":1,"side":"boss"},"ts":1786824947637}
+{"roundTrace":true,"level":109,"event":"hub_dim_occupied","data":{"hubId":0,"dim":"col","side":"boss","count":3,"empty":5},"ts":1786824947638}
+{"roundTrace":true,"level":109,"event":"cell_error","data":{"r":3,"c":0,"side":"player","num":2,"correctValue":6,"lockDuration":0,"consecutiveErrors":1},"ts":1786824947638}
+{"roundTrace":true,"level":109,"event":"ghost_appeared","data":{"r":3,"c":0,"side":"boss"},"ts":1786824947638}
+{"roundTrace":true,"level":109,"event":"cell_occupied","data":{"r":3,"c":0,"side":"player"},"ts":1786824947638}
+{"roundTrace":true,"level":109,"event":"line_ready","data":{"side":"player","playerHubs":2,"bossHubs":0},"ts":1786824947638}
+{"roundTrace":true,"level":109,"event":"game_end","data":{"winner":"player","path":"full_board","stats":{"playerOwned":9,"aiOwned":8,"playerCombo":0,"aiCombo":0,"playerHubs":2,"aiHubs":0,"hubStates":[{"hubId":0,"coreCell":{"r":1,"c":1},"occupiedBy":null,"visible":true},{"hubId":1,"coreCell":{"r":3,"c":4},"occupiedBy":"player","visible":true},{"hubId":2,"coreCell":{"r":1,"c":4},"occupiedBy":"player","visible":true}],"ended":true,"winner":"player","winPath":"full_board"}},"ts":1786824947639}
+{"roundTrace":true,"level":109,"event":"full_board_win","data":{"side":"player","playerTotal":9,"aiTotal":8},"ts":1786824947639}
+{
+ "level": 109,
+ "rounds": 1,
+ "player": "ying",
+ "spawn": "yan",
+ "params": {
+  "hubLock": null,
+  "occupyThreshold": null,
+  "transferThreshold": null,
+  "comboMomentum": true,
+  "homeField": true,
+  "observer": true,
+  "observerWindow": null,
+  "observerIntensity": null,
+  "autoLink": true
+ },
+ "win": {
+  "player": 1,
+  "boss": 0,
+  "draw": 0
+ },
+ "winPath": {
+  "three_point_line": 0,
+  "full_board": 1,
+  "force_settle": 0
+ },
+ "fillStats": {
+  "player": {
+   "fills": 9,
+   "correct": 9,
+   "accuracy": "100.0%",
+   "notes": 1,
+   "fakeNotes": 0
+  },
+  "boss": {
+   "fills": 8,
+   "correct": 8,
+   "accuracy": "100.0%",
+   "notes": 1,
+   "fakeNotes": 0
+  }
+ },
+ "thinkNull": {
+  "player": {
+   "noCandidates": 0,
+   "candidatesOccupied": 0,
+   "rngMiss": 0
+  },
+  "boss": {
+   "noCandidates": 1,
+   "candidatesOccupied": 0,
+   "rngMiss": 0
+  }
+ },
+ "events": {
+  "cell_occupied": 17,
+  "cell_error": 4,
+  "ghost_appeared": 4,
+  "hub_dim_occupied": 9,
+  "cell_steal_success": 3,
+  "hub_revealed": 2,
+  "hub_occupied": 2,
+  "line_ready": 1,
+  "game_end": 1,
+  "full_board_win": 1
+ },
+ "directorShadow": null,
+ "dramaAvg": {
+  "emotionalSwing": 0,
+  "comebackWindow": 0,
+  "climaxDensity": 0.33,
+  "decisiveEventsPerRound": 3,
+  "threatReadabilityMean": {
+   "player": 0.333,
+   "boss": 0.5
+  }
+ },
+ "milestoneAvg": "0.0",
+ "avgOwned": {
+  "player": "9.0",
+  "boss": "8.0"
+ },
+ "avgHubs": {
+  "player": "2.0",
+  "boss": "0.0"
+ },
+ "avgSteps": "24",
+ "funScore": {
+  "tempo": 0,
+  "risk": 0,
+  "climax": 100,
+  "total": 30
+ },
+ "perRound": [
+  "player(full_board) 玩家9:Boss8 据点2:0 连击0:0"
+ ],
+ "strategyActivation": {
+  "player": {
+   "enabled": true,
+   "activations": 14,
+   "fallbacks": 0,
+   "lastReason": null,
+   "rounds": 1
+  },
+  "boss": {
+   "enabled": true,
+   "activations": 10,
+   "fallbacks": 0,
+   "lastReason": null,
+   "rounds": 1
+  }
+ }
+}

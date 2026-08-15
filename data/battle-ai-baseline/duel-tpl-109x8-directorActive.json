@@ -1,0 +1,122 @@
+{
+ "level": 109,
+ "rounds": 8,
+ "player": "ying",
+ "spawn": "yan",
+ "params": {
+  "hubLock": null,
+  "occupyThreshold": null,
+  "transferThreshold": null,
+  "comboMomentum": true,
+  "homeField": true,
+  "observer": true,
+  "observerWindow": null,
+  "observerIntensity": null,
+  "autoLink": true
+ },
+ "win": {
+  "player": 4,
+  "boss": 4,
+  "draw": 0
+ },
+ "winPath": {
+  "three_point_line": 1,
+  "full_board": 7,
+  "force_settle": 0
+ },
+ "fillStats": {
+  "player": {
+   "fills": 70,
+   "correct": 70,
+   "accuracy": "100.0%",
+   "notes": 13,
+   "fakeNotes": 2
+  },
+  "boss": {
+   "fills": 68,
+   "correct": 68,
+   "accuracy": "100.0%",
+   "notes": 12,
+   "fakeNotes": 1
+  }
+ },
+ "thinkNull": {
+  "player": {
+   "noCandidates": 0,
+   "candidatesOccupied": 0,
+   "rngMiss": 0
+  },
+  "boss": {
+   "noCandidates": 5,
+   "candidatesOccupied": 0,
+   "rngMiss": 0
+  }
+ },
+ "events": {
+  "cell_occupied": 138,
+  "cell_error": 28,
+  "ghost_appeared": 27,
+  "hub_dim_occupied": 53,
+  "cell_steal_success": 21,
+  "hub_revealed": 16,
+  "hub_occupied": 11,
+  "line_ready": 8,
+  "game_end": 8,
+  "full_board_win": 7,
+  "three_point_line": 1,
+  "cell_steal_fail": 1
+ },
+ "directorShadow": null,
+ "dramaAvg": {
+  "emotionalSwing": 0,
+  "comebackWindow": 0,
+  "climaxDensity": 0.63,
+  "decisiveEventsPerRound": 2.5,
+  "threatReadabilityMean": {
+   "player": 0.378,
+   "boss": 0.625
+  }
+ },
+ "milestoneAvg": "0.0",
+ "avgOwned": {
+  "player": "8.5",
+  "boss": "8.5"
+ },
+ "avgHubs": {
+  "player": "1.4",
+  "boss": "0.0"
+ },
+ "avgSteps": "25",
+ "funScore": {
+  "tempo": 0,
+  "risk": 0,
+  "climax": 100,
+  "total": 30
+ },
+ "perRound": [
+  "boss(full_board) 玩家8:Boss9 据点1:0 连击0:0",
+  "boss(full_board) 玩家8:Boss9 据点2:0 连击0:0",
+  "boss(full_board) 玩家8:Boss9 据点1:0 连击0:0",
+  "player(three_point_line) 玩家9:Boss8 据点3:0 连击0:0",
+  "player(full_board) 玩家9:Boss8 据点1:0 连击0:0",
+  "player(full_board) 玩家9:Boss8 据点1:0 连击0:0",
+  "boss(full_board) 玩家8:Boss9 据点1:0 连击0:0",
+  "player(full_board) 玩家9:Boss8 据点1:0 连击0:0"
+ ],
+ "strategyActivation": {
+  "player": {
+   "enabled": true,
+   "activations": 111,
+   "fallbacks": 0,
+   "lastReason": null,
+   "rounds": 8
+  },
+  "boss": {
+   "enabled": true,
+   "activations": 86,
+   "fallbacks": 0,
+   "lastReason": null,
+   "rounds": 8
+  }
+ }
+}

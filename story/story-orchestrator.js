@@ -33,7 +33,7 @@ const NAME_TO_CHAR = {
   '父亲': 'father',
 };
 
-// 章节默认剧情背景（2026-08-14 新剧本《笼局·三岔口》逐章美术库）
+// 章节默认剧情背景（2026-08-14 新剧本《笼中密信：上海1941》逐章美术库）
 // 1信/2屋/3门/4绳/5电/6网/7终幕；1-7章已生成 chapter{N} 专属背景
 const CHAPTER_DEFAULT_BG = {
   1: 'assets/images/chapter1/backgrounds/BG-CH1-01_accounting_room_night.jpg',
@@ -61,7 +61,7 @@ class StoryOrchestrator {
     this._setUIVisible = null;
     this._setInteractionLocked = null;
 
-    // 当前周目（新剧本《笼局·三岔口》仅单周目：沈墨视角）
+    // 当前周目（新剧本《笼中密信：上海1941》仅单周目：沈墨视角）
     this._currentCycle = 1;
   }
 

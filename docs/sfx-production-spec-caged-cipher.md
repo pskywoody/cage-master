@@ -1,4 +1,4 @@
-# SFX 生产规格 · 新剧本《笼中密信》(Caged Cipher)
+# SFX 生产规格 · 新剧本《笼中密信：上海1941》(Caged Cipher)
 
 > 配套文档：`docs/audio-reassessment-caged-cipher.md`（§三 SFX 重估，spec 级）
 > 范围：把 §三 的 SFX 缺口**落实为可生产的生成规格 + 冻结期登记补丁**。**不改动 `audio/audio-service.js`**（架构冻结，仅记录）。
@@ -20,12 +20,14 @@
 
 > 速查表（doc §五 第 7 行）写"新增 7 类"，但 §3.2 正文列 8 类（含 `tile_place`）。本规格以 §3.2 正文 **8 类** 为准，并修正速查表。
 
+> ⚠️ **章节→关卡编号已按 `data/chapters.json` v6 校正**：门 301–309 / 绳 401–409 / 电 501–509 / 网 601–609 / 库房 701–709（旧稿曾误用 +100 方案，门 401…库房 801）。§2 各场景锚点已同步修正（铁盒 409→509、wire_thread/测向车 60x 系→50x 系）。
+
 ---
 
 ## 一、已就绪资产清单（接线即用，待 §3.2 登记）
 
 ### 1.1 主目录可复用（无需新建，仅别名/复用）
-`click` `hover` `key_unlock` `thunder` `paper_tear` `paper_unfold` `fill_correct` `fill_wrong` `success` `eureka` `electronic_pulse`（≈`telegraph_power` 近似）`seal_*` `door_*`(单样本) `footstep_*`(单样本) `typewriter`(单样本) `NEO/ambient_hall` `NEO/paper_unfold` `NEO/pen_write` `NEO/seal_breaking` `NEO/note_toggle_on/off` `NEO/victory_electric`。
+`click` `hover` `key_unlock` `thunder` `paper_tear`（注：`paper_unfold` 仅在 `NEO/paper_unfold.mp3`，非主目录） `fill_correct` `fill_wrong` `success` `eureka` `electronic_pulse`（≈`telegraph_power` 近似）`seal_*` `door_*`(单样本) `footstep_*`(单样本) `typewriter`(单样本) `NEO/ambient_hall` `NEO/paper_unfold` `NEO/pen_write` `NEO/seal_breaking` `NEO/note_toggle_on/off` `NEO/victory_electric`。
 
 ### 1.2 已生成但未接线（staging → 待移到 `assets/audio/sfx/next/` 并登记）
 多样本容器（`assets/audio_next/sfx/`）：
@@ -43,7 +45,7 @@
 > 文件落地路径统一为 `assets/audio/sfx/next/<name>.wav`（与 §1.2 同目录，统一接线）。
 
 ### 2.1 `wire_thread` — 铜线穿通风管
-- **场景**：408 / 601 发报机天线——铜线穿过通风井接晾衣绳。
+- **场景**：508（电章 501–509）发报机天线——铜线穿过通风井接晾衣绳。
 - **构成**：1 个过程音 `wire_thread_loop`（铜线被缓缓拉过管壁的连续摩擦，~2.5s，可循环）+ 3 个起始刮擦 `wire_thread_start_01~03`（≤0.6s）。
 - **参数**：高频为主 2k–8kHz 带金属谐振峰；宽带摩擦噪声 + 偶发 6–9kHz"叮"（线头刮到管壁接缝）；近距干声、无尾混响（管内空腔极轻）。
 - **中间件**：diegetic，世界空间 3D（位置=发报机/通风井）；voice limit 1；steal=oldest；occlusion 低通 ~1.2kHz（隔墙衰减）。
@@ -51,7 +53,7 @@
 - **生成提示（ZH）**：`细裸铜线被缓缓拉过金属通风管。连续的干燥金属刮擦与嘶嘶摩擦，偶尔划到接缝发出清亮高音叮声。近距干录，硬质管内，无混响尾，2.5 秒。`
 
 ### 2.2 `iron_box` — 铁皮箱开合
-- **场景**：409「这道是我补的」铁盒 / B3 铁皮箱。
+- **场景**：509（电章 501–509）「这道是我补的」铁盒 / B3 铁皮箱。
 - **构成**：`iron_box_open_01~03`（铰链吱呀+盖落定，≤1.2s）+ `iron_box_close_01~03`（反向，≤1.0s）。
 - **参数**：铰链吱呀 800Hz–2kHz 带谐振；箱体闷响 150–400Hz；旧铁皮轻微共振。开/合两个状态分明。
 - **中间件**：diegetic 3D（位置=铁盒）；voice limit 1；steal=oldest。
@@ -91,7 +93,7 @@
 - **生成提示（ZH）**：`老式电子管发报机通电：低频 50Hz 工频嗡鸣渐起，继电器吸合一响，指示灯发出极轻冰冷高频微哨。电器感，亲密，0.8 秒。`
 
 ### 2.7 `direction_finder_near` — 测向车逼近（★ climax 协同）
-- **场景**：电章 climax 601–609，测向车由远及近（配合 `bgm_defuse`，doc §四.2）。
+- **场景**：电章 climax 501–509，测向车由远及近（配合 `bgm_defuse`，doc §四.2）。
 - **构成**：`direction_finder_near`（持续逼近 loop，~8s 可循环，增益/滤波随 proximity 联动）+ `direction_finder_pass`（由近及远扫过，≤2s）。
 - **参数**：军用引擎隆隆 40–120Hz + 旋转测向天线周期"呜——"扫频 300Hz–1.2kHz + 车载电台脉冲（质感近似 `telegraph_key`）。
 - **中间件**：**diegetic 3D 关键**——世界空间，位置=测向车；随 `AntagonistProximity` 参数联动**增益 + 低通**（越远越闷越轻）；voice limit 1（climax 唯一）；steal=**none**（高压节点不可被抢）。
@@ -124,7 +126,7 @@ const file = Array.isArray(entry) ? entry[Math.floor(Math.random()*entry.length)
 
 ### 3.2 `SFX_MAP` 新增条目（追加到现有对象尾部）
 ```js
-// ===== 新剧本《笼中密信》SFX（Phase 2 解冻接入）=====
+// ===== 新剧本《笼中密信：上海1941》SFX（Phase 2 解冻接入）=====
 // 多样本容器（来自 assets/audio/sfx/next/）
 'door_open':           ['next/door_open_01.wav','next/door_open_02.wav','next/door_open_03.wav'],
 'door_open_light':     ['next/door_open_light_01.wav','next/door_open_light_02.wav','next/door_open_light_03.wav'],
@@ -167,7 +169,7 @@ sfxToPreload.push(
   'iron_box_open', 'stone_carve', 'lamp_flame', 'rain_night', 'telegraph_power',
   'direction_finder_near'   // 电章 climax 必预载
 );
-// 电章 climax（levelData.climax / levelData.defuse）额外
+// 电章 climax（现行关卡 JSON 无 climax/defuse 字段；接线时按 chapterId===5 派生，或在关卡数据补字段）额外
 if (levelData && (levelData.climax || levelData.defuse)) {
   sfxToPreload.push('direction_finder_near','direction_finder_pass','telegraph_power_hum','bgm_defuse');
 }

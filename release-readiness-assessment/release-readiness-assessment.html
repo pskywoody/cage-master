@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>《笼局·三岔口》上线就绪评估报告</title>
+<title>《笼中密信：上海1941》上线就绪评估报告</title>
 <style>
 @font-face {
   font-family: 'Crimson Pro';
@@ -214,10 +214,10 @@ footer .sources a { word-break: break-all; }
 <body>
 <header class="hero">
   <div class="kicker">CageMaster 4 · Release Readiness Assessment</div>
-  <h1>《笼局·三岔口》上线就绪评估报告</h1>
+  <h1>《笼中密信：上海1941》上线就绪评估报告</h1>
   <p class="subtitle">基于开发手册 v3.7 与当前仓库实测，全面评估距最终上线版本的功能缺口、资源缺口与质量风险，并给出可执行的收尾路线图。</p>
   <div class="meta">
-    <span>项目：<b>cagemaster4 · 笼局·三岔口</b></span>
+    <span>项目：<b>cagemaster4 · 笼中密信：上海1941</b></span>
     <span>基准：<b>开发手册 v3.7</b></span>
     <span>日期：<b>2026-08-14</b></span>
     <span>内容规模：<b>7 章 63 关</b></span>
@@ -228,7 +228,7 @@ footer .sources a { word-break: break-all; }
 
 <section id="s1">
   <h2><span class="sec-num">01</span>结论速览</h2>
-  <p>项目核心玩法链路已完整可玩：<mark class="key">7 章 63 关全部就位</mark>（含 7 场 Boss 战），新剧本《笼局·三岔口》角色、台词、立绘、背景已全量落地，i18n 四语（中/英/日/韩）完整接入并验证通过。按「可发布性」评估，整体完成度约 <strong>78%</strong>。</p>
+  <p>项目核心玩法链路已完整可玩：<mark class="key">7 章 63 关全部就位</mark>（含 7 场 Boss 战），新剧本《笼中密信：上海1941》角色、台词、立绘、背景已全量落地，i18n 四语（中/英/日/韩）完整接入并验证通过。按「可发布性」评估，整体完成度约 <strong>78%</strong>。</p>
   <div class="gauge-row">
     <div class="gauge">
       <div class="g-label">整体上线就绪度</div>
@@ -257,7 +257,7 @@ footer .sources a { word-break: break-all; }
   </div>
   <div class="callout danger">
     <b>最关键的阻断项（按影响排序，2026-08-14 更新）</b>
-    ① 配音资源与《笼局·三岔口》新角色不匹配——`voice_index.json` 仍含守笼人/阿妍/莹莹等旧角色名，`VOICE_ENABLED` 关闭（用户已决策跳过，改走"上线后追加"路径）；② 无构建/打包系统（无 Vite/Webpack），依赖本地 HTTP 服务运行，无法直接产出可分发产物（P0-3）；③ 戏剧导演原默认 shadow 只记录不控制——已修复并激活（2026-08-14，详见 §07/§08）。
+    ① 配音资源与《笼中密信：上海1941》新角色不匹配——`voice_index.json` 仍含守笼人/阿妍/莹莹等旧角色名，`VOICE_ENABLED` 关闭（用户已决策跳过，改走"上线后追加"路径）；② 无构建/打包系统（无 Vite/Webpack），依赖本地 HTTP 服务运行，无法直接产出可分发产物（P0-3）；③ 戏剧导演原默认 shadow 只记录不控制——已修复并激活（2026-08-14，详见 §07/§08）。
   </div>
 </section>
 
@@ -295,7 +295,7 @@ footer .sources a { word-break: break-all; }
       <tr><td>教学系统</td><td><span class="badge done">已完成</span></td><td>五段式教学（intro→demo→guided→noteToFill→semiAuto→free）</td></tr>
       <tr><td>专家系统</td><td><span class="badge done">已完成</span></td><td>9 模块迁移完成并接入主链路</td></tr>
       <tr><td>剧情引擎</td><td><span class="badge done">已完成</span></td><td>StoryEngine + StoryOrchestrator + 三周目剧本</td></tr>
-      <tr><td>新剧本《笼局·三岔口》</td><td><span class="badge done">已完成</span></td><td>角色映射、chibi、26 张 BG、图鉴重写、残留清理</td></tr>
+      <tr><td>新剧本《笼中密信：上海1941》</td><td><span class="badge done">已完成</span></td><td>角色映射、chibi、26 张 BG、图鉴重写、残留清理</td></tr>
     </tbody>
   </table>
   </div>

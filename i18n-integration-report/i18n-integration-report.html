@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>《笼局·三岔口》i18n 国际化接入完整报告</title>
+<title>《笼中密信：上海1941》i18n 国际化接入完整报告</title>
 <style>
 @font-face {
   font-family: 'InstrumentSans';
@@ -218,10 +218,10 @@ sup a:hover { text-decoration: underline; }
 
   <header class="hero">
     <div class="kicker">CageMaster4 · 国际化实施报告</div>
-    <h1>《笼局·三岔口》i18n 国际化接入完整报告</h1>
+    <h1>《笼中密信：上海1941》i18n 国际化接入完整报告</h1>
     <p class="subtitle">面向中 / 英 / 日 / 韩四语的完整国际化改造：核心模块、语言包体系、剧本与关卡内容本地化、全量硬编码文本清理与四语一致性验证。</p>
     <div class="meta">
-      <span>项目：<b>CageMaster4 · 笼局·三岔口</b></span>
+      <span>项目：<b>CageMaster4 · 笼中密信：上海1941</b></span>
       <span>范围：<b>中 / 英 / 日 / 韩</b></span>
       <span>日期：<b>2026-08-14</b></span>
       <span>状态：<b>已接入 · 验证通过</b></span>
@@ -233,7 +233,7 @@ sup a:hover { text-decoration: underline; }
     <!-- ============ 1 概述 ============ -->
     <section id="overview">
       <h2><span class="sec-no">01</span>项目概述</h2>
-      <p>《笼局·三岔口》是一款以 1941 年上海为背景的侦探题材数独解谜游戏（沈墨视角）。本次任务在既有中文版本基础上，完成 <mark class="key">中 / 英 / 日 / 韩四语国际化（i18n）</mark> 的全量接入，覆盖界面文案、章节标题、关卡数据、Boss 台词与剧情剧本五大内容面。</p>
+      <p>《笼中密信：上海1941》是一款以 1941 年上海为背景的侦探题材数独解谜游戏（沈墨视角）。本次任务在既有中文版本基础上，完成 <mark class="key">中 / 英 / 日 / 韩四语国际化（i18n）</mark> 的全量接入，覆盖界面文案、章节标题、关卡数据、Boss 台词与剧情剧本五大内容面。</p>
       <p>实施采用「核心模块 + 语言包 + 事件驱动」架构：新增独立 i18n 核心模块统一管理语言状态与翻译回退，为四语分别维护结构化语言包，并通过 <code>data-i18n</code> 属性与 <code>cm4:localechange</code> 事件实现静态与动态文本的实时切换。用户可在设置面板一键切换语言，选择结果持久化到本地存储。</p>
 
       <div class="metrics">

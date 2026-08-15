@@ -1,0 +1,27 @@
+{
+  "experimentId": "hint_policy_v2",
+  "name": "Hint Policy v2 (synthetic)",
+  "hypothesis": "新提示策略相比旧提示策略，提高完成率/降低提示依赖/提升技能掌握。",
+  "variants": [
+    {
+      "id": "A",
+      "label": "control",
+      "index": 0
+    },
+    {
+      "id": "B",
+      "label": "treatment",
+      "index": 1
+    }
+  ],
+  "metrics": [
+    "completion_rate",
+    "avg_time_ms",
+    "avg_steps",
+    "hint_per_session",
+    "mastery"
+  ],
+  "subjectUnit": "session",
+  "seed": 42,
+  "registeredAt": 1786829372525
+}

@@ -1,0 +1,16 @@
+{
+  "experimentId": "hint_policy_v2",
+  "generated_at": "2026-08-15T21:29:32.541Z",
+  "files": [
+    "experiment.json",
+    "events.jsonl",
+    "analysis.json",
+    "report.md",
+    "manifest.json"
+  ],
+  "event_count": 51,
+  "variants": [
+    "A",
+    "B"
+  ]
+}

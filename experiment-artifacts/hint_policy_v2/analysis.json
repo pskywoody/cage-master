@@ -1,0 +1,97 @@
+{
+  "experimentId": "hint_policy_v2",
+  "sample_size": {
+    "total_sessions": 12,
+    "per_variant": {
+      "A": {
+        "sessions": 6,
+        "share": 0.5,
+        "expected_share": 0.5
+      },
+      "B": {
+        "sessions": 6,
+        "share": 0.5,
+        "expected_share": 0.5
+      }
+    }
+  },
+  "missing_event_rate": 0,
+  "variant_balance": {
+    "A": {
+      "sessions": 6,
+      "share": 0.5,
+      "expected_share": 0.5
+    },
+    "B": {
+      "sessions": 6,
+      "share": 0.5,
+      "expected_share": 0.5
+    }
+  },
+  "variants": {
+    "A": {
+      "sessions": 6,
+      "completed": 4,
+      "completion_rate": 0.667,
+      "completion_rate_ci": [
+        0.3,
+        0.903
+      ],
+      "exposure_events": 6,
+      "behavior": {
+        "hint_request": 11,
+        "mistake": 6,
+        "attempt": 0,
+        "solve_step": 6
+      },
+      "avg_time_ms": 156000,
+      "avg_time_ms_ci": [
+        148493.8,
+        163506.2
+      ],
+      "avg_steps": 10.75,
+      "avg_steps_ci": [
+        9.81,
+        11.69
+      ],
+      "hint_per_session": 1.83,
+      "mastery": 1
+    },
+    "B": {
+      "sessions": 6,
+      "completed": 6,
+      "completion_rate": 1,
+      "completion_rate_ci": [
+        0.61,
+        1
+      ],
+      "exposure_events": 6,
+      "behavior": {
+        "hint_request": 0,
+        "mistake": 0,
+        "attempt": 0,
+        "solve_step": 6
+      },
+      "avg_time_ms": 99166.7,
+      "avg_time_ms_ci": [
+        93277.6,
+        105055.7
+      ],
+      "avg_steps": 6.17,
+      "avg_steps_ci": [
+        5.38,
+        6.95
+      ],
+      "hint_per_session": 0,
+      "mastery": 1
+    }
+  },
+  "deltas": {
+    "completion_rate_delta": 0.333,
+    "avg_time_ms_delta": -56833.3,
+    "avg_steps_delta": -4.58,
+    "hint_per_session_delta": -1.83,
+    "mastery_delta": 0
+  },
+  "significance_judged": false
+}

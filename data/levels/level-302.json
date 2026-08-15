@@ -1497,47 +1497,101 @@
           {
             "action": "highlightBox",
             "target": 7,
-            "duration": 1400,
-            "text": "看左下这个宫（第7~9行、第4~6列）。我们来追查数字 9 在宫里能放哪。"
+            "text": "看下中这个宫。我们来追查数字 9 在这个宫里能放哪。"
           },
           {
-            "action": "highlightCell",
+            "action": "showNote",
             "target": [
               8,
               2
             ],
-            "duration": 1200,
-            "text": "i3 格是 9，所以 i 行在宫里的空格 i4、i5 都不能再填 9。"
+            "num": 9,
+            "text": "i3 已经是 9，所以 i 行在这个宫里的空格都不能再填 9。"
           },
           {
-            "action": "highlightCell",
+            "action": "showNote",
             "target": [
               4,
               5
             ],
-            "duration": 1200,
-            "text": "e6 格也是 9，所以第 6 列在宫里的空格 g6、h6 同样排除 9。"
+            "num": 9,
+            "text": "e6 也是 9，所以第 6 列在这个宫里的 g6、h6 同样排除 9。"
           },
           {
-            "action": "highlightCol",
-            "target": 4,
-            "duration": 1800,
+            "action": "showNotes",
+            "target": [
+              [
+                6,
+                5
+              ],
+              [
+                7,
+                5
+              ]
+            ],
+            "num": 9,
+            "text": "g6、h6 上先浮现笔记 9，再看这一列——它们被排除掉。"
+          },
+          {
+            "action": "strikeNote",
+            "target": [
+              [
+                6,
+                5
+              ],
+              [
+                7,
+                5
+              ]
+            ],
+            "num": 9,
+            "text": "给 g6、h6 的 9 划上红叉：这两格不能是 9。"
+          },
+          {
+            "action": "highlightCells",
+            "target": [
+              [
+                6,
+                4
+              ],
+              [
+                7,
+                4
+              ]
+            ],
             "text": "数一数：这个宫里数字 9 还能放哪？只剩 g5 和 h5——全都在第 5 列！这就是『列区块』。"
           },
           {
             "action": "highlightCol",
             "target": 4,
-            "duration": 1800,
             "text": "既然 9 只能出现在宫里的第 5 列，那么第 5 列在宫外的格子都不能再填 9——包括 a5！"
           },
           {
-            "action": "focusCell",
+            "action": "showNote",
             "target": [
               0,
               4
             ],
-            "duration": 1600,
-            "text": "看 a5：行里有 7、8、2、4、6，列里有 5、7、6、1，宫里还有 4、7、6、1，候选只剩 3 和 9。列区块把 9 排除——只能填 3！"
+            "num": 9,
+            "text": "看 a5：候选里还剩 3 和 9（先把 9 标出来）。"
+          },
+          {
+            "action": "strikeNote",
+            "target": [
+              0,
+              4
+            ],
+            "num": 9,
+            "text": "列区块把 a5 的 9 排除。"
+          },
+          {
+            "action": "concludeCell",
+            "target": [
+              0,
+              4
+            ],
+            "num": 3,
+            "text": "所以 a5 只能填 3！"
           }
         ]
       },

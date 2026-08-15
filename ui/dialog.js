@@ -284,13 +284,13 @@ export class DialogSystem {
           const bubbleH = Math.min(240, Math.max(90, (this._current ? this._current.text.length * 8 : 90)));
           // 并列模式（anchorSide==='right'）：气泡在锚点右侧，与 chibi 左右并列互不遮挡
           if (item.anchorSide === 'right') {
-            const bubbleW = Math.min(360, Math.max(160, (this._current ? this._current.text.length * 8 : 160)));
+            const bubbleW = 320; // 固定宽度：紧凑、不随文案长度跳动
             const gap = 10;
             let left = r.right + gap;
             // 右侧放不下则退回锚点左侧
             if (left + bubbleW > vw - 12) left = Math.max(12, r.left - bubbleW - gap);
-            // 垂直：气泡底边对齐锚点顶部向上生长，与 chibi 同高并列
-            let bottom = vh - r.top;
+            // 垂直：气泡上移 15px，与 chibi 同高靠上并列（不遮棋盘底部）
+            let bottom = vh - r.bottom + 15;
             const maxBottom = Math.max(12, vh - bubbleH - 12);
             bottom = Math.min(bottom, maxBottom);
             bottom = Math.max(bottom, 12);
@@ -391,10 +391,10 @@ export class DialogSystem {
           }
           this._typedText = item.text.slice(0, idx);
           this._textEl.textContent = this._typedText;
-          // v2.0：打字机音效——每 6 个非空格字符播一次（手感审计 %3→%6，与 story-engine 一致减密，避免"密集阵"）
+          // v2.0：打字机音效——每 3 个非空格字符播一次（2026-08-15 用户反馈想更明显，密度 %6→%3）
           if (typeof AudioService !== 'undefined' && AudioService.sfx && item.typingSound !== false) {
             const ch = item.text[idx - 1];
-            if (ch !== ' ' && ch !== '\u3000' && ch !== '\n' && (idx % 6) === 0) {
+            if (ch !== ' ' && ch !== '\u3000' && ch !== '\n' && (idx % 3) === 0) {
               try { AudioService.sfx.play('playTypewriterKey'); } catch (e) {}
             }
           }
@@ -659,8 +659,8 @@ export class DialogSystem {
       '.cm-dialog-content { flex: 1; min-width: 0; }',
       '.cm-dialog-speaker { font-size: 12px; font-weight: 600; color: #d4a853; margin-bottom: 4px; }',
       '.cm-dialog--panel .cm-dialog-speaker { color: #6b4f3a; }',
-      '.cm-dialog-text { font-size: 17px; line-height: 1.7; word-break: break-word; }',
-      '.cm-dialog-arrow { display: inline-block; margin-left: 8px; font-size: 10px; color: #d4a853;',
+      '.cm-dialog-text { font-size: 14px; line-height: 1.5; display: inline; word-break: break-word; }',
+      '.cm-dialog-arrow { display: inline-block; margin-left: 6px; font-size: 10px; color: #d4a853;',
       '  animation: cm-dialog-blink 1s step-end infinite; }',
       '@keyframes cm-dialog-blink { 50% { opacity: 0; } }',
     ].join('\n');

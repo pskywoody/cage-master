@@ -62,6 +62,9 @@ export class BoardRenderer {
     /** @type {Set<string>} 微型教学 eliminate 标记 "r,c"（红叉） */
     this._eliminateCells = new Set();
 
+    /** @type {Map<string,Set<number>>} 教学浮显笔记 "r,c" -> 数字集合（showNote/showNotes） */
+    this._lessonNotes = new Map();
+
     // ---- Boss 战幽灵格（V4.3.18，对齐 V3 手册 3.6.1/3.6.7） ----
     /** @type {string|null} Boss 主题色（非战斗时为 null，不绘制幽灵格） */
     this._bossGhostColor = null;
@@ -435,6 +438,32 @@ export class BoardRenderer {
    */
   clearEliminateMarks() {
     this._eliminateCells.clear();
+  }
+
+  /**
+   * 设置/清除教学浮显笔记（showNote/showNotes 的"数字浮现"）
+   * @param {number} r - 行
+   * @param {number} c - 列
+   * @param {number|string} num - 笔记数字
+   * @param {boolean} on - true 显示 / false 移除
+   */
+  setLessonNote(r, c, num, on) {
+    const key = r + ',' + c;
+    if (on) {
+      let set = this._lessonNotes.get(key);
+      if (!set) { set = new Set(); this._lessonNotes.set(key, set); }
+      set.add(String(num));
+    } else if (this._lessonNotes.has(key)) {
+      this._lessonNotes.get(key).delete(String(num));
+      if (this._lessonNotes.get(key).size === 0) this._lessonNotes.delete(key);
+    }
+  }
+
+  /**
+   * 清除全部教学浮显笔记
+   */
+  clearLessonNotes() {
+    this._lessonNotes.clear();
   }
 
   /**
@@ -1829,6 +1858,20 @@ export class BoardRenderer {
       ctx.moveTo(x0 + cellSize - m, y0 + m);
       ctx.lineTo(x0 + m, y0 + cellSize - m);
       ctx.stroke();
+      ctx.restore();
+    }
+
+    // ---- 教学浮显笔记（showNote/showNotes：数字浮现在格右上角，区别于真实候选数）----
+    if (this._lessonNotes && this._lessonNotes.has(r + ',' + c)) {
+      const nums = Array.from(this._lessonNotes.get(r + ',' + c)).sort().join('');
+      const x0 = c * cellSize + padding;
+      const y0 = r * cellSize + padding;
+      ctx.save();
+      ctx.font = '700 ' + Math.max(10, Math.round(cellSize * 0.3)) + 'px "Fira Code", "Cascadia Code", Consolas, monospace';
+      ctx.fillStyle = 'rgba(236, 181, 72, 0.95)';
+      ctx.textAlign = 'right';
+      ctx.textBaseline = 'top';
+      ctx.fillText(nums, x0 + cellSize - 3, y0 + 2);
       ctx.restore();
     }
   }

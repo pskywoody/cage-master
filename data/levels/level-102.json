@@ -315,13 +315,35 @@
             "text": "再看 a3 所在的这一列：下面已经有 2 和 3——a3 也不能填 3。"
           },
           {
-            "action": "focusCell",
+            "action": "highlightCells",
+            "target": [
+              [
+                2,
+                2
+              ],
+              [
+                2,
+                1
+              ]
+            ]
+          },
+          {
+            "action": "showNote",
+            "target": [
+              1,
+              2
+            ],
+            "num": 2
+          },
+          {
+            "action": "concludeCell",
             "target": [
               1,
               2
             ],
             "duration": 1200,
-            "text": "宫里只剩 1 和 3，列又排除了 3——a3 只能填 1。宫规则：看宫看列，排除掉已有的数字。"
+            "text": "宫里只剩 1 和 3，列又排除了 3——a3 只能填 1。宫规则：看宫看列，排除掉已有的数字。",
+            "num": 2
           }
         ]
       },

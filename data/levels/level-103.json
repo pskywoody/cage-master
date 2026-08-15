@@ -326,12 +326,42 @@
             "text": "再看这一列：已经有3，c3排除了3——只剩4！他逐格核对，不敢漏掉任何一格。"
           },
           {
-            "action": "focusCell",
+            "action": "highlightCells",
+            "target": [
+              [
+                2,
+                0
+              ],
+              [
+                0,
+                2
+              ],
+              [
+                2,
+                1
+              ],
+              [
+                1,
+                1
+              ]
+            ]
+          },
+          {
+            "action": "showNote",
             "target": [
               2,
               2
             ],
-            "duration": 1500
+            "num": 4
+          },
+          {
+            "action": "concludeCell",
+            "target": [
+              2,
+              2
+            ],
+            "duration": 1500,
+            "num": 4
           }
         ]
       },

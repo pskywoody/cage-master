@@ -1814,19 +1814,22 @@
 
     // 剧情播放时隐藏棋盘（避免棋盘黑框干扰剧情演出）
     _hideBoardForStory() {
-      // 兼容 V4 新布局（game.html 使用 #board-container / #pad / #statusLine）
+      // 兼容 V4 新布局（game.html 使用 #board-container / #pad / #statusLine / #toolRoll）
       const boardContainer = document.getElementById('board-container');
       const pad = document.getElementById('pad');
       const statusLine = document.getElementById('statusLine');
+      const toolRoll = document.getElementById('toolRoll');
       if (boardContainer && pad && statusLine) {
         this._boardHiddenElements = {
           'board-container': boardContainer.style.display,
           'pad': pad.style.display,
           'statusLine': statusLine.style.display,
+          'toolRoll': toolRoll ? toolRoll.style.display : '',
         };
         boardContainer.style.display = 'none';
         pad.style.display = 'none';
         statusLine.style.display = 'none';
+        if (toolRoll) toolRoll.style.display = 'none';
         return;
       }
 
@@ -2715,7 +2718,7 @@
       if (this._chibiEl) return;
       this._chibiEl = document.createElement('div');
       this._chibiEl.id = 'story-chibi';
-      this._chibiEl.style.cssText = 'position:fixed;z-index:8600;display:none;' +
+      this._chibiEl.style.cssText = 'position:fixed;z-index:8620;display:none;' +
         'background-size:contain;background-repeat:no-repeat;background-position:center bottom;' +
         'pointer-events:none;transition:opacity 0.25s;' +
         // v2.0：无底板（原半透明圆形底框用户反馈"黑色圆形框框住"不想要），

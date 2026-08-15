@@ -18,7 +18,8 @@ const DATA_DIR = path.join(__dirname, '..', 'data', 'levels');
 
 const VALID_DEMO_ACTIONS = new Set([
   'highlightRow', 'highlightCol', 'highlightBox', 'highlightPalace',
-  'highlightCage', 'highlightCell', 'focusCell', 'showSumBadge',
+  'highlightCage', 'highlightCell', 'highlightCells', 'focusCell', 'showSumBadge',
+  'showNote', 'showNotes', 'strikeNote', 'concludeCell',
   'wait', 'spotlightOn', 'spotlightOff', 'freezeOn', 'freezeOff',
   'clearHighlights', 'highlightButton', 'unhighlightButton',
 ]);

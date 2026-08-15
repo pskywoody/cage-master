@@ -320,12 +320,34 @@
             "duration": 600
           },
           {
-            "action": "focusCell",
+            "action": "highlightCells",
+            "target": [
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                3
+              ]
+            ]
+          },
+          {
+            "action": "showNote",
             "target": [
               0,
               3
             ],
-            "duration": 1500
+            "num": 2
+          },
+          {
+            "action": "concludeCell",
+            "target": [
+              0,
+              3
+            ],
+            "duration": 1500,
+            "num": 2
           }
         ]
       },

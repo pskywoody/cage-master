@@ -314,12 +314,38 @@
             "duration": 800
           },
           {
-            "action": "focusCell",
+            "action": "highlightCells",
+            "target": [
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                0,
+                2
+              ]
+            ]
+          },
+          {
+            "action": "showNote",
             "target": [
               0,
               0
             ],
-            "duration": 1500
+            "num": 1
+          },
+          {
+            "action": "concludeCell",
+            "target": [
+              0,
+              0
+            ],
+            "duration": 1500,
+            "num": 1
           }
         ]
       },

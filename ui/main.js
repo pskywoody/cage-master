@@ -26,7 +26,7 @@
 
 import { HeadlessEngine } from '../core/headless-engine.js?v=51';
 import { LessonPlayer } from '../core/lesson-player.js?v=51';
-import { buildLessonDemoSteps, buildSemiAutoHint } from '../core/lesson-demo-builder.js?v=51';
+import { buildLessonDemoSteps, buildSemiAutoHint, buildGuidedNextActions } from '../core/lesson-demo-builder.js?v=51';
 import { LevelManager } from '../core/level-manager.js?v=51';
 import { BoardRenderer } from '../renderer/board-renderer.js?v=51';
 import { EffectRenderer } from '../renderer/effect-renderer.js?v=51';
@@ -437,6 +437,7 @@ class GameApp {
           delay: this._lessonDelay,
           demoStepsBuilder: buildLessonDemoSteps,
           semiAutoHintBuilder: buildSemiAutoHint,
+          guidedNextBuilder: buildGuidedNextActions,
         });
       } catch (e) {
         console.warn('[GameApp] LessonPlayer 构造失败，进入自由模式:', e);
@@ -610,6 +611,28 @@ class GameApp {
           }
           this.emitEvent('lessonClearHighlights', {});
           break;
+        case 'showNote':
+          if (this._boardRenderer && typeof this._boardRenderer.setLessonNote === 'function') {
+            this._boardRenderer.setLessonNote(action.r, action.c, action.num, true);
+          }
+          this.emitEvent('lessonAction', action);
+          break;
+        case 'strikeNote':
+          if (this._boardRenderer && typeof this._boardRenderer.setEliminateMark === 'function') {
+            this._boardRenderer.setEliminateMark(action.r, action.c, true);
+          }
+          if (action.num !== undefined && this._boardRenderer && typeof this._boardRenderer.setLessonNote === 'function') {
+            this._boardRenderer.setLessonNote(action.r, action.c, action.num, false);
+          }
+          this.emitEvent('lessonAction', action);
+          break;
+        case 'concludeCell':
+          if (this._boardRenderer && typeof this._boardRenderer.setHighlight === 'function') {
+            this._boardRenderer.setHighlight(action.r, action.c, 'selected');
+          }
+          this.emitEvent('lessonFocusPulse', { r: action.r, c: action.c, sustained: false });
+          this.emitEvent('lessonAction', action);
+          break;
         case 'freeze':
           this._lessonFrozen = action.enabled === true;
           break;
@@ -663,6 +686,11 @@ class GameApp {
     this._lessonCage = null;
     this._lessonFrozen = false;
     this._lessonSpotlight = 0;
+    // 阶段 4：清除教学浮显笔记与红叉标记
+    if (this._boardRenderer) {
+      if (typeof this._boardRenderer.clearLessonNotes === 'function') this._boardRenderer.clearLessonNotes();
+      if (typeof this._boardRenderer.clearEliminateMarks === 'function') this._boardRenderer.clearEliminateMarks();
+    }
   }
 
   // ============================================================

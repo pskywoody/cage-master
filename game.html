@@ -4249,7 +4249,7 @@ function positionChibi() {
     // clamp：chibi 顶部不超出屏幕顶 6px
     const maxBottom = Math.max(8, vh - h - 6);
     chibi.style.left = Math.max(10, Math.round(br2.left + 6)) + 'px';
-    chibi.style.bottom = Math.min(vh - br2.top - 4, maxBottom) + 'px';
+    chibi.style.bottom = Math.min(vh - br2.top - 14, maxBottom) + 'px';
     chibi.style.transform = 'none';
     try { positionLedgerHintCard(); } catch (ePos) {}
   } catch (e) { console.warn('[Chibi] position error:', e); }
@@ -7279,13 +7279,11 @@ function showBubble(payload) {
   // v2.0：教学气泡锚定到 chibi 右侧（chibi 可见时），与 Q 版人物并列展示；
   // chibi 不可见时回退屏幕底部居中。不传 speaker → 隐藏说话人名字行（chibi 已表明说话人）
   const text = deviceAdaptLessonText(payload.text);
-  // 阶段 4：教学气泡锚定到 chibi 右侧（chibi 可见时），与 Q 版人物并列展示
+  // 阶段 4：教学气泡锚定到 chibi 右侧（教学进行中且 chibi 有尺寸即右锚，不依赖 isChibiVisible）
   let anchorEl = null, anchorSide = null;
   try {
-    if (StoryEngine && typeof StoryEngine.isChibiVisible === 'function' && StoryEngine.isChibiVisible()) {
-      const chibiEl = document.getElementById('story-chibi');
-      if (chibiEl && chibiEl.style.display !== 'none') { anchorEl = chibiEl; anchorSide = 'right'; }
-    }
+    const chibiEl = document.getElementById('story-chibi');
+    if (CM.lessonActive && chibiEl && chibiEl.offsetWidth > 0) { anchorEl = chibiEl; anchorSide = 'right'; }
   } catch (eAnchor) {}
   CM.dialog.show(text, '', {
     avatar: avatarFor(payload.speaker),
@@ -8861,7 +8859,32 @@ CM.uiCanvas.addEventListener('click', (e) => {
     try { CM.gameApp.advanceLesson(); } catch (eAdv) {}
     return;
   }
-  if (typeof CM.gameApp.handleCellClick === 'function') CM.gameApp.handleCellClick(cell.r, cell.c);
+  const res = CM.gameApp.handleCellClick(cell.r, cell.c);
+  // 数字笔（连填）模式下点空格 → 选中后立即填入锁定数字（桌面鼠标路径，与 touch 路径一致）
+  if (CM.numPenLocked != null && res && res.success !== false) {
+    try {
+      const board = CM.gameApp.getEngine().getBoard();
+      const cCell = board && board.cells[cell.r] && board.cells[cell.r][cell.c];
+      if (cCell && !cCell.fixedNum && !cCell.fillNum) {
+        const fRes = CM.gameApp.handleNumberInput(CM.numPenLocked);
+        if (fRes && fRes.success) {
+          vibrate(20);
+          if (CM.gameApp && typeof CM.gameApp.setSameNumberHighlight === 'function') {
+            CM.gameApp.setSameNumberHighlight(CM.numPenLocked);
+          }
+          if (isNumberComplete(CM.numPenLocked)) {
+            toast(I18n.t('ui.toast.numPenDone', { n: CM.numPenLocked }));
+            cancelNumberPen();
+          }
+          updateNumberPadState();
+        } else if (fRes && fRes.reason === 'lesson-locked') {
+          vibrate([20, 40, 20]);
+        }
+      }
+    } catch (penErr) {
+      console.warn('[Mouse] numPen tap fill error:', penErr);
+    }
+  }
 });
 
 // ---------------- Toast ----------------

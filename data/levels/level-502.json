@@ -1152,15 +1152,50 @@
             "text": "再看 (0,7) 所在的列：已经出现 2、8、7、9，不能再填 2——所以 (0,7)=6，(0,6)=2！"
           },
           {
-            "action": "focusCell",
+            "action": "highlightCells",
+            "target": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                2
+              ],
+              [
+                4,
+                6
+              ],
+              [
+                0,
+                5
+              ],
+              [
+                5,
+                6
+              ]
+            ]
+          },
+          {
+            "action": "showNote",
+            "target": [
+              0,
+              6
+            ],
+            "num": 2
+          },
+          {
+            "action": "concludeCell",
             "target": [
               0,
               6
             ],
             "duration": 1200,
-            "text": "异形笼不可怕：切段、算差、排除，答案自然现身。"
+            "text": "异形笼不可怕：切段、算差、排除，答案自然现身。",
+            "num": 2
           }
-        ]
+        ],
+        "auto": false
       },
       "guided": {
         "targetCell": [

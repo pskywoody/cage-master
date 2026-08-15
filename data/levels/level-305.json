@@ -1510,16 +1510,66 @@
             "text": "这两个格子组成了『并蒂锁』（Naked Pair）：2 和 3 被它们俩牢牢锁住，这一行的其他格子都不能再填 2 或 3。"
           },
           {
-            "action": "focusCell",
+            "action": "highlightCells",
+            "target": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                1
+              ],
+              [
+                0,
+                2
+              ],
+              [
+                0,
+                6
+              ],
+              [
+                0,
+                7
+              ],
+              [
+                0,
+                8
+              ],
+              [
+                8,
+                4
+              ],
+              [
+                1,
+                5
+              ],
+              [
+                2,
+                5
+              ]
+            ]
+          },
+          {
+            "action": "showNote",
+            "target": [
+              0,
+              4
+            ],
+            "num": 1
+          },
+          {
+            "action": "concludeCell",
             "target": [
               0,
               4
             ],
             "duration": 1600,
-            "text": "所以 a5 绝不可能填 2 或 3——排除之后只剩 1，只能填 1！"
+            "text": "所以 a5 绝不可能填 2 或 3——排除之后只剩 1，只能填 1！",
+            "num": 1
           }
         ],
-        "auto": true
+        "auto": false
       },
       "guided": {
         "targetCell": [

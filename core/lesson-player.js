@@ -51,6 +51,8 @@ export class LessonPlayer {
     // 阶段 3：semiAuto 渐进提示 —— 外部 builder + 当前揭示等级（1-3）
     this._semiAutoHintBuilder = options.semiAutoHintBuilder || null;
     this._semiAutoHintLevel = 0;
+    // 方案 2：successNext 来源高亮 —— 外部 builder
+    this._guidedNextBuilder = options.guidedNextBuilder || null;
 
     // 教学状态
     this._currentPhase = 'idle';   // idle | intro | demo | guided | noteToFill | semiAuto | free | done
@@ -66,6 +68,8 @@ export class LessonPlayer {
     this._guidedRevealLevel = 0;
     // 阶段 3：教学关首见技巧记录（防重复 emit onTechniqueTaught）
     this._techniqueRecorded = false;
+    // 当前 successNext 引导格的提示文案（用于填错时的重提示，避免用过期 d3 文案）
+    this._activeGuidedHintText = null;
     this._semiAutoFilled = 0;
     // V4.3.28：semiAuto 已计数的格子集合（去重，避免 UI 先落子导致 alreadyFilled 误判）
     this._semiAutoFilledCells = new Set();
@@ -469,9 +473,23 @@ export class LessonPlayer {
           const [next, idx] = found;
           this._guidedNextIndex = idx + 1;
           this._activeGuidedCell = next.cell.slice();
+          this._activeGuidedHintText = next.hintText || null;
           // 2026-08-03 修复：链跳转后必须重新等待输入，否则下一引导格无法填数
           this._isWaitingInput = true;
           this._clearAllHighlights();
+          // 方案 2：先高亮目标格所在行/列/宫里的来源格（把提示里说的数字亮出来）
+          if (typeof this._guidedNextBuilder === 'function') {
+            try {
+              const gen = this._guidedNextBuilder({
+                engine: this._engine,
+                levelData: this._levelData,
+                targetCell: next.cell,
+              });
+              if (gen && Array.isArray(gen.actions)) {
+                gen.actions.forEach((a) => { if (a) this._emit('onAction', a); });
+              }
+            } catch (eGen) { console.warn('[GuidedNext] builder 失败:', eGen); }
+          }
           this._emit('onAction', { type: 'highlightCell', r: next.cell[0], c: next.cell[1], mode: 'pulse' });
           this._emit('onNeedInput', 'guided', {
             cell: this._activeGuidedCell,
@@ -815,7 +833,8 @@ export class LessonPlayer {
     const steps = this._getDemoSteps();
 
     if (this._demoStepIndex >= steps.length) {
-      this._clearAllHighlights();
+      // 阶段 4：不再在此处清空高亮——demo 累积高亮保留到 guided 填对后再统一熄灭，
+      // 符合"讲这么多段话、格子逐一高亮但不熄灭，等玩家填完数字再熄灭"的手感。
       this._setFreezeEnabled(false);
       this._enterPhase('guided');
       return;
@@ -879,6 +898,7 @@ export class LessonPlayer {
 
     // 阶段 2：guided 三级渐进揭示。L1 方向(hintText) → L2 技巧(methodText) → L3 答案/输入。
     this._guidedRevealLevel = 0;
+    this._activeGuidedHintText = null;
     if (guided.hintText) {
       this._guidedExplaining = true;
       this._guidedRevealLevel = 1;
@@ -1086,10 +1106,12 @@ export class LessonPlayer {
         type: 'highlightCell', r: guided.failConflictCell[0], c: guided.failConflictCell[1], mode: 'conflict',
       });
     }
-    // 鼓励文案：首次错用 failHint，之后用鼓励语（填错不惩罚，继续尝试）
+    // 鼓励文案：首次错用 failHint，之后用鼓励语（填错不惩罚，继续尝试）。
+    // 方案 2：若当前在 successNext 格，优先用该格的提示文案，避免用第一格过期的 d3 文案
+    const hintText = this._activeGuidedHintText || guided.failHint || '再试一次，你能行的。';
     const encourage = attemptExceeded
-      ? '差一点！别灰心，再想想——' + (guided.failHint || '再试一次，你能行的。')
-      : (guided.failHint || '不对哦，再看看。');
+      ? '差一点！别灰心，再想想——' + hintText
+      : hintText;
     this._showBubble(encourage, '伊藤', null);
     // 2026-08-04：遥测——填错提示（failHint 触发）
     this._recordLessonEvent('fail', {
@@ -1344,10 +1366,52 @@ export class LessonPlayer {
           this._emit('onAction', { type: 'highlightCell', r: target[0], c: target[1], enabled: true });
         }
         break;
+      case 'highlightCells':
+        // 阶段 4：一步高亮多个格子（同宫/同列的备选格一起点出），避免只能逐个讲
+        if (Array.isArray(target)) {
+          target.forEach((cell) => {
+            if (Array.isArray(cell) && cell.length === 2) {
+              const key = cell[0] + ',' + cell[1];
+              this._activeHighlights.cells.add(key);
+              this._emit('onAction', { type: 'highlightCell', r: cell[0], c: cell[1], enabled: true });
+            }
+          });
+        }
+        break;
+      case 'showNote':
+        if (Array.isArray(target) && target.length === 2 && step.num !== undefined) {
+          this._emit('onAction', { type: 'showNote', r: target[0], c: target[1], num: step.num });
+        }
+        break;
+      case 'showNotes':
+        if (Array.isArray(target) && step.num !== undefined) {
+          target.forEach((cell) => {
+            if (Array.isArray(cell) && cell.length === 2) {
+              this._emit('onAction', { type: 'showNote', r: cell[0], c: cell[1], num: step.num });
+            }
+          });
+        }
+        break;
+      case 'strikeNote':
+        // 把某格/多格的某个数字打红叉（表示被排除）；target 可为 [r,c] 或 [[r,c],...]
+        if (Array.isArray(target) && target.length) {
+          const list = (Array.isArray(target[0]) ? target : [target]);
+          list.forEach((cell) => {
+            if (Array.isArray(cell) && cell.length === 2) {
+              this._emit('onAction', { type: 'strikeNote', r: cell[0], c: cell[1], num: step.num });
+            }
+          });
+        }
+        break;
+      case 'concludeCell':
+        if (Array.isArray(target) && target.length === 2) {
+          this._emit('onAction', { type: 'concludeCell', r: target[0], c: target[1], num: step.num, mode: 'pulse' });
+        }
+        break;
       case 'focusCell':
         if (Array.isArray(target) && target.length === 2) {
-          // keepState：讲解演示中保持聚光灯与冻结状态（不闪断）
-          this._clearAllHighlights(true);
+          // 阶段 4：聚焦格不再清空已有高亮——让演示中多个格子一起保持高亮，
+          // 统一到玩家填完数字后再熄灭（符合"逐一高亮且不熄灭"的体感）。
           this._activeHighlights.focusCell = [target[0], target[1]];
           this._emit('onAction', { type: 'highlightCell', r: target[0], c: target[1], mode: 'pulse' });
         }

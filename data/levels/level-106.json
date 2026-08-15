@@ -289,15 +289,46 @@
             "text": "再看第2列：c2格已经放了4，这列不能再放4——第1行第2格被排除。"
           },
           {
-            "action": "focusCell",
+            "action": "highlightCells",
+            "target": [
+              [
+                0,
+                2
+              ],
+              [
+                0,
+                3
+              ],
+              [
+                3,
+                0
+              ],
+              [
+                2,
+                1
+              ]
+            ]
+          },
+          {
+            "action": "showNote",
+            "target": [
+              0,
+              0
+            ],
+            "num": 4
+          },
+          {
+            "action": "concludeCell",
             "target": [
               0,
               0
             ],
             "duration": 1500,
-            "text": "排除完，数字4在第1行只剩a1一个位置——隐曜就在这里。沈墨填下它。"
+            "text": "排除完，数字4在第1行只剩a1一个位置——隐曜就在这里。沈墨填下它。",
+            "num": 4
           }
-        ]
+        ],
+        "auto": false
       },
       "guided": {
         "targetCell": [

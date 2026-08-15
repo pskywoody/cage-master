@@ -36,9 +36,8 @@ function mapHintAction(action) {
     case 'highlightCage':
       return { ...base, action: 'highlightCage', target: action.cageId };
     case 'highlightCell': {
-      if (action.mode === 'pulse') {
-        return { ...base, action: 'focusCell', target: [action.r, action.c] };
-      }
+      // 阶段 4：demo 高亮改为累积展示（不再对 pulse 单独映射 focusCell，
+      // 避免每个来源格都清空上一格），统一等 guided 填对后再清除。
       return { ...base, action: 'highlightCell', target: [action.r, action.c] };
     }
     case 'pulseCageSum':
@@ -127,6 +126,52 @@ export function buildSemiAutoHint({ engine, levelData, level = 1 } = {}) {
     };
   } catch (err) {
     console.warn('[SemiAutoHint] 生成失败:', err);
+    return null;
+  }
+}
+
+/**
+ * 为 guided 成功后的 successNext 目标格生成"来源高亮"动作。
+ * 方案 2：把目标格所在行/列/宫里已填的来源格全部高亮，让提示里说的数字看得见，
+ * 再由 LessonPlayer 用 concludeCell 揭晓目标格。
+ * @param {Object} ctx - { engine, levelData, targetCell }
+ * @returns {Object|null} - { actions: [{type:'highlightCell',r,c,enabled:true}, ...], value }
+ */
+export function buildGuidedNextActions({ engine, levelData, targetCell } = {}) {
+  try {
+    if (!engine || !targetCell || !Array.isArray(targetCell) || targetCell.length !== 2) return null;
+    const state = engine && typeof engine.getState === 'function' ? engine.getState() : null;
+    const cells = state && state.cells;
+    if (!Array.isArray(cells) || cells.length === 0) return null;
+
+    const [r, c] = targetCell;
+    const size = cells.length;
+    const seen = new Set();
+    const actions = [];
+    const add = (rr, cc) => {
+      const cell = cells[rr] && cells[rr][cc];
+      const v = cell && (cell.fixedNum || cell.fillNum);
+      if (!v) return;
+      const key = rr + ',' + cc;
+      if (seen.has(key)) return;
+      seen.add(key);
+      actions.push({ type: 'highlightCell', r: rr, c: cc, enabled: true });
+    };
+
+    // 目标格所在行
+    for (let i = 0; i < size; i++) add(r, i);
+    // 目标格所在列
+    for (let i = 0; i < size; i++) add(i, c);
+    // 目标格所在宫
+    const br = Math.floor(r / 3) * 3;
+    const bc = Math.floor(c / 3) * 3;
+    for (let rr = br; rr < br + 3; rr++) {
+      for (let cc = bc; cc < bc + 3; cc++) add(rr, cc);
+    }
+
+    return { actions: actions, value: (cells[r] && cells[r][c]) ? (cells[r][c].fillNum || cells[r][c].fixedNum) : null };
+  } catch (err) {
+    console.warn('[GuidedNext] 生成失败:', err);
     return null;
   }
 }

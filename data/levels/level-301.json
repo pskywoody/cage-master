@@ -1422,47 +1422,86 @@
           {
             "action": "highlightBox",
             "target": 5,
-            "duration": 1400,
-            "text": "看中间右侧这个宫（第4~6行、第7~9列）。我们来追查数字 4 在宫里能放哪。"
+            "text": "看右中这个宫。我们来追查数字 4 在这个宫里能放哪。"
           },
           {
-            "action": "highlightCell",
+            "action": "showNote",
             "target": [
               4,
               3
             ],
-            "duration": 1200,
-            "text": "e4 格是 4，所以 e 行在宫里的空格都不能再填 4。"
+            "num": 4,
+            "text": "e4 已经是 4，所以 e 行在这个宫里的空格都不能再填 4。"
           },
           {
-            "action": "highlightCell",
+            "action": "showNote",
             "target": [
               7,
               8
             ],
-            "duration": 1200,
-            "text": "h9 格也是 4，所以第 9 列在宫里的空格 d9、f9 同样排除 4。"
+            "num": 4,
+            "text": "h9 也是 4，所以第 9 列在这个宫里的空格同样排除 4。"
+          },
+          {
+            "action": "highlightCells",
+            "target": [
+              [
+                3,
+                6
+              ],
+              [
+                3,
+                7
+              ]
+            ],
+            "text": "数一数：这个宫里数字 4 还能放哪？只剩 d7 和 d8。"
+          },
+          {
+            "action": "showNotes",
+            "target": [
+              [
+                3,
+                6
+              ],
+              [
+                3,
+                7
+              ]
+            ],
+            "num": 4,
+            "text": "把 4 记到 d7、d8——全都在第 d 行！这就是『行区块』。"
           },
           {
             "action": "highlightRow",
             "target": 3,
-            "duration": 1800,
-            "text": "数一数：这个宫里数字 4 还能放哪？只剩 d7 和 d8——全都在第 d 行！这就是『行区块』。"
+            "text": "既然 4 只能出现在宫里的第 d 行，那么第 d 行在宫外的格子都不能再填 4——包括 d3！"
           },
           {
-            "action": "highlightRow",
-            "target": 3,
-            "duration": 1800,
-            "text": "行区块的威力：既然 4 只能出现在宫里的第 d 行，那么第 d 行在宫外的格子都不能再填 4——包括 d3！"
-          },
-          {
-            "action": "focusCell",
+            "action": "showNote",
             "target": [
               3,
               2
             ],
-            "duration": 1600,
-            "text": "看 d3：行里排掉 9，列里有 3、5、2、6、1，宫里还有 9、7、6，候选只剩 4 和 8。行区块把 4 排除——只能填 8！"
+            "num": 4,
+            "text": "看 d3：候选里还剩 4 和 8（先把 4 标出来）。"
+          },
+          {
+            "action": "strikeNote",
+            "target": [
+              3,
+              2
+            ],
+            "num": 4,
+            "text": "行区块把 d3 的 4 排除。"
+          },
+          {
+            "action": "concludeCell",
+            "target": [
+              3,
+              2
+            ],
+            "num": 8,
+            "text": "所以 d3 只能填 8！"
           }
         ]
       },

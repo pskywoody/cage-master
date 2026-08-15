@@ -1099,12 +1099,74 @@
             "duration": 1100
           },
           {
-            "action": "focusCell",
+            "action": "highlightCells",
+            "target": [
+              [
+                0,
+                4
+              ],
+              [
+                2,
+                1
+              ],
+              [
+                1,
+                4
+              ],
+              [
+                3,
+                4
+              ],
+              [
+                5,
+                4
+              ],
+              [
+                2,
+                6
+              ],
+              [
+                2,
+                7
+              ],
+              [
+                7,
+                4
+              ],
+              [
+                2,
+                8
+              ],
+              [
+                8,
+                4
+              ],
+              [
+                0,
+                5
+              ],
+              [
+                1,
+                5
+              ]
+            ]
+          },
+          {
+            "action": "showNote",
             "target": [
               2,
               4
             ],
-            "duration": 1300
+            "num": 8
+          },
+          {
+            "action": "concludeCell",
+            "target": [
+              2,
+              4
+            ],
+            "duration": 1300,
+            "num": 8
           }
         ]
       },

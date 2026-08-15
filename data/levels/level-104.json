@@ -319,6 +319,39 @@
             "target": "note",
             "duration": 1500,
             "text": "他先点「笔记」按钮，把候选数1记在c4里；等下填数时，那里的笔记会自动划掉。"
+          },
+          {
+            "action": "highlightCells",
+            "target": [
+              [
+                0,
+                3
+              ],
+              [
+                2,
+                1
+              ],
+              [
+                2,
+                2
+              ]
+            ]
+          },
+          {
+            "action": "showNote",
+            "target": [
+              2,
+              3
+            ],
+            "num": 1
+          },
+          {
+            "action": "concludeCell",
+            "target": [
+              2,
+              3
+            ],
+            "num": 1
           }
         ]
       },

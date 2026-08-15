@@ -2381,8 +2381,9 @@
       const chain = this.techniqueChain || (this.guidedTechnique ? [this.guidedTechnique] : null);
       if (chain && chain.length > 0) {
         const start = Date.now();
-        const grid = this._digWithChain(solution, cages, chain, start, candidateStruct);
-        if (!grid) return null;
+        const chainResult = this._digWithChain(solution, cages, chain, start, candidateStruct);
+        if (!chainResult) return null;
+        const grid = chainResult.grid;
 
         // V4.3.14 性能优化：挖洞后基于"实际盘面"重新设计三幕锚点。
         // 原锚点基于空盘求解顺序设计，挖洞后（预填 4-10 格）求解顺序改变，
@@ -2411,7 +2412,7 @@
           if (!aestheticOk) return null;
         }
 
-        const guidedInfo = this._computeChainGuidedInfo(grid, cages, chain);
+        const guidedInfo = this._computeChainGuidedInfo(chain, chainResult.baseSolve, chainResult.fullSolve);
         if (isAdvanced && guidedInfo.techUsedInFull === 0) {
           console.warn('[CageFixer] 链技巧在最终求解路径中未被实际使用（%s），advanced 关卡承诺未达成，已如实记录。', chain.join(','));
         }
@@ -2473,40 +2474,18 @@
       };
     }
 
-    // 从真实求解器回算链模式关卡的「技巧必要性」证据，替代此前的硬编码 guidedInfo。
-    // baseUnsolved / fullSolved / techUsedInFull / totalTechCount 均为实测结果。
-    _computeChainGuidedInfo(grid, cages, chain) {
-      const fullTechList = ['nakedSingle', 'cageUnique', 'hiddenSingle', 'rule45',
-        'nakedPair', 'hiddenPair', 'pointingClaiming', 'nakedTriplet',
-        'xWing', 'swordfish'];
-      const baseTechList = ['nakedSingle', 'cageUnique', 'hiddenSingle', 'rule45'];
-      const solveWith = (whitelist) => {
-        try {
-          const board = new this._Board(this.gridSize);
-          board.loadLevel({ cells: grid, cages: cages });
-          const solver = new this._TechRater(board);
-          solver.techPriority = whitelist;
-          const result = solver.solve(2000);
-          const rating = solver.getRating();
-          return {
-            solvable: !!result.solvable,
-            techCount: rating.techCount || {},
-          };
-        } catch (e) {
-          return null;
-        }
-      };
-      const base = solveWith(baseTechList);
-      const full = solveWith(fullTechList);
+    // 复用 _digWithChain 已算好的 base/full 求解结果，避免重复 solve。
+    // baseUnsolved / fullSolved / techUsedInFull / totalTechCount 均派生自已有的 baseSolve / fullSolve。
+    _computeChainGuidedInfo(chain, baseSolve, fullSolve) {
       const techUsedInFull = chain.reduce((acc, tech) => {
-        return acc + (((full && full.techCount[tech]) || 0) > 0 ? 1 : 0);
+        return acc + (((fullSolve && fullSolve.techCount[tech]) || 0) > 0 ? 1 : 0);
       }, 0);
       return {
         technique: chain.join(','),
-        baseUnsolved: !!(base && !base.solvable),
-        fullSolved: !!(full && full.solvable),
+        baseUnsolved: !!(baseSolve && !baseSolve.solvable),
+        fullSolved: !!(fullSolve && fullSolve.solvable),
         techUsedInFull,
-        totalTechCount: (full && full.techCount) || {},
+        totalTechCount: (fullSolve && fullSolve.techCount) || {},
       };
     }
 
@@ -2674,6 +2653,7 @@
         }
       }
 
+      const finalBase = solveWith(baseTechList);
       const finalFull = solveWith(fullTechList);
       if (!finalFull || !finalFull.solvable) return null;
 
@@ -2695,7 +2675,7 @@
         if (!anyChainUsed) return null;
       }
 
-      return grid;
+      return { grid, baseSolve: finalBase, fullSolve: finalFull };
     }
 
     // ======================================================

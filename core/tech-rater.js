@@ -209,6 +209,9 @@
       // 评级缓存（solve 后首次 getRating 时计算并缓存）
       this._cachedRating = null;
 
+      // cageUnique 组合枚举缓存（solve session 内有效，随 TechRater 实例销毁，不跨 puzzle）
+      this._comboCache = new Map();
+
       // 技巧优先级表
       this.techPriority = getTechPriority(this.size);
 
@@ -926,8 +929,16 @@
         const count = emptyCells.length;
 
         // 找出所有可能的数字组合（考虑候选约束）
-        const allCombos = [];
-        this._findAllCombos(remaining, count, 1, 0, placedMask, emptyCells, allCombos);
+        // 缓存 key 需涵盖剩余和、已放数字、空格数、以及每个空格当前的候选位掩码：
+        // _findAllCombos 的 canPlace 剪枝依赖空格候选，仅按“哪些格子空”不足以正确复用。
+        const cacheKey = cage.id + '|' + remaining + '|' + placedMask + '|' + count +
+          '|' + emptyCells.map(([r, c]) => this.candidates[r][c]).join(',');
+        let allCombos = this._comboCache.get(cacheKey);
+        if (allCombos === undefined) {
+          allCombos = [];
+          this._findAllCombos(remaining, count, 1, 0, placedMask, emptyCells, allCombos);
+          this._comboCache.set(cacheKey, allCombos);
+        }
 
         if (allCombos.length === 0) continue;
 

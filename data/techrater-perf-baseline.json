@@ -1,0 +1,3051 @@
+{
+  "baseline": {
+    "generatedAt": "2026-08-15T19:36:03.485Z",
+    "node": "v24.17.0",
+    "runs": 3,
+    "story": {
+      "label": "storyLevels",
+      "totalLevels": 63,
+      "solvedCount": 62,
+      "errorCount": 1,
+      "totalSolveMs": 38.9467,
+      "meanSolveMs": 0.6282,
+      "medianSolveMs": 0.5697,
+      "p95SolveMs": 1.6957,
+      "maxSolveMs": 3.1293,
+      "techMix": {
+        "nakedSingle": 2580
+      },
+      "maxTechLevelBuckets": {
+        "1": 62
+      },
+      "slowest": [
+        {
+          "levelId": 205,
+          "size": 9,
+          "solveMs": 3.1293,
+          "maxTechLevel": 1,
+          "steps": 49
+        },
+        {
+          "levelId": 204,
+          "size": 9,
+          "solveMs": 2.3639,
+          "maxTechLevel": 1,
+          "steps": 48
+        },
+        {
+          "levelId": 303,
+          "size": 9,
+          "solveMs": 1.7955,
+          "maxTechLevel": 1,
+          "steps": 49
+        },
+        {
+          "levelId": 309,
+          "size": 9,
+          "solveMs": 1.6957,
+          "maxTechLevel": 1,
+          "steps": 49
+        },
+        {
+          "levelId": 301,
+          "size": 9,
+          "solveMs": 1.2085,
+          "maxTechLevel": 1,
+          "steps": 49
+        },
+        {
+          "levelId": 401,
+          "size": 9,
+          "solveMs": 1.1218,
+          "maxTechLevel": 1,
+          "steps": 49
+        },
+        {
+          "levelId": 302,
+          "size": 9,
+          "solveMs": 1.0769,
+          "maxTechLevel": 1,
+          "steps": 49
+        },
+        {
+          "levelId": 206,
+          "size": 9,
+          "solveMs": 0.8526,
+          "maxTechLevel": 1,
+          "steps": 49
+        },
+        {
+          "levelId": 501,
+          "size": 9,
+          "solveMs": 0.83,
+          "maxTechLevel": 1,
+          "steps": 49
+        },
+        {
+          "levelId": 605,
+          "size": 9,
+          "solveMs": 0.7948,
+          "maxTechLevel": 1,
+          "steps": 49
+        }
+      ]
+    },
+    "releasePool": {
+      "label": "releasePool",
+      "totalLevels": 100,
+      "solvedCount": 84,
+      "errorCount": 16,
+      "totalSolveMs": 173.6236,
+      "meanSolveMs": 2.0669,
+      "medianSolveMs": 1.813,
+      "p95SolveMs": 4.2687,
+      "maxSolveMs": 6.737,
+      "techMix": {
+        "nakedSingle": 4259,
+        "cageUnique": 1035,
+        "hiddenSingle": 467,
+        "rule45": 193,
+        "hiddenPair": 69,
+        "nakedPair": 103
+      },
+      "maxTechLevelBuckets": {
+        "4": 6,
+        "5": 16,
+        "6": 62
+      },
+      "slowest": [
+        {
+          "levelId": "GEN-055",
+          "size": 9,
+          "solveMs": 6.737,
+          "maxTechLevel": 6,
+          "steps": 74
+        },
+        {
+          "levelId": "GEN-256",
+          "size": 9,
+          "solveMs": 5.3179,
+          "maxTechLevel": 6,
+          "steps": 73
+        },
+        {
+          "levelId": "GEN-180",
+          "size": 9,
+          "solveMs": 5.0886,
+          "maxTechLevel": 6,
+          "steps": 77
+        },
+        {
+          "levelId": "GEN-143",
+          "size": 9,
+          "solveMs": 4.6925,
+          "maxTechLevel": 6,
+          "steps": 76
+        },
+        {
+          "levelId": "GEN-224",
+          "size": 9,
+          "solveMs": 4.2687,
+          "maxTechLevel": 6,
+          "steps": 74
+        },
+        {
+          "levelId": "GEN-031",
+          "size": 9,
+          "solveMs": 4.249,
+          "maxTechLevel": 6,
+          "steps": 74
+        },
+        {
+          "levelId": "GEN-300",
+          "size": 9,
+          "solveMs": 3.8138,
+          "maxTechLevel": 6,
+          "steps": 79
+        },
+        {
+          "levelId": "GEN-191",
+          "size": 9,
+          "solveMs": 3.681,
+          "maxTechLevel": 6,
+          "steps": 76
+        },
+        {
+          "levelId": "GEN-278",
+          "size": 9,
+          "solveMs": 3.5522,
+          "maxTechLevel": 6,
+          "steps": 77
+        },
+        {
+          "levelId": "GEN-2489",
+          "size": 9,
+          "solveMs": 3.1754,
+          "maxTechLevel": 6,
+          "steps": 75
+        }
+      ]
+    },
+    "criteria": {
+      "correctness": {
+        "story": "每关 solvable / steps / maxTechLevel / level / score / techCount 与基线逐关一致",
+        "releasePool": "每关 solvable / steps / maxTechLevel / level / score / techCount 与基线逐关一致"
+      },
+      "performance": {
+        "story": "总求解耗时 ≤ 基线 totalSolveMs；单关最大 ≤ 基线 maxSolveMs",
+        "releasePool": "总求解耗时 ≤ 基线 totalSolveMs；单关最大 ≤ 基线 maxSolveMs"
+      },
+      "invariant": "TechRater 保持纯逻辑推理、guess 未启用；不引入副作用改变候选语义"
+    },
+    "rows": {
+      "story": [
+        {
+          "levelId": 101,
+          "size": 4,
+          "solvable": true,
+          "steps": 10,
+          "maxTechLevel": 1,
+          "level": "1星",
+          "score": -50,
+          "techCount": {
+            "nakedSingle": 10
+          },
+          "boardMs": 0.6692,
+          "solveMs": 0.678,
+          "ratingMs": 0.3379
+        },
+        {
+          "levelId": 102,
+          "size": 4,
+          "solvable": true,
+          "steps": 11,
+          "maxTechLevel": 1,
+          "level": "1星",
+          "score": -50,
+          "techCount": {
+            "nakedSingle": 11
+          },
+          "boardMs": 0.055,
+          "solveMs": 0.2454,
+          "ratingMs": 0.0523
+        },
+        {
+          "levelId": 103,
+          "size": 4,
+          "solvable": true,
+          "steps": 11,
+          "maxTechLevel": 1,
+          "level": "1星",
+          "score": -50,
+          "techCount": {
+            "nakedSingle": 11
+          },
+          "boardMs": 0.0346,
+          "solveMs": 0.1509,
+          "ratingMs": 0.13
+        },
+        {
+          "levelId": 104,
+          "size": 4,
+          "solvable": true,
+          "steps": 12,
+          "maxTechLevel": 1,
+          "level": "1星",
+          "score": -50,
+          "techCount": {
+            "nakedSingle": 12
+          },
+          "boardMs": 0.0351,
+          "solveMs": 0.079,
+          "ratingMs": 0.0257
+        },
+        {
+          "levelId": 105,
+          "size": 4,
+          "solvable": true,
+          "steps": 12,
+          "maxTechLevel": 1,
+          "level": "1星",
+          "score": -50,
+          "techCount": {
+            "nakedSingle": 12
+          },
+          "boardMs": 0.0588,
+          "solveMs": 0.1297,
+          "ratingMs": 0.0228
+        },
+        {
+          "levelId": 106,
+          "size": 4,
+          "solvable": true,
+          "steps": 11,
+          "maxTechLevel": 1,
+          "level": "1星",
+          "score": -50,
+          "techCount": {
+            "nakedSingle": 11
+          },
+          "boardMs": 0.042,
+          "solveMs": 0.077,
+          "ratingMs": 0.0293
+        },
+        {
+          "levelId": 107,
+          "size": 4,
+          "solvable": true,
+          "steps": 12,
+          "maxTechLevel": 1,
+          "level": "1星",
+          "score": -50,
+          "techCount": {
+            "nakedSingle": 12
+          },
+          "boardMs": 0.0391,
+          "solveMs": 0.1214,
+          "ratingMs": 0.0239
+        },
+        {
+          "levelId": 108,
+          "size": 4,
+          "solvable": true,
+          "steps": 11,
+          "maxTechLevel": 1,
+          "level": "1星",
+          "score": -50,
+          "techCount": {
+            "nakedSingle": 11
+          },
+          "boardMs": 0.0296,
+          "solveMs": 0.0897,
+          "ratingMs": 0.0181
+        },
+        {
+          "levelId": 109,
+          "size": 6,
+          "solvable": true,
+          "steps": 17,
+          "maxTechLevel": 1,
+          "level": "1星",
+          "score": -50,
+          "techCount": {
+            "nakedSingle": 17
+          },
+          "boardMs": 0.0429,
+          "solveMs": 0.1522,
+          "ratingMs": 0.0291
+        },
+        {
+          "levelId": 201,
+          "size": 6,
+          "solvable": true,
+          "steps": 6,
+          "maxTechLevel": 1,
+          "level": "1星",
+          "score": -50,
+          "techCount": {
+            "nakedSingle": 6
+          },
+          "boardMs": 0.0408,
+          "solveMs": 0.0698,
+          "ratingMs": 0.0301
+        },
+        {
+          "levelId": 202,
+          "size": 6,
+          "solvable": true,
+          "steps": 6,
+          "maxTechLevel": 1,
+          "level": "1星",
+          "score": -50,
+          "techCount": {
+            "nakedSingle": 6
+          },
+          "boardMs": 0.0149,
+          "solveMs": 0.094,
+          "ratingMs": 0.022
+        },
+        {
+          "levelId": 203,
+          "size": 6,
+          "solvable": true,
+          "steps": 12,
+          "maxTechLevel": 1,
+          "level": "1星",
+          "score": -50,
+          "techCount": {
+            "nakedSingle": 12
+          },
+          "boardMs": 0.0356,
+          "solveMs": 0.3078,
+          "ratingMs": 0.0414
+        },
+        {
+          "levelId": 204,
+          "size": 9,
+          "solvable": true,
+          "steps": 48,
+          "maxTechLevel": 1,
+          "level": "1星",
+          "score": -50,
+          "techCount": {
+            "nakedSingle": 48
+          },
+          "boardMs": 0.139,
+          "solveMs": 2.3639,
+          "ratingMs": 0.0717
+        },
+        {
+          "levelId": 205,
+          "size": 9,
+          "solvable": true,
+          "steps": 49,
+          "maxTechLevel": 1,
+          "level": "1星",
+          "score": -50,
+          "techCount": {
+            "nakedSingle": 49
+          },
+          "boardMs": 0.3089,
+          "solveMs": 3.1293,
+          "ratingMs": 0.09
+        },
+        {
+          "levelId": 206,
+          "size": 9,
+          "solvable": true,
+          "steps": 49,
+          "maxTechLevel": 1,
+          "level": "1星",
+          "score": -50,
+          "techCount": {
+            "nakedSingle": 49
+          },
+          "boardMs": 0.2269,
+          "solveMs": 0.8526,
+          "ratingMs": 0.0657
+        },
+        {
+          "levelId": 207,
+          "size": 9,
+          "solvable": true,
+          "steps": 49,
+          "maxTechLevel": 1,
+          "level": "1星",
+          "score": -50,
+          "techCount": {
+            "nakedSingle": 49
+          },
+          "boardMs": 0.1094,
+          "solveMs": 0.4777,
+          "ratingMs": 0.0521
+        },
+        {
+          "levelId": 208,
+          "size": 9,
+          "solvable": true,
+          "steps": 49,
+          "maxTechLevel": 1,
+          "level": "1星",
+          "score": -50,
+          "techCount": {
+            "nakedSingle": 49
+          },
+          "boardMs": 0.4478,
+          "solveMs": 0.725,
+          "ratingMs": 0.0751
+        },
+        {
+          "levelId": 209,
+          "size": 6,
+          "solvable": false,
+          "steps": 13,
+          "maxTechLevel": 1,
+          "level": "1星",
+          "score": 50,
+          "techCount": {
+            "nakedSingle": 13
+          },
+          "boardMs": 0.0255,
+          "solveMs": 0.7634,
+          "ratingMs": 0.0358
+        },
+        {
+          "levelId": 301,
+          "size": 9,
+          "solvable": true,
+          "steps": 49,
+          "maxTechLevel": 1,
+          "level": "1星",
+          "score": -50,
+          "techCount": {
+            "nakedSingle": 49
+          },
+          "boardMs": 0.1061,
+          "solveMs": 1.2085,
+          "ratingMs": 0.1177
+        },
+        {
+          "levelId": 302,
+          "size": 9,
+          "solvable": true,
+          "steps": 49,
+          "maxTechLevel": 1,
+          "level": "1星",
+          "score": -50,
+          "techCount": {
+            "nakedSingle": 49
+          },
+          "boardMs": 0.1335,
+          "solveMs": 1.0769,
+          "ratingMs": 0.068
+        },
+        {
+          "levelId": 303,
+          "size": 9,
+          "solvable": true,
+          "steps": 49,
+          "maxTechLevel": 1,
+          "level": "1星",
+          "score": -50,
+          "techCount": {
+            "nakedSingle": 49
+          },
+          "boardMs": 0.1829,
+          "solveMs": 1.7955,
+          "ratingMs": 0.0629
+        },
+        {
+          "levelId": 304,
+          "size": 9,
+          "solvable": true,
+          "steps": 49,
+          "maxTechLevel": 1,
+          "level": "1星",
+          "score": -50,
+          "techCount": {
+            "nakedSingle": 49
+          },
+          "boardMs": 0.0953,
+          "solveMs": 0.6099,
+          "ratingMs": 0.069
+        },
+        {
+          "levelId": 305,
+          "size": 9,
+          "solvable": true,
+          "steps": 49,
+          "maxTechLevel": 1,
+          "level": "1星",
+          "score": -50,
+          "techCount": {
+            "nakedSingle": 49
+          },
+          "boardMs": 0.1243,
+          "solveMs": 0.7002,
+          "ratingMs": 0.0703
+        },
+        {
+          "levelId": 306,
+          "size": 9,
+          "solvable": true,
+          "steps": 49,
+          "maxTechLevel": 1,
+          "level": "1星",
+          "score": -50,
+          "techCount": {
+            "nakedSingle": 49
+          },
+          "boardMs": 0.1649,
+          "solveMs": 0.714,
+          "ratingMs": 0.0824
+        },
+        {
+          "levelId": 307,
+          "size": 9,
+          "solvable": true,
+          "steps": 49,
+          "maxTechLevel": 1,
+          "level": "1星",
+          "score": -50,
+          "techCount": {
+            "nakedSingle": 49
+          },
+          "boardMs": 0.0809,
+          "solveMs": 0.7404,
+          "ratingMs": 0.0672
+        },
+        {
+          "levelId": 308,
+          "size": 9,
+          "solvable": true,
+          "steps": 49,
+          "maxTechLevel": 1,
+          "level": "1星",
+          "score": -50,
+          "techCount": {
+            "nakedSingle": 49
+          },
+          "boardMs": 0.3412,
+          "solveMs": 0.6027,
+          "ratingMs": 0.055
+        },
+        {
+          "levelId": 309,
+          "size": 9,
+          "solvable": true,
+          "steps": 49,
+          "maxTechLevel": 1,
+          "level": "1星",
+          "score": -50,
+          "techCount": {
+            "nakedSingle": 49
+          },
+          "boardMs": 0.0841,
+          "solveMs": 1.6957,
+          "ratingMs": 0.0596
+        },
+        {
+          "levelId": 401,
+          "size": 9,
+          "solvable": true,
+          "steps": 49,
+          "maxTechLevel": 1,
+          "level": "1星",
+          "score": -50,
+          "techCount": {
+            "nakedSingle": 49
+          },
+          "boardMs": 0.1065,
+          "solveMs": 1.1218,
+          "ratingMs": 0.1045
+        },
+        {
+          "levelId": 402,
+          "size": 9,
+          "solvable": true,
+          "steps": 49,
+          "maxTechLevel": 1,
+          "level": "1星",
+          "score": -50,
+          "techCount": {
+            "nakedSingle": 49
+          },
+          "boardMs": 0.0999,
+          "solveMs": 0.6276,
+          "ratingMs": 0.0702
+        },
+        {
+          "levelId": 403,
+          "size": 9,
+          "solvable": true,
+          "steps": 49,
+          "maxTechLevel": 1,
+          "level": "1星",
+          "score": -50,
+          "techCount": {
+            "nakedSingle": 49
+          },
+          "boardMs": 0.0939,
+          "solveMs": 0.699,
+          "ratingMs": 0.0806
+        },
+        {
+          "levelId": 404,
+          "size": 9,
+          "solvable": true,
+          "steps": 49,
+          "maxTechLevel": 1,
+          "level": "1星",
+          "score": -50,
+          "techCount": {
+            "nakedSingle": 49
+          },
+          "boardMs": 0.0825,
+          "solveMs": 0.6073,
+          "ratingMs": 0.0712
+        },
+        {
+          "levelId": 405,
+          "size": 9,
+          "solvable": true,
+          "steps": 49,
+          "maxTechLevel": 1,
+          "level": "1星",
+          "score": -50,
+          "techCount": {
+            "nakedSingle": 49
+          },
+          "boardMs": 0.0819,
+          "solveMs": 0.594,
+          "ratingMs": 0.0591
+        },
+        {
+          "levelId": 406,
+          "size": 9,
+          "solvable": true,
+          "steps": 49,
+          "maxTechLevel": 1,
+          "level": "1星",
+          "score": -50,
+          "techCount": {
+            "nakedSingle": 49
+          },
+          "boardMs": 0.1413,
+          "solveMs": 0.7825,
+          "ratingMs": 0.0771
+        },
+        {
+          "levelId": 407,
+          "size": 9,
+          "solvable": true,
+          "steps": 49,
+          "maxTechLevel": 1,
+          "level": "1星",
+          "score": -50,
+          "techCount": {
+            "nakedSingle": 49
+          },
+          "boardMs": 0.1049,
+          "solveMs": 0.6811,
+          "ratingMs": 0.0483
+        },
+        {
+          "levelId": 408,
+          "size": 9,
+          "solvable": true,
+          "steps": 49,
+          "maxTechLevel": 1,
+          "level": "1星",
+          "score": -50,
+          "techCount": {
+            "nakedSingle": 49
+          },
+          "boardMs": 0.0925,
+          "solveMs": 0.6864,
+          "ratingMs": 0.0532
+        },
+        {
+          "levelId": 409,
+          "size": 9,
+          "solvable": true,
+          "steps": 49,
+          "maxTechLevel": 1,
+          "level": "1星",
+          "score": -50,
+          "techCount": {
+            "nakedSingle": 49
+          },
+          "boardMs": 0.0945,
+          "solveMs": 0.7523,
+          "ratingMs": 0.0547
+        },
+        {
+          "levelId": 501,
+          "size": 9,
+          "solvable": true,
+          "steps": 49,
+          "maxTechLevel": 1,
+          "level": "1星",
+          "score": -50,
+          "techCount": {
+            "nakedSingle": 49
+          },
+          "boardMs": 0.0651,
+          "solveMs": 0.83,
+          "ratingMs": 0.0807
+        },
+        {
+          "levelId": 502,
+          "size": 9,
+          "solvable": true,
+          "steps": 49,
+          "maxTechLevel": 1,
+          "level": "1星",
+          "score": -50,
+          "techCount": {
+            "nakedSingle": 49
+          },
+          "boardMs": 0.0843,
+          "solveMs": 0.3233,
+          "ratingMs": 0.0641
+        },
+        {
+          "levelId": 503,
+          "size": 9,
+          "solvable": true,
+          "steps": 49,
+          "maxTechLevel": 1,
+          "level": "1星",
+          "score": -50,
+          "techCount": {
+            "nakedSingle": 49
+          },
+          "boardMs": 0.0707,
+          "solveMs": 0.5056,
+          "ratingMs": 0.0709
+        },
+        {
+          "levelId": 504,
+          "size": 9,
+          "solvable": true,
+          "steps": 49,
+          "maxTechLevel": 1,
+          "level": "1星",
+          "score": -50,
+          "techCount": {
+            "nakedSingle": 49
+          },
+          "boardMs": 0.0737,
+          "solveMs": 0.6155,
+          "ratingMs": 0.08
+        },
+        {
+          "levelId": 505,
+          "size": 9,
+          "solvable": true,
+          "steps": 49,
+          "maxTechLevel": 1,
+          "level": "1星",
+          "score": -50,
+          "techCount": {
+            "nakedSingle": 49
+          },
+          "boardMs": 0.076,
+          "solveMs": 0.4196,
+          "ratingMs": 0.0736
+        },
+        {
+          "levelId": 506,
+          "size": 9,
+          "solvable": true,
+          "steps": 49,
+          "maxTechLevel": 1,
+          "level": "1星",
+          "score": -50,
+          "techCount": {
+            "nakedSingle": 49
+          },
+          "boardMs": 0.085,
+          "solveMs": 0.6791,
+          "ratingMs": 0.0601
+        },
+        {
+          "levelId": 507,
+          "size": 9,
+          "solvable": true,
+          "steps": 49,
+          "maxTechLevel": 1,
+          "level": "1星",
+          "score": -50,
+          "techCount": {
+            "nakedSingle": 49
+          },
+          "boardMs": 0.0577,
+          "solveMs": 0.5697,
+          "ratingMs": 0.0543
+        },
+        {
+          "levelId": 508,
+          "size": 9,
+          "solvable": true,
+          "steps": 49,
+          "maxTechLevel": 1,
+          "level": "1星",
+          "score": -50,
+          "techCount": {
+            "nakedSingle": 49
+          },
+          "boardMs": 0.0915,
+          "solveMs": 0.3381,
+          "ratingMs": 0.0484
+        },
+        {
+          "levelId": 509,
+          "size": 9,
+          "solvable": true,
+          "steps": 49,
+          "maxTechLevel": 1,
+          "level": "1星",
+          "score": -50,
+          "techCount": {
+            "nakedSingle": 49
+          },
+          "boardMs": 0.0684,
+          "solveMs": 0.3418,
+          "ratingMs": 0.0701
+        },
+        {
+          "levelId": 601,
+          "size": 9,
+          "solvable": true,
+          "steps": 49,
+          "maxTechLevel": 1,
+          "level": "1星",
+          "score": -50,
+          "techCount": {
+            "nakedSingle": 49
+          },
+          "boardMs": 0.0784,
+          "solveMs": 0.3163,
+          "ratingMs": 0.0373
+        },
+        {
+          "levelId": 602,
+          "size": 9,
+          "solvable": true,
+          "steps": 49,
+          "maxTechLevel": 1,
+          "level": "1星",
+          "score": -50,
+          "techCount": {
+            "nakedSingle": 49
+          },
+          "boardMs": 0.0659,
+          "solveMs": 0.6809,
+          "ratingMs": 0.1013
+        },
+        {
+          "levelId": 603,
+          "size": 9,
+          "solvable": true,
+          "steps": 49,
+          "maxTechLevel": 1,
+          "level": "1星",
+          "score": -50,
+          "techCount": {
+            "nakedSingle": 49
+          },
+          "boardMs": 0.1007,
+          "solveMs": 0.4616,
+          "ratingMs": 0.058
+        },
+        {
+          "levelId": 604,
+          "size": 9,
+          "solvable": true,
+          "steps": 49,
+          "maxTechLevel": 1,
+          "level": "1星",
+          "score": -50,
+          "techCount": {
+            "nakedSingle": 49
+          },
+          "boardMs": 0.0843,
+          "solveMs": 0.5484,
+          "ratingMs": 0.0565
+        },
+        {
+          "levelId": 605,
+          "size": 9,
+          "solvable": true,
+          "steps": 49,
+          "maxTechLevel": 1,
+          "level": "1星",
+          "score": -50,
+          "techCount": {
+            "nakedSingle": 49
+          },
+          "boardMs": 0.1049,
+          "solveMs": 0.7948,
+          "ratingMs": 0.0719
+        },
+        {
+          "levelId": 606,
+          "size": 9,
+          "solvable": true,
+          "steps": 49,
+          "maxTechLevel": 1,
+          "level": "1星",
+          "score": -50,
+          "techCount": {
+            "nakedSingle": 49
+          },
+          "boardMs": 0.0804,
+          "solveMs": 0.3759,
+          "ratingMs": 0.0452
+        },
+        {
+          "levelId": 607,
+          "size": 9,
+          "solvable": true,
+          "steps": 49,
+          "maxTechLevel": 1,
+          "level": "1星",
+          "score": -50,
+          "techCount": {
+            "nakedSingle": 49
+          },
+          "boardMs": 0.1129,
+          "solveMs": 0.6272,
+          "ratingMs": 0.0635
+        },
+        {
+          "levelId": 608,
+          "size": 9,
+          "solvable": true,
+          "steps": 49,
+          "maxTechLevel": 1,
+          "level": "1星",
+          "score": -50,
+          "techCount": {
+            "nakedSingle": 49
+          },
+          "boardMs": 0.1577,
+          "solveMs": 0.4071,
+          "ratingMs": 0.0396
+        },
+        {
+          "levelId": 609,
+          "size": 9,
+          "solvable": true,
+          "steps": 49,
+          "maxTechLevel": 1,
+          "level": "1星",
+          "score": -50,
+          "techCount": {
+            "nakedSingle": 49
+          },
+          "boardMs": 0.0951,
+          "solveMs": 0.4629,
+          "ratingMs": 0.0402
+        },
+        {
+          "levelId": 701,
+          "size": 9,
+          "solvable": true,
+          "steps": 49,
+          "maxTechLevel": 1,
+          "level": "1星",
+          "score": -50,
+          "techCount": {
+            "nakedSingle": 49
+          },
+          "boardMs": 0.0881,
+          "solveMs": 0.5545,
+          "ratingMs": 0.0571
+        },
+        {
+          "levelId": 702,
+          "size": 9,
+          "solvable": true,
+          "steps": 49,
+          "maxTechLevel": 1,
+          "level": "1星",
+          "score": -50,
+          "techCount": {
+            "nakedSingle": 49
+          },
+          "boardMs": 0.0862,
+          "solveMs": 0.4208,
+          "ratingMs": 0.0418
+        },
+        {
+          "levelId": 703,
+          "size": 9,
+          "solvable": true,
+          "steps": 49,
+          "maxTechLevel": 1,
+          "level": "1星",
+          "score": -50,
+          "techCount": {
+            "nakedSingle": 49
+          },
+          "boardMs": 0.0886,
+          "solveMs": 0.4188,
+          "ratingMs": 0.0617
+        },
+        {
+          "levelId": 704,
+          "size": 9,
+          "solvable": true,
+          "steps": 49,
+          "maxTechLevel": 1,
+          "level": "1星",
+          "score": -50,
+          "techCount": {
+            "nakedSingle": 49
+          },
+          "boardMs": 0.0901,
+          "solveMs": 0.4231,
+          "ratingMs": 0.0686
+        },
+        {
+          "levelId": 705,
+          "size": 9,
+          "solvable": true,
+          "steps": 49,
+          "maxTechLevel": 1,
+          "level": "1星",
+          "score": -50,
+          "techCount": {
+            "nakedSingle": 49
+          },
+          "boardMs": 0.1259,
+          "solveMs": 0.4061,
+          "ratingMs": 0.0553
+        },
+        {
+          "levelId": 706,
+          "size": 9,
+          "solvable": true,
+          "steps": 49,
+          "maxTechLevel": 1,
+          "level": "1星",
+          "score": -50,
+          "techCount": {
+            "nakedSingle": 49
+          },
+          "boardMs": 0.0801,
+          "solveMs": 0.7214,
+          "ratingMs": 0.0631
+        },
+        {
+          "levelId": 707,
+          "size": 9,
+          "solvable": true,
+          "steps": 49,
+          "maxTechLevel": 1,
+          "level": "1星",
+          "score": -50,
+          "techCount": {
+            "nakedSingle": 49
+          },
+          "boardMs": 0.0691,
+          "solveMs": 0.4317,
+          "ratingMs": 0.0506
+        },
+        {
+          "levelId": 708,
+          "size": 9,
+          "solvable": true,
+          "steps": 49,
+          "maxTechLevel": 1,
+          "level": "1星",
+          "score": -50,
+          "techCount": {
+            "nakedSingle": 49
+          },
+          "boardMs": 0.1189,
+          "solveMs": 0.4242,
+          "ratingMs": 0.0403
+        },
+        {
+          "levelId": 709,
+          "size": 9,
+          "solvable": true,
+          "steps": 49,
+          "maxTechLevel": 1,
+          "level": "1星",
+          "score": -50,
+          "techCount": {
+            "nakedSingle": 49
+          },
+          "boardMs": 0.0893,
+          "solveMs": 0.4091,
+          "ratingMs": 0.0262
+        }
+      ],
+      "releasePool": [
+        {
+          "levelId": "GEN-017",
+          "size": 9,
+          "solvable": true,
+          "steps": 52,
+          "maxTechLevel": 6,
+          "level": "4星",
+          "score": 525,
+          "techCount": {
+            "nakedSingle": 39,
+            "cageUnique": 9,
+            "hiddenSingle": 2,
+            "rule45": 1,
+            "hiddenPair": 1
+          },
+          "boardMs": 0.1192,
+          "solveMs": 2.946,
+          "ratingMs": 0.1221
+        },
+        {
+          "levelId": "GEN-031",
+          "size": 9,
+          "solvable": true,
+          "steps": 74,
+          "maxTechLevel": 6,
+          "level": "4星",
+          "score": 550,
+          "techCount": {
+            "nakedSingle": 48,
+            "cageUnique": 17,
+            "rule45": 3,
+            "nakedPair": 2,
+            "hiddenPair": 1,
+            "hiddenSingle": 3
+          },
+          "boardMs": 0.1432,
+          "solveMs": 4.249,
+          "ratingMs": 0.1113
+        },
+        {
+          "levelId": "GEN-055",
+          "size": 9,
+          "solvable": true,
+          "steps": 74,
+          "maxTechLevel": 6,
+          "level": "4星",
+          "score": 525,
+          "techCount": {
+            "nakedSingle": 53,
+            "cageUnique": 9,
+            "hiddenSingle": 9,
+            "rule45": 2,
+            "hiddenPair": 1
+          },
+          "boardMs": 0.1304,
+          "solveMs": 6.737,
+          "ratingMs": 0.1446
+        },
+        {
+          "levelId": "GEN-092",
+          "size": 9,
+          "solvable": true,
+          "steps": 72,
+          "maxTechLevel": 5,
+          "level": "3星",
+          "score": 400,
+          "techCount": {
+            "nakedSingle": 59,
+            "cageUnique": 7,
+            "hiddenSingle": 3,
+            "rule45": 2,
+            "nakedPair": 1
+          },
+          "boardMs": 0.1938,
+          "solveMs": 1.9788,
+          "ratingMs": 0.0841
+        },
+        {
+          "levelId": "GEN-113",
+          "size": 9,
+          "solvable": true,
+          "steps": 74,
+          "maxTechLevel": 5,
+          "level": "3星",
+          "score": 450,
+          "techCount": {
+            "nakedSingle": 49,
+            "cageUnique": 21,
+            "rule45": 3,
+            "nakedPair": 1
+          },
+          "boardMs": 0.1724,
+          "solveMs": 2.1465,
+          "ratingMs": 0.1212
+        },
+        {
+          "levelId": "GEN-143",
+          "size": 9,
+          "solvable": true,
+          "steps": 76,
+          "maxTechLevel": 6,
+          "level": "4星",
+          "score": 550,
+          "techCount": {
+            "nakedSingle": 48,
+            "rule45": 5,
+            "hiddenSingle": 6,
+            "cageUnique": 16,
+            "hiddenPair": 1
+          },
+          "boardMs": 0.1607,
+          "solveMs": 4.6925,
+          "ratingMs": 0.1071
+        },
+        {
+          "levelId": "GEN-180",
+          "size": 9,
+          "solvable": true,
+          "steps": 77,
+          "maxTechLevel": 6,
+          "level": "4星",
+          "score": 525,
+          "techCount": {
+            "nakedSingle": 55,
+            "hiddenSingle": 6,
+            "rule45": 3,
+            "nakedPair": 2,
+            "hiddenPair": 1,
+            "cageUnique": 10
+          },
+          "boardMs": 0.1772,
+          "solveMs": 5.0886,
+          "ratingMs": 0.1564
+        },
+        {
+          "levelId": "GEN-191",
+          "size": 9,
+          "solvable": true,
+          "steps": 76,
+          "maxTechLevel": 6,
+          "level": "4星",
+          "score": 525,
+          "techCount": {
+            "nakedSingle": 55,
+            "hiddenSingle": 7,
+            "cageUnique": 9,
+            "rule45": 3,
+            "nakedPair": 1,
+            "hiddenPair": 1
+          },
+          "boardMs": 0.2294,
+          "solveMs": 3.681,
+          "ratingMs": 0.2073
+        },
+        {
+          "levelId": "GEN-224",
+          "size": 9,
+          "solvable": true,
+          "steps": 74,
+          "maxTechLevel": 6,
+          "level": "4星",
+          "score": 550,
+          "techCount": {
+            "rule45": 2,
+            "hiddenSingle": 10,
+            "nakedSingle": 48,
+            "hiddenPair": 1,
+            "cageUnique": 13
+          },
+          "boardMs": 0.2429,
+          "solveMs": 4.2687,
+          "ratingMs": 0.1521
+        },
+        {
+          "levelId": "GEN-256",
+          "size": 9,
+          "solvable": true,
+          "steps": 73,
+          "maxTechLevel": 6,
+          "level": "4星",
+          "score": 550,
+          "techCount": {
+            "nakedSingle": 46,
+            "cageUnique": 13,
+            "rule45": 2,
+            "hiddenSingle": 9,
+            "nakedPair": 2,
+            "hiddenPair": 1
+          },
+          "boardMs": 0.3783,
+          "solveMs": 5.3179,
+          "ratingMs": 0.0922
+        },
+        {
+          "levelId": "GEN-278",
+          "size": 9,
+          "solvable": true,
+          "steps": 77,
+          "maxTechLevel": 6,
+          "level": "4星",
+          "score": 550,
+          "techCount": {
+            "nakedSingle": 53,
+            "hiddenSingle": 7,
+            "rule45": 2,
+            "nakedPair": 3,
+            "cageUnique": 11,
+            "hiddenPair": 1
+          },
+          "boardMs": 0.2464,
+          "solveMs": 3.5522,
+          "ratingMs": 0.1004
+        },
+        {
+          "levelId": "GEN-299",
+          "size": 9,
+          "solvable": true,
+          "steps": 76,
+          "maxTechLevel": 4,
+          "level": "2星",
+          "score": 325,
+          "techCount": {
+            "rule45": 5,
+            "cageUnique": 15,
+            "nakedSingle": 54,
+            "hiddenSingle": 2
+          },
+          "boardMs": 0.1891,
+          "solveMs": 3.0403,
+          "ratingMs": 0.1474
+        },
+        {
+          "levelId": "GEN-300",
+          "size": 9,
+          "solvable": true,
+          "steps": 79,
+          "maxTechLevel": 6,
+          "level": "4星",
+          "score": 550,
+          "techCount": {
+            "nakedSingle": 54,
+            "rule45": 3,
+            "hiddenSingle": 4,
+            "hiddenPair": 3,
+            "nakedPair": 1,
+            "cageUnique": 14
+          },
+          "boardMs": 0.3009,
+          "solveMs": 3.8138,
+          "ratingMs": 0.1169
+        },
+        {
+          "levelId": "GEN-330",
+          "size": 9,
+          "solvable": true,
+          "steps": 73,
+          "maxTechLevel": 6,
+          "level": "4星",
+          "score": 525,
+          "techCount": {
+            "nakedSingle": 55,
+            "cageUnique": 12,
+            "hiddenSingle": 5,
+            "hiddenPair": 1
+          },
+          "boardMs": 0.1695,
+          "solveMs": 1.0345,
+          "ratingMs": 0.0784
+        },
+        {
+          "levelId": "GEN-365",
+          "size": 9,
+          "solvable": false,
+          "steps": 18,
+          "maxTechLevel": 4,
+          "level": "4星",
+          "score": 550,
+          "techCount": {
+            "nakedSingle": 10,
+            "cageUnique": 7,
+            "rule45": 1
+          },
+          "boardMs": 0.1852,
+          "solveMs": 1.1852,
+          "ratingMs": 0.0423
+        },
+        {
+          "levelId": "GEN-391",
+          "size": 9,
+          "solvable": true,
+          "steps": 73,
+          "maxTechLevel": 6,
+          "level": "4星",
+          "score": 550,
+          "techCount": {
+            "rule45": 2,
+            "hiddenSingle": 10,
+            "nakedPair": 3,
+            "nakedSingle": 45,
+            "cageUnique": 12,
+            "hiddenPair": 1
+          },
+          "boardMs": 0.1372,
+          "solveMs": 2.1788,
+          "ratingMs": 0.0876
+        },
+        {
+          "levelId": "GEN-430",
+          "size": 9,
+          "solvable": true,
+          "steps": 62,
+          "maxTechLevel": 6,
+          "level": "4星",
+          "score": 525,
+          "techCount": {
+            "nakedSingle": 49,
+            "hiddenSingle": 6,
+            "rule45": 1,
+            "hiddenPair": 1,
+            "cageUnique": 5
+          },
+          "boardMs": 0.1839,
+          "solveMs": 1.2628,
+          "ratingMs": 0.1292
+        },
+        {
+          "levelId": "GEN-451",
+          "size": 9,
+          "solvable": true,
+          "steps": 78,
+          "maxTechLevel": 5,
+          "level": "3星",
+          "score": 450,
+          "techCount": {
+            "hiddenSingle": 3,
+            "rule45": 2,
+            "nakedPair": 3,
+            "cageUnique": 18,
+            "nakedSingle": 52
+          },
+          "boardMs": 0.2551,
+          "solveMs": 1.4752,
+          "ratingMs": 0.0996
+        },
+        {
+          "levelId": "GEN-484",
+          "size": 9,
+          "solvable": true,
+          "steps": 68,
+          "maxTechLevel": 5,
+          "level": "3星",
+          "score": 425,
+          "techCount": {
+            "nakedSingle": 51,
+            "cageUnique": 13,
+            "nakedPair": 1,
+            "hiddenSingle": 3
+          },
+          "boardMs": 0.1298,
+          "solveMs": 0.7433,
+          "ratingMs": 0.0834
+        },
+        {
+          "levelId": "GEN-511",
+          "size": 9,
+          "solvable": true,
+          "steps": 73,
+          "maxTechLevel": 6,
+          "level": "4星",
+          "score": 550,
+          "techCount": {
+            "hiddenSingle": 7,
+            "rule45": 1,
+            "nakedSingle": 46,
+            "cageUnique": 17,
+            "hiddenPair": 1,
+            "nakedPair": 1
+          },
+          "boardMs": 0.1359,
+          "solveMs": 1.3585,
+          "ratingMs": 0.1009
+        },
+        {
+          "levelId": "GEN-542",
+          "size": 9,
+          "solvable": true,
+          "steps": 76,
+          "maxTechLevel": 6,
+          "level": "4星",
+          "score": 550,
+          "techCount": {
+            "nakedSingle": 52,
+            "cageUnique": 11,
+            "hiddenSingle": 6,
+            "rule45": 3,
+            "nakedPair": 3,
+            "hiddenPair": 1
+          },
+          "boardMs": 0.1435,
+          "solveMs": 2.1251,
+          "ratingMs": 0.0909
+        },
+        {
+          "levelId": "GEN-552",
+          "size": 9,
+          "solvable": true,
+          "steps": 78,
+          "maxTechLevel": 6,
+          "level": "4星",
+          "score": 550,
+          "techCount": {
+            "nakedSingle": 53,
+            "cageUnique": 12,
+            "rule45": 2,
+            "hiddenSingle": 8,
+            "nakedPair": 2,
+            "hiddenPair": 1
+          },
+          "boardMs": 0.1454,
+          "solveMs": 2.3649,
+          "ratingMs": 0.0782
+        },
+        {
+          "levelId": "GEN-588",
+          "size": 9,
+          "solvable": true,
+          "steps": 75,
+          "maxTechLevel": 6,
+          "level": "4星",
+          "score": 525,
+          "techCount": {
+            "hiddenSingle": 4,
+            "nakedSingle": 54,
+            "nakedPair": 3,
+            "cageUnique": 11,
+            "rule45": 2,
+            "hiddenPair": 1
+          },
+          "boardMs": 0.132,
+          "solveMs": 1.7445,
+          "ratingMs": 0.0988
+        },
+        {
+          "levelId": "GEN-591",
+          "size": 9,
+          "solvable": true,
+          "steps": 77,
+          "maxTechLevel": 6,
+          "level": "4星",
+          "score": 550,
+          "techCount": {
+            "nakedSingle": 52,
+            "hiddenSingle": 8,
+            "cageUnique": 10,
+            "rule45": 3,
+            "nakedPair": 3,
+            "hiddenPair": 1
+          },
+          "boardMs": 0.1487,
+          "solveMs": 2.3072,
+          "ratingMs": 0.0861
+        },
+        {
+          "levelId": "GEN-622",
+          "size": 9,
+          "solvable": true,
+          "steps": 79,
+          "maxTechLevel": 6,
+          "level": "4星",
+          "score": 525,
+          "techCount": {
+            "nakedSingle": 58,
+            "cageUnique": 9,
+            "rule45": 4,
+            "hiddenSingle": 4,
+            "nakedPair": 3,
+            "hiddenPair": 1
+          },
+          "boardMs": 0.1581,
+          "solveMs": 2.2416,
+          "ratingMs": 0.084
+        },
+        {
+          "levelId": "GEN-657",
+          "size": 9,
+          "solvable": true,
+          "steps": 73,
+          "maxTechLevel": 6,
+          "level": "4星",
+          "score": 550,
+          "techCount": {
+            "cageUnique": 11,
+            "nakedSingle": 45,
+            "hiddenSingle": 15,
+            "rule45": 1,
+            "hiddenPair": 1
+          },
+          "boardMs": 0.1409,
+          "solveMs": 1.5262,
+          "ratingMs": 0.0882
+        },
+        {
+          "levelId": "GEN-682",
+          "size": 9,
+          "solvable": false,
+          "steps": 4,
+          "maxTechLevel": 4,
+          "level": "4星",
+          "score": 575,
+          "techCount": {
+            "nakedSingle": 3,
+            "rule45": 1
+          },
+          "boardMs": 0.1646,
+          "solveMs": 1.1201,
+          "ratingMs": 0.0352
+        },
+        {
+          "levelId": "GEN-717",
+          "size": 9,
+          "solvable": true,
+          "steps": 74,
+          "maxTechLevel": 6,
+          "level": "4星",
+          "score": 550,
+          "techCount": {
+            "nakedSingle": 50,
+            "cageUnique": 15,
+            "hiddenSingle": 6,
+            "nakedPair": 1,
+            "hiddenPair": 1,
+            "rule45": 1
+          },
+          "boardMs": 0.1713,
+          "solveMs": 1.9975,
+          "ratingMs": 0.0825
+        },
+        {
+          "levelId": "GEN-743",
+          "size": 9,
+          "solvable": true,
+          "steps": 75,
+          "maxTechLevel": 6,
+          "level": "4星",
+          "score": 550,
+          "techCount": {
+            "nakedSingle": 52,
+            "cageUnique": 9,
+            "rule45": 3,
+            "hiddenSingle": 7,
+            "nakedPair": 3,
+            "hiddenPair": 1
+          },
+          "boardMs": 0.1425,
+          "solveMs": 3.1531,
+          "ratingMs": 0.0756
+        },
+        {
+          "levelId": "GEN-774",
+          "size": 9,
+          "solvable": true,
+          "steps": 72,
+          "maxTechLevel": 6,
+          "level": "4星",
+          "score": 525,
+          "techCount": {
+            "nakedSingle": 51,
+            "cageUnique": 15,
+            "rule45": 3,
+            "hiddenSingle": 2,
+            "hiddenPair": 1
+          },
+          "boardMs": 0.16,
+          "solveMs": 1.2201,
+          "ratingMs": 0.0858
+        },
+        {
+          "levelId": "GEN-802",
+          "size": 9,
+          "solvable": true,
+          "steps": 74,
+          "maxTechLevel": 6,
+          "level": "4星",
+          "score": 550,
+          "techCount": {
+            "nakedSingle": 51,
+            "cageUnique": 15,
+            "hiddenSingle": 7,
+            "hiddenPair": 1
+          },
+          "boardMs": 0.1294,
+          "solveMs": 1.0632,
+          "ratingMs": 0.0591
+        },
+        {
+          "levelId": "GEN-816",
+          "size": 9,
+          "solvable": false,
+          "steps": 2,
+          "maxTechLevel": 2,
+          "level": "3星",
+          "score": 400,
+          "techCount": {
+            "nakedSingle": 1,
+            "cageUnique": 1
+          },
+          "boardMs": 0.1571,
+          "solveMs": 0.6093,
+          "ratingMs": 0.0215
+        },
+        {
+          "levelId": "GEN-817",
+          "size": 9,
+          "solvable": true,
+          "steps": 69,
+          "maxTechLevel": 5,
+          "level": "3星",
+          "score": 425,
+          "techCount": {
+            "nakedSingle": 52,
+            "hiddenSingle": 7,
+            "rule45": 4,
+            "cageUnique": 5,
+            "nakedPair": 1
+          },
+          "boardMs": 0.2026,
+          "solveMs": 1.5254,
+          "ratingMs": 0.0925
+        },
+        {
+          "levelId": "GEN-864",
+          "size": 9,
+          "solvable": true,
+          "steps": 52,
+          "maxTechLevel": 6,
+          "level": "4星",
+          "score": 550,
+          "techCount": {
+            "nakedSingle": 35,
+            "cageUnique": 14,
+            "hiddenSingle": 2,
+            "hiddenPair": 1
+          },
+          "boardMs": 0.1015,
+          "solveMs": 0.6047,
+          "ratingMs": 0.079
+        },
+        {
+          "levelId": "GEN-877",
+          "size": 9,
+          "solvable": true,
+          "steps": 75,
+          "maxTechLevel": 5,
+          "level": "3星",
+          "score": 425,
+          "techCount": {
+            "nakedSingle": 57,
+            "cageUnique": 9,
+            "hiddenSingle": 4,
+            "rule45": 3,
+            "nakedPair": 2
+          },
+          "boardMs": 0.2162,
+          "solveMs": 1.5288,
+          "ratingMs": 0.2284
+        },
+        {
+          "levelId": "GEN-908",
+          "size": 9,
+          "solvable": true,
+          "steps": 69,
+          "maxTechLevel": 5,
+          "level": "3星",
+          "score": 425,
+          "techCount": {
+            "nakedSingle": 50,
+            "cageUnique": 9,
+            "hiddenSingle": 8,
+            "rule45": 1,
+            "nakedPair": 1
+          },
+          "boardMs": 0.1519,
+          "solveMs": 0.9619,
+          "ratingMs": 0.0749
+        },
+        {
+          "levelId": "GEN-916",
+          "size": 9,
+          "solvable": true,
+          "steps": 70,
+          "maxTechLevel": 5,
+          "level": "3星",
+          "score": 425,
+          "techCount": {
+            "cageUnique": 7,
+            "nakedSingle": 52,
+            "hiddenSingle": 4,
+            "rule45": 6,
+            "nakedPair": 1
+          },
+          "boardMs": 0.1152,
+          "solveMs": 2.0616,
+          "ratingMs": 0.0922
+        },
+        {
+          "levelId": "GEN-941",
+          "size": 9,
+          "solvable": true,
+          "steps": 75,
+          "maxTechLevel": 6,
+          "level": "4星",
+          "score": 525,
+          "techCount": {
+            "cageUnique": 9,
+            "hiddenSingle": 6,
+            "rule45": 2,
+            "nakedSingle": 54,
+            "nakedPair": 2,
+            "hiddenPair": 2
+          },
+          "boardMs": 0.1369,
+          "solveMs": 2.2116,
+          "ratingMs": 0.1049
+        },
+        {
+          "levelId": "GEN-952",
+          "size": 9,
+          "solvable": true,
+          "steps": 72,
+          "maxTechLevel": 6,
+          "level": "4星",
+          "score": 550,
+          "techCount": {
+            "nakedSingle": 43,
+            "cageUnique": 17,
+            "hiddenSingle": 7,
+            "rule45": 2,
+            "nakedPair": 2,
+            "hiddenPair": 1
+          },
+          "boardMs": 0.1362,
+          "solveMs": 1.5316,
+          "ratingMs": 0.0743
+        },
+        {
+          "levelId": "GEN-958",
+          "size": 9,
+          "solvable": true,
+          "steps": 73,
+          "maxTechLevel": 6,
+          "level": "4星",
+          "score": 550,
+          "techCount": {
+            "nakedSingle": 51,
+            "rule45": 2,
+            "cageUnique": 16,
+            "hiddenPair": 1,
+            "hiddenSingle": 3
+          },
+          "boardMs": 0.1256,
+          "solveMs": 1.2313,
+          "ratingMs": 0.1204
+        },
+        {
+          "levelId": "GEN-986",
+          "size": 9,
+          "solvable": false,
+          "steps": 2,
+          "maxTechLevel": 1,
+          "level": "1星",
+          "score": 200,
+          "techCount": {
+            "nakedSingle": 2
+          },
+          "boardMs": 0.1577,
+          "solveMs": 0.5327,
+          "ratingMs": 0.0161
+        },
+        {
+          "levelId": "GEN-998",
+          "size": 9,
+          "solvable": true,
+          "steps": 68,
+          "maxTechLevel": 5,
+          "level": "3星",
+          "score": 400,
+          "techCount": {
+            "nakedSingle": 55,
+            "cageUnique": 7,
+            "hiddenSingle": 3,
+            "nakedPair": 1,
+            "rule45": 2
+          },
+          "boardMs": 0.1111,
+          "solveMs": 1.1342,
+          "ratingMs": 0.1545
+        },
+        {
+          "levelId": "GEN-1023",
+          "size": 9,
+          "solvable": false,
+          "steps": 30,
+          "maxTechLevel": 4,
+          "level": "4星",
+          "score": 550,
+          "techCount": {
+            "nakedSingle": 8,
+            "rule45": 6,
+            "cageUnique": 9,
+            "hiddenSingle": 7
+          },
+          "boardMs": 0.1685,
+          "solveMs": 2.2032,
+          "ratingMs": 0.0893
+        },
+        {
+          "levelId": "GEN-1050",
+          "size": 9,
+          "solvable": true,
+          "steps": 78,
+          "maxTechLevel": 6,
+          "level": "4星",
+          "score": 525,
+          "techCount": {
+            "nakedSingle": 57,
+            "rule45": 3,
+            "hiddenSingle": 8,
+            "nakedPair": 2,
+            "cageUnique": 7,
+            "hiddenPair": 1
+          },
+          "boardMs": 0.1679,
+          "solveMs": 2.038,
+          "ratingMs": 0.1017
+        },
+        {
+          "levelId": "GEN-1077",
+          "size": 9,
+          "solvable": true,
+          "steps": 73,
+          "maxTechLevel": 6,
+          "level": "4星",
+          "score": 550,
+          "techCount": {
+            "nakedSingle": 47,
+            "cageUnique": 19,
+            "hiddenPair": 1,
+            "hiddenSingle": 5,
+            "rule45": 1
+          },
+          "boardMs": 0.1537,
+          "solveMs": 1.1368,
+          "ratingMs": 0.0858
+        },
+        {
+          "levelId": "GEN-1111",
+          "size": 9,
+          "solvable": true,
+          "steps": 76,
+          "maxTechLevel": 6,
+          "level": "4星",
+          "score": 550,
+          "techCount": {
+            "nakedSingle": 50,
+            "hiddenSingle": 6,
+            "cageUnique": 15,
+            "rule45": 2,
+            "nakedPair": 2,
+            "hiddenPair": 1
+          },
+          "boardMs": 0.1831,
+          "solveMs": 1.8961,
+          "ratingMs": 0.0692
+        },
+        {
+          "levelId": "GEN-1139",
+          "size": 9,
+          "solvable": true,
+          "steps": 76,
+          "maxTechLevel": 6,
+          "level": "4星",
+          "score": 550,
+          "techCount": {
+            "nakedSingle": 51,
+            "hiddenSingle": 6,
+            "cageUnique": 14,
+            "rule45": 3,
+            "nakedPair": 1,
+            "hiddenPair": 1
+          },
+          "boardMs": 0.2153,
+          "solveMs": 1.4791,
+          "ratingMs": 0.0838
+        },
+        {
+          "levelId": "GEN-1177",
+          "size": 9,
+          "solvable": false,
+          "steps": 18,
+          "maxTechLevel": 5,
+          "level": "4星",
+          "score": 575,
+          "techCount": {
+            "nakedSingle": 14,
+            "cageUnique": 2,
+            "hiddenSingle": 1,
+            "nakedPair": 1
+          },
+          "boardMs": 0.1075,
+          "solveMs": 0.7687,
+          "ratingMs": 0.0378
+        },
+        {
+          "levelId": "GEN-1208",
+          "size": 9,
+          "solvable": true,
+          "steps": 77,
+          "maxTechLevel": 6,
+          "level": "4星",
+          "score": 550,
+          "techCount": {
+            "nakedSingle": 53,
+            "cageUnique": 12,
+            "rule45": 1,
+            "nakedPair": 2,
+            "hiddenSingle": 8,
+            "hiddenPair": 1
+          },
+          "boardMs": 0.1453,
+          "solveMs": 1.5366,
+          "ratingMs": 0.0912
+        },
+        {
+          "levelId": "GEN-1227",
+          "size": 9,
+          "solvable": true,
+          "steps": 74,
+          "maxTechLevel": 5,
+          "level": "3星",
+          "score": 450,
+          "techCount": {
+            "nakedSingle": 50,
+            "hiddenSingle": 7,
+            "rule45": 1,
+            "cageUnique": 15,
+            "nakedPair": 1
+          },
+          "boardMs": 0.149,
+          "solveMs": 1.1747,
+          "ratingMs": 0.0754
+        },
+        {
+          "levelId": "GEN-1259",
+          "size": 9,
+          "solvable": true,
+          "steps": 76,
+          "maxTechLevel": 6,
+          "level": "4星",
+          "score": 525,
+          "techCount": {
+            "hiddenPair": 1,
+            "hiddenSingle": 3,
+            "nakedSingle": 55,
+            "nakedPair": 2,
+            "cageUnique": 15
+          },
+          "boardMs": 0.1364,
+          "solveMs": 1.2602,
+          "ratingMs": 0.1037
+        },
+        {
+          "levelId": "GEN-1289",
+          "size": 9,
+          "solvable": true,
+          "steps": 74,
+          "maxTechLevel": 5,
+          "level": "3星",
+          "score": 450,
+          "techCount": {
+            "nakedSingle": 49,
+            "cageUnique": 9,
+            "hiddenSingle": 11,
+            "rule45": 3,
+            "nakedPair": 2
+          },
+          "boardMs": 0.1548,
+          "solveMs": 1.7741,
+          "ratingMs": 0.0811
+        },
+        {
+          "levelId": "GEN-1300",
+          "size": 9,
+          "solvable": true,
+          "steps": 72,
+          "maxTechLevel": 6,
+          "level": "4星",
+          "score": 525,
+          "techCount": {
+            "nakedSingle": 51,
+            "hiddenSingle": 7,
+            "cageUnique": 11,
+            "rule45": 1,
+            "hiddenPair": 1,
+            "nakedPair": 1
+          },
+          "boardMs": 0.1348,
+          "solveMs": 1.6093,
+          "ratingMs": 0.0913
+        },
+        {
+          "levelId": "GEN-1330",
+          "size": 9,
+          "solvable": true,
+          "steps": 75,
+          "maxTechLevel": 6,
+          "level": "4星",
+          "score": 525,
+          "techCount": {
+            "nakedSingle": 54,
+            "cageUnique": 12,
+            "hiddenSingle": 4,
+            "rule45": 2,
+            "nakedPair": 2,
+            "hiddenPair": 1
+          },
+          "boardMs": 0.1489,
+          "solveMs": 2.7977,
+          "ratingMs": 0.0863
+        },
+        {
+          "levelId": "GEN-1356",
+          "size": 9,
+          "solvable": true,
+          "steps": 74,
+          "maxTechLevel": 5,
+          "level": "3星",
+          "score": 450,
+          "techCount": {
+            "nakedSingle": 48,
+            "hiddenSingle": 8,
+            "cageUnique": 15,
+            "rule45": 1,
+            "nakedPair": 2
+          },
+          "boardMs": 0.1489,
+          "solveMs": 1.5402,
+          "ratingMs": 0.0991
+        },
+        {
+          "levelId": "GEN-1386",
+          "size": 9,
+          "solvable": true,
+          "steps": 77,
+          "maxTechLevel": 6,
+          "level": "4星",
+          "score": 550,
+          "techCount": {
+            "nakedSingle": 49,
+            "cageUnique": 16,
+            "hiddenSingle": 6,
+            "rule45": 3,
+            "nakedPair": 2,
+            "hiddenPair": 1
+          },
+          "boardMs": 0.1501,
+          "solveMs": 1.8168,
+          "ratingMs": 0.0852
+        },
+        {
+          "levelId": "GEN-1419",
+          "size": 9,
+          "solvable": true,
+          "steps": 76,
+          "maxTechLevel": 6,
+          "level": "4星",
+          "score": 550,
+          "techCount": {
+            "nakedSingle": 53,
+            "cageUnique": 10,
+            "nakedPair": 5,
+            "hiddenPair": 1,
+            "hiddenSingle": 6,
+            "rule45": 1
+          },
+          "boardMs": 0.1381,
+          "solveMs": 2.6324,
+          "ratingMs": 0.1209
+        },
+        {
+          "levelId": "GEN-1449",
+          "size": 9,
+          "solvable": true,
+          "steps": 75,
+          "maxTechLevel": 6,
+          "level": "4星",
+          "score": 525,
+          "techCount": {
+            "rule45": 5,
+            "nakedSingle": 53,
+            "hiddenSingle": 5,
+            "cageUnique": 10,
+            "nakedPair": 1,
+            "hiddenPair": 1
+          },
+          "boardMs": 0.1457,
+          "solveMs": 2.008,
+          "ratingMs": 0.0923
+        },
+        {
+          "levelId": "GEN-1478",
+          "size": 9,
+          "solvable": true,
+          "steps": 74,
+          "maxTechLevel": 5,
+          "level": "3星",
+          "score": 450,
+          "techCount": {
+            "cageUnique": 16,
+            "hiddenSingle": 7,
+            "rule45": 4,
+            "nakedSingle": 45,
+            "nakedPair": 2
+          },
+          "boardMs": 0.1367,
+          "solveMs": 2.2175,
+          "ratingMs": 0.0824
+        },
+        {
+          "levelId": "GEN-1495",
+          "size": 9,
+          "solvable": true,
+          "steps": 76,
+          "maxTechLevel": 6,
+          "level": "4星",
+          "score": 550,
+          "techCount": {
+            "nakedSingle": 48,
+            "cageUnique": 15,
+            "hiddenSingle": 7,
+            "rule45": 3,
+            "nakedPair": 2,
+            "hiddenPair": 1
+          },
+          "boardMs": 0.1379,
+          "solveMs": 1.8982,
+          "ratingMs": 0.0751
+        },
+        {
+          "levelId": "GEN-1513",
+          "size": 9,
+          "solvable": true,
+          "steps": 74,
+          "maxTechLevel": 6,
+          "level": "4星",
+          "score": 550,
+          "techCount": {
+            "cageUnique": 14,
+            "hiddenSingle": 3,
+            "nakedSingle": 51,
+            "rule45": 2,
+            "hiddenPair": 2,
+            "nakedPair": 2
+          },
+          "boardMs": 0.1242,
+          "solveMs": 1.641,
+          "ratingMs": 0.0825
+        },
+        {
+          "levelId": "GEN-1532",
+          "size": 9,
+          "solvable": true,
+          "steps": 71,
+          "maxTechLevel": 4,
+          "level": "2星",
+          "score": 300,
+          "techCount": {
+            "nakedSingle": 59,
+            "hiddenSingle": 4,
+            "rule45": 1,
+            "cageUnique": 7
+          },
+          "boardMs": 0.304,
+          "solveMs": 1.1212,
+          "ratingMs": 0.0856
+        },
+        {
+          "levelId": "GEN-1566",
+          "size": 9,
+          "solvable": true,
+          "steps": 74,
+          "maxTechLevel": 6,
+          "level": "4星",
+          "score": 550,
+          "techCount": {
+            "nakedSingle": 48,
+            "hiddenSingle": 5,
+            "rule45": 3,
+            "cageUnique": 17,
+            "hiddenPair": 1
+          },
+          "boardMs": 0.1465,
+          "solveMs": 1.3036,
+          "ratingMs": 0.0676
+        },
+        {
+          "levelId": "GEN-1594",
+          "size": 9,
+          "solvable": true,
+          "steps": 77,
+          "maxTechLevel": 6,
+          "level": "4星",
+          "score": 550,
+          "techCount": {
+            "nakedSingle": 51,
+            "cageUnique": 14,
+            "nakedPair": 4,
+            "hiddenSingle": 4,
+            "rule45": 3,
+            "hiddenPair": 1
+          },
+          "boardMs": 0.1346,
+          "solveMs": 2.6834,
+          "ratingMs": 0.0836
+        },
+        {
+          "levelId": "GEN-1613",
+          "size": 9,
+          "solvable": true,
+          "steps": 71,
+          "maxTechLevel": 5,
+          "level": "3星",
+          "score": 450,
+          "techCount": {
+            "nakedSingle": 49,
+            "cageUnique": 12,
+            "hiddenSingle": 6,
+            "rule45": 3,
+            "nakedPair": 1
+          },
+          "boardMs": 0.1446,
+          "solveMs": 2.5648,
+          "ratingMs": 0.0856
+        },
+        {
+          "levelId": "GEN-1653",
+          "size": 9,
+          "solvable": false,
+          "steps": 24,
+          "maxTechLevel": 4,
+          "level": "4星",
+          "score": 550,
+          "techCount": {
+            "nakedSingle": 12,
+            "cageUnique": 4,
+            "rule45": 5,
+            "hiddenSingle": 3
+          },
+          "boardMs": 0.2318,
+          "solveMs": 1.9152,
+          "ratingMs": 0.0563
+        },
+        {
+          "levelId": "GEN-1669",
+          "size": 9,
+          "solvable": true,
+          "steps": 77,
+          "maxTechLevel": 6,
+          "level": "4星",
+          "score": 550,
+          "techCount": {
+            "nakedSingle": 53,
+            "cageUnique": 13,
+            "hiddenSingle": 4,
+            "rule45": 3,
+            "nakedPair": 2,
+            "hiddenPair": 2
+          },
+          "boardMs": 0.1606,
+          "solveMs": 2.0511,
+          "ratingMs": 0.0805
+        },
+        {
+          "levelId": "GEN-1700",
+          "size": 9,
+          "solvable": true,
+          "steps": 73,
+          "maxTechLevel": 6,
+          "level": "3星",
+          "score": 500,
+          "techCount": {
+            "nakedSingle": 59,
+            "cageUnique": 12,
+            "hiddenPair": 1,
+            "hiddenSingle": 1
+          },
+          "boardMs": 0.1355,
+          "solveMs": 1.1515,
+          "ratingMs": 0.0786
+        },
+        {
+          "levelId": "GEN-1729",
+          "size": 9,
+          "solvable": true,
+          "steps": 74,
+          "maxTechLevel": 6,
+          "level": "4星",
+          "score": 525,
+          "techCount": {
+            "nakedSingle": 55,
+            "hiddenSingle": 3,
+            "rule45": 3,
+            "nakedPair": 1,
+            "hiddenPair": 1,
+            "cageUnique": 11
+          },
+          "boardMs": 0.1485,
+          "solveMs": 1.8121,
+          "ratingMs": 0.0962
+        },
+        {
+          "levelId": "GEN-1766",
+          "size": 9,
+          "solvable": false,
+          "steps": 18,
+          "maxTechLevel": 4,
+          "level": "4星",
+          "score": 550,
+          "techCount": {
+            "nakedSingle": 12,
+            "cageUnique": 4,
+            "rule45": 2
+          },
+          "boardMs": 0.1539,
+          "solveMs": 1.1501,
+          "ratingMs": 0.043
+        },
+        {
+          "levelId": "GEN-1789",
+          "size": 9,
+          "solvable": true,
+          "steps": 69,
+          "maxTechLevel": 4,
+          "level": "2星",
+          "score": 350,
+          "techCount": {
+            "cageUnique": 13,
+            "hiddenSingle": 6,
+            "rule45": 3,
+            "nakedSingle": 47
+          },
+          "boardMs": 0.1403,
+          "solveMs": 1.3039,
+          "ratingMs": 0.1129
+        },
+        {
+          "levelId": "GEN-1836",
+          "size": 9,
+          "solvable": false,
+          "steps": 7,
+          "maxTechLevel": 4,
+          "level": "4星",
+          "score": 550,
+          "techCount": {
+            "nakedSingle": 3,
+            "cageUnique": 1,
+            "hiddenSingle": 2,
+            "rule45": 1
+          },
+          "boardMs": 0.1714,
+          "solveMs": 1.0921,
+          "ratingMs": 0.0339
+        },
+        {
+          "levelId": "GEN-1852",
+          "size": 9,
+          "solvable": true,
+          "steps": 71,
+          "maxTechLevel": 6,
+          "level": "4星",
+          "score": 525,
+          "techCount": {
+            "nakedSingle": 51,
+            "hiddenSingle": 5,
+            "rule45": 1,
+            "hiddenPair": 1,
+            "cageUnique": 13
+          },
+          "boardMs": 0.1408,
+          "solveMs": 1.4045,
+          "ratingMs": 0.1025
+        },
+        {
+          "levelId": "GEN-1881",
+          "size": 9,
+          "solvable": true,
+          "steps": 71,
+          "maxTechLevel": 6,
+          "level": "4星",
+          "score": 550,
+          "techCount": {
+            "nakedSingle": 45,
+            "cageUnique": 14,
+            "rule45": 2,
+            "hiddenSingle": 8,
+            "nakedPair": 1,
+            "hiddenPair": 1
+          },
+          "boardMs": 0.1364,
+          "solveMs": 1.863,
+          "ratingMs": 0.0772
+        },
+        {
+          "levelId": "GEN-1911",
+          "size": 9,
+          "solvable": true,
+          "steps": 71,
+          "maxTechLevel": 6,
+          "level": "4星",
+          "score": 525,
+          "techCount": {
+            "nakedSingle": 52,
+            "cageUnique": 11,
+            "hiddenSingle": 4,
+            "rule45": 3,
+            "hiddenPair": 1
+          },
+          "boardMs": 0.1371,
+          "solveMs": 1.6979,
+          "ratingMs": 0.1133
+        },
+        {
+          "levelId": "GEN-1926",
+          "size": 9,
+          "solvable": false,
+          "steps": 18,
+          "maxTechLevel": 4,
+          "level": "4星",
+          "score": 550,
+          "techCount": {
+            "nakedSingle": 10,
+            "cageUnique": 5,
+            "rule45": 1,
+            "hiddenSingle": 2
+          },
+          "boardMs": 0.238,
+          "solveMs": 0.8348,
+          "ratingMs": 0.0408
+        },
+        {
+          "levelId": "GEN-1963",
+          "size": 9,
+          "solvable": false,
+          "steps": 39,
+          "maxTechLevel": 5,
+          "level": "4星",
+          "score": 575,
+          "techCount": {
+            "nakedSingle": 31,
+            "cageUnique": 6,
+            "nakedPair": 2
+          },
+          "boardMs": 0.1332,
+          "solveMs": 1.338,
+          "ratingMs": 0.0692
+        },
+        {
+          "levelId": "GEN-1983",
+          "size": 9,
+          "solvable": true,
+          "steps": 73,
+          "maxTechLevel": 4,
+          "level": "2星",
+          "score": 350,
+          "techCount": {
+            "nakedSingle": 47,
+            "hiddenSingle": 5,
+            "rule45": 4,
+            "cageUnique": 17
+          },
+          "boardMs": 0.1761,
+          "solveMs": 1.5184,
+          "ratingMs": 0.0727
+        },
+        {
+          "levelId": "GEN-2025",
+          "size": 9,
+          "solvable": true,
+          "steps": 73,
+          "maxTechLevel": 6,
+          "level": "4星",
+          "score": 550,
+          "techCount": {
+            "nakedSingle": 51,
+            "cageUnique": 13,
+            "hiddenSingle": 4,
+            "rule45": 2,
+            "nakedPair": 1,
+            "hiddenPair": 2
+          },
+          "boardMs": 0.1769,
+          "solveMs": 1.9743,
+          "ratingMs": 0.0699
+        },
+        {
+          "levelId": "GEN-2044",
+          "size": 9,
+          "solvable": false,
+          "steps": 22,
+          "maxTechLevel": 4,
+          "level": "4星",
+          "score": 550,
+          "techCount": {
+            "nakedSingle": 8,
+            "cageUnique": 8,
+            "hiddenSingle": 5,
+            "rule45": 1
+          },
+          "boardMs": 0.1266,
+          "solveMs": 1.2233,
+          "ratingMs": 0.0526
+        },
+        {
+          "levelId": "GEN-2083",
+          "size": 9,
+          "solvable": true,
+          "steps": 71,
+          "maxTechLevel": 6,
+          "level": "4星",
+          "score": 525,
+          "techCount": {
+            "nakedSingle": 53,
+            "cageUnique": 15,
+            "rule45": 1,
+            "hiddenPair": 1,
+            "nakedPair": 1
+          },
+          "boardMs": 0.1418,
+          "solveMs": 1.3233,
+          "ratingMs": 0.1118
+        },
+        {
+          "levelId": "GEN-2088",
+          "size": 9,
+          "solvable": false,
+          "steps": 5,
+          "maxTechLevel": 3,
+          "level": "3星",
+          "score": 475,
+          "techCount": {
+            "nakedSingle": 4,
+            "hiddenSingle": 1
+          },
+          "boardMs": 0.2584,
+          "solveMs": 0.556,
+          "ratingMs": 0.0313
+        },
+        {
+          "levelId": "GEN-2123",
+          "size": 9,
+          "solvable": true,
+          "steps": 69,
+          "maxTechLevel": 6,
+          "level": "4星",
+          "score": 525,
+          "techCount": {
+            "nakedSingle": 55,
+            "cageUnique": 12,
+            "rule45": 1,
+            "hiddenPair": 1
+          },
+          "boardMs": 0.1515,
+          "solveMs": 1.4201,
+          "ratingMs": 0.1227
+        },
+        {
+          "levelId": "GEN-2138",
+          "size": 9,
+          "solvable": true,
+          "steps": 75,
+          "maxTechLevel": 6,
+          "level": "4星",
+          "score": 525,
+          "techCount": {
+            "nakedSingle": 53,
+            "cageUnique": 11,
+            "hiddenSingle": 6,
+            "rule45": 3,
+            "nakedPair": 1,
+            "hiddenPair": 1
+          },
+          "boardMs": 0.3127,
+          "solveMs": 3.095,
+          "ratingMs": 0.1168
+        },
+        {
+          "levelId": "GEN-2169",
+          "size": 9,
+          "solvable": true,
+          "steps": 77,
+          "maxTechLevel": 6,
+          "level": "4星",
+          "score": 550,
+          "techCount": {
+            "cageUnique": 14,
+            "hiddenSingle": 8,
+            "rule45": 2,
+            "nakedSingle": 50,
+            "nakedPair": 2,
+            "hiddenPair": 1
+          },
+          "boardMs": 0.1869,
+          "solveMs": 1.9173,
+          "ratingMs": 0.0811
+        },
+        {
+          "levelId": "GEN-2203",
+          "size": 9,
+          "solvable": true,
+          "steps": 76,
+          "maxTechLevel": 6,
+          "level": "4星",
+          "score": 550,
+          "techCount": {
+            "nakedSingle": 45,
+            "cageUnique": 12,
+            "hiddenSingle": 12,
+            "rule45": 4,
+            "hiddenPair": 1,
+            "nakedPair": 2
+          },
+          "boardMs": 0.1741,
+          "solveMs": 2.5193,
+          "ratingMs": 0.1065
+        },
+        {
+          "levelId": "GEN-2223",
+          "size": 9,
+          "solvable": true,
+          "steps": 75,
+          "maxTechLevel": 6,
+          "level": "4星",
+          "score": 525,
+          "techCount": {
+            "hiddenSingle": 10,
+            "rule45": 2,
+            "nakedSingle": 53,
+            "nakedPair": 1,
+            "hiddenPair": 1,
+            "cageUnique": 8
+          },
+          "boardMs": 0.1571,
+          "solveMs": 1.813,
+          "ratingMs": 0.0842
+        },
+        {
+          "levelId": "GEN-2250",
+          "size": 9,
+          "solvable": true,
+          "steps": 72,
+          "maxTechLevel": 6,
+          "level": "4星",
+          "score": 550,
+          "techCount": {
+            "hiddenSingle": 7,
+            "cageUnique": 13,
+            "nakedSingle": 47,
+            "rule45": 2,
+            "nakedPair": 2,
+            "hiddenPair": 1
+          },
+          "boardMs": 0.1332,
+          "solveMs": 1.768,
+          "ratingMs": 0.0788
+        },
+        {
+          "levelId": "GEN-2281",
+          "size": 9,
+          "solvable": false,
+          "steps": 38,
+          "maxTechLevel": 5,
+          "level": "4星",
+          "score": 550,
+          "techCount": {
+            "nakedSingle": 32,
+            "hiddenSingle": 3,
+            "nakedPair": 1,
+            "cageUnique": 2
+          },
+          "boardMs": 0.1117,
+          "solveMs": 0.7941,
+          "ratingMs": 0.0619
+        },
+        {
+          "levelId": "GEN-2306",
+          "size": 9,
+          "solvable": true,
+          "steps": 69,
+          "maxTechLevel": 4,
+          "level": "2星",
+          "score": 325,
+          "techCount": {
+            "cageUnique": 9,
+            "nakedSingle": 55,
+            "hiddenSingle": 4,
+            "rule45": 1
+          },
+          "boardMs": 0.1233,
+          "solveMs": 1.0974,
+          "ratingMs": 0.0898
+        },
+        {
+          "levelId": "GEN-2338",
+          "size": 9,
+          "solvable": false,
+          "steps": 12,
+          "maxTechLevel": 4,
+          "level": "4星",
+          "score": 550,
+          "techCount": {
+            "nakedSingle": 4,
+            "cageUnique": 3,
+            "hiddenSingle": 4,
+            "rule45": 1
+          },
+          "boardMs": 0.1296,
+          "solveMs": 0.9562,
+          "ratingMs": 0.0441
+        },
+        {
+          "levelId": "GEN-2368",
+          "size": 9,
+          "solvable": true,
+          "steps": 69,
+          "maxTechLevel": 5,
+          "level": "3星",
+          "score": 450,
+          "techCount": {
+            "cageUnique": 17,
+            "hiddenSingle": 3,
+            "nakedSingle": 46,
+            "nakedPair": 1,
+            "rule45": 2
+          },
+          "boardMs": 0.2126,
+          "solveMs": 1.3274,
+          "ratingMs": 0.0846
+        },
+        {
+          "levelId": "GEN-2399",
+          "size": 9,
+          "solvable": true,
+          "steps": 75,
+          "maxTechLevel": 6,
+          "level": "4星",
+          "score": 550,
+          "techCount": {
+            "nakedSingle": 50,
+            "rule45": 1,
+            "hiddenSingle": 5,
+            "hiddenPair": 1,
+            "nakedPair": 1,
+            "cageUnique": 17
+          },
+          "boardMs": 0.1479,
+          "solveMs": 1.3901,
+          "ratingMs": 0.0899
+        },
+        {
+          "levelId": "GEN-2410",
+          "size": 9,
+          "solvable": true,
+          "steps": 71,
+          "maxTechLevel": 6,
+          "level": "4星",
+          "score": 525,
+          "techCount": {
+            "nakedSingle": 56,
+            "cageUnique": 9,
+            "hiddenSingle": 4,
+            "rule45": 1,
+            "hiddenPair": 1
+          },
+          "boardMs": 0.1457,
+          "solveMs": 1.0652,
+          "ratingMs": 0.0678
+        },
+        {
+          "levelId": "GEN-2423",
+          "size": 9,
+          "solvable": false,
+          "steps": 34,
+          "maxTechLevel": 5,
+          "level": "4星",
+          "score": 575,
+          "techCount": {
+            "nakedSingle": 25,
+            "cageUnique": 4,
+            "hiddenSingle": 4,
+            "nakedPair": 1
+          },
+          "boardMs": 0.1063,
+          "solveMs": 0.8356,
+          "ratingMs": 0.0729
+        },
+        {
+          "levelId": "GEN-2429",
+          "size": 9,
+          "solvable": true,
+          "steps": 75,
+          "maxTechLevel": 4,
+          "level": "2星",
+          "score": 350,
+          "techCount": {
+            "nakedSingle": 49,
+            "cageUnique": 12,
+            "hiddenSingle": 8,
+            "rule45": 6
+          },
+          "boardMs": 0.1732,
+          "solveMs": 2.6555,
+          "ratingMs": 0.0893
+        },
+        {
+          "levelId": "GEN-2433",
+          "size": 9,
+          "solvable": true,
+          "steps": 72,
+          "maxTechLevel": 6,
+          "level": "4星",
+          "score": 550,
+          "techCount": {
+            "nakedSingle": 46,
+            "cageUnique": 13,
+            "hiddenSingle": 9,
+            "rule45": 3,
+            "hiddenPair": 1
+          },
+          "boardMs": 0.1744,
+          "solveMs": 1.4862,
+          "ratingMs": 0.0725
+        },
+        {
+          "levelId": "GEN-2479",
+          "size": 9,
+          "solvable": true,
+          "steps": 52,
+          "maxTechLevel": 6,
+          "level": "4星",
+          "score": 525,
+          "techCount": {
+            "nakedSingle": 38,
+            "cageUnique": 13,
+            "hiddenPair": 1
+          },
+          "boardMs": 0.1066,
+          "solveMs": 0.5895,
+          "ratingMs": 0.0696
+        },
+        {
+          "levelId": "GEN-2489",
+          "size": 9,
+          "solvable": true,
+          "steps": 75,
+          "maxTechLevel": 6,
+          "level": "4星",
+          "score": 550,
+          "techCount": {
+            "nakedSingle": 50,
+            "cageUnique": 11,
+            "rule45": 6,
+            "hiddenSingle": 5,
+            "nakedPair": 1,
+            "hiddenPair": 2
+          },
+          "boardMs": 0.1655,
+          "solveMs": 3.1754,
+          "ratingMs": 0.0776
+        },
+        {
+          "levelId": "GEN-2493",
+          "size": 9,
+          "solvable": true,
+          "steps": 74,
+          "maxTechLevel": 5,
+          "level": "3星",
+          "score": 425,
+          "techCount": {
+            "nakedSingle": 56,
+            "rule45": 5,
+            "cageUnique": 5,
+            "hiddenSingle": 7,
+            "nakedPair": 1
+          },
+          "boardMs": 0.1519,
+          "solveMs": 1.9746,
+          "ratingMs": 0.0901
+        }
+      ]
+    }
+  }
+}

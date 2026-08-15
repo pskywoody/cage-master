@@ -1,0 +1,1229 @@
+{
+  "generated_at": "2026-08-15T20:36:23.393Z",
+  "status": "PARTIAL",
+  "auto_enabled": [
+    {
+      "level_id": 101,
+      "planned_technique": "nakedSingle",
+      "resolved_technique": "nakedSingle",
+      "demo_steps": [
+        "spotlightOn",
+        "highlightCell",
+        "highlightCell",
+        "highlightCell",
+        "highlightCell",
+        "concludeCell"
+      ],
+      "demo_step_count": 6,
+      "deduction_source": {
+        "technique": "nakedSingle",
+        "evidence_fields": [
+          "type",
+          "targetCell",
+          "targetValue",
+          "candidates",
+          "rowNumbers",
+          "colNumbers",
+          "boxNumbers",
+          "eliminated"
+        ]
+      },
+      "evidence_cells": 0,
+      "fallback_count": 0,
+      "fallback_reason": null,
+      "explanation_completeness": "complete"
+    },
+    {
+      "level_id": 102,
+      "planned_technique": "nakedSingle",
+      "resolved_technique": "nakedSingle",
+      "demo_steps": [
+        "spotlightOn",
+        "highlightCell",
+        "highlightCell",
+        "highlightCell",
+        "highlightCell",
+        "concludeCell"
+      ],
+      "demo_step_count": 6,
+      "deduction_source": {
+        "technique": "nakedSingle",
+        "evidence_fields": [
+          "type",
+          "targetCell",
+          "targetValue",
+          "candidates",
+          "rowNumbers",
+          "colNumbers",
+          "boxNumbers",
+          "eliminated"
+        ]
+      },
+      "evidence_cells": 0,
+      "fallback_count": 0,
+      "fallback_reason": null,
+      "explanation_completeness": "complete"
+    },
+    {
+      "level_id": 103,
+      "planned_technique": "cageUnique",
+      "resolved_technique": "cageUnique",
+      "demo_steps": [
+        "spotlightOn",
+        "highlightCage",
+        "highlightCell",
+        "concludeCell"
+      ],
+      "demo_step_count": 4,
+      "deduction_source": {
+        "technique": "cageUnique",
+        "evidence_fields": [
+          "type",
+          "cageId",
+          "cageSum",
+          "cageCells",
+          "targetCell",
+          "targetValue",
+          "mustHaveNum",
+          "comboCount"
+        ]
+      },
+      "evidence_cells": 0,
+      "fallback_count": 0,
+      "fallback_reason": null,
+      "explanation_completeness": "complete"
+    },
+    {
+      "level_id": 104,
+      "planned_technique": "nakedSingle",
+      "resolved_technique": "nakedSingle",
+      "demo_steps": [
+        "spotlightOn",
+        "highlightCell",
+        "highlightCell",
+        "highlightCell",
+        "highlightCell",
+        "concludeCell"
+      ],
+      "demo_step_count": 6,
+      "deduction_source": {
+        "technique": "nakedSingle",
+        "evidence_fields": [
+          "type",
+          "targetCell",
+          "targetValue",
+          "candidates",
+          "rowNumbers",
+          "colNumbers",
+          "boxNumbers",
+          "eliminated"
+        ]
+      },
+      "evidence_cells": 0,
+      "fallback_count": 0,
+      "fallback_reason": null,
+      "explanation_completeness": "complete"
+    },
+    {
+      "level_id": 105,
+      "planned_technique": "cageUnique",
+      "resolved_technique": "cageUnique",
+      "demo_steps": [
+        "spotlightOn",
+        "highlightCage",
+        "highlightCell",
+        "concludeCell"
+      ],
+      "demo_step_count": 4,
+      "deduction_source": {
+        "technique": "cageUnique",
+        "evidence_fields": [
+          "type",
+          "cageId",
+          "cageSum",
+          "cageCells",
+          "targetCell",
+          "targetValue",
+          "mustHaveNum",
+          "comboCount"
+        ]
+      },
+      "evidence_cells": 0,
+      "fallback_count": 0,
+      "fallback_reason": null,
+      "explanation_completeness": "complete"
+    },
+    {
+      "level_id": 106,
+      "planned_technique": "hiddenSingle",
+      "resolved_technique": "hiddenSingle",
+      "demo_steps": [
+        "spotlightOn",
+        "highlightRow",
+        "highlightCell",
+        "strikeNote",
+        "concludeCell"
+      ],
+      "demo_step_count": 5,
+      "deduction_source": {
+        "technique": "hiddenSingle",
+        "evidence_fields": [
+          "type",
+          "scopeType",
+          "scopeIndex",
+          "targetCell",
+          "targetValue",
+          "possiblePositions",
+          "eliminatedPositions",
+          "rowFilled"
+        ]
+      },
+      "evidence_cells": 1,
+      "fallback_count": 0,
+      "fallback_reason": null,
+      "explanation_completeness": "complete"
+    },
+    {
+      "level_id": 107,
+      "planned_technique": "cageUnique",
+      "resolved_technique": "cageUnique",
+      "demo_steps": [
+        "spotlightOn",
+        "highlightCage",
+        "highlightCell",
+        "concludeCell"
+      ],
+      "demo_step_count": 4,
+      "deduction_source": {
+        "technique": "cageUnique",
+        "evidence_fields": [
+          "type",
+          "cageId",
+          "cageSum",
+          "cageCells",
+          "targetCell",
+          "targetValue",
+          "mustHaveNum",
+          "comboCount"
+        ]
+      },
+      "evidence_cells": 0,
+      "fallback_count": 0,
+      "fallback_reason": null,
+      "explanation_completeness": "complete"
+    },
+    {
+      "level_id": 108,
+      "planned_technique": "rule45",
+      "resolved_technique": "rule45",
+      "demo_steps": [
+        "spotlightOn",
+        "highlightCol",
+        "highlightCell",
+        "concludeCell"
+      ],
+      "demo_step_count": 4,
+      "deduction_source": {
+        "technique": "rule45",
+        "evidence_fields": [
+          "type",
+          "subtype",
+          "scopeType",
+          "scopeIndex",
+          "scopeCells",
+          "fullyInsideCages",
+          "sumFullyInside",
+          "sumInnieValues"
+        ]
+      },
+      "evidence_cells": 0,
+      "fallback_count": 0,
+      "fallback_reason": null,
+      "explanation_completeness": "complete"
+    },
+    {
+      "level_id": 201,
+      "planned_technique": "rule45",
+      "resolved_technique": "rule45",
+      "demo_steps": [
+        "spotlightOn",
+        "highlightRow",
+        "highlightCell",
+        "concludeCell"
+      ],
+      "demo_step_count": 4,
+      "deduction_source": {
+        "technique": "rule45",
+        "evidence_fields": [
+          "type",
+          "subtype",
+          "scopeType",
+          "scopeIndex",
+          "scopeCells",
+          "fullyInsideCages",
+          "sumFullyInside",
+          "sumInnieValues"
+        ]
+      },
+      "evidence_cells": 0,
+      "fallback_count": 0,
+      "fallback_reason": null,
+      "explanation_completeness": "complete"
+    },
+    {
+      "level_id": 202,
+      "planned_technique": "rule45",
+      "resolved_technique": "rule45",
+      "demo_steps": [
+        "spotlightOn",
+        "highlightRow",
+        "highlightCell",
+        "concludeCell"
+      ],
+      "demo_step_count": 4,
+      "deduction_source": {
+        "technique": "rule45",
+        "evidence_fields": [
+          "type",
+          "subtype",
+          "scopeType",
+          "scopeIndex",
+          "scopeCells",
+          "fullyInsideCages",
+          "sumFullyInside",
+          "sumInnieValues"
+        ]
+      },
+      "evidence_cells": 0,
+      "fallback_count": 0,
+      "fallback_reason": null,
+      "explanation_completeness": "complete"
+    },
+    {
+      "level_id": 203,
+      "planned_technique": "rule45",
+      "resolved_technique": "rule45",
+      "demo_steps": [
+        "spotlightOn",
+        "highlightCage",
+        "highlightCage",
+        "highlightCage",
+        "highlightCage",
+        "highlightBox",
+        "highlightCell",
+        "concludeCell"
+      ],
+      "demo_step_count": 8,
+      "deduction_source": {
+        "technique": "rule45",
+        "evidence_fields": [
+          "type",
+          "subtype",
+          "scopeType",
+          "scopeIndex",
+          "scopeCells",
+          "intersectingCages",
+          "totalCageSum",
+          "sumOutsideValues"
+        ]
+      },
+      "evidence_cells": 0,
+      "fallback_count": 0,
+      "fallback_reason": null,
+      "explanation_completeness": "complete"
+    },
+    {
+      "level_id": 204,
+      "planned_technique": "rule45",
+      "resolved_technique": "rule45",
+      "demo_steps": [
+        "spotlightOn",
+        "highlightCol",
+        "highlightCell",
+        "concludeCell"
+      ],
+      "demo_step_count": 4,
+      "deduction_source": {
+        "technique": "rule45",
+        "evidence_fields": [
+          "type",
+          "subtype",
+          "scopeType",
+          "scopeIndex",
+          "scopeCells",
+          "fullyInsideCages",
+          "sumFullyInside",
+          "sumInnieValues"
+        ]
+      },
+      "evidence_cells": 0,
+      "fallback_count": 0,
+      "fallback_reason": null,
+      "explanation_completeness": "complete"
+    },
+    {
+      "level_id": 205,
+      "planned_technique": "rule45",
+      "resolved_technique": "rule45",
+      "demo_steps": [
+        "spotlightOn",
+        "highlightCage",
+        "highlightCage",
+        "highlightCage",
+        "highlightCol",
+        "highlightCell",
+        "concludeCell"
+      ],
+      "demo_step_count": 7,
+      "deduction_source": {
+        "technique": "rule45",
+        "evidence_fields": [
+          "type",
+          "subtype",
+          "scopeType",
+          "scopeIndex",
+          "scopeCells",
+          "intersectingCages",
+          "totalCageSum",
+          "sumOutsideValues"
+        ]
+      },
+      "evidence_cells": 0,
+      "fallback_count": 0,
+      "fallback_reason": null,
+      "explanation_completeness": "complete"
+    },
+    {
+      "level_id": 206,
+      "planned_technique": "rule45",
+      "resolved_technique": "rule45",
+      "demo_steps": [
+        "spotlightOn",
+        "highlightCage",
+        "highlightCage",
+        "highlightBox",
+        "highlightCell",
+        "concludeCell"
+      ],
+      "demo_step_count": 6,
+      "deduction_source": {
+        "technique": "rule45",
+        "evidence_fields": [
+          "type",
+          "subtype",
+          "scopeType",
+          "scopeIndex",
+          "scopeCells",
+          "fullyInsideCages",
+          "sumFullyInside",
+          "sumInnieValues"
+        ]
+      },
+      "evidence_cells": 0,
+      "fallback_count": 0,
+      "fallback_reason": null,
+      "explanation_completeness": "complete"
+    },
+    {
+      "level_id": 207,
+      "planned_technique": "rule45",
+      "resolved_technique": "rule45",
+      "demo_steps": [
+        "spotlightOn",
+        "highlightCage",
+        "highlightCage",
+        "highlightCage",
+        "highlightBox",
+        "highlightCell",
+        "concludeCell"
+      ],
+      "demo_step_count": 7,
+      "deduction_source": {
+        "technique": "rule45",
+        "evidence_fields": [
+          "type",
+          "subtype",
+          "scopeType",
+          "scopeIndex",
+          "scopeCells",
+          "intersectingCages",
+          "totalCageSum",
+          "sumOutsideValues"
+        ]
+      },
+      "evidence_cells": 0,
+      "fallback_count": 0,
+      "fallback_reason": null,
+      "explanation_completeness": "complete"
+    },
+    {
+      "level_id": 208,
+      "planned_technique": "rule45",
+      "resolved_technique": "rule45",
+      "demo_steps": [
+        "spotlightOn",
+        "highlightCage",
+        "highlightCage",
+        "highlightRow",
+        "highlightCell",
+        "concludeCell"
+      ],
+      "demo_step_count": 6,
+      "deduction_source": {
+        "technique": "rule45",
+        "evidence_fields": [
+          "type",
+          "subtype",
+          "scopeType",
+          "scopeIndex",
+          "scopeCells",
+          "fullyInsideCages",
+          "sumFullyInside",
+          "sumInnieValues"
+        ]
+      },
+      "evidence_cells": 0,
+      "fallback_count": 0,
+      "fallback_reason": null,
+      "explanation_completeness": "complete"
+    },
+    {
+      "level_id": 301,
+      "planned_technique": "pointingClaiming",
+      "resolved_technique": "pointingClaiming",
+      "demo_steps": [
+        "spotlightOn",
+        "highlightCell",
+        "concludeCell"
+      ],
+      "demo_step_count": 3,
+      "deduction_source": {
+        "technique": "pointingClaiming",
+        "evidence_fields": [
+          "type",
+          "direction",
+          "boxIndex",
+          "lineIndex",
+          "eliminated",
+          "eliminatedPositions"
+        ]
+      },
+      "evidence_cells": 0,
+      "fallback_count": 0,
+      "fallback_reason": null,
+      "explanation_completeness": "complete"
+    },
+    {
+      "level_id": 302,
+      "planned_technique": "pointingClaiming",
+      "resolved_technique": "pointingClaiming",
+      "demo_steps": [
+        "spotlightOn",
+        "highlightCell",
+        "concludeCell"
+      ],
+      "demo_step_count": 3,
+      "deduction_source": {
+        "technique": "pointingClaiming",
+        "evidence_fields": [
+          "type",
+          "direction",
+          "boxIndex",
+          "lineIndex",
+          "eliminated",
+          "eliminatedPositions"
+        ]
+      },
+      "evidence_cells": 0,
+      "fallback_count": 0,
+      "fallback_reason": null,
+      "explanation_completeness": "complete"
+    },
+    {
+      "level_id": 303,
+      "planned_technique": "pointingClaiming",
+      "resolved_technique": "pointingClaiming",
+      "demo_steps": [
+        "spotlightOn",
+        "highlightCell",
+        "concludeCell"
+      ],
+      "demo_step_count": 3,
+      "deduction_source": {
+        "technique": "pointingClaiming",
+        "evidence_fields": [
+          "type",
+          "direction",
+          "boxIndex",
+          "lineIndex",
+          "eliminated",
+          "eliminatedPositions"
+        ]
+      },
+      "evidence_cells": 0,
+      "fallback_count": 0,
+      "fallback_reason": null,
+      "explanation_completeness": "complete"
+    },
+    {
+      "level_id": 304,
+      "planned_technique": "rule45",
+      "resolved_technique": "rule45",
+      "demo_steps": [
+        "spotlightOn",
+        "highlightCage",
+        "highlightCage",
+        "highlightCage",
+        "highlightCage",
+        "highlightBox",
+        "highlightCell",
+        "concludeCell"
+      ],
+      "demo_step_count": 8,
+      "deduction_source": {
+        "technique": "rule45",
+        "evidence_fields": [
+          "type",
+          "subtype",
+          "scopeType",
+          "scopeIndex",
+          "scopeCells",
+          "intersectingCages",
+          "totalCageSum",
+          "sumOutsideValues"
+        ]
+      },
+      "evidence_cells": 0,
+      "fallback_count": 0,
+      "fallback_reason": null,
+      "explanation_completeness": "complete"
+    },
+    {
+      "level_id": 305,
+      "planned_technique": "nakedPair",
+      "resolved_technique": "nakedPair",
+      "demo_steps": [
+        "spotlightOn",
+        "highlightRow",
+        "highlightCell",
+        "strikeNote",
+        "concludeCell"
+      ],
+      "demo_step_count": 5,
+      "deduction_source": {
+        "technique": "nakedPair",
+        "evidence_fields": [
+          "technique",
+          "scopeType",
+          "scopeIndex",
+          "pairValues",
+          "pairCells",
+          "eliminatedCells",
+          "eliminated",
+          "eliminatedPositions"
+        ]
+      },
+      "evidence_cells": 2,
+      "fallback_count": 0,
+      "fallback_reason": null,
+      "explanation_completeness": "complete"
+    },
+    {
+      "level_id": 401,
+      "planned_technique": "nakedSingle",
+      "resolved_technique": "nakedSingle",
+      "demo_steps": [
+        "spotlightOn",
+        "highlightCell",
+        "highlightCell",
+        "highlightCell",
+        "highlightCell",
+        "highlightCell",
+        "highlightCell",
+        "highlightCell",
+        "highlightCell",
+        "highlightCell",
+        "concludeCell"
+      ],
+      "demo_step_count": 11,
+      "deduction_source": {
+        "technique": "nakedSingle",
+        "evidence_fields": [
+          "type",
+          "targetCell",
+          "targetValue",
+          "candidates",
+          "rowNumbers",
+          "colNumbers",
+          "boxNumbers",
+          "eliminated"
+        ]
+      },
+      "evidence_cells": 0,
+      "fallback_count": 0,
+      "fallback_reason": null,
+      "explanation_completeness": "complete"
+    },
+    {
+      "level_id": 402,
+      "planned_technique": "hiddenSingle",
+      "resolved_technique": "hiddenSingle",
+      "demo_steps": [
+        "spotlightOn",
+        "highlightRow",
+        "highlightCell",
+        "strikeNote",
+        "strikeNote",
+        "strikeNote",
+        "strikeNote",
+        "concludeCell"
+      ],
+      "demo_step_count": 8,
+      "deduction_source": {
+        "technique": "hiddenSingle",
+        "evidence_fields": [
+          "type",
+          "scopeType",
+          "scopeIndex",
+          "targetCell",
+          "targetValue",
+          "possiblePositions",
+          "eliminatedPositions",
+          "rowFilled"
+        ]
+      },
+      "evidence_cells": 4,
+      "fallback_count": 0,
+      "fallback_reason": null,
+      "explanation_completeness": "complete"
+    },
+    {
+      "level_id": 403,
+      "planned_technique": "hiddenPair",
+      "resolved_technique": "hiddenPair",
+      "demo_steps": [
+        "spotlightOn",
+        "highlightCol",
+        "highlightCell",
+        "strikeNote",
+        "strikeNote",
+        "concludeCell"
+      ],
+      "demo_step_count": 6,
+      "deduction_source": {
+        "technique": "hiddenPair",
+        "evidence_fields": [
+          "pairValues",
+          "pairCells",
+          "scopeType",
+          "scopeIndex",
+          "eliminatedCells",
+          "eliminated",
+          "eliminatedPositions"
+        ]
+      },
+      "evidence_cells": 4,
+      "fallback_count": 0,
+      "fallback_reason": null,
+      "explanation_completeness": "complete"
+    },
+    {
+      "level_id": 405,
+      "planned_technique": "cageUnique",
+      "resolved_technique": "cageUnique",
+      "demo_steps": [
+        "spotlightOn",
+        "highlightCage",
+        "highlightCell",
+        "concludeCell"
+      ],
+      "demo_step_count": 4,
+      "deduction_source": {
+        "technique": "cageUnique",
+        "evidence_fields": [
+          "type",
+          "cageId",
+          "cageSum",
+          "cageCells",
+          "targetCell",
+          "targetValue",
+          "mustHaveNum",
+          "comboCount"
+        ]
+      },
+      "evidence_cells": 0,
+      "fallback_count": 0,
+      "fallback_reason": null,
+      "explanation_completeness": "complete"
+    },
+    {
+      "level_id": 501,
+      "planned_technique": "cageUnique",
+      "resolved_technique": "cageUnique",
+      "demo_steps": [
+        "spotlightOn",
+        "highlightCage",
+        "highlightCell",
+        "concludeCell"
+      ],
+      "demo_step_count": 4,
+      "deduction_source": {
+        "technique": "cageUnique",
+        "evidence_fields": [
+          "type",
+          "cageId",
+          "cageSum",
+          "cageCells",
+          "targetCell",
+          "targetValue",
+          "mustHaveNum",
+          "comboCount"
+        ]
+      },
+      "evidence_cells": 0,
+      "fallback_count": 0,
+      "fallback_reason": null,
+      "explanation_completeness": "complete"
+    },
+    {
+      "level_id": 502,
+      "planned_technique": "cageUnique",
+      "resolved_technique": "cageUnique",
+      "demo_steps": [
+        "spotlightOn",
+        "highlightCage",
+        "highlightCell",
+        "concludeCell"
+      ],
+      "demo_step_count": 4,
+      "deduction_source": {
+        "technique": "cageUnique",
+        "evidence_fields": [
+          "type",
+          "cageId",
+          "cageSum",
+          "cageCells",
+          "targetCell",
+          "targetValue",
+          "mustHaveNum",
+          "comboCount"
+        ]
+      },
+      "evidence_cells": 0,
+      "fallback_count": 0,
+      "fallback_reason": null,
+      "explanation_completeness": "complete"
+    },
+    {
+      "level_id": 503,
+      "planned_technique": "cageUnique",
+      "resolved_technique": "cageUnique",
+      "demo_steps": [
+        "spotlightOn",
+        "highlightCage",
+        "highlightCell",
+        "concludeCell"
+      ],
+      "demo_step_count": 4,
+      "deduction_source": {
+        "technique": "cageUnique",
+        "evidence_fields": [
+          "type",
+          "cageId",
+          "cageSum",
+          "cageCells",
+          "targetCell",
+          "targetValue",
+          "mustHaveNum",
+          "comboCount"
+        ]
+      },
+      "evidence_cells": 0,
+      "fallback_count": 0,
+      "fallback_reason": null,
+      "explanation_completeness": "complete"
+    },
+    {
+      "level_id": 504,
+      "planned_technique": "rule45",
+      "resolved_technique": "rule45",
+      "demo_steps": [
+        "spotlightOn",
+        "highlightCage",
+        "highlightCage",
+        "highlightBox",
+        "highlightCell",
+        "concludeCell"
+      ],
+      "demo_step_count": 6,
+      "deduction_source": {
+        "technique": "rule45",
+        "evidence_fields": [
+          "type",
+          "subtype",
+          "scopeType",
+          "scopeIndex",
+          "scopeCells",
+          "fullyInsideCages",
+          "sumFullyInside",
+          "sumInnieValues"
+        ]
+      },
+      "evidence_cells": 0,
+      "fallback_count": 0,
+      "fallback_reason": null,
+      "explanation_completeness": "complete"
+    },
+    {
+      "level_id": 601,
+      "planned_technique": "cageUnique",
+      "resolved_technique": "cageUnique",
+      "demo_steps": [
+        "spotlightOn",
+        "highlightCage",
+        "highlightCell",
+        "concludeCell"
+      ],
+      "demo_step_count": 4,
+      "deduction_source": {
+        "technique": "cageUnique",
+        "evidence_fields": [
+          "type",
+          "cageId",
+          "cageSum",
+          "cageCells",
+          "targetCell",
+          "targetValue",
+          "mustHaveNum",
+          "comboCount"
+        ]
+      },
+      "evidence_cells": 0,
+      "fallback_count": 0,
+      "fallback_reason": null,
+      "explanation_completeness": "complete"
+    },
+    {
+      "level_id": 602,
+      "planned_technique": "cageUnique",
+      "resolved_technique": "cageUnique",
+      "demo_steps": [
+        "spotlightOn",
+        "highlightCage",
+        "highlightCell",
+        "concludeCell"
+      ],
+      "demo_step_count": 4,
+      "deduction_source": {
+        "technique": "cageUnique",
+        "evidence_fields": [
+          "type",
+          "cageId",
+          "cageSum",
+          "cageCells",
+          "targetCell",
+          "targetValue",
+          "mustHaveNum",
+          "comboCount"
+        ]
+      },
+      "evidence_cells": 0,
+      "fallback_count": 0,
+      "fallback_reason": null,
+      "explanation_completeness": "complete"
+    },
+    {
+      "level_id": 701,
+      "planned_technique": "nakedPair",
+      "resolved_technique": "nakedPair",
+      "demo_steps": [
+        "spotlightOn",
+        "highlightRow",
+        "highlightCell",
+        "strikeNote",
+        "concludeCell"
+      ],
+      "demo_step_count": 5,
+      "deduction_source": {
+        "technique": "nakedPair",
+        "evidence_fields": [
+          "technique",
+          "scopeType",
+          "scopeIndex",
+          "pairValues",
+          "pairCells",
+          "eliminatedCells",
+          "eliminated",
+          "eliminatedPositions"
+        ]
+      },
+      "evidence_cells": 1,
+      "fallback_count": 0,
+      "fallback_reason": null,
+      "explanation_completeness": "complete"
+    },
+    {
+      "level_id": 702,
+      "planned_technique": "hiddenPair",
+      "resolved_technique": "hiddenPair",
+      "demo_steps": [
+        "spotlightOn",
+        "highlightCol",
+        "highlightCell",
+        "strikeNote",
+        "strikeNote",
+        "concludeCell"
+      ],
+      "demo_step_count": 6,
+      "deduction_source": {
+        "technique": "hiddenPair",
+        "evidence_fields": [
+          "pairValues",
+          "pairCells",
+          "scopeType",
+          "scopeIndex",
+          "eliminatedCells",
+          "eliminated",
+          "eliminatedPositions"
+        ]
+      },
+      "evidence_cells": 4,
+      "fallback_count": 0,
+      "fallback_reason": null,
+      "explanation_completeness": "complete"
+    },
+    {
+      "level_id": 703,
+      "planned_technique": "nakedTriplet",
+      "resolved_technique": "nakedTriplet",
+      "demo_steps": [
+        "spotlightOn",
+        "highlightRow",
+        "highlightCell",
+        "concludeCell"
+      ],
+      "demo_step_count": 4,
+      "deduction_source": {
+        "technique": "nakedTriplet",
+        "evidence_fields": [
+          "type",
+          "tripletCells",
+          "tripletValues",
+          "eliminated",
+          "scopeType",
+          "scopeIndex",
+          "eliminatedPositions"
+        ]
+      },
+      "evidence_cells": 0,
+      "fallback_count": 0,
+      "fallback_reason": null,
+      "explanation_completeness": "complete"
+    },
+    {
+      "level_id": 705,
+      "planned_technique": "swordfish",
+      "resolved_technique": "swordfish",
+      "demo_steps": [
+        "highlightRow",
+        "highlightRow",
+        "highlightRow",
+        "highlightCol",
+        "highlightCol",
+        "highlightCol",
+        "highlightCell",
+        "highlightCell",
+        "highlightCell",
+        "highlightCell",
+        "highlightCell",
+        "highlightCell",
+        "highlightCell",
+        "strikeNote",
+        "strikeNote",
+        "strikeNote",
+        "highlightCell",
+        "concludeCell"
+      ],
+      "demo_step_count": 18,
+      "deduction_source": {
+        "technique": "swordfish",
+        "evidence_fields": [
+          "num",
+          "rows",
+          "cols",
+          "cells",
+          "direction",
+          "description",
+          "eliminatedCells",
+          "eliminatedPositions"
+        ]
+      },
+      "evidence_cells": 3,
+      "fallback_count": 0,
+      "fallback_reason": null,
+      "explanation_completeness": "complete"
+    }
+  ],
+  "manual_review": [
+    {
+      "level_id": 109,
+      "planned_technique": "composite",
+      "resolved_technique": null,
+      "demo_steps": [],
+      "demo_step_count": 0,
+      "deduction_source": null,
+      "evidence_cells": 0,
+      "fallback_count": 1,
+      "fallback_reason": "no_target_technique",
+      "explanation_completeness": "incomplete"
+    },
+    {
+      "level_id": 306,
+      "planned_technique": "composite",
+      "resolved_technique": null,
+      "demo_steps": [],
+      "demo_step_count": 0,
+      "deduction_source": null,
+      "evidence_cells": 0,
+      "fallback_count": 1,
+      "fallback_reason": "no_target_technique",
+      "explanation_completeness": "incomplete"
+    },
+    {
+      "level_id": 307,
+      "planned_technique": "composite",
+      "resolved_technique": null,
+      "demo_steps": [],
+      "demo_step_count": 0,
+      "deduction_source": null,
+      "evidence_cells": 0,
+      "fallback_count": 1,
+      "fallback_reason": "no_target_technique",
+      "explanation_completeness": "incomplete"
+    },
+    {
+      "level_id": 404,
+      "planned_technique": "nakedTriplet",
+      "resolved_technique": null,
+      "demo_steps": [],
+      "demo_step_count": 0,
+      "deduction_source": null,
+      "evidence_cells": 0,
+      "fallback_count": 1,
+      "fallback_reason": "technique_unavailable",
+      "explanation_completeness": "incomplete"
+    },
+    {
+      "level_id": 406,
+      "planned_technique": "composite",
+      "resolved_technique": null,
+      "demo_steps": [],
+      "demo_step_count": 0,
+      "deduction_source": null,
+      "evidence_cells": 0,
+      "fallback_count": 1,
+      "fallback_reason": "no_target_technique",
+      "explanation_completeness": "incomplete"
+    },
+    {
+      "level_id": 505,
+      "planned_technique": "composite",
+      "resolved_technique": null,
+      "demo_steps": [],
+      "demo_step_count": 0,
+      "deduction_source": null,
+      "evidence_cells": 0,
+      "fallback_count": 1,
+      "fallback_reason": "no_target_technique",
+      "explanation_completeness": "incomplete"
+    },
+    {
+      "level_id": 506,
+      "planned_technique": "composite",
+      "resolved_technique": null,
+      "demo_steps": [],
+      "demo_step_count": 0,
+      "deduction_source": null,
+      "evidence_cells": 0,
+      "fallback_count": 1,
+      "fallback_reason": "no_target_technique",
+      "explanation_completeness": "incomplete"
+    },
+    {
+      "level_id": 603,
+      "planned_technique": "composite",
+      "resolved_technique": null,
+      "demo_steps": [],
+      "demo_step_count": 0,
+      "deduction_source": null,
+      "evidence_cells": 0,
+      "fallback_count": 1,
+      "fallback_reason": "no_target_technique",
+      "explanation_completeness": "incomplete"
+    },
+    {
+      "level_id": 604,
+      "planned_technique": "composite",
+      "resolved_technique": null,
+      "demo_steps": [],
+      "demo_step_count": 0,
+      "deduction_source": null,
+      "evidence_cells": 0,
+      "fallback_count": 1,
+      "fallback_reason": "no_target_technique",
+      "explanation_completeness": "incomplete"
+    },
+    {
+      "level_id": 605,
+      "planned_technique": "composite",
+      "resolved_technique": null,
+      "demo_steps": [],
+      "demo_step_count": 0,
+      "deduction_source": null,
+      "evidence_cells": 0,
+      "fallback_count": 1,
+      "fallback_reason": "no_target_technique",
+      "explanation_completeness": "incomplete"
+    },
+    {
+      "level_id": 606,
+      "planned_technique": "composite",
+      "resolved_technique": null,
+      "demo_steps": [],
+      "demo_step_count": 0,
+      "deduction_source": null,
+      "evidence_cells": 0,
+      "fallback_count": 1,
+      "fallback_reason": "no_target_technique",
+      "explanation_completeness": "incomplete"
+    },
+    {
+      "level_id": 704,
+      "planned_technique": "xWing",
+      "resolved_technique": null,
+      "demo_steps": [],
+      "demo_step_count": 0,
+      "deduction_source": null,
+      "evidence_cells": 0,
+      "fallback_count": 1,
+      "fallback_reason": "technique_unavailable",
+      "explanation_completeness": "incomplete"
+    },
+    {
+      "level_id": 706,
+      "planned_technique": "composite",
+      "resolved_technique": null,
+      "demo_steps": [],
+      "demo_step_count": 0,
+      "deduction_source": null,
+      "evidence_cells": 0,
+      "fallback_count": 1,
+      "fallback_reason": "no_target_technique",
+      "explanation_completeness": "incomplete"
+    }
+  ],
+  "summary": {
+    "auto_enabled": 35,
+    "manual_review": 13
+  }
+}

@@ -757,6 +757,17 @@
     }
 
     /**
+     * Q30：查询某个指定技巧在当前盘面的全部候选（只读，不修改 solver 事实/优先级）。
+     * 供 TeachingDemoResolver 判断"目标教学技巧是否可用/可演示"，而非依赖 findNextStep 的最低技巧。
+     * @param {string} techId - 技巧 id（nakedSingle/cageUnique/.../swordfish）
+     * @returns {Array<{row,col,num,evidence,type?}>}
+     */
+    findTechniqueCandidates(techId) {
+      if (!TECHNIQUES[techId]) return [];
+      return this._findAllByTechnique(techId);
+    }
+
+    /**
      * 收集某个技巧的所有结果
      * 返回结果数组（每个元素是 { row, col, num, evidence }）
      */

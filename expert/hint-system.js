@@ -792,6 +792,45 @@ export class HintSystem {
   }
 
   /**
+   * 为指定教学目标技巧生成 deduction（绕过 preferredTechnique 的"数学必要"判定）。
+   * 供 TeachingDemoResolver 使用：只问"该技巧当前盘面可不可用、证据完不完整"，
+   * 不要求"没有它这题就解不出"。solver 事实仍来自 TechRater，绝不伪造。
+   * @param {string} technique - 技巧 id
+   * @param {Array<number>} [targetCell] - 期望演示的目标格 [r,c]；命中则优先选该格
+   * @returns {Object|null} _convertTechRaterResult 的 deduction，或不可用时 null
+   */
+  getDeductionFor(technique, targetCell) {
+    try {
+      if (this.board && typeof this.board.updateCandidates === 'function') {
+        this.board.updateCandidates();
+      }
+      const TR = (typeof globalThis !== 'undefined' && globalThis.TechRater) || null;
+      if (!TR) return null;
+      const tr = new TR(this.board);
+      const candidates = tr.findTechniqueCandidates ? tr.findTechniqueCandidates(technique) : [];
+      if (!Array.isArray(candidates) || candidates.length === 0) return null;
+
+      let picked = candidates[0];
+      if (Array.isArray(targetCell) && targetCell.length === 2) {
+        const hit = candidates.find((c) => c && c.row === targetCell[0] && c.col === targetCell[1]);
+        if (hit) picked = hit;
+      }
+
+      const info = (TR.TECHNIQUES && TR.TECHNIQUES[technique]) || {};
+      const step = Object.assign({}, picked, {
+        technique: technique,
+        techniqueName: info.name || technique,
+        depth: info.depth || 0,
+        type: picked.type || 'fill',
+      });
+      return this._convertTechRaterResult(step);
+    } catch (e) {
+      console.warn('[HintSystem] getDeductionFor 异常:', e);
+      return null;
+    }
+  }
+
+  /**
    * 从证据构建区域信息
    */
   _buildRegionFromEvidence(evidence, technique, row, col) {

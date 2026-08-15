@@ -36,8 +36,14 @@ function mapHintAction(action) {
     case 'highlightCage':
       return { ...base, action: 'highlightCage', target: action.cageId };
     case 'highlightCell': {
-      // 阶段 4：demo 高亮改为累积展示（不再对 pulse 单独映射 focusCell，
-      // 避免每个来源格都清空上一格），统一等 guided 填对后再清除。
+      // 证据一等公民：eliminate 红叉、success 结论、其余累积高亮。
+      if (action.mode === 'eliminate') {
+        return { ...base, action: 'strikeNote', target: [action.r, action.c], num: (action.num !== undefined ? action.num : action.value) };
+      }
+      if (action.mode === 'success') {
+        return { ...base, action: 'concludeCell', target: [action.r, action.c], num: (action.num !== undefined ? action.num : action.value) };
+      }
+      // pulse/普通：累积展示（不再清空上一格），统一等 guided 填对后清除。
       return { ...base, action: 'highlightCell', target: [action.r, action.c] };
     }
     case 'pulseCageSum':
@@ -48,40 +54,117 @@ function mapHintAction(action) {
 }
 
 /**
+ * 精简 demo 步骤：去掉无教学价值的纯聚光灯步骤，合并相邻重复高亮。
+ * @param {Array} steps
+ * @returns {Array}
+ */
+export function minimizeDemoSteps(steps) {
+  if (!Array.isArray(steps)) return steps;
+  const out = [];
+  for (const s of steps) {
+    if (!s) continue;
+    if ((s.action === 'spotlightOn' || s.action === 'spotlightOff') && !s.text) continue;
+    if (out.length) {
+      const prev = out[out.length - 1];
+      if (prev.action === s.action && JSON.stringify(prev.target) === JSON.stringify(s.target)) continue;
+    }
+    out.push(s);
+  }
+  return out;
+}
+
+/**
+ * 教学 Demo 必要性解析器（TeachingDemoResolver 的轻量实现）。
+ * 核心：不靠 preferredTechnique 的"数学必要"判定，直接用 TechRater 问
+ * "目标教学技巧在当前盘面是否可用/可演示"，可用则产出该技巧的 demo 动作，
+ * 不可用则明确回退（不再被 nakedSingle 无心抢走）。
+ * @param {Object} ctx - { engine, levelData }
+ * @returns {Object} 结构化解析结果（供 buildLessonDemoSteps 与 48 关评估共用）
+ */
+export function resolveTeachingDemo({ engine, levelData } = {}) {
+  const base = {
+    plannedTechnique: null,
+    targetCell: null,
+    resolvedTechnique: null,
+    fallback: true,
+    fallbackReason: 'no_setup',
+    evidenceComplete: false,
+    deduction: null,
+    actions: null,
+  };
+  try {
+    const board = engine && typeof engine.getBoard === 'function' ? engine.getBoard() : null;
+    const solution = levelData && levelData.solution;
+    if (!board || !solution) return Object.assign({}, base, { fallbackReason: 'no_board_or_solution' });
+
+    const lp = levelData.lessonPlan || levelData.lesson || null;
+    const technique = lp && lp.technique ? lp.technique : null;
+    const guided = lp && lp.phases && lp.phases.guided ? lp.phases.guided : null;
+    const targetCell = guided && Array.isArray(guided.targetCell) && guided.targetCell.length === 2 ? guided.targetCell : null;
+    const planned = technique && technique !== 'composite' ? technique : null;
+
+    if (!planned) {
+      return Object.assign({}, base, {
+        plannedTechnique: technique,
+        targetCell,
+        fallbackReason: 'no_target_technique',
+      });
+    }
+
+    const hintSystem = new HintSystem(board, solution, {});
+    const adapter = new HintAdapter();
+    base.plannedTechnique = planned;
+    base.targetCell = targetCell;
+
+    const deduction = hintSystem.getDeductionFor(planned, targetCell);
+    if (!deduction || !Array.isArray(deduction.targetCells) || deduction.targetCells.length === 0) {
+      return Object.assign({}, base, { fallbackReason: 'technique_unavailable' });
+    }
+
+    const first = deduction.targetCells[0];
+    const hint = {
+      technique: deduction.technique,
+      techniqueName: deduction.techniqueName,
+      targetCells: deduction.targetCells,
+      target: { row: first.row, col: first.col, value: first.value },
+      evidence: deduction.evidence,
+      explanation: deduction.explanation,
+      hintLevel: 3,
+      dialogue: '',
+      characterName: null,
+    };
+    const converted = adapter.convert(hint);
+    const actions = minimizeDemoSteps((converted && Array.isArray(converted.actions)) ? converted.actions.map(mapHintAction).filter(Boolean) : []);
+    return {
+      plannedTechnique: planned,
+      targetCell: targetCell,
+      resolvedTechnique: deduction.technique,
+      fallback: false,
+      fallbackReason: null,
+      evidenceComplete: !!deduction.evidence,
+      deduction: deduction,
+      actions: actions.length ? actions : null,
+    };
+  } catch (err) {
+    console.warn('[TeachingDemoResolver] 解析失败:', err);
+    return Object.assign({}, base, { fallbackReason: 'error' });
+  }
+}
+
+/**
  * 生成当前关卡的 demo 步骤（复用提示系统的三级推理 + 证据链）。
  * @param {Object} ctx
  * @param {Object} ctx.engine - HeadlessEngine 实例
  * @param {Object} ctx.levelData - 关卡数据（含 lessonPlan/solution）
- * @returns {Array|null} - lesson-player demo steps；失败返回 null 以回退旧 demo.steps
+ * @returns {Array|null} - lesson-player demo steps；失败回退旧 demo.steps
  */
 export function buildLessonDemoSteps({ engine, levelData } = {}) {
   try {
     const board = engine && typeof engine.getBoard === 'function' ? engine.getBoard() : null;
     const solution = levelData && levelData.solution;
     if (!board || !solution) return null;
-
-    const lp = levelData.lessonPlan || levelData.lesson || null;
-    const technique = lp && lp.technique ? lp.technique : null;
-    const preferred = technique && technique !== 'composite' ? technique : null;
-
-    const hintSystem = new HintSystem(board, solution, { preferredTechnique: preferred });
-    const adapter = new HintAdapter();
-
-    let hint = null;
-    // 连续取三次把同一目标推进到 Level 3（完整答案 + 证据链），每次都重置冷却。
-    for (let i = 0; i < 3; i++) {
-      hintSystem.lastHintTime = 0;
-      const h = hintSystem.getHint();
-      if (h && h.hintType === 'deduction') hint = h;
-      if (h && h.hintLevel === 3) break;
-    }
-
-    if (!hint) return null;
-    const converted = adapter.convert(hint);
-    if (!converted || !Array.isArray(converted.actions) || converted.actions.length === 0) return null;
-
-    const steps = converted.actions.map(mapHintAction).filter(Boolean);
-    return steps.length > 0 ? steps : null;
+    const resolved = resolveTeachingDemo({ engine, levelData });
+    return (resolved && Array.isArray(resolved.actions) && resolved.actions.length) ? resolved.actions : null;
   } catch (err) {
     console.warn('[LessonDemoBuilder] 生成失败，回退手写 demo.steps:', err);
     return null;

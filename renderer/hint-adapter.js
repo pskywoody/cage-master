@@ -387,6 +387,7 @@ class HintAdapter {
       }
       case 'hiddenPair': {
         const vals = (evidence.pairValues || []).join('和');
+        const cellDesc = (evidence.pairCells || []).map(c => this._cellName(c[0], c[1])).join('、');
         defaultTexts.region = '隐数对：数字 ' + vals + ' 只出现在这两个位置';
         defaultTexts.lockTexts = (evidence.pairCells || []).map(c => this._cellName(c[0], c[1]) + ' 藏着数字 ' + vals);
         defaultTexts.eliminate = '这两个位置只放 ' + vals + '，排除其他数字。';

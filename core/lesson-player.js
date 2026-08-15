@@ -59,6 +59,8 @@ export class LessonPlayer {
     this._activeGuidedCell = null;
     this._guidedNextIndex = 0;
     this._guidedExplaining = false;
+    // 阶段 2：guided 渐进揭示等级 0=未开始 1=方向 2=技巧 3=答案/输入
+    this._guidedRevealLevel = 0;
     this._semiAutoFilled = 0;
     // V4.3.28：semiAuto 已计数的格子集合（去重，避免 UI 先落子导致 alreadyFilled 误判）
     this._semiAutoFilledCells = new Set();
@@ -245,13 +247,24 @@ export class LessonPlayer {
       return true;
     }
 
-    // guided 讲解中点击：跳过方法讲解，直接进入填数引导
+    // guided 渐进揭示：L1 方向 → L2 技巧 → L3 答案/输入
     if (this._currentPhase === 'guided' && this._guidedExplaining) {
       if (this._stepTimer) {
         clearTimeout(this._stepTimer);
         this._stepTimer = null;
       }
+      if (this._guidedRevealLevel === 1) {
+        const guided = this._lessonPlan && this._lessonPlan.phases ? this._lessonPlan.phases.guided : null;
+        if (guided && guided.methodText) {
+          this._guidedRevealLevel = 2;
+          this._showBubble(guided.methodText, '伊藤', guided.voiceId || null);
+          this._recordLessonEvent('guided_l2_technique', { text: guided.methodText });
+          return true;
+        }
+        // 没有 methodText 时跳过 L2，直接进入 L3
+      }
       this._guidedExplaining = false;
+      this._guidedRevealLevel = 3;
       this._beginGuidedInput();
       return true;
     }
@@ -839,12 +852,20 @@ export class LessonPlayer {
     this._emit('onAction', { type: 'spotlight', enabled: true, intensity: 0.4 });
     this._setFreezeEnabled(true);
 
-    // 五步教学第一步：先讲判断方法，再放玩家填
-    if (guided.methodText) {
+    // 阶段 2：guided 三级渐进揭示。L1 方向(hintText) → L2 技巧(methodText) → L3 答案/输入。
+    this._guidedRevealLevel = 0;
+    if (guided.hintText) {
       this._guidedExplaining = true;
+      this._guidedRevealLevel = 1;
+      this._isWaitingInput = false;
+      this._showBubble(guided.hintText, '伊藤', guided.voiceId || null);
+      this._recordLessonEvent('guided_l1_direction', { text: guided.hintText });
+    } else if (guided.methodText) {
+      this._guidedExplaining = true;
+      this._guidedRevealLevel = 2;
       this._isWaitingInput = false;
       this._showBubble(guided.methodText, '伊藤', guided.voiceId || null);
-      // 2026-08-03：方法讲解等待玩家点击任意位置继续（advance() 处理跳转）
+      this._recordLessonEvent('guided_l2_technique', { text: guided.methodText });
     } else {
       this._beginGuidedInput();
     }
@@ -889,17 +910,20 @@ export class LessonPlayer {
     this._emit('onAction', { type: 'spotlight', enabled: true, intensity: 0.4 });
     this._setFreezeEnabled(true);
 
+    const hintText = (this._guidedRevealLevel >= 3 && (guided.interactionType || 'NUMBER') === 'NUMBER')
+      ? (guided.autoRevealText || '现在把推理落笔：在这里填入 ' + value + '。')
+      : (guided.hintText || (guided.interactionType === 'NOTE_ONLY'
+        ? '在目标格中记下候选数吧。'
+        : '试试在这里填入正确的数字。'));
+
     this._emit('onNeedInput', 'guided', {
       cell: target,
       value: value,
       interactionType: guided.interactionType || 'NUMBER',
       expectedNote: guided.expectedNote,
-      hintText: guided.hintText,
+      hintText: hintText,
     });
 
-    const hintText = guided.hintText || (guided.interactionType === 'NOTE_ONLY'
-      ? '在目标格中记下候选数吧。'
-      : '试试在这里填入正确的数字。');
     this._showBubble(hintText, '伊藤', guided.voiceId || null);
     // 2026-08-04：遥测——引导提示（目标格 + 期望值）
     this._recordLessonEvent('guided', { cell: target.slice(), value: value, hintText: hintText });

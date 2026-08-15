@@ -3191,6 +3191,7 @@ import { PauseManager } from './ui/pause-manager.js?v=87';
 import { BattleManager, BOSS_CONFIGS, BATTLE_EVENTS } from './core/battle-manager.js?v=87';
 import { TplBattleController, TPL_BATTLE_EVENTS } from './core/tpl-battle-controller.js?v=87';
 import { HintSystem } from './expert/hint-system.js?v=87';
+import { TeachingSystem } from './expert/teaching-system.js?v=87';
 import { HintAdapter } from './renderer/hint-adapter.js?v=87';
 import { BattlefieldViz } from './renderer/battlefield-viz.js?v=88';
 import { WhatIfManager } from './core/what-if-manager.js?v=87';
@@ -6358,7 +6359,10 @@ function handleEvent(type, payload) {
           // 2026-08-09：注入叙事弧（Cage Interpretation Framework）——
           // 优先读关卡显式声明的 arc，缺失则回退 null（无 arc 时词库行为与现状完全一致）
           const lvlArc = resolveArc(payload.levelData);
-          CM.hintSystem = new HintSystem(board, solution, { preferredTechnique: poolTech, arc: lvlArc });
+          // 阶段 3：共享教学进度 —— 教学关、提示系统共用同一套首见/熟练记录
+          if (!CM.teachingSystem) CM.teachingSystem = new TeachingSystem();
+          window.teachingSystem = CM.teachingSystem; // 调试/测试句柄
+          CM.hintSystem = new HintSystem(board, solution, { preferredTechnique: poolTech, arc: lvlArc, teachingSystem: CM.teachingSystem });
           window.hintSystem = CM.hintSystem; // 调试/测试句柄
         }
         // 初始化微型教学适配器 + 填错重播回调
@@ -6515,6 +6519,14 @@ function handleEvent(type, payload) {
       updateLessonUI();
       setAct(3);
       toast(I18n.t('ui.toast.lessonError'));
+      break;
+    }
+    case 'techniqueTaught': {
+      // 阶段 3：教学关完成 guided 后，把「已学技巧」写入共享 TeachingSystem，
+      // 供 HintSystem 后续调整起始提示等级（避免已学过又从 L1 重讲）。
+      if (CM.teachingSystem && payload && payload.technique) {
+        try { CM.teachingSystem.recordEncounter(payload.technique, true); } catch (e) {}
+      }
       break;
     }
     case 'avalanche':
@@ -8252,6 +8264,12 @@ function techniqueLevel(technique) {
 }
 function handleHint() {
   if (!CM.gameApp || !CM.gameApp.isLevelLoaded()) { toast(I18n.t('ui.toast.enterLevelFirst')); return; }
+
+  // 阶段 3：semiAuto 教学阶段点提示 → 走 LessonPlayer 的渐进提示（L1→L3）
+  const lp = CM.gameApp && typeof CM.gameApp.getLessonPlayer === 'function' ? CM.gameApp.getLessonPlayer() : null;
+  if (lp && lp.isActive && lp.currentPhase === 'semiAuto' && typeof lp.semiAutoHint === 'function') {
+    if (lp.semiAutoHint()) return;
+  }
 
   // 无 HintSystem（数据缺失/构造失败）：回退简单提示
   if (!CM.hintSystem) {

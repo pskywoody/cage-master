@@ -88,3 +88,45 @@ export function buildLessonDemoSteps({ engine, levelData } = {}) {
     return null;
   }
 }
+
+/**
+ * 生成 semiAuto 阶段的渐进提示（Level 1 / 2 / 3 文案）。
+ * 与 demo 复用同一条 HintSystem 推理链路，供 LessonPlayer.semiAutoHint() 调用。
+ * @param {Object} ctx - { engine, levelData, level }
+ * @returns {Object|null} - { level, technique, targetCell, text }
+ */
+export function buildSemiAutoHint({ engine, levelData, level = 1 } = {}) {
+  try {
+    const board = engine && typeof engine.getBoard === 'function' ? engine.getBoard() : null;
+    const solution = levelData && levelData.solution;
+    if (!board || !solution) return null;
+
+    const lp = levelData.lessonPlan || levelData.lesson || null;
+    const technique = lp && lp.technique ? lp.technique : null;
+    const preferred = technique && technique !== 'composite' ? technique : null;
+    const want = Math.max(1, Math.min(3, level || 1));
+
+    const hintSystem = new HintSystem(board, solution, { preferredTechnique: preferred });
+    let hint = null;
+    for (let i = 0; i < want; i++) {
+      hintSystem.lastHintTime = 0;
+      const h = hintSystem.getHint();
+      if (h && h.hintType === 'deduction') hint = h;
+    }
+
+    if (!hint) return null;
+    let targetCell = null;
+    if (hint.target && typeof hint.target.row === 'number' && typeof hint.target.col === 'number') {
+      targetCell = [hint.target.row, hint.target.col];
+    }
+    return {
+      level: want,
+      technique: hint.technique || null,
+      targetCell: targetCell,
+      text: hint.dialogue || hint.explanation || null,
+    };
+  } catch (err) {
+    console.warn('[SemiAutoHint] 生成失败:', err);
+    return null;
+  }
+}

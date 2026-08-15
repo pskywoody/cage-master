@@ -26,7 +26,7 @@
 
 import { HeadlessEngine } from '../core/headless-engine.js?v=51';
 import { LessonPlayer } from '../core/lesson-player.js?v=51';
-import { buildLessonDemoSteps } from '../core/lesson-demo-builder.js?v=51';
+import { buildLessonDemoSteps, buildSemiAutoHint } from '../core/lesson-demo-builder.js?v=51';
 import { LevelManager } from '../core/level-manager.js?v=51';
 import { BoardRenderer } from '../renderer/board-renderer.js?v=51';
 import { EffectRenderer } from '../renderer/effect-renderer.js?v=51';
@@ -426,6 +426,7 @@ class GameApp {
         onInputResult: (result, info) => this.emitEvent('lessonInputResult', { result: result, info: info }),
         onError: (phase, error) => this.emitEvent('lessonError', { phase: phase, error: error }),
         onAvalanche: (payload) => this.emitEvent('avalanche', payload),
+        onTechniqueTaught: (technique) => this.emitEvent('techniqueTaught', { technique: technique }),
       };
 
       try {
@@ -435,6 +436,7 @@ class GameApp {
           callbacks: callbacks,
           delay: this._lessonDelay,
           demoStepsBuilder: buildLessonDemoSteps,
+          semiAutoHintBuilder: buildSemiAutoHint,
         });
       } catch (e) {
         console.warn('[GameApp] LessonPlayer 构造失败，进入自由模式:', e);

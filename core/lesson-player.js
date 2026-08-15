@@ -48,6 +48,9 @@ export class LessonPlayer {
     // 阶段 1：demo 复用提示动作 —— 注入外部 builder，失败时回退手写 demo.steps
     this._demoStepsBuilder = options.demoStepsBuilder || null;
     this._demoStepsCache = null;
+    // 阶段 3：semiAuto 渐进提示 —— 外部 builder + 当前揭示等级（1-3）
+    this._semiAutoHintBuilder = options.semiAutoHintBuilder || null;
+    this._semiAutoHintLevel = 0;
 
     // 教学状态
     this._currentPhase = 'idle';   // idle | intro | demo | guided | noteToFill | semiAuto | free | done
@@ -61,6 +64,8 @@ export class LessonPlayer {
     this._guidedExplaining = false;
     // 阶段 2：guided 渐进揭示等级 0=未开始 1=方向 2=技巧 3=答案/输入
     this._guidedRevealLevel = 0;
+    // 阶段 3：教学关首见技巧记录（防重复 emit onTechniqueTaught）
+    this._techniqueRecorded = false;
     this._semiAutoFilled = 0;
     // V4.3.28：semiAuto 已计数的格子集合（去重，避免 UI 先落子导致 alreadyFilled 误判）
     this._semiAutoFilledCells = new Set();
@@ -273,6 +278,25 @@ export class LessonPlayer {
   }
 
   /**
+   * semiAuto 阶段的渐进提示入口（阶段 3）。
+   * 每次调用把揭示等级 1→2→3，交给注入的 semiAutoHintBuilder 生成文案。
+   * @returns {Object|null} builder 返回结果，或 null
+   */
+  semiAutoHint() {
+    if (this._currentPhase !== 'semiAuto' || typeof this._semiAutoHintBuilder !== 'function') return null;
+    this._semiAutoHintLevel = Math.min(this._semiAutoHintLevel + 1, 3);
+    const built = this._semiAutoHintBuilder({
+      engine: this._engine,
+      levelData: this._levelData,
+      level: this._semiAutoHintLevel,
+    });
+    if (!built || !built.text) return null;
+    this._showBubble(built.text, '伊藤', null);
+    this._recordLessonEvent('semiAuto_hint', { level: this._semiAutoHintLevel, technique: built.technique || null });
+    return built;
+  }
+
+  /**
    * 销毁清理
    */
   destroy() {
@@ -471,6 +495,7 @@ export class LessonPlayer {
         this._showBubble(guided.successText || '答对了！', '伊藤', guided.successVoiceId || null);
         this._emit('onInputResult', 'success', { phase: 'guided', attempts: this._guidedAttempts });
         this._clearAllHighlights();
+        this._recordTechniqueTaught();
         this._delayThen(() => this._enterSemiAutoOrFree(), 1600); // 手感审计：1800→1600ms，成功提示停留略紧凑
         return { handled: true, correct: true };
       } else {
@@ -1146,6 +1171,7 @@ export class LessonPlayer {
 
     this._semiAutoFilled = 0;
     this._semiAutoFilledCells = new Set();
+    this._semiAutoHintLevel = 0;
     this._isWaitingInput = false;
 
     this._emit('onAction', { type: 'spotlight', enabled: false });
@@ -1208,6 +1234,17 @@ export class LessonPlayer {
         this._emit('onComplete');
       }
     }, 2000);
+  }
+
+  _recordTechniqueTaught() {
+    if (this._techniqueRecorded) return;
+    this._techniqueRecorded = true;
+    const lp = this._lessonPlan;
+    const technique = lp && lp.technique ? lp.technique : null;
+    if (technique && technique !== 'composite') {
+      this._emit('onTechniqueTaught', technique);
+      this._recordLessonEvent('technique_taught', { technique });
+    }
   }
 
   _enterSemiAutoOrFree() {

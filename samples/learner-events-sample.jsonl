@@ -1,0 +1,9 @@
+{"eventId":"s1","timestamp":1700000000000,"source":"TeachingSystem","sessionId":"sess1","technique":"hiddenPair","action":"skill_encounter","outcome":"neutral","metadata":{}}
+{"eventId":"s2","timestamp":1700000001000,"source":"HintSystem","sessionId":"sess1","technique":"hiddenPair","action":"hint_requested","outcome":"neutral","metadata":{"hintLevel":1}}
+{"eventId":"s3","timestamp":1700000002000,"source":"LessonPlayer","sessionId":"sess1","technique":"hiddenPair","action":"guided_success","outcome":"success","metadata":{"hintLevel":2}}
+{"eventId":"s4","timestamp":1700000003000,"source":"TeachingSystem","sessionId":"sess1","technique":"hiddenPair","action":"skill_used_correctly","outcome":"success","metadata":{}}
+{"eventId":"s5","timestamp":1700000004000,"source":"TeachingSystem","sessionId":"sess1","technique":"hiddenPair","action":"skill_mastery","outcome":"success","metadata":{}}
+{"eventId":"s6","timestamp":1700000000000,"source":"TeachingSystem","sessionId":"sess2","technique":"nakedSingle","action":"skill_encounter","outcome":"neutral","metadata":{}}
+{"eventId":"s7","timestamp":1700000001000,"source":"HintSystem","sessionId":"sess2","technique":"nakedSingle","action":"hint_requested","outcome":"neutral","metadata":{}}
+{"eventId":"s8","timestamp":1700000002000,"source":"LessonPlayer","sessionId":"sess2","technique":"nakedSingle","action":"fail","outcome":"error","metadata":{}}
+{"eventId":"s9","timestamp":1700000003000,"source":"LessonPlayer","sessionId":"sess2","technique":"nakedSingle","action":"fail","outcome":"error","metadata":{}}

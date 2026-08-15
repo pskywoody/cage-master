@@ -35,6 +35,8 @@ function main() {
   const pool = JSON.parse(fs.readFileSync(SRC_POOL, 'utf-8'));
   const acceptMarkdown = fs.readFileSync(SRC_ACCEPT, 'utf-8');
   const s = pool.stats;
+  const failedGates = Object.entries(pool.gates || {}).filter(([, v]) => !v).map(([k]) => k);
+  const acceptance = failedGates.length === 0 ? 'PASS' : 'FAIL';
 
   // ---- 转成 LevelPoolManager 兼容的 pool 条目 ----
   const prodPool = {
@@ -45,7 +47,8 @@ function main() {
       poolSize: pool.levels.length,
       seed: pool.config.seed,
       generatedAt: pool.generatedAt,
-      acceptance: 'PASS',
+      acceptance,
+      failedGates,
       stats: {
         top4Share: s.top4Share, entropyH: s.entropyH, complexShare: s.complexShare,
         ratioMean: s.ratioMean, avgScore: s.avgScore, singletonRatio: s.singletonRatio,
@@ -81,7 +84,9 @@ function main() {
       ratioWeight: pool.defaultsApplied.objective.ratioWeight,
       maxCollected: pool.defaultsApplied.objective.maxCollected,
     },
-    acceptance: 'PASS',
+    acceptance,
+    failedGates,
+    gates: pool.gates,
     created: '2026-08-10',
     sourcePool: 'data/release-pool-b3final.json',
     seed: pool.config.seed,

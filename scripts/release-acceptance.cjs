@@ -38,6 +38,8 @@ function main() {
   const outPath = opts.output || path.join(__dirname, '..', 'docs', 'B3-FINAL-acceptance-report.md');
   const pool = JSON.parse(fs.readFileSync(poolPath, 'utf-8'));
   const s = pool.stats;
+  const failedGates = Object.entries(pool.gates || {}).filter(([, v]) => !v).map(([k]) => k);
+  const gatesPass = failedGates.length === 0;
 
   // ---- Quality 派生 ----
   const invalidCount = pool.levels.filter((l) => !l.unique).length;
@@ -118,11 +120,19 @@ function main() {
 | singleton | < 5% | ${pct(s.singletonRatio)} | ${s.singletonRatio < 0.05 ? '✅' : '⚠️'} |
 | 唯一解 | 全 true | ${s.uniqueAll} | ${s.uniqueAll ? '✅' : '⚠️'} |
 
+### 4.1 内置 gates（唯一验收源）
+
+| Gate | 判定 |
+|---|---|
+${Object.entries(pool.gates || {}).map(([k, v]) => `| ${k} | ${v ? '✅ PASS' : '❌ FAIL'} |`).join('\n')}
+
+> 未通过：${failedGates.length ? failedGates.join('、') : '无'}。此表是 release 与 manifest 的唯一 PASS/FAIL 依据。
+
 ## 5. 结论
 
-${s.top4Share >= reg.top4 - 0.01 && s.top4Share <= reg.top4 + 0.01 && s.entropyH >= reg.H - 0.02 && s.complexShare >= reg.complex - 0.02 && s.ratioMean >= reg.ratio - 0.03 && s.avgScore >= reg.score - 30 && s.avgScore <= reg.score + 30 && s.singletonRatio < 0.05 && s.uniqueAll
-  ? '✅ **RELEASE CANDIDATE 通过**：B3-FINAL 默认配置的 100 级产出与 100 级回归基线一致，top4 / entropy / complex / ratio / 难度 / singleton / 唯一解全部稳定。可作为后续任何 generator 改动的对照 benchmark。'
-  : '⚠️ **存在 drift**：需回到 B3-FINAL 冻结配置复核数据。'
+${gatesPass
+  ? '✅ **RELEASE CANDIDATE 通过**：内置 gates 全部通过（唯一验收源）。'
+  : `❌ **RELEASE CANDIDATE 未通过**：内置 gates 有 ${failedGates.length} 项失败（${failedGates.join('、')}）。需回到 B3-FINAL 冻结配置复核，或明确放宽阈值。`
 }
 
 > 本报告是以后每次改 generator 都能比较的 **acceptance benchmark**。

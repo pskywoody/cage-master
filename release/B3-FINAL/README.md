@@ -23,7 +23,7 @@ certutil -hashfile release/B3-FINAL/release-pool.json SHA256
 
 ## Pool SHA256
 
-`fa094aef3c042a74ce7b7ea3e56e91ed1be0380b0c394c2480fb9227c6bdb413`
+`730bb4923637409b862cb7d81fc8fc6d7966925c6a80b2c07e4684afb0cf63bc`
 
 ## 配置锁（不可改）
 

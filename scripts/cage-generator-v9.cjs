@@ -2411,17 +2411,15 @@
           if (!aestheticOk) return null;
         }
 
+        const guidedInfo = this._computeChainGuidedInfo(grid, cages, chain);
+        if (isAdvanced && guidedInfo.techUsedInFull === 0) {
+          console.warn('[CageFixer] 链技巧在最终求解路径中未被实际使用（%s），advanced 关卡承诺未达成，已如实记录。', chain.join(','));
+        }
         puzzleResult = {
           grid,
           rating,
           rhythm,
-          guidedInfo: {
-            technique: chain.join(','),
-            baseUnsolved: false,
-            fullSolved: true,
-            techUsedInFull: 1,
-            totalTechCount: { chain: 1 }
-          }
+          guidedInfo
         };
       } else {
         puzzleResult = this._digAndTune(solution, cages, startTime, threeAct);
@@ -2472,6 +2470,43 @@
           attempts: attempt,
           rhythmPassed: puzzleResult.rhythm ? puzzleResult.rhythm.passed : null
         }
+      };
+    }
+
+    // 从真实求解器回算链模式关卡的「技巧必要性」证据，替代此前的硬编码 guidedInfo。
+    // baseUnsolved / fullSolved / techUsedInFull / totalTechCount 均为实测结果。
+    _computeChainGuidedInfo(grid, cages, chain) {
+      const fullTechList = ['nakedSingle', 'cageUnique', 'hiddenSingle', 'rule45',
+        'nakedPair', 'hiddenPair', 'pointingClaiming', 'nakedTriplet',
+        'xWing', 'swordfish'];
+      const baseTechList = ['nakedSingle', 'cageUnique', 'hiddenSingle', 'rule45'];
+      const solveWith = (whitelist) => {
+        try {
+          const board = new this._Board(this.gridSize);
+          board.loadLevel({ cells: grid, cages: cages });
+          const solver = new this._TechRater(board);
+          solver.techPriority = whitelist;
+          const result = solver.solve(2000);
+          const rating = solver.getRating();
+          return {
+            solvable: !!result.solvable,
+            techCount: rating.techCount || {},
+          };
+        } catch (e) {
+          return null;
+        }
+      };
+      const base = solveWith(baseTechList);
+      const full = solveWith(fullTechList);
+      const techUsedInFull = chain.reduce((acc, tech) => {
+        return acc + (((full && full.techCount[tech]) || 0) > 0 ? 1 : 0);
+      }, 0);
+      return {
+        technique: chain.join(','),
+        baseUnsolved: !!(base && !base.solvable),
+        fullSolved: !!(full && full.solvable),
+        techUsedInFull,
+        totalTechCount: (full && full.techCount) || {},
       };
     }
 

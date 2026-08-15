@@ -1601,7 +1601,18 @@
 
               const result = eliminateFromCells(boxCells, cands1, pairKey, [[r1, c1], [r2, c2]], pairVals);
               if (result.nakedSingleResult) {
-                return result.nakedSingleResult;
+                return Object.assign({}, result.nakedSingleResult, {
+                  technique: 'nakedPair',
+                  evidence: {
+                    technique: 'nakedPair',
+                    scopeType: 'box',
+                    scopeIndex: b,
+                    pairValues: pairVals,
+                    pairCells: [[r1, c1], [r2, c2]],
+                    eliminatedCells: result.eliminatedCells ? result.eliminatedCells.slice() : [],
+                    eliminated: (result.eliminatedCells || []).map(e => e.num),
+                  },
+                });
               }
             }
           }

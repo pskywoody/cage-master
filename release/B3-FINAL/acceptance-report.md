@@ -2,7 +2,7 @@
 
 > **状态：RELEASE CANDIDATE** · 生成：2026-08-10T15:13:20.944Z
 > Version Marker：`B3-FINAL`（`docs/B3-FINAL-manifest.md`）
-> Pool：`data/release-pool-b3final.json` · 100 关 · seed=20260810 · 耗时 23.8 min
+> Pool：`D:\killersudoku\cagemaster4\data\release-pool-b3final.json` · 100 关 · seed=20260810 · 耗时 23.8 min
 
 ## 0. 生效配置（默认构造验证）
 
@@ -59,9 +59,23 @@
 | singleton | < 5% | 4.1% | ✅ |
 | 唯一解 | 全 true | true | ✅ |
 
+### 4.1 内置 gates（唯一验收源）
+
+| Gate | 判定 |
+|---|---|
+| top4_50_53 | ❌ FAIL |
+| entropy_ge_26 | ✅ PASS |
+| complex_not_down | ✅ PASS |
+| ratio_not_below_baseline | ❌ FAIL |
+| difficulty_stable | ✅ PASS |
+| singleton_lt_05 | ✅ PASS |
+| unique | ✅ PASS |
+
+> 未通过：top4_50_53、ratio_not_below_baseline。此表是 release 与 manifest 的唯一 PASS/FAIL 依据。
+
 ## 5. 结论
 
-✅ **RELEASE CANDIDATE 通过**：B3-FINAL 默认配置的 100 级产出与 100 级回归基线一致，top4 / entropy / complex / ratio / 难度 / singleton / 唯一解全部稳定。可作为后续任何 generator 改动的对照 benchmark。
+❌ **RELEASE CANDIDATE 未通过**：内置 gates 有 2 项失败（top4_50_53、ratio_not_below_baseline）。需回到 B3-FINAL 冻结配置复核，或明确放宽阈值。
 
 > 本报告是以后每次改 generator 都能比较的 **acceptance benchmark**。
 > 任何 B4 实验结论必须与本报告对照。

@@ -11,7 +11,20 @@
     "ratioWeight": 100,
     "maxCollected": 8
   },
-  "acceptance": "PASS",
+  "acceptance": "FAIL",
+  "failedGates": [
+    "top4_50_53",
+    "ratio_not_below_baseline"
+  ],
+  "gates": {
+    "top4_50_53": false,
+    "entropy_ge_26": true,
+    "complex_not_down": true,
+    "ratio_not_below_baseline": false,
+    "difficulty_stable": true,
+    "singleton_lt_05": true,
+    "unique": true
+  },
   "created": "2026-08-10",
   "sourcePool": "data/release-pool-b3final.json",
   "seed": 20260810

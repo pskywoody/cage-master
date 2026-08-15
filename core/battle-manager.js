@@ -1713,6 +1713,7 @@ export class AIPlayerCore {
 
   // ---- 思考 ----
   think() {
+    this._initRater();
     if (!this._rater) return null;
 
     // V4.3.40：对手观察器——每步刷新分析并换算临时决策变量
@@ -2052,6 +2053,7 @@ export class AIPlayerCore {
 
   // ---- 必杀技 ----
   useGuanJu() {
+    this._initRater();
     if (!this._rater) return [];
     const targets = [];
     const naked = this._rater._findAllByTechnique('nakedSingle') || [];
@@ -2068,6 +2070,7 @@ export class AIPlayerCore {
   }
 
   useDingShi(r, c) {
+    this._initRater();
     if (!this._rater) return null;
     const techIds = this._getTechPriority();
     for (const techId of techIds) {
@@ -2097,6 +2100,7 @@ export class AIPlayerCore {
   }
 
   useQuanTao(count = 3) {
+    this._initRater();
     if (!this._rater) return [];
     const allResults = this._findAllVisibleResults();
     if (allResults.length === 0) return [];

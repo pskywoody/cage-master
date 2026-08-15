@@ -2610,7 +2610,8 @@
   <div class="sp-sub">KILLER SUDOKU</div>
   <div class="sp-desc" data-i18n="ui.start.desc">破解笼中之谜，挑战 45 法则、X-Wing 与 Swordfish 的高阶数独对决。</div>
   <div class="sp-btns">
-    <button id="spStart" class="sp-btn sp-primary" data-i18n="ui.start.start">开始游戏</button>
+    <button id="spContinue" class="sp-btn sp-primary" data-i18n="ui.start.continue">继续游戏</button>
+    <button id="spStart" class="sp-btn" data-i18n="ui.start.start">新游戏</button>
     <button id="spChapters" class="sp-btn" data-i18n="ui.start.chapters">章节选择</button>
     <button id="spPool" class="sp-btn" data-i18n="ui.start.pool" data-i18n-title="ui.start.poolTitle" title="进入 X-Wing 精选池高级挑战">高级挑战 · X-Wing 池</button>
     <button id="spSettings" class="sp-btn" data-i18n="ui.start.settings">设置</button>
@@ -3000,7 +3001,6 @@
       <button id="btnNext" class="modal-btn primary" data-i18n="ui.complete.next">下一关</button>
       <button id="btnOptimal" class="modal-btn" data-i18n="ui.complete.optimal" data-i18n-title="ui.complete.optimalTitle" title="回放本关最优解，并对比你的走法">最优路径</button>
       <button id="btnReplay" class="modal-btn" data-i18n="ui.complete.replay">重玩本关</button>
-      <button id="btnCloseModal" class="modal-btn" data-i18n="ui.complete.close">关闭</button>
     </div>
   </div>
 </div>
@@ -3132,7 +3132,7 @@ function recordEraseEvent(r, c) {
 }
 // v2.0：import 加版本号破浏览器缓存——手机 WebView 对 ES module 强缓存，
 // 曾导致用户一直运行旧版 story-engine（立绘翻转/位置错误）不更新；改动后递增版本号
-import StoryEngine from './story/story-engine.js?v=87';
+import StoryEngine from './story/story-engine.js?v=88';
 import StoryOrchestrator from './story/story-orchestrator.js?v=87';
 import { GalleryPanel } from './ui/gallery-panel.js?v=87';
 import { DebugCageOverlay } from './ui/debug-cage-overlay.js?v=87';
@@ -3546,10 +3546,9 @@ CM.overlayRunning = false
 //   档位语义（2026-08-03 手感审计校准，勿随意改值）：
 //     story   1000ms/字 = 剧情对话（story-engine 的 normal 档，对标生化危机存档节奏）
 //     bubble  200ms/字  = 战斗台词/系统提示（DialogSystem 默认，接近朗读语速 5字/秒）
-//     lesson  300ms/字  = 教学讲解气泡（3.3字/秒，讲解节奏；2026-08-14 用户反馈
-//                         400ms/字偏慢，加快至 300ms/字，仍可逐句点击暂停）
+//     lesson   90ms/字  = 教学讲解气泡（2026-08-15 用户反馈 300ms/字仍偏慢，加快至 90ms）
 //     hintFast 60ms/字  = hint 动画气泡瞬时档（动画步进 600ms/步，慢打会互相覆盖）
-CM.FEEL_TYPING = { story: 1000, bubble: 200, lesson: 300, hintFast: 60 };
+CM.FEEL_TYPING = { story: 1000, bubble: 200, lesson: 90, hintFast: 60 };
 CM.dialog = new DialogSystem({ type: 'bubble', typingSpeed: CM.FEEL_TYPING.bubble })
 
 // ---------------- LevelManager（DataStore 持久化） ----------------
@@ -4240,17 +4239,17 @@ function positionChibi() {
     chibi.style.width = h + 'px';
     chibi.style.height = h + 'px';
     // Q21：chibi 吸附棋盘顶部——棋盘让位一次（--chibi-h 固定值，教学期间恒定不跳），
-    // chibi 底部探入棋盘上缘 8px"趴"在棋盘顶部；账本区（--ffh-h）独立固定在上方
+    // chibi 底部下探 14px，手搭在棋盘上缘；账本区（--ffh-h）独立固定在上方
     document.documentElement.style.setProperty('--chibi-h', (h + 4) + 'px');
     try { layout(); } catch (eLay) {}
-    // 布局完成后棋盘已稳定，chibi 底部下探 8px 探入棋盘区域——
-    // 棋盘 z-index(8610) > chibi(8600) 压住其底部，形成"趴"在棋盘上缘的效果
+    // 布局完成后棋盘已稳定，chibi 底部下探 14px 探入棋盘区域——
+    // 棋盘 z-index(8610) < chibi(8620)：chibi 整体压在棋盘上缘，手搭在盘面
     const br2 = board.getBoundingClientRect();
     const vh = window.innerHeight;
     // clamp：chibi 顶部不超出屏幕顶 6px
     const maxBottom = Math.max(8, vh - h - 6);
     chibi.style.left = Math.max(10, Math.round(br2.left + 6)) + 'px';
-    chibi.style.bottom = Math.min(vh - br2.top - 8, maxBottom) + 'px';
+    chibi.style.bottom = Math.min(vh - br2.top - 4, maxBottom) + 'px';
     chibi.style.transform = 'none';
     try { positionLedgerHintCard(); } catch (ePos) {}
   } catch (e) { console.warn('[Chibi] position error:', e); }
@@ -4413,6 +4412,8 @@ StoryOrchestrator.init({
     document.getElementById('board-container').style.display = visible ? '' : 'none';
     document.getElementById('pad').style.display = visible ? '' : 'none';
     document.getElementById('statusLine').style.display = visible ? '' : 'none';
+    const tr = document.getElementById('toolRoll');
+    if (tr) tr.style.display = visible ? '' : 'none';
   },
   setInteractionLocked: (locked) => {
     CM.lessonActive = !locked;
@@ -5957,7 +5958,7 @@ CM.pauseManager = new PauseManager({
   },
   onRestart: () => { if (CM.gameApp) CM.gameApp.restartLevel(); },
   onOpenChapters: () => { try { goToChapterList(); } catch (e) { openDrawer(); } },
-  onExitToHome: () => { window.location.href = 'index.html'; },
+  onExitToHome: () => { window.location.href = 'game.html'; },
 })
 // v2.0：暂停按钮已并入汉堡菜单——pauseManager.init 传空 id（保留 ESC 键暂停），
 // 汉堡按钮由 toggleMenu 接管
@@ -6007,7 +6008,7 @@ $('btnPauseChapters').addEventListener('click', () => {
   goToChapterList();
 });
 $('btnPauseHome').addEventListener('click', () => {
-  window.location.href = 'index.html';
+  window.location.href = 'game.html';
 });
 // v2.0：暂停菜单新增功能按钮（图鉴/成就/设置/AI调试/跳过教学）
 // 打开面板时保持暂停，面板关闭后恢复游戏（与汉堡菜单行为一致）
@@ -6395,6 +6396,8 @@ function handleEvent(type, payload) {
       _bindBoardOnRender();
       showWhatIfOverlay(false);
       CM.currentLevelId = payload.levelId;
+      // V4.4.x：记录最后进度，供 Start 页「继续游戏」回到上次关卡
+      try { localStorage.setItem('cagemaster4_last_level', String(payload.levelId)); } catch (e) {}
       CM.lessonActive = !!payload.lessonStarted;
       CM.lastWasAvalanche = false;
       CM.avalanchePlaying = false;
@@ -7273,13 +7276,22 @@ function showBubble(payload) {
       if (typeof AudioService.resume === 'function') AudioService.resume();
     }
   } catch (aErr) {}
-  // v2.0：教学气泡不再锚定 chibi 右侧（原并列模式盖住棋盘右半部）——
-  // 改为屏幕底部居中显示，棋盘整体在气泡上方，互不遮挡。
-  // 且不传 speaker → 隐藏气泡内"说话人"名字行（chibi 形象已表明说话人，多此一举）
+  // v2.0：教学气泡锚定到 chibi 右侧（chibi 可见时），与 Q 版人物并列展示；
+  // chibi 不可见时回退屏幕底部居中。不传 speaker → 隐藏说话人名字行（chibi 已表明说话人）
   const text = deviceAdaptLessonText(payload.text);
+  // 阶段 4：教学气泡锚定到 chibi 右侧（chibi 可见时），与 Q 版人物并列展示
+  let anchorEl = null, anchorSide = null;
+  try {
+    if (StoryEngine && typeof StoryEngine.isChibiVisible === 'function' && StoryEngine.isChibiVisible()) {
+      const chibiEl = document.getElementById('story-chibi');
+      if (chibiEl && chibiEl.style.display !== 'none') { anchorEl = chibiEl; anchorSide = 'right'; }
+    }
+  } catch (eAnchor) {}
   CM.dialog.show(text, '', {
     avatar: avatarFor(payload.speaker),
     typingSpeed: typingSpeed,
+    anchorEl: anchorEl,
+    anchorSide: anchorSide,
     // V4.3.30：教学气泡打字提速（60ms/字），长 hintText 快速打完停在气泡里等玩家点击
     // 手感审计：120→400ms/字（2.5字/秒），教学气泡也追平生化危机节奏（长提示仍会停住等点击）
     // v2.0：气泡点击后不隐藏 chibi——教学期间 chibi 固定显示（气泡消失/教学结束才消失）
@@ -7966,7 +7978,6 @@ $('btnReplay').addEventListener('click', () => {
   CM.pendingComplete = null;
   CM.gameApp.restartLevel();
 });
-$('btnCloseModal').addEventListener('click', closeModal);
 
 // ---------------- 数字键盘 ----------------
 // V4.3.32：数字笔模式——长按数字键锁定，之后点击棋盘空格自动填入该数字（直到填满）
@@ -8675,14 +8686,12 @@ window.addEventListener('keydown', (e) => {
   const tag = (e.target && e.target.tagName) || '';
   if (tag === 'INPUT' || tag === 'TEXTAREA' || (e.target && e.target.isContentEditable)) return;
   const k = e.key;
-  // 过关弹窗：Enter=下一关 / Escape=关闭
+  // 过关弹窗：Enter=下一关（结算不再提供关闭入口，避免关闭后停留在已完成盘面）
   const modalOpen = $('completeModal').classList.contains('open');
   if (modalOpen) {
     if (k === 'Enter') {
       const n = $('btnNext');
       if (n.style.display !== 'none') { e.preventDefault(); n.click(); }
-    } else if (k === 'Escape') {
-      closeModal();
     }
     return;
   }
@@ -8846,6 +8855,12 @@ CM.uiCanvas.addEventListener('click', (e) => {
   if (CM._dragSkipNextClick) { CM._dragSkipNextClick = false; return; }
   const cell = _cellFromClient(e.clientX, e.clientY);
   if (!cell || !CM.gameApp) return;
+  // 阶段 4：教学 intro/demo 阶段点击棋盘 = 继续教案（原来会被当成选中并弹"教学中该格无法操作"）
+  const lp = CM.gameApp.getLessonPlayer ? CM.gameApp.getLessonPlayer() : null;
+  if (lp && lp.isActive && (lp.currentPhase === 'demo' || lp.currentPhase === 'intro')) {
+    try { CM.gameApp.advanceLesson(); } catch (eAdv) {}
+    return;
+  }
   if (typeof CM.gameApp.handleCellClick === 'function') CM.gameApp.handleCellClick(cell.r, cell.c);
 });
 
@@ -8977,52 +8992,91 @@ function _setGameCycle() {
   }
 }
 
-// v2.0：Start 页控制——显示标题页；开始游戏走楔子 + 首个关卡
-// V4.4.1：导航重构——点"开始游戏"进入游戏菜单（书壳目录页：章节模式/画廊/自由模式/选项/墨迹留言），
-// 由玩家在菜单中自选"章节模式"进入章节列表再选关；不再自动进楔子/首关，也不直接跳章节列表
-async function startFromStartPage() {
-  hideStartPage();
-  const startId = window.__pendingStartLevel;
-  if (startId == null) {
-    // 修复：init() 尚未完成（章节数据加载中）时点击 → 明确提示而非静默无响应
-    toast(I18n.t('ui.toast.loading'), 1800);
-    return;
-  }
-  // 进入游戏菜单（书壳目录页）：书壳仅作菜单容器，跳过书架直接展示目录（多入口）
+// v2.0：Start 页控制——开始游戏直接进入剧情（第一章楔子 + 首关），
+// 继续游戏回到上次关卡，章节选择直接进入章节列表。
+function getContinueLevelId() {
   try {
-    CM._bookFromGame = false;
-    CM._bookCurPage = 'directory';
-    showBookShell();
-    bookFlipTo('directory');
-  } catch (e) {
-    console.warn('[Start] 进入游戏菜单失败:', e);
-    try { openDrawer(); } catch (e2) {}
+    const raw = localStorage.getItem('cagemaster4_last_level');
+    if (raw) {
+      const id = parseInt(raw, 10);
+      if (!isNaN(id) && CM.lm && typeof CM.lm.isLevelUnlocked === 'function' && CM.lm.isLevelUnlocked(id)) {
+        return id;
+      }
+    }
+  } catch (e) {}
+  return null;
+}
+// 通用：从 Start 页直接进入指定关卡
+async function enterLevelFromStart(levelId, opts) {
+  opts = opts || {};
+  try { hideStartPage(); } catch (e) {}
+  try { hideBookShell(); } catch (e) {}
+  try { document.body.classList.add('book-theme'); } catch (e) {}
+  const chId = (CM.lm && typeof CM.lm.getChapterOfLevel === 'function') ? CM.lm.getChapterOfLevel(levelId) : null;
+  if (opts.prologue && chId !== null && chId !== CM.previousChapterId) {
+    await StoryOrchestrator.playPrologue(chId);
+    CM.previousChapterId = chId;
   }
+  await StoryOrchestrator.playPreDialog(levelId);
+  const res = await CM.gameApp.startLevel(levelId);
+  if (res && res.success) {
+    toast(I18n.t('ui.toast.levelLoaded', { id: levelId }));
+  } else {
+    toast(I18n.t('ui.toast.levelStartFail', { id: levelId }), 3000);
+  }
+  try { localStorage.setItem('cagemaster4_last_level', String(levelId)); } catch (e) {}
+  StoryOrchestrator.triggerLine12();
+}
+// 开始游戏：从第一章序幕剧情开始（新游戏）
+async function startNewGame() {
+  const first = (CM.lm && typeof CM.lm.getFirstLevel === 'function') ? CM.lm.getFirstLevel() : null;
+  if (first == null) { toast(I18n.t('ui.toast.noLevels')); return; }
+  await enterLevelFromStart(first, { prologue: true });
+}
+// 继续游戏：回到上次关卡（跳过序幕，仅播关前剧情）
+async function continueGame() {
+  const id = getContinueLevelId();
+  if (id == null) { toast(I18n.t('ui.start.noProgress')); return; }
+  await enterLevelFromStart(id, { prologue: false });
+}
+// 章节选择：直接进入书壳章节列表页
+function goToChaptersFromStart() {
+  try { hideStartPage(); } catch (e) {}
+  CM._bookFromGame = false;
+  CM._bookCurPage = 'chapters';
+  try { showBookShell(); } catch (e) {}
+  try {
+    CM.levelSelect.mount(document.getElementById('chapterListBook'));
+    CM.levelSelect.refresh();
+  } catch (e) {}
 }
 // Start 页按钮绑定（init 完成后可用；幂等防重复绑定）
 document.addEventListener('DOMContentLoaded', () => {
   const b1 = document.getElementById('spStart');
   if (b1 && !b1.dataset.bound) {
     b1.dataset.bound = '1';
-    b1.addEventListener('click', () => { try { startFromStartPage(); } catch (e) { console.warn('[Start] start:', e); } });
+    b1.addEventListener('click', () => { try { startNewGame(); } catch (e) { console.warn('[Start] start:', e); } });
   }
-  const b2 = document.getElementById('spChapters');
+  const b2 = document.getElementById('spContinue');
   if (b2 && !b2.dataset.bound) {
     b2.dataset.bound = '1';
-    // V4.4.0：导航统一——"章节选择"与"开始游戏"一样进入游戏菜单（书壳章节列表），
-    // 不再打开旧章节抽屉（避免两套菜单并存）
-    b2.addEventListener('click', () => { try { startFromStartPage(); } catch (e) { console.warn('[Start] chapters:', e); } });
+    b2.addEventListener('click', () => { try { continueGame(); } catch (e) { console.warn('[Start] continue:', e); } });
   }
-  const b3 = document.getElementById('spSettings');
+  const b3 = document.getElementById('spChapters');
   if (b3 && !b3.dataset.bound) {
     b3.dataset.bound = '1';
-    b3.addEventListener('click', () => { CM.settings.toggle(); });
+    b3.addEventListener('click', () => { try { goToChaptersFromStart(); } catch (e) { console.warn('[Start] chapters:', e); } });
   }
-  // v2.0：高级挑战从 Start 页进入（原抽屉底部按钮移入）
-  const b4 = document.getElementById('spPool');
+  const b4 = document.getElementById('spSettings');
   if (b4 && !b4.dataset.bound) {
     b4.dataset.bound = '1';
-    b4.addEventListener('click', () => {
+    b4.addEventListener('click', () => { CM.settings.toggle(); });
+  }
+  // v2.0：高级挑战从 Start 页进入（原抽屉底部按钮移入）
+  const b5 = document.getElementById('spPool');
+  if (b5 && !b5.dataset.bound) {
+    b5.dataset.bound = '1';
+    b5.addEventListener('click', () => {
       if (!CM.poolManager || !CM.poolManager.isLoaded()) { toast(I18n.t('ui.toast.poolNotReady')); return; }
       hideStartPage();
       startPoolChallenge();

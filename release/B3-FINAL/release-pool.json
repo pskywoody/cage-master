@@ -6,7 +6,11 @@
     "poolSize": 100,
     "seed": 20260810,
     "generatedAt": "2026-08-10T15:13:20.944Z",
-    "acceptance": "PASS",
+    "acceptance": "FAIL",
+    "failedGates": [
+      "top4_50_53",
+      "ratio_not_below_baseline"
+    ],
     "stats": {
       "top4Share": 0.5325443786982249,
       "entropyH": 2.609,

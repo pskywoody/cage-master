@@ -352,14 +352,16 @@ export class TeachingSystem {
       technique = normalizeTechId(technique);
       if (!TECHNIQUE_INFO[technique]) return;
 
-      // Phase 14.5-GateA：只读采集（teaching interaction：成功=solve，失败=fail，均带 technique）
+      // Phase 14.5-GateA：只读采集。语义修正（Phase 15 发现）：
+// recordEncounter(technique, false) 在 getHint 时被调用，表示"教学交互进行中"，
+// 不是玩家失败 → 中性 encounter；真正失败由 Puzzle 填错捕获。true → solve。
       if (this.eventHook) {
         try {
           this.eventHook({
             source: 'TeachingSystem',
             technique,
-            actionType: usedCorrectly ? 'solve' : 'fail',
-            success: usedCorrectly ? true : false,
+            actionType: usedCorrectly ? 'solve' : 'encounter',
+            success: usedCorrectly ? true : null,
             mistakes: null,
             metadata: {},
           });

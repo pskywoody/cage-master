@@ -1,0 +1,79 @@
+{
+  "gate": "Phase15",
+  "phase": "Transition Accuracy",
+  "timestamp": "2026-08-16T11:54:37.747Z",
+  "boundary": "真实引擎事件（非真实用户）；ground-truth 由步进策略定义；真实用户 session 到位后重跑。",
+  "semanticFix": "recordEncounter(false) 在 getHint 时被调用=教学交互进行中，原误映射为 fail(error) 污染 struggling 信号；已改中性 encounter，真正错误由 Puzzle 填错捕获。",
+  "results": [
+    {
+      "name": "independent_to_temporary_recover",
+      "stateAccuracy": 0.5833333333333334,
+      "stableAccuracy": 0.6666666666666666,
+      "gtTransitions": [
+        8
+      ],
+      "predTransitions": [
+        1,
+        8,
+        10
+      ],
+      "transitionDetected": [
+        {
+          "gt": 8,
+          "detected": true,
+          "delay": 0
+        }
+      ],
+      "falseAlarms": 2,
+      "total": 12
+    },
+    {
+      "name": "independent_to_persistent",
+      "stateAccuracy": 0.9130434782608695,
+      "stableAccuracy": 0.75,
+      "gtTransitions": [
+        8,
+        20
+      ],
+      "predTransitions": [
+        1,
+        8,
+        21
+      ],
+      "transitionDetected": [
+        {
+          "gt": 8,
+          "detected": true,
+          "delay": 0
+        },
+        {
+          "gt": 20,
+          "detected": true,
+          "delay": 1
+        }
+      ],
+      "falseAlarms": 1,
+      "total": 23
+    },
+    {
+      "name": "normal_independent",
+      "stateAccuracy": 0.9090909090909091,
+      "stableAccuracy": 0.9090909090909091,
+      "gtTransitions": [],
+      "predTransitions": [
+        1
+      ],
+      "transitionDetected": [],
+      "falseAlarms": 1,
+      "total": 11
+    }
+  ],
+  "summary": {
+    "transitionsFound": 3,
+    "transitionsDetected": 3,
+    "maxDelay": 1,
+    "totalFalseAlarms": 4,
+    "avgStableAccuracy": 0.7752525252525252
+  },
+  "gateBinary": true
+}

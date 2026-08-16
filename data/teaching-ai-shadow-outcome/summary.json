@@ -1,0 +1,15 @@
+{
+  "byVerdict": {
+    "CaseC_style_only": 8,
+    "CaseA_shadow_better": 8,
+    "CaseB_tradeoff": 6
+  },
+  "byKind": {
+    "real": 2,
+    "synthetic": 20
+  },
+  "hintEconomy": {
+    "productive": 35,
+    "dependency": 14
+  }
+}

@@ -1,0 +1,464 @@
+[
+  {
+    "kind": "real",
+    "session_id": "sess1",
+    "actual": {
+      "mastery": 2.1,
+      "hintDependency": 0,
+      "frustration": 0.17,
+      "indepStep": null
+    },
+    "shadow": {
+      "mastery": 3.4,
+      "hintDependency": 0,
+      "frustration": 0.3,
+      "indepStep": 5
+    },
+    "hintEconomy": {
+      "productive": 2,
+      "dependency": 1
+    },
+    "verdict": "CaseC_style_only"
+  },
+  {
+    "kind": "real",
+    "session_id": "sess2",
+    "actual": {
+      "mastery": 0.1,
+      "hintDependency": 0.2,
+      "frustration": 0.6,
+      "indepStep": null
+    },
+    "shadow": {
+      "mastery": 2.65,
+      "hintDependency": 0,
+      "frustration": 0.3,
+      "indepStep": null
+    },
+    "hintEconomy": {
+      "productive": 0,
+      "dependency": 0
+    },
+    "verdict": "CaseA_shadow_better"
+  },
+  {
+    "kind": "synthetic",
+    "session_id": "syn-0",
+    "actual": {
+      "mastery": 2.1,
+      "hintDependency": 0,
+      "frustration": 0.17,
+      "indepStep": null
+    },
+    "shadow": {
+      "mastery": 3.4,
+      "hintDependency": 0,
+      "frustration": 0.3,
+      "indepStep": 5
+    },
+    "hintEconomy": {
+      "productive": 2,
+      "dependency": 1
+    },
+    "verdict": "CaseC_style_only"
+  },
+  {
+    "kind": "synthetic",
+    "session_id": "syn-1",
+    "actual": {
+      "mastery": 1.3,
+      "hintDependency": 0.15,
+      "frustration": 0.52,
+      "indepStep": null
+    },
+    "shadow": {
+      "mastery": 4,
+      "hintDependency": 0,
+      "frustration": 0.3,
+      "indepStep": 5
+    },
+    "hintEconomy": {
+      "productive": 1,
+      "dependency": 0
+    },
+    "verdict": "CaseA_shadow_better"
+  },
+  {
+    "kind": "synthetic",
+    "session_id": "syn-2",
+    "actual": {
+      "mastery": 1.4,
+      "hintDependency": 0.25,
+      "frustration": 0.22,
+      "indepStep": null
+    },
+    "shadow": {
+      "mastery": 3.4,
+      "hintDependency": 0,
+      "frustration": 0.3,
+      "indepStep": 5
+    },
+    "hintEconomy": {
+      "productive": 2,
+      "dependency": 1
+    },
+    "verdict": "CaseB_tradeoff"
+  },
+  {
+    "kind": "synthetic",
+    "session_id": "syn-3",
+    "actual": {
+      "mastery": 2.1,
+      "hintDependency": 0,
+      "frustration": 0.17,
+      "indepStep": null
+    },
+    "shadow": {
+      "mastery": 3.4,
+      "hintDependency": 0,
+      "frustration": 0.3,
+      "indepStep": 5
+    },
+    "hintEconomy": {
+      "productive": 2,
+      "dependency": 1
+    },
+    "verdict": "CaseC_style_only"
+  },
+  {
+    "kind": "synthetic",
+    "session_id": "syn-4",
+    "actual": {
+      "mastery": 1.3,
+      "hintDependency": 0.15,
+      "frustration": 0.52,
+      "indepStep": null
+    },
+    "shadow": {
+      "mastery": 4,
+      "hintDependency": 0,
+      "frustration": 0.3,
+      "indepStep": 5
+    },
+    "hintEconomy": {
+      "productive": 1,
+      "dependency": 0
+    },
+    "verdict": "CaseA_shadow_better"
+  },
+  {
+    "kind": "synthetic",
+    "session_id": "syn-5",
+    "actual": {
+      "mastery": 1.4,
+      "hintDependency": 0.25,
+      "frustration": 0.22,
+      "indepStep": null
+    },
+    "shadow": {
+      "mastery": 3.4,
+      "hintDependency": 0,
+      "frustration": 0.3,
+      "indepStep": 5
+    },
+    "hintEconomy": {
+      "productive": 2,
+      "dependency": 1
+    },
+    "verdict": "CaseB_tradeoff"
+  },
+  {
+    "kind": "synthetic",
+    "session_id": "syn-6",
+    "actual": {
+      "mastery": 2.1,
+      "hintDependency": 0,
+      "frustration": 0.17,
+      "indepStep": null
+    },
+    "shadow": {
+      "mastery": 3.4,
+      "hintDependency": 0,
+      "frustration": 0.3,
+      "indepStep": 5
+    },
+    "hintEconomy": {
+      "productive": 2,
+      "dependency": 1
+    },
+    "verdict": "CaseC_style_only"
+  },
+  {
+    "kind": "synthetic",
+    "session_id": "syn-7",
+    "actual": {
+      "mastery": 1.3,
+      "hintDependency": 0.15,
+      "frustration": 0.52,
+      "indepStep": null
+    },
+    "shadow": {
+      "mastery": 4,
+      "hintDependency": 0,
+      "frustration": 0.3,
+      "indepStep": 5
+    },
+    "hintEconomy": {
+      "productive": 1,
+      "dependency": 0
+    },
+    "verdict": "CaseA_shadow_better"
+  },
+  {
+    "kind": "synthetic",
+    "session_id": "syn-8",
+    "actual": {
+      "mastery": 1.4,
+      "hintDependency": 0.25,
+      "frustration": 0.22,
+      "indepStep": null
+    },
+    "shadow": {
+      "mastery": 3.4,
+      "hintDependency": 0,
+      "frustration": 0.3,
+      "indepStep": 5
+    },
+    "hintEconomy": {
+      "productive": 2,
+      "dependency": 1
+    },
+    "verdict": "CaseB_tradeoff"
+  },
+  {
+    "kind": "synthetic",
+    "session_id": "syn-9",
+    "actual": {
+      "mastery": 2.1,
+      "hintDependency": 0,
+      "frustration": 0.17,
+      "indepStep": null
+    },
+    "shadow": {
+      "mastery": 3.4,
+      "hintDependency": 0,
+      "frustration": 0.3,
+      "indepStep": 5
+    },
+    "hintEconomy": {
+      "productive": 2,
+      "dependency": 1
+    },
+    "verdict": "CaseC_style_only"
+  },
+  {
+    "kind": "synthetic",
+    "session_id": "syn-10",
+    "actual": {
+      "mastery": 1.3,
+      "hintDependency": 0.15,
+      "frustration": 0.52,
+      "indepStep": null
+    },
+    "shadow": {
+      "mastery": 4,
+      "hintDependency": 0,
+      "frustration": 0.3,
+      "indepStep": 5
+    },
+    "hintEconomy": {
+      "productive": 1,
+      "dependency": 0
+    },
+    "verdict": "CaseA_shadow_better"
+  },
+  {
+    "kind": "synthetic",
+    "session_id": "syn-11",
+    "actual": {
+      "mastery": 1.4,
+      "hintDependency": 0.25,
+      "frustration": 0.22,
+      "indepStep": null
+    },
+    "shadow": {
+      "mastery": 3.4,
+      "hintDependency": 0,
+      "frustration": 0.3,
+      "indepStep": 5
+    },
+    "hintEconomy": {
+      "productive": 2,
+      "dependency": 1
+    },
+    "verdict": "CaseB_tradeoff"
+  },
+  {
+    "kind": "synthetic",
+    "session_id": "syn-12",
+    "actual": {
+      "mastery": 2.1,
+      "hintDependency": 0,
+      "frustration": 0.17,
+      "indepStep": null
+    },
+    "shadow": {
+      "mastery": 3.4,
+      "hintDependency": 0,
+      "frustration": 0.3,
+      "indepStep": 5
+    },
+    "hintEconomy": {
+      "productive": 2,
+      "dependency": 1
+    },
+    "verdict": "CaseC_style_only"
+  },
+  {
+    "kind": "synthetic",
+    "session_id": "syn-13",
+    "actual": {
+      "mastery": 1.3,
+      "hintDependency": 0.15,
+      "frustration": 0.52,
+      "indepStep": null
+    },
+    "shadow": {
+      "mastery": 4,
+      "hintDependency": 0,
+      "frustration": 0.3,
+      "indepStep": 5
+    },
+    "hintEconomy": {
+      "productive": 1,
+      "dependency": 0
+    },
+    "verdict": "CaseA_shadow_better"
+  },
+  {
+    "kind": "synthetic",
+    "session_id": "syn-14",
+    "actual": {
+      "mastery": 1.4,
+      "hintDependency": 0.25,
+      "frustration": 0.22,
+      "indepStep": null
+    },
+    "shadow": {
+      "mastery": 3.4,
+      "hintDependency": 0,
+      "frustration": 0.3,
+      "indepStep": 5
+    },
+    "hintEconomy": {
+      "productive": 2,
+      "dependency": 1
+    },
+    "verdict": "CaseB_tradeoff"
+  },
+  {
+    "kind": "synthetic",
+    "session_id": "syn-15",
+    "actual": {
+      "mastery": 2.1,
+      "hintDependency": 0,
+      "frustration": 0.17,
+      "indepStep": null
+    },
+    "shadow": {
+      "mastery": 3.4,
+      "hintDependency": 0,
+      "frustration": 0.3,
+      "indepStep": 5
+    },
+    "hintEconomy": {
+      "productive": 2,
+      "dependency": 1
+    },
+    "verdict": "CaseC_style_only"
+  },
+  {
+    "kind": "synthetic",
+    "session_id": "syn-16",
+    "actual": {
+      "mastery": 1.3,
+      "hintDependency": 0.15,
+      "frustration": 0.52,
+      "indepStep": null
+    },
+    "shadow": {
+      "mastery": 4,
+      "hintDependency": 0,
+      "frustration": 0.3,
+      "indepStep": 5
+    },
+    "hintEconomy": {
+      "productive": 1,
+      "dependency": 0
+    },
+    "verdict": "CaseA_shadow_better"
+  },
+  {
+    "kind": "synthetic",
+    "session_id": "syn-17",
+    "actual": {
+      "mastery": 1.4,
+      "hintDependency": 0.25,
+      "frustration": 0.22,
+      "indepStep": null
+    },
+    "shadow": {
+      "mastery": 3.4,
+      "hintDependency": 0,
+      "frustration": 0.3,
+      "indepStep": 5
+    },
+    "hintEconomy": {
+      "productive": 2,
+      "dependency": 1
+    },
+    "verdict": "CaseB_tradeoff"
+  },
+  {
+    "kind": "synthetic",
+    "session_id": "syn-18",
+    "actual": {
+      "mastery": 2.1,
+      "hintDependency": 0,
+      "frustration": 0.17,
+      "indepStep": null
+    },
+    "shadow": {
+      "mastery": 3.4,
+      "hintDependency": 0,
+      "frustration": 0.3,
+      "indepStep": 5
+    },
+    "hintEconomy": {
+      "productive": 2,
+      "dependency": 1
+    },
+    "verdict": "CaseC_style_only"
+  },
+  {
+    "kind": "synthetic",
+    "session_id": "syn-19",
+    "actual": {
+      "mastery": 1.3,
+      "hintDependency": 0.15,
+      "frustration": 0.52,
+      "indepStep": null
+    },
+    "shadow": {
+      "mastery": 4,
+      "hintDependency": 0,
+      "frustration": 0.3,
+      "indepStep": 5
+    },
+    "hintEconomy": {
+      "productive": 1,
+      "dependency": 0
+    },
+    "verdict": "CaseA_shadow_better"
+  }
+]

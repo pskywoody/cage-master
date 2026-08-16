@@ -1,0 +1,110 @@
+[
+  {
+    "state": "struggling",
+    "intervene_probability": 0.25,
+    "best_policy": "C_adaptive_boundary",
+    "value": 2.609,
+    "evidence": {
+      "always_teach": {
+        "value": 1.512,
+        "hint": 1,
+        "frust": 0.2,
+        "recovery": 6
+      },
+      "minimal_hint": {
+        "value": 1.713,
+        "hint": 0,
+        "frust": 1,
+        "recovery": 10
+      },
+      "adaptive": {
+        "value": 2.609,
+        "hint": 0,
+        "frust": 0.2,
+        "recovery": 5.5
+      }
+    },
+    "reason": "自适应边界最优：按 state 分档介入"
+  },
+  {
+    "state": "novice",
+    "intervene_probability": 0.1,
+    "best_policy": "C_adaptive_boundary",
+    "value": 2.625,
+    "evidence": {
+      "always_teach": {
+        "value": 1.512,
+        "hint": 1,
+        "frust": 0.2,
+        "recovery": 4
+      },
+      "minimal_hint": {
+        "value": 2.198,
+        "hint": 0,
+        "frust": 0.65,
+        "recovery": 5
+      },
+      "adaptive": {
+        "value": 2.625,
+        "hint": 0,
+        "frust": 0.2,
+        "recovery": 3.5
+      }
+    },
+    "reason": "自适应边界最优：按 state 分档介入"
+  },
+  {
+    "state": "guided",
+    "intervene_probability": 0,
+    "best_policy": "B_minimal_hint",
+    "value": 2.648,
+    "evidence": {
+      "always_teach": {
+        "value": 1.512,
+        "hint": 1,
+        "frust": 0.2,
+        "recovery": null
+      },
+      "minimal_hint": {
+        "value": 2.648,
+        "hint": 0,
+        "frust": 0.2,
+        "recovery": null
+      },
+      "adaptive": {
+        "value": 2.642,
+        "hint": 0,
+        "frust": 0.2,
+        "recovery": null
+      }
+    },
+    "reason": "退后最优：介入只增加依赖、不增 transfer/frustration 收益"
+  },
+  {
+    "state": "independent",
+    "intervene_probability": 0,
+    "best_policy": "B_minimal_hint",
+    "value": 2.648,
+    "evidence": {
+      "always_teach": {
+        "value": 1.512,
+        "hint": 1,
+        "frust": 0.2,
+        "recovery": null
+      },
+      "minimal_hint": {
+        "value": 2.648,
+        "hint": 0,
+        "frust": 0.2,
+        "recovery": null
+      },
+      "adaptive": {
+        "value": 2.648,
+        "hint": 0,
+        "frust": 0.2,
+        "recovery": null
+      }
+    },
+    "reason": "退后最优：介入只增加依赖、不增 transfer/frustration 收益"
+  }
+]

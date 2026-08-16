@@ -1,0 +1,134 @@
+[
+  {
+    "state": "struggling",
+    "policy": "A_always_teach",
+    "mean_mastery": 4,
+    "mean_hint_dependency": 1,
+    "mean_frustration": 0.2,
+    "mean_transfer": 0.712,
+    "mean_recovery": 6,
+    "intervene_probability": 1,
+    "value": 1.512
+  },
+  {
+    "state": "struggling",
+    "policy": "B_minimal_hint",
+    "mean_mastery": 3.1,
+    "mean_hint_dependency": 0,
+    "mean_frustration": 1,
+    "mean_transfer": 0.713,
+    "mean_recovery": 10,
+    "intervene_probability": 0,
+    "value": 1.713
+  },
+  {
+    "state": "struggling",
+    "policy": "C_adaptive_boundary",
+    "mean_mastery": 4,
+    "mean_hint_dependency": 0,
+    "mean_frustration": 0.2,
+    "mean_transfer": 0.809,
+    "mean_recovery": 5.5,
+    "intervene_probability": 0.25,
+    "value": 2.609
+  },
+  {
+    "state": "novice",
+    "policy": "A_always_teach",
+    "mean_mastery": 4,
+    "mean_hint_dependency": 1,
+    "mean_frustration": 0.2,
+    "mean_transfer": 0.712,
+    "mean_recovery": 4,
+    "intervene_probability": 1,
+    "value": 1.512
+  },
+  {
+    "state": "novice",
+    "policy": "B_minimal_hint",
+    "mean_mastery": 4,
+    "mean_hint_dependency": 0,
+    "mean_frustration": 0.65,
+    "mean_transfer": 0.848,
+    "mean_recovery": 5,
+    "intervene_probability": 0,
+    "value": 2.198
+  },
+  {
+    "state": "novice",
+    "policy": "C_adaptive_boundary",
+    "mean_mastery": 4,
+    "mean_hint_dependency": 0,
+    "mean_frustration": 0.2,
+    "mean_transfer": 0.825,
+    "mean_recovery": 3.5,
+    "intervene_probability": 0.1,
+    "value": 2.625
+  },
+  {
+    "state": "guided",
+    "policy": "A_always_teach",
+    "mean_mastery": 4,
+    "mean_hint_dependency": 1,
+    "mean_frustration": 0.2,
+    "mean_transfer": 0.712,
+    "mean_recovery": null,
+    "intervene_probability": 1,
+    "value": 1.512
+  },
+  {
+    "state": "guided",
+    "policy": "B_minimal_hint",
+    "mean_mastery": 4,
+    "mean_hint_dependency": 0,
+    "mean_frustration": 0.2,
+    "mean_transfer": 0.848,
+    "mean_recovery": null,
+    "intervene_probability": 0,
+    "value": 2.648
+  },
+  {
+    "state": "guided",
+    "policy": "C_adaptive_boundary",
+    "mean_mastery": 4,
+    "mean_hint_dependency": 0,
+    "mean_frustration": 0.2,
+    "mean_transfer": 0.842,
+    "mean_recovery": null,
+    "intervene_probability": 0,
+    "value": 2.642
+  },
+  {
+    "state": "independent",
+    "policy": "A_always_teach",
+    "mean_mastery": 4,
+    "mean_hint_dependency": 1,
+    "mean_frustration": 0.2,
+    "mean_transfer": 0.712,
+    "mean_recovery": null,
+    "intervene_probability": 1,
+    "value": 1.512
+  },
+  {
+    "state": "independent",
+    "policy": "B_minimal_hint",
+    "mean_mastery": 4,
+    "mean_hint_dependency": 0,
+    "mean_frustration": 0.2,
+    "mean_transfer": 0.848,
+    "mean_recovery": null,
+    "intervene_probability": 0,
+    "value": 2.648
+  },
+  {
+    "state": "independent",
+    "policy": "C_adaptive_boundary",
+    "mean_mastery": 4,
+    "mean_hint_dependency": 0,
+    "mean_frustration": 0.2,
+    "mean_transfer": 0.848,
+    "mean_recovery": null,
+    "intervene_probability": 0,
+    "value": 2.648
+  }
+]

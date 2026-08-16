@@ -1,0 +1,31 @@
+{
+  "policies": {
+    "A_static_lesson": {
+      "label": "Static Lesson (baseline)",
+      "rules": [
+        { "when": { "level": ["struggling", "novice"] }, "action": "show_optimal" },
+        { "when": { "level": "guided" }, "action": "pose_challenge" },
+        { "when": { "level": ["independent", "fluent"] }, "action": "edge_case" }
+      ]
+    },
+    "B_hint_aligned": {
+      "label": "Hint-Aligned",
+      "rules": [
+        { "when": { "level": ["struggling", "novice"] }, "action": "show_optimal" },
+        { "when": { "level": "guided" }, "action": "reveal" },
+        { "when": { "level": ["independent", "fluent"] }, "action": "pose_challenge" }
+      ]
+    },
+    "C_learner_adaptive": {
+      "label": "Learner Adaptive",
+      "rules": [
+        { "when": { "level": "struggling" }, "action": "ease_hint" },
+        { "when": { "level": "novice", "errorPattern": "guess" }, "action": "ease_hint" },
+        { "when": { "level": "novice", "errorPattern": "weak" }, "action": "ease_hint" },
+        { "when": { "level": "novice" }, "action": "hint_step" },
+        { "when": { "level": "guided" }, "action": "pose_challenge" },
+        { "when": { "level": ["independent", "fluent"] }, "action": "edge_case" }
+      ]
+    }
+  }
+}

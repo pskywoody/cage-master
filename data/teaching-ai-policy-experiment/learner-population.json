@@ -1,0 +1,272 @@
+[
+  {
+    "id": "L001",
+    "mastery": {
+      "hiddenPair": "struggling"
+    },
+    "errorPattern": "omission",
+    "frustration": 0.2,
+    "engagement": 0.5
+  },
+  {
+    "id": "L002",
+    "mastery": {
+      "hiddenPair": "struggling"
+    },
+    "errorPattern": "misread",
+    "frustration": 0.35,
+    "engagement": 0.6
+  },
+  {
+    "id": "L003",
+    "mastery": {
+      "hiddenPair": "struggling"
+    },
+    "errorPattern": "guess",
+    "frustration": 0.5,
+    "engagement": 0.7
+  },
+  {
+    "id": "L004",
+    "mastery": {
+      "hiddenPair": "struggling"
+    },
+    "errorPattern": "weak",
+    "frustration": 0.65,
+    "engagement": 0.8
+  },
+  {
+    "id": "L005",
+    "mastery": {
+      "hiddenPair": "struggling"
+    },
+    "errorPattern": "omission",
+    "frustration": 0.8,
+    "engagement": 0.5
+  },
+  {
+    "id": "L006",
+    "mastery": {
+      "hiddenPair": "struggling"
+    },
+    "errorPattern": "misread",
+    "frustration": 0.2,
+    "engagement": 0.6
+  },
+  {
+    "id": "L007",
+    "mastery": {
+      "hiddenPair": "struggling"
+    },
+    "errorPattern": "guess",
+    "frustration": 0.35,
+    "engagement": 0.7
+  },
+  {
+    "id": "L008",
+    "mastery": {
+      "hiddenPair": "struggling"
+    },
+    "errorPattern": "weak",
+    "frustration": 0.5,
+    "engagement": 0.8
+  },
+  {
+    "id": "L009",
+    "mastery": {
+      "hiddenPair": "novice"
+    },
+    "errorPattern": "omission",
+    "frustration": 0.65,
+    "engagement": 0.5
+  },
+  {
+    "id": "L010",
+    "mastery": {
+      "hiddenPair": "novice"
+    },
+    "errorPattern": "misread",
+    "frustration": 0.8,
+    "engagement": 0.6
+  },
+  {
+    "id": "L011",
+    "mastery": {
+      "hiddenPair": "novice"
+    },
+    "errorPattern": "guess",
+    "frustration": 0.2,
+    "engagement": 0.7
+  },
+  {
+    "id": "L012",
+    "mastery": {
+      "hiddenPair": "novice"
+    },
+    "errorPattern": "weak",
+    "frustration": 0.35,
+    "engagement": 0.8
+  },
+  {
+    "id": "L013",
+    "mastery": {
+      "hiddenPair": "novice"
+    },
+    "errorPattern": "omission",
+    "frustration": 0.5,
+    "engagement": 0.5
+  },
+  {
+    "id": "L014",
+    "mastery": {
+      "hiddenPair": "novice"
+    },
+    "errorPattern": "misread",
+    "frustration": 0.65,
+    "engagement": 0.6
+  },
+  {
+    "id": "L015",
+    "mastery": {
+      "hiddenPair": "novice"
+    },
+    "errorPattern": "guess",
+    "frustration": 0.8,
+    "engagement": 0.7
+  },
+  {
+    "id": "L016",
+    "mastery": {
+      "hiddenPair": "novice"
+    },
+    "errorPattern": "weak",
+    "frustration": 0.2,
+    "engagement": 0.8
+  },
+  {
+    "id": "L017",
+    "mastery": {
+      "hiddenPair": "novice"
+    },
+    "errorPattern": "omission",
+    "frustration": 0.35,
+    "engagement": 0.5
+  },
+  {
+    "id": "L018",
+    "mastery": {
+      "hiddenPair": "novice"
+    },
+    "errorPattern": "misread",
+    "frustration": 0.5,
+    "engagement": 0.6
+  },
+  {
+    "id": "L019",
+    "mastery": {
+      "hiddenPair": "guided"
+    },
+    "errorPattern": "guess",
+    "frustration": 0.65,
+    "engagement": 0.7
+  },
+  {
+    "id": "L020",
+    "mastery": {
+      "hiddenPair": "guided"
+    },
+    "errorPattern": "weak",
+    "frustration": 0.8,
+    "engagement": 0.8
+  },
+  {
+    "id": "L021",
+    "mastery": {
+      "hiddenPair": "guided"
+    },
+    "errorPattern": "omission",
+    "frustration": 0.2,
+    "engagement": 0.5
+  },
+  {
+    "id": "L022",
+    "mastery": {
+      "hiddenPair": "guided"
+    },
+    "errorPattern": "misread",
+    "frustration": 0.35,
+    "engagement": 0.6
+  },
+  {
+    "id": "L023",
+    "mastery": {
+      "hiddenPair": "guided"
+    },
+    "errorPattern": "guess",
+    "frustration": 0.5,
+    "engagement": 0.7
+  },
+  {
+    "id": "L024",
+    "mastery": {
+      "hiddenPair": "guided"
+    },
+    "errorPattern": "weak",
+    "frustration": 0.65,
+    "engagement": 0.8
+  },
+  {
+    "id": "L025",
+    "mastery": {
+      "hiddenPair": "guided"
+    },
+    "errorPattern": "omission",
+    "frustration": 0.8,
+    "engagement": 0.5
+  },
+  {
+    "id": "L026",
+    "mastery": {
+      "hiddenPair": "guided"
+    },
+    "errorPattern": "misread",
+    "frustration": 0.2,
+    "engagement": 0.6
+  },
+  {
+    "id": "L027",
+    "mastery": {
+      "hiddenPair": "independent"
+    },
+    "errorPattern": "guess",
+    "frustration": 0.35,
+    "engagement": 0.7
+  },
+  {
+    "id": "L028",
+    "mastery": {
+      "hiddenPair": "independent"
+    },
+    "errorPattern": "weak",
+    "frustration": 0.5,
+    "engagement": 0.8
+  },
+  {
+    "id": "L029",
+    "mastery": {
+      "hiddenPair": "independent"
+    },
+    "errorPattern": "omission",
+    "frustration": 0.65,
+    "engagement": 0.5
+  },
+  {
+    "id": "L030",
+    "mastery": {
+      "hiddenPair": "independent"
+    },
+    "errorPattern": "misread",
+    "frustration": 0.8,
+    "engagement": 0.6
+  }
+]

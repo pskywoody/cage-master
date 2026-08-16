@@ -1,0 +1,51 @@
+{
+  "byPolicy": {
+    "A_static_lesson": {
+      "mean_skill_gain": 2.733,
+      "mean_hint_dependency": 0,
+      "mean_engagement_delta": 0.357
+    },
+    "B_hint_aligned": {
+      "mean_skill_gain": 1,
+      "mean_hint_dependency": 0.78,
+      "mean_engagement_delta": -0.023
+    },
+    "C_learner_adaptive": {
+      "mean_skill_gain": 2.733,
+      "mean_hint_dependency": 0.087,
+      "mean_engagement_delta": 0.357
+    }
+  },
+  "byPolicyBucket": {
+    "A_static_lesson|low": {
+      "n": 18,
+      "mean_skill_gain": 3.444,
+      "mean_hint_dependency": 0
+    },
+    "A_static_lesson|high": {
+      "n": 12,
+      "mean_skill_gain": 1.667,
+      "mean_hint_dependency": 0
+    },
+    "B_hint_aligned|low": {
+      "n": 18,
+      "mean_skill_gain": 1.444,
+      "mean_hint_dependency": 0.856
+    },
+    "B_hint_aligned|high": {
+      "n": 12,
+      "mean_skill_gain": 0.333,
+      "mean_hint_dependency": 0.667
+    },
+    "C_learner_adaptive|low": {
+      "n": 18,
+      "mean_skill_gain": 3.444,
+      "mean_hint_dependency": 0.144
+    },
+    "C_learner_adaptive|high": {
+      "n": 12,
+      "mean_skill_gain": 1.667,
+      "mean_hint_dependency": 0
+    }
+  }
+}

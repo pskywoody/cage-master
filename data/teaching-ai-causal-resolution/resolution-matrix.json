@@ -1,0 +1,50 @@
+[
+  {
+    "learner": "LX_fixed(guided)",
+    "action": "reveal",
+    "mastery_delta": 0.1,
+    "hint_dependency_delta": 0.2,
+    "independent_share": 0.1,
+    "transfer_contribution": 0.355
+  },
+  {
+    "learner": "LX_fixed(guided)",
+    "action": "demo",
+    "mastery_delta": 0.45,
+    "hint_dependency_delta": 0.05,
+    "independent_share": 0.15,
+    "transfer_contribution": 0.427
+  },
+  {
+    "learner": "LX_fixed(guided)",
+    "action": "guided",
+    "mastery_delta": 0.55,
+    "hint_dependency_delta": 0.15,
+    "independent_share": 0.28,
+    "transfer_contribution": 0.494
+  },
+  {
+    "learner": "LX_fixed(guided)",
+    "action": "question",
+    "mastery_delta": 0.7,
+    "hint_dependency_delta": -0.05,
+    "independent_share": 0.46,
+    "transfer_contribution": 0.589
+  },
+  {
+    "learner": "LX_fixed(guided)",
+    "action": "partial_hint",
+    "mastery_delta": 0.45,
+    "hint_dependency_delta": 0.1,
+    "independent_share": 0.36,
+    "transfer_contribution": 0.511
+  },
+  {
+    "learner": "LX_fixed(guided)",
+    "action": "free_attempt",
+    "mastery_delta": 0.75,
+    "hint_dependency_delta": -0.1,
+    "independent_share": 0.62,
+    "transfer_contribution": 0.66
+  }
+]

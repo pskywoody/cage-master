@@ -1,0 +1,28 @@
+{
+  "byPolicy": {
+    "A_static_lesson": {
+      "mean_mastery_gain": 2.733,
+      "mean_recovery_episode": 3.889,
+      "mean_hint_dependency": 0,
+      "mean_independent_completion": 0.539,
+      "mean_transfer": 0.815,
+      "mean_retention": 0.734
+    },
+    "B_hint_aligned": {
+      "mean_mastery_gain": 1.633,
+      "mean_recovery_episode": 3.889,
+      "mean_hint_dependency": 1,
+      "mean_independent_completion": 0.145,
+      "mean_transfer": 0.493,
+      "mean_retention": 0.388
+    },
+    "C_learner_adaptive": {
+      "mean_mastery_gain": 2.733,
+      "mean_recovery_episode": 3.333,
+      "mean_hint_dependency": 0.027,
+      "mean_independent_completion": 0.557,
+      "mean_transfer": 0.823,
+      "mean_retention": 0.74
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "totalEvents": 9,
+  "comparable": 7,
+  "disagreementRate": 0.857,
+  "highConfidenceDisagreement": 4,
+  "recoveryOpportunity": 2,
+  "hintDependencyPredictionHighCount": 0,
+  "learnerStateProjectedInRealTime": true,
+  "affectsUserBehavior": false
+}

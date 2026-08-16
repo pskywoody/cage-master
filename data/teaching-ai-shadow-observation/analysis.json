@@ -1,0 +1,82 @@
+{
+  "real": {
+    "label": "real",
+    "total": 9,
+    "comparable": 7,
+    "disagreement_rate": 0.857,
+    "by_type": {
+      "B": 5,
+      "D": 1,
+      "A": 1,
+      "N": 2
+    },
+    "high_confidence_disagreement": 4,
+    "recovery_opportunity": 8,
+    "by_learner_state": {
+      "unknown": {
+        "n": 2,
+        "disagree": 2
+      },
+      "novice": {
+        "n": 2,
+        "disagree": 2
+      },
+      "guided": {
+        "n": 2,
+        "disagree": 2
+      },
+      "independent": {
+        "n": 1,
+        "disagree": 0
+      }
+    },
+    "by_error_type": {
+      "omission": {
+        "n": 7,
+        "disagree": 6
+      }
+    }
+  },
+  "synthetic": {
+    "label": "synthetic",
+    "total": 107,
+    "comparable": 93,
+    "disagreement_rate": 0.925,
+    "by_type": {
+      "B": 66,
+      "D": 20,
+      "A": 7,
+      "N": 14
+    },
+    "high_confidence_disagreement": 40,
+    "recovery_opportunity": 100,
+    "by_learner_state": {
+      "unknown": {
+        "n": 20,
+        "disagree": 20
+      },
+      "novice": {
+        "n": 20,
+        "disagree": 20
+      },
+      "guided": {
+        "n": 46,
+        "disagree": 46
+      },
+      "independent": {
+        "n": 7,
+        "disagree": 0
+      }
+    },
+    "by_error_type": {
+      "omission": {
+        "n": 79,
+        "disagree": 72
+      },
+      "misread": {
+        "n": 14,
+        "disagree": 14
+      }
+    }
+  }
+}

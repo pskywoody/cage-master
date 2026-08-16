@@ -1,0 +1,92 @@
+{
+  "novice_exploration": {
+    "expected": "observe",
+    "PolicyA_Naive": {
+      "action": "question",
+      "match": false,
+      "count": 120
+    },
+    "PolicyB_UAv1": {
+      "action": "question",
+      "match": false,
+      "count": 120
+    },
+    "PolicyC_UAv2": {
+      "action": "observe",
+      "match": true,
+      "count": 120
+    }
+  },
+  "temporary_error": {
+    "expected": "question",
+    "PolicyA_Naive": {
+      "action": "partial_hint",
+      "match": false,
+      "count": 120
+    },
+    "PolicyB_UAv1": {
+      "action": "question",
+      "match": true,
+      "count": 120
+    },
+    "PolicyC_UAv2": {
+      "action": "question",
+      "match": true,
+      "count": 120
+    }
+  },
+  "persistent_struggle": {
+    "expected": "partial_hint",
+    "PolicyA_Naive": {
+      "action": "partial_hint",
+      "match": true,
+      "count": 120
+    },
+    "PolicyB_UAv1": {
+      "action": "question",
+      "match": false,
+      "count": 120
+    },
+    "PolicyC_UAv2": {
+      "action": "partial_hint",
+      "match": true,
+      "count": 120
+    }
+  },
+  "guided": {
+    "expected": "backoff",
+    "PolicyA_Naive": {
+      "action": "question",
+      "match": false,
+      "count": 120
+    },
+    "PolicyB_UAv1": {
+      "action": "question",
+      "match": false,
+      "count": 120
+    },
+    "PolicyC_UAv2": {
+      "action": "backoff",
+      "match": true,
+      "count": 120
+    }
+  },
+  "independent": {
+    "expected": "backoff",
+    "PolicyA_Naive": {
+      "action": "free_attempt",
+      "match": false,
+      "count": 120
+    },
+    "PolicyB_UAv1": {
+      "action": "free_attempt",
+      "match": false,
+      "count": 120
+    },
+    "PolicyC_UAv2": {
+      "action": "backoff",
+      "match": true,
+      "count": 120
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "PolicyA_Naive": {
+    "falseInterventionRate": 0,
+    "falseBackoffRate": 0,
+    "matchRate": 0.2,
+    "recoveryTimeMean": 3,
+    "recoveryTimePersistent": 4,
+    "hintDependencyMean": -0.04,
+    "transferMean": 0.1,
+    "retentionMean": 0.08
+  },
+  "PolicyB_UAv1": {
+    "falseInterventionRate": 0,
+    "falseBackoffRate": 0.2,
+    "matchRate": 0.2,
+    "recoveryTimeMean": 3.6,
+    "recoveryTimePersistent": 7,
+    "hintDependencyMean": -0.1,
+    "transferMean": 0.4,
+    "retentionMean": 0.32
+  },
+  "PolicyC_UAv2": {
+    "falseInterventionRate": 0,
+    "falseBackoffRate": 0,
+    "matchRate": 1,
+    "recoveryTimeMean": 2.6,
+    "recoveryTimePersistent": 4,
+    "hintDependencyMean": -0.2,
+    "transferMean": 0.4,
+    "retentionMean": 0.32
+  }
+}

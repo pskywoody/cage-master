@@ -1,0 +1,43 @@
+{
+  "N_per_class": 120,
+  "boundaryConfidence": 0.993,
+  "boundaryConfidencePASS": true,
+  "falseInterventionRisk": 0,
+  "falseBackoffRisk": 0,
+  "strugglingToGuided": 0,
+  "guidedToStruggling": 0,
+  "confusion": {
+    "novice_exploration": {
+      "novice_exploration": 120,
+      "temporary_error": 0,
+      "persistent_struggle": 0
+    },
+    "temporary_error": {
+      "novice_exploration": 0,
+      "temporary_error": 120,
+      "persistent_struggle": 0
+    },
+    "persistent_struggle": {
+      "novice_exploration": 0,
+      "temporary_error": 0,
+      "persistent_struggle": 120
+    }
+  },
+  "confidenceDistribution": {
+    "novice_exploration": {
+      "mean": 1,
+      "min": 1,
+      "max": 1
+    },
+    "temporary_error": {
+      "mean": 1,
+      "min": 1,
+      "max": 1
+    },
+    "persistent_struggle": {
+      "mean": 0.98,
+      "min": 0.94,
+      "max": 1
+    }
+  }
+}

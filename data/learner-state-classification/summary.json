@@ -1,0 +1,44 @@
+{
+  "N": 50,
+  "confusion": {
+    "struggling": {
+      "struggling": 50
+    },
+    "novice": {
+      "struggling": 50
+    },
+    "guided": {
+      "guided": 50
+    },
+    "independent": {
+      "independent": 50
+    }
+  },
+  "accuracy": 0.75,
+  "precisionRecall": {
+    "struggling": {
+      "recall": 1,
+      "precision": 0.5
+    },
+    "novice": {
+      "recall": 0,
+      "precision": null
+    },
+    "guided": {
+      "recall": 1,
+      "precision": 1
+    },
+    "independent": {
+      "recall": 1,
+      "precision": 1
+    }
+  },
+  "meanConfidence": {
+    "struggling": 0.175,
+    "novice": 0,
+    "guided": 0.225,
+    "independent": 0.225
+  },
+  "strugglingPredictedAsGuided": 0,
+  "guidedPredictedAsStruggling": 0
+}

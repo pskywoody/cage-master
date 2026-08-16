@@ -1,0 +1,14 @@
+{
+  "struggling": {
+    "struggling": 50
+  },
+  "novice": {
+    "struggling": 50
+  },
+  "guided": {
+    "guided": 50
+  },
+  "independent": {
+    "independent": 50
+  }
+}

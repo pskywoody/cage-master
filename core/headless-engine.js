@@ -57,6 +57,12 @@ class HeadlessEngine {
     this._errorLog = [];
     /** @private 教学完成状态记录（用于重新教学功能） */
     this._lessonCompletionMap = {};
+    /**
+     * Teaching AI Phase 14.5-GateA：可选只读事件钩子（Puzzle 来源）。
+     * 缺省 null → 不采集，零行为改变。由 RuntimeEventBridge 注入。
+     * @type {((raw:Object)=>void)|null}
+     */
+    this.eventHook = null;
   }
 
   // -----------------------------------------------------------------------
@@ -135,6 +141,7 @@ class HeadlessEngine {
       if (cell.fillNum === num) {
         return { success: false, error: `Cell ${cellTag(r, c)} already has ${num}` };
       }
+      this._emitPuzzleEvent(r, c, num, false, 1);
       return { success: false, error: `Failed to set number ${num} at ${cellTag(r, c)}` };
     }
 
@@ -148,7 +155,32 @@ class HeadlessEngine {
       cell.isError = true;
     }
 
+    // 结算信号：盘面是否已完整
+    let solved = false;
+    try {
+      const b = this.board.cells;
+      solved = b.every((row) => row.every((cl) => cl.fixedNum || cl.fillNum));
+    } catch (e) { solved = false; }
+    this._emitPuzzleEvent(r, c, num, !cell.isError, cell.isError ? 1 : 0, solved);
+
     return { success: true, error: null };
+  }
+
+  /** Phase 14.5-GateA：Puzzle 来源只读事件钩子（solve=填对 / fail=填错 + mistake + solve 完成信号） */
+  _emitPuzzleEvent(r, c, num, ok, mistakes, solved) {
+    if (!this.eventHook) return;
+    try {
+      this.eventHook({
+        source: 'Puzzle',
+        technique: null,
+        actionType: ok ? 'solve' : 'fail',
+        success: ok,
+        mistakes: mistakes || 0,
+        solveTime: solved ? Date.now() : null,
+        solved,
+        metadata: { row: r, col: c, num },
+      });
+    } catch (e) { /* 只读采集，忽略异常 */ }
   }
 
   /**

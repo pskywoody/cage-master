@@ -1,0 +1,82 @@
+{
+  "gateStatus": "RUNNING",
+  "sessionId": "rt-s101",
+  "timestamp": "2026-08-16T11:38:10.440Z",
+  "levelId": "101",
+  "runtime": {
+    "lessonPlayer": {
+      "played": true,
+      "error": null
+    },
+    "hintCount": 10,
+    "errors": 1,
+    "steps": 10,
+    "puzzleSolved": true,
+    "fillLog": [
+      "(2,1)✗wrong=1",
+      "(2,1)=3 ✓",
+      "(3,0)=2 ✓",
+      "(0,1)=1 ✓",
+      "(0,3)=4 ✓",
+      "(0,2)=2 ✓",
+      "(3,3)=1 ✓",
+      "(3,2)=3 ✓",
+      "(0,0)=3 ✓",
+      "(1,0)=4 ✓",
+      "(1,2)=1 ✓"
+    ]
+  },
+  "eventFlow": {
+    "total": 33,
+    "bySource": {
+      "TeachingSystem": 10,
+      "HintSystem": 10,
+      "Puzzle": 11,
+      "LessonPlayer": 2
+    },
+    "byAction": {
+      "attempt": 10,
+      "hint": 10,
+      "fail": 1,
+      "solve": 10,
+      "guided_success": 1,
+      "reveal": 1
+    }
+  },
+  "pipeline": {
+    "observeCount": 20,
+    "techniquesSeen": [
+      "nakedSingle"
+    ],
+    "skillStates": {
+      "nakedSingle": {
+        "state": "exposed",
+        "confidence": 0.4,
+        "trend": "flat"
+      }
+    },
+    "coarseState": "guided",
+    "fineState": "guided",
+    "ua2ShadowAction": "question",
+    "naiveBoundaryAction": "question"
+  },
+  "divergence": {
+    "actualTeaching": [
+      "hint",
+      "hint",
+      "hint",
+      "hint",
+      "hint",
+      "hint",
+      "hint",
+      "hint",
+      "hint",
+      "hint",
+      "guided_success",
+      "reveal"
+    ],
+    "ua2Shadow": "question",
+    "target": null,
+    "differingCount": 12
+  }
+}

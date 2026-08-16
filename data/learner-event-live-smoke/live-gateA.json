@@ -1,0 +1,20 @@
+{
+  "realSessionProducedEvents": true,
+  "hasSessionId": true,
+  "jsonlWritten": true,
+  "skillStateComputed": true,
+  "fineStateComputed": true,
+  "observationReportWritten": true,
+  "allSourcesWired": true,
+  "eventTypeCoverage": {
+    "fail": true,
+    "hint": true,
+    "reveal": true,
+    "guided_success": true,
+    "solve": true,
+    "mistake": true,
+    "solve_time": true
+  },
+  "allAcceptanceTypes": true,
+  "pass": true
+}

@@ -41,6 +41,7 @@ const ACTION_MAP = {
   hint_level: { type: 'hint' },
   hint_followed: { type: 'correct', independent: false },
   mistake: { type: 'error' },
+  solve: { type: 'correct', independent: true },
 };
 
 /**

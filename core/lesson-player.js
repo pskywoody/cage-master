@@ -95,6 +95,10 @@ export class LessonPlayer {
     this._lessonEvents = [];
     this._lessonEventSeq = 0;
 
+    // Teaching AI Phase 14.5-GateA：可选只读事件钩子（LessonPlayer 来源）。
+    // 缺省 null → 不采集，零行为改变。由 RuntimeEventBridge 注入。
+    this.eventHook = (options && options.eventHook) || null;
+
     // 高亮缓存
     this._activeHighlights = {
       rows: new Set(),
@@ -1476,9 +1480,49 @@ export class LessonPlayer {
       if (this._lessonEvents.length > 2000) {
         this._lessonEvents.splice(0, this._lessonEvents.length - 2000);
       }
+      // Phase 14.5-GateA：只读采集（把已有遥测事件镜像到 capture-contract，不改语义）
+      if (this.eventHook) {
+        try {
+          const mapped = LessonPlayer._mapLessonEvent(type, data || {});
+          if (mapped) this.eventHook(mapped);
+        } catch (e) { /* 只读采集，忽略异常 */ }
+      }
     } catch (e) {
       console.warn('[LessonPlayer] _recordLessonEvent error:', e);
     }
+  }
+
+  /** Phase 14.5-GateA：lesson 遥测事件 → capture-contract 映射（无技巧粒度事件返回 null 跳过） */
+  static _mapLessonEvent(type, data) {
+    const technique = data.technique || data.targetTech || data.tech || null;
+    const ACTION = {
+      guided: 'guided_success',
+      guided_l1_direction: 'hint_level',
+      guided_l2_technique: 'hint_level',
+      semiAuto_hint: 'hint_level',
+      timeout_hint: 'hint',
+      reveal: 'reveal',
+      fail: 'fail',
+      watch: 'attempt',
+      note: 'attempt',
+      technique_taught: 'skill_encounter',
+    };
+    const actionType = ACTION[type];
+    if (!actionType) return null; // phase/bubble 无技能粒度，跳过
+    const corr = data.correct;
+    const meta = {};
+    if (data.hintLevel !== undefined) meta.hintLevel = data.hintLevel;
+    if (data.level !== undefined) meta.hintLevel = data.level;
+    if (type === 'reveal') meta.reveal = true;
+    return {
+      source: 'LessonPlayer',
+      technique,
+      actionType,
+      success: (corr === true) ? true : (corr === false ? false : null),
+      mistakes: (type === 'fail') ? 1 : null,
+      solveTime: null,
+      metadata: meta,
+    };
   }
 
   /**

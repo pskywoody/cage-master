@@ -408,8 +408,28 @@ export class HintSystem {
     this._hintProgress = new Map();
     this._lastDeduction = null;
 
+    // Teaching AI Phase 14.5-GateA：可选只读事件钩子（HintSystem 来源）。
+    // 缺省 null → 不采集，零行为改变。由 RuntimeEventBridge 注入。
+    this.eventHook = options.eventHook || null;
+
     // TechRater 实例缓存（每次 getHint 时重建，因为盘面会变）
     this._techRater = null;
+  }
+
+  /** Phase 14.5-GateA：hint 事件只读钩子（hint request + level + technique） */
+  _emitHintEvent(level, technique) {
+    if (!this.eventHook) return;
+    try {
+      this.eventHook({
+        source: 'HintSystem',
+        technique: technique || null,
+        actionType: 'hint',
+        success: null,
+        mistakes: null,
+        hintLevel: level || 0,
+        metadata: {},
+      });
+    } catch (e) { /* 只读采集，忽略异常 */ }
   }
 
   /**
@@ -445,6 +465,7 @@ export class HintSystem {
       // 降级：找任意空格（原始行为）
       const target = this._findTargetCell();
       if (!target) {
+        this._emitHintEvent(0, null);
         return {
           character: 'shenmo',
           characterName: '沈墨',
@@ -458,6 +479,7 @@ export class HintSystem {
       const character = this._selectCharacter();
       const dialogues = HINT_DIALOGUES[character.id];
 
+      this._emitHintEvent(3, 'directAnswer');
       return {
         character: character.id,
         characterName: character.name,
@@ -578,6 +600,8 @@ export class HintSystem {
         eliminatedPositions: eliminatedPositions,
       });
     }
+
+    this._emitHintEvent(currentLevel, deduction.technique);
 
     return {
       character: character.id,

@@ -1,0 +1,158 @@
+{
+  "gate": "B",
+  "timestamp": "2026-08-16T11:43:27.557Z",
+  "honestyBoundary": "数据来自真实生产模块在真实关卡上的运行，非真实玩家；H1 为运行快照，H2 为分类可区分性验证。",
+  "H1": {
+    "levels": [
+      {
+        "levelId": "101",
+        "fine": "independent",
+        "coarse": "independent",
+        "ua2": "free_attempt",
+        "observe": 30,
+        "solved": true
+      },
+      {
+        "levelId": "102",
+        "fine": "independent",
+        "coarse": "independent",
+        "ua2": "free_attempt",
+        "observe": 33,
+        "solved": true
+      },
+      {
+        "levelId": "103",
+        "fine": "independent",
+        "coarse": "independent",
+        "ua2": "free_attempt",
+        "observe": 33,
+        "solved": true
+      },
+      {
+        "levelId": "104",
+        "fine": "independent",
+        "coarse": "independent",
+        "ua2": "free_attempt",
+        "observe": 36,
+        "solved": true
+      },
+      {
+        "levelId": "105",
+        "fine": "independent",
+        "coarse": "independent",
+        "ua2": "free_attempt",
+        "observe": 36,
+        "solved": true
+      }
+    ],
+    "distribution": {
+      "independent": 5
+    },
+    "distinctFineStates": [
+      "independent"
+    ],
+    "bySource": {
+      "TeachingSystem": 56,
+      "HintSystem": 56,
+      "Puzzle": 56
+    },
+    "note": "正常玩家（按解填格）在 AI 教学下倾向 guided；真实玩家分布需真实 session 积累。"
+  },
+  "H2": {
+    "persistent": {
+      "observeCount": 90,
+      "fine": "persistent_struggle",
+      "coarse": "struggling",
+      "ua2": "partial_hint",
+      "features": {
+        "errors": 60,
+        "correct": 0,
+        "indep": 0,
+        "guidedCorrect": 0,
+        "hintThenFail": 30,
+        "maxConsecErr": 60
+      },
+      "events": 90,
+      "errors": 30,
+      "solved": false
+    },
+    "temporary": {
+      "observeCount": 42,
+      "fine": "independent",
+      "coarse": "independent",
+      "ua2": "free_attempt",
+      "features": {
+        "errors": 18,
+        "correct": 10,
+        "indep": 10,
+        "guidedCorrect": 0,
+        "hintThenFail": 4,
+        "maxConsecErr": 3
+      },
+      "events": 42,
+      "errors": 4,
+      "solved": true
+    },
+    "separation": {
+      "persistentFine": "persistent_struggle",
+      "temporaryFine": "independent",
+      "distinguishable": true,
+      "featureGap": {
+        "errors": 42,
+        "maxConsecErr": 57,
+        "hintThenFail": 26
+      }
+    }
+  },
+  "classificationAudit": [
+    {
+      "name": "persistent",
+      "trace": "hint→error→hint→error→hint→error",
+      "expect": "persistent_struggle",
+      "got": "persistent_struggle",
+      "match": true
+    },
+    {
+      "name": "temporary",
+      "trace": "error→guided_success→error→guided_success",
+      "expect": "temporary_error",
+      "got": "temporary_error",
+      "match": true
+    },
+    {
+      "name": "novice",
+      "trace": "error",
+      "expect": "novice_exploration",
+      "got": "novice_exploration",
+      "match": true
+    },
+    {
+      "name": "guided",
+      "trace": "guided_success",
+      "expect": "guided",
+      "got": "guided",
+      "match": true
+    },
+    {
+      "name": "independent",
+      "trace": "correct→correct",
+      "expect": "independent",
+      "got": "independent",
+      "match": true
+    },
+    {
+      "name": "temp_after_indep",
+      "trace": "correct→correct→error",
+      "expect": "temporary_error",
+      "got": "independent",
+      "match": false
+    },
+    {
+      "name": "persist_after_indep",
+      "trace": "correct→correct→hint→error→hint→error",
+      "expect": "persistent_struggle",
+      "got": "independent",
+      "match": false
+    }
+  ]
+}

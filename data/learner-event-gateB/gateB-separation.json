@@ -1,0 +1,10 @@
+{
+  "persistentFine": "persistent_struggle",
+  "temporaryFine": "independent",
+  "distinguishable": true,
+  "featureGap": {
+    "errors": 42,
+    "maxConsecErr": 57,
+    "hintThenFail": 26
+  }
+}

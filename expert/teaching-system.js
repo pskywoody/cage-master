@@ -328,6 +328,10 @@ export class TeachingSystem {
     // Track if current encounter is the first one
     this._justFirstEncountered = new Set();
 
+    // Teaching AI Phase 14.5-GateA：可选只读事件钩子（TeachingSystem 来源）。
+    // 缺省 null → 不采集，零行为改变。由 RuntimeEventBridge 注入。
+    this.eventHook = options.eventHook || null;
+
     // Load saved progress
     if (this.enablePersistence) {
       this.load();
@@ -347,6 +351,20 @@ export class TeachingSystem {
     try {
       technique = normalizeTechId(technique);
       if (!TECHNIQUE_INFO[technique]) return;
+
+      // Phase 14.5-GateA：只读采集（teaching interaction：成功=solve，失败=fail，均带 technique）
+      if (this.eventHook) {
+        try {
+          this.eventHook({
+            source: 'TeachingSystem',
+            technique,
+            actionType: usedCorrectly ? 'solve' : 'fail',
+            success: usedCorrectly ? true : false,
+            mistakes: null,
+            metadata: {},
+          });
+        } catch (e) { /* 只读采集，忽略异常 */ }
+      }
 
       const now = Date.now();
       const isFirst = !this._techniques[technique];

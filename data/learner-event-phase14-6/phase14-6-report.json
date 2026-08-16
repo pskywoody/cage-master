@@ -1,0 +1,72 @@
+{
+  "gate": "Phase14.6",
+  "timestamp": "2026-08-16T11:48:28.056Z",
+  "boundary": "新增 StateTransitioner 验证；不改 classifyFine/LearnerModel/生产模块。",
+  "scenarios": [
+    {
+      "name": "prior_mastery_temp",
+      "obs": 33,
+      "errors": 12,
+      "correct": 10,
+      "hint": 11,
+      "oldState": "independent",
+      "newState": "temporary_error",
+      "capability": "independent",
+      "fixed": true
+    },
+    {
+      "name": "prior_mastery_persist",
+      "obs": 90,
+      "errors": 52,
+      "correct": 8,
+      "hint": 30,
+      "oldState": "independent",
+      "newState": "persistent_struggle",
+      "capability": "independent",
+      "fixed": true
+    }
+  ],
+  "audit": [
+    {
+      "name": "case1",
+      "seq": "correct→correct→error",
+      "expect": "temporary_error",
+      "old": "independent",
+      "new": "temporary_error",
+      "oldMatch": false,
+      "newMatch": true
+    },
+    {
+      "name": "case2",
+      "seq": "correct→correct→hint→error→hint→error",
+      "expect": "persistent_struggle",
+      "old": "independent",
+      "new": "persistent_struggle",
+      "oldMatch": false,
+      "newMatch": true
+    },
+    {
+      "name": "case3_recover",
+      "seq": "correct→correct→error→correct→correct",
+      "expect": "independent",
+      "old": "independent",
+      "new": "independent",
+      "oldMatch": true,
+      "newMatch": true
+    },
+    {
+      "name": "pure_indep",
+      "seq": "correct→correct",
+      "expect": "independent",
+      "old": "independent",
+      "new": "independent",
+      "oldMatch": true,
+      "newMatch": true
+    }
+  ],
+  "summary": {
+    "priorMasteryBiasFixed": 2,
+    "auditNewPass": 4,
+    "auditOldPass": 2
+  }
+}

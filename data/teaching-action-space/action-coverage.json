@@ -1,0 +1,55 @@
+{
+  "per_action": [
+    {
+      "action": "demo",
+      "shadow_can_generate": true,
+      "observed_system_evidence": 22,
+      "status": "observable",
+      "uncertainty": "low"
+    },
+    {
+      "action": "hint",
+      "shadow_can_generate": true,
+      "observed_system_evidence": 22,
+      "status": "observable",
+      "uncertainty": "low"
+    },
+    {
+      "action": "guided",
+      "shadow_can_generate": true,
+      "observed_system_evidence": 21,
+      "status": "observable",
+      "uncertainty": "low"
+    },
+    {
+      "action": "difficulty_down",
+      "shadow_can_generate": true,
+      "observed_system_evidence": 0,
+      "status": "no_system_evidence",
+      "uncertainty": null
+    },
+    {
+      "action": "difficulty_up",
+      "shadow_can_generate": true,
+      "observed_system_evidence": 0,
+      "status": "no_system_evidence",
+      "uncertainty": null
+    },
+    {
+      "action": "partial_hint",
+      "shadow_can_generate": true,
+      "observed_system_evidence": 0,
+      "status": "no_system_evidence",
+      "uncertainty": null
+    },
+    {
+      "action": "question",
+      "shadow_can_generate": true,
+      "observed_system_evidence": 0,
+      "status": "no_system_evidence",
+      "uncertainty": null
+    }
+  ],
+  "coverage_completeness": 0.429,
+  "note": "coverage-based ranking, NOT win/lose; unobserved actions need real sessions"
+}

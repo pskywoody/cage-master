@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://cagemaster4.local/schemas/teaching-action.v1.json",
+  "title": "CM4 Teaching Action v1",
+  "description": "统一教学动作对象。仅 shadow 生成与观测，不接生产执行。",
+  "type": "object",
+  "required": ["action", "target", "intensity", "reason", "expected_outcome"],
+  "properties": {
+    "action": {
+      "type": "string",
+      "enum": ["hint", "demo", "guided", "question", "partial_hint", "difficulty_down", "difficulty_up"]
+    },
+    "target": { "type": "string" },
+    "intensity": { "type": "number", "minimum": 0, "maximum": 1 },
+    "reason": { "type": "string" },
+    "expected_outcome": { "type": "string" }
+  },
+  "additionalProperties": true
+}

@@ -1,0 +1,8702 @@
+[
+  {
+    "fineTruth": "novice_exploration",
+    "coarse": "struggling",
+    "fineEst": "novice_exploration",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0.15,
+      "mastery": 0.2
+    },
+    "naiveOver": true,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "novice_exploration",
+    "coarse": "struggling",
+    "fineEst": "novice_exploration",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0.15,
+      "mastery": 0.2
+    },
+    "naiveOver": true,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "novice_exploration",
+    "coarse": "struggling",
+    "fineEst": "novice_exploration",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0.15,
+      "mastery": 0.2
+    },
+    "naiveOver": true,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "novice_exploration",
+    "coarse": "struggling",
+    "fineEst": "novice_exploration",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0.15,
+      "mastery": 0.2
+    },
+    "naiveOver": true,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "novice_exploration",
+    "coarse": "struggling",
+    "fineEst": "novice_exploration",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0.15,
+      "mastery": 0.2
+    },
+    "naiveOver": true,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "novice_exploration",
+    "coarse": "struggling",
+    "fineEst": "novice_exploration",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0.15,
+      "mastery": 0.2
+    },
+    "naiveOver": true,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "novice_exploration",
+    "coarse": "struggling",
+    "fineEst": "novice_exploration",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0.15,
+      "mastery": 0.2
+    },
+    "naiveOver": true,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "novice_exploration",
+    "coarse": "struggling",
+    "fineEst": "novice_exploration",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0.15,
+      "mastery": 0.2
+    },
+    "naiveOver": true,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "novice_exploration",
+    "coarse": "struggling",
+    "fineEst": "novice_exploration",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0.15,
+      "mastery": 0.2
+    },
+    "naiveOver": true,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "novice_exploration",
+    "coarse": "struggling",
+    "fineEst": "novice_exploration",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0.15,
+      "mastery": 0.2
+    },
+    "naiveOver": true,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "novice_exploration",
+    "coarse": "struggling",
+    "fineEst": "novice_exploration",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0.15,
+      "mastery": 0.2
+    },
+    "naiveOver": true,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "novice_exploration",
+    "coarse": "struggling",
+    "fineEst": "novice_exploration",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0.15,
+      "mastery": 0.2
+    },
+    "naiveOver": true,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "novice_exploration",
+    "coarse": "struggling",
+    "fineEst": "novice_exploration",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0.15,
+      "mastery": 0.2
+    },
+    "naiveOver": true,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "novice_exploration",
+    "coarse": "struggling",
+    "fineEst": "novice_exploration",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0.15,
+      "mastery": 0.2
+    },
+    "naiveOver": true,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "novice_exploration",
+    "coarse": "struggling",
+    "fineEst": "novice_exploration",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0.15,
+      "mastery": 0.2
+    },
+    "naiveOver": true,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "novice_exploration",
+    "coarse": "struggling",
+    "fineEst": "novice_exploration",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0.15,
+      "mastery": 0.2
+    },
+    "naiveOver": true,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "novice_exploration",
+    "coarse": "struggling",
+    "fineEst": "novice_exploration",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0.15,
+      "mastery": 0.2
+    },
+    "naiveOver": true,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "novice_exploration",
+    "coarse": "struggling",
+    "fineEst": "novice_exploration",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0.15,
+      "mastery": 0.2
+    },
+    "naiveOver": true,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "novice_exploration",
+    "coarse": "struggling",
+    "fineEst": "novice_exploration",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0.15,
+      "mastery": 0.2
+    },
+    "naiveOver": true,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "novice_exploration",
+    "coarse": "struggling",
+    "fineEst": "novice_exploration",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0.15,
+      "mastery": 0.2
+    },
+    "naiveOver": true,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "novice_exploration",
+    "coarse": "struggling",
+    "fineEst": "novice_exploration",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0.15,
+      "mastery": 0.2
+    },
+    "naiveOver": true,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "novice_exploration",
+    "coarse": "struggling",
+    "fineEst": "novice_exploration",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0.15,
+      "mastery": 0.2
+    },
+    "naiveOver": true,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "novice_exploration",
+    "coarse": "struggling",
+    "fineEst": "novice_exploration",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0.15,
+      "mastery": 0.2
+    },
+    "naiveOver": true,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "novice_exploration",
+    "coarse": "struggling",
+    "fineEst": "novice_exploration",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0.15,
+      "mastery": 0.2
+    },
+    "naiveOver": true,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "novice_exploration",
+    "coarse": "struggling",
+    "fineEst": "novice_exploration",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0.15,
+      "mastery": 0.2
+    },
+    "naiveOver": true,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "novice_exploration",
+    "coarse": "struggling",
+    "fineEst": "novice_exploration",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0.15,
+      "mastery": 0.2
+    },
+    "naiveOver": true,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "novice_exploration",
+    "coarse": "struggling",
+    "fineEst": "novice_exploration",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0.15,
+      "mastery": 0.2
+    },
+    "naiveOver": true,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "novice_exploration",
+    "coarse": "struggling",
+    "fineEst": "novice_exploration",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0.15,
+      "mastery": 0.2
+    },
+    "naiveOver": true,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "novice_exploration",
+    "coarse": "struggling",
+    "fineEst": "novice_exploration",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0.15,
+      "mastery": 0.2
+    },
+    "naiveOver": true,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "novice_exploration",
+    "coarse": "struggling",
+    "fineEst": "novice_exploration",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0.15,
+      "mastery": 0.2
+    },
+    "naiveOver": true,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "novice_exploration",
+    "coarse": "struggling",
+    "fineEst": "novice_exploration",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0.15,
+      "mastery": 0.2
+    },
+    "naiveOver": true,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "novice_exploration",
+    "coarse": "struggling",
+    "fineEst": "novice_exploration",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0.15,
+      "mastery": 0.2
+    },
+    "naiveOver": true,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "novice_exploration",
+    "coarse": "struggling",
+    "fineEst": "novice_exploration",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0.15,
+      "mastery": 0.2
+    },
+    "naiveOver": true,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "novice_exploration",
+    "coarse": "struggling",
+    "fineEst": "novice_exploration",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0.15,
+      "mastery": 0.2
+    },
+    "naiveOver": true,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "novice_exploration",
+    "coarse": "struggling",
+    "fineEst": "novice_exploration",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0.15,
+      "mastery": 0.2
+    },
+    "naiveOver": true,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "novice_exploration",
+    "coarse": "struggling",
+    "fineEst": "novice_exploration",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0.15,
+      "mastery": 0.2
+    },
+    "naiveOver": true,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "novice_exploration",
+    "coarse": "struggling",
+    "fineEst": "novice_exploration",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0.15,
+      "mastery": 0.2
+    },
+    "naiveOver": true,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "novice_exploration",
+    "coarse": "struggling",
+    "fineEst": "novice_exploration",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0.15,
+      "mastery": 0.2
+    },
+    "naiveOver": true,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "novice_exploration",
+    "coarse": "struggling",
+    "fineEst": "novice_exploration",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0.15,
+      "mastery": 0.2
+    },
+    "naiveOver": true,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "novice_exploration",
+    "coarse": "struggling",
+    "fineEst": "novice_exploration",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0.15,
+      "mastery": 0.2
+    },
+    "naiveOver": true,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "novice_exploration",
+    "coarse": "struggling",
+    "fineEst": "novice_exploration",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0.15,
+      "mastery": 0.2
+    },
+    "naiveOver": true,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "novice_exploration",
+    "coarse": "struggling",
+    "fineEst": "novice_exploration",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0.15,
+      "mastery": 0.2
+    },
+    "naiveOver": true,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "novice_exploration",
+    "coarse": "struggling",
+    "fineEst": "novice_exploration",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0.15,
+      "mastery": 0.2
+    },
+    "naiveOver": true,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "novice_exploration",
+    "coarse": "struggling",
+    "fineEst": "novice_exploration",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0.15,
+      "mastery": 0.2
+    },
+    "naiveOver": true,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "novice_exploration",
+    "coarse": "struggling",
+    "fineEst": "novice_exploration",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0.15,
+      "mastery": 0.2
+    },
+    "naiveOver": true,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "novice_exploration",
+    "coarse": "struggling",
+    "fineEst": "novice_exploration",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0.15,
+      "mastery": 0.2
+    },
+    "naiveOver": true,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "novice_exploration",
+    "coarse": "struggling",
+    "fineEst": "novice_exploration",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0.15,
+      "mastery": 0.2
+    },
+    "naiveOver": true,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "novice_exploration",
+    "coarse": "struggling",
+    "fineEst": "novice_exploration",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0.15,
+      "mastery": 0.2
+    },
+    "naiveOver": true,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "novice_exploration",
+    "coarse": "struggling",
+    "fineEst": "novice_exploration",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0.15,
+      "mastery": 0.2
+    },
+    "naiveOver": true,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "novice_exploration",
+    "coarse": "struggling",
+    "fineEst": "novice_exploration",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0.15,
+      "mastery": 0.2
+    },
+    "naiveOver": true,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "novice_exploration",
+    "coarse": "struggling",
+    "fineEst": "novice_exploration",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0.15,
+      "mastery": 0.2
+    },
+    "naiveOver": true,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "novice_exploration",
+    "coarse": "struggling",
+    "fineEst": "novice_exploration",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0.15,
+      "mastery": 0.2
+    },
+    "naiveOver": true,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "novice_exploration",
+    "coarse": "struggling",
+    "fineEst": "novice_exploration",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0.15,
+      "mastery": 0.2
+    },
+    "naiveOver": true,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "novice_exploration",
+    "coarse": "struggling",
+    "fineEst": "novice_exploration",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0.15,
+      "mastery": 0.2
+    },
+    "naiveOver": true,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "novice_exploration",
+    "coarse": "struggling",
+    "fineEst": "novice_exploration",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0.15,
+      "mastery": 0.2
+    },
+    "naiveOver": true,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "novice_exploration",
+    "coarse": "struggling",
+    "fineEst": "novice_exploration",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0.15,
+      "mastery": 0.2
+    },
+    "naiveOver": true,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "novice_exploration",
+    "coarse": "struggling",
+    "fineEst": "novice_exploration",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0.15,
+      "mastery": 0.2
+    },
+    "naiveOver": true,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "novice_exploration",
+    "coarse": "struggling",
+    "fineEst": "novice_exploration",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0.15,
+      "mastery": 0.2
+    },
+    "naiveOver": true,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "novice_exploration",
+    "coarse": "struggling",
+    "fineEst": "novice_exploration",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0.15,
+      "mastery": 0.2
+    },
+    "naiveOver": true,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "novice_exploration",
+    "coarse": "struggling",
+    "fineEst": "novice_exploration",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0.15,
+      "mastery": 0.2
+    },
+    "naiveOver": true,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "temporary_error",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "temporary_error",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "temporary_error",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "temporary_error",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "temporary_error",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "temporary_error",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "temporary_error",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "temporary_error",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "temporary_error",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "temporary_error",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "temporary_error",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "temporary_error",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "temporary_error",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "temporary_error",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "temporary_error",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "temporary_error",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "temporary_error",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "temporary_error",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "temporary_error",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "temporary_error",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "temporary_error",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "temporary_error",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "temporary_error",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "temporary_error",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "temporary_error",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "temporary_error",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "temporary_error",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "temporary_error",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "temporary_error",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "temporary_error",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "temporary_error",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "temporary_error",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "temporary_error",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "temporary_error",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "temporary_error",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "temporary_error",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "temporary_error",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "temporary_error",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "temporary_error",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "temporary_error",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "temporary_error",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "temporary_error",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "temporary_error",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "temporary_error",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "temporary_error",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "temporary_error",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "temporary_error",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "temporary_error",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "temporary_error",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "temporary_error",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "temporary_error",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "temporary_error",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "temporary_error",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "temporary_error",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "temporary_error",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "temporary_error",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "temporary_error",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "temporary_error",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "temporary_error",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "temporary_error",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "persistent_struggle",
+    "coarse": "struggling",
+    "fineEst": "persistent_struggle",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "partial_hint",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": true,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "persistent_struggle",
+    "coarse": "struggling",
+    "fineEst": "persistent_struggle",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "partial_hint",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": true,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "persistent_struggle",
+    "coarse": "struggling",
+    "fineEst": "persistent_struggle",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "partial_hint",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": true,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "persistent_struggle",
+    "coarse": "struggling",
+    "fineEst": "persistent_struggle",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "partial_hint",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": true,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "persistent_struggle",
+    "coarse": "struggling",
+    "fineEst": "persistent_struggle",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "partial_hint",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": true,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "persistent_struggle",
+    "coarse": "struggling",
+    "fineEst": "persistent_struggle",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "partial_hint",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": true,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "persistent_struggle",
+    "coarse": "struggling",
+    "fineEst": "persistent_struggle",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "partial_hint",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": true,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "persistent_struggle",
+    "coarse": "struggling",
+    "fineEst": "persistent_struggle",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "partial_hint",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": true,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "persistent_struggle",
+    "coarse": "struggling",
+    "fineEst": "persistent_struggle",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "partial_hint",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": true,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "persistent_struggle",
+    "coarse": "struggling",
+    "fineEst": "persistent_struggle",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "partial_hint",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": true,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "persistent_struggle",
+    "coarse": "struggling",
+    "fineEst": "persistent_struggle",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "partial_hint",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": true,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "persistent_struggle",
+    "coarse": "struggling",
+    "fineEst": "persistent_struggle",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "partial_hint",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": true,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "persistent_struggle",
+    "coarse": "struggling",
+    "fineEst": "persistent_struggle",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "partial_hint",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": true,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "persistent_struggle",
+    "coarse": "struggling",
+    "fineEst": "persistent_struggle",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "partial_hint",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": true,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "persistent_struggle",
+    "coarse": "struggling",
+    "fineEst": "persistent_struggle",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "partial_hint",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": true,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "persistent_struggle",
+    "coarse": "struggling",
+    "fineEst": "persistent_struggle",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "partial_hint",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": true,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "persistent_struggle",
+    "coarse": "struggling",
+    "fineEst": "persistent_struggle",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "partial_hint",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": true,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "persistent_struggle",
+    "coarse": "struggling",
+    "fineEst": "persistent_struggle",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "partial_hint",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": true,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "persistent_struggle",
+    "coarse": "struggling",
+    "fineEst": "persistent_struggle",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "partial_hint",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": true,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "persistent_struggle",
+    "coarse": "struggling",
+    "fineEst": "persistent_struggle",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "partial_hint",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": true,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "persistent_struggle",
+    "coarse": "struggling",
+    "fineEst": "persistent_struggle",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "partial_hint",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": true,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "persistent_struggle",
+    "coarse": "struggling",
+    "fineEst": "persistent_struggle",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "partial_hint",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": true,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "persistent_struggle",
+    "coarse": "struggling",
+    "fineEst": "persistent_struggle",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "partial_hint",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": true,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "persistent_struggle",
+    "coarse": "struggling",
+    "fineEst": "persistent_struggle",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "partial_hint",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": true,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "persistent_struggle",
+    "coarse": "struggling",
+    "fineEst": "persistent_struggle",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "partial_hint",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": true,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "persistent_struggle",
+    "coarse": "struggling",
+    "fineEst": "persistent_struggle",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "partial_hint",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": true,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "persistent_struggle",
+    "coarse": "struggling",
+    "fineEst": "persistent_struggle",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "partial_hint",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": true,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "persistent_struggle",
+    "coarse": "struggling",
+    "fineEst": "persistent_struggle",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "partial_hint",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": true,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "persistent_struggle",
+    "coarse": "struggling",
+    "fineEst": "persistent_struggle",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "partial_hint",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": true,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "persistent_struggle",
+    "coarse": "struggling",
+    "fineEst": "persistent_struggle",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "partial_hint",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": true,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "persistent_struggle",
+    "coarse": "struggling",
+    "fineEst": "persistent_struggle",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "partial_hint",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": true,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "persistent_struggle",
+    "coarse": "struggling",
+    "fineEst": "persistent_struggle",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "partial_hint",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": true,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "persistent_struggle",
+    "coarse": "struggling",
+    "fineEst": "persistent_struggle",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "partial_hint",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": true,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "persistent_struggle",
+    "coarse": "struggling",
+    "fineEst": "persistent_struggle",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "partial_hint",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": true,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "persistent_struggle",
+    "coarse": "struggling",
+    "fineEst": "persistent_struggle",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "partial_hint",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": true,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "persistent_struggle",
+    "coarse": "struggling",
+    "fineEst": "persistent_struggle",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "partial_hint",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": true,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "persistent_struggle",
+    "coarse": "struggling",
+    "fineEst": "persistent_struggle",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "partial_hint",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": true,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "persistent_struggle",
+    "coarse": "struggling",
+    "fineEst": "persistent_struggle",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "partial_hint",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": true,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "persistent_struggle",
+    "coarse": "struggling",
+    "fineEst": "persistent_struggle",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "partial_hint",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": true,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "persistent_struggle",
+    "coarse": "struggling",
+    "fineEst": "persistent_struggle",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "partial_hint",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": true,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "persistent_struggle",
+    "coarse": "struggling",
+    "fineEst": "persistent_struggle",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "partial_hint",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": true,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "persistent_struggle",
+    "coarse": "struggling",
+    "fineEst": "persistent_struggle",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "partial_hint",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": true,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "persistent_struggle",
+    "coarse": "struggling",
+    "fineEst": "persistent_struggle",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "partial_hint",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": true,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "persistent_struggle",
+    "coarse": "struggling",
+    "fineEst": "persistent_struggle",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "partial_hint",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": true,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "persistent_struggle",
+    "coarse": "struggling",
+    "fineEst": "persistent_struggle",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "partial_hint",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": true,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "persistent_struggle",
+    "coarse": "struggling",
+    "fineEst": "persistent_struggle",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "partial_hint",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": true,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "persistent_struggle",
+    "coarse": "struggling",
+    "fineEst": "persistent_struggle",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "partial_hint",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": true,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "persistent_struggle",
+    "coarse": "struggling",
+    "fineEst": "persistent_struggle",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "partial_hint",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": true,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "persistent_struggle",
+    "coarse": "struggling",
+    "fineEst": "persistent_struggle",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "partial_hint",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": true,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "persistent_struggle",
+    "coarse": "struggling",
+    "fineEst": "persistent_struggle",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "partial_hint",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": true,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "persistent_struggle",
+    "coarse": "struggling",
+    "fineEst": "persistent_struggle",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "partial_hint",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": true,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "persistent_struggle",
+    "coarse": "struggling",
+    "fineEst": "persistent_struggle",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "partial_hint",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": true,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "persistent_struggle",
+    "coarse": "struggling",
+    "fineEst": "persistent_struggle",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "partial_hint",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": true,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "persistent_struggle",
+    "coarse": "struggling",
+    "fineEst": "persistent_struggle",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "partial_hint",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": true,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "persistent_struggle",
+    "coarse": "struggling",
+    "fineEst": "persistent_struggle",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "partial_hint",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": true,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "persistent_struggle",
+    "coarse": "struggling",
+    "fineEst": "persistent_struggle",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "partial_hint",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": true,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "persistent_struggle",
+    "coarse": "struggling",
+    "fineEst": "persistent_struggle",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "partial_hint",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": true,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "persistent_struggle",
+    "coarse": "struggling",
+    "fineEst": "persistent_struggle",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "partial_hint",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": true,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "persistent_struggle",
+    "coarse": "struggling",
+    "fineEst": "persistent_struggle",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "partial_hint",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": true,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "persistent_struggle",
+    "coarse": "struggling",
+    "fineEst": "persistent_struggle",
+    "naiveA": "partial_hint",
+    "ua1A": "question",
+    "ua2A": "partial_hint",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "ua2": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": true,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "guided",
+    "coarse": "guided",
+    "fineEst": "guided",
+    "naiveA": "question",
+    "ua1A": "question",
+    "ua2A": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua2": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "guided",
+    "coarse": "guided",
+    "fineEst": "guided",
+    "naiveA": "question",
+    "ua1A": "question",
+    "ua2A": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua2": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "guided",
+    "coarse": "guided",
+    "fineEst": "guided",
+    "naiveA": "question",
+    "ua1A": "question",
+    "ua2A": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua2": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "guided",
+    "coarse": "guided",
+    "fineEst": "guided",
+    "naiveA": "question",
+    "ua1A": "question",
+    "ua2A": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua2": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "guided",
+    "coarse": "guided",
+    "fineEst": "guided",
+    "naiveA": "question",
+    "ua1A": "question",
+    "ua2A": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua2": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "guided",
+    "coarse": "guided",
+    "fineEst": "guided",
+    "naiveA": "question",
+    "ua1A": "question",
+    "ua2A": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua2": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "guided",
+    "coarse": "guided",
+    "fineEst": "guided",
+    "naiveA": "question",
+    "ua1A": "question",
+    "ua2A": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua2": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "guided",
+    "coarse": "guided",
+    "fineEst": "guided",
+    "naiveA": "question",
+    "ua1A": "question",
+    "ua2A": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua2": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "guided",
+    "coarse": "guided",
+    "fineEst": "guided",
+    "naiveA": "question",
+    "ua1A": "question",
+    "ua2A": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua2": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "guided",
+    "coarse": "guided",
+    "fineEst": "guided",
+    "naiveA": "question",
+    "ua1A": "question",
+    "ua2A": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua2": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "guided",
+    "coarse": "guided",
+    "fineEst": "guided",
+    "naiveA": "question",
+    "ua1A": "question",
+    "ua2A": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua2": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "guided",
+    "coarse": "guided",
+    "fineEst": "guided",
+    "naiveA": "question",
+    "ua1A": "question",
+    "ua2A": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua2": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "guided",
+    "coarse": "guided",
+    "fineEst": "guided",
+    "naiveA": "question",
+    "ua1A": "question",
+    "ua2A": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua2": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "guided",
+    "coarse": "guided",
+    "fineEst": "guided",
+    "naiveA": "question",
+    "ua1A": "question",
+    "ua2A": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua2": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "guided",
+    "coarse": "guided",
+    "fineEst": "guided",
+    "naiveA": "question",
+    "ua1A": "question",
+    "ua2A": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua2": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "guided",
+    "coarse": "guided",
+    "fineEst": "guided",
+    "naiveA": "question",
+    "ua1A": "question",
+    "ua2A": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua2": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "guided",
+    "coarse": "guided",
+    "fineEst": "guided",
+    "naiveA": "question",
+    "ua1A": "question",
+    "ua2A": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua2": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "guided",
+    "coarse": "guided",
+    "fineEst": "guided",
+    "naiveA": "question",
+    "ua1A": "question",
+    "ua2A": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua2": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "guided",
+    "coarse": "guided",
+    "fineEst": "guided",
+    "naiveA": "question",
+    "ua1A": "question",
+    "ua2A": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua2": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "guided",
+    "coarse": "guided",
+    "fineEst": "guided",
+    "naiveA": "question",
+    "ua1A": "question",
+    "ua2A": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua2": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "guided",
+    "coarse": "guided",
+    "fineEst": "guided",
+    "naiveA": "question",
+    "ua1A": "question",
+    "ua2A": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua2": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "guided",
+    "coarse": "guided",
+    "fineEst": "guided",
+    "naiveA": "question",
+    "ua1A": "question",
+    "ua2A": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua2": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "guided",
+    "coarse": "guided",
+    "fineEst": "guided",
+    "naiveA": "question",
+    "ua1A": "question",
+    "ua2A": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua2": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "guided",
+    "coarse": "guided",
+    "fineEst": "guided",
+    "naiveA": "question",
+    "ua1A": "question",
+    "ua2A": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua2": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "guided",
+    "coarse": "guided",
+    "fineEst": "guided",
+    "naiveA": "question",
+    "ua1A": "question",
+    "ua2A": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua2": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "guided",
+    "coarse": "guided",
+    "fineEst": "guided",
+    "naiveA": "question",
+    "ua1A": "question",
+    "ua2A": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua2": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "guided",
+    "coarse": "guided",
+    "fineEst": "guided",
+    "naiveA": "question",
+    "ua1A": "question",
+    "ua2A": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua2": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "guided",
+    "coarse": "guided",
+    "fineEst": "guided",
+    "naiveA": "question",
+    "ua1A": "question",
+    "ua2A": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua2": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "guided",
+    "coarse": "guided",
+    "fineEst": "guided",
+    "naiveA": "question",
+    "ua1A": "question",
+    "ua2A": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua2": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "guided",
+    "coarse": "guided",
+    "fineEst": "guided",
+    "naiveA": "question",
+    "ua1A": "question",
+    "ua2A": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua2": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "guided",
+    "coarse": "guided",
+    "fineEst": "guided",
+    "naiveA": "question",
+    "ua1A": "question",
+    "ua2A": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua2": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "guided",
+    "coarse": "guided",
+    "fineEst": "guided",
+    "naiveA": "question",
+    "ua1A": "question",
+    "ua2A": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua2": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "guided",
+    "coarse": "guided",
+    "fineEst": "guided",
+    "naiveA": "question",
+    "ua1A": "question",
+    "ua2A": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua2": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "guided",
+    "coarse": "guided",
+    "fineEst": "guided",
+    "naiveA": "question",
+    "ua1A": "question",
+    "ua2A": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua2": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "guided",
+    "coarse": "guided",
+    "fineEst": "guided",
+    "naiveA": "question",
+    "ua1A": "question",
+    "ua2A": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua2": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "guided",
+    "coarse": "guided",
+    "fineEst": "guided",
+    "naiveA": "question",
+    "ua1A": "question",
+    "ua2A": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua2": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "guided",
+    "coarse": "guided",
+    "fineEst": "guided",
+    "naiveA": "question",
+    "ua1A": "question",
+    "ua2A": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua2": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "guided",
+    "coarse": "guided",
+    "fineEst": "guided",
+    "naiveA": "question",
+    "ua1A": "question",
+    "ua2A": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua2": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "guided",
+    "coarse": "guided",
+    "fineEst": "guided",
+    "naiveA": "question",
+    "ua1A": "question",
+    "ua2A": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua2": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "guided",
+    "coarse": "guided",
+    "fineEst": "guided",
+    "naiveA": "question",
+    "ua1A": "question",
+    "ua2A": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua2": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "guided",
+    "coarse": "guided",
+    "fineEst": "guided",
+    "naiveA": "question",
+    "ua1A": "question",
+    "ua2A": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua2": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "guided",
+    "coarse": "guided",
+    "fineEst": "guided",
+    "naiveA": "question",
+    "ua1A": "question",
+    "ua2A": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua2": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "guided",
+    "coarse": "guided",
+    "fineEst": "guided",
+    "naiveA": "question",
+    "ua1A": "question",
+    "ua2A": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua2": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "guided",
+    "coarse": "guided",
+    "fineEst": "guided",
+    "naiveA": "question",
+    "ua1A": "question",
+    "ua2A": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua2": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "guided",
+    "coarse": "guided",
+    "fineEst": "guided",
+    "naiveA": "question",
+    "ua1A": "question",
+    "ua2A": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua2": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "guided",
+    "coarse": "guided",
+    "fineEst": "guided",
+    "naiveA": "question",
+    "ua1A": "question",
+    "ua2A": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua2": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "guided",
+    "coarse": "guided",
+    "fineEst": "guided",
+    "naiveA": "question",
+    "ua1A": "question",
+    "ua2A": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua2": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "guided",
+    "coarse": "guided",
+    "fineEst": "guided",
+    "naiveA": "question",
+    "ua1A": "question",
+    "ua2A": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua2": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "guided",
+    "coarse": "guided",
+    "fineEst": "guided",
+    "naiveA": "question",
+    "ua1A": "question",
+    "ua2A": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua2": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "guided",
+    "coarse": "guided",
+    "fineEst": "guided",
+    "naiveA": "question",
+    "ua1A": "question",
+    "ua2A": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua2": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "guided",
+    "coarse": "guided",
+    "fineEst": "guided",
+    "naiveA": "question",
+    "ua1A": "question",
+    "ua2A": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua2": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "guided",
+    "coarse": "guided",
+    "fineEst": "guided",
+    "naiveA": "question",
+    "ua1A": "question",
+    "ua2A": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua2": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "guided",
+    "coarse": "guided",
+    "fineEst": "guided",
+    "naiveA": "question",
+    "ua1A": "question",
+    "ua2A": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua2": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "guided",
+    "coarse": "guided",
+    "fineEst": "guided",
+    "naiveA": "question",
+    "ua1A": "question",
+    "ua2A": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua2": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "guided",
+    "coarse": "guided",
+    "fineEst": "guided",
+    "naiveA": "question",
+    "ua1A": "question",
+    "ua2A": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua2": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "guided",
+    "coarse": "guided",
+    "fineEst": "guided",
+    "naiveA": "question",
+    "ua1A": "question",
+    "ua2A": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua2": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "guided",
+    "coarse": "guided",
+    "fineEst": "guided",
+    "naiveA": "question",
+    "ua1A": "question",
+    "ua2A": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua2": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "guided",
+    "coarse": "guided",
+    "fineEst": "guided",
+    "naiveA": "question",
+    "ua1A": "question",
+    "ua2A": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua2": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "guided",
+    "coarse": "guided",
+    "fineEst": "guided",
+    "naiveA": "question",
+    "ua1A": "question",
+    "ua2A": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua2": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "guided",
+    "coarse": "guided",
+    "fineEst": "guided",
+    "naiveA": "question",
+    "ua1A": "question",
+    "ua2A": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua1": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua2": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "independent",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "independent",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "independent",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "independent",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "independent",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "independent",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "independent",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "independent",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "independent",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "independent",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "independent",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "independent",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "independent",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "independent",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "independent",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "independent",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "independent",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "independent",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "independent",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "independent",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "independent",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "independent",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "independent",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "independent",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "independent",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "independent",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "independent",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "independent",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "independent",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "independent",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "independent",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "independent",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "independent",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "independent",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "independent",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "independent",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "independent",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "independent",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "independent",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "independent",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "independent",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "independent",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "independent",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "independent",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "independent",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "independent",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "independent",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "independent",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "independent",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "independent",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "independent",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "independent",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "independent",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "independent",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "independent",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "independent",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "independent",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "independent",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "independent",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  },
+  {
+    "fineTruth": "independent",
+    "coarse": "independent",
+    "fineEst": "independent",
+    "naiveA": "free_attempt",
+    "ua1A": "free_attempt",
+    "ua2A": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua1": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua2": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveOver": false,
+    "ua1Over": false,
+    "ua2Over": false,
+    "naiveUnder": false,
+    "ua1Under": false,
+    "ua2Under": false
+  }
+]

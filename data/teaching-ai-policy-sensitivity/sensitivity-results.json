@@ -1,0 +1,77 @@
+[
+  {
+    "variant": "B0_formal_like",
+    "policy": "A_static_lesson",
+    "mean_skill_gain": 2.733
+  },
+  {
+    "variant": "B0_formal_like",
+    "policy": "B_hint_aligned",
+    "mean_skill_gain": 1
+  },
+  {
+    "variant": "B0_formal_like",
+    "policy": "C_learner_adaptive",
+    "mean_skill_gain": 2.733
+  },
+  {
+    "variant": "S1_demo_dominant",
+    "policy": "A_static_lesson",
+    "mean_skill_gain": 2.733
+  },
+  {
+    "variant": "S1_demo_dominant",
+    "policy": "B_hint_aligned",
+    "mean_skill_gain": 1
+  },
+  {
+    "variant": "S1_demo_dominant",
+    "policy": "C_learner_adaptive",
+    "mean_skill_gain": 0.667
+  },
+  {
+    "variant": "S2_guided_dominant",
+    "policy": "A_static_lesson",
+    "mean_skill_gain": 0.667
+  },
+  {
+    "variant": "S2_guided_dominant",
+    "policy": "B_hint_aligned",
+    "mean_skill_gain": 0.133
+  },
+  {
+    "variant": "S2_guided_dominant",
+    "policy": "C_learner_adaptive",
+    "mean_skill_gain": 2.733
+  },
+  {
+    "variant": "S3_recovery_bonus",
+    "policy": "A_static_lesson",
+    "mean_skill_gain": 2.733
+  },
+  {
+    "variant": "S3_recovery_bonus",
+    "policy": "B_hint_aligned",
+    "mean_skill_gain": 1
+  },
+  {
+    "variant": "S3_recovery_bonus",
+    "policy": "C_learner_adaptive",
+    "mean_skill_gain": 2.733
+  },
+  {
+    "variant": "S4_transfer_bonus",
+    "policy": "A_static_lesson",
+    "mean_skill_gain": 1
+  },
+  {
+    "variant": "S4_transfer_bonus",
+    "policy": "B_hint_aligned",
+    "mean_skill_gain": 1
+  },
+  {
+    "variant": "S4_transfer_bonus",
+    "policy": "C_learner_adaptive",
+    "mean_skill_gain": 1
+  }
+]

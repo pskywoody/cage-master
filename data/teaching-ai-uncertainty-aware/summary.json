@@ -1,0 +1,26 @@
+{
+  "all": {
+    "naiveHintDependency": 0,
+    "uaHintDependency": -0.06,
+    "naiveFrustration": 0,
+    "uaFrustration": 0.02,
+    "naiveMastery": 0.65,
+    "uaMastery": 0.57,
+    "naiveUnnecessaryRate": 0.2,
+    "uaUnnecessaryRate": 0
+  },
+  "novice": {
+    "naiveUnnecessaryRate": 0.5,
+    "uaUnnecessaryRate": 0,
+    "naiveHintDependency": 0.025,
+    "uaHintDependency": -0.05
+  },
+  "struggling": {
+    "naiveHintDependency": 0.1,
+    "uaHintDependency": -0.05,
+    "naiveFrustration": 0,
+    "uaFrustration": 0.05,
+    "naiveMastery": 0.55,
+    "uaMastery": 0.35
+  }
+}

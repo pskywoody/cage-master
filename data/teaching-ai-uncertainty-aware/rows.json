@@ -1,0 +1,5702 @@
+[
+  {
+    "trueState": "struggling",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "struggling",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "struggling",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "struggling",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "struggling",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "struggling",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "struggling",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "struggling",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "struggling",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "struggling",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "struggling",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "struggling",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "struggling",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "struggling",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "struggling",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "struggling",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "struggling",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "struggling",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "struggling",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "struggling",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "struggling",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "struggling",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "struggling",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "struggling",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "struggling",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "struggling",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "struggling",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "struggling",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "struggling",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "struggling",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "struggling",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "struggling",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "struggling",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "struggling",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "struggling",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "struggling",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "struggling",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "struggling",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "struggling",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "struggling",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "struggling",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "struggling",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "struggling",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "struggling",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "struggling",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "struggling",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "struggling",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "struggling",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "struggling",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "struggling",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "struggling",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "struggling",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "struggling",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "struggling",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "struggling",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "struggling",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "struggling",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "struggling",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "struggling",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "struggling",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_with_error",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": true,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_with_error",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": true,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_with_error",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": true,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_with_error",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": true,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_with_error",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": true,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_with_error",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": true,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_with_error",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": true,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_with_error",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": true,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_with_error",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": true,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_with_error",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": true,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_with_error",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": true,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_with_error",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": true,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_with_error",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": true,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_with_error",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": true,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_with_error",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": true,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_with_error",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": true,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_with_error",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": true,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_with_error",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": true,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_with_error",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": true,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_with_error",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": true,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_with_error",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": true,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_with_error",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": true,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_with_error",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": true,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_with_error",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": true,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_with_error",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": true,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_with_error",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": true,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_with_error",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": true,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_with_error",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": true,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_with_error",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": true,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_with_error",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": true,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_with_error",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": true,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_with_error",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": true,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_with_error",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": true,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_with_error",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": true,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_with_error",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": true,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_with_error",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": true,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_with_error",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": true,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_with_error",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": true,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_with_error",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": true,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_with_error",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": true,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_with_error",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": true,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_with_error",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": true,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_with_error",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": true,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_with_error",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": true,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_with_error",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": true,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_with_error",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": true,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_with_error",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": true,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_with_error",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": true,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_with_error",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": true,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_with_error",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": true,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_with_error",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": true,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_with_error",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": true,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_with_error",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": true,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_with_error",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": true,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_with_error",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": true,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_with_error",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": true,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_with_error",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": true,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_with_error",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": true,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_with_error",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": true,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_with_error",
+    "estimatedState": "struggling",
+    "confidence": 0.175,
+    "naiveAction": "partial_hint",
+    "uaAction": "question",
+    "naive": {
+      "hint": 0.1,
+      "frust": 0,
+      "mastery": 0.55
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0.05,
+      "mastery": 0.35
+    },
+    "naiveUnnecessary": true,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_clean",
+    "estimatedState": "novice",
+    "confidence": 0.175,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_clean",
+    "estimatedState": "novice",
+    "confidence": 0.175,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_clean",
+    "estimatedState": "novice",
+    "confidence": 0.175,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_clean",
+    "estimatedState": "novice",
+    "confidence": 0.175,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_clean",
+    "estimatedState": "novice",
+    "confidence": 0.175,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_clean",
+    "estimatedState": "novice",
+    "confidence": 0.175,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_clean",
+    "estimatedState": "novice",
+    "confidence": 0.175,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_clean",
+    "estimatedState": "novice",
+    "confidence": 0.175,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_clean",
+    "estimatedState": "novice",
+    "confidence": 0.175,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_clean",
+    "estimatedState": "novice",
+    "confidence": 0.175,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_clean",
+    "estimatedState": "novice",
+    "confidence": 0.175,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_clean",
+    "estimatedState": "novice",
+    "confidence": 0.175,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_clean",
+    "estimatedState": "novice",
+    "confidence": 0.175,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_clean",
+    "estimatedState": "novice",
+    "confidence": 0.175,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_clean",
+    "estimatedState": "novice",
+    "confidence": 0.175,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_clean",
+    "estimatedState": "novice",
+    "confidence": 0.175,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_clean",
+    "estimatedState": "novice",
+    "confidence": 0.175,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_clean",
+    "estimatedState": "novice",
+    "confidence": 0.175,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_clean",
+    "estimatedState": "novice",
+    "confidence": 0.175,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_clean",
+    "estimatedState": "novice",
+    "confidence": 0.175,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_clean",
+    "estimatedState": "novice",
+    "confidence": 0.175,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_clean",
+    "estimatedState": "novice",
+    "confidence": 0.175,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_clean",
+    "estimatedState": "novice",
+    "confidence": 0.175,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_clean",
+    "estimatedState": "novice",
+    "confidence": 0.175,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_clean",
+    "estimatedState": "novice",
+    "confidence": 0.175,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_clean",
+    "estimatedState": "novice",
+    "confidence": 0.175,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_clean",
+    "estimatedState": "novice",
+    "confidence": 0.175,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_clean",
+    "estimatedState": "novice",
+    "confidence": 0.175,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_clean",
+    "estimatedState": "novice",
+    "confidence": 0.175,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_clean",
+    "estimatedState": "novice",
+    "confidence": 0.175,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_clean",
+    "estimatedState": "novice",
+    "confidence": 0.175,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_clean",
+    "estimatedState": "novice",
+    "confidence": 0.175,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_clean",
+    "estimatedState": "novice",
+    "confidence": 0.175,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_clean",
+    "estimatedState": "novice",
+    "confidence": 0.175,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_clean",
+    "estimatedState": "novice",
+    "confidence": 0.175,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_clean",
+    "estimatedState": "novice",
+    "confidence": 0.175,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_clean",
+    "estimatedState": "novice",
+    "confidence": 0.175,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_clean",
+    "estimatedState": "novice",
+    "confidence": 0.175,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_clean",
+    "estimatedState": "novice",
+    "confidence": 0.175,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_clean",
+    "estimatedState": "novice",
+    "confidence": 0.175,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_clean",
+    "estimatedState": "novice",
+    "confidence": 0.175,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_clean",
+    "estimatedState": "novice",
+    "confidence": 0.175,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_clean",
+    "estimatedState": "novice",
+    "confidence": 0.175,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_clean",
+    "estimatedState": "novice",
+    "confidence": 0.175,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_clean",
+    "estimatedState": "novice",
+    "confidence": 0.175,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_clean",
+    "estimatedState": "novice",
+    "confidence": 0.175,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_clean",
+    "estimatedState": "novice",
+    "confidence": 0.175,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_clean",
+    "estimatedState": "novice",
+    "confidence": 0.175,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_clean",
+    "estimatedState": "novice",
+    "confidence": 0.175,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_clean",
+    "estimatedState": "novice",
+    "confidence": 0.175,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_clean",
+    "estimatedState": "novice",
+    "confidence": 0.175,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_clean",
+    "estimatedState": "novice",
+    "confidence": 0.175,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_clean",
+    "estimatedState": "novice",
+    "confidence": 0.175,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_clean",
+    "estimatedState": "novice",
+    "confidence": 0.175,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_clean",
+    "estimatedState": "novice",
+    "confidence": 0.175,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_clean",
+    "estimatedState": "novice",
+    "confidence": 0.175,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_clean",
+    "estimatedState": "novice",
+    "confidence": 0.175,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_clean",
+    "estimatedState": "novice",
+    "confidence": 0.175,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_clean",
+    "estimatedState": "novice",
+    "confidence": 0.175,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "novice_clean",
+    "estimatedState": "novice",
+    "confidence": 0.175,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "guided",
+    "estimatedState": "guided",
+    "confidence": 0.225,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "guided",
+    "estimatedState": "guided",
+    "confidence": 0.225,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "guided",
+    "estimatedState": "guided",
+    "confidence": 0.225,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "guided",
+    "estimatedState": "guided",
+    "confidence": 0.225,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "guided",
+    "estimatedState": "guided",
+    "confidence": 0.225,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "guided",
+    "estimatedState": "guided",
+    "confidence": 0.225,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "guided",
+    "estimatedState": "guided",
+    "confidence": 0.225,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "guided",
+    "estimatedState": "guided",
+    "confidence": 0.225,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "guided",
+    "estimatedState": "guided",
+    "confidence": 0.225,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "guided",
+    "estimatedState": "guided",
+    "confidence": 0.225,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "guided",
+    "estimatedState": "guided",
+    "confidence": 0.225,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "guided",
+    "estimatedState": "guided",
+    "confidence": 0.225,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "guided",
+    "estimatedState": "guided",
+    "confidence": 0.225,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "guided",
+    "estimatedState": "guided",
+    "confidence": 0.225,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "guided",
+    "estimatedState": "guided",
+    "confidence": 0.225,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "guided",
+    "estimatedState": "guided",
+    "confidence": 0.225,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "guided",
+    "estimatedState": "guided",
+    "confidence": 0.225,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "guided",
+    "estimatedState": "guided",
+    "confidence": 0.225,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "guided",
+    "estimatedState": "guided",
+    "confidence": 0.225,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "guided",
+    "estimatedState": "guided",
+    "confidence": 0.225,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "guided",
+    "estimatedState": "guided",
+    "confidence": 0.225,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "guided",
+    "estimatedState": "guided",
+    "confidence": 0.225,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "guided",
+    "estimatedState": "guided",
+    "confidence": 0.225,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "guided",
+    "estimatedState": "guided",
+    "confidence": 0.225,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "guided",
+    "estimatedState": "guided",
+    "confidence": 0.225,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "guided",
+    "estimatedState": "guided",
+    "confidence": 0.225,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "guided",
+    "estimatedState": "guided",
+    "confidence": 0.225,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "guided",
+    "estimatedState": "guided",
+    "confidence": 0.225,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "guided",
+    "estimatedState": "guided",
+    "confidence": 0.225,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "guided",
+    "estimatedState": "guided",
+    "confidence": 0.225,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "guided",
+    "estimatedState": "guided",
+    "confidence": 0.225,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "guided",
+    "estimatedState": "guided",
+    "confidence": 0.225,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "guided",
+    "estimatedState": "guided",
+    "confidence": 0.225,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "guided",
+    "estimatedState": "guided",
+    "confidence": 0.225,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "guided",
+    "estimatedState": "guided",
+    "confidence": 0.225,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "guided",
+    "estimatedState": "guided",
+    "confidence": 0.225,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "guided",
+    "estimatedState": "guided",
+    "confidence": 0.225,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "guided",
+    "estimatedState": "guided",
+    "confidence": 0.225,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "guided",
+    "estimatedState": "guided",
+    "confidence": 0.225,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "guided",
+    "estimatedState": "guided",
+    "confidence": 0.225,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "guided",
+    "estimatedState": "guided",
+    "confidence": 0.225,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "guided",
+    "estimatedState": "guided",
+    "confidence": 0.225,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "guided",
+    "estimatedState": "guided",
+    "confidence": 0.225,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "guided",
+    "estimatedState": "guided",
+    "confidence": 0.225,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "guided",
+    "estimatedState": "guided",
+    "confidence": 0.225,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "guided",
+    "estimatedState": "guided",
+    "confidence": 0.225,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "guided",
+    "estimatedState": "guided",
+    "confidence": 0.225,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "guided",
+    "estimatedState": "guided",
+    "confidence": 0.225,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "guided",
+    "estimatedState": "guided",
+    "confidence": 0.225,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "guided",
+    "estimatedState": "guided",
+    "confidence": 0.225,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "guided",
+    "estimatedState": "guided",
+    "confidence": 0.225,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "guided",
+    "estimatedState": "guided",
+    "confidence": 0.225,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "guided",
+    "estimatedState": "guided",
+    "confidence": 0.225,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "guided",
+    "estimatedState": "guided",
+    "confidence": 0.225,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "guided",
+    "estimatedState": "guided",
+    "confidence": 0.225,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "guided",
+    "estimatedState": "guided",
+    "confidence": 0.225,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "guided",
+    "estimatedState": "guided",
+    "confidence": 0.225,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "guided",
+    "estimatedState": "guided",
+    "confidence": 0.225,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "guided",
+    "estimatedState": "guided",
+    "confidence": 0.225,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "guided",
+    "estimatedState": "guided",
+    "confidence": 0.225,
+    "naiveAction": "question",
+    "uaAction": "question",
+    "naive": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "ua": {
+      "hint": -0.05,
+      "frust": 0,
+      "mastery": 0.7
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "independent",
+    "estimatedState": "independent",
+    "confidence": 0.225,
+    "naiveAction": "free_attempt",
+    "uaAction": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "independent",
+    "estimatedState": "independent",
+    "confidence": 0.225,
+    "naiveAction": "free_attempt",
+    "uaAction": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "independent",
+    "estimatedState": "independent",
+    "confidence": 0.225,
+    "naiveAction": "free_attempt",
+    "uaAction": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "independent",
+    "estimatedState": "independent",
+    "confidence": 0.225,
+    "naiveAction": "free_attempt",
+    "uaAction": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "independent",
+    "estimatedState": "independent",
+    "confidence": 0.225,
+    "naiveAction": "free_attempt",
+    "uaAction": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "independent",
+    "estimatedState": "independent",
+    "confidence": 0.225,
+    "naiveAction": "free_attempt",
+    "uaAction": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "independent",
+    "estimatedState": "independent",
+    "confidence": 0.225,
+    "naiveAction": "free_attempt",
+    "uaAction": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "independent",
+    "estimatedState": "independent",
+    "confidence": 0.225,
+    "naiveAction": "free_attempt",
+    "uaAction": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "independent",
+    "estimatedState": "independent",
+    "confidence": 0.225,
+    "naiveAction": "free_attempt",
+    "uaAction": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "independent",
+    "estimatedState": "independent",
+    "confidence": 0.225,
+    "naiveAction": "free_attempt",
+    "uaAction": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "independent",
+    "estimatedState": "independent",
+    "confidence": 0.225,
+    "naiveAction": "free_attempt",
+    "uaAction": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "independent",
+    "estimatedState": "independent",
+    "confidence": 0.225,
+    "naiveAction": "free_attempt",
+    "uaAction": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "independent",
+    "estimatedState": "independent",
+    "confidence": 0.225,
+    "naiveAction": "free_attempt",
+    "uaAction": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "independent",
+    "estimatedState": "independent",
+    "confidence": 0.225,
+    "naiveAction": "free_attempt",
+    "uaAction": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "independent",
+    "estimatedState": "independent",
+    "confidence": 0.225,
+    "naiveAction": "free_attempt",
+    "uaAction": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "independent",
+    "estimatedState": "independent",
+    "confidence": 0.225,
+    "naiveAction": "free_attempt",
+    "uaAction": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "independent",
+    "estimatedState": "independent",
+    "confidence": 0.225,
+    "naiveAction": "free_attempt",
+    "uaAction": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "independent",
+    "estimatedState": "independent",
+    "confidence": 0.225,
+    "naiveAction": "free_attempt",
+    "uaAction": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "independent",
+    "estimatedState": "independent",
+    "confidence": 0.225,
+    "naiveAction": "free_attempt",
+    "uaAction": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "independent",
+    "estimatedState": "independent",
+    "confidence": 0.225,
+    "naiveAction": "free_attempt",
+    "uaAction": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "independent",
+    "estimatedState": "independent",
+    "confidence": 0.225,
+    "naiveAction": "free_attempt",
+    "uaAction": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "independent",
+    "estimatedState": "independent",
+    "confidence": 0.225,
+    "naiveAction": "free_attempt",
+    "uaAction": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "independent",
+    "estimatedState": "independent",
+    "confidence": 0.225,
+    "naiveAction": "free_attempt",
+    "uaAction": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "independent",
+    "estimatedState": "independent",
+    "confidence": 0.225,
+    "naiveAction": "free_attempt",
+    "uaAction": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "independent",
+    "estimatedState": "independent",
+    "confidence": 0.225,
+    "naiveAction": "free_attempt",
+    "uaAction": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "independent",
+    "estimatedState": "independent",
+    "confidence": 0.225,
+    "naiveAction": "free_attempt",
+    "uaAction": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "independent",
+    "estimatedState": "independent",
+    "confidence": 0.225,
+    "naiveAction": "free_attempt",
+    "uaAction": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "independent",
+    "estimatedState": "independent",
+    "confidence": 0.225,
+    "naiveAction": "free_attempt",
+    "uaAction": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "independent",
+    "estimatedState": "independent",
+    "confidence": 0.225,
+    "naiveAction": "free_attempt",
+    "uaAction": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "independent",
+    "estimatedState": "independent",
+    "confidence": 0.225,
+    "naiveAction": "free_attempt",
+    "uaAction": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "independent",
+    "estimatedState": "independent",
+    "confidence": 0.225,
+    "naiveAction": "free_attempt",
+    "uaAction": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "independent",
+    "estimatedState": "independent",
+    "confidence": 0.225,
+    "naiveAction": "free_attempt",
+    "uaAction": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "independent",
+    "estimatedState": "independent",
+    "confidence": 0.225,
+    "naiveAction": "free_attempt",
+    "uaAction": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "independent",
+    "estimatedState": "independent",
+    "confidence": 0.225,
+    "naiveAction": "free_attempt",
+    "uaAction": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "independent",
+    "estimatedState": "independent",
+    "confidence": 0.225,
+    "naiveAction": "free_attempt",
+    "uaAction": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "independent",
+    "estimatedState": "independent",
+    "confidence": 0.225,
+    "naiveAction": "free_attempt",
+    "uaAction": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "independent",
+    "estimatedState": "independent",
+    "confidence": 0.225,
+    "naiveAction": "free_attempt",
+    "uaAction": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "independent",
+    "estimatedState": "independent",
+    "confidence": 0.225,
+    "naiveAction": "free_attempt",
+    "uaAction": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "independent",
+    "estimatedState": "independent",
+    "confidence": 0.225,
+    "naiveAction": "free_attempt",
+    "uaAction": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "independent",
+    "estimatedState": "independent",
+    "confidence": 0.225,
+    "naiveAction": "free_attempt",
+    "uaAction": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "independent",
+    "estimatedState": "independent",
+    "confidence": 0.225,
+    "naiveAction": "free_attempt",
+    "uaAction": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "independent",
+    "estimatedState": "independent",
+    "confidence": 0.225,
+    "naiveAction": "free_attempt",
+    "uaAction": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "independent",
+    "estimatedState": "independent",
+    "confidence": 0.225,
+    "naiveAction": "free_attempt",
+    "uaAction": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "independent",
+    "estimatedState": "independent",
+    "confidence": 0.225,
+    "naiveAction": "free_attempt",
+    "uaAction": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "independent",
+    "estimatedState": "independent",
+    "confidence": 0.225,
+    "naiveAction": "free_attempt",
+    "uaAction": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "independent",
+    "estimatedState": "independent",
+    "confidence": 0.225,
+    "naiveAction": "free_attempt",
+    "uaAction": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "independent",
+    "estimatedState": "independent",
+    "confidence": 0.225,
+    "naiveAction": "free_attempt",
+    "uaAction": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "independent",
+    "estimatedState": "independent",
+    "confidence": 0.225,
+    "naiveAction": "free_attempt",
+    "uaAction": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "independent",
+    "estimatedState": "independent",
+    "confidence": 0.225,
+    "naiveAction": "free_attempt",
+    "uaAction": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "independent",
+    "estimatedState": "independent",
+    "confidence": 0.225,
+    "naiveAction": "free_attempt",
+    "uaAction": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "independent",
+    "estimatedState": "independent",
+    "confidence": 0.225,
+    "naiveAction": "free_attempt",
+    "uaAction": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "independent",
+    "estimatedState": "independent",
+    "confidence": 0.225,
+    "naiveAction": "free_attempt",
+    "uaAction": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "independent",
+    "estimatedState": "independent",
+    "confidence": 0.225,
+    "naiveAction": "free_attempt",
+    "uaAction": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "independent",
+    "estimatedState": "independent",
+    "confidence": 0.225,
+    "naiveAction": "free_attempt",
+    "uaAction": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "independent",
+    "estimatedState": "independent",
+    "confidence": 0.225,
+    "naiveAction": "free_attempt",
+    "uaAction": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "independent",
+    "estimatedState": "independent",
+    "confidence": 0.225,
+    "naiveAction": "free_attempt",
+    "uaAction": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "independent",
+    "estimatedState": "independent",
+    "confidence": 0.225,
+    "naiveAction": "free_attempt",
+    "uaAction": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "independent",
+    "estimatedState": "independent",
+    "confidence": 0.225,
+    "naiveAction": "free_attempt",
+    "uaAction": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "independent",
+    "estimatedState": "independent",
+    "confidence": 0.225,
+    "naiveAction": "free_attempt",
+    "uaAction": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  },
+  {
+    "trueState": "independent",
+    "estimatedState": "independent",
+    "confidence": 0.225,
+    "naiveAction": "free_attempt",
+    "uaAction": "free_attempt",
+    "naive": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "ua": {
+      "hint": -0.1,
+      "frust": 0,
+      "mastery": 0.75
+    },
+    "naiveUnnecessary": false,
+    "uaUnnecessary": false
+  }
+]

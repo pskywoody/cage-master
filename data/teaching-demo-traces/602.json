@@ -1,0 +1,74 @@
+{
+  "levelId": 602,
+  "technique": "cageUnique",
+  "resolvedTechnique": "cageUnique",
+  "confidence": 0.95,
+  "demoSteps": [
+    {
+      "action": "spotlight",
+      "enabled": true
+    },
+    {
+      "action": "highlight",
+      "region": "cage",
+      "id": 4,
+      "cells": [],
+      "reason": "笼子和 9，3 格唯一组合只能是 1+3"
+    },
+    {
+      "action": "highlight",
+      "cells": [
+        [
+          0,
+          5
+        ]
+      ],
+      "reason": "另一格 c6（同行已有 1） 被排除，所以 a6 锁定 1（1+3）"
+    },
+    {
+      "action": "conclude",
+      "cells": [
+        [
+          0,
+          5
+        ]
+      ],
+      "reason": "就是它！1。"
+    }
+  ],
+  "fallback": "auto",
+  "fallbackReason": null,
+  "trace": [
+    {
+      "step": "resolve_start",
+      "ts": 1786871231753
+    },
+    {
+      "step": "technique_selected",
+      "technique": "cageUnique",
+      "ts": 1786871231754
+    },
+    {
+      "step": "steps_generated",
+      "count": 4,
+      "ts": 1786871231754
+    },
+    {
+      "step": "validation",
+      "valid": true,
+      "evidenceComplete": true,
+      "ts": 1786871231754
+    },
+    {
+      "step": "renderable",
+      "renderable": true,
+      "ts": 1786871231754
+    },
+    {
+      "step": "fallback",
+      "fallback": "auto",
+      "reason": null,
+      "ts": 1786871231754
+    }
+  ]
+}

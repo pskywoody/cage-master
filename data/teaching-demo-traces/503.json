@@ -1,0 +1,74 @@
+{
+  "levelId": 503,
+  "technique": "cageUnique",
+  "resolvedTechnique": "cageUnique",
+  "confidence": 0.95,
+  "demoSteps": [
+    {
+      "action": "spotlight",
+      "enabled": true
+    },
+    {
+      "action": "highlight",
+      "region": "cage",
+      "id": 3,
+      "cells": [],
+      "reason": "笼子和 25，4 格唯一组合只能是 3+7+9"
+    },
+    {
+      "action": "highlight",
+      "cells": [
+        [
+          0,
+          5
+        ]
+      ],
+      "reason": "另一格 b6（同行已有 7）、b4（同行已有 7） 被排除，所以 a6 锁定 7（3+7+9）"
+    },
+    {
+      "action": "conclude",
+      "cells": [
+        [
+          0,
+          5
+        ]
+      ],
+      "reason": "就是它！7。"
+    }
+  ],
+  "fallback": "auto",
+  "fallbackReason": null,
+  "trace": [
+    {
+      "step": "resolve_start",
+      "ts": 1786871231746
+    },
+    {
+      "step": "technique_selected",
+      "technique": "cageUnique",
+      "ts": 1786871231747
+    },
+    {
+      "step": "steps_generated",
+      "count": 4,
+      "ts": 1786871231747
+    },
+    {
+      "step": "validation",
+      "valid": true,
+      "evidenceComplete": true,
+      "ts": 1786871231747
+    },
+    {
+      "step": "renderable",
+      "renderable": true,
+      "ts": 1786871231747
+    },
+    {
+      "step": "fallback",
+      "fallback": "auto",
+      "reason": null,
+      "ts": 1786871231747
+    }
+  ]
+}

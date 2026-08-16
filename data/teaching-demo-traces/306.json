@@ -1,0 +1,42 @@
+{
+  "levelId": 306,
+  "technique": "composite",
+  "resolvedTechnique": null,
+  "confidence": 0,
+  "demoSteps": [],
+  "fallback": "manual",
+  "fallbackReason": "no_target_technique",
+  "trace": [
+    {
+      "step": "resolve_start",
+      "ts": 1786871231726
+    },
+    {
+      "step": "technique_selected",
+      "technique": "composite",
+      "ts": 1786871231726
+    },
+    {
+      "step": "steps_generated",
+      "count": 0,
+      "ts": 1786871231726
+    },
+    {
+      "step": "validation",
+      "valid": false,
+      "evidenceComplete": false,
+      "ts": 1786871231726
+    },
+    {
+      "step": "renderable",
+      "renderable": false,
+      "ts": 1786871231726
+    },
+    {
+      "step": "fallback",
+      "fallback": "manual",
+      "reason": "no_target_technique",
+      "ts": 1786871231726
+    }
+  ]
+}

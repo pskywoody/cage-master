@@ -1,0 +1,94 @@
+{
+  "levelId": 702,
+  "technique": "hiddenPair",
+  "resolvedTechnique": "hiddenPair",
+  "confidence": 0.95,
+  "demoSteps": [
+    {
+      "action": "spotlight",
+      "enabled": true
+    },
+    {
+      "action": "highlight",
+      "region": "col",
+      "index": 2,
+      "cells": [],
+      "reason": "隐数对：数字 4和7 只出现在这两个位置"
+    },
+    {
+      "action": "highlight",
+      "cells": [
+        [
+          0,
+          2
+        ]
+      ],
+      "reason": "数字 4和7 只可能在 a3、c3——确定后排除其他数字"
+    },
+    {
+      "action": "eliminate",
+      "cells": [
+        [
+          0,
+          2
+        ]
+      ],
+      "reason": "这两个位置只放 4和7，排除其他数字。"
+    },
+    {
+      "action": "eliminate",
+      "cells": [
+        [
+          2,
+          2
+        ]
+      ],
+      "reason": "这两个位置只放 4和7，排除其他数字。"
+    },
+    {
+      "action": "conclude",
+      "cells": [
+        [
+          0,
+          2
+        ]
+      ],
+      "reason": "就是它们！4和7 锁定完成。"
+    }
+  ],
+  "fallback": "auto",
+  "fallbackReason": null,
+  "trace": [
+    {
+      "step": "resolve_start",
+      "ts": 1786871231761
+    },
+    {
+      "step": "technique_selected",
+      "technique": "hiddenPair",
+      "ts": 1786871231762
+    },
+    {
+      "step": "steps_generated",
+      "count": 6,
+      "ts": 1786871231762
+    },
+    {
+      "step": "validation",
+      "valid": true,
+      "evidenceComplete": true,
+      "ts": 1786871231762
+    },
+    {
+      "step": "renderable",
+      "renderable": true,
+      "ts": 1786871231762
+    },
+    {
+      "step": "fallback",
+      "fallback": "auto",
+      "reason": null,
+      "ts": 1786871231762
+    }
+  ]
+}

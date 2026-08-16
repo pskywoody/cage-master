@@ -1,0 +1,204 @@
+{
+  "levelId": 705,
+  "technique": "swordfish",
+  "resolvedTechnique": "swordfish",
+  "confidence": 0.95,
+  "demoSteps": [
+    {
+      "action": "highlight",
+      "region": "row",
+      "index": 3,
+      "cells": [],
+      "reason": "先看第4行：3 只能放在这 第6列、第7列、第9列。"
+    },
+    {
+      "action": "highlight",
+      "region": "row",
+      "index": 5,
+      "cells": [],
+      "reason": "先看第6行：3 只能放在这 第6列、第7列、第9列。"
+    },
+    {
+      "action": "highlight",
+      "region": "row",
+      "index": 8,
+      "cells": [],
+      "reason": "先看第9行：3 只能放在这 第6列、第7列、第9列。"
+    },
+    {
+      "action": "highlight",
+      "region": "col",
+      "index": 5,
+      "cells": [],
+      "reason": "再看第6列：3 也限制在这里。"
+    },
+    {
+      "action": "highlight",
+      "region": "col",
+      "index": 6,
+      "cells": [],
+      "reason": "再看第7列：3 也限制在这里。"
+    },
+    {
+      "action": "highlight",
+      "region": "col",
+      "index": 8,
+      "cells": [],
+      "reason": "再看第9列：3 也限制在这里。"
+    },
+    {
+      "action": "highlight",
+      "cells": [
+        [
+          3,
+          5
+        ]
+      ],
+      "reason": "这是第1个角格：3 的候选位置。"
+    },
+    {
+      "action": "highlight",
+      "cells": [
+        [
+          3,
+          8
+        ]
+      ],
+      "reason": "这是第2个角格：3 的候选位置。"
+    },
+    {
+      "action": "highlight",
+      "cells": [
+        [
+          5,
+          5
+        ]
+      ],
+      "reason": "这是第3个角格：3 的候选位置。"
+    },
+    {
+      "action": "highlight",
+      "cells": [
+        [
+          5,
+          8
+        ]
+      ],
+      "reason": "这是第4个角格：3 的候选位置。"
+    },
+    {
+      "action": "highlight",
+      "cells": [
+        [
+          8,
+          5
+        ]
+      ],
+      "reason": "这是第5个角格：3 的候选位置。"
+    },
+    {
+      "action": "highlight",
+      "cells": [
+        [
+          8,
+          6
+        ]
+      ],
+      "reason": "这是第6个角格：3 的候选位置。"
+    },
+    {
+      "action": "highlight",
+      "cells": [
+        [
+          8,
+          8
+        ]
+      ],
+      "reason": "这是第7个角格：3 的候选位置。"
+    },
+    {
+      "action": "eliminate",
+      "cells": [
+        [
+          6,
+          5
+        ]
+      ],
+      "reason": "这里可以排除 3。"
+    },
+    {
+      "action": "eliminate",
+      "cells": [
+        [
+          6,
+          6
+        ]
+      ],
+      "reason": "这里可以排除 3。"
+    },
+    {
+      "action": "eliminate",
+      "cells": [
+        [
+          6,
+          8
+        ]
+      ],
+      "reason": "这里可以排除 3。"
+    },
+    {
+      "action": "highlight",
+      "cells": [
+        [
+          6,
+          8
+        ]
+      ],
+      "reason": "排除之后，g9 格就只剩一个数——填 8！"
+    },
+    {
+      "action": "conclude",
+      "cells": [
+        [
+          6,
+          8
+        ]
+      ]
+    }
+  ],
+  "fallback": "auto",
+  "fallbackReason": null,
+  "trace": [
+    {
+      "step": "resolve_start",
+      "ts": 1786871231770
+    },
+    {
+      "step": "technique_selected",
+      "technique": "swordfish",
+      "ts": 1786871231772
+    },
+    {
+      "step": "steps_generated",
+      "count": 18,
+      "ts": 1786871231772
+    },
+    {
+      "step": "validation",
+      "valid": true,
+      "evidenceComplete": true,
+      "ts": 1786871231772
+    },
+    {
+      "step": "renderable",
+      "renderable": true,
+      "ts": 1786871231772
+    },
+    {
+      "step": "fallback",
+      "fallback": "auto",
+      "reason": null,
+      "ts": 1786871231772
+    }
+  ]
+}

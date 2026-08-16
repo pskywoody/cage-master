@@ -1,0 +1,74 @@
+{
+  "levelId": 108,
+  "technique": "rule45",
+  "resolvedTechnique": "rule45",
+  "confidence": 0.95,
+  "demoSteps": [
+    {
+      "action": "spotlight",
+      "enabled": true
+    },
+    {
+      "action": "highlight",
+      "region": "col",
+      "index": 0,
+      "cells": [],
+      "reason": "第1列 的 9 格之和恒为 45"
+    },
+    {
+      "action": "highlight",
+      "cells": [
+        [
+          3,
+          0
+        ]
+      ],
+      "reason": "45 - 完全在内笼和 = 内突格：10 - 6 - 0 = 4 → d1 = 4"
+    },
+    {
+      "action": "conclude",
+      "cells": [
+        [
+          3,
+          0
+        ]
+      ],
+      "reason": "就是它！4。"
+    }
+  ],
+  "fallback": "auto",
+  "fallbackReason": null,
+  "trace": [
+    {
+      "step": "resolve_start",
+      "ts": 1786871231680
+    },
+    {
+      "step": "technique_selected",
+      "technique": "rule45",
+      "ts": 1786871231682
+    },
+    {
+      "step": "steps_generated",
+      "count": 4,
+      "ts": 1786871231683
+    },
+    {
+      "step": "validation",
+      "valid": true,
+      "evidenceComplete": true,
+      "ts": 1786871231683
+    },
+    {
+      "step": "renderable",
+      "renderable": true,
+      "ts": 1786871231683
+    },
+    {
+      "step": "fallback",
+      "fallback": "auto",
+      "reason": null,
+      "ts": 1786871231683
+    }
+  ]
+}

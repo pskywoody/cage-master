@@ -1,0 +1,74 @@
+{
+  "levelId": 107,
+  "technique": "cageUnique",
+  "resolvedTechnique": "cageUnique",
+  "confidence": 0.95,
+  "demoSteps": [
+    {
+      "action": "spotlight",
+      "enabled": true
+    },
+    {
+      "action": "highlight",
+      "region": "cage",
+      "id": 1,
+      "cells": [],
+      "reason": "笼子和 8，3 格唯一组合只能是 3+4"
+    },
+    {
+      "action": "highlight",
+      "cells": [
+        [
+          0,
+          0
+        ]
+      ],
+      "reason": "另一格 a3（同宫已有 3） 被排除，所以 a1 锁定 3（3+4）"
+    },
+    {
+      "action": "conclude",
+      "cells": [
+        [
+          0,
+          0
+        ]
+      ],
+      "reason": "就是它！3。"
+    }
+  ],
+  "fallback": "auto",
+  "fallbackReason": null,
+  "trace": [
+    {
+      "step": "resolve_start",
+      "ts": 1786871231678
+    },
+    {
+      "step": "technique_selected",
+      "technique": "cageUnique",
+      "ts": 1786871231679
+    },
+    {
+      "step": "steps_generated",
+      "count": 4,
+      "ts": 1786871231679
+    },
+    {
+      "step": "validation",
+      "valid": true,
+      "evidenceComplete": true,
+      "ts": 1786871231679
+    },
+    {
+      "step": "renderable",
+      "renderable": true,
+      "ts": 1786871231679
+    },
+    {
+      "step": "fallback",
+      "fallback": "auto",
+      "reason": null,
+      "ts": 1786871231679
+    }
+  ]
+}

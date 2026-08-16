@@ -1,0 +1,42 @@
+{
+  "levelId": 704,
+  "technique": "xWing",
+  "resolvedTechnique": null,
+  "confidence": 0,
+  "demoSteps": [],
+  "fallback": "manual",
+  "fallbackReason": "technique_unavailable",
+  "trace": [
+    {
+      "step": "resolve_start",
+      "ts": 1786871231766
+    },
+    {
+      "step": "technique_selected",
+      "technique": "xWing",
+      "ts": 1786871231768
+    },
+    {
+      "step": "steps_generated",
+      "count": 0,
+      "ts": 1786871231768
+    },
+    {
+      "step": "validation",
+      "valid": false,
+      "evidenceComplete": false,
+      "ts": 1786871231768
+    },
+    {
+      "step": "renderable",
+      "renderable": false,
+      "ts": 1786871231768
+    },
+    {
+      "step": "fallback",
+      "fallback": "manual",
+      "reason": "technique_unavailable",
+      "ts": 1786871231768
+    }
+  ]
+}

@@ -1,0 +1,74 @@
+{
+  "levelId": 501,
+  "technique": "cageUnique",
+  "resolvedTechnique": "cageUnique",
+  "confidence": 0.95,
+  "demoSteps": [
+    {
+      "action": "spotlight",
+      "enabled": true
+    },
+    {
+      "action": "highlight",
+      "region": "cage",
+      "id": 3,
+      "cells": [],
+      "reason": "笼子和 20，3 格唯一组合只能是 8+9"
+    },
+    {
+      "action": "highlight",
+      "cells": [
+        [
+          1,
+          4
+        ]
+      ],
+      "reason": "另一格 b6（同列已有 8） 被排除，所以 b5 锁定 8（8+9）"
+    },
+    {
+      "action": "conclude",
+      "cells": [
+        [
+          1,
+          4
+        ]
+      ],
+      "reason": "就是它！8。"
+    }
+  ],
+  "fallback": "auto",
+  "fallbackReason": null,
+  "trace": [
+    {
+      "step": "resolve_start",
+      "ts": 1786871231742
+    },
+    {
+      "step": "technique_selected",
+      "technique": "cageUnique",
+      "ts": 1786871231743
+    },
+    {
+      "step": "steps_generated",
+      "count": 4,
+      "ts": 1786871231743
+    },
+    {
+      "step": "validation",
+      "valid": true,
+      "evidenceComplete": true,
+      "ts": 1786871231743
+    },
+    {
+      "step": "renderable",
+      "renderable": true,
+      "ts": 1786871231743
+    },
+    {
+      "step": "fallback",
+      "fallback": "auto",
+      "reason": null,
+      "ts": 1786871231743
+    }
+  ]
+}

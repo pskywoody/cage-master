@@ -1,0 +1,114 @@
+{
+  "levelId": 402,
+  "technique": "hiddenSingle",
+  "resolvedTechnique": "hiddenSingle",
+  "confidence": 0.95,
+  "demoSteps": [
+    {
+      "action": "spotlight",
+      "enabled": true
+    },
+    {
+      "action": "highlight",
+      "region": "row",
+      "index": 1,
+      "cells": [],
+      "reason": "数字 3 在第2行只剩一个位置"
+    },
+    {
+      "action": "highlight",
+      "cells": [
+        [
+          1,
+          1
+        ]
+      ],
+      "reason": "第2行里 9 格都看过了：数字 3 只可能放在 b2——填 3！"
+    },
+    {
+      "action": "eliminate",
+      "cells": [
+        [
+          1,
+          0
+        ]
+      ],
+      "reason": "b1 排除 3（同列已有 3）"
+    },
+    {
+      "action": "eliminate",
+      "cells": [
+        [
+          1,
+          3
+        ]
+      ],
+      "reason": "b4 排除 3（同宫已有 3）"
+    },
+    {
+      "action": "eliminate",
+      "cells": [
+        [
+          1,
+          4
+        ]
+      ],
+      "reason": "b5 排除 3（同列已有 3、同宫已有 3）"
+    },
+    {
+      "action": "eliminate",
+      "cells": [
+        [
+          1,
+          8
+        ]
+      ],
+      "reason": "b9 排除 3（笼和限制）"
+    },
+    {
+      "action": "conclude",
+      "cells": [
+        [
+          1,
+          1
+        ]
+      ],
+      "reason": "就是它！3。"
+    }
+  ],
+  "fallback": "auto",
+  "fallbackReason": null,
+  "trace": [
+    {
+      "step": "resolve_start",
+      "ts": 1786871231731
+    },
+    {
+      "step": "technique_selected",
+      "technique": "hiddenSingle",
+      "ts": 1786871231732
+    },
+    {
+      "step": "steps_generated",
+      "count": 8,
+      "ts": 1786871231732
+    },
+    {
+      "step": "validation",
+      "valid": true,
+      "evidenceComplete": true,
+      "ts": 1786871231732
+    },
+    {
+      "step": "renderable",
+      "renderable": true,
+      "ts": 1786871231732
+    },
+    {
+      "step": "fallback",
+      "fallback": "auto",
+      "reason": null,
+      "ts": 1786871231732
+    }
+  ]
+}

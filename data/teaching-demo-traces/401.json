@@ -1,0 +1,147 @@
+{
+  "levelId": 401,
+  "technique": "nakedSingle",
+  "resolvedTechnique": "nakedSingle",
+  "confidence": 0.98,
+  "demoSteps": [
+    {
+      "action": "spotlight",
+      "enabled": true
+    },
+    {
+      "action": "highlight",
+      "cells": [
+        [
+          0,
+          1
+        ]
+      ],
+      "reason": "a6 排除 1：第1行已有 1（a2）"
+    },
+    {
+      "action": "highlight",
+      "cells": [
+        [
+          2,
+          4
+        ]
+      ],
+      "reason": "a6 排除 2：同宫已有 2（c5）"
+    },
+    {
+      "action": "highlight",
+      "cells": [
+        [
+          0,
+          2
+        ]
+      ],
+      "reason": "a6 排除 3：第1行已有 3（a3）"
+    },
+    {
+      "action": "highlight",
+      "cells": [
+        [
+          0,
+          8
+        ]
+      ],
+      "reason": "a6 排除 4：第1行已有 4（a9）"
+    },
+    {
+      "action": "highlight",
+      "cells": [
+        [
+          0,
+          4
+        ]
+      ],
+      "reason": "a6 排除 5：第1行已有 5（a5）"
+    },
+    {
+      "action": "highlight",
+      "cells": [
+        [
+          0,
+          3
+        ]
+      ],
+      "reason": "a6 排除 7：第1行已有 7（a4）"
+    },
+    {
+      "action": "highlight",
+      "cells": [
+        [
+          1,
+          3
+        ]
+      ],
+      "reason": "a6 排除 8：同宫已有 8（b4）"
+    },
+    {
+      "action": "highlight",
+      "cells": [
+        [
+          0,
+          0
+        ]
+      ],
+      "reason": "a6 排除 9：第1行已有 9（a1）"
+    },
+    {
+      "action": "highlight",
+      "cells": [
+        [
+          0,
+          5
+        ]
+      ],
+      "reason": "a6 里 1-9 逐个看过：只有 6 没被行/列/宫排除——填 6！"
+    },
+    {
+      "action": "conclude",
+      "cells": [
+        [
+          0,
+          5
+        ]
+      ],
+      "reason": "就是它！6。"
+    }
+  ],
+  "fallback": "auto",
+  "fallbackReason": null,
+  "trace": [
+    {
+      "step": "resolve_start",
+      "ts": 1786871231729
+    },
+    {
+      "step": "technique_selected",
+      "technique": "nakedSingle",
+      "ts": 1786871231730
+    },
+    {
+      "step": "steps_generated",
+      "count": 11,
+      "ts": 1786871231730
+    },
+    {
+      "step": "validation",
+      "valid": true,
+      "evidenceComplete": true,
+      "ts": 1786871231730
+    },
+    {
+      "step": "renderable",
+      "renderable": true,
+      "ts": 1786871231730
+    },
+    {
+      "step": "fallback",
+      "fallback": "auto",
+      "reason": null,
+      "ts": 1786871231730
+    }
+  ]
+}

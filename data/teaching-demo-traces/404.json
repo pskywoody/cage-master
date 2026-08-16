@@ -1,0 +1,42 @@
+{
+  "levelId": 404,
+  "technique": "nakedTriplet",
+  "resolvedTechnique": null,
+  "confidence": 0,
+  "demoSteps": [],
+  "fallback": "manual",
+  "fallbackReason": "technique_unavailable",
+  "trace": [
+    {
+      "step": "resolve_start",
+      "ts": 1786871231737
+    },
+    {
+      "step": "technique_selected",
+      "technique": "nakedTriplet",
+      "ts": 1786871231739
+    },
+    {
+      "step": "steps_generated",
+      "count": 0,
+      "ts": 1786871231739
+    },
+    {
+      "step": "validation",
+      "valid": false,
+      "evidenceComplete": false,
+      "ts": 1786871231739
+    },
+    {
+      "step": "renderable",
+      "renderable": false,
+      "ts": 1786871231739
+    },
+    {
+      "step": "fallback",
+      "fallback": "manual",
+      "reason": "technique_unavailable",
+      "ts": 1786871231739
+    }
+  ]
+}

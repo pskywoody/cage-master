@@ -1,0 +1,84 @@
+{
+  "levelId": 305,
+  "technique": "nakedPair",
+  "resolvedTechnique": "nakedPair",
+  "confidence": 0.95,
+  "demoSteps": [
+    {
+      "action": "spotlight",
+      "enabled": true
+    },
+    {
+      "action": "highlight",
+      "region": "row",
+      "index": 0,
+      "cells": [],
+      "reason": "裸数对：数字 2和3 锁定了 a4、a6"
+    },
+    {
+      "action": "highlight",
+      "cells": [
+        [
+          0,
+          3
+        ]
+      ],
+      "reason": "a4、a6 就是 2和3——确定后排除其他格的 2和3"
+    },
+    {
+      "action": "eliminate",
+      "cells": [
+        [
+          0,
+          4
+        ]
+      ],
+      "reason": "这两个位置占住了 2和3，别的格排除它们。"
+    },
+    {
+      "action": "conclude",
+      "cells": [
+        [
+          0,
+          3
+        ]
+      ],
+      "reason": "就是它们！2和3 锁定完成。"
+    }
+  ],
+  "fallback": "auto",
+  "fallbackReason": null,
+  "trace": [
+    {
+      "step": "resolve_start",
+      "ts": 1786871231723
+    },
+    {
+      "step": "technique_selected",
+      "technique": "nakedPair",
+      "ts": 1786871231725
+    },
+    {
+      "step": "steps_generated",
+      "count": 5,
+      "ts": 1786871231725
+    },
+    {
+      "step": "validation",
+      "valid": true,
+      "evidenceComplete": true,
+      "ts": 1786871231725
+    },
+    {
+      "step": "renderable",
+      "renderable": true,
+      "ts": 1786871231725
+    },
+    {
+      "step": "fallback",
+      "fallback": "auto",
+      "reason": null,
+      "ts": 1786871231725
+    }
+  ]
+}

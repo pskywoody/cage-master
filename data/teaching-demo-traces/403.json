@@ -1,0 +1,94 @@
+{
+  "levelId": 403,
+  "technique": "hiddenPair",
+  "resolvedTechnique": "hiddenPair",
+  "confidence": 0.98,
+  "demoSteps": [
+    {
+      "action": "spotlight",
+      "enabled": true
+    },
+    {
+      "action": "highlight",
+      "region": "col",
+      "index": 0,
+      "cells": [],
+      "reason": "隐数对：数字 5和7 只出现在这两个位置"
+    },
+    {
+      "action": "highlight",
+      "cells": [
+        [
+          6,
+          0
+        ]
+      ],
+      "reason": "数字 5和7 只可能在 g1、h1——确定后排除其他数字"
+    },
+    {
+      "action": "eliminate",
+      "cells": [
+        [
+          6,
+          0
+        ]
+      ],
+      "reason": "这两个位置只放 5和7，排除其他数字。"
+    },
+    {
+      "action": "eliminate",
+      "cells": [
+        [
+          7,
+          0
+        ]
+      ],
+      "reason": "这两个位置只放 5和7，排除其他数字。"
+    },
+    {
+      "action": "conclude",
+      "cells": [
+        [
+          6,
+          0
+        ]
+      ],
+      "reason": "就是它们！5和7 锁定完成。"
+    }
+  ],
+  "fallback": "auto",
+  "fallbackReason": null,
+  "trace": [
+    {
+      "step": "resolve_start",
+      "ts": 1786871231733
+    },
+    {
+      "step": "technique_selected",
+      "technique": "hiddenPair",
+      "ts": 1786871231736
+    },
+    {
+      "step": "steps_generated",
+      "count": 6,
+      "ts": 1786871231736
+    },
+    {
+      "step": "validation",
+      "valid": true,
+      "evidenceComplete": true,
+      "ts": 1786871231736
+    },
+    {
+      "step": "renderable",
+      "renderable": true,
+      "ts": 1786871231736
+    },
+    {
+      "step": "fallback",
+      "fallback": "auto",
+      "reason": null,
+      "ts": 1786871231736
+    }
+  ]
+}

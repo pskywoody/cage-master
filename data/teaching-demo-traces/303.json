@@ -1,0 +1,67 @@
+{
+  "levelId": 303,
+  "technique": "pointingClaiming",
+  "resolvedTechnique": "pointingClaiming",
+  "confidence": 0.95,
+  "demoSteps": [
+    {
+      "action": "spotlight",
+      "enabled": true
+    },
+    {
+      "action": "highlight",
+      "cells": [
+        [
+          1,
+          8
+        ]
+      ],
+      "reason": "b9 格只剩一个数——填 2！"
+    },
+    {
+      "action": "conclude",
+      "cells": [
+        [
+          1,
+          8
+        ]
+      ],
+      "reason": "就是它！2。"
+    }
+  ],
+  "fallback": "auto",
+  "fallbackReason": null,
+  "trace": [
+    {
+      "step": "resolve_start",
+      "ts": 1786871231716
+    },
+    {
+      "step": "technique_selected",
+      "technique": "pointingClaiming",
+      "ts": 1786871231717
+    },
+    {
+      "step": "steps_generated",
+      "count": 3,
+      "ts": 1786871231717
+    },
+    {
+      "step": "validation",
+      "valid": true,
+      "evidenceComplete": true,
+      "ts": 1786871231717
+    },
+    {
+      "step": "renderable",
+      "renderable": true,
+      "ts": 1786871231717
+    },
+    {
+      "step": "fallback",
+      "fallback": "auto",
+      "reason": null,
+      "ts": 1786871231717
+    }
+  ]
+}

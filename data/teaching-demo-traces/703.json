@@ -1,0 +1,74 @@
+{
+  "levelId": 703,
+  "technique": "nakedTriplet",
+  "resolvedTechnique": "nakedTriplet",
+  "confidence": 0.95,
+  "demoSteps": [
+    {
+      "action": "spotlight",
+      "enabled": true
+    },
+    {
+      "action": "highlight",
+      "region": "row",
+      "index": 1,
+      "cells": [],
+      "reason": "裸三数组：数字 2、4、7 锁定在三个位置"
+    },
+    {
+      "action": "highlight",
+      "cells": [
+        [
+          1,
+          2
+        ]
+      ],
+      "reason": "b3 格只剩一个数——填 0！"
+    },
+    {
+      "action": "conclude",
+      "cells": [
+        [
+          1,
+          2
+        ]
+      ],
+      "reason": "就是它！0。"
+    }
+  ],
+  "fallback": "auto",
+  "fallbackReason": null,
+  "trace": [
+    {
+      "step": "resolve_start",
+      "ts": 1786871231764
+    },
+    {
+      "step": "technique_selected",
+      "technique": "nakedTriplet",
+      "ts": 1786871231764
+    },
+    {
+      "step": "steps_generated",
+      "count": 4,
+      "ts": 1786871231764
+    },
+    {
+      "step": "validation",
+      "valid": true,
+      "evidenceComplete": true,
+      "ts": 1786871231764
+    },
+    {
+      "step": "renderable",
+      "renderable": true,
+      "ts": 1786871231764
+    },
+    {
+      "step": "fallback",
+      "fallback": "auto",
+      "reason": null,
+      "ts": 1786871231764
+    }
+  ]
+}

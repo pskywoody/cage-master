@@ -1,0 +1,19 @@
+{
+  "generated_at": "2026-08-16T09:07:11.774Z",
+  "auto_expected": 35,
+  "manual_expected": 13,
+  "gate": {
+    "auto_demo_generated": true,
+    "golden_manifest_consistent": true,
+    "fallback_explainable": true,
+    "runtime_trace_replayable": true,
+    "manual_review_intact": true,
+    "teaching_validation_green": true,
+    "stats": {
+      "total_teaching_levels": 48,
+      "auto": 35,
+      "manual": 13,
+      "low_confidence_auto": 0
+    }
+  }
+}

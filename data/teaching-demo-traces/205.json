@@ -1,0 +1,95 @@
+{
+  "levelId": 205,
+  "technique": "rule45",
+  "resolvedTechnique": "rule45",
+  "confidence": 0.95,
+  "demoSteps": [
+    {
+      "action": "spotlight",
+      "enabled": true
+    },
+    {
+      "action": "highlight",
+      "region": "cage",
+      "id": 1,
+      "cells": [],
+      "reason": "外突笼#1"
+    },
+    {
+      "action": "highlight",
+      "region": "cage",
+      "id": 14,
+      "cells": [],
+      "reason": "外突笼#14"
+    },
+    {
+      "action": "highlight",
+      "region": "cage",
+      "id": 20,
+      "cells": [],
+      "reason": "外突笼#20"
+    },
+    {
+      "action": "highlight",
+      "region": "col",
+      "index": 0,
+      "cells": [],
+      "reason": "第1列 的 9 格之和恒为 45"
+    },
+    {
+      "action": "highlight",
+      "cells": [
+        [
+          5,
+          1
+        ]
+      ],
+      "reason": "相交笼子和 - 45 = 外突格：51 - 45 - 2 = 4 → f2 = 4"
+    },
+    {
+      "action": "conclude",
+      "cells": [
+        [
+          5,
+          1
+        ]
+      ],
+      "reason": "就是它！4。"
+    }
+  ],
+  "fallback": "auto",
+  "fallbackReason": null,
+  "trace": [
+    {
+      "step": "resolve_start",
+      "ts": 1786871231697
+    },
+    {
+      "step": "technique_selected",
+      "technique": "rule45",
+      "ts": 1786871231699
+    },
+    {
+      "step": "steps_generated",
+      "count": 7,
+      "ts": 1786871231699
+    },
+    {
+      "step": "validation",
+      "valid": true,
+      "evidenceComplete": true,
+      "ts": 1786871231699
+    },
+    {
+      "step": "renderable",
+      "renderable": true,
+      "ts": 1786871231699
+    },
+    {
+      "step": "fallback",
+      "fallback": "auto",
+      "reason": null,
+      "ts": 1786871231699
+    }
+  ]
+}

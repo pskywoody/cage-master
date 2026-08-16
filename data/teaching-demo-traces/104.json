@@ -1,0 +1,97 @@
+{
+  "levelId": 104,
+  "technique": "nakedSingle",
+  "resolvedTechnique": "nakedSingle",
+  "confidence": 0.98,
+  "demoSteps": [
+    {
+      "action": "spotlight",
+      "enabled": true
+    },
+    {
+      "action": "highlight",
+      "cells": [
+        [
+          2,
+          1
+        ]
+      ],
+      "reason": "c4 排除 2：第3行已有 2（c2）"
+    },
+    {
+      "action": "highlight",
+      "cells": [
+        [
+          0,
+          3
+        ]
+      ],
+      "reason": "c4 排除 3：第4列已有 3（a4）"
+    },
+    {
+      "action": "highlight",
+      "cells": [
+        [
+          2,
+          2
+        ]
+      ],
+      "reason": "c4 排除 4：第3行已有 4（c3）"
+    },
+    {
+      "action": "highlight",
+      "cells": [
+        [
+          2,
+          3
+        ]
+      ],
+      "reason": "c4 里 1-9 逐个看过：只有 1 没被行/列/宫排除——填 1！"
+    },
+    {
+      "action": "conclude",
+      "cells": [
+        [
+          2,
+          3
+        ]
+      ],
+      "reason": "就是它！1。"
+    }
+  ],
+  "fallback": "auto",
+  "fallbackReason": null,
+  "trace": [
+    {
+      "step": "resolve_start",
+      "ts": 1786871231673
+    },
+    {
+      "step": "technique_selected",
+      "technique": "nakedSingle",
+      "ts": 1786871231673
+    },
+    {
+      "step": "steps_generated",
+      "count": 6,
+      "ts": 1786871231673
+    },
+    {
+      "step": "validation",
+      "valid": true,
+      "evidenceComplete": true,
+      "ts": 1786871231673
+    },
+    {
+      "step": "renderable",
+      "renderable": true,
+      "ts": 1786871231673
+    },
+    {
+      "step": "fallback",
+      "fallback": "auto",
+      "reason": null,
+      "ts": 1786871231673
+    }
+  ]
+}

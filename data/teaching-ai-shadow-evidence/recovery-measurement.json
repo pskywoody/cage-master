@@ -1,0 +1,28 @@
+{
+  "A": {
+    "n": 8,
+    "recovered": 0,
+    "recovered_rate": 0
+  },
+  "B": {
+    "n": 71,
+    "recovered": 49,
+    "recovered_rate": 0.69
+  },
+  "C": {
+    "n": 0,
+    "recovered": 0,
+    "recovered_rate": null
+  },
+  "D": {
+    "n": 21,
+    "recovered": 8,
+    "recovered_rate": 0.381
+  },
+  "N": {
+    "n": 16,
+    "recovered": 14,
+    "recovered_rate": 0.875
+  },
+  "note": "descriptive only; NOT causal"
+}

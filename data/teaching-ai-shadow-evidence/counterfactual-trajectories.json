@@ -1,0 +1,774 @@
+[
+  {
+    "session_id": "sess1",
+    "source": "REAL",
+    "technique": "hiddenPair",
+    "n_events": 5,
+    "actual_sequence": [
+      "skill_encounter",
+      "hint_requested",
+      "guided_success",
+      "skill_used_correctly",
+      "skill_mastery"
+    ],
+    "system_categories": [
+      "demo",
+      "hint",
+      "guided",
+      "free",
+      "free"
+    ],
+    "shadow_sequence": [
+      "question",
+      "question",
+      "question",
+      "question",
+      "free_attempt"
+    ],
+    "agree": [
+      false,
+      false,
+      false,
+      false,
+      true
+    ]
+  },
+  {
+    "session_id": "sess2",
+    "source": "REAL",
+    "technique": "nakedSingle",
+    "n_events": 4,
+    "actual_sequence": [
+      "skill_encounter",
+      "hint_requested",
+      "fail",
+      "fail"
+    ],
+    "system_categories": [
+      "demo",
+      "hint",
+      null,
+      null
+    ],
+    "shadow_sequence": [
+      "question",
+      "question",
+      "question",
+      "question"
+    ],
+    "agree": [
+      false,
+      false,
+      false,
+      false
+    ]
+  },
+  {
+    "session_id": "syn-0",
+    "source": "SYNTHETIC",
+    "technique": "hiddenPair",
+    "n_events": 5,
+    "actual_sequence": [
+      "skill_encounter",
+      "hint_requested",
+      "guided_success",
+      "skill_used_correctly",
+      "skill_mastery"
+    ],
+    "system_categories": [
+      "demo",
+      "hint",
+      "guided",
+      "free",
+      "free"
+    ],
+    "shadow_sequence": [
+      "question",
+      "question",
+      "question",
+      "question",
+      "free_attempt"
+    ],
+    "agree": [
+      false,
+      false,
+      false,
+      false,
+      true
+    ]
+  },
+  {
+    "session_id": "syn-1",
+    "source": "SYNTHETIC",
+    "technique": "nakedSingle",
+    "n_events": 6,
+    "actual_sequence": [
+      "skill_encounter",
+      "hint_requested",
+      "fail",
+      "fail",
+      "guided_success",
+      "skill_used_correctly"
+    ],
+    "system_categories": [
+      "demo",
+      "hint",
+      null,
+      null,
+      "guided",
+      "free"
+    ],
+    "shadow_sequence": [
+      "question",
+      "question",
+      "question",
+      "question",
+      "question",
+      "question"
+    ],
+    "agree": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ]
+  },
+  {
+    "session_id": "syn-2",
+    "source": "SYNTHETIC",
+    "technique": "rule45",
+    "n_events": 5,
+    "actual_sequence": [
+      "skill_encounter",
+      "reveal",
+      "hint_requested",
+      "guided_success",
+      "skill_used_correctly"
+    ],
+    "system_categories": [
+      "demo",
+      "reveal",
+      "hint",
+      "guided",
+      "free"
+    ],
+    "shadow_sequence": [
+      "question",
+      "question",
+      "question",
+      "question",
+      "question"
+    ],
+    "agree": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ]
+  },
+  {
+    "session_id": "syn-3",
+    "source": "SYNTHETIC",
+    "technique": "hiddenPair",
+    "n_events": 5,
+    "actual_sequence": [
+      "skill_encounter",
+      "hint_requested",
+      "guided_success",
+      "skill_used_correctly",
+      "skill_mastery"
+    ],
+    "system_categories": [
+      "demo",
+      "hint",
+      "guided",
+      "free",
+      "free"
+    ],
+    "shadow_sequence": [
+      "question",
+      "question",
+      "question",
+      "question",
+      "free_attempt"
+    ],
+    "agree": [
+      false,
+      false,
+      false,
+      false,
+      true
+    ]
+  },
+  {
+    "session_id": "syn-4",
+    "source": "SYNTHETIC",
+    "technique": "nakedSingle",
+    "n_events": 6,
+    "actual_sequence": [
+      "skill_encounter",
+      "hint_requested",
+      "fail",
+      "fail",
+      "guided_success",
+      "skill_used_correctly"
+    ],
+    "system_categories": [
+      "demo",
+      "hint",
+      null,
+      null,
+      "guided",
+      "free"
+    ],
+    "shadow_sequence": [
+      "question",
+      "question",
+      "question",
+      "question",
+      "question",
+      "question"
+    ],
+    "agree": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ]
+  },
+  {
+    "session_id": "syn-5",
+    "source": "SYNTHETIC",
+    "technique": "rule45",
+    "n_events": 5,
+    "actual_sequence": [
+      "skill_encounter",
+      "reveal",
+      "hint_requested",
+      "guided_success",
+      "skill_used_correctly"
+    ],
+    "system_categories": [
+      "demo",
+      "reveal",
+      "hint",
+      "guided",
+      "free"
+    ],
+    "shadow_sequence": [
+      "question",
+      "question",
+      "question",
+      "question",
+      "question"
+    ],
+    "agree": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ]
+  },
+  {
+    "session_id": "syn-6",
+    "source": "SYNTHETIC",
+    "technique": "hiddenPair",
+    "n_events": 5,
+    "actual_sequence": [
+      "skill_encounter",
+      "hint_requested",
+      "guided_success",
+      "skill_used_correctly",
+      "skill_mastery"
+    ],
+    "system_categories": [
+      "demo",
+      "hint",
+      "guided",
+      "free",
+      "free"
+    ],
+    "shadow_sequence": [
+      "question",
+      "question",
+      "question",
+      "question",
+      "free_attempt"
+    ],
+    "agree": [
+      false,
+      false,
+      false,
+      false,
+      true
+    ]
+  },
+  {
+    "session_id": "syn-7",
+    "source": "SYNTHETIC",
+    "technique": "nakedSingle",
+    "n_events": 6,
+    "actual_sequence": [
+      "skill_encounter",
+      "hint_requested",
+      "fail",
+      "fail",
+      "guided_success",
+      "skill_used_correctly"
+    ],
+    "system_categories": [
+      "demo",
+      "hint",
+      null,
+      null,
+      "guided",
+      "free"
+    ],
+    "shadow_sequence": [
+      "question",
+      "question",
+      "question",
+      "question",
+      "question",
+      "question"
+    ],
+    "agree": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ]
+  },
+  {
+    "session_id": "syn-8",
+    "source": "SYNTHETIC",
+    "technique": "rule45",
+    "n_events": 5,
+    "actual_sequence": [
+      "skill_encounter",
+      "reveal",
+      "hint_requested",
+      "guided_success",
+      "skill_used_correctly"
+    ],
+    "system_categories": [
+      "demo",
+      "reveal",
+      "hint",
+      "guided",
+      "free"
+    ],
+    "shadow_sequence": [
+      "question",
+      "question",
+      "question",
+      "question",
+      "question"
+    ],
+    "agree": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ]
+  },
+  {
+    "session_id": "syn-9",
+    "source": "SYNTHETIC",
+    "technique": "hiddenPair",
+    "n_events": 5,
+    "actual_sequence": [
+      "skill_encounter",
+      "hint_requested",
+      "guided_success",
+      "skill_used_correctly",
+      "skill_mastery"
+    ],
+    "system_categories": [
+      "demo",
+      "hint",
+      "guided",
+      "free",
+      "free"
+    ],
+    "shadow_sequence": [
+      "question",
+      "question",
+      "question",
+      "question",
+      "free_attempt"
+    ],
+    "agree": [
+      false,
+      false,
+      false,
+      false,
+      true
+    ]
+  },
+  {
+    "session_id": "syn-10",
+    "source": "SYNTHETIC",
+    "technique": "nakedSingle",
+    "n_events": 6,
+    "actual_sequence": [
+      "skill_encounter",
+      "hint_requested",
+      "fail",
+      "fail",
+      "guided_success",
+      "skill_used_correctly"
+    ],
+    "system_categories": [
+      "demo",
+      "hint",
+      null,
+      null,
+      "guided",
+      "free"
+    ],
+    "shadow_sequence": [
+      "question",
+      "question",
+      "question",
+      "question",
+      "question",
+      "question"
+    ],
+    "agree": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ]
+  },
+  {
+    "session_id": "syn-11",
+    "source": "SYNTHETIC",
+    "technique": "rule45",
+    "n_events": 5,
+    "actual_sequence": [
+      "skill_encounter",
+      "reveal",
+      "hint_requested",
+      "guided_success",
+      "skill_used_correctly"
+    ],
+    "system_categories": [
+      "demo",
+      "reveal",
+      "hint",
+      "guided",
+      "free"
+    ],
+    "shadow_sequence": [
+      "question",
+      "question",
+      "question",
+      "question",
+      "question"
+    ],
+    "agree": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ]
+  },
+  {
+    "session_id": "syn-12",
+    "source": "SYNTHETIC",
+    "technique": "hiddenPair",
+    "n_events": 5,
+    "actual_sequence": [
+      "skill_encounter",
+      "hint_requested",
+      "guided_success",
+      "skill_used_correctly",
+      "skill_mastery"
+    ],
+    "system_categories": [
+      "demo",
+      "hint",
+      "guided",
+      "free",
+      "free"
+    ],
+    "shadow_sequence": [
+      "question",
+      "question",
+      "question",
+      "question",
+      "free_attempt"
+    ],
+    "agree": [
+      false,
+      false,
+      false,
+      false,
+      true
+    ]
+  },
+  {
+    "session_id": "syn-13",
+    "source": "SYNTHETIC",
+    "technique": "nakedSingle",
+    "n_events": 6,
+    "actual_sequence": [
+      "skill_encounter",
+      "hint_requested",
+      "fail",
+      "fail",
+      "guided_success",
+      "skill_used_correctly"
+    ],
+    "system_categories": [
+      "demo",
+      "hint",
+      null,
+      null,
+      "guided",
+      "free"
+    ],
+    "shadow_sequence": [
+      "question",
+      "question",
+      "question",
+      "question",
+      "question",
+      "question"
+    ],
+    "agree": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ]
+  },
+  {
+    "session_id": "syn-14",
+    "source": "SYNTHETIC",
+    "technique": "rule45",
+    "n_events": 5,
+    "actual_sequence": [
+      "skill_encounter",
+      "reveal",
+      "hint_requested",
+      "guided_success",
+      "skill_used_correctly"
+    ],
+    "system_categories": [
+      "demo",
+      "reveal",
+      "hint",
+      "guided",
+      "free"
+    ],
+    "shadow_sequence": [
+      "question",
+      "question",
+      "question",
+      "question",
+      "question"
+    ],
+    "agree": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ]
+  },
+  {
+    "session_id": "syn-15",
+    "source": "SYNTHETIC",
+    "technique": "hiddenPair",
+    "n_events": 5,
+    "actual_sequence": [
+      "skill_encounter",
+      "hint_requested",
+      "guided_success",
+      "skill_used_correctly",
+      "skill_mastery"
+    ],
+    "system_categories": [
+      "demo",
+      "hint",
+      "guided",
+      "free",
+      "free"
+    ],
+    "shadow_sequence": [
+      "question",
+      "question",
+      "question",
+      "question",
+      "free_attempt"
+    ],
+    "agree": [
+      false,
+      false,
+      false,
+      false,
+      true
+    ]
+  },
+  {
+    "session_id": "syn-16",
+    "source": "SYNTHETIC",
+    "technique": "nakedSingle",
+    "n_events": 6,
+    "actual_sequence": [
+      "skill_encounter",
+      "hint_requested",
+      "fail",
+      "fail",
+      "guided_success",
+      "skill_used_correctly"
+    ],
+    "system_categories": [
+      "demo",
+      "hint",
+      null,
+      null,
+      "guided",
+      "free"
+    ],
+    "shadow_sequence": [
+      "question",
+      "question",
+      "question",
+      "question",
+      "question",
+      "question"
+    ],
+    "agree": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ]
+  },
+  {
+    "session_id": "syn-17",
+    "source": "SYNTHETIC",
+    "technique": "rule45",
+    "n_events": 5,
+    "actual_sequence": [
+      "skill_encounter",
+      "reveal",
+      "hint_requested",
+      "guided_success",
+      "skill_used_correctly"
+    ],
+    "system_categories": [
+      "demo",
+      "reveal",
+      "hint",
+      "guided",
+      "free"
+    ],
+    "shadow_sequence": [
+      "question",
+      "question",
+      "question",
+      "question",
+      "question"
+    ],
+    "agree": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ]
+  },
+  {
+    "session_id": "syn-18",
+    "source": "SYNTHETIC",
+    "technique": "hiddenPair",
+    "n_events": 5,
+    "actual_sequence": [
+      "skill_encounter",
+      "hint_requested",
+      "guided_success",
+      "skill_used_correctly",
+      "skill_mastery"
+    ],
+    "system_categories": [
+      "demo",
+      "hint",
+      "guided",
+      "free",
+      "free"
+    ],
+    "shadow_sequence": [
+      "question",
+      "question",
+      "question",
+      "question",
+      "free_attempt"
+    ],
+    "agree": [
+      false,
+      false,
+      false,
+      false,
+      true
+    ]
+  },
+  {
+    "session_id": "syn-19",
+    "source": "SYNTHETIC",
+    "technique": "nakedSingle",
+    "n_events": 6,
+    "actual_sequence": [
+      "skill_encounter",
+      "hint_requested",
+      "fail",
+      "fail",
+      "guided_success",
+      "skill_used_correctly"
+    ],
+    "system_categories": [
+      "demo",
+      "hint",
+      null,
+      null,
+      "guided",
+      "free"
+    ],
+    "shadow_sequence": [
+      "question",
+      "question",
+      "question",
+      "question",
+      "question",
+      "question"
+    ],
+    "agree": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ]
+  }
+]

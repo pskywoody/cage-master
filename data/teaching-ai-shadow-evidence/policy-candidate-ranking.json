@@ -1,0 +1,52 @@
+{
+  "ranking": [
+    {
+      "candidate": "shadow_default",
+      "steps_scored": 8,
+      "descriptive_recovery_assoc": 0.276
+    },
+    {
+      "candidate": "always_free",
+      "steps_scored": 100,
+      "descriptive_recovery_assoc": 0.276
+    },
+    {
+      "candidate": "always_scaffold",
+      "steps_scored": 0,
+      "descriptive_recovery_assoc": null
+    },
+    {
+      "candidate": "always_question",
+      "steps_scored": 0,
+      "descriptive_recovery_assoc": null
+    }
+  ],
+  "category_recovery": {
+    "demo": {
+      "n": 22,
+      "recovered": 8,
+      "rate": 0.364
+    },
+    "hint": {
+      "n": 22,
+      "recovered": 14,
+      "rate": 0.636
+    },
+    "guided": {
+      "n": 21,
+      "recovered": 21,
+      "rate": 1
+    },
+    "free": {
+      "n": 29,
+      "recovered": 8,
+      "rate": 0.276
+    },
+    "reveal": {
+      "n": 6,
+      "recovered": 6,
+      "rate": 1
+    }
+  },
+  "note": "associational prioritization for hypothesis generation only; NOT causal; do not claim superiority"
+}

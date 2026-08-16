@@ -1,0 +1,12 @@
+{
+  "REAL": {
+    "total": 9,
+    "recovered": 4,
+    "recovered_rate": 0.444
+  },
+  "SYNTHETIC": {
+    "total": 107,
+    "recovered": 67,
+    "recovered_rate": 0.626
+  }
+}

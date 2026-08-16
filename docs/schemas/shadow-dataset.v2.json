@@ -1,0 +1,58 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://cagemaster4.local/schemas/shadow-dataset.v2.json",
+  "title": "CM4 Teaching AI Shadow Evidence Record v2",
+  "description": "Shadow evidence accumulation：在 v1 shadow event 上新增 observed_outcome 与 disagreement 结构化字段。仅记录，不执行教学动作。",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "session_id",
+    "event_id",
+    "timestamp",
+    "source",
+    "technique",
+    "learner_snapshot",
+    "current_teaching_action",
+    "system_action_category",
+    "shadow_recommendation",
+    "shadow_action_category",
+    "confidence",
+    "reason",
+    "disagreement",
+    "observed_outcome"
+  ],
+  "properties": {
+    "schema_version": { "const": "2" },
+    "session_id": { "type": "string" },
+    "event_id": { "type": "string" },
+    "timestamp": { "type": "number" },
+    "source": { "enum": ["REAL", "SYNTHETIC"] },
+    "technique": { "type": "string" },
+    "learner_snapshot": { "type": "object" },
+    "current_teaching_action": { "type": ["string", "null"] },
+    "system_action_category": { "type": ["string", "null"] },
+    "shadow_recommendation": { "type": "string" },
+    "shadow_action_category": { "type": "string" },
+    "confidence": { "type": "number" },
+    "reason": { "type": "string" },
+    "disagreement": {
+      "type": "object",
+      "required": ["type", "high_confidence"],
+      "properties": {
+        "type": { "enum": ["A", "B", "C", "D", "N"] },
+        "high_confidence": { "type": "boolean" }
+      }
+    },
+    "observed_outcome": {
+      "type": "object",
+      "required": ["recovered", "failure_count", "hint_count", "recovery_latency_events"],
+      "properties": {
+        "recovered": { "type": "boolean" },
+        "failure_count": { "type": "integer" },
+        "hint_count": { "type": "integer" },
+        "recovery_latency_events": { "type": ["integer", "null"] }
+      }
+    }
+  },
+  "additionalProperties": false
+}

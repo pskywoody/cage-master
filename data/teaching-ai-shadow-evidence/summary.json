@@ -1,0 +1,12 @@
+{
+  "schema_validation": {
+    "total": 116,
+    "invalid": 0,
+    "valid": 116
+  },
+  "real_events": 9,
+  "real_sessions": 2,
+  "synthetic_sessions": 20,
+  "total_records": 116,
+  "affectsUserBehavior": false
+}

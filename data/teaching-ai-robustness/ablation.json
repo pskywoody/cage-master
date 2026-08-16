@@ -1,0 +1,42 @@
+[
+  {
+    "env": "baseline",
+    "policy": "C_full",
+    "value_score": 1.573,
+    "mean_mastery": 2.25,
+    "mean_hint_dependency": 0.017,
+    "mean_transfer": 0.828,
+    "mean_retention": 0.745,
+    "mean_recovery": 3.167
+  },
+  {
+    "env": "baseline",
+    "policy": "C_no_state",
+    "value_score": 1.496,
+    "mean_mastery": 2.25,
+    "mean_hint_dependency": 0.1,
+    "mean_transfer": 0.787,
+    "mean_retention": 0.708,
+    "mean_recovery": 3
+  },
+  {
+    "env": "baseline",
+    "policy": "C_no_adaptation",
+    "value_score": 1.49,
+    "mean_mastery": 2.25,
+    "mean_hint_dependency": 0,
+    "mean_transfer": 0.784,
+    "mean_retention": 0.706,
+    "mean_recovery": 2.667
+  },
+  {
+    "env": "baseline",
+    "policy": "C_random",
+    "value_score": 1.398,
+    "mean_mastery": 2.249,
+    "mean_hint_dependency": 0.578,
+    "mean_transfer": 0.736,
+    "mean_retention": 0.662,
+    "mean_recovery": 3.6
+  }
+]

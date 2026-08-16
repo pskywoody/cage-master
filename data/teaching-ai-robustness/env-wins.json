@@ -1,0 +1,27 @@
+[
+  {
+    "env": "baseline",
+    "C_minus_A": 0.009,
+    "C_wins": true
+  },
+  {
+    "env": "easy",
+    "C_minus_A": 0.014,
+    "C_wins": true
+  },
+  {
+    "env": "hard",
+    "C_minus_A": 0.006,
+    "C_wins": true
+  },
+  {
+    "env": "high_forgetting",
+    "C_minus_A": 0.009,
+    "C_wins": true
+  },
+  {
+    "env": "high_hint_sensitivity",
+    "C_minus_A": 0.009,
+    "C_wins": true
+  }
+]

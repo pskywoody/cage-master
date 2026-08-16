@@ -1,0 +1,152 @@
+[
+  {
+    "env": "baseline",
+    "policy": "A_static_lesson",
+    "value_score": 1.564,
+    "mean_mastery": 2.25,
+    "mean_hint_dependency": 0,
+    "mean_transfer": 0.823,
+    "mean_retention": 0.741,
+    "mean_recovery": 3.667
+  },
+  {
+    "env": "baseline",
+    "policy": "B_hint_aligned",
+    "value_score": 0.954,
+    "mean_mastery": 1.4,
+    "mean_hint_dependency": 1,
+    "mean_transfer": 0.526,
+    "mean_retention": 0.427,
+    "mean_recovery": 3.667
+  },
+  {
+    "env": "baseline",
+    "policy": "C_full",
+    "value_score": 1.573,
+    "mean_mastery": 2.25,
+    "mean_hint_dependency": 0.017,
+    "mean_transfer": 0.828,
+    "mean_retention": 0.745,
+    "mean_recovery": 3.167
+  },
+  {
+    "env": "easy",
+    "policy": "A_static_lesson",
+    "value_score": 1.585,
+    "mean_mastery": 2.25,
+    "mean_hint_dependency": 0,
+    "mean_transfer": 0.834,
+    "mean_retention": 0.751,
+    "mean_recovery": 3.667
+  },
+  {
+    "env": "easy",
+    "policy": "B_hint_aligned",
+    "value_score": 0.969,
+    "mean_mastery": 1.451,
+    "mean_hint_dependency": 1,
+    "mean_transfer": 0.535,
+    "mean_retention": 0.434,
+    "mean_recovery": 4.333
+  },
+  {
+    "env": "easy",
+    "policy": "C_full",
+    "value_score": 1.599,
+    "mean_mastery": 2.25,
+    "mean_hint_dependency": 0,
+    "mean_transfer": 0.841,
+    "mean_retention": 0.757,
+    "mean_recovery": 2.833
+  },
+  {
+    "env": "hard",
+    "policy": "A_static_lesson",
+    "value_score": 1.521,
+    "mean_mastery": 2.25,
+    "mean_hint_dependency": 0,
+    "mean_transfer": 0.801,
+    "mean_retention": 0.721,
+    "mean_recovery": 3.667
+  },
+  {
+    "env": "hard",
+    "policy": "B_hint_aligned",
+    "value_score": 0.881,
+    "mean_mastery": 1.217,
+    "mean_hint_dependency": 1,
+    "mean_transfer": 0.493,
+    "mean_retention": 0.387,
+    "mean_recovery": 6
+  },
+  {
+    "env": "hard",
+    "policy": "C_full",
+    "value_score": 1.527,
+    "mean_mastery": 2.25,
+    "mean_hint_dependency": 0.037,
+    "mean_transfer": 0.804,
+    "mean_retention": 0.723,
+    "mean_recovery": 3.167
+  },
+  {
+    "env": "high_forgetting",
+    "policy": "A_static_lesson",
+    "value_score": 1.481,
+    "mean_mastery": 2.25,
+    "mean_hint_dependency": 0,
+    "mean_transfer": 0.823,
+    "mean_retention": 0.658,
+    "mean_recovery": 3.667
+  },
+  {
+    "env": "high_forgetting",
+    "policy": "B_hint_aligned",
+    "value_score": 0.89,
+    "mean_mastery": 1.4,
+    "mean_hint_dependency": 1,
+    "mean_transfer": 0.526,
+    "mean_retention": 0.363,
+    "mean_recovery": 3.667
+  },
+  {
+    "env": "high_forgetting",
+    "policy": "C_full",
+    "value_score": 1.49,
+    "mean_mastery": 2.25,
+    "mean_hint_dependency": 0.017,
+    "mean_transfer": 0.828,
+    "mean_retention": 0.662,
+    "mean_recovery": 3.167
+  },
+  {
+    "env": "high_hint_sensitivity",
+    "policy": "A_static_lesson",
+    "value_score": 1.564,
+    "mean_mastery": 2.25,
+    "mean_hint_dependency": 0,
+    "mean_transfer": 0.823,
+    "mean_retention": 0.741,
+    "mean_recovery": 3.667
+  },
+  {
+    "env": "high_hint_sensitivity",
+    "policy": "B_hint_aligned",
+    "value_score": 0.846,
+    "mean_mastery": 1.05,
+    "mean_hint_dependency": 1,
+    "mean_transfer": 0.474,
+    "mean_retention": 0.372,
+    "mean_recovery": 4.667
+  },
+  {
+    "env": "high_hint_sensitivity",
+    "policy": "C_full",
+    "value_score": 1.573,
+    "mean_mastery": 2.25,
+    "mean_hint_dependency": 0.025,
+    "mean_transfer": 0.828,
+    "mean_retention": 0.745,
+    "mean_recovery": 3.167
+  }
+]

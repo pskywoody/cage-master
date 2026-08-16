@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://cagemaster4.local/schemas/teaching-evidence-registry.v1.json",
+  "title": "CM4 Teaching Action Evidence Registry v1",
+  "description": "每个（组）教学动作所需的运行时证据字段。真实 session 接入前据此采集，防止‘有数据无字段’。shadow/research only。",
+  "version": 1,
+  "gaps": [
+    {
+      "group": "question",
+      "actions": ["question"],
+      "required_evidence_fields": [
+        { "field": "question_generated", "meaning": "是否生成了提问" },
+        { "field": "question_answered", "meaning": "玩家是否回答了提问" },
+        { "field": "question_helpful", "meaning": "提问后是否促成独立正确/恢复" }
+      ]
+    },
+    {
+      "group": "partial_hint",
+      "actions": ["partial_hint"],
+      "required_evidence_fields": [
+        { "field": "hint_granularity", "meaning": "给出的 hint level（0..3）" },
+        { "field": "hint_consumption", "meaning": "玩家是否按 hint 推进" },
+        { "field": "recovery_after_hint", "meaning": "hint 后是否恢复独立解题" }
+      ]
+    },
+    {
+      "group": "difficulty",
+      "actions": ["difficulty_down", "difficulty_up"],
+      "required_evidence_fields": [
+        { "field": "puzzle_adjustment", "meaning": "是否发生了难度调整" },
+        { "field": "failure_rate_before", "meaning": "调整前的失败率" },
+        { "field": "failure_rate_after", "meaning": "调整后的失败率" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "generated_by": "scripts/teaching-action-observability-gap.mjs",
+  "schema_source": "docs/schemas/teaching-evidence-registry.v1.json",
+  "evidence_source": "data/teaching-action-space/action-coverage.json",
+  "rows": [
+    {
+      "action": "hint",
+      "evidence_group": null,
+      "schema": true,
+      "generator": true,
+      "runtime_evidence": true,
+      "missing_evidence_fields": []
+    },
+    {
+      "action": "demo",
+      "evidence_group": null,
+      "schema": true,
+      "generator": true,
+      "runtime_evidence": true,
+      "missing_evidence_fields": []
+    },
+    {
+      "action": "guided",
+      "evidence_group": null,
+      "schema": true,
+      "generator": true,
+      "runtime_evidence": true,
+      "missing_evidence_fields": []
+    },
+    {
+      "action": "question",
+      "evidence_group": "question",
+      "schema": true,
+      "generator": true,
+      "runtime_evidence": false,
+      "missing_evidence_fields": [
+        "question_generated",
+        "question_answered",
+        "question_helpful"
+      ]
+    },
+    {
+      "action": "partial_hint",
+      "evidence_group": "partial_hint",
+      "schema": true,
+      "generator": true,
+      "runtime_evidence": false,
+      "missing_evidence_fields": [
+        "hint_granularity",
+        "hint_consumption",
+        "recovery_after_hint"
+      ]
+    },
+    {
+      "action": "difficulty_down",
+      "evidence_group": "difficulty",
+      "schema": true,
+      "generator": true,
+      "runtime_evidence": false,
+      "missing_evidence_fields": [
+        "puzzle_adjustment",
+        "failure_rate_before",
+        "failure_rate_after"
+      ]
+    },
+    {
+      "action": "difficulty_up",
+      "evidence_group": "difficulty",
+      "schema": true,
+      "generator": true,
+      "runtime_evidence": false,
+      "missing_evidence_fields": [
+        "puzzle_adjustment",
+        "failure_rate_before",
+        "failure_rate_after"
+      ]
+    }
+  ],
+  "summary": {
+    "total_canonical_actions": 7,
+    "with_runtime_evidence": 3,
+    "missing_runtime_evidence": [
+      "question",
+      "partial_hint",
+      "difficulty_down",
+      "difficulty_up"
+    ],
+    "registry_fields": [
+      {
+        "group": "question",
+        "required": [
+          "question_generated",
+          "question_answered",
+          "question_helpful"
+        ]
+      },
+      {
+        "group": "partial_hint",
+        "required": [
+          "hint_granularity",
+          "hint_consumption",
+          "recovery_after_hint"
+        ]
+      },
+      {
+        "group": "difficulty",
+        "required": [
+          "puzzle_adjustment",
+          "failure_rate_before",
+          "failure_rate_after"
+        ]
+      }
+    ]
+  }
+}

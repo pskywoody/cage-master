@@ -1,0 +1,80 @@
+{
+  "policyVersion": "UA-v2@2026-08-16",
+  "generatedAt": "2026-08-16T14:00:20.409Z",
+  "sessionCount": 5,
+  "boundaryStatesCovered": [
+    "novice_exploration",
+    "temporary_error",
+    "persistent_struggle",
+    "guided",
+    "independent"
+  ],
+  "checks": [
+    {
+      "sessionId": "p1-session-novice_exploration",
+      "truth": "novice_exploration",
+      "learnerState": "novice_exploration",
+      "confidence": 1,
+      "suggestedAction": "observe",
+      "expectedAction": "observe",
+      "stateMatch": true,
+      "actionMatch": true,
+      "shadowOnly": true,
+      "pass": true
+    },
+    {
+      "sessionId": "p1-session-temporary_error",
+      "truth": "temporary_error",
+      "learnerState": "temporary_error",
+      "confidence": 1,
+      "suggestedAction": "question",
+      "expectedAction": "question",
+      "stateMatch": true,
+      "actionMatch": true,
+      "shadowOnly": true,
+      "pass": true
+    },
+    {
+      "sessionId": "p1-session-persistent_struggle",
+      "truth": "persistent_struggle",
+      "learnerState": "persistent_struggle",
+      "confidence": 0.94,
+      "suggestedAction": "partial_hint",
+      "expectedAction": "partial_hint",
+      "stateMatch": true,
+      "actionMatch": true,
+      "shadowOnly": true,
+      "pass": true
+    },
+    {
+      "sessionId": "p1-session-guided",
+      "truth": "guided",
+      "learnerState": "guided",
+      "confidence": 0.85,
+      "suggestedAction": "backoff",
+      "expectedAction": "backoff",
+      "stateMatch": true,
+      "actionMatch": true,
+      "shadowOnly": true,
+      "pass": true
+    },
+    {
+      "sessionId": "p1-session-independent",
+      "truth": "independent",
+      "learnerState": "independent",
+      "confidence": 0.85,
+      "suggestedAction": "backoff",
+      "expectedAction": "backoff",
+      "stateMatch": true,
+      "actionMatch": true,
+      "shadowOnly": true,
+      "pass": true
+    }
+  ],
+  "acceptance": {
+    "TEACHING_POLICY_ADAPTER_READY": true,
+    "allBoundaryStatesCovered": true,
+    "allProposalsAligned": true,
+    "note": "TEACHING_POLICY_ADAPTER_READY !== TEACHING_AI_ENABLED（影子提案就绪，未接入生产执行）"
+  }
+}

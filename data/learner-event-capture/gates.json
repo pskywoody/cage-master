@@ -1,0 +1,33 @@
+{
+  "gate1": {
+    "ok": true,
+    "sessionId": "cap-demo-s1",
+    "eventCount": 6
+  },
+  "gate2": {
+    "ok": true,
+    "observeCount": 6,
+    "skillState": {
+      "state": "independent",
+      "confidence": 0.41666666583994705,
+      "trend": "flat"
+    }
+  },
+  "gate3": {
+    "ok": true,
+    "refinedState": "guided",
+    "coarseState": "guided"
+  },
+  "gate4": {
+    "ok": true,
+    "actualTeaching": [
+      "hint",
+      "guided_success",
+      "hint"
+    ],
+    "ua2": "question",
+    "naive": "question",
+    "disagreementCount": 3,
+    "differing": true
+  }
+}

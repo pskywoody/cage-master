@@ -1,0 +1,6 @@
+{"eventId":"ev_msvo08vt_1","sessionId":"cap-demo-s1","timestamp":"2026-08-16T10:31:29.273Z","source":"TeachingSystem","technique":"hiddenPair","action":{"type":"attempt"},"outcome":{"success":false,"mistakes":null,"solveTime":null}}
+{"eventId":"ev_msvo08vz_2","sessionId":"cap-demo-s1","timestamp":"2026-08-16T10:31:29.279Z","source":"LessonPlayer","technique":"hiddenPair","action":{"type":"hint"},"outcome":{"success":null,"mistakes":null,"solveTime":null}}
+{"eventId":"ev_msvo08w0_3","sessionId":"cap-demo-s1","timestamp":"2026-08-16T10:31:29.280Z","source":"LessonPlayer","technique":"hiddenPair","action":{"type":"attempt"},"outcome":{"success":false,"mistakes":1,"solveTime":null}}
+{"eventId":"ev_msvo08w1_4","sessionId":"cap-demo-s1","timestamp":"2026-08-16T10:31:29.281Z","source":"LessonPlayer","technique":"hiddenPair","action":{"type":"guided_success"},"outcome":{"success":true,"mistakes":null,"solveTime":null}}
+{"eventId":"ev_msvo08w2_5","sessionId":"cap-demo-s1","timestamp":"2026-08-16T10:31:29.282Z","source":"HintSystem","technique":"hiddenPair","action":{"type":"hint"},"outcome":{"success":null,"mistakes":null,"solveTime":null}}
+{"eventId":"ev_msvo08w3_6","sessionId":"cap-demo-s1","timestamp":"2026-08-16T10:31:29.283Z","source":"Puzzle","technique":"hiddenPair","action":{"type":"solve"},"outcome":{"success":true,"mistakes":2,"solveTime":120}}

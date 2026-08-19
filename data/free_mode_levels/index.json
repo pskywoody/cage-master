@@ -1,0 +1,187 @@
+{
+  "version": "1.0",
+  "generated_at": "2026-08-19T03:34:16.365Z",
+  "total": 30,
+  "levels": [
+    {
+      "id": "V9-005",
+      "score": 0.707,
+      "journey": "gentle_rise",
+      "maxTech": 5
+    },
+    {
+      "id": "V9-008",
+      "score": 0.678,
+      "journey": "gentle_rise",
+      "maxTech": 5
+    },
+    {
+      "id": "V9-016",
+      "score": 0.662,
+      "journey": "gentle_rise",
+      "maxTech": 5
+    },
+    {
+      "id": "V9-018",
+      "score": 0.657,
+      "journey": "gentle_rise",
+      "maxTech": 5
+    },
+    {
+      "id": "V9-020",
+      "score": 0.655,
+      "journey": "gentle_rise",
+      "maxTech": 5
+    },
+    {
+      "id": "V9-017",
+      "score": 0.643,
+      "journey": "gentle_rise",
+      "maxTech": 5
+    },
+    {
+      "id": "V9-012",
+      "score": 0.638,
+      "journey": "gentle_rise",
+      "maxTech": 5
+    },
+    {
+      "id": "V9-007",
+      "score": 0.637,
+      "journey": "gentle_rise",
+      "maxTech": 5
+    },
+    {
+      "id": "V9-021",
+      "score": 0.61,
+      "journey": "double_peak",
+      "maxTech": 5
+    },
+    {
+      "id": "V9-001",
+      "score": 0.574,
+      "journey": "gentle_rise",
+      "maxTech": 4
+    },
+    {
+      "id": "V9-006",
+      "score": 0.561,
+      "journey": "gentle_rise",
+      "maxTech": 5
+    },
+    {
+      "id": "V9-010",
+      "score": 0.545,
+      "journey": "early_peak",
+      "maxTech": 5
+    },
+    {
+      "id": "V9-002",
+      "score": 0.532,
+      "journey": "late_peak",
+      "maxTech": 4
+    },
+    {
+      "id": "V9-028",
+      "score": 0.518,
+      "journey": "early_peak",
+      "maxTech": 5
+    },
+    {
+      "id": "V9-004",
+      "score": 0.507,
+      "journey": "gentle_rise",
+      "maxTech": 4
+    },
+    {
+      "id": "V9-013",
+      "score": 0.488,
+      "journey": "early_peak",
+      "maxTech": 5
+    },
+    {
+      "id": "V9-024",
+      "score": 0.487,
+      "journey": "early_peak",
+      "maxTech": 5
+    },
+    {
+      "id": "V9-023",
+      "score": 0.475,
+      "journey": "early_peak",
+      "maxTech": 5
+    },
+    {
+      "id": "V9-030",
+      "score": 0.444,
+      "journey": "early_peak",
+      "maxTech": 5
+    },
+    {
+      "id": "V9-026",
+      "score": 0.436,
+      "journey": "early_peak",
+      "maxTech": 5
+    },
+    {
+      "id": "V9-025",
+      "score": 0.433,
+      "journey": "early_peak",
+      "maxTech": 5
+    },
+    {
+      "id": "V9-019",
+      "score": 0.425,
+      "journey": "early_peak",
+      "maxTech": 5
+    },
+    {
+      "id": "V9-011",
+      "score": 0.424,
+      "journey": "early_peak",
+      "maxTech": 5
+    },
+    {
+      "id": "V9-015",
+      "score": 0.424,
+      "journey": "early_peak",
+      "maxTech": 5
+    },
+    {
+      "id": "V9-027",
+      "score": 0.411,
+      "journey": "early_peak",
+      "maxTech": 5
+    },
+    {
+      "id": "V9-014",
+      "score": 0.405,
+      "journey": "early_peak",
+      "maxTech": 4
+    },
+    {
+      "id": "V9-003",
+      "score": 0.403,
+      "journey": "early_peak",
+      "maxTech": 4
+    },
+    {
+      "id": "V9-022",
+      "score": 0.392,
+      "journey": "early_peak",
+      "maxTech": 5
+    },
+    {
+      "id": "V9-029",
+      "score": 0.376,
+      "journey": "early_peak",
+      "maxTech": 5
+    },
+    {
+      "id": "V9-009",
+      "score": 0.297,
+      "journey": "early_peak",
+      "maxTech": 4
+    }
+  ]
+}

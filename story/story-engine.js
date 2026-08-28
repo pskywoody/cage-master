@@ -2800,7 +2800,7 @@
       if (this._chibiEl) return;
       this._chibiEl = document.createElement('div');
       this._chibiEl.id = 'story-chibi';
-      this._chibiEl.style.cssText = 'position:fixed;z-index:100008;display:none;' +
+      this._chibiEl.style.cssText = 'position:fixed;z-index:8600;display:none;' +
         'background-size:contain;background-repeat:no-repeat;background-position:center bottom;' +
         'pointer-events:none;transition:opacity 0.25s;' +
         // v2.0：无底板（原半透明圆形底框用户反馈"黑色圆形框框住"不想要），

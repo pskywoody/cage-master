@@ -171,6 +171,18 @@ export class DialogSystem {
   }
 
   /**
+   * 立即把当前条目的打字机文本补全为全文（不推进对话、不触发 onComplete）
+   * 供教学"进入允许输入阶段 → 气泡瞬间显现全文"使用。
+   */
+  completeTyping() {
+    try {
+      if (this._showing) this._finishTyping();
+    } catch (e) {
+      console.warn('[DialogSystem] completeTyping error:', e);
+    }
+  }
+
+  /**
    * 跳过当前对话：补全打字机文本；若已补全则结束整段（触发 onComplete）
    */
   skip() {

@@ -45,16 +45,17 @@ export class PcLayoutManager {
   }
 
   /**
-   * 右栏宽度（与 CSS 的 clamp() 保持一致，供板宽预算用）。
-   *   LARGE   —— clamp(360px, 22vw, 420px)
-   *   COMPACT —— clamp(300px, 22vw, 340px)
+   * 右栏宽度——按屏高比例（用户基准：1200 高 → 450 宽，比例 0.375）。
+   *   不再按宽度 clamp：右栏是「贴近屏幕右缘的纵向面板」，其宽度与屏高成正比
+   *   才能保证「双盘正方形 + 竖排工具列」在任意窗口都保持同一比例观感。
+   *   LARGE   —— h × 0.375，夹紧 [340, 620]
+   *   COMPACT —— h × 0.28，夹紧 [300, 400]
    */
-  _rightPanelWidth(mode, w) {
+  _rightPanelWidth(mode, h) {
     if (mode === 'large') {
-      // clamp(360px, 22vw, 420px) —— 440 太重，720:860 视觉≈重，压到 420 上限
-      return Math.round(Math.min(420, Math.max(360, w * 0.22)));
+      return Math.round(Math.min(620, Math.max(340, h * 0.375)));
     }
-    return Math.round(Math.min(340, Math.max(300, w * 0.22)));
+    return Math.round(Math.min(400, Math.max(300, h * 0.28)));
   }
 
   /**
@@ -76,7 +77,7 @@ export class PcLayoutManager {
     }
 
     // 双栏预算：高度预算含 45账本贴盘让位(_PC_LEDGER)，保证一屏放得下
-    const rightW = this._rightPanelWidth(mode, w);
+    const rightW = this._rightPanelWidth(mode, h);
     const baseW = w - rightW - this._GAP - this._SIDE_PAD * 2;
     const baseH = h - this._TOPBAR - this._STATUS - this._V_PAD - this._PC_LEDGER;
 
@@ -112,7 +113,6 @@ export class PcLayoutManager {
     try {
       if (!this._hasDom) return;
       const mode = layout.mode;
-      const board = Math.max(Math.round(layout.board), 320);
       const changed = mode !== this._mode;
 
       this._mode = mode;
@@ -120,11 +120,11 @@ export class PcLayoutManager {
       const isPc = (mode === 'large' || mode === 'compact');
       document.body.classList.toggle('pc-layout-active', isPc);
 
-      // 棋盘优先：尺寸唯一权威来源
-      const bc = document.getElementById('board-container');
-      if (bc) bc.style.setProperty('--board-size', board + 'px');
-      const sl = document.getElementById('statusLine');
-      if (sl) sl.style.setProperty('--board-size', board + 'px');
+      // 棋盘尺寸唯一权威来源是全局 layout()：它把含 chibi 让位（--chibi-h/--ffh-h/--cipher-h）
+      // 收缩后的 --board-size 写到 :root。此前这里内联 --board-size 到 #board-container，
+      // 内联自定义属性遮蔽根值 → chibi 出现时棋盘保持大尺寸被 margin-top 下推、底部溢出被裁。
+      // 撤掉内联，在模式 class 切换后重跑 layout() 以按当前模式刷新根变量。
+      try { if (typeof window.layout === 'function') window.layout(); } catch (eL) {}
 
       this._repositionToolRoll(isPc);
       this.syncToPc();

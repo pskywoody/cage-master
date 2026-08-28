@@ -57,6 +57,12 @@ export class SettingsPanel {
       muteAll: false, // 总静音（v2.0：默认关闭；开启后所有声音关闭）
       instantErrorCheck: true, // 错误即时高亮（Q5：默认开启，填错立即红色高亮；关闭后不再实时标错）
       ledgerMode: 'compact', // 45账本模式（Q4：compact 紧凑 / full 完全 / off 关闭，默认紧凑）
+      // 显示模式（桌面端）：windowed 窗口 / borderless 无边框 / fullscreen 真正全屏。
+      // 仅 Electron 桌面壳生效（window.cm4Desktop 桥）；Web 浏览器运行时回退 Fullscreen API。
+      displayMode: 'windowed',
+      // 分辨率（桌面端）：auto / 1280x720 / 1600x900 / 1920x1080。
+      // Windowed=窗口尺寸；Borderless=无边框尺寸；Fullscreen 用显示器原生分辨率，忽略此项。
+      resolution: 'auto',
     }, options.defaults || {});
 
     /** @type {Object} 各设置的合法值校验表 */
@@ -88,6 +94,8 @@ export class SettingsPanel {
       muteAll: (v) => !!v,
       instantErrorCheck: (v) => !!v,
       ledgerMode: (v) => ['compact', 'full', 'off'].indexOf(v) >= 0 ? v : this._defaults.ledgerMode,
+      displayMode: (v) => ['windowed', 'borderless', 'fullscreen'].indexOf(v) >= 0 ? v : this._defaults.displayMode,
+      resolution: (v) => ['auto', '1280x720', '1600x900', '1920x1080'].indexOf(v) >= 0 ? v : this._defaults.resolution,
     };
 
     /** @type {boolean} 是否已打开 */
@@ -458,6 +466,33 @@ export class SettingsPanel {
       panel.appendChild(ledgerRow);
     }
 
+    // 显示模式（桌面端）：窗口 / 无边框 / 全屏切换。
+    // onChange 中经 window.cm4Desktop.setDisplayConfig 通知 Electron 主进程；
+    // Web 浏览器环境由 onChange 侧代理 Fullscreen API（仅 windowed/fullscreen）。
+    const displayModeRow = this._buildSelect('displayMode', window.I18n.t('ui.settings.displayMode'), [
+      { value: 'windowed', label: window.I18n.t('ui.settings.displayMode.windowed') },
+      { value: 'borderless', label: window.I18n.t('ui.settings.displayMode.borderless') },
+      { value: 'fullscreen', label: window.I18n.t('ui.settings.displayMode.fullscreen') },
+    ]);
+    if (displayModeRow) {
+      const hint = displayModeRow.querySelector('.cm-settings-hint');
+      if (hint) hint.textContent = window.I18n.t('ui.settings.displayMode.hint');
+      panel.appendChild(displayModeRow);
+    }
+
+    // 分辨率（桌面端）：Windowed=窗口尺寸；Borderless=无边框尺寸；Fullscreen 用显示器原生分辨率。
+    const resolutionRow = this._buildSelect('resolution', window.I18n.t('ui.settings.resolution'), [
+      { value: 'auto', label: window.I18n.t('ui.settings.resolution.auto') },
+      { value: '1280x720', label: '1280×720' },
+      { value: '1600x900', label: '1600×900' },
+      { value: '1920x1080', label: '1920×1080' },
+    ]);
+    if (resolutionRow) {
+      const hint = resolutionRow.querySelector('.cm-settings-hint');
+      if (hint) hint.textContent = window.I18n.t('ui.settings.resolution.hint');
+      panel.appendChild(resolutionRow);
+    }
+
     if (this._container) {
       this._container.appendChild(panel);
     } else {
@@ -557,7 +592,7 @@ export class SettingsPanel {
       }
 
       // 下拉
-      const selects = ['quality', 'noteMode', 'language', 'chibiChatter', 'muteAll', 'instantErrorCheck', 'ledgerMode'];
+      const selects = ['quality', 'noteMode', 'language', 'chibiChatter', 'muteAll', 'instantErrorCheck', 'ledgerMode', 'displayMode', 'resolution'];
       for (const key of selects) {
         const el = document.getElementById('cm-set-' + key);
         if (el) el.value = String(this.get(key));

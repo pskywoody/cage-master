@@ -367,8 +367,8 @@ import I18n from '../i18n/i18n.js';
       el.id = 'combo-display';
       el.style.cssText = `
         position: fixed;
-        top: 72px;
-        right: 20px;
+        bottom: 8px;
+        right: 16px;
         z-index: 12000;
         pointer-events: none;
         text-align: right;

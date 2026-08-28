@@ -359,6 +359,18 @@ export class LessonPlayer {
   canInteractCell(r, c) {
     if (!this._isActive) return true;
 
+    // 防呆：教学控制阶段（guided/noteToFill/semiAuto）已填出正确答案的格立即锁定，
+    // 后续点按/填数一律无效——防止玩家连点跳过对话时误按数字把刚填对的格改掉。
+    // 用阶段而非 freezeEnabled 判定，确保 semiAuto 等 freezeless 阶段同样生效。
+    if (this._currentPhase === 'guided' || this._currentPhase === 'noteToFill' || this._currentPhase === 'semiAuto') {
+      const cell = this._getEngineCell(r, c);
+      if (cell && cell.fillNum != null) {
+        const sol = this._levelData && this._levelData.solution;
+        const correct = (sol && sol[r]) ? sol[r][c] : null;
+        if (correct != null && cell.fillNum === correct) return false;
+      }
+    }
+
     // 2026-08-05：任务 C——semiAuto 强引导：独立于 freezeEnabled，只允许操作 watchCells 格
     if (this._currentPhase === 'semiAuto' && this._semiAutoFrozenCells.size > 0) {
       return this._semiAutoFrozenCells.has(r + ',' + c);
@@ -461,6 +473,21 @@ export class LessonPlayer {
    */
   handleCellFill(r, c, num) {
     if (!this._isActive) return { handled: false };
+
+    // 防呆（纵深防御）：教学控制阶段已填正确值的格，禁止被 OVERWRITE 成别的数字——
+    // 即使用户绕过 UI 门控直呼 handleCellFill 也回绝，绝不改掉正确答案。
+    // 注意：引擎在调用本方法前已真实落盘，故"首次填对/重复填同值"（num===correct）
+    // 必须放行；只有以不同值覆盖已填正确的格才判定无效。
+    if (this._currentPhase === 'guided' || this._currentPhase === 'noteToFill' || this._currentPhase === 'semiAuto') {
+      const gcell = this._getEngineCell(r, c);
+      if (gcell && gcell.fillNum != null) {
+        const sol = this._levelData && this._levelData.solution;
+        const correct = (sol && sol[r]) ? sol[r][c] : null;
+        if (correct != null && gcell.fillNum === correct && num !== correct) {
+          return { handled: false, lockedCorrect: true };
+        }
+      }
+    }
 
     const guided = this._lessonPlan.phases.guided;
 

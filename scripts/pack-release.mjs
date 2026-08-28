@@ -21,8 +21,10 @@ const ROOT = path.join(__dirname, '..');
 const OUT_FLAG = process.argv.indexOf('--out');
 const OUT = OUT_FLAG !== -1 ? path.resolve(ROOT, process.argv[OUT_FLAG + 1]) : path.join(ROOT, 'release', 'web');
 
-const DIRS = ['core', 'renderer', 'ui', 'story', 'content', 'expert', 'i18n', 'config', 'assets/audio', 'assets/images'];
+const DIRS = ['core', 'renderer', 'ui', 'story', 'content', 'expert', 'i18n', 'config', 'audio', 'assets/audio', 'assets/images'];
 const DATA_SUBS = ['levels', 'scripts', 'free_mode_levels'];
+// 运行时需要的 data/ 顶层文件（精确列入，避免把 b3/b4/suzhou/gen_batch 等研究产物带进发布包）
+const DATA_TOP_FILES = ['chapters.json', 'script-data.js'];
 const ENTRIES = ['game.html', 'index.html', 'replay.html', 'ai-debug.html'];
 const EXCLUDE_SEG = new Set(['suzhou', 'archive', 'audio_next', '__pycache__']);
 
@@ -54,6 +56,10 @@ for (const e of ENTRIES) {
 }
 for (const d of DIRS) n += copy(path.join(ROOT, d), path.join(OUT, d), d);
 for (const sub of DATA_SUBS) n += copy(path.join(ROOT, 'data', sub), path.join(OUT, 'data', sub), path.join('data', sub));
+for (const f of DATA_TOP_FILES) {
+  const s = path.join(ROOT, 'data', f);
+  if (fs.existsSync(s)) { fs.copyFileSync(s, path.join(OUT, 'data', f)); n++; }
+}
 
 // 汇总 + MANIFEST
 let total = 0, bytes = 0;

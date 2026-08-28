@@ -253,7 +253,7 @@
   #traitorClues { width: min(420px, 92vw); background: rgba(74,59,42,.55); border: 1px solid rgba(212,168,83,.35); border-radius: 10px; padding: 10px 12px; margin-bottom: 10px; }
   .traitor-clue { color: #e8d9b8; font-size: 13px; line-height: 1.7; }
   /* V4.3.40：密文映射（504）索引面板 */
-  #cipherIndex { position: fixed; top: calc(var(--topbar-h, 56px) + 8px); left: 50%; transform: translateX(-50%); z-index: 8730; display: flex; align-items: center; gap: 6px; background: rgba(30,24,16,.94); border: 1px solid rgba(212,168,83,.5); border-radius: 12px; padding: 6px 10px; box-shadow: 0 4px 16px rgba(0,0,0,.5); animation: cipherPulse 1.8s ease-out 1; }
+  #cipherIndex { position: fixed; top: calc(var(--topbar-h, 56px) + 6px); left: 50%; transform: translateX(-50%); z-index: 8730; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; row-gap: 6px; column-gap: 12px; max-width: min(92vw, var(--board-size, 560px)); background: rgba(30,24,16,.96); border: 1px solid rgba(212,168,83,.5); border-radius: 12px; padding: 6px 12px; box-shadow: 0 4px 16px rgba(0,0,0,.5); animation: cipherPulse 1.8s ease-out 1; }
   /* V4.4：关卡加载中遮罩（startLevel 发 levelLoadBegin → 显示，levelStart/loadError → 隐藏） */
   #levelLoading { position: fixed; inset: 0; z-index: 99990; display: none; align-items: center; justify-content: center; flex-direction: column; gap: 16px; background: rgba(18,14,9,.86); }
   #levelLoading.show { display: flex; }
@@ -280,7 +280,7 @@
     25% { box-shadow: 0 0 0 8px rgba(255,217,160,.45); background-color: rgba(58,46,28,.98); }
     100% { box-shadow: 0 4px 16px rgba(0,0,0,.5); background-color: rgba(30,24,16,.94); }
   }
-  #cipherIndex .cipher-title { color: #ffd9a0; font-size: 12px; font-weight: 700; margin-right: 2px; }
+  #cipherIndex .cipher-title { color: #ffd9a0; font-size: 12px; font-weight: 700; flex: 0 0 100%; text-align: center; }
   #cipherIndex .cipher-item { display: flex; align-items: center; gap: 3px; color: #e8d9b8; font-size: 12px; }
   #cipherIndex .cipher-item canvas { width: 18px; height: 18px; display: block; }
   #traitorTools { display: flex; gap: 8px; margin-bottom: 10px; }
@@ -391,7 +391,9 @@
        导致 chibi 与棋盘重叠遮挡 */
     /* Q5：--ffh-h 由 positionLedgerHintCard 设置——45 账本卡显示且遮挡棋盘时
        盘面下移让位（竖屏空间足够，账本卡不压盘面） */
-    margin-top: calc(var(--chibi-h, 0px) + var(--ffh-h, 0px) + 4px);
+    /* 2026-08-28：--cipher-h 由 layout() 测得——密文映射索引面板(cipherIndex)显示时，
+       盘面整体下移避开，保证盘面任何情况下完整不被遮挡 */
+    margin-top: calc(var(--chibi-h, 0px) + var(--ffh-h, 0px) + var(--cipher-h, 0px) + 4px);
   }
   #board-container canvas {
     position: absolute;
@@ -400,56 +402,8 @@
     width: 100%;
     height: 100%;
   }
-  /* v2.0：状态指示灯——canvas 内部右上方，macOS 三点式小灯（笔记/连填）
-     P0：去 OS 隐喻 + 去霓虹发光——改为"书页右缘的两枚小印"（墨水槽：黄铜/青墨），
-     仅保留 2px 方形墨印 + 淡晕，无外发光脉冲
-     Q2：移到左上角 + 去文字标签，两枚小印紧排 */
-  #modeLights {
-    position: absolute;
-    top: 4px;
-    left: 4px;
-    z-index: 4;
-    display: flex;
-    gap: 4px;
-    pointer-events: none;
-  }
-  .mode-light {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0;
-    padding: 2px;
-    border-radius: 3px;
-    background: rgba(61, 47, 34, 0.6);
-    border: 1px solid rgba(212, 165, 116, 0.3);
-    opacity: 0.5;
-    transition: opacity 0.25s;
-  }
-  .mode-light.on {
-    opacity: 1;
-  }
-  .mode-light .ml-dot {
-    width: 9px;
-    height: 9px;
-    border-radius: 2px;
-    background: #6b5a42;
-  }
-  /* 笔记印：黄铜 */
-  #lightNote.on .ml-dot {
-    background: var(--brass);
-  }
-  #lightNote.on {
-    border-color: rgba(184, 134, 11, 0.6);
-    background: rgba(61, 47, 34, 0.85);
-  }
-  /* 连填印：青墨 */
-  #lightPen.on .ml-dot {
-    background: var(--pen-blue);
-  }
-  #lightPen.on {
-    border-color: rgba(26, 58, 92, 0.6);
-    background: rgba(61, 47, 34, 0.85);
-  }
+  /* 2026-08-28：canvas 左上角状态指示灯（#modeLights / lightNote / lightPen）已删除，
+     与 DOM 一并移除，减少棋盘遮挡。setModeLight 因元素缺失自然降级为空操作。 */
   #board-canvas   { z-index: 1; }
   #effect-canvas  { z-index: 2; pointer-events: none; }
   #ui-canvas      { z-index: 3; cursor: pointer; touch-action: none; }
@@ -951,90 +905,6 @@
   body.whatif-mode.snaps-3 #board-container {
     box-shadow: 0 0 24px rgba(212, 168, 83, 0.8), 0 0 54px rgba(212, 168, 83, 0.38);
   }
-  /* v2.0：皮扣触发器——笔记本绑带（棕色皮革 + 金属扣环）
-     闭合静止 / 悬停高光上浮 2px / 拉开向右摆 15° / 扣上弹性回位 */
-  #whatIfFloat {
-    position: fixed;
-    right: 14px;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 12000;
-    width: 44px;
-    height: 28px;
-    cursor: pointer;
-    touch-action: none;
-    user-select: none;
-    -webkit-user-select: none;
-    transition: transform 0.3s, filter 0.3s;
-  }
-  /* V4.3.39：扩大点击热区——用 ::before 伪元素撑开透明区域，
-     视觉 28px 高，实际可点击区域上下各延伸 16px */
-  #whatIfFloat::before {
-    content: '';
-    position: absolute;
-    left: -8px; right: -8px;
-    top: -16px; bottom: -16px;
-    background: transparent;
-  }
-  /* 皮革绑带主体 */
-  #whatIfFloat .buckle-strap {
-    position: absolute;
-    left: 0; right: 0; top: 0; bottom: 0;
-    background:
-      repeating-linear-gradient(0deg, rgba(0,0,0,0.12) 0 1px, transparent 1px 4px),
-      repeating-linear-gradient(90deg, rgba(0,0,0,0.06) 0 1px, transparent 1px 7px),
-      linear-gradient(180deg, #9c7a1e, #8B6914 45%, #6d520f);
-    border: 1px solid #5c4510;
-    border-radius: 7px;
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.25), 0 3px 8px rgba(0,0,0,0.45);
-  }
-  /* 金属扣环 */
-  #whatIfFloat .buckle-ring {
-    position: absolute;
-    top: 3px;
-    right: 6px;
-    width: 16px;
-    height: 22px;
-    border: 3px solid #B8860B;
-    border-radius: 5px;
-    box-shadow: inset 0 1px 2px rgba(255,255,255,0.5), 0 1px 3px rgba(0,0,0,0.5);
-    background: linear-gradient(135deg, #d4a017, #b8860b 60%, #8a6508);
-  }
-  #whatIfFloat .buckle-label {
-    position: absolute;
-    left: 2px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 13px;
-    line-height: 1;
-    pointer-events: none;
-  }
-  /* 悬停/触摸：高光提升 + 阴影加深 + 上浮 2px */
-  #whatIfFloat:hover {
-    filter: brightness(1.15);
-    box-shadow: 0 6px 14px rgba(0,0,0,0.55);
-    transform: translateY(calc(-50% - 2px));
-  }
-  /* 拉开（抽屉打开）：向右摆动 15°，绑带垂落 */
-  #whatIfFloat.buckle-open {
-    transform: translateY(-50%) rotate(15deg) translateX(3px);
-    transition: transform 0.15s;
-    filter: brightness(1.05);
-  }
-  /* 扣上（抽屉关闭）：弹性回位 */
-  #whatIfFloat.buckle-close {
-    transform: translateY(-50%) rotate(-6deg);
-    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
-  }
-  #whatIfFloat.active .buckle-strap {
-    background:
-      repeating-linear-gradient(0deg, rgba(0,0,0,0.12) 0 1px, transparent 1px 4px),
-      repeating-linear-gradient(90deg, rgba(0,0,0,0.06) 0 1px, transparent 1px 7px),
-      linear-gradient(180deg, #a78bfa, #8b5cf6 55%, #6d3ad0);
-    border-color: #5b21b6;
-    box-shadow: 0 0 0 2px rgba(167, 139, 250, 0.7), 0 4px 14px rgba(139, 92, 246, 0.6);
-  }
-  #whatIfFloat.locked { opacity: 0.5; filter: grayscale(0.8); }
   /* v2.0：快照抽屉——右侧滑入（非底部），宽度 65% 屏宽，半透明深色背景，250ms 动画 */
   /* Q5：抽屉不用 .hidden 类——全局 .hidden { display:none !important } 会跳过 transform
      过渡（面板直接出现/消失）。改 .w-open 类切换，translateX(100%→0) 产生右滑入动画 */
@@ -1410,10 +1280,10 @@
     letter-spacing: 0.3px;
     font-variant-numeric: tabular-nums;
   }
-  /* WhatIf 浮条高亮（教学引导）——原 #btnWhatIf 已移除，改高亮右侧浮条入口 */
-  #whatIfFloat.highlight {
+  /* WhatIf 教学高亮（2026-08-29 浮条移除后改高亮工具列 whatif 按钮） */
+  #pad .side-btn.whatif-btn.highlight {
     animation: btnPulse 1.2s ease-in-out infinite;
-    border: 2px solid #a855f7;
+    border-color: #a855f7;
     box-shadow: 0 0 14px rgba(168, 85, 247, 0.7);
   }
   #battleComboFloat {
@@ -1438,7 +1308,7 @@
     border-radius: 14px 14px 10px 10px;
     /* Q5：横向 padding 10px→2px——原内容区比棋盘窄 20px，数字键盘 9 键
        撑到 pad 外部溢出屏幕右缘。收窄后内容区 ≈ 棋盘宽 */
-    padding: 12px 2px 10px;
+    padding: 7px 2px 6px;
     background:
       radial-gradient(ellipse at 30% 15%, rgba(255,255,255,0.10) 0%, transparent 45%),
       repeating-linear-gradient(0deg, rgba(60,35,5,0.10) 0 1px, transparent 1px 4px),
@@ -1534,6 +1404,7 @@
     transition: all 0.12s; /* 手感审计：0.15→0.12s，按压更干脆 */
   }
   .action-btn:hover { border-color: var(--gold); color: var(--gold); }
+  .action-btn svg { width: 22px; height: 22px; display: block; margin: 0 auto; pointer-events: none; }
   .action-btn.active {
     background: var(--gold);
     color: #14100c;
@@ -1563,6 +1434,27 @@
     line-height: 1.4;
   }
   .action-btn.cooling:hover { border-color: var(--border); color: var(--muted); }
+  /* v4.4：工具列 side-btn 同样支持提示冷却倒计时（与 .action-btn.cooling 同一约定） */
+  .side-btn.cooling {
+    opacity: 0.55;
+    cursor: not-allowed;
+    position: relative;
+    filter: grayscale(0.5);
+  }
+  .side-btn.cooling::after {
+    content: attr(data-cooling) 's';
+    position: absolute;
+    right: 2px;
+    bottom: 1px;
+    font-size: 9px;
+    font-weight: 800;
+    color: var(--gold);
+    background: rgba(20, 16, 12, 0.85);
+    border-radius: 6px;
+    padding: 0 3px;
+    line-height: 1.4;
+  }
+  .side-btn.cooling:hover { border-color: var(--border); color: var(--muted); }
 
   /* ---------------- 章节抽屉 ---------------- */
   .chapter-drawer {
@@ -1933,11 +1825,14 @@
      第二行 = 主区 flex row（#app 左栏棋盘 + #pc-right-panel 右栏），
      棋盘尺寸由「可用高度与可用宽度」共同驱动，一屏显示不滚动。 */
   #pc-right-panel { display: none; }
+  /* 2026-08-29：PC 双栏由「居中整组」改为「棋盘占满剩余宽度并居中，右栏贴屏幕右缘」——
+     用户要求平板/PC 下左右拉开、右栏靠着右边缘。flex-wrap 下 topbar 独占首行全宽，
+     次行 #app(flex:1) 吃满右栏之外的宽度、内部列布局居中棋盘；右栏自然贴到右端。 */
   body.pc-layout-active {
     display: flex;
     flex-wrap: wrap;
     align-items: flex-start;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 0 8px;   /* 棋盘↔控制栏紧贴（8px，非 0 防视觉粘连），让二者成整体 */
     height: 100vh;
     height: 100dvh;
@@ -1948,36 +1843,53 @@
     position: static;
   }
   body.pc-layout-active #app {
-    flex: 0 1 auto;          /* 收缩贴合棋盘宽——与右栏成紧贴整体（原 flex:1 拉伸导致棋盘居中留白大间距） */
-    width: fit-content;
+    flex: 1 1 auto;          /* 吃满右栏之外的宽度；棋盘在内部列布局居中 */
+    width: auto;
+    min-width: 0;
     flex-direction: column;
     align-items: center;
     gap: 6px;
     max-width: none;
     margin: 0;
     padding: 10px 0 12px;
-    min-width: 0;
   }
   /* 左栏：棋盘 + 状态行 + 工具卷（保持纵向居中）
      棋盘 = 100vh - topbar(56) - statusLine(24) - toolRoll(130) - padding/gap(40) ≈ -250 */
-  body.pc-layout-active #board-container {
-    --board-size: min(calc(100vh - var(--chrome-h, 320px)), calc(100vw - 460px), 860px);
-  }
-  body.pc-layout-active #statusLine {
-    --board-size: min(calc(100vh - var(--chrome-h, 320px)), calc(100vw - 460px), 860px);
-  }
-  body.pc-layout-active .tool-roll {
-    --board-size: min(calc(100vh - var(--chrome-h, 320px)), calc(100vw - 460px), 860px);
-  }
+  /* PC 双栏：棋盘/状态行/工具卷统一使用 layout() 设到根的 --board-size。
+     原方案在此作用域重复定义 --board-size（min(100vh-chrome-chibi,...)），
+     遮蔽了 JS 在 chibi 让位后的收缩值 → 棋盘保持大尺寸被 margin-top 下推、底部溢出被裁。
+     现删掉遮蔽，棋盘宽度严格 = var(--board-size)（根值已含 --chibi-h 收缩）。 */
   body.pc-layout-active #board-container,
   body.pc-layout-active #statusLine,
   body.pc-layout-active .tool-roll {
     flex-shrink: 0;
   }
+  body.pc-layout-active #board-container {
+    flex: 0 0 auto;
+    max-width: var(--board-size);
+  }
   /* Boss 战 HUD：PC 下与棋盘同宽居中（左栏内），保持一屏 */
   body.pc-layout-active #bossHud {
-    width: min(calc(100vh - var(--chrome-h, 320px)), calc(100vw - 460px), 860px);
+    width: min(calc(100vh - var(--chrome-h, 320px) - var(--chibi-h, 0px)), calc(100vw - var(--pc-panel-w, 450px) - 20px), 720px);
     max-width: 92vw;
+  }
+  /* 屏幕版本徽标：默认隐藏，PC 双栏时固定右上角（topbar 之下），用于一眼判断代码版本/破缓存 */
+  #versionBadge { display: none; }
+  body.pc-layout-active #versionBadge {
+    display: inline-block;
+    position: fixed;
+    top: calc(var(--topbar-h, 56px) + 3px);
+    right: 6px;
+    z-index: 21000;
+    font: 600 10px/1.4 "PingFang SC", "Microsoft YaHei", sans-serif;
+    letter-spacing: 0.4px;
+    color: #a08a5f;
+    background: rgba(12, 8, 4, 0.72);
+    border: 1px solid rgba(180, 160, 110, 0.22);
+    border-radius: 6px;
+    padding: 2px 7px;
+    pointer-events: none;
+    user-select: none;
   }
   /* 16:9 / PC 顶部悬浮 HUD 归位：
      PC 下 topbar 为 static 且 z-index 21000，原 top:12~56px 的固定条会被 topbar 盖住。
@@ -1987,7 +1899,7 @@
      ③ pursuitBar / inkMeter(原贴右上角) 改为贴左上、压到 topbar 之下，避开右栏且互不重叠。 */
   body.pc-layout-active #cipherIndex {
     top: calc(var(--topbar-h, 56px) + 8px);
-    left: calc((100vw - 344px) / 2);
+    left: calc((100vw - var(--pc-panel-w, 450px) - 20px) / 2);
   }
   body.pc-layout-active #ambienceBar {
     top: calc(var(--topbar-h, 56px) + 8px) !important;
@@ -2000,22 +1912,32 @@
     top: calc(var(--topbar-h, 56px) + 42px) !important;
     left: 14px !important; right: auto !important;
   }
-  /* 右栏：信息面板 */
+  /* 右栏：信息面板——贴右缘、高度 = 顶栏以下整列（topbar 之下到视口底），
+     内容超高时面板内滚动，绝不撑出页面滚动条（min-height:0 允许收缩） */
   .pc-layout-active.cm-level-mounted #pc-right-panel {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    width: 300px;
     flex-shrink: 0;
-    align-self: center;
+    align-self: auto;
+    height: calc(100dvh - var(--topbar-h, 56px) - 8px);
+    min-height: 0;
     overflow-y: auto;
-    max-height: calc(100vh - 90px);
   }
   .pc-panel-card {
     background: var(--panel);
     border: 1px solid var(--border);
     border-radius: 10px;
     padding: 10px 14px;
+  }
+  /* 2026-08-29：PC 双栏信息卡按比例填满卡区（用户模型：三栏 ≈ 屏高 31.7%），
+     内容垂直居中，双盘区占剩余（toolRoll flex-shrink:0），避免右栏底端大块空白。 */
+  .pc-layout-active.cm-level-mounted #pc-right-panel .pc-panel-card {
+    flex: 1 1 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 64px;
   }
   .pc-panel-card h4 {
     font-size: 12px;
@@ -2064,8 +1986,7 @@
     padding: 12px 14px;
     box-shadow: none;
     margin: 0;
-    /* 输入优先：数字键盘恒居右栏顶部，不随信息卡滚动，也不被压缩 */
-    order: -1;
+    /* 2026-08-29：按用户比例模型「信息卡在上、双盘在下」——去 order:-1，让 toolRoll 顺 DOM 序排在卡区之后 */
     flex-shrink: 0;
   }
   body.pc-layout-active #toolRoll::before { display: none; }
@@ -2076,6 +1997,73 @@
   body.pc-layout-active #toolRoll .num-btn { height: 58px; font-size: 22px; }
   body.pc-layout-active #toolRoll .action-row { grid-template-columns: repeat(4, 1fr); gap: 8px; }
   body.pc-layout-active #toolRoll .action-btn { height: 52px; font-size: 15px; }
+  /* 2026-08-28：PC 双盘面放大 + 工具栏移到两键盘下方
+     默认 #pad.dual-pad 是"两侧工具列 + 双盘居中"的 flex 行；右栏仅 300px 时两侧各占 46px
+     把双盘压到几十像素、数字太小。改 grid：第一行=候选/填数两盘并排占满整栏宽度，
+     第二行=两侧工具各自横向排布（撤销/清除/假设在键盘下方）。 */
+  /* 2026-08-29：PC 右栏双盘改「上下竖排 + 右侧工具列」（用户实测：侧栏 450 / numpad 区 700 /
+     两盘各 ~350×350 正方 / 右侧竖排 5 个 75px 工具键）。grid：左列堆候选盘+数字盘，右列 tools。
+     行高 = --pc-pad-size（layout() 按右栏实际可用算好写入），保证两盘正方形且填满 numpad 区。 */
+  body.pc-layout-active #pad.dual-pad {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) var(--pc-tool-col, 75px);
+    grid-template-rows: var(--pc-pad-size, 340px) var(--pc-pad-size, 340px);
+    grid-template-areas: "cand tools" "digit tools";
+    gap: 12px;
+    align-items: stretch;
+  }
+  body.pc-layout-active #candidateWrap { grid-area: cand; flex: none; width: 100%; min-width: 0; }
+  body.pc-layout-active #digitWrap     { grid-area: digit; flex: none; width: 100%; min-width: 0; }
+  /* 2026-08-29：候选盘按钮内容窄，作为 flex 子项会收缩到 ~57px 细条（grid 列 1fr 随容器退化）。
+     width:100% 强制撑满 candidateWrap，与数字盘等宽并排。 */
+  body.pc-layout-active #candidatePad { width: 100%; flex: 1 1 auto; }
+  /* PC：隐藏左右侧工具列（双栏下用右列 tools 区），把工具按钮竖排在双盘右侧 */
+  body.pc-layout-active #pad > #sideLeft,
+  body.pc-layout-active #pad > #sideRight { display: none; }
+  body.pc-layout-active #pcToolRow {
+    grid-area: tools;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 10px;
+    padding: 0;
+    width: 100%;
+  }
+  /* 双盘正方形（边长 --pc-pad-size），居中填各自行 */
+  body.pc-layout-active #candidatePad.num-pad.dual-grid,
+  body.pc-layout-active #numPad.num-pad.dual-grid {
+    width: var(--pc-pad-size, 100%);
+    height: var(--pc-pad-size, 100%);
+    max-width: 100%;
+    max-height: 100%;
+    justify-self: center;
+    align-self: center;
+    grid-template-rows: repeat(3, 1fr);
+  }
+  /* PC 工具键：宽 = 工具列宽（--pc-tool-col，按屏高比例），在双盘列高内均分填满 */
+  body.pc-layout-active #pcToolRow .side-btn {
+    width: var(--pc-tool-col, 75px);
+    height: auto;
+    flex: 1 1 0;
+    min-height: 52px;
+    border-radius: 12px;
+  }
+  body.pc-layout-active #pcToolRow .side-btn svg {
+    width: calc(var(--pc-tool-col, 75px) * 0.4);
+    height: calc(var(--pc-tool-col, 75px) * 0.4);
+  }
+  /* 2026-08-29：双盘正方形化后按钮填满各自 3×3 格（边长 ~340px → 键 ~108px），
+     字号随之放大：数字盘主数字大、候选盘小号区分；残量角标同步放大。 */
+  body.pc-layout-active #numPad .num-btn { width: 100%; height: 100%; aspect-ratio: auto; max-width: none; font-size: 22px; }
+  body.pc-layout-active #numPad .num-btn .num-main { font-size: clamp(22px, 2.4vw, 42px); }
+  body.pc-layout-active #numPad .num-btn .num-count { font-size: clamp(10px, 0.9vw, 16px); }
+  body.pc-layout-active #candidatePad .num-btn { width: 100%; height: 100%; aspect-ratio: auto; max-width: none; font-size: 18px; display: flex; align-items: center; justify-content: center; }
+  body.pc-layout-active #candidatePad .num-btn .num-main { font-size: clamp(18px, 1.8vw, 30px); }
+  /* 两侧工具列在 PC 双栏下隐藏，48px 覆写会误伤右列 tools 按钮（其宽 = --pc-tool-col），
+     故此处不再设 #pad .side-btn 宽高——pcToolRow 内按钮由上方比例规则决定。 */
+  body.pc-layout-active #pad .pad-hint { font-size: 12px; }
   @media (min-width: 900px) and (orientation: landscape) {
     /* 窄宽屏（900-1200px）：双栏下主区间距微调；棋盘/右栏尺寸由 PcLayoutManager 统一预算 */
     body.pc-layout-active #app { gap: 16px; padding: 10px 12px 12px; }
@@ -2112,15 +2100,17 @@
     #topbar { padding: 6px 10px; gap: 6px 8px; }
     #app { padding: 6px 2px 14px; }
     .brand h1 { font-size: 16px; }
+    /* v4.4：长屏下 COMBO 条限宽，把右边空间让给计时/汉堡，避免顶栏单项换行挤压重叠 */
+    .flow-bar { max-width: 46vw; min-width: 0; }
   }
-  /* ---------------- 2026-08-22：三模式响应式布局（JS 驱动 body[data-layout]） ----------------
+  /* 2026-08-22：三模式响应式布局（JS 驱动 body[data-layout]） ----------------
      LARGE / COMPACT / STACKED 由 pc-layout-manager.js 依据窗口宽高与「棋盘≥650」预算决定；
-     右栏宽度 clamp(min, 25vw, max)，桌面双栏下数字键盘恒为 3×3 大方块（禁止 9 列细长键）。 */
+     右栏宽度 = layout() 按屏高比例写好的 --pc-panel-w（1200 高 → 450 宽），CSS 只作兜底。 */
   body[data-layout="large"] #pc-right-panel {
-    width: clamp(360px, 22vw, 420px);
+    width: var(--pc-panel-w, clamp(360px, 24vw, 450px));
   }
   body[data-layout="compact"] #pc-right-panel {
-    width: clamp(300px, 22vw, 340px);
+    width: var(--pc-panel-w, clamp(300px, 22vw, 340px));
   }
   /* 双栏（large/compact）：数字键盘 3×3 大方块 */
   body[data-layout="large"] #toolRoll .num-pad,
@@ -2587,6 +2577,322 @@
     font-weight: 700;
     box-shadow: 0 3px 6px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1);
     transition: transform 0.15s, box-shadow 0.2s;
+  }
+  /* ================= 双盘面输入系统（v4.4）：左候选/右填数 + 两侧工具列 =================
+     结构：#pad.dual-pad = [sideLeft][候选盘][填数盘][sideRight]
+     理念：零模式切换——左盘点按=记笔记，右盘点按=填数，省去铅笔切换。 */
+  #pad.dual-pad {
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    gap: 6px;
+    padding: 2px 0;
+  }
+  /* 两侧工具列：纵向精简 */
+  #pad .pad-side {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 46px;
+    min-width: 46px;
+  }
+  #pad .side-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.07), transparent 45%),
+      #1c140c;
+    border: 2px solid #7a5e34;
+    color: #d9c9a5;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.08);
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.2s, border-color 0.2s;
+    display: flex; align-items: center; justify-content: center;
+    padding: 0;
+  }
+  #pad .side-btn:hover { transform: translateY(-1px); border-color: var(--gold); color: var(--gold); }
+  #pad .side-btn:active { transform: translateY(1px); }
+  #pad .side-btn svg { width: 22px; height: 22px; display: block; pointer-events: none; }
+  #pad .side-btn.side-legacy { display: none !important; }
+  /* 盘区块：标签(= pad 说明) 在上，九宫格在下 */
+  #pad .pad-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    min-width: 0;
+  }
+  #pad .pad-hint {
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--muted);
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  /* 两个九宫格恒为 3×3（覆盖 stacked 的 9 列 / PC 的动态列） */
+  #pad #candidatePad.num-pad.dual-grid,
+  #pad #numPad.num-pad.dual-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 6px;
+  }
+  /* 左盘尺幅：窄基础——右键大、左键小（速度不被小键拖累） */
+  #candidateWrap { flex: 0 1 118px; }
+  #digitWrap     { flex: 1 1 auto; }
+  /* 候选盘（左）：小键、无角标、低饱和暗印章底 + 衬线候选数 */
+  #candidatePad .num-btn {
+    height: auto;
+    aspect-ratio: 1 / 1;
+    width: 100%;
+    min-width: 0;
+    justify-self: center;
+    border-radius: 9px;
+    background: linear-gradient(180deg, #2e2419 0%, #1d150c 100%);
+    border: 2px solid #55412c;
+    color: #c9b490;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
+    font-family: 'ZCOOL XiaoWei', 'KaiTi', '楷体', serif;
+    font-size: 20px;
+    font-weight: 700;
+  }
+  /* 已标记候选（该数已写入当前格）：暗红印章底 + 黄铜字 */
+  #candidatePad .num-btn.active {
+    background: linear-gradient(180deg, #5b2b22 0%, #3a1a14 100%);
+    border-color: var(--cinnabar, #a3352a);
+    color: #e6c96a;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.1), 0 0 0 1px rgba(163,53,42,0.35);
+  }
+  #candidatePad .num-btn .num-main { pointer-events: none; }
+  /* 填数盘（右）：沿用 #numPad .num-btn 黄铜凸起大键；三维 grid 内键稍收紧 */
+  #numPad.num-pad.dual-grid { gap: 6px; }
+  /* ================= 教学输入门控视觉（v4.4）：非允许输入置灰 =================
+     机制：applyLessonGateUI 把不允许的键 disable（不派发 pointer → 天然防呆）
+     + 打 body[data-lesson-gate] 状态类驱动整块降饱和。只有被点亮的键保持全彩。 */
+  #pad .num-btn:disabled,
+  #pad .side-btn:disabled {
+    opacity: 0.35;
+    filter: grayscale(0.7) brightness(0.8);
+    box-shadow: none !important;
+    cursor: not-allowed;
+    transform: none !important;
+    border-color: #3a2f22;
+  }
+  #pad .num-btn:disabled .num-count,
+  #pad .num-btn:disabled .num-main { color: #6b5c46 !important; }
+  /* 讲解/等待输入时，盘区标签与整体氛围压暗，突出允许面 */
+  body[data-lesson-gate="locked"] .pad-hint,
+  body[data-lesson-gate="wait-cell-locked"] .pad-hint,
+  body[data-lesson-gate="semi"] .pad-hint { color: rgba(200,184,150,0.4); }
+  body[data-lesson-gate="locked"] #pad.dual-pad,
+  body[data-lesson-gate="wait-cell-locked"] #pad.dual-pad,
+  body[data-lesson-gate="semi"] #pad.dual-pad { filter: saturate(0.9); }
+  /* ================= 移动端键盘固定屏幕底部（2026-08-28） =================
+     默认工具卷紧随棋盘（position:relative），视口变化/滚动时位置漂移、还常被挤到屏外。
+     真机要求：手机模式下数字键盘固定在屏幕底部、位置稳定；去掉右上三角收缩钮；
+     高度适中（不超高、不压棋盘太多）。PC 双栏维持并入右栏，不受此规则影响。 */
+  body:not(.pc-layout-active) .tool-roll-latch { display: none !important; }
+  body.cm-level-mounted:not(.pc-layout-active) #toolRoll {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: var(--safe-bottom, 0px);
+    width: 100%;
+    margin: 0;
+    border-radius: 14px 14px 0 0;
+    z-index: 30;
+  }
+  body.cm-level-mounted:not(.pc-layout-active) #toolRoll::before { left: 8px; right: 8px; top: -8px; }
+  /* 移动端键位高度适中：右填数盘改近方钮（降低整条高度），候选盘不变 */
+  @media (max-width: 899px) {
+    /* 2026-08-29 v2：按钮比例/高度按参考图调整——
+       候选盘＝正圆形+深色底+金色光环（38px），数字盘＝圆角矩形略宽+黄铜凸起（42×38），
+       功能键最小（30px）。形状+明暗双重区分，一眼可分。 */
+    /* 数字盘（右）：圆角矩形，接近方形略宽，黄铜凸起保持（行高=候选圆径 38px 对齐） */
+    body.cm-level-mounted:not(.pc-layout-active) #numPad .num-btn {
+      width: 100%;
+      height: 38px;
+      aspect-ratio: auto;
+      max-width: 44px;
+      justify-self: center;
+      box-sizing: border-box;
+      border-radius: 10px;
+    }
+    body.cm-level-mounted:not(.pc-layout-active) #numPad .num-btn .num-main { font-size: 18px; }
+    body.cm-level-mounted:not(.pc-layout-active) #numPad .num-btn .num-count { font-size: 7px; line-height: 1; }
+    /* 候选盘（左）：正圆形 + 深色底 + 金色光环，与数字盘一眼区分 */
+    body.cm-level-mounted:not(.pc-layout-active) #candidatePad .num-btn {
+      width: 38px;
+      height: 38px;
+      aspect-ratio: 1 / 1;
+      max-width: 38px;
+      border-radius: 50%;
+      justify-self: center;
+      box-sizing: border-box;
+      background: radial-gradient(circle at 50% 30%, rgba(255,255,255,0.12) 0%, transparent 48%), linear-gradient(180deg, #241a10 0%, #150f08 100%);
+      border: 2px solid #8a6a2a;
+      box-shadow: 0 0 0 2px rgba(212,168,83,0.22), inset 0 1px 0 rgba(255,255,255,0.08), 0 2px 5px rgba(0,0,0,0.5);
+      color: #e8d9b0;
+    }
+    body.cm-level-mounted:not(.pc-layout-active) #candidatePad .num-btn .num-main { font-size: 16px; }
+    /* 盘顶小标签：候选 / 数字 */
+    body.cm-level-mounted:not(.pc-layout-active) #candidateWrap::before,
+    body.cm-level-mounted:not(.pc-layout-active) #digitWrap::before {
+      content: attr(data-label);
+      font-size: 11px;
+      letter-spacing: 2px;
+      font-weight: 600;
+      color: #a08a5f;
+      order: -1;
+      white-space: nowrap;
+    }
+  }
+  /* 手机双盘面铺满宽度（2026-08-28）：取消候选/填数盘的固定窄基础，改为两盘等宽平均拉伸，
+     让「两盘 + 两侧工具列」铺满 toolRoll 全宽——彻底消除键盘只占屏宽 1/4 的窄态。
+     高度随盘宽自适应（三行方钮，中等紧凑），符合「高度不要太高」。 */
+  body:not(.pc-layout-active) #pad.dual-pad {
+    flex-direction: row;      /* 覆盖 #pad 基础 column：双盘并排铺满，工具箱列在两侧 */
+    align-items: stretch;
+    justify-content: stretch;
+    width: 100%;
+    gap: 6px;
+  }
+  body:not(.pc-layout-active) #pad .pad-side {
+    width: 40px; min-width: 40px; max-width: 40px; flex: 0 0 40px;
+  }
+  body:not(.pc-layout-active) #candidateWrap,
+  body:not(.pc-layout-active) #digitWrap {
+    flex: 1 1 0;
+    width: auto;
+    min-width: 0;
+    max-width: none;
+  }
+  /* 2026-08-29：候选/数字两盘与并排对齐、铺满等宽盘面（按钮高度由上方统一固定值决定）。 */
+  body:not(.pc-layout-active) #candidatePad.num-pad.dual-grid,
+  body:not(.pc-layout-active) #numPad.num-pad.dual-grid { width: 100%; }
+  /* 手机：左候选盘数值字号小、右填数盘字号大，按钮仍为等大方块 */
+  body:not(.pc-layout-active) #candidatePad .num-btn,
+  body:not(.pc-layout-active) #candidatePad .num-btn .num-main { font-size: 16px; }
+  /* 手机侧工具列紧凑：功能键最小（图2层次），避免 4~5 个纵向按钮把整条键盘拉得过高 */
+  body:not(.pc-layout-active) #pad .pad-side { gap: 4px; }
+  body:not(.pc-layout-active) #pad .side-btn { width: 30px; height: 30px; border-radius: 50%; }
+  body:not(.pc-layout-active) #pad .side-btn svg { width: 17px; height: 17px; }
+  /* 2026-08-29：手机键盘按「屏宽比例」——底衬高 --keyboard-h（≤ 屏宽/2），
+     双盘 3×3 × --kb-btn（屏宽/8 → 418 屏约 52px 键），整块键盘在底衬内居中。
+     工具键随 --kb-btn 等比缩放；可用高度不足时 JS 已把 --kb-btn 压缩，保证放得下。 */
+  body.cm-level-mounted:not(.pc-layout-active) #toolRoll {
+    height: var(--keyboard-h, auto);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* 2026-08-29：两侧工具列往内收——底衬左右留 --kb-inset 边距，不再贴/溢出屏幕边缘 */
+    padding: 7px var(--kb-inset, 8px) 6px;
+  }
+  body.cm-level-mounted:not(.pc-layout-active) #toolRoll .tool-roll-body {
+    max-height: none;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  body.cm-level-mounted:not(.pc-layout-active) #pad.dual-pad {
+    height: auto;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: var(--kb-gap, 6px);
+    padding: 0;
+  }
+  body.cm-level-mounted:not(.pc-layout-active) #pad .pad-side {
+    width: calc(var(--kb-btn, 44px) * 0.6);
+    min-width: 0;
+    max-width: none;
+    flex: 0 0 auto;
+    flex-direction: column;
+    gap: 6px;
+  }
+  body.cm-level-mounted:not(.pc-layout-active) #pad .side-btn {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+  }
+  body.cm-level-mounted:not(.pc-layout-active) #pad .side-btn svg {
+    width: calc(var(--kb-btn, 44px) * 0.36);
+    height: calc(var(--kb-btn, 44px) * 0.36);
+  }
+  /* 双盘弹性填满剩余宽度（上限 = 目标键宽 3×--kb-btn），保证两侧工具列 + 双盘整行不溢出屏幕 */
+  body.cm-level-mounted:not(.pc-layout-active) #candidateWrap,
+  body.cm-level-mounted:not(.pc-layout-active) #digitWrap {
+    flex: 1 1 0;
+    min-width: 0;
+    width: auto;
+    max-width: calc(var(--kb-btn, 44px) * 3 + 16px);
+  }
+  body.cm-level-mounted:not(.pc-layout-active) #candidatePad.num-pad.dual-grid,
+  body.cm-level-mounted:not(.pc-layout-active) #numPad.num-pad.dual-grid {
+    display: grid;
+    flex: none;
+    width: 100%;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, auto);
+  }
+  body.cm-level-mounted:not(.pc-layout-active) #candidatePad .num-btn,
+  body.cm-level-mounted:not(.pc-layout-active) #numPad .num-btn {
+    width: 100%;
+    height: auto;
+    max-width: none;
+    justify-self: stretch;
+    align-self: stretch;
+    aspect-ratio: 1 / 1;
+  }
+  body.cm-level-mounted:not(.pc-layout-active) #numPad .num-btn .num-main { font-size: calc(var(--kb-btn, 44px) * 0.5); }
+  body.cm-level-mounted:not(.pc-layout-active) #candidatePad .num-btn .num-main { font-size: calc(var(--kb-btn, 44px) * 0.42); }
+  /* PC 单行工具列默认隐藏（仅 PC 双栏显示） */
+  #pcToolRow { display: none; }
+  /* ================= 平板横屏（v4.4） =================
+     键盘上下布局：候选盘在上、填数盘在下，居左；工具按钮贴右屏缘垂直排列，
+     双手各持一边（区别于 PC：PC 的下方单行工具列、手机：双盘并排+两侧工具列）。 */
+  body.tablet-landscape #pad.dual-pad {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-rows: auto auto;
+    grid-template-areas: "cand rtl" "digit rtl";
+    align-items: center;
+    column-gap: 18px;
+    row-gap: 10px;
+    width: 100%;
+  }
+  body.tablet-landscape #candidateWrap { grid-area: cand; width: min(42vw, 340px); flex: 0 0 auto; max-width: none; }
+  body.tablet-landscape #digitWrap     { grid-area: digit; width: min(42vw, 340px); flex: 0 0 auto; max-width: none; }
+  body.tablet-landscape #pad > #sideLeft,
+  body.tablet-landscape #pcToolRow { display: none; }
+  body.tablet-landscape #pad > #sideRight {
+    grid-area: rtl;
+    position: static;
+    transform: none;
+    top: auto;
+    left: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-self: end;
+    align-self: center;
+  }
+  body.tablet-landscape #pad .side-btn { width: 54px; height: 54px; }
+  body.tablet-landscape #pad .side-btn:hover { transform: translateY(0); }
+  /* 窄屏（<360dp）：刚过触控地板，两侧工具列收窄、按钮等比微缩（保持圆形候选/矩形数字） */
+  @media (max-width: 359px) {
+    #pad.dual-pad { gap: 4px; }
+    #pad .pad-side { width: 40px; min-width: 40px; gap: 4px; }
+    #pad .side-btn { width: 28px; height: 28px; }
+    #candidateWrap { flex: 0 1 104px; }
+    #candidatePad .num-btn { width: 34px; height: 34px; max-width: 34px; font-size: 15px; }
+    #numPad .num-btn { height: 34px; max-width: 40px; }
+    #numPad .num-btn .num-main { font-size: 17px; }
+    #numPad .num-btn .num-count { font-size: 7px; }
   }
   #pad .action-btn:hover { transform: translateY(-2px); }
   #pad .action-btn:active { transform: translateY(2px); }
@@ -3327,6 +3633,8 @@
     <span id="timerDisplay">00:00</span>
   </div>
 </header>
+  <!-- 屏幕版本徽标（PC 双栏右上角）：一眼判断当前加载代码版本，避免"破缓存"纠纷 -->
+  <span id="versionBadge" aria-hidden="true">v4.3.38</span>
 
 <main id="app">
   <!-- Q2：书脊已彻底移除（用户反馈：左侧竖条遮挡棋盘/工具栏） -->
@@ -3382,13 +3690,8 @@
     <canvas id="board-canvas"></canvas>
     <canvas id="effect-canvas"></canvas>
     <canvas id="ui-canvas"></canvas>
-    <!-- v2.0：状态指示灯——canvas 内部右上方，macOS 三点式小灯：
-         笔记模式灯（黄色）+ 数字笔连填灯（绿色），亮起表示对应模式开启 -->
-    <div id="modeLights">
-      <!-- Q2：去文字标签，两枚小印并排 -->
-      <div class="mode-light" id="lightNote" data-i18n-title="ui.game.noteModeTitle" title="笔记模式"><span class="ml-dot"></span></div>
-      <div class="mode-light" id="lightPen" data-i18n-title="ui.game.penModeTitle" title="数字笔连填"><span class="ml-dot"></span></div>
-    </div>
+    <!-- 2026-08-28：canvas 左上角状态指示灯（#modeLights / lightNote / lightPen）已取消，
+         减少棋盘遮挡与视觉噪音。setModeLight 已因元素缺失自然降级为空操作。 -->
   </div>
 
   <div id="statusLine">
@@ -3423,16 +3726,7 @@
       <button id="ttNext">下一步</button>
     </div>
   </div>
-  <!-- Q5：原 #whatIfBadge 顶部"🧪 假设中"黄条已取消——whatif 入口统一在右侧皮扣浮条 -->
-  <!-- v2.0：假设模式右侧浮条入口——点击启动假设模式 / 切换快照抽屉开合 -->
-  <!-- v2.0：皮扣触发器——笔记本绑带风格（棕色皮革 + 金属扣环），点击切换抽屉，可拖动调整位置 -->
-  <div id="whatIfFloat" class="hidden" data-i18n-title="ui.whatIf.floatTitle" title="假设模式：点皮扣拉开快照抽屉">
-    <div class="buckle-strap"></div>
-    <div class="buckle-ring"></div>
-    <div class="buckle-label">🧪</div>
-  </div>
-  <!-- v2.0：快照抽屉——右侧滑出，手机多任务管理风格：快照卡片竖排（旧在上新在下）+
-        底部「＋」新建快照 与「☑️ 采纳」（快照≥1 时出现）；回退=点快照（二次确认） -->
+  <!-- Q5：原 #whatIfBadge 顶部"🧪 假设中"黄条已取消；2026-08-29 皮扣浮条 #whatIfFloat 已移除——whatif 入口统一在工具列 whatif 按钮 -->
   <!-- Q5：抽屉默认关闭（translateX(100%)），w-open 类控制滑入 -->
   <div id="whatIfBackdrop"></div>
   <div id="whatIfDrawer">
@@ -3506,13 +3800,40 @@
   <!-- A7 牛皮工具卷（4.7.4）：植鞣革平铺，卷起只露皮卷边缘 -->
   <div class="tool-roll" id="toolRoll">
     <div class="tool-roll-body">
-      <div id="pad">
-        <div id="numPad" class="num-pad"></div>
-        <div class="action-row">
-          <button id="btnNote" class="action-btn" data-i18n="ui.game.note" data-i18n-title="ui.game.noteTitle" title="切换笔记模式 (N)">笔记</button>
-          <button id="btnErase" class="action-btn" data-i18n="ui.game.erase" data-i18n-title="ui.game.eraseTitle" title="擦除选中格 (Backspace)">橡皮</button>
-          <button id="btnUndo" class="action-btn" data-i18n="ui.game.undo" data-i18n-title="ui.game.undoTitle" title="撤销上一步 (Ctrl+Z)">撤销</button>
-          <button id="btnHint" class="action-btn" data-i18n="ui.game.hint" data-i18n-title="ui.game.hintTitle" title="提示下一个空格">提示</button>
+      <div id="pad" class="dual-pad">
+        <!-- 左工具列：撤销 / 重做 / 擦除 / 提示 + 假设(308解锁后出现)。2026-08-29：
+             左右双列统一为 undo/redo/erase/hint 四键；whatif 在 308 关前隐藏（不占位），
+             308 解锁后才出现并点亮（syncWhatIfFloat 门控 hidden+disabled）。 -->
+        <div id="sideLeft" class="pad-side">
+          <button id="btnUndoL" class="side-btn" data-act="undo" aria-label="撤销" data-i18n-title="ui.game.undoTitle" title="撤销上一步 (Ctrl+Z)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 4v6h6"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg></button>
+          <button id="btnRedoL" class="side-btn" data-act="redo" aria-label="重做" data-i18n-title="ui.game.redoTitle" title="重做 (Ctrl+Shift+Z)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 4v6h-6"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg></button>
+          <button id="btnEraseL" class="side-btn" data-act="erase" aria-label="清除选中格" data-i18n-title="ui.game.eraseTitle" title="清除选中格 (Backspace)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>
+          <button id="btnHintL" class="side-btn" data-act="hint" aria-label="提示" data-i18n-title="ui.game.hintTitle" title="提示"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 1 4 10.5c-.7.6-1.1 1.3-1.2 2.5H9.2c-.1-1.2-.5-1.9-1.2-2.5A6 6 0 0 1 12 3z"/></svg></button>
+          <button id="btnWhatIfL" class="side-btn whatif-btn hidden" data-act="whatif" role="button" aria-label="假设推演" data-i18n-title="ui.game.whatIfShort" title="假设推演"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3.5"/><path d="M12 3v2M12 19v2M5 12H3M21 12h-2M7.05 7.05 5.64 5.64M18.36 18.36l-1.41-1.41M18.36 5.64l-1.41 1.41M5.64 18.36l1.41-1.41"/></svg></button>
+        </div>
+        <!-- 左九宫格：候选笔记（小字、无角标、暗印章底）——点按=记笔记，零切换 -->
+        <div id="candidateWrap" class="pad-wrap pad-note" data-label="候选">
+          <div id="candidatePad" class="num-pad dual-grid"></div>
+        </div>
+        <!-- 右九宫格：正式填数（大字、残量角标、黄铜凸起）——点按=填数，零切换 -->
+        <div id="digitWrap" class="pad-wrap pad-digit" data-label="数字">
+          <div id="numPad" class="num-pad dual-grid"></div>
+        </div>
+        <!-- 右工具列：撤销 / 重做 / 擦除 / 提示 + 假设(308解锁后出现)。同左列四键统一布局。 -->
+        <div id="sideRight" class="pad-side">
+          <button id="btnUndo" class="side-btn" data-act="undo" aria-label="撤销" data-i18n-title="ui.game.undoTitle" title="撤销上一步 (Ctrl+Z)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 4v6h6"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg></button>
+          <button id="btnRedoR" class="side-btn" data-act="redo" aria-label="重做" data-i18n-title="ui.game.redoTitle" title="重做 (Ctrl+Shift+Z)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 4v6h-6"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg></button>
+          <button id="btnErase" class="side-btn" data-act="erase" aria-label="清除选中格" data-i18n-title="ui.game.eraseTitle" title="清除选中格 (Backspace)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>
+          <button id="btnHint" class="side-btn" data-act="hint" aria-label="提示" data-i18n-title="ui.game.hintTitle" title="提示"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 1 4 10.5c-.7.6-1.1 1.3-1.2 2.5H9.2c-.1-1.2-.5-1.9-1.2-2.5A6 6 0 0 1 12 3z"/></svg></button>
+          <button id="btnWhatIf" class="side-btn whatif-btn hidden" data-act="whatif" role="button" aria-label="假设推演" data-i18n-title="ui.game.whatIfShort" title="假设推演"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3.5"/><path d="M12 3v2M12 19v2M5 12H3M21 12h-2M7.05 7.05 5.64 5.64M18.36 18.36l-1.41-1.41M18.36 5.64l-1.41 1.41M5.64 18.36l1.41-1.41"/></svg></button>
+        </div>
+        <!-- PC 单行工具列：双键盘下方（redo/undo/erase/hint/whatif）；移动/平板隐藏 -->
+        <div id="pcToolRow" class="pad-tools" aria-label="工具列">
+          <button id="btnPCUndo" class="side-btn" data-act="undo" aria-label="撤销" data-i18n-title="ui.game.undoTitle" title="撤销上一步 (Ctrl+Z)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 4v6h6"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg></button>
+          <button id="btnPCRedo" class="side-btn" data-act="redo" aria-label="重做" data-i18n-title="ui.game.redoTitle" title="重做 (Ctrl+Shift+Z)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 4v6h-6"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg></button>
+          <button id="btnPCErase" class="side-btn" data-act="erase" aria-label="清除选中格" data-i18n-title="ui.game.eraseTitle" title="清除选中格 (Backspace)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>
+          <button id="btnPCHint" class="side-btn" data-act="hint" aria-label="提示" data-i18n-title="ui.game.hintTitle" title="提示"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 1 4 10.5c-.7.6-1.1 1.3-1.2 2.5H9.2c-.1-1.2-.5-1.9-1.2-2.5A6 6 0 0 1 12 3z"/></svg></button>
+          <button id="btnPCWhatIf" class="side-btn whatif-btn" data-act="whatif" role="button" aria-label="假设推演" data-i18n-title="ui.game.whatIfShort" title="假设推演"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3.5"/><path d="M12 3v2M12 19v2M5 12H3M21 12h-2M7.05 7.05 5.64 5.64M18.36 18.36l-1.41-1.41M18.36 5.64l-1.41 1.41M5.64 18.36l1.41-1.41"/></svg></button>
         </div>
       </div>
     </div>
@@ -3588,10 +3909,6 @@
     <div id="pc-level-info" class="pc-panel-value">—</div>
   </div>
   <div class="pc-panel-card">
-    <h4 data-i18n="ui.pc.timer">用时</h4>
-    <div id="pc-timer-display" class="pc-panel-value big">00:00</div>
-  </div>
-  <div class="pc-panel-card">
     <h4 data-i18n="ui.pc.fillProgress">填数进度</h4>
     <div id="pc-fill-stats" class="pc-panel-value">—</div>
   </div>
@@ -3654,6 +3971,7 @@ import { LevelSelect } from './ui/level-select.js?v=87';
 import { DialogSystem } from './ui/dialog.js?v=87';
 import AudioService from './audio/audio-service.js?v=87';
 import * as ProductionConfig from './core/production-config.js?v=88';
+import { resolveLessonInputGate } from './core/lesson-input-gate.js?v=1';
 
 // 挂到全局：story-engine.js 以 typeof AudioService 守卫引用（打字机/语音/SFX）
 window.AudioService = AudioService;
@@ -3748,7 +4066,7 @@ if (document.readyState === 'loading') {
 import ScriptData from './data/script-data.js?v=87';
 import { ExpertSystem } from './expert/index.js?v=87';
 import { ComboSystem } from './ui/combo-system.js?v=87';
-import { PcLayoutManager } from './ui/pc-layout-manager.js?v=87';
+import { PcLayoutManager } from './ui/pc-layout-manager.js?v=88';
 import { PauseManager } from './ui/pause-manager.js?v=87';
 import { BattleManager, BOSS_CONFIGS, BATTLE_EVENTS } from './core/battle-manager.js?v=91';
 import { TplBattleController, TPL_BATTLE_EVENTS } from './core/tpl-battle-controller.js?v=98';
@@ -3923,6 +4241,15 @@ CM.uiCanvas.addEventListener('touchend', (e) => {
   const tapCell = (!CM._touchMovedFlag) ? CM._touchDownCell : null;
   _dragUp();
   if (tapCell) {
+    // 教学门控：讲解/锁定阶段点击屏幕 = 仅推进教案（并吞掉合成 click 防重复推进）
+    try {
+      const _lgT = lessonInputGate();
+      if (_lgT.state === 'locked') {
+        CM._dragSkipNextClick = true;
+        try { CM.gameApp.advanceLesson(); } catch (eAdvT) {}
+        return;
+      }
+    } catch (eLgT) {}
     // Q2#9：划选多格进入批量笔记状态后，点击单个空格 → 退出该状态
     if (CM._dragNoteMode) {
       CM._dragNoteMode = false;
@@ -4010,6 +4337,13 @@ function layout() {
       if (stEl0) statusH = stEl0.offsetHeight || 24;
     } catch (eS0) {}
     document.documentElement.style.setProperty('--status-h', statusH + 'px');
+    // 2026-08-28：密文映射索引面板（cipherIndex）——常驻浮层；显示时预留高度把盘面下移避开，保证盘面不被遮挡
+    let cipherH = 0;
+    try {
+      const cipEl0 = document.getElementById('cipherIndex');
+      if (cipEl0 && cipEl0.offsetHeight) cipherH = cipEl0.offsetHeight;
+    } catch (eC0) {}
+    document.documentElement.style.setProperty('--cipher-h', cipherH + 'px');
     // 共测 tool-roll 高度（卷起≈30、展开≈200；展开时 num-pad(52)+gap+action-row(52)+inv-row(52)+padding 22）
     // 关键修复：原 CSS 预算 130px 但实测 ~200，board 被算大 70px → status/toolRoll 被 overflow:hidden 裁掉
     let toolRollH = 200;
@@ -4024,16 +4358,44 @@ function layout() {
     // 默认 320 = 56+22+18+0+24+200（无 boss / 展开工具卷）
     // 2026-08-19：PC 双栏下工具卷已并入右栏，左栏棋盘高度不再受工具卷占用 → 不计入 chromeH
     const toolRollContribution = document.body.classList.contains('pc-layout-active') ? 0 : toolRollH;
-    const chromeH = 96 + bossH + statusH + toolRollContribution;
+    const chromeH = 96 + bossH + statusH + cipherH + toolRollContribution;
     document.documentElement.style.setProperty('--chrome-h', chromeH + 'px');
     if (document.body.classList.contains('pc-layout-active')) {
-      // PC 双栏：CSS 已按视口算 --board-size，但小盘面（4x4/6x6）上限过高。
-      // 按 gridSize 收敛上限：9x9 用满 CSS 值，小盘面限 560/700px 避免格子过大。
+      // PC 双栏：棋盘必须完整落在左栏可用高度内。样式表公式含 -var(--chibi-h)，
+      // 但 JS 内联覆盖会丢掉它——chibi 出现后 margin-top 把盘面下推，底部被 overflow 裁掉。
+      // 这里实时读 --chibi-h/--ffh-h/--cipher-h，把顶部让位计入可用高，保证任一瞬间盘面完整。
       const gs = (CM.gameApp && CM.gameApp._getGridSize) ? CM.gameApp._getGridSize() : 9;
-      const cap = gs >= 9 ? 880 : (gs >= 6 ? 700 : 560);
-      const rect0 = CM.boardContainer.getBoundingClientRect();
-      const base = Math.min(rect0.width, rect0.height) || 600;
-      document.documentElement.style.setProperty('--board-size', Math.min(base, cap) + 'px');
+      const cap = gs >= 9 ? 720 : (gs >= 6 ? 700 : 560);
+      const vw = window.innerWidth;
+      const vh = window.innerHeight;
+      const topbarEl0 = document.getElementById('topbar');
+      const topbarH = (topbarEl0 && topbarEl0.offsetHeight) || 56;
+      const padTop = 10, padBtm = 12, gap = 16; // 与 CSS body.pc-layout-active #app 一致
+      const stH = statusH || 24;
+      const cs0 = getComputedStyle(document.documentElement);
+      const chbN = parseFloat(cs0.getPropertyValue('--chibi-h')) || 0;
+      const ffN  = parseFloat(cs0.getPropertyValue('--ffh-h'))  || 0;
+      const cpN  = parseFloat(cs0.getPropertyValue('--cipher-h')) || 0;
+      const marginTop = chbN + ffN + cpN + 4;
+      // ---- 2026-08-29：PC 右栏按「屏高比例」计算（用户基准：1200 高 → 右栏 450 / 头 88 /
+      //     卡区 380 / 双盘区 700 / 盘 350 / 工具列 75），写 CSS 变量供右栏/双盘/工具列使用。
+      const isLarge = document.body.getAttribute('data-layout') === 'large';
+      const panelW = isLarge
+        ? Math.round(Math.min(620, Math.max(340, vh * 0.375)))
+        : Math.round(Math.min(400, Math.max(300, vh * 0.28)));
+      const headH  = Math.round(vh * 0.073);    // 1200 → 88
+      const cardsH = Math.round(vh * 0.317);    // 1200 → 380
+      const padAreaH = Math.max(300, vh - headH - cardsH - 48);  // 1200 → ~700
+      const toolCol = Math.round(Math.min(110, Math.max(56, vh * 0.0625)));  // 1200 → 75
+      const padSize = Math.round(Math.min((padAreaH - 12) / 2, panelW - toolCol - 36));
+      document.documentElement.style.setProperty('--pc-panel-w', panelW + 'px');
+      document.documentElement.style.setProperty('--pc-pad-size', Math.max(200, padSize) + 'px');
+      document.documentElement.style.setProperty('--pc-tool-col', toolCol + 'px');
+      // 棋盘：左栏可用宽 = 视口宽 − 右栏 − 栏间距；可用高 = 视口高 − 顶栏 − 上下留白 − 状态行 − chibi 让位
+      const availW = Math.max(280, vw - panelW - 20);
+      const availH = Math.max(260, vh - topbarH - padTop - padBtm - gap - stH - marginTop - 6);
+      const base = Math.max(140, Math.min(availW, availH, cap));
+      document.documentElement.style.setProperty('--board-size', base + 'px');
     } else {
       const vh = (window.visualViewport && window.visualViewport.height)
         ? window.visualViewport.height
@@ -4053,13 +4415,45 @@ function layout() {
       // 棋盘上方（若视口不足，页面可滚动，教学结束自动恢复）
       // v2.0：顶部留白 16px（紧凑），一屏可见：
       // 棋盘 = vh - 安全区 - topbar - status - bossHud - pad - 留白
-      const availH = vh - safeT - safeB - topbarH - statusH - bossH - padH - 16;
       // Q5：棋盘尽量占满手机宽度——原 innerWidth-20（390 屏只剩 370），
       // 9x9 格子仅 38.7px，比 easybrain 明显小一圈、笔记看不清。
       // 改为 -4（左右各 2px 呼吸边），390 屏棋盘 386px，格子 ≈42px
+      // 2026-08-28（真机反馈"棋盘比屏幕小、字太小"）：宽度主导——正方形棋盘取满屏宽，
+      // 四周尽量不留空隙；高度仅保留"棋盘+顶部 chrome 不超视口高度"的安全线（下方仍可滚动到
+      // 数字键盘），不再被过保守的 pad 预算（旧 availH）掐小。棋盘放大后格子/数字/笔记同步变大。
       const availW = window.innerWidth - 4;
-      const target = Math.max(140, Math.min(availW, availH, 560));
+      const topBudget = Math.max(topbarH + statusH + bossH + cipherH + safeT, 120);
+      // 2026-08-28：手机键盘改为固定屏幕底部后，棋盘可用高度需扣掉键盘高(padH)，
+      // 否则棋盘会被底部固定条盖住。仅关卡内且非 PC 时扣除；剧情隐藏键盘时 padH=0。
+      let padReserve = 0;
+      try {
+        if (!document.body.classList.contains('pc-layout-active')
+          && CM.gameApp && typeof CM.gameApp.isLevelLoaded === 'function' && CM.gameApp.isLevelLoaded()) {
+          padReserve = padH;
+        }
+      } catch (ePR) {}
+      const target = Math.max(140, Math.min(availW, 560, vh - safeB - topBudget - padReserve));
       document.documentElement.style.setProperty('--board-size', target + 'px');
+      // 2026-08-29：手机键盘按「屏宽比例」——底衬高 ≤ 屏宽/2（418→209），按键 = 屏宽/8（418→52）。
+      // 同时不超出棋盘下方实际可用空间；可用高度不足时按键随三行高度压缩，保证整块键盘放得下。
+      let kbAvail = 0;
+      try {
+        let bottomRef = 0;
+        const boardEl0 = document.getElementById('board-container');
+        if (boardEl0) bottomRef = boardEl0.getBoundingClientRect().bottom;
+        const stEl0 = document.getElementById('statusLine');
+        if (stEl0) {
+          const stB = stEl0.getBoundingClientRect();
+          if (stB.height > 0 && stB.bottom > bottomRef) bottomRef = stB.bottom;
+        }
+        if (bottomRef > 0) kbAvail = Math.round(vh - safeB - bottomRef);
+      } catch (eK0) {}
+      const kbMax = Math.round(window.innerWidth * 0.5);   // 底衬 ≤ 屏宽/2
+      const kbH = Math.max(140, Math.min(kbAvail > 0 ? kbAvail : kbMax, kbMax));
+      document.documentElement.style.setProperty('--keyboard-h', kbH + 'px');
+      // 按键边长 = 屏宽/8（目标 52@418）；可用高度不足时按「三行 + 标签/留白 ≈48px」压缩
+      const kbBtn = Math.max(34, Math.min(window.innerWidth * 0.125, (kbH - 48) / 3));
+      document.documentElement.style.setProperty('--kb-btn', kbBtn.toFixed(1) + 'px');
     }
   } catch (e) { console.warn('[layout] board-size:', e); }
   const rect = CM.boardContainer.getBoundingClientRect();
@@ -4448,17 +4842,25 @@ function closeWhatIfDrawer() {
 function toggleWhatIfDrawer() {
   CM._whatIfDrawerOpen ? closeWhatIfDrawer() : openWhatIfDrawer();
 }
-// 同步右侧浮条状态：关卡内显示、未解锁置灰、激活高亮
+// 同步工具列假设按钮门控（原右侧浮条 #whatIfFloat 已移除）
+// 门控：仅当位于 308 关及之后才出现 whatif 按钮（308 前隐藏、不占位）；
+// 出现后未解锁仍置灰禁用（#pad .side-btn:disabled 自带置灰/防误触），覆盖左/右/PC 三处 whatif-btn。
 function syncWhatIfFloat() {
   const f = document.getElementById('whatIfFloat');
-  if (!f) return;
   try {
     const inLevel = !!(CM.gameApp && typeof CM.gameApp.isLevelLoaded === 'function' && CM.gameApp.isLevelLoaded());
     const unlocked = isWhatIfUnlocked() || inWhatIfEntryLesson();
-    f.classList.toggle('hidden', !inLevel);
-    f.classList.toggle('locked', inLevel && !unlocked);
-    f.classList.toggle('active', !!CM.whatIfManager && CM.whatIfManager.isActive);
-    f.title = unlocked ? I18n.t('ui.whatIf.floatTitleUnlocked') : I18n.t('ui.toast.whatIfLocked');
+    if (f) {
+      f.classList.toggle('hidden', !inLevel);
+      f.classList.toggle('locked', inLevel && !unlocked);
+      f.classList.toggle('active', !!CM.whatIfManager && CM.whatIfManager.isActive);
+      f.title = unlocked ? I18n.t('ui.whatIf.floatTitleUnlocked') : I18n.t('ui.toast.whatIfLocked');
+    }
+    const wiAtOrAfter308 = inLevel && (typeof CM !== 'undefined') && (CM.currentLevelId || 0) >= 308;
+    document.querySelectorAll('#pad .side-btn.whatif-btn').forEach((w) => {
+      w.classList.toggle('hidden', !wiAtOrAfter308);
+      w.disabled = !(wiAtOrAfter308 && unlocked);
+    });
   } catch (e) {}
 }
 // 紫框深度随快照层数加深（1/2/3 层）
@@ -4654,6 +5056,9 @@ function whatIfToggle() {
   toggleWhatIfDrawer();
 }
 
+// 2026-08-28：工具列假设按钮与左/右/PC 同入口，统一由下方 dispatchSideAction 分派到 whatIfToggle。
+// （原 bindWhatIfToolButton 已并入 #pad .side-btn[data-act] 统一监听，见 handleRedo 附近。）
+
 // 点抽屉「＋」：首次=激活并建快照1；后续=新建快照层。边框变紫（每层加深），抽屉关闭。
 function addWhatIfSnapshot() {
   if (!CM.whatIfManager || !CM.gameApp || !CM.gameApp.isLevelLoaded()) return;
@@ -4764,68 +5169,7 @@ $('whatIfAcceptBtn').addEventListener('click', (e) => {
   acceptWhatIf();
 });
 
-// v2.0：皮扣触发器——点击切换抽屉；按住拖动沿右侧上下移动，松手吸附 + localStorage 位置记忆
-(function initBuckle() {
-  const f = document.getElementById('whatIfFloat');
-  if (!f) return;
-  const BUCKLE_KEY = 'cagemaster4_whatif_buckle_pos';
-  // 恢复记忆位置（顶部 30px ~ 底部 30px 限制）
-  try {
-    const saved = parseFloat(localStorage.getItem(BUCKLE_KEY));
-    if (!isNaN(saved)) applyBucklePos(saved);
-  } catch (e) {}
-  function applyBucklePos(topPx) {
-    const maxT = window.innerHeight - 30 - f.offsetHeight;
-    const clamped = Math.max(30, Math.min(maxT, topPx));
-    f.style.top = clamped + 'px';
-    f.style.transform = f.classList.contains('buckle-open') ? 'rotate(15deg) translateX(3px)' : 'translateY(0)';
-  }
-  let dragStartY = 0, dragStartTop = 0, dragging = false, moved = false;
-  function onDown(e) {
-    const py = (e.touches && e.touches[0]) ? e.touches[0].clientY : e.clientY;
-    dragStartY = py;
-    dragStartTop = parseFloat(f.style.top) || (window.innerHeight / 2);
-    dragging = true;
-    moved = false;
-    // V4.3.39：不再在 down 阶段 preventDefault——
-    // 触屏上 touchstart 的 preventDefault 会阻止后续 click 事件，导致"点了没反应"
-    // 改用 touch-action: none CSS 属性阻止默认滚动行为
-  }
-  function onMove(e) {
-    if (!dragging) return;
-    const py = (e.touches && e.touches[0]) ? e.touches[0].clientY : e.clientY;
-    if (Math.abs(py - dragStartY) > 6) moved = true;
-    if (moved) {
-      if (e.cancelable) e.preventDefault();
-      applyBucklePos(dragStartTop + (py - dragStartY));
-    }
-  }
-  function onUp() {
-    if (!dragging) return;
-    dragging = false;
-    if (moved) {
-      try { localStorage.setItem(BUCKLE_KEY, String(parseFloat(f.style.top) || '')); } catch (e) {}
-    }
-  }
-  f.addEventListener('pointerdown', onDown);
-  window.addEventListener('pointermove', onMove);
-  window.addEventListener('pointerup', onUp);
-  f.addEventListener('touchstart', onDown, { passive: false });
-  window.addEventListener('touchmove', onMove, { passive: false });
-  window.addEventListener('touchend', onUp);
-  // 点击（非拖动）→ 切换抽屉；教学 WHAT_IF_ENTRY 阶段未激活时点击浮条直接进入假设模式
-  f.addEventListener('click', () => {
-    if (moved) { moved = false; return; }
-    if (!CM.gameApp || !CM.gameApp.isLevelLoaded()) { toast(I18n.t('ui.toast.enterLevelFirst')); return; }
-    if (!isWhatIfUnlocked() && !inWhatIfEntryLesson()) { toast(I18n.t('ui.toast.whatIfLocked')); return; }
-    // V4.3.38：假设教学关引导"点浮条进入假设模式"——直接激活+建首个快照
-    if (inWhatIfEntryLesson() && CM.whatIfManager && !CM.whatIfManager.isActive) {
-      addWhatIfSnapshot();
-      return;
-    }
-    toggleWhatIfDrawer();
-  });
-})();
+// 皮扣浮条 #whatIfFloat 已移除（2026-08-29），原 initBuckle 拖动/点击逻辑随之删除。
 $('whatIfDrawerClose').addEventListener('click', (e) => {
   e.stopPropagation();
   closeWhatIfDrawer();
@@ -4867,7 +5211,8 @@ function positionChibi() {
     // 教学（小网格无账本卡）与提示（9x9 有账本卡）均一致。
     try { positionLedgerHintCard(); } catch (ePos) {}
     // 布局完成后棋盘已稳定，chibi 底部下探 14px 探入棋盘区域——
-    // 棋盘 z-index(8610) < chibi(8620)：chibi 整体压在棋盘上缘，手搭在盘面
+    // chibi z-index(8600) < 棋盘容器(8610)：chibi 沉在棋盘背后，从棋盘上缘探出，
+    // 看上去像趴/靠在棋盘顶端（棋盘不透明背景盖住探入的 14px 重叠部分）
     const br2 = board.getBoundingClientRect();
     const vh = window.innerHeight;
     // clamp：chibi 顶部不超出屏幕顶 6px
@@ -4995,6 +5340,39 @@ CM.settings = new SettingsPanel({
     if (key === 'ledgerMode') {
       try { refreshLedgerHintCard(); } catch (e) { console.warn('[Settings] ledgerMode sync:', e); }
     }
+    // 显示模式（桌面端）：windowed / borderless / fullscreen 切换 + 分辨率下发。
+    // Electron 走 cm4Desktop.setDisplayConfig 全量下发（mode + resolution），主进程统一落地；
+    // Web 浏览器环境（无桥）回退 Fullscreen API（不支持 borderless，仅处理 fullscreen）。
+    if (key === 'displayMode' || key === 'resolution') {
+      const pushDesktop = () => {
+        if (window.cm4Desktop && typeof window.cm4Desktop.setDisplayConfig === 'function') {
+          const cfg = {
+            mode: CM.settings.get('displayMode'),
+            resolution: CM.settings.get('resolution'),
+          };
+          try { window.cm4Desktop.setDisplayConfig(cfg); } catch (e) { console.warn('[Settings] display config sync:', e); }
+        }
+      };
+      if (key === 'displayMode') {
+        const wantFull = value === 'fullscreen';
+        if (window.cm4Desktop && typeof window.cm4Desktop.setDisplayConfig === 'function') {
+          pushDesktop();
+        } else if (typeof document !== 'undefined' && document.documentElement) {
+          // Web 浏览器回退：仅支持窗口↔全屏
+          try {
+            const el = document.documentElement;
+            const isFs = !!(document.fullscreenElement || document.webkitFullscreenElement);
+            if (wantFull && !isFs) {
+              (el.requestFullscreen || el.webkitRequestFullscreen || function () {}).call(el);
+            } else if (!wantFull && isFs) {
+              (document.exitFullscreen || document.webkitExitFullscreen || function () {}).call(document);
+            }
+          } catch (e) { console.warn('[Settings] displayMode web fallback:', e); }
+        }
+      } else if (key === 'resolution' && window.cm4Desktop) {
+        pushDesktop();
+      }
+    }
   },
 })
 
@@ -5022,7 +5400,54 @@ function runAutoCandidates() {
 }
 window.settings = CM.settings;
 
-// 初始化时应用已保存的音量设置（4 通道同步）
+// 显示模式（桌面端）：启动即下发已保存的显示配置（windowed/borderless/fullscreen + 分辨率）。
+// 回写链路：主进程「真实落地后的模式」经 onDisplayModeChanged 写回 DataStore，保证设置与真实不混淆。
+// 三载体兼容：Electron 走 cm4Desktop 桥；Web 浏览器走 Fullscreen API。
+(function initDesktopDisplayMode() {
+  try {
+    const dm = CM.settings.get('displayMode'); // windowed | borderless | fullscreen
+    const res = CM.settings.get('resolution'); // auto | 1280x720 | 1600x900 | 1920x1080
+
+    const pushDesktop = () => {
+      if (window.cm4Desktop && typeof window.cm4Desktop.setDisplayConfig === 'function') {
+        window.cm4Desktop.setDisplayConfig({
+          mode: CM.settings.get('displayMode') || 'windowed',
+          resolution: CM.settings.get('resolution') || 'auto',
+        });
+      }
+    };
+
+    if (window.cm4Desktop) {
+      pushDesktop();
+      if (typeof window.cm4Desktop.onDisplayModeChanged === 'function') {
+        // 主进程真实落地模式（F11/Esc/设置变更后）→ 回写设置与下拉
+        window.cm4Desktop.onDisplayModeChanged((mode) => {
+          try {
+            if (CM.settings.get('displayMode') !== mode) CM.settings.set('displayMode', mode);
+            const sel = document.getElementById('cm-set-displayMode');
+            if (sel) sel.value = mode;
+          } catch (e) { console.warn('[Settings] displayMode sync:', e); }
+        });
+      }
+    } else if (dm === 'fullscreen' && typeof document !== 'undefined' && document.documentElement) {
+      // Web：进入/退出全屏时回写设置值，保证设置面板下拉与真实状态一致
+      try {
+        const el = document.documentElement;
+        (el.requestFullscreen || el.webkitRequestFullscreen || function () {}).call(el);
+      } catch (e) { /* ignore */ }
+    }
+    try {
+      const onFsChange = () => {
+        const isFs = !!(document.fullscreenElement || document.webkitFullscreenElement);
+        const val = isFs ? 'fullscreen' : 'windowed';
+        if (CM.settings.get('displayMode') !== val) CM.settings.set('displayMode', val);
+      };
+      document.addEventListener('fullscreenchange', onFsChange);
+      document.addEventListener('webkitfullscreenchange', onFsChange);
+    } catch (e) { /* ignore */ }
+    void res; // 分辨率已随 pushDesktop 全量下发
+  } catch (e) { console.warn('[Settings] init displayMode:', e); }
+})();
 (function applySavedVolume() {
   try {
     if (!AudioService || typeof AudioService.setVolume !== 'function') return;
@@ -7471,6 +7896,7 @@ function initCipherIndex(levelData) {
   if (!c || !c.index || !c.index.length) {
     panel.style.display = 'none';
     try { if (br && typeof br.setCipher === 'function') br.setCipher(null); } catch (e) {}
+    try { if (typeof layout === 'function') layout(); } catch (e) {}
     return;
   }
   panel.innerHTML = '';
@@ -7493,6 +7919,8 @@ function initCipherIndex(levelData) {
   });
   try { if (br && typeof br.setCipher === 'function') br.setCipher(c.cells, c.index); } catch (e) {}
   panel.style.display = '';
+  // 显示后重算布局：预留高度把盘面下移，避免密文索引覆盖盘面顶部
+  try { if (typeof layout === 'function') layout(); } catch (e) {}
 }
 
 function hideTraitorBoard() {
@@ -8185,6 +8613,8 @@ function handleEvent(type, payload) {
       break;
     case 'lessonPhase':
       updatePhaseUI(payload.phase);
+      // 教学门控：阶段切换即重算输入锁定/点亮（semiAuto/等输入会同时补全气泡全文）
+      try { updateLessonUI(); } catch (eLGPh) {}
       // v2.0：demo 阶段仅隐藏气泡，chibi 保持显示（教学期间 chibi 固定在场）
       if (payload && payload.phase === 'demo') {
         hideBubble();
@@ -8201,6 +8631,8 @@ function handleEvent(type, payload) {
       // 指引统一由教学气泡（cm-dialog，锚定 Q 版人物）呈现——hintText 已在
       // lesson-player 的 onBubble 中显示，这里不再显示底部提示条或隐藏气泡。
       // 目标格持续粒子脉冲 + 自动选中
+      // 教学门控：到"允许点击"时刻 → 点亮指定键盘 + 瞬时补全气泡全文
+      try { updateLessonUI(); } catch (eLGNeed) {}
       if (payload.info && payload.info.cell && payload.info.cell.length >= 2) {
         const [tr, tc] = payload.info.cell;
         setTargetPulse(tr, tc, true);
@@ -8478,10 +8910,10 @@ function handleEvent(type, payload) {
           });
         } catch (e) {}
       }
-      // v2.0：假设模式入口=棋盘右侧浮条 → 抽屉点「＋」——高亮浮条并提示
+      // v2.0：假设模式入口=工具列 whatif 按钮（原右侧浮条已移除）→ 抽屉点「＋」——高亮按钮并提示
       if (payload && payload.type === 'highlightButton' && payload.button === 'whatif') {
         try {
-          const f = document.getElementById('whatIfFloat');
+          const f = document.querySelector('#pad .side-btn.whatif-btn:not(.hidden)');
           if (f) {
             f.classList.add('highlight');
             setTimeout(() => { try { f.classList.remove('highlight'); } catch (e) {} }, 1600);
@@ -8764,7 +9196,7 @@ function pushAIState(type, payload) {
     // Q9：附上运行时错误摘要（AI 诊断：页面自动报错，玩家不用描述）
     try {
       state.aiErrors = (CM._jsErrors || []).slice(-20);
-      state.aiVersion = '4.3.33';
+      state.aiVersion = '4.3.34';
     } catch (e) {}
     // V4.4：附上 Boss 战对战记录（tpl 控制器收集），供 ai-debug 全面复盘
     try {
@@ -8870,7 +9302,7 @@ function autoGenAiDiag() {
     if (CM.__diagLastKey === key) return;
     CM.__diagLastKey = key;
     st.aiErrors = (CM._jsErrors || []).slice(-20);
-    st.aiVersion = '4.3.33';
+    st.aiVersion = '4.3.34';
     const txt = buildAutoDiagText(st);
     try { localStorage.setItem(CM.AI_DIAG_KEY, JSON.stringify({ levelId: st.stats.levelId, ts: Date.now(), text: txt })); } catch (eL) {}
   } catch (e) { /* 后台生成失败不打扰玩家 */ }
@@ -8982,8 +9414,8 @@ function updateBadge() {
   if (CM.currentLevelId == null) { $('levelBadge').textContent = I18n.t('ui.game.levelBadgeNone'); return; }
   const chapterId = CM.lm.getChapterOfLevel(CM.currentLevelId);
   const idx = CM.lm.getLevelIndexInChapter(CM.currentLevelId);
-  // v2.0：只显示章节编号（精简，去掉长文案）
-  $('levelBadge').textContent = I18n.t('ui.game.levelBadge', { chapter: chapterId, level: idx + 1 });
+  // v4.4：章节·关号紧凑为「章-关」数字（如 2-5），一处字符串、语言无关、不截断不换行
+  $('levelBadge').textContent = chapterId + '-' + (idx + 1);
   if (CM.pcLayoutManager) { try { CM.pcLayoutManager.syncToPc(); } catch (e) {} }
 }
 
@@ -9220,6 +9652,9 @@ function showBubble(payload) {
       }
     },
   });
+  // 教学门控：若该气泡是在"允许输入"阶段展示（引导/等输入），解除打字节奏，
+  // 瞬间补全为全文——不等讲解速度，直接让玩家看到指令开始操作。
+  try { if (lessonInputGate().state === 'wait-cell-locked' || lessonInputGate().state === 'cell-open') completeLessonBubble(); } catch (eG) {}
 }
 function hideBubble() { CM.dialog.hide(); }
 // V4.4：关卡加载遮罩显隐（startLevel 发 levelLoadBegin 显示，levelStart/loadError 隐藏）
@@ -10179,8 +10614,9 @@ function toggleNumberPen(n) {
   if (isNumberComplete(n)) { toast(I18n.t('ui.toast.numComplete', { n: n })); return; }
   if (CM.numPenLocked === n) { cancelNumberPen(); return; }
   CM.numPenLocked = n;
-  document.querySelectorAll('.num-btn').forEach((b) => b.classList.remove('num-locked'));
-  const btn = document.querySelector('.num-btn[data-num="' + n + '"]');
+  // v4.4：数字笔高亮只落在右填数盘（左候选盘不参与连填）
+  document.querySelectorAll('#numPad .num-btn').forEach((b) => b.classList.remove('num-locked'));
+  const btn = document.querySelector('#numPad .num-btn[data-num="' + n + '"]');
   if (btn) btn.classList.add('num-locked');
   // Q2#8 振动回馈：长按进入连填 → 增强型三脉冲（更强、更清晰）
   try { vibrate([30, 50, 30]); } catch (eV) {}
@@ -10194,7 +10630,7 @@ function toggleNumberPen(n) {
 }
 function cancelNumberPen() {
   CM.numPenLocked = null;
-  document.querySelectorAll('.num-btn').forEach((b) => b.classList.remove('num-locked'));
+  document.querySelectorAll('#numPad .num-btn').forEach((b) => b.classList.remove('num-locked'));
   // Q#3：退出连填 → 清除棋盘上的该数字高亮
   if (CM.gameApp && typeof CM.gameApp.clearSameNumberHighlight === 'function') {
     try { CM.gameApp.clearSameNumberHighlight(); } catch (eH) {}
@@ -10217,7 +10653,8 @@ function updateNumberPadState() {
     const state = CM.gameApp && CM.gameApp.isLevelLoaded && CM.gameApp.isLevelLoaded()
       ? CM.gameApp.getEngine().getState() : null;
     const grid = state && state.cells;
-    document.querySelectorAll('.num-btn').forEach((b) => {
+    // v4.4：残量角标/置灰只作用于右填数盘；左候选盘无角标、不置灰
+    document.querySelectorAll('#numPad .num-btn').forEach((b) => {
       const n = parseInt(b.dataset.num, 10);
       if (!(n >= 1 && n <= 9)) return;
       const complete = n <= size && isNumberComplete(n);
@@ -10295,25 +10732,12 @@ function updateNumberPadState() {
     };
     const handleUp = (clientY) => {
       cancelLongPress();
-      // 上划手势检测（位移 > 30px）
-      if (swipeStartY !== null && clientY < swipeStartY - 30) {
-        swipeTriggered = true;
-        // 上划：切换笔记模式 + 填入笔记
-        if (CM.gameApp && CM.gameApp.isLevelLoaded()) {
-          const sel = CM.gameApp.getSelectedCell();
-          if (sel) {
-            setNoteMode(true);
-            CM.gameApp.handleNoteToggle(sel.r, sel.c, n);
-          } else {
-            toast(I18n.t('ui.toast.noteSwipeFirst'));
-          }
-        }
-      } else if (!longPressTriggered && !tapTriggered) {
-        // v2.0 修复：touch 简单点按 → 直接填数——
-        // touchstart 的 preventDefault 阻止浏览器合成 click 事件，
-        // 原逻辑简单点按什么都不做 → 手机上按数字键永远没反应（无法填数）
+      // v4.4 双盘面：右填数盘=纯填数（零切换，不依赖 noteMode）；
+      // 点按即填 digitPress，长按数字笔由 startLongPress 单独处理。上划笔记已移交左候选盘，故移除。
+      if (!longPressTriggered && !tapTriggered) {
+        // v2.0 修复：touch 简单点按 → 直接填数（preventDefault 会吞掉合成 click）
         tapTriggered = true;
-        pressNumber(n);
+        digitPress(n);
       }
       swipeStartY = null;
     };
@@ -10347,11 +10771,86 @@ function updateNumberPadState() {
         tapTriggered = false;
         return;
       }
-      pressNumber(n);
+      digitPress(n);
     });
     pad.appendChild(b);
   }
 })();
+
+// ================= 双盘面路由（v4.4） =================
+// 左候选盘 = 记笔记；右填数盘 = 填数。零模式切换：各自路由走 pressNumber 的既有
+// 判定分支（保留教学 NOTE_ONLY / 数字笔 / 拖选批量 / Boss AI 等所有栅栏），
+// 仅临时抑制 noteMode，结束后还原——不改变键盘『N』等既有模式的全局状态。
+function digitPress(num) {
+  // v2.1：补齐平板/手机按压数字键触感反馈（轻震 8ms；成功态仍由 pressNumber 另发 15ms）
+  try { vibrate(8); } catch (eV) {}
+  const prev = CM.noteMode;
+  try {
+    CM.noteMode = false;
+    pressNumber(num);
+  } finally {
+    CM.noteMode = prev;
+  }
+  try { updateCandidatePadState(); } catch (eCD) {}
+}
+function candidatePress(num) {
+  // v2.1：补齐平板/手机按压候选笔记键触感反馈
+  try { vibrate(8); } catch (eV) {}
+  const prev = CM.noteMode;
+  try {
+    CM.noteMode = true;
+    pressNumber(num);
+  } finally {
+    CM.noteMode = prev;
+  }
+  try { updateCandidatePadState(); } catch (eCC) {}
+}
+
+// 左候选盘：3×3 小键，点按=切换候选笔记，无角标
+(function buildCandidatePad() {
+  const pad = document.getElementById('candidatePad');
+  if (!pad) return;
+  for (let n = 1; n <= 9; n++) {
+    const b = document.createElement('button');
+    b.className = 'num-btn';
+    b.dataset.num = n;
+    b.type = 'button';
+    const main = document.createElement('span');
+    main.className = 'num-main';
+    main.textContent = n;
+    b.appendChild(main);
+    // 只走 click 单一入口：pointerdown+click 双触发会把刚写的笔记再切掉
+    b.addEventListener('click', () => { try { candidatePress(n); } catch (eCB) {} });
+    pad.appendChild(b);
+  }
+})();
+
+// 候选盘『已标记』态：把选中格内已写的候选数标为印章高亮（随格/随笔记实时刷新）
+function updateCandidatePadState() {
+  try {
+    const pad = document.getElementById('candidatePad');
+    if (!pad) return;
+    if (!CM.gameApp || !CM.gameApp.isLevelLoaded || !CM.gameApp.isLevelLoaded()) {
+      pad.querySelectorAll('.num-btn').forEach((b) => b.classList.remove('active'));
+      return;
+    }
+    const sel = CM.gameApp.getSelectedCell ? CM.gameApp.getSelectedCell() : null;
+    let notes = null;
+    if (sel) {
+      const st = CM.gameApp.getEngine().getState();
+      const cell = st && st.cells && st.cells[sel.r] && st.cells[sel.r][sel.c];
+      notes = cell ? (cell.notes || null) : null;
+    }
+    pad.querySelectorAll('.num-btn').forEach((b) => {
+      const n = parseInt(b.dataset.num, 10);
+      const has = notes ? (notes instanceof Set ? notes.has(n) : notes.indexOf(n) >= 0) : false;
+      b.classList.toggle('active', has);
+    });
+  } catch (eC) {
+    const pad = document.getElementById('candidatePad');
+    if (pad) pad.querySelectorAll('.num-btn').forEach((b) => b.classList.remove('active'));
+  }
+}
 
 function pressNumber(num) {
   if (!CM.gameApp || !CM.gameApp.isLevelLoaded()) { toast(I18n.t('ui.toast.enterLevelFirst')); return; }
@@ -10459,9 +10958,12 @@ function setNoteMode(on) {
   CM.noteMode = !!on;
   // Q2#8：进入笔记状态（另一状态）→ 取消数字笔连填
   if (on && CM.numPenLocked != null) cancelNumberPen();
+  // v4.4：工具栏笔记按钮已移除（点击左候选盘即记笔记），btnNote 可能为空——空则安全跳过
   const btn = $('btnNote');
-  btn.classList.toggle('active', CM.noteMode);
-  btn.textContent = CM.noteMode ? I18n.t('ui.game.noteOn') : I18n.t('ui.game.note');
+  if (btn) {
+    btn.classList.toggle('active', CM.noteMode);
+    btn.textContent = CM.noteMode ? I18n.t('ui.game.noteOn') : I18n.t('ui.game.note');
+  }
   // v2.0：笔记模式指示灯（canvas 右上方小灯）
   setModeLight('note', CM.noteMode);
 }
@@ -10730,9 +11232,10 @@ function legacyHint() {
   toast(I18n.t('ui.toast.boardFull'));
 }
 
-$('btnNote').addEventListener('click', () => setNoteMode(!CM.noteMode));
-// v2.0：自动候选笔记按钮已从工具栏移除（设置里保留开关），无 DOM 可绑
-$('btnErase').addEventListener('click', () => { if (CM.gameApp) CM.gameApp.handleErase(); });
+// v4.4：工具栏笔记按钮(#btnNote)已移除（点击左候选盘即记笔记、N 键切换笔记），
+// 不再有 DOM 可绑；setNoteMode 仍由 N 键 / 数字笔 / 拖动笔记 / 教学调用。
+/* v2.0：撤销/清除/提示与左/右/PC 三处工具按钮统一由下方 dispatchSideAction 分派，
+   不再单独绑定 #btnErase / #btnUndo / #btnHint（见 handleRedo 下方统一监听）。 */
 // v2.0：撤销按钮——调用 Board.undo() 恢复上一步（含填数/笔记/擦除）
 function handleUndo() {
   if (!CM.gameApp || !CM.gameApp.isLevelLoaded()) { toast(I18n.t('ui.toast.enterLevelFirst')); return; }
@@ -10751,40 +11254,167 @@ function handleUndo() {
     toast(I18n.t('ui.toast.undone'));
   } catch (e) { console.warn('[Undo] error:', e); }
 }
-$('btnUndo').addEventListener('click', handleUndo);
-// v2.0：假设按钮已从工具栏移除（从暂停菜单/滑条进）——W 键 + 暂停菜单入口保留
-// Q17：提示按钮冷却视觉——getHint 有 5 秒冷却，点击后按钮禁用并显示倒计时，
-// 避免"点了没反应/不可点击无稽之谈"的困惑
-let _hintBtnCooling = false;
-$('btnHint').addEventListener('click', () => {
-  if (_hintBtnCooling) { toast(I18n.t('ui.toast.hintCooling2')); return; }
-  // 冷却 5 秒（与 hint-system 冷却一致）
-  _hintBtnCooling = true;
-  const btn = $('btnHint');
-  const origText = btn.textContent;
-  btn.disabled = true;
-  btn.classList.add('cooling');
-  btn.dataset.cooling = '5';
-  let left = 5;
-  const t0 = Date.now();
-  const tick = () => {
-    const remain = Math.max(0, 5 - Math.round((Date.now() - t0) / 1000));
-    btn.dataset.cooling = String(remain);
-    if (remain > 0) { requestAnimationFrame(tick); }
-    else {
-      _hintBtnCooling = false;
-      btn.disabled = false;
-      btn.classList.remove('cooling');
-      delete btn.dataset.cooling;
+// v4.4：重做——调用 Board.redo() 恢复撤销前状态（与 handleUndo 对称）
+function handleRedo() {
+  if (!CM.gameApp || !CM.gameApp.isLevelLoaded()) { toast(I18n.t('ui.toast.enterLevelFirst')); return; }
+  try {
+    const board = CM.gameApp.getEngine().getBoard();
+    if (!board) return;
+    if (!Array.isArray(board.redoStack) || board.redoStack.length === 0) { toast(I18n.t('ui.toast.noRedo')); return; }
+    board.redo();
+    if (typeof CM.gameApp._checkDeductions === 'function') CM.gameApp._checkDeductions();
+    if (typeof CM.gameApp.render === 'function') CM.gameApp.render();
+    updateFillStats();
+    updateNumberPadState();
+    vibrate(15);
+    toast(I18n.t('ui.toast.redone'));
+  } catch (e) { console.warn('[Redo] error:', e); }
+}
+// Q17：提示按钮冷却视觉——getHint 有 5 秒冷却，点击后按钮禁用并显示倒计时。
+// v4.4：改为按具体按钮实例走冷却（左/右/PC 三处提示键各自独立），避免"点了没反应"。
+function triggerHint(btnEl) {
+  if (!CM.gameApp || !CM.gameApp.isLevelLoaded()) { toast(I18n.t('ui.toast.enterLevelFirst')); return; }
+  try {
+    if (btnEl) {
+      if (btnEl.classList.contains('cooling')) { toast(I18n.t('ui.toast.hintCooling2')); return; }
+      btnEl.classList.add('cooling');
+      btnEl.dataset.cooling = '5';
+      const t0 = Date.now();
+      const tick = () => {
+        const remain = Math.max(0, 5 - Math.round((Date.now() - t0) / 1000));
+        btnEl.dataset.cooling = String(remain);
+        if (remain > 0) { requestAnimationFrame(tick); }
+        else { btnEl.classList.remove('cooling'); delete btnEl.dataset.cooling; }
+      };
+      tick();
     }
-  };
-  tick();
+  } catch (e) {}
   handleHint();
-});
+}
+// v4.4：统一工具列分派——#pad 下所有 .side-btn[data-act]（左/右/PC 三处）共用同一动作入口
+function dispatchSideAction(act, srcBtn) {
+  if (!CM.gameApp || !CM.gameApp.isLevelLoaded()) { toast(I18n.t('ui.toast.enterLevelFirst')); return; }
+  switch (act) {
+    case 'undo':   handleUndo(); break;
+    case 'redo':   handleRedo(); break;
+    case 'erase':  CM.gameApp.handleErase(); break;
+    case 'hint':   triggerHint(srcBtn); break;
+    case 'whatif': whatIfToggle(); break;
+    default: break;
+  }
+}
+try {
+  document.querySelectorAll('#pad .side-btn[data-act]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      if (btn.disabled) return;
+      try { dispatchSideAction(btn.getAttribute('data-act'), btn); }
+      catch (e2) { console.warn('[SideBtn] dispatch:', e2); }
+    });
+  });
+} catch (e3) { console.warn('[SideBtn] bind:', e3); }
+
+// ================== 教学输入门控（Lesson Input Gate） ==================
+// 需求：教学讲解/对话期间锁定键盘、工具列与棋盘点击；任何点击在未到允许
+// 输入阶段一律无效（仅用于推进教案）。按阶段选择性点亮——引导教学只许
+// 数字键，semiAuto 许格子+数字键。进入允许输入时把气泡打字机补全为全文。
+// 决策逻辑收敛在 core/lesson-input-gate.js（pure，与测试单数据源共用）。
+function lessonInputGate() {
+  try {
+    const app = CM.gameApp;
+    const lp = (app && typeof app.getLessonPlayer === 'function') ? app.getLessonPlayer() : null;
+    return resolveLessonInputGate(lp);
+  } catch (e) {
+    return { state: 'open', advance: false, pad: 'both', cells: true, wt: false, itype: 'NUMBER' };
+  }
+}
+
+// 工具/按键锁定：disabled 按钮不再派发 pointer 事件 → 天然防呆；置灰走 CSS :disabled
+function _setLock(el, locked) {
+  try {
+    if (!el) return;
+    if (el.tagName === 'BUTTON') el.disabled = !!locked;
+    el.classList.toggle('gate-off', !!locked);
+    el.setAttribute('aria-disabled', locked ? 'true' : 'false');
+  } catch (e) {}
+}
+function _setPadLock(wrapId, enabled) {
+  const wrap = document.getElementById(wrapId);
+  if (!wrap) return;
+  wrap.querySelectorAll('button.num-btn').forEach((b) => _setLock(b, !enabled));
+}
+function _setToolLock(id, locked) {
+  _setLock(document.getElementById(id), !!locked);
+}
+
+// 进入允许输入阶段时，把正在打字的教学气泡瞬间补全为全文（不再干等讲解节奏）
+function completeLessonBubble() {
+  try {
+    if (CM.dialog && typeof CM.dialog.completeTyping === 'function') CM.dialog.completeTyping();
+  } catch (e) {}
+}
+
+// 由 body class + disabled 双通道驱动门控视觉/行为
+function applyLessonGateUI() {
+  try {
+    const gate = lessonInputGate();
+    const body = document.body;
+    body.classList.toggle('lesson-gate-open', gate.state === 'open');
+    body.classList.toggle('lesson-gate-locked', gate.state === 'locked');
+    body.classList.toggle('lesson-gate-wait', gate.state === 'wait-cell-locked');
+    body.classList.toggle('lesson-gate-semi', gate.state === 'cell-open');
+    body.setAttribute('data-lesson-gate', gate.state);
+
+    // 键盘双盘面：允许的盘点亮，其余置灰
+    const dOn = (gate.pad === 'both' || gate.pad === 'digit');
+    const cOn = (gate.pad === 'both' || gate.pad === 'candidate');
+    _setPadLock('digitWrap', dOn);
+    _setPadLock('candidateWrap', cOn);
+
+    // 工具列：撤/擦/重做教学期间统一禁用（左/右/PC 三处）；假设按钮仅 WHAT_IF_ENTRY 等输入点亮
+    const lessonOn = (gate.state !== 'open');
+    const whatifLite = (gate.itype === 'WHAT_IF_ENTRY'
+      && (gate.state === 'wait-cell-locked' || gate.state === 'cell-open') && gate.wt);
+    document.querySelectorAll('#pad .side-btn[data-act="undo"], #pad .side-btn[data-act="redo"], #pad .side-btn[data-act="erase"]')
+      .forEach((el) => _setToolLock(el.id, lessonOn));
+    // whatif：308 关前隐藏（不占位）；308 关及之后未解锁/教学中未到假设环节 → 置灰。条件取或。
+    const whatIfNotUnlocked = (typeof isWhatIfUnlocked === 'function') && !isWhatIfUnlocked();
+    const wiBefore308 = (typeof CM === 'undefined') || (CM.currentLevelId || 0) < 308;
+    document.querySelectorAll('#pad .side-btn.whatif-btn').forEach((el) => {
+      el.classList.toggle('hidden', wiBefore308);
+      _setToolLock(el.id, wiBefore308 || whatIfNotUnlocked || (lessonOn && !whatifLite));
+    });
+
+    // 允许输入 → 气泡补全
+    if (gate.state === 'wait-cell-locked' || gate.state === 'cell-open') completeLessonBubble();
+  } catch (eLG) {
+    console.warn('[LessonGate] apply:', eLG);
+  }
+}
 
 // v2.0：底部工具栏跳过教学按钮已删除——跳过教学入口移至暂停菜单"⏭ 跳过教学"
-// 保留 updateLessonUI 供教学状态机调用（原只切换跳过按钮显隐，现为空操作）
-function updateLessonUI() {}
+// 保留 updateLessonUI 供教学状态机调用：教学状态每变一次就重算并应用门控
+function updateLessonUI() { applyLessonGateUI(); }
+
+// ---------------- 平板横屏检测（v4.4） ----------------
+// 触控设备 + 横屏：左右手各持屏幕一边，把双盘面两侧工具列拉到屏幕两端（区别于 PC）。
+// 由 resize/orientationchange 实时更新 body.tablet-landscape 类。
+function updateTabletLandscapeClass() {
+  try {
+    const touch = ('ontouchstart' in window) || (typeof navigator !== 'undefined' && navigator.maxTouchPoints > 0);
+    const w = window.innerWidth || 0, h = window.innerHeight || 0;
+    const tabletLandscape = touch && w > h && w >= 700;
+    document.body.classList.toggle('tablet-landscape', tabletLandscape);
+  } catch (eTL) {}
+}
+updateTabletLandscapeClass();
+let __tabletLandscapeTimer = null;
+window.addEventListener('resize', () => {
+  if (__tabletLandscapeTimer) clearTimeout(__tabletLandscapeTimer);
+  __tabletLandscapeTimer = setTimeout(updateTabletLandscapeClass, 150);
+});
+window.addEventListener('orientationchange', () => {
+  setTimeout(updateTabletLandscapeClass, 220);
+});
 
 // ---------------- 章节抽屉 ----------------
 // v2.0：图鉴/成就/设置面板关闭时恢复游戏（暂停菜单按钮使用）
@@ -11151,12 +11781,11 @@ CM.uiCanvas.addEventListener('click', (e) => {
   if (CM._dragSkipNextClick) { CM._dragSkipNextClick = false; return; }
   const cell = _cellFromClient(e.clientX, e.clientY);
   if (!cell || !CM.gameApp) return;
-  // 阶段 4：教学 intro/demo 阶段点击棋盘 = 继续教案（原来会被当成选中并弹"教学中该格无法操作"）
-  const lp = CM.gameApp.getLessonPlayer ? CM.gameApp.getLessonPlayer() : null;
-  if (lp && lp.isActive && (lp.currentPhase === 'demo' || lp.currentPhase === 'intro')) {
-    try { CM.gameApp.advanceLesson(); } catch (eAdv) {}
-    return;
-  }
+  // 教学门控：讲解/锁定阶段点击棋盘 = 仅推进教案，不做任何棋盘操作（原来只认 intro/demo）
+  try {
+    const _lg0 = lessonInputGate();
+    if (_lg0.state === 'locked') { try { CM.gameApp.advanceLesson(); } catch (eAdv) {} return; }
+  } catch (eLg) {}
   // Q2#9：划选多格进入批量笔记状态后，点击单个空格 → 退出该状态
   if (CM._dragNoteMode) {
     CM._dragNoteMode = false;

@@ -55,6 +55,8 @@ export class SettingsPanel {
       hintNarrator: '', // 提示讲解员（v2.0：默认空=跟随系统按章节分配，可选沈墨/苏晚/薇拉/伊藤）
       chibiChatter: true, // chibi 讲解（v2.0：默认开启；关闭后不听 chibi 聒噪，专心游戏——提示/教学不出角色气泡）
       muteAll: false, // 总静音（v2.0：默认关闭；开启后所有声音关闭）
+      instantErrorCheck: true, // 错误即时高亮（Q5：默认开启，填错立即红色高亮；关闭后不再实时标错）
+      ledgerMode: 'compact', // 45账本模式（Q4：compact 紧凑 / full 完全 / off 关闭，默认紧凑）
     }, options.defaults || {});
 
     /** @type {Object} 各设置的合法值校验表 */
@@ -84,6 +86,8 @@ export class SettingsPanel {
       hintNarrator: (v) => ['', 'shenmo', 'suwan', 'vera', 'ito'].indexOf(v) >= 0 ? v : '',
       chibiChatter: (v) => !!v,
       muteAll: (v) => !!v,
+      instantErrorCheck: (v) => !!v,
+      ledgerMode: (v) => ['compact', 'full', 'off'].indexOf(v) >= 0 ? v : this._defaults.ledgerMode,
     };
 
     /** @type {boolean} 是否已打开 */
@@ -431,6 +435,29 @@ export class SettingsPanel {
       panel.appendChild(muteRow);
     }
 
+    // 错误即时高亮开关（Q5）：填错立即红色高亮；关闭后不实时标错
+    const instErrRow = this._buildSelect('instantErrorCheck', window.I18n.t('ui.settings.instantErrorCheck'), [
+      { value: true, label: window.I18n.t('ui.settings.instantErrorCheck.on') },
+      { value: false, label: window.I18n.t('ui.settings.instantErrorCheck.off') },
+    ]);
+    if (instErrRow) {
+      const hint = instErrRow.querySelector('.cm-settings-hint');
+      if (hint) hint.textContent = window.I18n.t('ui.settings.instantErrorCheck.hint');
+      panel.appendChild(instErrRow);
+    }
+
+    // 45账本模式（Q4）：紧凑（默认）/ 完全 / 关闭
+    const ledgerRow = this._buildSelect('ledgerMode', window.I18n.t('ui.settings.ledgerMode'), [
+      { value: 'compact', label: window.I18n.t('ui.settings.ledgerMode.compact') },
+      { value: 'full', label: window.I18n.t('ui.settings.ledgerMode.full') },
+      { value: 'off', label: window.I18n.t('ui.settings.ledgerMode.off') },
+    ]);
+    if (ledgerRow) {
+      const hint = ledgerRow.querySelector('.cm-settings-hint');
+      if (hint) hint.textContent = window.I18n.t('ui.settings.ledgerMode.hint');
+      panel.appendChild(ledgerRow);
+    }
+
     if (this._container) {
       this._container.appendChild(panel);
     } else {
@@ -530,7 +557,7 @@ export class SettingsPanel {
       }
 
       // 下拉
-      const selects = ['quality', 'noteMode', 'language', 'chibiChatter', 'muteAll'];
+      const selects = ['quality', 'noteMode', 'language', 'chibiChatter', 'muteAll', 'instantErrorCheck', 'ledgerMode'];
       for (const key of selects) {
         const el = document.getElementById('cm-set-' + key);
         if (el) el.value = String(this.get(key));
@@ -552,11 +579,12 @@ export class SettingsPanel {
     style.id = 'cm-settings-style';
     style.textContent = [
       '/* P1：设置面板 = 夹页纸（旧纸底 + 纹理叠层 + 墨描边） */',
-      // Q15：z-index 9500→30000——topbar 是 21000，原 9500 导致面板顶部（含 × 关闭按钮）
-      // 被 topbar 盖住点不到（用户反馈"没法退出设置"）。
+      // Q15：z-index 9500→200010——topbar 是 21000，startPage/bookShell 是 200000。
+      // 原 30000 会被 fixed 200000 的开始页/书架盖住，导致「开始菜单设置点不了」（面板弹出但被盖死）。
+      // 200010 高于 startPage/bookShell 覆盖层，低于 toast 300000。
       // 加 max-height + overflow-y:auto——面板内容超出屏幕可滚动（原无滚动，body 又被暂停锁定）
       '.cm-settings { position: fixed; right: 20px; top: 56px; width: 320px; max-height: calc(100vh - 88px);',
-      '  overflow-y: auto; overscroll-behavior: contain; z-index: 30000;',
+      '  overflow-y: auto; overscroll-behavior: contain; z-index: 200010;',
       '  background-color: #f5f0e0; background-image:',
       '  repeating-linear-gradient(45deg, rgba(200,190,170,.03) 0px, rgba(200,190,170,.03) 1px, transparent 1px, transparent 3px),',
       '  radial-gradient(ellipse at 20% 30%, rgba(184,168,136,.05) 0%, transparent 60%);',

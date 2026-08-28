@@ -4,6 +4,41 @@ import I18n from '../i18n/i18n.js';
 
 const CM = window.CM || (window.CM = {});
 
+/**
+ * 布局驱动的 45账本显示模式（由 PcLayoutManager 注入）。
+ *   large   → 'full'   完整账本
+ *   compact → 'compact' 紧凑两行
+ *   stacked → null     跟随用户设置（null = 不覆盖）
+ * 用户显式「off」在任何布局下都优先（尊重用户关闭意愿）。
+ */
+let layoutLedgerOverride = null;
+
+function ledgerMode() {
+  let user = null;
+  try {
+    if (CM.settings && typeof CM.settings.get === 'function') {
+      const m = CM.settings.get('ledgerMode');
+      if (m === 'compact' || m === 'full' || m === 'off') user = m;
+    }
+  } catch (e) { /* 忽略 */ }
+  if (user === 'off') return 'off';
+  if (layoutLedgerOverride) return layoutLedgerOverride;
+  return user || 'compact';
+}
+
+/** 由布局管理器调用：随 LARGE/COMPACT/STACKED 切换账本形态并重排 */
+function setLedgerDisplayMode(mode) {
+  const desired = mode === 'large' ? 'full' : (mode === 'compact' ? 'compact' : null);
+  if (desired === layoutLedgerOverride) return;
+  layoutLedgerOverride = desired;
+  try {
+    refreshLedgerHintCard();
+    positionLedgerHintCard();
+  } catch (e) { /* 忽略重排异常 */ }
+}
+/** 是否为紧凑模式 */
+function isCompactLedger() { return ledgerMode() === 'compact'; }
+
 /** 显示/隐藏 45 账本提示卡 */
 /** Q5：隐藏时清零 --ffh-h（棋盘下移让位恢复原状） */
 function showLedgerHintCard(show) {
@@ -30,8 +65,33 @@ function positionLedgerHintCard() {
     if (!el || !board) return;
     const br = board.getBoundingClientRect();
     if (br.width <= 0) return;
-    // 固定：top = header(56px) + 8px，水平居中由 CSS 负责
+    const visible = el.style.display !== 'none';
     const topH = 64;
+    const curFfh = parseFloat(root.style.getPropertyValue('--ffh-h')) || 0;
+    const idealBoardTop = br.top - curFfh;
+
+    // PC 双栏（large/compact）：账本直接贴棋盘正上方——
+    //   左/宽 = 棋盘左/宽（与盘面同宽对齐），顶 = header 之下；
+    //   需要多少高度就把棋盘下移多少，账本与盘面始终紧贴成一体（--ffh-h 驱动盘面上移/下移）。
+    if (document.body && document.body.classList.contains('pc-layout-active')) {
+      el.style.top = topH + 'px';
+      el.style.left = br.left + 'px';
+      el.style.width = br.width + 'px';
+      el.style.transform = 'translateX(0)';
+      el.style.bottom = 'auto';
+      const elH = visible ? (el.offsetHeight || 44) : 0;
+      const desiredBoardTop = topH + elH + 6; // 卡底之下呼吸 6px，棋盘顶贴合
+      let ffhH = Math.round(desiredBoardTop - idealBoardTop);
+      if (ffhH < 0) ffhH = 0;
+      const next = ffhH + 'px';
+      if ((root.style.getPropertyValue('--ffh-h') || '0px') !== next) {
+        root.style.setProperty('--ffh-h', next);
+        try { if (typeof window.layout === 'function') window.layout(); } catch (eL) {}
+      }
+      return;
+    }
+
+    // 固定：top = header(56px) + 8px，水平居中由 CSS 负责
     el.style.top = topH + 'px';
     el.style.left = '50%';
     el.style.transform = 'translateX(-50%)';
@@ -40,13 +100,13 @@ function positionLedgerHintCard() {
     // Q5：遮挡检测——账本卡可见（display block）且底缘越过棋盘顶缘 → 盘面下移。
     // 关键：棋盘顶 br.top 已含 --ffh-h 自身造成的偏移（margin-top 递归），
     // 检测前先减去当前 --ffh-h，得到"无让位时的理想棋盘顶"，避免二次计算震荡。
-    const visible = el.style.display !== 'none';
-    // Q19：固定让位高度 = 账本最大高度 112px + 呼吸 8px —— 账本内容变化（1-5 行）
-    // 让位值恒定，棋盘一关内完全不动（原 64px 在高度放宽后不足）
-    const elH = visible ? 120 : 0;
+    // Q4：让位高度随账本模式变化——
+    //   紧凑：单行，高度约 28px + 呼吸 8px → elH≈36，棋盘紧贴上移（Q5 棋盘自动上移贴近账本）
+    //   完全：固定最大高度 120px（Q19），棋盘一关内完全不动
+    const mode = ledgerMode();
+    const baseAllow = mode === 'compact' ? 34 : 120;
+    const elH = visible ? baseAllow : 0;
     const cardBottom = topH + elH;
-    const curFfh = parseFloat(root.style.getPropertyValue('--ffh-h')) || 0;
-    const idealBoardTop = br.top - curFfh;
     let ffhH = 0;
     if (visible && cardBottom > idealBoardTop + 2) {
       // 需要下移的距离 = 卡底 - 理想棋盘顶 + 8px 呼吸
@@ -138,10 +198,19 @@ function updateLedgerHintCard() {
   if (!el) return;
   if (!CM.gameApp || !CM.gameApp.isLevelLoaded()) { showLedgerHintCard(false); return; }
 
+  // Boss 战进行中：账本卡强制隐藏——Boss HUD 已占据棋盘上方空间，
+  // 账本卡若同时显示会把数字键盘挤出屏幕（用户反馈 2-9 账本未隐藏）
+  if (CM.battleActive) { showLedgerHintCard(false); return; }
+
   // v2.0：45账本仅 9x9 关卡显示（4x4/6x6 是 10/21 法则，无 45 恒和，账本无意义）
   let size = 9;
   try { size = CM.gameApp._getGridSize ? CM.gameApp._getGridSize() : 9; } catch (e) {}
   if (size !== 9) { showLedgerHintCard(false); return; }
+
+  // Q4：账本模式=关闭 → 完全隐藏（含引导），不占用空间不挡棋盘
+  if (ledgerMode() === 'off') { showLedgerHintCard(false); return; }
+  // Q4：紧凑模式标记（CSS 单行 + 高度/让位差异）
+  el.classList.toggle('ffh-compact', isCompactLedger());
 
   // v2.0：教学时 chibi 显示 → 提示卡保持隐藏（不遮挡 chibi）
   // Q17：删除此隐藏逻辑——账本卡在顶部（top 64px）、chibi 在底部，位置不冲突。
@@ -202,6 +271,13 @@ function updateLedgerHintCard() {
   }
   const boxIndex = Math.floor(boxR / boxSize.boxH) * (size / boxSize.boxW) + Math.floor(boxC / boxSize.boxW);
 
+  // Q4：紧凑模式所需——行/列/宫 当前已填和与 45 恒和的剩余差（越小越紧）
+  const gapMark = I18n.t('ui.ledgerHint.gapMark');
+  const rowDiff = total - rowSum;
+  const colDiff = total - colSum;
+  const boxDiff = total - boxSum;
+  const boxLabel = I18n.t('ui.ledgerHint.box') + (boxIndex + 1);
+
   // Q11：账本紧凑格式（用户指定）——
   //   行2: 9/45 空36   列8: 18/45 空27   （已知和/恒和 + 空余，不再展开数字序列）
   //   宫3: 17/45 空26  笼#0: 4/24 空20
@@ -217,6 +293,7 @@ function updateLedgerHintCard() {
 
   let row2 = '';
   let comboHtml = '';
+  let comboInline = ''; // Q4：紧凑模式的行内组合文本（仅数字串或"无解"）
   // 所在笼
   const myCage = (cages || []).find((cg) => {
     return (cg.cells || []).some((cc) => {
@@ -266,10 +343,12 @@ function updateLedgerHintCard() {
         // 可能跨笼/跨行填入导致候选被占）。文案改为准确提示 + 醒目红色
         comboHtml = '<div class="ffh-combo ffh-combo-none">' + I18n.t('ui.ledgerHint.noCombo') + '</div>' +
           '<div class="ffh-combo-why">' + I18n.t('ui.ledgerHint.conflict') + '</div>';
+        comboInline = I18n.t('ui.ledgerHint.noCombo');
       } else {
         const shown = feas.slice(0, 4).map((comb) => '[' + comb.join(',') + ']').join('');
         const more = feas.length > 4 ? I18n.t('ui.ledgerHint.more', { n: feas.length }) : '';
         comboHtml = '<div class="ffh-combo">' + I18n.t('ui.ledgerHint.combo') + '<b class="ffh-combo-nums">' + shown + '</b>' + more + '</div>';
+        comboInline = shown + more;
       }
     }
   } else {
@@ -277,7 +356,32 @@ function updateLedgerHintCard() {
     row2 = '<div class="ffh-row1">' + segF(I18n.t('ui.ledgerHint.box') + (boxIndex + 1), boxNums, boxSum, total - boxSum) + '</div>';
   }
 
-  el.innerHTML = row1 + row2 + comboHtml;
+  if (isCompactLedger()) {
+    // Q4：紧凑模式 = 单行横滚：`i4 列4差16  [组合][组合]`——
+    // 左侧显示选中格坐标（行字母+列号），中间是行/列/宫三者差值中最小的一项
+    // （明确标明是“行/列/宫”哪一个是差，并列取排序靠前），右侧是可能笼组合。
+    const rowLetter = String.fromCharCode(97 + r); // a-i
+    const cellCoord = rowLetter + (c + 1);
+    const unitLabels = [
+      { label: I18n.t('ui.ledgerHint.row') + (r + 1), d: rowDiff },
+      { label: I18n.t('ui.ledgerHint.col') + (c + 1), d: colDiff },
+      { label: boxLabel, d: boxDiff },
+    ];
+    unitLabels.sort((a, b) => a.d - b.d);
+    const min = unitLabels[0];
+    const comboPart = comboInline
+      ? '<span class="ffh-csep"></span><span class="ffh-cinline">' + comboInline + '</span>'
+      : '';
+    el.innerHTML =
+      '<div class="ffh-scroll">' +
+      '  <span class="ffh-coord">' + cellCoord + '</span>' +
+      '  <span class="ffh-min-diff"><b class="ffh-unit">' + min.label + '</b>' +
+        '<i class="ffh-gap">' + gapMark + '</i><b class="ffh-num">' + min.d + '</b></span>' +
+         comboPart +
+      '</div>';
+  } else {
+    el.innerHTML = row1 + row2 + comboHtml;
+  }
   // 4.7.2 45法则笔记本页翻页过渡：内容切换时旧页淡出、新页从右滑入
   try { flashLedgerFlip(); } catch (e) {}
   // Q5：内容/显隐变化后重定位——检测账本卡是否遮挡棋盘，遮挡则盘面下移
@@ -339,9 +443,11 @@ function hookLedgerHint() {
   // v2.0：关卡加载后刷新提示卡（进入关卡即常驻显示；startLevel 为 async）
   if (typeof CM.gameApp.startLevel === 'function') {
     const origStart = CM.gameApp.startLevel;
-    CM.gameApp.startLevel = function (levelId) {
+    // 2026-08-17：透传全部参数（含 opts.restoreProgress）——原实现只传 levelId，
+    // 导致 restartLevel 的 {restoreProgress:false} 被吞掉，重玩后仍恢复旧进度
+    CM.gameApp.startLevel = function (...args) {
       try {
-        const ret = origStart.call(this, levelId);
+        const ret = origStart.apply(this, args);
         if (ret && typeof ret.then === 'function') {
           ret.then(() => { try { refreshLedgerHintCard(); } catch (e) {} });
         } else {
@@ -363,4 +469,4 @@ window.addEventListener('resize', () => {
   try { positionLedgerHintCard(); } catch (e) {}
 });
 
-export { showLedgerHintCard, positionLedgerHintCard, updateLedgerHintCard, refreshLedgerHintCard, flashLedgerFlip, hookLedgerHint };
+export { showLedgerHintCard, positionLedgerHintCard, updateLedgerHintCard, refreshLedgerHintCard, flashLedgerFlip, hookLedgerHint, ledgerMode, isCompactLedger, setLedgerDisplayMode };

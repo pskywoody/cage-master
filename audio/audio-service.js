@@ -116,6 +116,7 @@ const SFX_MAP = {
   'typewriter': 'typewriter.mp3',
   'ambient_wind': 'ambient_wind.mp3',
   'thunder': 'thunder.wav',
+  'bell_ring': 'bell_ring.wav',
   'thinking': 'thinking.wav',
   'sigh': 'sigh.wav',
   'lamp_click': 'lamp_click.mp3',
@@ -473,6 +474,7 @@ class AudioService {
           'breakthrough',
           'victory_short',
           'error',
+          'bell_ring',
         ];
 
         // Boss 关额外预加载
@@ -1018,6 +1020,8 @@ class AudioService {
       'note_toggle',
       'hover',
       'eureka',
+      'bell_ring',
+      'footstep_run_light',
       'paper_flip',
       'dialog_advance',
     ];

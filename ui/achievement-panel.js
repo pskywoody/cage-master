@@ -19,21 +19,51 @@ import I18n from '../i18n/i18n.js';
 
 export class AchievementPanel {
   /**
-   * 内置 6 个喜剧成就定义
+   * 成就分组（按玩法）。组顺序即面板展示顺序。
+   * group 字段用于把 ACHIEVEMENTS 划分到对应玩法栏目。
+   * @returns {Array<{ id, name, icon }>} 只读副本
+   */
+  static get GROUPS() {
+    return [
+      { id: 'boss',     name: I18n.t('ui.achievement.group.boss'),     icon: '⚔️' },
+      { id: 'traitor',  name: I18n.t('ui.achievement.group.traitor'),  icon: '🕵️' },
+      { id: 'clue',     name: I18n.t('ui.achievement.group.clue'),     icon: '🔔' },
+      { id: 'cipher',   name: I18n.t('ui.achievement.group.cipher'),   icon: '🔐' },
+      { id: 'evac',     name: I18n.t('ui.achievement.group.evac'),     icon: '🚪' },
+      { id: 'bomb',     name: I18n.t('ui.achievement.group.bomb'),     icon: '🧨' },
+      { id: 'extract',  name: I18n.t('ui.achievement.group.extract'),  icon: '🔍' },
+      { id: 'silent',   name: I18n.t('ui.achievement.group.silent'),   icon: '📻' },
+      { id: 'special',  name: I18n.t('ui.achievement.group.special'),  icon: '🏆' },
+    ];
+  }
+
+  /**
+   * 内置成就定义（Boss 喜剧 / tpl / 异形玩法分组）
    * @returns {Array<Object>} 只读副本
    */
   static get ACHIEVEMENTS() {
     return [
-      { id: 'hand_slippery',  name: I18n.t('ui.achievement.item.handSlippery.name'),   desc: I18n.t('ui.achievement.item.handSlippery.desc'),   icon: '🤷' },
-      { id: 'thief_king',     name: I18n.t('ui.achievement.item.thiefKing.name'),      desc: I18n.t('ui.achievement.item.thiefKing.desc'),      icon: '🦹' },
-      { id: 'epic_comeback',  name: I18n.t('ui.achievement.item.epicComeback.name'),   desc: I18n.t('ui.achievement.item.epicComeback.desc'),   icon: '⚡' },
-      { id: 'blitzkrieg',     name: I18n.t('ui.achievement.item.blitzkrieg.name'),     desc: I18n.t('ui.achievement.item.blitzkrieg.desc'),     icon: '💨' },
-      { id: 'noob_battle',    name: I18n.t('ui.achievement.item.noobBattle.name'),     desc: I18n.t('ui.achievement.item.noobBattle.desc'),     icon: '🥚' },
-      { id: 'perfect_win',    name: I18n.t('ui.achievement.item.perfectWin.name'),     desc: I18n.t('ui.achievement.item.perfectWin.desc'),     icon: '👑' },
+      // —— 组：Boss 战 ——
+      { id: 'hand_slippery',  group: 'boss', name: I18n.t('ui.achievement.item.handSlippery.name'),  desc: I18n.t('ui.achievement.item.handSlippery.desc'),  icon: '🤷' },
+      { id: 'thief_king',     group: 'boss', name: I18n.t('ui.achievement.item.thiefKing.name'),     desc: I18n.t('ui.achievement.item.thiefKing.desc'),     icon: '🦹' },
+      { id: 'epic_comeback',  group: 'boss', name: I18n.t('ui.achievement.item.epicComeback.name'),  desc: I18n.t('ui.achievement.item.epicComeback.desc'),  icon: '⚡' },
+      { id: 'blitzkrieg',     group: 'boss', name: I18n.t('ui.achievement.item.blitzkrieg.name'),    desc: I18n.t('ui.achievement.item.blitzkrieg.desc'),    icon: '💨' },
+      { id: 'noob_battle',    group: 'boss', name: I18n.t('ui.achievement.item.noobBattle.name'),    desc: I18n.t('ui.achievement.item.noobBattle.desc'),    icon: '🥚' },
+      { id: 'perfect_win',    group: 'boss', name: I18n.t('ui.achievement.item.perfectWin.name'),    desc: I18n.t('ui.achievement.item.perfectWin.desc'),    icon: '👑' },
       // v2.0：tpl 三点连线 Boss 战胜利路径成就
-      { id: 'tpl_line_win',   name: I18n.t('ui.achievement.item.tplLineWin.name'),     desc: I18n.t('ui.achievement.item.tplLineWin.desc'),     icon: '⚡' },
-      { id: 'tpl_full_board', name: I18n.t('ui.achievement.item.tplFullBoard.name'),   desc: I18n.t('ui.achievement.item.tplFullBoard.desc'),   icon: '🎯' },
-      { id: 'tpl_force_settle', name: I18n.t('ui.achievement.item.tplForceSettle.name'), desc: I18n.t('ui.achievement.item.tplForceSettle.desc'), icon: '⚖️' },
+      { id: 'tpl_line_win',   group: 'boss', name: I18n.t('ui.achievement.item.tplLineWin.name'),    desc: I18n.t('ui.achievement.item.tplLineWin.desc'),    icon: '⚡' },
+      { id: 'tpl_full_board', group: 'boss', name: I18n.t('ui.achievement.item.tplFullBoard.name'),  desc: I18n.t('ui.achievement.item.tplFullBoard.desc'),  icon: '🎯' },
+      { id: 'tpl_force_settle', group: 'boss', name: I18n.t('ui.achievement.item.tplForceSettle.name'), desc: I18n.t('ui.achievement.item.tplForceSettle.desc'), icon: '⚖️' },
+      // —— 组：异形玩法（按玩法分组，V4.3.40）——
+      { id: 'traitor_first_win', group: 'traitor', name: I18n.t('ui.achievement.item.traitorFirstWin.name'), desc: I18n.t('ui.achievement.item.traitorFirstWin.desc'), icon: '🕵️' },
+      { id: 'clue_first_win',    group: 'clue',    name: I18n.t('ui.achievement.item.clueFirstWin.name'),    desc: I18n.t('ui.achievement.item.clueFirstWin.desc'),    icon: '🔔' },
+      { id: 'cipher_first_win',  group: 'cipher',  name: I18n.t('ui.achievement.item.cipherFirstWin.name'),  desc: I18n.t('ui.achievement.item.cipherFirstWin.desc'),  icon: '🔐' },
+      { id: 'evac_first_win',    group: 'evac',    name: I18n.t('ui.achievement.item.evacFirstWin.name'),    desc: I18n.t('ui.achievement.item.evacFirstWin.desc'),    icon: '🚪' },
+      { id: 'bomb_first_win',    group: 'bomb',    name: I18n.t('ui.achievement.item.bombFirstWin.name'),    desc: I18n.t('ui.achievement.item.bombFirstWin.desc'),    icon: '🧨' },
+      { id: 'extract_first_win', group: 'extract', name: I18n.t('ui.achievement.item.extractFirstWin.name'), desc: I18n.t('ui.achievement.item.extractFirstWin.desc'), icon: '🔍' },
+      { id: 'silent_first_win',  group: 'silent',  name: I18n.t('ui.achievement.item.silentFirstWin.name'),  desc: I18n.t('ui.achievement.item.silentFirstWin.desc'),  icon: '📻' },
+      // —— 组：异形玩法全通 ——
+      { id: 'special_all_first_win', group: 'special', name: I18n.t('ui.achievement.item.specialAllFirstWin.name'), desc: I18n.t('ui.achievement.item.specialAllFirstWin.desc'), icon: '🏆' },
     ];
   }
 
@@ -91,6 +121,7 @@ export class AchievementPanel {
         const record = data[def.id];
         return {
           id: def.id,
+          group: def.group || '',
           name: def.name,
           desc: def.desc,
           icon: def.icon,
@@ -243,13 +274,25 @@ export class AchievementPanel {
       header.appendChild(closeBtn);
       wrap.appendChild(header);
 
-      // 列表
+      // 列表：按玩法分组渲染（异形玩法栏目化）
       const list = document.createElement('div');
       list.className = 'cm-ach-list';
 
       const items = this.getAllAchievements();
-      for (const item of items) {
-        list.appendChild(this._buildCard(item));
+      const groups = AchievementPanel.GROUPS;
+      for (const g of groups) {
+        const groupItems = items.filter((it) => it.group === g.id);
+        if (groupItems.length === 0) continue;
+        const sec = document.createElement('div');
+        sec.className = 'cm-ach-group';
+        const head = document.createElement('div');
+        head.className = 'cm-ach-group-head';
+        head.textContent = g.icon + ' ' + g.name;
+        sec.appendChild(head);
+        for (const item of groupItems) {
+          sec.appendChild(this._buildCard(item));
+        }
+        list.appendChild(sec);
       }
       wrap.appendChild(list);
       return wrap;
@@ -343,6 +386,9 @@ export class AchievementPanel {
       '  border-radius: 5px; width: 26px; height: 26px; cursor: pointer; font-size: 15px; line-height: 1; }',
       '.cm-ach-close:hover { border-color: #b8860b; color: #3d2a1a; }',
       '.cm-ach-list { display: flex; flex-direction: column; gap: 8px; }',
+      '.cm-ach-group { display: flex; flex-direction: column; gap: 6px; }',
+      '.cm-ach-group-head { font-size: 13px; font-weight: 700; color: #6b4f2a; letter-spacing: 1px;',
+      '  padding: 2px 2px 3px; margin-top: 4px; border-bottom: 1px dashed rgba(120,100,60,.45); }',
       '.cm-ach-card { display: flex; gap: 10px; padding: 10px; border: 1px solid rgba(90,70,40,.3);',
       '  border-radius: 6px; background: rgba(237,229,208,.7); opacity: .6; filter: grayscale(.4); }',
       '.cm-ach-card--unlocked { opacity: 1; filter: none; border-color: rgba(184,134,11,.6); }',

@@ -387,6 +387,7 @@
         "interactionType": "NUMBER",
         "autoRevealText": "直接填入数字 5。",
         "methodText": "「列的星衡」：每列总和恒为 21。f 列已有 1、4、2、6、3，只缺 a6——21 减已知数得 5。列法则和行法则一模一样，只是方向不同。",
+        "hintText": "轮到你了：a 行已填 4、1、2、3、6，只剩 a6 一个空。6×6 每行总和 21——减掉已填的和，本格应该填几？",
         "maxAttempts": 3,
         "failHint": "看 f 列（第6列）：1+4+2+6+3=16，21-16=5，空格就是 5！",
         "autoRevealAfter": 3,

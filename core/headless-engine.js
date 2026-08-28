@@ -63,6 +63,10 @@ class HeadlessEngine {
      * @type {((raw:Object)=>void)|null}
      */
     this.eventHook = null;
+    /** @private 当前关是否残卷静默校验（features.instantErrorCheck===false） */
+    this._silentLevel = false;
+    /** @private 玩家全局「错误即时高亮」偏好（默认 true，由设置页开关写入；loadLevel 据此还原，避免被残卷静默覆盖） */
+    this._instantErrorPlayerPref = true;
   }
 
   // -----------------------------------------------------------------------
@@ -102,6 +106,29 @@ class HeadlessEngine {
       this.board = new Board(gridSize);
     }
     this.board.loadLevel(normalized);
+    // V4.3.40：残卷静默校验——features.instantErrorCheck=false 的关卡（如 505「残卷改错」）关闭即时标红
+    // （_validateCell/_validateCageSum 不触发，预填错格不实时标红；通关时由 checkConflicts() 统一校验）。
+    // 关键修复（残卷关泄漏 bug）：非残卷关卡必须恢复为「玩家全局设置」，否则残卷关写入的 false 会泄漏到
+    // 后续关卡，导致后续关「错误即时高亮」开关失效、且 onConflict 类提示（如 t505_ag）不再触发。
+    this._silentLevel = !!(normalized.features && normalized.features.instantErrorCheck === false);
+    this.board.settings.instantErrorCheck = this._silentLevel ? false : this._instantErrorPlayerPref;
+  }
+
+  /**
+   * 写入玩家全局「错误即时高亮」偏好（设置页开关 → game.html onChange 调用）。
+   * 当前关若非残卷静默，立即同步到 board.settings，使盘中开关实时生效。
+   * @param {boolean} v
+   */
+  setInstantErrorCheckPreference(v) {
+    this._instantErrorPlayerPref = !!v;
+    if (!this._silentLevel) {
+      this.board.settings.instantErrorCheck = this._instantErrorPlayerPref;
+    }
+  }
+
+  /** @returns {boolean} 当前关是否为残卷静默校验（features.instantErrorCheck===false） */
+  isSilentLevel() {
+    return !!this._silentLevel;
   }
 
   // -----------------------------------------------------------------------
@@ -115,7 +142,7 @@ class HeadlessEngine {
    * @param {number} num - 填入的数字（1-9）
    * @returns {{success: boolean, error: string|null}}
    */
-  fillCell(r, c, num) {
+  fillCell(r, c, num, opts = {}) {
     if (r < 0 || r >= this.board.size || c < 0 || c >= this.board.size) {
       return { success: false, error: `Cell ${cellTag(r, c)} out of bounds` };
     }
@@ -131,8 +158,10 @@ class HeadlessEngine {
       return { success: false, error: `Cell ${cellTag(r, c)} is locked` };
     }
 
+    // 玩家真实操作传 record:true → 写入撤销历史；AI/模拟/回滚等内部落子不传 → 不污染撤销栈
+    const record = !!(opts && opts.record === true);
     const result = this.board.setNumberAt(r, c, num, {
-      recordHistory: false,
+      recordHistory: record,
       // 2026-08-04：填数自动消除关联笔记（同行/列/宫/笼的该数字笔记）——跟随 board.settings.autoClearCandidates
     });
 
@@ -223,7 +252,7 @@ class HeadlessEngine {
    * @param {number} c - 列号（0-based）
    * @returns {{success: boolean, error: string|null}}
    */
-  eraseCell(r, c) {
+  eraseCell(r, c, opts = {}) {
     if (r < 0 || r >= this.board.size || c < 0 || c >= this.board.size) {
       return { success: false, error: `Cell ${cellTag(r, c)} out of bounds` };
     }
@@ -231,6 +260,18 @@ class HeadlessEngine {
     const cell = this.board.cells[r][c];
     if (cell.fixedNum) {
       return { success: false, error: `Cell ${cellTag(r, c)} is a fixed/given cell` };
+    }
+
+    // 玩家擦除传 record:true → 撤销前先写入历史（恢复到擦除前）；AI/回滚等内部路径不写
+    if (opts && opts.record === true) {
+      this.board._pushHistory({
+        r, c,
+        oldFill: cell.fillNum,
+        oldCandidates: new Set(cell.candidates),
+        oldEliminations: new Set(cell.eliminations),
+        relatedCandidates: [],
+        relatedEliminations: [],
+      });
     }
 
     // 直接清除（不经过 Board.eraseNumber，因为后者依赖选中状态）

@@ -308,16 +308,19 @@ export class LevelSelect {
   // ============================================================
 
   /**
-   * 绑定所有关卡图标的事件：点击 + 长按（3 秒重新教学）
+   * 绑定所有已挂载容器内关卡图标的事件：点击 + 长按（3 秒重新教学）
    * @private
    */
   _bindEvents() {
     try {
-      if (!this._container || typeof document === 'undefined') return;
-
-      const icons = this._container.querySelectorAll('.cm-level');
-      for (let i = 0; i < icons.length; i++) {
-        this._bindLevelIcon(icons[i]);
+      if (typeof document === 'undefined') return;
+      const list = this._containers && this._containers.length ? this._containers : [this._container];
+      for (const c of list) {
+        if (!c) continue;
+        const icons = c.querySelectorAll('.cm-level');
+        for (let i = 0; i < icons.length; i++) {
+          this._bindLevelIcon(icons[i]);
+        }
       }
     } catch (e) {
       console.warn('[LevelSelect] _bindEvents error:', e);

@@ -69,6 +69,9 @@ export class BoardRenderer {
     /** @type {string|null} Boss 主题色（非战斗时为 null，不绘制幽灵格） */
     this._bossGhostColor = null;
     this._shakeCells = new Map(); // key 'r,c' -> until(ms)：错误摇晃动画（15°×3×400ms）
+    // Q5：错误即时高亮——填错立即红色视觉。false 时错误格不显示红色，
+    // 但错误记录（cell.isError）仍保留，不影响胜利判定（防错误通关）。
+    this._instantErrorCheck = true;
 
     // ---- 颜色方案（P1：书卷色板——朱砂/黄铜/青墨淡染，去 Material 高亮；错误红加深达 AA） ----
     this.COLORS = {
@@ -76,8 +79,9 @@ export class BoardRenderer {
       gridLine: '#666666',
       boxLine: '#1a1a1a',
       outerLine: '#1a1a1a',
-      fixedNum: '#5a5a5a',   // 笔记本主题：淡墨印刷体（规格 #5a5a5a）
-      playerNum: '#1a3a5c',   // 笔记本主题：钢笔水（老师）深蓝黑
+      fixedNum: '#333333',   // 笔记本主题：加深淡墨（原 #5a5a5a 对比度不足），Q5 可读性
+      playerNum: '#1a5be0',   // Q#2：玩家填入改鲜亮的蓝（原 #1a3a5c 与 fixedNum #333333 同为极暗色，
+                              // 字体又统一后肉眼难以区分）。鲜蓝与出厂近黑形成强烈对比。
       whatIfNum: '#8b5cf6',   // v2.0：假设模式填入数字（紫罗兰，P3 再书化）
       errorBg: 'rgba(163, 53, 42, 0.12)',  // P1：淡朱砂晕（原 #ffebee 粉红）
       errorNum: '#8e2c21',    // P1：深朱砂（原 #d32f2f 仅 4.39:1，加深后 ~5.5:1 达 AA）
@@ -88,7 +92,8 @@ export class BoardRenderer {
       cageSelectedFill: 'rgba(62, 110, 90, 0.20)', // P1：青墨淡染（原翠绿 #10b981 0.28）
       cageSelectedBorder: '#3e6e5a',               // P1：青墨（原 #10b981）
       candidateNum: '#404040',
-      cageBorder: '#b34700',
+      sameNoteHighlight: '#d01818', // Q#2：同数字高亮的匹配笔记数字（醒目红，替换原紫 #8b3adc）
+      cageBorder: '#c98a60',
       cageLabelBg: '#ffffff',
       cageLabelText: '#000000',
     };
@@ -132,6 +137,10 @@ export class BoardRenderer {
     if (!this._ctx || !this._canvas) return;
 
     try {
+      // Q#2 修复：渲染器需持有本次渲染状态，供候选数绘制按 highlights 给笔记数字着色。
+      // 此前 _drawCandidates 读取 this._state 但从未赋值，导致 sameNumberNum 恒为 null，紫色标注失效。
+      this._state = state;
+
       const scale = this.getRenderScale();
       this._ctx.setTransform(scale, 0, 0, scale, 0, 0);
 
@@ -203,6 +212,19 @@ export class BoardRenderer {
 
       // 8. 绘制笼子和值标签
       this._drawCageSumLabels(this._ctx, state, cellSize, padding);
+
+      // 8.4 密文抽取（extract）——密文字格右下角琥珀角标
+      if (this._extract && this._extract.marked && this._extract.marked.size > 0) {
+        this._drawExtractMarks(this._ctx, state, cellSize, padding);
+      }
+
+      // 8.5 铃铛（黄·潜伏档）——铃铛格左上角青色环标记（未落=描边，已落=实心）
+      if (this._bells && this._bells.marked && this._bells.marked.size > 0) {
+        this._drawBellMarks(this._ctx, state, cellSize, padding);
+      }
+
+      // 8.6 分区撤离（507）——锁定区空格置灰（给定格保留可读）
+      this._drawEvacuationLock(this._ctx, state, cellSize, padding);
 
       // 9. 绘制选中格金色边框
       this._drawSelection(this._ctx, cellSize, padding);
@@ -284,7 +306,7 @@ export class BoardRenderer {
 
       // ---- 绘制错误背景 ----
       const cell = state.cells[r] && state.cells[r][c];
-      if (cell && (cell.isError || cell.isCageSumError)) {
+      if (this._instantErrorCheck && cell && (cell.isError || cell.isCageSumError)) {
         this._ctx.fillStyle = this.COLORS.errorBg;
         this._ctx.fillRect(x, y, cellSize, cellSize);
       }
@@ -958,7 +980,7 @@ export class BoardRenderer {
       if (!row) continue;
       for (let c = 0; c < size; c++) {
         const cell = row[c];
-        if (cell && (cell.isError || cell.isCageSumError)) {
+        if (this._instantErrorCheck && cell && (cell.isError || cell.isCageSumError)) {
           const x = c * cellSize + padding;
           const y = r * cellSize + padding;
           ctx.fillStyle = this.COLORS.errorBg;
@@ -1056,6 +1078,12 @@ export class BoardRenderer {
 
       // ---- 8. 连线爆发（扩张三角 + 光晕） ----
       this._drawBurst(ctx, viz, cellSize, padding, now);
+
+      // ---- 9. 绝杀就绪：核心格金色脉动光环（玩家占满3据点后点亮） ----
+      this._drawLineReadyGlow(ctx, viz, cellSize, padding, now);
+
+      // ---- 10. 拖拽划线进度：金色连线 + 进度指示 ----
+      this._drawDragLine(ctx, viz, cellSize, padding, now);
     } catch (e) {
       console.warn('[BoardRenderer] _drawBattlefieldViz error:', e);
     }
@@ -1277,27 +1305,43 @@ export class BoardRenderer {
     if (!burst || !burst.cells || burst.cells.length < 3) return;
     const px = (c) => c * cellSize + padding + cellSize / 2;
     const py = (r) => r * cellSize + padding + cellSize / 2;
-    const agePts = burst.ts !== undefined ? (now - burst.ts) / 1400 : 1;
+    const agePts = burst.ts !== undefined ? (now - burst.ts) / 1500 : 1;
     if (agePts <= 0 || agePts >= 1) return;
     const prog = agePts; // 0→1
     const pts = burst.cells.map((c) => ({ x: px(c.c), y: py(c.r) }));
     const color = burst.side === 'player'
       ? '90, 158, 110' : '212, 168, 83';
-    ctx.save();
-    // 扩张三角（从中心向外）
     const sx = (pts[0].x + pts[1].x + pts[2].x) / 3;
     const sy = (pts[0].y + pts[1].y + pts[2].y) / 3;
-    const k = 0.5 + prog * 1.6;
-    ctx.fillStyle = 'rgba(' + color + ', ' + (0.35 * (1 - prog)).toFixed(3) + ')';
+    // 两段式：0→0.45 收缩凝聚，0.45→1 向外爆发
+    const gather = Math.min(1, prog / 0.45);
+    const boom = prog < 0.45 ? 0 : (prog - 0.45) / 0.55;
+    const eff = prog < 0.45 ? (1.6 - 1.25 * gather) : (0.35 + boom * 2.6);
+    ctx.save();
+    ctx.globalCompositeOperation = 'lighter';
+    // 凝聚期：顶点向中心汇聚的能量流
+    if (gather < 1) {
+      const glowA = (1 - gather) * 0.55;
+      ctx.strokeStyle = 'rgba(255,255,255,' + glowA.toFixed(3) + ')';
+      ctx.lineWidth = Math.max(1, cellSize * 0.035);
+      for (const p of pts) {
+        ctx.beginPath();
+        ctx.moveTo(p.x, p.y);
+        ctx.lineTo(sx, sy);
+        ctx.stroke();
+      }
+    }
+    // 三角区域（凝聚收拢 → 爆发扩张）
+    ctx.fillStyle = 'rgba(' + color + ', ' + (0.5 * (1 - prog) + 0.04).toFixed(3) + ')';
     ctx.beginPath();
-    ctx.moveTo(sx + (pts[0].x - sx) * k, sy + (pts[0].y - sy) * k);
-    ctx.lineTo(sx + (pts[1].x - sx) * k, sy + (pts[1].y - sy) * k);
-    ctx.lineTo(sx + (pts[2].x - sx) * k, sy + (pts[2].y - sy) * k);
+    ctx.moveTo(sx + (pts[0].x - sx) * eff, sy + (pts[0].y - sy) * eff);
+    ctx.lineTo(sx + (pts[1].x - sx) * eff, sy + (pts[1].y - sy) * eff);
+    ctx.lineTo(sx + (pts[2].x - sx) * eff, sy + (pts[2].y - sy) * eff);
     ctx.closePath();
     ctx.fill();
-    // 三角描边
-    ctx.strokeStyle = 'rgba(' + color + ', ' + (0.9 * (1 - prog)).toFixed(3) + ')';
-    ctx.lineWidth = 2 + (1 - prog) * 3;
+    // 三角描边（固定三点）
+    ctx.strokeStyle = 'rgba(' + color + ', ' + (0.95 * (1 - prog)).toFixed(3) + ')';
+    ctx.lineWidth = 2 + (1 - prog) * 4;
     ctx.beginPath();
     ctx.moveTo(pts[0].x, pts[0].y);
     ctx.lineTo(pts[1].x, pts[1].y);
@@ -1306,13 +1350,41 @@ export class BoardRenderer {
     ctx.stroke();
     // 顶点光晕
     for (const p of pts) {
-      const g = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, cellSize * (0.5 + prog));
-      g.addColorStop(0, 'rgba(' + color + ', ' + (0.7 * (1 - prog)).toFixed(3) + ')');
+      const r = cellSize * (0.5 + boom * 1.6);
+      const g = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, r);
+      g.addColorStop(0, 'rgba(' + color + ', ' + (0.8 * (1 - prog)).toFixed(3) + ')');
       g.addColorStop(1, 'rgba(' + color + ', 0)');
       ctx.fillStyle = g;
       ctx.beginPath();
-      ctx.arc(p.x, p.y, cellSize * (0.5 + prog), 0, Math.PI * 2);
+      ctx.arc(p.x, p.y, r, 0, Math.PI * 2);
       ctx.fill();
+    }
+    // 爆发期：中心白热核
+    if (boom > 0) {
+      const coreA = 0.9 * (1 - boom);
+      const r = cellSize * (0.3 + boom * 1.8);
+      const gc = ctx.createRadialGradient(sx, sy, 0, sx, sy, r);
+      gc.addColorStop(0, 'rgba(255,255,255,' + coreA.toFixed(3) + ')');
+      gc.addColorStop(0.4, 'rgba(' + color + ', ' + (coreA * 0.55).toFixed(3) + ')');
+      gc.addColorStop(1, 'rgba(' + color + ', 0)');
+      ctx.fillStyle = gc;
+      ctx.beginPath();
+      ctx.arc(sx, sy, r, 0, Math.PI * 2);
+      ctx.fill();
+      // 爆发放射碎屑（短射线）
+      const rays = 12;
+      const angBase = now / 220;
+      ctx.lineWidth = Math.max(1, cellSize * 0.03);
+      for (let i = 0; i < rays; i++) {
+        const a = angBase + (i / rays) * Math.PI * 2;
+        const r0 = cellSize * (0.4 + boom * 1.4);
+        const r1 = r0 + cellSize * (0.9 * (1 - boom) + 0.2);
+        ctx.strokeStyle = 'rgba(' + color + ', ' + (0.55 * (1 - boom)).toFixed(3) + ')';
+        ctx.beginPath();
+        ctx.moveTo(sx + Math.cos(a) * r0, sy + Math.sin(a) * r0);
+        ctx.lineTo(sx + Math.cos(a) * r1, sy + Math.sin(a) * r1);
+        ctx.stroke();
+      }
     }
     ctx.restore();
   }
@@ -1351,7 +1423,7 @@ export class BoardRenderer {
       }
       ctx.strokeStyle = isSelected ? this.COLORS.cageSelectedBorder : this.COLORS.cageBorder;
       ctx.setLineDash(isSelected ? [] : [5, 3]);
-      ctx.lineWidth = isSelected ? 3 : 2.5;
+      ctx.lineWidth = isSelected ? 2.5 : 1.5;
 
       // 构建格子集合用于快速查找
       const cellSet = new Set();
@@ -1622,16 +1694,24 @@ export class BoardRenderer {
 
 
   /**
-   * 构建"笼子左上角格（有和值标签）"的坐标集合
-   * 候选数绘制时需要避开这些格子的左上角区域
+   * 构建"笼子左上角格（有和值标签）"的 Map：key="r,c"，value=标签白底宽度（px）
+   * 候选数绘制时需要根据实际标签宽度避让第 1 行
    * @private
    */
   _buildCageLabelSet(state) {
-    this._cageLabelCellSet = new Set();
+    this._cageLabelCellSet = new Map(); // key: "r,c", value: labelBgWidth
     const cages = state.cages;
     if (!cages || !Array.isArray(cages) || cages.length === 0) return;
 
     const size = state.size || state.gridSize || this._gridSize;
+    // 用临时 canvas 上下文测量标签文字宽度（与 _drawCageSumLabels 使用相同字体）
+    const gridDim = this._gridSize <= 4 ? 2 : 3;
+    const subCellSize = this._cellSize / gridDim;
+    const labelFontSize = Math.max(11, Math.floor(this._cellSize * 0.30));
+    const testCtx = this._ctx;
+    const oldFont = testCtx.font;
+    testCtx.font = '700 ' + labelFontSize + 'px "Fira Code", "Cascadia Code", Consolas, monospace';
+
     for (let ci = 0; ci < cages.length; ci++) {
       const cage = cages[ci];
       if (!cage || !cage.cells || !Array.isArray(cage.cells) || cage.cells.length === 0) continue;
@@ -1651,9 +1731,12 @@ export class BoardRenderer {
         }
       }
       if (minR < size && minC < size) {
-        this._cageLabelCellSet.add(minR + ',' + minC);
+        const tw = testCtx.measureText(String(cage.sum)).width;
+        const bgWidth = tw + 4; // 左右边距各 2px（与 _drawCageSumLabels 一致）
+        this._cageLabelCellSet.set(minR + ',' + minC, bgWidth);
       }
     }
+    testCtx.font = oldFont;
   }
 
   /**
@@ -1667,9 +1750,22 @@ export class BoardRenderer {
     const size = state.size || state.gridSize || this._gridSize;
 
     ctx.save();
-    ctx.font = 'bold 10px sans-serif';
     ctx.textAlign = 'left';
-    ctx.textBaseline = 'top';
+    ctx.textBaseline = 'middle';
+
+    // Q5 可读性：笼和值标签加大加粗（LogicWiz 风格），
+    // 字号约为格子宽度的 30%，醒目但不越界，与第 1 行候选数水平并排
+    const gridDim = this._gridSize <= 4 ? 2 : 3;
+    const subCellSize = cellSize / gridDim;
+    const labelFontSize = Math.max(11, Math.floor(cellSize * 0.30));
+    ctx.font = '700 ' + labelFontSize + 'px "Fira Code", "Cascadia Code", Consolas, monospace';
+
+    // 标签白底高度（紧凑边距，尽量不超过第 1 行子格高度）
+    const labelCapH = labelFontSize * 0.78;
+    const labelPadV = 1;
+    const labelBgH = labelCapH + labelPadV * 2;
+    // 垂直对齐：标签顶部与格子顶部留 1px 间隙
+    const labelYOffset = 1;
 
     for (let ci = 0; ci < cages.length; ci++) {
       const cage = cages[ci];
@@ -1692,22 +1788,205 @@ export class BoardRenderer {
       if (minR >= size || minC >= size) continue;
 
       const labelX = minC * cellSize + padding + 2;
-      const labelY = minR * cellSize + padding + 2;
+      const labelY = minR * cellSize + padding + labelYOffset + labelBgH / 2;
       const text = String(cage.sum);
 
       const metrics = ctx.measureText(text);
       const tw = metrics.width;
-      const th = 12;
 
       // 白底
       ctx.fillStyle = this.COLORS.cageLabelBg;
-      ctx.fillRect(labelX - 1, labelY - 1, tw + 4, th + 2);
+      ctx.fillRect(labelX - 1, labelY - labelBgH / 2, tw + 4, labelBgH);
 
-      // 黑字
+      // 深棕字（与笼边框同色系，不抢数字的注意力）
       ctx.fillStyle = this.COLORS.cageLabelText;
-      ctx.fillText(text, labelX + 1, labelY + 1);
+      ctx.fillText(text, labelX + 1, labelY);
     }
 
+    ctx.restore();
+  }
+
+  // 密文抽取（extract）：外部在关卡加载/填数后调用，同步"哪些格是密文字 / 哪些已抽对"
+  setExtract(cells, doneKeys) {
+    const marked = new Set();
+    (cells || []).forEach(([r, c]) => { if (r !== undefined && c !== undefined) marked.add(r + ',' + c); });
+    const done = new Set();
+    (doneKeys || []).forEach((k) => done.add(String(k)));
+    this._extract = { marked, done };
+  }
+
+  // 铃铛（黄·潜伏档）：外部同步"哪些格是铃铛 / 哪些已自动落数"
+  setBells(cells, resolvedKeys) {
+    const marked = new Set();
+    (cells || []).forEach((k) => { if (k) marked.add(String(k)); });
+    const done = new Set();
+    (resolvedKeys || []).forEach((k) => done.add(String(k)));
+    this._bells = { marked, done };
+  }
+
+  // 铃铛（黄·潜伏档）：标记引信最短（最紧迫）的铃铛，渲染层闪烁/摇晃示警
+  setBellCritical(key) {
+    this._bellCritical = key ? String(key) : null;
+  }
+
+  // 密文映射（504）：同步"哪些给定格是密文符号 + 数字→符号id 映射"
+  setCipher(cells, index) {
+    if (!cells || !cells.length) { this._cipher = null; return; }
+    const cellSet = new Set();
+    (cells || []).forEach(([r, c]) => { if (r !== undefined && c !== undefined) cellSet.add(r + ',' + c); });
+    const valueToSym = {};
+    (index || []).forEach((symId, i) => { valueToSym[i + 1] = symId; }); // 顺序即 1~9 映射
+    this._cipher = { cells: cellSet, valueToSym: valueToSym };
+  }
+
+  // 分区撤离（507）：锁定区格子置灰（给定格保留可读）
+  setEvacuationLocked(keys) {
+    this._evacLocked = keys instanceof Set ? keys : (keys ? new Set(keys) : null);
+  }
+
+  _drawEvacuationLock(ctx, state, cellSize, padding) {
+    if (!this._evacLocked || !this._evacLocked.size) return;
+    ctx.save();
+    this._evacLocked.forEach((k) => {
+      const p = String(k).split(',');
+      const r = Number(p[0]), c = Number(p[1]);
+      if (isNaN(r) || isNaN(c)) return;
+      const cell = state.cells && state.cells[r] && state.cells[r][c];
+      if (cell && cell.fixedNum) return; // 给定格保留可读
+      ctx.fillStyle = 'rgba(0,0,0,0.45)';
+      ctx.fillRect(c * cellSize + padding, r * cellSize + padding, cellSize, cellSize);
+    });
+    ctx.restore();
+  }
+
+  // 密文符号：canvas 自绘 9 种易区分图形（金色），索引面板与盘面共用
+  _drawCipherGlyph(ctx, sym, x, y, s) {
+    ctx.save();
+    ctx.fillStyle = this.COLORS.cipherGold || '#ffd9a0';
+    ctx.strokeStyle = '#ffd9a0';
+    ctx.lineWidth = Math.max(1.5, s * 0.09);
+    const R = s * 0.5;
+    const half = s * 0.5;
+    switch (sym) {
+      case 0: // 实心圆
+        ctx.beginPath(); ctx.arc(x, y, R * 0.72, 0, Math.PI * 2); ctx.fill(); break;
+      case 1: // 实心三角
+        ctx.beginPath();
+        ctx.moveTo(x, y - R * 0.8); ctx.lineTo(x + R * 0.8, y + R * 0.6); ctx.lineTo(x - R * 0.8, y + R * 0.6);
+        ctx.closePath(); ctx.fill(); break;
+      case 2: // 实心方
+        ctx.fillRect(x - R * 0.7, y - R * 0.7, R * 1.4, R * 1.4); break;
+      case 3: // 菱形
+        ctx.beginPath();
+        ctx.moveTo(x, y - R * 0.85); ctx.lineTo(x + R * 0.6, y); ctx.lineTo(x, y + R * 0.85); ctx.lineTo(x - R * 0.6, y);
+        ctx.closePath(); ctx.fill(); break;
+      case 4: // 五角星
+        ctx.beginPath();
+        for (let i = 0; i < 10; i++) {
+          const rad = i % 2 === 0 ? R * 0.85 : R * 0.38;
+          const a = -Math.PI / 2 + i * Math.PI / 5;
+          const px = x + Math.cos(a) * rad, py = y + Math.sin(a) * rad;
+          i === 0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py);
+        }
+        ctx.closePath(); ctx.fill(); break;
+      case 5: // 圆环
+        ctx.beginPath(); ctx.arc(x, y, R * 0.7, 0, Math.PI * 2); ctx.stroke(); break;
+      case 6: // 十字
+        ctx.lineWidth = Math.max(2, s * 0.13);
+        ctx.beginPath();
+        ctx.moveTo(x - R * 0.7, y); ctx.lineTo(x + R * 0.7, y);
+        ctx.moveTo(x, y - R * 0.7); ctx.lineTo(x, y + R * 0.7);
+        ctx.stroke(); break;
+      case 7: // 六边形
+        ctx.beginPath();
+        for (let i = 0; i < 6; i++) {
+          const a = -Math.PI / 2 + i * Math.PI / 3;
+          const px = x + Math.cos(a) * R * 0.75, py = y + Math.sin(a) * R * 0.75;
+          i === 0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py);
+        }
+        ctx.closePath(); ctx.stroke(); break;
+      default: // 8 空心方
+        ctx.strokeRect(x - R * 0.7, y - R * 0.7, R * 1.4, R * 1.4); break;
+    }
+    ctx.restore();
+  }
+
+  _drawBellMarks(ctx, state, cellSize, padding) {
+    if (!this._bells || !this._bells.marked || !this._bells.marked.size) return;
+    ctx.save();
+    const now = Date.now();
+    this._bells.marked.forEach((key) => {
+      const p = String(key).split(',');
+      const r = Number(p[0]), c = Number(p[1]);
+      if (isNaN(r) || isNaN(c)) return;
+      if (this._bells.done && this._bells.done.has(key)) return; // 落数后铃铛消失
+      const s = Math.max(10, cellSize * 0.34); // 铃铛整体尺寸
+      const x = c * cellSize + padding + cellSize * 0.5; // 格子正中央
+      const y = r * cellSize + padding + cellSize * 0.5;
+      // 引信最短铃铛：闪烁 + 左右摇晃示警
+      const crit = this._bellCritical === key;
+      const rock = crit ? Math.sin(now / 160) * 0.16 : 0;
+      const blink = crit && (now % 500) < 250;
+      const bodyAlpha = blink ? 0.30 : 0.88;
+      const dark = 'rgba(20,40,60,0.9)';
+      if (crit) { ctx.save(); ctx.translate(x, y); ctx.rotate(rock); ctx.translate(-x, -y); }
+      // 铃身：穹顶 + 喇叭口
+      ctx.beginPath();
+      ctx.moveTo(x - s * 0.34, y - s * 0.30);
+      ctx.quadraticCurveTo(x - s * 0.30, y - s * 0.48, x, y - s * 0.48);
+      ctx.quadraticCurveTo(x + s * 0.30, y - s * 0.48, x + s * 0.34, y - s * 0.30);
+      ctx.lineTo(x + s * 0.26, y + s * 0.02);
+      ctx.lineTo(x + s * 0.40, y + s * 0.34);
+      ctx.lineTo(x - s * 0.40, y + s * 0.34);
+      ctx.lineTo(x - s * 0.26, y + s * 0.02);
+      ctx.closePath();
+      ctx.fillStyle = 'rgba(150,215,255,' + bodyAlpha + ')';
+      ctx.fill();
+      ctx.strokeStyle = dark;
+      ctx.lineWidth = 1.2;
+      ctx.stroke();
+      // 底部开口线
+      ctx.beginPath();
+      ctx.moveTo(x - s * 0.30, y + s * 0.34);
+      ctx.quadraticCurveTo(x, y + s * 0.42, x + s * 0.30, y + s * 0.34);
+      ctx.stroke();
+      // 铃舌（clapper）
+      ctx.beginPath();
+      ctx.arc(x, y + s * 0.45, s * 0.10, 0, Math.PI * 2);
+      ctx.fillStyle = dark;
+      ctx.fill();
+      // 顶部挂环
+      ctx.beginPath();
+      ctx.arc(x, y - s * 0.50, s * 0.07, 0, Math.PI * 2);
+      ctx.stroke();
+      if (crit) ctx.restore();
+    });
+    ctx.restore();
+  }
+
+  _drawExtractMarks(ctx, state, cellSize, padding) {
+    if (!this._extract || !this._extract.marked || !this._extract.marked.size) return;
+    ctx.save();
+    this._extract.marked.forEach((key) => {
+      const p = String(key).split(',');
+      const r = Number(p[0]), c = Number(p[1]);
+      if (r === undefined || c === undefined || isNaN(r) || isNaN(c)) return;
+      const done = this._extract.done && this._extract.done.has(key);
+      const s = Math.max(8, cellSize * 0.28);
+      const ox = c * cellSize + padding + cellSize - s;
+      const oy = r * cellSize + padding + cellSize - s;
+      // 撑满右下角的小三角角标：抽对=实心琥珀，未抽=透明琥珀描边
+      ctx.beginPath();
+      ctx.moveTo(ox, oy - 0.5);
+      ctx.lineTo(ox + s, oy - 0.5);
+      ctx.lineTo(ox + s, oy + s);
+      ctx.closePath();
+      ctx.fillStyle = done ? 'rgba(217,164,65,0.95)' : 'rgba(217,164,65,0.20)';
+      ctx.fill();
+      ctx.strokeStyle = 'rgba(217,164,65,0.85)';
+      ctx.lineWidth = 1;
+      ctx.stroke();
+    });
     ctx.restore();
   }
 
@@ -1761,27 +2040,42 @@ export class BoardRenderer {
       }
       ctx.restore();
 
-      // 中心标记：对=实心圆点（Boss 色呼吸），错=问号 + 轻微晃动
+      // ---- 主内容：Boss 专属色填充标记 + 玩家笔记（CM4-R9）----
+      // AI 落格只用 Boss 专属色识别（圆点/三角），绝不显示 AI 填了什么数字（防作弊）；
+      // 玩家仍可在其上写高对比笔记（白字黑描边），AI 填写后笔记不消失。
+      const cands = (cell.candidates && cell.candidates.size)
+        ? Array.from(cell.candidates).sort((a, b) => a - b) : [];
       ctx.save();
-      const phase = (Date.now() % 800) / 800; // 0~1 呼吸相位
-      const breathe = 0.55 + 0.45 * Math.sin(phase * Math.PI * 2);
-      if (isMistake) {
-        // V5 4.3：错误格显示红叉（原为灰色问号）+ 轻微晃动
-        const wobble = Math.sin(Date.now() / 180) * cellSize * 0.035;
-        ctx.fillStyle = '#ef4444';
-        ctx.font = 'bold ' + Math.round(cellSize * 0.46) + 'px sans-serif';
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
-        ctx.fillText('✕', cx + wobble, cy);
+      if (cands.length === 0) {
+        if (isMistake) {
+          const wobble = Math.sin(Date.now() / 180) * cellSize * 0.035;
+          ctx.fillStyle = '#ef4444';
+          ctx.font = 'bold ' + Math.round(cellSize * 0.46) + 'px sans-serif';
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+          ctx.fillText('✕', cx + wobble, cy);
+        } else {
+          // Boss 专属色圆点填充（不显示数字）——玩家不知道 AI 填了什么
+          const dotR = Math.max(2.5, cellSize * 0.09);
+          ctx.fillStyle = this._hexToRgba(bossColor, 0.85);
+          ctx.beginPath();
+          ctx.arc(cx, cy, dotR, 0, Math.PI * 2);
+          ctx.fill();
+        }
       } else {
-        const dotR = Math.max(2.5, cellSize * 0.085 * breathe);
-        ctx.fillStyle = this._hexToRgba(bossColor, 0.75);
+        // 有玩家笔记：左上角小 Boss 色三角标识 AI 占（不露数字），主体画高对比笔记
+        ctx.fillStyle = this._hexToRgba(bossColor, 0.9);
         ctx.beginPath();
-        ctx.arc(cx, cy, dotR, 0, Math.PI * 2);
+        const sz = cellSize * 0.15;
+        ctx.moveTo(x, y);
+        ctx.lineTo(x + sz, y);
+        ctx.lineTo(x, y + sz);
+        ctx.closePath();
         ctx.fill();
+        this._drawAICellNotes(ctx, cands, r, c, cellSize, padding);
       }
       ctx.restore();
-      return; // 幽灵格不画数字/候选数
+      return; // AI 格不显示数字（Boss 专属色识别 + 高对比玩家笔记）
     }
 
     // 错误摇晃：旋转 15° 衰减（仅数字部分，格子底色不动）
@@ -1800,11 +2094,20 @@ export class BoardRenderer {
     };
 
     if (cell.fixedNum) {
-      // ---- 固定数字：淡墨印刷体（Fira Code，规格 3.2） ----
+      // ---- 固定数字：加深淡墨印刷体（Fira Code，规格 3.2）----
       shakeWrap(() => {
         ctx.save();
+        // V4.3.40：密文映射——该固定格是密文格时，画金色符号而非数字
+        const sym = (this._cipher && this._cipher.cells && this._cipher.cells.has(r + ',' + c))
+          ? this._cipher.valueToSym[cell.fixedNum] : null;
+        if (sym !== undefined && sym !== null) {
+          this._drawCipherGlyph(ctx, sym, cx, cy, Math.round(cellSize * 0.52));
+          ctx.restore();
+          return;
+        }
         ctx.fillStyle = this.COLORS.fixedNum;
-        ctx.font = '600 ' + Math.round(cellSize * 0.6) + 'px "Fira Code", "Cascadia Code", Consolas, monospace';
+        // Q#2 区分：出厂数字更重（800）
+        ctx.font = '800 ' + Math.round(cellSize * 0.6) + 'px "Fira Code", "Cascadia Code", Consolas, monospace';
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
         ctx.fillText(String(cell.fixedNum), cx, cy);
@@ -1824,9 +2127,10 @@ export class BoardRenderer {
         ctx.shadowColor = 'rgba(139, 92, 246, 0.6)';
         ctx.shadowBlur = Math.max(4, Math.round(cellSize * 0.15)); // 发光
       } else {
-        ctx.fillStyle = isError ? this.COLORS.errorNum : this.COLORS.playerNum;
+        ctx.fillStyle = (this._instantErrorCheck && isError) ? this.COLORS.errorNum : this.COLORS.playerNum;
         // Q5 统一：玩家填入数字改用与固定数字相同的等宽印刷体（原 Caveat 手写体
         // 与题目数字字体不一致，用户反馈"填进去的数字字体不一样"）
+        // Q#2 区分：玩家数字字重更轻（600）+ 鲜蓝色，出厂数字 800 近黑——色彩+粗细双重区分
         ctx.font = '600 ' + Math.round(cellSize * 0.6) + 'px "Fira Code", "Cascadia Code", Consolas, monospace';
       }
       ctx.textAlign = 'center';
@@ -1837,10 +2141,9 @@ export class BoardRenderer {
       ctx.restore();
     } else if (cell.candidates && cell.candidates.length > 0) {
       // ---- 候选数笔记 ----
-      // 该格若有笼和值标签，候选数整体向右下偏移，避免被标签遮挡
-      const hasCageLabel = this._cageLabelCellSet &&
-        this._cageLabelCellSet.has(r + ',' + c);
-      this._drawCandidates(ctx, cell.candidates, r, c, cellSize, padding, hasCageLabel);
+      // 该格若有笼和值标签，取标签白底宽度（像素），供第 1 行候选数水平避让
+      const labelWidth = (this._cageLabelCellSet && this._cageLabelCellSet.get(r + ',' + c)) || 0;
+      this._drawCandidates(ctx, cell.candidates, r, c, cellSize, padding, labelWidth);
     }
 
     // ---- 排除标记（微型教学 eliminate：红色斜线叉）----
@@ -1874,52 +2177,122 @@ export class BoardRenderer {
       ctx.fillText(nums, x0 + cellSize - 3, y0 + 2);
       ctx.restore();
     }
+
+    // ---- CM4-R10：AI 预告窗口——目标格"即将落子"蓄力警示（呼吸红框 + 四角 + 读秒）----
+    if (cell._telegraphUntil && Date.now() < cell._telegraphUntil) {
+      const remain = cell._telegraphUntil - Date.now();
+      const x0 = c * cellSize + padding;
+      const y0 = r * cellSize + padding;
+      const wave = Math.sin((Date.now() % 360) * Math.PI / 180);
+      const bossColor = this._bossGhostColor || '#e8b46a';
+      ctx.save();
+      // 呼吸红/金框：随正弦波脉动加粗
+      ctx.strokeStyle = this._hexToRgba('#ff5b5b', 0.55 + 0.45 * ((wave + 1) / 2));
+      ctx.lineWidth = Math.max(2, (cellSize * 0.055) * (0.6 + 0.4 * ((wave + 1) / 2)));
+      ctx.strokeRect(x0 + 1.5, y0 + 1.5, cellSize - 3, cellSize - 3);
+      // 四角警示三角（红）
+      ctx.fillStyle = this._hexToRgba('#ff5b5b', 0.85);
+      const t = Math.round(cellSize * 0.17);
+      const tri = (ax, ay, dx, dy, hz) => {
+        ctx.beginPath();
+        ctx.moveTo(ax, ay);
+        ctx.lineTo(ax + dx * t, ay);
+        ctx.lineTo(ax, ay + dy * t);
+        ctx.closePath();
+        ctx.fill();
+      };
+      tri(x0, y0, 1, 1); tri(x0 + cellSize - t, y0, -1, 1);
+      tri(x0, y0 + cellSize - t, 1, -1); tri(x0 + cellSize - t, y0 + cellSize - t, -1, -1);
+      // 右上角读秒圈（剩余秒数）
+      const cxs = x0 + cellSize - 11, cys = y0 + 11;
+      ctx.fillStyle = this._hexToRgba(bossColor, 0.92);
+      ctx.beginPath();
+      ctx.arc(cxs, cys, Math.max(7, cellSize * 0.09), 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = '#14100b';
+      ctx.font = '800 ' + Math.max(9, Math.round(cellSize * 0.15)) + 'px "Fira Code", "Cascadia Code", Consolas, monospace';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(String(Math.max(1, Math.ceil(remain / 1000))), cxs, cys + 0.5);
+      ctx.restore();
+    }
+  }
+
+  /**
+   * CM4-R9：画 AI 占格上的玩家笔记（高对比：白字 + 黑描边）。
+   * 独立于普通候选，确保在 Boss 底色上清晰可读。
+   */
+  _drawAICellNotes(ctx, cands, r, c, cellSize, padding) {
+    const gridDim = this._gridSize <= 4 ? 2 : 3;
+    const sub = cellSize / gridDim;
+    const fs = Math.max(10, Math.round(sub * 0.6));
+    const x0 = c * cellSize + padding;
+    const y0 = r * cellSize + padding;
+    ctx.save();
+    ctx.font = '700 ' + fs + 'px "Fira Code", "Cascadia Code", Consolas, monospace';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.lineWidth = Math.max(2, Math.round(fs * 0.26));
+    ctx.lineJoin = 'round';
+    for (let i = 0; i < cands.length; i++) {
+      const px = x0 + (i % gridDim) * sub + sub / 2;
+      const py = y0 + Math.floor(i / gridDim) * sub + sub / 2;
+      ctx.strokeStyle = 'rgba(0, 0, 0, 0.85)';
+      ctx.strokeText(String(cands[i]), px, py);
+      ctx.fillStyle = '#ffffff';
+      ctx.fillText(String(cands[i]), px, py);
+    }
+    ctx.restore();
   }
 
   /**
    * 绘制候选数笔记（格子内按 3x3 或 2x2 排列）
    * @private
    */
-  _drawCandidates(ctx, candidates, r, c, cellSize, padding, hasCageLabel) {
+  _drawCandidates(ctx, candidates, r, c, cellSize, padding, labelWidth) {
     // 候选数排列维度：9x9 用 3x3，4x4 用 2x2
     const gridDim = this._gridSize <= 4 ? 2 : 3;
     const subCellSize = cellSize / gridDim;
 
-    // v2.0 修复：笼和值标签（白底 ~14px 高，位于格子左上角）会遮挡候选数
-    // 数字 1。0.3 子格的偏移远不足以避开。改为：有标签的格子，候选数网格
-    // Y 方向从标签下方开始（压缩行高），数字 1-3 完整显示在标签下方；
-    // X 方向保持原网格 + 微移。3 行候选数 4-9 依次下移，与相邻格不重叠。
-    const labelH = 14; // 标签白底高度（_drawCageSumLabels：th=12 + 上下边距 2）
-    const subH = hasCageLabel ? Math.max(6, (cellSize - labelH) / gridDim) : subCellSize;
-    // Q5：笔记字号提升——原 Math.max(8, sub*0.55)：9x9 手机格子 40px → 子格 13.3px → 8px 兜底，
-    // 笔记数字太小看不清。0.62→0.72 比例 + 10px 兜底，格子 40px 时字号 ≈10px（3x3 排列仍放得下）
-    const fontSize = Math.max(10, Math.round((hasCageLabel ? subH : subCellSize) * 0.72));
+    // Q5 可读性：笼标签避让改为 LogicWiz 式——
+    // 有笼标签的格子，第 1 行候选数（1、2、3）与标签水平并排（标签在左，数字在右），
+    // 第 2、3 行（4-9）保持正常 3 列布局。不再垂直压缩行高，保证字号一致。
+    const hasCageLabel = labelWidth > 0;
+    const labelW = labelWidth + 2; // 额外 2px 安全间距，避免文字与标签边缘紧贴
+    const firstRowAvail = cellSize - labelW;  // 第 1 行剩余宽度
+    const firstRowSubW = firstRowAvail / gridDim; // 第 1 行每个数字的可用宽度
 
-    // v2.0：AI 笔记用 Boss 主题色淡渲染（cell._aiNote 标记）——低透明度，
-    // 明显区别于真实数字（玩家不会把 AI 笔记误认成"AI 填的数"）
+    // 字号：候选数字号占子格宽度的 82%（原 72%），对齐 LogicWiz 视觉大小
+    // 第 1 行如果因笼标签太挤会适当缩小，但有标签的格子字号以基准字号为准（整体放大）
+    const baseFontSize = Math.max(11, Math.round(subCellSize * 0.82));
+    const firstRowFontSize = hasCageLabel
+      ? Math.max(10, Math.round(firstRowSubW * 0.82))
+      : baseFontSize;
+    const fontSize = hasCageLabel ? Math.min(baseFontSize, firstRowFontSize) : baseFontSize;
+
+    // AI 笔记（Boss 思考时写的候选）：不再绘制到棋盘。玩家只知对手在"写笔记"，
+    // 但看不到具体写了哪些数字、也分辨不出真/假笔记
     const cells = this._state ? this._state.cells : null;
     const isAiNote = !!(cells && cells[r] && cells[r][c] && cells[r][c]._aiNote);
-    const noteColor = isAiNote && this._bossGhostColor
-      ? this._hexToRgba(this._bossGhostColor, 0.32)
-      : this.COLORS.candidateNum;
-
-    // 有笼和标签时，候选数 X 方向微移（0.3 子格）避让标签左缘；
-    // Y 方向由压缩网格处理（从标签下方开始），无需额外偏移
-    const offsetX = hasCageLabel ? subCellSize * 0.3 : 0;
-    const offsetY = 0;
+    if (isAiNote) return;
+    const noteColor = this.COLORS.candidateNum;
 
     // 格子边界（留出半个字宽/字高的安全边距，防止被裁剪）
     const halfChar = fontSize * 0.62;
     const cellX = c * cellSize + padding;
     const cellY = r * cellSize + padding;
-    const originY = hasCageLabel ? cellY + labelH : cellY;
     const minX = cellX + halfChar;
     const maxX = cellX + cellSize - halfChar;
-    const minY = hasCageLabel ? cellY + labelH + 2 : cellY + halfChar;
+    const minY = cellY + halfChar;
     const maxY = cellY + cellSize - halfChar;
 
+    // Q#2：同数字高亮时，与匹配数字相同的"那一个笔记数字"用醒目紫色显示，
+    // 其余笔记数字不受影响（仅当该数字正被同数字高亮时生效）
+    const sameNum = (this._state && this._state.highlights && this._state.highlights.sameNumberNum) || null;
+    const sameNumColor = this.COLORS.sameNoteHighlight || 'rgba(139, 58, 220, 1)'; // 紫 #8b3adc
+
     ctx.save();
-    ctx.font = fontSize + 'px sans-serif';
+    ctx.font = '600 ' + fontSize + 'px sans-serif';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
 
@@ -1929,14 +2302,25 @@ export class BoardRenderer {
       const idx = num - 1; // 0-based
       const subR = Math.floor(idx / gridDim);
       const subC = idx % gridDim;
-      let px = cellX + subC * subCellSize + subCellSize / 2 + offsetX;
-      let py = originY + subR * subH + subH / 2 + offsetY;
+
+      let px, py;
+      if (hasCageLabel && subR === 0) {
+        // 第 1 行：从标签右侧开始，均分剩余宽度
+        px = cellX + labelW + subC * firstRowSubW + firstRowSubW / 2;
+      } else {
+        // 第 2、3 行：正常 3 列布局
+        px = cellX + subC * subCellSize + subCellSize / 2;
+      }
+      py = cellY + subR * subCellSize + subCellSize / 2;
+
       // 钳制在格子边界内，保证任何数字都完整显示
       px = Math.min(Math.max(px, minX), maxX);
       py = Math.min(Math.max(py, minY), maxY);
       // 笔记是玩家的私有工作区：对错由后台掌握，不在棋盘上做任何标记（如删除线/淡化）。
       // 保持笔记视觉纯净，玩家自主决定是否保留某条笔记。
-      ctx.fillStyle = noteColor;
+      // 例外：Q#2 同数字高亮时，把与匹配数字相同的笔记数字单独染成醒目紫色，
+      // 让玩家一眼看出"这条笔记对应的数字正被高亮"。
+      ctx.fillStyle = (sameNum && num === sameNum) ? sameNumColor : noteColor;
       ctx.fillText(String(num), px, py);
     }
 
@@ -2017,6 +2401,105 @@ export class BoardRenderer {
     const g = (n >> 8) & 255;
     const b = n & 255;
     return 'rgba(' + r + ',' + g + ',' + b + ',' + alpha + ')';
+  }
+
+  /**
+   * 绝杀就绪：核心格金色脉动光环（玩家占满3据点后点亮）
+   * 提示玩家"拖拽划过这些格即可连线处决"
+   * @private
+   */
+  _drawLineReadyGlow(ctx, viz, cellSize, padding, now) {
+    if (!viz.lineReady) return;
+    const cores = viz.cores || [];
+    if (!cores.length) return;
+    const t = now / 1000;
+    ctx.save();
+    for (const core of cores) {
+      const cx = core.c * cellSize + padding + cellSize / 2;
+      const cy = core.r * cellSize + padding + cellSize / 2;
+      const pulse = 0.4 + 0.3 * Math.sin(t * 3 + core.r * 1.7 + core.c * 2.3);
+      const rad = cellSize * 0.55 + cellSize * 0.08 * Math.sin(t * 2.5 + core.r + core.c);
+      // 外发光径向渐变光环
+      const gradient = ctx.createRadialGradient(cx, cy, rad * 0.2, cx, cy, rad);
+      gradient.addColorStop(0, 'rgba(255, 215, 0, ' + (0.25 * pulse).toFixed(3) + ')');
+      gradient.addColorStop(0.5, 'rgba(218, 165, 32, ' + (0.12 * pulse).toFixed(3) + ')');
+      gradient.addColorStop(1, 'rgba(218, 165, 32, 0)');
+      ctx.fillStyle = gradient;
+      ctx.beginPath();
+      ctx.arc(cx, cy, rad, 0, Math.PI * 2);
+      ctx.fill();
+      // 金色脉动光晕边框
+      ctx.strokeStyle = 'rgba(255, 215, 0, ' + (0.35 * pulse).toFixed(3) + ')';
+      ctx.lineWidth = Math.max(1.5, cellSize * 0.04);
+      ctx.beginPath();
+      ctx.arc(cx, cy, cellSize * 0.38, 0, Math.PI * 2);
+      ctx.stroke();
+      // 核心光点（最亮层）
+      ctx.fillStyle = 'rgba(255, 215, 0, ' + (0.15 * pulse).toFixed(3) + ')';
+      ctx.beginPath();
+      ctx.arc(cx, cy, cellSize * 0.12, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    ctx.restore();
+  }
+
+  /**
+   * 拖拽划线进度：金色连线 + 进度指示
+   * 玩家拖拽划过核心格时，实时绘制已触达的连接线
+   * @private
+   */
+  _drawDragLine(ctx, viz, cellSize, padding, now) {
+    const dragCores = viz.dragCores;
+    if (!dragCores || !dragCores.length) return;
+    const px = (c) => c * cellSize + padding + cellSize / 2;
+    const py = (r) => r * cellSize + padding + cellSize / 2;
+    const t = now / 1000;
+    ctx.save();
+    // ---- 连接线 ----
+    if (dragCores.length >= 2) {
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+      const a = 0.55 + 0.35 * Math.abs(Math.sin(t * 3));
+      ctx.strokeStyle = 'rgba(255, 215, 0, ' + a.toFixed(3) + ')';
+      ctx.lineWidth = Math.max(3, cellSize * 0.08);
+      ctx.setLineDash([cellSize * 0.1, cellSize * 0.06]);
+      ctx.beginPath();
+      ctx.moveTo(px(dragCores[0].c), py(dragCores[0].r));
+      for (let i = 1; i < dragCores.length; i++) {
+        ctx.lineTo(px(dragCores[i].c), py(dragCores[i].r));
+      }
+      ctx.stroke();
+      ctx.setLineDash([]);
+    }
+    // ---- 端点光点 ----
+    for (let i = 0; i < dragCores.length; i++) {
+      const dc = dragCores[i];
+      const isLast = i === dragCores.length - 1;
+      const bright = isLast ? 0.95 : 0.65;
+      // 外光晕
+      ctx.fillStyle = 'rgba(255, 215, 0, 0.2)';
+      ctx.beginPath();
+      ctx.arc(px(dc.c), py(dc.r), Math.max(4, cellSize * 0.12), 0, Math.PI * 2);
+      ctx.fill();
+      // 光点
+      ctx.fillStyle = 'rgba(255, 215, 0, ' + bright.toFixed(2) + ')';
+      ctx.beginPath();
+      ctx.arc(px(dc.c), py(dc.r), Math.max(3, cellSize * 0.06), 0, Math.PI * 2);
+      ctx.fill();
+    }
+    // ---- 进度文字 ----
+    const total = viz.cores ? viz.cores.length : 3;
+    const progress = dragCores.length + '/' + total;
+    ctx.font = 'bold ' + Math.max(10, cellSize * 0.22) + 'px sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'bottom';
+    const last = dragCores[dragCores.length - 1];
+    const lx = px(last.c);
+    const ly = py(last.r) - cellSize * 0.45;
+    const textA = 0.7 + 0.3 * Math.abs(Math.sin(t * 4));
+    ctx.fillStyle = 'rgba(255, 215, 0, ' + textA.toFixed(2) + ')';
+    ctx.fillText(progress, lx, ly);
+    ctx.restore();
   }
 }
 

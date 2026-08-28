@@ -107,6 +107,12 @@ export class DialogSystem {
         sticky: options.sticky === true,
         anchorEl: options.anchorEl || null,
         anchorSide: options.anchorSide || null,
+        // 底边最低约束（距视口底 px）：右锚时气泡底边不得低于该值，
+        // 用于把教学气泡限制在棋盘上缘之上，避免遮挡棋盘
+        minBottom: typeof options.minBottom === 'number' ? options.minBottom : 0,
+        // 最大高度（px）：右锚时气泡高度不得超过该值，
+        // 用于把气泡顶部限制在 header 下沿之下
+        maxHeight: typeof options.maxHeight === 'number' ? options.maxHeight : 0,
       };
 
       // 清空队列，仅播放本条
@@ -246,6 +252,22 @@ export class DialogSystem {
         return;
       }
       const item = this._queue.shift();
+      // 按句拆短气泡（AVG 一句一屏惯例）：长文本拆成多个短气泡依次播放，
+      // 每个气泡 ≤2 句且尽量 ≤55 字符；onComplete 只在最后一块触发
+      if (item && item.text) {
+        const blocks = this._splitShortBubbles(item.text);
+        if (blocks.length > 1) {
+          const origComplete = item.onComplete;
+          item.text = blocks[0];
+          item.onComplete = null;
+          const rest = blocks.slice(1).map((t, i, arr) => ({
+            ...item,
+            text: t,
+            onComplete: i === arr.length - 1 ? origComplete : null,
+          }));
+          this._queue.unshift(...rest);
+        }
+      }
       this._current = item;
       this._showing = true;
       this._renderItem(item);
@@ -281,19 +303,58 @@ export class DialogSystem {
           const spaceAbove = r.top;                 // 人物上方可用空间
           const spaceBelow = vh - r.bottom;          // 人物下方可用空间
           // 气泡估算高度（多行文本），留出余量
-          const bubbleH = Math.min(240, Math.max(90, (this._current ? this._current.text.length * 8 : 90)));
+          let bubbleH = Math.min(240, Math.max(90, (this._current ? this._current.text.length * 8 : 90)));
           // 并列模式（anchorSide==='right'）：气泡在锚点右侧，与 chibi 左右并列互不遮挡
           if (item.anchorSide === 'right') {
-            const bubbleW = 320; // 固定宽度：紧凑、不随文案长度跳动
             const gap = 10;
-            let left = r.right + gap;
-            // 右侧放不下则退回锚点左侧
-            if (left + bubbleW > vw - 12) left = Math.max(12, r.left - bubbleW - gap);
-            // 垂直：气泡上移 15px，与 chibi 同高靠上并列（不遮棋盘底部）
-            let bottom = vh - r.bottom + 15;
-            const maxBottom = Math.max(12, vh - bubbleH - 12);
-            bottom = Math.min(bottom, maxBottom);
-            bottom = Math.max(bottom, 12);
+            // 水平：左贴 chibi 右缘、右贴屏幕边缘，宽度自适应填满整个右侧区域
+            // （旧逻辑固定 320px，窄屏右侧放不下会被截断；且回退到锚点左侧会盖住 chibi）
+            // 加最大宽度上限（560px）：竖屏窄自动拉满、横屏宽保持舒适阅读宽度
+            const maxBubbleW = 560;
+            const left = r.right + gap;
+            const availW = vw - left - gap;
+            const bubbleW = Math.max(180, Math.min(availW, maxBubbleW));
+            // 垂直：底边对齐 minBottom（棋盘上缘之上，由调用方传入），
+            // 顶部不超过 header 下沿；若调用方传了 maxHeight，高度不超过该值
+            const minBottom = (typeof item.minBottom === 'number' && item.minBottom > 0) ? item.minBottom : 0;
+            const maxH = (typeof item.maxHeight === 'number' && item.maxHeight > 0) ? item.maxHeight : 0;
+            let bottom = Math.max(12, minBottom);
+            // 用实际渲染高度替代估算，更精准控制顶部不超 header
+            const actualH = this._root.offsetHeight || bubbleH;
+            let h = actualH > 0 ? actualH : bubbleH;
+            // 自动分页：内容超高时按可用高度拆成多页对话
+            // 每页容量估算：可用文本行数 × 每行字符数
+            if (maxH > 0 && h > maxH) {
+              const paddingV = 28; // body padding: 14*2
+              const speakerH = item.speaker ? 22 : 0;
+              const textAreaH = Math.max(40, maxH - paddingV - speakerH);
+              const lineH = 21; // 14px font * 1.5 line-height
+              const linesPerPage = Math.max(2, Math.floor(textAreaH / lineH));
+              // 每行字符数估算：(气泡内宽 - 左右padding) / 字号
+              const innerW = bubbleW - 36;
+              const charsPerLine = Math.max(8, Math.floor(innerW / 14));
+              const charsPerPage = linesPerPage * charsPerLine;
+              item._pages = this._splitTextPages(item.text, charsPerPage);
+              item._pageIndex = 0;
+              // 拆页后用第一页重算高度（刚好放进可用空间）
+              const page1 = item._pages[0] || item.text;
+              const pageLines = Math.max(1, Math.ceil(page1.length / charsPerLine));
+              h = paddingV + speakerH + pageLines * lineH;
+              h = Math.min(h, maxH);
+              // 更新显示文本为第一页
+              if (this._textEl) {
+                this._textEl.textContent = page1;
+                this._typedText = page1;
+              }
+              // 重启打字机（从头打第一页）
+              this._clearTyping();
+              this._typeFinished = false;
+              if (this._arrowEl) this._arrowEl.style.display = 'none';
+              this._startTyping(page1, item);
+            }
+            // 顶部安全区：气泡顶部至少距视口顶 12px
+            const topLimit = Math.max(minBottom, vh - h - 12);
+            if (bottom > topLimit) bottom = topLimit;
             this._root.style.width = bubbleW + 'px';
             this._root.style.left = left + 'px';
             this._root.style.bottom = bottom + 'px';
@@ -335,6 +396,139 @@ export class DialogSystem {
   }
 
   /**
+   * 按句末标点把长文本拆成多个短气泡（AVG 一句一屏惯例）：
+   * 每块 ≤2 句且尽量 ≤55 字符；整段本身短（≤2 句且 ≤55 字符）则不拆。
+   * @param {string} text
+   * @returns {string[]}
+   * @private
+   */
+  _splitShortBubbles(text) {
+    if (!text) return [text || ''];
+    const sentences = text.match(/[^。！？!?；;…\n]+[。！？!?；;…]*\n?/g) || [text];
+    const blocks = [];
+    let cur = '';
+    let curSent = 0;
+    const pushCur = () => { if (cur.trim()) blocks.push(cur); cur = ''; curSent = 0; };
+    for (const s of sentences) {
+      if (!s.trim()) continue;
+      const sentCount = (s.match(/[。！？!?；;…]/g) || []).length || 1;
+      if (cur && (curSent + sentCount > 2 || cur.length + s.length > 55)) pushCur();
+      cur += s;
+      curSent += sentCount;
+    }
+    pushCur();
+    return blocks;
+  }
+
+  /**
+   * 按字数拆文本为多页，尽量在标点/空格处断开，避免把一个词拆两半
+   * @param {string} text
+   * @param {number} charsPerPage
+   * @returns {string[]}
+   * @private
+   */
+  _splitTextPages(text, charsPerPage) {
+    if (!text || charsPerPage <= 0) return [text || ''];
+    if (text.length <= charsPerPage) return [text];
+    const pages = [];
+    // 优先在这些字符后断页（句号、逗号、顿号、分号、感叹号、问号、换行、空格等）
+    const breakAfter = /[。！？!?；;，、,：:\n\u3000 ]/;
+    let i = 0;
+    while (i < text.length) {
+      if (text.length - i <= charsPerPage) {
+        pages.push(text.slice(i));
+        break;
+      }
+      let end = i + charsPerPage;
+      // 从截断位置向前找断点，最多回溯半页
+      let best = end;
+      for (let j = end; j >= i + charsPerPage * 0.5; j--) {
+        if (breakAfter.test(text[j - 1])) { best = j; break; }
+      }
+      pages.push(text.slice(i, best));
+      i = best;
+    }
+    return pages;
+  }
+
+  /**
+   * 启动打字机（抽出来供 _renderItem 和翻页复用）
+   * @param {string} text - 当前页文本
+   * @param {Object} item - 当前条目（含 typingSpeed、typingSound 等）
+   * @private
+   */
+  _startTyping(text, item) {
+    if (!this._textEl) return;
+    this._textEl.textContent = '';
+    this._typedText = '';
+    this._typeFinished = false;
+    if (this._arrowEl) this._arrowEl.style.display = 'none';
+
+    const speed = Math.max(0, item.typingSpeed || 0);
+    let idx = 0;
+
+    this._clearTyping();
+    // [FEEL-LOG] 打字机节奏：开始打字（逐字间隔）
+    if (typeof window !== 'undefined' && window.__feelLogEnabled) {
+      console.log('[FEEL] typing_start', JSON.stringify({
+        ts: Date.now(),
+        textLen: text.length,
+        speedMsPerChar: speed,
+        estDurationMs: speed > 0 ? Math.round(text.length * speed) : 0,
+        speaker: item.speaker || '',
+      }));
+    }
+    if (speed <= 0 || text.length === 0) {
+      // 同步补全
+      this._textEl.textContent = text;
+      this._typedText = text;
+      this._typeFinished = true;
+      if (this._arrowEl) this._arrowEl.style.display = '';
+      if (typeof window !== 'undefined' && window.__feelLogEnabled) {
+        console.log('[FEEL] typing_instant', JSON.stringify({ ts: Date.now(), textLen: text.length }));
+      }
+      return;
+    }
+
+    this._typingTimer = setInterval(() => {
+      try {
+        idx++;
+        if (!this._textEl) {
+          this._clearTyping();
+          return;
+        }
+        this._typedText = text.slice(0, idx);
+        this._textEl.textContent = this._typedText;
+        // v2.0：打字机音效——每 3 个非空格字符播一次
+        if (typeof AudioService !== 'undefined' && AudioService.sfx && item.typingSound !== false) {
+          const ch = text[idx - 1];
+          if (ch !== ' ' && ch !== '\u3000' && ch !== '\n' && (idx % 3) === 0) {
+            try { AudioService.sfx.play('playTypewriterKey'); } catch (e) {}
+          }
+        }
+        if (idx >= text.length) {
+          this._clearTyping();
+          this._typeFinished = true;
+          if (this._arrowEl) this._arrowEl.style.display = '';
+          if (typeof window !== 'undefined' && window.__feelLogEnabled) {
+            console.log('[FEEL] typing_done', JSON.stringify({
+              ts: Date.now(),
+              textLen: text.length,
+              speedMsPerChar: speed,
+              actualDurationMs: Math.round(idx * speed),
+              estDurationMs: Math.round(text.length * speed),
+              deltaMs: Math.round(idx * speed - text.length * speed),
+            }));
+          }
+        }
+      } catch (e) {
+        this._clearTyping();
+        console.warn('[DialogSystem] typing interval error:', e);
+      }
+    }, speed);
+  }
+
+  /**
    * 渲染当前条目并启动打字机
    * @private
    */
@@ -350,75 +544,10 @@ export class DialogSystem {
 
       // 文本与打字机
       if (!this._textEl || !this._arrowEl) return;
-      this._textEl.textContent = '';
-      this._typedText = '';
-      this._typeFinished = false;
-      this._arrowEl.style.display = 'none';
-
-      const speed = Math.max(0, item.typingSpeed || 0);
-      let idx = 0;
-
-      this._clearTyping();
-      // [FEEL-LOG] 打字机节奏：开始打字（逐字间隔）
-      if (typeof window !== 'undefined' && window.__feelLogEnabled) {
-        console.log('[FEEL] typing_start', JSON.stringify({
-          ts: Date.now(),
-          textLen: item.text.length,
-          speedMsPerChar: speed,
-          estDurationMs: speed > 0 ? Math.round(item.text.length * speed) : 0,
-          speaker: item.speaker || '',
-        }));
-      }
-      if (speed <= 0 || item.text.length === 0) {
-        // 同步补全
-        this._textEl.textContent = item.text;
-        this._typedText = item.text;
-        this._typeFinished = true;
-        this._arrowEl.style.display = '';
-        // [FEEL-LOG] 打字机节奏：瞬时补全（speed<=0 或空文本）
-        if (typeof window !== 'undefined' && window.__feelLogEnabled) {
-          console.log('[FEEL] typing_instant', JSON.stringify({ ts: Date.now(), textLen: item.text.length }));
-        }
-        return;
-      }
-
-      this._typingTimer = setInterval(() => {
-        try {
-          idx++;
-          if (!this._textEl) {
-            this._clearTyping();
-            return;
-          }
-          this._typedText = item.text.slice(0, idx);
-          this._textEl.textContent = this._typedText;
-          // v2.0：打字机音效——每 3 个非空格字符播一次（2026-08-15 用户反馈想更明显，密度 %6→%3）
-          if (typeof AudioService !== 'undefined' && AudioService.sfx && item.typingSound !== false) {
-            const ch = item.text[idx - 1];
-            if (ch !== ' ' && ch !== '\u3000' && ch !== '\n' && (idx % 3) === 0) {
-              try { AudioService.sfx.play('playTypewriterKey'); } catch (e) {}
-            }
-          }
-          if (idx >= item.text.length) {
-            this._clearTyping();
-            this._typeFinished = true;
-            if (this._arrowEl) this._arrowEl.style.display = '';
-            // [FEEL-LOG] 打字机节奏：完成（实际耗时 vs 估算）
-            if (typeof window !== 'undefined' && window.__feelLogEnabled) {
-              console.log('[FEEL] typing_done', JSON.stringify({
-                ts: Date.now(),
-                textLen: item.text.length,
-                speedMsPerChar: speed,
-                actualDurationMs: Math.round(idx * speed),
-                estDurationMs: Math.round(item.text.length * speed),
-                deltaMs: Math.round(idx * speed - item.text.length * speed),
-              }));
-            }
-          }
-        } catch (e) {
-          this._clearTyping();
-          console.warn('[DialogSystem] typing interval error:', e);
-        }
-      }, speed);
+      // 重置分页状态（分页由 _positionBubble 在布局后按需设置）
+      item._pages = null;
+      item._pageIndex = 0;
+      this._startTyping(item.text, item);
     } catch (e) {
       console.warn('[DialogSystem] _renderItem error:', e);
     }
@@ -433,9 +562,17 @@ export class DialogSystem {
       this._clearTyping();
       if (this._current && !this._typeFinished) {
         if (this._textEl) {
-          this._textEl.textContent = this._current.text;
+          // 有分页时补全当前页，而非整段
+          const pages = this._current._pages;
+          if (pages && pages.length > 0) {
+            const cur = pages[this._current._pageIndex || 0] || '';
+            this._textEl.textContent = cur;
+            this._typedText = cur;
+          } else {
+            this._textEl.textContent = this._current.text;
+            this._typedText = this._current.text;
+          }
         }
-        this._typedText = this._current.text;
         this._typeFinished = true;
         if (this._arrowEl) this._arrowEl.style.display = '';
       }
@@ -500,7 +637,7 @@ export class DialogSystem {
   }
 
   /**
-   * 点击继续：未打完 -> 补全；已打完 -> 下一条/结束
+   * 点击继续：未打完 -> 补全当前页；已打完且有下一页 -> 翻页；最后一页 -> 下一条/结束
    * @private
    */
   _handleClick() {
@@ -509,6 +646,17 @@ export class DialogSystem {
       if (!this._typeFinished) {
         this._finishTyping();
         return;
+      }
+      // 分页对话：有下一页则翻页继续打字
+      const item = this._current;
+      if (item && item._pages && item._pages.length > 1) {
+        const nextIdx = (item._pageIndex || 0) + 1;
+        if (nextIdx < item._pages.length) {
+          item._pageIndex = nextIdx;
+          this._startTyping(item._pages[nextIdx], item);
+          return;
+        }
+        // 最后一页：继续走结束流程
       }
       if (this._queue.length > 0) {
         this._advance();
@@ -656,10 +804,10 @@ export class DialogSystem {
       '.cm-dialog--panel .cm-dialog-body { background: #fdfaf5; color: #3a3229;',
       '  border: 1px solid #e2d6c8; border-radius: 12px; padding: 16px 18px;',
       '  box-shadow: 0 8px 30px rgba(0,0,0,.25); cursor: pointer; }',
-      '.cm-dialog-content { flex: 1; min-width: 0; }',
+      '.cm-dialog-content { flex: 1; min-width: 0; text-align: left; }',
       '.cm-dialog-speaker { font-size: 12px; font-weight: 600; color: #d4a853; margin-bottom: 4px; }',
       '.cm-dialog--panel .cm-dialog-speaker { color: #6b4f3a; }',
-      '.cm-dialog-text { font-size: 14px; line-height: 1.5; display: inline; word-break: break-word; }',
+      '.cm-dialog-text { font-size: 14px; line-height: 1.5; display: inline; text-align: left; word-break: break-word; }',
       '.cm-dialog-arrow { display: inline-block; margin-left: 6px; font-size: 10px; color: #d4a853;',
       '  animation: cm-dialog-blink 1s step-end infinite; }',
       '@keyframes cm-dialog-blink { 50% { opacity: 0; } }',

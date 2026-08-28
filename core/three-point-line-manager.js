@@ -26,7 +26,7 @@ export const TPL_EVENTS = Object.freeze({
   HUB_OCCUPIED: 'hub_occupied',           // 据点被占领 { hubId, side }
   HUB_MIGRATED: 'hub_migrated',           // 据点迁移 { hubId, from: {r,c}, to: {r,c} }
   HUB_MIGRATE_FAIL: 'hub_migrate_fail',   // 迁移失败（进入填满比多模式）{ hubId }
-  LINE_READY: 'line_ready',               // 可绝杀（占3据点+棋盘满）{ side }
+  LINE_READY: 'line_ready',               // 可绝杀（占领全部3据点）{ side, playerHubs, boardFull? }
   THREE_POINT_LINE: 'three_point_line',   // 连线绝杀触发 { side }
   FULL_BOARD_WIN: 'full_board_win',       // 全局解题胜利 { side, reason }
   FORCE_SETTLE: 'force_settle',           // 强制结算 { winner, reason, stats }
@@ -37,6 +37,7 @@ export const TPL_EVENTS = Object.freeze({
   CELL_STEAL_FAIL: 'cell_steal_fail',     // 抢占失败（格子恢复空白）
   GHOST_APPEARED: 'ghost_appeared',       // 幽灵格出现（错误格可抢）{ r, c, side }
   GHOST_AUTO_CORRECTED: 'ghost_auto_corrected', // 错误窗结束自动修正
+  NEAR_FULL: 'near_full',                 // 续20：近满盘（≤3 空格）提示 { near, count, cells:[{r,c}] }
   GAME_END: 'game_end',                   // 游戏结束 { winner, path, stats }
   // ---- 兼容旧事件（v2.0 不再触发，保留常量防 UI 报错） ----
   HUB_TRANSFERRED: 'hub_transferred',
@@ -75,36 +76,79 @@ function getBlockCells(blockIdx, size) {
 }
 
 // 默认 3 个据点核心格（对角线拓扑：三大行+三大列互不相同）
-function pickDefaultCoreCells(size) {
+function pickDefaultCoreCells(size, board, cageCells, cellCage) {
   const boxH = size <= 6 ? 2 : 3;
   const boxW = size / boxH;
-  const numBlockRows = boxH;
-  const numBlockCols = boxW;
-  const cores = [];
-  const usedRows = new Set();
-  const usedCols = new Set();
-  for (let br = 0; br < numBlockRows; br++) {
-    for (let bc = 0; bc < numBlockCols; bc++) {
-      if (cores.length >= 3) break;
-      if (!usedRows.has(br) && !usedCols.has(bc)) {
-        cores.push({
-          r: br * boxH + Math.floor(boxH / 2),
-          c: bc * boxW + Math.floor(boxW / 2),
-        });
-        usedRows.add(br);
-        usedCols.add(bc);
-      }
+
+  // 维度（行/列/宫/笼∩宫）内是否有可填空格（非固定格）—— 保证四维都可争夺
+  const dimEmpty = (cells2) => {
+    for (const { r, c } of cells2) {
+      const cell = board && board.cells && board.cells[r] && board.cells[r][c];
+      if (cell && !cell.fixedNum) return true;
     }
-    if (cores.length >= 3) break;
+    return false;
+  };
+
+  // 某核心格的笼维度 = 核心格所在笼 ∩ 所在宫（含至少一个可填空格才算可争）
+  const isContestable = (r, c) => {
+    const brs = Math.floor(r / boxH) * boxH;
+    const bcs = Math.floor(c / boxW) * boxW;
+    const row = []; for (let i = 0; i < size; i++) row.push({ r, c: i });
+    if (!dimEmpty(row)) return false;
+    const col = []; for (let i = 0; i < size; i++) col.push({ r: i, c });
+    if (!dimEmpty(col)) return false;
+    const box = [];
+    for (let dr = 0; dr < boxH; dr++) for (let dc = 0; dc < boxW; dc++) box.push({ r: brs + dr, c: bcs + dc });
+    if (!dimEmpty(box)) return false;
+    const key = (cellCage || {})[r + ',' + c];
+    const cage = (key != null && cageCells && cageCells[key]) ? cageCells[key] : [];
+    const inBox = cage.filter(({ r: cr, c: cc }) => cr >= brs && cr < brs + boxH && cc >= bcs && cc < bcs + boxW);
+    return dimEmpty(inBox);
+  };
+
+  // 块内优先取中心进而找第一个"四维可争"的核心格
+  const blockCore = (br, bc) => {
+    const brs = br * boxH, bcs = bc * boxW;
+    const cells = [];
+    for (let dr = 0; dr < boxH; dr++) for (let dc = 0; dc < boxW; dc++) cells.push({ r: brs + dr, c: bcs + dc });
+    const center = cells.find(x => x.r === brs + Math.floor(boxH / 2) && x.c === bcs + Math.floor(boxW / 2));
+    if (center) { cells.splice(cells.indexOf(center), 1); cells.unshift(center); }
+    return cells.find(x => isContestable(x.r, x.c)) || null;
+  };
+
+  const blocks = [];
+  for (let br = 0; br < boxH; br++) for (let bc = 0; bc < boxW; bc++) blocks.push({ br, bc });
+  const viable = blocks.map(b => ({ br: b.br, bc: b.bc, core: blockCore(b.br, b.bc) })).filter(v => v.core !== null);
+  const shuffle = (arr) => {
+    const a = arr.slice();
+    for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; }
+    return a;
+  };
+
+  // 三种情况：主方案打散三块（两两不同行不同列）；放宽；最后回退块中心
+  function pickCombo(allow) {
+    const pool = shuffle(viable);
+    const usedR = new Set(), usedC = new Set();
+    const out = [];
+    for (const v of pool) {
+      if (out.length >= 3) break;
+      if (!allow(usedR, usedC, v)) continue;
+      out.push(v.core);
+      usedR.add(v.br); usedC.add(v.bc);
+    }
+    return out;
   }
-  // 补全（如 6×6 只有 2 行 3 列）
+  let cores = pickCombo((uR, uC, v) => !(uR.has(v.br) || uC.has(v.bc)));
+  if (cores.length < 3) cores = pickCombo(() => true);
   if (cores.length < 3) {
-    for (let br = 0; br < numBlockRows; br++) {
-      for (let bc = 0; bc < numBlockCols; bc++) {
-        if (cores.length >= 3) break;
-        const core = { r: br * boxH + Math.floor(boxH / 2), c: bc * boxW + Math.floor(boxW / 2) };
-        if (!cores.some(k => k.r === core.r && k.c === core.c)) cores.push(core);
-      }
+    const seen = new Set();
+    for (const b of shuffle(blocks)) {
+      if (cores.length >= 3) break;
+      const core = blockCore(b.br, b.bc) || { r: b.br * boxH + Math.floor(boxH / 2), c: b.bc * boxW + Math.floor(boxW / 2) };
+      const key = core.r + ',' + core.c;
+      if (seen.has(key)) continue;
+      seen.add(key);
+      cores.push(core);
     }
   }
   return cores.slice(0, 3);
@@ -145,6 +189,13 @@ export class ThreePointLineManager {
     this._lineReadySide = null;
     this._lineDeclined = false;    // 已选择不绝杀
     this._migrationFailed = false; // 据点迁移失败（进入填满比多模式）
+    this._boardFillWatchdog = null; // 满盘含错格兜底：红叉窗口后强制结算定时器
+    this._boardFillWatchdogReArm = 0; // 续22：兜底定时器重计时次数（防极端反复重计时挂死）
+    this._boardFillWatchdogMaxReArm = 12; // 续22：最多重计时 12 次（约 12×8s≈96s 后强制收口，杜绝永不结算）
+    this._boardStallWatchdog = null; // 续20：近满盘死锁兜底（仍有空格但双方均无进展→强制结算）
+    this._lastProgressTs = Date.now(); // 续20：最近一次有效落子（填对/填错/自动修正/抢占）时间戳
+    this._stallMs = 8000; // 续20：近满盘无进展多少毫秒后强制结算（与满盘兜底一致）
+    this._nearFullActive = false; // 续20：近满盘闪烁提示是否已激活（避免重复 emit）
 
     // ---- 归属 ----
     this._playerOwned = [];
@@ -222,18 +273,24 @@ export class ThreePointLineManager {
         return { r: br + Math.floor(boxH / 2), c: bc + Math.floor(boxW / 2) };
       });
     } else {
-      cores = pickDefaultCoreCells(this._size);
+      cores = pickDefaultCoreCells(this._size, this._board, this._cageCells, this._cellCage);
     }
 
-    this._hubs = cores.map((core, i) => ({
-      id: i,
-      coreCell: { r: core.r, c: core.c },
-      visible: i === 0,             // 城堡（第1个）开局可见
-      castle: i === 0,
-      occupiedBy: null,             // 'player'|'boss'|null（永久）
-      migrated: false,
-      dims: this._buildDims(core.r, core.c),
-    }));
+    this._hubs = cores.map((core, i) => {
+      // 核心格为固定提示格时开局即显现：玩家无法"填对触发显现"，
+      // 若仍保持隐藏则该据点整关不可争夺（用户反馈 2-9 只有 1 个据点争夺）
+      const coreCell = this._board.cells?.[core.r]?.[core.c];
+      const coreFixed = !!(coreCell && coreCell.fixedNum);
+      return {
+        id: i,
+        coreCell: { r: core.r, c: core.c },
+        visible: i === 0 || coreFixed,     // 城堡（第1个）开局可见；固定格核心也开局可见
+        castle: i === 0,
+        occupiedBy: null,             // 'player'|'boss'|null（永久）
+        migrated: false,
+        dims: this._buildDims(core.r, core.c),
+      };
+    });
   }
 
   /**
@@ -367,6 +424,9 @@ export class ThreePointLineManager {
       // 检查隐藏据点显现后是否立即达成维度/据点占领
       this._checkAllHubs();
 
+      // 续20：有效落子（填对）→ 刷新最近进展时间戳（驱动死锁兜底）
+      this._lastProgressTs = Date.now();
+
       // 棋盘满检查（v2.0 6.x 胜利判定）
       this._checkBoardFull();
 
@@ -407,6 +467,7 @@ export class ThreePointLineManager {
           r, c, attacker: side, defender: side === 'player' ? 'boss' : 'player',
         });
         this._log(`抢占失败：${side} 填错，(${cellTag(r, c)}) 恢复空白`);
+        this._lastProgressTs = Date.now(); // 续20：抢占失败也算一次进展（红叉窗口内）
         return { success: false, event: 'steal_failed', details: { r, c, num, correctValue, lockDuration } };
       }
 
@@ -425,7 +486,12 @@ export class ThreePointLineManager {
         const currentLock = (side === 'player' ? this._playerErrorLock : this._aiErrorLock)[ghostKey];
         if (currentLock && Date.now() < currentLock) return; // 仍在锁定
         const cellRef = this._board.cells?.[r]?.[c];
-        if (!cellRef || cellRef.fixedNum || cellRef.fillNum) return;
+        if (!cellRef || cellRef.fixedNum) return;
+        // 已是正确数则无需修正（玩家路径：引擎落下的错误 fillNum 必不等于正确值，
+        // 故下方会覆盖为正确数字并归属原填数方；此前 `|| cellRef.fillNum` 会因残留
+        // 错误数字而提前 return，导致错误格永不自动修正、玩家归属恒为 0 —— 即"你 0/54"）
+        if (cellRef.fillNum === correctValueForAuto) return;
+        this._lastProgressTs = Date.now(); // 续20：自动修正（填对）→ 刷新进展时间戳
         if (side === 'player') {
           cellRef.fillNum = correctValueForAuto;
         } else {
@@ -439,6 +505,9 @@ export class ThreePointLineManager {
         this._playerGhosts.delete(ghostKey);
         this._aiGhosts.delete(ghostKey);
         this._emit(TPL_EVENTS.GHOST_AUTO_CORRECTED, { r, c, side, correctValue: correctValueForAuto });
+        // 续18 修复：自动修正视同"填对"——核心格被填对即显现隐藏据点
+        // （含对手 AI 路径：任一方把核心格填对都须让据点显现，契约见续8）
+        this._checkHubReveal(r, c, side);
         this._log(`错误格 (${cellTag(r, c)}) 自动修正，归属 ${side}`);
         // 修正也算一次"填对"效果：维度累计 + 棋盘满检查
         this._accumulateDimCounts(r, c, side);
@@ -446,6 +515,11 @@ export class ThreePointLineManager {
         this._checkBoardFull();
       }, lockDuration + 100);
 
+      // 续20：有效落子（填错→幽灵）→ 刷新最近进展时间戳
+      this._lastProgressTs = Date.now();
+
+      // 错格也可能使棋盘"填满"（含错格）→ 触发满盘兜底结算检测
+      this._checkBoardFull();
       return { success: false, event: 'wrong_number', details: { r, c, num, correctValue, lockDuration } };
     }
   }
@@ -471,6 +545,48 @@ export class ThreePointLineManager {
   }
 
   /**
+   * 棋盘全盘落定时的最终显现：仍隐藏的据点全部显现，并按当前归属重算维度。
+   * 修复"填完了据点却一直隐藏 → 玩家永远凑不齐 3 据点 → 划线绝杀无法触发"。
+   */
+  _finalizeHiddenHubs() {
+    let revealedAny = false;
+    for (const hub of this._hubs) {
+      if (hub.visible) continue;
+      hub.visible = true;
+      hub.dims = this._buildDimsFromOwnership(hub.coreCell.r, hub.coreCell.c);
+      revealedAny = true;
+      this._emit(TPL_EVENTS.HUB_REVEALED, {
+        hubId: hub.id, r: hub.coreCell.r, c: hub.coreCell.c, side: 'board_full',
+      });
+      this._log(`[TPL] 棋盘已全盘落定，隐藏据点 ${hub.id} 最终显现（核心 ${cellTag(hub.coreCell.r, hub.coreCell.c)}）`);
+    }
+    if (revealedAny) this._checkAllHubs();
+  }
+
+  /**
+   * 按当前棋盘归属重建维度计数（含玩家/AI 已占领格，未归属格计为空格）。
+   * 仅用于最终显现——让隐藏据点历史上填对的格也计入占领。
+   */
+  _buildDimsFromOwnership(r, c) {
+    const base = this._buildDims(r, c);
+    for (const dim of DIMS) {
+      let player = 0, boss = 0, empty = 0;
+      for (const { r: cr, c: cc } of base[dim].cells) {
+        const cell = this._board.cells?.[cr]?.[cc];
+        if (cell && cell.fixedNum) continue;
+        if (this._playerOwned[cr] && this._playerOwned[cr][cc]) { player++; continue; }
+        if (this._aiOwned[cr] && this._aiOwned[cr][cc]) { boss++; continue; }
+        empty++;
+      }
+      base[dim].player = player;
+      base[dim].boss = boss;
+      base[dim].empty = empty;
+      base[dim].owner = null;
+    }
+    return base;
+  }
+
+  /**
    * 已填对格累计到各可见据点的维度计数
    */
   _accumulateDimCounts(r, c, side) {
@@ -493,6 +609,21 @@ export class ThreePointLineManager {
   _checkAllHubs() {
     for (let i = 0; i < this._hubs.length; i++) {
       this._checkHub(i);
+    }
+  }
+
+  /**
+   * 检查三点连线绝杀就绪条件：玩家占领全部3个据点
+   * 不依赖棋盘填满状态，提前触发绝杀权（划线处决）
+   */
+  _checkLineReady() {
+    if (this._ended || this._lineReady) return;
+    const playerHubs = this._hubs.filter(h => h.occupiedBy === 'player').length;
+    if (playerHubs >= 3) {
+      this._lineReady = true;
+      this._lineReadySide = 'player';
+      this._emit(TPL_EVENTS.LINE_READY, { side: 'player', playerHubs, boardFull: this._isBoardFullyFilled() });
+      this._log(`[TPL] 三点连线就绪：玩家占领全部 ${playerHubs} 据点，可划线绝杀`);
     }
   }
 
@@ -532,6 +663,7 @@ export class ThreePointLineManager {
       hub.occupiedBy = 'player';
       this._emit(TPL_EVENTS.HUB_OCCUPIED, { hubId: hub.id, side: 'player' });
       this._log(`据点${hub.id} 被玩家占领（${playerDims} 维）`);
+      this._checkLineReady(); // 检查是否全部3据点已被占领 → 可绝杀
     } else if (bossDims >= 3) {
       hub.occupiedBy = 'boss';
       this._emit(TPL_EVENTS.HUB_OCCUPIED, { hubId: hub.id, side: 'boss' });
@@ -663,54 +795,250 @@ export class ThreePointLineManager {
 
   /**
    * 棋盘满检查：所有非固定格被正确填写（错误格/红叉锁定不算已填）
+   * 修复（续20+续22）：
+   *  1. 续20：AI 正确格仅标记 isAiFilled/_aiNum（不写 fillNum），需计入
+   *  2. 续22：必须把 _playerOwned/_aiOwned 也算「已正确填」——因为控制器
+   *     在 tpl._processFill 返回**之后**才写 cell.isAiFilled/_aiNum/_aiMistake；
+   *     _checkBoardFull 在 _processFill 内调用时这些标志尚未设置（玩家路径
+   *     的 cell.fillNum 也会被控制器临时清除）。仅有 isAiFilled 检查会在
+   *     "AI 最后一手填满"时误判未满 → 走 8s 兜底而非立即结算（用户实测
+   *     level-109 盘面全满却永挂兜底）。归属标记由 _processFill 在
+   *     _checkBoardFull 之前写入，时序安全，可作为「时序安全捷径」使用。
    */
   _isBoardFullyFilled() {
     for (let r = 0; r < this._size; r++) {
       for (let c = 0; c < this._size; c++) {
         const cell = this._board.cells?.[r]?.[c];
         if (!cell || cell.fixedNum) continue;
-        if (this._playerOwned[r][c] || this._aiOwned[r][c]) continue;
         const sol = this._solution?.[r]?.[c];
-        if (cell.fillNum != null && sol != null && cell.fillNum === sol) continue;
+        // 续22：时序安全捷径——玩家/AI 归属已写入即视为该格已正确（归属只在
+        // 正确路径设置），无需依赖 fillNum/isAiFilled 这些由控制器后写的字段
+        if (this._playerOwned[r][c] || this._aiOwned[r][c]) continue;
+        // 续20：玩家正确格：fillNum === 解
+        const playerCorrect = cell.fillNum != null && sol != null && cell.fillNum === sol;
+        // 续20：AI 正确格：isAiFilled 且非失误（_aiNum === 解，自动修正后亦是解）
+        const aiCorrect = cell.isAiFilled && cell._aiMistake !== true
+          && sol != null && cell._aiNum != null && cell._aiNum === sol;
+        if (playerCorrect || aiCorrect) continue;
         return false; // 空格或错误格
       }
     }
     return true;
   }
 
+  /**
+   * 棋盘是否已"填无空格"：所有非固定格都已有归属 / 数字 / 幽灵标记。
+   * 注意时序：本方法在 _processFill 内（fillNum 被 UI 控制器临时清除以做归属仲裁）
+   * 也会被调用，故不能只依赖 fillNum——必须同时计入 _playerOwned/_aiOwned
+   * （正确格）与 _playerGhosts/_aiGhosts（错误格，红叉窗口内）。AI 幽灵格以
+   * isAiFilled 标记。用于检测"盘面全满却含错格"的死锁场景，触发强制结算兜底。
+   */
+  _isBoardFilledNoEmpty() {
+    for (let r = 0; r < this._size; r++) {
+      for (let c = 0; c < this._size; c++) {
+        const cell = this._board.cells?.[r]?.[c];
+        if (!cell || cell.fixedNum) continue;
+        const key = r + ',' + c;
+        const filled = cell.fillNum != null
+          || cell.isAiFilled
+          || this._playerOwned[r][c]
+          || this._aiOwned[r][c]
+          || this._playerGhosts.has(key)
+          || this._aiGhosts.has(key);
+        if (!filled) return false;
+      }
+    }
+    return true;
+  }
+
+  /** 是否仍存在处于红叉锁定窗口内的错误格（锁定期间不应强制结算） */
+  _hasActiveErrorLock() {
+    const now = Date.now();
+    for (const k in this._playerErrorLock) {
+      if (this._playerErrorLock[k] && this._playerErrorLock[k] > now) return true;
+    }
+    for (const k in this._aiErrorLock) {
+      if (this._aiErrorLock[k] && this._aiErrorLock[k] > now) return true;
+    }
+    return false;
+  }
+
+  /**
+   * 满盘含错格兜底：棋盘已填无空格但非全对（玩家错格 / AI 错格），
+   * 双方均无空格可落子 → 战斗已无进展空间。红叉窗口结束后强制结算，
+   * 确保 Boss 战必能收口，避免"盘面全满却永不结算"的死锁。
+   * 仅当棋盘仍填无空格且红叉窗口已过才结算；否则重新计时（玩家可能正在修正）。
+   * 同时作为绝杀就绪 UI 倒计时（declineLine）的兜底：若 UI 未触发也照样收口。
+   */
+  _scheduleBoardSettleWatchdog() {
+    if (this._ended || this._boardFillWatchdog) return;
+    if (!this._isBoardFilledNoEmpty()) { this._boardFillWatchdogReArm = 0; return; }
+    this._boardFillWatchdog = setTimeout(() => {
+      this._boardFillWatchdog = null;
+      if (this._ended) return;
+      if (!this._isBoardFilledNoEmpty()) { this._boardFillWatchdogReArm = 0; return; } // 玩家已擦除错格，回到可解状态
+      if (this._hasActiveErrorLock()) {
+        // 续22：红叉窗口仍活跃 → 上限内可重计时（玩家可能正在修正）；
+        // 超过上限则强制收口，杜绝极端情况下反复重计时导致永不结算。
+        this._boardFillWatchdogReArm++;
+        if (this._boardFillWatchdogReArm > this._boardFillWatchdogMaxReArm) {
+          this._forceSettle('board_filled');
+        } else {
+          this._scheduleBoardSettleWatchdog();
+        }
+        return;
+      }
+      this._boardFillWatchdogReArm = 0;
+      this._forceSettle('board_filled');
+      }, 8000);
+  }
+
+  /**
+   * 续20：近满盘死锁兜底。
+   * 当盘面仅余少量空格（≤3）但长时间（_stallMs）无任何有效进展——玩家停手、
+   * AI 又无法推演出剩余格——时，强制结算，避免"Boss 战填满却永不结算"。
+   * 满盘无空格（含错格）由 _scheduleBoardSettleWatchdog 处理，此处仅覆盖"仍有空格"的死锁。
+   * 仍有较多空格时不触发，以免打断正常思考中的对局。
+   */
+  _scheduleStallWatchdog() {
+    if (this._ended || this._boardStallWatchdog) return;
+    const empty = this._countEmptyCells();
+    if (empty === 0 || empty > 3) return; // 满盘走另一兜底；空格较多=玩家仍在思考
+    const idle = Date.now() - this._lastProgressTs;
+    if (idle >= this._stallMs) {
+      this._forceSettle('stall');
+      return;
+    }
+    this._boardStallWatchdog = setTimeout(() => {
+      this._boardStallWatchdog = null;
+      if (this._ended) return;
+      const idleNow = Date.now() - this._lastProgressTs;
+      if (idleNow >= this._stallMs) {
+        this._forceSettle('stall');
+      } else {
+        this._scheduleStallWatchdog();
+      }
+    }, this._stallMs - idle);
+  }
+
+  /** 续20：统计真正"无任何归属/数字/幽灵"的空格（用于死锁判定） */
+  _countEmptyCells() {
+    let n = 0;
+    for (let r = 0; r < this._size; r++) {
+      for (let c = 0; c < this._size; c++) {
+        const cell = this._board.cells?.[r]?.[c];
+        if (!cell || cell.fixedNum) continue;
+        const key = r + ',' + c;
+        const filled = cell.fillNum != null
+          || cell.isAiFilled
+          || this._playerOwned[r][c]
+          || this._aiOwned[r][c]
+          || this._playerGhosts.has(key)
+          || this._aiGhosts.has(key);
+        if (!filled) n++;
+      }
+    }
+    return n;
+  }
+
+  /**
+   * 续20：近满盘闪烁提示。
+   * 当真正空格数 ∈ (0, 3]（接近满盘）时，把剩余空格坐标发给 UI 高亮，
+   * 引导玩家填完最后几格；空格数 >3 或棋盘结束/填满则发 near:false 令 UI 清除。
+   * 仅在状态翻转时 emit，避免每次落子重复刷。
+   */
+  _emitNearFullState() {
+    if (this._ended) {
+      if (this._nearFullActive) {
+        this._nearFullActive = false;
+        this._emit(TPL_EVENTS.NEAR_FULL, { near: false });
+      }
+      return;
+    }
+    const empty = this._countEmptyCells();
+    if (empty > 0 && empty <= 3) {
+      const cells = [];
+      for (let r = 0; r < this._size; r++) {
+        for (let c = 0; c < this._size; c++) {
+          const cell = this._board.cells?.[r]?.[c];
+          if (!cell || cell.fixedNum) continue;
+          const key = r + ',' + c;
+          const filled = cell.fillNum != null
+            || cell.isAiFilled
+            || this._playerOwned[r][c]
+            || this._aiOwned[r][c]
+            || this._playerGhosts.has(key)
+            || this._aiGhosts.has(key);
+          if (!filled) cells.push({ r, c });
+        }
+      }
+      this._nearFullActive = true;
+      this._emit(TPL_EVENTS.NEAR_FULL, { near: true, count: empty, cells });
+    } else if (this._nearFullActive) {
+      this._nearFullActive = false;
+      this._emit(TPL_EVENTS.NEAR_FULL, { near: false });
+    }
+  }
+
   _checkBoardFull() {
-    if (this._ended || this._lineReady) return;
-    if (!this._isBoardFullyFilled()) return;
+    if (this._ended) return;
 
-    const playerHubs = this._hubs.filter(h => h.occupiedBy === 'player').length;
-    const bossHubs = this._hubs.filter(h => h.occupiedBy === 'boss').length;
+    // 续20：近满盘死锁兜底——盘面仅余少量空格但双方均无进展（玩家停手/AI 无法推演）
+    // 时，避免"35/36 永远不结算"。与满盘含错格兜底共用 8s 静默窗口。
+    this._scheduleStallWatchdog();
+    // 续20：近满盘闪烁提示——把剩余空格坐标发给 UI 高亮（引导玩家填最后几格）
+    this._emitNearFullState();
 
-    // 路径 A 前置：棋盘满 + 占领据点数领先对方（≥1）→ 可绝杀（等待连线决策）
-    // v2.0 规则放宽：原"占满全部3据点"在四维机制下几乎不可达，绝杀形同虚设；
-    // 改为"领先方可选连线绝杀"，落后方无此选项（防翻盘失衡）。
-    if (playerHubs > bossHubs) {
-      this._lineReady = true;
-      this._lineReadySide = 'player';
-      this._emit(TPL_EVENTS.LINE_READY, { side: 'player', playerHubs, bossHubs });
-      this._log(`可绝杀：玩家据点 ${playerHubs} > ${bossHubs} 且棋盘满，等待连线`);
-      return; // 不结束，等 triggerLineWin / declineLine
+    // 全盘落定（无空格）→ 隐藏据点最终显现并重算维度，让玩家累计的占领优势
+    // 计入，划线绝杀才可能真正就绪（否则隐藏据点永远不显现，无法凑齐 3 据点）。
+    if (this._isBoardFilledNoEmpty()) {
+      this._finalizeHiddenHubs();
     }
-    if (bossHubs > playerHubs) {
-      this._lineReady = true;
-      this._lineReadySide = 'boss';
-      this._emit(TPL_EVENTS.LINE_READY, { side: 'boss', playerHubs, bossHubs });
-      this._log(`可绝杀：AI 据点 ${bossHubs} > ${playerHubs} 且棋盘满，等待连线`);
+
+    // 绝杀就绪且棋盘已无空格（即使含错格）→ 提示玩家划线处决，超时自动全局解题。
+    // 同时挂兜底定时器：若 UI 倒计时未触发 declineLine，8s 后强制收口。
+    if (this._lineReady && this._isBoardFilledNoEmpty()) {
+      this._emit(TPL_EVENTS.LINE_READY, { side: this._lineReadySide, boardFull: true });
+      this._scheduleBoardSettleWatchdog();
       return;
     }
 
-    // 路径 C：迁移失败 + 棋盘满 + 无人达成 A/B
-    if (this._migrationFailed) {
-      this._forceSettle('migration_failed');
+    if (this._isBoardFullyFilled()) {
+      // 绝杀已就绪（玩家占领全部3据点）：棋盘也满了，通知UI但不结束游戏
+      // 玩家仍可划线触发三点连线绝杀（成就不同），UI层处理超时自动全局解题
+      if (this._lineReady) {
+        this._emit(TPL_EVENTS.LINE_READY, { side: this._lineReadySide, boardFull: true });
+        this._scheduleBoardSettleWatchdog();
+        return;
+      }
+
+      // 检查AI是否可绝杀（AI占领据点数领先）
+      const playerHubs = this._hubs.filter(h => h.occupiedBy === 'player').length;
+      const bossHubs = this._hubs.filter(h => h.occupiedBy === 'boss').length;
+      if (bossHubs > playerHubs) {
+        this._lineReady = true;
+        this._lineReadySide = 'boss';
+        this._emit(TPL_EVENTS.LINE_READY, { side: 'boss', playerHubs, bossHubs, boardFull: true });
+        this._scheduleBoardSettleWatchdog();
+        return;
+      }
+
+      // 路径C：迁移失败 + 棋盘满 → 强制结算
+      if (this._migrationFailed) {
+        this._forceSettle('migration_failed');
+        return;
+      }
+
+      // 路径B：全局解题（棋盘满 + 无人可绝杀）
+      this._fullBoardWin();
       return;
     }
 
-    // 路径 B：全局解题（棋盘满 + 不绝杀/据点持平或均无据点）
-    this._fullBoardWin();
+    // 新增（bug 修复）：棋盘已填无空格（含玩家错格 / AI 错格）但非全对 →
+    // 双方均无空格可落子，战斗已无进展空间。挂兜底定时器，红叉窗口后强制结算。
+    if (this._isBoardFilledNoEmpty()) {
+      this._scheduleBoardSettleWatchdog();
+    }
   }
 
   /**
@@ -785,7 +1113,8 @@ export class ThreePointLineManager {
   }
 
   /**
-   * 路径 C：强制结算（v2.0 6.3）——据点数量 → 失误 → 归属格 → 平局
+   * 路径 C：强制结算（v2.0 6.3）——据点数量 → 归属格数 → 失误数 → 平局
+   * （归属格优先于失误：占住更多正确格 = 解得更多，与 full_board 判据一致）
    */
   _forceSettle(trigger) {
     if (this._ended) return;
@@ -796,8 +1125,6 @@ export class ThreePointLineManager {
 
     if (playerHubs > bossHubs) { winner = 'player'; reason = 'more_hubs'; }
     else if (bossHubs > playerHubs) { winner = 'boss'; reason = 'more_hubs'; }
-    else if (this._playerTotalErrors < this._aiTotalErrors) { winner = 'player'; reason = 'fewer_errors'; }
-    else if (this._aiTotalErrors < this._playerTotalErrors) { winner = 'boss'; reason = 'fewer_errors'; }
     else {
       let playerTotal = 0, aiTotal = 0;
       for (let r = 0; r < this._size; r++) {
@@ -808,6 +1135,8 @@ export class ThreePointLineManager {
       }
       if (playerTotal > aiTotal) { winner = 'player'; reason = 'more_cells'; }
       else if (aiTotal > playerTotal) { winner = 'boss'; reason = 'more_cells'; }
+      else if (this._playerTotalErrors < this._aiTotalErrors) { winner = 'player'; reason = 'fewer_errors'; }
+      else if (this._aiTotalErrors < this._playerTotalErrors) { winner = 'boss'; reason = 'fewer_errors'; }
     }
 
     this._endGame(winner, 'force_settle');
@@ -818,6 +1147,9 @@ export class ThreePointLineManager {
   _endGame(winner, path) {
     if (this._ended) return;
     this._ended = true;
+    if (this._boardFillWatchdog) { clearTimeout(this._boardFillWatchdog); this._boardFillWatchdog = null; }
+    if (this._boardStallWatchdog) { clearTimeout(this._boardStallWatchdog); this._boardStallWatchdog = null; }
+    this._boardFillWatchdogReArm = 0; // 续22：结束即清零，避免影响下一局
     this._winner = winner;
     this._winPath = path;
     this._emit(TPL_EVENTS.GAME_END, { winner, path, stats: this.getStats() });
@@ -934,6 +1266,8 @@ export class ThreePointLineManager {
     return {
       playerOwned: playerTotal,
       aiOwned: aiTotal,
+      playerErrors: this._playerTotalErrors,
+      aiErrors: this._aiTotalErrors,
       playerCombo: 0,
       aiCombo: 0,
       playerHubs: this._hubs.filter(h => h.occupiedBy === 'player').length,

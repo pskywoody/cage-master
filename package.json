@@ -4,8 +4,13 @@
   "type": "module",
   "scripts": {
     "migrate": "node scripts/migrate-v3-to-v4.js",
+    "test": "node scripts/test-suite.mjs",
+    "test:quick": "node scripts/test-suite.mjs --quick",
+    "test:list": "node scripts/test-suite.mjs --list",
     "test:ai": "node scripts/ai-tester.js",
     "validate": "node scripts/validate-levels.js",
-    "dev": "node -e \"console.log('Run with a local server')\""
+    "validate:arc": "node scripts/validate-chapter-arc.js",
+    "release:pack": "node scripts/pack-release.mjs",
+    "dev": "python scripts/dev-server.py"
   }
 }

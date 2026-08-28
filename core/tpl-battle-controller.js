@@ -13,8 +13,9 @@
 //  环境约束：纯 ES Module；core/ 不依赖 renderer/ui；无 DOM。
 // ============================================================
 
-import { ThreePointLineManager, TPL_EVENTS } from './three-point-line-manager.js';
+import { ThreePointLineManager, TPL_EVENTS } from './three-point-line-manager.js?v=92';
 import { AIPlayerCore } from './battle-manager.js';
+import { AI_PERSONALITIES } from './ai-player-core.js';
 import { createBattleContext, toGameState, computeHubHeat, detectAIPressure, computePollution } from './battle-context.js';
 import { Director } from './director.js';
 import { IntentObserver } from './intent-observer.js';
@@ -38,6 +39,49 @@ export const TPL_BATTLE_EVENTS = Object.assign({}, TPL_EVENTS, {
   POLLUTION_WARNING: 'tpl_pollution_warning', // CM4-R7：据点污染 → 幽灵（战场危险可视化）
 });
 
+// ------------------------------------------------------------
+// CM4-R8：DifficultyProfile——Boss 战难度档位（AI 执行层 + 戏剧干预层）。
+// 设计准则：不降低 Solver/Director 的"聪明感"，而是给 AI 叠加人类化失误
+// 并减少戏剧性压迫；难度越低，AI 越像"会犯错的高手"，而非"慢动作陪你练"。
+//   solver      求解能力保留度 0~1（决定看穿局面的洞察力/拦截率）
+//   maxTech     解析/搜索深度上限（candidateDepth；越大越能看深看全）
+//   mistakeRate 人类化失误率（越大越常miss明显机会）
+//   perceptionNoise 认知偏差：偶尔误判哪个据点更危险
+//   fixationRate 贪心固化：偶尔晚一回合才切换进攻路线
+//   reactionDelay 响应延迟：玩家换路后 AI 观察 N 步才调整
+//   speed       节奏系数（1=自然节奏，不再人为拖慢；>1 偏慢 <1 偏快）
+//   director    戏剧干预强度 0~1（Director 施压/切策略的频率，高难度才有"导演感"）
+//   dramaStage/dramaTurns 污染/幽灵触发门槛（越大越晚触发，视觉压力越小）
+//   talkRate    AI 意图/失误对白频率 0~1（有什么用"会犯错的对手"自己说出来）
+//
+//  ---- Human Rhythm Layer（CM4-R9：战斗节奏层，改动"跨度"而非"强弱"）----
+//   rhythm       玩家动作数/1 次 AI 行动（数字驱动玩家的思考窗口；越大 AI 越少打扰）
+//   telegraphRate 普通落子的预告概率（蓄力→警告→玩家回应→落子）
+//   intentLockRate 命中玩家当前聚焦格时预告/留窗口的概率（不精准狙击玩家）
+//   telegraphDelay 读秒窗口毫秒（越长玩家越来得及抢先抢回或被预告）
+// ------------------------------------------------------------
+const TPL_DIFFICULTY_PROFILES = {
+  easy: {
+    solver: 0.55, maxTech: 4, mistakeRate: 0.22,
+    perceptionNoise: 0.45, fixationRate: 0.45, reactionDelay: 2,
+    speed: 1.0, director: 0.2, dramaStage: 3, dramaTurns: 4, talkRate: 0.22,
+    rhythm: 3, telegraphRate: 0.35, intentLockRate: 0.7, telegraphDelay: 1600,
+  },
+  normal: {
+    solver: 0.78, maxTech: 6, mistakeRate: 0.10,
+    perceptionNoise: 0.22, fixationRate: 0.2, reactionDelay: 1,
+    speed: 0.95, director: 0.5, dramaStage: 2, dramaTurns: 3, talkRate: 0.35,
+    rhythm: 2, telegraphRate: 0.3, intentLockRate: 0.5, telegraphDelay: 1200,
+  },
+  hard: {
+    solver: 1.0, maxTech: 8, mistakeRate: 0.03,
+    perceptionNoise: 0.0, fixationRate: 0.0, reactionDelay: 0,
+    speed: 0.9, director: 0.9, dramaStage: 2, dramaTurns: 3, talkRate: 0.55,
+    rhythm: 1, telegraphRate: 0.2, intentLockRate: 0.25, telegraphDelay: 800,
+  },
+};
+const TPL_DIFFICULTY_DEFAULT = 'easy';
+
 /**
  * tpl Boss 战控制器
  */
@@ -56,8 +100,20 @@ export class TplBattleController {
     this._onEndCallback = null;
     this._aiTimer = null;
     this._aiThinking = false;
+    // CM4-R8：难度档——不再用"整体放慢节奏"造难度（那会显得"放水等你赢"）。
+    // _tplAISlow 保留为纯节奏系数，默认取自难度档 speed（≈1 自然节奏）。
+    this._difficulty = options.difficulty || TPL_DIFFICULTY_DEFAULT;
+    this._profileOverrides = options.profile || null;
+    this._profile = this._resolveProfile();
+    this._tplAISlow = this._profile.speed || 1.0;
     this._totalEmpty = 0;
     this._aiMoves = 0; // V4.3.32：AI 已落子次数（首次行动加速用）
+    // CM4-R9：Human Rhythm Layer——战斗节奏（玩家思考窗口）状态
+    this._playerMovesSinceAi = 0;    // 距上次 AI 行动的玩家填数次数（rhythm 门槛用）
+    this._lastAiMoveAt = 0;          // 上次 AI 实际行动时间戳（节奏兜底防死锁）
+    this._playerIntentCell = null;   // {r,c} 玩家最近聚焦格（意图锁/预告用）
+    this._deferTimer = null;         // 预告读秒窗口计时器（蓄力→玩家回应→落子）
+    this._lastBubbleAt = 0;          // CM4-R9：Boss 台词冷却（防对话遮挡棋盘）
     this._aiConsecutiveCorrect = 0; // v2.0：AI 连续填对数（动态错误率用）
     this._lastStrategy = null;       // v2.0：上次策略（切换检测）
     this._context = null;            // CM4-R1：统一战斗上下文（BattleContext）
@@ -75,6 +131,8 @@ export class TplBattleController {
     this._lineCursors = {};        // CM4-R7：各事件台词游标（round-robin 去重）
     this._lastPhase = null;        // CM4-R7：阶段切换检测
     this._playerPollutionThrottleTs = null; // 手感修复：玩家路径污染计算节流时间戳
+    this._battleLog = [];          // V4.4：对战记录（玩家 vs AI 全过程，供 ai-debug 复盘）
+    this._aiFallbackCount = 0;     // V4.4：兜底填子计数（每局封顶，防止 AI 霸版）
   }
 
   /** 玩家手动连线触发绝杀（v2.0 6.1） */
@@ -137,7 +195,11 @@ export class TplBattleController {
 
       // 创建 boss AI（人格映射：yingying→ying 等）
       const aiKey = this._personalityKeyForBoss(this._opponent.id);
-      this._ai = new AIPlayerCore(this._board, aiKey, (r, c) => null, false, true);
+      this._ai = new AIPlayerCore(this._board, this._buildWeakenedAI(aiKey, this._profile), (r, c) => null, false, true);
+      // CM4-R8：把难度档喂给 AI 执行层（人类化失误模型：认知偏差/贪心固化/反应延迟 + maxTech/mistakeRate）
+      if (typeof this._ai.setDifficultyProfile === 'function') {
+        this._ai.setDifficultyProfile(this._profile);
+      }
       this._ai.syncFromBoard(this._board);
       if (typeof this._ai.setOwnershipGrids === 'function') {
         this._ai.setOwnershipGrids(tpl.getPlayerOwnedGrid(), tpl.getAIOwnedGrid());
@@ -150,7 +212,16 @@ export class TplBattleController {
       // 由 AIPlayerCore._runDirector() 在 think() 内自动调用，此处只做装配。
       {
         const personalityKey = aiKey; // 与 AI 人格一致
-        this._director = new Director({ personality: personalityKey });
+        // CM4-R8：Director 的施压强度由难度档 director 决定（低难度少强行施压/切策略）。
+        // eps 反映允许的激进上浮量：强度越高越允许高激进策略通过 ε Gate。
+        const dir = this._profile.director != null ? this._profile.director : 0.2;
+        this._director = new Director({
+          personality: personalityKey,
+          epsStrategy: 0.05 + dir * 0.25,
+          // 低难度更频繁锁定短策略、高难度允许更长策略锁（连续叙事施压）
+          lockMin: Math.round(2 + dir * 2),
+          lockMax: Math.round(3 + dir * 5),
+        });
         if (this._directorShadow) this._director.enableShadow();
         if (typeof this._ai.setDirector === 'function') {
           this._ai.setDirector(this._director, this._directorShadow);
@@ -159,8 +230,8 @@ export class TplBattleController {
 
       // CM4-R4：实例化意图观察器（消费 AI 内置 OpponentObserver 的输出，
       // 升级为高层意图：attackingHub/defendingHub/chasingLine/riskLevel）。
-      // 当前阶段：仅挂在 controller 上供 BattleContext/Director 使用，不改 AI 行为。
-      this._intentObserver = new IntentObserver({ intensity: 1.0 });
+      // CM4-R8：intensity 由难度档 solver 决定——低难度"读心"更弱（不总知道你在冲哪）。
+      this._intentObserver = new IntentObserver({ intensity: 0.5 + 0.5 * (this._profile.solver || 0.55) });
 
       // CM4-R7-A：实例化戏剧节拍规划器（Pressure 节拍检测）。
       // 消费 IntentObserver 的高层意图，产出 shift_pressure 指令 → 目标据点偏好。
@@ -196,12 +267,35 @@ export class TplBattleController {
       // 幽灵只在"连续争夺的污染据点"里生成（不是随机/AI 犯错），
       // 成为战场危险状态的可视化。dramaActive=false 可关闭。
       this._drama.setEnabled(this._dramaActive);
-      this._pollutionDriver = new PollutionGhostDriver({ minStage: 2, minTurns: 3 });
+      this._pollutionDriver = new PollutionGhostDriver({
+        minStage: this._profile.dramaStage != null ? this._profile.dramaStage : 3,
+        minTurns: this._profile.dramaTurns != null ? this._profile.dramaTurns : 4,
+      });
       this._pollutionDriver.reset();
 
       this.active = true;
       this.ended = false;
       this._aiFocusStreak = []; // R6.5-B：开局清空聚焦轨迹
+      // V4.3.35：boss 战报统计——结算统计（战报卡用）。此前 tpl 模式无连击/看破/
+      // 失误统计，导致战报卡四项全 0；这里在控制器层轻量累积，不动 tpl 核心。
+      this._startTime = Date.now();
+      this._playerCombo = 0;          // 玩家当前连击
+      this._bestCombo = 0;            // 玩家最高连击
+      this._counterCount = 0;         // 看破：纠正 AI 犯错格
+      this._aiMistakeCount = 0;       // AI 失误次数
+      this._playerMistakeCount = 0;   // 玩家失误次数
+      this._stealCount = 0;           // 反抢（抢回 AI 填的格）
+
+      // V4.4：对战记录——清空上局日志，记录本局开始
+      this._battleLog = [];
+      this._aiFallbackCount = 0;
+      this._logBattle('start', {
+        opponentId: this._opponent.id || null,
+        opponentName: this._opponent.name || 'Boss',
+        personality: aiKey,
+        totalEmpty: this._totalEmpty,
+        boardSize: this._board.size,
+      });
 
       // 上报战斗开始
       this._onEvent(TPL_BATTLE_EVENTS.BATTLE_START, {
@@ -239,9 +333,65 @@ export class TplBattleController {
     return map[bossId] || 'steady';
   }
 
+  // CM4-R8：解析当前难度档 profile（支持构造 options.profile 按旋钮覆写）
+  _resolveProfile() {
+    const base = TPL_DIFFICULTY_PROFILES[this._difficulty] || TPL_DIFFICULTY_PROFILES[TPL_DIFFICULTY_DEFAULT];
+    const p = Object.assign({}, base);
+    if (this._profileOverrides && typeof this._profileOverrides === 'object') {
+      for (const k in this._profileOverrides) {
+        if (this._profileOverrides[k] != null) p[k] = this._profileOverrides[k];
+      }
+    }
+    return p;
+  }
+
+  /** 当前难度档名 */
+  getDifficulty() { return this._difficulty; }
+
+  /** 当前难度 profile（调试/存档用） */
+  getProfile() { return Object.assign({}, this._profile); }
+
+  /** 切换难度档（支持战中实时生效——重新注入 AI 人类化失误层，无需重开） */
+  setDifficulty(diff, overrides) {
+    if (TPL_DIFFICULTY_PROFILES[diff]) this._difficulty = diff;
+    if (overrides) this._profileOverrides = Object.assign((this._profileOverrides || {}), overrides);
+    this._profile = this._resolveProfile();
+    if (this._tplAISlow != null) this._tplAISlow = this._profile.speed || 1.0;
+    // 战中切换：把新难度的人类化失误模型立刻同步给已运行的 AI
+    if (this._ai && typeof this._ai.setDifficultyProfile === 'function') {
+      try { this._ai.setDifficultyProfile(this._profile); } catch (e) {}
+    }
+    this._logBattle && this._logBattle('difficulty', { difficulty: this._difficulty });
+  }
+
+  // CM4-R8：Boss 战 AI 合成——Solver 保留度由难度档 solver 决定（洞察力/拦截），
+  // 人类化失误（认知偏差/贪心固化/反应延迟 + maxTech/mistakeRate）交给
+  // AIPlayerCore.setDifficultyProfile 执行层叠加。不再人为缩放速度造难度。
+  _buildWeakenedAI(aiKey, profile) {
+    const base = (AI_PERSONALITIES && AI_PERSONALITIES[aiKey])
+      ? AI_PERSONALITIES[aiKey]
+      : (AI_PERSONALITIES ? AI_PERSONALITIES.steady : null);
+    if (!base) return aiKey; // 极端兜底
+    const P = profile || this._profile;
+    const W = (typeof P.solver === 'number') ? P.solver : 0.55;
+    const p = Object.assign({}, base);
+    // 洞察力合并（看穿局面 + 拦截）——solver 越低成本越高（越容易错过/漏防）
+    if (base.discoveryRate) {
+      p.discoveryRate = {};
+      for (const lv in base.discoveryRate) {
+        p.discoveryRate[lv] = Math.max(0.12, (base.discoveryRate[lv] ?? 1) * (0.35 + 0.65 * W));
+      }
+    }
+    p.interceptProbability = (base.interceptProbability ?? 0.3) * (0.35 + 0.65 * W);
+    // 速度不在此缩放（节奏由 profile.speed 控制，避免"慢动作陪练"观感）
+    return p;
+  }
+
   /** 玩家填数（由 GameApp 落子后调用——UI 先落盘，tpl 后仲裁归属） */
   onPlayerFill(r, c, num, correct) {
     if (!this._tpl || this.ended) return;
+    // CM4-R9：节奏层——计一次"玩家动作"（AI 需攒够 rhythm 次才行动）
+    this._playerMovesSinceAi = (this._playerMovesSinceAi || 0) + 1;
     try {
       const cell = this._board?.cells?.[r]?.[c];
       // UI 主链路已先 engine.fillCell 落子；tpl 的 _processFill 会因
@@ -261,6 +411,36 @@ export class TplBattleController {
         this._ai.updateObserver({ r, c, hubIdx });
       }
       this._syncAiState();
+      // V4.3.35：boss 战报统计——玩家路径统计累积（连击/看破/反抢/失误）
+      try {
+        const wasCorrect = !!correct && res && res.success !== false;
+        const isCounter = wasCorrect && cell && cell._aiMistake === true;   // 纠正 AI 犯错格 = 看破
+        if (wasCorrect) {
+          this._playerCombo++;
+          if (this._playerCombo > this._bestCombo) this._bestCombo = this._playerCombo;
+          if (isCounter) this._counterCount++;
+        } else {
+          this._playerCombo = 0;
+          this._playerMistakeCount++;
+        }
+        // 反抢：AI 已占的格被玩家重新填对（isAiFilled 且正确）
+        if (wasCorrect && cell && cell.isAiFilled && !isCounter) this._stealCount++;
+        // V4.4 调试：确认控制器统计是否累积（战报卡数据源）
+        if (wasCorrect) {
+          console.log('[TplBattle] stats: combo=' + this._playerCombo + ' best=' + this._bestCombo + ' counter=' + this._counterCount);
+        }
+        // V4.4：对战记录——玩家落子（含看破/反抢/连击上下文）
+        this._logBattle('player_fill', {
+          r: r, c: c, num: num,
+          correct: wasCorrect,
+          isCounter: !!isCounter,
+          isSteal: !!(wasCorrect && cell && cell.isAiFilled && !isCounter),
+          combo: this._playerCombo,
+          bestCombo: this._bestCombo,
+          mistakeCount: this._playerMistakeCount,
+          stealCount: this._stealCount,
+        });
+      } catch (e) { /* 统计失败不阻断战斗 */ }
       // CM4-R7：污染驱动的冲突幽灵调度（玩家落子也可能抬升争夺 → 幽灵）
       // 手感修复：玩家高频填数时对污染计算做 450ms 节流——computeHubHeat/
       // computePollution 为同步全量计算，节流把玩家路径的同步负担降到 ~2次/秒；
@@ -283,12 +463,18 @@ export class TplBattleController {
     try { this._syncAiState(); } catch (e) {}
   }
 
-  /** 玩家凝视（AI 抢格前的焦点提示）——tpl 无需拦截，占位 */
-  onPlayerFocusCell(r, c) {}
+  /** 玩家凝视（AI 抢格前的焦点提示）——节奏层记录意图锁输入 */
+  onPlayerFocusCell(r, c) {
+    // CM4-R9：记录玩家当前聚焦格（意图锁）；无效/无选中时清空
+    this._playerIntentCell = (typeof r === 'number' && r >= 0 && typeof c === 'number' && c >= 0)
+      ? { r, c } : null;
+  }
 
   /** 暂停/恢复 AI（教学期间暂停） */
   setPaused(paused) {
     this._paused = !!paused;
+    // V4.4：暂停/恢复留痕（诊断 AI 哑火是否因暂停卡死）
+    this._logBattle(paused ? 'ai_paused' : 'ai_resumed', {});
     if (this._paused) {
       if (this._aiTimer) { clearTimeout(this._aiTimer); this._aiTimer = null; }
     } else if (this.active && !this.ended && this._aiTimer === null && !this._aiThinking) {
@@ -304,6 +490,8 @@ export class TplBattleController {
   /** 停止战斗 */
   stop() {
     if (this._aiTimer) { clearTimeout(this._aiTimer); this._aiTimer = null; }
+    if (this._deferTimer) { clearTimeout(this._deferTimer); this._deferTimer = null; } // CM4-R9
+    this._clearTelegraph(); // CM4-R10：清理预告脉冲定时器与格标
     // CM4-R5：清理戏剧事件定时器
     if (this._drama) { try { this._drama.clearAll(); } catch (e) {} }
     this.active = false;
@@ -322,6 +510,8 @@ export class TplBattleController {
       aiPercent: total > 0 ? stats.aiOwned / total : 0,
       playerScore: stats.playerOwned,
       aiScore: stats.aiOwned,
+      playerErrors: stats.playerErrors || 0,
+      aiErrors: stats.aiErrors || 0,
       winScore: total,
       maxScore: total,
     };
@@ -339,6 +529,30 @@ export class TplBattleController {
 
   getTpl() {
     return this._tpl;
+  }
+
+  // ============ V4.4：对战记录（玩家 vs AI 全过程） ============
+  /** 追加一条对战记录，自动附带当前盘面归属快照（供复盘任意时刻局势） */
+  _logBattle(type, detail) {
+    try {
+      const entry = Object.assign({ t: Date.now(), type: type }, detail || {});
+      if (this._tpl && typeof this._tpl.getStats === 'function') {
+        try {
+          const st = this._tpl.getStats();
+          entry.playerCount = st.playerOwned;
+          entry.aiCount = st.aiOwned;
+          entry.playerHubs = st.playerHubs;
+          entry.aiHubs = st.aiHubs;
+        } catch (e) {}
+      }
+      this._battleLog.push(entry);
+      if (this._battleLog.length > 3000) this._battleLog.splice(0, this._battleLog.length - 3000);
+    } catch (e) { /* 记录失败不阻断战斗 */ }
+  }
+
+  /** 获取完整对战记录（供 pushAIState / ai-debug 面板使用） */
+  getBattleLog() {
+    return (this._battleLog || []).slice();
   }
 
   /**
@@ -571,12 +785,78 @@ export class TplBattleController {
     return { key: sel.key, text: sel.text };
   }
 
-  /** CM4-R7：发 Boss 台词气泡 */
-  _bossSay(text, name) {
+  /** CM4-R9：Boss 台词冷却——防止对话气泡过密遮挡棋盘。预告类（telegraph）不在此限制。 */
+  _canBubble() {
+    const p = this._profile || {};
+    // CM4-R10：大幅拉长话痨冷却——普通对白（策略/阶段/失误/污染）最少间隔 ~3.2s，
+    // 难度越高稍有松动但仍封顶。预告类走独立通道，不占此席位。
+    const coolMs = (p.talkRate != null)
+      ? 4400 - Math.round(p.talkRate * 2000) // talkRate 0.2→4000ms，0.55→3300ms，0.8→2800ms
+      : 3600;
+    const now = Date.now();
+    if (now - this._lastBubbleAt < coolMs) return false;
+    this._lastBubbleAt = now;
+    return true;
+  }
+
+  /**
+   * CM4-R10：受冷却约束的普通对白（不抢预告位）。
+   * 未通过冷却则静默丢弃，保证"预告"是棋盘的唯一主角、话痨不兜底。
+   */
+  _bossChatter(text, name) {
+    if (!this._canBubble()) return;
     this._onEvent(TPL_BATTLE_EVENTS.BOSS_BUBBLE, {
       text,
       name: name || (this._opponent && this._opponent.name) || 'Boss',
     });
+  }
+
+  /** CM4-R7：发 Boss 台词气泡 */
+  _bossSay(text, name) {
+    if (!this._canBubble()) return; // CM4-R9：冷却过滤
+    this._onEvent(TPL_BATTLE_EVENTS.BOSS_BUBBLE, {
+      text,
+      name: name || (this._opponent && this._opponent.name) || 'Boss',
+    });
+  }
+
+  /**
+   * CM4-R8：AI 意图/失误对白——把"会犯错的对手"具象化给玩家。
+   * 只在 AI 真的人类化失误（填错）或认知偏差导致走偏时，按 talkRate 频率发声。
+   * 这样玩家感知到的是"对手看走眼了"，而非"系统偷偷放水"。
+   */
+  _maybeHumanErrorLine(isCorrect, step) {
+    try {
+      const rate = this._profile.talkRate != null ? this._profile.talkRate : 0.4;
+      const analysis = (this._ai && typeof this._ai.getOpponentAnalysis === 'function')
+        ? this._ai.getOpponentAnalysis() : null;
+      const misjudged = !!(analysis && analysis._misjudged);
+      if (this._aiMistakeCount <= 0) return; // 尚未建立失误上下文，避免开场噪声
+      if (misjudged) {
+        if (Math.random() < rate) {
+          this._bossSay(this._pick([
+            '…等等，那边似乎更麻烦？',
+            '我看错方向了，先守这边！',
+            '这条路好像不太对…',
+          ]));
+        }
+        return;
+      }
+      if (!isCorrect) {
+        if (Math.random() < rate * 0.7) {
+          this._bossSay(this._pick([
+            '啧，这格我下急了。',
+            '大意了，我盯着远处漏了这里。',
+            '先这样吧，你看得比我准。',
+          ]));
+        }
+      }
+    } catch (e) { /* 对白失败不影响对战 */ }
+  }
+
+  /** 简单随机取一条（避免拼原文时重复造轮子） */
+  _pick(arr) {
+    return arr[Math.floor(Math.random() * arr.length)];
   }
 
   /**
@@ -643,8 +923,90 @@ export class TplBattleController {
     return n;
   }
 
-  _scheduleAiMove() {
+  /**
+   * V4.4：AI 步骤无效统一处理——记录原因 → 兜底扫盘填子 → 保证 AI 始终能动。
+   * 修复"AI 两子后哑火"：think() 返回 null / 目标格被占 / tpl 拒绝时不再静默重试。
+   */
+  _aiInvalidStep(step, reason) {
+    this._logBattle('ai_skip', {
+      reason: reason,
+      r: step ? step.row : null,
+      c: step ? step.col : null,
+      num: step ? step.num : null,
+      technique: step ? step.techniqueName : null,
+      empty: this._countEmpty(),
+    });
+    this._aiThinking = false;
+    if (this._aiFallbackFill()) {
+      if (this._tpl && this._tpl.isEnded && this._tpl.isEnded()) { this._finish(); return; }
+      this._scheduleAiMove();
+      return;
+    }
+    this._scheduleAiMove();
+  }
+
+  /**
+   * V4.4：兜底填子——仅作安全网（think() 极端异常时防止 AI 彻底哑火）。
+   * 每局封顶 _AI_FALLBACK_CAP 次，且按人格失误率填子（不保证正确），
+   * 让玩家能"看破"回抢，避免"必对霸版、玩家不可能赢"。
+   * @returns {boolean} 是否成功落子
+   */
+  _aiFallbackFill() {
+    const CAP = 6;
+    if (this._aiFallbackCount >= CAP) return false;
+    try {
+      if (!this._board || !this._solution || !this._tpl) return false;
+      const empties = [];
+      for (let r = 0; r < this._board.size; r++) {
+        for (let c = 0; c < this._board.size; c++) {
+          const cell = this._board.cells?.[r]?.[c];
+          if (cell && !cell.fixedNum && !cell.fillNum && !cell.isAiFilled) empties.push([r, c]);
+        }
+      }
+      if (!empties.length) return false;
+      const pick = empties[Math.floor(Math.random() * empties.length)];
+      const r = pick[0], c = pick[1];
+      const correct = this._solution[r]?.[c];
+      if (correct == null) return false;
+      let num = correct;
+      let mistake = false;
+      try {
+        if (this._ai && typeof this._ai._calcDynamicErrorRate === 'function') {
+          mistake = Math.random() < this._ai._calcDynamicErrorRate();
+        }
+      } catch (e) { mistake = false; }
+      if (mistake) {
+        let guard = 0;
+        do { num = 1 + Math.floor(Math.random() * 9); guard++; } while (num === correct && guard < 20);
+      }
+      const tplRes = this._tpl.onAIFill(r, c, num);
+      if (!tplRes.success) return false;
+      const cell = this._board.cells[r][c];
+      cell.isAiFilled = true;
+      cell._aiNum = correct;
+      cell._aiMistake = num !== correct;
+      this._aiMoves++;
+      this._aiFallbackCount++;
+      this._logBattle('ai_fallback', { r: r, c: c, num: num, correct: !mistake });
+      this._onEvent('board_changed', { board: this._board, aiFill: true, r: r, c: c });
+      this._syncAiState();
+      return true;
+    } catch (e) {
+      console.warn('[TplBattle] fallback fill:', e);
+      return false;
+    }
+  }
+
+  _scheduleAiMove(forceMs) {
     if (!this.active || this.ended || this._paused) return;
+    if (typeof forceMs === 'number' && forceMs > 0) {
+      // CM4-R9：节奏层短轮询/预告重调——用指定的短延迟重查，不重算人格曲线
+      this._aiTimer = setTimeout(() => {
+        this._aiTimer = null;
+        this._aiMove();
+      }, forceMs);
+      return;
+    }
     const opp = this._opponent || {};
     const min = opp.speedMin != null ? opp.speedMin : 3500;
     const max = opp.speedMax != null ? opp.speedMax : 7000;
@@ -652,8 +1014,11 @@ export class TplBattleController {
     // 否则教学结束玩家自由阶段快速填完（几秒内），3.5s+ 冷却的 AI 一次都没动
     // 就被玩家收工，观感是"boss 战对手从不填数"。
     let delay;
+    // CM4-R8：全局节奏系数（来自难度档 speed，约 1=自然节奏）。夹到 [0.8, 1.5]
+    // 避免极端参数导致 AI 过慢（"放水等你"）或过快（"闪电能能"）。
+    const slow = Math.min(1.5, Math.max(0.8, this._tplAISlow || 1));
     if (this._aiMoves === 0) {
-      delay = Math.min(min, 600 + Math.random() * 700);
+      delay = Math.min(min, 600 + Math.random() * 700) * slow;
     } else {
       // 手感修复（P0）：Boss 战节奏动态化——消费 AIPlayerCore._calcDynamicInterval()，
       // 让人格的速度曲线生效（爆发期提速 / 连错后提速 / 落后提速 / 节奏感知），
@@ -667,9 +1032,9 @@ export class TplBattleController {
         }
       } catch (e) { dynMs = null; }
       if (dynMs != null) {
-        delay = Math.max(min * 0.6, Math.min(dynMs, max * 1.4));
+        delay = Math.max(min * 0.6, Math.min(dynMs, max * 1.4)) * slow;
       } else {
-        delay = min + Math.random() * (max - min);
+        delay = (min + Math.random() * (max - min)) * slow;
       }
     }
     this._aiTimer = setTimeout(() => {
@@ -681,8 +1046,11 @@ export class TplBattleController {
   _aiMove() {
     if (!this.active || this.ended) return;
     if (this._paused) { this._aiTimer = null; return; }
+    if (this._deferTimer) { this._aiTimer = null; return; } // CM4-R9：预告窗口进行中不并发
     if (this._aiThinking) return;
     this._aiThinking = true;
+    // V4.4：思考留痕（诊断 AI 是否"活着但被挡"——每轮定时器触发都会留一条）
+    try { this._logBattle('ai_tick', { empty: this._countEmpty() }); } catch (e) {}
 
     try {
       if (!this._ai || !this._tpl) { this._aiThinking = false; return; }
@@ -709,17 +1077,19 @@ export class TplBattleController {
           return;
         } else {
           // 落后/放弃连线 → 全局解题判定
-          this._onEvent(TPL_BATTLE_EVENTS.BOSS_BUBBLE, {
-            text: '不连线了，我继续填！',
-            name: this._opponent.name || 'Boss',
-          });
+          this._bossChatter('不连线了，我继续填！');
           this._tpl.declineLine();
           this._aiThinking = false;
           return;
         }
       }
 
-      const step = this._ai.think();
+      let step = null;
+      try {
+        step = this._ai.think();
+      } catch (e) {
+        this._logBattle('ai_error', { where: 'think', msg: (e && e.message) || String(e) });
+      }
       if (!step) {
         // v2.0：AI 无可填格（棋盘满）——若处于可绝杀等待且非己方绝杀权，
         // 放弃连线走全局解题，避免 _lineReady 悬空不结束
@@ -733,45 +1103,191 @@ export class TplBattleController {
             }
           }
         } catch (e) {}
-        this._aiThinking = false;
-        this._scheduleAiMove();
+        // V4.4：think 无解/异常 → 记录 + 兜底填子（不再静默重试导致 AI 哑火）
+        this._aiInvalidStep(null, 'null_step');
         return;
       }
 
       // 笔记操作：不落盘，直接继续
       if (step.isNote || step.type === 'note') {
-        this._onEvent(TPL_BATTLE_EVENTS.BOSS_BUBBLE, {
-          text: (step.isFake ? '假' : '') + '笔记…',
-          name: this._opponent.name || 'Boss',
-        });
+        this._logBattle('ai_note', { r: step.row, c: step.col, num: step.num || null });
+        this._bossChatter('笔记…');
         this._aiThinking = false;
         this._scheduleAiMove();
         return;
       }
 
+      // CM4-R9：Human Rhythm Layer——节奏门槛：AI 需等到玩家攒够 rhythm 次动作才落子
+      if (this._rhythmBlocked()) {
+        this._aiThinking = false;
+        this._scheduleAiMove(900); // 短轮询，等下个节奏点再判定
+        return;
+      }
+
+      // CM4-R9：Human Rhythm Layer——预告/意图锁：蓄力→警告→玩家回应窗口→落子
+      if (this._decideTelegraph(step)) {
+        this._deferAiStep(step);
+        this._aiThinking = false;
+        return;
+      }
+
+      // 直接落子（无预告，或预告概率未命中）
+      this._executeAiStep(step);
+    } catch (e) {
+      console.warn('[TplBattle] aiMove:', e);
+      this._aiThinking = false;
+      this._scheduleAiMove();
+    }
+  }
+
+  /**
+   * CM4-R9：节奏门槛——AI 每 "rhythm" 次玩家动作才行动一次，给数字驱动玩家思考窗口。
+   * 兜底：太久没攒够（玩家停手）也会放行，避免 AI 永久哑火。
+   */
+  _rhythmBlocked() {
+    const need = (this._profile && this._profile.rhythm != null) ? this._profile.rhythm : 1;
+    if (need <= 1) return false;
+    if ((this._playerMovesSinceAi || 0) >= need) return false;
+    if (this._lastAiMoveAt > 0) {
+      const elapsed = Date.now() - this._lastAiMoveAt;
+      if (elapsed > 12000) return false; // 12s 兜底（玩家一直不填也放火）
+    } else if (Date.now() - (this._startTime || Date.now()) > 12000) {
+      return false; // 首步兜底：开局 12s 后 AI 必须动，避免"挂机"
+    }
+    return true;
+  }
+
+  /**
+   * CM4-R9：预告决策——是否对本次落子做"蓄力预告"。
+   * 命中玩家当前聚焦格（意图锁）→ 高概率预告 + 留窗口；否则按 telegraphRate 普通预告。
+   */
+  _decideTelegraph(step) {
+    if (!step || step.row == null || step.col == null) return false;
+    if (this._deferTimer) return false; // 已在预告窗口中
+    const p = this._profile || {};
+    const lockRate = (p.intentLockRate != null) ? p.intentLockRate : 0.4;
+    const teleRate = (p.telegraphRate != null) ? p.telegraphRate : 0.3;
+    // 意图锁：AI 目标正是玩家正在聚焦的格 → 不精准狙击，先预告
+    const fc = this._playerIntentCell;
+    const focused = !!(fc && fc.r === step.row && fc.c === step.col);
+    if (focused) {
+      if (Math.random() < lockRate) { this._telegraphLine('intent', step); return true; }
+      return false;
+    }
+    if (Math.random() < teleRate) { this._telegraphLine('region', step); return true; }
+    return false;
+  }
+
+  /** CM4-R9：预告台词（区域施压 / 锁定玩家聚焦格） */
+  _telegraphLine(kind, step) {
+    const name = (this._opponent && this._opponent.name) || 'Boss';
+    if (kind === 'intent') {
+      this._onEvent(TPL_BATTLE_EVENTS.BOSS_BUBBLE, {
+        text: this._pick([
+          '我盯上你这格了…还来得及哦。',
+          '这格我要了，你先想好别的。',
+          '你还没填上吧？那我下手了。',
+        ]),
+        name,
+      });
+      return;
+    }
+    // region：用目标格所在据点给玩家方位感（左翼/中央/右翼，i18n 无关）
+    let zone = '这一带';
+    try {
+      const hi = (typeof this._tpl.getHubBlockIndex === 'function') ? this._tpl.getHubBlockIndex(step.row, step.col) : -1;
+      zone = (hi === 0) ? '左翼' : (hi === 1) ? '中央' : (hi === 2) ? '右翼' : '这一带';
+    } catch (e) {}
+    this._onEvent(TPL_BATTLE_EVENTS.BOSS_BUBBLE, {
+      text: this._pick([
+        '我准备封锁' + zone + '区域…',
+        zone + '的压力要上来了，你快想想。',
+        '看好了，' + zone + '我要动手了。',
+      ]),
+      name,
+    });
+  }
+
+  /** CM4-R9：蓄力→读秒窗口→落子。玩家在窗口内抢先填上则 AI 放弃。 */
+  _deferAiStep(step) {
+    const ms = (this._profile && this._profile.telegraphDelay != null) ? this._profile.telegraphDelay : 1200;
+    clearTimeout(this._deferTimer);
+    // CM4-R10：预告窗口——目标格蓄力警示 + 周期重绘驱动脉冲动画
+    this._startTelegraph(step, ms);
+    this._deferTimer = setTimeout(() => {
+      this._deferTimer = null;
+      this._clearTelegraph();
+      this._executeDeferred(step);
+    }, ms);
+  }
+
+  /**
+   * CM4-R10：开始一次目标格"即将落子"的视觉预告。
+   * 给目标格打 _telegraphUntil 时间戳，渲染器据此画呼吸红框 + 读秒圈；
+   * 窗口内经 setInterval 周期触发 board_changed，让脉冲随 Date.now 动起来。
+   * 同时记录 _lastBubbleAt，预告之后会冷却普通对白，杜绝"预告+话痨"叠屏。
+   */
+  _startTelegraph(step, ms) {
+    try {
+      this._clearTelegraph();
+      const cell = this._board.cells?.[step.row]?.[step.col];
+      if (!cell || cell.fixedNum) return;
+      const until = Date.now() + ms;
+      cell._telegraphUntil = until;
+      this._telegraphCellRef = cell;
+      this._lastBubbleAt = Date.now();
+      this._telegraphTick = setInterval(() => {
+        try {
+          const c = this._board.cells?.[step.row]?.[step.col];
+          if (!c || !c._telegraphUntil || Date.now() >= c._telegraphUntil) {
+            if (this._telegraphTick) { clearInterval(this._telegraphTick); this._telegraphTick = null; }
+            return;
+          }
+          this._onEvent('board_changed', { board: this._board, telegraph: true });
+        } catch (e) {}
+      }, 120);
+      this._onEvent('board_changed', { board: this._board, telegraph: true });
+    } catch (e) {}
+  }
+
+  /** CM4-R10：清除当前预告标记与刷新定时器 */
+  _clearTelegraph() {
+    try {
+      if (this._telegraphCellRef && this._telegraphCellRef._telegraphUntil) {
+        this._telegraphCellRef._telegraphUntil = 0;
+        this._telegraphCellRef = null;
+      }
+      if (this._telegraphTick) { clearInterval(this._telegraphTick); this._telegraphTick = null; }
+    } catch (e) {}
+  }
+
+  /** CM4-R9：预告窗口结束——若玩家抢先抢回目标格则放弃（"我慢了一步"），否则落子 */
+  _executeDeferred(step) {
+    if (!this.active || this.ended || this._paused) return;
+    const cell = this._board.cells?.[step.row]?.[step.col];
+    if (cell && (cell.fillNum || cell.isAiFilled)) {
+      this._aiThinking = false;
+      try { this._logBattle('ai_wait_lost', { r: step.row, c: step.col }); } catch (e) {}
+      this._bossChatter(this._pick(['啧，你抢得真快…', '这一格你赢了。', '慢了一步。']));
+      this._scheduleAiMove();
+      return;
+    }
+    this._executeAiStep(step);
+  }
+
+  /**
+   * CM4-R9：真正执行一次 AI 落子（重校验 + tpl 仲裁 + 落盘 + 节奏重置）。
+   * 供直接落子与预告窗口结束两条路径共用，避免逻辑分叉。
+   */
+  _executeAiStep(step) {
+    try {
       const { row, col, num } = step;
       const cell = this._board.cells?.[row]?.[col];
-      if (!cell || cell.fixedNum) {
-        this._aiThinking = false;
-        this._scheduleAiMove();
-        return;
-      }
-
-      // 幽灵格抢占：允许对已填格填数
+      if (!cell || cell.fixedNum) { this._aiInvalidStep(step, 'fixed_cell'); return; }
       const isGhostSteal = step.techniqueName === 'ghost_steal';
-      if (cell.fillNum && !isGhostSteal) {
-        this._aiThinking = false;
-        this._scheduleAiMove();
-        return;
-      }
-
-      // tpl 仲裁
+      if (cell.fillNum && !isGhostSteal) { this._aiInvalidStep(step, 'filled_cell'); return; }
       const tplRes = this._tpl.onAIFill(row, col, num);
-      if (!tplRes.success) {
-        this._aiThinking = false;
-        this._scheduleAiMove();
-        return;
-      }
+      if (!tplRes.success) { this._aiInvalidStep(step, 'tpl_reject'); return; }
 
       // 落盘（幽灵抢占先清除 fillNum）
       // V4.3.32：AI 填数对玩家不可见（防作弊）——不写 fillNum，仅标记
@@ -781,6 +1297,9 @@ export class TplBattleController {
       cell._aiNum = this._solution?.[row]?.[col] ?? null;
       cell._aiMistake = cell._aiNum !== null && num !== cell._aiNum;
       this._aiMoves++; // V4.3.32：落子成功计数（首次行动加速判定）
+      // CM4-R9：节奏层重置——AI 落下后重新累计玩家动作
+      this._playerMovesSinceAi = 0;
+      this._lastAiMoveAt = Date.now();
       // CM4-R6.5-B：记录本次 AI 落子所在据点（推进 Threat Preview 聚焦轨迹）
       try {
         const focusHub = (typeof this._tpl.getHubBlockIndex === 'function')
@@ -794,6 +1313,19 @@ export class TplBattleController {
       // v2.0 5.2：AI 连续填对数跟踪（连对3次动态错误率×0.8）
       const isCorrect = this._solution?.[row]?.[col] === num;
       this._aiConsecutiveCorrect = isCorrect ? (this._aiConsecutiveCorrect + 1) : 0;
+      // V4.3.35：AI 失误统计（战报卡）
+      if (!isCorrect) this._aiMistakeCount++;
+      // CM4-R8：AI 意图对白——人类化失误让 Boss 自己说出来
+      this._maybeHumanErrorLine(isCorrect, step);
+      // V4.4：对战记录——AI 落子（含是否失误/技巧/策略上下文）
+      this._logBattle('ai_fill', {
+        r: row, c: col, num: num,
+        correct: isCorrect,
+        mistake: !isCorrect,
+        aiMistakeCount: this._aiMistakeCount,
+        technique: step.techniqueName || null,
+        strategyId: step.strategyId || null,
+      });
       this._syncAiState();
       // CM4-R7：污染驱动的冲突幽灵调度（连续争夺 → 幽灵）
       this._drivePollutionGhost();
@@ -806,7 +1338,7 @@ export class TplBattleController {
       }
       this._scheduleAiMove();
     } catch (e) {
-      console.warn('[TplBattle] aiMove:', e);
+      console.warn('[TplBattle] executeAiStep:', e);
       this._aiThinking = false;
       this._scheduleAiMove();
     }
@@ -815,10 +1347,22 @@ export class TplBattleController {
   // ==================== 内部：tpl 事件转发 + 结算 ====================
 
   _handleTplEvent(event, data) {
+    // V4.4 调试：观察所有 tpl 事件流（结算链路诊断）
+    console.log('[TplBattle] tplEvent:', event, data ? (data.winner ? 'winner=' + data.winner : '') : '');
+    // V4.4：对战记录——tpl 事件全部入日志（三点连线/结束/强制结算等）
+    try {
+      this._logBattle('tpl_event', {
+        event: event,
+        winner: data && data.winner ? data.winner : null,
+        side: data && data.side ? data.side : null,
+        path: data && data.path ? data.path : null,
+      });
+    } catch (e) {}
     // V4.3.32：玩家路径结束（填满盘面 / 三点连线 / 强制结算）——tpl 内部
     // _endGame 只发 GAME_END，控制器的 _finish() 之前仅在 AI 落子路径检查 isEnded，
     // 玩家填最后一格时结算从不触发（无结算动画/无 onEnd）。统一在此捕获。
     if (event === TPL_BATTLE_EVENTS.GAME_END) {
+      console.log('[TplBattle] 收到 GAME_END，触发 _finish:', data && data.winner ? data.winner : '', 'path=', data && data.path ? data.path : '');
       this._finish();
       return;
     }
@@ -857,6 +1401,23 @@ export class TplBattleController {
     const stats = this._tpl.getStats();
     const result = winner === 'player' ? 'win' : (winner === 'boss' ? 'lose' : 'draw');
 
+    // V4.4：对战记录——结算（胜负/路径/最终盘面/全部战报统计）
+    this._logBattle('end', {
+      result: result,
+      winner: winner,
+      winPath: path,
+      playerOwned: stats.playerOwned,
+      aiOwned: stats.aiOwned,
+      playerHubs: stats.playerHubs,
+      aiHubs: stats.aiHubs,
+      bestCombo: this._bestCombo || 0,
+      counterCount: this._counterCount || 0,
+      aiMistakeCount: this._aiMistakeCount || 0,
+      playerMistakeCount: this._playerMistakeCount || 0,
+      stealCount: this._stealCount || 0,
+      duration: Date.now() - (this._startTime || Date.now()),
+    });
+
     // CM4-R7：胜负反馈台词（Boss 内容包）
     const fb = this._bossEventLine(result === 'win' ? 'playerWin' : (result === 'lose' ? 'playerLose' : 'draw'));
     if (fb) this._bossSay(fb.text);
@@ -869,12 +1430,32 @@ export class TplBattleController {
       playerHubs: stats.playerHubs,
       aiHubs: stats.aiHubs,
       result,
+      // V4.4：boss 战报统计（战报卡用，V4.3.35 累积）
+      bestCombo: this._bestCombo || 0,
+      counterCount: this._counterCount || 0,
+      aiMistakeCount: this._aiMistakeCount || 0,
+      playerMistakeCount: this._playerMistakeCount || 0,
+      stealCount: this._stealCount || 0,
+      duration: Date.now() - (this._startTime || Date.now()),
       // CM4-R2：Director Shadow 校准汇总（shadow 模式下仅记录，不改行为）
       directorShadow: this.getDirectorShadowSummary(),
     });
 
     if (this._onEndCallback) {
-      this._onEndCallback(result, this._opponent, { stats, winPath: path });
+      // onEnd 回调的 stats 需携带完整战报统计（bestCombo/看破/失误/时长）。
+      // 注意：tpl.getStats() 只含据点归属，曝光级统计由控制器累积在顶层，
+      // 此处 merge 进回调，供 game.html 的 onBattleEnd 写入 CM.lastBattleStats。
+      this._onEndCallback(result, this._opponent, {
+        stats: { ...stats,
+          bestCombo: this._bestCombo || 0,
+          counterCount: this._counterCount || 0,
+          aiMistakeCount: this._aiMistakeCount || 0,
+          playerMistakeCount: this._playerMistakeCount || 0,
+          stealCount: this._stealCount || 0,
+          duration: Date.now() - (this._startTime || Date.now()),
+        },
+        winPath: path,
+      });
     }
   }
 }

@@ -24,6 +24,25 @@ const ARC_PATH = path.join(ROOT, 'config', 'chapter-arc.json');
 
 const arc = JSON.parse(fs.readFileSync(ARC_PATH, 'utf8'));
 
+// 剧本数据（data/scripts/scripts.json）是进关/过关对话的权威来源，
+// 关卡 JSON 的 preDialog/clearDialog 仅在其缺失时作为回退。
+// 叙事钩子校验需两处皆缺才算缺失，避免把"仅剧本提供对话"的关卡误报。
+const SCRIPT_PATH = path.join(ROOT, 'data', 'scripts', 'scripts.json');
+const scriptHooks = { pre: new Set(), clear: new Set() };
+if (fs.existsSync(SCRIPT_PATH)) {
+  const scripts = JSON.parse(fs.readFileSync(SCRIPT_PATH, 'utf8'));
+  for (const cycle of scripts.cycles || []) {
+    for (const chapter of cycle.chapters || []) {
+      for (const level of chapter.levels || []) {
+        const id = level.levelId;
+        if (id === undefined || id === null) continue;
+        if (Array.isArray(level.preDialog) && level.preDialog.length > 0) scriptHooks.pre.add(id);
+        if (Array.isArray(level.clearDialog) && level.clearDialog.length > 0) scriptHooks.clear.add(id);
+      }
+    }
+  }
+}
+
 // 关卡 ID → 所属章节（101 → 1，209 → 2）
 function chapterOf(levelId) {
   return Math.floor(levelId / 100);
@@ -86,25 +105,34 @@ for (const chapter of arc.chapters) {
   }
 
   // 3) 和值法则文案与尺寸一致性（全局检查，不限于本章预期技巧）
+  //    2026-08-28 扩展：除 teachingGoal/标题外，同时扫描 preDialog/clearDialog/triggers 的文本，
+  //    防止「十则/10法则」等 4×4 口径残留出现在 6×6/9×9 关卡的剧情与提示里（109 类回归）。
   for (const id of ids) {
     const level = levels[id];
-    const goal = level.teachingGoal || '';
+    const texts = [
+      level.teachingGoal || '',
+      level.title || '',
+      ...((Array.isArray(level.preDialog) && level.preDialog) || []).map((d) => d && d.text || ''),
+      ...((Array.isArray(level.clearDialog) && level.clearDialog) || []).map((d) => d && d.text || ''),
+      ...((Array.isArray(level.triggers) && level.triggers) || []).map((t) => t && t.text || ''),
+    ].filter(Boolean);
     for (const rule of arc.sumLawSizeRules) {
-      if (hasAny(goal, [rule.keyword]) && level.gridSize !== rule.gridSize) {
+      if (texts.some((txt) => hasAny(txt, [rule.keyword])) && level.gridSize !== rule.gridSize) {
         errors.push(
-          `[第${chapter.chapterId}章 ${id}] teachingGoal 含「${rule.keyword}」但盘面为 ${level.gridSize}×${level.gridSize}，预期应为 ${rule.gridSize}×${rule.gridSize}`
+          `[第${chapter.chapterId}章 ${id}] 剧情/提示/教学目标含「${rule.keyword}」但盘面为 ${level.gridSize}×${level.gridSize}，预期应为 ${rule.gridSize}×${rule.gridSize}`
         );
       }
     }
   }
 
   // 4) 带教学目标的关卡应有叙事钩子（preDialog + clearDialog）
+  //    剧本数据（scripts.json）为权威来源，关卡 JSON 仅作回退；两处皆缺才算缺失。
   for (const { id, level } of chLevels) {
     if (level.teachingGoal && level.teachingGoal.trim()) {
-      const pre = Array.isArray(level.preDialog) && level.preDialog.length > 0;
-      const clear = Array.isArray(level.clearDialog) && level.clearDialog.length > 0;
+      const pre = (Array.isArray(level.preDialog) && level.preDialog.length > 0) || scriptHooks.pre.has(id);
+      const clear = (Array.isArray(level.clearDialog) && level.clearDialog.length > 0) || scriptHooks.clear.has(id);
       if (!pre || !clear) {
-        warnings.push(`[第${chapter.chapterId}章 ${id}] 教学关缺少 ${!pre ? 'preDialog' : 'clearDialog'} 叙事钩子`);
+        warnings.push(`[第${chapter.chapterId}章 ${id}] 教学关缺少 ${!pre ? 'preDialog' : 'clearDialog'} 叙事钩子（关卡 JSON 与剧本数据均无）`);
       }
     }
   }
@@ -133,7 +161,11 @@ for (const [id, level] of Object.entries(levels)) {
 
 // 7) lessonPlan 技巧绑定门：有 teachingGoal 且有 lessonPlan 的关卡，
 //    必须能从 lessonPlan.technique 或 newSkillTechniques 契约归一化到一个技巧 id。
-const validTechIds = new Set([...Object.keys(arc.techniqueAliases || {}), 'composite']);
+//    合法技巧 = 核心技巧别名 + specialTechniques（综合应用/假设模式等特殊机制）。
+const validTechIds = new Set([
+  ...Object.keys(arc.techniqueAliases || {}),
+  ...Object.keys(arc.specialTechniques || {}),
+]);
 for (const [id, level] of Object.entries(levels)) {
   const goal = level.teachingGoal && level.teachingGoal.trim();
   const lp = level.lessonPlan;

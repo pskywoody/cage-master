@@ -602,7 +602,7 @@
                 },
                 {
                   "speaker": "Shen Mo",
-                  "text": "(He reads from the leftover fragments) B3 does exist... but the path downward is sealed by a complete chain of puzzles.",
+                  "text": "(He reads from the leftover fragments and the telegraph papers) B3 does exist... but the path downward is sealed by a complete chain of puzzles. The numbers on these pages echo the order of a transmission — fill the hidden cells correctly to draw out a telegram; it is the key that opens the lock.",
                   "vo": "VO_SC_0009",
                   "emotion": "推断·凝重"
                 }
@@ -610,7 +610,7 @@
               "clearDialog": [
                 {
                   "speaker": "Narrator",
-                  "text": "The Empty B2 Chamber, complete. Archive Fragment 8/9 unlocked. B3 truly exists but is sealed by a puzzle chain; an unknown visitor once lingered here.",
+                  "text": "The Empty B2 Chamber, complete. The drawn telegram points deeper, Archive Fragment 8/9 unlocked; B3 truly exists but is sealed by a puzzle chain — and the door is answering.",
                   "emotion": "旁白·叙述"
                 }
               ]

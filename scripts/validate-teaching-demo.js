@@ -50,11 +50,12 @@ console.log('E2E: Teaching Demo Necessity Alignment');
   check('Case3 404 nakedTriplet 回退且原因明确', r.fallback === true && r.fallbackReason === 'technique_unavailable');
 }
 
-// Case 4: 目标可用但 evidence 不完整时，不伪造 evidence
+// Case 4: rule45 目标有真实 evidence 时如实产出（不伪造）
+// 注：原 204 关已改为「找内鬼」(traitor_hunt_6x6，无 boardData)，改用 203 作为 rule45 样本
 {
-  const { engine, levelData } = load(204); // rule45
+  const { engine, levelData } = load(203); // rule45
   const r = resolveTeachingDemo({ engine, levelData });
-  check('Case4 204 rule45 有真实 evidence（evidenceComplete 只随真实证据为真）', r.fallback === false && r.evidenceComplete === true && r.deduction && r.deduction.evidence);
+  check('Case4 203 rule45 有真实 evidence（evidenceComplete 只随真实证据为真）', r.fallback === false && r.evidenceComplete === true && r.deduction && r.deduction.evidence);
 }
 
 // Case 5: 复杂 cage/rule45 → TechRater 事实 → Resolver → actions

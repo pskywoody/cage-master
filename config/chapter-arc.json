@@ -26,11 +26,11 @@
     "rule45_201": "rule45",
     "rule45_202": "rule45",
     "rule45_203": "rule45",
-    "rule45_204": "rule45",
     "rule45_205": "rule45",
     "rule45_206": "rule45",
     "rule45_207": "rule45",
     "rule45_208": "rule45",
+    "whatif_308": "whatif",
     "pointingRow_301": "pointingClaiming",
     "pointingCol_302": "pointingClaiming",
     "pointingBox_303": "pointingClaiming",
@@ -63,8 +63,15 @@
     "swordfish_705": "swordfish",
     "ch7_synthesis_706": "composite"
   },
+  "specialTechniques": {
+    "description": "非核心技巧阶梯但合法存在的教学机制（综合应用/假设模式等），校验器视其为合法技巧绑定目标。",
+    "composite": "综合应用（多技巧连锁）",
+    "whatif": "假设模式（先假设、再验证）"
+  },
   "sumLawSizeRules": [
     { "keyword": "10法则", "gridSize": 4 },
+    { "keyword": "十则", "gridSize": 4 },
+    { "keyword": "21法则", "gridSize": 6 },
     { "keyword": "四十五", "gridSize": 9 },
     { "keyword": "45法则", "gridSize": 9 },
     { "keyword": "21-", "gridSize": 6 }
@@ -83,10 +90,10 @@
       "chapterId": 2,
       "title": "屋·藏书楼地下",
       "expectedTechniques": ["rule45", "cageUnique"],
-      "expectedSizes": [6, 6, 6, 9, 9, 9, 9, 9, 6],
+      "expectedSizes": [6, 6, 6, 6, 9, 9, 9, 9, 9],
       "narrativeHooks": ["伊藤", "藏书楼", "地下", "父亲", "差值", "石室", "72号"],
       "bossLevel": 209,
-      "notes": "6×6 教会 21 法则后升到 9×9 教 45 星衡，末关 6×6 章末考核（重点核对 21/45 口径）。"
+      "notes": "201-203 以 6×6 教会 21 法则，204 为 6×6 找内鬼特殊玩法插曲，205-208 升到 9×9 教 45 星衡，末关 209 为 9×9 章末考核（九域星衡总纲，重点核对 21/45 口径）。"
     },
     {
       "chapterId": 3,

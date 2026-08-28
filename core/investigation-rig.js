@@ -67,6 +67,14 @@ export class InvestigationRig {
    * @returns {Object|null} ViewModel；分析失败返回 null
    */
   loadLevel(levelId, levelData) {
+    // V4.3.40：非数独关卡（如 traitor_hunt_6x6，无 boardData/solution）不建立案件
+    if (!levelData || !levelData.boardData || !levelData.solution) {
+      this.levelId = levelId;
+      this.graph = null;
+      this.state = null;
+      this.records = [];
+      return null;
+    }
     try {
       const analyzer = new CaseAnalyzerReport();
       const report = analyzer.analyze(levelData);

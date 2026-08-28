@@ -345,7 +345,7 @@
       "id": "t108_s",
       "condition": "onLevelStart",
       "type": "freeze_mask",
-      "text": "第一章综合考验！运用所有技巧——孤星、唯一组合、隐曜、10法则！",
+      "text": "第一章综合考验！运用所有技巧——孤星、唯一组合、隐曜、21法则！",
       "once": true,
       "targetR": 1,
       "targetC": 1,
@@ -384,7 +384,7 @@
     },
     {
       "speaker": "老师（留声）",
-      "text": "6×6。行/列/宫，1到6各一次。你学过的所有东西都在里面——孤星、唯一组合、隐曜、十则。",
+      "text": "6×6。行/列/宫，1到6各一次。你学过的所有东西都在里面——孤星、唯一组合、隐曜、二十一法则。",
       "side": "right",
       "emotion": "calm",
       "effect": 0
@@ -407,8 +407,7 @@
       "box_rule",
       "cage_combo",
       "hidden_single",
-      "combo_mastery",
-      "rule_of_ten"
+      "combo_mastery"
     ],
     "phases": {
       "intro": {
@@ -514,7 +513,7 @@
         "maxAttempts": 3,
         "autoRevealAfter": 3,
         "methodText": "单格笼「孤星」：笼子里只有一个空格，笼和是多少，这一格就填多少——先填它，这是起点。",
-        "hintText": "沈墨的笔尖停在开头的位置。……他不能从中间开始。要找到第一个确定的格子，然后一步一步推。",
+        "hintText": "轮到你了：f4 是单格笼——笼和值 4 就是本格要填的数，是多少？",
         "failHint": "沈墨重新验算了一遍……这个格子不可能填这个数。他回头看了一下行里的数字，发现少算了一个。",
         "successText": "沈墨放下笔。6×6盘面完整闭合。所有线索在他手中走完了全程——从最初那道四宫格到这最后一道六宫格，每一步都连得上。",
         "successNext": [

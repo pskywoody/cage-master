@@ -331,6 +331,14 @@ export class LessonPlayer {
     return { cell: this._activeGuidedCell.slice(), value: value };
   }
 
+  /** 是否为「进入假设模式」教学关（与当前所处阶段无关） */
+  isWhatIfEntryLesson() {
+    try {
+      const guided = this._lessonPlan && this._lessonPlan.phases && this._lessonPlan.phases.guided;
+      return !!(guided && guided.interactionType === 'WHAT_IF_ENTRY');
+    } catch (e) { return false; }
+  }
+
   /** 获取当前交互类型 */
   getInteractionType() {
     if (this._currentPhase === 'noteToFill') return 'NOTE_ONLY';
@@ -360,7 +368,11 @@ export class LessonPlayer {
 
     if (this._currentPhase === 'guided' || this._currentPhase === 'noteToFill') {
       const guided = this._lessonPlan.phases.guided;
-      const target = this._activeGuidedCell || (guided && guided.targetCell);
+      // noteToFill 阶段的可交互/可选中格是 noteToFill 自己的 targetCell（如 e8），
+      // 而非 guided 阶段残留的 _activeGuidedCell（如 i1）——否则提示指向 e8、交互却锁死 i1。
+      const target = (this._currentPhase === 'noteToFill')
+        ? ((this._lessonPlan.phases.noteToFill && this._lessonPlan.phases.noteToFill.targetCell) || (guided && guided.targetCell))
+        : (this._activeGuidedCell || (guided && guided.targetCell));
       if (target) {
         return r === target[0] && c === target[1];
       }
@@ -387,7 +399,10 @@ export class LessonPlayer {
     // guided / noteToFill：只允许选中当前目标格
     if (this._currentPhase === 'guided' || this._currentPhase === 'noteToFill') {
       const guided = this._lessonPlan.phases.guided;
-      const target = this._activeGuidedCell || (guided && guided.targetCell);
+      // noteToFill 阶段目标格用 noteToFill.targetCell（如 e8），见 canInteractCell 注释
+      const target = (this._currentPhase === 'noteToFill')
+        ? ((this._lessonPlan.phases.noteToFill && this._lessonPlan.phases.noteToFill.targetCell) || (guided && guided.targetCell))
+        : (this._activeGuidedCell || (guided && guided.targetCell));
       if (target) {
         return r === target[0] && c === target[1];
       }
@@ -528,7 +543,9 @@ export class LessonPlayer {
     // === noteToFill 阶段 ===
     if (this._currentPhase === 'noteToFill' && guided) {
       if (!this._isWaitingInput) return { handled: false };
-      const [tr, tc] = guided.targetCell;
+      // 目标格用 noteToFill 自身配置（如 e8），勿误用 guided.targetCell（=[0,5]）
+      const ntfCfg = this._lessonPlan.phases.noteToFill || guided;
+      const [tr, tc] = ntfCfg.targetCell;
       if (r !== tr || c !== tc) return { handled: false, isTarget: false };
 
       // noteToFill 阶段不接受填数，只接受笔记
@@ -687,6 +704,23 @@ export class LessonPlayer {
       this._clearAllHighlights();
       this._delayThen(() => this._enterSemiAutoOrFree(), 1500);
       return { handled: true, correct: true, whatIfEntered: true };
+    }
+
+    // V4.3.37：intro 旁白阶段玩家已主动点「假设」→ 视为完成假设入口教学，直接推进
+    if (this._currentPhase === 'intro' && guided) {
+      const interactionType = guided.interactionType || 'NUMBER';
+      if (interactionType !== 'WHAT_IF_ENTRY') return { handled: false };
+      this._whatIfEntered = true;
+      this._clearAllHighlights();
+      this._showBubble(guided.successText || '已进入假设模式！在这里试错不会污染真实盘面。', '伊藤', guided.successVoiceId || null);
+      this._emit('onInputResult', 'success', { phase: 'intro', whatIfEntered: true });
+      this._delayThen(() => this._enterSemiAutoOrFree(), 1500);
+      return { handled: true, correct: true, whatIfEntered: true };
+    }
+
+    // V4.3.39：semiAuto / free 阶段玩家可以自由使用假设模式，不再拦截
+    if (this._currentPhase === 'semiAuto' || this._currentPhase === 'free') {
+      return { handled: true, whatIfEntered: true };
     }
 
     return { handled: false };

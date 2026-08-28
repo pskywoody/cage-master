@@ -1192,7 +1192,8 @@
         "successText": "正确！终极笼局的第一块多米诺已经倒下。",
         "successVoiceId": null,
         "autoRevealText": "直接填入数字 5。",
-        "methodText": "本题是终局试炼，不教新技巧：把已学的全部技巧用上。单格笼的和值就是这一格要填的数。"
+        "methodText": "本题是终局试炼，不教新技巧：把已学的全部技巧用上。单格笼的和值就是这一格要填的数。",
+        "hintText": "轮到你了：i5 是单格笼——笼和值 5 就是本格要填的数，是多少？"
       },
       "semiAuto": {
         "enabled": true,

@@ -27,6 +27,12 @@
 
       // 内部：根快照（进入 What If 模式时保存的初始状态）
       this._rootSnapshot = null;
+
+      // V4.3.42：喘息机会预算——连续填错最多允许 maxChances 次（默认3）。
+      // 每次填错回退（退到上一快照，或根时自动撤销该步）消耗1次；新建快照恢复1次（上限maxChances）。
+      // 用尽后填错不再回退，计入真实错误（_levelMistakes）。
+      this.maxChances = options.maxChances || 3;
+      this.chancesLeft = 0;
     }
 
     /**
@@ -66,8 +72,35 @@
       this.snapshots = [];
       this.currentSnapshotIndex = -1;
       this.isActive = true;
+      // V4.3.42：进入假设模式即获得满额喘息机会
+      this.chancesLeft = this.maxChances;
 
       this._dispatchEvent('whatif:activated');
+      return true;
+    }
+
+    /**
+     * V4.3.41：关卡重载/切换前调用——退出假设模式并丢弃所有快照（含根快照）。
+     * 关键：不把旧会话的根快照回写到共享棋盘。
+     * （修复"重玩本关后盘面残留玩家已填数字"：复用同一棋盘实例时，
+     *  旧根快照会在 levelStart 的 deactivate(false) 中覆盖刚清空的引擎盘面。
+     *  此处通过在 deactivate 前丢弃根快照，阻断该回写。）
+     * 保留 _board 引用，下次 activate() 会基于当前棋盘重新建立根快照。
+     * @returns {boolean}
+     */
+    detachFromBoard() {
+      const wasActive = this.isActive;
+      const hadRoot = !!this._rootSnapshot;
+      this.isActive = false;
+      this._rootSnapshot = null;
+      this.snapshots = [];
+      this.currentSnapshotIndex = -1;
+      this.chancesLeft = 0;
+
+      if (hadRoot) {
+        this._dispatchEvent('whatif:deactivated', { adopt: false, discarded: true });
+      }
+      this._notifySnapshotsChanged();
       return true;
     }
 
@@ -89,6 +122,7 @@
       this._rootSnapshot = null;
       this.snapshots = [];
       this.currentSnapshotIndex = -1;
+      this.chancesLeft = 0;
 
       if (wasActive) {
         this._dispatchEvent('whatif:deactivated', { adopt });
@@ -116,6 +150,9 @@
 
       this.snapshots.push(snap);
       this.currentSnapshotIndex = -1; // -1 表示当前是最新状态
+
+      // V4.3.42：新建快照恢复一次喘息机会（上限为 maxChances）
+      if (this.chancesLeft < this.maxChances) this.chancesLeft++;
 
       this._notifySnapshotsChanged();
       return snap;
@@ -185,6 +222,39 @@
     accept() {
       if (!this.isActive) return false;
       return this.deactivate(true);
+    }
+
+    /**
+     * V4.3.42：WhatIf 填错时消耗一次喘息机会并回退（不退出模式）
+     * 有分支快照 → 退到上一快照（= 该快照建立时刻）；无分支（已退到根）→ 自动撤销刚填错的那一步。
+     * 机会用尽（chancesLeft<=0）→ 返回 false，宿主转入"记真实错误"。
+     * @returns {boolean} true=已回退；false=机会用尽，应计真实错误
+     */
+    revertBreath() {
+      if (!this.isActive) return false;
+      if (this.chancesLeft <= 0) return false;
+
+      if (this.snapshots.length > 0) {
+        // 有分支快照 → 弹出一张，退到上一分支（保留模式）
+        this.snapshots.pop();
+        if (this.snapshots.length > 0) {
+          const prevSnap = this.snapshots[this.snapshots.length - 1];
+          this.currentSnapshotIndex = this.snapshots.length - 1;
+          this._restoreBoardSnapshot(prevSnap);
+        } else {
+          this.currentSnapshotIndex = -1;
+          if (this._rootSnapshot) this._restoreBoardSnapshot(this._rootSnapshot);
+        }
+      } else if (this._board && typeof this._board.undo === 'function') {
+        // 已退到根、无分支快照 → 用棋盘撤销回退刚填错的那一步（兜底，仍计入喘息次数）
+        this._board.undo();
+      } else {
+        return false;
+      }
+
+      this.chancesLeft--;
+      this._notifySnapshotsChanged();
+      return true;
     }
 
     /**

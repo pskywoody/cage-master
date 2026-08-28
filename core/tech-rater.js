@@ -2734,7 +2734,8 @@
       for (const step of this.steps) {
         const tech = step.technique;
         techCount[tech] = (techCount[tech] || 0) + 1;
-        maxLevel = Math.max(maxLevel, TECHNIQUES[tech].level);
+        // TECHNIQUES 未定义 manual（applyMove 会推入 manual 步）；防护避免 getRating 抛 TypeError
+        maxLevel = Math.max(maxLevel, TECHNIQUES[tech] ? TECHNIQUES[tech].level : 0);
         totalDepth += step.depth;
       }
 

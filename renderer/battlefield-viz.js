@@ -46,6 +46,10 @@ export class BattlefieldViz {
     this._burst = null;
     /** @type {boolean} 连线绝杀是否已触发（避免重复爆发） */
     this._burstDone = false;
+    /** @type {boolean} 三点连线绝杀就绪 */
+    this._lineReady = false;
+    /** @type {{r:number,c:number,idx:number}[]} 当前拖拽中已划过的核心格 */
+    this._dragCores = [];
   }
 
   /**
@@ -128,7 +132,7 @@ export class BattlefieldViz {
     }
   }
 
-  /** 触发连线爆发（THREE_POINT_LINE） */
+  /** 连线爆发（THREE_POINT_LINE） */
   _triggerBurst(side) {
     this._burstDone = true;
     this._burst = {
@@ -136,6 +140,31 @@ export class BattlefieldViz {
       ts: Date.now(),
       cells: this._cores.map((c) => ({ r: c.r, c: c.c })),
     };
+  }
+
+  /**
+   * 设置绝杀就绪状态（玩家占领全部3据点时由 UI 层调用）
+   * @param {boolean} ready
+   */
+  setLineReady(ready) {
+    this._lineReady = !!ready;
+    if (!ready) this._dragCores = [];
+  }
+
+  /**
+   * 记录拖拽中划过的一个核心格（按触碰顺序）
+   * @param {number} idx - 核心格在 _cores 中的索引
+   */
+  setDragCore(idx) {
+    if (typeof idx !== 'number' || idx < 0 || idx >= this._cores.length) return;
+    if (!this._dragCores.some(d => d.idx === idx)) {
+      this._dragCores.push({ r: this._cores[idx].r, c: this._cores[idx].c, idx });
+    }
+  }
+
+  /** 清除拖拽核心格记录（拖拽结束时调用） */
+  clearDragCores() {
+    this._dragCores = [];
   }
 
   /**
@@ -159,6 +188,8 @@ export class BattlefieldViz {
       hubFx: this._fadeHubFx(now),
       burst: this._burst ? (now - this._burst.ts < BURST_LIFE ? this._burst : null) : null,
       castleIdx: cores.findIndex((c) => c.castle),
+      lineReady: this._lineReady,
+      dragCores: this._dragCores.slice(),
     });
     return wins(hubStates);
   }

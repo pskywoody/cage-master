@@ -1471,7 +1471,7 @@
     return score;
   }
 
-  function designThreeActAnchor(solution, cages, size, rng, scriptParams, TechRaterClass, BoardClass, baseGrid = null) {
+  function designThreeActAnchor(solution, cages, size, rng, scriptParams, TechRaterClass, BoardClass, baseGrid = null, protectFrontRatio = 0) {
     const dim = getBoxDimensions(size);
     const totalCells = size * size;
 
@@ -1523,6 +1523,11 @@
       }
     }
     allCells.sort((a, b) => a[2] - b[2]);
+
+    // Phase 2 调参：protectFrontRatio = 保护"求解序前段"格为预填的比例。
+    // 受保护格不挖（保持预填），迫使首 ≥3 级技巧被推到求解后段（"起承转合"）。
+    const frontProtectedCount = Math.floor(allCells.length * (protectFrontRatio || 0));
+    const frontProtected = allCells.slice(0, frontProtectedCount).map(([r, c]) => [r, c]);
 
     const openingCount = Math.max(scriptParams.openingMinCount, Math.ceil(totalCells * scriptParams.openingRatio));
     const opening = allCells.slice(0, openingCount).map(([r, c]) => [r, c]);
@@ -1619,7 +1624,7 @@
       }
     }
 
-    return { opening, breakthrough, avalanche };
+    return { opening, breakthrough, avalanche, frontProtected };
   }
 
   // ========================================================
@@ -1946,6 +1951,33 @@
       this._LevelValidator = null;
       this._TechnicalPurityValidator = null;
 
+      // Phase 1.1：生成期元数据捕获（scenicCells / realTrace / goldBypass），默认关闭，由 --emit-metadata 开启。
+      this._emitMetadata = !!options.emitMetadata;
+      // Phase 1.1：scenicCells 来源可配置（'threeAct' | 'breakthrough' | 'custom'）
+      this._scenicMode = options.scenicMode || 'threeAct';
+      this._customScenicCells = Array.isArray(options.customScenicCells) ? options.customScenicCells : null;
+      // Phase 2 调参：技巧分布门（"起承转合"硬指标）。
+      //   requirePacing = 验收时强制达标（不满足则 _generateOne 返回 null 触发重试）；
+      //   pacingProbe   = 仅采样自然分布、打印报告、不淘汰（可行性探测用）。
+      this._requirePacing = !!options.requirePacing;
+      this._pacingProbe = !!options.pacingProbe;
+      this._pacingSamples = [];
+      this._pacingTargets = options.pacingTargets || {
+        firstAdvancedMin: 0.5,   // 首个 ≥3 级技巧位置 > 50%（中后段）
+        ahaMin: 0.40, ahaMax: 0.70,
+        maxTechMin: 4, maxTechMax: 7
+      };
+      // Phase 2 调参：挖洞策略。'threeAct'(默认) 挖 avalanche+opening、保护 breakthrough；
+      // protectOpening=true 时额外保护 opening（保持为预填），只挖 avalanche(求解序后段)为空格，
+      // 迫使首 ≥3 级技巧被推到求解后段（"起承转合"：序章纯单值级、转合段才出现硬技巧）。
+      this._protectOpening = !!options.protectOpening;
+      // protectFrontRatio：保护求解序前段格为预填的比例（0=不保护；0.5=保护前 50%）。
+      // 与 protectOpening 叠加：受保护集合 = opening(若 protectOpening) ∪ 求解序前 protectFrontRatio 段。
+      this._protectFrontRatio = (typeof options.protectFrontRatio === 'number' && options.protectFrontRatio > 0) ? options.protectFrontRatio : 0;
+      // Phase 2 调参：后 30% 含 ≥3 级技巧是否作为硬门（默认 true=硬指标要求；false=仅作信号不淘汰）。
+      // 注：对当前生成器该条款通过率极低，强制为硬门会导致批次不完整（大量种子耗尽 maxAttempts），故放宽时建议关。
+      this._pacingRequireLast30 = options.pacingRequireLast30 !== false;
+
       this._rng = null;
       this._levelCounter = 0;
       this._threeActCache = null;
@@ -2209,6 +2241,7 @@
         }
       }
       this.seed = originalSeed;
+      if (this._pacingProbe) this._reportPacingProbe();
       // B4-C0：把跨关候选池 family 覆盖统计附加到 batch（纯测量）
       if (this._canonicalProfileEnabled) {
         results._poolCoverage = {
@@ -2310,6 +2343,238 @@
     }
 
     // ======================================================
+    //  Phase 1.1 · 生成期元数据捕获（scenicCells / realTrace / goldBypass）
+    //  设计原则：不改动求解器核心（tech-rater.js 不变），仅调用现有 Board/TechRater API。
+    //  生成期一次性完成：谜题生成后跑通求解，落盘所有元数据。
+    //  goldBypass 由生成期求解器独立判定（重实现 Phase -1.3 契约，不 import detect_bypass / 神谕），
+    //  作为校准门的零成本真值基线，后续可人工抽检。
+    //  默认关闭（this._emitMetadata=false），避免污染普通生成输出、不增加求解开销。
+    // ======================================================
+
+    /**
+     * 生成期一次性捕获解题元数据。
+     * @param {number[][]} grid       挖洞后的盘面（puzzle）
+     * @param {Array} cages            笼几何
+     * @param {Object|null} threeAct   designThreeActAnchor 产出 {opening,breakthrough,avalanche}
+     * @returns {{scenicCells:number[][], realTrace:Array, goldBypass:boolean, _metaSource:string}}
+     */
+    _captureSolveMetadata(grid, cages, threeAct) {
+      const size = this.gridSize;
+      // 先跑真实求解迹（一次求解），scenicCells 回退推断可复用同一迹，避免重复求解。
+      const realTrace = this._solveToTrace(grid, cages, size);
+      const scenicCells = this._deriveScenicCells(threeAct, realTrace);
+      const scenicSet = new Set(scenicCells.map((c) => c[0] + ',' + c[1]));
+      const goldBypass = this._computeGoldBypass(realTrace, scenicSet, cages);
+      return { scenicCells, realTrace, goldBypass, scenicMode: this._scenicMode, _metaSource: 'generator-solver' };
+    }
+
+    /**
+     * 设计意图路径（scenicCells）——来源由 this._scenicMode 配置：
+     *   - 'threeAct'（默认）：opening 序章 ∪ breakthrough 破局，即 Phase -1.3 契约的"必经 scenic 节点"
+     *     （detect-bypass.js 定义：scenic 节点 = 被 threeAct/motif 标记的格子集合）。
+     *   - 'breakthrough'：仅 breakthrough 破局格（稀疏，求解序中通常不连续 → bypass 指标具区分力）。
+     *   - 'custom'：使用 this._customScenicCells（外部传入的 [r,c] 数组）；未提供则回退 threeAct。
+     * 回退（未启用三幕 / threeAct 缺失）：从真实解题迹推断——取 techLevel 最高的"破局格"作为 scenic 候选。
+     */
+    _deriveScenicCells(threeAct, realTrace) {
+      const mode = this._scenicMode || 'threeAct';
+
+      if (mode === 'custom') {
+        const custom = this._customScenicCells;
+        if (Array.isArray(custom) && custom.length) {
+          const set = new Set();
+          const out = [];
+          for (const cell of custom) {
+            const k = cell[0] + ',' + cell[1];
+            if (!set.has(k)) { set.add(k); out.push([cell[0], cell[1]]); }
+          }
+          return out;
+        }
+        console.warn('[CageFixer] scenicMode=custom 但未提供 customScenicCells，回退 threeAct');
+        // 落到 threeAct 分支
+      }
+
+      if (mode === 'breakthrough') {
+        if (threeAct && Array.isArray(threeAct.breakthrough)) {
+          const set = new Set();
+          const out = [];
+          for (const cell of threeAct.breakthrough) {
+            const k = cell[0] + ',' + cell[1];
+            if (!set.has(k)) { set.add(k); out.push([cell[0], cell[1]]); }
+          }
+          if (out.length > 0) return out;
+        }
+        // breakthrough 缺失（未启三幕）→ 回退 trace 推断
+        return this._inferScenicFromTrace(realTrace);
+      }
+
+      // 默认 'threeAct'：opening ∪ breakthrough
+      if (threeAct && Array.isArray(threeAct.opening) && Array.isArray(threeAct.breakthrough)) {
+        const set = new Set();
+        const out = [];
+        for (const cell of threeAct.opening.concat(threeAct.breakthrough)) {
+          const k = cell[0] + ',' + cell[1];
+          if (!set.has(k)) { set.add(k); out.push([cell[0], cell[1]]); }
+        }
+        if (out.length > 0) return out;
+      }
+      return this._inferScenicFromTrace(realTrace);
+    }
+
+    /**
+     * 回退 scenic 推断：取真实解题迹里 techLevel 最高的若干 fill 格。
+     * 仅在所有模式都无法从 threeAct 取得 scenic 时使用（未启三幕等）。
+     */
+    _inferScenicFromTrace(realTrace) {
+      if (!realTrace || realTrace.length === 0) return [];
+      let maxLevel = 0;
+      for (const s of realTrace) if (s.techLevel > maxLevel) maxLevel = s.techLevel;
+      if (maxLevel <= 1) return []; // 全裸单/无破局 → 无 scenic
+      const set = new Set();
+      const out = [];
+      for (const s of realTrace) {
+        if (s.techLevel === maxLevel && s.cell) {
+          const k = s.cell[0] + ',' + s.cell[1];
+          if (!set.has(k)) { set.add(k); out.push([s.cell[0], s.cell[1]]); }
+        }
+      }
+      return out;
+    }
+
+    /**
+     * 跑通求解器，把 getSteps() 转成校准门兼容的 realTrace。
+     * 每步：{ stepIndex, cell:[r,c]|null, techLevel, techName, type, candidatesRemoved }
+     *   - cell/techLevel/techName 对齐 Phase 0.2 校准门输入要求；
+     *   - type / candidatesRemoved 为 Phase 0.3 特征提取所需的附加信息。
+     */
+    _solveToTrace(grid, cages, size) {
+      const board = new this._Board(size);
+      board.loadLevel({ cells: grid, cages: cages });
+      const solver = new this._TechRater(board);
+      solver.solve(5000);
+      const steps = solver.getSteps() || [];
+      const TECH = this._TechRater.TECHNIQUES || {};
+      return steps.map((s, i) => {
+        const techDef = TECH[s.technique] || {};
+        let candidatesRemoved = 0;
+        if (s.type === 'fill') {
+          candidatesRemoved = Array.isArray(s.removedCandidates)
+            ? s.removedCandidates.length
+            : (Array.isArray(s.candidatesBefore) ? Math.max(0, s.candidatesBefore.length - 1) : 0);
+        } else {
+          // elimination 步骤：tech-rater 记 eliminatedCandidates（排除掉的候选数）
+          candidatesRemoved = typeof s.eliminatedCandidates === 'number' ? s.eliminatedCandidates : 0;
+        }
+        return {
+          stepIndex: i,
+          cell: (s.row != null && s.col != null) ? [s.row, s.col] : null,
+          techLevel: (techDef.level != null ? techDef.level : 0),
+          techName: s.techniqueName || s.technique || '',
+          type: s.type || 'unknown',
+          candidatesRemoved
+        };
+      });
+    }
+
+    /**
+     * Phase 2 · 技巧分布门指标（"起承转合"硬指标）。
+     * 输入 realTrace（每步 {stepIndex, cell, techLevel, techName, type, candidatesRemoved}）。
+     * 返回：maxTech / firstAdvancedIndex / firstAdvancedPos / last30HasAdvanced / ahaPos / passed。
+     */
+    _computePacingMetrics(trace) {
+      const n = trace ? trace.length : 0;
+      if (!n) return { totalSteps: 0, maxTech: 0, firstAdvancedIndex: -1, firstAdvancedPos: -1, last30HasAdvanced: false, ahaPos: 0.5, passed: false };
+      const levels = trace.map((s) => s.techLevel || 0);
+      const maxTech = levels.reduce((m, l) => Math.max(m, l), 0);
+      const firstAdvancedIndex = levels.findIndex((l) => l >= 3);
+      const firstAdvancedPos = firstAdvancedIndex === -1 ? -1 : (n > 1 ? firstAdvancedIndex / (n - 1) : 1);
+
+      const lastStart = Math.floor(n * 0.7);
+      const last30HasAdvanced = trace.slice(lastStart).some((s) => (s.techLevel || 0) >= 3);
+
+      // aha：全局最大洞察步归一化位置（intensity 优先 candidatesRemoved，退化回退 techLevel）
+      let maxV = -1, lastMaxIdx = -1;
+      for (let i = 0; i < n; i++) {
+        const v = (trace[i].candidatesRemoved > 0 ? trace[i].candidatesRemoved : (trace[i].techLevel || 0));
+        if (v > maxV) { maxV = v; lastMaxIdx = i; }
+      }
+      const ahaPos = n > 1 ? lastMaxIdx / (n - 1) : 0.5;
+
+      const t = this._pacingTargets || { firstAdvancedMin: 0.5, ahaMin: 0.4, ahaMax: 0.7, maxTechMin: 4, maxTechMax: 7 };
+      const requireLast30 = this._pacingRequireLast30 !== false;
+      const passed = firstAdvancedPos >= t.firstAdvancedMin
+        && (requireLast30 ? last30HasAdvanced : true)
+        && ahaPos >= t.ahaMin && ahaPos <= t.ahaMax
+        && maxTech >= t.maxTechMin && maxTech <= t.maxTechMax;
+      return { totalSteps: n, maxTech, firstAdvancedIndex, firstAdvancedPos, last30HasAdvanced, ahaPos, passed };
+    }
+
+    /** Phase 2 · 探测报告：打印自然分布 + 门通过率（--pacing-probe 用） */
+    _reportPacingProbe() {
+      const s = this._pacingSamples || [];
+      const n = s.length;
+      if (!n) { console.log('[PacingProbe] 无样本'); return; }
+      const pass = s.filter((x) => x.passed).length;
+      const mt = {}; s.forEach((x) => { mt[x.maxTech] = (mt[x.maxTech] || 0) + 1; });
+      const fa = s.map((x) => x.firstAdvancedPos).filter((v) => v >= 0);
+      const faBuckets = { '<0.1': 0, '0.1-0.3': 0, '0.3-0.5': 0, '0.5-0.7': 0, '0.7-0.9': 0, '>=0.9': 0 };
+      fa.forEach((v) => {
+        if (v < 0.1) faBuckets['<0.1']++;
+        else if (v < 0.3) faBuckets['0.1-0.3']++;
+        else if (v < 0.5) faBuckets['0.3-0.5']++;
+        else if (v < 0.7) faBuckets['0.5-0.7']++;
+        else if (v < 0.9) faBuckets['0.7-0.9']++;
+        else faBuckets['>=0.9']++;
+      });
+      const last30 = s.filter((x) => x.last30HasAdvanced).length;
+      const ahaIn = s.filter((x) => x.ahaPos >= 0.4 && x.ahaPos <= 0.7).length;
+      const faSorted = fa.slice().sort((a, b) => a - b);
+      console.log('\n=== PacingProbe 技巧分布探测（样本 ' + n + '）===');
+      console.log('门通过率(passed):', (pass / n * 100).toFixed(1) + '%  (' + pass + '/' + n + ')');
+      console.log('maxTech 分布:', JSON.stringify(mt));
+      console.log('首个≥3级位置分桶:', JSON.stringify(faBuckets));
+      console.log('后30%含≥3级:', (last30 / n * 100).toFixed(1) + '%');
+      console.log('aha位置∈[0.4,0.7]:', (ahaIn / n * 100).toFixed(1) + '%');
+      if (fa.length) console.log('首个≥3级位置 均值/中位:', (fa.reduce((a, b) => a + b, 0) / fa.length).toFixed(2), '/', faSorted[Math.floor(fa.length / 2)].toFixed(2));
+    }
+
+    /**
+     * 生成期 goldBypass：独立重实现 Phase -1.3 契约（刻意不 import detect_bypass / 神谕）。
+     * 循环结构刻意不同于 detect_bypass（预建 cell→cage 哈希），避免复制同一处潜在 bug。
+     * 契约：bypass ⇔ 存在"连续 scenic 对"（求解序相邻，位置差==1）
+     *        且其 scenic 笼之后有 techLevel∈{1,2} 的低技巧步解"同笼"cell。
+     */
+    _computeGoldBypass(trace, scenicSet, cages, lowTech) {
+      const _low = lowTech || new Set([1, 2]);
+      const keyOf = (c) => `${c[0]},${c[1]}`;
+      const cellToCage = new Map();
+      cages.forEach((c, idx) => { for (const cell of c.cells) cellToCage.set(keyOf(cell), idx); });
+      const cageOf = (cell) => {
+        if (!cell) return -1;
+        const v = cellToCage.get(keyOf(cell));
+        return v === undefined ? -1 : v;
+      };
+      const stepCage = trace.map((s) => cageOf(s.cell));
+      const stepLow = trace.map((s) => _low.has(s.techLevel));
+      const scenicPos = [];
+      for (let i = 0; i < trace.length; i++) {
+        const cell = trace[i].cell;
+        if (cell && scenicSet.has(keyOf(cell))) scenicPos.push(i);
+      }
+      for (let k = 0; k + 1 < scenicPos.length; k++) {
+        const pa = scenicPos[k];
+        const pb = scenicPos[k + 1];
+        if (pb - pa !== 1) continue;             // 非连续 → 跳过
+        const targetCage = stepCage[pa];
+        if (targetCage < 0) continue;            // scenic 不在任何笼 → 跳过
+        for (let j = pb + 1; j < trace.length; j++) {
+          if (stepLow[j] && stepCage[j] === targetCage) return true;
+        }
+      }
+      return false;
+    }
+
+    // ======================================================
     //  内部生成（v9 核心）
     // ======================================================
 
@@ -2373,7 +2638,7 @@
           scriptParams.openingRatio = Math.max(0.10, scriptParams.openingRatio - 0.10);
           scriptParams.avalancheRatio = Math.min(0.60, scriptParams.avalancheRatio + 0.15);
         }
-        threeAct = designThreeActAnchor(solution, cages, this.gridSize, this._rng, scriptParams, this._TechRater, this._Board);
+        threeAct = designThreeActAnchor(solution, cages, this.gridSize, this._rng, scriptParams, this._TechRater, this._Board, null, this._protectFrontRatio);
       }
       this._threeActCache = threeAct;
 
@@ -2391,7 +2656,7 @@
         // 迫使 generate() 反复重试（单次尝试仅 ~90ms 但需 ~22 次 = 2s/关）。
         // 挖洞后以实际盘面为求解起点重设锚点，breakthrough 与实际求解路径匹配。
         if (this.enableThreeAct && scriptParams) {
-          threeAct = designThreeActAnchor(grid, cages, this.gridSize, this._rng, scriptParams, this._TechRater, this._Board, grid);
+          threeAct = designThreeActAnchor(grid, cages, this.gridSize, this._rng, scriptParams, this._TechRater, this._Board, grid, this._protectFrontRatio);
           this._threeActCache = threeAct;
         }
 
@@ -2437,6 +2702,30 @@
       this._levelCounter++;
       const preFilledCount = countFilled(grid);
 
+      // Phase 1.1 + Phase 2：生成期元数据捕获 / 技巧分布门
+      let solveMeta = null;
+      if (this._emitMetadata || this._requirePacing) {
+        try {
+          solveMeta = this._captureSolveMetadata(grid, cages, threeAct);
+          if (this._requirePacing) {
+            const pace = this._computePacingMetrics(solveMeta.realTrace);
+            if (!pace.passed) return null;   // 不满足"起承转合"硬指标 → 触发 _generateOne 重试
+          }
+        } catch (e) {
+          console.warn('[CageFixer] 元数据捕获失败（已降级，谜题仍有效）: %s', e && e.message);
+          solveMeta = { scenicCells: [], realTrace: [], goldBypass: false, _metaSource: 'error', _metaError: e && e.message };
+        }
+      }
+      // Phase 2 探测：采样自然分布（不淘汰，仅在 --pacing-probe 时收集）
+      if (this._pacingProbe) {
+        try {
+          const tr = (solveMeta && solveMeta.realTrace && solveMeta.realTrace.length)
+            ? solveMeta.realTrace
+            : this._solveToTrace(grid, cages, this.gridSize);
+          this._pacingSamples.push(this._computePacingMetrics(tr));
+        } catch (e) { /* 探测采样失败忽略 */ }
+      }
+
       return {
         levelId: 'GEN-' + String(this._levelCounter).padStart(3, '0'),
         title: `随机生成关卡 (${rating.level})`,
@@ -2470,7 +2759,16 @@
           generationTime: 0,
           attempts: attempt,
           rhythmPassed: puzzleResult.rhythm ? puzzleResult.rhythm.passed : null
-        }
+        },
+        // Phase 1.1：生成期元数据（仅 --emit-metadata 时落地；否则 solveMeta 为 null → 不污染普通输出）
+        ...(solveMeta ? {
+          scenicCells: solveMeta.scenicCells,
+          realTrace: solveMeta.realTrace,
+          trace: solveMeta.realTrace, // 别名：直接对齐 Phase 0.2 校准门输入（p.trace）
+          goldBypass: solveMeta.goldBypass,
+          scenicMode: solveMeta.scenicMode,
+          _metaSource: solveMeta._metaSource
+        } : {})
       };
     }
 
@@ -2875,6 +3173,8 @@
       const avalancheSet = threeAct ? new Set(threeAct.avalanche.map(([r, c]) => r + ',' + c)) : null;
       const openingSet = threeAct ? new Set(threeAct.opening.map(([r, c]) => r + ',' + c)) : null;
       const breakthroughSet = threeAct ? new Set(threeAct.breakthrough.map(([r, c]) => r + ',' + c)) : null;
+      const frontProtectedSet = (threeAct && Array.isArray(threeAct.frontProtected) && threeAct.frontProtected.length)
+        ? new Set(threeAct.frontProtected.map(([r, c]) => r + ',' + c)) : null;
 
       // === 阶段 1: 逆序挖洞（先 avalanche，再 opening，breakthrough 保护） ===
       if (threeAct) {
@@ -2882,6 +3182,7 @@
         for (const [r, c] of avalancheShuffled) {
           if (Date.now() - startTime > this.timeoutMs * 0.35) break;
           if (grid[r][c] === 0) continue;
+          if (frontProtectedSet && frontProtectedSet.has(r + ',' + c)) continue; // 前段保护：保持预填
           const saved = grid[r][c];
           grid[r][c] = 0;
           const testRating = this._rateWithTechRater(grid, cages);
@@ -2893,9 +3194,12 @@
         }
 
         const openingShuffled = shuffleArray(threeAct.opening.slice(), this._rng);
+        // protectOpening / protectFrontRatio：前段格保持为预填（不挖），迫使首 ≥3 级技巧推到后段
+        if (!this._protectOpening) {
         for (const [r, c] of openingShuffled) {
           if (Date.now() - startTime > this.timeoutMs * 0.35) break;
           if (grid[r][c] === 0) continue;
+          if (frontProtectedSet && frontProtectedSet.has(r + ',' + c)) continue; // 前段保护：保持预填
           const saved = grid[r][c];
           grid[r][c] = 0;
           const testRating = this._rateWithTechRater(grid, cages);
@@ -2904,6 +3208,7 @@
           } else {
             grid[r][c] = saved;
           }
+        }
         }
         // breakthrough 区阶段1不挖（作为"锁"保护）
       } else {
@@ -2952,11 +3257,15 @@
           }
           const avalancheRemaining = [];
           for (const [r, c] of threeAct.avalanche) {
-            if (grid[r][c] !== 0) avalancheRemaining.push([r, c]);
+            if (grid[r][c] !== 0 && !(frontProtectedSet && frontProtectedSet.has(r + ',' + c))) avalancheRemaining.push([r, c]);
           }
+          // 前段保护格：难度调节阶段也不补挖（保持预填，避免前段再次出现硬技巧）
+          const openingRemainingSafe = this._protectOpening || (frontProtectedSet && frontProtectedSet.size)
+            ? openingRemaining.filter(([r, c]) => !(frontProtectedSet && frontProtectedSet.has(r + ',' + c)))
+            : openingRemaining;
           remainingFilled = [
             ...shuffleArray(avalancheRemaining, this._rng),
-            ...shuffleArray(openingRemaining, this._rng),
+            ...shuffleArray(openingRemainingSafe, this._rng),
             ...shuffleArray(breakthroughRemaining, this._rng)
           ];
         } else {
@@ -3083,7 +3392,9 @@
       maxCageSize: 5,
       enableThreeAct: true,
       verifyTimeout: 200,
-      suppressSingletons: true
+      suppressSingletons: true,
+      emitMetadata: false,
+      scenicMode: 'threeAct'
     };
 
     for (let i = 0; i < args.length; i++) {
@@ -3093,6 +3404,7 @@
         case '--count':
         case '-n': options.count = parseInt(args[++i], 10); break;
         case '--output':
+        case '--out':
         case '-o': options.output = args[++i]; break;
         case '--technique':
         case '-t': options.technique = args[++i]; break;
@@ -3115,6 +3427,19 @@
         case '--no-three-act': options.enableThreeAct = false; break;
         case '--verify-timeout': options.verifyTimeout = parseInt(args[++i], 10); break;
         case '--no-suppress-singletons': options.suppressSingletons = false; break;
+        case '--emit-metadata': options.emitMetadata = true; break;
+        case '--scenic-mode': options.scenicMode = args[++i]; break;
+        case '--require-pacing': options.requirePacing = true; break;
+        case '--pacing-probe': options.pacingProbe = true; break;
+        case '--protect-opening': options.protectOpening = true; break;
+        case '--protect-front-ratio': options.protectFrontRatio = parseFloat(args[++i]); break;
+        case '--pacing-first-adv-min': options.pacingFirstAdvMin = parseFloat(args[++i]); break;
+        case '--pacing-aha-min': options.pacingAhaMin = parseFloat(args[++i]); break;
+        case '--max-attempts': options.maxAttempts = parseInt(args[++i], 10); break;
+        case '--pacing-aha-max': options.pacingAhaMax = parseFloat(args[++i]); break;
+        case '--pacing-no-last30': options.pacingRequireLast30 = false; break;
+        case '--pacing-maxtech-min': options.pacingMaxTechMin = parseInt(args[++i], 10); break;
+        case '--pacing-maxtech-max': options.pacingMaxTechMax = parseInt(args[++i], 10); break;
         case '--help':
         case '-h':
           _printHelp();
@@ -3135,7 +3460,7 @@ CageFixer v9 - 二/三周目更难关卡生成器
 选项:
   -d, --difficulty <level>    目标难度: easy/medium/hard/expert/master (默认: medium)
   -n, --count <number>        生成数量 (默认: 1)
-  -o, --output <file>         输出文件路径
+  -o, --output <file>         输出文件路径（别名: --out）
   -g, --guided <name>         单技巧引导（v8 兼容）
   --chain <t1,t2,...>         技巧链（如 nakedPair,xWing,swordfish）
   --required-cage <sizes>     必须包含的笼子尺寸，逗号分隔
@@ -3150,6 +3475,8 @@ CageFixer v9 - 二/三周目更难关卡生成器
   --max-cage <number>         最大笼子大小 (默认: 5)
   --three-act                 启用三幕 (默认)
   --no-three-act              禁用三幕
+  --emit-metadata             生成期一次性捕获元数据（scenicCells/realTrace/goldBypass），对齐校准门输入
+  --scenic-mode <mode>        scenicCells 来源: threeAct(默认,opening∪breakthrough) | breakthrough | custom
   -h, --help                  显示帮助
 
 示例:
@@ -3207,9 +3534,26 @@ CageFixer v9 - 二/三周目更难关卡生成器
       maxCageSize: options.maxCageSize,
       suppressSingletons: options.suppressSingletons,
       seed: options.seed,
+      maxAttempts: options.maxAttempts || 50,
       timeoutMs: options.timeout,
       enableThreeAct: options.enableThreeAct,
-      verifyTimeoutMs: options.verifyTimeout
+      verifyTimeoutMs: options.verifyTimeout,
+      emitMetadata: options.emitMetadata,
+      scenicMode: options.scenicMode,
+      pacingTargets: (options.pacingFirstAdvMin != null || options.pacingAhaMin != null || options.pacingAhaMax != null || options.pacingMaxTechMin != null || options.pacingMaxTechMax != null)
+        ? {
+            firstAdvancedMin: options.pacingFirstAdvMin != null ? options.pacingFirstAdvMin : 0.5,
+            ahaMin: options.pacingAhaMin != null ? options.pacingAhaMin : 0.40,
+            ahaMax: options.pacingAhaMax != null ? options.pacingAhaMax : 0.70,
+            maxTechMin: options.pacingMaxTechMin != null ? options.pacingMaxTechMin : 4,
+            maxTechMax: options.pacingMaxTechMax != null ? options.pacingMaxTechMax : 7
+          }
+        : undefined,
+      requirePacing: options.requirePacing || false,
+      pacingProbe: options.pacingProbe || false,
+      protectOpening: options.protectOpening || false,
+      protectFrontRatio: (typeof options.protectFrontRatio === 'number' && options.protectFrontRatio > 0) ? options.protectFrontRatio : 0,
+      pacingRequireLast30: options.pacingRequireLast30 !== false
     });
 
     console.log('正在生成关卡...\n');
@@ -3231,6 +3575,9 @@ CageFixer v9 - 二/三周目更难关卡生成器
       if (level.guidedInfo) {
         console.log(`    技巧链: ${level.guidedInfo.technique}`);
       }
+      if (options.emitMetadata && level.realTrace) {
+        console.log(`    解题轨迹: ${level.realTrace.length} 步, scenicCells: ${level.scenicCells.length}, goldBypass: ${level.goldBypass ? '是 ⚠️' : '否'}`);
+      }
       console.log('');
     });
 
@@ -3240,7 +3587,9 @@ CageFixer v9 - 二/三周目更难关卡生成器
         generator: 'cage-fixer-v9',
         generatedAt: new Date().toISOString(),
         count: levels.length,
-        levels: levels
+        levels: levels,
+        // Phase 1.1：元数据模式下额外导出 puzzles 别名，直接对齐 Phase 0.2 校准门/神谕输入（均读 raw.puzzles）
+        ...(options.emitMetadata ? { puzzles: levels } : {})
       };
       fs.writeFileSync(outputPath, JSON.stringify(outputData, null, 2), 'utf-8');
       console.log(`已保存到: ${outputPath}`);

@@ -1183,7 +1183,8 @@
         "autoRevealAfter": 3,
         "successText": "正确！继续用星衡法则推进。",
         "successVoiceId": null,
-        "methodText": "两个笼子互相嵌套时，用两组笼和的差值来推：大笼和减去小笼和，剩下的就是只属于大笼那部分格子的和。"
+        "methodText": "两个笼子互相嵌套时，用两组笼和的差值来推：大笼和减去小笼和，剩下的就是只属于大笼那部分格子的和。",
+        "hintText": "轮到你了：两格笼和值是 12，其余格子已填和是 4——减掉已填的和，c5 应该填几？"
       },
       "semiAuto": {
         "enabled": true,

@@ -333,6 +333,37 @@ export class GalleryPanel {
       { id: 'note_ito', type: 'inherit', name: '伊藤的纸条', title: '特高课的痕迹',
         description: '从伊藤身上落下的纸条，字迹潦草。特高课的痕迹。', chapter: 2, rarity: 'rare',
         icon: '📝', image: 'assets/images/items/item_unposted_letter.jpg', unlockedBy: '周目继承 · 待定' },
+      // ---- V4.4：技巧收集（type:'technique'）——首次习得自动盖章收藏，对应 TeachingSystem.TECHNIQUE_INFO ----
+      { id: 'tech_nakedSingle', type: 'technique', name: '裸单法', title: '基础 · 沈墨',
+        description: '当一个格子只剩一个候选数时，那个数就是答案。', rarity: 'common', icon: '🧭',
+        unlockedBy: '在解题中首次使用裸单法' },
+      { id: 'tech_cageUnique', type: 'technique', name: '笼子唯一组合', title: '杀手 · 沈墨',
+        description: '通过笼子的和值与候选约束，确定某个数字只能放在某一格。', rarity: 'common', icon: '🎯',
+        unlockedBy: '在解题中首次使用唯一组合' },
+      { id: 'tech_hiddenSingle', type: 'technique', name: '隐单法', title: '基础 · 沈墨',
+        description: '在一行/列/宫中，某个数字只能放在一个格子里。', rarity: 'common', icon: '🔍',
+        unlockedBy: '在解题中首次使用隐单法' },
+      { id: 'tech_rule45', type: 'technique', name: '45法则', title: '杀手 · 苏晚',
+        description: '每宫数字之和为45，利用跨宫笼子的内外差值推导数字。', rarity: 'rare', icon: '⚖️',
+        unlockedBy: '在解题中首次使用45法则' },
+      { id: 'tech_nakedPair', type: 'technique', name: '裸数对', title: '中级 · 苏晚',
+        description: '两格共享相同两个候选数，则该两数必在此两格，其他格可排除。', rarity: 'rare', icon: '👥',
+        unlockedBy: '在解题中首次使用裸数对' },
+      { id: 'tech_hiddenPair', type: 'technique', name: '隐数对', title: '中级 · 苏晚',
+        description: '两个数字只出现在相同的两格里，则这两格只能是这两个数。', rarity: 'rare', icon: '🕯️',
+        unlockedBy: '在解题中首次使用隐数对' },
+      { id: 'tech_pointingClaiming', type: 'technique', name: '区块排除', title: '中级 · 薇拉',
+        description: '某宫某数字只在同一行/列，则该行/列其他宫的该数字可排除。', rarity: 'rare', icon: '📍',
+        unlockedBy: '在解题中首次使用区块排除' },
+      { id: 'tech_nakedTriplet', type: 'technique', name: '裸三数组', title: '高级 · 薇拉',
+        description: '三格共享三个候选数，则这三数必在此三格，其他格可排除。', rarity: 'epic', icon: '🛶',
+        unlockedBy: '在解题中首次使用裸三数组' },
+      { id: 'tech_xWing', type: 'technique', name: '二连纵横阵', title: '高级 · 薇拉',
+        description: '某数字在两行中仅出现在相同两列（或反之），构成X形，可排除其他行该数字。', rarity: 'epic', icon: '✖️',
+        unlockedBy: '在解题中首次使用二连纵横阵' },
+      { id: 'tech_swordfish', type: 'technique', name: '三才游鱼阵', title: '最高阶 · 伊藤',
+        description: 'X-Wing 进阶：某数字在三行中仅出现在相同三列（或反之），可排除更多候选。', rarity: 'legend', icon: '🐟',
+        unlockedBy: '在解题中首次使用三才游鱼阵' },
     ];
   }
 
@@ -466,6 +497,14 @@ export class GalleryPanel {
    */
   static get INHERIT_ITEM_IDS() {
     return ['coin_vera', 'note_ito'];
+  }
+
+  /**
+   * 技巧收集 id 白名单（V4.4：对应 DEFAULT_ITEMS 中 type:'technique' 的条目）
+   * @returns {string[]}
+   */
+  static get TECHNIQUE_ITEM_IDS() {
+    return ['tech_nakedSingle', 'tech_cageUnique', 'tech_hiddenSingle', 'tech_rule45', 'tech_nakedPair', 'tech_hiddenPair', 'tech_pointingClaiming', 'tech_nakedTriplet', 'tech_xWing', 'tech_swordfish'];
   }
 
   /**
@@ -1006,6 +1045,7 @@ export class GalleryPanel {
         { key: 'all', label: I18n.t('ui.gallery.tab.all') },
         { key: 'prop', label: I18n.t('ui.gallery.tab.prop') },
         { key: 'fragment', label: I18n.t('ui.gallery.tab.fragment') },
+        { key: 'technique', label: I18n.t('ui.gallery.tab.technique') },
         { key: 'inherit', label: I18n.t('ui.gallery.tab.inherit') },
       ];
       tabDefs.forEach(def => {
@@ -1051,7 +1091,7 @@ export class GalleryPanel {
       if (tab === 'fragment') {
         return this._buildFragmentSection();
       }
-      const ids = tab === 'prop' ? GalleryPanel.KEY_ITEM_IDS : GalleryPanel.INHERIT_ITEM_IDS;
+      const ids = tab === 'prop' ? GalleryPanel.KEY_ITEM_IDS : (tab === 'technique' ? GalleryPanel.TECHNIQUE_ITEM_IDS : GalleryPanel.INHERIT_ITEM_IDS);
       const propItems = items.filter(item => ids.indexOf(item.id) >= 0);
       return this._buildGroupSection(tab, propItems);
     } catch (e) {
@@ -1120,7 +1160,7 @@ export class GalleryPanel {
     const wrap = document.createElement('div');
     try {
       const unlocked = list.filter(it => it.unlocked).length;
-      const label = tab === 'prop' ? I18n.t('ui.gallery.group.prop') : (tab === 'inherit' ? I18n.t('ui.gallery.group.inherit') : I18n.t('ui.gallery.group.collect'));
+      const label = tab === 'prop' ? I18n.t('ui.gallery.group.prop') : (tab === 'technique' ? I18n.t('ui.gallery.group.technique') : (tab === 'inherit' ? I18n.t('ui.gallery.group.inherit') : I18n.t('ui.gallery.group.collect')));
       const title = document.createElement('div');
       title.className = 'cm-gallery-section-title';
       title.textContent = label + '  ' + unlocked + '/' + list.length;
@@ -1176,7 +1216,12 @@ export class GalleryPanel {
 
       const meta = document.createElement('div');
       meta.className = 'cm-gallery-meta';
-      meta.textContent = I18n.t('ui.gallery.meta', { chapter: item.chapter, rarity: item.rarity });
+      if (item.type === 'technique') {
+        // 技巧收集卡：不显示「章·稀有」，改显分类标题（title 已是「类型 · 角色」）
+        meta.textContent = item.unlocked ? (item.title || '') : '???';
+      } else {
+        meta.textContent = I18n.t('ui.gallery.meta', { chapter: item.chapter, rarity: item.rarity });
+      }
 
       info.appendChild(name);
       info.appendChild(title);

@@ -8,6 +8,10 @@ const CM = window.CM || (window.CM = {});
 
 function showBookShell() {
   CM._bookVisible = true;
+  // 关前/书壳界面：退出关卡挂载态 → 隐藏 PC 右栏信息产物与棋 45账本
+  try { document.body.classList.remove('cm-level-mounted'); } catch (e) {}
+  // FIX E（2026-08-21）：打开书壳/章节菜单时同样停止剧情，避免残留对话浮在菜单上
+  try { if (window.__cagemaster_pauseStory) window.__cagemaster_pauseStory(); } catch (e) {}
   // 修复：书壳与旧 Start 页互斥——书壳 z 29000 低于 startPage 30000，必须隐藏旧页否则被遮挡
   try { hideStartPage(); } catch (e) {}
   const sh = document.getElementById('bookShell');
@@ -415,10 +419,20 @@ function openGalleryInBook() {
 
 // Q2：updateBookSpine 已移除（书脊删除）
 
-function showStartPage() {
+function showStartPage(force) {
+  // 就绪守卫（2026-08-27）：启动数据未完成(__bootReady!==true)时禁止露出菜单页，
+  // 让玩家始终停留在加载页（bootSplash + 进度条），加载完成才放行菜单，杜绝"菜单先出现但不可交互"。
+  if (window.CM && window.CM.__bootReady !== true && !force) return;
+  // FIX E（2026-08-21）：返回 Start 页前强制停止剧情，防止 bootGuard 超时后
+  // sayLines 仍在打字，对话气泡浮在菜单之上；也避免章节 BGM 持续播放
+  try { if (window.__cagemaster_pauseStory) window.__cagemaster_pauseStory(); } catch (e) {}
   window.__startPageVisible = true;
   const sp = document.getElementById('startPage');
   if (sp) sp.classList.remove('hidden');
+  // Start 页上下文：无存档时隐藏"继续游戏"（按钮显隐依赖进度，须在菜单露出时刷新）
+  try { if (window.__applyStartPageContext) window.__applyStartPageContext(); } catch (e) {}
+  // 关前（Start 页）退出关卡挂载态 → 隐藏 PC 右栏信息产物与 45账本
+  try { document.body.classList.remove('cm-level-mounted'); } catch (e) {}
 }
 function hideStartPage() {
   window.__startPageVisible = false;

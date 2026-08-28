@@ -1443,6 +1443,20 @@ export class BattleManager {
       return;
     }
 
+    // V4.3.41：教学引导格保护——AI 不抢玩家应填的引导格（破坏引导步骤）
+    // 若 think() 选到了引导格，降级到 _aiMoveLegacy（已同样排除引导格）
+    try {
+        const lp = (typeof window !== 'undefined' && window.CM && window.CM.gameApp) ? window.CM.gameApp._lessonPlayer : null;
+        const guideCell = (lp && typeof lp.getGuidedTarget === 'function')
+          ? ((lp.getGuidedTarget() && lp.getGuidedTarget().cell) || null) : null;
+        if (guideCell && guideCell.length === 2 && step.row === guideCell[0] && step.col === guideCell[1]) {
+          this._warn('AI 选到引导格[' + guideCell[0] + ',' + guideCell[1] + ']，降级到 legacy');
+          this._aiThinking = false;
+          this._aiMoveLegacy();
+          return;
+        }
+    } catch (eGuard) {}
+
     // 模拟思考时间后再执行
     setTimeout(() => {
       if (!this.active || this.ended) {
@@ -1486,9 +1500,10 @@ export class BattleManager {
           cell._aiNote = true;
         }
       }
-      // 回显 AI 笔记动作（可读性：玩家看到 Boss 在"写笔记/骗人"）
+      // 回显 AI 笔记动作（可读性：玩家看到 Boss 在"写笔记"）。
+      // 文案不区分真/假笔记——玩家不应能分辨对手写的是真候选还是疑兵
       this._emit(BATTLE_EVENTS.BOSS_BUBBLE, {
-        text: step.isFake ? '（假笔记）' : '（写笔记）',
+        text: '（写笔记）',
         name: this.opponent?.name || 'Boss',
       });
       this._emit(BATTLE_EVENTS.BOARD_CHANGED, { board: this._board });
@@ -1853,6 +1868,15 @@ export class BattleManager {
    * 旧版AI走棋（降级方案：随机选空格）
    */
   _aiMoveLegacy() {
+    // V4.3.41：教学引导格保护——legacy 也排除引导格（避免降级路径补漏）
+    let guideCell = null;
+    try {
+        const lp = (typeof window !== 'undefined' && window.CM && window.CM.gameApp) ? window.CM.gameApp._lessonPlayer : null;
+        if (lp && typeof lp.getGuidedTarget === 'function') {
+          const gt = lp.getGuidedTarget();
+          if (gt && gt.cell && gt.cell.length === 2) guideCell = gt.cell;
+        }
+    } catch (eG) {}
     // 找一个空格（优先找玩家附近的格子制造压迫感）
     const candidates = [];
     for (let r = 0; r < this.size; r++) {
@@ -1861,7 +1885,8 @@ export class BattleManager {
         if (!cell) continue;
         const hasFixed = typeof cell.fixedNum === 'number' && cell.fixedNum > 0;
         const hasFilled = typeof cell.fillNum === 'number' && cell.fillNum > 0;
-        if (!hasFixed && !hasFilled && !this.aiOwned[r][c] && !this.playerOwned[r][c]) {
+        if (!hasFixed && !hasFilled && !this.aiOwned[r][c] && !this.playerOwned[r][c]
+            && !(guideCell && guideCell[0] === r && guideCell[1] === c)) {
           let dist = 999;
           for (let pr = 0; pr < this.size; pr++) {
             for (let pc = 0; pc < this.size; pc++) {

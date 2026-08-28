@@ -65,6 +65,7 @@
   <div class="controls">
     <button id="btnPause">暂停更新</button>
     <button id="btnDiag" title="生成省 token 的紧凑诊断文本，复制后发给 AI 即可定位问题">生成诊断文本</button>
+    <button id="btnCopyBattle" title="仅复制对战记录（玩家 vs AI 全过程 JSON）">复制对战记录</button>
     <button id="btnCopy">复制完整 JSON</button>
   </div>
 </header>
@@ -100,6 +101,12 @@
   <table style="width:auto;"><thead><tr><th>#</th><th>类型</th><th>内容</th><th>耗时</th></tr></thead><tbody id="interactTable2"></tbody></table>
   <h2 style="margin-top:6px;">当前视觉元素（Q16 统一编号）</h2>
   <table style="width:auto;"><thead><tr><th>编号</th><th>名称</th><th>来源</th><th>参数</th></tr></thead><tbody id="visualTable"></tbody></table>
+</div>
+
+<div class="card" style="margin-top:12px;">
+  <h2>对战记录（玩家 vs AI 全过程 · V4.4）</h2>
+  <table style="width:auto;margin-bottom:10px;"><tbody id="battleSummary"></tbody></table>
+  <table style="width:auto;"><thead><tr><th>#</th><th>时间</th><th>类型</th><th>格子</th><th>数字</th><th>结果</th><th>连击</th><th>盘面(玩/AI)</th><th>详情</th></tr></thead><tbody id="battleLogTable"></tbody></table>
 </div>
 
 <div class="card" style="margin-top:12px;">
@@ -154,6 +161,25 @@
     btnCopy.textContent = '已复制 ✓';
     setTimeout(function () { btnCopy.textContent = old; }, 1200);
   }
+
+  // V4.4：复制对战记录（仅 battleLog + 元信息）
+  const btnCopyBattle = document.getElementById('btnCopyBattle');
+  btnCopyBattle.addEventListener('click', function () {
+    const bl = (lastState && Array.isArray(lastState.battleLog)) ? lastState.battleLog : [];
+    if (!bl.length) { toast('暂无对战记录（进入 Boss 战后自动生成）'); return; }
+    const txt = JSON.stringify({ battleLog: bl, battleLogMeta: (lastState && lastState.battleLogMeta) || null }, null, 2);
+    const done = function () {
+      btnCopyBattle.textContent = '已复制对战记录 ✓';
+      setTimeout(function () { btnCopyBattle.textContent = '复制对战记录'; }, 1500);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(txt).then(done);
+    } else {
+      const ta = document.createElement('textarea');
+      ta.value = txt; document.body.appendChild(ta); ta.select();
+      document.execCommand('copy'); document.body.removeChild(ta); done();
+    }
+  });
 
   // ============ Q9：生成省 token 的紧凑诊断文本 ============
   // 把完整 state 压缩成 AI 能一眼判断问题的格式：
@@ -233,6 +259,38 @@
       if (h.boxes && h.boxes.length) hlist.push('宫' + h.boxes.join(','));
       if (h.cells && h.cells.length) hlist.push('格' + h.cells.map(function (c) { return cellName(c.row, c.col); }).join(','));
       if (hlist.length) L.push('[高亮] ' + hlist.join(' | '));
+    }
+
+    // 3.5 对战记录摘要（Boss 战 · V4.4）
+    const bl = Array.isArray(s.battleLog) ? s.battleLog : [];
+    if (bl.length) {
+      let bStart = null, bEnd = null;
+      for (let i = bl.length - 1; i >= 0; i--) {
+        if (!bEnd && bl[i].type === 'end') bEnd = bl[i];
+        if (!bStart && bl[i].type === 'start') bStart = bl[i];
+        if (bEnd && bStart) break;
+      }
+      if (bStart || bEnd) {
+        let bline = '[对战] ' + '共' + bl.length + '条';
+        if (bStart) bline += ' 对手:' + (bStart.opponentName || '—') + ' 空格:' + (bStart.totalEmpty != null ? bStart.totalEmpty : '—');
+        if (bEnd) {
+          bline += ' 结果:' + (bEnd.result || '?') + ' path:' + (bEnd.winPath || '?') +
+            ' 盘面:' + (bEnd.playerOwned != null ? bEnd.playerOwned : '?') + '/' + (bEnd.aiOwned != null ? bEnd.aiOwned : '?') +
+            ' 连击:' + (bEnd.bestCombo || 0) + ' 看破:' + (bEnd.counterCount || 0) +
+            ' AI误:' + (bEnd.aiMistakeCount || 0) + ' 玩误:' + (bEnd.playerMistakeCount || 0) +
+            ' 反抢:' + (bEnd.stealCount || 0) + ' 用时:' + (bEnd.duration != null ? (bEnd.duration / 1000).toFixed(1) + 's' : '?');
+        }
+        L.push(bline);
+      }
+      L.push('[对战-最近] ' + bl.slice(-6).map(function (en) {
+        const cn3 = en.r !== undefined ? cellName(en.r, en.c) : '—';
+        let txt = en.type;
+        if (en.type === 'player_fill') txt += ' ' + cn3 + '=' + en.num + (en.correct ? '✓' : '✗') + '(c' + en.combo + ')';
+        else if (en.type === 'ai_fill') txt += ' ' + cn3 + '=' + en.num + (en.correct ? '✓' : '✗') + (en.technique ? '[' + en.technique + ']' : '');
+        else if (en.type === 'tpl_event') txt += ' ' + (en.event || '') + (en.winner ? '(w=' + en.winner + ')' : '');
+        else if (en.type === 'end') txt += ' ' + (en.result || '') + ' path=' + (en.winPath || '—');
+        return txt;
+      }).join(' | '));
     }
 
     // 4. 最近操作（玩家最近 8 步，判断操作序列问题）
@@ -492,14 +550,111 @@
     } catch (e) { i2t.innerHTML = '<tr><td colspan="4" style="color:var(--muted)">渲染异常</td></tr>'; console.warn('[ai-debug] interactions render:', e); }
   }
 
+  // V4.4：对战记录渲染（玩家 vs AI 全过程）
+  function renderBattleLog(s) {
+    const bl = (s && Array.isArray(s.battleLog)) ? s.battleLog : [];
+    const meta = (s && s.battleLogMeta) || {};
+    const bs = document.querySelector('#battleSummary tbody');
+    let rows = '';
+    try {
+      const statusTxt = meta.entries ? (meta.ended ? '已结束' : '进行中') : '未开始（进入 Boss 战即有记录）';
+      kv(rows = [], '状态', statusTxt, meta.ended ? '' : 'stat-ok');
+      kv(rows, '日志条数', meta.entries || 0);
+      let lastStart = null, lastEnd = null;
+      for (let i = bl.length - 1; i >= 0; i--) {
+        if (!lastEnd && bl[i].type === 'end') lastEnd = bl[i];
+        if (!lastStart && bl[i].type === 'start') lastStart = bl[i];
+        if (lastEnd && lastStart) break;
+      }
+      if (lastStart) {
+        kv(rows, '对手', (lastStart.opponentName || '—') + (lastStart.opponentId ? ' (' + lastStart.opponentId + ')' : ''));
+        kv(rows, '空格数', lastStart.totalEmpty != null ? lastStart.totalEmpty : '—');
+      }
+      if (lastEnd) {
+        const resLabels = { win: '玩家胜', lose: 'Boss 胜', draw: '平局' };
+        kv(rows, '结果', resLabels[lastEnd.result] || lastEnd.result || '—',
+          lastEnd.result === 'win' ? 'stat-ok' : (lastEnd.result === 'lose' ? 'stat-err' : ''));
+        kv(rows, '胜利路径', lastEnd.winPath || '—');
+        kv(rows, '最终盘面', (lastEnd.playerOwned != null ? lastEnd.playerOwned : '—') + ' / ' + (lastEnd.aiOwned != null ? lastEnd.aiOwned : '—'));
+        kv(rows, '用时', lastEnd.duration != null ? (lastEnd.duration / 1000).toFixed(1) + 's' : '—');
+        kv(rows, '最高连击', lastEnd.bestCombo || 0);
+        kv(rows, '看破', lastEnd.counterCount || 0);
+        kv(rows, 'AI 失误', lastEnd.aiMistakeCount || 0, lastEnd.aiMistakeCount ? 'stat-err' : '');
+        kv(rows, '玩家失误', lastEnd.playerMistakeCount || 0, lastEnd.playerMistakeCount ? 'stat-err' : '');
+        kv(rows, '反抢', lastEnd.stealCount || 0);
+      }
+      bs.innerHTML = rows.join('');
+    } catch (e) { bs.innerHTML = rows.join(''); console.warn('[ai-debug] battleSummary render:', e); }
+
+    const lt = document.querySelector('#battleLogTable tbody');
+    try {
+      if (!bl.length) {
+        lt.innerHTML = '<tr><td colspan="9" style="color:var(--muted)">尚无对战记录（进入 Boss 战后自动记录玩家/AI 每一步）</td></tr>';
+        return;
+      }
+      const typeLabels = {
+        start: '战斗开始', player_fill: '玩家填数', ai_fill: 'AI 落子', ai_note: 'AI 笔记',
+        tpl_event: '事件', end: '结算',
+      };
+      const show = bl.slice(-300);
+      let html = '';
+      show.forEach(function (en, i) {
+        const cn = en.r !== undefined ? cellName(en.r, en.c) : '—';
+        let resultTxt = '—', resultCls = '';
+        if (en.type === 'player_fill') { resultTxt = en.correct ? '正确' : '错误'; resultCls = en.correct ? 'stat-ok' : 'stat-err'; }
+        else if (en.type === 'ai_fill') { resultTxt = en.correct ? '正确' : '失误'; resultCls = en.correct ? 'stat-ok' : 'stat-err'; }
+        else if (en.type === 'end') {
+          resultTxt = en.result === 'win' ? '玩家胜' : (en.result === 'lose' ? 'Boss胜' : '平局');
+          resultCls = en.result === 'win' ? 'stat-ok' : (en.result === 'lose' ? 'stat-err' : '');
+        } else if (en.type === 'tpl_event') {
+          resultTxt = en.winner ? 'winner=' + en.winner : (en.side ? en.side : '—');
+        }
+        const combo = (en.type === 'player_fill' && en.combo != null) ? en.combo : '—';
+        const countTxt = (en.playerCount != null) ? (en.playerCount + '/' + en.aiCount) : '—';
+        let detail = '—';
+        if (en.type === 'player_fill') detail = (en.isCounter ? '看破 ' : '') + (en.isSteal ? '反抢 ' : '') + (en.bestCombo != null ? 'best=' + en.bestCombo : '');
+        else if (en.type === 'ai_fill') detail = (en.mistake ? '失误#' + (en.aiMistakeCount || 1) : '') + (en.technique ? ' [' + en.technique + ']' : '') + (en.strategyId ? ' strat=' + en.strategyId : '');
+        else if (en.type === 'tpl_event') detail = en.event + (en.path ? ' path=' + en.path : '');
+        else if (en.type === 'end') detail = 'path=' + (en.winPath || '—');
+        else if (en.type === 'start') detail = (en.opponentName || '') + (en.totalEmpty != null ? ' 空格=' + en.totalEmpty : '');
+        const tm = new Date(en.t).toLocaleTimeString('zh-CN', { hour12: false });
+        html += '<tr><td>' + (show.length - i) + '</td><td class="mono">' + tm + '</td><td>' + (typeLabels[en.type] || en.type) +
+          '</td><td>' + cn + '</td><td>' + (en.num != null ? en.num : '—') + '</td><td class="' + resultCls + '">' + resultTxt +
+          '</td><td>' + combo + '</td><td>' + countTxt + '</td><td>' + detail + '</td></tr>';
+      });
+      lt.innerHTML = html;
+    } catch (e) { lt.innerHTML = '<tr><td colspan="9" style="color:var(--muted)">渲染异常</td></tr>'; console.warn('[ai-debug] battleLog render:', e); }
+  }
+
   function handleState(msg) {
     if (!msg || !msg.state) return;
     lastState = msg.state;
     lastJson = JSON.stringify(msg.state, null, 2);
+    // V4.4：收到对战记录即自动转发落盘（无需手动点击复制，打开本面板即保存）
+    try {
+      const bl = (Array.isArray(msg.state.battleLog) && msg.state.battleLog.length) ? msg.state.battleLog : [];
+      if (bl.length && bl.length !== (window.__battleLogAutoSaved || 0)) {
+        const meta = msg.state.battleLogMeta || {};
+        fetch('/save-battle-log', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            battleLog: bl,
+            meta: Object.assign({}, meta, { kind: meta.ended ? 'end' : 'live' }),
+          }),
+        }).then(function (r) { return r.ok ? r.json() : null; }).then(function (rr) {
+          if (rr && rr.ok) {
+            window.__battleLogAutoSaved = bl.length;
+            console.log('[ai-debug] 对战记录已自动保存 -> ' + (rr.path || '?') + ' (' + rr.entries + ' 条)');
+          }
+        }).catch(function (e) { console.warn('[ai-debug] autosave:', e); });
+      }
+    } catch (e) {}
     if (paused) return;
     renderBoard(msg.state);
     renderTables(msg.state);
     renderRecord(msg.state);
+    renderBattleLog(msg.state);
     jsonBox.textContent = lastJson;
     // 自动滚动到底部（最新状态可见）
     window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });

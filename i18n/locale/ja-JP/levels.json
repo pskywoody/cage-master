@@ -1138,5 +1138,12 @@
   "levels.301.lesson.phases.demo.steps.7.text": "行ブロックがd3の4を排除。",
   "levels.301.lesson.phases.demo.steps.8.text": "だからd3は8しかない！",
   "levels.303.lesson.phases.demo.steps.5.text": "宮ブロックがa4の2を排除。",
-  "levels.303.lesson.phases.demo.steps.6.text": "だからa4は6しかない！"
+  "levels.303.lesson.phases.demo.steps.6.text": "だからa4は6しかない！",
+  "levels.102.lesson.phases.guided.methodText": "沈墨の視線は盤面左上の小さなブロックへ移る。ブロック内でも1〜4は重複できない——行・列・ブロックで既に使われた数字を一つずつ消していけば、残った唯一の候補が答えだ。",
+  "levels.103.lesson.phases.guided.methodText": "点線で囲まれた枠がケージ、角の小さい数字がその合計だ。1マスのケージには空きマスがひとつしかない——合計がそのままそのマスの答えになり、最も楽な出発点だ。",
+  "levels.105.lesson.phases.guided.methodText": "2マスケージの合計が小さいほど、その組み合わせは少ない。覚えておこう：3=1+2、4=1+3、6=2+4、7=3+4——組み合わせが一通りなら、2つのマスの候補は同時に確定する。",
+  "levels.106.lesson.phases.guided.methodText": "単独の確定が尽きたら、視点を変えて数字を追う。ブロック（行・列でも）の中で、4が置ける空きマスがひとつしか残っていない——それが隠れ単独だ。他の場所は全て塞がれており、そこが答えになる。",
+  "levels.107.lesson.phases.guided.methodText": "唯一組み合わせの使い方を再確認：まず合計を分解できるペアを思い浮かべ、行・列・ブロックで排除する——不適切な半分を消せば、残ったマスの答えははっきりする。",
+  "levels.108.lesson.phases.guided.methodText": "4×4の鍵を覚えておこう：すべての行、列、ブロックの数字の合計はちょうど10になる。ある行に空きマスがひとつだけ残ったら、10から埋めた数字の合計を引く——残りが答えだ。",
+  "levels.308.teachingGoal": "仮設モード：盤面はまばらに広がり、タイマーが迫る。大半のマスは檻の組合せと45の法則で推せるが、右下#25の2マス合計3の{1,2}は直接確定できない——「先に仮設、後に検証」で誤答を排除し、正解を確定せよ。"
 }

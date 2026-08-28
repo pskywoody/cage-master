@@ -24,11 +24,11 @@
 //     浏览器端若直接引用该模块需由打包器处理（或以全局 Board 模式替代）。
 // ==========================================
 
-import { HeadlessEngine } from '../core/headless-engine.js?v=51';
+import { HeadlessEngine } from '../core/headless-engine.js?v=52';
 import { LessonPlayer } from '../core/lesson-player.js?v=51';
 import { buildLessonDemoSteps, buildSemiAutoHint, buildGuidedNextActions } from '../core/lesson-demo-builder.js?v=51';
 import { LevelManager } from '../core/level-manager.js?v=51';
-import { BoardRenderer } from '../renderer/board-renderer.js?v=51';
+import { BoardRenderer } from '../renderer/board-renderer.js?v=53';
 import { EffectRenderer } from '../renderer/effect-renderer.js?v=51';
 import { AnimationController } from '../renderer/animation-controller.js?v=51';
 import { PerformanceMonitor } from '../renderer/performance-monitor.js?v=51';
@@ -222,7 +222,8 @@ class GameApp {
    * @param {number} levelId - 关卡 ID（如 101）
    * @returns {Promise<{success:boolean, levelId:number, lessonStarted:boolean}>}
    */
-  async startLevel(levelId) {
+  async startLevel(levelId, opts) {
+    try { this.emitEvent('levelLoadBegin', { levelId: levelId }); } catch (e) {}
     let levelData;
     try {
       levelData = await this._fetchLevel(levelId);
@@ -231,7 +232,7 @@ class GameApp {
       this.emitEvent('loadError', { levelId: levelId, error: e });
       return { success: false, levelId: levelId, lessonStarted: false };
     }
-    return this.startLevelFromData(levelId, levelData);
+    return this.startLevelFromData(levelId, levelData, opts);
   }
 
   /**
@@ -241,8 +242,9 @@ class GameApp {
    * @param {Object} levelData - 完整关卡数据（boardData/cages/solution/gridSize）
    * @returns {Promise<{success:boolean, levelId:number, lessonStarted:boolean}>}
    */
-  async startLevelFromData(levelId, levelData) {
+  async startLevelFromData(levelId, levelData, opts) {
     try {
+      try { this.emitEvent('levelLoadBegin', { levelId: levelId }); } catch (e) {}
       this._currentLevelId = levelId;
       this._selectedCell = null;
       this._completed = false;
@@ -290,9 +292,17 @@ class GameApp {
         console.warn('[GameApp] lessonPlan 本地化失败:', eL && eL.message);
       }
 
+      // V4.3.40：找内鬼（traitor_hunt_6x6）——纯逻辑关，不建数独引擎，由页面层渲染证据盘
+      const isTraitorLevel = !!(levelData && levelData.puzzleType === 'traitor_hunt_6x6');
+      this._traitorMode = isTraitorLevel;
+      this._traitorData = isTraitorLevel ? (levelData.traitor || null) : null;
+      this._traitorHearts = isTraitorLevel ? ((levelData.traitor && levelData.traitor.hearts) || 3) : 0;
+      this._traitorDone = false;
+      this._traitorAccused = null;
+
       // 2026-08-04：直接从 boardData 生成准确初始盘面快照（固定格含数字）
       // 快照构建复用 core/ai-record.js（与 Node 测试驱动脚本同构）
-      if (this._aiRecord) {
+      if (this._aiRecord && !isTraitorLevel) {
         const snap = buildRecordSnapshot(levelData);
         this._aiRecord.gridSize = snap.gridSize;
         this._aiRecord.meta = snap.meta;
@@ -303,8 +313,8 @@ class GameApp {
         this._aiRecord.cages = snap.cages;
       }
 
-      // 引擎加载（兼容 boardData / lessonPlan 字段）
-      if (this._engine) {
+      // 引擎加载（兼容 boardData / lessonPlan 字段；找内鬼关跳过引擎）
+      if (this._engine && !isTraitorLevel) {
         this._engine.loadLevel(levelData);
         // Loop②：关卡加载可能重建 Board，重新挂接推导回调并建立基线（首次不抛出）
         if (this._engine.board) {
@@ -316,9 +326,20 @@ class GameApp {
           try { this._engine.refreshDeductions(); } catch (e) {}
         }
       }
-      // Q13：恢复本关进度（重进继续填）——恢复过则页面层自动跳过教学
+      // Q13：恢复本关进度（重进继续填）——恢复过则页面层自动跳过教学。
+      // 重玩本关（restartLevel）传 opts.restoreProgress=false：跳过恢复并清除已保存进度，
+      // 从关卡初始盘面重新开始（用户反馈"重玩后棋盘仍是填满状态"）。
+      // Boss 关（levelData.isBoss）：实时战斗，重进一律从初始盘面开始，不恢复进度
       this._progressRestored = false;
-      try { this._progressRestored = this._restoreLevelProgress(); } catch (e) {}
+      const isBossLevel = !!(levelData && levelData.isBoss);
+      // V4.3.40：铃铛关（目标制）重进一律从初始盘面开始，不恢复进度（与 Boss 关同策略）
+      const isBellLevel = !!(levelData && levelData.bells && levelData.bells.length);
+      const restoreProgress = !(opts && opts.restoreProgress === false) && !isBossLevel && !isBellLevel;
+      if (restoreProgress) {
+        try { this._progressRestored = this._restoreLevelProgress(); } catch (e) {}
+      } else {
+        try { localStorage.removeItem('cagemaster4_level_progress_' + levelId); } catch (e) {}
+      }
       const gridSize = levelData.gridSize || 9;
       if (this._boardRenderer) {
         this._boardRenderer._gridSize = gridSize;
@@ -342,26 +363,102 @@ class GameApp {
           if (!Array.isArray(pos) || pos.length < 2) return;
           const [r, c] = pos;
           if (!sol || !sol[r] || !sol[r][c]) return;
+          // V4.3.40：固定格（boardData 非零）不可预填错——fillCell 会拒绝，静默记录并跳过
+          if (levelData.boardData && levelData.boardData[r] && levelData.boardData[r][c] !== 0) {
+            console.warn('[PlantedErrors] 固定格不可预填错，跳过 (' + r + ',' + c + ')');
+            return;
+          }
           const correct = sol[r][c];
           const errVal = (correct % gs) + 1; // 必然 ≠ correct（模 4 循环）
           try { this._engine.fillCell(r, c, errVal); } catch (e) {}
           this._plantedErrors.add(r + ',' + c);
         });
       }
+      // V4.3.40：残卷预填正确数——与错格同色（都走 fillNum → playerNum），让玩家自己核对出哪些是错的；
+      // 不加入 _plantedErrors（无需修复），仅作为"残卷已写的数字"存在
+      const pf = levelData.prefilled || [];
+      if (pf.length && this._engine && !isTraitorLevel) {
+        const sol = levelData.solution;
+        pf.forEach((pos) => {
+          if (!Array.isArray(pos) || pos.length < 2) return;
+          const [r, c] = pos;
+          if (!sol || !sol[r] || !sol[r][c]) return;
+          if (levelData.boardData && levelData.boardData[r] && levelData.boardData[r][c] !== 0) return; // 固定格跳过
+          try { this._engine.fillCell(r, c, sol[r][c], { record: false }); } catch (e) {}
+        });
+      }
+      // V4.3.40：铃铛（黄·潜伏档）——禁区格缓存（教学阶段休眠 / 假设模式豁免在拦截点判断）
+      this._bells = new Set();
+      this._bellResolved = new Set();
+      const bl = levelData.bells || [];
+      if (bl.length) {
+        // V4.3.40：跳过教学相关格（guided.targetCell / semiAuto.watchCells / demo focusCell），避免铃铛与引导冲突
+        const lessonCells = new Set();
+        try {
+          const lp = levelData.lessonPlan && levelData.lessonPlan.phases;
+          if (lp) {
+            if (lp.guided && lp.guided.targetCell && lp.guided.targetCell.length >= 2) {
+              lessonCells.add(lp.guided.targetCell[0] + ',' + lp.guided.targetCell[1]);
+            }
+            ((lp.semiAuto && lp.semiAuto.watchCells) || []).forEach((w) => {
+              if (w && w.length >= 2) lessonCells.add(w[0] + ',' + w[1]);
+            });
+            ((lp.demo && lp.demo.steps) || []).forEach((st) => {
+              if (st && st.action === 'focusCell' && st.target && st.target.length >= 2) {
+                lessonCells.add(st.target[0] + ',' + st.target[1]);
+              }
+            });
+          }
+        } catch (e) {}
+        bl.forEach((pos) => {
+          if (!Array.isArray(pos) || pos.length < 2) return;
+          const k = pos[0] + ',' + pos[1];
+          if (lessonCells.has(k)) return; // 与引导格冲突的铃铛格自动跳过
+          this._bells.add(k);
+        });
+      }
+      // V4.3.40：分区撤离（507）——笼簇三区，阈值解锁（区 i 正确格 ≥ unlockAt×区格数 → 解锁区 i+1）
+      const evac = levelData.evacuation || null;
+      this._evacuation = null;
+      if (evac && Array.isArray(evac.zones) && evac.zones.length >= 2) {
+        this._evacuation = {
+          zones: evac.zones.map((z) => new Set((z || []).map(([r, c]) => r + ',' + c))),
+          unlockAt: (typeof evac.unlockAt === 'number' && evac.unlockAt > 0 && evac.unlockAt <= 1) ? evac.unlockAt : 0.7,
+          activeZone: 0,
+          cellZone: {},
+        };
+        this._evacuation.zones.forEach((zs, i) => zs.forEach((k) => { this._evacuation.cellZone[k] = i; }));
+        this._syncEvacuationLocks();
+      }
+      // V4.3.40：本关失误计数（结算惩罚用，free 阶段非假设模式才记）
+      this._levelMistakes = 0;
       // V4.3.33：模式字段缓存（墨迹将尽 / 静默电台 / 密文抽取）
       this._levelLimits = (levelData.limits && levelData.limits.maxErrors > 0) ? levelData.limits.maxErrors : 0;
       this._levelSilent = !!levelData.silentMode;
+      // V4.3.40：残卷静默校验（features.instantErrorCheck=false = 填错不即时标红/提示，通关时统一校验）
+      this._silentValidation = !!(levelData.features && levelData.features.instantErrorCheck === false);
       this._extractPlan = levelData.extract || null;
 
-      this.emitEvent('levelLoaded', { levelId: levelId, levelData: levelData });
+      // FIX A（2026-08-20）：隔离 levelLoaded / render，确保 levelStart（触发 hideLoading）必定执行，
+      // 防止任一处理器抛错后 #levelLoading(99990) 遮罩永久盖屏 → 黑屏卡死（用户现象：有音效无画面）
+      try {
+        this.emitEvent('levelLoaded', { levelId: levelId, levelData: levelData });
+      } catch (eLoaded) {
+        console.error('[GameApp] levelLoaded 处理器异常（已隔离，不影响进关）:', eLoaded);
+      }
 
       // 初始化教学播放器
       let lessonStarted = false;
       if (levelData.lessonPlan || levelData.lesson) {
-        lessonStarted = this._startLesson();
+        try { lessonStarted = this._startLesson(); }
+        catch (eLesson) { console.error('[GameApp] 教学启动异常（已隔离）:', eLesson); }
       }
 
-      this.render();
+      try {
+        this.render();
+      } catch (eRender) {
+        console.error('[GameApp] render 异常（已隔离）:', eRender);
+      }
       this.emitEvent('levelStart', { levelId: levelId, lessonStarted: lessonStarted });
       return { success: true, levelId: levelId, lessonStarted: lessonStarted };
     } catch (e) {
@@ -398,7 +495,8 @@ class GameApp {
   async restartLevel() {
     try {
       if (this._currentLevelId === null) return null;
-      return this.startLevel(this._currentLevelId);
+      // 重玩本关：不恢复进度，从初始盘面开始（清除已保存的本关进度）
+      return this.startLevel(this._currentLevelId, { restoreProgress: false });
     } catch (e) {
       console.warn('[GameApp] restartLevel error:', e);
       return null;
@@ -539,6 +637,7 @@ class GameApp {
         isWaitingInput: this._lessonPlayer.isWaitingInput,
         guidedTarget: this._lessonPlayer.getGuidedTarget ? this._lessonPlayer.getGuidedTarget() : null,
         interactionType: this._lessonPlayer.getInteractionType ? this._lessonPlayer.getInteractionType() : 'NUMBER',
+        whatIfEntryLesson: this._lessonPlayer.isWhatIfEntryLesson ? this._lessonPlayer.isWhatIfEntryLesson() : false,
       };
     } catch (e) {
       console.warn('[GameApp] getLessonState error:', e);
@@ -760,19 +859,21 @@ class GameApp {
       const cell = state.cells[r] && state.cells[r][c];
       if (!cell) return null;
 
+      // 选中即锁定：点击已选中的格子不再取消选中（避免误触清空选择），
+      // 只有点击其它格子才会重新选中目标格。空盘时仍允许正常选中。
       if (this._selectedCell && this._selectedCell.r === r && this._selectedCell.c === c) {
-        this._selectedCell = null;
-        this._sameNumberCells = null;
-        if (this._boardRenderer) this._boardRenderer.setHighlight(null, null);
-        this.emitEvent('cellSelect', { r: r, c: c, selected: false });
+        this._selectedCell = { r: r, c: c };
+        if (this._boardRenderer) this._boardRenderer.setHighlight(r, c, 'selected');
+        this.emitEvent('cellSelect', { r: r, c: c, selected: true });
         this.render();
-        return { success: true, selected: false, r: r, c: c };
+        return { success: true, selected: true, r: r, c: c };
       }
 
       this._selectedCell = { r: r, c: c };
 
       // V4.3.19：点击已填数字格 → 高亮所有同数字格（含候选数含该数字的格）
       this._sameNumberCells = null;
+      this._sameNumberNum = null;
       const cellValue = cell.fillNum || cell.fixedNum;
       if (cellValue) {
         const grid = state.cells;
@@ -781,12 +882,19 @@ class GameApp {
           for (let cc = 0; cc < grid[rr].length; cc++) {
             const gcell = grid[rr] && grid[rr][cc];
             if (!gcell) continue;
-            if ((gcell.fillNum || gcell.fixedNum) === cellValue) {
+            const gval = gcell.fillNum || gcell.fixedNum;
+            const hasCandidate = Array.isArray(gcell.candidates) && gcell.candidates.includes(cellValue);
+            if (gval === cellValue || hasCandidate) {
               matched.push([rr, cc]);
             }
           }
         }
-        if (matched.length > 1) this._sameNumberCells = matched;
+        if (matched.length > 1) {
+          this._sameNumberCells = matched;
+          this._sameNumberNum = cellValue;   // Q#2：记住匹配数字，供渲染层给对应笔记数字着色
+          // CM4 Telemetry：点击已填数字格 → 同数字高亮（记录"看数字"）
+          this.emitEvent('numberFocus', { value: cellValue, source: 'board_cell' });
+        }
       }
 
       if (this._boardRenderer) this._boardRenderer.setHighlight(r, c, 'selected');
@@ -843,16 +951,30 @@ class GameApp {
         for (let c = 0; c < grid[r].length; c++) {
           const cell = grid[r] && grid[r][c];
           if (!cell) continue;
-          if ((cell.fillNum || cell.fixedNum) === num) {
+          const val = cell.fillNum || cell.fixedNum;
+          const hasCandidate = Array.isArray(cell.candidates) && cell.candidates.includes(num);
+          if (val === num || hasCandidate) {
             matched.push([r, c]);
           }
         }
       }
       this._sameNumberCells = matched.length > 0 ? matched : null;
+      this._sameNumberNum = (matched.length > 0) ? num : null; // Q#2：记住匹配数字给笔记上色
+      // CM4 Telemetry：长按/面板数字键 → 同数字高亮（记录"看数字"）
+      if (matched.length > 0) this.emitEvent('numberFocus', { value: num, source: 'keyboard' });
       this.render();
     } catch (e) {
       console.warn('[GameApp] setSameNumberHighlight error:', e);
     }
+  }
+
+  /**
+   * Q#2/#3：清除同数字高亮（供长按连填取消/其它入口复用）
+   */
+  clearSameNumberHighlight() {
+    this._sameNumberCells = null;
+    this._sameNumberNum = null;
+    this.render();
   }
 
   /**
@@ -874,6 +996,17 @@ class GameApp {
       if (!cell) return { success: false, reason: 'invalid-cell' };
       if (cell.fixedNum) return { success: false, reason: 'fixed-cell' };
       const erasedNum = cell.fillNum || null;   // 4.7.3 书写动画：记录被擦除的数字供逆序动画
+
+      // V4.3.40：分区撤离——锁定区（未解锁撤离区）不可填数
+      const ev = this._evacuation;
+      if (ev) {
+        const zoneIdx = ev.cellZone[r + ',' + c];
+        if (zoneIdx !== undefined && zoneIdx > ev.activeZone) {
+          this.emitEvent('blockedInput', { reason: 'evacuation-locked', r: r, c: c, num: num });
+          this.emitEvent('toast', { text: I18n.t('ui.main.evacuationLocked'), duration: 2200 });
+          return { success: false, reason: 'evacuation-locked' };
+        }
+      }
 
       // 微型教学提示模式：填数走 handleHintFill（正确退出 / 错误重播）
       if (this._hintActive) {
@@ -909,8 +1042,21 @@ class GameApp {
         }
       }
 
-      // 1. 引擎落子
-      const res = this._engine.fillCell(r, c, num);
+      // V4.3.40：铃铛禁区——真实盘面填数点击铃铛格 → 响铃 + 注意力+1（教学阶段休眠 / 假设模式豁免）
+      const bellKey = r + ',' + c;
+      if (this._bells && this._bells.has(bellKey) && !this._bellResolved.has(bellKey)) {
+        const inLesson = this._lessonPlayer && this._lessonPlayer.isActive && this._lessonPlayer.currentPhase !== 'free';
+        const inWhatIf = this._whatIfManager && this._whatIfManager.isActive;
+        if (!inLesson && !inWhatIf) {
+          this.emitEvent('blockedInput', { reason: 'bell', r: r, c: c, num: num });
+          this.emitEvent('bellRung', { r: r, c: c });
+          this.render();
+          return { success: false, reason: 'bell' };
+        }
+      }
+
+      // 1. 引擎落子（record:true → 玩家填数写入撤销历史，可被撤销）
+      const res = this._engine.fillCell(r, c, num, { record: true });
       if (!res.success) {
         this.emitEvent('blockedInput', { reason: res.error, r: r, c: c, num: num });
         return { success: false, reason: res.error };
@@ -921,17 +1067,41 @@ class GameApp {
         && this._levelData.solution[r] && this._levelData.solution[r][c];
       const isCorrect = (solCell === undefined || solCell === null) ? true : (solCell === num);
 
-      // V4.3.33：410 任务压力——正常模式不允许犯错（只许 WhatIf 试错）。
-      // 填错立即回滚不落盘，并引导玩家进入假设模式验证；WhatIf 激活时豁免。
-      if (!isCorrect && this._currentLevelId === 410
-          && !(this._whatIfManager && this._whatIfManager.isActive)) {
+      // V4.3.42：WhatIf 模式试错机制——
+      // 填错时若有喘息机会（chancesLeft>0），自动回退：退到上一快照（= 该快照建立时刻），
+      // 已退到根则自动撤销刚填错的那一步。每次消耗1次机会，新建快照恢复1次机会（上限3）。
+      // 机会用尽后填错不再回退，计入真实失误（_levelMistakes），并在盘面上保留错误标记。
+      const whatIfActive = this._whatIfManager && this._whatIfManager.isActive;
+      // WhatIf 内填错且机会用尽 → 该失误属于"真实失误"，应计入
+      let whatIfBreathExhausted = false;
+      if (!isCorrect && whatIfActive) {
+        const breathOk = this._whatIfManager.revertBreath();
+        if (breathOk) {
+          // 回到上一分支，触发抽屉快照卡片刷新 + 棋盘重绘
+          this.emitEvent('whatIfBreathRevert', { r, c, num });
+          this.render();
+          return { success: false, reason: 'whatif-revert' };
+        }
+        // 无分支快照可回退 → 退到根本，该失误计入真实失误
+        whatIfBreathExhausted = true;
+      }
+
+      // V4.3.40：真实失误=free 阶段、非假设模式，或 WhatIf 内机会（喘息）已耗尽。
+      // 教学非 free 阶段（guided/semiAuto）的填错属于受引导试错，不计真实失误。
+      const inLessonNonFree = this._lessonPlayer && this._lessonPlayer.isActive && this._lessonPlayer.currentPhase !== 'free';
+      const isRealMistake = isCorrect ? false
+        : (!whatIfActive || whatIfBreathExhausted) && !inLessonNonFree;
+      if (isRealMistake) {
+        this._levelMistakes = (this._levelMistakes || 0) + 1;
+      }
+
+      // V4.3.38/42：308「发报机」——任何真实失误都引爆失败。
+      // 关键：WhatIf 内机会用尽（退到根后填错）同样算真实失误并引爆，不能因 isActive 而豁免。
+      if (isRealMistake && this._currentLevelId === 308) {
         try { this._engine.eraseCell(r, c); } catch (eE) {}
-        this.emitEvent('toast', {
-          text: I18n.t('ui.main.noErrorOutsideWhatIf'),
-          duration: 2600
-        });
+        this.emitEvent('bombStrike', { reason: 'wrong', r: r, c: c, whatIf: whatIfActive });
         this.render();
-        return { success: false, reason: '410-no-error-outside-whatif' };
+        return { success: false, reason: 'bomb-strike' };
       }
 
       // 2. 教学状态机（若活跃）
@@ -988,6 +1158,10 @@ class GameApp {
       // Loop②：填数后检测收敛（关联格笔记可能被清除/收敛）
       this._checkDeductions();
       this.render();
+      // V4.3.40：铃铛自动落数检查（教学阶段休眠）
+      try { if (this._bells && this._bells.size) this._checkBellsAutoResolve(); } catch (eB) { console.warn('[Bell] resolve:', eB); }
+      // V4.3.40：分区撤离进度检查（当前区正确格达阈值 → 解锁下一区）
+      try { if (this._evacuation) this._checkEvacuationProgress(); } catch (eE) { console.warn('[Evac]', eE); }
       this._checkBoardComplete();
       return { success: true, r: r, c: c, num: num, correct: isCorrect, lesson: lesson };
     } catch (e) {
@@ -1114,7 +1288,7 @@ class GameApp {
       // Q8：擦除前先取原值（eraseCell 会清空 fillNum；原代码引用未定义变量 → ReferenceError）
       const erasedNum = (cell && (cell.fillNum || 0)) || 0;
 
-      const res = this._engine.eraseCell(r, c);
+      const res = this._engine.eraseCell(r, c, { record: true });
       if (!res.success) {
         this.emitEvent('blockedInput', { reason: res.error, r: r, c: c });
         return { success: false, reason: res.error };
@@ -1188,7 +1362,7 @@ class GameApp {
       if (!state || !state.cells) return;
       const size = state.cells.length;
       if (!size || size > 12) return;
-      const saved = { levelId: this._currentLevelId, ts: Date.now(), fills: [], notes: [] };
+      const saved = { levelId: this._currentLevelId, size: size, ts: Date.now(), fills: [], notes: [] };
       for (let r = 0; r < size; r++) {
         const row = state.cells[r];
         if (!row) continue;
@@ -1219,6 +1393,12 @@ class GameApp {
       if (!raw) return false;
       const saved = JSON.parse(raw);
       if (!saved || saved.levelId !== this._currentLevelId) return false;
+      // 2026-08-17：尺寸不兼容的旧进度（如 6x6 时代存档用于 9x9）直接丢弃，
+      // 避免错位填充导致"棋盘开局就快满/秒结算"
+      try {
+        const curSize = this._engine.board.size;
+        if (saved.size && saved.size !== curSize) return false;
+      } catch (eS) {}
       let restored = false;
       (saved.fills || []).forEach(function (f) {
         try { this._engine.fillCell(f[0], f[1], f[2]); restored = true; } catch (e) {}
@@ -1709,10 +1889,41 @@ class GameApp {
       if (this._levelManager && typeof this._levelManager.markLevelCompleted === 'function') {
         this._levelManager.markLevelCompleted(this._currentLevelId, { teachingCompleted: true });
       }
-      this.emitEvent('levelComplete', { levelId: this._currentLevelId, state: state });
+      this.emitEvent('levelComplete', { levelId: this._currentLevelId, state: state, mistakes: this._levelMistakes || 0 });
       this._markLevelComplete();
     } catch (e) {
       console.warn('[GameApp] _checkBoardComplete error:', e);
+    }
+  }
+
+  /**
+   * V4.3.34：密文抽取关（208/506）——密文已全部还原时，把剩余格补成解并触发通关。
+   * 密文抽齐即代表本关目标达成，无需再手动填满整盘。
+   * @returns {boolean} 是否完成
+   */
+  finishCipherLevel() {
+    try {
+      if (this._completed) return false;
+      const board = this._engine.getBoard();
+      const gs = (this._levelData && this._levelData.gridSize) || board.size;
+      const sol = this._levelData && this._levelData.solution;
+      if (!sol || !gs) return false;
+      for (let r = 0; r < gs; r++) {
+        for (let c = 0; c < gs; c++) {
+          const t = sol[r] && sol[r][c];
+          if (!t) continue;
+          const cell = board.cells[r][c];
+          if (cell.fixedNum) continue; // 题目固定格已是正确值
+          if (cell.isLocked) { try { cell.isLocked = false; } catch (eL) {} } // 教学冻结在补全收尾时解除
+          try { this._engine.fillCell(r, c, t); } catch (eE) {}
+        }
+      }
+      this.render();
+      this._checkBoardComplete();
+      return this._completed;
+    } catch (e) {
+      console.warn('[GameApp] finishCipherLevel error:', e);
+      return false;
     }
   }
 
@@ -1729,6 +1940,97 @@ class GameApp {
       this._effectsProvider = provider;
     } catch (e) {
       console.warn('[GameApp] setEffectsProvider error:', e);
+    }
+  }
+
+  // V4.3.40：铃铛自动落数——铃铛所在宫其余 8 格全部正确 → 落数 + 移除 + 事件（目标制：3 铃全落→finishCipherLevel 收尾）
+  // V4.3.40：分区撤离——锁定区（activeZone 之后的区）同步到渲染层置灰
+  _syncEvacuationLocks() {
+    try {
+      const ev = this._evacuation;
+      const br = this._boardRenderer;
+      if (!ev || !br || typeof br.setEvacuationLocked !== 'function') return;
+      const locked = new Set();
+      for (let i = ev.activeZone + 1; i < ev.zones.length; i++) ev.zones[i].forEach((k) => locked.add(k));
+      br.setEvacuationLocked(locked);
+    } catch (e) {}
+  }
+
+  // V4.3.40：分区撤离——当前区正确格数达阈值 → 解锁下一区（永久）
+  _checkEvacuationProgress() {
+    try {
+      const ev = this._evacuation;
+      if (!ev || ev.activeZone >= ev.zones.length - 1) return;
+      const sol = this._levelData && this._levelData.solution;
+      const st = this._engine && this._engine.getState ? this._engine.getState() : null;
+      const cells = st && st.cells;
+      if (!sol || !cells) return;
+      const zone = ev.zones[ev.activeZone];
+      let correct = 0;
+      zone.forEach((k) => {
+        const p = k.split(',');
+        const r = Number(p[0]), c = Number(p[1]);
+        const cell = cells[r] && cells[r][c];
+        const cur = cell ? (cell.fillNum || cell.fixedNum || 0) : 0;
+        if (cur === sol[r][c]) correct++;
+      });
+      if (zone.size > 0 && correct / zone.size >= ev.unlockAt) {
+        ev.activeZone++;
+        this._syncEvacuationLocks();
+        this.render();
+        this.emitEvent('evacuationUnlock', { zone: ev.activeZone + 1, levelId: this._currentLevelId });
+      }
+    } catch (e) {}
+  }
+
+  _checkBellsAutoResolve() {
+    if (!this._bells || this._bells.size === 0) return;
+    // 教学阶段铃铛休眠
+    if (this._lessonPlayer && this._lessonPlayer.isActive && this._lessonPlayer.currentPhase !== 'free') return;
+    const sol = this._levelData && this._levelData.solution;
+    const st = this._engine && this._engine.getState ? this._engine.getState() : null;
+    const cells = st && st.cells;
+    if (!sol || !cells) return;
+    const bellKeys = Array.from(this._bells);
+    const byBox = {};
+    bellKeys.forEach((k) => {
+      if (this._bellResolved.has(k)) return;
+      const p = String(k).split(',');
+      const br = Number(p[0]), bc = Number(p[1]);
+      if (isNaN(br) || isNaN(bc)) return;
+      const box = Math.floor(br / 3) * 3 + Math.floor(bc / 3);
+      (byBox[box] = byBox[box] || []).push([br, bc, k]);
+    });
+    let resolvedAny = false;
+    Object.keys(byBox).forEach((box) => {
+      const group = byBox[box];
+      if (group.length > 1) return; // 数据约束：每宫至多 1 铃铛
+      const [br, bc, k] = group[0];
+      const bRow = Math.floor(br / 3) * 3, bCol = Math.floor(bc / 3) * 3;
+      let allOk = true;
+      for (let rr = bRow; rr < bRow + 3 && allOk; rr++) {
+        for (let cc = bCol; cc < bCol + 3; cc++) {
+          if (rr === br && cc === bc) continue;
+          const cell = cells[rr] && cells[rr][cc];
+          const cur = cell ? (cell.fillNum || cell.fixedNum || 0) : 0;
+          if (cur !== sol[rr][cc]) { allOk = false; break; }
+        }
+      }
+      if (allOk) {
+        const val = sol[br][bc];
+        try { this._engine.fillCell(br, bc, val, { record: false }); } catch (e) {}
+        this._bellResolved.add(k);
+        resolvedAny = true;
+        this.emitEvent('bellResolved', { r: br, c: bc, num: val });
+      }
+    });
+    if (resolvedAny) {
+      this._diffHeatCache = null;
+      this.render();
+      if (this._bellResolved.size >= this._bells.size) {
+        this.emitEvent('bellsCleared', { mistakes: this._levelMistakes || 0 });
+        try { if (typeof this.finishCipherLevel === 'function') this.finishCipherLevel(); } catch (e) {}
+      }
     }
   }
 
@@ -1864,6 +2166,14 @@ class GameApp {
       if (!this._boardRenderer) return;
       if (!this._engine) return;
 
+      // Q5：渲染前同步"错误即时高亮"开关（错误记录保留给胜利判定，仅视觉 gate）
+      try {
+        const bd = this._engine.board;
+        if (bd && bd.settings) {
+          this._boardRenderer._instantErrorCheck = !!bd.settings.instantErrorCheck;
+        }
+      } catch (e) { /* 忽略 */ }
+
       const state = this._engine.getState();
       if (!state) return;
       const gridSize = this._getGridSize();
@@ -1930,6 +2240,8 @@ class GameApp {
       if (this._sameNumberCells && this._sameNumberCells.length > 0 &&
           !(window.CM && window.CM.hintPlaying)) {
         renderState.highlights.sameNumberCells = this._sameNumberCells;
+        // Q#2：把匹配数字带给渲染层，用于给对应笔记数字醒目标注
+        if (this._sameNumberNum != null) renderState.highlights.sameNumberNum = this._sameNumberNum;
       }
       // V4.3.32：拖拽多选高亮（board.selectedCells > 1 时显示多选框；无焦点时仅第一格）
       try {
@@ -2265,6 +2577,27 @@ class GameApp {
       return this._levelData;
     } catch (e) {
       return null;
+    }
+  }
+
+  /**
+   * 当前关卡参与的异形玩法组（按玩法成就判定用）
+   * @returns {string[]} 如 ['traitor','clue','cipher','evac']
+   */
+  getGameplayModes() {
+    try {
+      const ld = this._levelData || {};
+      const modes = [];
+      if (ld.puzzleType === 'traitor_hunt_6x6') modes.push('traitor');
+      if (Array.isArray(ld.bells) && ld.bells.length) modes.push('clue');
+      if (ld.cipher) modes.push('cipher');
+      if (ld.evacuation) modes.push('evac');
+      if (ld.ambience && ld.ambience.countdown) modes.push('bomb');
+      if (ld.extract) modes.push('extract');
+      if (ld.silentMode) modes.push('silent');
+      return modes;
+    } catch (e) {
+      return [];
     }
   }
 

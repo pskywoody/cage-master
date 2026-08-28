@@ -12,3 +12,5 @@ __pycache__/
 reports/
 assets/archive/
 _tmp_inline_check.js
+/release/
+.release-*/

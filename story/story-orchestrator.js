@@ -108,6 +108,28 @@ class StoryOrchestrator {
     return dialog && dialog.length > 0 ? dialog : null;
   }
 
+  /**
+   * 进关前预热该关剧情会用到的背景图（本章默认图 + preDialog 各行 bg/cg），
+   * 并行下载到 storyEngine 缓存，缩短首次进关前的加载等待。
+   * 不 await（fire-and-forget），进入 let enterLevelFromStart 内部剧情时即可命中缓存。
+   */
+  preloadLevelStoryBackgrounds(levelId, chapterId) {
+    try {
+      const st = this.storyEngine;
+      if (!st || typeof st.preloadBackgrounds !== 'function') return;
+      const urls = [];
+      if (chapterId != null && CHAPTER_DEFAULT_BG[chapterId]) urls.push(CHAPTER_DEFAULT_BG[chapterId]);
+      const pd = this._getScriptPreDialog(levelId);
+      if (pd) {
+        pd.forEach((d) => {
+          if (d && d.bg) urls.push(d.bg);
+          if (d && d.cg) urls.push(d.cg);
+        });
+      }
+      if (urls.length) st.preloadBackgrounds(urls);
+    } catch (e) { /* 预热失败不影响进关 */ }
+  }
+
   _getScriptClearDialog(levelId) {
     if (!this.ScriptData || !this.ScriptData.isLoaded()) return null;
     const dialog = this.ScriptData.getClearDialog(levelId);

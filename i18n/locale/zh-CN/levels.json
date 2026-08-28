@@ -514,5 +514,6 @@
   "levels.708.title": "雾",
   "levels.708.difficulty": "大师",
   "levels.709.title": "库房",
-  "levels.709.difficulty": "地狱"
+  "levels.709.difficulty": "地狱",
+  "levels.308.teachingGoal": "假设模式：盘面稀疏铺开、定时逼人。多数格子靠笼组合与 45 法则可推，但右下 #25 双格和 3 的 {1,2} 无从直接确定——用「先假设、再验证」排除错误、确认正确解。"
 }

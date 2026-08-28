@@ -1189,7 +1189,8 @@
         "autoRevealAfter": 3,
         "successText": "正确！继续用星衡法则推进。",
         "successVoiceId": null,
-        "methodText": "当笼子跨越宫界时，先算宫的总和 45，再减去完全落在宫内的笼子和，剩下的就是宫外那格的值（外突）。"
+        "methodText": "当笼子跨越宫界时，先算宫的总和 45，再减去完全落在宫内的笼子和，剩下的就是宫外那格的值（外突）。",
+        "hintText": "轮到你了：三格笼和值是 13，其余格子已填和是 4——减掉已填的和，c4 应该填几？"
       },
       "semiAuto": {
         "enabled": true,

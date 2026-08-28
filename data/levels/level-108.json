@@ -9,6 +9,14 @@
     "label": "⚠ 脚步声在逼近——解错，门不会开",
     "loopSfx": "footstep_hall"
   },
+  "pursuit": {
+    "maxLevel": 3,
+    "riseOnWrong": 1,
+    "riseStallSeconds": 20,
+    "fallStreak": 3,
+    "fallOnGoal": 1,
+    "teachingSafe": true
+  },
   "teachingGoal": "认识「10法则」：4×4每行/列/宫总和都是10！",
   "features": {
     "allowDraft": true,
@@ -211,6 +219,14 @@
       "type": "enter_phase",
       "phase": "finishing",
       "once": true
+    },
+    {
+      "id": "t108_pursuit_hint",
+      "condition": "onLevelStart",
+      "type": "popup_hint",
+      "position": "top",
+      "text": "红色追捕关——填错或停滞会让追兵逼近，连续正确能甩开他们；跟着教学走，门不会堵上。",
+      "once": true
     }
   ],
   "preDialog": [
@@ -358,7 +374,8 @@
         "interactionType": "NUMBER",
         "autoRevealText": "a1、b1、c1 三格笼和为 6，b1 已是 3——剩下两格和为 3，只能是 1 和 2；再看 a 行已有 a2=4、a3=2，所以 a1 只能填 1。",
         "maxAttempts": 3,
-        "hintText": "沈墨的笔尖停在那一行的空位上。用10减去已知数，剩下的就是这一格。",
+        "hintText": "轮到你了：三格笼和值是 6，已填格和是 3，a1 要与剩下的空格凑出 3。再看行/列/宫能排除哪些候选——剩下来的就是答案，试试看。",
+        "methodText": "记住 4×4 的钥匙：每一行、每一列、每一个宫，数字总和都恰好是 10。某行只剩一个空格时，用 10 减去已填数字的和，剩下的就是答案。",
         "failHint": "沈墨算了一遍……行里已经有的数字加起来超过了10。他在前面的某一步一定填错了。",
         "autoRevealAfter": 3,
         "successText": "整行加起来等于10。沈墨放下笔。他通过了全部三道信任题。",

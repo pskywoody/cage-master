@@ -53,6 +53,21 @@ function validateLevel(filePath) {
     errors.push('gridSize 无效: ' + data.gridSize + '，仅支持 4/6/9');
   }
 
+  // 找内鬼（traitor_hunt_6x6，Meowdoku 规则）：纯逻辑关，跳过数独盘面/解/笼校验，校验 traitor 字段
+  if (data.puzzleType === 'traitor_hunt_6x6') {
+    const t = data.traitor || {};
+    const size = t.size || 6;
+    if (!Number.isInteger(t.hearts) || t.hearts < 1) errors.push('traitor.hearts 必须为正整数');
+    if (!Array.isArray(t.regions) || t.regions.length !== size
+        || !t.regions.every((row) => Array.isArray(row) && row.length === size && row.every((v) => Number.isInteger(v) && v >= 0 && v < 6))) {
+      errors.push('traitor.regions 必须为 6×6 整数矩阵（0-5）');
+    } else {
+      const seen = new Set(t.regions.flat());
+      if (seen.size !== 6) errors.push('traitor.regions 必须包含 6 个区域');
+    }
+    return { levelId: levelId, errors: errors, warnings: warnings };
+  }
+
   // boardData 校验
   if (!data.boardData) {
     errors.push('缺少 boardData 字段');
@@ -100,6 +115,121 @@ function validateLevel(filePath) {
         if (typeof v !== 'number' || v < 1 || v > size) {
           errors.push('solution[' + r + '][' + c + '] 无效: ' + v);
         }
+      }
+    }
+  }
+
+  // 机制字段：plantedErrors（残卷改错）——预填错格必须是非固定格
+  if (data.plantedErrors) {
+    if (!Array.isArray(data.plantedErrors)) {
+      errors.push('plantedErrors 必须是数组');
+    } else {
+      const bd = data.boardData || [];
+      data.plantedErrors.forEach((pos, i) => {
+        if (!Array.isArray(pos) || pos.length !== 2 || !Number.isInteger(pos[0]) || !Number.isInteger(pos[1])
+            || pos[0] < 0 || pos[0] >= data.gridSize || pos[1] < 0 || pos[1] >= data.gridSize) {
+          errors.push('plantedErrors[' + i + '] 坐标无效: ' + JSON.stringify(pos));
+          return;
+        }
+        const [r, c] = pos;
+        if (bd[r] && bd[r][c] !== 0) errors.push('plantedErrors[' + i + '] (' + r + ',' + c + ') 是固定格，无法预填错');
+        if (!data.solution || !data.solution[r] || !data.solution[r][c]) errors.push('plantedErrors[' + i + '] 无对应解');
+      });
+    }
+  }
+
+  // 机制字段：pursuit（追捕逼近条，108 红色追捕玩法化）
+  if (data.pursuit) {
+    const p = data.pursuit;
+    if (!Number.isInteger(p.maxLevel) || p.maxLevel < 1) errors.push('pursuit.maxLevel 必须为正整数');
+    if (p.riseOnWrong !== undefined && (!Number.isFinite(p.riseOnWrong) || p.riseOnWrong <= 0)) errors.push('pursuit.riseOnWrong 必须为正数');
+    if (p.riseStallSeconds !== undefined && (!Number.isFinite(p.riseStallSeconds) || p.riseStallSeconds <= 0)) errors.push('pursuit.riseStallSeconds 必须为正数');
+    if (p.fallStreak !== undefined && (!Number.isInteger(p.fallStreak) || p.fallStreak < 1)) errors.push('pursuit.fallStreak 必须为正整数');
+    if (p.teachingSafe !== undefined && typeof p.teachingSafe !== 'boolean') errors.push('pursuit.teachingSafe 必须为布尔');
+  }
+
+  // 机制字段：bells（黄·潜伏铃铛）
+  if (data.bells) {
+    if (!Array.isArray(data.bells) || data.bells.length !== 3) {
+      errors.push('bells 必须为恰好 3 个铃铛格');
+    } else {
+      const boxes = new Set();
+      data.bells.forEach((pos, i) => {
+        if (!Array.isArray(pos) || pos.length !== 2 || !Number.isInteger(pos[0]) || !Number.isInteger(pos[1])
+            || pos[0] < 0 || pos[0] > 8 || pos[1] < 0 || pos[1] > 8) {
+          errors.push('bells[' + i + '] 坐标无效: ' + JSON.stringify(pos));
+          return;
+        }
+        boxes.add(Math.floor(pos[0] / 3) * 3 + Math.floor(pos[1] / 3));
+      });
+      if (boxes.size !== data.bells.length) errors.push('bells 必须分属不同 3×3 宫格（每宫至多 1 个）');
+    }
+  }
+
+  // 机制字段：cipher（密文映射，504）
+  if (data.cipher) {
+    const c = data.cipher;
+    if (!Array.isArray(c.index) || c.index.length !== 9
+        || !c.index.every((v) => Number.isInteger(v) && v >= 0 && v < 9)
+        || new Set(c.index).size !== 9) {
+      errors.push('cipher.index 必须为 9 个不重复的 0-8 整数（顺序即 1~9 映射）');
+    }
+    if (!Array.isArray(c.cells) || c.cells.length === 0) {
+      errors.push('cipher.cells 不能为空');
+    } else {
+      const bd = data.boardData || [];
+      c.cells.forEach((pos, i) => {
+        if (!Array.isArray(pos) || pos.length !== 2 || !Number.isInteger(pos[0]) || !Number.isInteger(pos[1])
+            || pos[0] < 0 || pos[0] >= data.gridSize || pos[1] < 0 || pos[1] >= data.gridSize) {
+          errors.push('cipher.cells[' + i + '] 坐标无效: ' + JSON.stringify(pos));
+          return;
+        }
+        const [r, cc] = pos;
+        if (!bd[r] || bd[r][cc] === 0) errors.push('cipher.cells[' + i + '] (' + r + ',' + cc + ') 不是给定格');
+      });
+    }
+  }
+
+  // 机制字段：evacuation（分区撤离，507）——3 区、覆盖全盘、不重叠、笼不跨越
+  if (data.evacuation) {
+    const e = data.evacuation;
+    if (typeof e.unlockAt === 'number' && !(e.unlockAt > 0 && e.unlockAt <= 1)) {
+      errors.push('evacuation.unlockAt 必须在 (0,1] 内');
+    }
+    if (!Array.isArray(e.zones) || e.zones.length < 2) {
+      errors.push('evacuation.zones 必须为至少 2 个撤离区');
+    } else {
+      const size = data.gridSize;
+      const seen = new Set();
+      e.zones.forEach((zone, zi) => {
+        if (!Array.isArray(zone) || zone.length === 0) { errors.push('evacuation.zones[' + zi + '] 不能为空'); return; }
+        zone.forEach((pos, i) => {
+          if (!Array.isArray(pos) || pos.length !== 2 || !Number.isInteger(pos[0]) || !Number.isInteger(pos[1])
+              || pos[0] < 0 || pos[0] >= size || pos[1] < 0 || pos[1] >= size) {
+            errors.push('evacuation.zones[' + zi + '][' + i + '] 坐标无效: ' + JSON.stringify(pos));
+            return;
+          }
+          const k = pos[0] + ',' + pos[1];
+          if (seen.has(k)) errors.push('evacuation 格子重复: ' + k);
+          seen.add(k);
+        });
+      });
+      if (seen.size !== size * size) errors.push('evacuation.zones 必须覆盖全盘（当前 ' + seen.size + '/' + (size * size) + '）');
+      // 笼不跨越分区
+      if (data.cages) {
+        const cellZone = {};
+        e.zones.forEach((zone, zi) => zone.forEach(([r, c]) => { cellZone[r + ',' + c] = zi; }));
+        data.cages.forEach((cage, ci) => {
+          const cells = cage.cells || [];
+          if (!cells.length) return;
+          const z = cellZone[cells[0][0] + ',' + cells[0][1]];
+          for (const [r, c] of cells) {
+            if (cellZone[r + ',' + c] !== z) {
+              errors.push('evacuation 笼 ' + ci + ' 跨越了分区（笼不可跨区）');
+              break;
+            }
+          }
+        });
       }
     }
   }

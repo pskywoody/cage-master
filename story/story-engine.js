@@ -27,15 +27,15 @@
 
   // Typewriter speed presets (ms per character)
   const TYPING_SPEEDS = {
-    // 2026-08-03：语音暂缓后打字机独立承担语速表达，按中文朗读语速（约 4-6 字/秒）校准
-    // 手感审计：用户反馈"打字机好快/像密集阵/比生化危机快几倍"→ 追平生化危机存档打字机节奏
-    // 生化危机约 0.8-1s/字，normal 1000ms/字 = 1字/秒 为基准档
-    serene: 1300,    // 低沉缓慢 ~0.77 字/秒
-    normal: 1000,    // 正常语速 ~1 字/秒（生化危机基准）
-    fast: 500,       // 快语速 ~2 字/秒
+    // 2026-08-19：用户反馈教学/剧情文字显示过慢 → 整体提速约 15-20×。
+    // 旧档 500-1500ms/字（1-2 字/秒）过慢；新档按中文快读节奏（约 11-35 字/秒）校准，
+    // 既明显更快又不至于看不清（保留极小随机抖动手感）。
+    serene: 75,      // 低沉缓慢 ~13 字/秒
+    normal: 48,      // 正常语速 ~21 字/秒
+    fast: 28,        // 快语速 ~36 字/秒
     instant: 0,
-    heavy: 1500,     // 沉重缓慢 ~0.67 字/秒
-    thinking: 1100,  // 思考中 ~0.9 字/秒
+    heavy: 90,       // 沉重缓慢 ~11 字/秒
+    thinking: 62,    // 思考中 ~16 字/秒
   };
 
   // Emotion -> typing speed
@@ -45,8 +45,14 @@
       surprised: 'fast', energetic: 'fast', default: 'normal',
       smile: 'normal', think: 'thinking',
     };
-    const key = EMOTION_ZH_MAP ? (EMOTION_ZH_MAP[emotion] || emotion || 'normal') : (emotion || 'normal');
-    return TYPING_SPEEDS[key] || 'normal';
+    // 第一步：中文 emotion 词 → 中间情感词（serene/normal/fast/thinking...）
+    let key = EMOTION_ZH_MAP ? (EMOTION_ZH_MAP[emotion] || emotion || 'normal') : (emotion || 'normal');
+    // 第二步：中间情感词 → 速度档（修复旧版 map 定义却未生效，导致 'serious' 等
+    // 退化成字符串 'normal'，_typewrite 内 'normal'+数字 = NaN → setTimeout(NaN)=0 变瞬时）
+    key = map[key] || key;
+    const sp = TYPING_SPEEDS[key];
+    // 兜底务必返回数字（TYPING_SPEEDS.normal 而非字符串），否则 _typewrite 会算成 NaN
+    return (typeof sp === 'number') ? sp : TYPING_SPEEDS.normal;
   }
 
   // 中文 emotion → 英文 key 归一化（自动生成，覆盖 scripts.json 全部情感词）
@@ -567,6 +573,9 @@
       this._narratorHideTimer = null;
       this._skipBtnHideTimer = null;
       this._portraitTransitioning = false;
+      // 立绘隐藏纪元：每次 _hidePortrait 递增；预加载回调用它在显示前判断期间是否发生过隐藏，
+      // 防止"预加载异步窗口内场景结束→隐藏 display:none→then 又把 display 设回 block"的立绘残留
+      this._portraitEpoch = 0;
       this._itemVisible = false;
       this._itemTimer = null;
 
@@ -712,6 +721,22 @@
     }
 
     /**
+     * 批量预加载剧情背景图（供「继续/新游戏」点击进关前预热，缩短首次进关等待）。
+     * @param {string|string[]} bgValues - 背景名（短名将被拼上 BG_DIR）或完整 URL
+     */
+    async preloadBackgrounds(bgValues) {
+      const list = Array.isArray(bgValues) ? bgValues : [bgValues];
+      for (const bg of list) {
+        if (!bg || typeof bg !== 'string') continue;
+        let url = bg;
+        if (!bg.startsWith('http') && !bg.startsWith('url(') && !bg.startsWith('assets/') && !bg.startsWith('data:') && !bg.startsWith('/')) {
+          url = BG_DIR + bg;
+        }
+        try { await this._preloadImage(url); } catch (e) { /* 单张失败不阻塞 */ }
+      }
+    }
+
+    /**
      * Preload all portrait expressions for a character.
      * Called at the start of sayLines when we know who will be speaking.
      * @param {string} charId - Character ID
@@ -741,7 +766,12 @@
     // === Core API ===
     // ============================================================
 
-    sayLines(lines, callback) {
+    async sayLines(lines, callback) {
+      // 场景默认背景仍在加载（编排器在 sayLines 前调用 _changeBg，未 await）→
+      // 先等背景就绪再播对话，避免首句气泡盖在黑底上
+      if (this._bgReady) {
+        try { await this._bgReady; } catch (eBg) {}
+      }
       if (!lines || lines.length === 0) {
         if (callback) callback();
         return;
@@ -785,11 +815,24 @@
       // Show skip button
       this._showSkipButton();
 
+      // 预热本批全部背景图（含首行）：让第一句气泡不必等背景逐张下载
+      try {
+        validLines.forEach(line => {
+          if (line.bg && line.bg !== this._currentBg) {
+            let pu = line.bg;
+            if (!pu.startsWith('http') && !pu.startsWith('url(') && !pu.startsWith('assets/') && !pu.startsWith('data:') && !pu.startsWith('/')) pu = BG_DIR + pu;
+            this._preloadImage(pu);
+          }
+        });
+      } catch (e) {}
+
       this._playNext();
     }
 
     nextDialogue() {
       if (!this._isPlaying) return;
+      // 背景切换中：气泡尚未渲染，点击不应跳到下一句
+      if (this._awaitingBg) return;
 
       // If CG is visible, hide it first and don't advance dialogue
       if (this._cgVisible) {
@@ -824,6 +867,9 @@
 
     interrupt() {
       this._clearAllTimers();
+      // 解除可能仍在进行的背景等待，避免 _playNext 的 await 永久挂起
+      this._awaitingBg = false;
+      if (this._bgResolve) { try { this._bgResolve(); } catch (e) {} this._bgResolve = null; }
       this._stopTypewriter();
       // Stop any playing voice
       if (this._voicePlaying && typeof AudioService !== 'undefined') {
@@ -1077,7 +1123,17 @@
     // === Internal Playback ===
     // ============================================================
 
-    _playNext() {
+    // 场景就绪通知：scene 首个气泡/旁白渲染时调用，立即移除关卡加载遮罩，
+    // 避免 loading 的"最短可见"延迟导致转圈残留并与已显示的剧情对话叠在一起
+    _notifySceneReady() {
+      try {
+        if (typeof window !== 'undefined' && typeof window.hideLoading === 'function') {
+          window.hideLoading(true);
+        }
+      } catch (e) {}
+    }
+
+    async _playNext() {
       try {
       this._stopTypewriter();
       // Reset sync state for new line
@@ -1101,9 +1157,12 @@
       // Add to dialogue history
       this._addToHistory(line);
 
-      // Handle background change
+      // Handle background change：先等背景加载并淡入应用完成，再显示气泡，
+      // 否则气泡会比背景先出，开局只见黑底对话（背景缺失）
       if (line.bg) {
-        this._changeBg(line.bg);
+        this._awaitingBg = true;
+        try { await this._changeBg(line.bg); } catch (eBg) { console.warn('[StoryEngine] 背景应用失败:', eBg); }
+        this._awaitingBg = false;
       }
 
       // Handle title card
@@ -1150,6 +1209,9 @@
 
     _endScene() {
       this._clearAllTimers();
+      // 强制解除可能仍在进行的背景等待，避免场景结束后面 _playNext 的 await 永久挂起
+      this._awaitingBg = false;
+      if (this._bgResolve) { try { this._bgResolve(); } catch (e) {} this._bgResolve = null; }
       this._stopTypewriter();
       // Stop any playing voice
       if (this._voicePlaying && typeof AudioService !== 'undefined') {
@@ -1196,11 +1258,18 @@
       // 沈墨 left（翻转），其余角色 right（不翻转）。数据层（scripts.json）
       // 若带 side 会被此规则纠正，避免角色出现在错误一侧。
       const forcedSide = (charId && CHAR_SIDE[charId]) ? CHAR_SIDE[charId] : (line.side || 'right');
+      // 16:9 宽屏布局：立绘统一放左栏（用户偏好）。flipX 由 side 驱动自动镜像面向中心，
+      // 故仅切 side 即可同时完成「左移 + 朝向修正」，不动图片资源。
+      let finalSide = forcedSide;
+      if (typeof window !== 'undefined' && window.matchMedia
+          && window.matchMedia('(min-aspect-ratio: 16/9) and (min-width: 900px)').matches) {
+        finalSide = 'left';
+      }
       return {
         speaker, charId,
         text: line.text || '',
         emotion: line.emotion || 'default',
-        side: forcedSide,
+        side: finalSide,
         effect: line.effect || 0,
         bg: line.bg || null,
         cg: line.cg || null,
@@ -1330,6 +1399,9 @@
           this._typewriterFinished = true;
         });
       }
+
+      // 气泡就绪：背景+旁白文本已可见，解除加载遮罩（game.html 提供 hideLoading）
+      this._notifySceneReady();
     }
 
     _showDialogue(line) {
@@ -1436,6 +1508,9 @@
           this._typewriterFinished = true;
         });
       }
+
+      // 气泡就绪：背景+对话已可见，解除加载遮罩（game.html 提供 hideLoading）
+      this._notifySceneReady();
     }
 
     /**
@@ -1517,19 +1592,16 @@
     /**
      * Change background with fade transition.
      * Supports multiple path formats: relative paths, data URIs, full URLs.
+     * Returns a Promise that resolves once the background is applied（对话气泡等待它）。
      * @param {string} bgValue - Background image path or URL
      */
     _changeBg(bgValue) {
-      if (bgValue === this._currentBg) return;
+      if (bgValue === this._currentBg) return Promise.resolve();
       this._currentBg = bgValue;
       const body = document.body;
       const app = document.getElementById('app');
       let url = bgValue;
 
-      // Support various bg formats:
-      // - Already a URL (http/https/data:): use as-is
-      // - Already starts with assets/ or url(: use as-is
-      // - Plain filename: prepend BG_DIR
       if (!bgValue.startsWith('http') &&
           !bgValue.startsWith('url(') &&
           !bgValue.startsWith('assets/') &&
@@ -1539,10 +1611,13 @@
       }
       const cssUrl = `url('${url}')`;
 
-      // Preload background image before transition
-      this._preloadImage(url).then(() => {
-        // Fade transition: briefly darken, swap bg, fade back
-        const fadeDuration = 400;
+      // Preload background image before transition; resolve once applied.
+      // resolve 保存在 this._bgResolve，场景结束时由 _endScene 强制触发，避免切换场景永久 await。
+      const p = this._preloadImage(url).then(() => new Promise((resolve) => {
+        this._bgResolve = resolve;
+        // 背景图标一旦应用即 resolve（loading 不必等淡入动画走完全程）；
+        // 过渡改为更短的 200ms，降低"点继续→进剧情"的加载等待
+        const fadeDuration = 200;
         if (body) {
           body.style.transition = `filter ${fadeDuration}ms ease`;
           body.style.filter = 'brightness(0)';
@@ -1553,21 +1628,16 @@
             // Force reflow
             void body.offsetWidth;
             body.style.filter = 'brightness(1)';
-            // Clean up transition after animation
-            this._setTimeout(() => {
-              body.style.transition = '';
-              body.style.filter = '';
-            }, fadeDuration);
+            if (this._fadeTimer) this._clearTimeout(this._fadeTimer);
+            this._setTimeout(() => { body.style.transition = ''; body.style.filter = ''; }, fadeDuration);
+            resolve();
           }, fadeDuration);
+        } else {
+          resolve();
         }
-
-        // 2026-08-03 修复：背景只绘制到 body（全屏唯一背景源）
-        // 移除对 #app 的重复绘制，避免 640px 容器与 body 双背景叠加错位
-        if (app) {
-          app.style.backgroundImage = 'none';
-          app.style.backgroundColor = 'transparent';
-        }
-      });
+      }));
+      this._bgReady = p;
+      return p;
     }
 
     _getPortraitFile(charId, emotion) {
@@ -1620,9 +1690,13 @@
       const portraitUrl = `${PORTRAIT_DIR}${portraitFile}.png`;
       const newBg = `url('${portraitUrl}')`;
 
+      // 记录发起显示时的纪元：预加载/淡入窗口内若发生隐藏（场景结束）则放弃本次显示
+      const epoch = this._portraitEpoch;
+      const epochGuard = () => { return this._portraitEl && this._portraitEpoch === epoch; };
+
       // Preload the new image first
       this._preloadImage(portraitUrl).then((img) => {
-        if (!this._portraitEl) return;
+        if (!epochGuard()) return;
 
         // If a newer portrait was requested during preload, use that instead
         if (this._pendingPortrait) {
@@ -1651,7 +1725,7 @@
           this._portraitEl.style.opacity = '0';
 
           this._setTimeout(() => {
-            if (!this._portraitEl) return;
+            if (!epochGuard()) return;
             if (img) {
               this._portraitEl.style.backgroundImage = newBg;
             }
@@ -1674,15 +1748,16 @@
 
             // Clear transition state after animation
             this._setTimeout(() => {
-              this._portraitTransitioning = false;
-              this._portraitEl.style.animation = '';
-              // Check if there's a pending change
-              if (this._pendingPortrait) {
-                const pending = this._pendingPortrait;
-                this._pendingPortrait = null;
-                this._showPortraitWithFade(pending.file, pending.side, pending.effect);
-              }
-            }, 300);
+                if (!epochGuard()) return;
+                this._portraitTransitioning = false;
+                this._portraitEl.style.animation = '';
+                // Check if there's a pending change
+                if (this._pendingPortrait) {
+                  const pending = this._pendingPortrait;
+                  this._pendingPortrait = null;
+                  this._showPortraitWithFade(pending.file, pending.side, pending.effect);
+                }
+              }, 300);
           }, 250);
         } else {
           // Fresh display: set image then fade in
@@ -1709,6 +1784,7 @@
           this._portraitEl.style.opacity = '1';
 
           this._setTimeout(() => {
+            if (!epochGuard()) return;
             this._portraitTransitioning = false;
             this._portraitEl.style.animation = '';
             // Check if there's a pending change
@@ -1724,6 +1800,8 @@
 
     _hidePortrait() {
       if (!this._portraitEl) return;
+      // 递增隐藏纪元：任何在途预加载回调看到纪元变化都应放弃重新显示
+      this._portraitEpoch++;
 
       // PC 布局适配：确保立绘在正确的父容器中
       this._adjustPortraitForLayout();
@@ -1819,16 +1897,20 @@
       const pad = document.getElementById('pad');
       const statusLine = document.getElementById('statusLine');
       const toolRoll = document.getElementById('toolRoll');
-      if (boardContainer && pad && statusLine) {
+      if (boardContainer && statusLine) {
+        // 2026-08-19 修正（用户截图反馈：剧情模式中键盘+工具栏露出且拉长）：
+        // sayLines 仅用于序章/前置对话/后置对话等全屏剧情场景；
+        // 教学引导走 LessonPlayer 自己的 _bubbleEl（独立 DOM，不经过这里），
+        // 故恢复隐藏 #pad / #toolRoll 不影响教学可用性，且能避免剧情时露出拉长的工具栏。
         this._boardHiddenElements = {
           'board-container': boardContainer.style.display,
-          'pad': pad.style.display,
           'statusLine': statusLine.style.display,
+          'pad': pad ? pad.style.display : '',
           'toolRoll': toolRoll ? toolRoll.style.display : '',
         };
         boardContainer.style.display = 'none';
-        pad.style.display = 'none';
         statusLine.style.display = 'none';
+        if (pad) pad.style.display = 'none';
         if (toolRoll) toolRoll.style.display = 'none';
         return;
       }
@@ -1982,7 +2064,7 @@
       panel.id = 'story-history-panel';
       // P2：对话记录面板 = 夹页纸（去毛玻璃/深蓝灰）
       panel.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;' +
-        'background:rgba(20,14,8,0.8);z-index:20000;' +
+        'background:rgba(20,14,8,0.8);z-index:100013;' +
         'display:none;flex-direction:column;align-items:center;justify-content:center;' +
         'opacity:0;transition:opacity 0.2s ease;';
 
@@ -2231,7 +2313,7 @@
         el = document.createElement('div');
         el.id = 'long-press-progress';
         el.style.cssText = 'position:fixed;width:80px;height:80px;' +
-          'border-radius:50%;pointer-events:none;z-index:10003;' +
+          'border-radius:50%;pointer-events:none;z-index:100015;' +
           'display:none;transform:translate(-50%,-50%);';
         el.innerHTML =
           '<svg width="80" height="80" viewBox="0 0 80 80">' +
@@ -2278,7 +2360,7 @@
       overlay.id = 'skip-confirmation';
       // P2：遮罩去毛玻璃，改暖褐夜视
       overlay.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;' +
-        'background:rgba(20,14,8,0.75);z-index:25000;' +
+        'background:rgba(20,14,8,0.75);z-index:100016;' +
         'display:flex;align-items:center;justify-content:center;';
 
       const dialog = document.createElement('div');
@@ -2460,7 +2542,7 @@
         this._portraitEl.style.left = '';
         this._portraitEl.style.right = '5px';
         // z-index 适当降低（在棋盘容器内）
-        this._portraitEl.style.zIndex = '999';
+        this._portraitEl.style.zIndex = '100009';
       } else if (!isPc && currentParent && currentParent !== document.body) {
         // 切换回移动端：移回 body，恢复 fixed 定位
         document.body.appendChild(this._portraitEl);
@@ -2473,7 +2555,7 @@
         this._portraitEl.style.left = '';
         this._portraitEl.style.right = '';
         // v2.0：z-index 9990 低于气泡（10000），气泡文字不被立绘遮挡
-        this._portraitEl.style.zIndex = '9990';
+        this._portraitEl.style.zIndex = '100009';
       }
     }
 
@@ -2504,7 +2586,7 @@
         this._bubbleEl.style.lineHeight = '1.6';
         this._bubbleEl.style.minHeight = '50px';
         // z-index 适当降低
-        this._bubbleEl.style.zIndex = '1000';
+        this._bubbleEl.style.zIndex = '100010';
       } else if (!isPc && currentParent && currentParent !== document.body) {
         // 切换回移动端：移回 body，恢复 fixed 定位
         document.body.appendChild(this._bubbleEl);
@@ -2518,7 +2600,7 @@
         this._bubbleEl.style.fontSize = '17px';
         this._bubbleEl.style.lineHeight = '1.7';
         this._bubbleEl.style.minHeight = '60px';
-        this._bubbleEl.style.zIndex = '10000';
+        this._bubbleEl.style.zIndex = '100010';
       }
     }
 
@@ -2544,7 +2626,7 @@
         'background-position:bottom right;' +
         // v2.0：立绘 z-index 9990 低于对话气泡（10000）——气泡文字永远清晰可读，
         // 立绘身体与气泡重叠部分被气泡盖住（"立绘在后、气泡在前"）
-        'z-index:9990;' +
+        'z-index:100009;' +
         'display:none;' +
         'transition:opacity 0.3s;' +
         '--flip-x:1;' +
@@ -2571,7 +2653,7 @@
         'border-radius:8px;' +
         'padding:16px 20px;' +
         'padding-bottom:calc(16px + env(safe-area-inset-bottom) * 0.3);' +
-        'z-index:10000;' +
+        'z-index:100010;' +
         'display:none;' +
         'color:#3d2f22;font-size:17px;line-height:1.7;' +
         'font-family:\'KaiTi\',\'楷体\',\'STKaiti\',\'PingFang SC\',serif;' +
@@ -2605,7 +2687,7 @@
         'text-align:center;color:#4a3520;' +
         'font-size:18px;font-style:italic;' +
         'font-family:\'Caveat\',\'KaiTi\',\'楷体\',cursive;' +
-        'z-index:10000;display:none;' +
+        'z-index:100010;display:none;' +
         'line-height:1.8;min-height:40px;' +
         'padding:16px 26px 16px 30px;' +
         'background-color:rgba(245,240,224,0.92);' +
@@ -2629,7 +2711,7 @@
       this._titleCardEl.id = 'story-title-card';
       this._titleCardEl.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;display:none;flex-direction:column;align-items:center;justify-content:center;' +
         // P2：标题卡 = 深色封页（布纹感暖褐，去深蓝灰）
-        'background:radial-gradient(ellipse at center, rgba(61,42,26,0.97) 0%, rgba(24,16,9,0.99) 100%);z-index:10001;pointer-events:none;opacity:1;transition:opacity 0.5s;';
+        'background:radial-gradient(ellipse at center, rgba(61,42,26,0.97) 0%, rgba(24,16,9,0.99) 100%);z-index:100012;pointer-events:none;opacity:1;transition:opacity 0.5s;';
       this._titleCardEl.innerHTML = '<div id="tc-title" style="font-size:48px;font-weight:700;color:#d4a853;text-shadow:0 2px 12px rgba(0,0,0,0.5),0 0 30px rgba(212,168,83,0.15);font-family:\'ZCOOL XiaoWei\',\'KaiTi\',\'楷体\',serif;letter-spacing:12px;"></div><div id="tc-subtitle" style="font-size:18px;color:#a09070;margin-top:16px;letter-spacing:4px;opacity:0.7;font-family:\'KaiTi\',\'楷体\',serif;"></div>';
       document.body.appendChild(this._titleCardEl);
     }
@@ -2647,7 +2729,7 @@
         'background-size:contain;' +
         'background-repeat:no-repeat;' +
         'background-position:center;' +
-        'z-index:10001;display:none;' +
+        'z-index:100012;display:none;' +
         'filter:drop-shadow(0 0 40px rgba(255,215,0,0.3));' +
         'cursor:pointer;' +
         'transition:opacity 0.3s, transform 0.3s;';
@@ -2669,7 +2751,7 @@
       this._cgEl.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;' +
         'background-size:contain;background-repeat:no-repeat;background-position:center;' +
         'background-color:rgba(0,0,0,0.9);' +
-        'z-index:10000;display:none;cursor:pointer;' +
+        'z-index:100011;display:none;cursor:pointer;' +
         'transition:opacity 0.3s;';
       // 点击 CG 关闭并继续对话
       this._cgEl.addEventListener('click', (e) => {
@@ -2718,7 +2800,7 @@
       if (this._chibiEl) return;
       this._chibiEl = document.createElement('div');
       this._chibiEl.id = 'story-chibi';
-      this._chibiEl.style.cssText = 'position:fixed;z-index:8620;display:none;' +
+      this._chibiEl.style.cssText = 'position:fixed;z-index:100008;display:none;' +
         'background-size:contain;background-repeat:no-repeat;background-position:center bottom;' +
         'pointer-events:none;transition:opacity 0.25s;' +
         // v2.0：无底板（原半透明圆形底框用户反馈"黑色圆形框框住"不想要），

@@ -395,6 +395,109 @@ export class AIPlayerCore {
     // V4.3.35：AI 专属笔记管理（不依赖 board.candidates，避免污染棋盘）
     this._aiNotes = new Map(); // 'r,c' -> Set<number> AI 自己的笔记
     this._initRater();
+
+    // CM4-R8：DifficultyProfile → AI 执行层的人类化失误模型。
+    // 只改"执行/观察"层，不改 Director / StrategySelector / Solver 算法本身。
+    //   maxTech        搜索/解析深度上限（candidateDepth）
+    //   mistakeRate    人类化失误率（baseErrorRate 目标）
+    //   perceptionNoise 认知偏差：偶尔误判哪个据点更危险
+    //   fixationRate   贪心固化：少一回合才切换进攻路线
+    //   reactionDelay  响应延迟：玩家换路后 AI 观察 N 步才调整
+    this._human = null;
+    this._observedKey = null;   // 反应延迟：最近一次观察键
+    this._switchLagLeft = 0;    // 反应延迟剩余步数
+    this._prevFixate = null;    // 贪心固化：上一策略快照
+  }
+
+  /**
+   * CM4-R8：运行时注入难度档的人类化失误模型（由 TplBattleController 在合成 AI 后调用）。
+   * 不改人格/Solver，仅叠加"人类直觉偏差"层。
+   * @param {Object|null} profile - { maxTech, mistakeRate, perceptionNoise, fixationRate, reactionDelay }
+   */
+  setDifficultyProfile(profile) {
+    if (!profile || profile.mistakeRate == null) { this._human = null; return; }
+    this._human = {
+      maxTech: profile.maxTech != null ? profile.maxTech : 8,
+      mistakeRate: profile.mistakeRate != null ? profile.mistakeRate : 0,
+      perceptionNoise: profile.perceptionNoise != null ? profile.perceptionNoise : 0,
+      fixationRate: profile.fixationRate != null ? profile.fixationRate : 0,
+      reactionDelay: profile.reactionDelay != null ? profile.reactionDelay : 0,
+    };
+    // 同步到人格：maxTech 深度 + baseErrorRate（人类化失误率）
+    if (this._personality) {
+      this._personality = Object.assign({}, this._personality);
+      const curTech = this._personality.maxTechLevel;
+      this._personality.maxTechLevel = Math.max(0, Math.min((curTech != null ? curTech : 8), this._human.maxTech));
+      this._personality.baseErrorRate = Math.min(0.5, this._human.mistakeRate);
+    }
+    // 切换难度后重置状态机缓存
+    this._observedKey = null;
+    this._switchLagLeft = 0;
+    this._prevFixate = null;
+  }
+
+  /**
+   * CM4-R8：认知偏差——把观察器判定的"最危险据点"换成另一个"看起来也可疑"的据点。
+   * 不是随机乱下：换的是 AI 主观判断有危胁的据点，让它"慢半拍守错路"而非送分。
+   */
+  _applyPerceptionNoise(a) {
+    if (!this._human || !a || a.targetHub < 0 || this._human.perceptionNoise <= 0) return a;
+    if (Math.random() >= this._human.perceptionNoise) return a;
+    const hubs = (this._gameState && this._gameState.hubBlocks) || [];
+    if (hubs.length < 2) return a;
+    let alt = a.targetHub;
+    for (let i = 0; i < 6; i++) {
+      const cand = hubs[Math.floor(Math.random() * hubs.length)];
+      if (cand !== a.targetHub) { alt = cand; break; }
+    }
+    if (alt === a.targetHub) return a;
+    const out = Object.assign({}, a);
+    out.targetHub = alt;
+    out._misjudged = true; // 供对白层反馈
+    return out;
+  }
+
+  /**
+   * CM4-R8：反应延迟——玩家换了打法后，AI "再观察 N 步"才把观察器结论落到临时权重。
+   * 让玩家感觉"我骗到了它"，而不是"它每次都知道"。
+   */
+  _applyReactionGate(prevTemp) {
+    const h = this._human;
+    const lag = h ? (h.reactionDelay || 0) : 0;
+    if (lag <= 0) return;
+    const a = this._opponentAnalysis || {};
+    const key = (a.targetHub != null ? a.targetHub : -1) + '|' + (a.strategy || '') + '|' + (a.aggression > 0.4 ? 1 : 0);
+    if (key !== this._observedKey) { this._observedKey = key; this._switchLagLeft = lag; }
+    if (this._switchLagLeft > 0) {
+      this._switchLagLeft--;
+      // 滞后期：沿用上一帧生效的观察权重（慢半拍反应）
+      if (prevTemp) {
+        this._tempHubPenalty = prevTemp.hubPenalty;
+        this._tempSpeedScale = prevTemp.speedScale;
+        this._tempDefenseWeight = prevTemp.defenseWeight;
+        this._tempHubWeight = prevTemp.hubWeight;
+        this._tempFakeBoost = prevTemp.fakeBoost;
+      }
+    }
+  }
+
+  /**
+   * CM4-R8：贪心固化——AI 偶尔"贪着眼前的肉"，晚一个决策周期才切换进攻路线。
+   * 守卫：涉及反击（counter）时永不固化（人类也会优先救自己已占的据点）。
+   */
+  _applyFixation() {
+    const h = this._human;
+    if (!h || !(h.fixationRate > 0)) return;
+    const cur = this._currentStrategy;
+    if (cur === 'counter') return;
+    const prev = this._prevFixate;
+    if (!prev) { this._prevFixate = { s: cur, h: this._targetHubIdx }; return; }
+    if (prev.s !== 'counter' && cur !== prev.s && Math.random() < h.fixationRate) {
+      // 固守旧路线（旧据点），相当于"没注意到该换位"
+      this._currentStrategy = prev.s;
+      this._targetHubIdx = prev.h;
+    }
+    this._prevFixate = { s: this._currentStrategy, h: this._targetHubIdx };
   }
 
   /**
@@ -658,7 +761,8 @@ export class AIPlayerCore {
       }
       this._targetHubIdx = target >= 0 ? target : (myOwnedHubs[0] != null ? myOwnedHubs[0] : 0);
       this._currentStrategy = 'defend';
-      return 'defend';
+      this._applyFixation();
+      return this._currentStrategy;
     }
 
     // 4. 默认：进攻——选最薄弱据点（AI 计数低 + 对手防守弱）
@@ -677,7 +781,8 @@ export class AIPlayerCore {
     }
     this._targetHubIdx = worstIdx;
     this._currentStrategy = 'attack';
-    return 'attack';
+    this._applyFixation();
+    return this._currentStrategy;
   }
 
   /**
@@ -997,20 +1102,10 @@ export class AIPlayerCore {
     this._noteWritten++;
     this._lastNoteStep = this._moveCount;
 
-    // v2.0：AI 笔记写回棋盘 candidates（玩家可见）——真笔记写候选数，假笔记写不可能数
-    // C4（CM4-A2）：改为合并而非整体覆盖，保留玩家手记候选，避免 AI 笔记抹掉玩家已写笔记
-    try {
-      const cell = this._board.cells?.[r]?.[c];
-      if (cell && !cell.fixedNum && !cell.fillNum && !cell.isAiFilled) {
-        const existing = cell.candidates instanceof Set
-          ? Array.from(cell.candidates)
-          : (Array.isArray(cell.candidates) ? cell.candidates.slice() : []);
-        const merged = Array.from(new Set([...existing, ...nums]));
-        cell.candidates = new Set(merged);
-        // 标记：该格存在 AI 笔记（渲染层可用不同颜色/风格区分）
-        cell._aiNote = true;
-      }
-    } catch (e) { /* 笔记落盘失败不影响主流程 */ }
+    // V4.4：AI 笔记仅存内部 _aiNotes（供 AI 自身推理/计分用），
+    // 决不写回玩家可见的 cell.candidates——对战对手看不见笔记内容，假笔记更不能暴露。
+    // （此前把 AI 笔记合并进候选区，导致玩家在己方已填格旁突然看到"蓝色数字"冒出，
+    //   且假笔记把不可能数漏给玩家。已移除。）
 
     return { r, c, nums, isFake };
   }
@@ -1204,6 +1299,42 @@ export class AIPlayerCore {
   }
 
   // ---- 思考 ----
+  /**
+   * V4.4：最后的合法蒙格——技巧解析无可解格/全部被占时兜底，保证 AI 不哑火也不霸版。
+   * 任选一个空格，按人格失误率决定填"可能数"还是"不可能数"（冲突数，给玩家看破回抢机会）。
+   * @returns {object|null} step（与 think() 返回值同构）
+   */
+  _lastResortLegalGuess() {
+    try {
+      const empties = [];
+      for (let r = 0; r < this._size; r++) {
+        for (let c = 0; c < this._size; c++) {
+          const cell = this._board.cells[r]?.[c];
+          if (cell && !cell.fixedNum && !cell.fillNum) empties.push([r, c]);
+        }
+      }
+      if (!empties.length) return null;
+      const pick = empties[Math.floor(Math.random() * empties.length)];
+      const rr = pick[0], cc = pick[1];
+      const errRate = (typeof this._calcDynamicErrorRate === 'function') ? this._calcDynamicErrorRate() : 0.12;
+      const isMistake = Math.random() < errRate;
+      let num = 0;
+      for (let d = 1; d <= 9; d++) {
+        const impossible = this._isImpossibleNote(rr, cc, d);
+        if ((isMistake && impossible) || (!isMistake && !impossible)) { num = d; break; }
+      }
+      if (!num) num = 1 + Math.floor(Math.random() * 9);
+      return {
+        row: rr, col: cc, num: num,
+        technique: 'guess',
+        techniqueName: '蒙',
+        techLevel: 0,
+        thinkTime: (typeof this._calcThinkTime === 'function') ? this._calcThinkTime(0) : 400,
+        isMistake: isMistake,
+      };
+    } catch (e) { return null; }
+  }
+
   think() {
     this._initRater();
     if (!this._rater) return null;
@@ -1252,7 +1383,8 @@ export class AIPlayerCore {
     const direction = this._personality.techDirection || 'lowest';
     const allResultsByLevel = this._findAllVisibleResults(direction);
     if (allResultsByLevel.length === 0) {
-      return null;
+      // V4.4：无可见技巧解——不再返回 null（防 AI 哑火/控制器必对霸版），蒙一个合法格
+      return this._lastResortLegalGuess();
     }
     // V4.3.30（双 AI 对战修复）：逐级回退选择——从目标方向第一级开始，
     // 过滤掉已实填格（AI 幽灵格 fillNum=null 可抢），该级全被占则回退下一级
@@ -1275,7 +1407,10 @@ export class AIPlayerCore {
         break;
       }
     }
-    if (!chosen) return null;
+    if (!chosen) {
+      // V4.4：可见级全部被占——蒙一个合法格（防 think 返回 null 卡死 AI）
+      return this._lastResortLegalGuess();
+    }
 
     // V4.3.30：hotspot/笔记心理战只在"可用格"（未被实填）中挑选，避免选中已被对方占据的格
     const usableResults = allResultsByLevel.filter((r) => {
@@ -1363,6 +1498,14 @@ export class AIPlayerCore {
    *   average/其他  温和避让（0.8）
    */
   _applyObserverAnalysis() {
+    // CM4-R8：反应延迟——先快照上一帧生效值（供滞后期沿用）
+    const prevTemp = {
+      hubPenalty: this._tempHubPenalty,
+      speedScale: this._tempSpeedScale,
+      defenseWeight: this._tempDefenseWeight,
+      hubWeight: this._tempHubWeight,
+      fakeBoost: this._tempFakeBoost,
+    };
     // 重置临时变量
     this._tempHubPenalty = -1;
     this._tempSpeedScale = 1.0;
@@ -1376,7 +1519,9 @@ export class AIPlayerCore {
     this._tempFakeRate = null;
     if (!this._observer) return;
 
-    this._opponentAnalysis = this._observer.getAnalysis();
+    const rawAnalysis = this._observer.getAnalysis();
+    // CM4-R8：认知偏差——AI 偶尔误判"哪个据点更在危险中"（换路径防守，非乱下）
+    this._opponentAnalysis = this._applyPerceptionNoise(rawAnalysis);
     const a = this._opponentAnalysis;
     if (!a) return;
     const pName = this._personality.name;
@@ -1437,6 +1582,9 @@ export class AIPlayerCore {
         if (a.aggression > 0.4) this._tempDefenseWeight = 1.15;
         break;
     }
+
+    // CM4-R8：反应延迟——检测到玩家意图变化后，AI 观察 N 步才应用观察权重
+    this._applyReactionGate(prevTemp);
   }
 
   // ---- 盲盒猜格（薇拉）：跳过推理直接蒙一个空格 ----

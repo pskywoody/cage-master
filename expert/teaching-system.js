@@ -332,6 +332,10 @@ export class TeachingSystem {
     // 缺省 null → 不采集，零行为改变。由 RuntimeEventBridge 注入。
     this.eventHook = options.eventHook || null;
 
+    // V4.4：技巧首次习得的可选回调（盖章弹窗 + 图鉴收集落地）。
+    // 收到 (techniqueId, techniqueInfo) → UI 层据此弹章并写档。缺省 null → 静默。
+    this.onFirstEncounter = options.onFirstEncounter || null;
+
     // Load saved progress
     if (this.enablePersistence) {
       this.load();
@@ -380,6 +384,14 @@ export class TeachingSystem {
           lastEncounteredAt: now,
         };
         this._justFirstEncountered.add(technique);
+        // V4.4：首次习得 → 通知 UI 弹章 + 收集（可选；异常不阻断教学）
+        if (this.onFirstEncounter) {
+          try {
+            this.onFirstEncounter(technique, TECHNIQUE_INFO[technique] || {});
+          } catch (e) {
+            console.warn('[TeachingSystem] onFirstEncounter 异常:', e);
+          }
+        }
       } else {
         const data = this._techniques[technique];
         data.encounterCount++;

@@ -397,6 +397,7 @@
         "interactionType": "NUMBER",
         "autoRevealText": "直接填入数字 5。",
         "methodText": "「行的星衡」：6×6 盘面里每行总和恒为 21。a 行已有 4、1、2、3、6，只缺 a6——21 减已知数得 5。",
+        "hintText": "轮到你了：a 行已填 4、1、2、3、6，只剩 a6 一个空。6×6 每行总和 21——减掉已填的和，本格应该填几？",
         "maxAttempts": 3,
         "failHint": "看第一行：4+1+2+3+6=16，21-16=5，空格就是 5！",
         "autoRevealAfter": 3,
